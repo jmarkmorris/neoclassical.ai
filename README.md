@@ -11,3 +11,21 @@ Check out the Idealized Neoclassical Model, the NPQG Glosssary, and the New Phys
 Project Metadata Goal : Reference implementation of knowledge of nature based upon emergence from fundamentals.
 Goal : Integrated design for learning and understanding.
 Language : Python
+
+
+# Initial visual framework
+#### NOTE: sim.py and local/ contain a separate framework meant to be integrated with NPQG.py
+
+## Install
+    pip install numpy imgui[glfw]
+    
+## Run
+    python sim.py
+    
+## Key Bindings
+#### Space
+- Starts or stops simulation physics
+#### F5
+- Resets simulation (initial configuration based on seed)
+#### Ctrl+Escape
+- Quit program
