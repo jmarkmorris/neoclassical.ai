@@ -1,5 +1,6 @@
 # manim emergence.py emergence -pqh --disable_caching -p
-# 
+#
+# This program is used for Experiment 1
 #
 from manim import *
 import random

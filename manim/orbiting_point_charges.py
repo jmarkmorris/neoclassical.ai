@@ -95,7 +95,7 @@ def update_path(mob, dt, Q):
         dot += 1
 
     if (frame_count > (duration - 2)*frame_rate):
-        label_text = f"Orbiting Point Charges — The Primal Assembly"
+        label_text = f"Orbiting Point Potentials — The Primal Assembly"
         # Calculate the opacity based on the time left
         seconds_remaining = duration - (frame_count / frame_rate)
         opacity = 1 - seconds_remaining/(2)

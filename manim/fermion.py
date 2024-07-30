@@ -44,8 +44,8 @@ for part in parts_to_animate:
     
 # Initialize the personality colors with all parts set to PURE_BLUE
 personality_colors = {i: PURE_BLUE for i in range(1, 7)}
-# for personality in [2, 5]:
-#     personality_colors[personality] = PURE_RED
+for personality in [3,4,5,6]:
+    personality_colors[personality] = PURE_RED
 
 class fermion(ThreeDScene):
     def construct(self):
@@ -112,37 +112,37 @@ class fermion(ThreeDScene):
         personalities = [
             {
                 'center': (personality_offset, radius_IV, 0),
-                'color': PURE_BLUE,
+                'color': personality_colors[1],
                 'orbit_origin': (personality_offset, 0, 0),
                 'orbit_normal': [1, 0, 0]
             },
             {
                 'center': (-personality_offset, radius_IV, 0),
-                'color': PURE_BLUE,
+                'color': personality_colors[2],
                 'orbit_origin': (personality_offset, 0, 0),
                 'orbit_normal': [1, 0, 0]
             },
             {
                 'center': (0, personality_offset, radius_IV),
-                'color': PURE_BLUE,
+                'color': personality_colors[3],
                 'orbit_origin': (0, personality_offset, 0),
                 'orbit_normal': [0, 1, 0]
             },
             {
                 'center': (0, -personality_offset, radius_IV),
-                'color': PURE_BLUE,
+                'color': personality_colors[4],
                 'orbit_origin': (0, personality_offset, 0),
                 'orbit_normal': [0, 1, 0]
             },
             {
                 'center': (radius_IV, 0, personality_offset),
-                'color': PURE_BLUE,
+                'color': personality_colors[5],
                 'orbit_origin': (0, 0, personality_offset),
                 'orbit_normal': [0, 0, 1]
             },
             {
                 'center': (radius_IV, 0, -personality_offset),
-                'color': PURE_BLUE,
+                'color': personality_colors[6],
                 'orbit_origin': (0, 0, personality_offset),
                 'orbit_normal': [0, 0, 1]
             }
