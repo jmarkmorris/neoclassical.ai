@@ -1,4 +1,4 @@
-NEOCLASSICAL PHYSICS AND QUANTUM GRAVITY
+neoclassical.ai
 
 Imagine that nature emerges from unit potential point charges, the electrino and the positrino, which are equal yet oppositely charged. These are the only carriers of energy, in electromagnetic and kinetic form. They are located in a possibly infinite time and space, where each are on an absolute Euclidean scale.  This is distinct from Einstein's spacetime, but we will show how Einstein's spacetime is implemented in this environment. Point charges are neoclassical behaving like classical point charges following Maxwell’s equations in Euclidean space. However, during the classical to quantum transition only a single primitive point charge model was examined and properly falsified.
 
