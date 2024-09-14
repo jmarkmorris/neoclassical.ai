@@ -1,3 +1,6 @@
+# this is pseudo code from early days.  when I have time scan it to see if anything is useful
+
+
 import random
 import numpy as np
 from fractions import Fraction
@@ -6,31 +9,31 @@ from math import pi
 
 # TODO
 class simulator:
-    """Simulator object. Used to simulate n planckSphere interactions over t time.
+    """Simulator object. Used to simulate n point potential interactions over t time.
 
     Args:
-        n (int): Number of planckSpheres to generate
+        n (int): Number of point potentials to generate
         t (int): Duration of simulation in planck time
         
-        minDist (int): Minimum distance between generated planckSpheres. Default is planckSphere.radius * 2
-        maxDist (int): Maximum distance between generated planckSpheres. Default is planckSphere.electricFieldMaxRadius * 2 + minDist
+        minDist (int): Minimum distance between generated point potentials. Default is planckSphere.radius * 2
+        maxDist (int): Maximum distance between generated point potentials. Default is planckSphere.electricFieldMaxRadius * 2 + minDist
         
-        minXVector (int): Minimum velocity for generated planckSpheres on X axis. Default is 0.
-        maxXVector (int): Maximum velocity for generated planckSpheres on X axis. Default is planckSphere.electricFieldMaxRadius.
-        minYVector (int): Minimum velocity for generated planckSpheres on Y axis. Default is 0.
-        maxYVector (int): Maximum velocity for generated planckSpheres on Y axis. Default is planckSphere.electricFieldMaxRadius.
-        minZVector (int): Minimum velocity for generated planckSpheres on Z axis. Default is 0.
-        maxZVector (int): Maximum velocity for generated planckSpheres on Z axis. Default is planckSphere.electricFieldMaxRadius.
+        minXVector (int): Minimum velocity for generated point potentials on X axis. Default is 0.
+        maxXVector (int): Maximum velocity for generated point potentials on X axis. Default is planckSphere.electricFieldMaxRadius.
+        minYVector (int): Minimum velocity for generated point potentials on Y axis. Default is 0.
+        maxYVector (int): Maximum velocity for generated point potentials on Y axis. Default is planckSphere.electricFieldMaxRadius.
+        minZVector (int): Minimum velocity for generated point potentials on Z axis. Default is 0.
+        maxZVector (int): Maximum velocity for generated point potentials on Z axis. Default is planckSphere.electricFieldMaxRadius.
 
-        boundingBox (tuple(int, int, int)): Defines dimensions of box where planckSpheres can be generated using a tuple of (xLength, yLength, zLength). Default is n * planckSphere.electricFieldMaxRadius * 2 for x, y, & z.
+        boundingBox (tuple(int, int, int)): Defines dimensions of box where point potentials can be generated using a tuple of (xLength, yLength, zLength). Default is n * planckSphere.electricFieldMaxRadius * 2 for x, y, & z.
 
         seed (int): Set random.seed()
 
     Steps:
-        1. Generate planckSpheres
-            a. Define size of area where planckSpheres are to be generated
-            b. Define number of planckSpheres to be generated
-            c. Define min/max velocities of planckSpheres
+        1. Generate point potentials
+            a. Define size of area where point potentials are to be generated
+            b. Define number of point potentials to be generated
+            c. Define min/max velocities of point potentials
             d. Define number of ticks to simulate
         2. Simulate planckSphere interaction ticks
             a. Execute existing vectors for each planckSphere
@@ -75,7 +78,7 @@ class simulator:
     # TODO
     def __generateSpheres(self, n, minDist, maxDist, minXVector, maxXVector, minYVector, maxYVector, minZVector, maxZVector, boundingBox):
         # create currentDB
-        # pass through coordinates within boundingBox and generate planckSpheres (before committing the generated planckSphere, check to see that it doesn't overlap with an existing planckSphere. If it does, find the next point where it doesn't overlap)
+        # pass through coordinates within boundingBox and generate point potentials (before committing the generated planckSphere, check to see that it doesn't overlap with an existing planckSphere. If it does, find the next point where it doesn't overlap)
         #   store each generated planckSphere into self.currentDB, which is a np.array
         #   n - 1
         pass        
@@ -83,7 +86,7 @@ class simulator:
     def __nextTick(self):
         # calculates next tick in time. 
         
-        # pop planckSpheres from self.currentDB to self.nextDB
+        # pop point potentials from self.currentDB to self.nextDB
         # when self.currentDB has been completely popped over to self.nextDB, self.currentDB = self.nextDB
         # wipe self.nextDB
         pass
@@ -213,7 +216,7 @@ class planckSphere:
     """
 
 class electricField:
-    # NOTE: electricField object needed as planckSpheres generate new electric fields at each tick
+    # NOTE: electricField object needed as point potentials generate new electric fields at each tick
     # NOTE: electricField behavior: expands spherically from the center of a planckSphere, makes contact only at the surface of the sphere. For computational purposes, it might make sense to calculate interaction by seeing if there is an intersection between the interacting object and the space between T(n) and T(n+1)
     # class variables
     def __init__(self):
