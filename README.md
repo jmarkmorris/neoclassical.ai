@@ -1,38 +1,50 @@
 neoclassical.ai
 
-Imagine that nature emerges from unit potential point charges, the electrino and the positrino, which are equal yet oppositely charged. These are the only carriers of energy, in electromagnetic and kinetic form. They are located in a possibly infinite time and space, where each are on an absolute Euclidean scale.  This is distinct from Einstein's spacetime, but we will show how Einstein's spacetime is implemented in this environment. Point charges are neoclassical behaving like classical point charges following Maxwell’s equations in Euclidean space. However, during the classical to quantum transition only a single primitive point charge model was examined and properly falsified.
+Imagine that nature emerges from constant rate potential emitters modeled as a geometric point in R4 with path history. 
+These are the electrino and the positrino, which emit equal yet opposite potential. 
+The point potentials are the only carriers of energy, in electromagnetic and kinetic form. 
+They are located in a possibly infinite time and space, where each are on an absolute Euclidean scale.
+This is distinct from Einstein's spacetime, but we will show how Einstein's spacetime is implemented in this environment. 
+Point potentials are neoclassical behaving like classically below field speed, yet revealing an entirely unexplored dynamical geometry when they travel at or greater than their own emissions. 
+Historically, during the classical to quantum transition, only a single primitive point charge model was examined and properly falsified.
 
-Imagine that. It is easy to dream up dozens or hundreds or an unlimited number of point charge systems more sophisticated than mapping |q|=e.
-- What is the charge magnitude? 
+Imagine that. It is easy to dream up dozens or hundreds or an unlimited number of point potential systems more sophisticated than mapping |q| = |e|.
+- What is the point potential magnitude? 
 - What is the spherical potential emission speed? 
-- What is the speed limit of a point charge. 
-- Can two point charges meet in real time and space? 
+- What is the speed limit of a point potential. 
+- Can two point potentials occupy the same point in real time and space? 
     - If so, what happens? 
     - If not, why not?
-- Can point charges be created and destroyed? In {q-, q+} sets?
-- Are point charges immutable? 
+- Can point potentials be created and destroyed? In {q-, q+} sets?
+- Are point potentials immutable? 
 
-125 years later, it is clear that this a failure of imagination occurred in the period 1875 through 1927. GR and QM became popular and match observations well. Yet they are both effective theories, having no foundation in nature. With the observation that there are many point charge systems possible, and with GR and QM as reference theories, it is not too hard to discover an amazingly parsimonious solution to nature. 
+125 years later, it is clear that this a failure of imagination occurred in the period 1875 through 1927. 
+GR and QM became popular and match observations well. Yet they are both effective theories, having no foundation in nature. 
+With the observation that there are many point charge systems possible, and with GR and QM as reference theories, it is not too hard to discover an amazingly parsimonious solution to nature. 
 
-Point charge characteristics include immutability, meaning they cannot be created nor destroyed. Why? Here are a few possiblities
-1. Any two point charges have a finite closest possible approach. This could be caused the characteristics of an orbiting electrino:positrino dipole.
-2. If it were possible to arrive at the same point in time space, maybe it's a mundane event. Afterall all when radius=0 their emission is either 0 or the Dirac delta. Either way they superimpose.
+Point potential characteristics include immutability, meaning they cannot be created nor destroyed. Why? Here are a few possiblities
+1. Any two point potentials have a finite closest possible approach based upon the dynamical geometry of partner-action combined with self-action.
+2. If it were possible to arrive at the same point in time and space, maybe it's a mundane event. Afterall, when radius = 0 their emission is either 0 or the Dirac delta. Either way they superimpose.
 
-Point charges emit spherical electromagnetic waves. We can imagine or visualize point charges as blue and red spheres to represent them, even though they are truly a classical point charge geometrically. 
+Point potentials emit spherically expanding potential waves. 
+We can imagine or visualize point potentials as blue and red spheres, even though they are truly a geometric point objects, i.e., have zero radius. 
 
-NPQG requires only two free large scale parameters, the density of point charges and the density of the energy carried by those point charges in electromagnetic potential and kinetic forms.
+This neoclassical model requires only three free large scale empirical parameters, 
+1. The demographics of polarity, presumed to be 50/50.
+2. the volumetric density of point potentials and
+3. the volumetric density of the energy carried by those point charges in potential and kinetic forms.
 
-NPQG explores this recipe for nature and how it emerges as a narrative and theory that maps easily between GR, QM, and ΛCDM all three of which will require enhancements based on the new ontology.
-Point charge theory is superior in ability to explain nature and the universe.
+This model explores this recipe for nature and how it emerges as a narrative and theory that maps easily between GR, QM, and ΛCDM all three of which will require enhancements based on the new ontology.
+Point potential theory is superior in ability to explain nature and the universe.
 
-The NPQG blog and detailed posts are available at https://jmarkmorris.com/
+The neoclassical.ai blog and detailed posts are available at https://neoclassical.ai/
 
-Check out the Idealized Neoclassical Model, the NPQG Glosssary, and the New Physics in Pictures posts.
+Check out the Idealized Neoclassical Model and the New Physics in Pictures posts.  A glossary is provided.
 
-Project Metadata Goal : Reference implementation of knowledge of nature based upon emergence from fundamentals.
+Project Goal: Reference implementation of the fundamental ontology of nature based upon emergence of assemblies from fundamentals.
 
-Goal : Integrated design for learning/teaching, simulation, and understanding.
+Aims: Integrated design for learning/teaching, simulation, and understanding.
 
-Languages : Python, Manim, OpenGL
+Languages: Python, Manim
 
-Will be quite useful with LLM based Ai once it is retrained for NPQG.
+Will be quite useful with LLM based Ai once it is trained for this neoclassical model.
