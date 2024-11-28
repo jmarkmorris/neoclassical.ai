@@ -12,3 +12,5 @@
 *.xdv
 *.dvi
 *.env
+.venv
+media

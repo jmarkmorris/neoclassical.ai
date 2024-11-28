@@ -1,4 +1,4 @@
-# manim emergence.py emergence -pqh --disable_caching -p
+# manim emergence_experiment1.py emergence -pqh --disable_caching -p
 #
 # This program is used for Experiment 1
 #
@@ -12,7 +12,8 @@ import sys
 config.frame_rate = 60
 # num_vertices = 24
 # num_vertices = 12  # add the ingredients for a fermion and see what happens
-num_vertices = 24
+num_vertices = 16
+dot_radius = 0.06
 
 class ColoredDot(Dot):
     def __init__(self, color, coordinates, **kwargs):
@@ -89,7 +90,7 @@ class emergence(Scene):
         vertex_config = {v: {'color': vertices[v].color, 
                              'stroke_width': 1, 
                              'fill_opacity': 1, 
-                             'radius': 0.06} for v in vertices}
+                             'radius': dot_radius} for v in vertices}
         layout = {}
         layout = {v: vertices[v].coordinates for v in vertices}
         
