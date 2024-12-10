@@ -1,14 +1,4 @@
-# The goal is to illustrate each of Maxwell's Equations in the point charge universe.
-# Show how they apply and the implications.
-# Show revisions if needed.
-# this is the language of maxwell's equations, so need to understand them again and relate them to point charges.
-# then I should be ready to simulate!
-# also may need to clarify those equations!!!  especially at r=0, and v>@.
-# I should do a verision in natural units, where @=1, q=1, etc.  Then do the translation.
-# that J in maxwell's fourth equation sticks out like a sore thumb. that's not describing point charges.
-# they need to be rewritten for point charges.
 
-# See 3b1b and steve brunton div and curl and gradient videos and wikipedia.
 
 # Divergence of the E field
 # the unit potentials are the only entities with divergence. 
@@ -45,40 +35,7 @@
 # therefore this is why we divide by the velocity.
 # I'm still unhappy with how this blows up when velocity is < 1. Arghhhh.
 
-# Brunton now ties this constant divergence as follows
-# x(t) = x(0)e^t, y(t) = y(0)e^t
-# arghh, am I getting this all mixed up? how to do this from first principles of the point charge universe?
 
-
-
-# Divergence of the B field
-# Check, makese sense. There are no magnetic monopoles.
-# There are no other extraneous terms in this equation, so it maps directly to the point charge universe.
-# However, we may find that there is a superior mathematics for the point charge approach.
-# It would be cool if it was geometric.
-# Many of these regular assemblies can be viewed as a standing wave that is rotating and translating. 
-# Thinking that way may lead to the more general geometric solution.
-
-# relationship of E and B.
-# need to work on this
-# "the curl of E is equal to -dB/dt"
-# Again, no extraneous terms.
-# Does this equation cover the full range of point charge paths and velocities?
-# We need the general solution, not just the circle or ellipse.
-# Basically each point charge in a pairwise relationship is riding on the Dirac sphere stream of the other.
-# So what is that general solution. A two body solution for potential.  I would think that should exist already?
-# Brunton says that if you are looking at two dimensional vector fields in i-hat, and j-hat then the curl is is k-hat.  wtf?
-# So what does that mean for point charges in three dimensions? What is the dimension for curl?
-
-# Oct 2023, watching Dr. Don Lincoln new video on magnetism. Very interesting. 
-# I been watching several videos on how magnetism is taught. 
-# Dr. Don has made it clear to me that the level described is potentially very different than the point charge level and math.
-# He described relativistic effects on the charges in a current making a wire become non-neutral when carrying a current, 
-# relative to a moving charged particle, let's say electron.
-# Relativity means we are talking about spacetime assemblies, and the change in electron geometry with velocity.
-# Wow, even this pattern is an example of nature echoing its patterns at different scales.  Wow.
-# Ok, so that is all the permission I need so I can think differently.  
-# I do not need a 1 to 1 mapping of electromagnetic theory to the point charge level.
 # Instead, I am looking for the simpler behaviour at the point charge level that then maps directly to the higher level theory and math.
 # which all begs the question it all comes down to which is understanding the specific equations for all cases of two point charges.
 # That comes down to the dirac sphere stream from the emitting charge to the receiving charge.
