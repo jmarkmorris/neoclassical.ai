@@ -1,3 +1,4 @@
+# python doublehelix.py
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -54,4 +55,5 @@ ax.view_init(elev=20, azim=-60)
 
 # Show the plot
 plt.tight_layout()
+plt.savefig("double_helix.png", bbox_inches='tight') 
 plt.show()

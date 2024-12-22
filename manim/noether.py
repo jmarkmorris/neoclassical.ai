@@ -1,4 +1,5 @@
 # # manim noether.py noether -pqm --disable_caching -p
+#  rm /Users/markmorris/Documents/NPQG_Code_Base/NPQG/manim/media/videos/noether/1686p30/noether.mp4; manim noether.py noether -pqh --disable_caching -p
 
 # this could be implemented more generally with the fermion.py and skipping over the personality charges with an if statement.
 # however, for now I am going to fork them because may want to do different things with the base noether core model.
@@ -10,7 +11,7 @@ import random
 
 INDIGO = "#4B0082"
 ELECTRIC_PURPLE = "#8F00FF"
-run_time = 1
+run_time = 30
 # run_time = 60
 # run_time = 16
 frame_rate = 30
