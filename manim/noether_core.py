@@ -1,5 +1,5 @@
 
-## manim lissajou.py lissajou -pqh --disable_caching -p
+## manim noether_core.py noether_core -pqh --disable_caching -p
 
 
 

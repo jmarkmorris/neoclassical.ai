@@ -2,6 +2,7 @@
 #  rm /Users/markmorris/Documents/NPQG_Code_Base/NPQG/manim/media/videos/lorenz_attractor/1080p60/LorenzAttractor.mp4; manim lorenz_attractor.py LorenzAttractor -pqh --disable_caching -p
 #  ported to ManimCE from https://github.com/fajrulfx/visualization101/blob/master/lorenz_attractor.py
 from manim import *
+import numpy as np
 
 ELECTRIC_PURPLE = "#8F00FF"
 
@@ -63,4 +64,4 @@ class LorenzAttractor(ThreeDScene):
             dot.dot.add_updater(dot.update_position)
             self.add(dot.dot, dot.trajectory)
 
-        self.wait(1200)  # Increased wait time for a longer animation
+        self.wait(120)  # Increased wait time for a longer animation
