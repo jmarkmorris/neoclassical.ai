@@ -1,0 +1,36 @@
+{
+  "simulation": {
+    "particles": [
+      {
+        "id": 1,
+        "charge": 5,
+        "position": [2.0, 0.0, 0.0],
+        "velocity": [0.0, 0.5, 0.0]
+      },
+      {
+        "id": 2,
+        "charge": -5,
+        "position": [-2.0, 0.0, 0.0],
+        "velocity": [0.0, -0.5, 0.0]
+      }
+    ],
+    "duration": 10,
+    "dt": 0.01
+  },
+  "visualization": {
+    "colors": {
+      "background": "#4B0082",
+      "positive": "#FF0000",
+      "negative": "#0000FF",
+      "tracer": "#FFFFFF"
+    },
+    "marker_size": 0.04,
+    "tracer": {
+      "enabled": true,
+      "history_length": 200,
+      "fade": true
+    },
+    "sim_to_manim_ratio": 5,
+    "manim_frame_rate": 30
+  }
+}
