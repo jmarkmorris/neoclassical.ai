@@ -82,10 +82,10 @@ class Particle:
         
         # Store history
         self.path_history.append(self.position.copy())
-        self.velocity_history.append(self.velocity.copy())
+        self.velocity_history.append(self.velocity.copy()) 
         
         # Keep history within limits (this will be controlled by config later)
-        max_history = 1000  # This would come from config
+        max_history = 10000  # This would come from config
         if len(self.path_history) > max_history:
             self.path_history.pop(0)
             self.velocity_history.pop(0)
@@ -97,16 +97,16 @@ class Particle:
 class Physics:
     @staticmethod
     def coulomb_force_on_p1(particle1: Particle, particle2: Particle) -> Vector3D:
-        """Calculate Coulomb force between two particles"""
+        """Calculate Coulomb force on particle1 from particle2"""
        
         k = 1  
         r_vec = particle2.position - particle1.position
         r = r_vec.norm()
         
         # Avoid division by zero and very small distances
-        if r < 0.01:
+        if r < 0.001:
             # Set a minimum distance to prevent extreme forces
-            r = 0.01
+            r = 0.001
             r_vec = r_vec.normalized() * r
         
         # Modified Coulomb's law to ensure opposite charges attract and like charges repel
@@ -119,7 +119,7 @@ class Physics:
         
         # Add debug output for large forces
         if abs(force_magnitude) > 10:
-            print(f"Large force: {force_magnitude:.2f} between particles {particle1.id} and {particle2.id}")
+            print(f"Large force: {force_magnitude:.2f} on particle {particle1.id} from {particle2.id}")
         
         return force_magnitude * force_direction
 

@@ -20,7 +20,7 @@ pip install numpy manim
 
 ### 1. Create a JSON Configuration File
 
-Create a JSON file (e.g., `sim1.json`) with your simulation configuration. Here's an example:
+Create a JSON file (e.g., `sim2.json`) with your simulation configuration. Here's an example:
 
 ```json
 {
@@ -64,11 +64,11 @@ Create a JSON file (e.g., `sim1.json`) with your simulation configuration. Here'
 ### 2. Run the Simulation
 
 ```bash
-python run_simulation.py sim1.json
+python run_simulation.py sim2.json
 ```
 
 This will:
-1. Run the simulation using the configuration in `sim1.json`
+1. Run the simulation using the configuration in `sim2.json`
 2. Save the results to `simulation_results.json`
 3. Generate a visualization of the simulation
 
@@ -76,7 +76,7 @@ This will:
 
 - Run only the simulation without visualization:
   ```bash
-  python run_simulation.py sim1.json --simulate-only
+  python run_simulation.py sim2.json --simulate-only
   ```
 
 - Run only the visualization using an existing results file:
@@ -86,7 +86,7 @@ This will:
 
 - Specify a custom output file for the simulation results:
   ```bash
-  python run_simulation.py sim1.json --output my_results.json
+  python run_simulation.py sim2.json --output my_results.json
   ```
 
 ## System Architecture

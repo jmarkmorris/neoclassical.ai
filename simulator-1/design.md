@@ -4,7 +4,7 @@
 
 ### 1. While generating the animation of the simulation in 3D space and 1D time a function will be used to scale, translate, and rotate the configuration of points for each frame of the animation. 
 
-### 2. A key concepts of the simulation and animation is the path history of each point potential. The path history of each point potential must be retained for a tunable number of simulation intervals. In some cases we will ask for tracers that highlight the path of the point potential through space and time.
+### 2. A key concepts of the simulation and animation is the path history of each point potential. The path history of each point potential must be retained for a tunable number of simulation intervals. In some cases we will ask for tracers that highlight the path history of the point potential through space and time.
 
 ### 3. It is important to keep the simulation coordinate system separate from the manim coordinate system.  That way it can scale accordingly to map the particle positions to the manim coordinate system. Keeping the simulation coordinate system separate from the Manim coordinate system is a good idea because it allows you to handle scaling, translation, and rotation independently of the simulation logic. Here's a step-by-step approach to achieve this:
 
@@ -105,7 +105,8 @@ When point potentials in the simulation space move beyond the manim display spac
 ### 8. **Input Parameters from a JSON file**
    - All parameters for the simulation must be specified in a JSON file, and that file name will be a command line argument.
    - Parameters include
-      - Initial position and velocity of each point potential in the simulation at time t=0. The elements are (q, x, y, z, dx/dt, dy/dt, dz/dt), where q is the charge polarity, i.e., + or -.
+      - Initial position and velocity of each point potential in the simulation at time t=0. The elements are (q, x, y, z, dx/dt, dy/dt, dz/dt), 
+      - q is the charge polarity, i.e., + or -.
       - Color codes to use for each type of point potential.
       - Color code for the background 3D space.
       - Size of the circular marker for point potentials.
@@ -114,73 +115,19 @@ When point potentials in the simulation space move beyond the manim display spac
       - Duration of simulation in simulation ticks.
       - Ratio of simulation ticks to manim frame ticks
       - Manim frame rate
-
----
+      - Choice of action function from a set of action functions, where action calculates the forces and updates velocity and position.
 
 By following this approach, you can create a flexible and scalable animation system that separates the simulation logic from the rendering logic, allowing you to easily adjust the visualization as needed.
 
 ---
 
-The particles in the simulation will have a variety of velocities spanning many orders of magnitude.  For efficiency it may make sense to compute the position of slow movers far less frequently than the fast movers especially when dealing with a wide range of velocities and action interactions. This approach can significantly improve computational efficiency without sacrificing much accuracy. Here's how you can implement this strategy:
-
----
-
-### 1. **Why This Approach Works**
-   - **Fast-moving particles**: These particles change their positions rapidly and require frequent updates to accurately capture their trajectories and interactions.
-   - **Slow-moving particles**: These particles change their positions slowly, so their positions can be updated less frequently without significantly affecting the overall simulation accuracy.
-
-   By updating slow-moving particles less frequently, you reduce the number of calculations per time step, which can lead to substantial performance improvements, especially for large systems.
-
----
-
-### 2. **Implementation Strategy**
-   - **Dynamic velocity assessment**: Dynamically assess the velocity of each point potential in the action function and choose between the detailed action calculation or an interpolation calculation.
-   - **Interpolation for Slow Particles**: When slow-moving particles are not being updated, you can interpolate their positions based on their last computed position and velocity. This ensures smooth motion in the animation.
-
----
-
-### 3. **Interpolation for Slow Particles**
-   For slow-moving particles, the action function may interpolate their positions for smoother animation and more efficient calculation:
-   ```python
-   def interpolate_position(particle, dt):
-       return particle["position"] + particle["velocity"] * dt
-   ```
-
-   During the animation, use this function to compute the positions of slow-moving particles between updates. By implementing this approach, you can significantly improve the efficiency of your simulation while maintaining reasonable accuracy for both fast- and slow-moving particles.
-
----
-
-### 4. **Animation in Manim**
-   When animating in Manim, you can use the same approach to update particle positions:
-   - Update fast-moving particles every frame.
-   - Update slow-moving particles only when their position is recomputed, and interpolate otherwise.
-
-   Example:
-   ```python
-   for time_step in simulation_data:
-       for particle in fast_particles:
-           # Update position
-           particle.move_to(map_to_manim(*particle["position"]))
-       for particle in slow_particles:
-           if time_step % dt_slow < dt_fast:
-               # Update position
-               particle.move_to(map_to_manim(*particle["position"]))
-           else:
-               # Interpolate position
-               interpolated_position = interpolate_position(particle, dt_fast)
-               particle.move_to(map_to_manim(*interpolated_position))
-       self.wait(0.1)
-   ```
-
----
-
-### 5. **Testing and Validation**
+### 9. **Testing and Validation**
    - Test the simulation with a small number of particles to ensure the classification and update logic work correctly.
    - Validate the results by comparing them to a simulation where all particles are updated at the same frequency.
 
 ---
 
-### 6. **Appearance**
+### 10. **Appearance**
    - The background will be purple, code INDIGO = "#4B0082"
    - Use Dot3D to depict point potentials
    - positive point potentials have color PURE_RED and a radius of 0.04
