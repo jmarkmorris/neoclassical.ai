@@ -99,7 +99,7 @@ class Physics:
     def coulomb_force_on_p1(particle1: Particle, particle2: Particle) -> Vector3D:
         """Calculate Coulomb force on particle1 from particle2"""
        
-        k = 1  
+        k = 0.8  
         r_vec = particle2.position - particle1.position
         r = r_vec.norm()
         

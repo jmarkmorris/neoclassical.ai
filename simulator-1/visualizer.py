@@ -38,7 +38,7 @@ class Vector3D:
 class TracingTail(VGroup):
     """A VGroup that traces the path of a moving object with smooth fading trail"""
     
-    def __init__(self, mobject, max_points=250, stroke_width=1, stroke_color=WHITE, **kwargs):
+    def __init__(self, mobject, max_points=12000, stroke_width=1, stroke_color=WHITE, **kwargs):
         super().__init__(**kwargs)
         self.mobject = mobject
         self.max_points = max_points
@@ -73,15 +73,16 @@ class TracingTail(VGroup):
                 # Calculate opacity based on position in the path
                 # First segments (oldest) should be nearly transparent
                 # Last segments (newest) should be most visible
-                opacity = i / (len(self.points) - 1)  # 0.0 to 1.0
-                
+                # opacity doesn't work for lines in this case, even when they are longer. Anti-aliasing issue perhaps?
+                # opacity = i / (len(self.points) - 1)  # 0.0 to 1.0
                 # Create line segment
                 line = Line(
                     start=self.points[i],
                     end=self.points[i + 1],
                     stroke_width=self.stroke_width,
                     stroke_color=self.stroke_color,
-                    stroke_opacity=opacity  # Apply calculated opacity
+                    stroke_opacity=1  # Apply calculated opacity
+                    #stroke_opacity=opacity  # Apply calculated opacity
                 )
                 
                 # Add line to group
@@ -254,9 +255,9 @@ class PotentialVisualization(ThreeDScene):
                 # Create tracer with basic parameters - individual line segments
                 tracer = TracingTail(
                     particle,
-                    max_points=self.tracer_config.get("history_length", 100),
+                    max_points=self.tracer_config.get("history_length", 12000),
                     stroke_color=self.colors["tracer"],
-                    stroke_width=2
+                    stroke_width=1
                 )
                 self.add(tracer)
                 tracers[p_id_str] = tracer

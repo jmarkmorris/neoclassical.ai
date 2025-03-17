@@ -19,7 +19,8 @@ from manim import config
 # animation
 duration = 12
 frame_rate = 60
-paused = False # add pause feature?
+config.pixel_width = 2998
+config.pixel_height = 1686
 
 total_rotation_angle_in_radians = 2*TAU
 

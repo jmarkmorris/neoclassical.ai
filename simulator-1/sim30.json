@@ -197,7 +197,7 @@
       "enabled": true,
       "history_length": 100,
       "add_spheres": false,
-      "frames_between_spheres": 6,
+      "frames_between_trail_segments": 6,
       "sphere_radius_increment": 0.02,
       "max_sphere_radius": 5.0
     },
