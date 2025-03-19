@@ -64,7 +64,7 @@ Create a JSON file (e.g., `sim2.json`) with your simulation configuration. Here'
 ### 2. Run the Simulation
 
 ```bash
-python run_simulation.py sim2.json
+python run_animation.py --config sim2.json
 ```
 
 This will:
