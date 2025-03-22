@@ -52,10 +52,6 @@
                 <div class="control-panel">
                     <h4>Add Node</h4>
                     <div class="form-group">
-                        <label for="node-label">Node Label:</label>
-                        <input type="text" class="form-control" id="node-label" value="New Node">
-                    </div>
-                    <div class="form-group">
                         <label for="node-color">Node Color:</label>
                         <input type="color" class="form-control color-picker" id="node-color" value="#3498db">
                     </div>
@@ -63,16 +59,13 @@
                     
                     <hr>
                     
-                    <h4>Add Edge</h4>
-                    <div class="form-group">
-                        <label for="source-node">From Node:</label>
-                        <select class="form-control" id="source-node"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="target-node">To Node:</label>
-                        <select class="form-control" id="target-node"></select>
-                    </div>
-                    <button class="btn btn-primary mb-3" id="add-edge-btn">Add Edge</button>
+                    <h4>Node and Edge Instructions</h4>
+                    <ul>
+                        <li>To add text: Double-click on a node</li>
+                        <li>To create a link: Click first node, then click second node</li>
+                        <li>To delete a link: Select the link and press Delete key</li>
+                        <li>To cancel: Press Escape or click background</li>
+                    </ul>
                     
                     <hr>
                     
@@ -151,7 +144,6 @@
             
             // Add node
             $('#add-node-btn').click(function() {
-                const label = $('#node-label').val();
                 const color = $('#node-color').val();
                 
                 $.ajax({
@@ -159,7 +151,7 @@
                     method: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({
-                        label: label,
+                        label: "",  // Start with empty label
                         color: color
                     }),
                     success: function(response) {
@@ -172,26 +164,7 @@
                 });
             });
             
-            // Add edge
-            $('#add-edge-btn').click(function() {
-                const source = $('#source-node').val();
-                const target = $('#target-node').val();
-                
-                $.ajax({
-                    url: '/add_edge',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                        source: source,
-                        target: target
-                    }),
-                    success: function(response) {
-                        if (response.success) {
-                            updateNetwork();
-                        }
-                    }
-                });
-            });
+            // We've removed the Add Edge button as edges are now added directly in the visualization
             
             // Update physics
             $('#update-physics-btn').click(function() {

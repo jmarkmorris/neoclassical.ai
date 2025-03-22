@@ -5,7 +5,7 @@ import json
 import os
 import uuid
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='.')
 
 class NetworkManager:
     def __init__(self):
@@ -62,10 +62,15 @@ class NetworkManager:
         net = Network(height="700px", width="100%", bgcolor="#222222", font_color="white")
         net.barnes_hut()
         
-        # Add all nodes
+        # Node editing will be added directly in the HTML later
+        net.options.template = ""
+        
+        # Add all nodes (with empty labels and no hover titles)
         for node_id, node_data in self.nodes.items():
-            net.add_node(node_id, label=node_data["label"], color=node_data["color"], 
-                         title=f"Node ID: {node_id}")
+            net.add_node(node_id, label="", color=node_data["color"], 
+                         title="",  # Empty title to disable hover label
+                         labelHighlightBold=True,
+                         shape="box")
         
         # Add all edges
         for edge in self.edges:
@@ -74,13 +79,24 @@ class NetworkManager:
         # Set physics options
         physics_options = {
             "nodes": {
-                "shape": "dot",
+                "shape": "box",  # Change to box (rectangle) shape
                 "size": 25,
                 "font": {
-                    "size": 16,
-                    "face": "Tahoma"
+                    "size": 14,
+                    "face": "Arial",
+                    "multi": "html",  # Enable HTML formatting in labels
+                    "bold": {
+                        "color": "white"
+                    }
                 },
-                "borderWidth": 2
+                "borderWidth": 2,
+                "widthConstraint": {
+                    "minimum": 100,  # Minimum width for rectangular nodes
+                    "maximum": 200   # Maximum width for rectangular nodes
+                },
+                "heightConstraint": {
+                    "minimum": 50    # Minimum height for rectangular nodes
+                }
             },
             "edges": {
                 "width": 2,
@@ -95,21 +111,33 @@ class NetworkManager:
                 "forceAtlas2Based": {
                     "gravitationalConstant": -50,
                     "centralGravity": 0.01,
-                    "springLength": 100,
+                    "springLength": 150,  # Increased spring length
                     "springConstant": 0.08
                 },
                 "minVelocity": 0.75,
                 "solver": "forceAtlas2Based",
-                "enabled": True
+                "enabled": True,
+                "repulsion": {
+                    "nodeDistance": 150  # Minimum distance between nodes
+                },
+                # Prevent node overlapping
+                "barnesHut": {
+                    "avoidOverlap": 1.0,  # Maximum (1.0) overlap avoidance
+                    "springLength": 150,  # Match the spring length
+                    "springConstant": 0.08
+                }
             },
             "interaction": {
                 "navigationButtons": True,
                 "keyboard": True,
-                "hover": True,
+                "hover": False,  # Disable hover effects
                 "multiselect": True,
                 "dragNodes": True,
                 "hideEdgesOnDrag": False,
                 "hideNodesOnDrag": False
+            },
+            "manipulation": {
+                "enabled": True  # Enable network manipulation
             }
         }
         
@@ -127,6 +155,39 @@ class NetworkManager:
         # Generate unique filename to prevent caching issues
         filename = f"static/network_{uuid.uuid4().hex[:8]}.html"
         net.save_graph(filename)
+        
+        # Add custom initialization code to the HTML file
+        with open(filename, 'r') as file:
+            html_content = file.read()
+        
+        # Add initialization for our custom editor after network is drawn
+        # Load our network editor code
+        with open("lib/bindings/network-editor.js", "r") as editor_file:
+            editor_code = editor_file.read()
+            
+        # Create custom init with embedded editor code
+        custom_init = f"""
+              drawGraph();
+              
+              // Add debug logging
+              console.log("Network created:", network);
+              console.log("Nodes:", nodes);
+              console.log("Edges:", edges);
+              
+              // Embedded network editor code
+              {editor_code}
+              
+              // Initialize our custom network editor
+              initNetworkEditor(network, nodes, edges);
+              console.log("Network editor initialization called");
+        </script>
+        """
+        
+        html_content = html_content.replace("              drawGraph();\n        </script>", custom_init)
+        
+        with open(filename, 'w') as file:
+            file.write(html_content)
+            
         return filename
 
 # Initialize our network manager
@@ -174,9 +235,45 @@ def add_edge():
 def get_network_data():
     return jsonify(network_manager.get_network_data())
 
+@app.route('/update_node', methods=['POST'])
+def update_node():
+    data = request.json
+    node_id = data.get('id')
+    label = data.get('label', '')
+    
+    if node_id and str(node_id).isdigit():
+        node_id = int(node_id)
+        if node_id in network_manager.nodes:
+            network_manager.nodes[node_id]['label'] = label
+            return jsonify({"success": True})
+    
+    return jsonify({"success": False})
+
+@app.route('/delete_edge', methods=['POST'])
+def delete_edge():
+    data = request.json
+    from_node = data.get('from')
+    to_node = data.get('to')
+    
+    if from_node and to_node:
+        from_node = int(from_node)
+        to_node = int(to_node)
+        
+        edge_to_remove = None
+        for i, edge in enumerate(network_manager.edges):
+            if edge['from'] == from_node and edge['to'] == to_node:
+                edge_to_remove = i
+                break
+        
+        if edge_to_remove is not None:
+            network_manager.edges.pop(edge_to_remove)
+            return jsonify({"success": True})
+    
+    return jsonify({"success": False})
+
 if __name__ == '__main__':
     # Create static directory if it doesn't exist
     if not os.path.exists('static'):
         os.makedirs('static')
     
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)

@@ -104,6 +104,8 @@ When point potentials in the simulation space move beyond the manim display spac
 
 ### 8. **Input Parameters from a JSON file**
    - All parameters for the simulation must be specified in a JSON file, and that file name will be a command line argument.
+   - Default values should be specified for all parameters possible in the input file to handle when they are missing.
+   - Default values in the python code should all be specified near the head of the file.
    - Parameters include
       - Initial position and velocity of each point potential in the simulation at time t=0. The elements are (q, x, y, z, dx/dt, dy/dt, dz/dt), 
       - q is the charge polarity, i.e., + or -.
@@ -133,5 +135,32 @@ By following this approach, you can create a flexible and scalable animation sys
    - positive point potentials have color PURE_RED and a radius of 0.04
    - negative point potentials have color PURE_BLUE and a radius of 0.04
    - trailing paths are in WHITE, with optional fading as indicated in the JSON config file.
+
+---
+
+### 11. **Tracers**
+
+   - There can be multiple types of tracers requested. Some may be overlaid on another.
+   - Line Tracer: Tracers can be a curve that follows the last N ticks of path for each point potential.
+      - A 1 unit wide line should be the default, and this is specifiable in the json input file.
+      - The color of the tracer lines is specifiable in the json input file.
+         - One option is thin white lines for all point potentials
+         - A second option is pale red for the positive point potentials and pale blue for the negative point potentials.
+   - Dot3D Tracer: This tracer displays spaced copies of the point potential along its own path history.
+      - The opacity of these Dot3D tracers varies from 80% and decreases to 10% over the number of tracer points specified in the json input file.
+      - Tracer colors: pale red for the positive point potentials and pale blue for the negative point potentials.
+      - Tracer point locations are chosen based on equal time intervals, which will give some indication of velocity by the spacing.
+
+---
+
+### 12. **Selectable Action Functions**
+
+   - The architecture will allow the action function for the simulation to be chosen in the json input file.
+   - Many action functions will be developed, so design for one action function per python source file.
+   - Use the convention that action function source files be named action_<identifer>
+   - The first action function will be the one currently implemented. Name the file action_basic.py
+   - The API for action functions, i.e., the calling parameters includes the path history for all point potentials in the simulation.
+   - Path history is defined as (t, x, y, z, dx/dt, dy/dt, dz/dt) where position and velocity are vectors.
+   - Each action function must determine the next time step in the path of all point potentials.
 
 ---

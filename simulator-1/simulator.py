@@ -4,6 +4,23 @@ import os
 import math
 from typing import List, Dict, Tuple, Any, Union
 
+# Default configuration values
+DEFAULT_CONFIG = {
+    "simulation": {
+        "dt": 0.01,
+        "duration": 10.0,
+        "max_history": 10000,
+        "particles": [],
+        "action_function": "basic"  # Default action function to use
+    },
+    "physics": {
+        "coulomb_constant": 0.8,
+        "min_distance": 0.001,
+        "min_velocity": 0.001,
+        "large_force_threshold": 10.0
+    }
+}
+
 # Vector operations for 3D points
 class Vector3D:
     def __init__(self, x=0.0, y=0.0, z=0.0):
@@ -64,13 +81,16 @@ class Vector3D:
 
 class Particle:
     def __init__(self, id: int, charge: float, position: Union[Vector3D, List, Tuple], 
-                 velocity: Union[Vector3D, List, Tuple]):
+                 velocity: Union[Vector3D, List, Tuple], max_history: int = None):
         self.id = id
         self.charge = charge
         
         # Convert position and velocity to Vector3D if they're not already
         self.position = position if isinstance(position, Vector3D) else Vector3D(position)
         self.velocity = velocity if isinstance(velocity, Vector3D) else Vector3D(velocity)
+        
+        # Maximum history length (defaults to config value if not specified)
+        self.max_history = max_history or DEFAULT_CONFIG["simulation"]["max_history"]
         
         self.path_history = [self.position.copy()]
         self.velocity_history = [self.velocity.copy()]
@@ -84,9 +104,8 @@ class Particle:
         self.path_history.append(self.position.copy())
         self.velocity_history.append(self.velocity.copy()) 
         
-        # Keep history within limits (this will be controlled by config later)
-        max_history = 10000  # This would come from config
-        if len(self.path_history) > max_history:
+        # Keep history within limits
+        if len(self.path_history) > self.max_history:
             self.path_history.pop(0)
             self.velocity_history.pop(0)
     
@@ -95,18 +114,21 @@ class Particle:
 
 
 class Physics:
-    @staticmethod
-    def coulomb_force_on_p1(particle1: Particle, particle2: Particle) -> Vector3D:
+    def __init__(self, config=None):
+        """Initialize with physics configuration"""
+        self.config = config or DEFAULT_CONFIG["physics"]
+        self.k = self.config.get("coulomb_constant", 0.8)
+        self.min_distance = self.config.get("min_distance", 0.001)
+    
+    def coulomb_force_on_p1(self, particle1: Particle, particle2: Particle) -> Vector3D:
         """Calculate Coulomb force on particle1 from particle2"""
-       
-        k = 0.8  
         r_vec = particle2.position - particle1.position
         r = r_vec.norm()
         
         # Avoid division by zero and very small distances
-        if r < 0.001:
+        if r < self.min_distance:
             # Set a minimum distance to prevent extreme forces
-            r = 0.001
+            r = self.min_distance
             r_vec = r_vec.normalized() * r
         
         # Modified Coulomb's law to ensure opposite charges attract and like charges repel
@@ -114,7 +136,7 @@ class Physics:
         # This makes F = -k*q1*q2/r² so:
         # - If q1 and q2 have the same sign (++ or --), force is repulsive (negative)
         # - If q1 and q2 have opposite signs (+- or -+), force is attractive (positive)
-        force_magnitude = -k * particle1.charge * particle2.charge / (r * r * particle2.velocity.norm())
+        force_magnitude = -self.k * particle1.charge * particle2.charge / (r * r * particle2.velocity.norm())
         force_direction = r_vec / r
         
         # Add debug output for large forces
@@ -127,15 +149,64 @@ class Physics:
 class Simulator:
     def __init__(self, config_file: str):
         self.config = self._load_config(config_file)
+        self._merge_with_defaults()
         self.particles = self._initialize_particles()
+        
+        # Initialize physics module
+        self.physics = Physics(self.config.get("physics"))
+        
+        # Load the appropriate action function
+        self.action_function = self._load_action_function()
+        
         self.time = 0
         self.dt = self.config["simulation"]["dt"]
         self.duration = self.config["simulation"]["duration"]
+        self.max_history = self.config["simulation"]["max_history"]
+    
+    def _load_action_function(self):
+        """Load the specified action function module"""
+        action_name = self.config["simulation"].get("action_function", "basic")
+        print(f"Using action function: {action_name}")
+        
+        try:
+            # Import the module dynamically
+            module_name = f"action_{action_name}"
+            action_module = __import__(module_name)
+            
+            # Get the action class - by convention ActionName where Name is capitalized action_name
+            class_name = f"Action{action_name.capitalize()}"
+            action_class = getattr(action_module, class_name)
+            
+            # Initialize with config
+            return action_class(self.config)
+        except (ImportError, AttributeError) as e:
+            print(f"Error loading action function '{action_name}': {e}")
+            print("Falling back to internal physics implementation")
+            return None
         
     def _load_config(self, config_file: str) -> Dict[str, Any]:
         """Load simulation configuration from JSON file"""
         with open(config_file, 'r') as f:
             return json.load(f)
+    
+    def _merge_with_defaults(self):
+        """Merge user configuration with default values"""
+        # Helper function to recursively merge dictionaries
+        def merge_dicts(default_dict, user_dict):
+            result = default_dict.copy()
+            for key, value in user_dict.items():
+                if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                    result[key] = merge_dicts(result[key], value)
+                else:
+                    result[key] = value
+            return result
+        
+        # Start with defaults and update with user config
+        for section in DEFAULT_CONFIG:
+            if section not in self.config:
+                self.config[section] = DEFAULT_CONFIG[section].copy()
+            elif isinstance(self.config[section], dict):
+                self.config[section] = merge_dicts(DEFAULT_CONFIG[section], self.config[section])
     
     def _initialize_particles(self) -> List[Particle]:
         """Initialize particles from config"""
@@ -145,7 +216,8 @@ class Simulator:
                 id=p_data["id"],
                 charge=p_data["charge"],
                 position=p_data["position"],
-                velocity=p_data["velocity"]
+                velocity=p_data["velocity"],
+                max_history=self.config["simulation"]["max_history"]
             )
             particles.append(particle)
         return particles
@@ -178,13 +250,19 @@ class Simulator:
     
     def _step(self):
         """Perform one simulation step"""
+        # If we have a custom action function, use it
+        if self.action_function:
+            self.particles = self.action_function.apply(self.particles, self.dt)
+            return
+        
+        # Otherwise use the internal physics implementation
         forces = {p.id: Vector3D(0, 0, 0) for p in self.particles}
         
         # Calculate forces between all pairs of particles
         for i, p1 in enumerate(self.particles):
             for j, p2 in enumerate(self.particles):
                 if i != j:  # Skip self-interaction
-                    force = Physics.coulomb_force_on_p1(p1, p2)
+                    force = self.physics.coulomb_force_on_p1(p1, p2)
                     forces[p1.id] = forces[p1.id] + force
         
         # Update velocities based on forces

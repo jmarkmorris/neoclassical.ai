@@ -6,6 +6,43 @@ import numpy as np
 from manim import *
 from typing import Dict, Any, List, Tuple
 
+# Default configuration values
+DEFAULT_VISUALIZER_CONFIG = {
+    "visualization": {
+        "colors": {
+            "background": "#4B0082",  # INDIGO
+            "positive": "#FF0000",    # PURE_RED
+            "negative": "#0000FF",    # PURE_BLUE
+            "tracer": "#FFFFFF"       # WHITE
+        },
+        "marker_size": 0.04,
+        "use_dot3d": True,
+        "tracer": {
+            "enabled": True,
+            "history_length": 12000,
+            "stroke_width": 1,
+            "fade": False,
+            "add_spheres": False,
+            "frames_between_trail_segments": 60,
+            "sphere_radius": 0.02,
+            "max_sphere_radius": 0.1
+        },
+        "scaling": {
+            "enabled": True,
+            "initial_scale": 1.0,
+            "max_display_limit": 5.0,
+            "min_display_limit": 2.0,
+            "scale_stability_threshold": 0.2
+        },
+        "sim_to_manim_ratio": 5,
+        "manim_frame_rate": 60,
+        "camera": {
+            "phi": 75,  # in degrees
+            "theta": 30 # in degrees
+        }
+    }
+}
+
 # Use consistent Vector3D class for compatibility
 class Vector3D:
     def __init__(self, x=0.0, y=0.0, z=0.0):
@@ -38,15 +75,26 @@ class Vector3D:
 class TracingTail(VGroup):
     """A VGroup that traces the path of a moving object with smooth fading trail"""
     
-    def __init__(self, mobject, max_points=12000, stroke_width=1, stroke_color=WHITE, **kwargs):
+    def __init__(self, mobject, max_points=12000, stroke_width=1, stroke_color=WHITE, 
+                 fade_trail=False, add_spheres=False, frames_between_spheres=60, 
+                 sphere_radius=0.02, max_sphere_radius=0.1, **kwargs):
         super().__init__(**kwargs)
         self.mobject = mobject
         self.max_points = max_points
         self.stroke_width = stroke_width
         self.stroke_color = stroke_color
+        self.fade_trail = fade_trail
+        
+        # Sphere tracer settings
+        self.add_spheres = add_spheres
+        self.frames_between_spheres = frames_between_spheres
+        self.sphere_radius = sphere_radius
+        self.max_sphere_radius = max_sphere_radius
+        self.frame_counter = 0
         
         # Store state
         self.points = []
+        self.sphere_positions = []
         
         # Add updater that runs on each frame
         self.add_updater(self._update_path)
@@ -63,30 +111,58 @@ class TracingTail(VGroup):
         if len(self.points) > self.max_points:
             self.points.pop(0)
         
+        # Update sphere positions if needed
+        if self.add_spheres:
+            self.frame_counter += 1
+            if self.frame_counter >= self.frames_between_spheres:
+                self.frame_counter = 0
+                self.sphere_positions.append(current_point.copy())
+                # Limit number of spheres
+                if len(self.sphere_positions) > self.max_points // self.frames_between_spheres:
+                    self.sphere_positions.pop(0)
+        
         # Clear all previous submobjects
         self.submobjects = []
         
         # If we have at least 2 points, draw line segments
         if len(self.points) >= 2:
-            # Create individual line segments with varying opacity
+            # Create individual line segments with varying opacity if fade is enabled
             for i in range(len(self.points) - 1):
-                # Calculate opacity based on position in the path
-                # First segments (oldest) should be nearly transparent
-                # Last segments (newest) should be most visible
-                # opacity doesn't work for lines in this case, even when they are longer. Anti-aliasing issue perhaps?
-                # opacity = i / (len(self.points) - 1)  # 0.0 to 1.0
+                # Calculate opacity based on position in the path if fading is enabled
+                opacity = 1.0
+                if self.fade_trail:
+                    opacity = i / (len(self.points) - 1)  # 0.0 to 1.0
+                
                 # Create line segment
                 line = Line(
                     start=self.points[i],
                     end=self.points[i + 1],
                     stroke_width=self.stroke_width,
                     stroke_color=self.stroke_color,
-                    stroke_opacity=1  # Apply calculated opacity
-                    #stroke_opacity=opacity  # Apply calculated opacity
+                    stroke_opacity=opacity if self.fade_trail else 1
                 )
                 
                 # Add line to group
                 self.add(line)
+                
+        # Add sphere tracers if enabled
+        if self.add_spheres and self.sphere_positions:
+            for i, pos in enumerate(self.sphere_positions):
+                # Calculate opacity for spheres (older ones are more transparent)
+                opacity = (i + 1) / len(self.sphere_positions) * 0.7 + 0.1  # Range from 0.1 to 0.8
+                
+                # Create sphere with decreasing size for older points
+                radius = max(self.sphere_radius * (i + 1) / len(self.sphere_positions), 
+                            self.sphere_radius / 3)
+                radius = min(radius, self.max_sphere_radius)
+                
+                dot = Dot3D(
+                    point=pos,
+                    radius=radius,
+                    color=self.stroke_color,
+                    opacity=opacity
+                )
+                self.add(dot)
 
 
 class PotentialVisualization(ThreeDScene):
@@ -98,43 +174,67 @@ class PotentialVisualization(ThreeDScene):
         results_file = os.environ.get("SIMULATION_RESULTS", "simulation_results.json")
         print(f"Loading simulation data from: {results_file}")
         self.simulation_data = self._load_simulation_results(results_file)
-        self.config = self.simulation_data.get("config", {})
+        self.config = self._prepare_config()
         self.colors = self._setup_colors()
         
-        # Get visualization parameters
-        viz_config = self.config.get("visualization", {})
-        self.marker_size = viz_config.get("marker_size", 0.04)
-        self.use_dot3d = viz_config.get("use_dot3d", True)
-        self.tracer_config = viz_config.get("tracer", {})
-        self.sim_to_manim_ratio = viz_config.get("sim_to_manim_ratio", 5)
+        # Extract configuration parameters
+        viz_config = self.config["visualization"]
+        self.marker_size = viz_config["marker_size"]
+        self.use_dot3d = viz_config["use_dot3d"]
+        self.tracer_config = viz_config["tracer"]
+        self.sim_to_manim_ratio = viz_config["sim_to_manim_ratio"]
         
-        # Get scaling configuration
-        scaling_config = viz_config.get("scaling", {})
-        self.scaling_enabled = scaling_config.get("enabled", True)
-        self.base_scale = scaling_config.get("initial_scale", 1.0)
-        self.max_display_limit = 5.0
-        self.min_display_limit = 2.0
+        # Extract scaling configuration
+        scaling_config = viz_config["scaling"]
+        self.scaling_enabled = scaling_config["enabled"]
+        self.base_scale = scaling_config["initial_scale"]
+        self.max_display_limit = scaling_config["max_display_limit"]
+        self.min_display_limit = scaling_config["min_display_limit"]
+        self.scale_stability_threshold = scaling_config["scale_stability_threshold"]
         
         # Initialize scale history for smoothing
         self.last_scale = self.base_scale
         self.scale_history = [self.base_scale] * 5
-        self.scale_stability_threshold = 0.2
+        
+        # Camera configuration
+        self.camera_config = viz_config["camera"]
     
     def _load_simulation_results(self, file_path):
         """Load simulation results from a JSON file"""
         with open(file_path, 'r') as f:
             return json.load(f)
     
+    def _prepare_config(self):
+        """Merge the loaded configuration with defaults"""
+        # Start with the defaults
+        merged_config = DEFAULT_VISUALIZER_CONFIG.copy()
+        
+        # Get user config from simulation results
+        user_config = self.simulation_data.get("config", {})
+        
+        # Helper function to recursively merge dictionaries
+        def merge_dicts(default_dict, user_dict):
+            result = default_dict.copy()
+            for key, value in user_dict.items():
+                if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                    result[key] = merge_dicts(result[key], value)
+                else:
+                    result[key] = value
+            return result
+        
+        # Merge user config with defaults
+        return merge_dicts(merged_config, user_config)
+    
     def _setup_colors(self):
-        """Setup colors from config or use defaults"""
-        viz_config = self.config.get("visualization", {})
-        colors = viz_config.get("colors", {})
+        """Setup colors from config"""
+        viz_config = self.config["visualization"]
+        colors = viz_config["colors"]
         
         return {
-            "background": colors.get("background", "#4B0082"),
-            "positive": PURE_RED,  # Use PURE_RED as requested
-            "negative": PURE_BLUE,  # Use PURE_BLUE as requested
-            "tracer": colors.get("tracer", "#FFFFFF")
+            "background": colors["background"],
+            "positive": colors["positive"],
+            "negative": colors["negative"],
+            "tracer": colors["tracer"]
         }
     
     def _get_particle_color(self, charge):
@@ -204,8 +304,10 @@ class PotentialVisualization(ThreeDScene):
         return current_scale
     
     def construct(self):
-        # Set up the scene
-        self.set_camera_orientation(phi=75 * DEGREES, theta=30 * DEGREES)
+        # Set up the scene with camera configuration from config
+        phi = self.camera_config["phi"] * DEGREES
+        theta = self.camera_config["theta"] * DEGREES
+        self.set_camera_orientation(phi=phi, theta=theta)
         self.camera.background_color = self.colors["background"]
         
         # Add axes for reference
@@ -251,13 +353,18 @@ class PotentialVisualization(ThreeDScene):
             particle.move_to(initial_pos)
             
             # Add tracer if enabled first (so particle will be on top)
-            if self.tracer_config.get("enabled", True):
-                # Create tracer with basic parameters - individual line segments
+            if self.tracer_config["enabled"]:
+                # Create tracer with all parameters from config
                 tracer = TracingTail(
                     particle,
-                    max_points=self.tracer_config.get("history_length", 12000),
+                    max_points=self.tracer_config["history_length"],
                     stroke_color=self.colors["tracer"],
-                    stroke_width=1
+                    stroke_width=self.tracer_config.get("stroke_width", 1),
+                    fade_trail=self.tracer_config.get("fade", False),
+                    add_spheres=self.tracer_config.get("add_spheres", False),
+                    frames_between_spheres=self.tracer_config.get("frames_between_trail_segments", 60),
+                    sphere_radius=self.tracer_config.get("sphere_radius", self.marker_size/2),
+                    max_sphere_radius=self.tracer_config.get("max_sphere_radius", self.marker_size)
                 )
                 self.add(tracer)
                 tracers[p_id_str] = tracer
@@ -267,7 +374,7 @@ class PotentialVisualization(ThreeDScene):
             particles.append((particle, positions))
         
         # Animate the simulation
-        sampling_rate = self.sim_to_manim_ratio  # Use the exact sim_to_manim_ratio for smoother animations
+        sampling_rate = self.sim_to_manim_ratio
         
         for i in range(0, len(times), sampling_rate):
             if i >= len(times):

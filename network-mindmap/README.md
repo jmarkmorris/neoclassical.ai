@@ -1,11 +1,13 @@
 # Interactive Network Mindmap with PyVis and Flask
 
-This application provides a web-based interface for creating and interacting with network visualizations using PyVis and Flask. It allows users to add nodes and edges dynamically, and customize the physics simulation parameters.
+This application provides a web-based interface for creating and interacting with network visualizations using PyVis and Flask. It allows users to create rectangular nodes, add text directly on nodes, and create links between nodes dynamically.
 
 ## Features
 
-- Add nodes with custom labels and colors
-- Create edges between existing nodes
+- Create rectangular nodes with custom colors
+- Add and edit text on nodes by double-clicking
+- Create links dynamically by clicking between nodes
+- Delete links by selecting them and pressing the Delete key
 - Toggle physics simulation on/off
 - Adjust physics parameters (spring constant and gravitational force)
 - Interactive network visualization with drag-and-drop functionality
@@ -32,15 +34,19 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install flask pyvis networkx
 ```
 
-3. Save the files with the following structure:
+3. Make sure you have the following structure:
 
 ```
-interactive-network/
+network-mindmap/
 ├── app.py
+├── lib/
+│   └── bindings/
+│       ├── utils.js
+│       └── network-editor.js
 ├── templates/
 │   └── index.html
 └── static/
-    # This directory will be created automatically if it doesn't exist
+    # Generated network files will be stored here
 ```
 
 ## Running the Application
@@ -54,7 +60,7 @@ python app.py
 2. Open your web browser and navigate to:
 
 ```
-http://127.0.0.1:5000/
+http://127.0.0.1:5001/
 ```
 
 3. You should see the interactive network visualization interface.
@@ -62,14 +68,22 @@ http://127.0.0.1:5000/
 ## Usage
 
 ### Adding Nodes
-1. Enter a label for your new node in the "Node Label" field
-2. Choose a color using the color picker
-3. Click "Add Node"
+1. Choose a color using the color picker
+2. Click "Add Node" to create a new rectangular node
 
-### Adding Edges
-1. Select a source node from the "From Node" dropdown
-2. Select a target node from the "To Node" dropdown
-3. Click "Add Edge"
+### Editing Nodes
+1. Double-click on any node to add or edit its text
+2. Type your content
+3. Press Enter or click outside the node to save
+
+### Creating Links
+1. Click on a source node (first node)
+2. Then click on a target node (second node)
+3. A link will be created between them
+
+### Deleting Links
+1. Click on a link to select it
+2. Press the Delete key to remove it
 
 ### Adjusting Physics Settings
 1. Toggle the "Physics Enabled" checkbox to turn the physics simulation on or off
@@ -81,6 +95,7 @@ http://127.0.0.1:5000/
 - Click and drag nodes to reposition them
 - Scroll to zoom in and out
 - Click and drag the background to pan the view
+- Press Escape to cancel the current operation
 
 ## Customization
 
@@ -94,6 +109,3 @@ If you encounter any issues with the application:
 2. Check that the Flask application is running and accessible
 3. Look for any error messages in the console where you started the Flask app
 4. Try clearing your browser cache or using a different browser
-
-If you continue to experience problems, please open an issue on GitHub.
-
