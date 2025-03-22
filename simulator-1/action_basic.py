@@ -5,6 +5,7 @@ This implements the default physics used for calculating particle interactions.
 
 from typing import List, Dict, Any
 import math
+from simulator import Vector3D
 
 # Default physical constants
 DEFAULT_PHYSICS = {
@@ -46,9 +47,10 @@ class ActionBasic:
             for j, p2 in enumerate(particles):
                 if i != j:  # Skip self-interaction
                     force = self._calculate_force(p1, p2)
-                    forces[p1.id][0] += force[0]
-                    forces[p1.id][1] += force[1]
-                    forces[p1.id][2] += force[2]
+                    # Convert Vector3D to list for addition
+                    forces[p1.id][0] += force.x
+                    forces[p1.id][1] += force.y
+                    forces[p1.id][2] += force.z
         
         # Update velocities based on forces
         for p in particles:
@@ -65,56 +67,28 @@ class ActionBasic:
     
     def _calculate_force(self, p1, p2):
         """Calculate force between two particles using modified Coulomb's law"""
-        # Get position vectors
-        r_vec = [
-            p2.position.x - p1.position.x,
-            p2.position.y - p1.position.y,
-            p2.position.z - p1.position.z
-        ]
-        
-        # Calculate distance
-        r_squared = r_vec[0]**2 + r_vec[1]**2 + r_vec[2]**2
-        r = math.sqrt(r_squared)
+        # Calculate distance vector using Vector3D operations
+        r_vec = p2.position - p1.position
+        r = r_vec.norm()
         
         # Avoid division by zero and very small distances
         if r < self.min_distance:
             r = self.min_distance
             # Normalize vector and scale to min distance
-            magnitude = math.sqrt(r_squared)
-            if magnitude > 0:
-                r_vec = [
-                    r_vec[0] / magnitude * self.min_distance,
-                    r_vec[1] / magnitude * self.min_distance,
-                    r_vec[2] / magnitude * self.min_distance
-                ]
-                r_squared = self.min_distance ** 2
+            r_vec = r_vec.normalized() * self.min_distance
         
         # Calculate velocity magnitude of p2
-        velocity_magnitude = math.sqrt(
-            p2.velocity.x**2 + p2.velocity.y**2 + p2.velocity.z**2
-        )
+        velocity_magnitude = p2.velocity.norm()
         
         # Avoid division by zero for velocity
         if velocity_magnitude < self.min_velocity:
             velocity_magnitude = self.min_velocity
         
-        # Modified Coulomb's law to ensure opposite charges attract and like charges repel
-        # Using negative of product to reverse the natural behavior
-        force_magnitude = -self.coulomb_constant * p1.charge * p2.charge / (r_squared * velocity_magnitude)
+        # Standard Coulomb's law where opposite charges attract and like charges repel
+        force_magnitude = self.coulomb_constant * p1.charge * p2.charge / (r * r * velocity_magnitude)
         
-        # Calculate force direction (unit vector)
-        unit_vector = [
-            r_vec[0] / r,
-            r_vec[1] / r,
-            r_vec[2] / r
-        ]
-        
-        # Calculate force vector
-        force = [
-            force_magnitude * unit_vector[0],
-            force_magnitude * unit_vector[1],
-            force_magnitude * unit_vector[2]
-        ]
+        # Calculate force vector using the normalized direction
+        force = r_vec.normalized() * force_magnitude
         
         # Output debug for large forces
         if abs(force_magnitude) > self.large_force_threshold:

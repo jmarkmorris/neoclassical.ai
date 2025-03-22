@@ -17,13 +17,14 @@
     "duration": 10,
     "dt": 0.01,
     "max_history": 10000,
-    "action_function": "basic"
+    "action_function": "history"
   },
   "physics": {
     "coulomb_constant": 0.8,
     "min_distance": 0.001,
     "min_velocity": 0.001,
-    "large_force_threshold": 10.0
+    "large_force_threshold": 10.0,
+    "potential_velocity": 10.0
   },
   "visualization": {
     "colors": {
@@ -32,7 +33,8 @@
       "negative": "#0000FF",
       "tracer": "#FFFFFF",
       "tracer_positive": "#FC6255",
-      "tracer_negative": "#58C4DD"
+      "tracer_negative": "#58C4DD",
+      "history_lines": "#FFFFFF"
     },
     "marker_size": 0.04,
     "use_dot3d": true,
@@ -46,6 +48,13 @@
       "sphere_radius": 0.03,
       "max_sphere_radius": 5.0,
       "use_particle_color": true
+    },
+    "history_lines": {
+      "enabled": true,
+      "lines_per_relation": 30,
+      "stroke_width": 1.0,
+      "update_interval": 100,
+      "potential_velocity": 10.0
     },
     "scaling": {
       "enabled": false,

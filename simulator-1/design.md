@@ -173,13 +173,33 @@ By following this approach, you can create a flexible and scalable animation sys
    - The action_history.py action function will use the speed of the spherical potential wave, potential_velocity, to calculate action based on the intersecting potential wave emitted on the path history of the emitter.  Potential velocity should be set in the input sim*.json file.
    - The algorithm requires searching through the path history and finding the emission time and radius to the receiver that most closely matches the current position of the receiver.
    - Here are the details of the action algorithm between a receiver and a transmitter:
-      - Calculate the radial distance between the current position of receiver and transmitter. Let's call that action_radius.
-      - Walk back through the history at 1 dt, 2 dt, ..., (n-1) dt, n dt, (n+1) dt, ... , N dt, where N is the oldest history point saved.
-      - Calculate the distance the potential wave traveled from the history point being examined. delta_radius = n * dt * potential_velocity.
-      - If delta_radius is less than action_radius, the current history point (location and velocity) becomes the basis for calculating action.
-      - Continue through the path history until all history of the emitter has been considered for the history point causing the action.
-      - Use the calculated history point (location and velocity) for the action calculation.
-      - Proceed through all possible emitters.
-      - Move on to the next receiver and repeat the process until all receiver path histories are updated for the next step.
+
+   1. Start with the current receiver and emitter positions
+   2. Calculate the radial distance between them as our initial "best distance"
+   3. For each historical point n*dt back in time:
+      - Calculate where the potential wave from that point would be now
+      - Calculate the distance between that wave position and the receiver's current position
+      - If this distance is smaller than our current "best distance", update our best history point
+
+   To calculate where the potential wave from a historical point would be now:
+   - The wave expands at potential_velocity in all directions
+   - After n*dt time, the wave has traveled a distance of n*dt*potential_velocity
+   - The wave front would be a sphere centered at the historical emitter position, with radius ndtpotential_velocity
+
+   So for each historical point, we need to:
+   1. Calculate the distance between that historical emitter position and the current receiver position
+   2. Compare that to how far the wave from that point would have traveled (ndtpotential_velocity)
+   3. The difference between these values tells us how close the wave front is to the receiver
+
+   The closest match is where the difference is minimized.
+
+   - Use the calculated history point (location and velocity) for the action calculation.
+   - Proceed through all possible emitters.
+   - Move on to the next receiver and repeat the process until all receiver path histories are updated for the next step.
+   - The speed of the potential wave is set in the physics section of the configuration file, as the potential_velocity parameter. 
+   - The default value is 10.0, but you can adjust it to different values to see how it affects the simulation.
+   - When the action function is set to "history", it determines how fast the potential waves from the emitter particles travel through space. 
+   - Lower values cause the potential waves to travel more slowly, thus the action forces are based on older positions in the emitter's history. 
+   - Higher values make the potential waves travel faster, approaching the behavior of the basic action function as the value gets very large.
 
 ---

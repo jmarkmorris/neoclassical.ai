@@ -15,7 +15,9 @@ DEFAULT_VISUALIZER_CONFIG = {
             "negative": "#0000FF",    # PURE_BLUE
             "tracer_positive": "#FC6255",  # PALE RED
             "tracer_negative": "#58C4DD",  # PALE BLUE
-            "tracer": "#FFFFFF"       # WHITE
+            "tracer": "#FFFFFF",      # WHITE
+            "history_lines": "#FFFFFF", # WHITE
+            "potential_wave": "#FFFFFF"  # WHITE (for potential wave visualization)
         },
         "marker_size": 0.04,
         "use_dot3d": True,
@@ -29,6 +31,13 @@ DEFAULT_VISUALIZER_CONFIG = {
             "sphere_radius": 0.02,
             "max_sphere_radius": 0.1,
             "use_particle_color": True  # If True, use particle-based colors, otherwise use common tracer color
+        },
+        "history_lines": {
+            "enabled": False,          # Whether to show history lines
+            "lines_per_relation": 3,   # Number of lines to show per particle pair
+            "stroke_width": 1.0,       # Width of history lines
+            "update_interval": 30,     # Update connections every N simulation steps
+            "potential_velocity": 10.0 # Match the physics.potential_velocity
         },
         "scaling": {
             "enabled": True,
@@ -187,6 +196,14 @@ class PotentialVisualization(ThreeDScene):
         self.use_dot3d = viz_config["use_dot3d"]
         self.tracer_config = viz_config["tracer"]
         self.sim_to_manim_ratio = viz_config["sim_to_manim_ratio"]
+        
+        # Extract history lines configuration
+        self.history_lines_config = viz_config.get("history_lines", {
+            "enabled": False,
+            "interval": 20,
+            "stroke_width": 1.0,
+            "max_lines": 500
+        })
         
         # Extract scaling configuration
         scaling_config = viz_config["scaling"]
@@ -387,7 +404,17 @@ class PotentialVisualization(ThreeDScene):
             
             # Add particle AFTER tracer so it appears on top
             self.add(particle)
-            particles.append((particle, positions))
+            particles.append((particle, positions, p_id_str, charge))
+        
+        # Create a group to hold history lines
+        history_lines = VGroup()
+        self.add(history_lines)
+        
+        # Dictionary to store potential wave connections
+        # Format: {(emitter_id, receiver_id): [(emitter_hist_pos, receiver_hist_pos, sim_time), ...]}
+        # These are fixed pairs that show exactly where the emitter was when it emitted the wave
+        # and where the receiver was when the wave reached it
+        potential_connections = {}
         
         # Animate the simulation
         sampling_rate = self.sim_to_manim_ratio
@@ -407,12 +434,134 @@ class PotentialVisualization(ThreeDScene):
             
             # Move particles with the adjusted scale
             animations = []
-            for particle, positions in particles:
+            
+            # Clear previous history lines
+            history_lines.submobjects = []
+            
+            # Update draw flag - we will draw history lines on EVERY frame but only 
+            # recalculate new connections periodically
+            draw_history_lines = self.history_lines_config["enabled"]
+            
+            # Flag to determine if we should recalculate connections this frame
+            calculate_connections = draw_history_lines and (i % self.history_lines_config.get("update_interval", 30) == 0)
+            
+            for particle, positions, p_id_str, charge in particles:
                 if i < len(positions):
                     pos = positions[i]
                     new_pos = [current_scale * p for p in pos]
+                    
                     # Use a smoother animation with a shorter run time to reduce jumpiness
                     animations.append(particle.animate.move_to(new_pos))
+                    
+                    # Skip if history lines are not enabled
+                    if not self.history_lines_config["enabled"]:
+                        continue
+                        
+                    # Only calculate potential connections at specified intervals
+                    # or if we don't have enough history
+                    if i < 10 or not calculate_connections:
+                        continue
+                        
+                    # For each pair of particles, find the correct historical position
+                    # that would have emitted a potential wave to reach the current position
+                    for other_particle, other_positions, other_id, other_charge in particles:
+                        # Skip self-interaction
+                        if p_id_str == other_id:
+                            continue
+                            
+                        # Get current receiver position
+                        receiver_pos = new_pos
+                        
+                        # Find the historical emitter position
+                        # This mimics the algorithm in action_history.py
+                        best_hist_idx = 0
+                        best_remaining_distance = float('inf')
+                        potential_velocity = self.history_lines_config.get("potential_velocity", 10.0)
+                        
+                        # Search through history points to find the best match
+                        for hist_idx in range(min(i, len(other_positions))):
+                            # Skip if we don't have enough history
+                            if hist_idx >= len(other_positions):
+                                continue
+                                
+                            # Get historical emitter position
+                            hist_emitter_pos = other_positions[hist_idx]
+                            
+                            # Calculate how many time steps back this history point is
+                            steps_back = i - hist_idx
+                            
+                            # Calculate the distance from historical position to current receiver
+                            rx, ry, rz = receiver_pos[0], receiver_pos[1], receiver_pos[2]
+                            ex, ey, ez = hist_emitter_pos[0], hist_emitter_pos[1], hist_emitter_pos[2]
+                            hist_to_receiver_distance = math.sqrt((rx-ex)**2 + (ry-ey)**2 + (rz-ez)**2)
+                            
+                            # Calculate how far the potential wave would have traveled by now
+                            wave_travel_distance = steps_back * (self.config["simulation"]["dt"]) * potential_velocity
+                            
+                            # Calculate the remaining distance between the wave front and the receiver
+                            remaining_distance = abs(hist_to_receiver_distance - wave_travel_distance)
+                            
+                            # If this wave front is closer to the receiver than our current best,
+                            # update our best match
+                            if remaining_distance < best_remaining_distance:
+                                best_hist_idx = hist_idx
+                                best_remaining_distance = remaining_distance
+                        
+                        # Store connection if the potential wave is close enough
+                        if best_remaining_distance < 0.1 and best_hist_idx > 0:
+                            # Get the best historical emitter position
+                            best_hist_pos = other_positions[best_hist_idx]
+                            
+                            # Create a key for this particle pair relation
+                            relation_key = (other_id, p_id_str)
+                            
+                            # Create a new entry if it doesn't exist
+                            if relation_key not in potential_connections:
+                                potential_connections[relation_key] = []
+                            
+                            # Store the FIXED PAIR of positions with simulation time
+                            # This gives us the exact points where emitter emitted and receiver received
+                            connection = (best_hist_pos, pos, i)  # Use current pos as fixed receiver position
+                            potential_connections[relation_key].append(connection)
+                            
+                            # Print debug to confirm connections are being stored
+                            print(f"Stored connection: emitter {other_id} → receiver {p_id_str}, time: {i}, remaining distance: {best_remaining_distance:.5f}")
+                            
+            # We've finished all per-particle calculations
+            # Now draw the history lines on each frame if enabled
+            if draw_history_lines:
+                # Clear previous history lines
+                history_lines.submobjects = []
+                
+                # Draw lines for each particle relation
+                lines_per_relation = self.history_lines_config.get("lines_per_relation", 3)
+                
+                for relation_key, connections in potential_connections.items():
+                    emitter_id, receiver_id = relation_key
+                    
+                    # Sort connections by time (newest to oldest)
+                    sorted_connections = sorted(connections, key=lambda x: x[2], reverse=True)
+                    
+                    # Take only the most recent connections up to lines_per_relation
+                    recent_connections = sorted_connections[:lines_per_relation]
+                    
+                    # Draw lines for these connections
+                    for hist_emitter_pos, hist_receiver_pos, sim_time in recent_connections:
+                        # Scale both historical positions
+                        scaled_hist_emitter_pos = [current_scale * p for p in hist_emitter_pos]
+                        scaled_hist_receiver_pos = [current_scale * p for p in hist_receiver_pos]
+                        
+                        # Create the line from historical emitter to historical receiver
+                        # This shows FIXED points where the emitter emitted and receiver received
+                        line = Line(
+                            start=scaled_hist_emitter_pos,
+                            end=scaled_hist_receiver_pos,
+                            stroke_width=self.history_lines_config["stroke_width"],
+                            stroke_color=self.colors.get("potential_wave", WHITE)
+                        )
+                        
+                        # Add the line to our history lines group
+                        history_lines.add(line)
             
             if animations:
                 # Use even shorter run time and linear rate for smoother motion
