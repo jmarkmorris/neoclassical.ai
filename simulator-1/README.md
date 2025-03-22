@@ -1,6 +1,6 @@
 # NPQG Simulator and Visualizer
 
-A simulator and visualizer for point potentials in 3D space following physical laws. This project uses Python with Manim to create animations of particle interactions based on configurable physics models.
+A simulator and visualizer for point potentials in 3D space following provided action laws, which may be physics based or geometry based. This project uses Python with Manim to create animations of particle interactions based on configurable action models.
 
 ## Overview
 
@@ -8,12 +8,12 @@ The NPQG Simulator is designed to simulate the movement of point potentials (par
 
 Key features:
 
-- Discrete time simulation with configurable physics
+- Discrete time simulation with configurable action functions
 - 3D visualization with Manim
-- Multiple particle types with different charges
+- Two point potential particle types with opposite potential polarity
 - Path history tracers for particles
 - Dynamic scaling to keep particles in view
-- Pluggable action functions for different physics models
+- Pluggable action functions for different physical and geometry models
 - Comprehensive configuration system with sensible defaults
 
 ## Requirements
@@ -147,6 +147,8 @@ See `example_config.json` for a complete example with all available options.
 
 ## Configuration Parameters
 
+All configuration parameters are now included in every config file (sim2.json, sim30.json) with their default values, ensuring consistent behavior across different simulation configurations.
+
 ### Simulation Parameters
 - `simulation`: Main simulation settings
   - `particles`: List of particles with their initial properties
@@ -172,7 +174,9 @@ See `example_config.json` for a complete example with all available options.
     - `background`: Background color of the 3D space (default: "#4B0082", INDIGO)
     - `positive`: Color for positive charge particles (default: "#FF0000", PURE_RED)
     - `negative`: Color for negative charge particles (default: "#0000FF", PURE_BLUE)
-    - `tracer`: Color for path tracers (default: "#FFFFFF", WHITE)
+    - `tracer`: Color for path tracers when using single color (default: "#FFFFFF", WHITE)
+    - `tracer_positive`: Color for positive charge particle tracers (default: "#FC6255", PALE_RED)
+    - `tracer_negative`: Color for negative charge particle tracers (default: "#58C4DD", PALE_BLUE)
   - `marker_size`: Size of the particle markers (default: 0.04)
   - `use_dot3d`: Whether to use Dot3D instead of Sphere for particles (default: true)
   - `tracer`: Configuration for path tracers
@@ -184,6 +188,7 @@ See `example_config.json` for a complete example with all available options.
     - `frames_between_trail_segments`: Number of frames between trail sphere markers (default: 60)
     - `sphere_radius`: Radius of the sphere markers (default: 0.02)
     - `max_sphere_radius`: Maximum radius for sphere markers (default: 0.1)
+    - `use_particle_color`: Whether to use particle-specific tracer colors (default: true)
   - `scaling`: Configuration for auto-scaling
     - `enabled`: Whether auto-scaling is enabled (default: true)
     - `initial_scale`: Initial scale factor (default: 1.0)
@@ -201,7 +206,7 @@ See `example_config.json` for a complete example with all available options.
 The default physics model uses a modified Coulomb's law with the following features:
 
 - Opposite charges attract, like charges repel
-- Forces are inversely proportional to the square of distance and particle velocity
+- Forces are inversely proportional to the square of distance multiplied by particle velocity
 - Minimum distance and velocity thresholds prevent extreme forces
 - Support for multiple particles interacting simultaneously
 

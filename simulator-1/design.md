@@ -1,6 +1,6 @@
 # Project Goals
 
-## The goal is to use Python/Manim to create animations according to the paths output from a discrete time simulator or a calculated model. The spatial and temporal aspects of the model are 3D space and 1D time populated with geometric point potentials that move according to the laws of physics provided by an action function. The 3D space is Euclidean.  1D time is linear and forward moving.  The ultimate goal is to create a library of reusable animation objects and scenes so that new visualizations can leverage the existing objects, scenes, and internal data structures.
+## The goal is to use Python/Manim (Manim Community Edition) to create animations according to the paths output from a discrete time simulator or a calculated model. The spatial and temporal aspects of the model are 3D space and 1D time populated with geometric point potentials that move according to the laws of physics provided by an action function. The 3D space is Euclidean.  1D time is linear and forward moving.  The ultimate goal is to create a library of reusable animation objects and scenes so that new visualizations can leverage the existing objects, scenes, and internal data structures.
 
 ### 1. While generating the animation of the simulation in 3D space and 1D time a function will be used to scale, translate, and rotate the configuration of points for each frame of the animation. 
 
@@ -132,9 +132,11 @@ By following this approach, you can create a flexible and scalable animation sys
 ### 10. **Appearance**
    - The background will be purple, code INDIGO = "#4B0082"
    - Use Dot3D to depict point potentials
-   - positive point potentials have color PURE_RED and a radius of 0.04
-   - negative point potentials have color PURE_BLUE and a radius of 0.04
-   - trailing paths are in WHITE, with optional fading as indicated in the JSON config file.
+   - Positive point potentials have color PURE_RED and a radius of 0.04
+   - Negative point potentials have color PURE_BLUE and a radius of 0.04
+   - Trailing path colors are configurable on a per simulation basis in the sim*.json file.
+      - The default option is RED (#FC6255) for positive point potentials, and BLUE (#58C4DD) for negative point potentials
+      - An second option is that all point potentials have a WHITE tracer.
 
 ---
 
@@ -162,5 +164,22 @@ By following this approach, you can create a flexible and scalable animation sys
    - The API for action functions, i.e., the calling parameters includes the path history for all point potentials in the simulation.
    - Path history is defined as (t, x, y, z, dx/dt, dy/dt, dz/dt) where position and velocity are vectors.
    - Each action function must determine the next time step in the path of all point potentials.
+
+---
+
+### 13. **Path History Action Function**
+
+   - The action_basic.py action function presumes that the spherical potential wave emitted by each point potential travels infinitely fast such that the current position of the emitting point potential is used to calculate the action on the receiving point potential.
+   - The action_history.py action function will use the speed of the spherical potential wave, potential_velocity, to calculate action based on the intersecting potential wave emitted on the path history of the emitter.  Potential velocity should be set in the input sim*.json file.
+   - The algorithm requires searching through the path history and finding the emission time and radius to the receiver that most closely matches the current position of the receiver.
+   - Here are the details of the action algorithm between a receiver and a transmitter:
+      - Calculate the radial distance between the current position of receiver and transmitter. Let's call that action_radius.
+      - Walk back through the history at 1 dt, 2 dt, ..., (n-1) dt, n dt, (n+1) dt, ... , N dt, where N is the oldest history point saved.
+      - Calculate the distance the potential wave traveled from the history point being examined. delta_radius = n * dt * potential_velocity.
+      - If delta_radius is less than action_radius, the current history point (location and velocity) becomes the basis for calculating action.
+      - Continue through the path history until all history of the emitter has been considered for the history point causing the action.
+      - Use the calculated history point (location and velocity) for the action calculation.
+      - Proceed through all possible emitters.
+      - Move on to the next receiver and repeat the process until all receiver path histories are updated for the next step.
 
 ---

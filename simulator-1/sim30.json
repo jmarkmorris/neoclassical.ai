@@ -183,30 +183,50 @@
       }
     ],
     "duration": 10,
-    "dt": 0.01
+    "dt": 0.01,
+    "max_history": 10000,
+    "action_function": "basic"
+  },
+  "physics": {
+    "coulomb_constant": 0.8,
+    "min_distance": 0.001,
+    "min_velocity": 0.001,
+    "large_force_threshold": 10.0
   },
   "visualization": {
     "colors": {
       "background": "#4B0082",
       "positive": "#FF0000",
       "negative": "#0000FF",
-      "tracer": "#FFFFFF"
+      "tracer": "#FFFFFF",
+      "tracer_positive": "#FC6255",
+      "tracer_negative": "#58C4DD"
     },
     "marker_size": 0.04,
+    "use_dot3d": true,
     "tracer": {
       "enabled": true,
       "history_length": 100,
+      "stroke_width": 1,
+      "fade": false,
       "add_spheres": false,
       "frames_between_trail_segments": 6,
-      "sphere_radius_increment": 0.02,
-      "max_sphere_radius": 5.0
+      "sphere_radius": 0.02,
+      "max_sphere_radius": 5.0,
+      "use_particle_color": false
     },
     "scaling": {
       "enabled": false,
-      "initial_scale": 1.0
+      "initial_scale": 1.0,
+      "max_display_limit": 5.0,
+      "min_display_limit": 2.0,
+      "scale_stability_threshold": 0.2
     },
     "sim_to_manim_ratio": 20,
     "manim_frame_rate": 60,
-    "use_dot3d": true
+    "camera": {
+      "phi": 75,
+      "theta": 30
+    }
   }
 }

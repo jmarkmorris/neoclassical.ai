@@ -13,6 +13,8 @@ DEFAULT_VISUALIZER_CONFIG = {
             "background": "#4B0082",  # INDIGO
             "positive": "#FF0000",    # PURE_RED
             "negative": "#0000FF",    # PURE_BLUE
+            "tracer_positive": "#FC6255",  # PALE RED
+            "tracer_negative": "#58C4DD",  # PALE BLUE
             "tracer": "#FFFFFF"       # WHITE
         },
         "marker_size": 0.04,
@@ -25,7 +27,8 @@ DEFAULT_VISUALIZER_CONFIG = {
             "add_spheres": False,
             "frames_between_trail_segments": 60,
             "sphere_radius": 0.02,
-            "max_sphere_radius": 0.1
+            "max_sphere_radius": 0.1,
+            "use_particle_color": True  # If True, use particle-based colors, otherwise use common tracer color
         },
         "scaling": {
             "enabled": True,
@@ -160,7 +163,8 @@ class TracingTail(VGroup):
                     point=pos,
                     radius=radius,
                     color=self.stroke_color,
-                    opacity=opacity
+                    opacity=opacity,
+                    resolution=(32, 16)
                 )
                 self.add(dot)
 
@@ -234,12 +238,21 @@ class PotentialVisualization(ThreeDScene):
             "background": colors["background"],
             "positive": colors["positive"],
             "negative": colors["negative"],
-            "tracer": colors["tracer"]
+            "tracer": colors["tracer"],
+            "tracer_positive": colors.get("tracer_positive", "#FC6255"),  # Default to PALE RED if not specified
+            "tracer_negative": colors.get("tracer_negative", "#58C4DD")   # Default to PALE BLUE if not specified
         }
     
     def _get_particle_color(self, charge):
         """Get the color for a particle based on its charge"""
         return self.colors["positive"] if charge > 0 else self.colors["negative"]
+        
+    def _get_tracer_color(self, charge):
+        """Get the color for a particle's tracer based on its charge and settings"""
+        if self.tracer_config.get("use_particle_color", True):
+            return self.colors["tracer_positive"] if charge > 0 else self.colors["tracer_negative"]
+        else:
+            return self.colors["tracer"]
     
     def _calculate_scale_factor(self, all_positions):
         """Calculate appropriate scale factor based on particle positions"""
@@ -354,11 +367,14 @@ class PotentialVisualization(ThreeDScene):
             
             # Add tracer if enabled first (so particle will be on top)
             if self.tracer_config["enabled"]:
+                # Determine tracer color based on settings and particle charge
+                tracer_color = self._get_tracer_color(charge)
+                
                 # Create tracer with all parameters from config
                 tracer = TracingTail(
                     particle,
                     max_points=self.tracer_config["history_length"],
-                    stroke_color=self.colors["tracer"],
+                    stroke_color=tracer_color,
                     stroke_width=self.tracer_config.get("stroke_width", 1),
                     fade_trail=self.tracer_config.get("fade", False),
                     add_spheres=self.tracer_config.get("add_spheres", False),

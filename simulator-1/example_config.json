@@ -30,7 +30,9 @@
       "background": "#4B0082",
       "positive": "#FF0000",
       "negative": "#0000FF",
-      "tracer": "#FFFFFF"
+      "tracer": "#FFFFFF",
+      "tracer_positive": "#FC6255",
+      "tracer_negative": "#58C4DD"
     },
     "marker_size": 0.04,
     "use_dot3d": true,
@@ -42,7 +44,8 @@
       "add_spheres": true,
       "frames_between_trail_segments": 60,
       "sphere_radius": 0.02,
-      "max_sphere_radius": 0.1
+      "max_sphere_radius": 0.1,
+      "use_particle_color": true
     },
     "scaling": {
       "enabled": true,
