@@ -70,7 +70,8 @@ class NetworkManager:
             net.add_node(node_id, label="", color=node_data["color"], 
                          title="",  # Empty title to disable hover label
                          labelHighlightBold=True,
-                         shape="box")
+                         shape="box",
+                         margin=15)  # Add margin around nodes to prevent overlap
         
         # Add all edges
         for edge in self.edges:
@@ -111,20 +112,27 @@ class NetworkManager:
                 "forceAtlas2Based": {
                     "gravitationalConstant": -50,
                     "centralGravity": 0.01,
-                    "springLength": 150,  # Increased spring length
+                    "springLength": 200,  # Increased spring length to create more space
                     "springConstant": 0.08
                 },
                 "minVelocity": 0.75,
                 "solver": "forceAtlas2Based",
                 "enabled": True,
                 "repulsion": {
-                    "nodeDistance": 150  # Minimum distance between nodes
+                    "nodeDistance": 250  # Increased minimum distance between nodes
                 },
                 # Prevent node overlapping
                 "barnesHut": {
                     "avoidOverlap": 1.0,  # Maximum (1.0) overlap avoidance
-                    "springLength": 150,  # Match the spring length
+                    "springLength": 200,  # Match the spring length
                     "springConstant": 0.08
+                },
+                # This enables the overlap avoidance for all solvers
+                "timestep": 0.5,        # Reduced timestep for more stable simulation
+                "stabilization": {
+                    "enabled": True,     # Enable stabilization for initial layout
+                    "iterations": 1000,  # More iterations for better initial placement
+                    "updateInterval": 50
                 }
             },
             "interaction": {

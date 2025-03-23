@@ -6,6 +6,8 @@ import numpy as np
 from manim import *
 from typing import Dict, Any, List, Tuple
 
+# No need for a separate function as we'll use Manim's built-in arrow
+
 # Default configuration values
 DEFAULT_VISUALIZER_CONFIG = {
     "visualization": {
@@ -341,7 +343,14 @@ class PotentialVisualization(ThreeDScene):
         self.camera.background_color = self.colors["background"]
         
         # Add axes for reference
-        axes = ThreeDAxes()
+        axes = ThreeDAxes(
+            axis_config={
+                "stroke_width": 1,  # Controls thickness of all axes
+            },
+            x_range=[-5, 5, 1],  # min, max, step (this affects ticks)
+            y_range=[-5, 5, 1],
+            z_range=[-5, 5, 1],
+        )
         self.add(axes)
         
         # Create scale indicator as fixed overlay
@@ -551,17 +560,44 @@ class PotentialVisualization(ThreeDScene):
                         scaled_hist_emitter_pos = [current_scale * p for p in hist_emitter_pos]
                         scaled_hist_receiver_pos = [current_scale * p for p in hist_receiver_pos]
                         
-                        # Create the line from historical emitter to historical receiver
-                        # This shows FIXED points where the emitter emitted and receiver received
-                        line = Line(
+                        # Determine emitter charge to set connection color
+                        emitter_charge = 0
+                        for particle, positions, p_id, charge in particles:
+                            if p_id == emitter_id:
+                                emitter_charge = charge
+                                break
+                                
+                        # Set connection color based on emitter charge
+                        if emitter_charge > 0:
+                            connection_color = self.colors["tracer_positive"]  # PALE RED
+                        else:
+                            connection_color = self.colors["tracer_negative"]  # PALE BLUE
+                            
+                        # Calculate the direction vector 
+                        direction = np.array(scaled_hist_receiver_pos) - np.array(scaled_hist_emitter_pos)
+                        direction_norm = np.linalg.norm(direction)
+                        
+                        # Skip if endpoints are too close
+                        if direction_norm < 0.01:
+                            continue
+                        
+                        # Simply create a dotted line that connects directly from emitter to receiver
+                        # Calculate the dash length based on the line length
+                        # Shorter lines get smaller dashes for better visual density
+                        dash_length = min(0.1, max(0.03, direction_norm / 20))
+                        
+                        # Create a dashed line with the appropriate color
+                        dashed_line = DashedLine(
                             start=scaled_hist_emitter_pos,
-                            end=scaled_hist_receiver_pos,
+                            end=scaled_hist_receiver_pos,  # Connect directly to receiver position
                             stroke_width=self.history_lines_config["stroke_width"],
-                            stroke_color=self.colors.get("potential_wave", WHITE)
+                            stroke_color=connection_color,
+                            dash_length=dash_length,
+                            dashed_ratio=0.5
                         )
                         
                         # Add the line to our history lines group
-                        history_lines.add(line)
+                        history_lines.add(dashed_line)
             
             if animations:
                 # Use even shorter run time and linear rate for smoother motion

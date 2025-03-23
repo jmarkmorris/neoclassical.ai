@@ -13,4 +13,6 @@
 *.dvi
 *.env
 .venv
+.venv_air
+.venv_pro
 media

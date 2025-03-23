@@ -55,6 +55,7 @@ Run with a specific configuration file:
 
 ```bash
 python run_animation.py --config my_config.json
+python run_animation.py --config sim_history.json
 ```
 
 ### Command Line Options
