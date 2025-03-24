@@ -30,7 +30,6 @@ DEFAULT_VISUALIZER_CONFIG = {
             "enabled": True,
             "history_length": 12000,
             "stroke_width": 1,
-            "fade": False,
             "add_spheres": False,
             "frames_between_trail_segments": 60,
             "sphere_radius": 0.02,
@@ -89,17 +88,16 @@ class Vector3D:
 
 
 class TracingTail(VGroup):
-    """A VGroup that traces the path of a moving object with smooth fading trail"""
+    """A VGroup that traces the path of a moving object"""
     
     def __init__(self, mobject, max_points=12000, stroke_width=1, stroke_color=WHITE, 
-                 fade_trail=False, add_spheres=False, frames_between_spheres=60, 
+                 add_spheres=False, frames_between_spheres=60, 
                  sphere_radius=0.02, max_sphere_radius=0.1, **kwargs):
         super().__init__(**kwargs)
         self.mobject = mobject
         self.max_points = max_points
         self.stroke_width = stroke_width
         self.stroke_color = stroke_color
-        self.fade_trail = fade_trail
         
         # Sphere tracer settings
         self.add_spheres = add_spheres
@@ -142,20 +140,14 @@ class TracingTail(VGroup):
         
         # If we have at least 2 points, draw line segments
         if len(self.points) >= 2:
-            # Create individual line segments with varying opacity if fade is enabled
+            # Create individual line segments
             for i in range(len(self.points) - 1):
-                # Calculate opacity based on position in the path if fading is enabled
-                opacity = 1.0
-                if self.fade_trail:
-                    opacity = i / (len(self.points) - 1)  # 0.0 to 1.0
-                
                 # Create line segment
                 line = Line(
                     start=self.points[i],
                     end=self.points[i + 1],
                     stroke_width=self.stroke_width,
-                    stroke_color=self.stroke_color,
-                    stroke_opacity=opacity if self.fade_trail else 1
+                    stroke_color=self.stroke_color
                 )
                 
                 # Add line to group
@@ -432,7 +424,6 @@ class PotentialVisualization(ThreeDScene):
                     max_points=self.tracer_config["history_length"],
                     stroke_color=tracer_color,
                     stroke_width=self.tracer_config.get("stroke_width", 1),
-                    fade_trail=self.tracer_config.get("fade", False),
                     add_spheres=self.tracer_config.get("add_spheres", False),
                     frames_between_spheres=self.tracer_config.get("frames_between_trail_segments", 60),
                     sphere_radius=self.tracer_config.get("sphere_radius", self.marker_size/2),

@@ -208,7 +208,6 @@
       "enabled": true,
       "history_length": 100,
       "stroke_width": 1,
-      "fade": false,
       "add_spheres": false,
       "frames_between_trail_segments": 6,
       "sphere_radius": 0.02,
