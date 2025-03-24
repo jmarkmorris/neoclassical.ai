@@ -23,6 +23,7 @@ class ActionSpiral:
     """
     Implementation of a geometric action function that moves particles along logarithmic spirals.
     Positions are updated directly without using or updating velocity.
+    All particles spiral inward regardless of charge.
     """
     
     def __init__(self, config=None):
@@ -38,7 +39,7 @@ class ActionSpiral:
         # Store theta values for each particle
         self.particle_thetas = {}  # Will be initialized on first apply
         
-        print(f"Spiral Action initialized with: k={self.spiral_k}, theta_rate={self.theta_rate}, z_factor={self.z_factor}")
+        print(f"Spiral Action initialized with: k={-abs(self.spiral_k)} (inward spiral), theta_rate={self.theta_rate}, z_factor={self.z_factor}")
     
     def logarithmic_spiral(self, k, theta, center_x=0, center_y=0, z_offset=0):
         """
@@ -104,9 +105,10 @@ class ActionSpiral:
                 self.particle_thetas[p.id] = initial_theta
                 
                 # Store settings specific to this particle ID
+                # Use the same spiral_k value for all particles regardless of charge
                 self.particle_data[p.id] = {
                     'spiral_center': Vector3D(0, 0, 0),
-                    'spiral_k': abs(self.spiral_k) if p.charge > 0 else -abs(self.spiral_k)
+                    'spiral_k': -abs(self.spiral_k)  # Always use negative value for inward spiral
                 }
         
         # Update each particle's position based on its current theta
