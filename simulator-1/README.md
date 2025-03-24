@@ -13,7 +13,11 @@ Key features:
 - Two point potential particle types with opposite potential polarity
 - Path history tracers for particles
 - Dynamic scaling to keep particles in view
-- Pluggable action functions for different physical and geometry models
+- Pluggable action functions for different physics and geometry models
+- Multiple action functions including:
+  - Basic Coulomb's law-based physics
+  - Path history-based physics with finite potential wave propagation
+  - Logarithmic spiral geometric model
 - Comprehensive configuration system with sensible defaults
 
 ## Requirements
@@ -37,7 +41,15 @@ pip install -r requirements.txt
 - `simulator.py`: Core simulation engine implementing physics calculations
 - `visualizer.py`: 3D visualization of simulation results using Manim
 - `run_animation.py`: Utility script to run both simulation and visualization
-- `action_basic.py`: Default action function for physics calculations
+- Action function implementations:
+  - `action_basic.py`: Default physics model using Coulomb's law
+  - `action_history.py`: Physics model with finite potential wave propagation
+  - `action_spiral.py`: Geometric model using logarithmic spirals
+- Configuration files:
+  - `sim2.json`: Simple two-particle simulation
+  - `sim2spiral.json`: Two-particle simulation using spiral motion
+  - `sim30.json`: Complex simulation with 30 particles
+  - `sim_history.json`: Simulation using path history action
 - `example_config.json`: Example configuration file with all available options
 - Custom action functions can be added as `action_<name>.py` files
 
@@ -54,8 +66,10 @@ python run_animation.py
 Run with a specific configuration file:
 
 ```bash
-python run_animation.py --config my_config.json
-python run_animation.py --config sim_history.json
+python run_animation.py --config sim2.json        # Basic two-particle simulation
+python run_animation.py --config sim30.json       # Complex 30-particle simulation
+python run_animation.py --config sim_history.json # Simulation with finite wave propagation
+python run_animation.py --config sim2spiral.json  # Geometric spiral motion simulation
 ```
 
 ### Command Line Options
@@ -168,6 +182,10 @@ All configuration parameters are now included in every config file (sim2.json, s
   - `min_distance`: Minimum distance between particles to prevent extreme forces (default: 0.001)
   - `min_velocity`: Minimum velocity magnitude to prevent division by zero (default: 0.001)
   - `large_force_threshold`: Threshold above which to warn about large forces (default: 10.0)
+  - `potential_velocity`: Speed of potential wave propagation for history action (default: 10.0)
+  - `spiral_k`: Growth factor for logarithmic spiral action (default: 0.1)
+  - `theta_rate`: Controls speed of movement along the spiral (default: 200)
+  - `z_factor`: Controls z-dimension movement in spiral action (default: 0.05)
 
 ### Visualization Parameters
 - `visualization`: Visualization settings
@@ -202,7 +220,9 @@ All configuration parameters are now included in every config file (sim2.json, s
     - `phi`: Phi angle for camera orientation in degrees (default: 75)
     - `theta`: Theta angle for camera orientation in degrees (default: 30)
 
-## Physics Model
+## Physics Models
+
+### Basic Action (Default)
 
 The default physics model uses a modified Coulomb's law with the following features:
 
@@ -210,6 +230,24 @@ The default physics model uses a modified Coulomb's law with the following featu
 - Forces are inversely proportional to the square of distance multiplied by particle velocity
 - Minimum distance and velocity thresholds prevent extreme forces
 - Support for multiple particles interacting simultaneously
+
+### Path History Action
+
+The path history model extends the basic physics by accounting for finite propagation speeds:
+
+- Potential waves from each particle propagate at a configurable velocity
+- Forces on particles are based on historical emitter positions
+- The algorithm searches through particle history to find the position whose wave front is currently reaching the receiving particle
+- Allows for more realistic modeling of wave-like interactions
+
+### Logarithmic Spiral Action
+
+The spiral model is purely geometric rather than physics-based:
+
+- Particles follow predefined logarithmic spiral paths (r = a*e^(k*θ))
+- Positive charges spiral outward, negative charges spiral inward
+- Movement speed is controlled by the theta_rate parameter
+- Creates aesthetically pleasing spiral patterns in 3D space
 
 ## Visualization
 
@@ -223,7 +261,7 @@ The visualization uses Manim's 3D capabilities:
 
 ## Examples
 
-### Simple Two-Particle System
+### Simple Two-Particle System (Basic Action)
 
 ```json
 {
@@ -242,7 +280,66 @@ The visualization uses Manim's 3D capabilities:
         "velocity": [0.0, -0.5, 0.0]
       }
     ],
-    "duration": 60
+    "duration": 60,
+    "action_function": "basic"
+  }
+}
+```
+
+### Path History Action System
+
+```json
+{
+  "simulation": {
+    "particles": [
+      {
+        "id": 1,
+        "charge": 1,
+        "position": [6.0, 0.0, 0.0],
+        "velocity": [0.0, -0.2, 0.0]
+      },
+      {
+        "id": 2,
+        "charge": -1,
+        "position": [-6.0, 0.0, 0.0],
+        "velocity": [0.0, 0.2, 0.0]
+      }
+    ],
+    "duration": 120,
+    "action_function": "history"
+  },
+  "physics": {
+    "potential_velocity": 3.0
+  }
+}
+```
+
+### Logarithmic Spiral Motion
+
+```json
+{
+  "simulation": {
+    "particles": [
+      {
+        "id": 1,
+        "charge": 1,
+        "position": [5.0, 5.0, 0.0],
+        "velocity": [0.0, -0.25, 0.0]
+      },
+      {
+        "id": 2,
+        "charge": -1,
+        "position": [-5.0, -5.0, 0.0],
+        "velocity": [0.0, 0.25, 0.0]
+      }
+    ],
+    "duration": 120,
+    "action_function": "spiral"
+  },
+  "physics": {
+    "spiral_k": 0.1,
+    "theta_rate": 200,
+    "z_factor": 0.05
   }
 }
 ```
@@ -251,12 +348,14 @@ The visualization uses Manim's 3D capabilities:
 
 ### Adding New Action Functions
 
-To create a new physics model:
+To create a new physics or geometric model:
 
 1. Create a new file named `action_yourmodel.py`
 2. Implement a class named `ActionYourmodel` with:
-   - An `__init__` method that accepts a config parameter
+   - An `__init__` method that accepts a config parameter and extracts necessary settings
    - An `apply` method that updates particle positions and velocities
+3. Your action function can be physics-based (like the basic and history models) or purely geometric (like the spiral model)
+4. Create a configuration file that uses your action function by setting `"action_function": "yourmodel"` in the simulation section
 
 ### Extending the Visualization
 

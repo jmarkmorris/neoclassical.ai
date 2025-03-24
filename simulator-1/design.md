@@ -205,7 +205,28 @@ By following this approach, you can create a flexible and scalable animation sys
 
 ---
 
-### 14. **Exponential Sprial Action Function**
+### 14. **Logarithmic Spiral Action Function**
+
+   - The action_spiral.py action function provides a geometric (rather than physics-based) model where particles follow logarithmic spiral paths.
+   - Unlike the basic and history action functions which use Coulomb's law to calculate forces, this action function directly updates particle positions along predetermined spiral paths.
+   - Each particle follows a logarithmic spiral defined by the formula: r = a*e^(k*θ), where:
+     - a is the starting radius (set to 1.0)
+     - k is the spiral growth factor (positive values create outward spirals, negative values create inward spirals)
+     - θ is the angle parameter that increases over time
+   
+   - Key parameters for the spiral action function in the JSON configuration file:
+     - spiral_k: The growth factor that determines how quickly the spiral expands or contracts (default: 0.1)
+     - theta_rate: Controls how quickly particles advance along the spiral path (default: 200, smaller values = faster motion)
+     - z_factor: Controls how quickly particles move in the z-dimension for 3D effects (default: 0.05)
+   
+   - Implementation details:
+     1. Each particle is assigned a spiral based on its charge: positive charges spiral outward (k > 0), negative charges spiral inward (k < 0)
+     2. At each simulation step, the angle θ is increased by π/theta_rate for each particle
+     3. The new x, y, z coordinates are calculated using the logarithmic spiral formula
+     4. The velocity is approximated based on position changes for visualization purposes only
+   
+   - This action function demonstrates how the simulation architecture can support not just physics-based models but also pure geometric motions, allowing for creative and aesthetically interesting visualizations.
+   - To use this action function, create a configuration file with "action_function": "spiral" and include the spiral-specific parameters in the physics section.
 
 ---
 
