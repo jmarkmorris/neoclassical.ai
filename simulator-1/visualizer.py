@@ -375,11 +375,15 @@ class PotentialVisualization(ThreeDScene):
         # Add updater to the scale value to update when tracker changes
         scale_value.add_updater(lambda d: d.set_value(self.scale_tracker.get_value()))
         
-        # Group for adding/removing
-        self.scale_indicator_group = VGroup(scale_label, scale_value)
+        # Add each element individually as fixed in frame
+        # This ensures each element maintains the correct orientation
+        # especially when the scale_value is updated through its updater
+        self.add_fixed_in_frame_mobjects(scale_label)
+        self.add_fixed_in_frame_mobjects(scale_value)
         
-        # Add to the scene as fixed in frame
-        self.add_fixed_in_frame_mobjects(self.scale_indicator_group)
+        # Keep a reference to both for later use if needed
+        self.scale_indicator_label = scale_label
+        self.scale_indicator_value = scale_value
         
         # Extract particle data and create representations
         particle_data = self.simulation_data["particle_data"]

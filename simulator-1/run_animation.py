@@ -33,7 +33,7 @@ def run_simulation(config_file, output_file):
     print(f"Simulation completed. Results saved to: {output_file}")
     return output_file
 
-def run_visualization(results_file, config_file, quality="l", preview=True, no_fail=False):
+def run_visualization(results_file, config_file, quality="h", preview=False, no_fail=False):
     """Run the visualization using the simulation results"""
     # Set environment variable for the results file
     os.environ["SIMULATION_RESULTS"] = results_file
