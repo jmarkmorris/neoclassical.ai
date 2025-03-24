@@ -50,7 +50,7 @@ def run_visualization(results_file, config_file, quality="l", preview=True):
         action_function = "unknown"
     
     # Create a descriptive output name
-    output_name = f"Visualization_{config_name}_{action_function}_{unique_id}"
+    output_name = f"Vis_{config_name}_{action_function}_{unique_id}"
     
     # Set environment variable for the output filename
     os.environ["VISUALIZATION_OUTPUT_NAME"] = output_name
@@ -58,6 +58,11 @@ def run_visualization(results_file, config_file, quality="l", preview=True):
     print(f"Using simulation data from: {results_file}")
     print(f"Output will be saved as: {output_name}")
     print("Running visualization...")
+    
+    # Create a temporary directory to avoid file conflicts
+    import tempfile
+    temp_dir = tempfile.mkdtemp(prefix="npqg_vis_")
+    print(f"Using temporary directory: {temp_dir}")
     
     # Build manim command with appropriate flags
     cmd = ["manim"]
@@ -76,21 +81,59 @@ def run_visualization(results_file, config_file, quality="l", preview=True):
     if preview:
         cmd.append("-p")
     
-    # Add output name flag (-o/--output_file is the correct manim flag)
-    cmd.extend(["-o", output_name])
-        
     # Add file and scene
     cmd.extend(["visualizer.py", "PotentialVisualization"])
     
-    print(f"Executing: {' '.join(cmd)}")
-    subprocess.run(cmd, check=True)
-    
-    # Return the expected output path for reference
+    # Generate a unique output directory name
     quality_folder = {"l": "480p15", "m": "720p30", "h": "1080p60", "k": "2160p60"}[quality]
-    expected_path = f"media/videos/visualizer/{quality_folder}/{output_name}.mp4"
+    output_dir = f"media/videos/visualizer/{quality_folder}"
     
-    print(f"Visualization completed. Video saved to: {expected_path}")
-    return expected_path
+    # Ensure the output directory exists
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Execute Manim command
+    print(f"Executing: {' '.join(cmd)}")
+    
+    # Keep track of existing files before running manim
+    existing_files = set()
+    if os.path.exists(output_dir):
+        existing_files = set(os.listdir(output_dir))
+    
+    # Run Manim
+    try:
+        subprocess.run(cmd, check=True)
+        
+        # Find new files that were created
+        new_files = set()
+        if os.path.exists(output_dir):
+            new_files = set(os.listdir(output_dir)) - existing_files
+        
+        # Get the path to the latest created MP4 file
+        mp4_files = [f for f in new_files if f.endswith(".mp4")]
+        if mp4_files:
+            latest_file = max(mp4_files, key=lambda f: os.path.getmtime(os.path.join(output_dir, f)))
+            src_path = os.path.join(output_dir, latest_file)
+            
+            # Create destination path with our custom name
+            dest_path = os.path.join(output_dir, f"{output_name}.mp4")
+            
+            # Rename the file
+            if src_path != dest_path and os.path.exists(src_path):
+                os.rename(src_path, dest_path)
+                print(f"Renamed output file to: {dest_path}")
+                expected_path = dest_path
+            else:
+                expected_path = src_path
+                
+            print(f"Visualization completed. Video saved to: {expected_path}")
+            return expected_path
+        else:
+            print("No MP4 file was created by Manim.")
+            return None
+            
+    except Exception as e:
+        print(f"Error during visualization: {e}")
+        raise
 
 def main():
     parser = argparse.ArgumentParser(description="Run NPQG simulation with visualization")
