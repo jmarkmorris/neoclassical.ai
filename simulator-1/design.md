@@ -202,4 +202,10 @@ By following this approach, you can create a flexible and scalable animation sys
    - Lower values cause the potential waves to travel more slowly, thus the action forces are based on older positions in the emitter's history. 
    - Higher values make the potential waves travel faster, approaching the behavior of the basic action function as the value gets very large.
 
+
 ---
+
+### 14. **Exponential Sprial Action Function**
+
+---
+

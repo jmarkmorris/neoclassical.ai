@@ -1,0 +1,23 @@
+# .clauderc - Claude Code Instructions
+
+# Project Overview
+This file contains instructions for Claude when exploring this project.
+
+# Project Context
+i. This project uses python and manim.
+ii. Read the design documentation: "claude explore design.md"
+iii. Read the claude generated README: "claude explore README.md"
+
+# File Patterns to Explore
+# Note: When using this file, ask Claude to:
+- Read all markdown documentation: "claude explore *.md"
+- Read source code: "claude explore *.py"
+- Read input files: "claude explore sim*.json"
+
+# Common Tasks
+1. Follow existing naming conventions
+2. Update README.md documentation when adding or changing features.
+
+# Explore commands to individually copy and paste at the claude prompt.
+claude explore .clauderc design.md README.md
+claude explore *.py sim*.json
