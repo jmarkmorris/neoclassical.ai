@@ -230,3 +230,40 @@ By following this approach, you can create a flexible and scalable animation sys
 
 ---
 
+### 15. **Configuration File Conventions**
+
+   - The project uses a tiered approach to configuration files that balances completeness with clarity:
+     
+   - **Example Configuration File**:
+     - `example_config.json` serves as the comprehensive reference
+     - Contains all possible configuration options with default values
+     - Should be kept up-to-date whenever new options are added
+     - Acts as documentation for available parameters
+     - Note that standard JSON doesn't support comments, so parameter descriptions should be documented in this design file and the README.md
+
+   - **Specific Simulation Configuration Files**:
+     - `sim*.json` files should be concise and focused
+     - Include only parameters that are:
+       1. Required for simulation (e.g., particles, action_function)
+       2. Different from the default values
+       3. Essential to understanding the purpose of that particular simulation
+     - Omit parameters that use default values to keep files clean and readable
+     - Each config file should demonstrate a specific concept or physics model
+
+   - **Code Default Handling**:
+     - All parameters should have sensible defaults in the code
+     - Default values should be documented at the top of their respective files
+     - The simulator should robustly handle missing parameters
+     - A consistent merging system should apply defaults for any missing values
+
+   - **Parameter Organization**:
+     - Parameters are organized into logical sections:
+       - `simulation`: Controls simulation behavior, particles, and time steps
+       - `physics`: Controls physical constants and behavior specific to action functions
+       - `visualization`: Controls visual representation and animation properties
+     - New action functions should add their parameters to the appropriate section
+
+   This approach provides the benefits of both comprehensive documentation and clean, focused configuration files. Users can refer to the example file to discover all options while creating minimal configuration files for specific simulations.
+
+---
+

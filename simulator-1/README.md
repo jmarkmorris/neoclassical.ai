@@ -6,52 +6,59 @@ A simulator and visualizer for point potentials in 3D space following provided a
 
 The NPQG Simulator is designed to simulate the movement of point potentials (particles) in 3D space according to physics defined by action functions. The simulation results are then visualized using Manim to create engaging animations of the particle interactions.
 
-Key features:
+### Key Features
 
-- Discrete time simulation with configurable action functions
-- 3D visualization with Manim
-- Two point potential particle types with opposite potential polarity
-- Path history tracers for particles
-- Dynamic scaling to keep particles in view
-- Pluggable action functions for different physics and geometry models
-- Multiple action functions including:
-  - Basic Coulomb's law-based physics
-  - Path history-based physics with finite potential wave propagation
-  - Logarithmic spiral geometric model
-- Comprehensive configuration system with sensible defaults
+* Discrete time simulation with configurable action functions
+* 3D visualization with Manim
+* Two point potential particle types with opposite potential polarity
+* Path history tracers for particles
+* Dynamic scaling to keep particles in view
+* Pluggable action functions for different physics and geometry models
+* Multiple action functions including:
+  * Basic Coulomb's law-based physics
+  * Path history-based physics with finite potential wave propagation
+  * Logarithmic spiral geometric model
+* Comprehensive configuration system with sensible defaults
 
 ## Requirements
 
-- Python 3.7+
-- NumPy
-- Manim (for visualization)
+* Python 3.7+
+* NumPy
+* Manim (for visualization)
 
 ## Installation
 
 1. Install the required packages:
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 2. Ensure Manim dependencies are installed (see [Manim installation guide](https://docs.manim.community/en/stable/installation.html))
 
 ## Project Structure
 
-- `simulator.py`: Core simulation engine implementing physics calculations
-- `visualizer.py`: 3D visualization of simulation results using Manim
-- `run_animation.py`: Utility script to run both simulation and visualization
-- Action function implementations:
-  - `action_basic.py`: Default physics model using Coulomb's law
-  - `action_history.py`: Physics model with finite potential wave propagation
-  - `action_spiral.py`: Geometric model using logarithmic spirals
-- Configuration files:
-  - `sim2.json`: Simple two-particle simulation
-  - `sim2spiral.json`: Two-particle simulation using spiral motion
-  - `sim30.json`: Complex simulation with 30 particles
-  - `sim_history.json`: Simulation using path history action
-- `example_config.json`: Example configuration file with all available options
-- Custom action functions can be added as `action_<name>.py` files
+### Core Files
+
+* `simulator.py`: Core simulation engine implementing physics calculations
+* `visualizer.py`: 3D visualization of simulation results using Manim
+* `run_animation.py`: Utility script to run both simulation and visualization
+
+### Action Function Implementations
+
+* `action_basic.py`: Default physics model using Coulomb's law
+* `action_history.py`: Physics model with finite potential wave propagation
+* `action_spiral.py`: Geometric model using logarithmic spirals
+
+### Configuration Files
+
+* `example_config.json`: Example configuration file with all available options
+* `sim2.json`: Simple two-particle simulation
+* `sim2spiral.json`: Two-particle simulation using spiral motion
+* `sim30.json`: Complex simulation with 30 particles
+* `sim_history.json`: Simulation using path history action
+
+Custom action functions can be added as `action_yourmodel.py` files.
 
 ## Usage
 
@@ -80,12 +87,15 @@ python run_animation.py --help
 
 Options include:
 
-- `--config`, `-c`: Path to configuration file (default: sim30.json)
-- `--output`, `-o`: Path to save simulation results (default: simulation_results.json)
-- `--simulate-only`: Run simulation only, without visualization
-- `--visualize-only`: Run visualization only, using existing results file
-- `--quality`, `-q`: Quality setting for visualization (l=low, m=medium, h=high, k=4K)
-- `--no-preview`: Don't open preview window after rendering
+| Option | Description |
+|--------|-------------|
+| `--config`, `-c` | Path to configuration file (default: sim30.json) |
+| `--output`, `-o` | Path to save simulation results (default: simulation_results.json) |
+| `--simulate-only` | Run simulation only, without visualization |
+| `--visualize-only` | Run visualization only, using existing results file |
+| `--quality`, `-q` | Quality setting for visualization (l=low, m=medium, h=high, k=4K) |
+| `--no-preview` | Don't open preview window after rendering |
+| `--no-fail` | Continue even if a step fails |
 
 ### Simulation Only
 
@@ -136,11 +146,11 @@ All other parameters will use their default values when not specified.
 
 Action functions define how particles interact and move. The system is designed to support multiple action functions, allowing for different physics models:
 
-1. Create a new Python file named `action_<name>.py`
-2. Implement a class named `Action<Name>` (with capitalized name)
+1. Create a new Python file named `action_yourmodel.py`
+2. Implement a class named `ActionYourmodel` (with capitalized name)
 3. The class must have:
-   - An `__init__` method that accepts a configuration parameter
-   - An `apply` method that accepts a list of particles and a time step
+   * An `__init__` method that accepts a configuration parameter
+   * An `apply` method that accepts a list of particles and a time step
 
 See `action_basic.py` for an example implementation.
 
@@ -149,7 +159,7 @@ To use a custom action function, specify it in the configuration:
 ```json
 {
   "simulation": {
-    "action_function": "your_action_name"
+    "action_function": "yourmodel"
   }
 }
 ```
@@ -162,63 +172,58 @@ See `example_config.json` for a complete example with all available options.
 
 ## Configuration Parameters
 
-All configuration parameters are now included in every config file (sim2.json, sim30.json) with their default values, ensuring consistent behavior across different simulation configurations.
+All configuration parameters are included in the `example_config.json` file with their default values, ensuring consistent behavior across different simulation configurations.
 
 ### Simulation Parameters
-- `simulation`: Main simulation settings
-  - `particles`: List of particles with their initial properties
-    - `id`: Unique identifier for the particle
-    - `charge`: Charge value (positive or negative)
-    - `position`: Initial 3D position [x, y, z]
-    - `velocity`: Initial 3D velocity [dx/dt, dy/dt, dz/dt]
-  - `duration`: Duration of the simulation in time units (default: 10.0)
-  - `dt`: Time step size for the simulation (default: 0.01)
-  - `max_history`: Maximum number of history points to store for each particle (default: 10000)
-  - `action_function`: Specifies which action function to use for physics calculations (default: "basic")
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `simulation.particles` | List of particles with their initial properties | `[]` |
+| `simulation.duration` | Duration of the simulation in time units | `10.0` |
+| `simulation.dt` | Time step size for the simulation | `0.01` |
+| `simulation.max_history` | Maximum number of history points to store | `10000` |
+| `simulation.action_function` | Action function to use | `"basic"` |
+
+#### Particle Properties
+
+| Property | Description |
+|----------|-------------|
+| `id` | Unique identifier for the particle |
+| `charge` | Charge value (positive or negative) |
+| `position` | Initial 3D position `[x, y, z]` |
+| `velocity` | Initial 3D velocity `[dx/dt, dy/dt, dz/dt]` |
 
 ### Physics Parameters
-- `physics`: Physics engine settings
-  - `coulomb_constant`: Constant for Coulomb's law calculations (default: 0.8)
-  - `min_distance`: Minimum distance between particles to prevent extreme forces (default: 0.001)
-  - `min_velocity`: Minimum velocity magnitude to prevent division by zero (default: 0.001)
-  - `large_force_threshold`: Threshold above which to warn about large forces (default: 10.0)
-  - `potential_velocity`: Speed of potential wave propagation for history action (default: 10.0)
-  - `spiral_k`: Growth factor for logarithmic spiral action (default: 0.1)
-  - `theta_rate`: Controls speed of movement along the spiral (default: 200)
-  - `z_factor`: Controls z-dimension movement in spiral action (default: 0.05)
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `physics.coulomb_constant` | Constant for Coulomb's law calculations | `0.8` |
+| `physics.min_distance` | Minimum distance between particles | `0.001` |
+| `physics.min_velocity` | Minimum velocity magnitude | `0.001` |
+| `physics.large_force_threshold` | Threshold for force warnings | `10.0` |
+| `physics.potential_velocity` | Speed of potential wave propagation | `10.0` |
+| `physics.spiral_k` | Growth factor for spiral action | `0.1` |
+| `physics.theta_rate` | Controls spiral movement speed | `200` |
+| `physics.z_factor` | Controls z-dimension movement | `0.05` |
+| `physics.initial_theta` | Starting theta value for spirals | `0.0` |
 
 ### Visualization Parameters
-- `visualization`: Visualization settings
-  - `colors`: Color codes for various elements
-    - `background`: Background color of the 3D space (default: "#4B0082", INDIGO)
-    - `positive`: Color for positive charge particles (default: "#FF0000", PURE_RED)
-    - `negative`: Color for negative charge particles (default: "#0000FF", PURE_BLUE)
-    - `tracer`: Color for path tracers when using single color (default: "#FFFFFF", WHITE)
-    - `tracer_positive`: Color for positive charge particle tracers (default: "#FC6255", PALE_RED)
-    - `tracer_negative`: Color for negative charge particle tracers (default: "#58C4DD", PALE_BLUE)
-  - `marker_size`: Size of the particle markers (default: 0.04)
-  - `use_dot3d`: Whether to use Dot3D instead of Sphere for particles (default: true)
-  - `tracer`: Configuration for path tracers
-    - `enabled`: Whether tracers are enabled (default: true)
-    - `history_length`: Number of history points to display (default: 12000)
-    - `stroke_width`: Width of the tracer lines (default: 1)
-    - `fade`: Whether tracers should fade out over time (default: false)
-    - `add_spheres`: Whether to add sphere markers along the trail (default: false)
-    - `frames_between_trail_segments`: Number of frames between trail sphere markers (default: 60)
-    - `sphere_radius`: Radius of the sphere markers (default: 0.02)
-    - `max_sphere_radius`: Maximum radius for sphere markers (default: 0.1)
-    - `use_particle_color`: Whether to use particle-specific tracer colors (default: true)
-  - `scaling`: Configuration for auto-scaling
-    - `enabled`: Whether auto-scaling is enabled (default: true)
-    - `initial_scale`: Initial scale factor (default: 1.0)
-    - `max_display_limit`: Maximum display limit for scaling down (default: 5.0)
-    - `min_display_limit`: Minimum display limit for scaling up (default: 2.0)
-    - `scale_stability_threshold`: Threshold for scale changes to apply smoothing (default: 0.2)
-  - `sim_to_manim_ratio`: Ratio of simulation steps to animation frames (default: 5)
-  - `manim_frame_rate`: Frame rate for the animation (default: 60)
-  - `camera`: Camera configuration
-    - `phi`: Phi angle for camera orientation in degrees (default: 75)
-    - `theta`: Theta angle for camera orientation in degrees (default: 30)
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `visualization.marker_size` | Size of particle markers | `0.04` |
+| `visualization.use_dot3d` | Whether to use Dot3D instead of Sphere | `true` |
+| `visualization.sim_to_manim_ratio` | Ratio of simulation steps to frames | `5` |
+| `visualization.manim_frame_rate` | Frame rate for animation | `60` |
+
+#### Camera Configuration
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `visualization.camera.phi` | Phi angle for camera orientation | `75` |
+| `visualization.camera.theta` | Theta angle for camera orientation | `30` |
+
+For complete configuration details, refer to `example_config.json`.
 
 ## Physics Models
 
@@ -226,38 +231,38 @@ All configuration parameters are now included in every config file (sim2.json, s
 
 The default physics model uses a modified Coulomb's law with the following features:
 
-- Opposite charges attract, like charges repel
-- Forces are inversely proportional to the square of distance multiplied by particle velocity
-- Minimum distance and velocity thresholds prevent extreme forces
-- Support for multiple particles interacting simultaneously
+* Opposite charges attract, like charges repel
+* Forces are inversely proportional to the square of distance multiplied by particle velocity
+* Minimum distance and velocity thresholds prevent extreme forces
+* Support for multiple particles interacting simultaneously
 
 ### Path History Action
 
 The path history model extends the basic physics by accounting for finite propagation speeds:
 
-- Potential waves from each particle propagate at a configurable velocity
-- Forces on particles are based on historical emitter positions
-- The algorithm searches through particle history to find the position whose wave front is currently reaching the receiving particle
-- Allows for more realistic modeling of wave-like interactions
+* Potential waves from each particle propagate at a configurable velocity
+* Forces on particles are based on historical emitter positions
+* The algorithm searches through particle history to find the position whose wave front is currently reaching the receiving particle
+* Allows for more realistic modeling of wave-like interactions
 
 ### Logarithmic Spiral Action
 
 The spiral model is purely geometric rather than physics-based:
 
-- Particles follow predefined logarithmic spiral paths (r = a*e^(k*θ))
-- Positive charges spiral outward, negative charges spiral inward
-- Movement speed is controlled by the theta_rate parameter
-- Creates aesthetically pleasing spiral patterns in 3D space
+* Particles follow predefined logarithmic spiral paths (r = a*e^(k*θ))
+* Positive charges spiral outward, negative charges spiral inward
+* Movement speed is controlled by the theta_rate parameter
+* Creates aesthetically pleasing spiral patterns in 3D space
 
 ## Visualization
 
 The visualization uses Manim's 3D capabilities:
 
-- Point potentials are shown as colored dots or spheres (red for positive, blue for negative)
-- Path tracers show the history of each particle's movement
-- Dynamic scaling adjusts the view to keep all particles visible
-- Camera angles can be configured
-- Option to add "dot tracers" showing particle positions at regular intervals
+* Point potentials are shown as colored dots or spheres (red for positive, blue for negative)
+* Path tracers show the history of each particle's movement
+* Dynamic scaling adjusts the view to keep all particles visible
+* Camera angles can be configured
+* Option to add "dot tracers" showing particle positions at regular intervals
 
 ## Examples
 
@@ -352,8 +357,8 @@ To create a new physics or geometric model:
 
 1. Create a new file named `action_yourmodel.py`
 2. Implement a class named `ActionYourmodel` with:
-   - An `__init__` method that accepts a config parameter and extracts necessary settings
-   - An `apply` method that updates particle positions and velocities
+   * An `__init__` method that accepts a config parameter and extracts necessary settings
+   * An `apply` method that updates particle positions and velocities
 3. Your action function can be physics-based (like the basic and history models) or purely geometric (like the spiral model)
 4. Create a configuration file that uses your action function by setting `"action_function": "yourmodel"` in the simulation section
 

@@ -23,7 +23,12 @@
     "coulomb_constant": 0.8,
     "min_distance": 0.001,
     "min_velocity": 0.001,
-    "large_force_threshold": 10.0
+    "large_force_threshold": 10.0,
+    "potential_velocity": 10.0,
+    "spiral_k": 0.1,
+    "theta_rate": 200,
+    "z_factor": 0.05,
+    "initial_theta": 0.0
   },
   "visualization": {
     "colors": {
@@ -32,13 +37,15 @@
       "negative": "#0000FF",
       "tracer": "#FFFFFF",
       "tracer_positive": "#FC6255",
-      "tracer_negative": "#58C4DD"
+      "tracer_negative": "#58C4DD",
+      "history_lines": "#FFFFFF",
+      "potential_wave": "#FFFFFF"
     },
     "marker_size": 0.04,
     "use_dot3d": true,
     "tracer": {
       "enabled": true,
-      "history_length": 5000,
+      "history_length": 12000,
       "stroke_width": 1,
       "fade": true,
       "add_spheres": true,
@@ -47,6 +54,13 @@
       "max_sphere_radius": 0.1,
       "use_particle_color": true
     },
+    "history_lines": {
+      "enabled": false,
+      "lines_per_relation": 3,
+      "stroke_width": 1.0,
+      "update_interval": 30,
+      "potential_velocity": 10.0
+    },
     "scaling": {
       "enabled": true,
       "initial_scale": 1.0,
@@ -54,7 +68,7 @@
       "min_display_limit": 2.0,
       "scale_stability_threshold": 0.2
     },
-    "sim_to_manim_ratio": 10,
+    "sim_to_manim_ratio": 5,
     "manim_frame_rate": 60,
     "camera": {
       "phi": 75,
