@@ -1,4 +1,7 @@
 {
+  "global": {
+    "potential_velocity": 10.0
+  },
   "simulation": {
     "particles": [
       {
@@ -24,7 +27,6 @@
     "min_distance": 0.001,
     "min_velocity": 0.001,
     "large_force_threshold": 10.0,
-    "potential_velocity": 10.0,
     "spiral_k": 0.1,
     "theta_rate": 200,
     "z_factor": 0.05,
@@ -58,8 +60,7 @@
       "enabled": false,
       "lines_per_relation": 3,
       "stroke_width": 1.0,
-      "update_interval": 30,
-      "potential_velocity": 10.0
+      "update_interval": 30
     },
     "scaling": {
       "enabled": true,

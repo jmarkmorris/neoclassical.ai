@@ -10,6 +10,9 @@ from typing import Dict, Any, List, Tuple
 
 # Default configuration values
 DEFAULT_VISUALIZER_CONFIG = {
+    "global": {
+        "potential_velocity": 10.0     # Velocity of potential waves, used by both physics and visualization
+    },
     "visualization": {
         "colors": {
             "background": "#4B0082",  # INDIGO
@@ -38,8 +41,7 @@ DEFAULT_VISUALIZER_CONFIG = {
             "enabled": False,          # Whether to show history lines
             "lines_per_relation": 3,   # Number of lines to show per particle pair
             "stroke_width": 1.0,       # Width of history lines
-            "update_interval": 30,     # Update connections every N simulation steps
-            "potential_velocity": 10.0 # Match the physics.potential_velocity
+            "update_interval": 30      # Update connections every N simulation steps
         },
         "scaling": {
             "enabled": True,
@@ -513,7 +515,11 @@ class PotentialVisualization(ThreeDScene):
                         # This mimics the algorithm in action_history.py
                         best_hist_idx = 0
                         best_remaining_distance = float('inf')
-                        potential_velocity = self.history_lines_config.get("potential_velocity", 10.0)
+                        
+                        # Get potential velocity from global config first, fallback to history_lines
+                        global_config = self.config.get("global", {})
+                        potential_velocity = global_config.get("potential_velocity", 
+                                     self.history_lines_config.get("potential_velocity", 10.0))
                         
                         # Search through history points to find the best match
                         for hist_idx in range(min(i, len(other_positions))):

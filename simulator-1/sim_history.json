@@ -1,17 +1,20 @@
 {
+  "global": {
+    "potential_velocity": 3.0
+  },
   "simulation": {
     "particles": [
       {
         "id": 1,
         "charge": 1,
         "position": [6.0, 0.0, 0.0],
-        "velocity": [0.0, -0.23, 0.0]
+        "velocity": [0.0, -0.27, 0.0]
       },
       {
         "id": 2,
         "charge": -1,
         "position": [-6.0, 0.0, 0.0],
-        "velocity": [0.0, 0.23, 0.0]
+        "velocity": [0.0, 0.27, 0.0]
       }
     ],
     "duration": 50,
@@ -23,8 +26,7 @@
     "coulomb_constant": 0.8,
     "min_distance": 0.001,
     "min_velocity": 0.001,
-    "large_force_threshold": 10.0,
-    "potential_velocity": 3.0
+    "large_force_threshold": 10.0
   },
   "visualization": {
     "colors": {
@@ -53,8 +55,7 @@
       "enabled": true,
       "lines_per_relation": 1,
       "stroke_width": 1.0,
-      "update_interval": 1,
-      "potential_velocity": 3.0
+      "update_interval": 1
     },
     "scaling": {
       "enabled": false,

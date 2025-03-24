@@ -6,6 +6,9 @@ from typing import List, Dict, Tuple, Any, Union
 
 # Default configuration values
 DEFAULT_CONFIG = {
+    "global": {
+        "potential_velocity": 10.0  # Velocity of potential waves, used by both physics and visualization
+    },
     "simulation": {
         "dt": 0.01,
         "duration": 10.0,

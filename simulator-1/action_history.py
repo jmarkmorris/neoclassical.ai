@@ -33,7 +33,11 @@ DEFAULT_PHYSICS = {
     "coulomb_constant": 0.8,       # Coulomb force constant
     "min_distance": 0.001,         # Minimum particle separation to prevent extreme forces
     "min_velocity": 0.001,         # Minimum velocity magnitude to prevent division by zero
-    "large_force_threshold": 10.0, # Threshold above which to warn about large forces
+    "large_force_threshold": 10.0  # Threshold above which to warn about large forces
+}
+
+# Default global constants
+DEFAULT_GLOBAL = {
     "potential_velocity": 10.0     # Velocity of the spherical potential wave emitted by particles
 }
 
@@ -54,8 +58,10 @@ class ActionHistory:
         self.min_velocity = physics_config.get("min_velocity", DEFAULT_PHYSICS["min_velocity"])
         self.large_force_threshold = physics_config.get("large_force_threshold", DEFAULT_PHYSICS["large_force_threshold"])
         
-        # Extract potential wave velocity from config
-        self.potential_velocity = physics_config.get("potential_velocity", DEFAULT_PHYSICS["potential_velocity"])
+        # Extract potential wave velocity from global config, fallback to physics config for backward compatibility
+        global_config = self.config.get("global", {})
+        self.potential_velocity = global_config.get("potential_velocity", 
+                                physics_config.get("potential_velocity", DEFAULT_GLOBAL["potential_velocity"]))
         
         print(f"Path History Action initialized with potential_velocity = {self.potential_velocity}")
     
