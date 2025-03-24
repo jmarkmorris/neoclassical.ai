@@ -192,6 +192,12 @@ class PotentialVisualization(ThreeDScene):
         self.config = self._prepare_config()
         self.colors = self._setup_colors()
         
+        # Custom output name is handled by the command line parameter
+        # We don't need to modify file_writer directly as it causes errors
+        output_name = os.environ.get("VISUALIZATION_OUTPUT_NAME")
+        if output_name:
+            print(f"Using custom output name: {output_name}")
+        
         # Extract configuration parameters
         viz_config = self.config["visualization"]
         self.marker_size = viz_config["marker_size"]
