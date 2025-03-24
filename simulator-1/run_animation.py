@@ -45,6 +45,9 @@ def run_visualization(results_file, config_file, quality="l", preview=True, no_f
     # Create a unique subfolder for this run to avoid partial_movie_file_list.txt conflicts
     unique_folder = f"visualizer_{unique_id}"
     
+    # Generate a unique class name for this run to avoid directory conflicts
+    unique_class_name = f"PotentialVisualization_{unique_id.replace('-', '_').replace('.', '_')}"
+    
     # Read the config file to identify the action function
     try:
         with open(config_file, 'r') as f:
@@ -56,8 +59,9 @@ def run_visualization(results_file, config_file, quality="l", preview=True, no_f
     # Create a descriptive output name
     output_name = f"Vis_{config_name}_{action_function}_{unique_id}"
     
-    # Set environment variable for the output filename
+    # Set environment variables for the output filename and class name
     os.environ["VISUALIZATION_OUTPUT_NAME"] = output_name
+    os.environ["VISUALIZATION_CLASS_NAME"] = unique_class_name
     
     print(f"Using simulation data from: {results_file}")
     print(f"Output will be saved as: {output_name}")
@@ -89,11 +93,11 @@ def run_visualization(results_file, config_file, quality="l", preview=True, no_f
         cmd.append("-p")
     
     # Add file and scene
-    # Use custom output directory to prevent conflicts in concurrent runs
+    # Use custom output directory and class name to prevent conflicts in concurrent runs
     cmd.extend([
         "--output_file", unique_folder,
         "visualizer.py", 
-        "PotentialVisualization"
+        unique_class_name  # Use the unique class name instead of fixed "PotentialVisualization"
     ])
     output_dir = f"media/videos/{unique_folder}/{quality_folder}"
     

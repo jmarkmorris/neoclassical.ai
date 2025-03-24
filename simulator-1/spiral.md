@@ -113,3 +113,13 @@ How to run the code:
 2.  **Run:** Open a terminal or command prompt and run the script using:  `python spiral.py`
 
 The output will show the results of the test cases, demonstrating the correct calculation of (x, y) coordinates for various `k` and `theta` values, including both scalar inputs and NumPy arrays. If you uncomment the plotting section and have matplotlib installed, you'll also see a visual representation of the logarithmic spiral.
+
+## Running the Spiral Visualization
+
+To run the spiral animation with the NPQG simulator, use the following command:
+
+```bash
+python run_animation.py --config sim2spiral.json --output spiral_results.json --visualize-only
+```
+
+This will generate a visualization of particles following logarithmic spiral paths using the parameters defined in `sim2spiral.json`.

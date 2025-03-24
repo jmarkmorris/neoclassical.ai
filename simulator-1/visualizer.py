@@ -636,6 +636,13 @@ class PotentialVisualization(ThreeDScene):
         self.wait(2)
 
 
+# Dynamic class creation for concurrent runs
+custom_class_name = os.environ.get("VISUALIZATION_CLASS_NAME", "PotentialVisualization")
+if custom_class_name != "PotentialVisualization":
+    # Create a new class with the unique name that inherits from PotentialVisualization
+    globals()[custom_class_name] = type(custom_class_name, (PotentialVisualization,), {})
+    print(f"Created dynamic visualization class: {custom_class_name}")
+
 if __name__ == "__main__":
     try:
         # When run directly, render the visualization

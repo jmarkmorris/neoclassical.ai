@@ -79,6 +79,12 @@ python run_animation.py --config sim_history.json # Simulation with finite wave 
 python run_animation.py --config sim2spiral.json  # Geometric spiral motion simulation
 ```
 
+To visualize previously generated simulation results:
+
+```bash
+python run_animation.py --config sim2spiral.json --output spiral_results.json --visualize-only
+```
+
 ### Command Line Options
 
 ```bash
@@ -110,7 +116,7 @@ python simulator.py my_config.json output_file.json
 To visualize existing simulation results:
 
 ```bash
-python run_animation.py --visualize-only --output existing_results.json
+python run_animation.py --config sim2spiral.json --output spiral_results.json --visualize-only
 ```
 
 ## Creating Custom Configurations
