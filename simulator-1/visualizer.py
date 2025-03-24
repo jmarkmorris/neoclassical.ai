@@ -359,11 +359,33 @@ class PotentialVisualization(ThreeDScene):
         )
         self.add(axes)
         
-        # Create scale indicator as fixed overlay
+        # Create scale indicator with ValueTracker for dynamic updating
         # We'll always show the scale, even if scaling is disabled
-        scale_indicator = Text(f"Scale: {self.base_scale:.2f}", font_size=24, color=WHITE)
-        scale_indicator.to_corner(UR, buff=0.5)
-        self.add_fixed_in_frame_mobjects(scale_indicator)
+        self.scale_tracker = ValueTracker(self.base_scale)
+        
+        # Create a fixed text label
+        scale_label = Text("Scale: ", font_size=24, color=WHITE)
+        scale_label.to_corner(UR, buff=0.5)
+        
+        # Create a decimal number that updates with the tracker
+        scale_value = DecimalNumber(
+            self.base_scale,
+            num_decimal_places=2,
+            font_size=24,
+            color=WHITE
+        )
+        
+        # Position the value next to the label
+        scale_value.next_to(scale_label, RIGHT)
+        
+        # Add updater to the scale value to update when tracker changes
+        scale_value.add_updater(lambda d: d.set_value(self.scale_tracker.get_value()))
+        
+        # Group for adding/removing
+        self.scale_indicator_group = VGroup(scale_label, scale_value)
+        
+        # Add to the scene as fixed in frame
+        self.add_fixed_in_frame_mobjects(self.scale_indicator_group)
         
         # Extract particle data and create representations
         particle_data = self.simulation_data["particle_data"]
@@ -609,14 +631,9 @@ class PotentialVisualization(ThreeDScene):
                 # Use even shorter run time and linear rate for smoother motion
                 self.play(*animations, run_time=0.05, rate_func=linear)
                 
-                # Always update scale indicator for each frame
-                new_scale_text = Text(f"Scale: {current_scale:.2f}", font_size=24, color=WHITE)
-                new_scale_text.to_corner(UR, buff=0.5)
-                
-                # Remove old scale indicator and add the new one
-                self.remove(scale_indicator)
-                scale_indicator = new_scale_text
-                self.add_fixed_in_frame_mobjects(scale_indicator)
+                # Update scale indicator using the ValueTracker
+                # This will automatically update the DecimalNumber through the updater
+                self.scale_tracker.set_value(current_scale)
         
         # Final pause
         self.wait(2)

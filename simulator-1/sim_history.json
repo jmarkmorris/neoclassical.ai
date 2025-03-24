@@ -5,16 +5,16 @@
         "id": 1,
         "charge": 1,
         "position": [6.0, 0.0, 0.0],
-        "velocity": [0.0, -0.15, 0.0]
+        "velocity": [0.0, -0.23, 0.0]
       },
       {
         "id": 2,
         "charge": -1,
         "position": [-6.0, 0.0, 0.0],
-        "velocity": [0.0, 0.15, 0.0]
+        "velocity": [0.0, 0.23, 0.0]
       }
     ],
-    "duration": 60,
+    "duration": 50,
     "dt": 0.01,
     "max_history": 10000,
     "action_function": "history"
