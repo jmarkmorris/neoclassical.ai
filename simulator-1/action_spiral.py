@@ -46,30 +46,36 @@ class ActionSpiral:
         spiral_direction = "inward" if self.spiral_k < 0 else "outward"
         print(f"Spiral Action initialized with: k={self.spiral_k} ({spiral_direction} spiral), theta_rate={self.theta_rate}, z_factor={self.z_factor}")
     
-    def logarithmic_spiral(self, k, theta, initial_radius, center_x=0, center_y=0, z_offset=0):
+    def logarithmic_spiral(self, k, theta, initial_radius, initial_theta, center_x=0, center_y=0, z_offset=0):
         """
         Calculates the x, y, z coordinates of a logarithmic spiral.
         
         Args:
             k: The growth factor of the spiral. Can be positive or negative.
-            theta: The angle in radians. Can be any non-negative value.
-            initial_radius: Starting radius at theta = 0, derived from particle's initial position
-            center_x: X-coordinate of the spiral center
-            center_y: Y-coordinate of the spiral center
-            z_offset: Base z-coordinate
+            theta: The current angle parameter (increases over time).
+            initial_radius: Starting radius derived from particle's initial position.
+            initial_theta: Starting angle derived from particle's initial position.
+            center_x: X-coordinate of the spiral center.
+            center_y: Y-coordinate of the spiral center.
+            z_offset: Base z-coordinate.
             
         Returns:
             A Vector3D representing the coordinates on the spiral.
         """
-        # Calculate the radius (distance from the origin) using the particle's initial radius
-        r = initial_radius * np.exp(k * theta)
+        # Calculate the radius (distance from the origin)
+        # The key is that each particle starts at its own theta (initial_theta) on the spiral
+        # and then advances from there with theta
+        effective_theta = theta
+        r = initial_radius * np.exp(k * effective_theta)
         
         # Convert polar coordinates (r, theta) to Cartesian coordinates (x, y)
-        x = center_x + r * np.cos(theta)
-        y = center_y + r * np.sin(theta)
+        # Use the initial_theta + effective_theta to place particle at correct angle
+        angle = initial_theta + effective_theta
+        x = center_x + r * np.cos(angle)
+        y = center_y + r * np.sin(angle)
         
         # Calculate z using a simple oscillating function based on theta
-        z = z_offset + r * self.z_factor * np.sin(theta)
+        z = z_offset + r * self.z_factor * np.sin(angle)
         
         return Vector3D(x, y, z)
     
@@ -104,11 +110,11 @@ class ActionSpiral:
                     initial_theta = math.atan2(initial_pos.y, initial_pos.x)
                     if initial_theta < 0:
                         initial_theta += 2 * math.pi  # Convert to [0, 2π]
-                    
-                    # Calculate theta offset to position particle at its initial position
-                    # If we put the particle at initial_pos with theta=0, it would be at [initial_radius, 0, 0]
-                    # We need to adjust theta to put it at the correct angle
                 
+                print(f"Initialized particle {p.id} with initial_pos={initial_pos}, initial_theta={initial_theta:.2f} radians ({initial_theta * 180/math.pi:.0f}°)")
+                
+                # Store the particle's initial theta - this ensures each particle starts 
+                # at a different position on its spiral path
                 self.particle_thetas[p.id] = initial_theta
                 
                 # Calculate initial radius from particle's initial position
@@ -128,7 +134,8 @@ class ActionSpiral:
                     # Use (0,0,0) as the spiral center for all particles
                     'spiral_center': Vector3D(0, 0, 0),
                     'spiral_k': self.spiral_k,  # Use the same spiral_k value for all particles
-                    'initial_radius': initial_radius  # Use initial position distance as radius
+                    'initial_radius': initial_radius,  # Use initial position distance as radius
+                    'initial_theta': initial_theta     # Store the initial angle for this particle
                 }
         
         # Update each particle's position based on its current theta
@@ -140,10 +147,18 @@ class ActionSpiral:
             # Calculate new position on the spiral
             particle_data = self.particle_data[p.id]
             spiral_center = particle_data['spiral_center']
+            
+            # Reset particle_thetas to 0 for the first application of this code
+            # to ensure we use the initial_theta stored in particle_data
+            if not hasattr(p, '_spiral_theta_initialized'):
+                self.particle_thetas[p.id] = 0.0
+                p._spiral_theta_initialized = True
+            
             new_position = self.logarithmic_spiral(
                 particle_data['spiral_k'], 
-                self.particle_thetas[p.id],
+                self.particle_thetas[p.id],  # This is how far the particle has moved along its spiral
                 initial_radius=particle_data['initial_radius'],
+                initial_theta=particle_data['initial_theta'],  # Starting angle for this particle
                 center_x=spiral_center.x,
                 center_y=spiral_center.y,
                 z_offset=spiral_center.z
