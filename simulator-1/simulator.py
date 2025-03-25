@@ -26,8 +26,7 @@ DEFAULT_CONFIG = {
     "physics": {
         "coulomb_constant": 0.8,
         "min_distance": 0.001,
-        "min_velocity": 0.001,
-        "large_force_threshold": 10.0
+        "min_velocity": 0.001
     }
 }
 
@@ -149,9 +148,6 @@ class Physics:
         force_magnitude = -self.k * particle1.charge * particle2.charge / (r * r * particle2.velocity.norm())
         force_direction = r_vec / r
         
-        # Add debug output for large forces
-        if abs(force_magnitude) > 10:
-            print(f"Large force: {force_magnitude:.2f} on particle {particle1.id} from {particle2.id}")
         
         return force_magnitude * force_direction
 

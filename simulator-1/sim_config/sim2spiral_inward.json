@@ -23,7 +23,6 @@
     "coulomb_constant": 0.8,
     "min_distance": 0.001,
     "min_velocity": 0.001,
-    "large_force_threshold": 10.0,
     "spiral_k": -0.025,
     "theta_rate": 360,
     "z_factor": 0.05,
@@ -56,7 +55,7 @@
     },
     "history_lines": {
       "enabled": true,
-      "lines_per_relation": 7,
+      "lines_per_relation": 1,
       "stroke_width": 0.8,
       "update_interval": 10
     },
