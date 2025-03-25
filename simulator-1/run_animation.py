@@ -71,9 +71,8 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     # Generate a unique ID for this run
     unique_id = generate_unique_id()
     
-    # Create a descriptive folder name with the config name and unique ID
+    # Extract the config name
     config_name = extract_config_name(config_file)
-    unique_folder = f"visualizer_{config_name}_{unique_id}"
     
     # We no longer need a unique class name - the unique media directory is sufficient
     unique_class_name = "PotentialVisualization"
@@ -122,26 +121,31 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     if preview and not os.environ.get("DISABLE_PREVIEW"):
         cmd.append("-p")
     
-    # Create a unique media directory with the config name
-    media_dir_name = f"media_{config_name}_{unique_id}"
+    # Create parent media directory if it doesn't exist
+    parent_media_dir = "media"
+    os.makedirs(parent_media_dir, exist_ok=True)
+    
+    # Create a unique media subdirectory with the config name
+    media_subdir_name = f"{config_name}_{unique_id}"
+    media_dir_path = os.path.join(parent_media_dir, media_subdir_name)
     
     # Add file and scene with explicitly specified media directory
     cmd.extend([
-        # The key fix: specify a unique media directory
-        "--media_dir", media_dir_name,
+        # Specify the media directory under the parent media directory
+        "--media_dir", media_dir_path,
         "visualizer.py", 
         unique_class_name  # Keep the unique class name
     ])
     
     # The output path uses standard Manim structure with our custom media directory
-    output_dir = f"{media_dir_name}/videos/visualizer/{quality_folder}"
+    output_dir = os.path.join(media_dir_path, "videos", "visualizer", quality_folder)
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
     
     # Set environment variables for Manim
-    os.environ["MEDIA_DIR"] = os.path.abspath(media_dir_name)
-    os.environ["VIDEO_DIR"] = os.path.abspath(f"{media_dir_name}/videos/visualizer")
+    os.environ["MEDIA_DIR"] = os.path.abspath(media_dir_path)
+    os.environ["VIDEO_DIR"] = os.path.abspath(os.path.join(media_dir_path, "videos", "visualizer"))
     
     # Execute Manim command
     print(f"Executing: {' '.join(cmd)}")
@@ -150,22 +154,45 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     try:
         subprocess.run(cmd, check=True)
         
-        # The output file is now predictably located in the custom media directory
-        output_file = os.path.join(output_dir, "PotentialVisualization.mp4")
+        # The output file should be located in the custom media directory
+        # Manim creates the output with the class name, not the output name
+        output_file = os.path.join(output_dir, f"{unique_class_name}.mp4")
         
         # Check if the file exists
         if os.path.exists(output_file):
             src_path = output_file
-        else:
-            print("No MP4 file found. The animation may have failed.")
-            return None
             
-        # Rename the file to something meaningful
-        output_name = f"Vis_{config_name}_{action_function}"
-        dest_path = os.path.join(os.path.dirname(src_path), f"{output_name}.mp4")
-        
-        # Rename the file
-        os.rename(src_path, dest_path)
+            # Rename the file to something meaningful
+            output_name = f"Vis_{config_name}_{action_function}"
+            dest_path = os.path.join(os.path.dirname(src_path), f"{output_name}.mp4")
+            
+            # Rename the file
+            os.rename(src_path, dest_path)
+            
+            print(f"File renamed from {src_path} to {dest_path}")
+        else:
+            print(f"No MP4 file found at {output_file}. Looking for other mp4 files...")
+            # Try to find any mp4 files in the output directory
+            mp4_files = []
+            for root, dirs, files in os.walk(output_dir):
+                for file in files:
+                    if file.endswith('.mp4') and 'partial' not in root:
+                        mp4_files.append(os.path.join(root, file))
+                        
+            if mp4_files:
+                print(f"Found these mp4 files: {mp4_files}")
+                src_path = mp4_files[0]  # Take the first one
+                
+                # Rename the file to something meaningful
+                output_name = f"Vis_{config_name}_{action_function}"
+                dest_path = os.path.join(os.path.dirname(src_path), f"{output_name}.mp4")
+                
+                # Rename the file
+                os.rename(src_path, dest_path)
+                print(f"File renamed from {src_path} to {dest_path}")
+            else:
+                print("No MP4 file found. The animation may have failed.")
+                return None
         
         print(f"Visualization completed. Video saved to: {dest_path}")
         return dest_path
@@ -182,8 +209,8 @@ def main():
     os.makedirs("simulation_results", exist_ok=True)
     
     parser = argparse.ArgumentParser(description="Run NPQG simulation with visualization")
-    parser.add_argument("--config", "-c", default="sim30.json", 
-                      help="Path to the simulation configuration JSON file (default: sim30.json)")
+    parser.add_argument("--config", "-c", default="sim_config/sim30.json", 
+                      help="Path to the simulation configuration JSON file (default: sim_config/sim30.json)")
     parser.add_argument("--output", "-o", default="simulation_results.json", 
                       help="Path to save simulation results (default: simulation_results/simulation_results.json)")
     parser.add_argument("--simulate-only", action="store_true", 
@@ -203,10 +230,28 @@ def main():
         # Generate a single unique ID to use for both simulation and visualization
         unique_id = generate_unique_id()
         
+        # Helper function to find config file
+        def find_config_file(config_path):
+            if os.path.exists(config_path):
+                return config_path
+            
+            # If the path doesn't exist and doesn't have a directory component,
+            # check if it's in the sim_config directory
+            if not os.path.dirname(config_path):
+                sim_config_path = os.path.join("sim_config", config_path)
+                if os.path.exists(sim_config_path):
+                    print(f"Found config file in sim_config directory: {sim_config_path}")
+                    return sim_config_path
+            
+            # Return the original path even if not found, to allow appropriate error messages
+            return config_path
+        
+        # Process the config path to find the actual file
+        config_file = find_config_file(args.config)
+            
         if args.visualize_only:
             # Skip simulation, just visualize
             # Use config file for naming even if we're only visualizing
-            config_file = args.config
             
             # Check if the file exists, and if not, check in the simulation_results directory
             results_file = args.output
@@ -220,7 +265,6 @@ def main():
                              preview=not args.no_preview, no_fail=args.no_fail)
         else:
             # Run simulation with the unique ID
-            config_file = args.config
             results_file = run_simulation(config_file, args.output, unique_id=unique_id)
             
             if not args.simulate_only:

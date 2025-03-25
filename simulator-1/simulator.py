@@ -2,7 +2,14 @@ import json
 import sys
 import os
 import math
+import importlib
 from typing import List, Dict, Tuple, Any, Union
+
+# Try to import action functions package
+try:
+    import action_functions
+except ImportError:
+    print("Warning: action_functions package not found. Will try fallback methods when loading action functions.")
 
 # Default configuration values
 DEFAULT_CONFIG = {
@@ -172,13 +179,24 @@ class Simulator:
         print(f"Using action function: {action_name}")
         
         try:
-            # Import the module dynamically
-            module_name = f"action_{action_name}"
-            action_module = __import__(module_name)
-            
-            # Get the action class - by convention ActionName where Name is capitalized action_name
+            # First try importing from the action_functions package
             class_name = f"Action{action_name.capitalize()}"
-            action_class = getattr(action_module, class_name)
+            
+            try:
+                # Method 1: Try importing from the package directly
+                from action_functions import ActionBasic, ActionHistory, ActionSpiral
+                action_class = locals()[class_name]
+            except (ImportError, KeyError):
+                try:
+                    # Method 2: Try importing the specific class
+                    module_name = f"action_functions.action_{action_name}"
+                    action_module = __import__(module_name, fromlist=[class_name])
+                    action_class = getattr(action_module, class_name)
+                except (ImportError, AttributeError):
+                    # Method 3: Fall back to the old way (for backward compatibility)
+                    module_name = f"action_{action_name}"
+                    action_module = __import__(module_name)
+                    action_class = getattr(action_module, class_name)
             
             # Initialize with config
             return action_class(self.config)
@@ -189,8 +207,25 @@ class Simulator:
         
     def _load_config(self, config_file: str) -> Dict[str, Any]:
         """Load simulation configuration from JSON file"""
-        with open(config_file, 'r') as f:
-            return json.load(f)
+        # Try to open the file as provided
+        try:
+            with open(config_file, 'r') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            # If the file is not found and doesn't have a directory component,
+            # try looking in the sim_config directory
+            if not os.path.dirname(config_file):
+                sim_config_path = os.path.join("sim_config", config_file)
+                try:
+                    with open(sim_config_path, 'r') as f:
+                        print(f"Found config file in sim_config directory: {sim_config_path}")
+                        return json.load(f)
+                except FileNotFoundError:
+                    # If still not found, raise the original error
+                    pass
+            
+            # Raise the original error if we couldn't find the file
+            raise FileNotFoundError(f"Config file not found: {config_file}")
     
     def _merge_with_defaults(self):
         """Merge user configuration with default values"""
