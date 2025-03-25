@@ -11,20 +11,35 @@ import json
 from pathlib import Path
 
 def generate_unique_id():
-    """Generate a simple but effective unique identifier based on timestamp, random number, and process ID"""
-    timestamp = int(time.time() * 1000)  # Milliseconds for better uniqueness
+    """Generate a unique identifier with timestamp in human-readable format"""
+    # Get current date and time in YYYYMMDD_HHMMSS format
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
+    # Add a random number for uniqueness
     rand_num = random.randint(100000, 999999)
-    pid = os.getpid()  # Add process ID for better uniqueness during concurrent runs
     
-    unique_id = f"{timestamp}_{rand_num}_{pid}"
+    unique_id = f"{timestamp}_{rand_num}"
     return unique_id
 
 def extract_config_name(config_file):
     """Extract the base name from the config file without extension"""
     return os.path.splitext(os.path.basename(config_file))[0]
 
-def run_simulation(config_file, output_file):
+def run_simulation(config_file, output_file, unique_id=None):
     """Run the simulation using the specified config file"""
+    # Make sure simulation_results directory exists
+    os.makedirs("simulation_results", exist_ok=True)
+    
+    # If a unique ID was provided, create a unique output filename in the simulation_results directory
+    if unique_id:
+        config_name = extract_config_name(config_file)
+        output_file = os.path.join("simulation_results", f"sim_{config_name}_{unique_id}.json")
+    elif output_file == "simulation_results.json":
+        # If no unique ID but using default output, still place in the simulation_results directory
+        output_file = os.path.join("simulation_results", output_file)
+    elif not os.path.dirname(output_file):
+        # If output file has no directory component, place it in simulation_results
+        output_file = os.path.join("simulation_results", output_file)
+    
     cmd = ["python", "simulator.py", config_file, output_file]
     print(f"Running simulation: {' '.join(cmd)}")
     
@@ -53,12 +68,12 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
         # If error checking processes, just continue
         pass
     
-    # Generate a unique name for the output file based on config name and unique id
-    config_name = extract_config_name(config_file)
+    # Generate a unique ID for this run
     unique_id = generate_unique_id()
     
-    # Create a unique subfolder for this run to avoid partial_movie_file_list.txt conflicts
-    unique_folder = f"visualizer_{unique_id}"
+    # Create a descriptive folder name with the config name and unique ID
+    config_name = extract_config_name(config_file)
+    unique_folder = f"visualizer_{config_name}_{unique_id}"
     
     # We no longer need a unique class name - the unique media directory is sufficient
     unique_class_name = "PotentialVisualization"
@@ -107,8 +122,8 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     if preview and not os.environ.get("DISABLE_PREVIEW"):
         cmd.append("-p")
     
-    # Create a unique media directory but use standard "visualizer" scene name
-    media_dir_name = f"media_{unique_id}"
+    # Create a unique media directory with the config name
+    media_dir_name = f"media_{config_name}_{unique_id}"
     
     # Add file and scene with explicitly specified media directory
     cmd.extend([
@@ -163,11 +178,14 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
         raise
 
 def main():
+    # Ensure the simulation_results directory exists
+    os.makedirs("simulation_results", exist_ok=True)
+    
     parser = argparse.ArgumentParser(description="Run NPQG simulation with visualization")
     parser.add_argument("--config", "-c", default="sim30.json", 
                       help="Path to the simulation configuration JSON file (default: sim30.json)")
     parser.add_argument("--output", "-o", default="simulation_results.json", 
-                      help="Path to save simulation results (default: simulation_results.json)")
+                      help="Path to save simulation results (default: simulation_results/simulation_results.json)")
     parser.add_argument("--simulate-only", action="store_true", 
                       help="Run only the simulation without visualization")
     parser.add_argument("--visualize-only", action="store_true", 
@@ -182,16 +200,29 @@ def main():
     args = parser.parse_args()
     
     try:
+        # Generate a single unique ID to use for both simulation and visualization
+        unique_id = generate_unique_id()
+        
         if args.visualize_only:
             # Skip simulation, just visualize
             # Use config file for naming even if we're only visualizing
             config_file = args.config
-            run_visualization(args.output, config_file, quality=args.quality, 
+            
+            # Check if the file exists, and if not, check in the simulation_results directory
+            results_file = args.output
+            if not os.path.exists(results_file) and not os.path.dirname(results_file):
+                simulation_results_path = os.path.join("simulation_results", results_file)
+                if os.path.exists(simulation_results_path):
+                    results_file = simulation_results_path
+                    print(f"Using results file from simulation_results directory: {results_file}")
+            
+            run_visualization(results_file, config_file, quality=args.quality, 
                              preview=not args.no_preview, no_fail=args.no_fail)
         else:
-            # Run simulation
+            # Run simulation with the unique ID
             config_file = args.config
-            results_file = run_simulation(config_file, args.output)
+            results_file = run_simulation(config_file, args.output, unique_id=unique_id)
+            
             if not args.simulate_only:
                 # Run visualization if not simulate-only
                 run_visualization(results_file, config_file, quality=args.quality, 
