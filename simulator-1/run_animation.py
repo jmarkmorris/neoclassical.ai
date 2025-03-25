@@ -11,10 +11,11 @@ import json
 from pathlib import Path
 
 def generate_unique_id():
-    """Generate a unique identifier based on timestamp, random number, and process ID"""
+    """Generate a simple but effective unique identifier based on timestamp, random number, and process ID"""
     timestamp = int(time.time() * 1000)  # Milliseconds for better uniqueness
     rand_num = random.randint(100000, 999999)
     pid = os.getpid()  # Add process ID for better uniqueness during concurrent runs
+    
     unique_id = f"{timestamp}_{rand_num}_{pid}"
     return unique_id
 
@@ -38,6 +39,20 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     # Set environment variable for the results file
     os.environ["SIMULATION_RESULTS"] = results_file
     
+    # Check if we might be running concurrent visualizations and disable preview
+    # if certain environmental indicators are present
+    try:
+        # Look for concurrent processes running Manim
+        result = subprocess.run(["pgrep", "-f", "manim"], capture_output=True, text=True)
+        procs = result.stdout.strip().split('\n')
+        if len(procs) > 1 and procs[0]:  # More than one Manim process (including the one we're about to start)
+            print("Detected concurrent Manim processes. Ensuring preview is disabled.")
+            os.environ["DISABLE_PREVIEW"] = "1"
+            preview = False
+    except:
+        # If error checking processes, just continue
+        pass
+    
     # Generate a unique name for the output file based on config name and unique id
     config_name = extract_config_name(config_file)
     unique_id = generate_unique_id()
@@ -45,8 +60,8 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     # Create a unique subfolder for this run to avoid partial_movie_file_list.txt conflicts
     unique_folder = f"visualizer_{unique_id}"
     
-    # Generate a unique class name for this run to avoid directory conflicts
-    unique_class_name = f"PotentialVisualization_{unique_id.replace('-', '_').replace('.', '_')}"
+    # We no longer need a unique class name - the unique media directory is sufficient
+    unique_class_name = "PotentialVisualization"
     
     # Read the config file to identify the action function
     try:
@@ -88,105 +103,64 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     elif quality == "k":
         cmd.append("-qk")  # 4K quality
     
-    # Add preview flag if needed
-    if preview:
+    # Only add preview flag for the final output, not intermediate files
+    if preview and not os.environ.get("DISABLE_PREVIEW"):
         cmd.append("-p")
     
-    # Add file and scene
-    # Use custom output directory and class name to prevent conflicts in concurrent runs
+    # Create a unique media directory but use standard "visualizer" scene name
+    media_dir_name = f"media_{unique_id}"
+    
+    # Add file and scene with explicitly specified media directory
     cmd.extend([
-        "--output_file", unique_folder,
+        # The key fix: specify a unique media directory
+        "--media_dir", media_dir_name,
         "visualizer.py", 
-        unique_class_name  # Use the unique class name instead of fixed "PotentialVisualization"
+        unique_class_name  # Keep the unique class name
     ])
-    output_dir = f"media/videos/{unique_folder}/{quality_folder}"
+    
+    # The output path uses standard Manim structure with our custom media directory
+    output_dir = f"{media_dir_name}/videos/visualizer/{quality_folder}"
     
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
     
-    # Set environment variable for Manim to use a custom output directory
-    os.environ["MEDIA_DIR"] = os.path.abspath("media")
-    os.environ["VIDEO_DIR"] = os.path.abspath(f"media/videos/{unique_folder}")
+    # Set environment variables for Manim
+    os.environ["MEDIA_DIR"] = os.path.abspath(media_dir_name)
+    os.environ["VIDEO_DIR"] = os.path.abspath(f"{media_dir_name}/videos/visualizer")
     
     # Execute Manim command
     print(f"Executing: {' '.join(cmd)}")
     
-    # Keep track of existing files before running manim
-    existing_files = set()
-    if os.path.exists(output_dir):
-        existing_files = set(os.listdir(output_dir))
-    
-    # Run Manim with retry logic
-    max_retries = 3
-    retry_count = 0
-    
-    while retry_count < max_retries:
-        try:
-            subprocess.run(cmd, check=True)
+    # Run Manim
+    try:
+        subprocess.run(cmd, check=True)
+        
+        # The output file is now predictably located in the custom media directory
+        output_file = os.path.join(output_dir, "PotentialVisualization.mp4")
+        
+        # Check if the file exists
+        if os.path.exists(output_file):
+            src_path = output_file
+        else:
+            print("No MP4 file found. The animation may have failed.")
+            return None
             
-            # Find new files that were created
-            new_files = set()
-            if os.path.exists(output_dir):
-                new_files = set(os.listdir(output_dir)) - existing_files
-            
-            # Get the path to the latest created MP4 file
-            mp4_files = [f for f in new_files if f.endswith(".mp4")]
-            if mp4_files:
-                latest_file = max(mp4_files, key=lambda f: os.path.getmtime(os.path.join(output_dir, f)))
-                src_path = os.path.join(output_dir, latest_file)
-                
-                # Create destination path with our custom name
-                dest_path = os.path.join(output_dir, f"{output_name}.mp4")
-                
-                # Rename the file
-                if src_path != dest_path and os.path.exists(src_path):
-                    os.rename(src_path, dest_path)
-                    print(f"Renamed output file to: {dest_path}")
-                    expected_path = dest_path
-                else:
-                    expected_path = src_path
-                    
-                print(f"Visualization completed. Video saved to: {expected_path}")
-                return expected_path
-            else:
-                print("No MP4 file was created by Manim.")
-                if retry_count < max_retries - 1:
-                    retry_count += 1
-                    print(f"Retrying ({retry_count}/{max_retries})...")
-                    # Generate a new unique ID for the retry
-                    unique_id = generate_unique_id()
-                    unique_folder = f"visualizer_{unique_id}"
-                    cmd[cmd.index("--output_file") + 1] = unique_folder
-                    output_dir = f"media/videos/{unique_folder}/{quality_folder}"
-                    os.makedirs(output_dir, exist_ok=True)
-                    os.environ["VIDEO_DIR"] = os.path.abspath(f"media/videos/{unique_folder}")
-                    continue
-                else:
-                    print("Max retries reached. Could not generate video.")
-                    return None
-                
-        except subprocess.CalledProcessError as e:
-            print(f"Error during visualization: {e}")
-            if "already exists" in str(e) or "Permission denied" in str(e) or "file list" in str(e):
-                if retry_count < max_retries - 1:
-                    retry_count += 1
-                    print(f"Encountered a file conflict. Retrying ({retry_count}/{max_retries})...")
-                    # Generate a new unique ID for the retry
-                    unique_id = generate_unique_id()
-                    unique_folder = f"visualizer_{unique_id}"
-                    cmd[cmd.index("--output_file") + 1] = unique_folder
-                    output_dir = f"media/videos/{unique_folder}/{quality_folder}"
-                    os.makedirs(output_dir, exist_ok=True)
-                    os.environ["VIDEO_DIR"] = os.path.abspath(f"media/videos/{unique_folder}")
-                    time.sleep(1)  # Short delay before retry
-                    continue
-            raise
-        except Exception as e:
-            print(f"Error during visualization: {e}")
-            if no_fail:
-                print("Continuing due to --no-fail option...")
-                return None
-            raise
+        # Rename the file to something meaningful
+        output_name = f"Vis_{config_name}_{action_function}"
+        dest_path = os.path.join(os.path.dirname(src_path), f"{output_name}.mp4")
+        
+        # Rename the file
+        os.rename(src_path, dest_path)
+        
+        print(f"Visualization completed. Video saved to: {dest_path}")
+        return dest_path
+    
+    except Exception as e:
+        print(f"Error during visualization: {e}")
+        if no_fail:
+            print("Continuing due to --no-fail option...")
+            return None
+        raise
 
 def main():
     parser = argparse.ArgumentParser(description="Run NPQG simulation with visualization")

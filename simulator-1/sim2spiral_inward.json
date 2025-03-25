@@ -4,17 +4,17 @@
       {
         "id": 1,
         "charge": 1,
-        "position": [40.0, 0.0, 0.0],
+        "position": [5.0, 0.0, 0.0],
         "velocity": [0.0, -0.1, 0.0]
       },
       {
         "id": 2,
         "charge": -1,
-        "position": [-40.0, -0.0, 0.0],
+        "position": [-5.0, -0.0, 0.0],
         "velocity": [0.0, -0.1, 0.0]
       }
     ],
-    "duration": 60,
+    "duration": 10,
     "dt": 0.01,
     "max_history": 10000,
     "action_function": "spiral"

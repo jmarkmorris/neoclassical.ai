@@ -238,6 +238,9 @@ class Simulator:
         for step in range(total_steps):
             if step % 100 == 0:
                 print(f"Step {step}/{total_steps}")
+                # Print particle positions every 100 steps
+                for p in self.particles:
+                    print(f"  Particle {p.id}: position={p.position}, velocity={p.velocity}")
                 
             self._step()
             

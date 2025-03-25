@@ -6,8 +6,6 @@ import numpy as np
 from manim import *
 from typing import Dict, Any, List, Tuple
 
-# No need for a separate function as we'll use Manim's built-in arrow
-
 # Default configuration values
 DEFAULT_VISUALIZER_CONFIG = {
     "global": {
@@ -357,33 +355,22 @@ class PotentialVisualization(ThreeDScene):
         # We'll always show the scale, even if scaling is disabled
         self.scale_tracker = ValueTracker(self.base_scale)
         
-        # Create a fixed text label
-        scale_label = Text("Scale: ", font_size=24, color=WHITE)
-        scale_label.to_corner(UR, buff=0.5)
+        # Create a more robust scale indicator
+        # Create a fixed-in-frame camera for 2D elements that should remain fixed
+        self.fixed_camera = self.camera
         
-        # Create a decimal number that updates with the tracker
-        scale_value = DecimalNumber(
-            self.base_scale,
-            num_decimal_places=2,
-            font_size=24,
-            color=WHITE
-        )
+        # Function to update the scale text
+        def update_scale_text(text):
+            text.become(Text(f"Scale: {self.scale_tracker.get_value():.2f}", font_size=24, color=WHITE).to_corner(UR, buff=0.5))
+            return text
+            
+        # Create a single text object with both label and value
+        self.scale_indicator = Text(f"Scale: {self.base_scale:.2f}", font_size=24, color=WHITE)
+        self.scale_indicator.to_corner(UR, buff=0.5)
+        self.scale_indicator.add_updater(update_scale_text)
         
-        # Position the value next to the label
-        scale_value.next_to(scale_label, RIGHT)
-        
-        # Add updater to the scale value to update when tracker changes
-        scale_value.add_updater(lambda d: d.set_value(self.scale_tracker.get_value()))
-        
-        # Add each element individually as fixed in frame
-        # This ensures each element maintains the correct orientation
-        # especially when the scale_value is updated through its updater
-        self.add_fixed_in_frame_mobjects(scale_label)
-        self.add_fixed_in_frame_mobjects(scale_value)
-        
-        # Keep a reference to both for later use if needed
-        self.scale_indicator_label = scale_label
-        self.scale_indicator_value = scale_value
+        # Add as fixed in frame
+        self.add_fixed_in_frame_mobjects(self.scale_indicator)
         
         # Extract particle data and create representations
         particle_data = self.simulation_data["particle_data"]
