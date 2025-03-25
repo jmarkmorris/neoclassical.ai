@@ -21084,7 +21084,7 @@
       },
       "scaling": {
         "enabled": false,
-        "initial_scale": 0.75,
+        "initial_scale": 1.0,
         "max_display_limit": 5.0,
         "min_display_limit": 2.0,
         "scale_stability_threshold": 0.2
