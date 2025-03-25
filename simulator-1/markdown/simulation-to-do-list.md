@@ -34,3 +34,13 @@ Based on a comparison between design.md and the codebase, here are the main feat
 
   These could be areas for future enhancement if you'd like to make the implementation more aligned with the original design
   document.
+
+
+  More: 
+  
+  - add lines of action to spiral
+  - check out sim30.json -- odd behaviour
+  - move input files to their own directory
+  - move markdown files to their own directory
+  - can media directories be placed in their own directory
+  - should action functions be in their own directory?
