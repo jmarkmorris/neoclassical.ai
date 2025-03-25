@@ -74,16 +74,17 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     # Extract the config name
     config_name = extract_config_name(config_file)
     
-    # We no longer need a unique class name - the unique media directory is sufficient
-    unique_class_name = "PotentialVisualization"
-    
-    # Read the config file to identify the action function
+    # Use a dynamic class name based on the config and action to avoid popup issues
+    action_function = "unknown"
     try:
         with open(config_file, 'r') as f:
             config_data = json.load(f)
             action_function = config_data.get("simulation", {}).get("action_function", "basic")
     except:
-        action_function = "unknown"
+        pass
+    unique_class_name = f"Vis_{config_name}_{action_function}"
+    
+    # We've already read the action function above
     
     # Create a descriptive output name
     output_name = f"Vis_{config_name}_{action_function}_{unique_id}"
@@ -117,9 +118,12 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
     elif quality == "k":
         cmd.append("-qk")  # 4K quality
     
-    # Only add preview flag for the final output, not intermediate files
-    if preview and not os.environ.get("DISABLE_PREVIEW"):
-        cmd.append("-p")
+    # Don't add preview flag when we're renaming files - it causes errors
+    # We'll manually open the file afterward if preview is requested
+    preview_after = preview and not os.environ.get("DISABLE_PREVIEW")
+    
+    # Disable caching to avoid warnings and potentially speed up rendering
+    cmd.append("--disable_caching")
     
     # Create parent media directory if it doesn't exist
     parent_media_dir = "media"
@@ -195,6 +199,20 @@ def run_visualization(results_file, config_file, quality="h", preview=False, no_
                 return None
         
         print(f"Visualization completed. Video saved to: {dest_path}")
+        
+        # If preview was requested, open the file
+        if preview_after and os.path.exists(dest_path):
+            print(f"Opening preview for {dest_path}")
+            try:
+                if sys.platform == "darwin":  # macOS
+                    subprocess.run(["open", dest_path])
+                elif sys.platform == "win32":  # Windows
+                    os.startfile(dest_path)
+                else:  # Linux and other OS
+                    subprocess.run(["xdg-open", dest_path])
+            except Exception as e:
+                print(f"Error opening preview: {e}")
+        
         return dest_path
     
     except Exception as e:

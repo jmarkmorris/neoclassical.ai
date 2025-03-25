@@ -1,3 +1,12 @@
+#NEOCLASSICAL PHYSICS AND QUANTUM GRAVITY (NPQG)
+
+Imagine that nature emerges from two flavors of immutable point potentials, the electrino and the positrino, which are equal yet opposite. Point potentials continuosly emit spherically expanding potential waves. These are the only carriers of energy, in electromagnetic and kinetic form. The are located in an infinite 3D Euclidean space. Point potential characteristics include immutability, meaning they cannot be created nor destroyed. 
+
+NPQG explores this recipe for nature and how it emerges as a narrative and theory that is compatible with GR, QM, modified ΛCDM, yet superior in ability to explain the universe and resolve open problems.
+
+NPQG blog and detailed information is available at https://jmarkmorris.com/ or https://neoclassical.ai/
+For NPQG basics see: Idealized Neoclassical Model, the NPQG Glosssary, and the New Physics in Pictures posts.
+
 # NPQG Simulator and Visualizer
 
 A simulator and visualizer for point potentials in 3D space following provided action laws, which may be physics based or geometry based. This project uses Python with Manim to create animations of particle interactions based on configurable action models.

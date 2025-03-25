@@ -190,7 +190,7 @@
   "physics": {
     "coulomb_constant": 0.8,
     "min_distance": 0.001,
-    "min_velocity": 0.001,
+    "min_velocity": 0.001
   },
   "visualization": {
     "colors": {

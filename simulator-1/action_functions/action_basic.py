@@ -84,8 +84,12 @@ class ActionBasic:
         if velocity_magnitude < self.min_velocity:
             velocity_magnitude = self.min_velocity
         
-        # Standard Coulomb's law where opposite charges attract and like charges repel
-        force_magnitude = self.coulomb_constant * p1.charge * p2.charge / (r * r * velocity_magnitude)
+        # Modified Coulomb's law to ensure opposite charges attract and like charges repel
+        # Using negative of product to reverse the natural behavior
+        # This makes F = -k*q1*q2/r² so:
+        # - If q1 and q2 have the same sign (++ or --), force is repulsive (negative)
+        # - If q1 and q2 have opposite signs (+- or -+), force is attractive (positive)
+        force_magnitude = -self.coulomb_constant * p1.charge * p2.charge / (r * r * velocity_magnitude)
         
         # Calculate force vector using the normalized direction
         force = r_vec.normalized() * force_magnitude
