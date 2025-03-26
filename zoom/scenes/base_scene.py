@@ -120,9 +120,10 @@ class ZoomableScene:
                 # Add the whole group to our elements
                 elements.append(image_result)
         
-        # If no image, just use a plain circle
+        # If no image, log a warning and create a simple placeholder
         if not has_image:
-            # Create a plain circle
+            print(f"WARNING: No image found for {self.scene_name}. Creating a simple placeholder.")
+            # Create a plain circle with a warning text
             circle = Circle(
                 radius=radius,
                 stroke_color=circle_color,
