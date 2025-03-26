@@ -58,7 +58,7 @@ class ZoomableScene:
         )
         # Center the background
         self.background.move_to(ORIGIN)
-        self.add(self.background)
+        # Don't call self.add here since this isn't a Manim Scene
         
     def setup_scale_indicator(self):
         """Create the 10^N scale indicator in top right corner"""
@@ -78,7 +78,7 @@ class ZoomableScene:
         
         # Position in top right corner with padding
         self.scale_indicator.to_corner(UR, buff=0.5)
-        self.add(self.scale_indicator)
+        # Don't call self.add here since this isn't a Manim Scene
         
     def create_object(self, label, position, radius, image_index=0):
         """
@@ -123,20 +123,29 @@ class ZoomableScene:
         )
         label_text.move_to(position)
         
-        # Create elements list (will build VGroup from this)
+        # Create elements list (will build Group from this)
         elements = [circle, label_text]
+        
+        # Create a flag to check if we have an image
+        has_image = False
         
         # Try to add a custom image if available and enabled
         if self.use_custom_images:
             image = self.image_loader.get_fitted_image(self.scene_name, radius, image_index)
             if image:
+                has_image = True
                 image.move_to(position)
                 elements.insert(1, image)  # Insert between circle and label for proper layering
         
-        # Group all elements
-        obj = VGroup(*elements)
+        # Group all elements - use Group instead of VGroup when we have images
+        # Group can contain any Mobject, while VGroup can only contain VMobject
+        if has_image:
+            obj = Group(*elements)
+        else:
+            obj = VGroup(*elements)
+            
         self.objects.append(obj)
-        self.add(obj)
+        # Don't call self.add here since this isn't a Manim Scene
         return obj
         
     def update_scale_indicator(self, new_scale):

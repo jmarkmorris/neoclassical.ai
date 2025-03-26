@@ -39,11 +39,9 @@ class QuarkScene(ZoomableScene):
             
             # Only add these additional elements if we're not using a custom image
             # or if they should appear alongside the custom image
-            has_custom_image = False
-            for submob in quark_boundary.submobjects:
-                if isinstance(submob, ImageMobject):
-                    has_custom_image = True
-                    break
+            # Check if we're using custom images and if an image was successfully loaded
+            # The image is always the second element in the group if it exists
+            has_custom_image = self.use_custom_images and len(quark_boundary) > 2
                     
             if not self.use_custom_images or not has_custom_image:
                 # Create a proton structure (made of quarks)

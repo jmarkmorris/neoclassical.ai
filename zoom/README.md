@@ -19,7 +19,7 @@ This project creates an interactive zoom animation that visualizes the relative 
 1. Clone the repository:
    ```
    git clone <repository-url>
-   cd NPQG/zoom
+   cd neoclassical.ai/zoom
    ```
 
 2. Install dependencies:

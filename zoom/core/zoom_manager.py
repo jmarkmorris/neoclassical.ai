@@ -155,8 +155,8 @@ class ZoomManager:
             color=WHITE
         )
         
-        # Create an empty VGroup
-        elements = VGroup()
+        # Create an empty Group (not VGroup, as Group can contain any Mobject)
+        elements = Group()
         
         # Try to get custom elements
         try:
@@ -183,7 +183,7 @@ class ZoomManager:
         
         # If we reach here, use default elements
         print(f"Using default elements for {scene_name}")
-        elements = VGroup(default_circle, default_label)
+        elements = Group(default_circle, default_label)
         return elements
     
     def zoom_in(self, manim_scene, from_scene, to_scene, duration=None, easing="smooth"):
@@ -239,11 +239,11 @@ class ZoomManager:
         except Exception as e:
             print(f"Error creating scene elements: {e}")
             # Create basic fallback elements
-            from_elements = VGroup(
+            from_elements = Group(
                 Circle(radius=3, stroke_color=WHITE),
                 Text(from_scene, color=WHITE)
             )
-            to_elements = VGroup(
+            to_elements = Group(
                 Circle(radius=3, stroke_color=WHITE),
                 Text(to_scene, color=WHITE)
             )
@@ -379,11 +379,11 @@ class ZoomManager:
         except Exception as e:
             print(f"Error creating scene elements: {e}")
             # Create basic fallback elements
-            from_elements = VGroup(
+            from_elements = Group(
                 Circle(radius=3, stroke_color=WHITE),
                 Text(from_scene, color=WHITE)
             )
-            to_elements = VGroup(
+            to_elements = Group(
                 Circle(radius=3, stroke_color=WHITE),
                 Text(to_scene, color=WHITE)
             )
