@@ -23,6 +23,15 @@ except (ImportError, AttributeError):
 from scenes.base_scene import ZoomableScene
 from scenes.universe_scene import UniverseScene
 from scenes.galaxy_cluster_scene import GalaxyClusterScene
+from scenes.galaxy_scene import GalaxyScene
+from scenes.black_hole_scene import BlackHoleScene
+from scenes.solar_system_scene import SolarSystemScene
+from scenes.star_scene import StarScene
+from scenes.molecule_scene import MoleculeScene
+from scenes.atom_scene import AtomScene
+from scenes.electron_scene import ElectronScene
+from scenes.quark_scene import QuarkScene
+from scenes.point_potential_scene import PointPotentialScene
 from core.audio_controller import AudioController
 
 class ZoomManager:
@@ -57,7 +66,24 @@ class ZoomManager:
                 scene_class = UniverseScene
             elif scene_name == "GalaxyCluster":
                 scene_class = GalaxyClusterScene
-            # Add other scene types here as they are implemented
+            elif scene_name == "Galaxy":
+                scene_class = GalaxyScene
+            elif scene_name == "BlackHole":
+                scene_class = BlackHoleScene
+            elif scene_name == "SolarSystem":
+                scene_class = SolarSystemScene
+            elif scene_name == "Star":
+                scene_class = StarScene
+            elif scene_name == "Molecule":
+                scene_class = MoleculeScene
+            elif scene_name == "Atom":
+                scene_class = AtomScene
+            elif scene_name == "Electron":
+                scene_class = ElectronScene
+            elif scene_name == "Quark":
+                scene_class = QuarkScene
+            elif scene_name == "PointPotential":
+                scene_class = PointPotentialScene
             else:
                 # Use generic scene as fallback
                 scene_class = ZoomableScene

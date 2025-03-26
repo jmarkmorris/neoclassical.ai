@@ -17,8 +17,8 @@ def main():
     parser.add_argument("--config", 
                        help="Path to JSON configuration file")
     
-    parser.add_argument("--quality", choices=["l", "m", "h"], default="l",
-                       help="Quality preset (l=low, m=medium, h=high). Default: l")
+    parser.add_argument("--quality", choices=["l", "m", "h"], default="h",
+                       help="Quality preset (l=low, m=medium, h=high). Default: h")
     
     parser.add_argument("--no-preview", action="store_true",
                        help="Disable preview mode (render to file)")
@@ -36,6 +36,9 @@ def main():
     
     # Quality setting
     manim_args.extend(["-q", args.quality])
+    
+    # Disable caching for better performance with complex scenes
+    manim_args.append("--disable_caching")
     
     # Preview mode
     if not args.no_preview:

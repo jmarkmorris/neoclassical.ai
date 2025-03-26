@@ -68,10 +68,10 @@ The animation is structured as a hierarchy of scenes, each representing a specif
 - Circles contract from outside frame during zoom-out
 - Default zoom rate is constant logarithmically (configurable)
 - Transition blending between consecutive scenes for seamless animation
-- Camera movement uses Manim's `camera.frame.scale` method for smooth zooming
-- Scale change per second is defined as: `scale_change = base_rate * 10^(abs(current_scale - target_scale)/duration)`
-- Minimum zoom duration is 2 seconds even between adjacent scales
-- Maximum zoom duration is 20 seconds for full-scale transitions
+- Scaling and opacity transitions for smooth scene changes
+- Scale indicator updates dynamically during transitions
+- Scene elements are designed to blend seamlessly during transitions
+- Labels move from inside circles to the top left corner during transitions
 
 ### Configuration System
 
@@ -88,7 +88,8 @@ The animation is structured as a hierarchy of scenes, each representing a specif
     "stroke_width": 2,               // Width of circle outlines
     "color_text": "#FFFFFF",         // White text
     "color_circle": "#FFFFFF",       // White circles
-    "dot3d_radius": 0.04             // Point potential size
+    "dot3d_radius": 0.04,            // Point potential size
+    "quality": "h"                   // Rendering quality (l=low, m=medium, h=high)
   },
   "scenes": [
     {
@@ -134,342 +135,31 @@ The animation is structured as a hierarchy of scenes, each representing a specif
 
 ### Implementation Classes
 
-```python
-import manim as m
+The implementation follows a modular architecture with the following key components:
 
-# Base Scene class for common functionality
-class ZoomableScene(m.Scene):
-    def __init__(self, config, scale_value):
-        super().__init__()
-        self.config = config
-        self.scale_value = scale_value
-        self.objects = []
-        self.scale_indicator = None
-        self.background = None
-        
-    def setup(self):
-        # Initialize scene components
-        self.setup_background()
-        self.setup_scale_indicator()
-        
-    def setup_background(self):
-        # Creates background with config color
-        self.background = m.Rectangle(
-            width=config["global_settings"]["resolution"][0],
-            height=config["global_settings"]["resolution"][1],
-            fill_color=config["global_settings"]["background_color"],
-            fill_opacity=1.0
-        )
-        self.add(self.background)
-        
-    def setup_scale_indicator(self):
-        # Creates the 10^N scale indicator in top right
-        scale_text = f"10^{self.scale_value}"
-        self.scale_indicator = m.Text(
-            scale_text,
-            font_size=config["global_settings"]["font_size"],
-            color=config["global_settings"]["color_text"]
-        )
-        # Position in top right corner with padding
-        self.scale_indicator.to_corner(m.UR, buff=0.5)
-        self.add(self.scale_indicator)
-        
-    def create_object(self, label, position, radius):
-        # Creates a circle with label at position
-        circle = m.Circle(
-            radius=radius,
-            stroke_color=config["global_settings"]["color_circle"],
-            stroke_width=config["global_settings"]["stroke_width"],
-            fill_opacity=0
-        )
-        circle.move_to(position)
-        
-        label_text = m.Text(
-            label,
-            font_size=config["global_settings"]["font_size"],
-            color=config["global_settings"]["color_text"]
-        )
-        label_text.move_to(position)
-        
-        obj = m.VGroup(circle, label_text)
-        self.objects.append(obj)
-        self.add(obj)
-        return obj
-        
-    def update_scale_indicator(self, new_scale):
-        # Update scale indicator during transitions
-        new_text = f"10^{new_scale:.1f}"
-        new_indicator = m.Text(
-            new_text,
-            font_size=config["global_settings"]["font_size"],
-            color=config["global_settings"]["color_text"]
-        )
-        new_indicator.to_corner(m.UR, buff=0.5)
-        self.play(m.Transform(self.scale_indicator, new_indicator))
+- **ZoomableScene**: Base class for all scene types
+  - Manages common elements like scale indicators and backgrounds
+  - Provides methods for creating and updating scene elements
 
-# Specific scene implementations
-class UniverseScene(ZoomableScene):
-    def construct(self):
-        # Universe-specific initialization
-        pass
+- **Specific Scene Classes**: (UniverseScene, GalaxyScene, etc.)
+  - Extend ZoomableScene with scale-specific visualizations
+  - Implement get_elements() to create detailed scene representations
+  - Handle custom physics and visual effects relevant to each scale
 
-# ... Additional scene classes ...
+- **ZoomManager**: Manages transitions between scenes
+  - Controls zoom animations and timing
+  - Maintains the current scale value during transitions
+  - Handles scene blending for seamless transitions
+  - Displays transition labels to indicate current operation
 
-# Manager for zoom transitions
-class ZoomManager:
-    def __init__(self, json_config):
-        self.config = self._load_config(json_config)
-        self.scenes = self._initialize_scenes()
-        self.current_scale = None
-        self.current_scene = None
-        self.animation_progress = 0
-        self.total_duration = self._calculate_total_duration()
-        self.audio_controller = AudioController(self.config.get("audio", {}))
-        
-    def _load_config(self, json_path):
-        # Load and validate the JSON configuration
-        import json
-        with open(json_path, 'r') as f:
-            config = json.load(f)
-            
-        # Validate required fields
-        required_keys = ["global_settings", "scenes", "animation_sequence"]
-        for key in required_keys:
-            if key not in config:
-                raise ValueError(f"Missing required key in config: {key}")
-                
-        return config
-        
-    def _initialize_scenes(self):
-        # Create all scene instances based on config
-        scenes = {}
-        for scene_config in self.config["scenes"]:
-            scene_name = scene_config["name"]
-            scale_value = scene_config["scale"]
-            
-            # Create appropriate scene class based on name
-            if scene_name == "Universe":
-                scene = UniverseScene(self.config, scale_value)
-            elif scene_name == "GalaxyCluster":
-                scene = GalaxyClusterScene(self.config, scale_value)
-            # ... other scene types ...
-            else:
-                # Generic scene as fallback
-                scene = ZoomableScene(self.config, scale_value)
-                
-            scenes[scene_name] = scene
-            
-        return scenes
-        
-    def _calculate_total_duration(self):
-        # Calculate total animation duration including transitions and pauses
-        total = 0
-        for transition in self.config["animation_sequence"]:
-            duration = transition.get("duration", 5)
-            pause_before = transition.get("pause_before", 0)
-            pause_after = transition.get("pause_after", 0)
-            total += duration + pause_before + pause_after
-        return total
-        
-    def _apply_easing(self, t, easing_type):
-        # Apply easing function to create smoother animations
-        if easing_type == "linear":
-            return t
-        elif easing_type == "smooth":
-            # Smooth step function (3t² - 2t³)
-            return 3 * t**2 - 2 * t**3
-        elif easing_type == "accelerate":
-            # Quadratic ease-in
-            return t**2
-        elif easing_type == "decelerate":
-            # Quadratic ease-out
-            return 1 - (1 - t)**2
-        else:
-            return t  # Default to linear
-        
-    def zoom_in(self, scene, target_scene, duration=None, easing="smooth"):
-        # Handle zoom-in animation between scenes
-        if duration is None:
-            duration = self.config["global_settings"].get("default_transition_duration", 5)
-            
-        # Calculate the zoom rate based on scale difference
-        start_scale = scene.scale_value
-        end_scale = target_scene.scale_value
-        scale_diff = abs(end_scale - start_scale)
-        
-        # Set up the animation
-        def update_scale(t):
-            # Apply easing and calculate current scale
-            t_eased = self._apply_easing(t, easing)
-            current_scale = start_scale - (t_eased * scale_diff)
-            scene.update_scale_indicator(current_scale)
-            
-            # Calculate zoom factor
-            zoom_factor = 10**(t_eased * scale_diff / 10)  # Divide by 10 to make it visually pleasing
-            scene.camera.frame.scale(zoom_factor)
-            
-        # Run the animation with the update function
-        scene.play(
-            m.UpdateFromAlphaFunc(
-                scene.camera.frame,
-                lambda mob, alpha: update_scale(alpha)
-            ),
-            run_time=duration
-        )
-        
-        # Transition to the target scene at the end
-        scene.play(
-            m.FadeOut(scene.background),
-            m.FadeOut(*scene.objects),
-            run_time=0.5
-        )
-        
-        target_scene.play(
-            m.FadeIn(target_scene.background),
-            m.FadeIn(*target_scene.objects),
-            run_time=0.5
-        )
-        
-        self.current_scene = target_scene
-        self.current_scale = end_scale
-        
-    def zoom_out(self, scene, target_scene, duration=None, easing="smooth"):
-        # Similar to zoom_in but with inverse scaling
-        # Essentially the same as zoom_in with start/end scales swapped
-        if duration is None:
-            duration = self.config["global_settings"].get("default_transition_duration", 5)
-            
-        # Calculate the zoom rate based on scale difference
-        start_scale = scene.scale_value
-        end_scale = target_scene.scale_value
-        scale_diff = abs(end_scale - start_scale)
-        
-        # Set up the animation
-        def update_scale(t):
-            # Apply easing and calculate current scale
-            t_eased = self._apply_easing(t, easing)
-            current_scale = start_scale + (t_eased * scale_diff)
-            scene.update_scale_indicator(current_scale)
-            
-            # Calculate zoom factor (inverse of zoom_in)
-            zoom_factor = 1/(10**(t_eased * scale_diff / 10))
-            scene.camera.frame.scale(zoom_factor)
-            
-        # Run the animation with the update function
-        scene.play(
-            m.UpdateFromAlphaFunc(
-                scene.camera.frame, 
-                lambda mob, alpha: update_scale(alpha)
-            ),
-            run_time=duration
-        )
-        
-        # Transition to the target scene at the end
-        scene.play(
-            m.FadeOut(scene.background),
-            m.FadeOut(*scene.objects),
-            run_time=0.5
-        )
-        
-        target_scene.play(
-            m.FadeIn(target_scene.background),
-            m.FadeIn(*target_scene.objects),
-            run_time=0.5
-        )
-        
-        self.current_scene = target_scene
-        self.current_scale = end_scale
-        
-    def execute_animation_sequence(self):
-        # Run the full animation sequence defined in config
-        current_time = 0
-        
-        # Start audio if configured
-        if self.config.get("audio", {}).get("background_music"):
-            self.audio_controller.start_background_music()
-        
-        # Process each transition in the sequence
-        for i, transition in enumerate(self.config["animation_sequence"]):
-            from_scene_name = transition["from_scene"]
-            to_scene_name = transition["to_scene"]
-            direction = transition.get("direction", "in")
-            duration = transition.get("duration", 5)
-            easing = transition.get("easing_function", "smooth")
-            pause_before = transition.get("pause_before", 0)
-            pause_after = transition.get("pause_after", 0)
-            
-            from_scene = self.scenes[from_scene_name]
-            to_scene = self.scenes[to_scene_name]
-            
-            # Initialize the first scene if this is the start
-            if i == 0:
-                self.current_scene = from_scene
-                self.current_scale = from_scene.scale_value
-                from_scene.setup()
-                
-            # Apply pause before if specified
-            if pause_before > 0:
-                self.current_scene.wait(pause_before)
-                current_time += pause_before
-                
-                # Check for narration during pause
-                self.audio_controller.check_narration_cues(current_time)
-            
-            # Execute the transition
-            if direction == "in":
-                self.zoom_in(from_scene, to_scene, duration, easing)
-            else:  # "out"
-                self.zoom_out(from_scene, to_scene, duration, easing)
-                
-            current_time += duration
-            
-            # Check for narration during transition
-            self.audio_controller.check_narration_cues(current_time)
-            
-            # Apply pause after if specified
-            if pause_after > 0:
-                self.current_scene.wait(pause_after)
-                current_time += pause_after
-                
-                # Check for narration during pause
-                self.audio_controller.check_narration_cues(current_time)
+- **AudioController**: Handles audio elements 
+  - Manages background music
+  - Provides narration cues at appropriate timestamps
 
-# Audio handling for narration and background music
-class AudioController:
-    def __init__(self, audio_config):
-        self.config = audio_config
-        self.background_music = self.config.get("background_music")
-        self.volume = self.config.get("volume", 0.5)
-        self.narration_cues = self.config.get("narration_timings", [])
-        self.narration_cues.sort(key=lambda x: x["timestamp"])
-        self.current_narration_index = 0
-        
-    def start_background_music(self):
-        if self.background_music:
-            # Add background music using Manim's audio features
-            # Implementation depends on Manim's audio capabilities
-            pass
-            
-    def check_narration_cues(self, current_time):
-        # Check if we need to play any narration cues at the current time
-        while (self.current_narration_index < len(self.narration_cues) and 
-               self.narration_cues[self.current_narration_index]["timestamp"] <= current_time):
-            cue = self.narration_cues[self.current_narration_index]
-            self._play_narration(cue["audio_file"], cue.get("volume", self.volume))
-            self.current_narration_index += 1
-            
-    def _play_narration(self, audio_file, volume):
-        # Play a narration audio file
-        # Implementation depends on Manim's audio capabilities
-        pass
-
-# Main animation controller
-class ZoomAnimation(m.Scene):
-    def construct(self):
-        config = "zoom_config.json"
-        zoom_manager = ZoomManager(config)
-        zoom_manager.execute_animation_sequence()
-```
+- **ConfigLoader**: Processes the configuration file
+  - Validates configuration data
+  - Provides defaults for missing values
+  - Converts configuration into appropriate objects
 
 ## Execution Process
 
@@ -486,7 +176,7 @@ class ZoomAnimation(m.Scene):
 The animation can be executed through a command-line interface:
 
 ```bash
-python zoom_animation.py [options]
+python run_zoom.py [options]
 ```
 
 ### Command Line Options
@@ -494,25 +184,90 @@ python zoom_animation.py [options]
 | Option | Description |
 |--------|-------------|
 | `--config PATH` | Path to the JSON configuration file (default: zoom_config.json) |
+| `--quality {l,m,h}` | Rendering quality preset (l=low, m=medium, h=high) (default: h) |
+| `--no-preview` | Disable preview mode (render to file) |
 | `--output PATH` | Output video file path (default: zoom_animation.mp4) |
-| `--quality {low,medium,high}` | Rendering quality preset (default: medium) |
-| `--resolution WIDTHxHEIGHT` | Output resolution (default: 1920x1080) |
-| `--frame-rate FPS` | Frame rate in FPS (default: 60) |
-| `--preview` | Show animation preview instead of rendering |
-| `--verbose` | Show detailed progress information |
+| `--mode {full,simple}` | Animation mode: full architecture or simple version |
 
 ### Example Usage
 
 ```bash
-# Render with default settings
-python zoom_animation.py
+# Render with default settings (high quality)
+python run_zoom.py
 
-# Render with custom configuration and output path
-python zoom_animation.py --config custom_config.json --output universe_zoom.mp4
+# Render with custom configuration
+python run_zoom.py --config custom_config.json
 
-# Render in high quality with 4K resolution
-python zoom_animation.py --quality high --resolution 3840x2160
+# Render in low quality for faster preview
+python run_zoom.py --quality l
+
+# Render to a file without preview
+python run_zoom.py --no-preview --output universe_zoom.mp4
+
+# Run in simple mode (faster, less detailed)
+python run_zoom.py --mode simple
 ```
+
+## Full Zoom Capabilities
+
+The current implementation includes all 11 scales:
+
+1. **UniverseScene**: Observable universe (10^26 m)
+   - Cosmic microwave background visualization
+   - Galaxy cluster distribution
+
+2. **GalaxyClusterScene**: Galaxy cluster (10^23 m)
+   - Multiple galaxy types (spiral, elliptical, irregular)
+   - Intergalactic medium representation
+
+3. **GalaxyScene**: Galaxy (10^21 m)
+   - Spiral arms with star distributions
+   - Central galactic bulge
+   - Dark matter halo
+
+4. **BlackHoleScene**: Black hole (10^12 m)
+   - Event horizon and accretion disk
+   - Relativistic jets
+   - Gravitational lensing effects
+
+5. **SolarSystemScene**: Solar system (10^11 m)
+   - Star at center
+   - Orbiting planets (with varying sizes and colors)
+   - Asteroid belt
+   - Outer solar system objects
+
+6. **StarScene**: Star (10^9 m)
+   - Core, radiation zone, convection zone
+   - Surface granulation
+   - Solar flares and prominences
+   - Corona
+
+7. **MoleculeScene**: Molecular scale (10^-8 m)
+   - DNA double helix structure
+   - Protein molecule (alpha helix)
+   - Water molecules
+
+8. **AtomScene**: Atomic scale (10^-10 m)
+   - Nucleus with protons and neutrons
+   - Electron orbitals
+   - Orbital probability clouds
+
+9. **ElectronScene**: Electron scale (10^-15 m)
+   - Electron quantum field
+   - Quantum fluctuations
+   - Electron-positron pairs
+
+10. **QuarkScene**: Quark scale (10^-18 m)
+    - Proton structure with three quarks
+    - Gluon field
+    - Strong force visualization
+
+11. **PointPotentialScene**: Point potential scale (10^-60 m)
+    - Quantum foam
+    - Wavefunction visualization
+    - Spacetime curvature
+
+The animation provides a complete journey through all scales, with smooth transitions between each scale level, both zooming in and zooming out.
 
 ## Future Enhancements
 
@@ -524,7 +279,7 @@ python zoom_animation.py --quality high --resolution 3840x2160
 - Real-time display of physical constants and properties relevant to each scale
 - Integration with external physics simulation data
 - NPQG theory visualizations at appropriate scales
-- Texture mapping and more detailed object representations
+- More detailed object representations with improved texturing
 - Particle animation for the point potential scenes
 
 ## File Structure
@@ -532,15 +287,23 @@ python zoom_animation.py --quality high --resolution 3840x2160
 ```
 zoom/
 ├── zoom_animation.py         # Main entry point
+├── run_zoom.py               # Command-line interface
+├── simple_zoom.py            # Simplified version for troubleshooting
 ├── zoom_config.json          # Default configuration
 ├── scenes/                   # Scene implementations
-│   ├── __init__.py
 │   ├── base_scene.py         # ZoomableScene base class
 │   ├── universe_scene.py     # UniverseScene implementation
+│   ├── galaxy_cluster_scene.py # GalaxyClusterScene implementation
 │   ├── galaxy_scene.py       # GalaxyScene implementation
-│   └── ...                   # Additional scene implementations
+│   ├── black_hole_scene.py   # BlackHoleScene implementation
+│   ├── solar_system_scene.py # SolarSystemScene implementation
+│   ├── star_scene.py         # StarScene implementation
+│   ├── molecule_scene.py     # MoleculeScene implementation
+│   ├── atom_scene.py         # AtomScene implementation
+│   ├── electron_scene.py     # ElectronScene implementation
+│   ├── quark_scene.py        # QuarkScene implementation
+│   └── point_potential_scene.py # PointPotentialScene implementation
 ├── core/                     # Core functionality
-│   ├── __init__.py
 │   ├── zoom_manager.py       # ZoomManager implementation
 │   ├── audio_controller.py   # Audio handling
 │   └── config_loader.py      # Configuration parsing
@@ -548,16 +311,12 @@ zoom/
 │   ├── audio/                # Background music and narration
 │   │   ├── background.mp3
 │   │   └── narration/
-│   ├── textures/             # Textures for scene objects
-│   └── data/                 # Scientific data for simulation
+│   └── textures/             # Textures for scene objects
 ├── utils/                    # Utility functions
-│   ├── __init__.py
 │   ├── easing.py             # Animation easing functions
 │   └── scale_converter.py    # Scale conversion utilities
 └── examples/                 # Example configurations
-    ├── simple_zoom.json
-    ├── full_universe.json
-    └── quantum_focus.json
+    └── simple_zoom.json
 ```
 
 ## Dependencies and Performance Considerations
@@ -570,6 +329,6 @@ zoom/
 ### Performance Optimization
 - Pre-render complex scenes to texture maps for better performance
 - Progressive loading of scene details based on zoom level
-- GPU acceleration via Manim's OpenGL renderer
+- Separating animations into sequential steps for better Manim compatibility
 - Memory management for large-scale transitions
-
+- High-quality rendering option for final output

@@ -61,6 +61,24 @@ def main():
     # Add the scene name
     cmd.append("ZoomAnimation")
     
+    # Check if quality is specified in config
+    if CONFIG_PATH:
+        try:
+            import json
+            with open(CONFIG_PATH, 'r') as f:
+                config_data = json.load(f)
+                
+            # If quality is specified in config, use it
+            quality = config_data.get("global_settings", {}).get("quality")
+            if quality and not any(arg.startswith("-q") for arg in sys.argv[1:]):
+                cmd.extend(["-q", quality])
+                
+            # Add --disable_caching flag for better performance with complex scenes
+            if "--disable_caching" not in cmd and not any("--disable_caching" in arg for arg in sys.argv[1:]):
+                cmd.append("--disable_caching")
+        except Exception as e:
+            print(f"Error reading quality from config: {e}")
+    
     # Add all remaining arguments except --config and its value
     skip_next = False
     for arg in sys.argv[1:]:
