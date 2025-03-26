@@ -27,35 +27,38 @@ class UniverseScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the observable universe object
+            # Create the observable universe object using the base class method
+            # This will automatically load custom images if available
             universe_radius = 3
-            universe_circle = Circle(
-                radius=universe_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            universe_label = Text(
+            universe = self.create_object(
                 "Observable Universe",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0], 
+                universe_radius
             )
-            universe = VGroup(universe_circle, universe_label)
             elements.append(universe)
             
-            # Add cosmic background radiation visualization (subtle blue-red gradient)
-            try:
-                gradient = self._create_cmb_background()
-                elements.append(gradient)
-            except Exception as e:
-                print(f"Error creating CMB background: {e}")
-            
-            # Create galaxy cluster distribution (small dots)
-            try:
-                clusters = self._create_galaxy_clusters()
-                elements.append(clusters)
-            except Exception as e:
-                print(f"Error creating galaxy clusters: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in universe.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Add cosmic background radiation visualization (subtle blue-red gradient)
+                try:
+                    gradient = self._create_cmb_background()
+                    elements.append(gradient)
+                except Exception as e:
+                    print(f"Error creating CMB background: {e}")
+                
+                # Create galaxy cluster distribution (small dots)
+                try:
+                    clusters = self._create_galaxy_clusters()
+                    elements.append(clusters)
+                except Exception as e:
+                    print(f"Error creating galaxy clusters: {e}")
             
             print(f"Created {len(elements)} Universe scene elements")
             return elements

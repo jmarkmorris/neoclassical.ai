@@ -8,6 +8,7 @@ import os
 import sys
 import subprocess
 import argparse
+import shutil
 
 def main():
     """Run the animation with common options"""
@@ -28,6 +29,12 @@ def main():
     
     parser.add_argument("--mode", choices=["full", "simple"], default="full",
                        help="Animation mode: full architecture or simple version")
+                       
+    parser.add_argument("--opengl", action="store_true",
+                       help="Use OpenGL renderer instead of Cairo (may be more stable)")
+                       
+    parser.add_argument("--clean", action="store_true",
+                       help="Clean media directory before rendering (helps with rendering errors)")
     
     args, unknown_args = parser.parse_known_args()
     
@@ -39,6 +46,10 @@ def main():
     
     # Disable caching for better performance with complex scenes
     manim_args.append("--disable_caching")
+    
+    # Use OpenGL renderer if specified
+    if args.opengl:
+        manim_args.append("-r")  # OpenGL renderer
     
     # Preview mode
     if not args.no_preview:
@@ -70,6 +81,33 @@ def main():
     print(f"Running in {args.mode} mode")
     print(f"Command: {' '.join(cmd)}")
     
+    # Clean media directory if requested
+    if args.clean:
+        media_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "media")
+        if os.path.exists(media_dir):
+            print("Cleaning media directory...")
+            try:
+                shutil.rmtree(media_dir)
+                print("Media directory cleaned successfully")
+            except Exception as e:
+                print(f"Error cleaning media directory: {e}")
+    
+    # Ensure output directories exist
+    # For full mode
+    if args.mode == "full":
+        output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
+                                "media", "videos", "zoom_animation", "1080p60", 
+                                "partial_movie_files", "ZoomAnimation")
+    # For simple mode
+    else:
+        output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
+                                "media", "videos", "simple_zoom", "1080p60", 
+                                "partial_movie_files", "SimpleZoomScene")
+    os.makedirs(output_dir, exist_ok=True)
+    file_list = os.path.join(output_dir, "partial_movie_file_list.txt")
+    if not os.path.exists(file_list):
+        open(file_list, 'a').close()  # Create empty file if it doesn't exist
+        
     # Run the animation
     try:
         subprocess.run(cmd)

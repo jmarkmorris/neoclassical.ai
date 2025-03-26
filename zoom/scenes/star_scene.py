@@ -27,49 +27,52 @@ class StarScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main star boundary
+            # Create the main star boundary using the base class method
+            # This will automatically load custom images if available
             star_radius = 3
-            star_circle = Circle(
-                radius=star_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            star_label = Text(
+            star_boundary = self.create_object(
                 "Star",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                star_radius
             )
-            star_boundary = VGroup(star_circle, star_label)
             elements.append(star_boundary)
             
-            # Create the star
-            try:
-                star_body = self._create_star_body()
-                elements.append(star_body)
-            except Exception as e:
-                print(f"Error creating star body: {e}")
-            
-            # Create the corona
-            try:
-                corona = self._create_corona()
-                elements.append(corona)
-            except Exception as e:
-                print(f"Error creating corona: {e}")
-            
-            # Create sunspots
-            try:
-                sunspots = self._create_sunspots()
-                elements.append(sunspots)
-            except Exception as e:
-                print(f"Error creating sunspots: {e}")
-            
-            # Create flares and prominences
-            try:
-                flares = self._create_flares()
-                elements.append(flares)
-            except Exception as e:
-                print(f"Error creating flares: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in star_boundary.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create the star
+                try:
+                    star_body = self._create_star_body()
+                    elements.append(star_body)
+                except Exception as e:
+                    print(f"Error creating star body: {e}")
+                
+                # Create the corona
+                try:
+                    corona = self._create_corona()
+                    elements.append(corona)
+                except Exception as e:
+                    print(f"Error creating corona: {e}")
+                
+                # Create sunspots
+                try:
+                    sunspots = self._create_sunspots()
+                    elements.append(sunspots)
+                except Exception as e:
+                    print(f"Error creating sunspots: {e}")
+                
+                # Create flares and prominences
+                try:
+                    flares = self._create_flares()
+                    elements.append(flares)
+                except Exception as e:
+                    print(f"Error creating flares: {e}")
             
             print(f"Created {len(elements)} Star scene elements")
             return elements

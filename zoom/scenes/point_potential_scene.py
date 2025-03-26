@@ -27,49 +27,52 @@ class PointPotentialScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main point potential boundary
+            # Create the main point potential boundary using the base class method
+            # This will automatically load custom images if available
             pp_radius = 3
-            pp_circle = Circle(
-                radius=pp_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            pp_label = Text(
+            pp_boundary = self.create_object(
                 "Point Potential",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                pp_radius
             )
-            pp_boundary = VGroup(pp_circle, pp_label)
             elements.append(pp_boundary)
             
-            # Create the point potential core
-            try:
-                pp_core = self._create_pp_core()
-                elements.append(pp_core)
-            except Exception as e:
-                print(f"Error creating point potential core: {e}")
-            
-            # Create the wavefunction
-            try:
-                wavefunction = self._create_wavefunction()
-                elements.append(wavefunction)
-            except Exception as e:
-                print(f"Error creating wavefunction: {e}")
-            
-            # Create quantum foam
-            try:
-                quantum_foam = self._create_quantum_foam()
-                elements.append(quantum_foam)
-            except Exception as e:
-                print(f"Error creating quantum foam: {e}")
-            
-            # Create spacetime curvature
-            try:
-                spacetime_curvature = self._create_spacetime_curvature()
-                elements.append(spacetime_curvature)
-            except Exception as e:
-                print(f"Error creating spacetime curvature: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in pp_boundary.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create the point potential core
+                try:
+                    pp_core = self._create_pp_core()
+                    elements.append(pp_core)
+                except Exception as e:
+                    print(f"Error creating point potential core: {e}")
+                
+                # Create the wavefunction
+                try:
+                    wavefunction = self._create_wavefunction()
+                    elements.append(wavefunction)
+                except Exception as e:
+                    print(f"Error creating wavefunction: {e}")
+                
+                # Create quantum foam
+                try:
+                    quantum_foam = self._create_quantum_foam()
+                    elements.append(quantum_foam)
+                except Exception as e:
+                    print(f"Error creating quantum foam: {e}")
+                
+                # Create spacetime curvature
+                try:
+                    spacetime_curvature = self._create_spacetime_curvature()
+                    elements.append(spacetime_curvature)
+                except Exception as e:
+                    print(f"Error creating spacetime curvature: {e}")
             
             print(f"Created {len(elements)} Point Potential scene elements")
             return elements

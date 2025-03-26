@@ -27,49 +27,52 @@ class SolarSystemScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main solar system boundary
+            # Create the main solar system boundary using the base class method
+            # This will automatically load custom images if available
             system_radius = 3
-            system_circle = Circle(
-                radius=system_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            system_label = Text(
+            system = self.create_object(
                 "Solar System",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                system_radius
             )
-            system = VGroup(system_circle, system_label)
             elements.append(system)
             
-            # Create the central star
-            try:
-                star = self._create_central_star()
-                elements.append(star)
-            except Exception as e:
-                print(f"Error creating central star: {e}")
-            
-            # Create the planetary orbits and planets
-            try:
-                planetary_system = self._create_planetary_system()
-                elements.append(planetary_system)
-            except Exception as e:
-                print(f"Error creating planetary system: {e}")
-            
-            # Create the asteroid belt
-            try:
-                asteroid_belt = self._create_asteroid_belt()
-                elements.append(asteroid_belt)
-            except Exception as e:
-                print(f"Error creating asteroid belt: {e}")
-            
-            # Create the Kuiper Belt / Oort Cloud objects
-            try:
-                outer_objects = self._create_outer_objects()
-                elements.append(outer_objects)
-            except Exception as e:
-                print(f"Error creating outer objects: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in system.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create the central star
+                try:
+                    star = self._create_central_star()
+                    elements.append(star)
+                except Exception as e:
+                    print(f"Error creating central star: {e}")
+                
+                # Create the planetary orbits and planets
+                try:
+                    planetary_system = self._create_planetary_system()
+                    elements.append(planetary_system)
+                except Exception as e:
+                    print(f"Error creating planetary system: {e}")
+                
+                # Create the asteroid belt
+                try:
+                    asteroid_belt = self._create_asteroid_belt()
+                    elements.append(asteroid_belt)
+                except Exception as e:
+                    print(f"Error creating asteroid belt: {e}")
+                
+                # Create the Kuiper Belt / Oort Cloud objects
+                try:
+                    outer_objects = self._create_outer_objects()
+                    elements.append(outer_objects)
+                except Exception as e:
+                    print(f"Error creating outer objects: {e}")
             
             print(f"Created {len(elements)} Solar System scene elements")
             return elements

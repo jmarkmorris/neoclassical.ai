@@ -27,49 +27,52 @@ class QuarkScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main quark boundary
+            # Create the main quark boundary using the base class method
+            # This will automatically load custom images if available
             quark_radius = 3
-            quark_circle = Circle(
-                radius=quark_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            quark_label = Text(
+            quark_boundary = self.create_object(
                 "Quark",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                quark_radius
             )
-            quark_boundary = VGroup(quark_circle, quark_label)
             elements.append(quark_boundary)
             
-            # Create a proton structure (made of quarks)
-            try:
-                proton = self._create_proton()
-                elements.append(proton)
-            except Exception as e:
-                print(f"Error creating proton: {e}")
-            
-            # Create gluon field
-            try:
-                gluon_field = self._create_gluon_field()
-                elements.append(gluon_field)
-            except Exception as e:
-                print(f"Error creating gluon field: {e}")
-            
-            # Create quark-antiquark pairs
-            try:
-                quark_antiquark_pairs = self._create_quark_antiquark_pairs()
-                elements.append(quark_antiquark_pairs)
-            except Exception as e:
-                print(f"Error creating quark-antiquark pairs: {e}")
-            
-            # Create strong force visualization
-            try:
-                strong_force = self._create_strong_force()
-                elements.append(strong_force)
-            except Exception as e:
-                print(f"Error creating strong force: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in quark_boundary.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create a proton structure (made of quarks)
+                try:
+                    proton = self._create_proton()
+                    elements.append(proton)
+                except Exception as e:
+                    print(f"Error creating proton: {e}")
+                
+                # Create gluon field
+                try:
+                    gluon_field = self._create_gluon_field()
+                    elements.append(gluon_field)
+                except Exception as e:
+                    print(f"Error creating gluon field: {e}")
+                
+                # Create quark-antiquark pairs
+                try:
+                    quark_antiquark_pairs = self._create_quark_antiquark_pairs()
+                    elements.append(quark_antiquark_pairs)
+                except Exception as e:
+                    print(f"Error creating quark-antiquark pairs: {e}")
+                
+                # Create strong force visualization
+                try:
+                    strong_force = self._create_strong_force()
+                    elements.append(strong_force)
+                except Exception as e:
+                    print(f"Error creating strong force: {e}")
             
             print(f"Created {len(elements)} Quark scene elements")
             return elements

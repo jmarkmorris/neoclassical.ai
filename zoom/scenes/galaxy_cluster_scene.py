@@ -27,35 +27,38 @@ class GalaxyClusterScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main cluster object
+            # Create the main cluster object using the base class method
+            # This will automatically load custom images if available
             cluster_radius = 3
-            cluster_circle = Circle(
-                radius=cluster_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            cluster_label = Text(
+            cluster = self.create_object(
                 "Galaxy Cluster",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0], 
+                cluster_radius
             )
-            cluster = VGroup(cluster_circle, cluster_label)
             elements.append(cluster)
             
-            # Add intergalactic medium (dark matter and gas)
-            try:
-                medium = self._create_intergalactic_medium()
-                elements.append(medium)
-            except Exception as e:
-                print(f"Error creating intergalactic medium: {e}")
-            
-            # Add galaxies within the cluster
-            try:
-                galaxies = self._create_galaxies()
-                elements.append(galaxies)
-            except Exception as e:
-                print(f"Error creating galaxies: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in cluster.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Add intergalactic medium (dark matter and gas)
+                try:
+                    medium = self._create_intergalactic_medium()
+                    elements.append(medium)
+                except Exception as e:
+                    print(f"Error creating intergalactic medium: {e}")
+                
+                # Add galaxies within the cluster
+                try:
+                    galaxies = self._create_galaxies()
+                    elements.append(galaxies)
+                except Exception as e:
+                    print(f"Error creating galaxies: {e}")
             
             print(f"Created {len(elements)} Galaxy Cluster scene elements")
             return elements

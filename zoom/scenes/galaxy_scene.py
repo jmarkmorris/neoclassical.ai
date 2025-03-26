@@ -27,49 +27,52 @@ class GalaxyScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main galaxy object
+            # Create the main galaxy object using the base class method
+            # This will automatically load custom images if available
             galaxy_radius = 3
-            galaxy_circle = Circle(
-                radius=galaxy_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            galaxy_label = Text(
+            galaxy = self.create_object(
                 "Galaxy",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                galaxy_radius
             )
-            galaxy = VGroup(galaxy_circle, galaxy_label)
             elements.append(galaxy)
             
-            # Create the galaxy core
-            try:
-                galaxy_core = self._create_galaxy_core()
-                elements.append(galaxy_core)
-            except Exception as e:
-                print(f"Error creating galaxy core: {e}")
-            
-            # Create the spiral arms
-            try:
-                spiral_arms = self._create_spiral_arms()
-                elements.append(spiral_arms)
-            except Exception as e:
-                print(f"Error creating spiral arms: {e}")
-            
-            # Create stars in the galaxy
-            try:
-                stars = self._create_stars()
-                elements.append(stars)
-            except Exception as e:
-                print(f"Error creating stars: {e}")
-            
-            # Create dark matter halo (subtly visible)
-            try:
-                dark_matter = self._create_dark_matter_halo()
-                elements.append(dark_matter)
-            except Exception as e:
-                print(f"Error creating dark matter halo: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in galaxy.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create the galaxy core
+                try:
+                    galaxy_core = self._create_galaxy_core()
+                    elements.append(galaxy_core)
+                except Exception as e:
+                    print(f"Error creating galaxy core: {e}")
+                
+                # Create the spiral arms
+                try:
+                    spiral_arms = self._create_spiral_arms()
+                    elements.append(spiral_arms)
+                except Exception as e:
+                    print(f"Error creating spiral arms: {e}")
+                
+                # Create stars in the galaxy
+                try:
+                    stars = self._create_stars()
+                    elements.append(stars)
+                except Exception as e:
+                    print(f"Error creating stars: {e}")
+                
+                # Create dark matter halo (subtly visible)
+                try:
+                    dark_matter = self._create_dark_matter_halo()
+                    elements.append(dark_matter)
+                except Exception as e:
+                    print(f"Error creating dark matter halo: {e}")
             
             print(f"Created {len(elements)} Galaxy scene elements")
             return elements

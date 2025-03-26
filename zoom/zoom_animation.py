@@ -93,6 +93,16 @@ def main():
     # Print command for debugging
     print(f"Running command: {' '.join(cmd)}")
     
+    # Make sure the output directories exist
+    import os
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
+                             "media", "videos", "zoom_animation", "1080p60", 
+                             "partial_movie_files", "ZoomAnimation")
+    os.makedirs(output_dir, exist_ok=True)
+    file_list = os.path.join(output_dir, "partial_movie_file_list.txt")
+    if not os.path.exists(file_list):
+        open(file_list, 'a').close()  # Create empty file if it doesn't exist
+    
     # Run manim as a subprocess
     subprocess.run(cmd)
 

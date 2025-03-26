@@ -27,42 +27,45 @@ class AtomScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main atom boundary
+            # Create the main atom boundary using the base class method
+            # This will automatically load custom images if available
             atom_radius = 3
-            atom_circle = Circle(
-                radius=atom_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            atom_label = Text(
+            atom_boundary = self.create_object(
                 "Atom",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                atom_radius
             )
-            atom_boundary = VGroup(atom_circle, atom_label)
             elements.append(atom_boundary)
             
-            # Create the nucleus
-            try:
-                nucleus = self._create_nucleus()
-                elements.append(nucleus)
-            except Exception as e:
-                print(f"Error creating nucleus: {e}")
-            
-            # Create electron clouds/orbitals
-            try:
-                electron_orbitals = self._create_electron_orbitals()
-                elements.append(electron_orbitals)
-            except Exception as e:
-                print(f"Error creating electron orbitals: {e}")
-            
-            # Create electron particles
-            try:
-                electrons = self._create_electrons()
-                elements.append(electrons)
-            except Exception as e:
-                print(f"Error creating electrons: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in atom_boundary.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create the nucleus
+                try:
+                    nucleus = self._create_nucleus()
+                    elements.append(nucleus)
+                except Exception as e:
+                    print(f"Error creating nucleus: {e}")
+                
+                # Create electron clouds/orbitals
+                try:
+                    electron_orbitals = self._create_electron_orbitals()
+                    elements.append(electron_orbitals)
+                except Exception as e:
+                    print(f"Error creating electron orbitals: {e}")
+                
+                # Create electron particles
+                try:
+                    electrons = self._create_electrons()
+                    elements.append(electrons)
+                except Exception as e:
+                    print(f"Error creating electrons: {e}")
             
             print(f"Created {len(elements)} Atom scene elements")
             return elements

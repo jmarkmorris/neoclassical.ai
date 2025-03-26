@@ -27,49 +27,52 @@ class BlackHoleScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main black hole region
+            # Create the main black hole region using the base class method
+            # This will automatically load custom images if available
             bh_radius = 3
-            bh_circle = Circle(
-                radius=bh_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            bh_label = Text(
+            bh_region = self.create_object(
                 "Black Hole",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                bh_radius
             )
-            bh_region = VGroup(bh_circle, bh_label)
             elements.append(bh_region)
             
-            # Create the black hole event horizon
-            try:
-                event_horizon = self._create_event_horizon()
-                elements.append(event_horizon)
-            except Exception as e:
-                print(f"Error creating event horizon: {e}")
-            
-            # Create the accretion disk
-            try:
-                accretion_disk = self._create_accretion_disk()
-                elements.append(accretion_disk)
-            except Exception as e:
-                print(f"Error creating accretion disk: {e}")
-            
-            # Create relativistic jets
-            try:
-                jets = self._create_jets()
-                elements.append(jets)
-            except Exception as e:
-                print(f"Error creating jets: {e}")
-            
-            # Create the gravitational lensing effect
-            try:
-                lensing = self._create_gravitational_lensing()
-                elements.append(lensing)
-            except Exception as e:
-                print(f"Error creating gravitational lensing: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in bh_region.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create the black hole event horizon
+                try:
+                    event_horizon = self._create_event_horizon()
+                    elements.append(event_horizon)
+                except Exception as e:
+                    print(f"Error creating event horizon: {e}")
+                
+                # Create the accretion disk
+                try:
+                    accretion_disk = self._create_accretion_disk()
+                    elements.append(accretion_disk)
+                except Exception as e:
+                    print(f"Error creating accretion disk: {e}")
+                
+                # Create relativistic jets
+                try:
+                    jets = self._create_jets()
+                    elements.append(jets)
+                except Exception as e:
+                    print(f"Error creating jets: {e}")
+                
+                # Create the gravitational lensing effect
+                try:
+                    lensing = self._create_gravitational_lensing()
+                    elements.append(lensing)
+                except Exception as e:
+                    print(f"Error creating gravitational lensing: {e}")
             
             print(f"Created {len(elements)} Black Hole scene elements")
             return elements

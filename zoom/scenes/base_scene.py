@@ -3,7 +3,14 @@ Base scene implementation for NPQG Universe Zoom Animation
 All specific scene types inherit from this base class
 """
 
+import os
+import sys
 from manim import *
+from manim.mobject.types.image_mobject import ImageMobject
+
+# Add the project root to the path to import utils
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils.image_loader import ImageLoader
 
 class ZoomableScene:
     """Base class for all zoomable scenes"""
@@ -24,6 +31,12 @@ class ZoomableScene:
         self.scale_indicator = None
         self.background = None
         self.parent_scene = None  # Will be set by ZoomManager
+        
+        # Initialize the image loader
+        self.image_loader = ImageLoader(config)
+        
+        # Check if we should use custom images
+        self.use_custom_images = config.get("global_settings", {}).get("use_custom_images", True)
         
     def setup(self):
         """Initialize scene components"""
@@ -67,17 +80,19 @@ class ZoomableScene:
         self.scale_indicator.to_corner(UR, buff=0.5)
         self.add(self.scale_indicator)
         
-    def create_object(self, label, position, radius):
+    def create_object(self, label, position, radius, image_index=0):
         """
-        Create a circle with a label at the specified position
+        Create a circle with a label at the specified position,
+        optionally including a custom image if available
         
         Args:
             label (str): The label text for the object
             position (list): The [x, y, z] position coordinates
             radius (float): The radius of the circle
+            image_index (int, optional): Index of the image to use if multiple are available
             
         Returns:
-            VGroup: A group containing the circle and label
+            VGroup: A group containing the circle, label, and optionally an image
         """
         # Extract settings from config
         stroke_width = self.config["global_settings"].get("stroke_width", 2)
@@ -108,8 +123,18 @@ class ZoomableScene:
         )
         label_text.move_to(position)
         
-        # Group the circle and label
-        obj = VGroup(circle, label_text)
+        # Create elements list (will build VGroup from this)
+        elements = [circle, label_text]
+        
+        # Try to add a custom image if available and enabled
+        if self.use_custom_images:
+            image = self.image_loader.get_fitted_image(self.scene_name, radius, image_index)
+            if image:
+                image.move_to(position)
+                elements.insert(1, image)  # Insert between circle and label for proper layering
+        
+        # Group all elements
+        obj = VGroup(*elements)
         self.objects.append(obj)
         self.add(obj)
         return obj

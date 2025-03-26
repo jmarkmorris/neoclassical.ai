@@ -29,7 +29,7 @@ Point potential characteristics include immutability, meaning they cannot be cre
 2. If it were possible to arrive at the same point in time and space, maybe it's a mundane event. Afterall, when radius = 0 their emission is the Dirac delta. Either way they superimpose.
 
 Point potentials emit spherically expanding potential waves. 
-We can visualize point potentials as blue and red spheres, even though they are truly a geometric point objects, i.e., have zero radius.
+We can visualize point potentials as blue and red spheres, even though they are truly a geometric point objects, i.e., have zero radius. 
 
 This neoclassical model requires only three free large scale empirical parameters, 
 1. The demographics of point potential polarity, presumed to be 50/50.

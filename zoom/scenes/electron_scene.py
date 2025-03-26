@@ -27,49 +27,52 @@ class ElectronScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main electron boundary
+            # Create the main electron boundary using the base class method
+            # This will automatically load custom images if available
             electron_radius = 3
-            electron_circle = Circle(
-                radius=electron_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            electron_label = Text(
+            electron_boundary = self.create_object(
                 "Electron",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                electron_radius
             )
-            electron_boundary = VGroup(electron_circle, electron_label)
             elements.append(electron_boundary)
             
-            # Create the electron core
-            try:
-                electron_core = self._create_electron_core()
-                elements.append(electron_core)
-            except Exception as e:
-                print(f"Error creating electron core: {e}")
-            
-            # Create the electron field
-            try:
-                electron_field = self._create_electron_field()
-                elements.append(electron_field)
-            except Exception as e:
-                print(f"Error creating electron field: {e}")
-            
-            # Create quantum fluctuations
-            try:
-                quantum_fluctuations = self._create_quantum_fluctuations()
-                elements.append(quantum_fluctuations)
-            except Exception as e:
-                print(f"Error creating quantum fluctuations: {e}")
-            
-            # Create electron-positron pairs
-            try:
-                electron_positron_pairs = self._create_electron_positron_pairs()
-                elements.append(electron_positron_pairs)
-            except Exception as e:
-                print(f"Error creating electron-positron pairs: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in electron_boundary.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create the electron core
+                try:
+                    electron_core = self._create_electron_core()
+                    elements.append(electron_core)
+                except Exception as e:
+                    print(f"Error creating electron core: {e}")
+                
+                # Create the electron field
+                try:
+                    electron_field = self._create_electron_field()
+                    elements.append(electron_field)
+                except Exception as e:
+                    print(f"Error creating electron field: {e}")
+                
+                # Create quantum fluctuations
+                try:
+                    quantum_fluctuations = self._create_quantum_fluctuations()
+                    elements.append(quantum_fluctuations)
+                except Exception as e:
+                    print(f"Error creating quantum fluctuations: {e}")
+                
+                # Create electron-positron pairs
+                try:
+                    electron_positron_pairs = self._create_electron_positron_pairs()
+                    elements.append(electron_positron_pairs)
+                except Exception as e:
+                    print(f"Error creating electron-positron pairs: {e}")
             
             print(f"Created {len(elements)} Electron scene elements")
             return elements

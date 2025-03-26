@@ -27,42 +27,45 @@ class MoleculeScene(ZoomableScene):
         elements = []
         
         try:
-            # Create the main molecule boundary
+            # Create the main molecule boundary using the base class method
+            # This will automatically load custom images if available
             molecule_radius = 3
-            molecule_circle = Circle(
-                radius=molecule_radius,
-                stroke_color=WHITE,
-                stroke_width=2,
-                fill_opacity=0
-            )
-            molecule_label = Text(
+            molecule_boundary = self.create_object(
                 "Molecule",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=WHITE
+                [0, 0, 0],
+                molecule_radius
             )
-            molecule_boundary = VGroup(molecule_circle, molecule_label)
             elements.append(molecule_boundary)
             
-            # Create a DNA molecule
-            try:
-                dna = self._create_dna()
-                elements.append(dna)
-            except Exception as e:
-                print(f"Error creating DNA: {e}")
-            
-            # Create a protein molecule
-            try:
-                protein = self._create_protein()
-                elements.append(protein)
-            except Exception as e:
-                print(f"Error creating protein: {e}")
-            
-            # Create water molecules
-            try:
-                water = self._create_water_molecules()
-                elements.append(water)
-            except Exception as e:
-                print(f"Error creating water molecules: {e}")
+            # Only add these additional elements if we're not using a custom image
+            # or if they should appear alongside the custom image
+            has_custom_image = False
+            for submob in molecule_boundary.submobjects:
+                if isinstance(submob, ImageMobject):
+                    has_custom_image = True
+                    break
+                    
+            if not self.use_custom_images or not has_custom_image:
+                # Create a DNA molecule
+                try:
+                    dna = self._create_dna()
+                    elements.append(dna)
+                except Exception as e:
+                    print(f"Error creating DNA: {e}")
+                
+                # Create a protein molecule
+                try:
+                    protein = self._create_protein()
+                    elements.append(protein)
+                except Exception as e:
+                    print(f"Error creating protein: {e}")
+                
+                # Create water molecules
+                try:
+                    water = self._create_water_molecules()
+                    elements.append(water)
+                except Exception as e:
+                    print(f"Error creating water molecules: {e}")
             
             print(f"Created {len(elements)} Molecule scene elements")
             return elements

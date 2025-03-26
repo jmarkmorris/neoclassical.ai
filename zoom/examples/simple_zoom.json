@@ -9,7 +9,9 @@
     "stroke_width": 2,
     "color_text": "#FFFFFF",
     "color_circle": "#FFFFFF",
-    "dot3d_radius": 0.04
+    "dot3d_radius": 0.04,
+    "quality": "h",
+    "use_custom_images": true
   },
   "scenes": [
     {
