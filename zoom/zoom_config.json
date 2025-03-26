@@ -1,0 +1,83 @@
+{
+  "global_settings": {
+    "default_zoom_rate": 0.5,
+    "background_color": "#4B0082",
+    "scale_range": [-60, 60],
+    "resolution": [1920, 1080],
+    "frame_rate": 60,
+    "font_size": 24,
+    "stroke_width": 2,
+    "color_text": "#FFFFFF",
+    "color_circle": "#FFFFFF",
+    "dot3d_radius": 0.04
+  },
+  "scenes": [
+    {
+      "name": "Universe",
+      "scale": 26,
+      "objects": [
+        {
+          "label": "Observable Universe",
+          "position": [0, 0, 0],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "GalaxyCluster",
+      "scale": 23,
+      "objects": [
+        {
+          "label": "Galaxy Cluster",
+          "position": [0, 0, 0],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    }
+  ],
+  "animation_sequence": [
+    {
+      "from_scene": "Universe",
+      "to_scene": "GalaxyCluster",
+      "direction": "in",
+      "duration": 5,
+      "easing_function": "smooth",
+      "pause_before": 1,
+      "pause_after": 1,
+      "scale_indicator_visible": true
+    },
+    {
+      "from_scene": "GalaxyCluster",
+      "to_scene": "Universe",
+      "direction": "out",
+      "duration": 5,
+      "easing_function": "smooth",
+      "pause_before": 1,
+      "pause_after": 1,
+      "scale_indicator_visible": true
+    }
+  ],
+  "audio": {
+    "background_music": "assets/audio/background.mp3",
+    "volume": 0.5,
+    "narration_timings": [
+      {
+        "timestamp": 1.0,
+        "audio_file": "assets/audio/narration/intro.mp3",
+        "duration": 2.0
+      },
+      {
+        "timestamp": 6.0,
+        "audio_file": "assets/audio/narration/galaxy_cluster.mp3",
+        "duration": 2.0
+      },
+      {
+        "timestamp": 12.0,
+        "audio_file": "assets/audio/narration/outro.mp3",
+        "duration": 2.0
+      }
+    ]
+  }
+}
