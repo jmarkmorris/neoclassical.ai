@@ -5,6 +5,7 @@ Controls transitions between different scale scenes
 
 import numpy as np
 from manim import *
+from manim.utils import rate_functions
 
 # Define directional constants if not available in this version of Manim
 try:
@@ -301,21 +302,58 @@ class ZoomManager:
         # Create the zoom-in animation
         # Note: We need to separate animations as Manim may not handle multiple transforms on same object
         
-        # First animate the from_scene (zooming in and fading out)
+        # Create a simplified continuous scale indicator
+        # Create a value tracker for the logarithmic scale
+        scale_value_tracker = ValueTracker(from_scale)
+        
+        # Create dynamic scale indicator
+        scale_indicator = Text(
+            f"10^{from_scale} m",
+            font_size=self.config["global_settings"].get("font_size", 24),
+            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+        ).to_corner(UP + RIGHT, buff=0.5)
+        
+        # Function to update scale text
+        def update_scale_text(text):
+            new_scale = scale_value_tracker.get_value()
+            new_text = Text(
+                f"10^{new_scale:.1f} m",
+                font_size=self.config["global_settings"].get("font_size", 24),
+                color=self.config["global_settings"].get("color_text", "#FFFFFF")
+            ).to_corner(UP + RIGHT, buff=0.5)
+            text.become(new_text)
+        
+        # Add updater to scale indicator
+        scale_indicator.add_updater(update_scale_text)
+        
+        # Replace static indicators with dynamic one
+        manim_scene.remove(from_scale_indicator, to_scale_indicator)
+        manim_scene.add(scale_indicator)
+        
+        # Calculate target scale for scaling animations
+        # For a zoom-in effect (from larger to smaller scale view)
+        zoom_scale_factor = 5  # Empirically determined for good visual effect
+        
+        # First animate scaling up and fading out from_elements
         manim_scene.play(
-            from_elements.animate.scale(10),  # Scale up from_elements to simulate zooming in
-            from_scale_indicator.animate.set_opacity(0),  # Fade out old scale indicator
-            from_scene_label.animate.set_opacity(0),  # Fade out old scene label
+            from_elements.animate.scale(zoom_scale_factor).set_opacity(0),
+            from_scene_label.animate.set_opacity(0),
+            scale_value_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
+            rate_func=rate_functions.ease_in_out_sine,
             run_time=duration/2
         )
         
-        # Then animate the to_scene (coming into view)
+        # Then animate the to_elements appearing and scaling to normal
         manim_scene.play(
-            to_elements.animate.scale(10).set_opacity(1),  # Scale up and fade in to_elements
-            to_scale_indicator.animate.set_opacity(1),  # Fade in new indicator
-            to_scene_label.animate.set_opacity(1),  # Fade in new scene label
+            to_elements.animate.scale(1/zoom_scale_factor).set_opacity(1),
+            to_scene_label.animate.set_opacity(1),
+            scale_value_tracker.animate.set_value(to_scale),
+            rate_func=rate_functions.ease_in_out_sine,
             run_time=duration/2
         )
+        
+        # Remove updater to prevent further updates
+        scale_indicator.remove_updater(update_scale_text)
         
         print("Zoom-in animation completed")
         
@@ -438,24 +476,62 @@ class ZoomManager:
         
         print("Starting zoom-out animation")
         
-        # Create the zoom-out animation
-        # Note: We need to separate animations as Manim may not handle multiple transforms on same object
+        # Create a simplified continuous scale indicator
+        # Create a value tracker for the logarithmic scale
+        scale_value_tracker = ValueTracker(from_scale)
         
-        # First animate the from_scene (zooming out and fading out)
+        # Create dynamic scale indicator
+        scale_indicator = Text(
+            f"10^{from_scale} m",
+            font_size=self.config["global_settings"].get("font_size", 24),
+            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+        ).to_corner(UP + RIGHT, buff=0.5)
+        
+        # Function to update scale text
+        def update_scale_text(text):
+            new_scale = scale_value_tracker.get_value()
+            new_text = Text(
+                f"10^{new_scale:.1f} m",
+                font_size=self.config["global_settings"].get("font_size", 24),
+                color=self.config["global_settings"].get("color_text", "#FFFFFF")
+            ).to_corner(UP + RIGHT, buff=0.5)
+            text.become(new_text)
+        
+        # Add updater to scale indicator
+        scale_indicator.add_updater(update_scale_text)
+        
+        # Replace static indicators with dynamic one
+        manim_scene.remove(from_scale_indicator, to_scale_indicator)
+        manim_scene.add(scale_indicator)
+        
+        # Calculate target scale for scaling animations
+        # For a zoom-out effect (from smaller to larger scale view)
+        zoom_scale_factor = 0.2  # Empirically determined for good visual effect
+        
+        # First animate scaling down and fading out from_elements
         manim_scene.play(
-            from_elements.animate.scale(0.1),  # Scale down from_elements to simulate zooming out
-            from_scale_indicator.animate.set_opacity(0),  # Fade out old scale indicator
-            from_scene_label.animate.set_opacity(0),  # Fade out old scene label
+            from_elements.animate.scale(zoom_scale_factor).set_opacity(0),
+            from_scene_label.animate.set_opacity(0),
+            scale_value_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
+            rate_func=rate_functions.ease_in_out_sine,
             run_time=duration/2
         )
         
-        # Then animate the to_scene (coming into view)
+        # Prepare to_elements to start large
+        to_elements.scale(1/zoom_scale_factor)
+        to_elements.set_opacity(0)
+        
+        # Then animate the to_elements appearing and scaling to normal
         manim_scene.play(
-            to_elements.animate.scale(0.2).set_opacity(1),  # Scale to normal size and fade in to_elements
-            to_scale_indicator.animate.set_opacity(1),  # Fade in new indicator
-            to_scene_label.animate.set_opacity(1),  # Fade in new scene label
+            to_elements.animate.scale(zoom_scale_factor).set_opacity(1),
+            to_scene_label.animate.set_opacity(1),
+            scale_value_tracker.animate.set_value(to_scale),
+            rate_func=rate_functions.ease_in_out_sine,
             run_time=duration/2
         )
+        
+        # Remove updater to prevent further updates
+        scale_indicator.remove_updater(update_scale_text)
         
         print("Zoom-out animation completed")
         

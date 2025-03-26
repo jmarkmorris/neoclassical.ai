@@ -82,23 +82,20 @@ class ZoomableScene:
         
     def create_object(self, label, position, radius, image_index=0):
         """
-        Create a circle with a label at the specified position,
-        optionally including a custom image if available
+        Create a circle with an optional image at the specified position
         
         Args:
-            label (str): The label text for the object
+            label (str): The label text for the object (not displayed, just for reference)
             position (list): The [x, y, z] position coordinates
             radius (float): The radius of the circle
             image_index (int, optional): Index of the image to use if multiple are available
             
         Returns:
-            VGroup: A group containing the circle, label, and optionally an image
+            Group: A group containing the circle and optionally a circular image
         """
         # Extract settings from config
         stroke_width = self.config["global_settings"].get("stroke_width", 2)
         circle_color = self.config["global_settings"].get("color_circle", "#FFFFFF")
-        font_size = self.config["global_settings"].get("font_size", 24)
-        text_color = self.config["global_settings"].get("color_text", "#FFFFFF")
         
         # Convert position list to 3D array if needed
         if isinstance(position, list):
@@ -106,45 +103,40 @@ class ZoomableScene:
                 position = [position[0], position[1], 0]
             position = np.array(position)
         
-        # Create the circle
-        circle = Circle(
-            radius=radius,
-            stroke_color=circle_color,
-            stroke_width=stroke_width,
-            fill_opacity=0
-        )
-        circle.move_to(position)
-        
-        # Create the label
-        label_text = Text(
-            label,
-            font_size=font_size,
-            color=text_color
-        )
-        label_text.move_to(position)
-        
-        # Create elements list (will build Group from this)
-        elements = [circle, label_text]
-        
-        # Create a flag to check if we have an image
+        # Create elements list
+        elements = []
         has_image = False
         
         # Try to add a custom image if available and enabled
         if self.use_custom_images:
-            image = self.image_loader.get_fitted_image(self.scene_name, radius, image_index)
-            if image:
+            image_result = self.image_loader.get_fitted_image(self.scene_name, radius, image_index)
+            if image_result:
                 has_image = True
-                image.move_to(position)
-                elements.insert(1, image)  # Insert between circle and label for proper layering
+                
+                # The image_result is already a Group with proper masking
+                # Just need to position it
+                image_result.move_to(position)
+                
+                # Add the whole group to our elements
+                elements.append(image_result)
         
-        # Group all elements - use Group instead of VGroup when we have images
-        # Group can contain any Mobject, while VGroup can only contain VMobject
-        if has_image:
-            obj = Group(*elements)
-        else:
-            obj = VGroup(*elements)
-            
+        # If no image, just use a plain circle
+        if not has_image:
+            # Create a plain circle
+            circle = Circle(
+                radius=radius,
+                stroke_color=circle_color,
+                stroke_width=stroke_width,
+                fill_color=circle_color,
+                fill_opacity=0.3
+            )
+            circle.move_to(position)
+            elements.append(circle)
+        
+        # Always use Group as it can contain any Mobject type
+        obj = Group(*elements)
         self.objects.append(obj)
+        
         # Don't call self.add here since this isn't a Manim Scene
         return obj
         

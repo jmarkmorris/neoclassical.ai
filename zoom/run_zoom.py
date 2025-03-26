@@ -47,6 +47,10 @@ def main():
     # Disable caching for better performance with complex scenes
     manim_args.append("--disable_caching")
     
+    # Use QuickTime-compatible format on macOS
+    if sys.platform == 'darwin':
+        manim_args.append("--format=mov")
+    
     # Use OpenGL renderer if specified
     if args.opengl:
         manim_args.append("-r")  # OpenGL renderer

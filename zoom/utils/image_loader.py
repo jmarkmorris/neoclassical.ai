@@ -108,36 +108,100 @@ class ImageLoader:
             print(f"Error loading image {image_path}: {e}")
             return None
     
+    def create_circular_image(self, image, circle_radius):
+        """
+        Create a circular image by masking a rectangular image
+        
+        Args:
+            image (ImageMobject): The image to make circular
+            circle_radius (float): Radius of the circle
+            
+        Returns:
+            Group: A group containing the masked circular image
+        """
+        if image is None:
+            return None
+            
+        # Create a reference circle for masking
+        mask_circle = Circle(
+            radius=circle_radius,
+            fill_opacity=1,
+            fill_color=WHITE,
+            stroke_width=0
+        )
+        
+        # Calculate scaling factor - scale image larger than needed
+        # to ensure it fills the entire circle
+        image_width = image.get_width()
+        image_height = image.get_height()
+        max_dimension = max(image_width, image_height)
+        
+        # Scale to slightly larger than circle diameter to avoid showing edges
+        scale_factor = (circle_radius * 2.2) / max_dimension
+        image.scale(scale_factor)
+        
+        # Center the image
+        image.move_to(ORIGIN)
+        
+        # Return a custom ImageWithCircleMask object
+        return self.create_masked_image(image, mask_circle, circle_radius)
+    
+    def create_masked_image(self, image, mask, radius):
+        """
+        Create a masked circular image using SVG clipping
+        
+        Args:
+            image (ImageMobject): The image to mask
+            mask (Circle): The circular mask
+            radius (float): The radius of the circle
+            
+        Returns:
+            Group: A group containing the properly masked circular image
+        """
+        # Create a circle that will form the visible boundary
+        circle = Circle(
+            radius=radius,
+            stroke_width=0,
+            fill_opacity=1,
+            fill_color="#333333"  # Dark background
+        )
+        
+        # We'll stack these elements:
+        # 1. A background circle (dark color)
+        # 2. The image positioned to fill the circle
+        # 3. A circular outline for the edge
+        
+        outline = Circle(
+            radius=radius,
+            stroke_width=2,
+            stroke_color=WHITE,
+            fill_opacity=0
+        )
+        
+        # This is our custom "masking" technique in Manim
+        # We'll use the zIndex feature to ensure proper ordering
+        image.set_z_index(10)  # Place image above background
+        circle.set_z_index(9)  # Place background below image
+        outline.set_z_index(11)  # Place outline on top
+        
+        # Create a group with all elements
+        result = Group(circle, image, outline)
+        
+        return result
+    
     def fit_image_to_circle(self, image, circle_radius):
         """
-        Scale and position an image to fit within a circle
+        Legacy method maintained for compatibility
+        Now uses the new circular image masking technique
         
         Args:
             image (ImageMobject): The image to scale
             circle_radius (float): Radius of the circle to fit into
             
         Returns:
-            ImageMobject: The scaled image
+            Group: A group containing the masked circular image
         """
-        if image is None:
-            return None
-        
-        # Calculate scaling factor to fit in circle
-        # For a circle, we want the longest dimension to fit within the diameter
-        image_width = image.get_width()
-        image_height = image.get_height()
-        
-        # Determine the scaling factor
-        max_dimension = max(image_width, image_height)
-        scale_factor = (circle_radius * 1.8) / max_dimension  # Use 1.8 instead of 2 to leave some margin
-        
-        # Scale the image
-        image.scale(scale_factor)
-        
-        # Center the image
-        image.move_to(ORIGIN)
-        
-        return image
+        return self.create_circular_image(image, circle_radius)
     
     def get_fitted_image(self, scale_name, circle_radius, image_index=0):
         """

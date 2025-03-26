@@ -211,10 +211,10 @@ class StarScene(ZoomableScene):
             control_y = control_radius * np.sin(control_angle)
             
             streamer = CubicBezier(
-                start=[start_x, start_y, 0],
-                h1=[control_x, control_y, 0],
-                h2=[control_x, control_y, 0],
-                end=[end_x, end_y, 0],
+                start_anchor=[start_x, start_y, 0],
+                start_handle=[control_x, control_y, 0],
+                end_handle=[control_x, control_y, 0],
+                end_anchor=[end_x, end_y, 0],
                 stroke_color="#FFFF00",
                 stroke_width=width * 100,  # Scale up to be visible
                 stroke_opacity=np.random.uniform(0.2, 0.4)
@@ -318,10 +318,10 @@ class StarScene(ZoomableScene):
             
             # Create the flare curve
             flare_curve = CubicBezier(
-                start=[x_start, y_start, 0],
-                h1=[ctrl1_x, ctrl1_y, 0],
-                h2=[ctrl2_x, ctrl2_y, 0],
-                end=[x_end, y_end, 0],
+                start_anchor=[x_start, y_start, 0],
+                start_handle=[ctrl1_x, ctrl1_y, 0],
+                end_handle=[ctrl2_x, ctrl2_y, 0],
+                end_anchor=[x_end, y_end, 0],
                 stroke_color="#FF4500",  # Orange-red
                 stroke_width=width_start * 100,  # Scale up to be visible
                 stroke_opacity=0.7
