@@ -12,6 +12,7 @@ source .venv_pro/bin/activate
 then install packages in the active venv
 python3 -m pip install matplotlib
 
+an iCloud tip is to ensure all files are synchronized.
 
 
 

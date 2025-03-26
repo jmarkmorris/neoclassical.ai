@@ -40,4 +40,5 @@ Based on a comparison between design.md and the codebase, here are the main feat
   
   - add lines of action to spiral
   - check out sim30.json -- odd behaviour
-  - can media directories be placed in their own directory
+  - we have a v=0 issue on calculating action. What are we to do when v<1? Shouldn't the divisor approach 1 as v goes to 0?
+  - need to revise action to consider velocity of receiver, both radial to the emission and orthogonal.
