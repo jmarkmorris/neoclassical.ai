@@ -336,8 +336,12 @@ class ZoomManager:
         # Prepare from and to elements
         from_elements.move_to(ORIGIN)
         to_elements.move_to(ORIGIN)
-        to_elements.scale(0.01)  # Start very small
-        to_elements.set_opacity(0)  # Start invisible
+        
+        # Calculate scales for continuous zooming
+        # For zoom-in, 'to' element should start small enough to be hidden inside 'from' element
+        initial_scale_ratio = 0.01
+        to_elements.scale(initial_scale_ratio)  
+        to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
         # Create scene labels
         scene_label = Text(
@@ -354,59 +358,83 @@ class ZoomManager:
         # Add everything to the scene
         manim_scene.add(from_elements, to_elements, scene_label, scale_indicator)
         
-        # Calculate intermediate scale values for true smooth logarithmic scaling
-        # Number of animated frames (60fps × duration)
-        num_frames = int(60 * duration)
+        # Create a single continuous animation with cross-fade in the middle
+        # Determine the cross-fade region (middle 20% of the animation)
+        fade_start = 0.4
+        fade_end = 0.6
         
-        # Determine the direction of scaling (zoom in = from larger to smaller objects)
-        scale_diff = abs(to_scale - from_scale)
+        # Create animation sequences
+        animations = []
         
-        # For zoom animations, we need to:
-        # 1. Scale up the source object until it fills the screen
-        # 2. Cross-fade to the destination object 
-        # 3. Scale the destination object down to its proper size
+        # 1. Continuously zoom the 'from' element throughout
+        animations.append(
+            from_elements.animate.scale(100)  # Scale up dramatically
+        )
         
-        # Prepare animations
-        from_final_scale = 40.0  # Scale up to large size, then fade out
-        to_initial_scale = 0.01  # Start very small, grow to normal size
+        # 2. Continuously zoom the 'to' element throughout 
+        animations.append(
+            to_elements.animate.scale(1/initial_scale_ratio)  # Scale from tiny to normal
+        )
         
-        # First half: grow from_elements and update scale
-        first_half = duration * 0.5
+        # 3. Create text transition animation
+        animations.append(
+            Transform(
+                scene_label, 
+                Text(
+                    to_scene,
+                    font_size=self.config["global_settings"].get("font_size", 24),
+                    color=self.config["global_settings"].get("color_text", "#FFFFFF")
+                ).to_corner(UL, buff=0.5)
+            )
+        )
+        
+        # 4. Create scale tracker animation
+        animations.append(
+            scale_tracker.animate.set_value(to_scale)
+        )
+        
+        # Play the continuous animation
         manim_scene.play(
-            from_elements.animate.scale(from_final_scale),
-            Transform(scene_label, 
-                     Text(from_scene + " → " + to_scene,
-                         font_size=self.config["global_settings"].get("font_size", 24),
-                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
-                     .to_corner(UL, buff=0.5)),
-            scale_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
-            run_time=first_half,
+            *animations,
+            run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
         
-        # Cross-fade at midpoint
-        manim_scene.play(
-            from_elements.animate.set_opacity(0),
-            to_elements.animate.set_opacity(1),
-            run_time=0.3,
-            rate_func=rate_functions.linear
-        )
+        # Handle opacity with updater functions for smooth cross-fade
+        def from_opacity_updater(mob, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            # Fade out from 1 to 0 during the middle region
+            if progress < fade_start:
+                mob.set_opacity(1.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                mob.set_opacity(1.0 - fade_progress)
+            else:
+                mob.set_opacity(0.0)
         
-        # Second half: shrink to_elements and continue updating scale
-        second_half = duration * 0.5
-        manim_scene.play(
-            to_elements.animate.scale(1/to_initial_scale),
-            Transform(scene_label, 
-                     Text(to_scene,
-                         font_size=self.config["global_settings"].get("font_size", 24),
-                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
-                     .to_corner(UL, buff=0.5)),
-            scale_tracker.animate.set_value(to_scale),
-            run_time=second_half,
-            rate_func=rate_functions.ease_in_out_sine
-        )
+        def to_opacity_updater(mob, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            # Fade in from 0 to 1 during the middle region
+            if progress < fade_start:
+                mob.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                mob.set_opacity(fade_progress)
+            else:
+                mob.set_opacity(1.0)
         
-        # Remove updater from scale indicator
+        # Add updaters for opacity to handle crossfade
+        from_elements.add_updater(from_opacity_updater)
+        to_elements.add_updater(to_opacity_updater)
+        
+        # Wait a tiny amount to let the updaters work
+        manim_scene.wait(0.01)
+        
+        # Remove updaters
+        from_elements.remove_updater(from_opacity_updater)
+        to_elements.remove_updater(to_opacity_updater)
         scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
         
         # Clean up the scene
@@ -462,8 +490,11 @@ class ZoomManager:
         # Prepare from and to elements
         from_elements.move_to(ORIGIN)
         to_elements.move_to(ORIGIN)
-        to_elements.scale(100)  # Start very large
-        to_elements.set_opacity(0)  # Start invisible
+        
+        # For zoom-out, 'to' element should start large enough to contain 'from' element
+        initial_scale_ratio = 100
+        to_elements.scale(initial_scale_ratio)  # Start very large
+        to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
         # Create scene labels
         scene_label = Text(
@@ -480,52 +511,83 @@ class ZoomManager:
         # Add everything to the scene
         manim_scene.add(from_elements, to_elements, scene_label, scale_indicator)
         
-        # For zoom out, we:
-        # 1. Shrink the source object until it's very small
-        # 2. Cross-fade to the destination object which starts large
-        # 3. Scale the destination object down to its proper size
+        # Create a single continuous animation with cross-fade in the middle
+        # Determine the cross-fade region (middle 20% of the animation)
+        fade_start = 0.4
+        fade_end = 0.6
         
-        # Prepare animations
-        from_final_scale = 0.01  # Shrink from normal to tiny
-        to_initial_scale = 100  # Start very large, shrink to normal
+        # Create animation sequences
+        animations = []
         
-        # First half: shrink from_elements and update scale
-        first_half = duration * 0.5
+        # 1. Continuously zoom out the 'from' element
+        animations.append(
+            from_elements.animate.scale(0.01)  # Scale down dramatically
+        )
+        
+        # 2. Continuously zoom out the 'to' element
+        animations.append(
+            to_elements.animate.scale(1/initial_scale_ratio)  # Scale from huge to normal
+        )
+        
+        # 3. Create text transition animation
+        animations.append(
+            Transform(
+                scene_label, 
+                Text(
+                    to_scene,
+                    font_size=self.config["global_settings"].get("font_size", 24),
+                    color=self.config["global_settings"].get("color_text", "#FFFFFF")
+                ).to_corner(UL, buff=0.5)
+            )
+        )
+        
+        # 4. Create scale tracker animation
+        animations.append(
+            scale_tracker.animate.set_value(to_scale)
+        )
+        
+        # Play the continuous animation
         manim_scene.play(
-            from_elements.animate.scale(from_final_scale),
-            Transform(scene_label, 
-                     Text(from_scene + " → " + to_scene,
-                         font_size=self.config["global_settings"].get("font_size", 24),
-                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
-                     .to_corner(UL, buff=0.5)),
-            scale_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
-            run_time=first_half,
+            *animations,
+            run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
         
-        # Cross-fade at midpoint
-        manim_scene.play(
-            from_elements.animate.set_opacity(0),
-            to_elements.animate.set_opacity(1),
-            run_time=0.3,
-            rate_func=rate_functions.linear
-        )
+        # Handle opacity with updater functions for smooth cross-fade
+        def from_opacity_updater(mob, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            # Fade out from 1 to 0 during the middle region
+            if progress < fade_start:
+                mob.set_opacity(1.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                mob.set_opacity(1.0 - fade_progress)
+            else:
+                mob.set_opacity(0.0)
         
-        # Second half: shrink to_elements and continue updating scale
-        second_half = duration * 0.5
-        manim_scene.play(
-            to_elements.animate.scale(1/to_initial_scale),
-            Transform(scene_label, 
-                     Text(to_scene,
-                         font_size=self.config["global_settings"].get("font_size", 24),
-                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
-                     .to_corner(UL, buff=0.5)),
-            scale_tracker.animate.set_value(to_scale),
-            run_time=second_half,
-            rate_func=rate_functions.ease_in_out_sine
-        )
+        def to_opacity_updater(mob, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            # Fade in from 0 to 1 during the middle region
+            if progress < fade_start:
+                mob.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                mob.set_opacity(fade_progress)
+            else:
+                mob.set_opacity(1.0)
         
-        # Remove updater from scale indicator
+        # Add updaters for opacity to handle crossfade
+        from_elements.add_updater(from_opacity_updater)
+        to_elements.add_updater(to_opacity_updater)
+        
+        # Wait a tiny amount to let the updaters work
+        manim_scene.wait(0.01)
+        
+        # Remove updaters
+        from_elements.remove_updater(from_opacity_updater)
+        to_elements.remove_updater(to_opacity_updater)
         scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
         
         # Clean up the scene

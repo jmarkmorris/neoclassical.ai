@@ -2,9 +2,9 @@
   "global_settings": {
     "default_zoom_rate": 0.5,
     "constant_scale_rate": true,
-    "scale_seconds_per_decade": 1.5,
-    "min_transition_duration": 2.0,
-    "max_transition_duration": 10.0,
+    "scale_seconds_per_decade": 3.0,
+    "min_transition_duration": 4.0,
+    "max_transition_duration": 15.0,
     "background_color": "#4B0082",
     "scale_range": [
       -60,
