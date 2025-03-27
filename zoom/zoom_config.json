@@ -9,9 +9,11 @@
     "stroke_width": 2,
     "color_text": "#FFFFFF",
     "color_circle": "#FFFFFF",
+    "fill_color": "#3366CC",
+    "fill_opacity": 0.8,
     "dot3d_radius": 0.04,
     "quality": "h",
-    "use_custom_images": true
+    "use_custom_images": false
   },
   "scenes": [
     {

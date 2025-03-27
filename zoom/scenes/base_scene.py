@@ -109,6 +109,7 @@ class ZoomableScene:
         
         # Try to add a custom image if available and enabled
         if self.use_custom_images:
+            # Only try to get an image if custom images are explicitly enabled
             image_result = self.image_loader.get_fitted_image(self.scene_name, radius, image_index)
             if image_result:
                 has_image = True
@@ -120,16 +121,19 @@ class ZoomableScene:
                 # Add the whole group to our elements
                 elements.append(image_result)
         
-        # If no image, log a warning and create a simple placeholder
+        # If no image, create a solid color circle
         if not has_image:
-            print(f"WARNING: No image found for {self.scene_name}. Creating a simple placeholder.")
-            # Create a plain circle with a warning text
+            # Extract settings from config for the solid color circle
+            fill_color = self.config["global_settings"].get("fill_color", "#3366CC")
+            fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
+            
+            # Create a plain circle with solid color fill
             circle = Circle(
                 radius=radius,
                 stroke_color=circle_color,
                 stroke_width=stroke_width,
-                fill_color=circle_color,
-                fill_opacity=0.3
+                fill_color=fill_color,
+                fill_opacity=fill_opacity
             )
             circle.move_to(position)
             elements.append(circle)

@@ -56,8 +56,6 @@ class ImageLoader:
         Returns:
             str or None: Path to the image file or None if not found
         """
-        print(f"Attempting to load image for scale: {scale_name}")
-        
         # Normalize scale name (remove "Scene" suffix if present)
         orig_scale_name = scale_name
         if scale_name.endswith("Scene"):
@@ -65,55 +63,36 @@ class ImageLoader:
         else:
             scale_name = scale_name.lower()
         
-        print(f"Normalized scale name: {scale_name}")
-        
         # Find corresponding directory
         dir_path = None
         for dir_name in self.scale_dirs:
             if scale_name in dir_name or dir_name in scale_name:
                 dir_path = os.path.join(self.image_dir, dir_name)
-                print(f"Found matching directory: {dir_name}")
                 break
         
-        if not dir_path:
-            print(f"No matching directory found for scale '{orig_scale_name}'")
+        if not dir_path or not os.path.exists(dir_path):
             return None
-            
-        if not os.path.exists(dir_path):
-            print(f"Image directory for scale '{scale_name}' not found at path: {dir_path}")
-            return None
-        
-        print(f"Searching for images in: {dir_path}")
         
         # List image files in the directory
         image_files = []
         for ext in ['.png', '.jpg', '.jpeg']:
             found_files = [f for f in os.listdir(dir_path) if f.lower().endswith(ext)]
-            if found_files:
-                print(f"Found {len(found_files)} files with extension {ext}: {found_files}")
-                image_files.extend(found_files)
+            image_files.extend(found_files)
         
         if not image_files:
-            print(f"No images found in {dir_path}")
             return None
-        
-        print(f"Total image files found: {len(image_files)}")
         
         # Get the requested image or default to the first one
         try:
             image_file = image_files[image_index % len(image_files)]
-            print(f"Selected image: {image_file} (index {image_index})")
         except IndexError:
             if image_files:
                 image_file = image_files[0]
-                print(f"Using first image: {image_file}")
             else:
-                print("No images available")
                 return None
         
         # Return the full path to the image
         image_path = os.path.join(dir_path, image_file)
-        print(f"Using image from: {image_path}")
         return image_path
     
     def create_circular_masked_image(self, image_path, radius):
@@ -128,13 +107,11 @@ class ImageLoader:
             Mobject: A mobject containing the properly masked circular image
         """
         if not image_path or not os.path.exists(image_path):
-            print(f"Image path does not exist: {image_path}")
             return self._create_fallback_circle(radius)
         
         # Check if we already processed this image at this radius
         cache_key = f"{image_path}_{radius}"
         if cache_key in self._processed_image_cache:
-            print(f"Using cached processed image for {image_path}")
             return self._processed_image_cache[cache_key]
         
         try:
@@ -181,10 +158,13 @@ class ImageLoader:
             image_mobject.scale(scale_factor)
             
             # Create a circular outline
+            stroke_color = self.config["global_settings"].get("color_circle", "#FFFFFF")
+            stroke_width = self.config["global_settings"].get("stroke_width", 2)
+            
             outline = Circle(
                 radius=radius,
-                stroke_width=2,
-                stroke_color=WHITE,
+                stroke_width=stroke_width,
+                stroke_color=stroke_color,
                 fill_opacity=0
             )
             
@@ -197,17 +177,22 @@ class ImageLoader:
             return result
             
         except Exception as e:
-            print(f"Error creating circular masked image: {e}")
             return self._create_fallback_circle(radius)
     
     def _create_fallback_circle(self, radius):
         """Create a simple circle as a fallback when image processing fails"""
+        # Extract settings from config for the solid color circle
+        stroke_color = self.config["global_settings"].get("color_circle", "#FFFFFF")
+        stroke_width = self.config["global_settings"].get("stroke_width", 2)
+        fill_color = self.config["global_settings"].get("fill_color", "#3366CC")
+        fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
+        
         circle = Circle(
             radius=radius,
-            stroke_color=WHITE,
-            stroke_width=2,
-            fill_color="#333333",
-            fill_opacity=0.5
+            stroke_color=stroke_color,
+            stroke_width=stroke_width,
+            fill_color=fill_color,
+            fill_opacity=fill_opacity
         )
         return circle
     
