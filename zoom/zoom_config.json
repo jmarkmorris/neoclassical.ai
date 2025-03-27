@@ -1,9 +1,19 @@
 {
   "global_settings": {
     "default_zoom_rate": 0.5,
+    "constant_scale_rate": true,
+    "scale_seconds_per_decade": 1.5,
+    "min_transition_duration": 2.0,
+    "max_transition_duration": 10.0,
     "background_color": "#4B0082",
-    "scale_range": [-60, 60],
-    "resolution": [1920, 1080],
+    "scale_range": [
+      -60,
+      60
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
     "frame_rate": 60,
     "font_size": 24,
     "stroke_width": 2,
@@ -22,7 +32,11 @@
       "objects": [
         {
           "label": "Observable Universe",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -34,7 +48,11 @@
       "objects": [
         {
           "label": "Galaxy Cluster",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -46,7 +64,11 @@
       "objects": [
         {
           "label": "Galaxy",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -58,7 +80,11 @@
       "objects": [
         {
           "label": "Black Hole",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -70,7 +96,11 @@
       "objects": [
         {
           "label": "Solar System",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -82,7 +112,11 @@
       "objects": [
         {
           "label": "Star",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -94,7 +128,11 @@
       "objects": [
         {
           "label": "Molecule",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -106,7 +144,11 @@
       "objects": [
         {
           "label": "Atom",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -118,7 +160,11 @@
       "objects": [
         {
           "label": "Electron",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -130,7 +176,11 @@
       "objects": [
         {
           "label": "Quark",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -142,7 +192,11 @@
       "objects": [
         {
           "label": "Point Potential",
-          "position": [0, 0, 0],
+          "position": [
+            0,
+            0,
+            0
+          ],
           "radius": 3
         }
       ],
@@ -154,7 +208,6 @@
       "from_scene": "Universe",
       "to_scene": "GalaxyCluster",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 2,
       "pause_after": 1,
@@ -164,7 +217,6 @@
       "from_scene": "GalaxyCluster",
       "to_scene": "Galaxy",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -174,7 +226,6 @@
       "from_scene": "Galaxy",
       "to_scene": "BlackHole",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -184,7 +235,6 @@
       "from_scene": "BlackHole",
       "to_scene": "SolarSystem",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -194,7 +244,6 @@
       "from_scene": "SolarSystem",
       "to_scene": "Star",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -204,7 +253,6 @@
       "from_scene": "Star",
       "to_scene": "Molecule",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -214,7 +262,6 @@
       "from_scene": "Molecule",
       "to_scene": "Atom",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -224,7 +271,6 @@
       "from_scene": "Atom",
       "to_scene": "Electron",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -234,7 +280,6 @@
       "from_scene": "Electron",
       "to_scene": "Quark",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -244,7 +289,6 @@
       "from_scene": "Quark",
       "to_scene": "PointPotential",
       "direction": "in",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 2,
@@ -254,7 +298,6 @@
       "from_scene": "PointPotential",
       "to_scene": "Quark",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -264,7 +307,6 @@
       "from_scene": "Quark",
       "to_scene": "Electron",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -274,7 +316,6 @@
       "from_scene": "Electron",
       "to_scene": "Atom",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -284,7 +325,6 @@
       "from_scene": "Atom",
       "to_scene": "Molecule",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -294,7 +334,6 @@
       "from_scene": "Molecule",
       "to_scene": "Star",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -304,7 +343,6 @@
       "from_scene": "Star",
       "to_scene": "SolarSystem",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -314,7 +352,6 @@
       "from_scene": "SolarSystem",
       "to_scene": "BlackHole",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -324,7 +361,6 @@
       "from_scene": "BlackHole",
       "to_scene": "Galaxy",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -334,7 +370,6 @@
       "from_scene": "Galaxy",
       "to_scene": "GalaxyCluster",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 1,
@@ -344,7 +379,6 @@
       "from_scene": "GalaxyCluster",
       "to_scene": "Universe",
       "direction": "out",
-      "duration": 4,
       "easing_function": "smooth",
       "pause_before": 1,
       "pause_after": 2,

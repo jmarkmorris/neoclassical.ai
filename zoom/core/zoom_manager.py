@@ -56,11 +56,13 @@ class ZoomManager:
         self.current_scene = None
         self.current_scale = None
         self.animation_progress = 0
+        
+        # Initialize the scenes first
+        self._initialize_scenes()
+        
+        # Now calculate total duration (which depends on scenes being initialized)
         self.total_duration = self._calculate_total_duration()
         self.audio_controller = AudioController(self.config.get("audio", {}))
-        
-        # Initialize the scenes
-        self._initialize_scenes()
         
         # For caching scene objects
         self._scene_instances = {}
@@ -108,11 +110,52 @@ class ZoomManager:
                 "config": scene_config
             }
     
+    def _calculate_duration_for_scales(self, from_scale, to_scale):
+        """
+        Calculate the appropriate duration for a scale transition based on scale difference
+        
+        Args:
+            from_scale (float): Starting scale value
+            to_scale (float): Ending scale value
+            
+        Returns:
+            float: Duration in seconds based on scale difference
+        """
+        # Check if we should use constant scale rate
+        if self.config["global_settings"].get("constant_scale_rate", False):
+            # Calculate the number of decades (powers of 10) between scales
+            scale_diff = abs(to_scale - from_scale)
+            
+            # Calculate duration based on seconds per decade
+            secs_per_decade = self.config["global_settings"].get("scale_seconds_per_decade", 1.0)
+            duration = scale_diff * secs_per_decade
+            
+            # Apply min/max bounds
+            min_duration = self.config["global_settings"].get("min_transition_duration", 2.0)
+            max_duration = self.config["global_settings"].get("max_transition_duration", 10.0)
+            
+            return max(min_duration, min(max_duration, duration))
+        else:
+            # Return the default duration
+            return self.config["global_settings"].get("default_zoom_rate", 5)
+    
     def _calculate_total_duration(self):
         """Calculate the total animation duration including transitions and pauses"""
         total = 0
         for transition in self.config["animation_sequence"]:
-            duration = transition.get("duration", 5)
+            # Get source and target scales
+            from_scene = transition["from_scene"]
+            to_scene = transition["to_scene"]
+            from_scale = self.scenes[from_scene]["scale"]
+            to_scale = self.scenes[to_scene]["scale"]
+            
+            # Calculate appropriate duration based on scales
+            duration = self._calculate_duration_for_scales(from_scale, to_scale)
+            
+            # Override with explicit value if provided
+            if "duration" in transition:
+                duration = transition["duration"]
+                
             pause_before = transition.get("pause_before", 0)
             pause_after = transition.get("pause_after", 0)
             total += duration + pause_before + pause_after
@@ -258,12 +301,13 @@ class ZoomManager:
             duration (float, optional): Animation duration in seconds
             easing (str, optional): Easing function type
         """
-        if duration is None:
-            duration = self.config["global_settings"].get("default_zoom_rate", 5)
-        
         # Get the scene scale values
         from_scale = self.scenes[from_scene]["scale"]
         to_scale = self.scenes[to_scene]["scale"]
+        
+        # Calculate appropriate duration if not explicitly provided
+        if duration is None:
+            duration = self._calculate_duration_for_scales(from_scale, to_scale)
         
         print(f"Zoom in from {from_scene} (10^{from_scale}) to {to_scene} (10^{to_scale})")
         
@@ -383,12 +427,13 @@ class ZoomManager:
             duration (float, optional): Animation duration in seconds
             easing (str, optional): Easing function type
         """
-        if duration is None:
-            duration = self.config["global_settings"].get("default_zoom_rate", 5)
-        
         # Get the scene scale values
         from_scale = self.scenes[from_scene]["scale"]
         to_scale = self.scenes[to_scene]["scale"]
+        
+        # Calculate appropriate duration if not explicitly provided
+        if duration is None:
+            duration = self._calculate_duration_for_scales(from_scale, to_scale)
         
         print(f"Zoom out from {from_scene} (10^{from_scale}) to {to_scene} (10^{to_scale})")
         
@@ -555,8 +600,19 @@ class ZoomManager:
                     # Play narration if scheduled for this time
                     self.audio_controller.check_narration_cues(current_time)
                 
+                # Get the scene scale values
+                from_scale = self.scenes[from_scene]["scale"]
+                to_scale = self.scenes[to_scene]["scale"]
+                
+                # Calculate appropriate duration if not explicitly provided in config
+                if "duration" not in transition:
+                    duration = self._calculate_duration_for_scales(from_scale, to_scale)
+                    
+                # Calculate scale difference (for logging)
+                scale_diff = abs(to_scale - from_scale)
+                
                 # Perform the animation
-                print(f"Animating {direction} from {from_scene} to {to_scene} over {duration} seconds")
+                print(f"Animating {direction} from {from_scene} (10^{from_scale}) to {to_scene} (10^{to_scale}) - Scale diff: {scale_diff:.1f} decades, Duration: {duration:.1f} seconds")
                 if direction == "in":
                     self.zoom_in(manim_scene, from_scene, to_scene, duration, easing_function)
                 else:
