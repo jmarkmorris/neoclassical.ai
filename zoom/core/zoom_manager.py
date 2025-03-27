@@ -1,25 +1,31 @@
 """
-Zoom Manager for NPQG Universe Zoom Animation
-Controls transitions between different scale scenes
+Zoom Manager for Universe Zoom Animation
+Controls transitions between different scale scenes with truly smooth logarithmic scaling
 """
 
+import os
 import numpy as np
 from manim import *
 from manim.utils import rate_functions
 
-# Define directional constants if not available in this version of Manim
-try:
-    from manim.constants import *
-except (ImportError, AttributeError):
-    # Define our own constants if they don't exist
-    UR = np.array([1.0, 1.0, 0.0])  # Upper right
-    UL = np.array([-1.0, 1.0, 0.0])  # Upper left
-    DL = np.array([-1.0, -1.0, 0.0])  # Down left
-    DR = np.array([1.0, -1.0, 0.0])  # Down right
-    UP = np.array([0.0, 1.0, 0.0])   # Up
-    DOWN = np.array([0.0, -1.0, 0.0])  # Down
-    RIGHT = np.array([1.0, 0.0, 0.0])  # Right
-    LEFT = np.array([-1.0, 0.0, 0.0])  # Left
+# Define and ensure all necessary constants
+# These will override any imported values if they exist,
+# or define them if they don't exist in the imported namespace
+UR = np.array([1.0, 1.0, 0.0])  # Upper right
+UL = np.array([-1.0, 1.0, 0.0])  # Upper left
+DL = np.array([-1.0, -1.0, 0.0])  # Down left
+DR = np.array([1.0, -1.0, 0.0])  # Down right
+UP = np.array([0.0, 1.0, 0.0])   # Up
+DOWN = np.array([0.0, -1.0, 0.0])  # Down
+RIGHT = np.array([1.0, 0.0, 0.0])  # Right
+LEFT = np.array([-1.0, 0.0, 0.0])  # Left
+
+# Define frame dimensions for manim
+# Standard ManimCE default values
+FRAME_WIDTH = 8
+FRAME_HEIGHT = 4.5
+FRAME_X_RADIUS = FRAME_WIDTH / 2
+FRAME_Y_RADIUS = FRAME_HEIGHT / 2
 
 from scenes.base_scene import ZoomableScene
 from scenes.universe_scene import UniverseScene
@@ -55,6 +61,12 @@ class ZoomManager:
         
         # Initialize the scenes
         self._initialize_scenes()
+        
+        # For caching scene objects
+        self._scene_instances = {}
+        
+        # For tracking resources that need cleanup
+        self._active_mobjects = []
     
     def _initialize_scenes(self):
         """Create all scene instances based on the configuration"""
@@ -106,31 +118,6 @@ class ZoomManager:
             total += duration + pause_before + pause_after
         return total
     
-    def _apply_easing(self, t, easing_type):
-        """
-        Apply easing function to create smoother animations
-        
-        Args:
-            t (float): Animation progress from 0 to 1
-            easing_type (str): Easing function type
-            
-        Returns:
-            float: Eased value between 0 and 1
-        """
-        if easing_type == "linear":
-            return t
-        elif easing_type == "smooth":
-            # Smooth step function (3t² - 2t³)
-            return 3 * t**2 - 2 * t**3
-        elif easing_type == "accelerate":
-            # Quadratic ease-in
-            return t**2
-        elif easing_type == "decelerate":
-            # Quadratic ease-out
-            return 1 - (1 - t)**2
-        else:
-            return t  # Default to linear
-    
     def _create_scene_elements(self, scene_name, scene_obj):
         """
         Create elements for a scene
@@ -140,24 +127,15 @@ class ZoomManager:
             scene_obj (ZoomableScene): The scene object
             
         Returns:
-            VGroup: A group containing all the scene elements
+            Group: A group containing all the scene elements
         """
         print(f"Creating elements for scene: {scene_name}")
         
-        # Create default elements (as a fallback)
-        default_circle = Circle(
-            radius=3,
-            stroke_color=WHITE,
-            fill_opacity=0
-        )
-        default_label = Text(
-            scene_name,
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=WHITE
-        )
-        
         # Create an empty Group (not VGroup, as Group can contain any Mobject)
         elements = Group()
+        
+        # Track for cleanup
+        self._active_mobjects.append(elements)
         
         # Try to get custom elements
         try:
@@ -172,6 +150,8 @@ class ZoomManager:
                         for element in custom_elements:
                             if element is not None:
                                 elements.add(element)
+                                # Track individual elements for cleanup
+                                self._active_mobjects.append(element)
                         
                         # If we successfully added elements, return them
                         if len(elements.submobjects) > 0:
@@ -184,367 +164,24 @@ class ZoomManager:
         
         # If we reach here, use default elements
         print(f"Using default elements for {scene_name}")
+        default_circle = Circle(
+            radius=3,
+            stroke_color=WHITE,
+            fill_opacity=0
+        )
+        default_label = Text(
+            scene_name,
+            font_size=self.config["global_settings"].get("font_size", 24),
+            color=WHITE
+        )
+        # Track for cleanup
+        self._active_mobjects.extend([default_circle, default_label])
         elements = Group(default_circle, default_label)
         return elements
     
-    def zoom_in(self, manim_scene, from_scene, to_scene, duration=None, easing="smooth"):
-        """
-        Handle zoom-in animation between scenes
-        
-        Args:
-            manim_scene (Scene): The Manim scene object
-            from_scene (str): The name of the starting scene
-            to_scene (str): The name of the target scene
-            duration (float, optional): Animation duration in seconds
-            easing (str, optional): Easing function type
-        """
-        if duration is None:
-            duration = self.config["global_settings"].get("default_zoom_rate", 5)
-        
-        # Get the scene scale values
-        from_scale = self.scenes[from_scene]["scale"]
-        to_scale = self.scenes[to_scene]["scale"]
-        scale_diff = abs(from_scale - to_scale)
-        
-        # Create the scenes if they don't exist
-        from_scene_obj = self._get_or_create_scene(manim_scene, from_scene)
-        to_scene_obj = self._get_or_create_scene(manim_scene, to_scene)
-        
-        # Setup variables for the animation
-        start_scale = from_scale
-        end_scale = to_scale
-        
-        # Clear the scene and create the initial elements
-        manim_scene.clear()
-        
-        # Create background
-        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
-        width = self.config["global_settings"].get("resolution", [1920, 1080])[0] / 100
-        height = self.config["global_settings"].get("resolution", [1920, 1080])[1] / 100
-        
-        background = Rectangle(
-            width=width * 4,  # Make it extra large to cover during zoom
-            height=height * 4,
-            fill_color=bg_color,
-            fill_opacity=1.0,
-            stroke_width=0
-        )
-        manim_scene.add(background)
-        
-        print(f"Creating scene elements for zoom-in from {from_scene} to {to_scene}")
-        
-        # Create scene elements using helper method
-        try:
-            from_elements = self._create_scene_elements(from_scene, from_scene_obj)
-            to_elements = self._create_scene_elements(to_scene, to_scene_obj)
-        except Exception as e:
-            print(f"Error creating scene elements: {e}")
-            # Create basic fallback elements
-            from_elements = Group(
-                Circle(radius=3, stroke_color=WHITE),
-                Text(from_scene, color=WHITE)
-            )
-            to_elements = Group(
-                Circle(radius=3, stroke_color=WHITE),
-                Text(to_scene, color=WHITE)
-            )
-        
-        # Position to_elements off-screen or invisible initially
-        to_elements.scale(0.1)  # Small enough to be barely visible
-        to_elements.set_opacity(0)  # Start invisible
-        
-        # Create scene labels in top left
-        from_scene_label = Text(
-            from_scene,
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        from_scene_label.to_corner(UP + LEFT, buff=0.5)
-        
-        to_scene_label = Text(
-            to_scene,
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        to_scene_label.to_corner(UP + LEFT, buff=0.5)
-        to_scene_label.set_opacity(0)  # Start invisible
-        
-        # Create transition text
-        transition_text = Text(
-            f"Zooming in: {from_scene} → {to_scene}",
-            font_size=self.config["global_settings"].get("font_size", 20),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        transition_text.to_edge(UP, buff=0.1)
-        
-        # Create scale indicators in top right
-        from_scale_indicator = Text(
-            f"10^{start_scale} m",
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        from_scale_indicator.to_corner(UP + RIGHT, buff=0.5)
-        
-        to_scale_indicator = Text(
-            f"10^{end_scale} m",
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        to_scale_indicator.to_corner(UP + RIGHT, buff=0.5)
-        to_scale_indicator.set_opacity(0)  # Start invisible
-        
-        # Add all elements to the scene
-        manim_scene.add(from_elements, to_elements, from_scale_indicator, to_scale_indicator,
-                       from_scene_label, to_scene_label, transition_text)
-        
-        print("Starting zoom-in animation")
-        
-        # Create the zoom-in animation
-        # Note: We need to separate animations as Manim may not handle multiple transforms on same object
-        
-        # Create a simplified continuous scale indicator
-        # Create a value tracker for the logarithmic scale
-        scale_value_tracker = ValueTracker(from_scale)
-        
-        # Create dynamic scale indicator
-        scale_indicator = Text(
-            f"10^{from_scale} m",
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        ).to_corner(UP + RIGHT, buff=0.5)
-        
-        # Function to update scale text
-        def update_scale_text(text):
-            new_scale = scale_value_tracker.get_value()
-            new_text = Text(
-                f"10^{new_scale:.1f} m",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=self.config["global_settings"].get("color_text", "#FFFFFF")
-            ).to_corner(UP + RIGHT, buff=0.5)
-            text.become(new_text)
-        
-        # Add updater to scale indicator
-        scale_indicator.add_updater(update_scale_text)
-        
-        # Replace static indicators with dynamic one
-        manim_scene.remove(from_scale_indicator, to_scale_indicator)
-        manim_scene.add(scale_indicator)
-        
-        # Calculate target scale for scaling animations
-        # For a zoom-in effect (from larger to smaller scale view)
-        zoom_scale_factor = 5  # Empirically determined for good visual effect
-        
-        # First animate scaling up and fading out from_elements
-        manim_scene.play(
-            from_elements.animate.scale(zoom_scale_factor).set_opacity(0),
-            from_scene_label.animate.set_opacity(0),
-            scale_value_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
-            rate_func=rate_functions.ease_in_out_sine,
-            run_time=duration/2
-        )
-        
-        # Then animate the to_elements appearing and scaling to normal
-        manim_scene.play(
-            to_elements.animate.scale(1/zoom_scale_factor).set_opacity(1),
-            to_scene_label.animate.set_opacity(1),
-            scale_value_tracker.animate.set_value(to_scale),
-            rate_func=rate_functions.ease_in_out_sine,
-            run_time=duration/2
-        )
-        
-        # Remove updater to prevent further updates
-        scale_indicator.remove_updater(update_scale_text)
-        
-        print("Zoom-in animation completed")
-        
-        # Clean up: remove from_elements and old indicators/labels
-        manim_scene.remove(from_elements, from_scale_indicator, from_scene_label)
-        
-        # Update the current scene and scale
-        self.current_scene = to_scene
-        self.current_scale = to_scale
-    
-    def zoom_out(self, manim_scene, from_scene, to_scene, duration=None, easing="smooth"):
-        """
-        Handle zoom-out animation between scenes
-        
-        Args:
-            manim_scene (Scene): The Manim scene object
-            from_scene (str): The name of the starting scene
-            to_scene (str): The name of the target scene
-            duration (float, optional): Animation duration in seconds
-            easing (str, optional): Easing function type
-        """
-        if duration is None:
-            duration = self.config["global_settings"].get("default_zoom_rate", 5)
-        
-        # Get the scene scale values
-        from_scale = self.scenes[from_scene]["scale"]
-        to_scale = self.scenes[to_scene]["scale"]
-        scale_diff = abs(from_scale - to_scale)
-        
-        # Create the scenes if they don't exist
-        from_scene_obj = self._get_or_create_scene(manim_scene, from_scene)
-        to_scene_obj = self._get_or_create_scene(manim_scene, to_scene)
-        
-        # Setup variables for the animation
-        start_scale = from_scale
-        end_scale = to_scale
-        
-        # Clear the scene and create the initial elements
-        manim_scene.clear()
-        
-        # Create background
-        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
-        width = self.config["global_settings"].get("resolution", [1920, 1080])[0] / 100
-        height = self.config["global_settings"].get("resolution", [1920, 1080])[1] / 100
-        
-        background = Rectangle(
-            width=width * 4,  # Make it extra large to cover during zoom
-            height=height * 4,
-            fill_color=bg_color,
-            fill_opacity=1.0,
-            stroke_width=0
-        )
-        manim_scene.add(background)
-        
-        print(f"Creating scene elements for zoom-out from {from_scene} to {to_scene}")
-        
-        # Create scene elements using helper method
-        try:
-            from_elements = self._create_scene_elements(from_scene, from_scene_obj)
-            to_elements = self._create_scene_elements(to_scene, to_scene_obj)
-        except Exception as e:
-            print(f"Error creating scene elements: {e}")
-            # Create basic fallback elements
-            from_elements = Group(
-                Circle(radius=3, stroke_color=WHITE),
-                Text(from_scene, color=WHITE)
-            )
-            to_elements = Group(
-                Circle(radius=3, stroke_color=WHITE),
-                Text(to_scene, color=WHITE)
-            )
-        
-        # Initially, to_elements should be large (we'll shrink it)
-        to_elements.scale(5)  # Large enough to be off screen
-        to_elements.set_opacity(0)  # Start invisible
-        
-        # Create scene labels in top left
-        from_scene_label = Text(
-            from_scene,
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        from_scene_label.to_corner(UP + LEFT, buff=0.5)
-        
-        to_scene_label = Text(
-            to_scene,
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        to_scene_label.to_corner(UP + LEFT, buff=0.5)
-        to_scene_label.set_opacity(0)  # Start invisible
-        
-        # Create transition text
-        transition_text = Text(
-            f"Zooming out: {from_scene} → {to_scene}",
-            font_size=self.config["global_settings"].get("font_size", 20),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        transition_text.to_edge(UP, buff=0.1)
-        
-        # Create scale indicators in top right
-        from_scale_indicator = Text(
-            f"10^{start_scale} m",
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        from_scale_indicator.to_corner(UP + RIGHT, buff=0.5)
-        
-        to_scale_indicator = Text(
-            f"10^{end_scale} m",
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        )
-        to_scale_indicator.to_corner(UP + RIGHT, buff=0.5)
-        to_scale_indicator.set_opacity(0)  # Start invisible
-        
-        # Add all elements to the scene
-        manim_scene.add(from_elements, to_elements, from_scale_indicator, to_scale_indicator,
-                       from_scene_label, to_scene_label, transition_text)
-        
-        print("Starting zoom-out animation")
-        
-        # Create a simplified continuous scale indicator
-        # Create a value tracker for the logarithmic scale
-        scale_value_tracker = ValueTracker(from_scale)
-        
-        # Create dynamic scale indicator
-        scale_indicator = Text(
-            f"10^{from_scale} m",
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        ).to_corner(UP + RIGHT, buff=0.5)
-        
-        # Function to update scale text
-        def update_scale_text(text):
-            new_scale = scale_value_tracker.get_value()
-            new_text = Text(
-                f"10^{new_scale:.1f} m",
-                font_size=self.config["global_settings"].get("font_size", 24),
-                color=self.config["global_settings"].get("color_text", "#FFFFFF")
-            ).to_corner(UP + RIGHT, buff=0.5)
-            text.become(new_text)
-        
-        # Add updater to scale indicator
-        scale_indicator.add_updater(update_scale_text)
-        
-        # Replace static indicators with dynamic one
-        manim_scene.remove(from_scale_indicator, to_scale_indicator)
-        manim_scene.add(scale_indicator)
-        
-        # Calculate target scale for scaling animations
-        # For a zoom-out effect (from smaller to larger scale view)
-        zoom_scale_factor = 0.2  # Empirically determined for good visual effect
-        
-        # First animate scaling down and fading out from_elements
-        manim_scene.play(
-            from_elements.animate.scale(zoom_scale_factor).set_opacity(0),
-            from_scene_label.animate.set_opacity(0),
-            scale_value_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
-            rate_func=rate_functions.ease_in_out_sine,
-            run_time=duration/2
-        )
-        
-        # Prepare to_elements to start large
-        to_elements.scale(1/zoom_scale_factor)
-        to_elements.set_opacity(0)
-        
-        # Then animate the to_elements appearing and scaling to normal
-        manim_scene.play(
-            to_elements.animate.scale(zoom_scale_factor).set_opacity(1),
-            to_scene_label.animate.set_opacity(1),
-            scale_value_tracker.animate.set_value(to_scale),
-            rate_func=rate_functions.ease_in_out_sine,
-            run_time=duration/2
-        )
-        
-        # Remove updater to prevent further updates
-        scale_indicator.remove_updater(update_scale_text)
-        
-        print("Zoom-out animation completed")
-        
-        # Clean up: remove from_elements and old indicators/labels
-        manim_scene.remove(from_elements, from_scale_indicator, from_scene_label)
-        
-        # Update the current scene and scale
-        self.current_scene = to_scene
-        self.current_scale = to_scale
-    
     def _get_or_create_scene(self, manim_scene, scene_name):
         """
-        Get or create a scene instance
+        Get a cached scene instance or create a new one
         
         Args:
             manim_scene (Scene): The Manim scene object
@@ -553,6 +190,10 @@ class ZoomManager:
         Returns:
             ZoomableScene: A scene instance
         """
+        # Check if we already have this scene instantiated
+        if scene_name in self._scene_instances:
+            return self._scene_instances[scene_name]
+            
         if scene_name not in self.scenes:
             raise ValueError(f"Unknown scene: {scene_name}")
         
@@ -562,12 +203,310 @@ class ZoomManager:
         
         # Create a new instance of the scene class and set its parent scene
         scene_obj = scene_class(self.config, scale_value)
-        
-        # Instead of directly setting the camera, we'll use the parent scene for camera operations
         scene_obj.parent_scene = manim_scene
+        
+        # Cache the instance
+        self._scene_instances[scene_name] = scene_obj
         
         return scene_obj
     
+    def _create_true_logarithmic_scale_updater(self, from_scale, to_scale, duration):
+        """
+        Create a smooth logarithmic scale updater function
+        
+        Args:
+            from_scale (float): Starting scale value
+            to_scale (float): Ending scale value
+            duration (float): Duration of the animation
+            
+        Returns:
+            function: A scale updater function for animating logarithmic transitions
+        """
+        # Create a value tracker for the logarithmic scale
+        scale_tracker = ValueTracker(from_scale)
+        
+        # Create the scale indicator with correct initial value
+        scale_indicator = Text(
+            f"10^{from_scale} m",
+            font_size=self.config["global_settings"].get("font_size", 24),
+            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+        ).to_corner(UR, buff=0.5)
+        
+        # Create the updater function that smoothly updates the indicator
+        def update_scale_indicator(text):
+            current_scale = scale_tracker.get_value()
+            new_text = Text(
+                f"10^{current_scale:.1f} m",
+                font_size=self.config["global_settings"].get("font_size", 24),
+                color=self.config["global_settings"].get("color_text", "#FFFFFF")
+            ).to_corner(UR, buff=0.5)
+            text.become(new_text)
+        
+        # Add the updater to the indicator
+        scale_indicator.add_updater(update_scale_indicator)
+        
+        return scale_indicator, scale_tracker
+    
+    def zoom_in(self, manim_scene, from_scene, to_scene, duration=None, easing="smooth"):
+        """
+        Handle zoom-in animation between scenes with true smooth logarithmic scaling
+        
+        Args:
+            manim_scene (Scene): The Manim scene object
+            from_scene (str): The name of the starting scene
+            to_scene (str): The name of the target scene
+            duration (float, optional): Animation duration in seconds
+            easing (str, optional): Easing function type
+        """
+        if duration is None:
+            duration = self.config["global_settings"].get("default_zoom_rate", 5)
+        
+        # Get the scene scale values
+        from_scale = self.scenes[from_scene]["scale"]
+        to_scale = self.scenes[to_scene]["scale"]
+        
+        print(f"Zoom in from {from_scene} (10^{from_scale}) to {to_scene} (10^{to_scale})")
+        
+        # Create scene objects
+        from_scene_obj = self._get_or_create_scene(manim_scene, from_scene)
+        to_scene_obj = self._get_or_create_scene(manim_scene, to_scene)
+        
+        # Create scene elements
+        from_elements = self._create_scene_elements(from_scene, from_scene_obj)
+        to_elements = self._create_scene_elements(to_scene, to_scene_obj)
+        
+        # Clear the scene
+        manim_scene.clear()
+        
+        # Create background
+        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
+        background = Rectangle(
+            width=FRAME_WIDTH * 4,  # Make it extra large to cover during zoom
+            height=FRAME_HEIGHT * 4,
+            fill_color=bg_color,
+            fill_opacity=1.0,
+            stroke_width=0
+        )
+        manim_scene.add(background)
+        
+        # Prepare from and to elements
+        from_elements.move_to(ORIGIN)
+        to_elements.move_to(ORIGIN)
+        to_elements.scale(0.01)  # Start very small
+        to_elements.set_opacity(0)  # Start invisible
+        
+        # Create scene labels
+        scene_label = Text(
+            from_scene,
+            font_size=self.config["global_settings"].get("font_size", 24),
+            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+        ).to_corner(UL, buff=0.5)
+        
+        # Create smooth logarithmic scale indicator
+        scale_indicator, scale_tracker = self._create_true_logarithmic_scale_updater(
+            from_scale, to_scale, duration
+        )
+        
+        # Add everything to the scene
+        manim_scene.add(from_elements, to_elements, scene_label, scale_indicator)
+        
+        # Calculate intermediate scale values for true smooth logarithmic scaling
+        # Number of animated frames (60fps × duration)
+        num_frames = int(60 * duration)
+        
+        # Determine the direction of scaling (zoom in = from larger to smaller objects)
+        scale_diff = abs(to_scale - from_scale)
+        
+        # For zoom animations, we need to:
+        # 1. Scale up the source object until it fills the screen
+        # 2. Cross-fade to the destination object 
+        # 3. Scale the destination object down to its proper size
+        
+        # Prepare animations
+        from_final_scale = 40.0  # Scale up to large size, then fade out
+        to_initial_scale = 0.01  # Start very small, grow to normal size
+        
+        # First half: grow from_elements and update scale
+        first_half = duration * 0.5
+        manim_scene.play(
+            from_elements.animate.scale(from_final_scale),
+            Transform(scene_label, 
+                     Text(from_scene + " → " + to_scene,
+                         font_size=self.config["global_settings"].get("font_size", 24),
+                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
+                     .to_corner(UL, buff=0.5)),
+            scale_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
+            run_time=first_half,
+            rate_func=rate_functions.ease_in_out_sine
+        )
+        
+        # Cross-fade at midpoint
+        manim_scene.play(
+            from_elements.animate.set_opacity(0),
+            to_elements.animate.set_opacity(1),
+            run_time=0.3,
+            rate_func=rate_functions.linear
+        )
+        
+        # Second half: shrink to_elements and continue updating scale
+        second_half = duration * 0.5
+        manim_scene.play(
+            to_elements.animate.scale(1/to_initial_scale),
+            Transform(scene_label, 
+                     Text(to_scene,
+                         font_size=self.config["global_settings"].get("font_size", 24),
+                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
+                     .to_corner(UL, buff=0.5)),
+            scale_tracker.animate.set_value(to_scale),
+            run_time=second_half,
+            rate_func=rate_functions.ease_in_out_sine
+        )
+        
+        # Remove updater from scale indicator
+        scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
+        
+        # Clean up the scene
+        manim_scene.remove(from_elements)
+        
+        # Update the current scene and scale
+        self.current_scene = to_scene
+        self.current_scale = to_scale
+    
+    def zoom_out(self, manim_scene, from_scene, to_scene, duration=None, easing="smooth"):
+        """
+        Handle zoom-out animation between scenes with true smooth logarithmic scaling
+        
+        Args:
+            manim_scene (Scene): The Manim scene object
+            from_scene (str): The name of the starting scene
+            to_scene (str): The name of the target scene
+            duration (float, optional): Animation duration in seconds
+            easing (str, optional): Easing function type
+        """
+        if duration is None:
+            duration = self.config["global_settings"].get("default_zoom_rate", 5)
+        
+        # Get the scene scale values
+        from_scale = self.scenes[from_scene]["scale"]
+        to_scale = self.scenes[to_scene]["scale"]
+        
+        print(f"Zoom out from {from_scene} (10^{from_scale}) to {to_scene} (10^{to_scale})")
+        
+        # Create scene objects
+        from_scene_obj = self._get_or_create_scene(manim_scene, from_scene)
+        to_scene_obj = self._get_or_create_scene(manim_scene, to_scene)
+        
+        # Create scene elements
+        from_elements = self._create_scene_elements(from_scene, from_scene_obj)
+        to_elements = self._create_scene_elements(to_scene, to_scene_obj)
+        
+        # Clear the scene
+        manim_scene.clear()
+        
+        # Create background
+        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
+        background = Rectangle(
+            width=FRAME_WIDTH * 4,  # Make it extra large to cover during zoom
+            height=FRAME_HEIGHT * 4,
+            fill_color=bg_color,
+            fill_opacity=1.0,
+            stroke_width=0
+        )
+        manim_scene.add(background)
+        
+        # Prepare from and to elements
+        from_elements.move_to(ORIGIN)
+        to_elements.move_to(ORIGIN)
+        to_elements.scale(100)  # Start very large
+        to_elements.set_opacity(0)  # Start invisible
+        
+        # Create scene labels
+        scene_label = Text(
+            from_scene,
+            font_size=self.config["global_settings"].get("font_size", 24),
+            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+        ).to_corner(UL, buff=0.5)
+        
+        # Create smooth logarithmic scale indicator
+        scale_indicator, scale_tracker = self._create_true_logarithmic_scale_updater(
+            from_scale, to_scale, duration
+        )
+        
+        # Add everything to the scene
+        manim_scene.add(from_elements, to_elements, scene_label, scale_indicator)
+        
+        # For zoom out, we:
+        # 1. Shrink the source object until it's very small
+        # 2. Cross-fade to the destination object which starts large
+        # 3. Scale the destination object down to its proper size
+        
+        # Prepare animations
+        from_final_scale = 0.01  # Shrink from normal to tiny
+        to_initial_scale = 100  # Start very large, shrink to normal
+        
+        # First half: shrink from_elements and update scale
+        first_half = duration * 0.5
+        manim_scene.play(
+            from_elements.animate.scale(from_final_scale),
+            Transform(scene_label, 
+                     Text(from_scene + " → " + to_scene,
+                         font_size=self.config["global_settings"].get("font_size", 24),
+                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
+                     .to_corner(UL, buff=0.5)),
+            scale_tracker.animate.set_value(from_scale + (to_scale - from_scale) * 0.5),
+            run_time=first_half,
+            rate_func=rate_functions.ease_in_out_sine
+        )
+        
+        # Cross-fade at midpoint
+        manim_scene.play(
+            from_elements.animate.set_opacity(0),
+            to_elements.animate.set_opacity(1),
+            run_time=0.3,
+            rate_func=rate_functions.linear
+        )
+        
+        # Second half: shrink to_elements and continue updating scale
+        second_half = duration * 0.5
+        manim_scene.play(
+            to_elements.animate.scale(1/to_initial_scale),
+            Transform(scene_label, 
+                     Text(to_scene,
+                         font_size=self.config["global_settings"].get("font_size", 24),
+                         color=self.config["global_settings"].get("color_text", "#FFFFFF"))
+                     .to_corner(UL, buff=0.5)),
+            scale_tracker.animate.set_value(to_scale),
+            run_time=second_half,
+            rate_func=rate_functions.ease_in_out_sine
+        )
+        
+        # Remove updater from scale indicator
+        scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
+        
+        # Clean up the scene
+        manim_scene.remove(from_elements)
+        
+        # Update the current scene and scale
+        self.current_scene = to_scene
+        self.current_scale = to_scale
+    
+    def cleanup_resources(self):
+        """
+        Clean up resources to prevent memory and semaphore leaks
+        """
+        print("Cleaning up active mobjects...")
+        # Clear references to active mobjects
+        self._active_mobjects.clear()
+        
+        # Clear scene instance cache
+        self._scene_instances.clear()
+        
+        # Explicitly run garbage collection
+        import gc
+        gc.collect()
+        
+        print("Resource cleanup completed")
+        
     def execute_animation_sequence(self, manim_scene):
         """
         Run the full animation sequence defined in config
@@ -589,80 +528,58 @@ class ZoomManager:
         if self.config.get("audio", {}).get("background_music"):
             self.audio_controller.start_background_music()
         
-        # Process each transition in the sequence
-        for i, transition in enumerate(self.config["animation_sequence"]):
-            from_scene_name = transition["from_scene"]
-            to_scene_name = transition["to_scene"]
-            direction = transition.get("direction", "in")
-            duration = transition.get("duration", 5)
-            easing = transition.get("easing_function", "smooth")
-            pause_before = transition.get("pause_before", 0)
-            pause_after = transition.get("pause_after", 0)
-            
-            # Log the current transition for debugging
-            print(f"Animating: {from_scene_name} -> {to_scene_name} ({direction})")
-            
-            # Apply pause before if specified
-            if pause_before > 0:
-                print(f"Waiting {pause_before}s before transition")
-                manim_scene.wait(pause_before)
-                current_time += pause_before
+        print(f"Starting animation sequence with {len(self.config['animation_sequence'])} transitions")
+        
+        try:
+            # Process each animation in the sequence
+            for i, transition in enumerate(self.config["animation_sequence"]):
+                print(f"Processing transition {i+1}/{len(self.config['animation_sequence'])}")
                 
-                # Check for narration during pause
-                self.audio_controller.check_narration_cues(current_time)
-            
-            # Execute the transition
-            try:
-                print(f"Preparing to execute {direction} transition from {from_scene_name} to {to_scene_name}")
+                from_scene = transition["from_scene"]
+                to_scene = transition["to_scene"]
+                direction = transition.get("direction", "in").lower()
+                duration = transition.get("duration", 5)
+                easing_function = transition.get("easing_function", "smooth")
+                pause_before = transition.get("pause_before", 0)
+                pause_after = transition.get("pause_after", 0)
                 
-                if direction == "in":
-                    print("Starting zoom-in transition")
-                    self.zoom_in(
-                        manim_scene, 
-                        from_scene_name, 
-                        to_scene_name, 
-                        duration, 
-                        easing
-                    )
-                    print("Zoom-in transition completed")
-                else:  # "out"
-                    print("Starting zoom-out transition")
-                    self.zoom_out(
-                        manim_scene, 
-                        from_scene_name, 
-                        to_scene_name, 
-                        duration, 
-                        easing
-                    )
-                    print("Zoom-out transition completed")
+                # Check if we should show scale indicator
+                show_scale = transition.get("scale_indicator_visible", True)
+                
+                # Wait before animation if needed
+                if pause_before > 0:
+                    print(f"Pausing for {pause_before} seconds before animation")
+                    manim_scene.wait(pause_before)
+                    current_time += pause_before
                     
+                    # Play narration if scheduled for this time
+                    self.audio_controller.check_narration_cues(current_time)
+                
+                # Perform the animation
+                print(f"Animating {direction} from {from_scene} to {to_scene} over {duration} seconds")
+                if direction == "in":
+                    self.zoom_in(manim_scene, from_scene, to_scene, duration, easing_function)
+                else:
+                    self.zoom_out(manim_scene, from_scene, to_scene, duration, easing_function)
+                
                 current_time += duration
                 
-                # Check for narration during transition
-                self.audio_controller.check_narration_cues(current_time)
-            except Exception as e:
-                import traceback
-                print(f"Error during {direction} transition: {e}")
-                print("Detailed traceback:")
-                traceback.print_exc()
-                
-                # Create a text message about the error
-                error_text = Text(
-                    f"Error during {direction} transition",
-                    color=RED
-                )
-                manim_scene.add(error_text)
-                manim_scene.wait(2)
-                manim_scene.remove(error_text)
-                
-            # Apply pause after if specified
-            if pause_after > 0:
-                print(f"Waiting {pause_after}s after transition")
-                manim_scene.wait(pause_after)
-                current_time += pause_after
-                
-                # Check for narration during pause
+                # Play narration if scheduled for this time
                 self.audio_controller.check_narration_cues(current_time)
                 
-        # Display final message
-        print(f"Animation sequence completed in {current_time}s")
+                # Wait after animation if needed
+                if pause_after > 0:
+                    print(f"Pausing for {pause_after} seconds after animation")
+                    manim_scene.wait(pause_after)
+                    current_time += pause_after
+                    
+                    # Play narration if scheduled for this time
+                    self.audio_controller.check_narration_cues(current_time)
+            
+            print("Animation sequence completed")
+        finally:
+            # Stop audio
+            self.audio_controller.stop_all()
+            
+            # Clean up resources to prevent leaks
+            self.cleanup_resources()

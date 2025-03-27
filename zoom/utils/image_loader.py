@@ -1,13 +1,15 @@
 """
-Image loading utility for NPQG Universe Zoom Animation
-Handles loading and scaling images for use in scenes
+Image loading utility for Universe Zoom Animation
+Implements a completely new approach to circular image masking and scaling
 """
 
 import os
+import numpy as np
+from PIL import Image, ImageDraw, ImageOps
 from manim import *
 
 class ImageLoader:
-    """Utility for loading and scaling images for use in scenes"""
+    """Utility for loading and creating properly masked circular images"""
     
     def __init__(self, config):
         """
@@ -18,7 +20,7 @@ class ImageLoader:
         """
         self.config = config
         self.image_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
-                                      "assets", "images")
+                                    "assets", "images")
         os.makedirs(self.image_dir, exist_ok=True)
         
         # Create subdirectories for different scales if they don't exist
@@ -28,8 +30,20 @@ class ImageLoader:
             "electron", "quark", "point_potential"
         ]
         
+        # Create directories if they don't exist
         for dir_name in self.scale_dirs:
             os.makedirs(os.path.join(self.image_dir, dir_name), exist_ok=True)
+            
+        # Keep a cache of processed images to avoid redundant processing
+        self._processed_image_cache = {}
+        
+        # Track temp files for cleanup on destruction
+        self._temp_files = []
+        
+        # Create a temporary directory for processed images
+        self.temp_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                                "temp", "processed_images")
+        os.makedirs(self.temp_dir, exist_ok=True)
     
     def get_image_for_scale(self, scale_name, image_index=0):
         """
@@ -40,7 +54,7 @@ class ImageLoader:
             image_index (int, optional): Index if multiple images are available
             
         Returns:
-            ImageMobject or None: Loaded image or None if not found
+            str or None: Path to the image file or None if not found
         """
         print(f"Attempting to load image for scale: {scale_name}")
         
@@ -73,7 +87,7 @@ class ImageLoader:
         
         # List image files in the directory
         image_files = []
-        for ext in ['.png', '.jpg', '.jpeg', '.svg']:
+        for ext in ['.png', '.jpg', '.jpeg']:
             found_files = [f for f in os.listdir(dir_path) if f.lower().endswith(ext)]
             if found_files:
                 print(f"Found {len(found_files)} files with extension {ext}: {found_files}")
@@ -97,125 +111,134 @@ class ImageLoader:
                 print("No images available")
                 return None
         
-        # Load the image
+        # Return the full path to the image
+        image_path = os.path.join(dir_path, image_file)
+        print(f"Using image from: {image_path}")
+        return image_path
+    
+    def create_circular_masked_image(self, image_path, radius):
+        """
+        Create a circular image using PIL for preprocessing and Manim ImageMobject for display
+        
+        Args:
+            image_path (str): Path to the source image
+            radius (float): Radius of the circle in Manim units
+            
+        Returns:
+            Mobject: A mobject containing the properly masked circular image
+        """
+        if not image_path or not os.path.exists(image_path):
+            print(f"Image path does not exist: {image_path}")
+            return self._create_fallback_circle(radius)
+        
+        # Check if we already processed this image at this radius
+        cache_key = f"{image_path}_{radius}"
+        if cache_key in self._processed_image_cache:
+            print(f"Using cached processed image for {image_path}")
+            return self._processed_image_cache[cache_key]
+        
         try:
-            image_path = os.path.join(dir_path, image_file)
-            print(f"Loading image from: {image_path}")
-            image = ImageMobject(image_path)
-            print(f"Successfully loaded image: {image_path}")
-            return image
+            # Generate a unique filename for the processed image
+            basename = os.path.basename(image_path)
+            name, ext = os.path.splitext(basename)
+            processed_path = os.path.join(self.temp_dir, f"{name}_circular{ext}")
+            
+            # Track the file for cleanup
+            self._temp_files.append(processed_path)
+            
+            # Open the source image with PIL
+            img = Image.open(image_path).convert("RGBA")
+            
+            # Create a circular mask
+            mask = Image.new('L', img.size, 0)
+            draw = ImageDraw.Draw(mask)
+            
+            # Calculate the maximum inscribed circle
+            width, height = img.size
+            diameter = min(width, height)
+            center_x, center_y = width // 2, height // 2
+            
+            # Draw a white circle on the mask
+            draw.ellipse((center_x - diameter // 2, 
+                         center_y - diameter // 2,
+                         center_x + diameter // 2, 
+                         center_y + diameter // 2), 
+                         fill=255)
+            
+            # Apply the mask
+            img_masked = Image.new("RGBA", img.size, (0, 0, 0, 0))
+            img_masked.paste(img, (0, 0), mask)
+            
+            # Save the processed image
+            img_masked.save(processed_path)
+            
+            # Load the processed image with Manim
+            image_mobject = ImageMobject(processed_path)
+            
+            # Scale the image to match the desired radius
+            current_width = image_mobject.get_width()
+            scale_factor = (radius * 2) / current_width
+            image_mobject.scale(scale_factor)
+            
+            # Create a circular outline
+            outline = Circle(
+                radius=radius,
+                stroke_width=2,
+                stroke_color=WHITE,
+                fill_opacity=0
+            )
+            
+            # Group the image and outline
+            result = Group(image_mobject, outline)
+            
+            # Cache the result
+            self._processed_image_cache[cache_key] = result
+            
+            return result
+            
         except Exception as e:
-            print(f"Error loading image {image_path}: {e}")
-            return None
+            print(f"Error creating circular masked image: {e}")
+            return self._create_fallback_circle(radius)
     
-    def create_circular_image(self, image, circle_radius):
-        """
-        Create a circular image by masking a rectangular image
-        
-        Args:
-            image (ImageMobject): The image to make circular
-            circle_radius (float): Radius of the circle
-            
-        Returns:
-            Group: A group containing the masked circular image
-        """
-        if image is None:
-            return None
-            
-        # Create a reference circle for masking
-        mask_circle = Circle(
-            radius=circle_radius,
-            fill_opacity=1,
-            fill_color=WHITE,
-            stroke_width=0
-        )
-        
-        # Calculate scaling factor - scale image larger than needed
-        # to ensure it fills the entire circle
-        image_width = image.get_width()
-        image_height = image.get_height()
-        max_dimension = max(image_width, image_height)
-        
-        # Scale to slightly larger than circle diameter to avoid showing edges
-        scale_factor = (circle_radius * 2.2) / max_dimension
-        image.scale(scale_factor)
-        
-        # Center the image
-        image.move_to(ORIGIN)
-        
-        # Return a custom ImageWithCircleMask object
-        return self.create_masked_image(image, mask_circle, circle_radius)
-    
-    def create_masked_image(self, image, mask, radius):
-        """
-        Create a masked circular image using SVG clipping
-        
-        Args:
-            image (ImageMobject): The image to mask
-            mask (Circle): The circular mask
-            radius (float): The radius of the circle
-            
-        Returns:
-            Group: A group containing the properly masked circular image
-        """
-        # Create a circle that will form the visible boundary
+    def _create_fallback_circle(self, radius):
+        """Create a simple circle as a fallback when image processing fails"""
         circle = Circle(
             radius=radius,
-            stroke_width=0,
-            fill_opacity=1,
-            fill_color="#333333"  # Dark background
-        )
-        
-        # We'll stack these elements:
-        # 1. A background circle (dark color)
-        # 2. The image positioned to fill the circle
-        # 3. A circular outline for the edge
-        
-        outline = Circle(
-            radius=radius,
-            stroke_width=2,
             stroke_color=WHITE,
-            fill_opacity=0
+            stroke_width=2,
+            fill_color="#333333",
+            fill_opacity=0.5
         )
-        
-        # This is our custom "masking" technique in Manim
-        # We'll use the zIndex feature to ensure proper ordering
-        image.set_z_index(10)  # Place image above background
-        circle.set_z_index(9)  # Place background below image
-        outline.set_z_index(11)  # Place outline on top
-        
-        # Create a group with all elements
-        result = Group(circle, image, outline)
-        
-        return result
+        return circle
     
-    def fit_image_to_circle(self, image, circle_radius):
+    def get_fitted_image(self, scale_name, radius, image_index=0):
         """
-        Legacy method maintained for compatibility
-        Now uses the new circular image masking technique
-        
-        Args:
-            image (ImageMobject): The image to scale
-            circle_radius (float): Radius of the circle to fit into
-            
-        Returns:
-            Group: A group containing the masked circular image
-        """
-        return self.create_circular_image(image, circle_radius)
-    
-    def get_fitted_image(self, scale_name, circle_radius, image_index=0):
-        """
-        Load an image for a scale and fit it to a circle
+        Load an image for a scale and fit it to a circle with proper masking
         
         Args:
             scale_name (str): Name of the scale
-            circle_radius (float): Radius of the circle to fit into
+            radius (float): Radius of the circle
             image_index (int, optional): Index if multiple images are available
             
         Returns:
-            ImageMobject or None: Fitted image or None if not found
+            Mobject: The circular masked image as a Manim mobject
         """
-        image = self.get_image_for_scale(scale_name, image_index)
-        if image:
-            return self.fit_image_to_circle(image, circle_radius)
-        return None
+        image_path = self.get_image_for_scale(scale_name, image_index)
+        if image_path:
+            return self.create_circular_masked_image(image_path, radius)
+        return self._create_fallback_circle(radius)
+        
+    def cleanup(self):
+        """Clean up temporary files created during image processing"""
+        for file_path in self._temp_files:
+            try:
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+                    print(f"Cleaned up temporary file: {file_path}")
+            except Exception as e:
+                print(f"Error cleaning up temp file {file_path}: {e}")
+        self._temp_files = []
+        
+    def __del__(self):
+        """Destructor to ensure cleanup when the object is garbage collected"""
+        self.cleanup()
