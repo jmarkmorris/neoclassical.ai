@@ -42,7 +42,6 @@ from scenes.atom_scene import AtomScene
 from scenes.electron_scene import ElectronScene
 from scenes.quark_scene import QuarkScene
 from scenes.point_potential_scene import PointPotentialScene
-from core.audio_controller import AudioController
 
 class ZoomManager:
     """Manages scene transitions and zoom animations"""
@@ -65,7 +64,6 @@ class ZoomManager:
         
         # Now calculate total duration (which depends on scenes being initialized)
         self.total_duration = self._calculate_total_duration()
-        self.audio_controller = AudioController(self.config.get("audio", {}))
         
         # For caching scene objects
         self._scene_instances = {}
@@ -349,12 +347,23 @@ class ZoomManager:
         to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
         # Create scene labels with simple font
-        scene_label = Text(
+        from_label = Text(
             from_scene,
             font="Arial", 
             font_size=self.config["global_settings"].get("font_size", 36),
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
         ).to_corner(UL, buff=0.5)
+        
+        to_label = Text(
+            to_scene,
+            font="Arial", 
+            font_size=self.config["global_settings"].get("font_size", 36),
+            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+        ).to_corner(UL, buff=0.5)
+        
+        # Start with from_label visible, to_label invisible
+        from_label.set_opacity(1.0)
+        to_label.set_opacity(0.0)
         
         # Create smooth logarithmic scale indicator
         scale_indicator, scale_tracker = self._create_true_logarithmic_scale_updater(
@@ -362,12 +371,15 @@ class ZoomManager:
         )
         
         # Add everything to the scene
-        manim_scene.add(from_elements, to_elements, scene_label, scale_indicator)
+        manim_scene.add(from_elements, to_elements, from_label, to_label, scale_indicator)
         
         # Create a single continuous animation with cross-fade in the middle
         # Determine the cross-fade region (middle 20% of the animation)
         fade_start = 0.4
         fade_end = 0.6
+        
+        # Background color for fading back when elements leave
+        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
         
         # Create animation sequences
         animations = []
@@ -382,20 +394,7 @@ class ZoomManager:
             to_elements.animate.scale(1/initial_scale_ratio)  # Scale from tiny to normal
         )
         
-        # 3. Create text transition animation with simple font
-        animations.append(
-            Transform(
-                scene_label, 
-                Text(
-                    to_scene,
-                    font="Arial",
-                    font_size=self.config["global_settings"].get("font_size", 36),
-                    color=self.config["global_settings"].get("color_text", "#FFFFFF")
-                ).to_corner(UL, buff=0.5)
-            )
-        )
-        
-        # 4. Create scale tracker animation
+        # 3. Create scale tracker animation
         animations.append(
             scale_tracker.animate.set_value(to_scale)
         )
@@ -432,17 +431,37 @@ class ZoomManager:
             else:
                 mob.set_opacity(1.0)
         
+        def label_updater(from_label, to_label, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            # Crossfade the labels in the middle
+            if progress < fade_start:
+                from_label.set_opacity(1.0)
+                to_label.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                from_label.set_opacity(1.0 - fade_progress)
+                to_label.set_opacity(fade_progress)
+            else:
+                from_label.set_opacity(0.0)
+                to_label.set_opacity(1.0)
+        
+        # Create a lambda function for label updater that captures both labels
+        label_updater_fn = lambda dt: label_updater(from_label, to_label, dt)
+        
         # Add updaters for opacity to handle crossfade
         from_elements.add_updater(from_opacity_updater)
         to_elements.add_updater(to_opacity_updater)
-        
-        # Wait a tiny amount to let the updaters work
-        manim_scene.wait(0.01)
+        from_label.add_updater(label_updater_fn)
         
         # Remove updaters
         from_elements.remove_updater(from_opacity_updater)
         to_elements.remove_updater(to_opacity_updater)
+        from_label.remove_updater(label_updater_fn)
         scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
+        
+        # Clean up scene
+        manim_scene.remove(from_label)
         
         # Clean up the scene
         manim_scene.remove(from_elements)
@@ -504,12 +523,23 @@ class ZoomManager:
         to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
         # Create scene labels with simple font
-        scene_label = Text(
+        from_label = Text(
             from_scene,
             font="Arial",
             font_size=self.config["global_settings"].get("font_size", 36),
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
         ).to_corner(UL, buff=0.5)
+        
+        to_label = Text(
+            to_scene,
+            font="Arial",
+            font_size=self.config["global_settings"].get("font_size", 36),
+            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+        ).to_corner(UL, buff=0.5)
+        
+        # Start with from_label visible, to_label invisible
+        from_label.set_opacity(1.0)
+        to_label.set_opacity(0.0)
         
         # Create smooth logarithmic scale indicator
         scale_indicator, scale_tracker = self._create_true_logarithmic_scale_updater(
@@ -517,12 +547,15 @@ class ZoomManager:
         )
         
         # Add everything to the scene
-        manim_scene.add(from_elements, to_elements, scene_label, scale_indicator)
+        manim_scene.add(from_elements, to_elements, from_label, to_label, scale_indicator)
         
         # Create a single continuous animation with cross-fade in the middle
         # Determine the cross-fade region (middle 20% of the animation)
         fade_start = 0.4
         fade_end = 0.6
+        
+        # Background color for fading back when elements leave
+        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
         
         # Create animation sequences
         animations = []
@@ -537,20 +570,7 @@ class ZoomManager:
             to_elements.animate.scale(1/initial_scale_ratio)  # Scale from huge to normal
         )
         
-        # 3. Create text transition animation with simple font
-        animations.append(
-            Transform(
-                scene_label, 
-                Text(
-                    to_scene,
-                    font="Arial",
-                    font_size=self.config["global_settings"].get("font_size", 36),
-                    color=self.config["global_settings"].get("color_text", "#FFFFFF")
-                ).to_corner(UL, buff=0.5)
-            )
-        )
-        
-        # 4. Create scale tracker animation
+        # 3. Create scale tracker animation
         animations.append(
             scale_tracker.animate.set_value(to_scale)
         )
@@ -587,17 +607,37 @@ class ZoomManager:
             else:
                 mob.set_opacity(1.0)
         
+        def label_updater(from_label, to_label, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            # Crossfade the labels in the middle
+            if progress < fade_start:
+                from_label.set_opacity(1.0)
+                to_label.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                from_label.set_opacity(1.0 - fade_progress)
+                to_label.set_opacity(fade_progress)
+            else:
+                from_label.set_opacity(0.0)
+                to_label.set_opacity(1.0)
+        
+        # Create a lambda function for label updater that captures both labels
+        label_updater_fn = lambda dt: label_updater(from_label, to_label, dt)
+        
         # Add updaters for opacity to handle crossfade
         from_elements.add_updater(from_opacity_updater)
         to_elements.add_updater(to_opacity_updater)
-        
-        # Wait a tiny amount to let the updaters work
-        manim_scene.wait(0.01)
+        from_label.add_updater(label_updater_fn)
         
         # Remove updaters
         from_elements.remove_updater(from_opacity_updater)
         to_elements.remove_updater(to_opacity_updater)
+        from_label.remove_updater(label_updater_fn)
         scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
+        
+        # Clean up scene
+        manim_scene.remove(from_label)
         
         # Clean up the scene
         manim_scene.remove(from_elements)
@@ -640,10 +680,6 @@ class ZoomManager:
             # Some Manim versions don't allow setting background_color directly
             print(f"Note: Could not set camera background color directly")
         
-        # Start audio if configured
-        if self.config.get("audio", {}).get("background_music"):
-            self.audio_controller.start_background_music()
-        
         print(f"Starting animation sequence with {len(self.config['animation_sequence'])} transitions")
         
         try:
@@ -656,20 +692,13 @@ class ZoomManager:
                 direction = transition.get("direction", "in").lower()
                 duration = transition.get("duration", 5)
                 easing_function = transition.get("easing_function", "smooth")
-                pause_before = transition.get("pause_before", 0)
-                pause_after = transition.get("pause_after", 0)
+                
+                # Override pause values to ensure continuous animation
+                pause_before = 0
+                pause_after = 0
                 
                 # Check if we should show scale indicator
                 show_scale = transition.get("scale_indicator_visible", True)
-                
-                # Wait before animation if needed
-                if pause_before > 0:
-                    print(f"Pausing for {pause_before} seconds before animation")
-                    manim_scene.wait(pause_before)
-                    current_time += pause_before
-                    
-                    # Play narration if scheduled for this time
-                    self.audio_controller.check_narration_cues(current_time)
                 
                 # Get the scene scale values
                 from_scale = self.scenes[from_scene]["scale"]
@@ -690,23 +719,8 @@ class ZoomManager:
                     self.zoom_out(manim_scene, from_scene, to_scene, duration, easing_function)
                 
                 current_time += duration
-                
-                # Play narration if scheduled for this time
-                self.audio_controller.check_narration_cues(current_time)
-                
-                # Wait after animation if needed
-                if pause_after > 0:
-                    print(f"Pausing for {pause_after} seconds after animation")
-                    manim_scene.wait(pause_after)
-                    current_time += pause_after
-                    
-                    # Play narration if scheduled for this time
-                    self.audio_controller.check_narration_cues(current_time)
             
             print("Animation sequence completed")
         finally:
-            # Stop audio
-            self.audio_controller.stop_all()
-            
             # Clean up resources to prevent leaks
             self.cleanup_resources()
