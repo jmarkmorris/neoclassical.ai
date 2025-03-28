@@ -26,19 +26,19 @@ class SimpleZoomScene(Scene):
         self.add(background)
         
         # Create the universe scale scene
-        universe_scale = Text("10^26 m", font_size=24)
+        universe_scale = Text("10^26 m", font="Arial", font_size=24)
         universe_scale.to_corner(UP + RIGHT, buff=0.5)
         
         universe_circle = Circle(radius=3, stroke_color=WHITE)
-        universe_label = Text("Observable Universe", font_size=24)
+        universe_label = Text("Observable Universe", font="Arial", font_size=24)
         universe = VGroup(universe_circle, universe_label)
         
         # Create the galaxy cluster scale scene
-        galaxy_scale = Text("10^23 m", font_size=24)
+        galaxy_scale = Text("10^23 m", font="Arial", font_size=24)
         galaxy_scale.to_corner(UP + RIGHT, buff=0.5)
         
         galaxy_circle = Circle(radius=3, stroke_color=WHITE)
-        galaxy_label = Text("Galaxy Cluster", font_size=24)
+        galaxy_label = Text("Galaxy Cluster", font="Arial", font_size=24)
         galaxy = VGroup(galaxy_circle, galaxy_label)
         
         # Start with universe scene

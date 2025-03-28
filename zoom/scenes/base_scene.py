@@ -72,6 +72,7 @@ class ZoomableScene:
         # Create the scale indicator text
         self.scale_indicator = Text(
             scale_text,
+            font="Arial",
             font_size=font_size,
             color=text_color
         )
@@ -162,6 +163,7 @@ class ZoomableScene:
         # Create new indicator text
         new_indicator = Text(
             new_text,
+            font="Arial",
             font_size=font_size,
             color=text_color
         )
