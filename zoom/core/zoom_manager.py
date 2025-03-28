@@ -208,19 +208,18 @@ class ZoomManager:
         
         # If we reach here, use default elements
         print(f"Using default elements for {scene_name}")
+        # Create a solid circle with z-index=1 to ensure it's in front of background
         default_circle = Circle(
             radius=3,
             stroke_color=WHITE,
-            fill_opacity=0
+            fill_color=self.config["global_settings"].get("fill_color", "#3366CC"),
+            fill_opacity=self.config["global_settings"].get("fill_opacity", 0.8),
+            z_index=1  # Ensure circle is above background
         )
-        default_label = Text(
-            scene_name,
-            font_size=self.config["global_settings"].get("font_size", 24),
-            color=WHITE
-        )
+        
         # Track for cleanup
-        self._active_mobjects.extend([default_circle, default_label])
-        elements = Group(default_circle, default_label)
+        self._active_mobjects.append(default_circle)
+        elements = Group(default_circle)
         return elements
     
     def _get_or_create_scene(self, manim_scene, scene_name):
@@ -347,20 +346,40 @@ class ZoomManager:
         to_elements.scale(initial_scale_ratio)  
         to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
+        # Get a reference to the circle in from_elements to position the label
+        # Assume the first submobject is the circle
+        from_circle = from_elements[0] if len(from_elements.submobjects) > 0 else None
+        to_circle = to_elements[0] if len(to_elements.submobjects) > 0 else None
+        
         # Create scene labels with simple font
+        label_font_size = self.config["global_settings"].get("font_size", 36)
+        
+        # Create labels positioned to the right of the circles
         from_label = Text(
             from_scene,
             font="Arial", 
-            font_size=self.config["global_settings"].get("font_size", 36),
+            font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        ).to_corner(UL, buff=0.5)
+        )
         
         to_label = Text(
             to_scene,
             font="Arial", 
-            font_size=self.config["global_settings"].get("font_size", 36),
+            font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        ).to_corner(UL, buff=0.5)
+        )
+        
+        # Position labels to the right of their circles
+        if from_circle:
+            from_label.next_to(from_circle, RIGHT, buff=0.5)
+        else:
+            from_label.to_corner(UL, buff=0.5)  # Fallback
+            
+        if to_circle:
+            to_label.next_to(to_circle, RIGHT, buff=0.5)
+            to_label.scale(initial_scale_ratio)  # Scale down to match initial circle size
+        else:
+            to_label.to_corner(UL, buff=0.5)  # Fallback
         
         # Start with from_label visible, to_label invisible
         from_label.set_opacity(1.0)
@@ -378,6 +397,10 @@ class ZoomManager:
         # Extend label transition to 40% of the animation (from 20%)
         fade_start = 0.3  # Start fade earlier
         fade_end = 0.7    # End fade later
+        
+        # Configure dissolve effect parameters
+        dissolve_threshold = 0.95  # When circle reaches 95% of frame height
+        dissolve_duration = 2.0    # 2 second dissolve effect
         
         # Background color for fading back when elements leave
         bg_color = self.config["global_settings"].get("background_color", "#4B0082")
@@ -411,8 +434,22 @@ class ZoomManager:
         def from_opacity_updater(mob, dt):
             # Calculate progress as a fraction between 0 and 1
             progress = manim_scene.renderer.time / duration
-            # Fade out from 1 to 0 during the middle region
-            if progress < fade_start:
+            
+            # Get the current circle size relative to frame height (if available)
+            circle_relative_size = 0
+            if len(mob.submobjects) > 0 and hasattr(mob.submobjects[0], 'height'):
+                circle_relative_size = mob.submobjects[0].height * mob.get_scale() / FRAME_HEIGHT
+            
+            # Dissolve when circle exceeds threshold size
+            if circle_relative_size >= dissolve_threshold:
+                # Calculate time into the dissolve effect
+                time_over_threshold = manim_scene.renderer.time - (duration * (1 - dissolve_threshold))
+                # Normalize time to dissolve duration
+                dissolve_progress = min(1.0, time_over_threshold / dissolve_duration)
+                # Apply the dissolve effect
+                mob.set_opacity(max(0, 1.0 - dissolve_progress))
+            # Standard crossfade in middle of animation
+            elif progress < fade_start:
                 mob.set_opacity(1.0)
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
@@ -432,33 +469,64 @@ class ZoomManager:
             else:
                 mob.set_opacity(1.0)
         
-        def label_updater(from_label, to_label, dt):
+        def from_label_updater(label, dt):
             # Calculate progress as a fraction between 0 and 1
             progress = manim_scene.renderer.time / duration
-            # Crossfade the labels in the middle
-            if progress < fade_start:
-                from_label.set_opacity(1.0)
-                to_label.set_opacity(0.0)
+            
+            # Always keep label next to circle (makes label zoom with circle)
+            if from_circle:
+                label.next_to(from_circle, RIGHT, buff=0.5)
+                
+            # Get the current circle size relative to frame height (if available)
+            circle_relative_size = 0
+            if from_circle and hasattr(from_circle, 'height'):
+                circle_relative_size = from_circle.height * from_elements.get_scale() / FRAME_HEIGHT
+                
+            # Dissolve when circle exceeds threshold size
+            if circle_relative_size >= dissolve_threshold:
+                # Calculate time into the dissolve effect
+                time_over_threshold = manim_scene.renderer.time - (duration * (1 - dissolve_threshold))
+                # Normalize time to dissolve duration
+                dissolve_progress = min(1.0, time_over_threshold / dissolve_duration)
+                # Apply the dissolve effect
+                label.set_opacity(max(0, 1.0 - dissolve_progress))
+            # Standard crossfade in middle of animation
+            elif progress < fade_start:
+                label.set_opacity(1.0)
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                from_label.set_opacity(1.0 - fade_progress)
-                to_label.set_opacity(fade_progress)
+                label.set_opacity(1.0 - fade_progress)
             else:
-                from_label.set_opacity(0.0)
-                to_label.set_opacity(1.0)
+                label.set_opacity(0.0)
         
-        # Create a lambda function for label updater that captures both labels
-        label_updater_fn = lambda dt: label_updater(from_label, to_label, dt)
+        def to_label_updater(label, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            
+            # Always keep label next to circle (makes label zoom with circle)
+            if to_circle:
+                label.next_to(to_circle, RIGHT, buff=0.5)
+                
+            # Fade in from 0 to 1 during the middle region
+            if progress < fade_start:
+                label.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                label.set_opacity(fade_progress)
+            else:
+                label.set_opacity(1.0)
         
         # Add updaters for opacity to handle crossfade
         from_elements.add_updater(from_opacity_updater)
         to_elements.add_updater(to_opacity_updater)
-        from_label.add_updater(label_updater_fn)
+        from_label.add_updater(from_label_updater)
+        to_label.add_updater(to_label_updater)
         
         # Remove updaters
         from_elements.remove_updater(from_opacity_updater)
         to_elements.remove_updater(to_opacity_updater)
-        from_label.remove_updater(label_updater_fn)
+        from_label.remove_updater(from_label_updater)
+        to_label.remove_updater(to_label_updater)
         scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
         
         # Clean up scene
@@ -524,20 +592,40 @@ class ZoomManager:
         to_elements.scale(initial_scale_ratio)  # Start very large
         to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
+        # Get a reference to the circle in from_elements to position the label
+        # Assume the first submobject is the circle
+        from_circle = from_elements[0] if len(from_elements.submobjects) > 0 else None
+        to_circle = to_elements[0] if len(to_elements.submobjects) > 0 else None
+        
         # Create scene labels with simple font
+        label_font_size = self.config["global_settings"].get("font_size", 36)
+        
+        # Create labels positioned to the right of the circles
         from_label = Text(
             from_scene,
             font="Arial",
-            font_size=self.config["global_settings"].get("font_size", 36),
+            font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        ).to_corner(UL, buff=0.5)
+        )
         
         to_label = Text(
             to_scene,
             font="Arial",
-            font_size=self.config["global_settings"].get("font_size", 36),
+            font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
-        ).to_corner(UL, buff=0.5)
+        )
+        
+        # Position labels to the right of their circles
+        if from_circle:
+            from_label.next_to(from_circle, RIGHT, buff=0.5)
+        else:
+            from_label.to_corner(UL, buff=0.5)  # Fallback
+            
+        if to_circle:
+            to_label.next_to(to_circle, RIGHT, buff=0.5)
+            to_label.scale(initial_scale_ratio)  # Scale down to match initial circle size
+        else:
+            to_label.to_corner(UL, buff=0.5)  # Fallback
         
         # Start with from_label visible, to_label invisible
         from_label.set_opacity(1.0)
@@ -555,6 +643,10 @@ class ZoomManager:
         # Extend label transition to 40% of the animation (from 20%)
         fade_start = 0.3  # Start fade earlier
         fade_end = 0.7    # End fade later
+        
+        # Configure dissolve effect parameters
+        dissolve_threshold = 0.95  # When circle reaches 95% of frame height
+        dissolve_duration = 2.0    # 2 second dissolve effect
         
         # Background color for fading back when elements leave
         bg_color = self.config["global_settings"].get("background_color", "#4B0082")
@@ -588,8 +680,22 @@ class ZoomManager:
         def from_opacity_updater(mob, dt):
             # Calculate progress as a fraction between 0 and 1
             progress = manim_scene.renderer.time / duration
-            # Fade out from 1 to 0 during the middle region
-            if progress < fade_start:
+            
+            # Get the current circle size relative to frame height (if available)
+            circle_relative_size = 0
+            if len(mob.submobjects) > 0 and hasattr(mob.submobjects[0], 'height'):
+                circle_relative_size = mob.submobjects[0].height * mob.get_scale() / FRAME_HEIGHT
+            
+            # Dissolve when circle exceeds threshold size
+            if circle_relative_size >= dissolve_threshold:
+                # Calculate time into the dissolve effect
+                time_over_threshold = manim_scene.renderer.time - (duration * (1 - dissolve_threshold))
+                # Normalize time to dissolve duration
+                dissolve_progress = min(1.0, time_over_threshold / dissolve_duration)
+                # Apply the dissolve effect
+                mob.set_opacity(max(0, 1.0 - dissolve_progress))
+            # Standard crossfade in middle of animation
+            elif progress < fade_start:
                 mob.set_opacity(1.0)
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
@@ -609,33 +715,64 @@ class ZoomManager:
             else:
                 mob.set_opacity(1.0)
         
-        def label_updater(from_label, to_label, dt):
+        def from_label_updater(label, dt):
             # Calculate progress as a fraction between 0 and 1
             progress = manim_scene.renderer.time / duration
-            # Crossfade the labels in the middle
-            if progress < fade_start:
-                from_label.set_opacity(1.0)
-                to_label.set_opacity(0.0)
+            
+            # Always keep label next to circle (makes label zoom with circle)
+            if from_circle:
+                label.next_to(from_circle, RIGHT, buff=0.5)
+                
+            # Get the current circle size relative to frame height (if available)
+            circle_relative_size = 0
+            if from_circle and hasattr(from_circle, 'height'):
+                circle_relative_size = from_circle.height * from_elements.get_scale() / FRAME_HEIGHT
+                
+            # Dissolve when circle exceeds threshold size
+            if circle_relative_size >= dissolve_threshold:
+                # Calculate time into the dissolve effect
+                time_over_threshold = manim_scene.renderer.time - (duration * (1 - dissolve_threshold))
+                # Normalize time to dissolve duration
+                dissolve_progress = min(1.0, time_over_threshold / dissolve_duration)
+                # Apply the dissolve effect
+                label.set_opacity(max(0, 1.0 - dissolve_progress))
+            # Standard crossfade in middle of animation
+            elif progress < fade_start:
+                label.set_opacity(1.0)
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                from_label.set_opacity(1.0 - fade_progress)
-                to_label.set_opacity(fade_progress)
+                label.set_opacity(1.0 - fade_progress)
             else:
-                from_label.set_opacity(0.0)
-                to_label.set_opacity(1.0)
+                label.set_opacity(0.0)
         
-        # Create a lambda function for label updater that captures both labels
-        label_updater_fn = lambda dt: label_updater(from_label, to_label, dt)
+        def to_label_updater(label, dt):
+            # Calculate progress as a fraction between 0 and 1
+            progress = manim_scene.renderer.time / duration
+            
+            # Always keep label next to circle (makes label zoom with circle)
+            if to_circle:
+                label.next_to(to_circle, RIGHT, buff=0.5)
+                
+            # Fade in from 0 to 1 during the middle region
+            if progress < fade_start:
+                label.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                label.set_opacity(fade_progress)
+            else:
+                label.set_opacity(1.0)
         
         # Add updaters for opacity to handle crossfade
         from_elements.add_updater(from_opacity_updater)
         to_elements.add_updater(to_opacity_updater)
-        from_label.add_updater(label_updater_fn)
+        from_label.add_updater(from_label_updater)
+        to_label.add_updater(to_label_updater)
         
         # Remove updaters
         from_elements.remove_updater(from_opacity_updater)
         to_elements.remove_updater(to_opacity_updater)
-        from_label.remove_updater(label_updater_fn)
+        from_label.remove_updater(from_label_updater)
+        to_label.remove_updater(to_label_updater)
         scale_indicator.remove_updater(scale_indicator.get_updaters()[0])
         
         # Clean up scene
@@ -647,6 +784,13 @@ class ZoomManager:
         # Update the current scene and scale
         self.current_scene = to_scene
         self.current_scale = to_scale
+    
+    def _debug_elements(self, elements, name=""):
+        """Print debug info about elements"""
+        print(f"DEBUG {name} elements: {elements}, submobjects: {len(elements.submobjects)}")
+        if len(elements.submobjects) > 0:
+            for i, sub in enumerate(elements.submobjects):
+                print(f"  Submobject {i}: {sub}, type: {type(sub)}")
     
     def cleanup_resources(self):
         """

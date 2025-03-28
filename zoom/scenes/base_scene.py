@@ -128,7 +128,7 @@ class ZoomableScene:
             fill_color = self.config["global_settings"].get("fill_color", "#3366CC")
             fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
             
-            # Create a plain circle with solid color fill
+            # Create a plain circle with solid color fill (no label)
             circle = Circle(
                 radius=radius,
                 stroke_color=circle_color,
