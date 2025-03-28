@@ -5,7 +5,7 @@ Improved NPQG Universe Zoom Animation based on circle_with_label_demo.py
 - Labels zoom with circles
 - Circles and labels dissolve at 95% of frame height
 - Continuous zooming without pauses
-- Properly formatted 10^n scale indicators
+- Integer-only scale indicators
 """
 
 from manim import *
@@ -72,7 +72,7 @@ class ZoomAnimation(Scene):
             if "duration" in transition:
                 duration = transition["duration"]
             
-            print(f"Animating {direction} from {from_scene} (10^{from_scale}) to {to_scene} (10^{to_scale}), Duration: {duration}")
+            print(f"Animating {direction} from {from_scene} (10^{int(round(from_scale))}) to {to_scene} (10^{int(round(to_scale))}), Duration: {duration}")
             
             if i == 0:
                 # For the first transition, initialize the scene
@@ -129,11 +129,12 @@ class ZoomAnimation(Scene):
             from_scene,
             font="Arial",
             font_size=font_size,
-            color=text_color
+            color=text_color,
+            z_index=2  # Higher z-index to stay on top
         ).next_to(self.current_circle, RIGHT, buff=0.5)
         
-        # Create scale indicator with properly formatted integer
-        scale_text = f"10^{int(from_scale)}" if abs(from_scale - round(from_scale)) < 0.1 else f"10^{from_scale:.1f}"
+        # Create scale indicator with integer value only
+        scale_text = f"10^{int(round(from_scale))}"
         self.scale_indicator = Text(
             f"{scale_text} m",
             font="Arial",
@@ -166,16 +167,17 @@ class ZoomAnimation(Scene):
             z_index=1
         )
         
-        # Create the next label
+        # Create the next label with a higher z-index to ensure it's above other elements
         to_label = Text(
             to_scene,
             font="Arial",
             font_size=font_size,
-            color=text_color
+            color=text_color,
+            z_index=5  # Very high z-index to ensure it stays on top
         ).next_to(to_circle, RIGHT, buff=0.5)
         
         # Scale down to match circle but keep proportions
-        to_label.scale(0.01)  # Scale down with the circle but don't make too small
+        to_label.scale(0.01)  # Scale down with the circle
         to_label.set_opacity(0)  # Start invisible but will fade in
         
         # Add new elements to scene
@@ -208,26 +210,26 @@ class ZoomAnimation(Scene):
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 label.set_opacity(max(0, 1.0 - dissolve_progress))
         
-        # Updater for second label - follow circle and fade in
+        # Updater for second label - directly tied to circle size
         def update_to_label(label):
+            # Make sure the label stays with its circle
             label.next_to(to_circle, RIGHT, buff=0.5)
-            # Make sure label is always visible once circle reaches a minimum size
-            circle_relative_size = to_circle.height / FRAME_HEIGHT
-            
-            if circle_relative_size >= 0.1:
-                label.set_opacity(min(1.0, circle_relative_size * 3))
+            # Determine visibility based on size - progressively increase
+            size_factor = to_circle.width / config.frame_width
+            if size_factor > 0.05:  # Only show when circle is big enough
+                label.set_opacity(min(1.0, size_factor * 10))
             else:
                 label.set_opacity(0)
         
-        # Updater for scale indicator with properly formatted numbers
+        # Updater for scale indicator with integer values only
         def update_scale(indicator):
             progress = self.renderer.time / duration
             
             # Calculate current scale value (linear interpolation)
             current_scale = from_scale + (to_scale - from_scale) * progress
             
-            # Format with integer if scale value is close to an integer
-            scale_text = f"10^{int(current_scale)}" if abs(current_scale - round(current_scale)) < 0.1 else f"10^{current_scale:.1f}"
+            # Always use integer scale factors as requested
+            scale_text = f"10^{int(round(current_scale))}"
             
             # Create new indicator with updated scale
             new_indicator = Text(
@@ -239,16 +241,16 @@ class ZoomAnimation(Scene):
             
             indicator.become(new_indicator)
         
-        # Add the updaters exactly as in the demo
+        # Add the updaters
         from_label.add_updater(update_from_label)
         to_label.add_updater(update_to_label)
         from_circle.add_updater(update_from_circle)
         self.scale_indicator.add_updater(update_scale)
         
-        # Create continuous animation - similar to demo
+        # Create continuous animation - with larger scale
         self.play(
-            from_circle.animate.scale(20),  # Zoom first circle to be very large
-            to_circle.animate.scale(150),   # Grow second circle to visible size (larger scale)
+            from_circle.animate.scale(20),        # Zoom first circle to be very large
+            to_circle.animate.scale(200),         # Grow second circle to visible size (much larger scale)
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
@@ -297,12 +299,13 @@ class ZoomAnimation(Scene):
         to_circle.scale(4.0)  # Make it larger than from_circle
         to_circle.set_opacity(0)  # Start invisible
         
-        # Create the label for the larger circle
+        # Create the label for the larger circle with high z-index
         to_label = Text(
             to_scene,
             font="Arial",
             font_size=font_size,
-            color=text_color
+            color=text_color,
+            z_index=5  # Very high z-index to ensure it stays on top
         ).next_to(to_circle, RIGHT, buff=0.5)
         
         # Start with to_label invisible
@@ -364,15 +367,15 @@ class ZoomAnimation(Scene):
             # Keep in sync with the opacity of its circle
             label.set_opacity(to_circle.get_fill_opacity())
         
-        # Updater for scale indicator with properly formatted numbers
+        # Updater for scale indicator with integer values only
         def update_scale(indicator):
             progress = self.renderer.time / duration
             
             # Calculate current scale value (linear interpolation)
             current_scale = from_scale + (to_scale - from_scale) * progress
             
-            # Format with integer if scale value is close to an integer
-            scale_text = f"10^{int(current_scale)}" if abs(current_scale - round(current_scale)) < 0.1 else f"10^{current_scale:.1f}"
+            # Always use integer scale factors as requested
+            scale_text = f"10^{int(round(current_scale))}"
             
             # Create new indicator with updated scale
             new_indicator = Text(
