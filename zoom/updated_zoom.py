@@ -211,16 +211,13 @@ class ZoomAnimation(Scene):
         # Updater for second label - follow circle and fade in
         def update_to_label(label):
             label.next_to(to_circle, RIGHT, buff=0.5)
-            # Match the circle's scale to keep sizes proportional
-            # Only need to update opacity (scale updated by animation)
-            progress = self.renderer.time / duration
-            if progress < 0.4:
-                label.set_opacity(0)
-            elif progress < 0.6:
-                fade_progress = (progress - 0.4) / 0.2
-                label.set_opacity(fade_progress)
+            # Make sure label is always visible once circle reaches a minimum size
+            circle_relative_size = to_circle.height / FRAME_HEIGHT
+            
+            if circle_relative_size >= 0.1:
+                label.set_opacity(min(1.0, circle_relative_size * 3))
             else:
-                label.set_opacity(1.0)
+                label.set_opacity(0)
         
         # Updater for scale indicator with properly formatted numbers
         def update_scale(indicator):
@@ -251,7 +248,7 @@ class ZoomAnimation(Scene):
         # Create continuous animation - similar to demo
         self.play(
             from_circle.animate.scale(20),  # Zoom first circle to be very large
-            to_circle.animate.scale(100),   # Grow second circle to visible size
+            to_circle.animate.scale(150),   # Grow second circle to visible size (larger scale)
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
