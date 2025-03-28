@@ -1,10 +1,11 @@
-#\!/usr/bin/env python3
+#!/usr/bin/env python3
 """
-Improved NPQG Universe Zoom Animation
+Improved NPQG Universe Zoom Animation based on circle_with_label_demo.py
 - Labels positioned next to circles
 - Labels zoom with circles
 - Circles and labels dissolve at 95% of frame height
 - Continuous zooming without pauses
+- Properly formatted 10^n scale indicators
 """
 
 from manim import *
@@ -131,9 +132,10 @@ class ZoomAnimation(Scene):
             color=text_color
         ).next_to(self.current_circle, RIGHT, buff=0.5)
         
-        # Create scale indicator
+        # Create scale indicator with properly formatted integer
+        scale_text = f"10^{int(from_scale)}" if abs(from_scale - round(from_scale)) < 0.1 else f"10^{from_scale:.1f}"
         self.scale_indicator = Text(
-            f"10^{from_scale} m",
+            f"{scale_text} m",
             font="Arial",
             font_size=font_size,
             color=text_color
@@ -154,11 +156,12 @@ class ZoomAnimation(Scene):
         from_circle = self.current_circle
         from_label = self.current_label
         
-        # Create the next (smaller) circle
+        # Create the next (smaller) circle with a color variation
+        next_fill_color = "#CC3366"  # Use a different color like in the demo
         to_circle = Circle(
             radius=0.01,  # Start very small like in demo
             stroke_color=WHITE,
-            fill_color=fill_color,  
+            fill_color=next_fill_color,  
             fill_opacity=fill_opacity,
             z_index=1
         )
@@ -171,9 +174,9 @@ class ZoomAnimation(Scene):
             color=text_color
         ).next_to(to_circle, RIGHT, buff=0.5)
         
-        # Scale down to match circle
-        to_label.scale(0.01)  # Scale down with the circle
-        to_label.set_opacity(0)  # Start invisible
+        # Scale down to match circle but keep proportions
+        to_label.scale(0.01)  # Scale down with the circle but don't make too small
+        to_label.set_opacity(0)  # Start invisible but will fade in
         
         # Add new elements to scene
         self.add(to_circle, to_label)
@@ -219,16 +222,19 @@ class ZoomAnimation(Scene):
             else:
                 label.set_opacity(1.0)
         
-        # Updater for scale indicator
+        # Updater for scale indicator with properly formatted numbers
         def update_scale(indicator):
             progress = self.renderer.time / duration
             
             # Calculate current scale value (linear interpolation)
             current_scale = from_scale + (to_scale - from_scale) * progress
             
+            # Format with integer if scale value is close to an integer
+            scale_text = f"10^{int(current_scale)}" if abs(current_scale - round(current_scale)) < 0.1 else f"10^{current_scale:.1f}"
+            
             # Create new indicator with updated scale
             new_indicator = Text(
-                f"10^{current_scale:.1f} m",
+                f"{scale_text} m",
                 font="Arial",
                 font_size=font_size,
                 color=text_color
@@ -268,7 +274,13 @@ class ZoomAnimation(Scene):
         # Get settings from config
         font_size = self.config["global_settings"].get("font_size", 36)
         text_color = self.config["global_settings"].get("color_text", "#FFFFFF")
-        fill_color = self.config["global_settings"].get("fill_color", "#3366CC")
+        
+        # Use a different color for each scale level, alternating between two colors
+        if from_scene == "Universe":
+            fill_color = "#3366CC"  # Blue
+        else:
+            fill_color = "#CC3366"  # Pink
+            
         fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
         
         # Store current elements
@@ -277,7 +289,7 @@ class ZoomAnimation(Scene):
         
         # Create the larger circle that we're zooming out to
         to_circle = Circle(
-            radius=20,  # Start large
+            radius=5,  # Start at medium size
             stroke_color=WHITE,
             fill_color=fill_color,
             fill_opacity=fill_opacity,
@@ -285,6 +297,7 @@ class ZoomAnimation(Scene):
         )
         
         # Set initial state
+        to_circle.scale(4.0)  # Make it larger than from_circle
         to_circle.set_opacity(0)  # Start invisible
         
         # Create the label for the larger circle
@@ -343,7 +356,7 @@ class ZoomAnimation(Scene):
             # Keep label next to circle
             label.next_to(from_circle, RIGHT, buff=0.5)
             
-            # Match opacity with circle
+            # Keep in sync with the opacity of its circle
             label.set_opacity(from_circle.get_fill_opacity())
         
         # Updater for second label - follow circle and fade in
@@ -351,19 +364,22 @@ class ZoomAnimation(Scene):
             # Keep label next to circle
             label.next_to(to_circle, RIGHT, buff=0.5)
             
-            # Match opacity with circle
+            # Keep in sync with the opacity of its circle
             label.set_opacity(to_circle.get_fill_opacity())
         
-        # Updater for scale indicator
+        # Updater for scale indicator with properly formatted numbers
         def update_scale(indicator):
             progress = self.renderer.time / duration
             
             # Calculate current scale value (linear interpolation)
             current_scale = from_scale + (to_scale - from_scale) * progress
             
+            # Format with integer if scale value is close to an integer
+            scale_text = f"10^{int(current_scale)}" if abs(current_scale - round(current_scale)) < 0.1 else f"10^{current_scale:.1f}"
+            
             # Create new indicator with updated scale
             new_indicator = Text(
-                f"10^{current_scale:.1f} m",
+                f"{scale_text} m",
                 font="Arial",
                 font_size=font_size,
                 color=text_color
@@ -371,17 +387,17 @@ class ZoomAnimation(Scene):
             
             indicator.become(new_indicator)
         
-        # Add updaters exactly like in the demo
+        # Add updaters
         from_circle.add_updater(update_from_circle)
         from_label.add_updater(update_from_label)
         to_circle.add_updater(update_to_circle)
         to_label.add_updater(update_to_label)
         self.scale_indicator.add_updater(update_scale)
         
-        # Set up the animations - similar to demo but reversed
+        # Set up the animations
         self.play(
             from_circle.animate.scale(0.05),  # Shrink current circle dramatically
-            to_circle.animate.scale(1.0),     # Adjust to proper size
+            to_circle.animate.scale(0.2),     # Adjust larger circle size
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
