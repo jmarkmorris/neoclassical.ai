@@ -23,10 +23,10 @@ class ZoomAnimation(Scene):
         with open(config_path, 'r') as f:
             self.config = json.load(f)
         
-        # Set the background color
+        # Set the background color - just like in the demo
         self.camera.background_color = INDIGO
         
-        # Get frame dimensions
+        # Get frame dimensions from config - just like in the demo
         FRAME_WIDTH = config.frame_width
         FRAME_HEIGHT = config.frame_height
         
@@ -77,19 +77,30 @@ class ZoomAnimation(Scene):
                 # For the first transition, initialize the scene
                 self._setup_scene(from_scene, from_scale, to_scene, to_scale)
             
-            # Perform the zoom animation
+            # Perform the zoom animation using demo-like approach
             if direction == "in":
                 self._zoom_in(from_scene, to_scene, from_scale, to_scale, duration)
             else:
                 self._zoom_out(from_scene, to_scene, from_scale, to_scale, duration)
+            
+            # Add a small pause between transitions for clarity
+            if i < len(animation_sequence) - 1:
+                self.wait(0.5)
     
     def _setup_scene(self, from_scene, from_scale, to_scene, to_scale):
         """Set up the initial scene with first circle and scale indicator"""
-        # Create background
-        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
+        # Set the background color
+        self.camera.background_color = INDIGO
+        
+        # Get frame dimensions from config
+        FRAME_WIDTH = config.frame_width
+        FRAME_HEIGHT = config.frame_height
+        
+        # Create background - similar to the demo
+        bg_color = self.config["global_settings"].get("background_color", INDIGO)
         background = Rectangle(
-            width=config.frame_width * 4,
-            height=config.frame_height * 4,
+            width=FRAME_WIDTH * 2,
+            height=FRAME_HEIGHT * 2,
             fill_color=bg_color,
             fill_opacity=1.0,
             stroke_width=0,
@@ -97,19 +108,19 @@ class ZoomAnimation(Scene):
         )
         self.add(background)
         
-        # Create the initial circle
+        # Create the initial circle using the demo's approach
         fill_color = self.config["global_settings"].get("fill_color", "#3366CC")
         fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
         
         self.current_circle = Circle(
-            radius=3,
+            radius=1,  # Start with the same radius as demo
             stroke_color=WHITE,
             fill_color=fill_color,
             fill_opacity=fill_opacity,
             z_index=1
         )
         
-        # Create label for the circle
+        # Create label for the circle - positioned to the right
         font_size = self.config["global_settings"].get("font_size", 36)
         text_color = self.config["global_settings"].get("color_text", "#FFFFFF")
         
@@ -145,18 +156,12 @@ class ZoomAnimation(Scene):
         
         # Create the next (smaller) circle
         to_circle = Circle(
-            radius=3,
+            radius=0.01,  # Start very small like in demo
             stroke_color=WHITE,
-            fill_color=fill_color,
+            fill_color=fill_color,  
             fill_opacity=fill_opacity,
             z_index=1
         )
-        
-        # Start tiny and invisible
-        initial_scale_ratio = 0.01
-        to_circle.scale(initial_scale_ratio)
-        to_circle.set_opacity(0)  # Start invisible
-        to_circle.move_to(ORIGIN)
         
         # Create the next label
         to_label = Text(
@@ -166,91 +171,56 @@ class ZoomAnimation(Scene):
             color=text_color
         ).next_to(to_circle, RIGHT, buff=0.5)
         
-        # Scale and hide the to_label
-        to_label.scale(initial_scale_ratio)
-        to_label.set_opacity(0)
+        # Scale down to match circle
+        to_label.scale(0.01)  # Scale down with the circle
+        to_label.set_opacity(0)  # Start invisible
         
         # Add new elements to scene
         self.add(to_circle, to_label)
         
-        # Set up the animations
-        self.play(
-            from_circle.animate.scale(100),  # Zoom out current circle dramatically
-            to_circle.animate.scale(1/initial_scale_ratio),  # Grow second circle to normal size
-            run_time=duration,
-            rate_func=rate_functions.ease_in_out_sine
-        )
+        # Define frame height threshold for dissolve (95% of frame height)
+        FRAME_HEIGHT = config.frame_height
+        frame_height_threshold = FRAME_HEIGHT * 0.95
         
         # Updater for first circle - dissolve when too large
-        def update_from_circle(circle, dt):
+        def update_from_circle(circle):
             # Calculate circle size relative to frame
-            circle_relative_size = circle.height / config.frame_height
+            circle_relative_size = circle.height / FRAME_HEIGHT
             # Dissolve when circle exceeds threshold
             if circle_relative_size >= 0.95:
                 # Calculate how far into dissolve we are
                 exceeded_by = circle_relative_size - 0.95
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 circle.set_opacity(max(0, 1.0 - dissolve_progress))
-            
-            # Also handle crossfade based on animation progress
-            progress = self.renderer.time / duration
-            if 0.3 <= progress <= 0.7:
-                fade_progress = (progress - 0.3) / 0.4
-                # Only apply if not already dissolving due to size
-                if circle_relative_size < 0.95:
-                    circle.set_opacity(max(0, 1.0 - fade_progress))
-        
-        # Updater for second circle - fade in during transition
-        def update_to_circle(circle, dt):
-            progress = self.renderer.time / duration
-            if progress < 0.3:
-                circle.set_opacity(0)
-            elif progress < 0.7:
-                fade_progress = (progress - 0.3) / 0.4
-                circle.set_opacity(fade_progress)
-            else:
-                circle.set_opacity(1.0)
         
         # Updater for first label - follow circle and dissolve
-        def update_from_label(label, dt):
-            # Keep label next to circle
+        def update_from_label(label):
             label.next_to(from_circle, RIGHT, buff=0.5)
-            
             # Calculate circle size relative to frame
-            circle_relative_size = from_circle.height / config.frame_height
-            
+            circle_relative_size = from_circle.height / FRAME_HEIGHT
             # Dissolve when circle exceeds threshold
             if circle_relative_size >= 0.95:
                 # Calculate how far into dissolve we are
                 exceeded_by = circle_relative_size - 0.95
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 label.set_opacity(max(0, 1.0 - dissolve_progress))
-            
-            # Also handle crossfade based on animation progress
-            progress = self.renderer.time / duration
-            if 0.3 <= progress <= 0.7:
-                fade_progress = (progress - 0.3) / 0.4
-                # Only apply if not already dissolving due to size
-                if circle_relative_size < 0.95:
-                    label.set_opacity(max(0, 1.0 - fade_progress))
         
         # Updater for second label - follow circle and fade in
-        def update_to_label(label, dt):
-            # Keep label next to circle
+        def update_to_label(label):
             label.next_to(to_circle, RIGHT, buff=0.5)
-            
-            # Handle opacity based on animation progress
+            # Match the circle's scale to keep sizes proportional
+            # Only need to update opacity (scale updated by animation)
             progress = self.renderer.time / duration
-            if progress < 0.3:
+            if progress < 0.4:
                 label.set_opacity(0)
-            elif progress < 0.7:
-                fade_progress = (progress - 0.3) / 0.4
+            elif progress < 0.6:
+                fade_progress = (progress - 0.4) / 0.2
                 label.set_opacity(fade_progress)
             else:
                 label.set_opacity(1.0)
         
         # Updater for scale indicator
-        def update_scale(indicator, dt):
+        def update_scale(indicator):
             progress = self.renderer.time / duration
             
             # Calculate current scale value (linear interpolation)
@@ -266,21 +236,24 @@ class ZoomAnimation(Scene):
             
             indicator.become(new_indicator)
         
-        # Add updaters
-        from_circle.add_updater(update_from_circle)
-        to_circle.add_updater(update_to_circle)
+        # Add the updaters exactly as in the demo
         from_label.add_updater(update_from_label)
         to_label.add_updater(update_to_label)
+        from_circle.add_updater(update_from_circle)
         self.scale_indicator.add_updater(update_scale)
         
-        # Wait a tiny amount to let the updaters work
-        self.wait(0.01)
+        # Create continuous animation - similar to demo
+        self.play(
+            from_circle.animate.scale(20),  # Zoom first circle to be very large
+            to_circle.animate.scale(100),   # Grow second circle to visible size
+            run_time=duration,
+            rate_func=rate_functions.ease_in_out_sine
+        )
         
         # Remove updaters
-        from_circle.remove_updater(update_from_circle)
-        to_circle.remove_updater(update_to_circle)
         from_label.remove_updater(update_from_label)
         to_label.remove_updater(update_to_label)
+        from_circle.remove_updater(update_from_circle)
         self.scale_indicator.remove_updater(update_scale)
         
         # Clean up old objects
@@ -304,18 +277,15 @@ class ZoomAnimation(Scene):
         
         # Create the larger circle that we're zooming out to
         to_circle = Circle(
-            radius=3,
+            radius=20,  # Start large
             stroke_color=WHITE,
             fill_color=fill_color,
             fill_opacity=fill_opacity,
             z_index=1
         )
         
-        # Start very large and invisible
-        initial_scale_ratio = 100
-        to_circle.scale(initial_scale_ratio)
-        to_circle.set_opacity(0)
-        to_circle.move_to(ORIGIN)
+        # Set initial state
+        to_circle.set_opacity(0)  # Start invisible
         
         # Create the label for the larger circle
         to_label = Text(
@@ -331,68 +301,61 @@ class ZoomAnimation(Scene):
         # Add new elements to scene
         self.add(to_circle, to_label)
         
-        # Set up the animations
-        self.play(
-            from_circle.animate.scale(0.01),  # Shrink current circle dramatically
-            to_circle.animate.scale(1/initial_scale_ratio),  # Shrink large circle to normal size
-            run_time=duration,
-            rate_func=rate_functions.ease_in_out_sine
-        )
+        # Define frame height threshold for dissolve (95% of frame height)
+        FRAME_HEIGHT = config.frame_height
+        frame_height_threshold = FRAME_HEIGHT * 0.95
         
-        # Updater for first circle - fade out
-        def update_from_circle(circle, dt):
+        # Updater for first circle - fade out while shrinking
+        def update_from_circle(circle):
+            # Calculate progress
             progress = self.renderer.time / duration
-            if progress < 0.3:
-                circle.set_opacity(1.0)
-            elif progress < 0.7:
-                fade_progress = (progress - 0.3) / 0.4
-                circle.set_opacity(1.0 - fade_progress)
-            else:
-                circle.set_opacity(0.0)
+            
+            # Only fade out if we're past 40% of the animation
+            if progress > 0.4:
+                fade_progress = (progress - 0.4) / 0.2  # Fade out over 20% of animation
+                circle.set_opacity(max(0, 1.0 - fade_progress))
         
-        # Updater for second circle - fade in
-        def update_to_circle(circle, dt):
+        # Updater for larger circle - fade in 
+        def update_to_circle(circle):
+            # Calculate progress
             progress = self.renderer.time / duration
-            if progress < 0.3:
+            
+            # Only start to fade in when we're past the threshold
+            if progress < 0.4:
                 circle.set_opacity(0)
-            elif progress < 0.7:
-                fade_progress = (progress - 0.3) / 0.4
+            elif progress < 0.6:
+                fade_progress = (progress - 0.4) / 0.2  # Fade in over 20% of animation
                 circle.set_opacity(fade_progress)
             else:
                 circle.set_opacity(1.0)
+            
+            # Calculate circle size relative to frame
+            circle_relative_size = circle.height / FRAME_HEIGHT
+            # Dissolve when circle exceeds threshold
+            if circle_relative_size >= 0.95:
+                # Calculate how far into dissolve we are
+                exceeded_by = circle_relative_size - 0.95
+                dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
+                circle.set_opacity(max(0, 1.0 - dissolve_progress))
         
         # Updater for first label - follow circle and fade out
-        def update_from_label(label, dt):
+        def update_from_label(label):
             # Keep label next to circle
             label.next_to(from_circle, RIGHT, buff=0.5)
             
-            # Handle opacity based on animation progress
-            progress = self.renderer.time / duration
-            if progress < 0.3:
-                label.set_opacity(1.0)
-            elif progress < 0.7:
-                fade_progress = (progress - 0.3) / 0.4
-                label.set_opacity(1.0 - fade_progress)
-            else:
-                label.set_opacity(0.0)
+            # Match opacity with circle
+            label.set_opacity(from_circle.get_fill_opacity())
         
         # Updater for second label - follow circle and fade in
-        def update_to_label(label, dt):
+        def update_to_label(label):
             # Keep label next to circle
             label.next_to(to_circle, RIGHT, buff=0.5)
             
-            # Handle opacity based on animation progress
-            progress = self.renderer.time / duration
-            if progress < 0.3:
-                label.set_opacity(0)
-            elif progress < 0.7:
-                fade_progress = (progress - 0.3) / 0.4
-                label.set_opacity(fade_progress)
-            else:
-                label.set_opacity(1.0)
+            # Match opacity with circle
+            label.set_opacity(to_circle.get_fill_opacity())
         
         # Updater for scale indicator
-        def update_scale(indicator, dt):
+        def update_scale(indicator):
             progress = self.renderer.time / duration
             
             # Calculate current scale value (linear interpolation)
@@ -408,20 +371,25 @@ class ZoomAnimation(Scene):
             
             indicator.become(new_indicator)
         
-        # Add updaters
+        # Add updaters exactly like in the demo
         from_circle.add_updater(update_from_circle)
-        to_circle.add_updater(update_to_circle)
         from_label.add_updater(update_from_label)
+        to_circle.add_updater(update_to_circle)
         to_label.add_updater(update_to_label)
         self.scale_indicator.add_updater(update_scale)
         
-        # Wait a tiny amount to let the updaters work
-        self.wait(0.01)
+        # Set up the animations - similar to demo but reversed
+        self.play(
+            from_circle.animate.scale(0.05),  # Shrink current circle dramatically
+            to_circle.animate.scale(1.0),     # Adjust to proper size
+            run_time=duration,
+            rate_func=rate_functions.ease_in_out_sine
+        )
         
         # Remove updaters
         from_circle.remove_updater(update_from_circle)
-        to_circle.remove_updater(update_to_circle)
         from_label.remove_updater(update_from_label)
+        to_circle.remove_updater(update_to_circle)
         to_label.remove_updater(update_to_label)
         self.scale_indicator.remove_updater(update_scale)
         
@@ -433,16 +401,8 @@ class ZoomAnimation(Scene):
         self.current_label = to_label
 
 if __name__ == "__main__":
-    # Process command line arguments
-    import argparse
-    
-    parser = argparse.ArgumentParser(description="Run NPQG Universe Zoom Animation")
-    parser.add_argument("--config", help="Path to JSON configuration file", default="zoom_config.json")
-    parser.add_argument("--quality", choices=["l", "m", "h"], default="m", help="Quality preset (l=low, m=medium, h=high)")
-    parser.add_argument("--output", default="zoom_animation.mp4", help="Output file name")
-    
-    args, unknown_args = parser.parse_known_args()
-    
-    # Run the scene
-    quality_flag = f"-q{args.quality}"
-    os.system(f"manim {quality_flag} -p updated_zoom.py ZoomAnimation")
+    # This script can be run directly with:
+    # manim -pql updated_zoom.py ZoomAnimation
+    # For higher quality:
+    # manim -pqh updated_zoom.py ZoomAnimation
+    pass
