@@ -332,7 +332,8 @@ class ZoomManager:
             height=FRAME_HEIGHT * 4,
             fill_color=bg_color,
             fill_opacity=1.0,
-            stroke_width=0
+            stroke_width=0,
+            z_index=-10  # Ensure background is behind all elements
         )
         manim_scene.add(background)
         
@@ -374,9 +375,9 @@ class ZoomManager:
         manim_scene.add(from_elements, to_elements, from_label, to_label, scale_indicator)
         
         # Create a single continuous animation with cross-fade in the middle
-        # Determine the cross-fade region (middle 20% of the animation)
-        fade_start = 0.4
-        fade_end = 0.6
+        # Extend label transition to 40% of the animation (from 20%)
+        fade_start = 0.3  # Start fade earlier
+        fade_end = 0.7    # End fade later
         
         # Background color for fading back when elements leave
         bg_color = self.config["global_settings"].get("background_color", "#4B0082")
@@ -509,7 +510,8 @@ class ZoomManager:
             height=FRAME_HEIGHT * 4,
             fill_color=bg_color,
             fill_opacity=1.0,
-            stroke_width=0
+            stroke_width=0,
+            z_index=-10  # Ensure background is behind all elements
         )
         manim_scene.add(background)
         
@@ -550,9 +552,9 @@ class ZoomManager:
         manim_scene.add(from_elements, to_elements, from_label, to_label, scale_indicator)
         
         # Create a single continuous animation with cross-fade in the middle
-        # Determine the cross-fade region (middle 20% of the animation)
-        fade_start = 0.4
-        fade_end = 0.6
+        # Extend label transition to 40% of the animation (from 20%)
+        fade_start = 0.3  # Start fade earlier
+        fade_end = 0.7    # End fade later
         
         # Background color for fading back when elements leave
         bg_color = self.config["global_settings"].get("background_color", "#4B0082")

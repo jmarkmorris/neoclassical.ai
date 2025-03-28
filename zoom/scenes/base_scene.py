@@ -134,7 +134,8 @@ class ZoomableScene:
                 stroke_color=circle_color,
                 stroke_width=stroke_width,
                 fill_color=fill_color,
-                fill_opacity=fill_opacity
+                fill_opacity=fill_opacity,
+                z_index=1  # Ensure circle is above background
             )
             circle.move_to(position)
             elements.append(circle)
