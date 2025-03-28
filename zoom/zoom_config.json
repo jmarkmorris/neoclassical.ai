@@ -15,7 +15,7 @@
       1080
     ],
     "frame_rate": 60,
-    "font_size": 24,
+    "font_size": 36,
     "stroke_width": 2,
     "color_text": "#FFFFFF",
     "color_circle": "#FFFFFF",
@@ -209,180 +209,180 @@
       "to_scene": "GalaxyCluster",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 2,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "GalaxyCluster",
       "to_scene": "Galaxy",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Galaxy",
       "to_scene": "BlackHole",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "BlackHole",
       "to_scene": "SolarSystem",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "SolarSystem",
       "to_scene": "Star",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Star",
       "to_scene": "Molecule",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Molecule",
       "to_scene": "Atom",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Atom",
       "to_scene": "Electron",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Electron",
       "to_scene": "Quark",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Quark",
       "to_scene": "PointPotential",
       "direction": "in",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 2,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "PointPotential",
       "to_scene": "Quark",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Quark",
       "to_scene": "Electron",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Electron",
       "to_scene": "Atom",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Atom",
       "to_scene": "Molecule",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Molecule",
       "to_scene": "Star",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Star",
       "to_scene": "SolarSystem",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "SolarSystem",
       "to_scene": "BlackHole",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "BlackHole",
       "to_scene": "Galaxy",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "Galaxy",
       "to_scene": "GalaxyCluster",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 1,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     },
     {
       "from_scene": "GalaxyCluster",
       "to_scene": "Universe",
       "direction": "out",
       "easing_function": "smooth",
-      "pause_before": 1,
-      "pause_after": 2,
-      "scale_indicator_visible": true
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
     }
   ],
   "audio": {

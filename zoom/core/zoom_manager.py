@@ -8,6 +8,9 @@ import numpy as np
 from manim import *
 from manim.utils import rate_functions
 
+# Force use of simple fonts only
+MathTex = None  # Disable MathTex to ensure we don't use it by accident
+
 # Define and ensure all necessary constants
 # These will override any imported values if they exist,
 # or define them if they don't exist in the imported namespace
@@ -268,10 +271,11 @@ class ZoomManager:
         # Create a value tracker for the logarithmic scale
         scale_tracker = ValueTracker(from_scale)
         
-        # Create the scale indicator with correct initial value
+        # Create the scale indicator with correct initial value using simple font
         scale_indicator = Text(
             f"10^{from_scale} m",
-            font_size=self.config["global_settings"].get("font_size", 24),
+            font="Arial",
+            font_size=self.config["global_settings"].get("font_size", 36),
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
         ).to_corner(UR, buff=0.5)
         
@@ -280,7 +284,8 @@ class ZoomManager:
             current_scale = scale_tracker.get_value()
             new_text = Text(
                 f"10^{current_scale:.1f} m",
-                font_size=self.config["global_settings"].get("font_size", 24),
+                font="Arial",
+                font_size=self.config["global_settings"].get("font_size", 36),
                 color=self.config["global_settings"].get("color_text", "#FFFFFF")
             ).to_corner(UR, buff=0.5)
             text.become(new_text)
@@ -343,10 +348,11 @@ class ZoomManager:
         to_elements.scale(initial_scale_ratio)  
         to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
-        # Create scene labels
+        # Create scene labels with simple font
         scene_label = Text(
             from_scene,
-            font_size=self.config["global_settings"].get("font_size", 24),
+            font="Arial", 
+            font_size=self.config["global_settings"].get("font_size", 36),
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
         ).to_corner(UL, buff=0.5)
         
@@ -376,13 +382,14 @@ class ZoomManager:
             to_elements.animate.scale(1/initial_scale_ratio)  # Scale from tiny to normal
         )
         
-        # 3. Create text transition animation
+        # 3. Create text transition animation with simple font
         animations.append(
             Transform(
                 scene_label, 
                 Text(
                     to_scene,
-                    font_size=self.config["global_settings"].get("font_size", 24),
+                    font="Arial",
+                    font_size=self.config["global_settings"].get("font_size", 36),
                     color=self.config["global_settings"].get("color_text", "#FFFFFF")
                 ).to_corner(UL, buff=0.5)
             )
@@ -496,10 +503,11 @@ class ZoomManager:
         to_elements.scale(initial_scale_ratio)  # Start very large
         to_elements.set_opacity(0)  # Start invisible but will fade in during zoom
         
-        # Create scene labels
+        # Create scene labels with simple font
         scene_label = Text(
             from_scene,
-            font_size=self.config["global_settings"].get("font_size", 24),
+            font="Arial",
+            font_size=self.config["global_settings"].get("font_size", 36),
             color=self.config["global_settings"].get("color_text", "#FFFFFF")
         ).to_corner(UL, buff=0.5)
         
@@ -529,13 +537,14 @@ class ZoomManager:
             to_elements.animate.scale(1/initial_scale_ratio)  # Scale from huge to normal
         )
         
-        # 3. Create text transition animation
+        # 3. Create text transition animation with simple font
         animations.append(
             Transform(
                 scene_label, 
                 Text(
                     to_scene,
-                    font_size=self.config["global_settings"].get("font_size", 24),
+                    font="Arial",
+                    font_size=self.config["global_settings"].get("font_size", 36),
                     color=self.config["global_settings"].get("color_text", "#FFFFFF")
                 ).to_corner(UL, buff=0.5)
             )

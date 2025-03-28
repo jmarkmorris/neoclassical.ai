@@ -1,0 +1,64 @@
+{
+  "global_settings": {
+    "default_zoom_rate": 0.5,
+    "constant_scale_rate": true,
+    "scale_seconds_per_decade": 3.0,
+    "min_transition_duration": 4.0,
+    "max_transition_duration": 15.0,
+    "background_color": "#4B0082",
+    "scale_range": [-60, 60],
+    "resolution": [1920, 1080],
+    "frame_rate": 60,
+    "font_size": 36,
+    "stroke_width": 2,
+    "color_text": "#FFFFFF",
+    "color_circle": "#FFFFFF",
+    "fill_color": "#3366CC",
+    "fill_opacity": 0.8,
+    "dot3d_radius": 0.04,
+    "quality": "h",
+    "use_custom_images": false
+  },
+  "scenes": [
+    {
+      "name": "Universe",
+      "scale": 26,
+      "objects": [
+        {
+          "label": "Observable Universe",
+          "position": [0, 0, 0],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "GalaxyCluster",
+      "scale": 23,
+      "objects": [
+        {
+          "label": "Galaxy Cluster",
+          "position": [0, 0, 0],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    }
+  ],
+  "animation_sequence": [
+    {
+      "from_scene": "Universe",
+      "to_scene": "GalaxyCluster",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": true
+    }
+  ],
+  "audio": {
+    "background_music": null,
+    "volume": 0.5,
+    "narration_timings": []
+  }
+}
