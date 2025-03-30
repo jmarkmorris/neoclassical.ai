@@ -206,13 +206,14 @@ class ZoomAnimation(Scene):
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 circle.set_opacity(max(0, 1.0 - dissolve_progress))
 
-        # Updater for scale indicator with integer values only
+        # Create a ValueTracker for the scale
+        scale_tracker = ValueTracker(from_scale)
+
+        # Updater for scale indicator using the ValueTracker
         def update_scale(indicator):
-            progress = self.renderer.time / duration
-            
-            # Calculate current scale value (linear interpolation)
-            current_scale = from_scale + (to_scale - from_scale) * progress
-            
+            # Get the current scale from the tracker
+            current_scale = scale_tracker.get_value()
+
             # Always use integer scale factors as requested
             scale_text = f"10^{int(round(current_scale))}"
             
@@ -232,10 +233,11 @@ class ZoomAnimation(Scene):
 
         # Create continuous animation - with larger scale and new label animation
         self.play(
-            from_circle.animate.scale(20),          # Zoom first circle to be very large
-            to_circle.animate.scale(200),           # Grow second circle to visible size (much larger scale)
-            from_label.animate.shift(LEFT * 4),     # Move old label left off-screen
-            to_label.animate.shift(DOWN * 2),       # Move new label down into place
+            from_circle.animate.scale(20),              # Zoom first circle to be very large
+            to_circle.animate.scale(200),               # Grow second circle to visible size (much larger scale)
+            from_label.animate.shift(LEFT * 4),         # Move old label left off-screen
+            to_label.animate.shift(DOWN * 2),           # Move new label down into place
+            scale_tracker.animate.set_value(to_scale),  # Animate the scale value
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
@@ -334,13 +336,14 @@ class ZoomAnimation(Scene):
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 circle.set_opacity(max(0, 1.0 - dissolve_progress))
 
-        # Updater for scale indicator with integer values only
+        # Create a ValueTracker for the scale
+        scale_tracker = ValueTracker(from_scale)
+
+        # Updater for scale indicator using the ValueTracker
         def update_scale(indicator):
-            progress = self.renderer.time / duration
-            
-            # Calculate current scale value (linear interpolation)
-            current_scale = from_scale + (to_scale - from_scale) * progress
-            
+            # Get the current scale from the tracker
+            current_scale = scale_tracker.get_value()
+
             # Always use integer scale factors as requested
             scale_text = f"10^{int(round(current_scale))}"
             
@@ -361,10 +364,11 @@ class ZoomAnimation(Scene):
 
         # Set up the animations with new label animation
         self.play(
-            from_circle.animate.scale(0.05),    # Shrink current circle dramatically
-            to_circle.animate.scale(0.2),       # Adjust larger circle size
-            from_label.animate.shift(LEFT * 4), # Move old label left off-screen
-            to_label.animate.shift(DOWN * 2),   # Move new label down into place
+            from_circle.animate.scale(0.05),        # Shrink current circle dramatically
+            to_circle.animate.scale(0.2),           # Adjust larger circle size
+            from_label.animate.shift(LEFT * 4),     # Move old label left off-screen
+            to_label.animate.shift(DOWN * 2),       # Move new label down into place
+            scale_tracker.animate.set_value(to_scale), # Animate the scale value
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
