@@ -148,10 +148,10 @@ class ZoomAnimation(Scene):
             z_index=2  # Higher z-index to stay on top
         ).to_corner(UL, buff=0.5) # Position in top-left corner
 
-        # Create scale indicator with integer value only
-        scale_text = f"10^{int(round(from_scale))}"
+        # Create scale indicator using scientific notation
+        scale_value_sci = f"{10**from_scale:.1e}"
         self.scale_indicator = Text(
-            f"{scale_text} m",
+            f"{scale_value_sci} m",
             font="Arial",
             font_size=font_size,
             color=text_color
@@ -197,19 +197,21 @@ class ZoomAnimation(Scene):
         # Add new circle and the off-screen label to the scene
         self.add(to_circle, to_label)
 
-        # Define frame height threshold for dissolve (95% of frame height)
+        # Define frame height threshold for dissolve (90% of frame height)
         FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
-        frame_height_threshold = FRAME_HEIGHT * 0.95
+        frame_height_threshold = FRAME_HEIGHT * 0.90 # Use 90%
 
         # Updater for first circle - dissolve when too large
         def update_from_circle(circle):
             # Calculate circle size relative to frame
             circle_relative_size = circle.height / self.camera.frame_height # Use camera attribute
-            # Dissolve when circle exceeds threshold
-            if circle_relative_size >= 0.95:
-                # Calculate how far into dissolve we are
-                exceeded_by = circle_relative_size - 0.95
-                dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
+            # Dissolve when circle exceeds threshold (90%)
+            if circle_relative_size >= frame_height_threshold:
+                # Calculate how far into dissolve we are (relative to the 90% threshold)
+                exceeded_by = circle_relative_size - frame_height_threshold
+                # Dissolve over a certain range (e.g., from 90% to 110% size)
+                dissolve_range = 0.2 # Corresponds to 20% of frame height
+                dissolve_progress = min(1.0, exceeded_by / dissolve_range)
                 circle.set_opacity(max(0, 1.0 - dissolve_progress))
 
         # Create a ValueTracker for the scale
@@ -220,12 +222,12 @@ class ZoomAnimation(Scene):
             # Get the current scale from the tracker
             current_scale = scale_tracker.get_value()
 
-            # Always use integer scale factors as requested
-            scale_text = f"10^{int(round(current_scale))}"
-            
+            # Format scale using scientific notation
+            scale_value_sci = f"{10**current_scale:.1e}"
+
             # Create new indicator with updated scale
             new_indicator = Text(
-                f"{scale_text} m",
+                f"{scale_value_sci} m",
                 font="Arial",
                 font_size=font_size,
                 color=text_color
@@ -305,9 +307,9 @@ class ZoomAnimation(Scene):
         # Add new circle and the off-screen label to the scene
         self.add(to_circle, to_label)
 
-        # Define frame height threshold for dissolve (95% of frame height)
+        # Define frame height threshold for dissolve (90% of frame height)
         FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
-        frame_height_threshold = FRAME_HEIGHT * 0.95
+        frame_height_threshold = FRAME_HEIGHT * 0.90 # Use 90%
 
         # Updater for first circle - fade out while shrinking
         def update_from_circle(circle):
@@ -335,12 +337,17 @@ class ZoomAnimation(Scene):
 
             # Calculate circle size relative to frame
             circle_relative_size = circle.height / self.camera.frame_height # Use camera attribute
-            # Dissolve when circle exceeds threshold
-            if circle_relative_size >= 0.95:
-                # Calculate how far into dissolve we are
-                exceeded_by = circle_relative_size - 0.95
-                dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
-                circle.set_opacity(max(0, 1.0 - dissolve_progress))
+            # Dissolve when circle exceeds threshold (90%)
+            if circle_relative_size >= frame_height_threshold:
+                # Calculate how far into dissolve we are (relative to the 90% threshold)
+                exceeded_by = circle_relative_size - frame_height_threshold
+                # Dissolve over a certain range (e.g., from 90% to 110% size)
+                dissolve_range = 0.2 # Corresponds to 20% of frame height
+                dissolve_progress = min(1.0, exceeded_by / dissolve_range)
+                # Apply dissolve effect, but ensure opacity doesn't go below the fade-in progress
+                current_opacity = circle.get_opacity()
+                dissolve_opacity = max(0, 1.0 - dissolve_progress)
+                circle.set_opacity(min(current_opacity, dissolve_opacity))
 
         # Create a ValueTracker for the scale
         scale_tracker = ValueTracker(from_scale)
@@ -350,12 +357,12 @@ class ZoomAnimation(Scene):
             # Get the current scale from the tracker
             current_scale = scale_tracker.get_value()
 
-            # Always use integer scale factors as requested
-            scale_text = f"10^{int(round(current_scale))}"
-            
+            # Format scale using scientific notation
+            scale_value_sci = f"{10**current_scale:.1e}"
+
             # Create new indicator with updated scale
             new_indicator = Text(
-                f"{scale_text} m",
+                f"{scale_value_sci} m",
                 font="Arial",
                 font_size=font_size,
                 color=text_color
