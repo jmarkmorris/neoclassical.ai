@@ -188,11 +188,11 @@ main() {
                     read model_choice
                     
                     case $model_choice in
-                        1) launch_aider "OPENAI" "gpt-4o"; break ;;
-                        2) launch_aider "OPENAI" "gpt-4o-mini"; break ;;
-                        3) launch_aider "OPENAI" "gpt-4-turbo"; break ;;
-                        4) launch_aider "OPENAI" "gpt-4"; break ;;
-                        5) launch_aider "OPENAI" "gpt-3.5-turbo"; break ;;
+                        1) local model="gpt-4o"; launch_aider "OPENAI" "$model"; break ;;
+                        2) local model="gpt-4o-mini"; launch_aider "OPENAI" "$model"; break ;;
+                        3) local model="gpt-4-turbo"; launch_aider "OPENAI" "$model"; break ;;
+                        4) local model="gpt-4"; launch_aider "OPENAI" "$model"; break ;;
+                        5) local model="gpt-3.5-turbo"; launch_aider "OPENAI" "$model"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
@@ -205,12 +205,12 @@ main() {
                     read model_choice
                     
                     case $model_choice in
-                        1) launch_aider "ANTHROPIC" "claude-3-7-sonnet-20250219"; break ;;
-                        2) launch_aider "ANTHROPIC" "claude-3-5-sonnet-20240620"; break ;;
-                        3) launch_aider "ANTHROPIC" "claude-3-opus-20240229"; break ;;
-                        4) launch_aider "ANTHROPIC" "claude-3-5-haiku-20240307"; break ;;
-                        5) launch_aider "ANTHROPIC" "claude-3-sonnet-20240229"; break ;;
-                        6) launch_aider "ANTHROPIC" "claude-3-haiku-20240307"; break ;;
+                        1) local model="claude-3-7-sonnet-20250219"; launch_aider "ANTHROPIC" "$model"; break ;;
+                        2) local model="claude-3-5-sonnet-20240620"; launch_aider "ANTHROPIC" "$model"; break ;;
+                        3) local model="claude-3-opus-20240229"; launch_aider "ANTHROPIC" "$model"; break ;;
+                        4) local model="claude-3-5-haiku-20240307"; launch_aider "ANTHROPIC" "$model"; break ;;
+                        5) local model="claude-3-sonnet-20240229"; launch_aider "ANTHROPIC" "$model"; break ;;
+                        6) local model="claude-3-haiku-20240307"; launch_aider "ANTHROPIC" "$model"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
@@ -223,11 +223,11 @@ main() {
                     read model_choice
                     
                     case $model_choice in
-                        1) launch_aider "GOOGLE" "gemini-1.5-pro"; break ;;
-                        2) launch_aider "GOOGLE" "gemini-1.5-flash"; break ;;
-                        3) launch_aider "GOOGLE" "gemini-2.0-flash"; break ;;
-                        4) launch_aider "GOOGLE" "gemini-2.5-pro-experimental"; break ;;
-                        5) launch_aider "GOOGLE" "openrouter/google/gemini-2.5-pro-exp-03-25:free"; break ;;
+                        1) local model="gemini-1.5-pro"; launch_aider "GOOGLE" "$model"; break ;;
+                        2) local model="gemini-1.5-flash"; launch_aider "GOOGLE" "$model"; break ;;
+                        3) local model="gemini-2.0-flash"; launch_aider "GOOGLE" "$model"; break ;;
+                        4) local model="gemini-2.5-pro-experimental"; launch_aider "GOOGLE" "$model"; break ;;
+                        5) local model="openrouter/google/gemini-2.5-pro-exp-03-25:free"; launch_aider "GOOGLE" "$model"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
