@@ -19,10 +19,19 @@ INDIGO = "#4B0082"
 
 class ZoomAnimation(Scene):
     def construct(self):
-        # Load config
-        config_path = "zoom_config.json"
-        with open(config_path, 'r') as f:
-            self.config = json.load(f)
+        # Load config relative to this script's location
+        script_dir = os.path.dirname(__file__)
+        config_path = os.path.join(script_dir, "zoom_config.json")
+        try:
+            with open(config_path, 'r') as f:
+                self.config = json.load(f)
+        except FileNotFoundError:
+            print(f"Error: Configuration file not found at {config_path}")
+            print(f"Please ensure 'zoom_config.json' is in the same directory as zoom.py.")
+            sys.exit(1)
+        except json.JSONDecodeError:
+            print(f"Error: Could not decode JSON from {config_path}")
+            sys.exit(1)
 
         # Set the background color - just like in the demo
         self.camera.background_color = INDIGO
