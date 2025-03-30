@@ -48,22 +48,22 @@ update_api_key() {
 
 # Function to display the main menu
 display_main_menu() {
-    # clear
+    clear
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}    LLM VENDOR SELECTION     ${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo "1. OpenAI"
     echo "2. Anthropic"
     echo "3. Google"
-    echo "6. Update API Keys"
+    echo "4. Update API Keys"
     echo "0. Exit"
     echo -e "${BLUE}==============================${NC}"
-    echo -n "Enter your choice [0-6]: "
+    echo -n "Enter your choice [0-4]: "
 }
 
 # Function to display OpenAI models
 display_openai_models() {
-    # clear
+    clear
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}      OpenAI MODELS          ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -79,7 +79,7 @@ display_openai_models() {
 
 # Function to display Anthropic models
 display_anthropic_models() {
-    # clear
+    clear
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}      ANTHROPIC MODELS       ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -96,14 +96,14 @@ display_anthropic_models() {
 
 # Function to display Google models
 display_google_models() {
-    # clear
+    clear
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}       GOOGLE MODELS         ${NC}"
     echo -e "${BLUE}==============================${NC}"
-    echo "1. gemini-1.5-pro"
-    echo "2. gemini-1.5-flash"
-    echo "3. gemini-2.0-flash"
-    echo "4. gemini-2.5-pro-experimental"
+    echo "1. gemini/gemini-1.5-pro"
+    echo "2. gemini/gemini-2.0-flash"
+    echo "3. gemini/gemini-2.0-flash-exp"
+    echo "4. gemini/gemini-2.5-pro-exp-03-25"
     echo "0. Back to main menu"
     echo -e "${BLUE}==============================${NC}"
     echo -n "Enter your choice [0-4]: "
@@ -111,7 +111,7 @@ display_google_models() {
 
 # Function to update API keys menu
 display_update_api_keys_menu() {
-    # clear
+    clear
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}      UPDATE API KEYS        ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -232,7 +232,7 @@ main() {
                 done
                 ;;
                 
-            6) # Update API Keys
+            4) # Update API Keys
                 while true; do
                     display_update_api_keys_menu
                     read api_choice
