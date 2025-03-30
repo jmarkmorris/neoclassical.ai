@@ -223,10 +223,10 @@ main() {
                     read model_choice
                     
                     case $model_choice in
-                        1) local model="gemini-1.5-pro"; launch_aider "GOOGLE" "$model"; break ;;
-                        2) local model="gemini-1.5-flash"; launch_aider "GOOGLE" "$model"; break ;;
-                        3) local model="gemini-2.0-flash"; launch_aider "GOOGLE" "$model"; break ;;
-                        4) local model="gemini-2.5-pro-experimental"; launch_aider "GOOGLE" "$model"; break ;;
+                        1) local model="gemini/gemini-1.5-pro"; launch_aider "GOOGLE" "$model"; break ;;
+                        2) local model="gemini/gemini-2.0-flash"; launch_aider "GOOGLE" "$model"; break ;;
+                        3) local model="gemini/gemini-2.0-flash-exp"; launch_aider "GOOGLE" "$model"; break ;;
+                        4) local model="gemini/gemini-2.5-pro-experimental"; launch_aider "GOOGLE" "$model"; break ;;
                         5) local model="openrouter/google/gemini-2.5-pro-exp-03-25:free"; launch_aider "GOOGLE" "$model"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
