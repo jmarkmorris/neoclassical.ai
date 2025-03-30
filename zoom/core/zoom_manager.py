@@ -357,10 +357,10 @@ class ZoomManager:
         # Create labels positioned to the right of the circles
         from_label = Text(
             from_scene,
-            font="Arial", 
+            font="Arial",
             font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF"),
-            z_index=10  # Ensure label is always on top
+            z_index=100  # Ensure label is always on top
         )
         
         to_label = Text(
@@ -368,7 +368,7 @@ class ZoomManager:
             font="Arial",
             font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF"),
-            z_index=10  # Ensure label is always on top
+            z_index=100  # Ensure label is always on top
         )
 
         # Position labels to the right of their circles
@@ -392,8 +392,11 @@ class ZoomManager:
             from_scale, to_scale, duration
         )
         
-        # Add everything to the scene
-        manim_scene.add(from_elements, to_elements, from_label, to_label, scale_indicator)
+        # Add elements to the scene
+        manim_scene.add(from_elements, to_elements, scale_indicator)
+        
+        # Add labels *after* all other elements to ensure they are on top
+        manim_scene.add(from_label, to_label)
         
         # Create a single continuous animation with cross-fade in the middle
         # Extend label transition to 40% of the animation (from 20%)
@@ -608,7 +611,7 @@ class ZoomManager:
             font="Arial",
             font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF"),
-            z_index=10  # Ensure label is always on top
+            z_index=100  # Ensure label is always on top
         )
         
         to_label = Text(
@@ -616,7 +619,7 @@ class ZoomManager:
             font="Arial",
             font_size=label_font_size,
             color=self.config["global_settings"].get("color_text", "#FFFFFF"),
-            z_index=10  # Ensure label is always on top
+            z_index=100  # Ensure label is always on top
         )
 
         # Position labels to the right of their circles
@@ -640,8 +643,11 @@ class ZoomManager:
             from_scale, to_scale, duration
         )
         
-        # Add everything to the scene
-        manim_scene.add(from_elements, to_elements, from_label, to_label, scale_indicator)
+        # Add elements to the scene
+        manim_scene.add(from_elements, to_elements, scale_indicator)
+        
+        # Add labels *after* all other elements to ensure they are on top
+        manim_scene.add(from_label, to_label)
         
         # Create a single continuous animation with cross-fade in the middle
         # Extend label transition to 40% of the animation (from 20%)
