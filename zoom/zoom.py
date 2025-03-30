@@ -67,22 +67,28 @@ class ZoomAnimation(Scene):
             
             from_scale = from_scene_data["scale"]
             to_scale = to_scene_data["scale"]
-            
-            # Calculate duration based on scale difference
-            scale_diff = abs(to_scale - from_scale)
-            secs_per_decade = self.config["global_settings"].get("scale_seconds_per_decade", 3.0)
-            min_duration = self.config["global_settings"].get("min_transition_duration", 4.0)
-            max_duration = self.config["global_settings"].get("max_transition_duration", 15.0)
-            
-            duration = scale_diff * secs_per_decade
-            duration = max(min_duration, min(max_duration, duration))
-            
-            # Override if explicitly provided
-            if "duration" in transition:
+
+            # Use fixed duration if specified in global settings
+            fixed_duration = self.config["global_settings"].get("fixed_transition_duration")
+
+            if fixed_duration is not None and fixed_duration > 0:
+                duration = fixed_duration
+            else:
+                # Fallback to scale-based calculation if fixed duration is not set
+                scale_diff = abs(to_scale - from_scale)
+                secs_per_decade = self.config["global_settings"].get("scale_seconds_per_decade", 3.0)
+                min_duration = self.config["global_settings"].get("min_transition_duration", 4.0)
+                max_duration = self.config["global_settings"].get("max_transition_duration", 15.0)
+
+                duration = scale_diff * secs_per_decade
+                duration = max(min_duration, min(max_duration, duration))
+
+            # Allow individual transitions to override the duration
+            if "duration" in transition and transition["duration"] is not None:
                 duration = transition["duration"]
-            
-            print(f"Animating {direction} from {from_scene} (10^{int(round(from_scale))}) to {to_scene} (10^{int(round(to_scale))}), Duration: {duration}")
-            
+
+            print(f"Animating {direction} from {from_scene} (10^{int(round(from_scale))}) to {to_scene} (10^{int(round(to_scale))}), Duration: {duration:.2f}s")
+
             if i == 0:
                 # For the first transition, initialize the scene
                 self._setup_scene(from_scene, from_scale, to_scene, to_scale)
