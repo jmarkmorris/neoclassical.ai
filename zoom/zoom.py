@@ -14,12 +14,11 @@ import os
 import sys
 import numpy as np
 
-# Set background colors
+# Define colors
 INDIGO = "#4B0082"
 ELECTRIC_PURPLE = "#8F00FF"
 GREEN = "#00FF00"
-
-# Set default background color
+WHITE = "#FFFFFF"
 DEFAULT_BACKGROUND_COLOR = GREEN
 
 class ZoomAnimation(Scene):
