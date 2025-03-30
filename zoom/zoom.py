@@ -114,11 +114,11 @@ class ZoomAnimation(Scene):
         FRAME_HEIGHT = self.camera.frame_height
 
         # Create background - similar to the demo
-        bg_color = self.config["global_settings"].get("background_color", DEFAULT_BACKGROUND_COLOR)
+        # The problem was here: the config was being used, not the DEFAULT_BACKGROUND_COLOR
         background = Rectangle(
             width=FRAME_WIDTH * 2,
             height=FRAME_HEIGHT * 2,
-            fill_color=bg_color,
+            fill_color=DEFAULT_BACKGROUND_COLOR,
             fill_opacity=1.0,
             stroke_width=0,
             z_index=-10
