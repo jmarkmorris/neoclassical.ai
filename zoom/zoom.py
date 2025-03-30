@@ -140,8 +140,8 @@ class ZoomAnimation(Scene):
             font_size=font_size,
             color=text_color,
             z_index=2  # Higher z-index to stay on top
-        ).next_to(self.current_circle, RIGHT, buff=0.5)
-        
+        ).to_corner(UL, buff=0.5) # Position in top-left corner
+
         # Create scale indicator with integer value only
         scale_text = f"10^{int(round(from_scale))}"
         self.scale_indicator = Text(
@@ -183,14 +183,10 @@ class ZoomAnimation(Scene):
             font_size=font_size,
             color=text_color,
             z_index=5  # Very high z-index to ensure it stays on top
-        ).next_to(to_circle, RIGHT, buff=0.5)
-        
-        # Scale down to match circle but keep proportions
-        to_label.scale(0.01)  # Scale down with the circle
-        to_label.set_opacity(0)  # Start invisible but will fade in
-        
-        # Add new elements to scene
-        self.add(to_circle, to_label)
+        ).to_corner(UL, buff=0.5) # Position in top-left corner
+
+        # Add new circle to scene (label will be added via Transform)
+        self.add(to_circle)
 
         # Define frame height threshold for dissolve (95% of frame height)
         FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
@@ -206,46 +202,6 @@ class ZoomAnimation(Scene):
                 exceeded_by = circle_relative_size - 0.95
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 circle.set_opacity(max(0, 1.0 - dissolve_progress))
-        
-        # Updater for first label - follow circle and dissolve
-        def update_from_label(label):
-            label.next_to(from_circle, RIGHT, buff=0.5)
-            # Calculate circle size relative to frame
-            circle_relative_size = from_circle.height / self.camera.frame_height # Use camera attribute
-            # Dissolve when circle exceeds threshold
-            if circle_relative_size >= 0.95:
-                # Calculate how far into dissolve we are
-                exceeded_by = circle_relative_size - 0.95
-                dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
-                label.set_opacity(max(0, 1.0 - dissolve_progress))
-            else:
-                # Fade out based on animation progress (e.g., between 30% and 70%)
-                progress = self.renderer.time / duration
-                fade_start = 0.3
-                fade_end = 0.7
-                if progress < fade_start:
-                    label.set_opacity(1.0)
-                elif progress < fade_end:
-                    fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                    label.set_opacity(1.0 - fade_progress)
-                else:
-                    label.set_opacity(0.0)
-
-        # Updater for second label - fade in based on time
-        def update_to_label(label):
-            # Make sure the label stays with its circle
-            label.next_to(to_circle, RIGHT, buff=0.5)
-            # Fade in based on animation progress (e.g., between 30% and 70%)
-            progress = self.renderer.time / duration
-            fade_start = 0.3
-            fade_end = 0.7
-            if progress < fade_start:
-                label.set_opacity(0.0)
-            elif progress < fade_end:
-                fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                label.set_opacity(fade_progress)
-            else:
-                label.set_opacity(1.0)
 
         # Updater for scale indicator with integer values only
         def update_scale(indicator):
@@ -266,30 +222,27 @@ class ZoomAnimation(Scene):
             ).to_corner(UR, buff=0.5)
             
             indicator.become(new_indicator)
-        
-        # Add the updaters
-        from_label.add_updater(update_from_label)
-        to_label.add_updater(update_to_label)
+
+        # Add the updaters for circle and scale
         from_circle.add_updater(update_from_circle)
         self.scale_indicator.add_updater(update_scale)
-        
-        # Create continuous animation - with larger scale
+
+        # Create continuous animation - with larger scale and label transform
         self.play(
             from_circle.animate.scale(20),        # Zoom first circle to be very large
             to_circle.animate.scale(200),         # Grow second circle to visible size (much larger scale)
+            Transform(from_label, to_label),      # Transform the label in the top-left
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
-        
+
         # Remove updaters
-        from_label.remove_updater(update_from_label)
-        to_label.remove_updater(update_to_label)
         from_circle.remove_updater(update_from_circle)
         self.scale_indicator.remove_updater(update_scale)
-        
-        # Clean up old objects
-        self.remove(from_circle, from_label)
-        
+
+        # Clean up old circle object (label is handled by Transform)
+        self.remove(from_circle)
+
         # Update current objects
         self.current_circle = to_circle
         self.current_label = to_label
@@ -332,13 +285,10 @@ class ZoomAnimation(Scene):
             font_size=font_size,
             color=text_color,
             z_index=5  # Very high z-index to ensure it stays on top
-        ).next_to(to_circle, RIGHT, buff=0.5)
-        
-        # Start with to_label invisible
-        to_label.set_opacity(0)
-        
-        # Add new elements to scene
-        self.add(to_circle, to_label)
+        ).to_corner(UL, buff=0.5) # Position in top-left corner
+
+        # Add new circle to scene (label will be added via Transform)
+        self.add(to_circle)
 
         # Define frame height threshold for dissolve (95% of frame height)
         FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
@@ -376,42 +326,6 @@ class ZoomAnimation(Scene):
                 exceeded_by = circle_relative_size - 0.95
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 circle.set_opacity(max(0, 1.0 - dissolve_progress))
-        
-        # Updater for first label - follow circle and fade out
-        def update_from_label(label):
-            # Keep label next to circle
-            # Keep label next to circle
-            label.next_to(from_circle, RIGHT, buff=0.5)
-
-            # Fade out based on animation progress (e.g., between 30% and 70%)
-            progress = self.renderer.time / duration
-            fade_start = 0.3
-            fade_end = 0.7
-            if progress < fade_start:
-                label.set_opacity(1.0)
-            elif progress < fade_end:
-                fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                label.set_opacity(1.0 - fade_progress)
-            else:
-                label.set_opacity(0.0)
-
-        # Updater for second label - follow circle and fade in
-        def update_to_label(label):
-            # Keep label next to circle
-            # Keep label next to circle
-            label.next_to(to_circle, RIGHT, buff=0.5)
-
-            # Fade in based on animation progress (e.g., between 30% and 70%)
-            progress = self.renderer.time / duration
-            fade_start = 0.3
-            fade_end = 0.7
-            if progress < fade_start:
-                label.set_opacity(0.0)
-            elif progress < fade_end:
-                fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                label.set_opacity(fade_progress)
-            else:
-                label.set_opacity(1.0)
 
         # Updater for scale indicator with integer values only
         def update_scale(indicator):
@@ -432,32 +346,29 @@ class ZoomAnimation(Scene):
             ).to_corner(UR, buff=0.5)
             
             indicator.become(new_indicator)
-        
-        # Add updaters
+
+        # Add updaters for circles and scale
         from_circle.add_updater(update_from_circle)
-        from_label.add_updater(update_from_label)
         to_circle.add_updater(update_to_circle)
-        to_label.add_updater(update_to_label)
         self.scale_indicator.add_updater(update_scale)
-        
-        # Set up the animations
+
+        # Set up the animations with label transform
         self.play(
             from_circle.animate.scale(0.05),  # Shrink current circle dramatically
             to_circle.animate.scale(0.2),     # Adjust larger circle size
+            Transform(from_label, to_label),  # Transform the label in the top-left
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
-        
+
         # Remove updaters
         from_circle.remove_updater(update_from_circle)
-        from_label.remove_updater(update_from_label)
         to_circle.remove_updater(update_to_circle)
-        to_label.remove_updater(update_to_label)
         self.scale_indicator.remove_updater(update_scale)
-        
-        # Clean up old objects
-        self.remove(from_circle, from_label)
-        
+
+        # Clean up old circle object (label is handled by Transform)
+        self.remove(from_circle)
+
         # Update current objects
         self.current_circle = to_circle
         self.current_label = to_label
