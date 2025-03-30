@@ -359,16 +359,18 @@ class ZoomManager:
             from_scene,
             font="Arial", 
             font_size=label_font_size,
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+            color=self.config["global_settings"].get("color_text", "#FFFFFF"),
+            z_index=10  # Ensure label is always on top
         )
         
         to_label = Text(
             to_scene,
-            font="Arial", 
+            font="Arial",
             font_size=label_font_size,
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+            color=self.config["global_settings"].get("color_text", "#FFFFFF"),
+            z_index=10  # Ensure label is always on top
         )
-        
+
         # Position labels to the right of their circles
         if from_circle:
             from_label.next_to(from_circle, RIGHT, buff=0.5)
@@ -605,16 +607,18 @@ class ZoomManager:
             from_scene,
             font="Arial",
             font_size=label_font_size,
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+            color=self.config["global_settings"].get("color_text", "#FFFFFF"),
+            z_index=10  # Ensure label is always on top
         )
         
         to_label = Text(
             to_scene,
             font="Arial",
             font_size=label_font_size,
-            color=self.config["global_settings"].get("color_text", "#FFFFFF")
+            color=self.config["global_settings"].get("color_text", "#FFFFFF"),
+            z_index=10  # Ensure label is always on top
         )
-        
+
         # Position labels to the right of their circles
         if from_circle:
             from_label.next_to(from_circle, RIGHT, buff=0.5)
