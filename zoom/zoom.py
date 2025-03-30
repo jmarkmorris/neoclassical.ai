@@ -16,6 +16,7 @@ import numpy as np
 
 # Set background color
 INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 
 class ZoomAnimation(Scene):
     def construct(self):
@@ -34,7 +35,7 @@ class ZoomAnimation(Scene):
             sys.exit(1)
 
         # Set the background color - just like in the demo
-        self.camera.background_color = INDIGO
+        self.camera.background_color = ELECTRIC_PURPLE
 
         # Get frame dimensions directly from the camera
         FRAME_WIDTH = self.camera.frame_width
@@ -103,14 +104,14 @@ class ZoomAnimation(Scene):
     def _setup_scene(self, from_scene, from_scale, to_scene, to_scale):
         """Set up the initial scene with first circle and scale indicator"""
         # Set the background color
-        self.camera.background_color = INDIGO
+        self.camera.background_color = ELECTRIC_PURPLE
 
         # Get frame dimensions directly from the camera
         FRAME_WIDTH = self.camera.frame_width
         FRAME_HEIGHT = self.camera.frame_height
 
         # Create background - similar to the demo
-        bg_color = self.config["global_settings"].get("background_color", INDIGO)
+        bg_color = self.config["global_settings"].get("background_color", ELECTRIC_PURPLE)
         background = Rectangle(
             width=FRAME_WIDTH * 2,
             height=FRAME_HEIGHT * 2,
