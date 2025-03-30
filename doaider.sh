@@ -103,10 +103,11 @@ display_google_models() {
     echo "1. gemini/gemini-1.5-pro"
     echo "2. gemini/gemini-2.0-flash"
     echo "3. gemini/gemini-2.0-flash-exp"
-    echo "4. gemini/gemini-2.5-pro-exp-03-25"
+    echo "4. gemini-2.5-pro"
+    echo "5. openrouter/google/gemini-2.5-pro-exp-03-25:free"
     echo "0. Back to main menu"
     echo -e "${BLUE}==============================${NC}"
-    echo -n "Enter your choice [0-4]: "
+    echo -n "Enter your choice [0-5]: "
 }
 
 # Function to update API keys menu
@@ -226,6 +227,7 @@ main() {
                         2) launch_aider "GOOGLE" "gemini-1.5-flash"; break ;;
                         3) launch_aider "GOOGLE" "gemini-2.0-flash"; break ;;
                         4) launch_aider "GOOGLE" "gemini-2.5-pro-experimental"; break ;;
+                        5) launch_aider "GOOGLE" "openrouter/google/gemini-2.5-pro-exp-03-25:free"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
