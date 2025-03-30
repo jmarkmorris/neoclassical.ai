@@ -218,18 +218,35 @@ class ZoomAnimation(Scene):
                 exceeded_by = circle_relative_size - 0.95
                 dissolve_progress = min(1.0, exceeded_by / 0.2)  # Dissolve over next 20% growth
                 label.set_opacity(max(0, 1.0 - dissolve_progress))
-        
-        # Updater for second label - directly tied to circle size
+            else:
+                # Fade out based on animation progress (e.g., between 30% and 70%)
+                progress = self.renderer.time / duration
+                fade_start = 0.3
+                fade_end = 0.7
+                if progress < fade_start:
+                    label.set_opacity(1.0)
+                elif progress < fade_end:
+                    fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                    label.set_opacity(1.0 - fade_progress)
+                else:
+                    label.set_opacity(0.0)
+
+        # Updater for second label - fade in based on time
         def update_to_label(label):
             # Make sure the label stays with its circle
             label.next_to(to_circle, RIGHT, buff=0.5)
-            # Determine visibility based on size - progressively increase
-            size_factor = to_circle.width / self.camera.frame_width # Use camera attribute
-            if size_factor > 0.05:  # Only show when circle is big enough
-                label.set_opacity(min(1.0, size_factor * 10))
+            # Fade in based on animation progress (e.g., between 30% and 70%)
+            progress = self.renderer.time / duration
+            fade_start = 0.3
+            fade_end = 0.7
+            if progress < fade_start:
+                label.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                label.set_opacity(fade_progress)
             else:
-                label.set_opacity(0)
-        
+                label.set_opacity(1.0)
+
         # Updater for scale indicator with integer values only
         def update_scale(indicator):
             progress = self.renderer.time / duration
@@ -363,19 +380,39 @@ class ZoomAnimation(Scene):
         # Updater for first label - follow circle and fade out
         def update_from_label(label):
             # Keep label next to circle
+            # Keep label next to circle
             label.next_to(from_circle, RIGHT, buff=0.5)
-            
-            # Keep in sync with the opacity of its circle
-            label.set_opacity(from_circle.get_fill_opacity())
-        
+
+            # Fade out based on animation progress (e.g., between 30% and 70%)
+            progress = self.renderer.time / duration
+            fade_start = 0.3
+            fade_end = 0.7
+            if progress < fade_start:
+                label.set_opacity(1.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                label.set_opacity(1.0 - fade_progress)
+            else:
+                label.set_opacity(0.0)
+
         # Updater for second label - follow circle and fade in
         def update_to_label(label):
             # Keep label next to circle
+            # Keep label next to circle
             label.next_to(to_circle, RIGHT, buff=0.5)
-            
-            # Keep in sync with the opacity of its circle
-            label.set_opacity(to_circle.get_fill_opacity())
-        
+
+            # Fade in based on animation progress (e.g., between 30% and 70%)
+            progress = self.renderer.time / duration
+            fade_start = 0.3
+            fade_end = 0.7
+            if progress < fade_start:
+                label.set_opacity(0.0)
+            elif progress < fade_end:
+                fade_progress = (progress - fade_start) / (fade_end - fade_start)
+                label.set_opacity(fade_progress)
+            else:
+                label.set_opacity(1.0)
+
         # Updater for scale indicator with integer values only
         def update_scale(indicator):
             progress = self.renderer.time / duration
