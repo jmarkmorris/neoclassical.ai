@@ -26,6 +26,7 @@ if __name__ == "__main__":
     # Using just the script name should work after changing directory
     manim_args = [
         "manim",
+	"--flush_cache",
         f"-pq{quality}",
         zoom_script_name,
         zoom_class_name
@@ -36,6 +37,7 @@ if __name__ == "__main__":
 
     # Store the original working directory
     original_cwd = os.getcwd()
+    print(f"Original directory: {original_cwd}")
     try:
         # Change to the script's directory so manim finds the file
         os.chdir(script_dir)
