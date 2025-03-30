@@ -6,16 +6,54 @@ Runs with the same approach as the demo
 
 import os
 import sys
+import subprocess
 
 if __name__ == "__main__":
     quality = 'l'  # Default to low quality for fast renders
-    
+
     # Check if quality argument is provided
     if len(sys.argv) > 1:
         if sys.argv[1] in ['l', 'm', 'h']:
             quality = sys.argv[1]
-    
-    # Run the animation with manim
-    cmd = f"manim -pq{quality} zoom.py ZoomAnimation"
-    print(f"Running: {cmd}")
-    os.system(cmd)
+
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    zoom_script_name = "zoom.py"
+    zoom_class_name = "ZoomAnimation"
+
+    # Construct the manim command arguments
+    # Use the full path to the script to be safe, though relative might work after cwd change
+    # Using just the script name should work after changing directory
+    manim_args = [
+        "manim",
+        f"-pq{quality}",
+        zoom_script_name,
+        zoom_class_name
+    ]
+
+    print(f"Script directory: {script_dir}")
+    print(f"Running command: {' '.join(manim_args)}")
+
+    # Store the original working directory
+    original_cwd = os.getcwd()
+    try:
+        # Change to the script's directory so manim finds the file
+        os.chdir(script_dir)
+        print(f"Changed working directory to: {os.getcwd()}")
+
+        # Run the command using subprocess for better control
+        process = subprocess.run(manim_args, check=False, text=True) # check=False to see Manim's output even on error
+
+        if process.returncode != 0:
+            print(f"Manim command failed with return code {process.returncode}")
+        else:
+            print("Manim command executed successfully.")
+
+    except FileNotFoundError:
+        print(f"Error: 'manim' command not found. Make sure Manim is installed and in your PATH.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        # Change back to the original directory
+        os.chdir(original_cwd)
+        print(f"Restored working directory to: {os.getcwd()}")
