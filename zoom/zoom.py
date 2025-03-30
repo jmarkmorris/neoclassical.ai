@@ -127,9 +127,12 @@ class ZoomAnimation(Scene):
         # Create the initial circle using the demo's approach
         fill_color = self.config["global_settings"].get("fill_color", "#3366CC")
         fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
-        
+
+        # Calculate target radius based on frame height
+        target_radius = 0.9 * self.camera.frame_height / 2
+
         self.current_circle = Circle(
-            radius=1,  # Start with the same radius as demo
+            radius=target_radius, # Set initial radius to target size
             stroke_color=WHITE,
             fill_color=fill_color,
             fill_opacity=fill_opacity,
@@ -174,10 +177,11 @@ class ZoomAnimation(Scene):
         
         # Create the next (smaller) circle with a color variation
         next_fill_color = "#CC3366"  # Use a different color like in the demo
+        initial_to_radius = 0.01 # Start very small
         to_circle = Circle(
-            radius=0.01,  # Start very small like in demo
+            radius=initial_to_radius,
             stroke_color=WHITE,
-            fill_color=next_fill_color,  
+            fill_color=next_fill_color,
             fill_opacity=fill_opacity,
             z_index=1
         )
@@ -239,10 +243,14 @@ class ZoomAnimation(Scene):
         from_circle.add_updater(update_from_circle)
         self.scale_indicator.add_updater(update_scale)
 
+        # Calculate target radius and required scale factor for to_circle
+        target_radius = 0.9 * self.camera.frame_height / 2
+        target_scale_factor = target_radius / initial_to_radius
+
         # Create continuous animation - with larger scale and new label animation
         self.play(
-            from_circle.animate.scale(20),              # Zoom first circle to be very large
-            to_circle.animate.scale(200),               # Grow second circle to visible size (much larger scale)
+            from_circle.animate.scale(20),              # Zoom first circle to be very large (dissolves anyway)
+            to_circle.animate.scale(target_scale_factor), # Grow second circle to target size
             from_label.animate.shift(LEFT * 4),         # Move old label left off-screen
             to_label.animate.shift(DOWN * 2),           # Move new label down into place
             scale_tracker.animate.set_value(to_scale),  # Animate the scale value
@@ -274,24 +282,28 @@ class ZoomAnimation(Scene):
             fill_color = "#CC3366"  # Pink
             
         fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
-        
+
         # Store current elements
         from_circle = self.current_circle
         from_label = self.current_label
-        
+
+        # Calculate target radius
+        target_radius = 0.9 * self.camera.frame_height / 2
+
         # Create the larger circle that we're zooming out to
+        # Start it large enough to be off-screen initially
+        initial_to_radius = target_radius * 20 # e.g., 20 times the final size
         to_circle = Circle(
-            radius=5,  # Start at medium size
+            radius=initial_to_radius,
             stroke_color=WHITE,
             fill_color=fill_color,
             fill_opacity=fill_opacity,
             z_index=1
         )
-        
-        # Set initial state
-        to_circle.scale(4.0)  # Make it larger than from_circle
+
+        # Set initial state (already large radius, just set opacity)
         to_circle.set_opacity(0)  # Start invisible
-        
+
         # Create the label for the larger circle with high z-index
         to_label = Text(
             to_scene,
@@ -375,10 +387,13 @@ class ZoomAnimation(Scene):
         to_circle.add_updater(update_to_circle)
         self.scale_indicator.add_updater(update_scale)
 
+        # Calculate required scale factor for to_circle to reach target_radius
+        target_scale_factor = target_radius / initial_to_radius
+
         # Set up the animations with new label animation
         self.play(
-            from_circle.animate.scale(0.05),        # Shrink current circle dramatically
-            to_circle.animate.scale(0.2),           # Adjust larger circle size
+            from_circle.animate.scale(0.05),        # Shrink current circle dramatically (dissolves anyway)
+            to_circle.animate.scale(target_scale_factor), # Shrink larger circle to target size
             from_label.animate.shift(LEFT * 4),     # Move old label left off-screen
             to_label.animate.shift(DOWN * 2),       # Move new label down into place
             scale_tracker.animate.set_value(to_scale), # Animate the scale value
