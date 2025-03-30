@@ -17,9 +17,8 @@ import numpy as np
 # Define colors
 INDIGO = "#4B0082"
 ELECTRIC_PURPLE = "#8F00FF"
-GREEN = "#00FF00"
 WHITE = "#FFFFFF"
-DEFAULT_BACKGROUND_COLOR = GREEN
+DEFAULT_BACKGROUND_COLOR = INDIGO
 
 class ZoomAnimation(Scene):
     def construct(self):
