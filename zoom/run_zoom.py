@@ -22,29 +22,20 @@ if __name__ == "__main__":
     zoom_class_name = "ZoomAnimation"
 
     # Construct the manim command arguments
-    # Use the full path to the script to be safe, though relative might work after cwd change
-    # Using just the script name should work after changing directory
+    zoom_script_path = os.path.join(script_dir, zoom_script_name)
     manim_args = [
         "manim",
 	"--flush_cache",
         f"-pq{quality}",
-        zoom_script_name,
+        zoom_script_path,
         zoom_class_name
     ]
 
-    print(f"Script directory: {script_dir}")
     print(f"Running command: {' '.join(manim_args)}")
 
-    # Store the original working directory
-    original_cwd = os.getcwd()
-    print(f"Original directory: {original_cwd}")
     try:
-        # Change to the script's directory so manim finds the file
-        os.chdir(script_dir)
-        print(f"Changed working directory to: {os.getcwd()}")
-
         # Run the command using subprocess for better control
-        process = subprocess.run(manim_args, check=False, text=True) # check=False to see Manim's output even on error
+        process = subprocess.run(manim_args, check=False, text=True)  # check=False to see Manim's output even on error
 
         if process.returncode != 0:
             print(f"Manim command failed with return code {process.returncode}")
@@ -55,7 +46,3 @@ if __name__ == "__main__":
         print(f"Error: 'manim' command not found. Make sure Manim is installed and in your PATH.")
     except Exception as e:
         print(f"An error occurred: {e}")
-    finally:
-        # Change back to the original directory
-        os.chdir(original_cwd)
-        print(f"Restored working directory to: {os.getcwd()}")
