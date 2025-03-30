@@ -149,8 +149,6 @@ launch_aider() {
             ;;
         GOOGLE)
             export GOOGLE_API_KEY="$api_key"
-	    echo "google key"
-	    echo $api_key
             aider_cmd="aider --api-key google=$api_key --model $model"
             ;;
         *)
