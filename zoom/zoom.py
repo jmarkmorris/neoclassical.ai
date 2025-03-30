@@ -327,17 +327,16 @@ class ZoomAnimation(Scene):
         def update_from_circle(circle):
             # Calculate progress
             progress = self.renderer.time / duration
-            
+
             # Only fade out if we're past 40% of the animation
             if progress > 0.4:
                 fade_progress = (progress - 0.4) / 0.2  # Fade out over 20% of animation
                 circle.set_opacity(max(0, 1.0 - fade_progress))
-        
-        # Updater for larger circle - fade in 
+        # Updater for larger circle - fade in
         def update_to_circle(circle):
             # Calculate progress
             progress = self.renderer.time / duration
-            
+
             # Only start to fade in when we're past the threshold
             if progress < 0.4:
                 circle.set_opacity(0)
@@ -348,13 +347,13 @@ class ZoomAnimation(Scene):
                 circle.set_opacity(1.0)
 
             # Calculate circle size relative to frame
-            circle_relative_size = circle.height / self.camera.frame_height # Use camera attribute
+            circle_relative_size = circle.height / self.camera.frame_height  # Use camera attribute
             # Dissolve when circle exceeds threshold (90%)
             if circle_relative_size >= frame_height_threshold:
                 # Calculate how far into dissolve we are (relative to the 90% threshold)
                 exceeded_by = circle_relative_size - frame_height_threshold
                 # Dissolve over a certain range (e.g., from 90% to 110% size)
-                dissolve_range = 0.2 # Corresponds to 20% of frame height
+                dissolve_range = 0.2  # Corresponds to 20% of frame height
                 dissolve_progress = min(1.0, exceeded_by / dissolve_range)
                 # Apply dissolve effect, but ensure opacity doesn't go below the fade-in progress
                 current_opacity = circle.get_opacity()
