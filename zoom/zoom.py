@@ -185,8 +185,11 @@ class ZoomAnimation(Scene):
             z_index=5  # Very high z-index to ensure it stays on top
         ).to_corner(UL, buff=0.5) # Position in top-left corner
 
-        # Add new circle to scene (label will be added via Transform)
-        self.add(to_circle)
+        # Position the new label above the screen initially
+        to_label.shift(UP * 2)
+
+        # Add new circle and the off-screen label to the scene
+        self.add(to_circle, to_label)
 
         # Define frame height threshold for dissolve (95% of frame height)
         FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
@@ -227,11 +230,12 @@ class ZoomAnimation(Scene):
         from_circle.add_updater(update_from_circle)
         self.scale_indicator.add_updater(update_scale)
 
-        # Create continuous animation - with larger scale and label transform
+        # Create continuous animation - with larger scale and new label animation
         self.play(
-            from_circle.animate.scale(20),        # Zoom first circle to be very large
-            to_circle.animate.scale(200),         # Grow second circle to visible size (much larger scale)
-            Transform(from_label, to_label),      # Transform the label in the top-left
+            from_circle.animate.scale(20),          # Zoom first circle to be very large
+            to_circle.animate.scale(200),           # Grow second circle to visible size (much larger scale)
+            from_label.animate.shift(LEFT * 4),     # Move old label left off-screen
+            to_label.animate.shift(DOWN * 2),       # Move new label down into place
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
@@ -240,8 +244,8 @@ class ZoomAnimation(Scene):
         from_circle.remove_updater(update_from_circle)
         self.scale_indicator.remove_updater(update_scale)
 
-        # Clean up old circle object (label is handled by Transform)
-        self.remove(from_circle)
+        # Clean up old circle and label objects
+        self.remove(from_circle, from_label)
 
         # Update current objects
         self.current_circle = to_circle
@@ -287,8 +291,11 @@ class ZoomAnimation(Scene):
             z_index=5  # Very high z-index to ensure it stays on top
         ).to_corner(UL, buff=0.5) # Position in top-left corner
 
-        # Add new circle to scene (label will be added via Transform)
-        self.add(to_circle)
+        # Position the new label above the screen initially
+        to_label.shift(UP * 2)
+
+        # Add new circle and the off-screen label to the scene
+        self.add(to_circle, to_label)
 
         # Define frame height threshold for dissolve (95% of frame height)
         FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
@@ -352,11 +359,12 @@ class ZoomAnimation(Scene):
         to_circle.add_updater(update_to_circle)
         self.scale_indicator.add_updater(update_scale)
 
-        # Set up the animations with label transform
+        # Set up the animations with new label animation
         self.play(
-            from_circle.animate.scale(0.05),  # Shrink current circle dramatically
-            to_circle.animate.scale(0.2),     # Adjust larger circle size
-            Transform(from_label, to_label),  # Transform the label in the top-left
+            from_circle.animate.scale(0.05),    # Shrink current circle dramatically
+            to_circle.animate.scale(0.2),       # Adjust larger circle size
+            from_label.animate.shift(LEFT * 4), # Move old label left off-screen
+            to_label.animate.shift(DOWN * 2),   # Move new label down into place
             run_time=duration,
             rate_func=rate_functions.ease_in_out_sine
         )
@@ -366,8 +374,8 @@ class ZoomAnimation(Scene):
         to_circle.remove_updater(update_to_circle)
         self.scale_indicator.remove_updater(update_scale)
 
-        # Clean up old circle object (label is handled by Transform)
-        self.remove(from_circle)
+        # Clean up old circle and label objects
+        self.remove(from_circle, from_label)
 
         # Update current objects
         self.current_circle = to_circle
