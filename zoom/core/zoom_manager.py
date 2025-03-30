@@ -393,10 +393,7 @@ class ZoomManager:
         )
         
         # Add elements to the scene
-        manim_scene.add(from_elements, to_elements, scale_indicator)
-        
-        # Add labels *after* all other elements to ensure they are on top
-        manim_scene.add(from_label, to_label)
+        manim_scene.add(from_elements, to_elements, scale_indicator, from_label, to_label)
         
         # Create a single continuous animation with cross-fade in the middle
         # Extend label transition to 40% of the animation (from 20%)
@@ -494,15 +491,18 @@ class ZoomManager:
                 # Normalize time to dissolve duration
                 dissolve_progress = min(1.0, time_over_threshold / dissolve_duration)
                 # Apply the dissolve effect
-                label.set_opacity(max(0, 1.0 - dissolve_progress))
+                label_opacity = max(0, 1.0 - dissolve_progress)
             # Standard crossfade in middle of animation
             elif progress < fade_start:
-                label.set_opacity(1.0)
+                label_opacity = 1.0
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                label.set_opacity(1.0 - fade_progress)
+                label_opacity = 1.0 - fade_progress
             else:
-                label.set_opacity(0.0)
+                label_opacity = 0.0
+            
+            # Ensure label is visible even if behind circle
+            label.set_opacity(label_opacity)
         
         def to_label_updater(label, dt):
             # Calculate progress as a fraction between 0 and 1
@@ -514,18 +514,28 @@ class ZoomManager:
                 
             # Fade in from 0 to 1 during the middle region
             if progress < fade_start:
-                label.set_opacity(0.0)
+                label_opacity = 0.0
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                label.set_opacity(fade_progress)
+                label_opacity = fade_progress
             else:
-                label.set_opacity(1.0)
+                label_opacity = 1.0
+            
+            # Ensure label is visible even if behind circle
+            label.set_opacity(label_opacity)
         
         # Add updaters for opacity to handle crossfade
         from_elements.add_updater(from_opacity_updater)
         to_elements.add_updater(to_opacity_updater)
         from_label.add_updater(from_label_updater)
         to_label.add_updater(to_label_updater)
+        
+        # Play the continuous animation
+        manim_scene.play(
+            *animations,
+            run_time=duration,
+            rate_func=rate_functions.ease_in_out_sine
+        )
         
         # Remove updaters
         from_elements.remove_updater(from_opacity_updater)
@@ -644,10 +654,7 @@ class ZoomManager:
         )
         
         # Add elements to the scene
-        manim_scene.add(from_elements, to_elements, scale_indicator)
-        
-        # Add labels *after* all other elements to ensure they are on top
-        manim_scene.add(from_label, to_label)
+        manim_scene.add(from_elements, to_elements, scale_indicator, from_label, to_label)
         
         # Create a single continuous animation with cross-fade in the middle
         # Extend label transition to 40% of the animation (from 20%)
@@ -745,15 +752,18 @@ class ZoomManager:
                 # Normalize time to dissolve duration
                 dissolve_progress = min(1.0, time_over_threshold / dissolve_duration)
                 # Apply the dissolve effect
-                label.set_opacity(max(0, 1.0 - dissolve_progress))
+                label_opacity = max(0, 1.0 - dissolve_progress)
             # Standard crossfade in middle of animation
             elif progress < fade_start:
-                label.set_opacity(1.0)
+                label_opacity = 1.0
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                label.set_opacity(1.0 - fade_progress)
+                label_opacity = 1.0 - fade_progress
             else:
-                label.set_opacity(0.0)
+                label_opacity = 0.0
+            
+            # Ensure label is visible even if behind circle
+            label.set_opacity(label_opacity)
         
         def to_label_updater(label, dt):
             # Calculate progress as a fraction between 0 and 1
@@ -765,18 +775,28 @@ class ZoomManager:
                 
             # Fade in from 0 to 1 during the middle region
             if progress < fade_start:
-                label.set_opacity(0.0)
+                label_opacity = 0.0
             elif progress < fade_end:
                 fade_progress = (progress - fade_start) / (fade_end - fade_start)
-                label.set_opacity(fade_progress)
+                label_opacity = fade_progress
             else:
-                label.set_opacity(1.0)
+                label_opacity = 1.0
+            
+            # Ensure label is visible even if behind circle
+            label.set_opacity(label_opacity)
         
         # Add updaters for opacity to handle crossfade
         from_elements.add_updater(from_opacity_updater)
         to_elements.add_updater(to_opacity_updater)
         from_label.add_updater(from_label_updater)
         to_label.add_updater(to_label_updater)
+        
+        # Play the continuous animation
+        manim_scene.play(
+            *animations,
+            run_time=duration,
+            rate_func=rate_functions.ease_in_out_sine
+        )
         
         # Remove updaters
         from_elements.remove_updater(from_opacity_updater)
