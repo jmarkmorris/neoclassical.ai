@@ -108,14 +108,14 @@ class ZoomAnimation(Scene):
     def _setup_scene(self, from_scene, from_scale, to_scene, to_scale):
         """Set up the initial scene with first circle and scale indicator"""
         # Set the background color
-        self.camera.background_color = ELECTRIC_PURPLE
+        self.camera.background_color = DEFAULT_BACKGROUND_COLOR
 
         # Get frame dimensions directly from the camera
         FRAME_WIDTH = self.camera.frame_width
         FRAME_HEIGHT = self.camera.frame_height
 
         # Create background - similar to the demo
-        bg_color = self.config["global_settings"].get("background_color", ELECTRIC_PURPLE)
+        bg_color = self.config["global_settings"].get("background_color", DEFAULT_BACKGROUND_COLOR)
         background = Rectangle(
             width=FRAME_WIDTH * 2,
             height=FRAME_HEIGHT * 2,
