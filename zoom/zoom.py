@@ -23,14 +23,14 @@ class ZoomAnimation(Scene):
         config_path = "zoom_config.json"
         with open(config_path, 'r') as f:
             self.config = json.load(f)
-        
+
         # Set the background color - just like in the demo
         self.camera.background_color = INDIGO
-        
-        # Get frame dimensions from config - just like in the demo
-        FRAME_WIDTH = config.frame_width
-        FRAME_HEIGHT = config.frame_height
-        
+
+        # Get frame dimensions directly from the camera
+        FRAME_WIDTH = self.camera.frame_width
+        FRAME_HEIGHT = self.camera.frame_height
+
         # Extract scenes from config
         scenes = []
         for scene_config in self.config["scenes"]:
@@ -92,11 +92,11 @@ class ZoomAnimation(Scene):
         """Set up the initial scene with first circle and scale indicator"""
         # Set the background color
         self.camera.background_color = INDIGO
-        
-        # Get frame dimensions from config
-        FRAME_WIDTH = config.frame_width
-        FRAME_HEIGHT = config.frame_height
-        
+
+        # Get frame dimensions directly from the camera
+        FRAME_WIDTH = self.camera.frame_width
+        FRAME_HEIGHT = self.camera.frame_height
+
         # Create background - similar to the demo
         bg_color = self.config["global_settings"].get("background_color", INDIGO)
         background = Rectangle(
@@ -182,15 +182,15 @@ class ZoomAnimation(Scene):
         
         # Add new elements to scene
         self.add(to_circle, to_label)
-        
+
         # Define frame height threshold for dissolve (95% of frame height)
-        FRAME_HEIGHT = config.frame_height
+        FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
         frame_height_threshold = FRAME_HEIGHT * 0.95
-        
+
         # Updater for first circle - dissolve when too large
         def update_from_circle(circle):
             # Calculate circle size relative to frame
-            circle_relative_size = circle.height / FRAME_HEIGHT
+            circle_relative_size = circle.height / self.camera.frame_height # Use camera attribute
             # Dissolve when circle exceeds threshold
             if circle_relative_size >= 0.95:
                 # Calculate how far into dissolve we are
@@ -202,7 +202,7 @@ class ZoomAnimation(Scene):
         def update_from_label(label):
             label.next_to(from_circle, RIGHT, buff=0.5)
             # Calculate circle size relative to frame
-            circle_relative_size = from_circle.height / FRAME_HEIGHT
+            circle_relative_size = from_circle.height / self.camera.frame_height # Use camera attribute
             # Dissolve when circle exceeds threshold
             if circle_relative_size >= 0.95:
                 # Calculate how far into dissolve we are
@@ -215,7 +215,7 @@ class ZoomAnimation(Scene):
             # Make sure the label stays with its circle
             label.next_to(to_circle, RIGHT, buff=0.5)
             # Determine visibility based on size - progressively increase
-            size_factor = to_circle.width / config.frame_width
+            size_factor = to_circle.width / self.camera.frame_width # Use camera attribute
             if size_factor > 0.05:  # Only show when circle is big enough
                 label.set_opacity(min(1.0, size_factor * 10))
             else:
@@ -313,11 +313,11 @@ class ZoomAnimation(Scene):
         
         # Add new elements to scene
         self.add(to_circle, to_label)
-        
+
         # Define frame height threshold for dissolve (95% of frame height)
-        FRAME_HEIGHT = config.frame_height
+        FRAME_HEIGHT = self.camera.frame_height # Use camera attribute
         frame_height_threshold = FRAME_HEIGHT * 0.95
-        
+
         # Updater for first circle - fade out while shrinking
         def update_from_circle(circle):
             # Calculate progress
@@ -341,9 +341,9 @@ class ZoomAnimation(Scene):
                 circle.set_opacity(fade_progress)
             else:
                 circle.set_opacity(1.0)
-            
+
             # Calculate circle size relative to frame
-            circle_relative_size = circle.height / FRAME_HEIGHT
+            circle_relative_size = circle.height / self.camera.frame_height # Use camera attribute
             # Dissolve when circle exceeds threshold
             if circle_relative_size >= 0.95:
                 # Calculate how far into dissolve we are
