@@ -77,11 +77,13 @@
 
 
 ## Steps I took to make local neoclassical.ai repo
-- cp -r from oldNPQG repo to neoclassical.ai
-- rm -rf .git in neoclassical.ai
-- git init
-- git remote add origin https://github.com/jmarkmorris/neoclassical.ai
-- git fetch origin
-- at this point vscode now says it has 138 files with changes to sync. which makes no sense at all.
-- git reset --hard origin/master
-- that reset cleared out the vscode count of changed files.
+   ```bash
+   - cp -r from oldNPQG repo to neoclassical.ai
+   - rm -rf .git in neoclassical.ai
+   - git init
+   - git remote add origin https://github.com/jmarkmorris/neoclassical.ai
+   - git fetch origin
+   - at this point vscode now says it has 138 files with changes to sync. which makes no sense at all.
+   - git reset --hard origin/master
+   - that reset cleared out the vscode count of changed files.
+   ```
