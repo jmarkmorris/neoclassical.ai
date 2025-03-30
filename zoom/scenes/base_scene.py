@@ -46,8 +46,8 @@ class ZoomableScene:
     def setup_background(self):
         """Create the background with the configured color"""
         # Extract settings from config
-        bg_color = self.config["global_settings"].get("background_color", "#4B0082")  # Default to INDIGO
-        
+        bg_color = self.config["global_settings"].get("background_color", "#00FF00")  # Default to GREEN
+
         # Create a full-screen rectangle for the background
         self.background = Rectangle(
             width=FRAME_WIDTH,

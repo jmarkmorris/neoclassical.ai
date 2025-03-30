@@ -14,9 +14,13 @@ import os
 import sys
 import numpy as np
 
-# Set background color
+# Set background colors
 INDIGO = "#4B0082"
 ELECTRIC_PURPLE = "#8F00FF"
+GREEN = "#00FF00"
+
+# Set default background color
+DEFAULT_BACKGROUND_COLOR = GREEN
 
 class ZoomAnimation(Scene):
     def construct(self):
@@ -34,8 +38,8 @@ class ZoomAnimation(Scene):
             print(f"Error: Could not decode JSON from {config_path}")
             sys.exit(1)
 
-        # Set the background color - just like in the demo
-        self.camera.background_color = ELECTRIC_PURPLE
+        # Set the background color
+        self.camera.background_color = DEFAULT_BACKGROUND_COLOR
 
         # Get frame dimensions directly from the camera
         FRAME_WIDTH = self.camera.frame_width

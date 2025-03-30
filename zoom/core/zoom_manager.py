@@ -872,15 +872,14 @@ class ZoomManager:
             manim_scene (Scene): The Manim scene object
         """
         current_time = 0
-        
         # Configure the camera background color
-        bg_color = self.config["global_settings"].get("background_color", "#4B0082")
+        bg_color = self.config["global_settings"].get("background_color", "#00FF00")
         try:
             manim_scene.camera.background_color = bg_color
         except:
             # Some Manim versions don't allow setting background_color directly
             print(f"Note: Could not set camera background color directly")
-        
+
         print(f"Starting animation sequence with {len(self.config['animation_sequence'])} transitions")
         
         try:
