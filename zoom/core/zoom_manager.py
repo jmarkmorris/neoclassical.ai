@@ -7,6 +7,7 @@ import os
 import numpy as np
 from manim import *
 from manim.utils import rate_functions
+import datetime
 
 # Force use of simple fonts only
 MathTex = None  # Disable MathTex to ensure we don't use it by accident
@@ -70,6 +71,24 @@ class ZoomManager:
         
         # For tracking resources that need cleanup
         self._active_mobjects = []
+
+    def _create_date_time_label(self):
+        """Create a label with the current date and time"""
+        now = datetime.datetime.now()
+        date_time_str = now.strftime("%Y-%m-%d %H:%M:%S")
+        
+        label_font_size = self.config["global_settings"].get("font_size", 24)
+        text_color = self.config["global_settings"].get("color_text", "#FFFFFF")
+        
+        date_time_label = Text(
+            date_time_str,
+            font="Arial",
+            font_size=label_font_size,
+            color=text_color,
+            z_index=100  # Ensure label is always on top
+        ).to_edge(UP, buff=0.5)
+        
+        return date_time_label
     
     def _initialize_scenes(self):
         """Create all scene instances based on the configuration"""
@@ -391,9 +410,12 @@ class ZoomManager:
         scale_indicator, scale_tracker = self._create_true_logarithmic_scale_updater(
             from_scale, to_scale, duration
         )
+
+        # Create date/time label
+        date_time_label = self._create_date_time_label()
         
         # Add elements to the scene
-        manim_scene.add(from_elements, to_elements, scale_indicator, from_label, to_label)
+        manim_scene.add(from_elements, to_elements, scale_indicator, from_label, to_label, date_time_label)
         
         # Create a single continuous animation with cross-fade in the middle
         # Extend label transition to 40% of the animation (from 20%)
@@ -652,9 +674,12 @@ class ZoomManager:
         scale_indicator, scale_tracker = self._create_true_logarithmic_scale_updater(
             from_scale, to_scale, duration
         )
+
+        # Create date/time label
+        date_time_label = self._create_date_time_label()
         
         # Add elements to the scene
-        manim_scene.add(from_elements, to_elements, scale_indicator, from_label, to_label)
+        manim_scene.add(from_elements, to_elements, scale_indicator, from_label, to_label, date_time_label)
         
         # Create a single continuous animation with cross-fade in the middle
         # Extend label transition to 40% of the animation (from 20%)
