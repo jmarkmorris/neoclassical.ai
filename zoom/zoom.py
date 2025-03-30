@@ -99,9 +99,6 @@ class ZoomAnimation(Scene):
             else:
                 self._zoom_out(from_scene, to_scene, from_scale, to_scale, duration)
             
-            # Add a small pause between transitions for clarity
-            if i < len(animation_sequence) - 1:
-                self.wait(0.5)
     
     def _setup_scene(self, from_scene, from_scale, to_scene, to_scale):
         """Set up the initial scene with first circle and scale indicator"""
