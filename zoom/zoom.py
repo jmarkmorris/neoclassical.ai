@@ -108,7 +108,7 @@ class ZoomAnimation(Scene):
             z_index=-10
         )
         self.add(background)
-        
+
         # Create the initial circle using the demo's approach
         fill_color = self.config["global_settings"].get("fill_color", "#3366CC")
         fill_opacity = self.config["global_settings"].get("fill_opacity", 0.8)
