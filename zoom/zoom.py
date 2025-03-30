@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Improved NPQG Universe Zoom Animation based on circle_with_label_demo.py
+NPQG Universe Zoom Animation
 - Labels positioned next to circles
 - Labels zoom with circles
 - Circles and labels dissolve at 95% of frame height
