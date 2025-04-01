@@ -2,6 +2,21 @@ import json
 import random
 from manim import *
 
+RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, SILVER = (
+    RED,
+    GREEN,
+    BLUE,
+    YELLOW,
+    ORANGE,
+    PURPLE,
+    PINK,
+    TEAL,
+    MAROON,
+    GOLD,
+    SILVER,
+)
+
+
 class TiledSquares(Scene):
     """
     A scene that tiles the Manim frame with colored squares in a grid pattern.
