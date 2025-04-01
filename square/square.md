@@ -1,26 +1,28 @@
 ### Project Goals
 
-The goal is to create a python/manim program square.py that generates a 2D *image* that tiles a manim frame with small colored squares in a grid pattern. 
+The goal is to create a python/manim program `square.py` that generates a 2D image that tiles a manim frame with small colored squares in a grid pattern.
 
 ## Frame design
 
-- calculate the number of squares that will fit horizontally and vertically based on the square size and the frame size 
-- create a grid of colored squares with the grid centered on the origin
+- Calculate the number of squares that will fit horizontally and vertically based on the square size and the frame size.
+- Create a grid of colored squares with the grid centered on the origin.
 
 ## Input specification
 
-A json input file, square.json, specifies the following:
+A json input file, `square/square.json`, specifies the following:
 
-- the square size
-- the color scheme
+- The square size
+- The color scheme
+
+The `run_square.sh` script provides a menu to select these options, updating the `square/square.json` file before running `square.py`.
 
 ## Color schemes
 
-The json input file specifies a color scheme to be used, chosen from the following options.
+The json input file specifies a color scheme to be used, chosen from the following options:
 
-- Alternating PURE_RED and PURE_BLUE both horizontally and vertically (like squares on a chess board)
-- Alternating black and white
-- Each square a random manim color
+- `alternating_red_blue`: Alternating PURE_RED and PURE_BLUE both horizontally and vertically (like squares on a chess board).
+- `black_and_white`: Alternating black and white.
+- `random_color`: Each square a random manim color.
 
 ## Titles
 
@@ -28,10 +30,11 @@ The title on the image shall have a solid INDIGO background with white letters t
 
 ## Run file
 
-- the run file will call the program square.py program to generate the image.
-- the run file will have comment that specifies the smallest square possible in manim.
-- the run file will have a comment that specifies the largest square size that will fit. One square in this case!
+- The `run_square.sh` script presents a menu to choose the square size and color scheme.
+- It updates the `square/square.json` file with the selected options.
+- It then calls the `square.py` program to generate the image.
+- The run file has comments that specify the smallest and largest square sizes possible in manim.
 
 ## Simplicity
 
-This is a simple program so keep it simple.
+This is a simple program, so keep it simple.
