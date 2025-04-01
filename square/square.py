@@ -7,7 +7,7 @@ class TiledSquares(Scene):
     A scene that tiles the Manim frame with colored squares in a grid pattern.
     The configuration is loaded from a JSON file.
     """
-    def __init__(self, config_file="square/square.json", **kwargs):
+    def __init__(self, config_file="square.json", **kwargs):
         super().__init__(**kwargs)
         self.config_file = config_file
         self.config = self.load_config()
