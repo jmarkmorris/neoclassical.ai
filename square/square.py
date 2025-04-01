@@ -39,7 +39,7 @@ class TiledSquares(Scene):
                 color_schemes = {
                     "alternating_red_blue": [PURE_RED, PURE_BLUE],
                     "black_and_white": [BLACK, WHITE],
-                    "random_color": [random.choice(list(ManimColor.all_colors.keys()))] * 2  # Use same random color for both
+                    "random_color": [random.choice([RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, SILVER])] * 2  # Use same random color for both
                 }
 
                 colors = color_schemes.get(self.color_scheme, [WHITE, WHITE])  # Default to white
