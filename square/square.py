@@ -12,6 +12,12 @@ PINK = PINK
 TEAL = TEAL
 MAROON = MAROON
 GOLD = GOLD
+SILVER = SILVER
+DARK_GRAY = DARK_GRAY
+GRAY = GRAY
+LIGHT_GRAY = LIGHT_GRAY
+WHITE = WHITE
+BLACK = BLACK
 
 
 class TiledSquares(Scene):
@@ -51,7 +57,7 @@ class TiledSquares(Scene):
                 color_schemes = {
                     "alternating_red_blue": [PURE_RED, PURE_BLUE],
                     "black_and_white": [BLACK, WHITE],
-                    "random_color": [random.choice([RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD])] * 2  # Use same random color for both
+                    "random_color": [random.choice([RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, SILVER, DARK_GRAY, GRAY, LIGHT_GRAY, WHITE, BLACK])] * 2  # Use same random color for both
                 }
 
                 colors = color_schemes.get(self.color_scheme, [WHITE, WHITE])  # Default to white
