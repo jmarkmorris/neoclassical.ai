@@ -1,0 +1,1 @@
+# python and manim code to test tiling the manim 2D frame with equal size squares.
