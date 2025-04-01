@@ -2,19 +2,17 @@ import json
 import random
 from manim import *
 
-RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, SILVER = (
-    RED,
-    GREEN,
-    BLUE,
-    YELLOW,
-    ORANGE,
-    PURPLE,
-    PINK,
-    TEAL,
-    MAROON,
-    GOLD,
-    SILVER,
-)
+RED = RED
+GREEN = GREEN
+BLUE = BLUE
+YELLOW = YELLOW
+ORANGE = ORANGE
+PURPLE = PURPLE
+PINK = PINK
+TEAL = TEAL
+MAROON = MAROON
+GOLD = GOLD
+SILVER = SILVER
 
 
 class TiledSquares(Scene):
