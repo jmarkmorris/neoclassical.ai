@@ -48,18 +48,17 @@ fi
 echo ""
 
 # Ask about opacity using a yes/no question
-read -r -p "Set opacity? [y/N] " OPACITY
-if [[ "$OPACITY" =~ ^[yY] ]]; then
-  OPACITY="1.0"
+read -r -p "Disable opacity variation? [y/N] " OPACITY_VARIATION
+if [[ "$OPACITY_VARIATION" =~ ^[yY] ]]; then
+  OPACITY_VARIATION="no"
 else
-  OPACITY="0.5"
+  OPACITY_VARIATION="yes"
 fi
 
 # Update square.json with the chosen values
 jq ".square_size = $(echo "$SQUARE_SIZE" | bc)" square.json > tmp.json && mv tmp.json square.json
 jq ".color_scheme = \"$COLOR_SCHEME\"" square.json > tmp.json && mv tmp.json square.json
 jq ".borders = \"$BORDERS\"" square.json > tmp.json && mv tmp.json square.json
-jq ".opacity = $(echo "$OPACITY" | bc)" square.json > tmp.json && mv tmp.json square.json
 
 # Run manim with the updated configuration
 manim -pqh square.py TiledSquares
