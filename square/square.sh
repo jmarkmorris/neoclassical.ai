@@ -20,7 +20,7 @@ COLOR_SCHEME="random_color"
 BORDERS="no"
 
 # Menu for square size
-square_size_options=("0.05" "0.10" "0.25" "0.5" "1.0" "2.0" "Custom")
+square_size_options=("0.04" "0.05" "0.10" "0.2" "0.5" "Custom")
 chosen_size=$(get_menu_choice "Choose square size: " "${square_size_options[@]}")
 
 if [[ "$chosen_size" == "Custom" ]]; then
