@@ -2,21 +2,9 @@ import json
 import random
 from manim import *
 
-RED = RED
-GREEN = GREEN
-BLUE = BLUE
-YELLOW = YELLOW
-ORANGE = ORANGE
-PURPLE = PURPLE
-PINK = PINK
-TEAL = TEAL
-MAROON = MAROON
-GOLD = GOLD
-DARK_GRAY = DARK_GRAY
-GRAY = GRAY
-LIGHT_GRAY = LIGHT_GRAY
-WHITE = WHITE
-BLACK = BLACK
+
+# Define the list of colors for the random_color scheme
+RANDOM_COLOR_OPTIONS = [RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, DARK_GRAY, GRAY, LIGHT_GRAY, WHITE, BLACK]
 
 
 class TiledSquares(Scene):
@@ -56,19 +44,18 @@ class TiledSquares(Scene):
                 square.move_to([x, y, 0])
 
                 # Color scheme logic
-                color_schemes = {
-                    "alternating_red_blue": [PURE_RED, PURE_BLUE],
-                    "black_and_white": [BLACK, WHITE],
-                    "random_color": [random.choice([RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, DARK_GRAY, GRAY, LIGHT_GRAY, WHITE, BLACK])] * 2,  # Use same random color for both
-                    "random_red_blue": [random.choice([PURE_RED, PURE_BLUE])] * 2 # Randomly choose RED or BLUE for each square
-                }
-
-                colors = color_schemes.get(self.color_scheme, [WHITE, WHITE])  # Default to white
-                if self.color_scheme == "random_red_blue":
-                    square.set_fill(colors[0], opacity=1)
+                if self.color_scheme == "alternating_red_blue":
+                    color = PURE_RED if (i + j) % 2 == 0 else PURE_BLUE
+                elif self.color_scheme == "black_and_white":
+                    color = BLACK if (i + j) % 2 == 0 else WHITE
+                elif self.color_scheme == "random_color":
+                    color = random.choice(RANDOM_COLOR_OPTIONS)
+                elif self.color_scheme == "random_red_blue":
+                    color = random.choice([PURE_RED, PURE_BLUE])
                 else:
-                    square.set_fill(colors[(i + j) % 2], opacity=1)
+                    color = WHITE # Default to white
 
+                square.set_fill(color, opacity=1)
                 squares.add(square)
 
         self.add(squares)

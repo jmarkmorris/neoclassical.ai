@@ -23,8 +23,8 @@ The json input file specifies a color scheme to be used, chosen from the followi
 
 - `alternating_red_blue`: Alternating PURE_RED and PURE_BLUE both horizontally and vertically (like squares on a chess board).
 - `black_and_white`: Alternating black and white.
-- `random_color`: Each square a random manim color.
-- `random_red_blue`: Each square is randomly either RED or BLUE.
+- `random_color`: Each square is assigned a random color chosen from a predefined list of Manim colors.
+- `random_red_blue`: Each square is randomly assigned either PURE_RED or PURE_BLUE.
 
 ## Titles
 
@@ -35,7 +35,6 @@ The title on the image shall have a solid BLACK background with white letters th
 - The `run_square.sh` script presents a menu to choose the square size and color scheme.
 - It updates the `square/square.json` file with the selected options.
 - It then calls the `square.py` program to generate the image.
-- The run file has comments that specify the smallest and largest square sizes possible in manim.
 - The run file also allows you to choose whether or not to display borders on the squares.
 
 ## Simplicity
