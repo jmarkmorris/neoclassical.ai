@@ -1,7 +1,6 @@
 import json
 import random
 from manim import *
-from manim import Color
 
 # Define the list of colors for the random_color scheme
 RANDOM_COLOR_OPTIONS = [RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, DARK_GRAY, GRAY, LIGHT_GRAY, WHITE, BLACK]
@@ -33,7 +32,7 @@ class TiledSquares(Scene):
     def construct(self):
         """Constructs the scene by tiling the frame with colored squares."""
         if self.background_color in globals() and isinstance(globals()[self.background_color], str):
-            self.camera.background_color = Color(globals()[self.background_color])
+            self.camera.background_color = manim.Color(globals()[self.background_color])
         else:
             try:
                 self.camera.background_color = eval(self.background_color)
