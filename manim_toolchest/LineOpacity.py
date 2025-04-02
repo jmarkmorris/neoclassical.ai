@@ -1,3 +1,5 @@
+# manim -pqh --disable_caching LineOpacity.py LineOpacity -p
+
 from manim import *
 
 class LineOpacity(Scene):

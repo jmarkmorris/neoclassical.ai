@@ -1,4 +1,4 @@
-# manim -pqh --disable_caching CircleSizes.py CircleSizes -p
+# manim -pqh --disable_caching circlesizes.py CircleSizes -p
 
 
 from manim import *
