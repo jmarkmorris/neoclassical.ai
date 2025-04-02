@@ -14,8 +14,10 @@ A json input file, `square/square.json`, specifies the following:
 - The square size
 - The color scheme
 - Borders (yes/no)
+- Opacity Variation (yes/no)
+- Background Color (name or hex code)
 
-The `run_square.sh` script provides a menu to select these options, updating the `square/square.json` file before running `square.py`.
+The `square/square.sh` script provides a menu to select these options, updating the `square/square.json` file before running `square.py`.
 
 ## Color schemes
 
@@ -26,16 +28,25 @@ The json input file specifies a color scheme to be used, chosen from the followi
 - `random_color`: Each square is assigned a random color chosen from a predefined list of Manim colors.
 - `random_red_blue`: Each square is randomly assigned either PURE_RED or PURE_BLUE.
 
+## Opacity Variation
+
+The script asks whether to disable opacity variation. If disabled, all squares have an opacity of 0.5. If enabled (default), each square has a random opacity between 0 and 1.
+
+## Background Color
+
+The background color can be specified in the `square.json` file using either a color name defined in Manim (e.g., "WHITE", "BLACK", "INDIGO") or a hex code (e.g., "#4B0082").
+
 ## Titles
 
 The title on the image shall have a solid BLACK background with white letters that indicate the square size used in the image.
 
 ## Run file
 
-- The `run_square.sh` script presents a menu to choose the square size and color scheme.
+- The `square/square.sh` script presents a menu to choose the square size and color scheme.
 - It updates the `square/square.json` file with the selected options.
 - It then calls the `square.py` program to generate the image.
 - The run file also allows you to choose whether or not to display borders on the squares.
+- The run file also allows you to choose whether or not to display opacity variation on the squares.
 
 ## Simplicity
 
