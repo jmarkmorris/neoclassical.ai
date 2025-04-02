@@ -31,13 +31,13 @@ class TiledSquares(Scene):
 
     def construct(self):
         """Constructs the scene by tiling the frame with colored squares."""
-        if self.background_color in globals() and isinstance(globals()[self.background_color], str):
-            self.camera.background_color = manim.Color(globals()[self.background_color])
-        else:
-            try:
+        try:
+            if isinstance(self.background_color, str) and self.background_color.startswith("#"):
+                self.camera.background_color = Color(self.background_color)
+            else:
                 self.camera.background_color = eval(self.background_color)
-            except (NameError, TypeError):
-                self.camera.background_color = WHITE
+        except (NameError, TypeError):
+            self.camera.background_color = WHITE
         frame_width = self.camera.frame_width
         frame_height = self.camera.frame_height
 
