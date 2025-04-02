@@ -26,7 +26,7 @@ The json input file specifies a color scheme to be used, chosen from the followi
 
 ## Titles
 
-The title on the image shall have a solid INDIGO background with white letters that indicate the square size used in the image.
+The title on the image shall have a solid BLACK background with white letters that indicate the square size used in the image.
 
 ## Run file
 
