@@ -20,6 +20,7 @@ class TiledSquares(Scene):
         self.color_scheme = self.config.get("color_scheme", "alternating_red_blue")
         self.borders = self.config.get("borders", "yes") == "yes"
         self.opacity_variation = self.config.get("opacity_variation", "yes") == "yes"
+        self.background_color = self.config.get("background_color", "WHITE")
 
     def load_config(self):
         """Loads the configuration from the JSON file."""
@@ -28,7 +29,7 @@ class TiledSquares(Scene):
 
     def construct(self):
         """Constructs the scene by tiling the frame with colored squares."""
-        self.camera.background_color = WHITE
+        self.camera.background_color = eval(self.background_color)
         frame_width = self.camera.frame_width
         frame_height = self.camera.frame_height
 

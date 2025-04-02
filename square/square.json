@@ -1,5 +1,6 @@
 {
   "square_size": 0.25,
   "color_scheme": "alternating_red_blue",
-  "borders": "no"
+  "borders": "no",
+  "background_color": "WHITE"
 }
