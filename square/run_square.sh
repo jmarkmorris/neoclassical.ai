@@ -42,7 +42,7 @@ echo ""
 
 # Ask about borders using a yes/no question
 read -r -p "Show borders? [y/N] " BORDERS
-if [[ "$BORDERS" =~ ^([yY][eE][sS]|[yY]) ]]; then
+if [[ "$BORDERS" =~ ^[yY] ]]; then
   BORDERS="yes"
 else
   BORDERS="no"
