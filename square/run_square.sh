@@ -6,6 +6,7 @@
 # Function to display the menu and get user choice
 get_menu_choice() {
   PS3="$1"
+  shift
   select choice in "$@"; do
     if [[ -n "$choice" ]]; then
       echo "$choice"
