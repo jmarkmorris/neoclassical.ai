@@ -19,6 +19,7 @@ class TiledSquares(Scene):
         self.square_size = self.config.get("square_size", 0.5)
         self.color_scheme = self.config.get("color_scheme", "alternating_red_blue")
         self.borders = self.config.get("borders", "yes") == "yes"
+        self.opacity = self.config.get("opacity", 0.5)
 
     def load_config(self):
         """Loads the configuration from the JSON file."""
@@ -55,7 +56,7 @@ class TiledSquares(Scene):
                 else:
                     color = WHITE # Default to white
 
-                square.set_fill(color, opacity=1)
+                square.set_fill(color, opacity=self.opacity)
                 squares.add(square)
 
         self.add(squares)

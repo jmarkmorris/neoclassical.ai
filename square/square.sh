@@ -45,10 +45,21 @@ else
   BORDERS="no"
 fi
 
+echo ""
+
+# Ask about opacity using a yes/no question
+read -r -p "Set opacity? [y/N] " OPACITY
+if [[ "$OPACITY" =~ ^[yY] ]]; then
+  OPACITY="1.0"
+else
+  OPACITY="0.5"
+fi
+
 # Update square.json with the chosen values
 jq ".square_size = $(echo "$SQUARE_SIZE" | bc)" square.json > tmp.json && mv tmp.json square.json
 jq ".color_scheme = \"$COLOR_SCHEME\"" square.json > tmp.json && mv tmp.json square.json
 jq ".borders = \"$BORDERS\"" square.json > tmp.json && mv tmp.json square.json
+jq ".opacity = $(echo "$OPACITY" | bc)" square.json > tmp.json && mv tmp.json square.json
 
 # Run manim with the updated configuration
 manim -pqh square.py TiledSquares

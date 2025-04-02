@@ -1,5 +1,6 @@
 {
   "square_size": 0.25,
   "color_scheme": "random_color",
-  "borders": "no"
+  "borders": "no",
+  "opacity": 0.5
 }
