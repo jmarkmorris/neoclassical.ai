@@ -35,7 +35,7 @@ fi
 echo ""
 
 # Menu for color scheme
-color_scheme_options=("alternating_red_blue" "black_and_white" "random_color")
+color_scheme_options=("alternating_red_blue" "black_and_white" "random_color" "random_red_blue")
 COLOR_SCHEME=$(get_menu_choice "Choose color scheme: " "${color_scheme_options[@]}")
 
 echo ""

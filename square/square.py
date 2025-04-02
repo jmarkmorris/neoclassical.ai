@@ -59,11 +59,15 @@ class TiledSquares(Scene):
                 color_schemes = {
                     "alternating_red_blue": [PURE_RED, PURE_BLUE],
                     "black_and_white": [BLACK, WHITE],
-                    "random_color": [random.choice([RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, DARK_GRAY, GRAY, LIGHT_GRAY, WHITE, BLACK])] * 2  # Use same random color for both
+                    "random_color": [random.choice([RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, DARK_GRAY, GRAY, LIGHT_GRAY, WHITE, BLACK])] * 2,  # Use same random color for both
+                    "random_red_blue": [random.choice([RED, BLUE])] * 2 # Randomly choose RED or BLUE for each square
                 }
 
                 colors = color_schemes.get(self.color_scheme, [WHITE, WHITE])  # Default to white
-                square.set_fill(colors[(i + j) % 2], opacity=1)
+                if self.color_scheme == "random_red_blue":
+                    square.set_fill(colors[0], opacity=1)
+                else:
+                    square.set_fill(colors[(i + j) % 2], opacity=1)
 
                 squares.add(square)
 

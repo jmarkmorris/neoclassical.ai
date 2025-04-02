@@ -24,6 +24,7 @@ The json input file specifies a color scheme to be used, chosen from the followi
 - `alternating_red_blue`: Alternating PURE_RED and PURE_BLUE both horizontally and vertically (like squares on a chess board).
 - `black_and_white`: Alternating black and white.
 - `random_color`: Each square a random manim color.
+- `random_red_blue`: Each square is randomly either RED or BLUE.
 
 ## Titles
 
