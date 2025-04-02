@@ -3,7 +3,7 @@
 # Function to list available Python files
 list_tools() {
   echo "Available tools:"
-  ls *.py | grep -v '__init__.py' | sed 's/\.py//' | sed 's/\.py//' | awk '{print "  " NR ") " $1}'
+  ls *.py | grep -v '__init__.py' | sed 's/\.py//' | awk '{print "  " NR ") " $1}'
 }
 
 # Function to run the selected tool
