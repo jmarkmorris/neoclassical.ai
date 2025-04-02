@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Smallest possible square size in manim (theoretically, but limited by computational precision)
-# Largest square size that will fit: frame_width
-
 # Function to display the menu and get user choice
 get_menu_choice() {
   PS3="$1"
@@ -18,9 +15,9 @@ get_menu_choice() {
 }
 
 # Set default values
-SQUARE_SIZE=0.5
+SQUARE_SIZE=0.1
 COLOR_SCHEME="random_color"
-BORDERS="yes"
+BORDERS="no"
 
 # Menu for square size
 square_size_options=("0.05" "0.10" "0.25" "0.5" "1.0" "2.0" "Custom")
