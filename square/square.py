@@ -28,6 +28,7 @@ class TiledSquares(Scene):
 
     def construct(self):
         """Constructs the scene by tiling the frame with colored squares."""
+        self.camera.background_color = WHITE
         frame_width = self.camera.frame_width
         frame_height = self.camera.frame_height
 
