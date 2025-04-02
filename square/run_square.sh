@@ -40,9 +40,13 @@ COLOR_SCHEME=$(get_menu_choice "Choose color scheme: " "${color_scheme_options[@
 
 echo ""
 
-# Menu for borders
-border_options=("yes" "no")
-BORDERS=$(get_menu_choice "Show borders? " "${border_options[@]}")
+# Ask about borders using a yes/no question
+read -r -p "Show borders? [y/N] " BORDERS
+if [[ "$BORDERS" =~ ^([yY][eE][sS]|[yY]) ]]; then
+  BORDERS="yes"
+else
+  BORDERS="no"
+fi
 
 # Update square.json with the chosen values
 jq ".square_size = $(echo "$SQUARE_SIZE" | bc)" square.json > tmp.json && mv tmp.json square.json
