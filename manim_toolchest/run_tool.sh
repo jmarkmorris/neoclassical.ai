@@ -116,7 +116,7 @@ while true; do
 
     case "$choice" in
         [0-9]*)
-            tool_name=$(ls *.py | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's/\.py//')
+            tool_name=$(ls *.py | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's/\.py$//')
             if [ -n "$tool_name" ]; then
                 run_tool "$tool_name"
             else
