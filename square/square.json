@@ -1,5 +1,5 @@
 {
-  "square_size": 0.10,
+  "square_size": 0.25,
   "color_scheme": "random_color",
-  "borders": "no"
+  "borders": "yes"
 }
