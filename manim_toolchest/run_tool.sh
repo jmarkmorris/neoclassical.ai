@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if we're in the manim_toolchest directory
+if [ ! -f "$(dirname "$0")/run_tool.sh" ]; then
+    echo "Please run this script from the manim_toolchest directory"
+    echo "Try: cd manim_toolchest && ./run_tool.sh"
+    exit 1
+fi
+
 # Print banner
 print_banner() {
     clear
@@ -16,7 +23,7 @@ list_tools() {
     echo ""
     
     # Get all Python files except __init__.py and tools.py
-    files=$(ls *.py | grep -v '__init__.py' | grep -v 'tools.py' | sort)
+    files=$(find . -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort)
     
     # Calculate the number of columns based on terminal width
     term_width=$(tput cols)
@@ -36,7 +43,8 @@ list_tools() {
     counter=1
     while read -r file; do
         # Extract class name from file
-        class_name=${file%.py}
+        file_basename=$(basename "$file")
+        class_name=${file_basename%.py}
         
         # Format the entry with padding
         printf "%3d) %-${max_name_length}s" $counter "$class_name" >> "$temp_file"
@@ -105,7 +113,7 @@ while true; do
 
     case "$choice" in
         [0-9]*)
-            tool_name=$(ls *.py | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's/\.py$//')
+            tool_name=$(find . -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's/\.py$//' | xargs basename)
             if [ -n "$tool_name" ]; then
                 run_tool "$tool_name"
             else
