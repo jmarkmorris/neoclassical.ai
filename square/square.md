@@ -13,6 +13,7 @@ A json input file, `square/square.json`, specifies the following:
 
 - The square size
 - The color scheme
+- Borders (yes/no)
 
 The `run_square.sh` script provides a menu to select these options, updating the `square/square.json` file before running `square.py`.
 
@@ -34,6 +35,7 @@ The title on the image shall have a solid BLACK background with white letters th
 - It updates the `square/square.json` file with the selected options.
 - It then calls the `square.py` program to generate the image.
 - The run file has comments that specify the smallest and largest square sizes possible in manim.
+- The run file also allows you to choose whether or not to display borders on the squares.
 
 ## Simplicity
 

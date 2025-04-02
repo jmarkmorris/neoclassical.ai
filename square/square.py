@@ -30,6 +30,7 @@ class TiledSquares(Scene):
         self.config = self.load_config()
         self.square_size = self.config.get("square_size", 0.5)
         self.color_scheme = self.config.get("color_scheme", "alternating_red_blue")
+        self.borders = self.config.get("borders", "yes") == "yes"
 
     def load_config(self):
         """Loads the configuration from the JSON file."""
@@ -50,6 +51,8 @@ class TiledSquares(Scene):
                 x = (i - num_squares_x / 2 + 0.5) * self.square_size
                 y = (j - num_squares_y / 2 + 0.5) * self.square_size
                 square = Square(side_length=self.square_size, stroke_width=1)
+                if not self.borders:
+                    square.set_stroke(width=0)
                 square.move_to([x, y, 0])
 
                 # Color scheme logic
