@@ -27,7 +27,7 @@ class TextFontsSizes(Scene):
         sample_text = "Neoclassical Physics and Quantum Gravity"
         font = "Helvetica Neue"
         sample_text = "Neoclassical Physics and Quantum Gravity"
-        sizes = [12, 16, 24, 32]
+        sizes = [16, 24, 32]
         weights = ["BOLD", "MEDIUM", "NORMAL", "LIGHT", "THIN"]
         
         text_groups = []
@@ -63,3 +63,7 @@ class TextFontsSizes(Scene):
             current_y -= group.height + 0.1  # Move down by text height + small buffer
 
             self.add(group)
+
+        # Center the entire block of text
+        text_group = VGroup(*self.mobjects)
+        text_group.move_to(ORIGIN)
