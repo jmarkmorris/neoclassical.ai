@@ -74,12 +74,9 @@ run_tool() {
     echo ""
     
     # Run the tool with high quality rendering
-    # Special case for zLorenz3D_SLOW which has a different class name
-    if [ "$tool_name" = "zLorenz3D_SLOW" ]; then
-        manim -pqk --disable_caching "$tool_name.py" zLorenz3D_SLOW -p
-    # Special case for Lorenz3D (if it still exists)
-    elif [ "$tool_name" = "Lorenz3D" ]; then
-        manim -pqk --disable_caching "$tool_name.py" zLorenz3D_SLOW -p
+    # Special case for zz_Lorenz3D_SLOW which has a different class name
+    if [ "$tool_name" = "zz_Lorenz3D_SLOW" ]; then
+        manim -pqk --disable_caching "$tool_name.py" zz_Lorenz3D_SLOW -p
     else
         manim -pqk --disable_caching "$tool_name.py" "$tool_name" -p
     fi
