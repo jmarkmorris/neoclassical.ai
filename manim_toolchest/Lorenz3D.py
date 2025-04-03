@@ -24,7 +24,7 @@ class Lorenz3D(ThreeDScene):
             weight="LIGHT",
             color=YELLOW,
             font_size=20
-        ).next_to(title, DOWN, buff=0.3)
+        ).next_to(title, DOWN, buff=0.1)
         
         self.add_fixed_in_frame_mobjects(title, subtitle)
         

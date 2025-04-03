@@ -20,8 +20,10 @@ class LineOpacity(Scene):
         subtitle = Text(
             "Line(start=[x, y, z], end=[x, y, z], stroke_width=w, stroke_opacity=o)",
             color=YELLOW,
-            font_size=20
-        ).next_to(title, DOWN, buff=0.3)
+            font_size=20,
+            font="Helvetica Neue",
+            weight="LIGHT"
+        ).next_to(title, DOWN, buff=0.1)
         
         self.add(title, subtitle)
         
