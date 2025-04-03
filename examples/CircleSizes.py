@@ -5,23 +5,7 @@ class circlesizes(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
-        # Add title and subtitle
-        title = Text(
-            "Circle Sizes Visualization",
-            font="Helvetica Neue",
-            weight="LIGHT",
-            font_size=36
-        ).to_edge(UP, buff=0.5)
         
-        subtitle = Text(
-            "Circle(radius=r, color=color).set_fill(opacity=1) with increasing radius",
-            font="Helvetica Neue",
-            weight="LIGHT",
-            color=YELLOW,
-            font_size=20
-        ).next_to(title, DOWN, buff=0.1)
-        
-        self.add(title, subtitle)
 
         # Create coordinate grid
         grid = NumberPlane(
