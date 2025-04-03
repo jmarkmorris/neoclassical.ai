@@ -20,7 +20,7 @@ class MovingAngle(Scene): # Renamed class to match filename
         y_start = ((rows - 1) * y_spacing) / 2
 
         # Colors for lines and dots
-        line_colors = [BLUE, RED, GREEN, YELLOW, ORANGE, PURPLE, TEAL, PINK, MAROON, GOLD, SKY_BLUE, LIME]
+        line_colors = [BLUE, RED, GREEN, YELLOW, ORANGE, PURPLE, TEAL, PINK, MAROON, GOLD, BLUE_A, LIME] # Replaced SKY_BLUE with BLUE_A
         dot_colors = [WHITE, GRAY, BLACK, DARK_GRAY, DARKER_GRAY, LIGHT_GRAY, LIGHTER_GRAY, RED_A, RED_B, RED_C, RED_D, RED_E]
 
         # Create and position the moving angles
