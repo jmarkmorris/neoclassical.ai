@@ -60,4 +60,9 @@ class MakeGraph(Scene):
         # Group elements and add to scene
         plot = VGroup(axes, sin_graph, cos_graph, vert_line)
         labels = VGroup(axes_labels, sin_label, cos_label, line_label)
+        
+        # Move the plot down by 1/2 unit
+        plot.shift(DOWN * 0.5)
+        labels.shift(DOWN * 0.5)
+        
         self.add(plot, labels)
