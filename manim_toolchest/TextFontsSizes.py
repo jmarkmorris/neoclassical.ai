@@ -26,7 +26,7 @@ class TextFontsSizes(Scene):
         # Text content and formatting options
         sample_text = "Neoclassical Physics and Quantum Gravity"
         font = "Helvetica Neue"
-        sizes = [12, 16, 24, 32]
+        sizes = [16, 24, 32]  # Removed 12 point font
         weights = ["BOLD", "MEDIUM", "NORMAL", "LIGHT", "THIN"]
         
         text_groups = []
@@ -56,13 +56,16 @@ class TextFontsSizes(Scene):
         
         # Position text groups
         for i, group in enumerate(text_groups):
-            if i == 0:
-                # Position first group in upper left
+            # Calculate the position as if the 12pt fonts were still there
+            # This keeps all text at the same location in the frame
+            row_index = i // 5  # 5 weights per size
+            if row_index == 0:
+                # First size (16pt) - position as if it were the second size
                 group.to_corner(UL)
-                group.shift(LEFT*0.25 + UP*0.25)
+                group.shift(LEFT*0.25 + UP*0.25 - DOWN*0.4*5)  # Move up by 5 rows (the number of weights)
             else:
-                # Position subsequent groups below previous ones
-                group.next_to(text_groups[i-1], DOWN*0.4)
-                group.align_to(text_groups[i-1], LEFT)
+                # For other sizes, position relative to the previous group
+                group.next_to(text_groups[i-5], DOWN*0.4)  # -5 because we have 5 weights per size
+                group.align_to(text_groups[i-5], LEFT)
             
             self.add(group)
