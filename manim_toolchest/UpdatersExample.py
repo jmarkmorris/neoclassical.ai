@@ -39,7 +39,7 @@ class UpdatersExample(Scene):
         
         # Add updaters to the decimal
         decimal.add_updater(lambda d: d.next_to(square, RIGHT))
-        decimal.add_updater(lambda d: d.set_value(square.get_center()[1]))
+        decimal.add_updater(lambda d: d.set_value(max(square.get_center()[1], -2.5))) # clamp the position
         
         # Create orbiting dots around the square
         dots = VGroup(*[Dot(color=PURE_RED) for _ in range(8)])
@@ -70,7 +70,7 @@ class UpdatersExample(Scene):
         # Add updater to the circle to change its size based on square's position
         circle.add_updater(
             lambda c: c.set_width(
-                0.5 + abs(square.get_center()[1])
+                0.5 + abs(max(square.get_center()[1], -2.5)) # clamp the position
             )
         )
         
@@ -99,7 +99,7 @@ class UpdatersExample(Scene):
         
         def update_trail(trail):
             previous_trail = trail.copy()
-            previous_trail.add_points_as_corners([square.get_center()])
+            previous_trail.add_points_as_corners([np.array([square.get_center()[0], max(square.get_center()[1], -2.5), 0])]) # clamp the position
             
             # Limit the length of the trail
             if len(previous_trail.get_points()) > 100:
