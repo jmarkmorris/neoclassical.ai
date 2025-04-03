@@ -2,7 +2,7 @@ from manim import *
 import numpy as np
 from tools import INDIGO, ELECTRIC_PURPLE
 
-class Lorenz3D(ThreeDScene):
+class zLorenz3D_SLOW(ThreeDScene):
     """Visualization of the Lorenz attractor in 3D space"""
     
     def construct(self):
@@ -57,6 +57,12 @@ class Lorenz3D(ThreeDScene):
         x_label = axes.get_x_axis_label("x")
         y_label = axes.get_y_axis_label("y")
         z_label = axes.get_z_axis_label("z", edge=OUT, direction=OUT)
+        
+        # Move the axes down to appear below the subtitle
+        axes.shift(DOWN * 2)
+        x_label.shift(DOWN * 2)
+        y_label.shift(DOWN * 2)
+        z_label.shift(DOWN * 2)
         
         # Add elements to scene
         self.add(axes, x_label, y_label, z_label)
