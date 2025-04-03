@@ -125,9 +125,9 @@ class MovingAngle(Scene):
             
             # Apply dashed style if needed (for configs 3 and 4)
             if i == 2:  # Third config (index 2)
-                line_moving.set_stroke(dash_pattern=[0.1, 0.1])
+                line_moving.set_dash_pattern([0.1, 0.1])
             elif i == 3:  # Fourth config (index 3)
-                line1.set_stroke(dash_pattern=[0.1, 0.1])
+                line1.set_dash_pattern([0.1, 0.1])
             line_ref = line_moving.copy()
             
             # Add circle to hide joining artifact
