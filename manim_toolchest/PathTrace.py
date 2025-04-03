@@ -25,19 +25,22 @@ class PathTrace(Scene):
         self.add(title, subtitle)
         
         # Create dot and path with styling
-        dot = Dot(color=YELLOW, radius=0.1)
+        dot = Dot(color=WHITE, radius=0.1)
         
         # Start the dot lower to avoid overlap with titles
         dot.move_to([0, -1, 0])
         
         # Create a path that will show the trail
         path = VMobject(stroke_width=2, stroke_color=YELLOW, stroke_opacity=0.8)
+        trail = VMobject(stroke_width=2, stroke_color=WHITE, stroke_opacity=0.8)
+
         path.set_points_as_corners([dot.get_center(), dot.get_center()])
         
         # Define path updater with fading trail effect
         def update_path(path):
             previous_path = path.copy()
             previous_path.add_points_as_corners([dot.get_center()])
+            trail.add_smooth_curve_to(dot.get_center())
             
             # Limit the length of the trail
             if len(previous_path.get_points()) > 300:  # Keep a reasonable trail length
@@ -59,7 +62,7 @@ class PathTrace(Scene):
                 )
         
         path.add_updater(update_path)
-        self.add(path, dot)
+        self.add(path, dot, trail)
 
         # Create random path within screen bounds, staying in lower part of screen
         custom_path = VMobject()
