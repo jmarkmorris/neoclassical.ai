@@ -57,16 +57,10 @@ class TextFontsSizes(Scene):
         
         # Position text groups
         for i, group in enumerate(text_groups):
-            # Calculate the position as if the 12pt fonts were still there
-            # This keeps all text at the same location in the frame
             row_index = i // 5  # 5 weights per size
             if row_index == 0:
-                # First size (16pt) - position as if it were the second size
-                group.to_corner(UL)
-                group.shift(LEFT*0.25 + UP*0.25 - DOWN*0.4*5)  # Move up by 5 rows (the number of weights)
+                group.to_corner(UL).shift(DOWN * 0.5)
             else:
-                # For other sizes, position relative to the previous group
-                group.next_to(text_groups[i-5], DOWN*0.4)  # -5 because we have 5 weights per size
-                group.align_to(text_groups[i-5], LEFT)
+                group.next_to(text_groups[i-5], DOWN).align_to(text_groups[i-5], LEFT)
             
             self.add(group)
