@@ -202,6 +202,8 @@ class MovingAngle(Scene):
         animations = []
         for i, (tracker, config) in enumerate(zip(trackers, angle_configs)):
             end_value = config["end_angle"]
+            # Add a small offset to the end angle to avoid parallel lines
+            end_value += 0.01
             if config["clockwise"] and end_value > config["start_angle"]:
                 end_value = config["start_angle"] - (end_value - config["start_angle"])
             elif not config["clockwise"] and end_value < config["start_angle"]:
