@@ -23,19 +23,26 @@ class PolarCoordinates(Scene):
         
         self.add(title, subtitle)
 
+        # Create a smaller polar plane (80% of original size)
         polar_plane = PolarPlane(  
             azimuth_units="PI radians",
             azimuth_step=12,
-            size=6,  
-            azimuth_label_font_size=33.6,  
-            radius_config={"font_size": 33.6, "stroke_color": WHITE},
+            size=4.8,  # Reduced from 6 to 4.8 (80%)
+            azimuth_label_font_size=28,  # Reduced font size
+            radius_config={"font_size": 28, "stroke_color": WHITE},
             background_line_style={
                 "stroke_color": WHITE,
-                "stroke_width": 2,
+                "stroke_width": 1.8,  # Slightly reduced stroke width
                 "stroke_opacity": 1
             }
-        ).add_coordinates()  
+        ).add_coordinates()
+        
+        # Center the plane
+        polar_plane.move_to(ORIGIN)
+        
+        # Add the plane to the scene
         self.add(polar_plane)
 
-        vector = Vector(polar_plane.polar_to_point(3, PI/4), stroke_width=2)
+        # Create a vector with adjusted size
+        vector = Vector(polar_plane.polar_to_point(2.4, PI/4), stroke_width=1.8)  # Reduced from 3 to 2.4
         self.add(vector)
