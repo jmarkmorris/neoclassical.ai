@@ -79,6 +79,5 @@ class circlesizes(Scene):
 
         # Instead of waiting and creating a video, just show the final frame
         # This will generate a static image
-        self.wait(0)
 
 
