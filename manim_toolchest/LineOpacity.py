@@ -1,49 +1,45 @@
-# manim -pqh --disable_caching LineOpacity.py LineOpacity -p
-
 from manim import *
+from tools import INDIGO
 
 class LineOpacity(Scene):
     def construct(self):
-        # Disable anti-aliasing
+        # Disable anti-aliasing for clearer lines
         config.anti_alias = False
         
-        # Set up the scene with indigo background
-        self.camera.background_color = "#4B0082"  # Indigo background
+        # Set background color
+        self.camera.background_color = INDIGO
         
-        # Improved title with higher resolution
-        title = Text("Line Opacity Visualization (Even % from 0% to 100%)", 
-                     color=WHITE, 
-                     font_size=36).to_edge(UP, buff=0.5)
+        # Add title
+        title = Text(
+            "Line Opacity Visualization (Even % from 0% to 100%)", 
+            color=WHITE, 
+            font_size=36
+        ).to_edge(UP, buff=0.5)
         self.add(title)
         
-        # Create three rows for different stroke widths
+        # Define stroke widths and row positions
         stroke_widths = [1, 2, 3]
-        
-        # Calculate vertical positions for the three rows with more spacing
         row_positions = [-1.5, 0, 1.5]
         
-        # Create labels for each row with improved resolution
+        # Add row labels
         for i, width in enumerate(stroke_widths):
-            label = Text(f"Width: {width}", 
-                         color=WHITE, 
-                         font_size=28)
+            label = Text(
+                f"Width: {width}", 
+                color=WHITE, 
+                font_size=28
+            )
             label.to_edge(LEFT, buff=0.5).shift(UP * row_positions[i])
             self.add(label)
         
-        # For each row (stroke width)
+        # Create opacity lines for each row
         for row_idx, stroke_width in enumerate(stroke_widths):
-            # Create 51 vertical lines with opacity from 0 to 1 (even percentages only)
-            for i in range(0, 101, 2):  # 0, 2, 4, ..., 98, 100
-                # Calculate opacity (0 to 1)
+            for i in range(0, 101, 2):  # 0, 2, 4, ..., 100
                 opacity = i / 100
-                
-                # Calculate x position (distribute evenly across the screen)
                 x_pos = -5 + (i/2) * 0.2
                 
-                # Create a vertical line with exact stroke_width
                 line = Line(
-                    start=[x_pos, row_positions[row_idx] + 0.5, 0],  # Top point
-                    end=[x_pos, row_positions[row_idx] - 0.5, 0],    # Bottom point
+                    start=[x_pos, row_positions[row_idx] + 0.5, 0],
+                    end=[x_pos, row_positions[row_idx] - 0.5, 0],
                     stroke_width=stroke_width,
                     stroke_color=WHITE,
                     stroke_opacity=opacity
@@ -51,12 +47,11 @@ class LineOpacity(Scene):
                 
                 self.add(line)
         
-        # Add opacity percentage markers with improved visibility
+        # Add percentage markers
         for i in range(0, 101, 25):
-            # Calculate x position to match the lines
             x_pos = -5 + (i/2) * 0.2
             
-            # Create a tick using a line
+            # Add tick mark
             tick = Line(
                 start=[x_pos, -3.0, 0],
                 end=[x_pos, -3.3, 0],
@@ -64,13 +59,12 @@ class LineOpacity(Scene):
                 stroke_color=WHITE
             )
             
-            # Add percentage label with improved visibility
-            percentage = Text(f"{i}%", 
-                              color=WHITE, 
-                              font_size=24)
+            # Add percentage label
+            percentage = Text(
+                f"{i}%", 
+                color=WHITE, 
+                font_size=24
+            )
             percentage.next_to(tick, DOWN, buff=0.1)
             
             self.add(tick, percentage)
-
-# To render the scene, run:
-# manim -pql opacity_visualization.py OpacityVisualization

@@ -1,19 +1,15 @@
 from manim import *
 from tools import INDIGO
 
-# Configuration: Set the color you want to use (PURE_RED or PURE_BLUE)
-# You can change this to switch between colors
 DOT_COLOR = PURE_RED
-# DOT_COLOR = PURE_BLUE
 
 class Dot3DOptionsGrid(ThreeDScene):
     def construct(self):
-        # Set background color to INDIGO
         self.camera.background_color = INDIGO
         
         # Default values for all options
         default_options = {
-            "radius": 0.1,  # Always use 0.1 radius
+            "radius": 0.1,
             "resolution": (8, 4),
             "sheen_factor": 0.25,
             "sheen_direction": OUT,
@@ -23,7 +19,7 @@ class Dot3DOptionsGrid(ThreeDScene):
             "shadow": False,
         }
         
-        # Different values to test for each option
+        # Options to display
         options_names = [
             "Resolution",
             "Sheen Factor",
@@ -34,6 +30,7 @@ class Dot3DOptionsGrid(ThreeDScene):
             "Shadow",
         ]
         
+        # Values for each option
         options_values = {
             "Resolution": [(32, 16), (16, 8), (8, 4), (4, 2), (2, 1)],
             "Sheen Factor": [1.0, 0.5, 0.25, 0.1, 0.0],
@@ -44,81 +41,68 @@ class Dot3DOptionsGrid(ThreeDScene):
             "Shadow": [True, False, False, False, False],
         }
 
-        # Set up the 3D scene with proper orientation (looking from above)
+        # Set up camera
         self.set_camera_orientation(phi=0 * DEGREES, theta=-90 * DEGREES)
         self.camera.frame_center = ORIGIN
-        self.camera.frame_width = 16  # Wider view
-        # Use high resolution
+        self.camera.frame_width = 16
+        
+        # Set high resolution
         config.pixel_width = 1920
         config.pixel_height = 1080
         
-        # Adjust starting position to the left of the screen
-        x_offset = -6  # Start more to the left
+        # Starting position
+        x_offset = -6
         
-        # For each option (column)
+        # Create grid of options
         for col_index, option_name in enumerate(options_names):
-            # Add column label at the top
+            # Add column header
             option_title = Text(option_name, font_size=24)
             option_title.move_to([x_offset + col_index * 2, 3, 0])
             self.add(option_title)
             
-            # For each value of this option (rows)
+            # Add rows for each value
             for row_index in range(5):
-                # Create a sphere with fixed radius but default settings otherwise
+                # Create default sphere
                 dot = Sphere(
-                    radius=0.1,  # Always use 0.1 radius
-                    resolution=(default_options["resolution"][0], default_options["resolution"][1]),
+                    radius=0.1,
+                    resolution=default_options["resolution"],
                 ).set_color(DOT_COLOR)
                 
-                # Apply all default properties
+                # Apply default properties
                 dot.set_sheen_factor(default_options["sheen_factor"])
                 dot.set_sheen_direction(default_options["sheen_direction"])
                 dot.set_shininess(default_options["shininess"])
                 
-                # Override the option being explored in this column
+                # Apply specific option value
+                value = options_values[option_name][row_index]
+                
                 if option_name == "Resolution":
-                    value = options_values[option_name][row_index]
-                    # We need to recreate the sphere with the new resolution
+                    # Recreate sphere with new resolution
                     dot = Sphere(
-                        radius=0.1,  # Always use 0.1 radius
+                        radius=0.1,
                         resolution=value,
                     ).set_color(DOT_COLOR)
                     dot.set_sheen_factor(default_options["sheen_factor"])
                     dot.set_sheen_direction(default_options["sheen_direction"])
                     dot.set_shininess(default_options["shininess"])
                 elif option_name == "Sheen Factor":
-                    value = options_values[option_name][row_index]
                     dot.set_sheen_factor(value)
                 elif option_name == "Sheen Direction":
-                    value = options_values[option_name][row_index]
                     dot.set_sheen_direction(value)
-                elif option_name == "Ambient Strength":
-                    # Not directly supported in Manim's Sphere, skip
-                    value = options_values[option_name][row_index]
-                elif option_name == "Specular Strength":
-                    # Not directly supported in Manim's Sphere, skip
-                    value = options_values[option_name][row_index]
                 elif option_name == "Shininess":
-                    value = options_values[option_name][row_index]
                     dot.set_shininess(value)
-                elif option_name == "Shadow":
-                    # Not directly supported in Manim's Sphere, skip
-                    value = options_values[option_name][row_index]
                 
-                # Add a value label
+                # Create value label
                 value_label = Text(f"{value}", font_size=16)
                 
-                # Position the dot at the correct grid position
-                y_pos = 2 - row_index * 1.0  # Start at the top, more space between rows
+                # Position elements
+                y_pos = 2 - row_index * 1.0
                 dot.move_to([x_offset + col_index * 2, y_pos, 0])
-                
-                # Position the label to the left of the dot
                 value_label.next_to(dot, LEFT, buff=0.3)
                 
-                # Add objects to the scene
-                self.add(dot)
-                self.add(value_label)
+                # Add to scene
+                self.add(dot, value_label)
         
-        # Set up better lighting for 3D
+        # Set lighting
         self.renderer.camera.light_source.move_to(3*IN+7*OUT+7*RIGHT)
         self.wait(5)

@@ -35,9 +35,6 @@ list_tools() {
         num_cols=1
     fi
     
-    # Count total files
-    total_files=$(echo "$files" | wc -l)
-    
     # Create a temporary file with numbered entries
     temp_file=$(mktemp)
     counter=1

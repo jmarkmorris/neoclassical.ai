@@ -1,19 +1,11 @@
-# manim -pqh --disable_caching PolarCoordinates.py PolarCoordinates -p
-
 from manim import *
-
-INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
-
-# config.background_color = WHITE
+from tools import INDIGO
 
 class PolarCoordinates(Scene):
     def construct(self):
-
         self.camera.background_color = INDIGO
 
-        # azimuth is theta from (1,0) going CCW (test to make sure)
-        P = PolarPlane(  
+        polar_plane = PolarPlane(  
             azimuth_units="PI radians",
             azimuth_step=12,
             size=6,  
@@ -25,7 +17,7 @@ class PolarCoordinates(Scene):
                 "stroke_opacity": 1
             }
         ).add_coordinates()  
-        self.add(P)
+        self.add(polar_plane)
 
-        V = Vector(P.polar_to_point(3, PI/4), stroke_width=2)
-        self.add(V)
+        vector = Vector(polar_plane.polar_to_point(3, PI/4), stroke_width=2)
+        self.add(vector)

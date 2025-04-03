@@ -1,79 +1,82 @@
-# manim -pqh --disable_caching MultipleAnimations.py MultipleAnimations -p
-
-# this is an example of multiple concurrent animations each defined by a dictionary.
-# todo : try to do this with dots, each orbiting the origin of their system.
-
 from manim import *
 import random
 from tools import INDIGO
 
 class MultipleAnimations(Scene):
     def construct(self):
-        # Set background color to INDIGO
         self.camera.background_color = INDIGO
         
-        dictionary_of_animations = [
-            {
-                "location": (-4, 2, 0),
-            },
-            {
-                "location": (4, 2, 0),
-            },
-            {
-                "location": (-4, -2, 0),
-            },
-            {
-                "location": (4, -2, 0),
-            },
-            # Add more dictionaries for additional animations
+        animation_configs = [
+            {"location": (-4, 2, 0)},
+            {"location": (4, 2, 0)},
+            {"location": (-4, -2, 0)},
+            {"location": (4, -2, 0)},
         ]
-        MyColors = [PURE_BLUE, PURE_RED, WHITE, PURPLE]
-        MyWords = ["Hello", "World!", "Nature", "Emerges!!"]
-        # Best practice for repetitive dictionary items
-        for i, D in enumerate(dictionary_of_animations):
-            D["font"] = "Helvetica Neue"
-            D["font_size"] = 32
-            D["typing_speed"] = 0.5
-            D["color"] = MyColors[i]
-            D["text"] = MyWords[i]
         
-        Alist = []  
-        square_list = []  # List to store square animations
-
-
-        for D in dictionary_of_animations:
-            A = Text(
-                D["text"],
-                font=D["font"],
-                font_size=D["font_size"],
-                color=D["color"]
-            ).move_to(D["location"])
+        colors = [PURE_BLUE, PURE_RED, WHITE, PURPLE]
+        words = ["Hello", "World!", "Nature", "Emerges!!"]
+        
+        # Set common properties
+        for i, config in enumerate(animation_configs):
+            config["font"] = "Helvetica Neue"
+            config["font_size"] = 32
+            config["typing_speed"] = 0.5
+            config["color"] = colors[i]
+            config["text"] = words[i]
+        
+        text_objects = []  
+        square_objects = []
+        
+        for config in animation_configs:
+            # Create text object
+            text = Text(
+                config["text"],
+                font=config["font"],
+                font_size=config["font_size"],
+                color=config["color"]
+            ).move_to(config["location"])
             
-            Alist.append(A)
+            text_objects.append(text)
 
-            def update_animation(obj, dt, D_):
-                current_length = len(obj.text)  # Access the attribute directly
-                target_length = len(D_["text"])
+            # Define text update function
+            def update_animation(obj, dt, config_dict):
+                current_length = len(obj.text)
+                target_length = len(config_dict["text"])
                 if current_length < target_length:
-                    obj.become(Text(D_["text"][:current_length + 1], font=obj.font, color=obj.color).move_to(obj.get_center()))
+                    obj.become(
+                        Text(
+                            config_dict["text"][:current_length + 1], 
+                            font=obj.font, 
+                            color=obj.color
+                        ).move_to(obj.get_center())
+                    )
 
-            A.add_updater(lambda obj, dt, D_=D: update_animation(obj, dt, D_))  # Pass the dictionary entry as an argument
-            self.add(A)
+            # Add updater to text
+            text.add_updater(lambda obj, dt, config_dict=config: update_animation(obj, dt, config_dict))
+            self.add(text)
 
-            # Creating a rotating square animation
-            square_animation = Square().move_to(D["location"]).scale(1.25)
-            square_list.append(square_animation)
+            # Create square animation
+            square = Square().move_to(config["location"]).scale(1.25)
+            square_objects.append(square)
             
+            # Define square rotation updater
             def update_square_rotation(obj, dt):
-                obj.rotate(0.1 * dt, about_point=obj.get_center())  # Adjust the rotation speed as needed
+                obj.rotate(0.1 * dt, about_point=obj.get_center())
 
-            square_animation.add_updater(update_square_rotation)
-            
-            self.add(square_animation)
+            square.add_updater(update_square_rotation)
+            self.add(square)
         
-        text_animations_group = AnimationGroup(*[Write(A, run_time=len(D["text"]) * D["typing_speed"]) for A, D in zip(Alist, dictionary_of_animations)])
-        square_animations_group = AnimationGroup(*[Rotating(square, about_point=square.get_center()) for square in square_list])
+        # Create animation groups
+        text_animations = AnimationGroup(
+            *[Write(text, run_time=len(config["text"]) * config["typing_speed"]) 
+              for text, config in zip(text_objects, animation_configs)]
+        )
         
-        self.play(AnimationGroup(text_animations_group, square_animations_group))  # Play both AnimationGroups concurrently
+        square_animations = AnimationGroup(
+            *[Rotating(square, about_point=square.get_center()) 
+              for square in square_objects]
+        )
+        
+        # Play animations concurrently
+        self.play(AnimationGroup(text_animations, square_animations))
         self.wait()
-    

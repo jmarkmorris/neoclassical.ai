@@ -66,7 +66,15 @@ def print_dict(dictionary):
 class KwargsExample(Scene):
     """Example scene showing how to use kwargs for cleaner code"""
     def construct(self):
+        self.camera.background_color = INDIGO
+        
         kwargs = create_kwargs_example()
         sq = Square(**kwargs)
-        self.play(Create(sq), run_time=3, subcaption="Using kwargs for cleaner code", subcaption_duration=3)
+        
+        self.play(
+            Create(sq), 
+            run_time=3, 
+            subcaption="Using kwargs for cleaner code", 
+            subcaption_duration=3
+        )
         self.wait()
