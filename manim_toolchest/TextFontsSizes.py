@@ -11,7 +11,7 @@ class TextFontsSizes(Scene):
             font="Helvetica Neue",
             weight="LIGHT",
             font_size=36
-        ).to_edge(UP, buff=0.5)
+        ).move_to(ORIGIN).shift(UP * 3.5) # Center and shift up to avoid overlap
         
         subtitle = Text(
             "Text(text, font='Helvetica Neue', font_size=size, weight=weight)",
@@ -19,7 +19,7 @@ class TextFontsSizes(Scene):
             weight="LIGHT",
             color=YELLOW,
             font_size=20
-        ).next_to(title, DOWN, buff=0.1)
+        ).next_to(title, DOWN, buff=0.1).move_to(ORIGIN).shift(UP * 3) # Center and shift up
         
         self.add(title, subtitle)
         
@@ -35,7 +35,7 @@ class TextFontsSizes(Scene):
         # Create text objects with different sizes and weights
         for size in sizes:
             for weight in weights:
-                # Create sample text with current size and weight
+                # Create and center sample text with current size and weight
                 text_obj = Text(
                     sample_text, 
                     font=font, 
@@ -51,19 +51,13 @@ class TextFontsSizes(Scene):
                     weight=weight
                 )
                 
-                # Group text and info
+                # Group, arrange, and center text and info
                 line = VGroup(text_obj, info_label).arrange(RIGHT)
+                line.move_to(ORIGIN) # Center each line
                 text_groups.append(line)
-        
-        # Position text groups to avoid overlap
-        current_y = 3  # Start near the top
-        x_offset = -5 # Left align
-        for i, group in enumerate(text_groups):
-            group.move_to([x_offset, current_y, 0])
-            current_y -= group.height + 0.1  # Move down by text height + small buffer
 
-            self.add(group)
+        # Arrange text groups vertically
+        text_group = VGroup(*text_groups).arrange(DOWN, buff=0.2) # Use smaller buff for tighter spacing
+        text_group.move_to(ORIGIN).shift(DOWN) # Center the whole group and shift down slightly
 
-        # Center the entire block of text
-        text_group = VGroup(*self.mobjects)
-        text_group.move_to(ORIGIN)
+        self.add(text_group)
