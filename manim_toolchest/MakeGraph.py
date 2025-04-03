@@ -1,9 +1,13 @@
 # manim -pqh --disable_caching MakeGraph.py MakeGraph -p
 
 from manim import *
+from tools import INDIGO
 
 class MakeGraph(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         axes = Axes(
             x_range=[-10, 10.3, 1],
             y_range=[-1.5, 1.5, 1],

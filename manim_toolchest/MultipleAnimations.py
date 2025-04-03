@@ -5,9 +5,13 @@
 
 from manim import *
 import random
+from tools import INDIGO
 
 class MultipleAnimations(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         dictionary_of_animations = [
             {
                 "location": (-4, 2, 0),

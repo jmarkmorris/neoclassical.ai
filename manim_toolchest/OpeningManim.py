@@ -7,8 +7,7 @@
 
 
 from manim import *
-
-ELECTRIC_PURPLE = "#8F00FF"
+from tools import INDIGO, ELECTRIC_PURPLE
 
 # To watch one of these scenes, run the following:
 #
@@ -23,6 +22,9 @@ ELECTRIC_PURPLE = "#8F00FF"
 
 class OpeningManim(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         title = Tex(r"This is some \LaTeX")
         basel = MathTex(r"\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}")
         VGroup(title, basel).arrange(DOWN)

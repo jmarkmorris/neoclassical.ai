@@ -1,9 +1,13 @@
 ## manim MovingAngle.py MovingAngle -pqh --disable_caching -p
 
 from manim import *
+from tools import INDIGO
 
 class MovingAngle(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         rotation_center = LEFT
 
         theta_tracker = ValueTracker(110)

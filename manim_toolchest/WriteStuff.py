@@ -8,8 +8,7 @@
 
 
 from manim import *
-
-ELECTRIC_PURPLE = "#8F00FF"
+from tools import INDIGO, ELECTRIC_PURPLE
 
 # To watch one of these scenes, run the following:
 #
@@ -29,6 +28,9 @@ ELECTRIC_PURPLE = "#8F00FF"
 
 class WriteStuff(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         example_text = Tex("This is some text", tex_to_color_map={"text": ELECTRIC_PURPLE})
         example_tex = MathTex(
             "\\sum_{k=1}^\\infty {1 \\over k^2} = {\\pi^2 \\over 6}",

@@ -2,9 +2,13 @@
 
 from manim import *
 import random
+from tools import INDIGO
 
 class PathTrace(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         path = VMobject()
         dot = Dot()
         path.set_points_as_corners([dot.get_center(), dot.get_center()])

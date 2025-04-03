@@ -4,9 +4,13 @@
 ## Not all fonts support all weight options, so experiment to find the right combination of font and weight. 
 
 from manim import *
+from tools import INDIGO
 
 class TextFontsSizes(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         text = "Neoclassical Physics and Quantum Gravity"
         fonts = ["Helvetica Neue"]
         sizes = [12, 16, 24, 32]

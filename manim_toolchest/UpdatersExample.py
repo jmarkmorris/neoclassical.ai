@@ -8,8 +8,7 @@
 
 
 from manim import *
-
-ELECTRIC_PURPLE = "#8F00FF"
+from tools import INDIGO, ELECTRIC_PURPLE
 
 # To watch one of these scenes, run the following:
 #
@@ -27,6 +26,9 @@ ELECTRIC_PURPLE = "#8F00FF"
 
 class UpdatersExample(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         decimal = DecimalNumber(
             0,
             show_ellipsis=True,

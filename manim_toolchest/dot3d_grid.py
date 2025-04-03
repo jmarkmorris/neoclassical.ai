@@ -1,4 +1,5 @@
 from manim import *
+from tools import INDIGO
 
 # Configuration: Set the color you want to use (PURE_RED or PURE_BLUE)
 # You can change this to switch between colors
@@ -7,6 +8,9 @@ DOT_COLOR = PURE_RED
 
 class Dot3DOptionsGrid(ThreeDScene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         # Default values for all options
         default_options = {
             "radius": 0.1,  # Always use 0.1 radius

@@ -1,8 +1,12 @@
 # manim MovingFrameBox.py MovingFrameBox -pqh --disable_caching -p
 from manim import *
+from tools import INDIGO
 
 class MovingFrameBox(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         text=MathTex(
             "\\frac{d}{dx}f(x)g(x)=","f(x)\\frac{d}{dx}g(x)","+",
             "g(x)\\frac{d}{dx}f(x)"

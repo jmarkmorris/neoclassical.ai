@@ -5,9 +5,13 @@
 # Dot
 
 from manim import *
+from tools import INDIGO
 
 class VectorArrow(Scene):
     def construct(self):
+        # Set background color to INDIGO
+        self.camera.background_color = INDIGO
+        
         dot = Dot(ORIGIN)
         arrow = Arrow(ORIGIN, [2, 2, 0], buff=0)
         numberplane = NumberPlane()
