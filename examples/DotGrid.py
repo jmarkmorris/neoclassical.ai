@@ -96,14 +96,21 @@ class Dot3DGrid(ThreeDScene):
                 # Apply specific option value
                 value = options_values[option_name][row_index]
                 
+                # Recreate sphere with new resolution
                 if option_name == "Resolution":
-                    # Recreate sphere with new resolution
                     dot = Sphere(
                         radius=0.4,
                         resolution=value,
                     ).set_color(DOT_COLOR)
-                    dot.set(sheen_factor=default_options["sheen_factor"], shininess=default_options["shininess"])
-                elif option_name == "Sheen Factor":
+                else:
+                    dot = Sphere(
+                        radius=0.4,
+                        resolution=options_values["Resolution"][row_index],
+                    ).set_color(DOT_COLOR)
+                
+                dot.set(sheen_factor=default_options["sheen_factor"], shininess=default_options["shininess"])
+                
+                if option_name == "Sheen Factor":
                     dot.set(sheen_factor=value)
                 elif option_name == "Sheen Direction":
                     dot.set(sheen_factor=default_options["sheen_factor"])  # Keep sheen factor constant
