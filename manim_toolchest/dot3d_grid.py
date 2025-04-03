@@ -3,7 +3,7 @@ from tools import INDIGO
 
 DOT_COLOR = PURE_RED
 
-class Dot3DOptionsGrid(ThreeDScene):
+class Dot3DGrid(ThreeDScene):
     def construct(self):
         self.camera.background_color = INDIGO
         
@@ -87,9 +87,7 @@ class Dot3DOptionsGrid(ThreeDScene):
                 ).set_color(DOT_COLOR)
                 
                 # Apply default properties
-                dot.set_sheen_factor(default_options["sheen_factor"])
-                dot.set_sheen_direction(default_options["sheen_direction"])
-                dot.set_shininess(default_options["shininess"])
+                dot.set(sheen_factor=default_options["sheen_factor"], sheen_direction=default_options["sheen_direction"], shininess=default_options["shininess"])
                 
                 # Apply specific option value
                 value = options_values[option_name][row_index]
@@ -100,15 +98,13 @@ class Dot3DOptionsGrid(ThreeDScene):
                         radius=0.1,
                         resolution=value,
                     ).set_color(DOT_COLOR)
-                    dot.set_sheen_factor(default_options["sheen_factor"])
-                    dot.set_sheen_direction(default_options["sheen_direction"])
-                    dot.set_shininess(default_options["shininess"])
+                    dot.set(sheen_factor=default_options["sheen_factor"], sheen_direction=default_options["sheen_direction"], shininess=default_options["shininess"])
                 elif option_name == "Sheen Factor":
-                    dot.set_sheen_factor(value)
+                    dot.set(sheen_factor=value)
                 elif option_name == "Sheen Direction":
-                    dot.set_sheen_direction(value)
+                    dot.set(sheen_direction=value)
                 elif option_name == "Shininess":
-                    dot.set_shininess(value)
+                    dot.set(shininess=value)
                 
                 # Create value label
                 value_label = Text(f"{value}", font="Helvetica Neue", weight="LIGHT", font_size=16)
@@ -125,5 +121,4 @@ class Dot3DOptionsGrid(ThreeDScene):
         self.renderer.camera.light_source.move_to(3*IN+7*OUT+7*RIGHT)
         
         # Instead of waiting and creating a video, just show the final frame
-        # This will generate a static image
-        self.wait(0)
+        # Generate a static image (remove wait)
