@@ -1,6 +1,10 @@
 from manim import *
 from tools import INDIGO
 import numpy as np
+from manim.utils.space_ops import angle_between_vectors
+
+# Define a small epsilon to avoid floating point issues near PI
+ANGLE_EPSILON = 1e-6
 
 class MovingAngle(Scene): # Renamed class to match filename
     def construct(self):
@@ -74,14 +78,31 @@ class MovingAngle(Scene): # Renamed class to match filename
             # to capture the correct variables for each angle's updater
             def create_update_angle(l1, l2):
                 def update_angle(obj):
-                    obj.become(Angle(l1, l2, radius=0.5, color=YELLOW))
+                    # Check if lines are parallel (angle close to PI)
+                    v1 = l1.get_vector()
+                    v2 = l2.get_vector()
+                    angle_val = angle_between_vectors(v1, v2)
+                    if abs(angle_val - PI) > ANGLE_EPSILON:
+                         obj.become(Angle(l1, l2, radius=0.5, color=YELLOW))
+                    # Optionally hide the angle object when lines are parallel
+                    # else:
+                    #     obj.set_opacity(0)
                 return update_angle
 
             def create_update_theta_label(l1, l2):
                 def update_theta_label(obj):
-                    obj.move_to(
-                        Angle(l1, l2, radius=0.5 + 3 * SMALL_BUFF).point_from_proportion(0.5)
-                    )
+                    # Check if lines are parallel (angle close to PI)
+                    v1 = l1.get_vector()
+                    v2 = l2.get_vector()
+                    angle_val = angle_between_vectors(v1, v2)
+                    if abs(angle_val - PI) > ANGLE_EPSILON:
+                        # Ensure angle object exists before calculating position
+                        temp_angle = Angle(l1, l2, radius=0.5 + 3 * SMALL_BUFF)
+                        obj.move_to(temp_angle.point_from_proportion(0.5))
+                        # obj.set_opacity(1) # Make visible if previously hidden
+                    # Optionally hide the label object when lines are parallel
+                    # else:
+                    #     obj.set_opacity(0)
                 return update_theta_label
 
             # Add the updaters to the angle and theta label
