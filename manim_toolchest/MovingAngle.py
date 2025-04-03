@@ -13,6 +13,9 @@ class MovingAngle(Scene):
         theta_tracker = ValueTracker(110)
         line1 = Line(LEFT, RIGHT)
         line_moving = Line(LEFT, RIGHT)
+        
+        # Add a small circle at the origin to hide the line joining artifact
+        origin_dot = Circle(radius=0.1, color=WHITE, fill_opacity=1).move_to(rotation_center)
         line_ref = line_moving.copy()
         line_moving.rotate(
             theta_tracker.get_value() * DEGREES, about_point=rotation_center
@@ -24,7 +27,7 @@ class MovingAngle(Scene):
             ).point_from_proportion(0.5)
         )
 
-        self.add(line1, line_moving, a, tex)
+        self.add(line1, line_moving, a, tex, origin_dot)
         self.wait()
 
         line_moving.add_updater(
