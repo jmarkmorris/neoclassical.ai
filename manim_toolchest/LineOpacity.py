@@ -87,7 +87,7 @@ class LineOpacity(Scene):
             visualization_group.add(tick, percentage)
         
         # Center the visualization group horizontally and move it down
-        visualization_group.center()
+        visualization_group.move_to(ORIGIN)  # Center at origin
         visualization_group.shift(DOWN * 1.0)  # Move down to avoid subtitle overlap
         
         # Add the visualization group to the scene
