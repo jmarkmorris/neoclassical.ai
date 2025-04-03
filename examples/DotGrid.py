@@ -50,7 +50,7 @@ class Dot3DGrid(ThreeDScene):
         
         # Values for each option
         options_values = {
-            "Resolution": [(32, 16), (64, 32), (128, 64), (256, 128), (512, 256)],
+            "Resolution": [(32, 16), (64, 32), (128, 64)],
             "Sheen Factor": [1.0, 0.5, 0.25, 0.1, 0.0],
             "Sheen Direction": [OUT, UP, DOWN, LEFT, RIGHT],
             "Ambient Strength": [0.8, 0.3, 0.15, 0.05, 0.0],
