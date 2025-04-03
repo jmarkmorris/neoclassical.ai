@@ -75,8 +75,8 @@ class MultipleAnimations(Scene):
             text.add_updater(lambda obj, dt, config_dict=config: update_animation(obj, dt, config_dict))
             self.add(text)
 
-            # Create square animation
-            square = Square().move_to(config["location"]).scale(1.25)
+            # Create square animation - smaller and moved down
+            square = Square().move_to(config["location"] + DOWN * 0.5).scale(0.9)
             square_objects.append(square)
             
             # Define square rotation updater
