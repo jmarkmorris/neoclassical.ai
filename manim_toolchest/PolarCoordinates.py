@@ -44,5 +44,10 @@ class PolarCoordinates(Scene):
         self.add(polar_plane)
 
         # Create a vector with adjusted size (also moved down with the plane)
-        vector = Vector(polar_plane.polar_to_point(2.4, PI/4), stroke_width=1.8)  # Reduced from 3 to 2.4
+        vector = Vector(
+            polar_plane.polar_to_point(2.4, PI/4) - polar_plane.get_center(), 
+            color=RED_E,  # Bright red color
+            stroke_width=1.8
+        )
+        vector.shift(polar_plane.get_center())  # Move to match the plane's position
         self.add(vector)
