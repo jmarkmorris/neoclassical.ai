@@ -56,8 +56,11 @@ class TextFontsSizes(Scene):
                 line.move_to(ORIGIN) # Center each line
                 text_groups.append(line)
 
-        # Arrange text groups vertically
-        text_group = VGroup(*text_groups).arrange(DOWN, buff=0.2) # Use smaller buff for tighter spacing
-        text_group.move_to(ORIGIN).shift(DOWN) # Center the whole group and shift down slightly
+        # Arrange text groups vertically with smaller buff
+        text_group = VGroup(*text_groups).arrange(DOWN, buff=0.1)
+        
+        # Position the text group below the subtitle
+        text_group.next_to(subtitle, DOWN, buff=0.5)
+        text_group.move_to(ORIGIN).shift(DOWN) # Center horizontally
 
         self.add(text_group)
