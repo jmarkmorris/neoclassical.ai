@@ -123,4 +123,7 @@ class Dot3DOptionsGrid(ThreeDScene):
         
         # Set lighting
         self.renderer.camera.light_source.move_to(3*IN+7*OUT+7*RIGHT)
-        self.wait(5)
+        
+        # Instead of waiting and creating a video, just show the final frame
+        # This will generate a static image
+        self.wait(0)
