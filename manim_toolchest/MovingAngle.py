@@ -64,7 +64,7 @@ class MovingAngle(Scene):
                 "start_angle": 180,
                 "end_angle": 0,
                 "line1_style": {"stroke_color": TEAL},
-                "line2_style": {"stroke_color": PINK, "dash_length": 0.1},
+                "line2_style": {"stroke_color": PINK},
                 "angle_style": {"color": GOLD, "radius": 0.6},
                 "dot_style": {"color": PINK, "radius": 0.12},
                 "label_style": {"color": GOLD},
@@ -74,7 +74,7 @@ class MovingAngle(Scene):
             {
                 "start_angle": 90,
                 "end_angle": 450,
-                "line1_style": {"stroke_color": MAROON, "dash_length": 0.1},
+                "line1_style": {"stroke_color": MAROON},
                 "line2_style": {"stroke_color": PURPLE},
                 "angle_style": {"color": GREEN, "radius": 0.4},
                 "dot_style": {"color": MAROON, "radius": 0.08},
@@ -122,6 +122,12 @@ class MovingAngle(Scene):
             # Create lines with specified styles
             line1 = Line(rotation_center, rotation_center + RIGHT, **config["line1_style"])
             line_moving = Line(rotation_center, rotation_center + RIGHT, **config["line2_style"])
+            
+            # Apply dashed style if needed (for configs 3 and 4)
+            if i == 2:  # Third config (index 2)
+                line_moving.set_stroke(dash_pattern=[0.1, 0.1])
+            elif i == 3:  # Fourth config (index 3)
+                line1.set_stroke(dash_pattern=[0.1, 0.1])
             line_ref = line_moving.copy()
             
             # Add circle to hide joining artifact
