@@ -92,11 +92,16 @@ class MovingAngle(Scene): # Renamed class to match filename
                 theta_label.move_to(
                     Angle(line1, line2, radius=0.5 + 3 * SMALL_BUFF).point_from_proportion(0.5)
                 )
-                # Create a dot at the rotation center
-                dot = Dot(rotation_center, color=dot_color, radius=0.08)
+                # Create an unfilled circle at the rotation center instead of a Dot
+                vertex_circle = Circle(
+                    radius=0.08, # Same radius as the previous dot
+                    color=dot_color,
+                    fill_opacity=0, # Make the circle unfilled
+                    stroke_width=1.5 # Give it a thin stroke
+                ).move_to(rotation_center)
 
                 # Group elements for this cell
-                cell_group = VGroup(line1, line2, angle, theta_label, dot)
+                cell_group = VGroup(line1, line2, angle, theta_label, vertex_circle)
                 grid_group.add(cell_group)
                 angle_elements.append((angle, theta_label)) # Store for updater removal
 
