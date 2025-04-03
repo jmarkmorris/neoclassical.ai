@@ -8,6 +8,15 @@ from manim.utils.color import Colors
 # Define a small epsilon to avoid floating point issues near PI
 ANGLE_EPSILON = 1e-6
 
+# Manim standard colors list (excluding grayscale and duplicates for variety)
+MANIM_COLORS = [
+    color for name, color in Colors.__dict__.items()
+    if isinstance(color, ManimColor) and color not in [WHITE, BLACK, GREY, LIGHT_GREY, DARK_GREY, GRAY, LIGHT_GRAY, DARK_GRAY, GREY_BROWN]
+]
+# Ensure PINK is included if not already captured
+if PINK not in MANIM_COLORS: MANIM_COLORS.append(PINK)
+
+
 class MovingAngle(Scene): # Renamed class to match filename
     def construct(self):
         self.camera.background_color = INDIGO
