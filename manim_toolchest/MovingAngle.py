@@ -5,6 +5,24 @@ class MovingAngle(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
+        # Add title and subtitle
+        title = Text(
+            "Moving Angle Animation",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_edge(UP, buff=0.5)
+        
+        subtitle = Text(
+            "theta_tracker.animate.set_value() + Angle(line1, line_moving)",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add(title, subtitle)
+        
         # Set up angle components
         rotation_center = LEFT
         theta_tracker = ValueTracker(110)

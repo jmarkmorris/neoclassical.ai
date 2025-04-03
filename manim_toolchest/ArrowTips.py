@@ -5,6 +5,24 @@ class ArrowTips(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
+        # Add title and subtitle
+        title = Text(
+            "Arrow Tips Showcase",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_edge(UP, buff=0.5)
+        
+        subtitle = Text(
+            "Axes(axis_config={'tip_shape': ArrowTipClass}) with different tip styles",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add(title, subtitle)
+        
         # Define all arrow tip types to display
         tip_shapes = [
             ArrowTriangleTip, 
@@ -42,7 +60,7 @@ class ArrowTips(Scene):
             self.add(ax)
 
             # Add label with tip shape name
-            label = Text(tip_shapes[i].__name__, font_size=24)
+            label = Text(tip_shapes[i].__name__, font="Helvetica Neue", weight="LIGHT", font_size=24)
             label.next_to(ax, UP)
             self.add(label)
 

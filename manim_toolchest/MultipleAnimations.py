@@ -6,6 +6,24 @@ class MultipleAnimations(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
+        # Add title and subtitle
+        title = Text(
+            "Multiple Concurrent Animations",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_edge(UP, buff=0.5)
+        
+        subtitle = Text(
+            "AnimationGroup(Write(text), Rotating(square)) with updaters for dynamic effects",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add(title, subtitle)
+        
         animation_configs = [
             {"location": (-4, 2, 0)},
             {"location": (4, 2, 0)},
@@ -31,7 +49,8 @@ class MultipleAnimations(Scene):
             # Create text object
             text = Text(
                 config["text"],
-                font=config["font"],
+                font="Helvetica Neue",
+                weight="LIGHT",
                 font_size=config["font_size"],
                 color=config["color"]
             ).move_to(config["location"])
@@ -46,7 +65,8 @@ class MultipleAnimations(Scene):
                     obj.become(
                         Text(
                             config_dict["text"][:current_length + 1], 
-                            font=obj.font, 
+                            font="Helvetica Neue",
+                            weight="LIGHT",
                             color=obj.color
                         ).move_to(obj.get_center())
                     )

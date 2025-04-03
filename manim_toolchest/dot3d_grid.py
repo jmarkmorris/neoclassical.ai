@@ -7,6 +7,24 @@ class Dot3DOptionsGrid(ThreeDScene):
     def construct(self):
         self.camera.background_color = INDIGO
         
+        # Add title and subtitle
+        title = Text(
+            "3D Sphere Options Visualization",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_edge(UP, buff=0.5)
+        
+        subtitle = Text(
+            "Sphere(radius, resolution) with various sheen and shininess settings",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add_fixed_in_frame_mobjects(title, subtitle)
+        
         # Default values for all options
         default_options = {
             "radius": 0.1,
@@ -56,7 +74,7 @@ class Dot3DOptionsGrid(ThreeDScene):
         # Create grid of options
         for col_index, option_name in enumerate(options_names):
             # Add column header
-            option_title = Text(option_name, font_size=24)
+            option_title = Text(option_name, font="Helvetica Neue", weight="LIGHT", font_size=24)
             option_title.move_to([x_offset + col_index * 2, 3, 0])
             self.add(option_title)
             
@@ -93,7 +111,7 @@ class Dot3DOptionsGrid(ThreeDScene):
                     dot.set_shininess(value)
                 
                 # Create value label
-                value_label = Text(f"{value}", font_size=16)
+                value_label = Text(f"{value}", font="Helvetica Neue", weight="LIGHT", font_size=16)
                 
                 # Position elements
                 y_pos = 2 - row_index * 1.0

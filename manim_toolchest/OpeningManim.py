@@ -5,6 +5,24 @@ class OpeningManim(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
+        # Add title and subtitle
+        title = Text(
+            "Manim Introduction Example",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_edge(UP, buff=0.5)
+        
+        subtitle = Text(
+            "Write(title) + FadeIn(basel) + Transform(title, transform_title)",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add(title, subtitle)
+        
         # Create LaTeX examples
         title = Tex(r"This is some \LaTeX")
         basel = MathTex(r"\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}")

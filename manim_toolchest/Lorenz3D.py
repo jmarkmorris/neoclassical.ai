@@ -10,6 +10,24 @@ class Lorenz3D(ThreeDScene):
         self.set_camera_orientation(phi=70 * DEGREES, theta=-45 * DEGREES)
         self.camera.frame_center = ORIGIN
         
+        # Add title and subtitle
+        title = Text(
+            "Lorenz Attractor Visualization",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_corner(UL)
+        
+        subtitle = Text(
+            "MoveAlongPath(dot, curve) with Euler method trajectory",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add_fixed_in_frame_mobjects(title, subtitle)
+        
         # Lorenz system parameters
         sigma = 10
         beta = 8/3
@@ -40,8 +58,24 @@ class Lorenz3D(ThreeDScene):
         y_label = axes.get_y_axis_label("y")
         z_label = axes.get_z_axis_label("z", edge=OUT, direction=OUT)
         
-        # Add title
-        title = Text("Lorenz Attractor", font_size=36).to_corner(UL)
+        # Add axes labels
+        x_label = axes.get_x_axis_label(
+            "x", 
+            font="Helvetica Neue", 
+            weight="LIGHT"
+        )
+        y_label = axes.get_y_axis_label(
+            "y", 
+            font="Helvetica Neue", 
+            weight="LIGHT"
+        )
+        z_label = axes.get_z_axis_label(
+            "z", 
+            edge=OUT, 
+            direction=OUT, 
+            font="Helvetica Neue", 
+            weight="LIGHT"
+        )
         
         # Add elements to scene
         self.add(axes, x_label, y_label, z_label, title)

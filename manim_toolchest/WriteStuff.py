@@ -5,10 +5,29 @@ class WriteStuff(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
+        # Add title and subtitle
+        title = Text(
+            "Write Animation Example",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_edge(UP, buff=0.5)
+        
+        subtitle = Text(
+            "Write(example_text) + Write(example_tex) with LaTeX formatting",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add(title, subtitle)
+        
         # Create text and equation
         example_text = Tex(
             "This is some text", 
-            tex_to_color_map={"text": ELECTRIC_PURPLE}
+            tex_to_color_map={"text": ELECTRIC_PURPLE},
+            font="Helvetica Neue"
         )
         
         example_tex = MathTex(

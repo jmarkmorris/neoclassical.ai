@@ -5,6 +5,24 @@ class TextFontsSizes(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
+        # Add title and subtitle
+        title = Text(
+            "Text Fonts and Sizes Demo",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            font_size=36
+        ).to_edge(UP, buff=0.5)
+        
+        subtitle = Text(
+            "Text(text, font='Helvetica Neue', font_size=size, weight=weight)",
+            font="Helvetica Neue",
+            weight="LIGHT",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add(title, subtitle)
+        
         # Text content and formatting options
         sample_text = "Neoclassical Physics and Quantum Gravity"
         font = "Helvetica Neue"
