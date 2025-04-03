@@ -16,7 +16,7 @@ class Dot3DGrid(ThreeDScene):
         ).to_edge(UP, buff=0.5)
         
         subtitle = Text(
-            "Sphere(radius, resolution) with various sheen and shininess settings",
+            "Sphere(radius, resolution=(128, 64)) with various sheen and shininess settings",
             font="Helvetica Neue",
             weight="LIGHT",
             color=YELLOW,
@@ -39,7 +39,6 @@ class Dot3DGrid(ThreeDScene):
         
         # Options to display
         options_names = [
-            "Resolution",
             "Sheen Factor",
             "Sheen Direction",
             "Ambient Strength",
@@ -50,7 +49,6 @@ class Dot3DGrid(ThreeDScene):
         
         # Values for each option
         options_values = {
-            "Resolution": [(128, 64), (128, 64), (128, 64)],
             "Sheen Factor": [1.0, 0.5, 0.0],
             "Sheen Direction": [OUT, UP, DOWN],
             "Ambient Strength": [0.8, 0.3, 0.0],
@@ -96,7 +94,7 @@ class Dot3DGrid(ThreeDScene):
                 # Recreate sphere with new properties
                 dot = Sphere(
                     radius=0.4,
-                    resolution=options_values["Resolution"][0],
+                    resolution=(128, 64),
                     sheen_factor=options_values["Sheen Factor"][row_index],
                     sheen_direction=options_values["Sheen Direction"][row_index],
                 ).set_color(DOT_COLOR)
@@ -104,7 +102,7 @@ class Dot3DGrid(ThreeDScene):
                 dot.set(shininess=options_values["Shininess"][row_index])
                 dot.set(shadow=options_values["Shadow"][row_index])
                 
-                print(f"Sphere parameters: radius=0.4, resolution={options_values['Resolution'][0]}, sheen_factor={options_values['Sheen Factor'][row_index]}, sheen_direction={options_values['Sheen Direction'][row_index]}, shininess={options_values['Shininess'][row_index]}, shadow={options_values['Shadow'][row_index]}")
+                print(f"Sphere parameters: radius=0.4, resolution={(128, 64)}, sheen_factor={options_values['Sheen Factor'][row_index]}, sheen_direction={options_values['Sheen Direction'][row_index]}, shininess={options_values['Shininess'][row_index]}, shadow={options_values['Shadow'][row_index]}")
                 
                 if option_name == "Sheen Factor":
                     dot.set(sheen_factor=value)
