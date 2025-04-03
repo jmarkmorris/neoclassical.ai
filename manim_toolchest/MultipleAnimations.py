@@ -25,8 +25,8 @@ class MultipleAnimations(Scene):
         self.add(title, subtitle)
         
         animation_configs = [
-            {"location": (-4, 2, 0)},
-            {"location": (4, 2, 0)},
+            {"location": (-4, 1.5, 0)},  # Moved down from y=2 to y=1.5
+            {"location": (4, 1.5, 0)},   # Moved down from y=2 to y=1.5
             {"location": (-4, -2, 0)},
             {"location": (4, -2, 0)},
         ]
