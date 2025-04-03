@@ -125,9 +125,9 @@ class MovingAngle(Scene):
             
             # Apply dashed style if needed (for configs 3 and 4)
             if i == 2:  # Third config (index 2)
-                line_moving.set_dash_pattern([0.1, 0.1])
+                line_moving.set(dash_pattern=[0.1, 0.1])
             elif i == 3:  # Fourth config (index 3)
-                line1.set_dash_pattern([0.1, 0.1])
+                line1.set(dash_pattern=[0.1, 0.1])
             line_ref = line_moving.copy()
             
             # Add circle to hide joining artifact
@@ -201,7 +201,7 @@ class MovingAngle(Scene):
         # Animate all angles with different behaviors
         animations = []
         for i, (tracker, config) in enumerate(zip(trackers, angle_configs)):
-            end_value = config["end_angle"]
+            end_value = config["end_angle"] + 0.01 # Add small offset to avoid parallel lines
             # Add a small offset to the end angle to avoid parallel lines
             end_value += 0.01
             if config["clockwise"] and end_value > config["start_angle"]:
