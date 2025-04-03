@@ -24,7 +24,7 @@ class WriteStuff(Scene):
         self.add(title, subtitle)
         
         # Create text and equation
-        example_text = Tex(
+        example_text = Text(
             "This is some text", 
             tex_to_color_map={"text": ELECTRIC_PURPLE},
             font="Helvetica Neue"
