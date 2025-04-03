@@ -29,7 +29,7 @@ class WriteStuff(Scene):
         example_text.set_font("Helvetica Neue")
         
         example_tex = Tex(
-            "\\sum_{k=1}^\\infty {1 \\over k^2} = {\\pi^2 \\over 6}",
+            "\\sum_{k=1}^\\infty \\frac{1}{k^2} = \\frac{\\pi^2}{6}",
         )
         
         # Group and arrange elements
