@@ -28,9 +28,7 @@ class WriteStuff(Scene):
         example_text.set_color(ELECTRIC_PURPLE)
         example_text.set_font("Helvetica Neue")
         
-        example_tex = Tex(
-            "\\sum_{k=1}^\\infty \\frac{1}{k^2} = \\frac{\\pi^2}{6}",
-        )
+        example_tex = Text("Simplified text")
         
         # Group and arrange elements
         group = VGroup(example_text, example_tex)
