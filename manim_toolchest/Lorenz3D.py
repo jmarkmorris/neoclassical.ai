@@ -16,7 +16,7 @@ class Lorenz3D(ThreeDScene):
             font="Helvetica Neue",
             weight="LIGHT",
             font_size=36
-        ).to_corner(UL)
+        )
         
         subtitle = Text(
             "MoveAlongPath(dot, curve) with Euler method trajectory",
@@ -59,7 +59,7 @@ class Lorenz3D(ThreeDScene):
         z_label = axes.get_z_axis_label("z", edge=OUT, direction=OUT)
         
         # Move the axes down to appear below the subtitle
-        axes.shift(DOWN * 2.5)
+        axes.shift(DOWN * 3.75) # Increased downward shift
         x_label.shift(DOWN * 2.5)
         y_label.shift(DOWN * 2.5)
         z_label.shift(DOWN * 2.5)
@@ -70,7 +70,7 @@ class Lorenz3D(ThreeDScene):
         # Generate Lorenz attractor trajectory
         dt = 0.01
         num_steps = 10000
-        xyz = np.array([0.1, 0.0, 0.0])  # Initial conditions
+        xyz = np.array([10.1, 0.0, 0.0])  # Initial conditions, shifted horizontally
         
         # Create curve object
         curve = VMobject(stroke_width=2, stroke_color=ELECTRIC_PURPLE)
