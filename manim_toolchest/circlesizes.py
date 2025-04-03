@@ -77,6 +77,8 @@ class circlesizes(Scene):
                 # Increment radius for next pair
                 radius += 0.002
 
-        self.wait(0.5)
+        # Instead of waiting and creating a video, just show the final frame
+        # This will generate a static image
+        self.wait(0)
 
 
