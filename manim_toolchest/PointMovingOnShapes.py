@@ -27,13 +27,13 @@ class PointMovingOnShapes(Scene):
         # Create a grid of 6 different shapes (2 rows, 3 columns)
         grid_positions = [
             # Row 1
-            [-4, 0.5, 0],
-            [0, 0.5, 0],
-            [4, 0.5, 0],
+            [-4, 0.75, 0],  # Moved up by 0.25
+            [0, 0.75, 0],   # Moved up by 0.25
+            [4, 0.75, 0],   # Moved up by 0.25
             # Row 2
-            [-4, -2.5, 0],
-            [0, -2.5, 0],
-            [4, -2.5, 0],
+            [-4, -2.25, 0], # Moved up by 0.25
+            [0, -2.25, 0],  # Moved up by 0.25
+            [4, -2.25, 0],  # Moved up by 0.25
         ]
         
         # Define different shapes and configurations
