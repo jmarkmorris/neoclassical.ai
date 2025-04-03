@@ -24,13 +24,13 @@ class WriteStuff(Scene):
         self.add(title, subtitle)
         
         # Create text and equation
-        example_text = Text(
-            "This is some text", 
-            tex_to_color_map={"text": ELECTRIC_PURPLE},
+        example_text = Tex(
+            "This is some text",
             font="Helvetica Neue"
         )
+        example_text.set_color(ELECTRIC_PURPLE)
         
-        example_tex = MathTex(
+        example_tex = Tex(
             "\\sum_{k=1}^\\infty {1 \\over k^2} = {\\pi^2 \\over 6}",
         )
         
