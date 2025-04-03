@@ -59,8 +59,8 @@ class TextFontsSizes(Scene):
         for i, group in enumerate(text_groups):
             row_index = i // 5  # 5 weights per size
             if row_index == 0:
-                group.to_corner(UL).shift(DOWN * 0.5)
+                group.to_corner(UL).shift(DOWN) # Increase initial shift down
             else:
-                group.next_to(text_groups[i-5], DOWN).align_to(text_groups[i-5], LEFT)
+                group.next_to(text_groups[i-5], DOWN * 1.5).align_to(text_groups[0], LEFT) # Align to first column and increase vertical spacing
             
             self.add(group)
