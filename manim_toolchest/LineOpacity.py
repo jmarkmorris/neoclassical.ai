@@ -52,7 +52,7 @@ class LineOpacity(Scene):
         for row_idx, stroke_width in enumerate(stroke_widths):
             for i in range(0, 101, 2):  # 0, 2, 4, ..., 100
                 opacity = i / 100
-                x_pos = -4.5 + (i/2) * 0.2  # Moved 0.5 to the right
+                x_pos = -4.0 + (i/2) * 0.2  # Moved 1.0 to the right total
                 
                 line = Line(
                     start=[x_pos, row_positions[row_idx] + 0.5, 0],
@@ -66,12 +66,12 @@ class LineOpacity(Scene):
         
         # Add percentage markers
         for i in range(0, 101, 25):
-            x_pos = -4.5 + (i/2) * 0.2  # Moved 0.5 to the right
+            x_pos = -4.0 + (i/2) * 0.2  # Moved 1.0 to the right total
             
             # Add tick mark
             tick = Line(
-                start=[x_pos, -3.0, 0],
-                end=[x_pos, -3.3, 0],
+                start=[x_pos, -2.5, 0],  # Moved up by 0.5
+                end=[x_pos, -2.8, 0],    # Moved up by 0.5
                 stroke_width=2,
                 stroke_color=WHITE
             )
