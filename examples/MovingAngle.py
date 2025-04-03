@@ -10,38 +10,55 @@ class MovingAngle(Scene):
         title.to_edge(UP, buff=0.5)
         self.add(title)
 
-        # Set up angle components
+        # Define the rotation center
         rotation_center = LEFT
-        theta_tracker = ValueTracker(30)
-        line1 = Line(rotation_center, RIGHT, color=BLUE)
-        line2 = Line(rotation_center, RIGHT, color=RED)
 
-        # Rotate line2 based on tracker value
-        line2.add_updater(
-            lambda x: x.become(Line(rotation_center, RIGHT, color=RED)).rotate(
-                theta_tracker.get_value() * DEGREES, about_point=rotation_center
-            )
+        # Create the first line
+        line1 = Line(rotation_center, RIGHT, color=BLUE)
+
+        # Create the second line, initially at 30 degrees
+        line2 = Line(rotation_center, RIGHT, color=RED).rotate(
+            30 * DEGREES, about_point=rotation_center
         )
 
-        # Create angle and label
+        # Create the angle, initially at 30 degrees
         angle = Angle(line1, line2, radius=0.5, color=YELLOW)
-        theta_label = MathTex(r"\theta").move_to(
+
+        # Create the theta label
+        theta_label = MathTex(r"\theta")
+        theta_label.move_to(
             Angle(line1, line2, radius=0.5 + 3 * SMALL_BUFF).point_from_proportion(0.5)
         )
 
-        # Add updaters
-        angle.add_updater(
-            lambda x: x.become(Angle(line1, line2, radius=0.5, color=YELLOW))
-        )
-        theta_label.add_updater(
-            lambda x: x.move_to(
-                Angle(line1, line2, radius=0.5 + 3 * SMALL_BUFF).point_from_proportion(0.5)
-            )
-        )
-
-        # Add elements to scene
+        # Add the objects to the scene
         self.add(line1, line2, angle, theta_label)
 
-        # Animate angle change
-        self.play(theta_tracker.animate.set_value(330))
+        # Create the animation to rotate line2 to 330 degrees
+        rotate_action = Rotate(
+            line2,
+            angle=300 * DEGREES,  # Rotate by 300 degrees (330 - 30)
+            about_point=rotation_center,
+            run_time=5,
+        )
+
+        # Create the updater for the angle and theta label
+        def update_angle(obj):
+            obj.become(Angle(line1, line2, radius=0.5, color=YELLOW))
+
+        def update_theta_label(obj):
+            obj.move_to(
+                Angle(line1, line2, radius=0.5 + 3 * SMALL_BUFF).point_from_proportion(0.5)
+            )
+
+        # Add the updaters to the angle and theta label
+        angle.add_updater(update_angle)
+        theta_label.add_updater(update_theta_label)
+
+        # Play the rotation animation
+        self.play(rotate_action)
+
+        # Remove the updaters
+        angle.clear_updaters()
+        theta_label.clear_updaters()
+
         self.wait()
