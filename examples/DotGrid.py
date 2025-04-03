@@ -68,6 +68,9 @@ class Dot3DGrid(ThreeDScene):
         config.pixel_width = 1920
         config.pixel_height = 1080
         
+        # Determine the number of rows based on the shortest list
+        num_rows = min(len(options_values[key]) for key in options_values)
+        
         # Starting position
         all_dots_and_labels = VGroup() # Create group for all spheres and value labels
         x_offset = -6
@@ -80,7 +83,7 @@ class Dot3DGrid(ThreeDScene):
             all_dots_and_labels.add(option_title)
             
             # Add rows for each value
-            for row_index in range(5):
+            for row_index in range(num_rows):
                 # Create default sphere
                 dot = Sphere(
                     radius=0.4,
