@@ -83,7 +83,7 @@ class Dot3DGrid(ThreeDScene):
             for row_index in range(5):
                 # Create default sphere
                 dot = Sphere(
-                    radius=0.1,
+                    radius=0.2,
                     resolution=default_options["resolution"],
                 ).set_color(DOT_COLOR)
                 
@@ -96,7 +96,7 @@ class Dot3DGrid(ThreeDScene):
                 if option_name == "Resolution":
                     # Recreate sphere with new resolution
                     dot = Sphere(
-                        radius=0.1,
+                        radius=0.2,
                         resolution=value,
                     ).set_color(DOT_COLOR)
                     dot.set(sheen_factor=default_options["sheen_factor"], shininess=default_options["shininess"])
