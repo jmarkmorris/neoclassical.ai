@@ -28,6 +28,7 @@ class MakeGraph(Scene):
             x_range=[-10, 10.3, 1],
             y_range=[-1.5, 1.5, 1],
             x_length=10,
+            y_length=5,  # Make y-axis shorter
             axis_config={"color": GREEN},
             x_axis_config={
                 "numbers_to_include": np.arange(-10, 10.01, 2),
@@ -61,8 +62,8 @@ class MakeGraph(Scene):
         plot = VGroup(axes, sin_graph, cos_graph, vert_line)
         labels = VGroup(axes_labels, sin_label, cos_label, line_label)
         
-        # Move the plot down by 1/2 unit
-        plot.shift(DOWN * 0.5)
-        labels.shift(DOWN * 0.5)
+        # Move the plot down to avoid subtitle overlap
+        plot.shift(DOWN * 0.7)  # Increased from 0.5 to 0.7
+        labels.shift(DOWN * 0.7)
         
         self.add(plot, labels)
