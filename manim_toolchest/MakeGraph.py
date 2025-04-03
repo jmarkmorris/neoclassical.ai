@@ -32,7 +32,7 @@ class MakeGraph(Scene):
             axes.i2gp(TAU, cos_graph), color=YELLOW, line_func=Line
         )
         line_label = axes.get_graph_label(
-            cos_graph, "x=2\pi", x_val=TAU, direction=UR, color=WHITE
+            cos_graph, "x=2\\pi", x_val=TAU, direction=UR, color=WHITE
         )
 
         plot = VGroup(axes, sin_graph, cos_graph, vert_line)
