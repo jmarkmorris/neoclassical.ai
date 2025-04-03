@@ -25,10 +25,10 @@ class MultipleAnimations(Scene):
         self.add(title, subtitle)
         
         animation_configs = [
-            {"location": (-4, 1.5, 0)},  # Moved down from y=2 to y=1.5
-            {"location": (4, 1.5, 0)},   # Moved down from y=2 to y=1.5
-            {"location": (-4, -2, 0)},
-            {"location": (4, -2, 0)},
+            {"location": (-2, 1.5, 0)},  # Moved right from x=-4 to x=-2
+            {"location": (2, 1.5, 0)},   # Moved left from x=4 to x=2
+            {"location": (-2, -2, 0)},   # Moved right from x=-4 to x=-2
+            {"location": (2, -2, 0)},    # Moved left from x=4 to x=2
         ]
         
         colors = [PURE_BLUE, PURE_RED, WHITE, PURPLE]
@@ -37,7 +37,7 @@ class MultipleAnimations(Scene):
         # Set common properties
         for i, config in enumerate(animation_configs):
             config["font"] = "Helvetica Neue"
-            config["font_size"] = 32
+            config["font_size"] = 24  # Reduced font size from 32 to 24
             config["typing_speed"] = 0.5
             config["color"] = colors[i]
             config["text"] = words[i]
@@ -46,7 +46,7 @@ class MultipleAnimations(Scene):
         square_objects = []
         
         for config in animation_configs:
-            # Create text object
+            # Create text object and center it vertically in the square
             text = Text(
                 config["text"],
                 font="Helvetica Neue",
@@ -67,6 +67,7 @@ class MultipleAnimations(Scene):
                             config_dict["text"][:current_length + 1], 
                             font="Helvetica Neue",
                             weight="LIGHT",
+                            font_size=config_dict["font_size"],
                             color=obj.color
                         ).move_to(obj.get_center())
                     )
