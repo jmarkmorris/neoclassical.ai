@@ -99,14 +99,16 @@ class Dot3DGrid(ThreeDScene):
                         radius=0.1,
                         resolution=value,
                     ).set_color(DOT_COLOR)
-                    dot.set(sheen_factor=default_options["sheen_factor"], sheen_direction=default_options["sheen_direction"], shininess=default_options["shininess"])
+                    dot.set(sheen_factor=default_options["sheen_factor"], shininess=default_options["shininess"])
                 elif option_name == "Sheen Factor":
                     dot.set(sheen_factor=value)
                 elif option_name == "Sheen Direction":
-                    dot.set(sheen_direction=value)
+                    dot.set(sheen_factor=default_options["sheen_factor"])  # Keep sheen factor constant
                 elif option_name == "Shininess":
                     dot.set(shininess=value)
-                
+                elif option_name == "Shadow":
+                    dot.set(shadow=value)
+                    
                 # Create value label
                 value_label = Text(f"{value}", font="Helvetica Neue", weight="LIGHT", font_size=16)
                 
@@ -121,7 +123,15 @@ class Dot3DGrid(ThreeDScene):
         # Set lighting
         self.renderer.camera.light_source.move_to(3*IN+7*OUT+7*RIGHT)
         
+        # Update light source position based on sheen direction
+        def update_light_source(mob):
+            for obj in all_dots_and_labels:
+                if isinstance(obj, Sphere):
+                    sheen_direction = obj.get(sheen_direction)
+                    self.renderer.camera.light_source.move_to(sheen_direction * 5)
+        
+        self.add(all_dots_and_labels)
+        self.add_updater(update_light_source)
+        
         all_dots_and_labels.shift(DOWN * 0.75)
         all_dots_and_labels.move_to(ORIGIN)
-
-        self.add(all_dots_and_labels)
