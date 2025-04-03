@@ -1,5 +1,10 @@
 # Git Synchronization Workflow for Multiple Machines
 
+## iCloud Tips
+
+   - Use "keep downloaded" for the repo. 
+   - Ensure all files are synchronized before launching aider
+
 ## Pre-Work Setup
 1. **Use a Centralized Repository**
    - Host your project on GitHub, GitLab, or Bitbucket

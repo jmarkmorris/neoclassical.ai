@@ -31,19 +31,22 @@ Here's a quick reference to common virtual environment commands:
 Use the following command to create a new virtual environment:
 
 ```bash
-python3 -m venv myenv
+    python3 -m venv myenv
 ```
 
 #### Important Notes:
 
-- We use `python3` explicitly because macOS (as of Ventura) ships with Python 2.7 (ancient 😱) as `python`.
+- We use `python3` because macOS (as of Ventura) ships with Python 2.7 😱 as `python`.
 - `python3` is the one you installed separately (hopefully via brew install python 🙏).
 - If you just installed Python 3.x via Homebrew, `python3` is the correct command.
 - `venv` is a module (`-m` means "treat this as a module, not an executable").
+
+#### Naming your Virtual Environment
+
 - `myenv` is just the name (directory) of your virtual environment. Choose a name that makes sense for your project. Some common conventions include:
-    - `venv` (classic, but confusing if you have many projects)
-    - `.venv` (dot makes it hidden by default — I like this, keeps dirs clean)
-    - `any-name-you-choose`
+- `venv` (classic, but confusing if you have many projects)
+- `.venv` (dot makes it hidden by default — I like this, keeps dirs clean)
+- `any-name-you-choose`
 
 Just don't name it `venv` inside your actual project directory if you're using modern IDEs (PyCharm, VSCode) because they'll get confused 🤪.
 
@@ -69,7 +72,7 @@ myenv/
 This is the most important step. Until you do this, you're still using the system Python (or the one your shell found first in `$PATH`). To "enter" your isolated world:
 
 ```bash
-source myenv/bin/activate
+    source myenv/bin/activate
 ```
 
 (Note: `source` is a shell built-in meaning "read and execute commands from this file in the current shell". Don't confuse with just running `myenv/bin/activate` which wouldn't work because it needs to modify the current shell's environment.)
@@ -94,7 +97,7 @@ That `(myenv)` prefix means you're IN. Now:
 Just use `pip` as usual. Example:
 
 ```bash
-pip install requests django==4.0.1 numpy pandas
+    pip install requests django==4.0.1 numpy pandas
 ```
 
 All packages will be installed into `myenv/lib/python3.10/site-packages/`. No `sudo` needed 🙅‍♂️.
@@ -104,7 +107,7 @@ All packages will be installed into `myenv/lib/python3.10/site-packages/`. No `s
 It's very important to freeze dependencies before sharing your project or deploying it:
 
 ```bash
-pip freeze > requirements.txt
+    pip freeze > requirements.txt
 ```
 
 This creates (or overwrites) `requirements.txt` with exact versions of everything installed:

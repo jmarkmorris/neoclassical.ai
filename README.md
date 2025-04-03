@@ -1,6 +1,6 @@
 neoclassical.ai
 
-Imagine that nature emerges from constant rate potential emitters, each modeled as a geometric point in R4 (Euclidean space and time).
+Imagine that nature emerges from constant rate potential emitter/receivers, each modeled as a geometric point in R4 (Euclidean space and time).
 In this scenario, action on a receiver depends the emission point in path history. 
 The point potentials are the electrino and the positrino, which emit equal yet opposite potential. 
 The point potentials are the only carriers of energy, in electromagnetic and kinetic form. 
@@ -9,6 +9,7 @@ This is distinct from Einstein's spacetime, but we will show how Einstein's spac
 Point potentials are neoclassical, behaving like classical point charges below potential field speed, yet revealing an entirely unexplored dynamical geometry when they travel at or greater than their own potential emission speed. 
 Historically, during the classical to quantum transition, only a single primitive point charge model was examined and properly falsified.
 They erred. It is easy to dream up an unlimited number of point potential systems more sophisticated than mapping |q| = |e|.
+
 - What is the point potential magnitude? 
 - What is the spherical potential emission speed? 
 - What is the speed limit of a point potential?
