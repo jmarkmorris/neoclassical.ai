@@ -69,6 +69,7 @@ class Dot3DGrid(ThreeDScene):
         config.pixel_height = 1080
         
         # Starting position
+        all_dots_and_labels = VGroup() # Create group for all spheres and value labels
         x_offset = -6
         
         # Create grid of options
@@ -76,7 +77,7 @@ class Dot3DGrid(ThreeDScene):
             # Add column header
             option_title = Text(option_name, font="Helvetica Neue", weight="LIGHT", font_size=24)
             option_title.move_to([x_offset + col_index * 2, 3, 0])
-            self.add(option_title)
+            all_dots_and_labels.add(option_title)
             
             # Add rows for each value
             for row_index in range(5):
@@ -115,10 +116,12 @@ class Dot3DGrid(ThreeDScene):
                 value_label.next_to(dot, LEFT, buff=0.3)
                 
                 # Add to scene
-                self.add(dot, value_label)
+                all_dots_and_labels.add(dot, value_label)
         
         # Set lighting
         self.renderer.camera.light_source.move_to(3*IN+7*OUT+7*RIGHT)
         
-        # Instead of waiting and creating a video, just show the final frame
-        # Generate a static image (remove wait)
+        all_dots_and_labels.shift(DOWN * 0.75)
+        all_dots_and_labels.move_to(ORIGIN)
+
+        self.add(all_dots_and_labels)
