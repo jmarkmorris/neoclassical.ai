@@ -42,9 +42,46 @@ class MovingAngle(Scene): # Renamed class to match filename
         y_start = ((rows - 1) * y_spacing) / 2
 
         # Create a group for the entire grid
-        grid_group = VGroup()
+        # --- Define Updater Factories Once ---
+        def create_update_angle(l1, l2, arc_color):
+            def update_angle(obj):
+                v1 = l1.get_vector()
+                v2 = l2.get_vector()
+                # Check if vectors are non-zero before calculating angle
+                if np.linalg.norm(v1) > 1e-6 and np.linalg.norm(v2) > 1e-6:
+                    angle_val = angle_between_vectors(v1, v2)
+                    # Check if lines are parallel (angle close to 0 or PI)
+                    if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
+                        obj.become(Angle(l1, l2, radius=0.5, color=arc_color))
+                        obj.set_opacity(1) # Ensure visible
+                    else:
+                        obj.set_opacity(0) # Hide if parallel or coincident
+                else:
+                    obj.set_opacity(0) # Hide if vectors are zero
+            return update_angle
+
+        def create_update_theta_label(l1, l2):
+            def update_theta_label(obj):
+                v1 = l1.get_vector()
+                v2 = l2.get_vector()
+                 # Check if vectors are non-zero before calculating angle
+                if np.linalg.norm(v1) > 1e-6 and np.linalg.norm(v2) > 1e-6:
+                    angle_val = angle_between_vectors(v1, v2)
+                    # Check if lines are parallel (angle close to 0 or PI)
+                    if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
+                        temp_angle = Angle(l1, l2, radius=0.5 + 3 * SMALL_BUFF)
+                        obj.move_to(temp_angle.point_from_proportion(0.5))
+                        obj.set_opacity(1) # Ensure visible
+                    else:
+                        obj.set_opacity(0) # Hide if parallel or coincident
+                else:
+                     obj.set_opacity(0) # Hide if vectors are zero
+            return update_theta_label
+        # --- End Updater Factories ---
+
+        grid_cells = [] # Store individual cell groups
         animations = []
-        angle_elements = [] # To store elements for updater removal
+        angle_elements_for_updater_removal = [] # To store (angle, theta_label) for updater removal
 
         for row in range(rows):
             for col in range(cols):
@@ -89,9 +126,24 @@ class MovingAngle(Scene): # Renamed class to match filename
                 angle = Angle(line1, line2, radius=0.5, color=angle_arc_color)
                 # Create the theta label
                 theta_label = MathTex(r"\theta", color=theta_color).scale(0.7)
-                theta_label.move_to(
-                    Angle(line1, line2, radius=0.5 + 3 * SMALL_BUFF).point_from_proportion(0.5)
-                )
+
+                # Position theta_label initially and check visibility
+                initial_theta_pos_angle = Angle(line1, line2, radius=0.5 + 3 * SMALL_BUFF)
+                v1_init = line1.get_vector()
+                v2_init = line2.get_vector()
+                if np.linalg.norm(v1_init) > 1e-6 and np.linalg.norm(v2_init) > 1e-6:
+                    angle_val_init = angle_between_vectors(v1_init, v2_init)
+                    if angle_val_init > ANGLE_EPSILON and abs(angle_val_init - PI) > ANGLE_EPSILON:
+                         theta_label.move_to(initial_theta_pos_angle.point_from_proportion(0.5))
+                    else:
+                         # Hide label and angle arc if initially parallel/coincident
+                         theta_label.set_opacity(0)
+                         angle.set_opacity(0)
+                else:
+                     # Hide label and angle arc if vectors are zero
+                     theta_label.set_opacity(0)
+                     angle.set_opacity(0)
+
                 # Create an unfilled circle at the rotation center instead of a Dot
                 vertex_circle = Circle(
                     radius=0.08, # Same radius as the previous dot
@@ -102,8 +154,8 @@ class MovingAngle(Scene): # Renamed class to match filename
 
                 # Group elements for this cell
                 cell_group = VGroup(line1, line2, angle, theta_label, vertex_circle)
-                grid_group.add(cell_group)
-                angle_elements.append((angle, theta_label)) # Store for updater removal
+                grid_cells.append(cell_group) # Store the cell group
+                angle_elements_for_updater_removal.append((angle, theta_label)) # Store for removal
 
                 # Create the animation
                 rotate_action = Rotate(
@@ -115,57 +167,19 @@ class MovingAngle(Scene): # Renamed class to match filename
                 )
                 animations.append(rotate_action)
 
-                # Create the updater for the angle and theta label
-            # Need to use a function factory or lambda with default arguments
-            # Capture correct variables AND the angle arc color for each angle's updater
-            def create_update_angle(l1, l2, arc_color):
-                def update_angle(obj):
-                    v1 = l1.get_vector()
-                    v2 = l2.get_vector()
-                    # Check if vectors are non-zero before calculating angle
-                    if np.linalg.norm(v1) > 1e-6 and np.linalg.norm(v2) > 1e-6:
-                        angle_val = angle_between_vectors(v1, v2)
-                        # Check if lines are parallel (angle close to 0 or PI)
-                        if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
-                            obj.become(Angle(l1, l2, radius=0.5, color=arc_color))
-                            obj.set_opacity(1) # Ensure visible
-                        else:
-                            obj.set_opacity(0) # Hide if parallel or coincident
-                    else:
-                        obj.set_opacity(0) # Hide if vectors are zero
-                return update_angle
+                # Add the updaters to the angle and theta label
+                angle.add_updater(create_update_angle(line1, line2, angle_arc_color))
+                theta_label.add_updater(create_update_theta_label(line1, line2))
 
-            def create_update_theta_label(l1, l2):
-                def update_theta_label(obj):
-                    v1 = l1.get_vector()
-                    v2 = l2.get_vector()
-                     # Check if vectors are non-zero before calculating angle
-                    if np.linalg.norm(v1) > 1e-6 and np.linalg.norm(v2) > 1e-6:
-                        angle_val = angle_between_vectors(v1, v2)
-                        # Check if lines are parallel (angle close to 0 or PI)
-                        if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
-                            temp_angle = Angle(l1, l2, radius=0.5 + 3 * SMALL_BUFF)
-                            obj.move_to(temp_angle.point_from_proportion(0.5))
-                            obj.set_opacity(1) # Ensure visible
-                        else:
-                            obj.set_opacity(0) # Hide if parallel or coincident
-                    else:
-                         obj.set_opacity(0) # Hide if vectors are zero
-                return update_theta_label
-
-            # Add the updaters to the angle and theta label
-            angle.add_updater(create_update_angle(line1, line2, angle_arc_color))
-            theta_label.add_updater(create_update_theta_label(line1, line2))
-
-        # Center the entire grid group
-        grid_group.move_to(ORIGIN)
-        self.add(grid_group) # Add the centered group to the scene
+        # Add the final grid group to the scene
+        final_grid_group = VGroup(*grid_cells)
+        self.add(final_grid_group)
 
         # Play all animations simultaneously
         self.play(*animations)
 
         # Remove the updaters after animation is complete
-        for angle_obj, label_obj in angle_elements:
+        for angle_obj, label_obj in angle_elements_for_updater_removal:
              angle_obj.clear_updaters()
              label_obj.clear_updaters()
 
