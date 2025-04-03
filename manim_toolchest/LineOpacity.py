@@ -29,15 +29,20 @@ class LineOpacity(Scene):
         stroke_widths = [1, 2, 3]
         row_positions = [-1.5, 0, 1.5]
         
+        # Create a group to hold all visualization elements
+        visualization_group = VGroup()
+        
         # Add row labels
         for i, width in enumerate(stroke_widths):
             label = Text(
                 f"Width: {width}", 
                 color=WHITE, 
-                font_size=28
+                font_size=28,
+                font="Helvetica Neue",
+                weight="LIGHT"
             )
-            label.to_edge(LEFT, buff=0.5).shift(UP * row_positions[i])
-            self.add(label)
+            label.shift(LEFT * 5 + UP * row_positions[i])
+            visualization_group.add(label)
         
         # Create opacity lines for each row
         for row_idx, stroke_width in enumerate(stroke_widths):
@@ -53,7 +58,7 @@ class LineOpacity(Scene):
                     stroke_opacity=opacity
                 )
                 
-                self.add(line)
+                visualization_group.add(line)
         
         # Add percentage markers
         for i in range(0, 101, 25):
@@ -71,8 +76,16 @@ class LineOpacity(Scene):
             percentage = Text(
                 f"{i}%", 
                 color=WHITE, 
-                font_size=24
+                font_size=24,
+                font="Helvetica Neue",
+                weight="LIGHT"
             )
             percentage.next_to(tick, DOWN, buff=0.1)
             
-            self.add(tick, percentage)
+            visualization_group.add(tick, percentage)
+        
+        # Center the entire visualization group horizontally
+        visualization_group.center_x()
+        
+        # Add the visualization group to the scene
+        self.add(visualization_group)
