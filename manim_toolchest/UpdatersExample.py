@@ -65,7 +65,7 @@ class UpdatersExample(Scene):
         # Create a circle that changes size based on square's y-position
         circle = Circle(radius=0.5, color=ELECTRIC_PURPLE)
         circle.set_fill(ELECTRIC_PURPLE, opacity=0.3)
-        circle.move_to(LEFT * 3)
+        circle.move_to(LEFT * 3 + UP * 0.25)  # Moved up by 0.25
         
         # Add updater to the circle to change its size based on square's position
         circle.add_updater(
@@ -77,7 +77,7 @@ class UpdatersExample(Scene):
         # Create a color-changing triangle
         triangle = Triangle(color=YELLOW).scale(0.5)
         triangle.set_fill(YELLOW, opacity=0.5)
-        triangle.move_to(RIGHT * 3)
+        triangle.move_to(RIGHT * 3 + UP * 0.25)  # Moved up by 0.25
         
         # Add updater to change triangle's color based on square's position
         triangle.add_updater(
