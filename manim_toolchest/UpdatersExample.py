@@ -25,7 +25,7 @@ class UpdatersExample(Scene):
         self.add(title, subtitle)
         
         # Create a central square that will move up and down
-        square = Square(side_length=0.8, color=BLUE).shift(UP * 0.5)  # Smaller square, moved down
+        square = Square(side_length=0.8, color=BLUE).shift(UP * 1)  # Smaller square, moved down
         square.set_fill(BLUE, opacity=0.5)
         
         # Create a decimal number that tracks the square's y-position
@@ -70,7 +70,7 @@ class UpdatersExample(Scene):
         # Add updater to the circle to change its size based on square's position
         circle.add_updater(
             lambda c: c.set_width(
-                0.5 + abs(square.get_center()[1]) * 1.5
+                0.5 + abs(square.get_center()[1])
             )
         )
         
