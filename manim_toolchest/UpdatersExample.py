@@ -83,9 +83,9 @@ class UpdatersExample(Scene):
         triangle.add_updater(
             lambda t: t.set_color(
                 interpolate_color(
-                    YELLOW, 
-                    PURE_RED, 
-                    (square.get_center()[1] + 3) / 6
+                    YELLOW,
+                    PURE_RED,
+                    (max(square.get_center()[1], -2.5) + 3) / 6
                 )
             )
         )
