@@ -33,6 +33,7 @@ class PathTrace(Scene):
         # Create a path that will show the trail
         path = VMobject(stroke_width=2, stroke_color=YELLOW, stroke_opacity=0.8)
         trail = VMobject(stroke_width=2, stroke_color=WHITE, stroke_opacity=0.8)
+        trail.set_points_as_corners([dot.get_center()]) # Initialize trail with a point
 
         path.set_points_as_corners([dot.get_center(), dot.get_center()])
         
