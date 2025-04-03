@@ -24,11 +24,9 @@ class WriteStuff(Scene):
         self.add(title, subtitle)
         
         # Create text and equation
-        example_text = Tex(
-            "This is some text",
-            font="Helvetica Neue"
-        )
+        example_text = Tex("This is some text")
         example_text.set_color(ELECTRIC_PURPLE)
+        example_text.set_font("Helvetica Neue")
         
         example_tex = Tex(
             "\\sum_{k=1}^\\infty {1 \\over k^2} = {\\pi^2 \\over 6}",
