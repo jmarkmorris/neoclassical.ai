@@ -3,18 +3,25 @@ from tools import INDIGO
 import numpy as np
 import random
 from manim.utils.space_ops import angle_between_vectors
-from manim.utils.color import Colors
+# Removed incorrect import: from manim.utils.color import Colors
 
 # Define a small epsilon to avoid floating point issues near PI
 ANGLE_EPSILON = 1e-6
 
-# Manim standard colors list (excluding grayscale and duplicates for variety)
+# Manim standard colors list (replace dynamic generation with a static list)
 MANIM_COLORS = [
-    color for name, color in Colors.__dict__.items()
-    if isinstance(color, ManimColor) and color not in [WHITE, BLACK, GREY, LIGHT_GREY, DARK_GREY, GRAY, LIGHT_GRAY, DARK_GRAY, GREY_BROWN]
+    BLUE, RED, GREEN, YELLOW, PURPLE, ORANGE, TEAL, PINK, GOLD, MAROON,
+    BLUE_A, BLUE_B, BLUE_C, BLUE_D, BLUE_E,
+    TEAL_A, TEAL_B, TEAL_C, TEAL_D, TEAL_E,
+    GREEN_A, GREEN_B, GREEN_C, GREEN_D, GREEN_E,
+    YELLOW_A, YELLOW_B, YELLOW_C, YELLOW_D, YELLOW_E,
+    GOLD_A, GOLD_B, GOLD_C, GOLD_D, GOLD_E,
+    RED_A, RED_B, RED_C, RED_D, RED_E,
+    MAROON_A, MAROON_B, MAROON_C, MAROON_D, MAROON_E,
+    PURPLE_A, PURPLE_B, PURPLE_C, PURPLE_D, PURPLE_E,
+    PINK, LIGHT_PINK, PURE_BLUE, PURE_GREEN, PURE_RED, LIGHT_BROWN, DARK_BROWN,
+    # Add more colors as needed, ensuring they are valid Manim constants
 ]
-# Ensure PINK is included if not already captured
-if PINK not in MANIM_COLORS: MANIM_COLORS.append(PINK)
 
 
 class MovingAngle(Scene): # Renamed class to match filename
