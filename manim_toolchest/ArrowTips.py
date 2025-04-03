@@ -54,7 +54,7 @@ class ArrowTips(Scene):
         for i, ax in enumerate(axes):
             # Calculate position based on index
             x_pos = (i % 4) * 3.25 - 5
-            y_pos = 0.5 - (i // 4) * 3.5  # Moved down by 1 unit
+            y_pos = 0.5 - (i // 4) * 2.5  # Reduced vertical spacing to move bottom row up
             
             ax.move_to([x_pos, y_pos, 0])
             self.add(ax)
