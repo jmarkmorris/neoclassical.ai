@@ -75,7 +75,7 @@ class Dot3DGrid(ThreeDScene):
         # Create grid of options
         for col_index, option_name in enumerate(options_names):
             # Add column header
-            option_title = Text(option_name, font="Helvetica Neue", weight="LIGHT", font_size=24)
+            option_title = Text(option_name, font="Helvetica Neue", weight="LIGHT", font_size=16)
             option_title.move_to([x_offset + col_index * 2, 3, 0])
             all_dots_and_labels.add(option_title)
             
