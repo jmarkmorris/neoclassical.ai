@@ -25,7 +25,7 @@ class UpdatersExample(Scene):
         self.add(title, subtitle)
         
         # Create a central square that will move up and down
-        square = Square(side_length=1, color=BLUE).shift(UP)
+        square = Square(side_length=0.8, color=BLUE).shift(UP * 0.5)  # Smaller square, moved down
         square.set_fill(BLUE, opacity=0.5)
         
         # Create a decimal number that tracks the square's y-position
@@ -65,7 +65,7 @@ class UpdatersExample(Scene):
         # Create a circle that changes size based on square's y-position
         circle = Circle(radius=0.5, color=ELECTRIC_PURPLE)
         circle.set_fill(ELECTRIC_PURPLE, opacity=0.3)
-        circle.move_to(LEFT * 3 + UP * 0.25)  # Moved up by 0.25
+        circle.move_to(LEFT * 4 + UP * 0.5)  # Moved left and up more
         
         # Add updater to the circle to change its size based on square's position
         circle.add_updater(
@@ -77,7 +77,7 @@ class UpdatersExample(Scene):
         # Create a color-changing triangle
         triangle = Triangle(color=YELLOW).scale(0.5)
         triangle.set_fill(YELLOW, opacity=0.5)
-        triangle.move_to(RIGHT * 3 + UP * 0.25)  # Moved up by 0.25
+        triangle.move_to(RIGHT * 4 + UP * 0.5)  # Moved right and up more
         
         # Add updater to change triangle's color based on square's position
         triangle.add_updater(
@@ -132,11 +132,11 @@ class UpdatersExample(Scene):
             run_time=8,
         )
         
-        # Now move the square in a circular path
+        # Now move the square in a smaller circular path
         self.play(
             MoveAlongPath(
                 square, 
-                Circle(radius=2).shift(DOWN),
+                Circle(radius=1.5).shift(DOWN * 0.5),  # Smaller circle, moved up
             ),
             run_time=8,
             rate_func=linear
