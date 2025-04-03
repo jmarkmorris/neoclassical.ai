@@ -85,7 +85,7 @@ class LineOpacity(Scene):
             visualization_group.add(tick, percentage)
         
         # Center the entire visualization group horizontally
-        visualization_group.center_x()
+        visualization_group.center()
         
         # Add the visualization group to the scene
         self.add(visualization_group)
