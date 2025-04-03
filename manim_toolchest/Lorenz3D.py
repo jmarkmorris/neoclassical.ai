@@ -26,7 +26,7 @@ class Lorenz3D(ThreeDScene):
             font_size=20
         ).next_to(title, DOWN, buff=0.1)
         
-        self.add_fixed_in_frame_mobjects(title, subtitle)
+        self.add(title, subtitle)
         
         # Lorenz system parameters
         sigma = 10
@@ -64,10 +64,10 @@ class Lorenz3D(ThreeDScene):
         y_label.shift(DOWN * 2.5)
         z_label.shift(DOWN * 2.5)
         
-        # Add elements to scene
-        self.add(axes, x_label, y_label, z_label)
-        
+        lorenz_group = VGroup(axes, x_label, y_label, z_label)
+
         # Generate Lorenz attractor trajectory
+        
         dt = 0.01
         num_steps = 10000
         xyz = np.array([10.1, 0.0, 0.0])  # Initial conditions, shifted horizontally
@@ -89,8 +89,10 @@ class Lorenz3D(ThreeDScene):
         dot = Sphere(radius=0.1, color=PURE_RED).move_to(points[0])
         
         # Add curve and dot to scene
-        self.add(curve, dot)
-        
+        lorenz_group.add(curve, dot)
+        lorenz_group.move_to(ORIGIN).shift(DOWN * 2) # Center and shift down
+        self.add(lorenz_group)
+
         # Animate dot following the curve
         self.play(
             MoveAlongPath(dot, curve),
