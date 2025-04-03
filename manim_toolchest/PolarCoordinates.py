@@ -28,7 +28,7 @@ class PolarCoordinates(Scene):
             azimuth_units="PI radians",
             azimuth_step=12,
             size=4.8,  # Reduced from 6 to 4.8 (80%)
-            azimuth_label_font_size=28,  # Reduced font size
+            azimuth_label_font_size=22,  # Further reduced font size for x-axis labels
             radius_config={"font_size": 28, "stroke_color": WHITE},
             background_line_style={
                 "stroke_color": WHITE,
@@ -37,12 +37,12 @@ class PolarCoordinates(Scene):
             }
         ).add_coordinates()
         
-        # Center the plane
-        polar_plane.move_to(ORIGIN)
+        # Center the plane and move it down
+        polar_plane.move_to(ORIGIN + DOWN * 0.5)
         
         # Add the plane to the scene
         self.add(polar_plane)
 
-        # Create a vector with adjusted size
+        # Create a vector with adjusted size (also moved down with the plane)
         vector = Vector(polar_plane.polar_to_point(2.4, PI/4), stroke_width=1.8)  # Reduced from 3 to 2.4
         self.add(vector)
