@@ -3,7 +3,7 @@ import numpy as np
 from tools import INDIGO, ELECTRIC_PURPLE
 
 class zLorenz3D_SLOW(ThreeDScene):
-    """Visualization of the Lorenz attractor in 3D space"""
+    """Visualization of the Lorenz attractor in 3D space (takes time to render)"""
     
     def construct(self):
         # Set up camera
@@ -59,10 +59,10 @@ class zLorenz3D_SLOW(ThreeDScene):
         z_label = axes.get_z_axis_label("z", edge=OUT, direction=OUT)
         
         # Move the axes down to appear below the subtitle
-        axes.shift(DOWN * 2)
-        x_label.shift(DOWN * 2)
-        y_label.shift(DOWN * 2)
-        z_label.shift(DOWN * 2)
+        axes.shift(DOWN * 2.5)
+        x_label.shift(DOWN * 2.5)
+        y_label.shift(DOWN * 2.5)
+        z_label.shift(DOWN * 2.5)
         
         # Add elements to scene
         self.add(axes, x_label, y_label, z_label)
