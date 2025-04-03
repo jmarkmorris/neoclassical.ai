@@ -58,27 +58,8 @@ class Lorenz3D(ThreeDScene):
         y_label = axes.get_y_axis_label("y")
         z_label = axes.get_z_axis_label("z", edge=OUT, direction=OUT)
         
-        # Add axes labels
-        x_label = axes.get_x_axis_label(
-            "x", 
-            font="Helvetica Neue", 
-            weight="LIGHT"
-        )
-        y_label = axes.get_y_axis_label(
-            "y", 
-            font="Helvetica Neue", 
-            weight="LIGHT"
-        )
-        z_label = axes.get_z_axis_label(
-            "z", 
-            edge=OUT, 
-            direction=OUT, 
-            font="Helvetica Neue", 
-            weight="LIGHT"
-        )
-        
         # Add elements to scene
-        self.add(axes, x_label, y_label, z_label, title)
+        self.add(axes, x_label, y_label, z_label)
         
         # Generate Lorenz attractor trajectory
         dt = 0.01
