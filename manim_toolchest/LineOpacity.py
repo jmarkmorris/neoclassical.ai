@@ -15,7 +15,15 @@ class LineOpacity(Scene):
             color=WHITE, 
             font_size=36
         ).to_edge(UP, buff=0.5)
-        self.add(title)
+        
+        # Add subtitle showing line creation syntax
+        subtitle = Text(
+            "Line(start=[x, y, z], end=[x, y, z], stroke_width=w, stroke_opacity=o)",
+            color=YELLOW,
+            font_size=20
+        ).next_to(title, DOWN, buff=0.3)
+        
+        self.add(title, subtitle)
         
         # Define stroke widths and row positions
         stroke_widths = [1, 2, 3]
