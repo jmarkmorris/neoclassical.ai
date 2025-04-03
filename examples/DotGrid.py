@@ -99,10 +99,10 @@ class Dot3DGrid(ThreeDScene):
                     resolution=options_values["Resolution"][0],
                     sheen_factor=options_values["Sheen Factor"][row_index],
                     sheen_direction=options_values["Sheen Direction"][row_index],
-                    shadow=options_values["Shadow"][row_index],
                 ).set_color(DOT_COLOR)
                 
                 dot.set(shininess=options_values["Shininess"][row_index])
+                dot.set(shadow=options_values["Shadow"][row_index])
                 
                 if option_name == "Sheen Factor":
                     dot.set(sheen_factor=value)
