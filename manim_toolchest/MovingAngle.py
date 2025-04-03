@@ -43,9 +43,5 @@ class MovingAngle(Scene):
         self.add(line1, line2, angle, theta_label)
 
         # Animate angle change
-        self.play(theta_tracker.animate.set_value(30))
-        self.wait()
-        self.play(theta_tracker.animate.set_value(120))
-        self.wait()
-        self.play(theta_tracker.animate.set_value(-60))
-        self.wait()
+        self.play(theta_tracker.animate.set_value(45))
+        self.wait(2)
