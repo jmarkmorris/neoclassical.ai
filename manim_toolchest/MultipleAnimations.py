@@ -53,7 +53,7 @@ class MultipleAnimations(Scene):
                 weight="LIGHT",
                 font_size=config["font_size"],
                 color=config["color"]
-            ).move_to(config["location"])
+            ).move_to(config["location"] + DOWN * 0.5)  # Move down to center in square
             
             text_objects.append(text)
 
@@ -69,7 +69,7 @@ class MultipleAnimations(Scene):
                             weight="LIGHT",
                             font_size=config_dict["font_size"],
                             color=obj.color
-                        ).move_to(obj.get_center())
+                        ).move_to(obj.get_center())  # Maintain the same position
                     )
 
             # Add updater to text
