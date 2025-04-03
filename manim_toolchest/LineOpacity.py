@@ -13,7 +13,9 @@ class LineOpacity(Scene):
         title = Text(
             "Line Opacity Visualization (Even % from 0% to 100%)", 
             color=WHITE, 
-            font_size=36
+            font_size=36,
+            font="Helvetica Neue",
+            weight="LIGHT"
         ).to_edge(UP, buff=0.5)
         
         # Add subtitle showing line creation syntax
