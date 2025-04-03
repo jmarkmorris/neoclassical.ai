@@ -2,7 +2,7 @@ from manim import *
 import numpy as np
 from tools import INDIGO, ELECTRIC_PURPLE
 
-class zz_Lorenz3D_SLOW(ThreeDScene):
+class Lorenz3D(ThreeDScene):
     """Visualization of the Lorenz attractor in 3D space (takes time to render)"""
     
     def construct(self):
