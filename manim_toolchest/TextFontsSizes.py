@@ -61,6 +61,6 @@ class TextFontsSizes(Scene):
         
         # Position the text group below the subtitle
         text_group.next_to(subtitle, DOWN, buff=0.5)
-        text_group.move_to(ORIGIN).shift(UP * 0.4) # Center horizontally and shift up
+        text_group.move_to(ORIGIN).shift(DOWN * -0.1) # Center horizontally and shift up
 
         self.add(text_group)
