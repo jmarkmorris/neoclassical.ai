@@ -49,11 +49,11 @@ class Dot3DGrid(ThreeDScene):
         
         # Values for each option
         options_values = {
-            "Sheen Factor": [1.0, 0.5, 0.0],
+            "Sheen Factor": [2.0, 1.0, 0.0],
             "Sheen Direction": [OUT, UP, DOWN],
             "Ambient Strength": [0.8, 0.3, 0.0],
             "Specular Strength": [1.0, 0.5, 0.0],
-            "Shininess": [50, 20, 1],
+            "Shininess": [100, 50, 1],
             "Shadow": [True, False, False],
         }
 
@@ -125,7 +125,7 @@ class Dot3DGrid(ThreeDScene):
                 all_dots_and_labels.add(dot, value_label)
         
         # Set lighting
-        self.renderer.camera.light_source.move_to(3*IN+7*OUT+7*RIGHT)
+        self.renderer.camera.light_source.move_to(5*RIGHT+3*UP+2*OUT)
         
         # Update light source position based on sheen direction
         def update_light_source(mob):
@@ -136,6 +136,9 @@ class Dot3DGrid(ThreeDScene):
         
         self.add(all_dots_and_labels)
         self.add_updater(update_light_source)
+        
+        # Rotate camera to show 3D structure
+        self.begin_ambient_camera_rotation(rate=0.05)
         
         all_dots_and_labels.shift(DOWN * 0.75)
         all_dots_and_labels.move_to(ORIGIN)
