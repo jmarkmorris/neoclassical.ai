@@ -55,12 +55,11 @@ class TextFontsSizes(Scene):
                 line = VGroup(text_obj, info_label).arrange(RIGHT)
                 text_groups.append(line)
         
-        # Position text groups
+        # Position text groups to avoid overlap
+        current_y = 3  # Start near the top
+        x_offset = -5 # Left align
         for i, group in enumerate(text_groups):
-            row_index = i // 5  # 5 weights per size
-            if row_index == 0:
-                group.to_corner(UL).shift(DOWN) # Increase initial shift down
-            else:
-                group.next_to(text_groups[i-5], DOWN * 1.5).align_to(text_groups[0], LEFT) # Align to first column and increase vertical spacing
-            
+            group.move_to([x_offset, current_y, 0])
+            current_y -= group.height + 0.1  # Move down by text height + small buffer
+
             self.add(group)
