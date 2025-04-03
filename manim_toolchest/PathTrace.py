@@ -33,34 +33,14 @@ class PathTrace(Scene):
         # Create a path that will show the trail
         path = VMobject(stroke_width=2, stroke_color=YELLOW, stroke_opacity=0.8)
         trail = VMobject(stroke_width=2, stroke_color=WHITE, stroke_opacity=0.8)
-        trail.set_points_as_corners([dot.get_center()]) # Initialize trail with a point
+        trail.start_new_path(dot.get_center()) # Initialize trail with a point
 
         path.set_points_as_corners([dot.get_center(), dot.get_center()])
         
-        # Define path updater with fading trail effect
         def update_path(path):
-            previous_path = path.copy()
-            previous_path.add_points_as_corners([dot.get_center()])
-            trail.add_smooth_curve_to(dot.get_center())
-            
-            # Limit the length of the trail
-            if len(previous_path.get_points()) > 300:  # Keep a reasonable trail length
-                # Remove the oldest points
-                points = previous_path.get_points()[3:]
-                previous_path.set_points(points)
-            
-            path.become(previous_path)
-            
-            # Create a gradient effect - fade out older parts of the trail
-            n_points = len(path.get_points())
-            if n_points > 0:
-                colors = [
-                    interpolate_color(BLACK, YELLOW, i/(n_points-1))
-                    for i in range(n_points)
-                ]
-                path.set_rgba_array_direct(
-                    np.array([color_to_rgba(c) for c in colors])
-                )
+            path.add_points_as_corners([dot.get_center()])
+            if len(path.points) > 200:
+                path.remove_points(0, 1)
         
         path.add_updater(update_path)
         self.add(path, dot, trail)
