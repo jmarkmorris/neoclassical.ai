@@ -104,6 +104,8 @@ class Dot3DGrid(ThreeDScene):
                 dot.set(shininess=options_values["Shininess"][row_index])
                 dot.set(shadow=options_values["Shadow"][row_index])
                 
+                print(f"Sphere parameters: radius=0.4, resolution={options_values['Resolution'][0]}, sheen_factor={options_values['Sheen Factor'][row_index]}, sheen_direction={options_values['Sheen Direction'][row_index]}, shininess={options_values['Shininess'][row_index]}, shadow={options_values['Shadow'][row_index]}")
+                
                 if option_name == "Sheen Factor":
                     dot.set(sheen_factor=value)
                 elif option_name == "Sheen Direction":
