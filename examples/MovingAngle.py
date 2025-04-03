@@ -52,7 +52,7 @@ class MovingAngle(Scene): # Renamed class to match filename
                     angle_val = angle_between_vectors(v1, v2)
                     # Check if lines are parallel (angle close to 0 or PI)
                     if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
-                        obj.become(Angle(l1, l2, radius=0.5, color=arc_color))
+                        obj.become(Angle(l1, l2, radius=0.5, color=arc_color, fill_opacity=0))
                         obj.set_opacity(1) # Ensure visible
                     else:
                         obj.set_opacity(0) # Hide if parallel or coincident
