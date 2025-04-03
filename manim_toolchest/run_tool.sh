@@ -25,14 +25,6 @@ list_tools() {
     # Get all Python files except __init__.py and tools.py
     files=$(find . -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort)
     
-    # Move Lorenz3D.py to the end of the list
-    lorenz_file=$(echo "$files" | grep "Lorenz3D.py")
-    if [ -n "$lorenz_file" ]; then
-        files=$(echo "$files" | grep -v "Lorenz3D.py")
-        files="$files
-$lorenz_file"
-    fi
-    
     # Calculate the number of columns based on terminal width
     term_width=$(tput cols)
     max_name_length=25
