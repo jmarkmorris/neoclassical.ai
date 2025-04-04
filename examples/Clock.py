@@ -93,9 +93,16 @@ class ClockAssembly(VGroup):
         now = datetime.datetime.now()
         # Calculate angles: Clockwise, 0 angle is UP (like a real clock)
         # Angle = (fraction of circle) * TAU. Negative sign for clockwise. Add PI/2 because 0 rad is RIGHT.
-        target_hour_angle = -(((now.hour % 12 + now.minute / 60 + now.second / 3600) / 12) * TAU) + PI/2
-        target_minute_angle = -(((now.minute + now.second / 60) / 60) * TAU) + PI/2
-        # Multiply seconds by 2 for double speed
+        
+        # Slow down hour hand (e.g., 0.5x speed)
+        hour_progress = (now.hour % 12 + now.minute / 60 + now.second / 3600) * 0.5
+        target_hour_angle = -((hour_progress / 12) * TAU) + PI/2
+        
+        # Speed up minute hand (e.g., 10x speed) - use modulo to keep it within 60 'minutes'
+        minute_progress = (now.minute + now.second / 60) * 10
+        target_minute_angle = -(((minute_progress % 60) / 60) * TAU) + PI/2
+        
+        # Keep second hand at double speed
         target_second_angle = -(((now.second * 2) % 60) / 60 * TAU) + PI/2
 
         # Get the current center of the clock
@@ -142,7 +149,7 @@ class ClockScene(Scene):
             pass # Use default background if INDIGO is missing
 
         # Create clock object and add it directly to the scene
-        clock = ClockAssembly(radius=2 * 0.95) # Start at center, reduced size by 5%
+        clock = ClockAssembly(radius=2 * 0.95 * 0.95) # Start at center, reduced size by another 5%
         self.add(clock)  # Add directly without animation
 
         # Add updater to clock to update hands every frame right from the start
