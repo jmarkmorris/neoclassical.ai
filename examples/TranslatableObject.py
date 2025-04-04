@@ -32,17 +32,23 @@ class AnimatedAngle(Scene):
         # Randomize colors
         line1_color = random.choice(MANIM_COLORS)
         line2_color = random.choice(MANIM_COLORS)
-        while line2_color == line1_color: # Ensure different colors for lines
+        while line2_color == line1_color:  # Ensure different colors for lines
             line2_color = random.choice(MANIM_COLORS)
         angle_arc_color = random.choice(MANIM_COLORS)
+        dot_color = random.choice(MANIM_COLORS)
 
         # Create the first line
         line1 = Line(rotation_center, RIGHT, color=line1_color)
         # Create the second line, initially rotated to the initial angle
-        line2 = Line(rotation_center, RIGHT, color=line2_color).rotate(initial_angle_deg * DEGREES, about_point=rotation_center)
+        line2 = Line(rotation_center, RIGHT, color=line2_color).rotate(
+            initial_angle_deg * DEGREES, about_point=rotation_center
+        )
 
         # Create the angle
         angle = Angle(line1, line2, radius=0.5, color=angle_arc_color)
+
+        # Create a dot at the rotation center
+        dot = Dot(point=rotation_center, color=dot_color)
 
         # Create the animation for line2 to rotate to the final angle
         rotate_animation = Rotate(
@@ -50,10 +56,12 @@ class AnimatedAngle(Scene):
             angle=(final_angle_deg - initial_angle_deg) * DEGREES,
             about_point=rotation_center,
             run_time=3
+            about_point=rotation_center,
+            run_time=3
         )
 
-        # Add the lines and angle to the scene
-        self.add(line1, line2, angle)
+        # Add the lines, angle, and dot to the scene
+        self.add(line1, line2, angle, dot)
 
         # Play the rotation animation
         self.play(rotate_animation)
