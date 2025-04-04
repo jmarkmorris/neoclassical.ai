@@ -4,7 +4,6 @@ import numpy as np
 INDIGO = "#4B0082"
 ELECTRIC_PURPLE = "#8F00FF"
 WHITE = "#FFFFFF"
-YELLOW = "#FFFF00"
 class AngleNew(Scene):
     def construct(self):
         # Set background color
@@ -23,7 +22,7 @@ class AngleNew(Scene):
         line2 = Line(O, B, color=PINK)
         
         # Create the angle object
-        angle = Angle(line1, line2, radius=0.5, color=YELLOW)
+        angle = Angle(line1, line2, radius=0.5, color=WHITE)
         
         # Create theta label
         theta = MathTex(r"\theta", color=WHITE)
@@ -67,7 +66,7 @@ class AngleNew(Scene):
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
                 # Update the angle with the new lines
-                new_angle = Angle(line1, line2, color=YELLOW, radius=0.5)
+                new_angle = Angle(line1, line2, color=WHITE, radius=0.5)
                 
                 # Calculate theta position
                 theta_pos = new_angle.point_from_proportion(0.5) + 0.3 * UP
