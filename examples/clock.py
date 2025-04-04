@@ -88,7 +88,7 @@ class ClockScene(Scene):
         self.play(clock.animate.shift(LEFT * 2))
 
         # Add updater to clock to update hands every frame
-        clock.add_updater(lambda dt: clock.update_hands())
+        clock.add_updater(lambda mob, dt: mob.update_hands())
 
         self.wait(10)
 
