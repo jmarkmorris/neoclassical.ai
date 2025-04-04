@@ -23,6 +23,181 @@ MANIM_COLORS = [
     # Add more colors as needed, ensuring they are valid Manim constants
 ]
 
+class AngleAssembly(VGroup):
+    """A self-contained angle visualization that maintains its internal structure when moved."""
+    def __init__(
+        self, 
+        start_angle_deg=0, 
+        end_angle_deg=45, 
+        line1_color=BLUE, 
+        line2_color=RED,
+        dot_color=WHITE,
+        angle_arc_color=YELLOW,
+        theta_color=GREEN,
+        radius=1.0,
+        **kwargs
+    ):
+        super().__init__(**kwargs)
+        
+        # Store parameters
+        self.radius = radius
+        self.start_angle_deg = start_angle_deg
+        self.end_angle_deg = end_angle_deg
+        self.line1_color = line1_color
+        self.line2_color = line2_color
+        self.dot_color = dot_color
+        self.angle_arc_color = angle_arc_color
+        self.theta_color = theta_color
+        
+        # Create the center point (origin for this VGroup)
+        self.center_dot = Dot(ORIGIN, radius=0.08, color=self.dot_color).set_z_index(3)
+        
+        # Create the first line (fixed reference line)
+        self.line1 = Line(ORIGIN, RIGHT * self.radius, color=self.line1_color).set_z_index(1)
+        
+        # Create the second line (will be rotated)
+        self.line2 = Line(
+            ORIGIN, 
+            RIGHT * self.radius, 
+            color=self.line2_color
+        ).set_z_index(1)
+        
+        # Rotate the second line to the start angle
+        self.line2.rotate(self.start_angle_deg * DEGREES, about_point=ORIGIN)
+        
+        # Create the angle arc
+        self.angle_arc = self._create_angle_arc()
+        
+        # Create the theta label
+        self.theta_label = MathTex(r"\theta", color=self.theta_color).scale(0.7)
+        self._position_theta_label()
+        
+        # Add all elements to the VGroup
+        self.add(self.line1, self.line2, self.angle_arc, self.theta_label, self.center_dot)
+    
+    def _create_angle_arc(self):
+        """Creates the angle arc between the two lines."""
+        angle_val = abs(self.start_angle_deg * DEGREES)
+        
+        # Check if angle is valid for visualization
+        if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
+            arc = Arc(
+                radius=0.5,
+                angle=angle_val,
+                color=self.angle_arc_color,
+                fill_opacity=0.2
+            ).set_z_index(2)
+            
+            # Position the arc correctly
+            if self.start_angle_deg > 0:
+                arc.rotate(0, about_point=ORIGIN)
+            else:
+                # If angle is negative, adjust the arc's position
+                arc.rotate(self.start_angle_deg * DEGREES, about_point=ORIGIN)
+            
+            return arc
+        else:
+            # Return an invisible arc for parallel lines
+            return Arc(radius=0.5, angle=0, color=self.angle_arc_color, opacity=0)
+    
+    def _position_theta_label(self):
+        """Positions the theta label at the middle of the angle arc."""
+        angle_val = abs(self.start_angle_deg * DEGREES)
+        
+        if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
+            # Calculate the midpoint angle
+            mid_angle = self.start_angle_deg / 2 * DEGREES
+            
+            # Position at midpoint with slight offset from origin
+            radius = 0.7  # Slightly larger than the arc radius
+            self.theta_label.move_to(
+                np.array([
+                    radius * np.cos(mid_angle),
+                    radius * np.sin(mid_angle),
+                    0
+                ])
+            )
+            self.theta_label.set_opacity(1)
+        else:
+            # Hide label for parallel lines
+            self.theta_label.set_opacity(0)
+    
+    def animate_angle_change(self, target_angle_deg, run_time=2, rate_func=linear):
+        """Returns an animation to change the angle to a target value."""
+        # Calculate the rotation angle
+        rotation_angle = (target_angle_deg - self.start_angle_deg) * DEGREES
+        
+        # Create the animation
+        return Succession(
+            Rotate(
+                self.line2,
+                angle=rotation_angle,
+                about_point=self.center_dot.get_center(),
+                rate_func=rate_func,
+                run_time=run_time
+            ),
+            UpdateFromFunc(
+                self.angle_arc,
+                lambda m: m.become(self._update_angle_arc(target_angle_deg))
+            ),
+            UpdateFromFunc(
+                self.theta_label,
+                lambda m: self._update_theta_label(target_angle_deg)
+            )
+        )
+    
+    def _update_angle_arc(self, new_angle_deg):
+        """Updates the angle arc for a new angle."""
+        angle_val = abs(new_angle_deg * DEGREES)
+        
+        if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
+            arc = Arc(
+                radius=0.5,
+                angle=angle_val,
+                color=self.angle_arc_color,
+                fill_opacity=0.2
+            ).set_z_index(2)
+            
+            # Position the arc correctly based on the center of the assembly
+            center = self.center_dot.get_center()
+            arc.shift(center)
+            
+            if new_angle_deg > 0:
+                arc.rotate(0, about_point=center)
+            else:
+                arc.rotate(new_angle_deg * DEGREES, about_point=center)
+            
+            return arc
+        else:
+            # Return an invisible arc for parallel lines
+            return Arc(radius=0.5, angle=0, color=self.angle_arc_color, opacity=0)
+    
+    def _update_theta_label(self, new_angle_deg):
+        """Updates the theta label position for a new angle."""
+        angle_val = abs(new_angle_deg * DEGREES)
+        center = self.center_dot.get_center()
+        
+        if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
+            # Calculate the midpoint angle
+            mid_angle = new_angle_deg / 2 * DEGREES
+            
+            # Position at midpoint with slight offset from origin
+            radius = 0.7  # Slightly larger than the arc radius
+            self.theta_label.move_to(
+                center + np.array([
+                    radius * np.cos(mid_angle),
+                    radius * np.sin(mid_angle),
+                    0
+                ])
+            )
+            self.theta_label.set_opacity(1)
+        else:
+            # Hide label for parallel lines
+            self.theta_label.set_opacity(0)
+        
+        # Update the stored angle
+        self.start_angle_deg = new_angle_deg
+
 
 class MovingAngle(Scene): # Renamed class to match filename
     def construct(self):
@@ -41,57 +216,15 @@ class MovingAngle(Scene): # Renamed class to match filename
         x_start = -((cols - 1) * x_spacing) / 2
         y_start = ((rows - 1) * y_spacing) / 2
 
-        # Create a group for the entire grid
-        # --- Define Updater Factories Once ---
-        def create_update_angle(l1, l2, arc_color):
-            def update_angle(obj):
-                v1 = l1.get_vector()
-                v2 = l2.get_vector()
-                # Check if vectors are non-zero before calculating angle
-                if np.linalg.norm(v1) > 1e-6 and np.linalg.norm(v2) > 1e-6:
-                    angle_val = angle_between_vectors(v1, v2)
-                    # Check if lines are parallel (angle close to 0 or PI)
-                    if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
-                        # obj.become(Angle(l1, l2, radius=0.5, color=arc_color, fill_opacity=0))
-                        obj.set_opacity(1) # Ensure visible
-                    else:
-                        obj.set_opacity(0) # Hide if parallel or coincident
-                else:
-                    obj.set_opacity(0) # Hide if vectors are zero
-            return #update_angle
-
-        def create_update_theta_label(l1, l2):
-            def update_theta_label(obj):
-                v1 = l1.get_vector()
-                v2 = l2.get_vector()
-                 # Check if vectors are non-zero before calculating angle
-                if np.linalg.norm(v1) > 1e-6 and np.linalg.norm(v2) > 1e-6:
-                    angle_val = angle_between_vectors(v1, v2)
-                    # Check if lines are parallel (angle close to 0 or PI)
-                    if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
-                        temp_angle = Angle(l1, l2, radius=0.5 + 3 * SMALL_BUFF)
-                        obj.move_to(temp_angle.point_from_proportion(0.5))
-                        obj.set_opacity(1) # Ensure visible
-                    else:
-                        obj.set_opacity(0) # Hide if parallel or coincident
-                else:
-                     obj.set_opacity(0) # Hide if vectors are zero
-            return update_theta_label
-        # --- End Updater Factories ---
-
         grid_cells = [] # Store individual cell groups
         animations = []
-        angle_elements_for_updater_removal = [] # To store (angle, theta_label) for updater removal
 
         for row in range(rows):
             for col in range(cols):
-                # Calculate position relative to grid center (0,0) for now
+                # Calculate position relative to grid center (0,0)
                 x = x_start + col * x_spacing
                 y = y_start - row * y_spacing
                 position = np.array([x, y, 0])
-
-                # Define the rotation center
-                rotation_center = position + LEFT * 0.5
 
                 # Randomize angles
                 start_angle_deg = random.uniform(0, 360)
@@ -99,7 +232,6 @@ class MovingAngle(Scene): # Renamed class to match filename
                 # Ensure end angle is different from start angle
                 while abs(end_angle_deg - start_angle_deg) < 10:
                     end_angle_deg = random.uniform(0, 360)
-                rotation_angle_deg = end_angle_deg - start_angle_deg
 
                 # Randomize colors
                 line1_color = random.choice(MANIM_COLORS)
@@ -116,59 +248,32 @@ class MovingAngle(Scene): # Renamed class to match filename
                 else:
                     rate_func = linear # or smooth
 
-                # Create the first line
-                line1 = Line(rotation_center, position + RIGHT * 0.5, color=line1_color)
-                # Create the second line, rotated to the random start angle
-                line2 = Line(rotation_center, position + RIGHT * 0.5, color=line2_color).rotate(
-                    start_angle_deg * DEGREES, about_point=rotation_center
+                # Create a self-contained angle assembly
+                angle_assembly = AngleAssembly(
+                    start_angle_deg=start_angle_deg,
+                    end_angle_deg=end_angle_deg,
+                    line1_color=line1_color,
+                    line2_color=line2_color,
+                    dot_color=dot_color,
+                    angle_arc_color=angle_arc_color,
+                    theta_color=theta_color,
+                    radius=1.0
                 )
-                # Create the angle
-                # angle = Angle(line1, line2, radius=0.5, color=angle_arc_color)
-                # Create the theta label
-                theta_label = MathTex(r"\theta", color=theta_color).scale(0.7)
-
-                # Position theta_label initially and check visibility
-                initial_theta_pos_angle = Angle(line1, line2, radius=0.5 + 3 * SMALL_BUFF)
-                v1_init = line1.get_vector()
-                v2_init = line2.get_vector()
-                if np.linalg.norm(v1_init) > 1e-6 and np.linalg.norm(v2_init) > 1e-6:
-                    angle_val_init = angle_between_vectors(v1_init, v2_init)
-                    if angle_val_init > ANGLE_EPSILON and abs(angle_val_init - PI) > ANGLE_EPSILON:
-                         theta_label.move_to(initial_theta_pos_angle.point_from_proportion(0.5))
-                    else:
-                         # Hide label and angle arc if initially parallel/coincident
-                         theta_label.set_opacity(0)
-                         angle.set_opacity(0)
-                else:
-                     # Hide label and angle arc if vectors are zero
-                     theta_label.set_opacity(0)
-                     angle.set_opacity(0)
-
-                # Create a solid dot at the rotation center
-                vertex_dot = Dot(
-                    point=rotation_center,
-                    radius=0.08, # Adjust radius as needed
-                    color=dot_color
+                
+                # Move the angle assembly to its grid position
+                angle_assembly.move_to(position)
+                
+                # Add to grid cells
+                grid_cells.append(angle_assembly)
+                
+                # Create animation for this angle
+                animations.append(
+                    angle_assembly.animate_angle_change(
+                        end_angle_deg,
+                        run_time=random.uniform(3, 7),
+                        rate_func=rate_func
+                    )
                 )
-
-                # Group elements for this cell
-                cell_group = VGroup(line1, line2, theta_label, vertex_dot)
-                grid_cells.append(cell_group) # Store the cell group
-                # angle_elements_for_updater_removal.append((angle, theta_label)) # Store for removal
-
-                # Create the animation
-                rotate_action = Rotate(
-                    line2,
-                    angle=rotation_angle_deg * DEGREES,
-                    about_point=rotation_center,
-                    rate_func=rate_func,
-                    run_time=random.uniform(3, 7), # Randomize duration
-                )
-                animations.append(rotate_action)
-
-                # Add the updaters to the angle and theta label
-                # angle.add_updater(create_update_angle(line1, line2, angle_arc_color))
-                theta_label.add_updater(create_update_theta_label(line1, line2))
 
         # Add the final grid group to the scene
         final_grid_group = VGroup(*grid_cells)
@@ -176,10 +281,89 @@ class MovingAngle(Scene): # Renamed class to match filename
 
         # Play all animations simultaneously
         self.play(*animations)
+        
+        # Demonstrate that the angle assemblies can move while maintaining their structure
+        # Create a path for one of the angle assemblies to follow
+        if len(grid_cells) > 0:
+            # Select the first angle assembly for demonstration
+            moving_angle = grid_cells[0]
+            
+            # Create a path
+            path = ParametricFunction(
+                lambda t: np.array([
+                    2 * np.sin(t * 2),  # x-coordinate
+                    1.5 * np.cos(t * 3),  # y-coordinate
+                    0                   # z-coordinate
+                ]),
+                t_range=[0, TAU],
+                color=YELLOW_A,
+                stroke_opacity=0.3     # Subtle path visualization
+            )
+            self.add(path)
+            
+            # Move the angle along the path
+            self.play(
+                MoveAlongPath(moving_angle, path),
+                run_time=5,
+                rate_func=linear
+            )
 
-        # Remove the updaters after animation is complete
-        # for angle_obj, label_obj in angle_elements_for_updater_removal:
-        #      angle_obj.clear_updaters()
-        #      label_obj.clear_updaters()
+        self.wait()
 
+
+class AnglePathDemo(Scene):
+    """Demonstrates how AngleAssembly can move along a path while maintaining its structure."""
+    def construct(self):
+        self.camera.background_color = INDIGO
+        
+        # Add title
+        title = Text("Moving Angle Demo", font="Helvetica Neue", weight="LIGHT", font_size=36)
+        title.to_edge(UP, buff=0.5)
+        self.add(title)
+        
+        # Create an angle assembly
+        angle = AngleAssembly(
+            start_angle_deg=45,
+            line1_color=BLUE,
+            line2_color=RED,
+            dot_color=WHITE,
+            angle_arc_color=YELLOW,
+            theta_color=GREEN,
+            radius=1.5
+        )
+        
+        # Create a complex path
+        path = ParametricFunction(
+            lambda t: np.array([
+                3 * np.sin(t * 2),  # x-coordinate
+                2 * np.cos(t * 3),  # y-coordinate
+                0                   # z-coordinate
+            ]),
+            t_range=[0, TAU],
+            color=YELLOW_A,
+            stroke_opacity=0.3     # Subtle path visualization
+        )
+        self.add(path)
+        
+        # Add the angle to the scene
+        self.add(angle)
+        
+        # Animate the angle changing while stationary
+        self.play(
+            angle.animate_angle_change(135, run_time=2, rate_func=smooth)
+        )
+        self.wait(0.5)
+        
+        # Move the angle along the path
+        self.play(
+            MoveAlongPath(angle, path),
+            run_time=8,
+            rate_func=linear
+        )
+        
+        # Animate the angle changing again after movement
+        self.play(
+            angle.animate_angle_change(270, run_time=2, rate_func=there_and_back)
+        )
+        
         self.wait()
