@@ -4,6 +4,11 @@ import numpy as np
 INDIGO = "#4B0082"
 ELECTRIC_PURPLE = "#8F00FF"
 WHITE = "#FFFFFF"
+
+def unit_vector(vector):
+    """ Returns the unit vector of the vector.  """
+    return vector / np.linalg.norm(vector)
+
 class AngleNew(Scene):
     def construct(self):
         # Set background color
@@ -25,7 +30,7 @@ class AngleNew(Scene):
         angle = Angle(line1, line2, radius=0.5, color=WHITE)
         
         # Create theta label
-        theta = MathTex(r"\theta", color=WHITE)
+        theta = MathTex(r"\theta", color=WHITE).scale(0.5)
         
         self.angle_group = VGroup(line1, line2, angle, theta)
         self.add(self.angle_group)
@@ -69,9 +74,17 @@ class AngleNew(Scene):
                 new_angle = Angle(line1, line2, color=WHITE, radius=0.5)
                 
                 # Calculate theta position
-                theta_pos = new_angle.point_from_proportion(0.5) + 0.3 * UP
+                theta_pos = new_angle.point_from_proportion(0.5)
+        
+                # Get line length (assuming both lines have same length)
+                line_length = np.linalg.norm(A - O)
+        
+                # Get a point outside the arc, at double the line length distance
+                arc_center = new_angle.get_center()
+                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 2 * line_length
+        
                 theta.move_to(theta_pos)
-                
+        
                 mob.become(VGroup(line1, line2, new_angle, theta))
             else:
                 # If lines are parallel, keep the previous state
