@@ -31,6 +31,7 @@ class AngleObject(VGroup):
             line2_color = random.choice(MANIM_COLORS)
         angle_arc_color = random.choice(MANIM_COLORS)
         dot_color = random.choice(MANIM_COLORS)
+        theta_color = random.choice(MANIM_COLORS)
 
         # Define the initial and final angles in degrees
         initial_angle_deg = random.uniform(10, 170)  # Ensure non-zero initial angle
@@ -49,11 +50,21 @@ class AngleObject(VGroup):
         # Create a dot at the rotation center
         self.dot = Dot(point=self.location, color=dot_color)
 
+        # Create the theta label
+        self.theta_label = MathTex(r"\theta", color=theta_color).scale(0.7)
+
         # Add updater to the angle
         self.angle.add_updater(lambda a: a.become(Angle(self.line1, self.line2, radius=0.5, color=angle_arc_color)))
 
+        # Add updater to the theta label
+        def update_theta_label(obj):
+            angle_obj = Angle(self.line1, self.line2, radius=0.5 + 3 * SMALL_BUFF)
+            obj.move_to(angle_obj.point_from_proportion(0.5))
+
+        self.theta_label.add_updater(update_theta_label)
+
         # Add the components to the VGroup
-        self.add(self.line1, self.line2, self.angle, self.dot)
+        self.add(self.line1, self.line2, self.angle, self.dot, self.theta_label)
 
         # Store the initial and final angles for animation
         self.initial_angle_deg = initial_angle_deg
