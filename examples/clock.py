@@ -37,7 +37,7 @@ class ClockAssembly(VGroup):
             ORIGIN, self.circle.radius * 0.5 * RIGHT, stroke_width=4, color=BLUE
         )
         self.minute_hand = Line(
-            ORIGIN, self.circle.radius * 0.7 * RIGHT, stroke_width=3, color=GREEN, about_point=ORIGIN
+            ORIGIN, self.circle.radius * 0.7 * RIGHT, stroke_width=3, color=GREEN
         )
 
         # Initialize hand positions
@@ -45,6 +45,7 @@ class ClockAssembly(VGroup):
             (now.hour % 12 + now.minute / 60) / 12 * TAU, about_point=ORIGIN
         )
         self.minute_hand.rotate(now.minute / 60 * TAU, about_point=ORIGIN)
+        self.minute_hand.about_point = ORIGIN
 
         # Add all elements
         self.add(self.circle, self.minute_ticks, self.hour_ticks, 
@@ -62,10 +63,9 @@ class ClockAssembly(VGroup):
             )
         )
         self.minute_hand.become(
-            Line(ORIGIN, self.circle.radius * 0.7 * RIGHT, stroke_width=3, color=GREEN).rotate(
-                minute_angle, about_point=ORIGIN
-            )
+            Line(ORIGIN, self.circle.radius * 0.7 * RIGHT, stroke_width=3, color=GREEN)
         )
+        self.minute_hand.rotate(minute_angle, about_point=ORIGIN)
 
 class ClockScene(Scene):
     def construct(self):
