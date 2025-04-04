@@ -12,6 +12,7 @@ class Clock(VGroup):
             Line(
                 start=self.circle.point_at_angle(angle),
                 end=self.circle.point_at_angle(angle) * 0.9,  # Slightly shorter
+                stroke_width=1,
                 color=WHITE
             )
             for angle in np.linspace(0, TAU, 60, endpoint=False)
@@ -22,7 +23,7 @@ class Clock(VGroup):
             Line(
                 start=self.circle.point_at_angle(angle),
                 end=self.circle.point_at_angle(angle) * 0.8,  # Slightly shorter
-                stroke_width=1,
+                stroke_width=3,
                 color=WHITE
             )
             for angle in np.linspace(0, TAU, 12, endpoint=False)
