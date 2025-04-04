@@ -1,7 +1,7 @@
 from manim import *
 from tools import INDIGO
 
-class Clock(VGroup):
+class ClockAssembly(VGroup):
     def __init__(self, radius=2, **kwargs):
         super().__init__(**kwargs)
         # Clock Face
@@ -77,11 +77,11 @@ class Clock(VGroup):
             )
         )
 
-class ClockScene(Scene):
+class Clock(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         # Create clock object
-        clock = Clock(radius=3)
+        clock = ClockAssembly(radius=3)
         self.add(clock)
 
         # Animate clock movement
