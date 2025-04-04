@@ -30,7 +30,7 @@ class AngleNew(Scene):
         angle = Angle(line1, line2, radius=0.5, color=WHITE)
         
         # Create theta label
-        theta = MathTex(r"\theta", color=WHITE).scale(0.5)
+        theta = MathTex(r"\theta", color=WHITE).scale(0.8)
         
         self.angle_group = VGroup(line1, line2, angle, theta)
         self.add(self.angle_group)
@@ -81,7 +81,9 @@ class AngleNew(Scene):
         
                 # Get a point outside the arc, at double the line length distance
                 arc_center = new_angle.get_center()
-                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 2 * line_length
+                
+                # Reduce the radius by 30%
+                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 2 * line_length * 0.7
         
                 theta.move_to(theta_pos)
         
