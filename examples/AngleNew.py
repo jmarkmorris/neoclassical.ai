@@ -14,31 +14,6 @@ class AngleNew(Scene):
 
         self.camera.background_color = INDIGO
 
-        # Define points for the angle
-        A = np.array([1, 0, 0])
-        O = np.array([0, 0, 0])
-        B = np.array([1, 1, 0])
-
-        # Define new lines
-        line1 = Line(O, A, color=TEAL_A)
-        line2 = Line(O, B, color=ORANGE)
-        
-        # Create the angle object
-        angle = Angle(line1, line2, radius=0.5, color=WHITE, dot=True, dot_radius=0.1, dot_distance=0)
-        
-        # Create theta label
-        theta = MathTex(r"\theta", color=WHITE).scale(0.7)
-
-        # Initial theta position calculation
-        line_length = np.linalg.norm(A - O)
-        arc_center = ORIGIN  # Initial position is at the origin
-        theta_pos = angle.point_from_proportion(0.5)
-        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * line_length
-
-        theta.move_to(theta_pos)
-        
-        self.angle_group = VGroup(line1, line2, angle, theta)
-        self.add(self.angle_group)
         # Create a complex path for the angle to follow
         path = ParametricFunction(
             lambda t: np.array([
@@ -51,6 +26,33 @@ class AngleNew(Scene):
             stroke_opacity=0.3     # Subtle path visualization
         )
         self.add(path)
+        position = path.point_from_proportion(0)
+
+
+        # Define points for the angle
+        A = np.array([1, 0, 0])
+        O = np.array([0, 0, 0])
+        B = np.array([1, 1, 0])
+
+        line1 = Line(position, position + A, color=TEAL_A)
+        line2 = Line(position, position + B, color=ORANGE)
+        
+        # Create the angle object
+        angle = Angle(line1, line2, radius=0.5, color=WHITE, dot=True, dot_radius=0.1, dot_distance=0)
+        
+        # Create theta label
+        theta = MathTex(r"\theta", color=WHITE).scale(0.7)
+
+        # Initial theta position calculation
+        line_length = np.linalg.norm(A - O)
+        arc_center = position  # Initial position is at the origin
+        theta_pos = angle.point_from_proportion(0.5)
+        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.1 * line_length
+
+        theta.move_to(theta_pos)
+        
+        self.angle_group = VGroup(line1, line2, angle, theta)
+        self.add(self.angle_group)
 
         # Animate the angle moving along the path
         def update_angle_position(mob, alpha):
@@ -83,7 +85,7 @@ class AngleNew(Scene):
                 arc_center = new_angle.get_center()
                 
                 # Reduce the radius by 30%
-                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * line_length
+                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.1 * line_length
         
                 theta.move_to(theta_pos)
         
