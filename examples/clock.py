@@ -37,10 +37,7 @@ class ClockAssembly(VGroup):
             ORIGIN, self.circle.radius * 0.5 * RIGHT, stroke_width=4, color=BLUE
         )
         self.minute_hand = Line(
-            ORIGIN, self.circle.radius * 0.7 * RIGHT, stroke_width=3, color=GREEN
-        )
-        self.second_hand = Line(
-            ORIGIN, self.circle.radius * 0.9 * RIGHT, stroke_width=2, color=RED
+            ORIGIN, self.circle.radius * 0.7 * RIGHT, stroke_width=3, color=GREEN, about_point=ORIGIN
         )
 
         # Initialize hand positions
@@ -48,11 +45,10 @@ class ClockAssembly(VGroup):
             (now.hour % 12 + now.minute / 60) / 12 * TAU, about_point=ORIGIN
         )
         self.minute_hand.rotate(now.minute / 60 * TAU, about_point=ORIGIN)
-        self.second_hand.rotate(now.second / 60 * TAU, about_point=ORIGIN)
 
         # Add all elements
         self.add(self.circle, self.minute_ticks, self.hour_ticks, 
-                 self.hour_hand, self.minute_hand, self.second_hand)
+                 self.hour_hand, self.minute_hand)
 
     def update_hands(self):
         import datetime
@@ -71,13 +67,8 @@ class ClockAssembly(VGroup):
                 minute_angle, about_point=ORIGIN
             )
         )
-        self.second_hand.become(
-            Line(ORIGIN, self.circle.radius * 0.9 * RIGHT, stroke_width=2, color=RED).rotate(
-                second_angle, about_point=ORIGIN
-            )
-        )
 
-class Clock(Scene):
+class ClockScene(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         # Create clock object
