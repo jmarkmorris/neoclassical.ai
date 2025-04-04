@@ -50,6 +50,9 @@ class AnimatedAngle(Scene):
         # Create a dot at the rotation center
         dot = Dot(point=rotation_center, color=dot_color)
 
+        # Add updater to the angle
+        angle.add_updater(lambda a: a.become(Angle(line1, line2, radius=0.5, color=angle_arc_color)))
+
         # Create the animation for line2 to rotate to the final angle
         rotate_animation = Rotate(
             line2,
