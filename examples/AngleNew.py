@@ -26,19 +26,21 @@ class AngleNew(Scene):
             stroke_opacity=0.3     # Subtle path visualization
         )
         self.add(path)
-        position = path.point_from_proportion(0)
 
+        alpha = 0.01  # Initial alpha value for the angle
+        position = path.point_from_proportion(alpha)
+        angle_value = alpha * 360 * DEGREES  # Rotate 360 degrees over the animation
 
         # Define points for the angle
         A = np.array([1, 0, 0])
         O = np.array([0, 0, 0])
-        B = np.array([1, 1, 0])
+        B = np.array([np.cos(angle_value), np.sin(angle_value), 0])
 
         line1 = Line(position, position + A, color=TEAL)
         line2 = Line(position, position + B, color=ORANGE)
         
         # Create the angle object
-        angle = Angle(line1, line2, radius=0.5, color=WHITE, dot=True, dot_radius=0.1, dot_distance=0)
+        angle = Angle(line1, line2, radius=0.7, color=GOLD, dot=True, dot_radius=0.1, dot_distance=0)
         
         # Create theta label
         theta = MathTex(r"\theta", color=WHITE).scale(0.7)
