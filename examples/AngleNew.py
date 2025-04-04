@@ -11,12 +11,9 @@ def unit_vector(vector):
 
 class AngleNew(Scene):
     def construct(self):
-        # Set background color
-        try:
-            self.camera.background_color = INDIGO
-        except NameError:
-            print("Warning: INDIGO color not defined, using default background.")
-            pass
+
+        self.camera.background_color = INDIGO
+
         # Define points for the angle
         A = np.array([1, 0, 0])
         O = np.array([0, 0, 0])
@@ -24,19 +21,19 @@ class AngleNew(Scene):
 
         # Define new lines
         line1 = Line(O, A, color=TEAL_A)
-        line2 = Line(O, B, color=PINK)
+        line2 = Line(O, B, color=ORANGE)
         
         # Create the angle object
         angle = Angle(line1, line2, radius=0.5, color=WHITE, dot=True, dot_radius=0.1, dot_distance=0)
         
         # Create theta label
-        theta = MathTex(r"\theta", color=WHITE).scale(0.8)
+        theta = MathTex(r"\theta", color=WHITE).scale(0.7)
 
         # Initial theta position calculation
         line_length = np.linalg.norm(A - O)
         arc_center = ORIGIN  # Initial position is at the origin
         theta_pos = angle.point_from_proportion(0.5)
-        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.2 * line_length
+        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * line_length
 
         theta.move_to(theta_pos)
         
@@ -62,11 +59,6 @@ class AngleNew(Scene):
             # Update the angle's lines
             angle_value = alpha * 360 * DEGREES  # Rotate 360 degrees over the animation
             
-            # Define new points for the lines
-            A = np.array([1, 0, 0])
-            B = np.array([np.cos(angle_value), np.sin(angle_value), 0])
-            O = np.array([0, 0, 0])
-            
             # Define new points for the lines relative to the origin
             A = np.array([1, 0, 0])
             B = np.array([np.cos(angle_value), np.sin(angle_value), 0])
@@ -74,7 +66,7 @@ class AngleNew(Scene):
 
             # Create new lines with the origin at the path position
             line1 = Line(position, position + A, color=TEAL_A)
-            line2 = Line(position, position + B, color=PINK)
+            line2 = Line(position, position + B, color=ORANGE)
             
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
@@ -91,7 +83,7 @@ class AngleNew(Scene):
                 arc_center = new_angle.get_center()
                 
                 # Reduce the radius by 30%
-                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 2 * line_length * 0.7
+                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * line_length
         
                 theta.move_to(theta_pos)
         
