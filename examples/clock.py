@@ -126,28 +126,34 @@ class ClockScene(Scene):
             pass # Use default background if INDIGO is missing
 
         # Create clock object and add it directly to the scene
-        clock = ClockAssembly(radius=2).shift(UP * 1) # Example: Create slightly offset
+        clock = ClockAssembly(radius=2) # Start at center
         self.add(clock)  # Add directly without animation
         
         # Add updater to clock to update hands every frame right from the start
-        # Pass the dt parameter from the lambda function to the method
         clock.add_updater(lambda mob, dt: mob.update_hands(dt))
         
-        # Let the clock run for a moment in its initial position
-        self.wait(2)
-
-        # Animate clock movement continuously
-        self.play(clock.animate.shift(LEFT * 4 + DOWN * 2), run_time=3)
+        # Create a complex path for the clock to follow
+        path = ParametricFunction(
+            lambda t: np.array([
+                3 * np.sin(t * 2),  # x-coordinate
+                2 * np.cos(t * 3),  # y-coordinate
+                0                   # z-coordinate
+            ]),
+            t_range=[0, TAU],
+            color=YELLOW_A,
+            stroke_opacity=0.3     # Subtle path visualization
+        )
+        self.add(path)
         
-        # Let the clock run in the middle position
-        self.wait(3)
-
-        # Move the clock again while the updater is active
-        self.play(clock.animate.shift(RIGHT * 6), run_time=3)
-
-        # Let it run in the final position
-        self.wait(3)
-
+        # Move the clock along the path continuously
+        self.play(
+            MoveAlongPath(clock, path),
+            run_time=15,           # Longer runtime for smooth movement
+            rate_func=linear       # Constant speed along the path
+        )
+        
+        # Let it run in the final position for a moment
+        self.wait(2)
+        
         # Important: Remove updater at the end of the scene
-        # to prevent potential issues in more complex scenes.
         clock.remove_updater(clock.update_hands)
