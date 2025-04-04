@@ -56,8 +56,6 @@ class AnimatedAngle(Scene):
             angle=(final_angle_deg - initial_angle_deg) * DEGREES,
             about_point=rotation_center,
             run_time=3
-            about_point=rotation_center,
-            run_time=3
         )
 
         # Add the lines, angle, and dot to the scene
