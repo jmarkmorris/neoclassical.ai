@@ -22,7 +22,7 @@ class ClockAssembly(VGroup):
         self.radius = radius # Store radius for later use
         # Clock Face
         self.circle = Circle(radius=self.radius, color=WHITE)
-        self.center_dot = Dot(self.circle.get_center(), radius=0.05, color=WHITE) # Optional center dot
+        self.center_dot = Dot(self.circle.get_center(), radius=0.05, color=WHITE).set_z_index(3) # Ensure dot is on top
 
         # Minute Tick Marks
         self.minute_ticks = VGroup(*[
@@ -95,8 +95,9 @@ class ClockAssembly(VGroup):
         # Angle = (fraction of circle) * TAU. Negative sign for clockwise. Add PI/2 because 0 rad is RIGHT.
         target_hour_angle = -(((now.hour % 12 + now.minute / 60 + now.second / 3600) / 12) * TAU) + PI/2
         target_minute_angle = -(((now.minute + now.second / 60) / 60) * TAU) + PI/2
-        target_second_angle = -((now.second / 60) * TAU) + PI/2
-        
+        # Multiply seconds by 2 for double speed
+        target_second_angle = -(((now.second * 2) % 60) / 60 * TAU) + PI/2
+
         # Get the current center of the clock
         center = self.circle.get_center()
         
@@ -141,9 +142,9 @@ class ClockScene(Scene):
             pass # Use default background if INDIGO is missing
 
         # Create clock object and add it directly to the scene
-        clock = ClockAssembly(radius=2) # Start at center
+        clock = ClockAssembly(radius=2 * 0.95) # Start at center, reduced size by 5%
         self.add(clock)  # Add directly without animation
-        
+
         # Add updater to clock to update hands every frame right from the start
         clock.add_updater(lambda mob, dt: mob.update_hands(dt))
         
