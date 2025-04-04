@@ -27,7 +27,7 @@ class AngleNew(Scene):
         )
         self.add(path)
 
-        alpha = 0.001  # Initial alpha value for the angle
+        alpha = 0.01  # Initial alpha value for the angle
         position = path.point_from_proportion(alpha)
         angle_value = alpha * 360 * DEGREES  # Rotate 360 degrees over the animation
 
@@ -36,11 +36,11 @@ class AngleNew(Scene):
         O = np.array([0, 0, 0])
         B = np.array([np.cos(angle_value), np.sin(angle_value), 0])
 
-        line1 = Line(position, position + A, color=TEAL)
+        line1 = Line(position, position + A, color=GREEN)
         line2 = Line(position, position + B, color=ORANGE)
         
         # Create the angle object
-        angle = Angle(line1, line2, radius=0.7, color=GOLD, dot=True, dot_radius=0.1, dot_distance=0)
+        angle = Angle(line1, line2, radius=0.8, color=BLUE_C, dot=True, dot_radius=0.07, dot_distance=0)
         
         # Create theta label
         theta = MathTex(r"\theta", color=WHITE).scale(0.7)
@@ -69,13 +69,13 @@ class AngleNew(Scene):
             O = np.array([0, 0, 0])  # Origin
 
             # Create new lines with the origin at the path position
-            line1 = Line(position, position + A, color=TEAL)
+            line1 = Line(position, position + A, color=GREEN)
             line2 = Line(position, position + B, color=ORANGE)
             
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
                 # Update the angle with the new lines
-                new_angle = Angle(line1, line2, color=GOLD, radius=0.5, dot=True, dot_radius=0.1, dot_distance=0)
+                new_angle = Angle(line1, line2, color=BLUE_C, radius=0.8, dot=True, dot_radius=0.07, dot_distance=0)
                 
                 # Calculate theta position
                 theta_pos = new_angle.point_from_proportion(0.5)
