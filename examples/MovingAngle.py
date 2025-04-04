@@ -52,13 +52,13 @@ class MovingAngle(Scene): # Renamed class to match filename
                     angle_val = angle_between_vectors(v1, v2)
                     # Check if lines are parallel (angle close to 0 or PI)
                     if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
-                        obj.become(Angle(l1, l2, radius=0.5, color=arc_color, fill_opacity=0))
+                        # obj.become(Angle(l1, l2, radius=0.5, color=arc_color, fill_opacity=0))
                         obj.set_opacity(1) # Ensure visible
                     else:
                         obj.set_opacity(0) # Hide if parallel or coincident
                 else:
                     obj.set_opacity(0) # Hide if vectors are zero
-            return update_angle
+            return #update_angle
 
         def create_update_theta_label(l1, l2):
             def update_theta_label(obj):
@@ -123,7 +123,7 @@ class MovingAngle(Scene): # Renamed class to match filename
                     start_angle_deg * DEGREES, about_point=rotation_center
                 )
                 # Create the angle
-                angle = Angle(line1, line2, radius=0.5, color=angle_arc_color)
+                # angle = Angle(line1, line2, radius=0.5, color=angle_arc_color)
                 # Create the theta label
                 theta_label = MathTex(r"\theta", color=theta_color).scale(0.7)
 
@@ -152,9 +152,9 @@ class MovingAngle(Scene): # Renamed class to match filename
                 )
 
                 # Group elements for this cell
-                cell_group = VGroup(line1, line2, angle, theta_label, vertex_dot)
+                cell_group = VGroup(line1, line2, theta_label, vertex_dot)
                 grid_cells.append(cell_group) # Store the cell group
-                angle_elements_for_updater_removal.append((angle, theta_label)) # Store for removal
+                # angle_elements_for_updater_removal.append((angle, theta_label)) # Store for removal
 
                 # Create the animation
                 rotate_action = Rotate(
@@ -167,7 +167,7 @@ class MovingAngle(Scene): # Renamed class to match filename
                 animations.append(rotate_action)
 
                 # Add the updaters to the angle and theta label
-                angle.add_updater(create_update_angle(line1, line2, angle_arc_color))
+                # angle.add_updater(create_update_angle(line1, line2, angle_arc_color))
                 theta_label.add_updater(create_update_theta_label(line1, line2))
 
         # Add the final grid group to the scene
@@ -178,8 +178,8 @@ class MovingAngle(Scene): # Renamed class to match filename
         self.play(*animations)
 
         # Remove the updaters after animation is complete
-        for angle_obj, label_obj in angle_elements_for_updater_removal:
-             angle_obj.clear_updaters()
-             label_obj.clear_updaters()
+        # for angle_obj, label_obj in angle_elements_for_updater_removal:
+        #      angle_obj.clear_updaters()
+        #      label_obj.clear_updaters()
 
         self.wait()
