@@ -18,13 +18,17 @@ class AngleNew(Scene):
         O = np.array([0, 0, 0])
         B = np.array([1, 1, 0])
 
-        # Create new lines
-        line1 = Line(O, A, color=WHITE)
-        line2 = Line(O, B, color=WHITE)
-
+        # Define new lines
+        line1 = Line(O, A, color=TEAL_A)
+        line2 = Line(O, B, color=PINK)
+        
         # Create the angle object
-        angle = Angle(line1, line2, radius=0.5, color=WHITE)
-        self.angle_group = VGroup(line1, line2, angle)
+        angle = Angle(line1, line2, radius=0.5, color=YELLOW)
+        
+        # Create theta label
+        theta = MathTex(r"\theta", color=WHITE)
+        
+        self.angle_group = VGroup(line1, line2, angle, theta)
         self.add(self.angle_group)
         # Create a complex path for the angle to follow
         path = ParametricFunction(
@@ -57,14 +61,19 @@ class AngleNew(Scene):
             O = np.array([0, 0, 0])  # Origin
 
             # Create new lines with the origin at the path position
-            line1 = Line(position, position + A, color=WHITE)
-            line2 = Line(position, position + B, color=WHITE)
-
+            line1 = Line(position, position + A, color=TEAL_A)
+            line2 = Line(position, position + B, color=PINK)
+            
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
                 # Update the angle with the new lines
                 new_angle = Angle(line1, line2, color=YELLOW, radius=0.5)
-                mob.become(VGroup(line1, line2, new_angle))
+                
+                # Calculate theta position
+                theta_pos = new_angle.point_from_proportion(0.5) + 0.3 * UP
+                theta.move_to(theta_pos)
+                
+                mob.become(VGroup(line1, line2, new_angle, theta))
             else:
                 # If lines are parallel, keep the previous state
                 pass
