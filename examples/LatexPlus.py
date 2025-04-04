@@ -1,7 +1,7 @@
 from manim import *
 from tools import INDIGO, ELECTRIC_PURPLE
 
-class OpeningManim(Scene):
+class LatexPlus(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         

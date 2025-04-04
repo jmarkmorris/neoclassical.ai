@@ -139,7 +139,7 @@ class ClockAssembly(VGroup):
         # No need to call self.add() again here, we are modifying existing mobjects
 
 
-class ClockScene(Scene):
+class Clock(Scene):
     def construct(self):
         # Assuming INDIGO is defined (e.g., INDIGO = "#4B0082")
         try:

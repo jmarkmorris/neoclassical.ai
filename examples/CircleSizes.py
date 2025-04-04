@@ -1,7 +1,7 @@
 from manim import *
 from tools import INDIGO, ELECTRIC_PURPLE
 
-class circlesizes(Scene):
+class CircleSizes(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
