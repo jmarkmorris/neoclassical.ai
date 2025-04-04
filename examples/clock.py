@@ -1,4 +1,5 @@
 from manim import *
+from tools import INDIGO
 
 class Clock(VGroup):
     def __init__(self, radius=2, **kwargs):
@@ -6,7 +7,7 @@ class Clock(VGroup):
         # Clock Face
         self.circle = Circle(radius=radius, color=WHITE)
         
-        # Minute Tick Marks
+         # Minute Tick Marks
         self.minute_ticks = VGroup(*[
             Line(
                 start=self.circle.point_at_angle(angle),
@@ -21,7 +22,7 @@ class Clock(VGroup):
             Line(
                 start=self.circle.point_at_angle(angle),
                 end=self.circle.point_at_angle(angle) * 0.8,  # Slightly shorter
-                stroke_width=2,
+                stroke_width=1,
                 color=WHITE
             )
             for angle in np.linspace(0, TAU, 12, endpoint=False)
@@ -48,6 +49,7 @@ class Clock(VGroup):
         self.second_hand.set_angle(second_angle)
 class ClockScene(Scene):
     def construct(self):
+        self.camera.background_color = INDIGO
         # Create clock object
         clock = Clock(radius=3)
         self.add(clock)
