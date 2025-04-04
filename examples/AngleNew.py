@@ -27,7 +27,7 @@ class AngleNew(Scene):
         )
         self.add(path)
 
-        alpha = 0.01  # Initial alpha value for the angle
+        alpha = 0.001  # Initial alpha value for the angle
         position = path.point_from_proportion(alpha)
         angle_value = alpha * 360 * DEGREES  # Rotate 360 degrees over the animation
 
@@ -49,7 +49,7 @@ class AngleNew(Scene):
         line_length = np.linalg.norm(A - O)
         arc_center = position  # Initial position is at the origin
         theta_pos = angle.point_from_proportion(0.5)
-        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 0.8 * line_length
+        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.1 * line_length
 
         theta.move_to(theta_pos)
         
@@ -75,7 +75,7 @@ class AngleNew(Scene):
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
                 # Update the angle with the new lines
-                new_angle = Angle(line1, line2, color=WHITE, radius=0.5, dot=True, dot_radius=0.1, dot_distance=0)
+                new_angle = Angle(line1, line2, color=GOLD, radius=0.5, dot=True, dot_radius=0.1, dot_distance=0)
                 
                 # Calculate theta position
                 theta_pos = new_angle.point_from_proportion(0.5)
@@ -87,7 +87,7 @@ class AngleNew(Scene):
                 arc_center = new_angle.get_center()
                 
                 # Reduce the radius by 30%
-                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 0.8 * line_length
+                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.1 * line_length
         
                 theta.move_to(theta_pos)
         
