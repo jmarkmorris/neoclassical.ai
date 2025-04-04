@@ -6,11 +6,14 @@
    - Ensure all files are synchronized before launching aider
 
 ## Pre-Work Setup
+
 1. **Use a Centralized Repository**
+
    - Host your project on GitHub, GitLab, or Bitbucket
    - Always treat these remote repositories as the "source of truth"
 
 2. **Global Git Configuration**
+
    ```bash
    # Set up global git config on both machines
    git config --global user.name "Your Name"
@@ -21,8 +24,11 @@
    ```
 
 ## Workflow Steps
+
 ### Before Switching Machines
+
 1. **Always Commit Changes**
+
    ```bash
    # Stage all changes
    git add .
@@ -35,6 +41,7 @@
    ```
 
 2. **Pull Latest Changes on New Machine**
+
    ```bash
    # Navigate to project directory
    cd /path/to/project
@@ -47,7 +54,9 @@
    ```
 
 ## Conflict Resolution Strategies
+
 1. **If Conflicts Occur**
+
    ```bash
    # Identify conflicts
    git status
@@ -63,25 +72,27 @@
    ```
 
 ## Recommended Tools
+
 - Use VS Code's built-in Git integration
 - Consider GitHub Desktop for visual git management
 - Use git-aware shell prompts (like Oh My Zsh) to show branch status
 
 ## Best Practices
+
 - Never work directly on the main/master branch
 - Create feature branches for development
 - Use meaningful, descriptive commit messages
 - Commit small, logical chunks of work
 - Pull changes frequently
-```
 
 ## Additional Recommendations
+
 1. Avoid iCloud sync for git repositories
 2. Use a dedicated cloud storage or version control system
 3. Consider using SSH keys for seamless authentication
 
-
 ## Steps I took to make local neoclassical.ai repo
+
    ```bash
    - cp -r from oldNPQG repo to neoclassical.ai
    - rm -rf .git in neoclassical.ai
