@@ -53,7 +53,7 @@ list_tools() {
         
         counter=$((counter + 1))
     done <<< "$files"
-    
+
     # Add final newline if needed
     if [ $(((counter-1) % num_cols)) -ne 0 ]; then
         echo "" >> "$temp_file"
