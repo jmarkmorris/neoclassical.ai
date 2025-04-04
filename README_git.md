@@ -55,7 +55,7 @@
 
 ## Conflict Resolution Strategies
 
-1. **If Conflicts Occur**
+**If Conflicts Occur**
 
    ```bash
    # Identify conflicts
@@ -71,12 +71,6 @@
    git rebase --continue
    ```
 
-## Recommended Tools
-
-- Use VS Code's built-in Git integration
-- Consider GitHub Desktop for visual git management
-- Use git-aware shell prompts (like Oh My Zsh) to show branch status
-
 ## Best Practices
 
 - Never work directly on the main/master branch
@@ -85,21 +79,13 @@
 - Commit small, logical chunks of work
 - Pull changes frequently
 
-## Additional Recommendations
-
-1. Avoid iCloud sync for git repositories
-2. Use a dedicated cloud storage or version control system
-3. Consider using SSH keys for seamless authentication
-
 ## Steps I took to make local neoclassical.ai repo
 
    ```bash
-   - cp -r from oldNPQG repo to neoclassical.ai
-   - rm -rf .git in neoclassical.ai
-   - git init
-   - git remote add origin https://github.com/jmarkmorris/neoclassical.ai
-   - git fetch origin
-   - at this point vscode now says it has 138 files with changes to sync. which makes no sense at all.
-   - git reset --hard origin/master
-   - that reset cleared out the vscode count of changed files.
+   cp -r from oldNPQG repo to neoclassical.ai
+   rm -rf .git in neoclassical.ai
+   git init
+   git remote add origin https://github.com/jmarkmorris/neoclassical.ai
+   git fetch origin
+   git reset --hard origin/master
    ```

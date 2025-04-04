@@ -1,3 +1,3 @@
 # Prompts for Manim
 
-- name the scene that same as the filename (or actually the requested output)
+- name the scene the same as the filename (or actually the requested output) to avoid warning.

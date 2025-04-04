@@ -48,7 +48,7 @@ Use the following command to create a new virtual environment:
 - `.venv` (dot makes it hidden by default — I like this, keeps dirs clean)
 - `any-name-you-choose`
 
-Just don't name it `venv` inside your actual project directory if you're using modern IDEs (PyCharm, VSCode) because they'll get confused 🤪.
+Just don't name it `venv` inside your actual project directory in VSCode because it'll get confused 🤪.
 
 This command will silently create a directory `myenv` (or whatever you named it) containing:
 
@@ -58,13 +58,13 @@ myenv/
 │   ├── activate
 │   ├── pip
 │   ├── pip3
-│   ├── python -> python3.10 (or whatever version you have)
-│   └── python3 -> python3.10 (symlinks, rejoice!)
+│   ├── python -> python3.13 (or whatever version you have)
+│   └── python3 -> python3.13 (symlinks, rejoice!)
 ├── include
 ├── lib          # <-- all your packages will live here (site-packages inside)
-│   └── python3.10
+│   └── python3.13
 │       └── site-packages
-└── pyvenv.cfg   # <-- config file saying "hey, this is Python 3.10, home is /usr/local/bin/python3.10" etc
+└── pyvenv.cfg   # <-- config file saying "hey, this is Python 3.13, home is /usr/local/bin/python3.13" etc
 ```
 
 ### Step 2: Activate the Virtual Environment
@@ -100,7 +100,7 @@ Just use `pip` as usual. Example:
     pip install requests django==4.0.1 numpy pandas
 ```
 
-All packages will be installed into `myenv/lib/python3.10/site-packages/`. No `sudo` needed 🙅‍♂️.
+All packages will be installed into `myenv/lib/python3.13/site-packages/`. No `sudo` needed 🙅‍♂️.
 
 #### Freeze Dependencies
 
@@ -198,7 +198,7 @@ Just `rm -rf myenv` (⚠️ be careful with `rm -rf`). That's it. All gone. Crea
 
 ## Tips for macOS Users
 
-- If you installed Python via Homebrew (`brew install python`), your "base" Python is probably the latest (3.10). Verify with `python3 --version`.
+- If you installed Python via Homebrew (`brew install python`), your "base" Python is probably the latest (3.13). Verify with `python3 --version`.
 - In VSCode, install the "Python" extension, then Cmd + Shift + P → "Python: Select Interpreter" and point it to your `myenv/bin/python`.
 - Keep your venv inside your project directory (like `myproject/.venv/`). Don't put it in `~/venvs/` or somewhere global — defeats the purpose 😄.
 - Add `*.venv/` or `myenv/` to your project's `.gitignore` file. You don't version-control the venv itself, only `requirements.txt`.
