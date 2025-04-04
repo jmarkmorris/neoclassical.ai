@@ -56,9 +56,9 @@ class ClockScene(Scene):
         self.play(clock.animate.shift(LEFT * 2))
         
         # Update hands dynamically (angles in radians)
-        self.play(clock.hour_hand.animate.rotate(PI / 6))  # Rotate hour hand
-        self.play(clock.minute_hand.animate.rotate(TAU / 12))  # Rotate minute hand
-        self.play(clock.second_hand.animate.rotate(TAU / 60))  # Rotate second hand
+        self.play(clock.hour_hand.animate.rotate(PI / 6, about_point=ORIGIN))  # Rotate hour hand
+        self.play(clock.minute_hand.animate.rotate(TAU / 12, about_point=ORIGIN))  # Rotate minute hand
+        self.play(clock.second_hand.animate.rotate(TAU / 60, about_point=ORIGIN))  # Rotate second hand
 
         # Final position
         self.play(clock.animate.shift(RIGHT * 4))
