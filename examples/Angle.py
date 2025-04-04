@@ -2,7 +2,8 @@
 from manim import *
 import numpy as np
 import random
-from tools import INDIGO # Assuming tools.py exists with INDIGO defined
+INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 
 # Define a small epsilon to avoid floating point issues near PI
 ANGLE_EPSILON = 1e-6

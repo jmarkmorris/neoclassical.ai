@@ -1,5 +1,6 @@
 from manim import *
-from tools import INDIGO
+INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 import numpy as np
 import random
 from manim.utils.space_ops import angle_between_vectors

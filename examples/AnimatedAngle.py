@@ -1,7 +1,8 @@
 from manim import *
 import numpy as np
 import random
-from tools import INDIGO
+INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 
 # Manim standard colors list (replace dynamic generation with a static list)
 MANIM_COLORS = [

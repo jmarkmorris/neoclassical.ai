@@ -1,5 +1,6 @@
 from manim import *
-from tools import INDIGO, ELECTRIC_PURPLE
+INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 import random
 
 class UpdatersExample(Scene):

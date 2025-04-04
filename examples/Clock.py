@@ -2,7 +2,8 @@
 from manim import *
 import numpy as np # Make sure numpy is imported
 import datetime
-from tools import INDIGO # Assuming tools.py exists with INDIGO defined
+INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 
 # --- Helper function (optional but clean) ---
 # This is available directly in newer Manim versions, but defining it ensures compatibility

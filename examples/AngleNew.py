@@ -1,6 +1,10 @@
 from manim import *
 import numpy as np
-from tools import INDIGO  # Assuming tools.py exists with INDIGO defined
+
+INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
+WHITE = "#FFFFFF"
+YELLOW = "#FFFF00"
 class AngleNew(Scene):
     def construct(self):
         # Set background color
@@ -14,9 +18,13 @@ class AngleNew(Scene):
         O = np.array([0, 0, 0])
         B = np.array([1, 1, 0])
 
+        # Create new lines
+        line1 = Line(O, A, color=WHITE)
+        line2 = Line(O, B, color=WHITE)
+
         # Create the angle object
-        angle = Angle(line1=Line(O,A), line2=Line(O,B), radius=0.5, color=YELLOW)
-        self.add(angle)
+        angle = Angle(line1, line2, radius=0.5, color=WHITE)
+        self.add(line1, line2, angle)
         # Create a complex path for the angle to follow
         path = ParametricFunction(
             lambda t: np.array([
@@ -50,7 +58,7 @@ class AngleNew(Scene):
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
                 # Update the angle with the new lines
-                mob.become(Angle(line1=line1, line2=line2, radius=0.5, color=YELLOW).move_to(position))
+                mob.become(Angle(line1=line1, line2=line2, color=YELLOW, radius=0.5).move_to(position))
 
         # Create animation to move the angle along the path
         animation = UpdateFromAlphaFunc(angle, update_angle_position)

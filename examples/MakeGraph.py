@@ -1,6 +1,6 @@
 from manim import *
-from tools import INDIGO
-
+INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 class MakeGraph(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
