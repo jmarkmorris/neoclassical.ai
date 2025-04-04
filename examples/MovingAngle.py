@@ -122,8 +122,8 @@ class MovingAngle(Scene): # Renamed class to match filename
                 line2 = Line(rotation_center, position + RIGHT * 0.5, color=line2_color).rotate(
                     start_angle_deg * DEGREES, about_point=rotation_center
                 )
-                # Create the angle (without fill initially)
-                angle = Angle(line1, line2, radius=0.5, color=angle_arc_color, fill_opacity=0)
+                # Create the angle
+                angle = Angle(line1, line2, radius=0.5, color=angle_arc_color)
                 # Create the theta label
                 theta_label = MathTex(r"\theta", color=theta_color).scale(0.7)
 
