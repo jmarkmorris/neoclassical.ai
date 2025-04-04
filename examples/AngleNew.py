@@ -29,10 +29,28 @@ class AngleNew(Scene):
             stroke_opacity=0.3     # Subtle path visualization
         )
         self.add(path)
+
         # Animate the angle moving along the path
         def update_angle_position(mob, alpha):
             position = path.point_from_proportion(alpha)
             mob.move_to(position)
+            
+            # Update the angle's lines
+            angle_value = alpha * 360 * DEGREES  # Rotate 360 degrees over the animation
+            
+            # Define new points for the lines
+            A = np.array([1, 0, 0])
+            B = np.array([np.cos(angle_value), np.sin(angle_value), 0])
+            O = np.array([0, 0, 0])
+            
+            # Create new lines
+            line1 = Line(O, A)
+            line2 = Line(O, B)
+
+            # Check if lines are parallel
+            if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
+                # Update the angle with the new lines
+                mob.become(Angle(line1=line1, line2=line2, radius=0.5, color=YELLOW).move_to(position))
 
         # Create animation to move the angle along the path
         animation = UpdateFromAlphaFunc(angle, update_angle_position)
