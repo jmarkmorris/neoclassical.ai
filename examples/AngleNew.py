@@ -44,8 +44,8 @@ class AngleNew(Scene):
             O = np.array([0, 0, 0])
             
             # Create new lines
-            line1 = Line(O, A)
-            line2 = Line(O, B)
+            line1 = Line(O, A, color=WHITE)
+            line2 = Line(O, B, color=WHITE)
 
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
