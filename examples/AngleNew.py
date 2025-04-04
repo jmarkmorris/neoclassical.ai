@@ -34,7 +34,7 @@ class AngleNew(Scene):
         O = np.array([0, 0, 0])
         B = np.array([1, 1, 0])
 
-        line1 = Line(position, position + A, color=TEAL_A)
+        line1 = Line(position, position + A, color=TEAL)
         line2 = Line(position, position + B, color=ORANGE)
         
         # Create the angle object
@@ -47,7 +47,7 @@ class AngleNew(Scene):
         line_length = np.linalg.norm(A - O)
         arc_center = position  # Initial position is at the origin
         theta_pos = angle.point_from_proportion(0.5)
-        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.1 * line_length
+        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 0.8 * line_length
 
         theta.move_to(theta_pos)
         
@@ -67,7 +67,7 @@ class AngleNew(Scene):
             O = np.array([0, 0, 0])  # Origin
 
             # Create new lines with the origin at the path position
-            line1 = Line(position, position + A, color=TEAL_A)
+            line1 = Line(position, position + A, color=TEAL)
             line2 = Line(position, position + B, color=ORANGE)
             
             # Check if lines are parallel
@@ -85,7 +85,7 @@ class AngleNew(Scene):
                 arc_center = new_angle.get_center()
                 
                 # Reduce the radius by 30%
-                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.1 * line_length
+                theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 0.8 * line_length
         
                 theta.move_to(theta_pos)
         
