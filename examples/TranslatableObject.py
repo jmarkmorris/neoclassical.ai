@@ -18,16 +18,11 @@ MANIM_COLORS = [
     # Add more colors as needed, ensuring they are valid Manim constants
 ]
 
-class AnimatedAngle(Scene):
-    def construct(self):
-        self.camera.background_color = INDIGO
+class AngleObject(VGroup):
+    def __init__(self, location=np.array([0, 0, 0]), **kwargs):
+        super().__init__(**kwargs)
 
-        # Define the rotation center
-        rotation_center = np.array([0, 0, 0])
-
-        # Define the initial and final angles in degrees
-        initial_angle_deg = random.uniform(10, 170)  # Ensure non-zero initial angle
-        final_angle_deg = random.uniform(190, 350)    # Ensure non-zero final angle
+        self.location = location
 
         # Randomize colors
         line1_color = random.choice(MANIM_COLORS)
@@ -37,34 +32,59 @@ class AnimatedAngle(Scene):
         angle_arc_color = random.choice(MANIM_COLORS)
         dot_color = random.choice(MANIM_COLORS)
 
+        # Define the initial and final angles in degrees
+        initial_angle_deg = random.uniform(10, 170)  # Ensure non-zero initial angle
+        final_angle_deg = random.uniform(190, 350)    # Ensure non-zero final angle
+
         # Create the first line
-        line1 = Line(rotation_center, RIGHT, color=line1_color)
+        self.line1 = Line(self.location, self.location + RIGHT, color=line1_color)
         # Create the second line, initially rotated to the initial angle
-        line2 = Line(rotation_center, RIGHT, color=line2_color).rotate(
-            initial_angle_deg * DEGREES, about_point=rotation_center
+        self.line2 = Line(self.location, self.location + RIGHT, color=line2_color).rotate(
+            initial_angle_deg * DEGREES, about_point=self.location
         )
 
         # Create the angle
-        angle = Angle(line1, line2, radius=0.5, color=angle_arc_color)
+        self.angle = Angle(self.line1, self.line2, radius=0.5, color=angle_arc_color)
 
         # Create a dot at the rotation center
-        dot = Dot(point=rotation_center, color=dot_color)
+        self.dot = Dot(point=self.location, color=dot_color)
 
         # Add updater to the angle
-        angle.add_updater(lambda a: a.become(Angle(line1, line2, radius=0.5, color=angle_arc_color)))
+        self.angle.add_updater(lambda a: a.become(Angle(self.line1, self.line2, radius=0.5, color=angle_arc_color)))
 
-        # Create the animation for line2 to rotate to the final angle
-        rotate_animation = Rotate(
-            line2,
-            angle=(final_angle_deg - initial_angle_deg) * DEGREES,
-            about_point=rotation_center,
-            run_time=3
+        # Add the components to the VGroup
+        self.add(self.line1, self.line2, self.angle, self.dot)
+
+        # Store the initial and final angles for animation
+        self.initial_angle_deg = initial_angle_deg
+        self.final_angle_deg = final_angle_deg
+
+    def create_rotation_animation(self, run_time=3):
+        return Rotate(
+            self.line2,
+            angle=(self.final_angle_deg - self.initial_angle_deg) * DEGREES,
+            about_point=self.location,
+            run_time=run_time
         )
 
-        # Add the lines, angle, and dot to the scene
-        self.add(line1, line2, angle, dot)
+class AnimatedAngle(Scene):
+    def construct(self):
+        self.camera.background_color = INDIGO
 
-        # Play the rotation animation
-        self.play(rotate_animation)
+        # Create the first AngleObject
+        angle1 = AngleObject(location=np.array([-3, 0, 0]))
+
+        # Create the second AngleObject
+        angle2 = AngleObject(location=np.array([3, 0, 0]))
+
+        # Create the rotation animations
+        rotate_animation1 = angle1.create_rotation_animation()
+        rotate_animation2 = angle2.create_rotation_animation()
+
+        # Add the AngleObjects to the scene
+        self.add(angle1, angle2)
+
+        # Play the rotation animations
+        self.play(rotate_animation1, rotate_animation2)
 
         self.wait()
