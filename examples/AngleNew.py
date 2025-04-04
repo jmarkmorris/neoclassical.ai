@@ -27,7 +27,7 @@ class AngleNew(Scene):
         line2 = Line(O, B, color=PINK)
         
         # Create the angle object
-        angle = Angle(line1, line2, radius=0.5, color=WHITE)
+        angle = Angle(line1, line2, radius=0.5, color=WHITE, dot=True, dot_radius=0.1, dot_distance=0)
         
         # Create theta label
         theta = MathTex(r"\theta", color=WHITE).scale(0.8)
@@ -36,7 +36,7 @@ class AngleNew(Scene):
         line_length = np.linalg.norm(A - O)
         arc_center = ORIGIN  # Initial position is at the origin
         theta_pos = angle.point_from_proportion(0.5)
-        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 2 * line_length * 0.8
+        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.2 * line_length
 
         theta.move_to(theta_pos)
         
@@ -79,7 +79,7 @@ class AngleNew(Scene):
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
                 # Update the angle with the new lines
-                new_angle = Angle(line1, line2, color=WHITE, radius=0.5)
+                new_angle = Angle(line1, line2, color=WHITE, radius=0.5, dot=True, dot_radius=0.1, dot_distance=0)
                 
                 # Calculate theta position
                 theta_pos = new_angle.point_from_proportion(0.5)
