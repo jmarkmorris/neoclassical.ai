@@ -50,8 +50,9 @@ class ClockAssembly(VGroup):
         now = datetime.datetime.now()
         initial_hour_angle = -(((now.hour % 12 + now.minute / 60) / 12) * TAU) + PI / 2
         initial_minute_angle = -((now.minute / 60) * TAU) + PI / 2
+        initial_second_angle = -((now.second / 60) * TAU) + PI / 2
 
-        # Hands (hour, minute) - define length relative to radius
+        # Hands (hour, minute, second) - define length relative to radius
         # Create them pointing upwards (PI/2) initially for easier rotation calculation
         self.hour_hand = Line(
             ORIGIN, UP * self.radius * 0.5, stroke_width=6, color=BLUE
@@ -59,6 +60,9 @@ class ClockAssembly(VGroup):
         self.minute_hand = Line(
             ORIGIN, UP * self.radius * 0.7, stroke_width=4, color=GREEN
         ).set_z_index(1)
+        self.second_hand = Line(
+            ORIGIN, UP * self.radius * 0.8, stroke_width=2, color=RED
+        ).set_z_index(2) # Highest z-index to be on top of other hands
 
         # Add all static elements first
         self.add(self.circle, self.minute_ticks, self.hour_ticks, self.center_dot)
@@ -69,13 +73,15 @@ class ClockAssembly(VGroup):
         center = self.circle.get_center() # Should be ORIGIN if VGroup created at default position
         self.hour_hand.move_to(center, aligned_edge=DOWN)
         self.minute_hand.move_to(center, aligned_edge=DOWN)
+        self.second_hand.move_to(center, aligned_edge=DOWN)
 
         # Apply initial rotation around the clock's center
         self.hour_hand.rotate(initial_hour_angle, about_point=center)
         self.minute_hand.rotate(initial_minute_angle, about_point=center)
+        self.second_hand.rotate(initial_second_angle, about_point=center)
 
         # Add hands *after* positioning them correctly
-        self.add(self.hour_hand, self.minute_hand)
+        self.add(self.hour_hand, self.minute_hand, self.second_hand)
 
         # Store initial angles if needed for relative updates, though absolute calculation is fine here
         # self.current_hour_angle = initial_hour_angle
@@ -89,6 +95,7 @@ class ClockAssembly(VGroup):
         # Angle = (fraction of circle) * TAU. Negative sign for clockwise. Add PI/2 because 0 rad is RIGHT.
         target_hour_angle = -(((now.hour % 12 + now.minute / 60 + now.second / 3600) / 12) * TAU) + PI/2
         target_minute_angle = -(((now.minute + now.second / 60) / 60) * TAU) + PI/2
+        target_second_angle = -((now.second / 60) * TAU) + PI/2
         
         # Get the current center of the clock
         center = self.circle.get_center()
@@ -109,9 +116,17 @@ class ClockAssembly(VGroup):
             color=GREEN
         ).set_z_index(1))
         
+        self.second_hand.become(Line(
+            start=center,
+            end=center + UP * self.radius * 0.8, 
+            stroke_width=2, 
+            color=RED
+        ).set_z_index(2))
+        
         # Rotate to target angles
         self.hour_hand.rotate(target_hour_angle - PI/2, about_point=center)
         self.minute_hand.rotate(target_minute_angle - PI/2, about_point=center)
+        self.second_hand.rotate(target_second_angle - PI/2, about_point=center)
         
         # No need to call self.add() again here, we are modifying existing mobjects
 
