@@ -31,6 +31,14 @@ class AngleNew(Scene):
         
         # Create theta label
         theta = MathTex(r"\theta", color=WHITE).scale(0.8)
+
+        # Initial theta position calculation
+        line_length = np.linalg.norm(A - O)
+        arc_center = ORIGIN  # Initial position is at the origin
+        theta_pos = angle.point_from_proportion(0.5)
+        theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 2 * line_length * 0.8
+
+        theta.move_to(theta_pos)
         
         self.angle_group = VGroup(line1, line2, angle, theta)
         self.add(self.angle_group)
