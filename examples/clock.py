@@ -54,7 +54,6 @@ class ClockAssembly(VGroup):
         import datetime
         now = datetime.datetime.now()
         hour_angle = ((now.hour % 12 + now.minute / 60) / 12) * TAU
-        hour_angle = ((now.hour % 12 + now.minute / 60) / 12) * TAU
         minute_angle = (now.minute / 60) * TAU
 
         self.hour_hand.become(
