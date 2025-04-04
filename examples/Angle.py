@@ -227,7 +227,7 @@ class Angle(Scene):
             color=YELLOW_A,
             stroke_opacity=0.3     # Subtle path visualization
         )
-        self.add(path)
+        #self.add(path)
         
         # Move the angle along the path continuously
         self.play(
