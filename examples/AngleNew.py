@@ -27,7 +27,7 @@ class AngleNew(Scene):
         )
         self.add(path)
 
-        alpha = 0.01  # Initial alpha value for the angle
+        alpha = 0.001  # Initial alpha value for the angle
         position = path.point_from_proportion(alpha)
         angle_value = alpha * 360 * DEGREES  # Rotate 360 degrees over the animation
 
@@ -43,7 +43,7 @@ class AngleNew(Scene):
         angle = Angle(line1, line2, radius=0.8, color=BLUE_C, dot=True, dot_radius=0.07, dot_distance=0)
         
         # Create theta label
-        theta = MathTex(r"\theta", color=WHITE).scale(0.7)
+        theta = MathTex(r"\theta", color=WHITE).scale(0.6)
 
         # Initial theta position calculation
         line_length = np.linalg.norm(A - O)
@@ -86,7 +86,6 @@ class AngleNew(Scene):
                 # Get a point outside the arc, at double the line length distance
                 arc_center = new_angle.get_center()
                 
-                # Reduce the radius by 30%
                 theta_pos = arc_center + unit_vector(theta_pos - arc_center) * 1.1 * line_length
         
                 theta.move_to(theta_pos)
