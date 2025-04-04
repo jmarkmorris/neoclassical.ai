@@ -125,30 +125,29 @@ class ClockScene(Scene):
             print("Warning: INDIGO color not defined, using default background.")
             pass # Use default background if INDIGO is missing
 
-        # Create clock object
+        # Create clock object and add it directly to the scene
         clock = ClockAssembly(radius=2).shift(UP * 1) # Example: Create slightly offset
-        self.play(Create(clock))
-        self.wait(0.5)
-
-        # Animate clock movement more slowly
-        self.play(clock.animate.shift(LEFT * 4 + DOWN * 2), run_time=3)
-        self.wait(1)
-
-        # Add updater to clock to update hands every frame
+        self.add(clock)  # Add directly without animation
+        
+        # Add updater to clock to update hands every frame right from the start
         # Pass the dt parameter from the lambda function to the method
         clock.add_updater(lambda mob, dt: mob.update_hands(dt))
+        
+        # Let the clock run for a moment in its initial position
+        self.wait(2)
 
-        # Let the clock run for a while
-        self.wait(5)
+        # Animate clock movement continuously
+        self.play(clock.animate.shift(LEFT * 4 + DOWN * 2), run_time=3)
+        
+        # Let the clock run in the middle position
+        self.wait(3)
 
-        # Move the clock again while the updater is active (more slowly)
+        # Move the clock again while the updater is active
         self.play(clock.animate.shift(RIGHT * 6), run_time=3)
 
         # Let it run in the final position
-        self.wait(5)
+        self.wait(3)
 
-        # Important: Remove updater if the scene ends or the object is removed
+        # Important: Remove updater at the end of the scene
         # to prevent potential issues in more complex scenes.
         clock.remove_updater(clock.update_hands)
-        self.wait(0.5)
-        self.play(FadeOut(clock))
