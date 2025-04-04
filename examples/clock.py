@@ -89,32 +89,30 @@ class ClockAssembly(VGroup):
         # Angle = (fraction of circle) * TAU. Negative sign for clockwise. Add PI/2 because 0 rad is RIGHT.
         target_hour_angle = -(((now.hour % 12 + now.minute / 60 + now.second / 3600) / 12) * TAU) + PI/2
         target_minute_angle = -(((now.minute + now.second / 60) / 60) * TAU) + PI/2
-        # target_second_angle = -((now.second / 60) * TAU) + PI/2 # Example if you add a second hand
-
-        # --- Method 1: Set angle directly (Simpler if hands start aligned) ---
-        # Get the current center of the VGroup (which includes the circle and hands)
-        center = self.get_center() # THIS IS THE KEY CHANGE
-
-        # Reset the hands to a known orientation (e.g., pointing UP) relative to the center
-        # then rotate to the target angle around the center.
-        self.hour_hand.set_angle(PI/2, about_point=center) # Reset to UP
-        self.hour_hand.rotate(target_hour_angle - PI/2, about_point=center) # Rotate to target
-
-        self.minute_hand.set_angle(PI/2, about_point=center) # Reset to UP
-        self.minute_hand.rotate(target_minute_angle - PI/2, about_point=center) # Rotate to target
-
-
-        # --- Method 2: Calculate endpoints (More robust, less reliant on initial state) ---
-        # center = self.get_center() # Get current center
-        # hour_vector = UP * self.radius * 0.5
-        # minute_vector = UP * self.radius * 0.7
-        #
-        # rotated_hour_vector = rotate_vector(hour_vector, target_hour_angle - PI/2) # Adjust angle based on initial vector orientation
-        # rotated_minute_vector = rotate_vector(minute_vector, target_minute_angle- PI/2)
-        #
-        # self.hour_hand.put_start_and_end_on(center, center + rotated_hour_vector)
-        # self.minute_hand.put_start_and_end_on(center, center + rotated_minute_vector)
-
+        
+        # Get the current center of the clock
+        center = self.circle.get_center()
+        
+        # Use absolute positioning method - more reliable for clock hands
+        # Reset hands to initial position (pointing UP)
+        self.hour_hand.become(Line(
+            start=center,
+            end=center + UP * self.radius * 0.5, 
+            stroke_width=6, 
+            color=BLUE
+        ).set_z_index(1))
+        
+        self.minute_hand.become(Line(
+            start=center,
+            end=center + UP * self.radius * 0.7, 
+            stroke_width=4, 
+            color=GREEN
+        ).set_z_index(1))
+        
+        # Rotate to target angles
+        self.hour_hand.rotate(target_hour_angle - PI/2, about_point=center)
+        self.minute_hand.rotate(target_minute_angle - PI/2, about_point=center)
+        
         # No need to call self.add() again here, we are modifying existing mobjects
 
 
@@ -132,9 +130,9 @@ class ClockScene(Scene):
         self.play(Create(clock))
         self.wait(0.5)
 
-        # Animate clock movement
-        self.play(clock.animate.shift(LEFT * 4 + DOWN * 2))
-        self.wait(0.5)
+        # Animate clock movement more slowly
+        self.play(clock.animate.shift(LEFT * 4 + DOWN * 2), run_time=3)
+        self.wait(1)
 
         # Add updater to clock to update hands every frame
         # Pass the dt parameter from the lambda function to the method
@@ -143,8 +141,8 @@ class ClockScene(Scene):
         # Let the clock run for a while
         self.wait(5)
 
-        # Move the clock again while the updater is active
-        self.play(clock.animate.shift(RIGHT * 6))
+        # Move the clock again while the updater is active (more slowly)
+        self.play(clock.animate.shift(RIGHT * 6), run_time=3)
 
         # Let it run in the final position
         self.wait(5)
