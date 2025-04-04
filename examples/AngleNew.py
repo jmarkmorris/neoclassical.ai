@@ -51,19 +51,26 @@ class AngleNew(Scene):
             B = np.array([np.cos(angle_value), np.sin(angle_value), 0])
             O = np.array([0, 0, 0])
             
-            # Create new lines
-            line1 = Line(O, A, color=WHITE).move_to(position)
-            line2 = Line(O, B, color=WHITE).move_to(position)
+            # Define new points for the lines relative to the origin
+            A = np.array([1, 0, 0])
+            B = np.array([np.cos(angle_value), np.sin(angle_value), 0])
+            O = np.array([0, 0, 0])  # Origin
+
+            # Create new lines with the origin at the path position
+            line1 = Line(position, position + A, color=WHITE)
+            line2 = Line(position, position + B, color=WHITE)
 
             # Check if lines are parallel
             if not np.isclose(np.linalg.norm(np.cross(A - O, B - O)), 0):
                 # Update the angle with the new lines
-                new_angle = Angle(line1, line2, color=YELLOW, radius=0.5).move_to(position)
+                new_angle = Angle(line1, line2, color=YELLOW, radius=0.5)
                 mob.become(VGroup(line1, line2, new_angle))
             else:
                 # If lines are parallel, keep the previous state
                 pass
-            mob.move_to(position)
+
+        # Create animation to move the angle along the path
+        animation = UpdateFromAlphaFunc(self.angle_group, update_angle_position)
 
         # Create animation to move the angle along the path
         animation = UpdateFromAlphaFunc(self.angle_group, update_angle_position)
