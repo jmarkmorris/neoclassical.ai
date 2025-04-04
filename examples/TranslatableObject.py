@@ -1,5 +1,9 @@
 from manim import *
 import numpy as np
+from manim.utils.space_ops import angle_between_vectors
+
+# Define a small epsilon to avoid floating point issues near PI
+ANGLE_EPSILON = 1e-6
 
 class TranslatableObject(Scene):
     def construct(self):
@@ -40,9 +44,21 @@ class TranslatableObject(Scene):
         def update_angle(obj):
             v1 = line1.get_vector()
             v2 = line2.get_vector()
-            angle_val = np.arctan2(v2[1], v2[0]) - np.arctan2(v1[1], v1[0])
-            obj.become(Angle(line1, line2, radius=0.5, color=angle_arc_color))
-            theta_label.move_to(angle.point_from_proportion(0.5))
+            # Check if vectors are non-zero before calculating angle
+            if np.linalg.norm(v1) > 1e-6 and np.linalg.norm(v2) > 1e-6:
+                angle_val = angle_between_vectors(v1, v2)
+                # Check if lines are parallel (angle close to 0 or PI)
+                if angle_val > ANGLE_EPSILON and abs(angle_val - PI) > ANGLE_EPSILON:
+                    obj.become(Angle(line1, line2, radius=0.5, color=angle_arc_color))
+                    obj.set_opacity(1)  # Ensure visible
+                    theta_label.move_to(angle.point_from_proportion(0.5))
+                    theta_label.set_opacity(1) # Ensure visible
+                else:
+                    obj.set_opacity(0)  # Hide if parallel or coincident
+                    theta_label.set_opacity(0) # Hide if parallel or coincident
+            else:
+                obj.set_opacity(0) # Hide if vectors are zero
+                theta_label.set_opacity(0) # Hide if vectors are zero
 
         # Define the rotation animation
         def rotate_line(line, angle=90 * DEGREES, rate_func=linear, run_time=3):
@@ -50,6 +66,22 @@ class TranslatableObject(Scene):
 
         # Add the updater to the angle
         angle.add_updater(update_angle)
+
+        # Position theta_label initially and check visibility
+        v1_init = line1.get_vector()
+        v2_init = line2.get_vector()
+        if np.linalg.norm(v1_init) > 1e-6 and np.linalg.norm(v2_init) > 1e-6:
+            angle_val_init = angle_between_vectors(v1_init, v2_init)
+            if angle_val_init > ANGLE_EPSILON and abs(angle_val_init - np.pi) > ANGLE_EPSILON:
+                theta_label.move_to(angle.point_from_proportion(0.5))
+            else:
+                # Hide label and angle arc if initially parallel/coincident
+                theta_label.set_opacity(0)
+                angle.set_opacity(0)
+        else:
+            # Hide label and angle arc if vectors are zero
+            theta_label.set_opacity(0)
+            angle.set_opacity(0)
 
         # Add objects to the scene
         self.add(moving_angle_group)
