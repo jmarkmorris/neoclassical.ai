@@ -152,56 +152,70 @@ class AnglesMoving(Scene):
         self.camera.background_color = INDIGO
 
         # Define parameters
-        circle_radius = 1.5
-        shift_distance = 3.0 # Distance to shift circles left/right
-        initial_alpha = 0.001 # Start slightly off 0 to avoid initial degenerate angle
-
-        # Create left path (shifted left)
-        path_left = ParametricFunction(
-            lambda t: np.array([
-                circle_radius * np.cos(t) - shift_distance, # Shift x left
-                circle_radius * np.sin(t),                  # y-coordinate
-                0                                           # z-coordinate
-            ]),
-            t_range=[0, TAU],
-            color=YELLOW_A,
-            stroke_opacity=0.3
-        )
-
-        # Create right path (shifted right)
-        path_right = ParametricFunction(
-            lambda t: np.array([
-                circle_radius * np.cos(t) + shift_distance, # Shift x right
-                circle_radius * np.sin(t),                  # y-coordinate
-                0                                           # z-coordinate
-            ]),
-            t_range=[0, TAU],
-            color=RED_A, # Different color for distinction
-            stroke_opacity=0.3
-        )
-        self.add(path_left, path_right)
-
-        # Define animation duration
+        circle_radius = 1.5 * 0.5 # Make radius 50% smaller
+        shift_distance_x = 3.0    # Increased Horizontal distance between columns
+        shift_distance_y = 2.5    # Vertical distance between rows (adjust as needed)
+        initial_alpha = 0.001     # Start slightly off 0 to avoid initial degenerate angle
         animation_duration = 15.0
+        num_rows = 3
+        num_cols = 4
 
-        # Create two instances of AngleGroup, providing the initial alpha and duration
-        angle_group_left = AngleGroup(initial_alpha, path_left, duration=animation_duration)
-        angle_group_right = AngleGroup(initial_alpha, path_right, duration=animation_duration)
+        # Calculate the starting position for the grid (top-left)
+        # Center the grid horizontally: total_width = (num_cols - 1) * shift_distance_x
+        # Center the grid vertically: total_height = (num_rows - 1) * shift_distance_y
+        start_x = - (num_cols - 1) * shift_distance_x / 2
+        start_y = (num_rows - 1) * shift_distance_y / 2
 
-        # Add the updater to each group
-        # The lambda function ensures 'mob' (the AngleGroup instance) is passed correctly
-        angle_group_left.add_updater(lambda mob, dt: mob.update(dt))
-        angle_group_right.add_updater(lambda mob, dt: mob.update(dt))
+        # Define center points for the 3x4 grid using loops
+        centers = []
+        for r in range(num_rows):
+            for c in range(num_cols):
+                center_x = start_x + c * shift_distance_x
+                center_y = start_y - r * shift_distance_y
+                centers.append(np.array([center_x, center_y, 0]))
 
-        # Add both groups to the scene
-        self.add(angle_group_left, angle_group_right)
+        # Define colors for paths (ensure enough colors or allow cycling)
+        path_colors = [
+            YELLOW_A, GREEN_A, RED_A, BLUE_A,
+            PURPLE_A, ORANGE, PINK, TEAL_A,
+            GOLD_A, MAROON_A, LIGHT_GREY, WHITE
+        ]
+
+        paths = []
+        angle_groups = []
+
+        # Create paths and angle groups for each center point
+        for i, center in enumerate(centers):
+            path = ParametricFunction(
+                lambda t, c=center: np.array([
+                    circle_radius * np.cos(t) + c[0], # x-coordinate
+                    circle_radius * np.sin(t) + c[1], # y-coordinate
+                    c[2]                              # z-coordinate (remains 0)
+                ]),
+                t_range=[0, TAU],
+                color=path_colors[i % len(path_colors)], # Cycle through colors
+                stroke_opacity=0.3
+            )
+            paths.append(path)
+
+            angle_group = AngleGroup(initial_alpha, path, duration=animation_duration)
+            angle_groups.append(angle_group)
+
+            # Add updater to the angle group
+            angle_group.add_updater(lambda mob, dt: mob.update(dt))
+
+        # Add all paths and angle groups to the scene
+        self.add(*paths)
+        self.add(*angle_groups)
 
         # Wait for the duration of the animation for the updaters to run
         self.wait(animation_duration)
 
-        # Optional: Remove updaters if they are no longer needed
-        angle_group_left.remove_updater(lambda mob, dt: mob.update(dt))
-        angle_group_right.remove_updater(lambda mob, dt: mob.update(dt))
+        # Optional: Remove updaters from all angle groups
+        for group in angle_groups:
+            # Need to be careful removing lambda updaters; storing them might be safer.
+            # However, for this simple case, clearing all updaters works.
+            group.clear_updaters() # Simpler way to remove all updaters
 
         # Wait for a moment at the end
         self.wait(2)
