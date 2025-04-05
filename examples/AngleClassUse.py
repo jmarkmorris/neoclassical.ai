@@ -109,17 +109,18 @@ class AngleClassUse(Scene):
 
         # --- Trigger dynamic scaling  
         if angle_groups: # Ensure there's at least one group
-            # Directly call dynamic_scale instead of using ApplyMethod
+            # Apply scaling to all angle groups with different scales and timings
+            # First group scales to 0.5x over 10.0 seconds
             angle_groups[0].dynamic_scale(0.5, 10.0)
             
-            # Optional: Apply scaling to other angle groups with different scales and timings
+            # Apply scaling to other angle groups with different scales and timings
             for i, group in enumerate(angle_groups[1:], 1):
                 if i % 3 == 0:
-                    group.dynamic_scale(0.7, 8.0)
+                    group.dynamic_scale(0.7, 8.0)  # Scale to 0.7x over 8.0 seconds
                 elif i % 3 == 1:
-                    group.dynamic_scale(0.4, 12.0)
+                    group.dynamic_scale(0.4, 12.0)  # Scale to 0.4x over 12.0 seconds
                 else:
-                    group.dynamic_scale(0.6, 9.0)
+                    group.dynamic_scale(0.6, 9.0)  # Scale to 0.6x over 9.0 seconds
 
         # Wait for the initial angle animation (and the concurrent scaling) to complete
         self.wait(animation_duration)

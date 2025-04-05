@@ -144,11 +144,16 @@ class AngleGroup(VGroup):
         self._current_scale_factor = target_factor
 
     # --- Public method to trigger scaling ---
-    # Duration is now the second positional argument
     def dynamic_scale(self, target_scale, duration):
         """
         Starts an animation to scale the AngleGroup to a target scale factor
         over a specified duration using the updater.
+
+        The scaling happens incrementally on each frame update, with the amount
+        of change per frame determined by:
+        1. The total change in scale (target_scale - current_scale)
+        2. The duration of the animation
+        3. The easing function applied to the progress
 
         Args:
             target_scale (float): The final scale factor (e.g., 1.0 is original size,
@@ -160,12 +165,12 @@ class AngleGroup(VGroup):
             self._set_scale_factor(target_scale)
             self._is_scaling = False
         else:
+            # Store parameters for the scaling animation
             self._scale_target = target_scale
             self._scale_duration = duration
             self._scale_elapsed_time = 0.0
             self._scale_start_value = self._get_current_scale_factor() # Start from current scale
             self._is_scaling = True # Activate scaling in the updater
-            # print(f"DEBUG: dynamic_scale called. Target: {self._scale_target}, Duration: {self._scale_duration}, Start Scale: {self._scale_start_value}") # DEBUG - Removed
 
     def set_color(self, line1_color=None, line2_color=None, arc_color=None, dot_color=None, theta_color=None):
         """
@@ -296,6 +301,7 @@ class AngleGroup(VGroup):
 
         # --- Handle Dynamic Scaling ---
         if self._is_scaling:
+            # Increment elapsed time by the frame delta time
             self._scale_elapsed_time += dt
 
             if self._scale_elapsed_time >= self._scale_duration:
@@ -316,7 +322,8 @@ class AngleGroup(VGroup):
                     progress = 1 - pow(-2 * linear_progress + 2, 2) / 2
                 
                 # Interpolate the scale factor with the eased progress
+                # This ensures a smooth transition from start to target scale
                 interpolated_scale = self._scale_start_value + (self._scale_target - self._scale_start_value) * progress
                 
-                # Apply the interpolated scale
+                # Apply the interpolated scale for this frame
                 self._set_scale_factor(interpolated_scale)
