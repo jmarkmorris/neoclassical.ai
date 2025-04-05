@@ -250,11 +250,8 @@ class AngleGroup(VGroup):
                 self._is_scaling = False
             else:
                 # Calculate linear progress (0 to 1)
-                linear_progress = self._scale_elapsed_time / self._scale_duration
-                # Apply there_and_back easing to the progress (0 -> 1 -> 0)
-                eased_progress = there_and_back(linear_progress)
-                # Interpolate scale: start_scale at eased_progress=0, target_scale (min) at eased_progress=1
-                # Formula: interpolated = start * (1 - eased) + target * eased
-                interpolated_scale = self._scale_start_value * (1 - eased_progress) + self._scale_target * eased_progress
+                progress = self._scale_elapsed_time / self._scale_duration
+                # Interpolate the scale factor linearly
+                interpolated_scale = self._scale_start_value + (self._scale_target - self._scale_start_value) * progress
                 # Apply the interpolated scale
                 self._set_scale_factor(interpolated_scale)

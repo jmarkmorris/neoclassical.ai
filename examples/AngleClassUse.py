@@ -112,8 +112,8 @@ class AngleClassUse(Scene):
         # This happens concurrently with the angle animation via the updater.
         if angle_groups: # Ensure there's at least one group
             self.play(
-                # Pass target_scale=0.5 (min scale) and duration=animation_duration (15.0)
-                ApplyMethod(angle_groups[0].dynamic_scale, 0.5, animation_duration),
+                # General scaling: target_scale=0.5, duration=10.0 seconds
+                ApplyMethod(angle_groups[0].dynamic_scale, 0.5, 10.0),
                 run_time=0.1 # Start the scaling setup quickly
             )
 
