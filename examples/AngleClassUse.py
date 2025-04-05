@@ -107,33 +107,23 @@ class AngleClassUse(Scene):
         self.add(*paths)
         self.add(*angle_groups)
 
-        # Wait for the initial angle animation to complete
+        # --- Trigger dynamic scaling for the top-left angle (index 0) ---
+        # Scale it down to 50% over 10 seconds, starting immediately.
+        # This happens concurrently with the angle animation via the updater.
+        if angle_groups: # Ensure there's at least one group
+            self.play(
+                ApplyMethod(angle_groups[0].dynamic_scale, 0.5, duration=10.0),
+                run_time=0.1 # Start the scaling setup quickly
+            )
+
+        # Wait for the initial angle animation (and the concurrent scaling) to complete
         self.wait(animation_duration)
 
-        # --- Example: Trigger dynamic scaling after the main animation ---
-        self.play(
-            # Use AnimationGroup to apply scaling to all angle groups simultaneously
-            AnimationGroup(*[
-                # For each group, create an animation that does nothing visually
-                # but allows us to call the dynamic_scale method at the start
-                # of this animation block.
-                Succession(
-                    # Wait(0) ensures the call happens after the previous self.wait()
-                    Wait(0),
-                    # Call the method - this doesn't return an animation,
-                    # it just sets up the updater.
-                    # Pass positional args directly to ApplyMethod after the method ref
-                    ApplyMethod(group.dynamic_scale, 0.5, duration=5.0)
-                 )
-                for group in angle_groups
-            ]),
-            run_time=0.1 # Run this setup animation quickly
-        )
+        # --- Remove the previous example that scaled all groups afterwards ---
+        # (Code block removed)
 
-        # Now wait for the scaling updaters to run for their duration
-        self.wait(5.0) # Wait for the scaling duration
 
-        # Optional: Remove updaters from all angle groups
+        # Optional: Remove updaters from all angle groups after the main animation
         for group in angle_groups:
             # Need to be careful removing lambda updaters; storing them might be safer.
             # However, for this simple case, clearing all updaters works.
