@@ -249,10 +249,12 @@ class AngleGroup(VGroup):
                 self._set_scale_factor(self._scale_target)
                 self._is_scaling = False
             else:
-                # Calculate progress (0 to 1)
-                progress = self._scale_elapsed_time / self._scale_duration
-                # Interpolate the scale factor (linear interpolation)
-                interpolated_scale = self._scale_start_value + (self._scale_target - self._scale_start_value) * progress
+                # Calculate linear progress (0 to 1)
+                linear_progress = self._scale_elapsed_time / self._scale_duration
+                # Apply there_and_back easing to the progress (0 -> 1 -> 0)
+                eased_progress = there_and_back(linear_progress)
+                # Interpolate scale: start_scale at eased_progress=0, target_scale (min) at eased_progress=1
+                # Formula: interpolated = start * (1 - eased) + target * eased
+                interpolated_scale = self._scale_start_value * (1 - eased_progress) + self._scale_target * eased_progress
                 # Apply the interpolated scale
-                # print(f"DEBUG: update scaling - dt: {dt:.4f}, Elapsed: {self._scale_elapsed_time:.4f}, Progress: {progress:.4f}, Interpolated Scale: {interpolated_scale:.4f}") # DEBUG - Removed
                 self._set_scale_factor(interpolated_scale)
