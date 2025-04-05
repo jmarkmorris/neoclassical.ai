@@ -14,12 +14,13 @@ class AnglesMoving(Scene):
 
         self.camera.background_color = INDIGO
 
-        # Create a complex path for the angle to follow
+        # Create a circular path for the angle to follow
+        circle_radius = 1.5
         path = ParametricFunction(
             lambda t: np.array([
-                3 * np.sin(t * 2),  # x-coordinate
-                2 * np.cos(t * 3),  # y-coordinate
-                0                   # z-coordinate
+                circle_radius * np.cos(t),  # x-coordinate
+                circle_radius * np.sin(t),  # y-coordinate
+                0                          # z-coordinate
             ]),
             t_range=[0, TAU],
             color=YELLOW_A,
