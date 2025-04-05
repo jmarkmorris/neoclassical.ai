@@ -185,11 +185,12 @@ class AngleGroup(VGroup):
         self.line2.put_start_and_end_on(position, position + scaled_B_vec)
 
         # Check for parallel/anti-parallel lines (angle near 0, 180, 360 deg)
-        # Use a small tolerance for floating point comparisons
-        # More robust check using the actual angle from atan2
-        is_degenerate = (np.isclose(actual_angle_deg, 0, atol=1e-6) or 
-                         np.isclose(actual_angle_deg, 180, atol=1e-6) or 
-                         np.isclose(actual_angle_deg, 360, atol=1e-6))
+        # Use a scale-aware tolerance for floating point comparisons
+        # Adjust tolerance based on scale factor to handle scaled angles better
+        tolerance = 1e-6 * max(1.0, self._current_scale_factor)
+        is_degenerate = (np.isclose(actual_angle_deg, 0, atol=tolerance) or 
+                         np.isclose(actual_angle_deg, 180, atol=tolerance) or 
+                         np.isclose(actual_angle_deg, 360, atol=tolerance))
 
         # Always update the angle object, even if the angle is degenerate
         # This ensures consistent scaling behavior throughout the animation
