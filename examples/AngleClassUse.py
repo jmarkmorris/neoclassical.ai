@@ -107,9 +107,7 @@ class AngleClassUse(Scene):
         self.add(*paths)
         self.add(*angle_groups)
 
-        # --- Trigger dynamic scaling for the top-left angle (index 0) ---
-        # Scale it down to 50% over 10 seconds, starting immediately.
-        # This happens concurrently with the angle animation via the updater.
+        # --- Trigger dynamic scaling 
         if angle_groups: # Ensure there's at least one group
             self.play(
                 # General scaling: target_scale=0.5, duration=10.0 seconds
@@ -119,10 +117,6 @@ class AngleClassUse(Scene):
 
         # Wait for the initial angle animation (and the concurrent scaling) to complete
         self.wait(animation_duration)
-
-        # --- Remove the previous example that scaled all groups afterwards ---
-        # (Code block removed)
-
 
         # Optional: Remove updaters from all angle groups after the main animation
         for group in angle_groups:

@@ -120,14 +120,8 @@ class AngleGroup(VGroup):
         """
         Sets the color of individual components of the AngleGroup.
         Any component whose color is not specified will retain its current color.
-
-        Args:
-            line1_color (Optional[str or Color]): Color for the first line.
-            line2_color (Optional[str or Color]): Color for the second line.
-            arc_color (Optional[str or Color]): Color for the angle arc.
-            dot_color (Optional[str or Color]): Color for the angle dot.
-            theta_color (Optional[str or Color]): Color for the theta label.
         """
+
         if line1_color is not None:
             self.line1.set_color(line1_color)
         if line2_color is not None:
