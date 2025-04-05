@@ -131,7 +131,8 @@ class AngleNew(Scene):
 
             # Update radial line
             theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5)
-            self.radial_line.put_start_and_end_on(position, theta_pos_on_arc)
+            radial_line_end = position + 2 * (theta_pos_on_arc - position)
+            self.radial_line.put_start_and_end_on(position, radial_line_end)
 
         # Create animation using the new updater
         animation = UpdateFromAlphaFunc(self.angle_group, update_angle_components)
