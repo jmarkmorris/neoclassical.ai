@@ -128,6 +128,25 @@ class AngleGroup(VGroup):
             self._scale_elapsed_time = 0.0
             self._scale_start_value = self._get_current_scale_factor() # Start from current scale
             self._is_scaling = True # Activate scaling in the updater
+            
+    def pause_animation(self):
+        """
+        Pauses both the angle rotation and scaling animations.
+        The current state is preserved so animations can be resumed later.
+        """
+        self.is_updating = False
+        self._is_scaling = False
+        
+    def resume_animation(self):
+        """
+        Resumes both the angle rotation and scaling animations from where they were paused.
+        If scaling was in progress when paused, it will continue from its current progress.
+        """
+        self.is_updating = True
+        
+        # Only resume scaling if we haven't reached the target yet
+        if self._scale_elapsed_time < self._scale_duration and abs(self._current_scale_factor - self._scale_target) > 1e-6:
+            self._is_scaling = True
 
     def set_color(self, line1_color=None, line2_color=None, arc_color=None, dot_color=None, theta_color=None):
         """

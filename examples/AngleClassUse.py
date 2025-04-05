@@ -122,14 +122,38 @@ class AngleClassUse(Scene):
                 else:
                     group.dynamic_scale(0.6, 9.0)  # Scale to 0.6x over 9.0 seconds
 
-        # Wait for the initial angle animation (and the concurrent scaling) to complete
-        self.wait(animation_duration)
-
+        # Wait for half of the animation duration
+        self.wait(animation_duration / 2)
+        
+        # Demonstrate pause/resume functionality
+        # Pause all animations
+        for group in angle_groups:
+            group.pause_animation()
+        
+        # Display a message indicating the pause
+        pause_text = Text("Animation Paused", color=WHITE).to_edge(UP)
+        self.play(FadeIn(pause_text))
+        self.wait(1)
+        
+        # Resume all animations
+        for group in angle_groups:
+            group.resume_animation()
+            
+        # Update the message
+        resume_text = Text("Animation Resumed", color=WHITE).to_edge(UP)
+        self.play(Transform(pause_text, resume_text))
+        
+        # Wait for the remaining animation time
+        self.wait(animation_duration / 2)
+        
         # Optional: Remove updaters from all angle groups after the main animation
         for group in angle_groups:
             # Need to be careful removing lambda updaters; storing them might be safer.
             # However, for this simple case, clearing all updaters works.
             group.clear_updaters() # Simpler way to remove all updaters
+            
+        # Fade out the text
+        self.play(FadeOut(pause_text))
 
         # Wait for a moment at the end
         self.wait(2)
