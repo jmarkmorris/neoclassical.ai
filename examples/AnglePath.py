@@ -9,7 +9,7 @@ def unit_vector(vector):
     """ Returns the unit vector of the vector.  """
     return vector / np.linalg.norm(vector)
 
-class AngleNew(Scene):
+class AnglePath(Scene):
     def construct(self):
 
         self.camera.background_color = INDIGO
@@ -49,20 +49,34 @@ class AngleNew(Scene):
 
         # Initial theta position calculation
         line_length = np.linalg.norm(A - O) # Norm is 1
-        arc_center = self.angle_obj.get_center()
-        theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5)
-        direction_vector = theta_pos_on_arc - arc_center
-        direction_norm = np.linalg.norm(direction_vector)
-        if direction_norm > 1e-6:
-            unit_dir_vec = direction_vector / direction_norm
-            theta_pos = arc_center + unit_dir_vec * 1.1 * line_length
-        else: # Handle initial degenerate case if alpha starts near 0/1
-            default_offset_vector = A / np.linalg.norm(A)
+        #arc_center = self.angle_obj.get_center()
+        #theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5)
+        #direction_vector = theta_pos_on_arc - arc_center
+        #direction_norm = np.linalg.norm(direction_vector)
+        #if direction_norm > 1e-6:
+        #    unit_dir_vec = direction_vector / direction_norm
+        #    theta_pos = arc_center + unit_dir_vec * 1.1 * line_length
+        #else: # Handle initial degenerate case if alpha starts near 0/1
+        #    default_offset_vector = A / np.linalg.norm(A)
+        #    theta_pos = position + default_offset_vector * 1.1 * line_length
+        #self.theta.move_to(theta_pos)
+
+        # Alternative theta positioning
+        A_vec = A  # Use the initial A vector
+        B_vec = B
+        mid_vector = (A_vec + B_vec) / 2
+        mid_vector_norm = np.linalg.norm(mid_vector)
+        if mid_vector_norm > 1e-6:
+            unit_mid_vector = mid_vector / mid_vector_norm
+            theta_pos = position + unit_mid_vector * 1.1 * line_length
+        else:
+            # Handle degenerate case
+            default_offset_vector = A_vec / np.linalg.norm(A_vec)
             theta_pos = position + default_offset_vector * 1.1 * line_length
         self.theta.move_to(theta_pos)
 
         # Create radial line
-        self.radial_line = Line(position, theta_pos_on_arc, color=WHITE, stroke_width=1)
+        self.radial_line = Line(position, position + unit_mid_vector, color=WHITE, stroke_width=1)
 
         self.angle_group = VGroup(self.line1, self.line2, self.angle_obj, self.theta, self.radial_line)
         self.add(self.angle_group)
@@ -99,24 +113,41 @@ class AngleNew(Scene):
             # Check is_degenerate *again* because the try-except might have changed it
             if not is_degenerate:
                 # Calculate theta position safely only if angle is valid
-                theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5) # Use updated angle_obj
-                arc_center = self.angle_obj.get_center() # Center of the *updated* angle
-                direction_vector = theta_pos_on_arc - arc_center
-                direction_norm = np.linalg.norm(direction_vector)
+                #theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5) # Use updated angle_obj
+                #arc_center = self.angle_obj.get_center() # Center of the *updated* angle
+                #direction_vector = theta_pos_on_arc - arc_center
+                #direction_norm = np.linalg.norm(direction_vector)
 
                 line_length = 1.0 # Since A_vec is unit vector
 
-                if direction_norm > 1e-6:
-                    # Normal case for theta positioning
-                    unit_dir_vec = direction_vector / direction_norm
-                    theta_pos = arc_center + unit_dir_vec * 1.1 * line_length
+                #if direction_norm > 1e-6:
+                #    # Normal case for theta positioning
+                #    unit_dir_vec = direction_vector / direction_norm
+                #    theta_pos = arc_center + unit_dir_vec * 1.1 * line_length
+                #    self.theta.move_to(theta_pos)
+                #    self.theta.set_opacity(1)
+                #    # angle_obj opacity was set to 1 in the try block above
+                #else:
+                #    # Handle degenerate direction_vector (should be rare if angle isn't degenerate)
+                #    # Place theta along the first line's direction as a fallback
+                #    default_offset_vector = A_vec / np.linalg.norm(A_vec) # Unit vector along A
+                #    theta_pos = position + default_offset_vector * 1.1 * line_length
+                #    self.theta.move_to(theta_pos)
+                #    self.theta.set_opacity(1) # Keep theta visible
+                #    # angle_obj opacity was set to 1 in the try block above
+
+                # Alternative theta positioning
+                mid_vector = (A_vec + B_vec) / 2
+                mid_vector_norm = np.linalg.norm(mid_vector)
+                if mid_vector_norm > 1e-6:
+                    unit_mid_vector = mid_vector / mid_vector_norm
+                    theta_pos = position + unit_mid_vector * 1.1 * line_length
                     self.theta.move_to(theta_pos)
                     self.theta.set_opacity(1)
                     # angle_obj opacity was set to 1 in the try block above
                 else:
-                    # Handle degenerate direction_vector (should be rare if angle isn't degenerate)
-                    # Place theta along the first line's direction as a fallback
-                    default_offset_vector = A_vec / np.linalg.norm(A_vec) # Unit vector along A
+                    # Handle degenerate case
+                    default_offset_vector = A_vec / np.linalg.norm(A_vec)
                     theta_pos = position + default_offset_vector * 1.1 * line_length
                     self.theta.move_to(theta_pos)
                     self.theta.set_opacity(1) # Keep theta visible
@@ -130,9 +161,22 @@ class AngleNew(Scene):
                 # The lines (self.line1, self.line2) are still updated above, so they keep moving.
 
             # Update radial line
-            theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5)
-            radial_line_end = position + 2 * (theta_pos_on_arc - position)
-            self.radial_line.put_start_and_end_on(position, radial_line_end)
+            #theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5)
+            #radial_line_end = position + 2 * (theta_pos_on_arc - position)
+            #self.radial_line.put_start_and_end_on(position, radial_line_end)
+
+            # Update radial line
+            mid_vector = (A_vec + B_vec) / 2
+            mid_vector_norm = np.linalg.norm(mid_vector)
+            if mid_vector_norm > 1e-6:
+                unit_mid_vector = mid_vector / mid_vector_norm
+                radial_line_end = position + 2 * unit_mid_vector
+                self.radial_line.put_start_and_end_on(position, radial_line_end)
+            else:
+                # Handle degenerate case
+                default_offset_vector = A_vec / np.linalg.norm(A_vec)
+                radial_line_end = position + 2 * default_offset_vector
+                self.radial_line.put_start_and_end_on(position, radial_line_end)
 
         # Create animation using the new updater
         animation = UpdateFromAlphaFunc(self.angle_group, update_angle_components)
