@@ -87,7 +87,7 @@ class AngleGroup(VGroup):
             try:
                 # Ensure new angle also has no fill
                 # Use a temporary Angle to avoid modifying self.angle_obj before checking validity
-                temp_angle = Angle(self.line1, self.line2, radius=0.8, color=BLUE_C, dot=True, dot_radius=0.07, dot_distance=0, fill_opacity=0)
+                temp_angle = Angle(self.line1, self.line2, radius=0.6, color=BLUE_C, dot=True, dot_radius=0.07, dot_distance=0, fill_opacity=0)
                 self.angle_obj.become(temp_angle)
                 # Explicitly set stroke opacity, keep fill opacity at 0
                 self.angle_obj.set_stroke(opacity=1)
