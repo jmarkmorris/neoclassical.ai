@@ -70,11 +70,12 @@ list_tools() {
 run_tool() {
     local tool_name="$1"
     echo "Running $tool_name..."
-    echo "Command: manim -pqk --disable_caching $tool_name.py $tool_name -p"
+    # Use python -m manim to ensure the correct environment is used
+    echo "Command: python -m manim -pqk --disable_caching $tool_name.py $tool_name -p"
     echo ""
     
-    # Run the tool with high quality rendering
-    manim -pqk --disable_caching "$tool_name.py" "$tool_name" -p
+    # Run the tool with high quality rendering using python -m manim
+    python -m manim -pqk --disable_caching "$tool_name.py" "$tool_name" -p
     
     echo ""
     echo "Finished running $tool_name."
