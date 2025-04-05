@@ -1,37 +1,14 @@
 import sys
 import os
-print("--- Python sys.path ---")
-print(sys.path)
-print("--- Current Working Directory ---")
-print(os.getcwd())
-print("--- npqg expected location ---")
-# Assuming the script is run from the project root or similar
-# Adjust the path calculation if needed based on CWD output
+# Ensure the project root is in sys.path to find the npqg package
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-print(os.path.join(project_root, 'npqg'))
-
-# --- Add project root to sys.path ---
 if project_root not in sys.path:
-    print(f"--- Adding {project_root} to sys.path ---")
     sys.path.insert(0, project_root)
-else:
-    print(f"--- {project_root} already in sys.path ---")
-# --- End of addition ---
-
-print("--- Attempting import ---")
 
 from manim import *
 import numpy as np
-# Import the AngleGroup from the new library structure
-# Use absolute import assuming 'npqg' is in the Python path or CWD
-try:
-    # Import directly from the package thanks to npqg/__init__.py
-    from npqg import AngleGroup
-    print("--- Import successful ---")
-except ModuleNotFoundError as e:
-    print(f"--- Import failed: {e} ---")
-    # Re-raise the exception so Manim still shows the error
-    raise e
+# Import the AngleGroup from the npqg library
+from npqg import AngleGroup
 
 # Colors used specifically by the AnglesMoving Scene
 INDIGO = "#4B0082"
@@ -42,7 +19,7 @@ WHITE = "#FFFFFF"
 
 
 # The Scene class remains here for now, acting as an example usage
-class AnglesClassUse(Scene):
+class AngleClassUse(Scene):
     def construct(self):
 
         self.camera.background_color = INDIGO
