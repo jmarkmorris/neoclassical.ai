@@ -14,11 +14,20 @@ def unit_vector(vector):
 
 # Reusable Angle Group Class
 class AngleGroup(VGroup):
-    def __init__(self, initial_position, initial_angle_value, path, **kwargs):
+    def __init__(self, initial_alpha, path, duration=1.0, **kwargs):
         super().__init__(**kwargs)
         self.path = path # Store the path for the updater
+        self.initial_alpha = initial_alpha
+        self.duration = duration
+        self.speed = 1.0 / duration if duration > 0 else 0 # Speed as proportion per second
+        self.current_alpha = initial_alpha
+        self.is_updating = True # Flag to control the updater
 
-        # Define points for the angle
+        # Calculate initial state based on initial_alpha
+        initial_position = path.point_from_proportion(initial_alpha)
+        initial_angle_value = initial_alpha * 360 * DEGREES
+
+        # Define points for the angle (relative to origin for calculation)
         A = np.array([1, 0, 0])
         O = np.array([0, 0, 0]) # Relative origin for angle calculation
         B = np.array([np.cos(initial_angle_value), np.sin(initial_angle_value), 0])
@@ -50,12 +59,18 @@ class AngleGroup(VGroup):
         # Add components to the VGroup
         self.add(self.line1, self.line2, self.angle_obj, self.theta)
 
-    # Updater function moved inside the class
-    def update_components(self, alpha):
-        position = self.path.point_from_proportion(alpha)
-        angle_value = alpha * 360 * DEGREES
+        # Initialize visuals to the starting state
+        self._update_visuals(self.initial_alpha)
 
-        # Define new vectors relative to origin
+    # Renamed from update_components
+    def _update_visuals(self, alpha):
+        """Updates the visual components based on the given alpha."""
+        # Clamp alpha to avoid errors with point_from_proportion if it goes outside [0, 1]
+        clamped_alpha = np.clip(alpha, 0, 1)
+        position = self.path.point_from_proportion(clamped_alpha)
+        angle_value = clamped_alpha * 360 * DEGREES
+
+        # Define new vectors relative to origin (for angle calculation)
         A_vec = np.array([1, 0, 0])
         B_vec = np.array([np.cos(angle_value), np.sin(angle_value), 0])
 
@@ -113,6 +128,23 @@ class AngleGroup(VGroup):
             self.theta.set_opacity(0)
             # The lines (self.line1, self.line2) are still updated above, so they keep moving.
 
+    def update(self, dt):
+        """Standard Manim updater function."""
+        if not self.is_updating:
+            return
+
+        if self.current_alpha < 1.0:
+            self.current_alpha += self.speed * dt
+            # Ensure alpha doesn't exceed 1 due to dt fluctuations
+            self.current_alpha = min(self.current_alpha, 1.0)
+            self._update_visuals(self.current_alpha)
+        else:
+            # Optionally stop updating once alpha reaches 1
+            # self.is_updating = False
+            # Or handle looping if desired
+            # self.current_alpha = self.current_alpha % 1.0 # Loop
+            pass # Keep showing the final state if clamped
+
 
 class AnglesMoving(Scene):
     def construct(self):
@@ -149,40 +181,27 @@ class AnglesMoving(Scene):
         )
         self.add(path_left, path_right)
 
-        # Initial state for both angles
-        initial_pos_left = path_left.point_from_proportion(initial_alpha)
-        initial_pos_right = path_right.point_from_proportion(initial_alpha)
-        initial_angle_value = initial_alpha * 360 * DEGREES
+        # Define animation duration
+        animation_duration = 15.0
 
-        # Create two instances of AngleGroup
-        angle_group_left = AngleGroup(initial_pos_left, initial_angle_value, path_left)
-        angle_group_right = AngleGroup(initial_pos_right, initial_angle_value, path_right)
+        # Create two instances of AngleGroup, providing the initial alpha and duration
+        angle_group_left = AngleGroup(initial_alpha, path_left, duration=animation_duration)
+        angle_group_right = AngleGroup(initial_alpha, path_right, duration=animation_duration)
+
+        # Add the updater to each group
+        # The lambda function ensures 'mob' (the AngleGroup instance) is passed correctly
+        angle_group_left.add_updater(lambda mob, dt: mob.update(dt))
+        angle_group_right.add_updater(lambda mob, dt: mob.update(dt))
 
         # Add both groups to the scene
         self.add(angle_group_left, angle_group_right)
 
-        # Combined updater function for both groups
-        def update_all_angles(mob, alpha):
-            # mob is the VGroup containing both angle groups
-            # We need to update each group individually using its own update method
-            angle_group_left.update_components(alpha)
-            angle_group_right.update_components(alpha)
+        # Wait for the duration of the animation for the updaters to run
+        self.wait(animation_duration)
 
-        # Group the two angle groups for the updater
-        # Note: We add the individual groups to the scene for display,
-        # but use a temporary VGroup for the UpdateFromAlphaFunc target
-        # if we don't want the updater group itself added to the scene.
-        # Alternatively, apply the updater to each group separately if needed,
-        # but a single updater is often cleaner.
-        all_angle_groups = VGroup(angle_group_left, angle_group_right)
+        # Optional: Remove updaters if they are no longer needed
+        angle_group_left.remove_updater(lambda mob, dt: mob.update(dt))
+        angle_group_right.remove_updater(lambda mob, dt: mob.update(dt))
 
-        # Create animation using the combined updater
-        # The updater function modifies the objects directly,
-        # so the target 'all_angle_groups' is just a handle.
-        animation = UpdateFromAlphaFunc(all_angle_groups, update_all_angles)
-
-        # Play the animation
-        self.play(animation, run_time=15, rate_func=linear)
-
-        # Wait for a moment
+        # Wait for a moment at the end
         self.wait(2)
