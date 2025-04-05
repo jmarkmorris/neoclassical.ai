@@ -25,7 +25,8 @@ import numpy as np
 # Import the AngleGroup from the new library structure
 # Use absolute import assuming 'npqg' is in the Python path or CWD
 try:
-    from npqg.mobjects import AngleGroup
+    # Import directly from the package thanks to npqg/__init__.py
+    from npqg import AngleGroup
     print("--- Import successful ---")
 except ModuleNotFoundError as e:
     print(f"--- Import failed: {e} ---")
@@ -41,7 +42,7 @@ WHITE = "#FFFFFF"
 
 
 # The Scene class remains here for now, acting as an example usage
-class AnglesMoving(Scene):
+class AnglesClassUse(Scene):
     def construct(self):
 
         self.camera.background_color = INDIGO
