@@ -138,8 +138,7 @@ class AngleGroup(VGroup):
             line_length = 1.0 * scale_multiplier
             theta_pos = current_position + unit_mid_vector * 1.1 * line_length
             self.theta.move_to(theta_pos)
-            # Also scale the theta text
-            self.theta.scale(scale_multiplier / self._current_scale_factor)
+            # Do not scale the theta text size
         
         # Update the current scale factor
         self._current_scale_factor = target_factor
@@ -304,9 +303,20 @@ class AngleGroup(VGroup):
                 self._set_scale_factor(self._scale_target)
                 self._is_scaling = False
             else:
-                # Calculate linear progress (0 to 1)
-                progress = self._scale_elapsed_time / self._scale_duration
-                # Interpolate the scale factor linearly
+                # Calculate progress (0 to 1) with smooth easing
+                linear_progress = self._scale_elapsed_time / self._scale_duration
+                
+                # Apply smooth easing function (ease in-out)
+                # This creates a more natural, less jumpy animation
+                if linear_progress < 0.5:
+                    # Ease in: slow start, accelerate
+                    progress = 2 * linear_progress * linear_progress
+                else:
+                    # Ease out: decelerate to end
+                    progress = 1 - pow(-2 * linear_progress + 2, 2) / 2
+                
+                # Interpolate the scale factor with the eased progress
                 interpolated_scale = self._scale_start_value + (self._scale_target - self._scale_start_value) * progress
+                
                 # Apply the interpolated scale
                 self._set_scale_factor(interpolated_scale)
