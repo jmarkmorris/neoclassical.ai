@@ -32,7 +32,10 @@ class AngleGroup(VGroup):
         self.line1 = Line(initial_position, initial_position + A, color=GREEN)
         self.line2 = Line(initial_position, initial_position + B, color=ORANGE)
         # Ensure fill opacity is 0 from the start
-        self.angle_obj = Angle(self.line1, self.line2, radius=0.8, color=BLUE_C, dot=True, dot_radius=0.07, dot_distance=0, fill_opacity=0)
+        self.base_radius = 0.8  # Store the base radius for scaling calculations
+        self.base_dot_radius = 0.07  # Store the base dot radius for scaling calculations
+        self.angle_obj = Angle(self.line1, self.line2, radius=self.base_radius, color=BLUE_C, 
+                              dot=True, dot_radius=self.base_dot_radius, dot_distance=0, fill_opacity=0)
         self.theta = MathTex(r"\theta", color=WHITE).scale(0.6)
 
         # Initial theta position calculation
@@ -89,60 +92,42 @@ class AngleGroup(VGroup):
                  print("Warning: Cannot scale up from scale factor 0.")
                  return
 
-        scale_multiplier = target_factor / self._current_scale_factor
+        # Update the scale factor first
+        self._current_scale_factor = target_factor
         
-        # Get current position (apex of the angle)
-        current_position = self.line1.get_start()
-        
-        # Scale the lines while keeping their start points fixed
-        line1_end = current_position + (self.line1.get_end() - current_position) * scale_multiplier
-        line2_end = current_position + (self.line2.get_end() - current_position) * scale_multiplier
-        
-        self.line1.put_start_and_end_on(current_position, line1_end)
-        self.line2.put_start_and_end_on(current_position, line2_end)
-        
-        # Scale the angle arc radius
-        current_arc_color = self.angle_obj.get_color()
-        current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE
-        
-        # Create a new angle with scaled radius
-        new_radius = 0.6 * scale_multiplier
-        temp_angle = Angle(self.line1, self.line2, radius=new_radius, color=current_arc_color, 
-                           dot=True, dot_radius=0.07 * scale_multiplier, dot_distance=0, fill_opacity=0)
-        
-        if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
-            temp_angle.dot.set_color(current_dot_color)
-            
-        self.angle_obj.become(temp_angle)
-        self.angle_obj.set_stroke(opacity=1)
-        
-        if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
-            self.angle_obj.dot.set_color(current_dot_color)
+        # Then update the visuals with the current alpha
+        # This ensures consistent scaling behavior between direct scaling and animation
+        self._update_visuals(self.current_alpha)
         
         # Reposition theta label based on the new scale
-        angle_value = self.current_alpha * 360 * DEGREES
-        A_vec = np.array([1, 0, 0])
-        B_vec = np.array([np.cos(angle_value), np.sin(angle_value), 0])
+        # Calculate the actual angle between vectors directly
+        A_vec = self.line1.get_end() - self.line1.get_start()
+        B_vec = self.line2.get_end() - self.line2.get_start()
         
-        mid_vector = (A_vec + B_vec) / 2
-        mid_vector_norm = np.linalg.norm(mid_vector)
+        # Normalize vectors for angle calculation
+        A_vec = A_vec / np.linalg.norm(A_vec)
+        B_vec = B_vec / np.linalg.norm(B_vec)
         
-        if mid_vector_norm > 1e-6:
-            unit_mid_vector = mid_vector / mid_vector_norm
+        # Calculate the bisector vector directly from the current line positions
+        # This is more stable than using alpha-based calculations
+        bisector = A_vec + B_vec
+        bisector_norm = np.linalg.norm(bisector)
+        
+        if bisector_norm > 1e-6:
+            # Normalize the bisector
+            unit_bisector = bisector / bisector_norm
             
-            # Check if angle is greater than 180 degrees using cross product
-            cross_product = np.cross(A_vec, B_vec)[2]  # z-component of cross product
-            if cross_product < 0:  # Second line is clockwise from first line (angle > 180)
-                unit_mid_vector = -unit_mid_vector
+            # Check if we need to flip the bisector (for angles > 180°)
+            cross_product = np.cross(A_vec, B_vec)[2]
+            if cross_product < 0:
+                unit_bisector = -unit_bisector
                 
             # Scale the distance of theta from the apex
-            line_length = 1.0 * scale_multiplier
-            theta_pos = current_position + unit_mid_vector * 1.1 * line_length
+            line_length = 1.0 * target_factor
+            current_position = self.line1.get_start()
+            theta_pos = current_position + unit_bisector * 1.1 * line_length
             self.theta.move_to(theta_pos)
-            # Do not scale the theta text size
-        
-        # Update the current scale factor
-        self._current_scale_factor = target_factor
+        # The current scale factor was already updated at the beginning of this method
 
     # --- Public method to trigger scaling ---
     def dynamic_scale(self, target_scale, duration):
@@ -197,16 +182,18 @@ class AngleGroup(VGroup):
     # Renamed from update_components
     def _update_visuals(self, alpha):
         """Updates the visual components based on the given alpha."""
-        # Clamp alpha to avoid errors with point_from_proportion if it goes outside [0, 1]
-        clamped_alpha = np.clip(alpha, 0, 1)
-        position = self.path.point_from_proportion(clamped_alpha)
-        angle_value = clamped_alpha * 360 * DEGREES
+        # Store the current alpha for other methods to use
+        self.current_alpha = np.clip(alpha, 0, 1)
+        
+        # Get position on the path
+        position = self.path.point_from_proportion(self.current_alpha)
+        angle_value = self.current_alpha * 360 * DEGREES
 
         # Define new vectors relative to origin (for angle calculation)
         A_vec = np.array([1, 0, 0])
         B_vec = np.array([np.cos(angle_value), np.sin(angle_value), 0])
         
-        # Calculate the actual angle between vectors (in degrees for debugging)
+        # Calculate the actual angle between vectors
         dot_product = np.dot(A_vec, B_vec)
         cross_product = np.cross(A_vec, B_vec)[2]  # z-component
         actual_angle_deg = np.degrees(np.arccos(np.clip(dot_product, -1.0, 1.0)))
@@ -225,73 +212,81 @@ class AngleGroup(VGroup):
         self.line2.put_start_and_end_on(position, position + scaled_B_vec)
 
         # Check for parallel/anti-parallel lines (angle near 0, 180, 360 deg)
-        # Use a small tolerance (atol) for floating point comparisons
-        # Use the actual calculated angle rather than the alpha-based angle
+        # Use a small tolerance for floating point comparisons
         is_degenerate = np.isclose(actual_angle_deg % 180, 0, atol=1e-6)
 
-        if not is_degenerate:
-            # Update angle object only if lines are not parallel/anti-parallel
-            try:
-                # Ensure new angle also has no fill
-                # Preserve the existing colors of the arc and dot
-                current_arc_color = self.angle_obj.get_color()
-                current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE # Default if no dot
-
-                # Use a temporary Angle with the preserved colors and scaled radius
-                scaled_radius = 0.6 * self._current_scale_factor
-                scaled_dot_radius = 0.07 * self._current_scale_factor
-                temp_angle = Angle(self.line1, self.line2, radius=scaled_radius, color=current_arc_color, 
-                                  dot=True, dot_radius=scaled_dot_radius, dot_distance=0, fill_opacity=0)
-                # Set the dot color explicitly on the temporary angle's dot before 'become'
-                if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
-                    temp_angle.dot.set_color(current_dot_color)
-
-                self.angle_obj.become(temp_angle)
-                # Explicitly set stroke opacity, keep fill opacity at 0
-                self.angle_obj.set_stroke(opacity=1)
-                # Re-apply dot color just in case 'become' didn't transfer it perfectly
-                if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
-                     self.angle_obj.dot.set_color(current_dot_color)
-
-            except ValueError:
-                # This should ideally not happen due to the is_degenerate check, but as a safeguard:
-                is_degenerate = True # Treat as degenerate if Angle() fails
-
-        # Check is_degenerate *again* because the try-except might have changed it
-        if not is_degenerate:
-            # Calculate theta position safely only if angle is valid
-            # Apply current scale factor to the line length
-            line_length = 1.0 * self._current_scale_factor # Scale the unit vector
-
-            # Alternative theta positioning
-            mid_vector = (A_vec + B_vec) / 2
-            mid_vector_norm = np.linalg.norm(mid_vector)
-            if mid_vector_norm > 1e-6:
-                unit_mid_vector = mid_vector / mid_vector_norm
-
-                # Check if angle is greater than 180 degrees (PI radians)
-                # Use the cross product to determine which side of the first line the second line is on
-                cross_product = np.cross(A_vec, B_vec)[2]  # z-component of cross product
-                if cross_product < 0:  # Second line is clockwise from first line (angle > 180)
-                    unit_mid_vector = -unit_mid_vector  # Flip the direction
-
-                theta_pos = position + unit_mid_vector * 1.1 * line_length
-                self.theta.move_to(theta_pos)
-                self.theta.set_opacity(1)
-                # angle_obj opacity was set to 1 in the try block above
-            else:
-                # Handle degenerate case (mid_vector is zero)
-                default_offset_vector = A_vec / np.linalg.norm(A_vec) # Use A_vec direction
-                theta_pos = position + default_offset_vector * 1.1 * line_length
-                self.theta.move_to(theta_pos)
-                self.theta.set_opacity(1) # Keep theta visible
-                # angle_obj opacity was set to 1 in the try block above
-        else:
-            # Handle degenerate case (angle is ~0, ~180 or ~360)
-            # Hide the angle arc and theta label as they are undefined/unstable
+        # Always update the angle object, even if the angle is degenerate
+        # This ensures consistent scaling behavior throughout the animation
+        try:
+            # Preserve the existing colors of the arc and dot
+            current_arc_color = self.angle_obj.get_color()
+            current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE
+            
+            # Create a new angle with the current scale factor applied
+            scaled_radius = self.base_radius * scale_factor
+            scaled_dot_radius = self.base_dot_radius * scale_factor
+            
+            # Create a new angle with the scaled dimensions
+            temp_angle = Angle(
+                self.line1, self.line2, 
+                radius=scaled_radius, 
+                color=current_arc_color,
+                dot=True, 
+                dot_radius=scaled_dot_radius, 
+                dot_distance=0, 
+                fill_opacity=0
+            )
+            
+            # Set the dot color explicitly
+            if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
+                temp_angle.dot.set_color(current_dot_color)
+            
+            # Update the angle object
+            self.angle_obj.become(temp_angle)
+            
+            # Set visibility based on whether the angle is degenerate
+            opacity = 0 if is_degenerate else 1
+            self.angle_obj.set_stroke(opacity=opacity)
+            
+            # Re-apply dot color
+            if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+                self.angle_obj.dot.set_color(current_dot_color)
+                self.angle_obj.dot.set_opacity(opacity)
+                
+        except ValueError:
+            # If angle creation fails, hide the angle
             self.angle_obj.set_stroke(opacity=0)
-            self.theta.set_opacity(0)
-            # The lines (self.line1, self.line2) are still updated above, so they keep moving.
+            if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+                self.angle_obj.dot.set_opacity(0)
+            is_degenerate = True
+
+        # Position the theta label
+        # Calculate theta position using the bisector method
+        line_length = 1.0 * scale_factor  # Scale the unit vector
+        
+        # Calculate the bisector vector
+        bisector = A_vec + B_vec
+        bisector_norm = np.linalg.norm(bisector)
+        
+        if bisector_norm > 1e-6:
+            # Normalize the bisector
+            unit_bisector = bisector / bisector_norm
+            
+            # Flip the bisector for angles > 180°
+            if cross_product < 0:
+                unit_bisector = -unit_bisector
+            
+            # Position theta along the bisector
+            theta_pos = position + unit_bisector * 1.1 * line_length
+            self.theta.move_to(theta_pos)
+        else:
+            # Handle degenerate case (bisector is zero)
+            default_offset_vector = A_vec / np.linalg.norm(A_vec)
+            theta_pos = position + default_offset_vector * 1.1 * line_length
+            self.theta.move_to(theta_pos)
+        
+        # Set theta visibility based on whether the angle is degenerate
+        self.theta.set_opacity(0 if is_degenerate else 1)
 
     # Accept 'recursive' as the third positional argument passed by Manim's internal update loop
     def update(self, dt, recursive=True, **kwargs):
