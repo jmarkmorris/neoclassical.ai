@@ -130,8 +130,9 @@ class AngleGroup(VGroup):
         if mid_vector_norm > 1e-6:
             unit_mid_vector = mid_vector / mid_vector_norm
             
-            # Check if angle is greater than 180 degrees
-            if angle_value > PI:
+            # Check if angle is greater than 180 degrees using cross product
+            cross_product = np.cross(A_vec, B_vec)[2]  # z-component of cross product
+            if cross_product < 0:  # Second line is clockwise from first line (angle > 180)
                 unit_mid_vector = -unit_mid_vector
                 
             # Scale the distance of theta from the apex
@@ -204,6 +205,15 @@ class AngleGroup(VGroup):
         # Define new vectors relative to origin (for angle calculation)
         A_vec = np.array([1, 0, 0])
         B_vec = np.array([np.cos(angle_value), np.sin(angle_value), 0])
+        
+        # Calculate the actual angle between vectors (in degrees for debugging)
+        dot_product = np.dot(A_vec, B_vec)
+        cross_product = np.cross(A_vec, B_vec)[2]  # z-component
+        actual_angle_deg = np.degrees(np.arccos(np.clip(dot_product, -1.0, 1.0)))
+        
+        # Determine the correct sign based on cross product
+        if cross_product < 0:
+            actual_angle_deg = 360 - actual_angle_deg
 
         # Apply current scale factor to the line lengths
         scale_factor = self._current_scale_factor
@@ -216,7 +226,8 @@ class AngleGroup(VGroup):
 
         # Check for parallel/anti-parallel lines (angle near 0, 180, 360 deg)
         # Use a small tolerance (atol) for floating point comparisons
-        is_degenerate = np.isclose(angle_value % PI, 0, atol=1e-6) or np.isclose(angle_value % PI, PI, atol=1e-6)
+        # Use the actual calculated angle rather than the alpha-based angle
+        is_degenerate = np.isclose(actual_angle_deg % 180, 0, atol=1e-6)
 
         if not is_degenerate:
             # Update angle object only if lines are not parallel/anti-parallel
@@ -259,7 +270,9 @@ class AngleGroup(VGroup):
                 unit_mid_vector = mid_vector / mid_vector_norm
 
                 # Check if angle is greater than 180 degrees (PI radians)
-                if angle_value > PI:
+                # Use the cross product to determine which side of the first line the second line is on
+                cross_product = np.cross(A_vec, B_vec)[2]  # z-component of cross product
+                if cross_product < 0:  # Second line is clockwise from first line (angle > 180)
                     unit_mid_vector = -unit_mid_vector  # Flip the direction
 
                 theta_pos = position + unit_mid_vector * 1.1 * line_length
