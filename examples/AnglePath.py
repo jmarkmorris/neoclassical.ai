@@ -64,10 +64,7 @@ class AnglePath(Scene):
             theta_pos = position + default_offset_vector * 1.1 * line_length
         self.theta.move_to(theta_pos)
 
-        # Create radial line
-        #self.radial_line = Line(position, position + unit_mid_vector, color=WHITE, stroke_width=1)
-
-        self.angle_group = VGroup(self.line1, self.line2, self.angle_obj, self.theta) #, self.radial_line)
+        self.angle_group = VGroup(self.line1, self.line2, self.angle_obj, self.theta)
         self.add(self.angle_group)
 
         # Updater function to modify components in place
@@ -110,6 +107,11 @@ class AnglePath(Scene):
                 mid_vector_norm = np.linalg.norm(mid_vector)
                 if mid_vector_norm > 1e-6:
                     unit_mid_vector = mid_vector / mid_vector_norm
+                    
+                    # Check if angle is greater than 180 degrees (PI radians)
+                    if angle_value > PI:
+                        unit_mid_vector = -unit_mid_vector  # Flip the direction
+
                     theta_pos = position + unit_mid_vector * 1.1 * line_length
                     self.theta.move_to(theta_pos)
                     self.theta.set_opacity(1)
@@ -128,24 +130,6 @@ class AnglePath(Scene):
                 self.angle_obj.set_stroke(opacity=0)
                 self.theta.set_opacity(0) # Keep using set_opacity for MathTex
                 # The lines (self.line1, self.line2) are still updated above, so they keep moving.
-
-            # Update radial line
-            #theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5)
-            #radial_line_end = position + 2 * (theta_pos_on_arc - position)
-            #self.radial_line.put_start_and_end_on(position, radial_line_end)
-
-            # Update radial line
-            #mid_vector = (A_vec + B_vec) / 2
-            #mid_vector_norm = np.linalg.norm(mid_vector)
-            #if mid_vector_norm > 1e-6:
-            #    unit_mid_vector = mid_vector / mid_vector_norm
-            #    radial_line_end = position + 2 * unit_mid_vector
-            #    self.radial_line.put_start_and_end_on(position, radial_line_end)
-            #else:
-            #    # Handle degenerate case
-            #    default_offset_vector = A_vec / np.linalg.norm(A_vec)
-            #    radial_line_end = position + 2 * default_offset_vector
-            #    self.radial_line.put_start_and_end_on(position, radial_line_end)
 
         # Create animation using the new updater
         animation = UpdateFromAlphaFunc(self.angle_group, update_angle_components)
