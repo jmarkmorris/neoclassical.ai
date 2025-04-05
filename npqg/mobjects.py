@@ -75,22 +75,74 @@ class AngleGroup(VGroup):
         """
         Applies scaling to reach the target_factor from the current factor.
         Updates the internal tracking variable.
+        
+        This scaling keeps the apex of the angle fixed and scales:
+        - The length of both lines
+        - The radius of the angle arc
+        - The position of the theta label
         """
         if self._current_scale_factor == 0: # Avoid division by zero if already scaled to 0
              if target_factor == 0:
                  return # Already at target scale 0
              else:
                  # Cannot scale up from 0 using a multiplier.
-                 # This case is tricky. For simplicity, let's assume we don't scale up from exactly 0.
-                 # A more robust solution might involve storing initial size and scaling absolutely.
                  print("Warning: Cannot scale up from scale factor 0.")
                  return
 
         scale_multiplier = target_factor / self._current_scale_factor
-        # print(f"DEBUG: _set_scale_factor - Target: {target_factor}, Current: {self._current_scale_factor}, Multiplier: {scale_multiplier}") # DEBUG - Removed
-        self.scale(scale_multiplier) # Manim's scale method multiplies current size
+        
+        # Get current position (apex of the angle)
+        current_position = self.line1.get_start()
+        
+        # Scale the lines while keeping their start points fixed
+        line1_end = current_position + (self.line1.get_end() - current_position) * scale_multiplier
+        line2_end = current_position + (self.line2.get_end() - current_position) * scale_multiplier
+        
+        self.line1.put_start_and_end_on(current_position, line1_end)
+        self.line2.put_start_and_end_on(current_position, line2_end)
+        
+        # Scale the angle arc radius
+        current_arc_color = self.angle_obj.get_color()
+        current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE
+        
+        # Create a new angle with scaled radius
+        new_radius = 0.6 * scale_multiplier
+        temp_angle = Angle(self.line1, self.line2, radius=new_radius, color=current_arc_color, 
+                           dot=True, dot_radius=0.07 * scale_multiplier, dot_distance=0, fill_opacity=0)
+        
+        if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
+            temp_angle.dot.set_color(current_dot_color)
+            
+        self.angle_obj.become(temp_angle)
+        self.angle_obj.set_stroke(opacity=1)
+        
+        if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+            self.angle_obj.dot.set_color(current_dot_color)
+        
+        # Reposition theta label based on the new scale
+        angle_value = self.current_alpha * 360 * DEGREES
+        A_vec = np.array([1, 0, 0])
+        B_vec = np.array([np.cos(angle_value), np.sin(angle_value), 0])
+        
+        mid_vector = (A_vec + B_vec) / 2
+        mid_vector_norm = np.linalg.norm(mid_vector)
+        
+        if mid_vector_norm > 1e-6:
+            unit_mid_vector = mid_vector / mid_vector_norm
+            
+            # Check if angle is greater than 180 degrees
+            if angle_value > PI:
+                unit_mid_vector = -unit_mid_vector
+                
+            # Scale the distance of theta from the apex
+            line_length = 1.0 * scale_multiplier
+            theta_pos = current_position + unit_mid_vector * 1.1 * line_length
+            self.theta.move_to(theta_pos)
+            # Also scale the theta text
+            self.theta.scale(scale_multiplier / self._current_scale_factor)
+        
+        # Update the current scale factor
         self._current_scale_factor = target_factor
-        # print(f"DEBUG: _set_scale_factor - Scale applied. New _current_scale_factor: {self._current_scale_factor}") # DEBUG - Removed
 
     # --- Public method to trigger scaling ---
     # Duration is now the second positional argument
@@ -149,9 +201,14 @@ class AngleGroup(VGroup):
         A_vec = np.array([1, 0, 0])
         B_vec = np.array([np.cos(angle_value), np.sin(angle_value), 0])
 
-        # Update lines
-        self.line1.put_start_and_end_on(position, position + A_vec)
-        self.line2.put_start_and_end_on(position, position + B_vec)
+        # Apply current scale factor to the line lengths
+        scale_factor = self._current_scale_factor
+        scaled_A_vec = A_vec * scale_factor
+        scaled_B_vec = B_vec * scale_factor
+
+        # Update lines with scaled vectors
+        self.line1.put_start_and_end_on(position, position + scaled_A_vec)
+        self.line2.put_start_and_end_on(position, position + scaled_B_vec)
 
         # Check for parallel/anti-parallel lines (angle near 0, 180, 360 deg)
         # Use a small tolerance (atol) for floating point comparisons
@@ -165,8 +222,11 @@ class AngleGroup(VGroup):
                 current_arc_color = self.angle_obj.get_color()
                 current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE # Default if no dot
 
-                # Use a temporary Angle with the preserved colors
-                temp_angle = Angle(self.line1, self.line2, radius=0.6, color=current_arc_color, dot=True, dot_radius=0.07, dot_distance=0, fill_opacity=0)
+                # Use a temporary Angle with the preserved colors and scaled radius
+                scaled_radius = 0.6 * self._current_scale_factor
+                scaled_dot_radius = 0.07 * self._current_scale_factor
+                temp_angle = Angle(self.line1, self.line2, radius=scaled_radius, color=current_arc_color, 
+                                  dot=True, dot_radius=scaled_dot_radius, dot_distance=0, fill_opacity=0)
                 # Set the dot color explicitly on the temporary angle's dot before 'become'
                 if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
                     temp_angle.dot.set_color(current_dot_color)
@@ -185,7 +245,8 @@ class AngleGroup(VGroup):
         # Check is_degenerate *again* because the try-except might have changed it
         if not is_degenerate:
             # Calculate theta position safely only if angle is valid
-            line_length = 1.0 # Since A_vec is unit vector
+            # Apply current scale factor to the line length
+            line_length = 1.0 * self._current_scale_factor # Scale the unit vector
 
             # Alternative theta positioning
             mid_vector = (A_vec + B_vec) / 2
