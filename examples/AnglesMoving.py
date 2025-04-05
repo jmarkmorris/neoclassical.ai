@@ -152,9 +152,9 @@ class AnglesMoving(Scene):
         self.camera.background_color = INDIGO
 
         # Define parameters
-        circle_radius = 1.5 * 0.5 * 0.9 * 0.9 * 0.9 # Make radius 50% smaller, then 10% smaller three times
-        shift_distance_x = 3.0    # Increased Horizontal distance between columns
-        shift_distance_y = 2.5    # Vertical distance between rows (adjust as needed)
+        circle_radius = 0.4 
+        shift_distance_x = 3.2    # Increased Horizontal distance between columns
+        shift_distance_y = 2.4    # Vertical distance between rows (adjust as needed)
         initial_alpha = 0.001     # Start slightly off 0 to avoid initial degenerate angle
         animation_duration = 15.0
         num_rows = 3
