@@ -87,11 +87,14 @@ class AngleGroup(VGroup):
                  return
 
         scale_multiplier = target_factor / self._current_scale_factor
+        # print(f"DEBUG: _set_scale_factor - Target: {target_factor}, Current: {self._current_scale_factor}, Multiplier: {scale_multiplier}") # DEBUG - Removed
         self.scale(scale_multiplier) # Manim's scale method multiplies current size
         self._current_scale_factor = target_factor
+        # print(f"DEBUG: _set_scale_factor - Scale applied. New _current_scale_factor: {self._current_scale_factor}") # DEBUG - Removed
 
     # --- Public method to trigger scaling ---
-    def dynamic_scale(self, target_scale, duration=1.0):
+    # Duration is now the second positional argument
+    def dynamic_scale(self, target_scale, duration):
         """
         Starts an animation to scale the AngleGroup to a target scale factor
         over a specified duration using the updater.
@@ -111,6 +114,7 @@ class AngleGroup(VGroup):
             self._scale_elapsed_time = 0.0
             self._scale_start_value = self._get_current_scale_factor() # Start from current scale
             self._is_scaling = True # Activate scaling in the updater
+            # print(f"DEBUG: dynamic_scale called. Target: {self._scale_target}, Duration: {self._scale_duration}, Start Scale: {self._scale_start_value}") # DEBUG - Removed
 
     def set_color(self, line1_color=None, line2_color=None, arc_color=None, dot_color=None, theta_color=None):
         """
@@ -250,4 +254,5 @@ class AngleGroup(VGroup):
                 # Interpolate the scale factor (linear interpolation)
                 interpolated_scale = self._scale_start_value + (self._scale_target - self._scale_start_value) * progress
                 # Apply the interpolated scale
+                # print(f"DEBUG: update scaling - dt: {dt:.4f}, Elapsed: {self._scale_elapsed_time:.4f}, Progress: {progress:.4f}, Interpolated Scale: {interpolated_scale:.4f}") # DEBUG - Removed
                 self._set_scale_factor(interpolated_scale)
