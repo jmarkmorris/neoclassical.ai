@@ -103,8 +103,8 @@ display_google_models() {
     echo "1. gemini/gemini-1.5-pro"
     echo "2. gemini/gemini-2.0-flash"
     echo "3. gemini/gemini-2.0-flash-exp"
-    echo "4. gemini-2.5-pro"
-    echo "5. openrouter/google/gemini-2.5-pro-exp-03-25:free"
+    echo "4. gemini/gemini-2.5-pro-exp-03-25
+    echo "5. gemini/gemini-2.5-pro-preview-03-25
     echo "0. Back to main menu"
     echo -e "${BLUE}==============================${NC}"
     echo -n "Enter your choice [0-5]: "
