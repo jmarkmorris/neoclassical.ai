@@ -1,3 +1,4 @@
+import random
 from manim import *
 import numpy as np
 # Import the AngleGroup from the npqg library
@@ -10,6 +11,19 @@ ELECTRIC_PURPLE = "#8F00FF"
 # WHITE is also defined in mobjects.py, but keeping it here is fine if other
 # elements in this scene might use it independently. If not, it could be removed.
 WHITE = "#FFFFFF"
+
+# Define a list of Manim pastel colors
+PASTEL_COLORS = [
+    BLUE_A, BLUE_B, BLUE_C, BLUE_D, BLUE_E,
+    TEAL_A, TEAL_B, TEAL_C, TEAL_D, TEAL_E,
+    GREEN_A, GREEN_B, GREEN_C, GREEN_D, GREEN_E,
+    YELLOW_A, YELLOW_B, YELLOW_C, YELLOW_D, YELLOW_E,
+    GOLD_A, GOLD_B, GOLD_C, GOLD_D, GOLD_E,
+    RED_A, RED_B, RED_C, RED_D, RED_E,
+    MAROON_A, MAROON_B, MAROON_C, MAROON_D, MAROON_E,
+    PURPLE_A, PURPLE_B, PURPLE_C, PURPLE_D, PURPLE_E,
+    PINK
+]
 
 
 # The Scene class remains here for now, acting as an example usage
@@ -73,6 +87,9 @@ class AngleClassUse(Scene):
             paths.append(path)
 
             angle_group = AngleGroup(initial_alpha, path, duration=animation_duration)
+            # Set a random pastel color for the angle group components
+            random_color = random.choice(PASTEL_COLORS)
+            angle_group.set_color(random_color)
             angle_groups.append(angle_group)
 
             # Add updater to the angle group

@@ -64,6 +64,15 @@ class AngleGroup(VGroup):
         # Initialize visuals to the starting state
         self._update_visuals(self.initial_alpha)
 
+    def set_color(self, color):
+        """Sets the color of all components of the AngleGroup."""
+        self.line1.set_color(color)
+        self.line2.set_color(color)
+        self.angle_obj.set_color(color)
+        self.theta.set_color(color)
+        # Return self to allow chaining if needed
+        return self
+
     # Renamed from update_components
     def _update_visuals(self, alpha):
         """Updates the visual components based on the given alpha."""
