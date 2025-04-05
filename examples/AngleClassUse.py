@@ -4,6 +4,15 @@ import numpy as np
 # Import the AngleGroup from the npqg library
 from npqg import AngleGroup
 
+# Define the updater function separately
+def angle_group_updater(mobject, dt, *args): # Add *args to accept extra positional args
+    """Updater function passed to Manim's add_updater.
+    Accepts potential extra arguments from Manim but only uses mobject and dt
+    to call the mobject's own update method.
+    """
+    # Explicitly call update with only dt, ignoring any extra args Manim might send
+    mobject.update(dt)
+
 # Colors used specifically by the AnglesMoving Scene
 INDIGO = "#4B0082"
 
@@ -91,15 +100,38 @@ class AngleClassUse(Scene):
             )
             angle_groups.append(angle_group)
 
-            # Add updater to the angle group
-            angle_group.add_updater(lambda mob, dt: mob.update(dt))
+            # Add updater using the named function
+            angle_group.add_updater(angle_group_updater)
 
         # Add all paths and angle groups to the scene
         self.add(*paths)
         self.add(*angle_groups)
 
-        # Wait for the duration of the animation for the updaters to run
+        # Wait for the initial angle animation to complete
         self.wait(animation_duration)
+
+        # --- Example: Trigger dynamic scaling after the main animation ---
+        self.play(
+            # Use AnimationGroup to apply scaling to all angle groups simultaneously
+            AnimationGroup(*[
+                # For each group, create an animation that does nothing visually
+                # but allows us to call the dynamic_scale method at the start
+                # of this animation block.
+                Succession(
+                    # Wait(0) ensures the call happens after the previous self.wait()
+                    Wait(0),
+                    # Call the method - this doesn't return an animation,
+                    # it just sets up the updater.
+                    # Pass positional args directly to ApplyMethod after the method ref
+                    ApplyMethod(group.dynamic_scale, 0.5, duration=5.0)
+                 )
+                for group in angle_groups
+            ]),
+            run_time=0.1 # Run this setup animation quickly
+        )
+
+        # Now wait for the scaling updaters to run for their duration
+        self.wait(5.0) # Wait for the scaling duration
 
         # Optional: Remove updaters from all angle groups
         for group in angle_groups:

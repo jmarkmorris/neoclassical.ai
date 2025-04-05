@@ -55,8 +55,62 @@ class AngleGroup(VGroup):
         # Add components to the VGroup
         self.add(self.line1, self.line2, self.angle_obj, self.theta)
 
+        # --- Scaling State Variables ---
+        self._is_scaling = False          # Is a scaling animation active?
+        self._scale_target = 1.0          # Target scale factor (relative to initial size)
+        self._scale_duration = 0.0        # Duration of the scaling animation
+        self._scale_elapsed_time = 0.0    # Time elapsed in the current scaling animation
+        self._scale_start_value = 1.0     # Scale factor when the animation started
+        self._current_scale_factor = 1.0  # Tracks the current cumulative scale factor applied
+
         # Initialize visuals to the starting state
         self._update_visuals(self.initial_alpha)
+
+    # --- Helper methods for scaling ---
+    def _get_current_scale_factor(self):
+        """Returns the tracked current scale factor."""
+        return self._current_scale_factor
+
+    def _set_scale_factor(self, target_factor):
+        """
+        Applies scaling to reach the target_factor from the current factor.
+        Updates the internal tracking variable.
+        """
+        if self._current_scale_factor == 0: # Avoid division by zero if already scaled to 0
+             if target_factor == 0:
+                 return # Already at target scale 0
+             else:
+                 # Cannot scale up from 0 using a multiplier.
+                 # This case is tricky. For simplicity, let's assume we don't scale up from exactly 0.
+                 # A more robust solution might involve storing initial size and scaling absolutely.
+                 print("Warning: Cannot scale up from scale factor 0.")
+                 return
+
+        scale_multiplier = target_factor / self._current_scale_factor
+        self.scale(scale_multiplier) # Manim's scale method multiplies current size
+        self._current_scale_factor = target_factor
+
+    # --- Public method to trigger scaling ---
+    def dynamic_scale(self, target_scale, duration=1.0):
+        """
+        Starts an animation to scale the AngleGroup to a target scale factor
+        over a specified duration using the updater.
+
+        Args:
+            target_scale (float): The final scale factor (e.g., 1.0 is original size,
+                                  0.5 is half size, 2.0 is double size).
+            duration (float): The time in seconds the scaling animation should take.
+        """
+        if duration <= 0:
+            # Apply instantly if duration is zero or negative
+            self._set_scale_factor(target_scale)
+            self._is_scaling = False
+        else:
+            self._scale_target = target_scale
+            self._scale_duration = duration
+            self._scale_elapsed_time = 0.0
+            self._scale_start_value = self._get_current_scale_factor() # Start from current scale
+            self._is_scaling = True # Activate scaling in the updater
 
     def set_color(self, line1_color=None, line2_color=None, arc_color=None, dot_color=None, theta_color=None):
         """
@@ -163,8 +217,10 @@ class AngleGroup(VGroup):
             self.theta.set_opacity(0)
             # The lines (self.line1, self.line2) are still updated above, so they keep moving.
 
-    def update(self, dt):
+    # Accept 'recursive' as the third positional argument passed by Manim's internal update loop
+    def update(self, dt, recursive=True, **kwargs):
         """Standard Manim updater function."""
+        # We don't explicitly use 'recursive' here, but accept it positionally.
         if not self.is_updating:
             return
 
@@ -179,3 +235,19 @@ class AngleGroup(VGroup):
             # Or handle looping if desired
             # self.current_alpha = self.current_alpha % 1.0 # Loop
             pass # Keep showing the final state if clamped
+
+        # --- Handle Dynamic Scaling ---
+        if self._is_scaling:
+            self._scale_elapsed_time += dt
+
+            if self._scale_elapsed_time >= self._scale_duration:
+                # Animation finished, snap to target and stop scaling
+                self._set_scale_factor(self._scale_target)
+                self._is_scaling = False
+            else:
+                # Calculate progress (0 to 1)
+                progress = self._scale_elapsed_time / self._scale_duration
+                # Interpolate the scale factor (linear interpolation)
+                interpolated_scale = self._scale_start_value + (self._scale_target - self._scale_start_value) * progress
+                # Apply the interpolated scale
+                self._set_scale_factor(interpolated_scale)
