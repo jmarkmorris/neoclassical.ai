@@ -164,14 +164,16 @@ class AngleGroup(VGroup):
         A_vec = np.array([1, 0, 0])
         B_vec = np.array([np.cos(angle_value), np.sin(angle_value), 0])
         
-        # Calculate the actual angle between vectors
-        dot_product = np.dot(A_vec, B_vec)
-        cross_product = np.cross(A_vec, B_vec)[2]  # z-component
-        actual_angle_deg = np.degrees(np.arccos(np.clip(dot_product, -1.0, 1.0)))
+        # Use atan2 for more robust angle calculation
+        # This handles the full 360-degree range correctly
+        angle_in_radians = np.arctan2(B_vec[1], B_vec[0])
+        if angle_in_radians < 0:
+            angle_in_radians += 2 * np.pi  # Convert to [0, 2π] range
         
-        # Determine the correct sign based on cross product
-        if cross_product < 0:
-            actual_angle_deg = 360 - actual_angle_deg
+        actual_angle_deg = np.degrees(angle_in_radians)
+        
+        # Calculate cross product for later use with the bisector
+        cross_product = np.cross(A_vec, B_vec)[2]  # z-component
 
         # Apply current scale factor to the line lengths
         scale_factor = self._current_scale_factor
@@ -184,7 +186,10 @@ class AngleGroup(VGroup):
 
         # Check for parallel/anti-parallel lines (angle near 0, 180, 360 deg)
         # Use a small tolerance for floating point comparisons
-        is_degenerate = np.isclose(actual_angle_deg % 180, 0, atol=1e-6)
+        # More robust check using the actual angle from atan2
+        is_degenerate = (np.isclose(actual_angle_deg, 0, atol=1e-6) or 
+                         np.isclose(actual_angle_deg, 180, atol=1e-6) or 
+                         np.isclose(actual_angle_deg, 360, atol=1e-6))
 
         # Always update the angle object, even if the angle is degenerate
         # This ensures consistent scaling behavior throughout the animation
