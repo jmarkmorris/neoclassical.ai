@@ -77,7 +77,7 @@ class AngleGroup(VGroup):
     def _set_scale_factor(self, target_factor):
         """
         Applies scaling to reach the target_factor from the current factor.
-        Updates the internal tracking variable.
+        Updates the internal tracking variable and refreshes the visuals.
         
         This scaling keeps the apex of the angle fixed and scales:
         - The length of both lines
@@ -97,37 +97,8 @@ class AngleGroup(VGroup):
         
         # Then update the visuals with the current alpha
         # This ensures consistent scaling behavior between direct scaling and animation
+        # All visual updates, including theta positioning, are handled in _update_visuals
         self._update_visuals(self.current_alpha)
-        
-        # Reposition theta label based on the new scale
-        # Calculate the actual angle between vectors directly
-        A_vec = self.line1.get_end() - self.line1.get_start()
-        B_vec = self.line2.get_end() - self.line2.get_start()
-        
-        # Normalize vectors for angle calculation
-        A_vec = A_vec / np.linalg.norm(A_vec)
-        B_vec = B_vec / np.linalg.norm(B_vec)
-        
-        # Calculate the bisector vector directly from the current line positions
-        # This is more stable than using alpha-based calculations
-        bisector = A_vec + B_vec
-        bisector_norm = np.linalg.norm(bisector)
-        
-        if bisector_norm > 1e-6:
-            # Normalize the bisector
-            unit_bisector = bisector / bisector_norm
-            
-            # Check if we need to flip the bisector (for angles > 180°)
-            cross_product = np.cross(A_vec, B_vec)[2]
-            if cross_product < 0:
-                unit_bisector = -unit_bisector
-                
-            # Scale the distance of theta from the apex
-            line_length = 1.0 * target_factor
-            current_position = self.line1.get_start()
-            theta_pos = current_position + unit_bisector * 1.1 * line_length
-            self.theta.move_to(theta_pos)
-        # The current scale factor was already updated at the beginning of this method
 
     # --- Public method to trigger scaling ---
     def dynamic_scale(self, target_scale, duration):
