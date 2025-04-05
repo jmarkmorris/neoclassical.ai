@@ -200,7 +200,7 @@ class AngleAssembly(VGroup):
         self.start_angle_deg = new_angle_deg
 
 
-class MovingAngle(Scene): # Renamed class to match filename
+class AnglesMoving(Scene): # Renamed class to match filename
     def construct(self):
         self.camera.background_color = INDIGO
 
