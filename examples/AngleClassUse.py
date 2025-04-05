@@ -2,15 +2,10 @@ import random
 from manim import *
 import numpy as np
 # Import the AngleGroup from the npqg library
-# The package should be found now due to correct editable install
 from npqg import AngleGroup
 
 # Colors used specifically by the AnglesMoving Scene
 INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
-# WHITE is also defined in mobjects.py, but keeping it here is fine if other
-# elements in this scene might use it independently. If not, it could be removed.
-WHITE = "#FFFFFF"
 
 # Define a list of Manim pastel colors
 PASTEL_COLORS = [
@@ -24,7 +19,6 @@ PASTEL_COLORS = [
     PURPLE_A, PURPLE_B, PURPLE_C, PURPLE_D, PURPLE_E,
     PINK
 ]
-
 
 # The Scene class remains here for now, acting as an example usage
 class AngleClassUse(Scene):
@@ -45,7 +39,7 @@ class AngleClassUse(Scene):
         # Center the grid horizontally: total_width = (num_cols - 1) * shift_distance_x
         # Center the grid vertically: total_height = (num_rows - 1) * shift_distance_y
         start_x = - (num_cols - 1) * shift_distance_x / 2
-        start_y = (num_rows - 1) * shift_distance_y / 2 - 0.3 # Shift grid down by 0.5, then up by 0.2
+        start_y = (num_rows - 1) * shift_distance_y / 2 - 0.3 
 
         # Define center points for the 3x4 grid using loops
         centers = []
@@ -87,9 +81,14 @@ class AngleClassUse(Scene):
             paths.append(path)
 
             angle_group = AngleGroup(initial_alpha, path, duration=animation_duration)
-            # Set a random pastel color for the angle group components
-            random_color = random.choice(PASTEL_COLORS)
-            angle_group.set_color(random_color)
+            # Set an independently chosen random pastel color for each component
+            angle_group.set_color(
+                line1_color=random.choice(PASTEL_COLORS),
+                line2_color=random.choice(PASTEL_COLORS),
+                arc_color=random.choice(PASTEL_COLORS),
+                dot_color=random.choice(PASTEL_COLORS),
+                theta_color=random.choice(PASTEL_COLORS)
+            )
             angle_groups.append(angle_group)
 
             # Add updater to the angle group

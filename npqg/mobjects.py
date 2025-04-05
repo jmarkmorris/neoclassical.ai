@@ -1,12 +1,6 @@
 from manim import *
 import numpy as np
 
-# Define colors if they are specifically needed by AngleGroup or its helpers
-# If they are only used by the Scene, they can stay in AngleClass.py
-# INDIGO = "#4B0082" # Not used by AngleGroup directly
-# ELECTRIC_PURPLE = "#8F00FF" # Not used by AngleGroup directly
-WHITE = "#FFFFFF" # Used by MathTex in AngleGroup
-
 def unit_vector(vector):
     """ Returns the unit vector of the vector.  """
     norm = np.linalg.norm(vector)
@@ -64,12 +58,30 @@ class AngleGroup(VGroup):
         # Initialize visuals to the starting state
         self._update_visuals(self.initial_alpha)
 
-    def set_color(self, color):
-        """Sets the color of all components of the AngleGroup."""
-        self.line1.set_color(color)
-        self.line2.set_color(color)
-        self.angle_obj.set_color(color)
-        self.theta.set_color(color)
+    def set_color(self, line1_color=None, line2_color=None, arc_color=None, dot_color=None, theta_color=None):
+        """
+        Sets the color of individual components of the AngleGroup.
+        Any component whose color is not specified will retain its current color.
+
+        Args:
+            line1_color (Optional[str or Color]): Color for the first line.
+            line2_color (Optional[str or Color]): Color for the second line.
+            arc_color (Optional[str or Color]): Color for the angle arc.
+            dot_color (Optional[str or Color]): Color for the angle dot.
+            theta_color (Optional[str or Color]): Color for the theta label.
+        """
+        if line1_color is not None:
+            self.line1.set_color(line1_color)
+        if line2_color is not None:
+            self.line2.set_color(line2_color)
+        if arc_color is not None:
+            # The main color of Angle is the arc color
+            self.angle_obj.set_color(arc_color)
+        if dot_color is not None and hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+            # The dot is a submobject of the Angle
+            self.angle_obj.dot.set_color(dot_color)
+        if theta_color is not None:
+            self.theta.set_color(theta_color)
         # Return self to allow chaining if needed
         return self
 
