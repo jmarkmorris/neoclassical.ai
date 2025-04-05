@@ -152,7 +152,7 @@ class AnglesMoving(Scene):
         self.camera.background_color = INDIGO
 
         # Define parameters
-        circle_radius = 1.5 * 0.5 * 0.9 # Make radius 50% smaller, then 10% smaller again
+        circle_radius = 1.5 * 0.5 * 0.9 * 0.9 # Make radius 50% smaller, then 10% smaller twice
         shift_distance_x = 3.0    # Increased Horizontal distance between columns
         shift_distance_y = 2.5    # Vertical distance between rows (adjust as needed)
         initial_alpha = 0.001     # Start slightly off 0 to avoid initial degenerate angle
@@ -164,7 +164,7 @@ class AnglesMoving(Scene):
         # Center the grid horizontally: total_width = (num_cols - 1) * shift_distance_x
         # Center the grid vertically: total_height = (num_rows - 1) * shift_distance_y
         start_x = - (num_cols - 1) * shift_distance_x / 2
-        start_y = (num_rows - 1) * shift_distance_y / 2 - 0.5 # Shift grid down by 0.5
+        start_y = (num_rows - 1) * shift_distance_y / 2 - 0.3 # Shift grid down by 0.5, then up by 0.2
 
         # Define center points for the 3x4 grid using loops
         centers = []
