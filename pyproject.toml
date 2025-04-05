@@ -26,4 +26,4 @@ exclude = ["tests*", "docs*"] # Optional: exclude test/doc directories
 namespaces = false # Set to true if using namespace packages
 
 # Optional: Specify Python version requirement
-# python_requires = ">=3.9"
+# python_requires = ">=3.13"

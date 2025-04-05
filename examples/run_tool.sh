@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Check if we're in the manim_toolchest directory
-if [ ! -f "$(dirname "$0")/run_tool.sh" ]; then
-    echo "Please run this script from the manim_toolchest directory"
-    echo "Try: cd manim_toolchest && ./run_tool.sh"
+# Check if we're in the project root directory (where pyproject.toml is)
+if [ ! -f "pyproject.toml" ]; then
+    echo "Please run this script from the project root directory (the one containing pyproject.toml)"
+    echo "Example: cd /path/to/project/root && ./examples/run_tool.sh"
     exit 1
 fi
 
@@ -23,8 +23,9 @@ list_tools() {
     echo ""
     
     # Get all Python files except __init__.py and tools.py
-    files=$(find . -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort)
-    
+    # Find Python files within the 'examples' directory
+    files=$(find examples -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort)
+
     # Calculate the number of columns based on terminal width
     term_width=$(tput cols)
     max_name_length=25
@@ -68,15 +69,16 @@ list_tools() {
 
 # Function to run the selected tool
 run_tool() {
-    local tool_name="$1"
-    echo "Running $tool_name..."
+    local tool_name="$1" # This is just the class name (e.g., AngleClassUse)
+    local script_path="examples/${tool_name}.py" # Construct the path relative to project root
+    echo "Running $tool_name from $script_path..."
     # Use python -m manim to ensure the correct environment is used
-    echo "Command: python -m manim -pqk --disable_caching $tool_name.py $tool_name -p"
+    echo "Command: python -m manim -pqk --disable_caching $script_path $tool_name -p"
     echo ""
-    
+
     # Run the tool with high quality rendering using python -m manim
-    python -m manim -pqk --disable_caching "$tool_name.py" "$tool_name" -p
-    
+    python -m manim -pqk --disable_caching "$script_path" "$tool_name" -p
+
     echo ""
     echo "Finished running $tool_name."
     echo "Press Enter to continue..."
@@ -111,7 +113,8 @@ while true; do
 
     case "$choice" in
         [0-9]*)
-            tool_name=$(find . -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's/\.py$//' | xargs basename)
+            # Find the selected file in the 'examples' directory and extract the base name (class name)
+            tool_name=$(find examples -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's#.*/##' | sed 's/\.py$//')
             if [ -n "$tool_name" ]; then
                 run_tool "$tool_name"
             else
