@@ -152,7 +152,7 @@ class AnglesMoving(Scene):
         self.camera.background_color = INDIGO
 
         # Define parameters
-        circle_radius = 1.5 * 0.5 * 0.9 * 0.9 # Make radius 50% smaller, then 10% smaller twice
+        circle_radius = 1.5 * 0.5 * 0.9 * 0.9 * 0.9 # Make radius 50% smaller, then 10% smaller three times
         shift_distance_x = 3.0    # Increased Horizontal distance between columns
         shift_distance_y = 2.5    # Vertical distance between rows (adjust as needed)
         initial_alpha = 0.001     # Start slightly off 0 to avoid initial degenerate angle
@@ -171,8 +171,15 @@ class AnglesMoving(Scene):
         for r in range(num_rows):
             for c in range(num_cols):
                 center_x = start_x + c * shift_distance_x
-                center_y = start_y - r * shift_distance_y
-                centers.append(np.array([center_x, center_y, 0]))
+                base_center_y = start_y - r * shift_distance_y
+                # Apply row-specific vertical shifts
+                if r == 1: # Row 2 (0-indexed)
+                    adjusted_center_y = base_center_y + 0.1
+                elif r == 2: # Row 3 (0-indexed)
+                    adjusted_center_y = base_center_y + 0.2
+                else: # Row 1 (r=0) or any other rows
+                    adjusted_center_y = base_center_y
+                centers.append(np.array([center_x, adjusted_center_y, 0]))
 
         # Define colors for paths (ensure enough colors or allow cycling)
         path_colors = [
