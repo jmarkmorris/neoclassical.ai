@@ -109,11 +109,23 @@ class AngleGroup(VGroup):
             # Update angle object only if lines are not parallel/anti-parallel
             try:
                 # Ensure new angle also has no fill
-                # Use a temporary Angle to avoid modifying self.angle_obj before checking validity
-                temp_angle = Angle(self.line1, self.line2, radius=0.6, color=BLUE_C, dot=True, dot_radius=0.07, dot_distance=0, fill_opacity=0)
+                # Preserve the existing colors of the arc and dot
+                current_arc_color = self.angle_obj.get_color()
+                current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE # Default if no dot
+
+                # Use a temporary Angle with the preserved colors
+                temp_angle = Angle(self.line1, self.line2, radius=0.6, color=current_arc_color, dot=True, dot_radius=0.07, dot_distance=0, fill_opacity=0)
+                # Set the dot color explicitly on the temporary angle's dot before 'become'
+                if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
+                    temp_angle.dot.set_color(current_dot_color)
+
                 self.angle_obj.become(temp_angle)
                 # Explicitly set stroke opacity, keep fill opacity at 0
                 self.angle_obj.set_stroke(opacity=1)
+                # Re-apply dot color just in case 'become' didn't transfer it perfectly
+                if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+                     self.angle_obj.dot.set_color(current_dot_color)
+
             except ValueError:
                 # This should ideally not happen due to the is_degenerate check, but as a safeguard:
                 is_degenerate = True # Treat as degenerate if Angle() fails
