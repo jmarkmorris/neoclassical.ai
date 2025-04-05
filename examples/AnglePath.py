@@ -61,7 +61,10 @@ class AngleNew(Scene):
             theta_pos = position + default_offset_vector * 1.1 * line_length
         self.theta.move_to(theta_pos)
 
-        self.angle_group = VGroup(self.line1, self.line2, self.angle_obj, self.theta)
+        # Create radial line
+        self.radial_line = Line(position, theta_pos_on_arc, color=WHITE, stroke_width=1)
+
+        self.angle_group = VGroup(self.line1, self.line2, self.angle_obj, self.theta, self.radial_line)
         self.add(self.angle_group)
 
         # Updater function to modify components in place
@@ -125,6 +128,10 @@ class AngleNew(Scene):
                 self.angle_obj.set_stroke(opacity=0)
                 self.theta.set_opacity(0) # Keep using set_opacity for MathTex
                 # The lines (self.line1, self.line2) are still updated above, so they keep moving.
+
+            # Update radial line
+            theta_pos_on_arc = self.angle_obj.point_from_proportion(0.5)
+            self.radial_line.put_start_and_end_on(position, theta_pos_on_arc)
 
         # Create animation using the new updater
         animation = UpdateFromAlphaFunc(self.angle_group, update_angle_components)
