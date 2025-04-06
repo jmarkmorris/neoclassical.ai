@@ -81,39 +81,23 @@ class Dot3DGrid(ThreeDScene):
             
             # Add rows for each value
             for row_index in range(num_rows):
-                # Create default sphere
-                dot = Sphere(
-                    radius=0.4,
-                    resolution=default_options["resolution"],
-                ).set_color(DOT_COLOR)
-                
-                # Apply specific option value
-                value = options_values[option_name][row_index]
-                
-                # Recreate sphere with new properties
+                # Apply specific option value (value variable is no longer used here)
+                # value = options_values[option_name][row_index] # Removed as it's not used after simplification
+
+                # Create sphere with all relevant properties set directly
                 dot = Sphere(
                     radius=0.4,
                     resolution=(128, 64),
                     sheen_factor=options_values["Sheen Factor"][row_index],
                     sheen_direction=options_values["Sheen Direction"][row_index],
+                    shininess=options_values["Shininess"][row_index], # Added here
+                    shadow=options_values["Shadow"][row_index],       # Added here
                 ).set_color(DOT_COLOR)
-                
-                dot.set(shininess=options_values["Shininess"][row_index])
-                dot.set(shadow=options_values["Shadow"][row_index])
-                
-                print(f"Sphere parameters: radius=0.4, resolution={(128, 64)}, sheen_factor={options_values['Sheen Factor'][row_index]}, sheen_direction={options_values['Sheen Direction'][row_index]}, shininess={options_values['Shininess'][row_index]}, shadow={options_values['Shadow'][row_index]}")
-                
-                if option_name == "Sheen Factor":
-                    dot.set(sheen_factor=value)
-                elif option_name == "Sheen Direction":
-                    dot.set(sheen_direction=value)
-                elif option_name == "Shininess":
-                    dot.set(shininess=value)
-                elif option_name == "Shadow":
-                    dot.set(shadow=value)
-                    
+
                 # Create value label
-                value_label = Text(f"{value}", font="Helvetica Neue", weight="LIGHT", font_size=16)
+                # Get the value actually used for the label
+                value_for_label = options_values[option_name][row_index]
+                value_label = Text(f"{value_for_label}", font="Helvetica Neue", weight="LIGHT", font_size=16)
                 
                 # Position elements
                 y_pos = 2 - row_index * 1.0
@@ -125,16 +109,8 @@ class Dot3DGrid(ThreeDScene):
         
         # Set lighting
         self.renderer.camera.light_source.move_to(5*RIGHT+3*UP+2*OUT)
-        
-        # Update light source position based on sheen direction
-        def update_light_source(mob):
-            for obj in all_dots_and_labels:
-                if isinstance(obj, Sphere):
-                    sheen_direction = obj.get(sheen_direction)
-                    self.renderer.camera.light_source.move_to(sheen_direction * 5)
-        
+
         self.add(all_dots_and_labels)
-        self.add_updater(update_light_source)
         
         # Rotate camera to show 3D structure
         self.begin_ambient_camera_rotation(rate=0.05)
