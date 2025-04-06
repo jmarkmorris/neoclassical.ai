@@ -5,7 +5,6 @@ import random
 from npqg import AngleGroup
 
 INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
 
 # Define a list of Manim pastel colors
 PASTEL_COLORS = [
@@ -41,7 +40,7 @@ MANIM_COLORS = [
 class AnimatedAngle(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
-        run_time = 3
+        run_time = 6  # Doubled from 3 to slow down by 50%
         start_scale_small = 0.2 # Initial scale for the growing angle
         end_scale_large = 1.2   # Final scale for the growing angle
         start_scale_large = 1.2   # Initial scale for the shrinking angle
@@ -54,7 +53,7 @@ class AnimatedAngle(Scene):
         initial_angle_deg_1 = random.uniform(10, 30)  # Small initial angle
         final_angle_deg_1 = 360.0                    # End at exactly 360 degrees
         initial_alpha_1 = initial_angle_deg_1 / 360.0
-        final_alpha_1 = 1.0                          # Alpha for 360 degrees is 1.0
+        final_alpha_1 = 1.0 - 1e-6                   # Stop just short of 360 to avoid warning
 
         # Create a dummy path (a single point)
         path1 = Dot(location1, radius=0) # Invisible dot as path
