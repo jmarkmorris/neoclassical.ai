@@ -1,5 +1,19 @@
 # Aider Documentation
 
+## Running Aider with runaider.sh
+
+The `runaider.sh` script provides an interactive command-line interface to configure and launch `aider`. It simplifies the process by:
+
+- Allowing you to choose the operating mode:
+    - **Code Mode:** Standard `aider` operation for direct code generation and modification.
+    - **Architect Mode:** Uses separate LLMs for high-level planning (Architect) and detailed code implementation (Editor).
+- Guiding you through selecting the LLM vendor (OpenAI, Anthropic, Google) and specific model for each role (Code, Architect, Editor).
+- Managing API keys securely.
+
+Use `./runaider.sh` in your terminal to start the configuration process.
+
+---
+
 ## Documentation and References
 
 LLMs know about standard tools and libraries but may have outdated information about API versions and function arguments. You can provide up-to-date documentation by:
