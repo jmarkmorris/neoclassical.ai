@@ -24,18 +24,6 @@ class Dot3DGrid(ThreeDScene):
         
         self.add_fixed_in_frame_mobjects(title, subtitle)
         
-        # Default values for all options
-        default_options = {
-            "radius": 0.1,
-            "resolution": (8, 4),
-            "sheen_factor": 0.25,
-            "sheen_direction": OUT,
-            "ambient_strength": 0.15,
-            "specular_strength": 0.25,
-            "shininess": 10,
-            "shadow": False,
-        }
-        
         # Options to display
         options_names = [
             "Sheen Factor",

@@ -72,10 +72,6 @@ class ClockAssembly(VGroup):
         # Add hands *after* positioning them correctly
         self.add(self.hour_hand, self.minute_hand, self.second_hand)
 
-        # Store initial angles if needed for relative updates, though absolute calculation is fine here
-        # self.current_hour_angle = initial_hour_angle
-        # self.current_minute_angle = initial_minute_angle
-
 
     def update_hands(self, dt): # Pass dt even if not used, standard for updaters
         """Updates hand positions based on current time, relative to the clock's center."""

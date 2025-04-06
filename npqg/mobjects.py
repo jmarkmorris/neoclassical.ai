@@ -28,6 +28,7 @@ def get_distinct_random_colors(n, pool=RANDOM_COLOR_POOL):
 
 # Reusable Angle Group Class
 class AngleGroup(VGroup):
+
     def __init__(self, initial_alpha, path, duration=1.0, colors="default", **kwargs):
         """
         Initializes the AngleGroup.
@@ -41,6 +42,7 @@ class AngleGroup(VGroup):
             **kwargs: Additional arguments for VGroup.
         """
         super().__init__(**kwargs)
+
         self.path = path # Store the path for the updater
         self.initial_alpha = initial_alpha
         self.duration = duration

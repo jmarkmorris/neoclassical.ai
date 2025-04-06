@@ -50,11 +50,8 @@ class PathTrace(Scene):
             dot.move_to([0, -1, 0])
             
             # Create a path that will show the trail
-            path = VMobject(stroke_width=2, stroke_color=YELLOW, stroke_opacity=0.8)
             trail = VMobject(stroke_width=2, stroke_color=config['path_color'], stroke_opacity=0.5)
             trail.start_new_path(dot.get_center()) # Initialize trail with a point
-
-            path.set_points_as_corners([dot.get_center(), dot.get_center()])
             
             def create_update_trail(dot, trail):
                 def update_trail(trail):

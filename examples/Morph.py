@@ -14,7 +14,7 @@ class Morph(Scene):
         self.add(title)
 
         # Create a vertical stack of examples
-        examples_y_positions = [2, 0, -2]
+        examples_y_positions = [2, 0]
 
         # 1. Standard Transform
         transform_text1 = Text("Before Transform", color=WHITE)

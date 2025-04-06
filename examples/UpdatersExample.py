@@ -104,7 +104,7 @@ class UpdatersExample(Scene):
             # Limit the length of the trail
             if len(previous_trail.get_points()) > 100:
                 # Remove the oldest point
-                points = previous_trail.get_points()[3:]
+                points = previous_trail.get_points()[1:] # Changed from [3:] to [1:]
                 previous_trail.set_points(points)
                 
             trail.become(previous_trail)
