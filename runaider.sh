@@ -188,8 +188,17 @@ main() {
     load_api_keys
 
     # Select mode first
-    display_mode_selection_menu
-    read mode_choice
+    local selected_mode=""
+    while true; do
+        display_mode_selection_menu
+        read mode_choice
+        case $mode_choice in
+            1) selected_mode="code"; break ;;
+            2) selected_mode="architect"; break ;;
+            0) echo "Goodbye!"; exit 0 ;;
+            *) echo "Invalid choice. Press Enter to continue..."; read ;;
+        esac
+    done
 
     # Existing vendor/model selection loop
     while true; do
