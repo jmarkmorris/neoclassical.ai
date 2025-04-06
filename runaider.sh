@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Colors for better readability
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[0;33m'
-NC='\033[0m' # No Color
-
 # File to store API keys
 API_KEYS_FILE="$HOME/.llm_api_keys"
 
@@ -29,7 +23,7 @@ update_api_key() {
     local vendor=$1
     local var_name="${vendor}_API_KEY"
     
-    echo -e "${YELLOW}Please enter your $vendor API key:${NC}"
+    echo -e "Please enter your $vendor API key:"
     read -s api_key
     echo
     
@@ -43,81 +37,85 @@ update_api_key() {
         echo "$var_name=\"$api_key\"" >> "$API_KEYS_FILE"
     fi
     
-    echo -e "${GREEN}API key updated successfully!${NC}"
+    echo -e "API key updated successfully!"
 }
 
-# Function to display the main menu
+# Function to display the main menu (accepts mode as $1)
 display_main_menu() {
+    local mode_label=$( [ "$1" == "architect" ] && echo "Architect (Main)" || echo "Code" ) # Clarify role in Architect mode
     clear
-    echo -e "${YELLOW}Step 2: Select LLM Vendor or Manage Keys${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}    LLM VENDOR SELECTION     ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 2: Select LLM Vendor for ${mode_label} Model or Manage Keys"
+    echo -e "=============================="
+    echo -e "    LLM VENDOR SELECTION     "
+    echo -e "=============================="
     echo "1. OpenAI"
     echo "2. Anthropic"
     echo "3. Google"
     echo "4. Update API Keys"
     echo "0. Exit"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-4]: "
 }
 
-# Function to display OpenAI models
+# Function to display OpenAI models (accepts mode as $1)
 display_openai_models() {
+    local mode_label=$( [ "$1" == "architect" ] && echo "Architect" || echo "Code" )
     clear
-    echo -e "${YELLOW}Step 3: Select OpenAI Model (Architect/Code)${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}      OpenAI MODELS          ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 3: Select OpenAI ${mode_label} Model"
+    echo -e "=============================="
+    echo -e "      OpenAI MODELS          "
+    echo -e "=============================="
     echo "1. gpt-4o"
     echo "2. gpt-4o-mini"
     echo "3. gpt-4-turbo"
     echo "4. gpt-4"
     echo "5. gpt-3.5-turbo"
     echo "0. Back to main menu"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-5]: "
 }
 
-# Function to display Anthropic models
+# Function to display Anthropic models (accepts mode as $1)
 display_anthropic_models() {
+    local mode_label=$( [ "$1" == "architect" ] && echo "Architect" || echo "Code" )
     clear
-    echo -e "${YELLOW}Step 3: Select Anthropic Model (Architect/Code)${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}      ANTHROPIC MODELS       ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 3: Select Anthropic ${mode_label} Model"
+    echo -e "=============================="
+    echo -e "      ANTHROPIC MODELS       "
+    echo -e "=============================="
     echo "1. claude-3-7-sonnet-20250219"
     echo "2. claude-3-5-haiku-20241022"
     echo "3. claude-3-opus-20240229"
     echo "0. Back to main menu"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-6]: "
 }
 
-# Function to display Google models
+# Function to display Google models (accepts mode as $1)
 display_google_models() {
+    local mode_label=$( [ "$1" == "architect" ] && echo "Architect" || echo "Code" )
     clear
-    echo -e "${YELLOW}Step 3: Select Google Model (Architect/Code)${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}       GOOGLE MODELS         ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 3: Select Google ${mode_label} Model"
+    echo -e "=============================="
+    echo -e "       GOOGLE MODELS         "
+    echo -e "=============================="
     echo "1. gemini/gemini-1.5-pro"
     echo "2. gemini/gemini-2.0-flash"
     echo "3. gemini/gemini-2.0-flash-exp"
     echo "4. gemini/gemini-2.5-pro-exp-03-25"
     echo "5. gemini/gemini-2.5-pro-preview-03-25"
     echo "0. Back to main menu"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-5]: "
 }
 
 # Function to display OpenAI editor models
 display_openai_editor_models() {
     clear
-    echo -e "${YELLOW}Step 4 (Architect Mode Only): Select OpenAI Editor Model${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}   SELECT OpenAI EDITOR MODEL ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 4 (Architect Mode Only): Select OpenAI Editor Model"
+    echo -e "=============================="
+    echo -e "   SELECT OpenAI EDITOR MODEL "
+    echo -e "=============================="
     echo "1. gpt-4o"
     echo "2. gpt-4o-mini"
     echo "3. gpt-4-turbo"
@@ -125,33 +123,33 @@ display_openai_editor_models() {
     echo "5. gpt-3.5-turbo"
     echo "9. Use Default Editor"
     echo "0. Back to OpenAI Models"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-5, 9]: "
 }
 
 # Function to display Anthropic editor models
 display_anthropic_editor_models() {
     clear
-    echo -e "${YELLOW}Step 4 (Architect Mode Only): Select Anthropic Editor Model${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}  SELECT ANTHROPIC EDITOR MODEL ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 4 (Architect Mode Only): Select Anthropic Editor Model"
+    echo -e "=============================="
+    echo -e "  SELECT ANTHROPIC EDITOR MODEL "
+    echo -e "=============================="
     echo "1. claude-3-7-sonnet-20250219"
     echo "2. claude-3-5-haiku-20241022"
     echo "3. claude-3-opus-20240229"
     echo "9. Use Default Editor"
     echo "0. Back to Anthropic Models"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-3, 9]: "
 }
 
 # Function to display Google editor models
 display_google_editor_models() {
     clear
-    echo -e "${YELLOW}Step 4 (Architect Mode Only): Select Google Editor Model${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}    SELECT GOOGLE EDITOR MODEL  ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 4 (Architect Mode Only): Select Google Editor Model"
+    echo -e "=============================="
+    echo -e "    SELECT GOOGLE EDITOR MODEL  "
+    echo -e "=============================="
     echo "1. gemini/gemini-1.5-pro"
     echo "2. gemini/gemini-2.0-flash"
     echo "3. gemini/gemini-2.0-flash-exp"
@@ -159,36 +157,36 @@ display_google_editor_models() {
     echo "5. gemini/gemini-2.5-pro-preview-03-25"
     echo "9. Use Default Editor"
     echo "0. Back to Google Models"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-5, 9]: "
 }
 
 # Function to update API keys menu
 display_update_api_keys_menu() {
     clear
-    echo -e "${YELLOW}Manage API Keys${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}      UPDATE API KEYS        ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Manage API Keys"
+    echo -e "=============================="
+    echo -e "      UPDATE API KEYS        "
+    echo -e "=============================="
     echo "1. OpenAI API Key"
     echo "2. Anthropic API Key"
     echo "3. Google API Key"
     echo "0. Back to main menu"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-3]: "
 }
 
 # Function to display the mode selection menu
 display_mode_selection_menu() {
     clear
-    echo -e "${YELLOW}Step 1: Select Operating Mode${NC}"
-    echo -e "${BLUE}==============================${NC}"
-    echo -e "${BLUE}      SELECT MODE            ${NC}"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "Step 1: Select Operating Mode"
+    echo -e "=============================="
+    echo -e "      SELECT MODE            "
+    echo -e "=============================="
     echo "1. Code Mode"
     echo "2. Architect Mode"
     echo "0. Exit"
-    echo -e "${BLUE}==============================${NC}"
+    echo -e "=============================="
     echo -n "Enter your choice [0-2]: "
 }
 
@@ -203,7 +201,7 @@ launch_aider() {
 
     # Check if API key is set
     if [ -z "$api_key" ]; then
-        echo -e "${YELLOW}API key for $vendor is not set. Let's update it.${NC}"
+        echo -e "API key for $vendor is not set. Let's update it."
         update_api_key $vendor
         api_key=$(eval echo \$$api_key_var)
     fi
@@ -229,9 +227,6 @@ launch_aider() {
     esac
 
     # --- Construct aider command arguments ---
-
-    # Base command with common flags and the main model (used as architect in architect mode)
-    aider_cmd="$aider_cmd --model $model"
 
     # Add mode flag and potentially editor model flag
     local mode_flag=""
@@ -259,14 +254,14 @@ launch_aider() {
 
     # Check if aider is installed
     if ! command -v aider &> /dev/null; then
-        echo -e "${YELLOW}Aider is not installed. Please install it first with:${NC}"
+        echo -e "Aider is not installed. Please install it first with:"
         echo "pip install aider-chat"
         read -p "Press Enter to continue..."
         return 1
     fi
 
     # Launch aider
-    echo -e "${GREEN}Launching aider in ${mode_display_name} with $model${editor_display_name}...${NC}"
+    echo -e "Launching aider in ${mode_display_name} with $model${editor_display_name}..."
     echo "Command: $aider_cmd"
     echo
     eval $aider_cmd
@@ -291,12 +286,12 @@ main() {
 
     # Existing vendor/model selection loop
     while true; do
-        display_main_menu
+        display_main_menu "$selected_mode" # Pass mode
         read choice
         case $choice in
             1) # OpenAI
                 while true; do
-                    display_openai_models
+                    display_openai_models "$selected_mode" # Pass mode
                     read model_choice
                     local model=""
                     local selected_editor_model="default" # Default value
@@ -341,7 +336,7 @@ main() {
                 
             2) # Anthropic
                 while true; do
-                    display_anthropic_models
+                    display_anthropic_models "$selected_mode" # Pass mode
                     read model_choice
                     local model=""
                     local selected_editor_model="default" # Default value
@@ -382,7 +377,7 @@ main() {
                 
             3) # Google
                 while true; do
-                    display_google_models
+                    display_google_models "$selected_mode" # Pass mode
                     read model_choice
                     local model=""
                     local selected_editor_model="default" # Default value
