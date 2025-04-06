@@ -82,9 +82,7 @@ class AngleGroup(VGroup):
         if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
             self.angle_obj.dot.set_color(dot_color)
 
-        # Use Text instead of MathTex to potentially avoid LaTeX issues
-        # font_size=24 is roughly equivalent to the default MathTex size scaled by 0.6
-        self.theta = Text("θ", color=theta_color, font_size=20) 
+        self.theta = Text("θ", color=theta_color, font_size=16) 
 
         # Initial theta position calculation
         line_length = 1.0 # Since A is unit vector
