@@ -1,5 +1,15 @@
 from manim import *
 import numpy as np
+import random
+
+# Define a pool of distinct colors for random selection
+RANDOM_COLOR_POOL = [
+    RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, WHITE, LIGHT_GRAY, GRAY, 
+    BLUE_A, BLUE_B, BLUE_C, BLUE_D, BLUE_E, 
+    GREEN_A, GREEN_B, GREEN_C, GREEN_D, GREEN_E, 
+    RED_A, RED_B, RED_C, RED_D, RED_E, 
+    YELLOW_A, YELLOW_B, YELLOW_C, YELLOW_D, YELLOW_E
+]
 
 def unit_vector(vector):
     """ Returns the unit vector of the vector.  """
@@ -8,9 +18,28 @@ def unit_vector(vector):
        return vector # Return zero vector if input is zero vector
     return vector / norm
 
+def get_distinct_random_colors(n, pool=RANDOM_COLOR_POOL):
+    """ Returns n distinct random colors from the pool. """
+    if n > len(pool):
+        print(f"Warning: Requested {n} distinct colors, but pool only has {len(pool)}. Returning duplicates.")
+        # Allow duplicates if pool is too small
+        return random.choices(pool, k=n)
+    return random.sample(pool, n)
+
 # Reusable Angle Group Class
 class AngleGroup(VGroup):
-    def __init__(self, initial_alpha, path, duration=1.0, **kwargs):
+    def __init__(self, initial_alpha, path, duration=1.0, colors="default", **kwargs):
+        """
+        Initializes the AngleGroup.
+    
+        Args:
+            initial_alpha (float): Starting proportion along the path (0 to 1).
+            path (ParametricCurve): The path the angle's vertex follows.
+            duration (float): Time in seconds for the angle to traverse the path (0 to 360 degrees).
+            colors (str or list): Color setting. Can be "default", "random", or a list/tuple
+                                  of 5 specific colors for [line1, line2, arc, dot, theta].
+            **kwargs: Additional arguments for VGroup.
+        """
         super().__init__(**kwargs)
         self.path = path # Store the path for the updater
         self.initial_alpha = initial_alpha
@@ -18,6 +47,19 @@ class AngleGroup(VGroup):
         self.speed = 1.0 / duration if duration > 0 else 0 # Speed as proportion per second
         self.current_alpha = initial_alpha
         self.is_updating = True # Flag to control the updater
+        
+        # --- Determine Component Colors ---
+        if colors == "random":
+            distinct_colors = get_distinct_random_colors(5)
+            line1_color, line2_color, arc_color, dot_color, theta_color = distinct_colors
+        elif isinstance(colors, (list, tuple)) and len(colors) == 5:
+            line1_color, line2_color, arc_color, dot_color, theta_color = colors
+        else: # Default colors
+            line1_color = GREEN
+            line2_color = ORANGE
+            arc_color = BLUE_C
+            dot_color = WHITE # Default dot color
+            theta_color = WHITE # Default theta color
 
         # Calculate initial state based on initial_alpha
         initial_position = path.point_from_proportion(initial_alpha)
@@ -28,15 +70,21 @@ class AngleGroup(VGroup):
         O = np.array([0, 0, 0]) # Relative origin for angle calculation
         B = np.array([np.cos(initial_angle_value), np.sin(initial_angle_value), 0])
 
-        # Create components relative to the initial position
-        self.line1 = Line(initial_position, initial_position + A, color=GREEN)
-        self.line2 = Line(initial_position, initial_position + B, color=ORANGE)
+        # Create components relative to the initial position using determined colors
+        self.line1 = Line(initial_position, initial_position + A, color=line1_color)
+        self.line2 = Line(initial_position, initial_position + B, color=line2_color)
         # Ensure fill opacity is 0 from the start
         self.base_radius = 0.8  # Store the base radius for scaling calculations
         self.base_dot_radius = 0.07  # Store the base dot radius for scaling calculations
-        self.angle_obj = Angle(self.line1, self.line2, radius=self.base_radius, color=BLUE_C, 
+        self.angle_obj = Angle(self.line1, self.line2, radius=self.base_radius, color=arc_color, 
                               dot=True, dot_radius=self.base_dot_radius, dot_distance=0, fill_opacity=0)
-        self.theta = MathTex(r"\theta", color=WHITE).scale(0.6)
+        # Explicitly set the dot color after creation
+        if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+            self.angle_obj.dot.set_color(dot_color)
+
+        # Use Text instead of MathTex to potentially avoid LaTeX issues
+        # font_size=24 is roughly equivalent to the default MathTex size scaled by 0.6
+        self.theta = Text("θ", color=theta_color, font_size=24) 
 
         # Initial theta position calculation
         line_length = 1.0 # Since A is unit vector
