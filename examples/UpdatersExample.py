@@ -1,6 +1,6 @@
 from manim import *
 INDIGO = "#4B0082"
-import random
+ELECTRIC_PURPLE = "#8F00FF"
 
 class UpdatersExample(Scene):
     def construct(self):
