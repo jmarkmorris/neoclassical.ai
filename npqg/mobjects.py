@@ -48,6 +48,10 @@ class AngleGroup(VGroup):
         self.current_alpha = initial_alpha
         self.is_updating = True # Flag to control the updater
         
+        # Define base dimensions before they are used
+        self.base_radius = 0.8  # Store the base radius for scaling calculations
+        self.base_dot_radius = 0.07  # Store the base dot radius for scaling calculations
+        
         # --- Determine Component Colors ---
         if colors == "random":
             # Request 4 colors, theta is always WHITE
@@ -71,18 +75,6 @@ class AngleGroup(VGroup):
         O = np.array([0, 0, 0]) # Relative origin for angle calculation
         B = np.array([np.cos(initial_angle_value), np.sin(initial_angle_value), 0])
 
-        # Create components relative to the initial position using determined colors
-        self.line1 = Line(initial_position, initial_position + A, color=line1_color)
-        self.line2 = Line(initial_position, initial_position + B, color=line2_color)
-        # Ensure fill opacity is 0 from the start
-        self.base_radius = 0.8  # Store the base radius for scaling calculations
-        self.base_dot_radius = 0.07  # Store the base dot radius for scaling calculations
-        self.angle_obj = Angle(self.line1, self.line2, radius=self.base_radius, color=arc_color, 
-                              dot=True, dot_radius=self.base_dot_radius, dot_distance=0, fill_opacity=0)
-        # Explicitly set the dot color after creation
-        if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
-            self.angle_obj.dot.set_color(dot_color)
-    
         # Calculate initial angle in degrees
         initial_angle_deg = int(round(initial_alpha * 360))
         # Store font size for updates
@@ -114,6 +106,16 @@ class AngleGroup(VGroup):
             # Position farther out using base offset distance
             theta_pos = initial_position + default_offset_vector * base_offset_distance
         self.theta.move_to(theta_pos)
+
+        # Create components relative to the initial position using determined colors
+        self.line1 = Line(initial_position, initial_position + A, color=line1_color)
+        self.line2 = Line(initial_position, initial_position + B, color=line2_color)
+        # Ensure fill opacity is 0 from the start
+        self.angle_obj = Angle(self.line1, self.line2, radius=self.base_radius, color=arc_color, 
+                              dot=True, dot_radius=self.base_dot_radius, dot_distance=0, fill_opacity=0)
+        # Explicitly set the dot color after creation
+        if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+            self.angle_obj.dot.set_color(dot_color)
 
         # Add components to the VGroup
         self.add(self.line1, self.line2, self.angle_obj, self.theta)
@@ -323,16 +325,19 @@ class AngleGroup(VGroup):
                 # --- Update Theta Text ---
                 current_degrees = int(round(actual_angle_deg))
                 new_theta_string = f"θ = {current_degrees}°"
-                # Create a new Text object with the updated string and original style (forcing WHITE color)
-                new_theta_text = Text(
-                    new_theta_string,
-                    color=WHITE,
-                    font_size=self._theta_font_size # Use fixed font size
-                )
-                # Use become to update the existing theta object
-                self.theta.become(new_theta_text)
+                
+                # Only update the Text mobject if the string content has changed
+                if not hasattr(self.theta, 'text') or self.theta.text != new_theta_string:
+                    # Create a new Text object with the updated string and original style
+                    new_theta_text = Text(
+                        new_theta_string,
+                        color=WHITE, # Keep original color
+                        font_size=self._theta_font_size # Keep original font size
+                    )
+                    # Use become to replace the old text object with the new one
+                    self.theta.become(new_theta_text)
                 # --- End Update Theta Text ---
-
+                
                 # Position the theta label only if not degenerate
                 # Calculate offset: scaled base radius + fixed buffer
                 theta_offset_distance = self.base_radius * scale_factor + 0.5 # Adjusted buffer
