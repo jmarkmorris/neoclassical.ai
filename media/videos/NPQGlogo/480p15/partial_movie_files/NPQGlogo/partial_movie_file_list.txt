@@ -1,2 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/markmorris/Documents/GitHub/NPQG/media/videos/NPQGlogo/480p15/partial_movie_files/NPQGlogo/3163782288_2559461702_86291252.mp4'
