@@ -19,23 +19,6 @@ PASTEL_COLORS = [
     PINK
 ]
 
-# Manim standard colors list (replace dynamic generation with a static list)
-# Keep MANIM_COLORS definition if needed elsewhere, or remove if PASTEL_COLORS replaces it entirely.
-# For this change, we'll use PASTEL_COLORS, so MANIM_COLORS is not strictly needed here.
-MANIM_COLORS = [
-    BLUE, RED, GREEN, YELLOW, PURPLE, ORANGE, TEAL, PINK, GOLD, MAROON,
-    BLUE_A, BLUE_B, BLUE_C, BLUE_D, BLUE_E, # Included for completeness if needed later
-    TEAL_A, TEAL_B, TEAL_C, TEAL_D, TEAL_E,
-    GREEN_A, GREEN_B, GREEN_C, GREEN_D, GREEN_E,
-    YELLOW_A, YELLOW_B, YELLOW_C, YELLOW_D, YELLOW_E,
-    GOLD_A, GOLD_B, GOLD_C, GOLD_D, GOLD_E,
-    RED_A, RED_B, RED_C, RED_D, RED_E,
-    MAROON_A, MAROON_B, MAROON_C, MAROON_D, MAROON_E,
-    PURPLE_A, PURPLE_B, PURPLE_C, PURPLE_D, PURPLE_E,
-    PINK, LIGHT_PINK, PURE_BLUE, PURE_GREEN, PURE_RED, LIGHT_BROWN, DARK_BROWN,
-    # Add more colors as needed, ensuring they are valid Manim constants
-]
-
 
 class AnimatedAngle(Scene):
     def construct(self):

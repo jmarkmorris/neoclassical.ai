@@ -3,6 +3,9 @@
 *   Name the scene the same as the filename (or the requested output file) to avoid warnings.
 *   Do not add comments specific to a particular problem, issue, or reversion.
 *   All comments added should be professional, concise, and explain the overall design or purpose of the code block.
+*   When running in architect mode, ensure that the editor LLM actually makes its edits.
+*   Before confirming completion of a set of edits, explicitly verify that *all* requested changes within the current instruction set have been successfully applied to the relevant files. Use file system checks (`ls -lt`, `git diff`, etc.)
+if necessary.
 
 ---
 

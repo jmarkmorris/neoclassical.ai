@@ -4,17 +4,6 @@ import numpy as np # Make sure numpy is imported
 import datetime
 INDIGO = "#4B0082"
 
-# --- Helper function (optional but clean) ---
-# This is available directly in newer Manim versions, but defining it ensures compatibility
-# or provides clarity if you're using an older version. Manim's rotate_vector works too.
-def rotate_vector(vec, angle):
-    """Rotates a 2D vector by a given angle."""
-    cos_a, sin_a = np.cos(angle), np.sin(angle)
-    return np.array([
-        vec[0] * cos_a - vec[1] * sin_a,
-        vec[0] * sin_a + vec[1] * cos_a,
-        vec[2] # Keep z-component if it exists
-    ])
 
 class ClockAssembly(VGroup):
     def __init__(self, radius=2, **kwargs):

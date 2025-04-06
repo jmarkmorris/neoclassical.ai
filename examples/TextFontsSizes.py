@@ -26,7 +26,6 @@ class TextFontsSizes(Scene):
         # Text content and formatting options
         sample_text = "Neoclassical Physics and Quantum Gravity"
         font = "Helvetica Neue"
-        sample_text = "Neoclassical Physics and Quantum Gravity"
         sizes = [16, 24, 32]
         weights = ["BOLD", "MEDIUM", "NORMAL", "LIGHT", "THIN"]
         
