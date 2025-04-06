@@ -6,13 +6,6 @@ from npqg import AngleGroup
 INDIGO = "#4B0082"
 WHITE = "#FFFFFF"
 
-def unit_vector(vector):
-    """ Returns the unit vector of the vector.  """
-    norm = np.linalg.norm(vector)
-    if norm == 0:
-       return vector # Return zero vector if input is zero vector
-    return vector / norm
-
 # Removed local AngleGroup class definition
 
 class AnglesMoving(Scene):

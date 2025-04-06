@@ -5,9 +5,6 @@ from manim import *
 # Define the list of colors for the random_color scheme
 RANDOM_COLOR_OPTIONS = [RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, PINK, TEAL, MAROON, GOLD, DARK_GRAY, GRAY, LIGHT_GRAY, WHITE, BLACK]
 
-# Define INDIGO color
-INDIGO = "#4B0082"
-
 
 class TiledSquares(Scene):
     """

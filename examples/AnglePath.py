@@ -4,11 +4,6 @@ import numpy as np
 from npqg import AngleGroup
 
 INDIGO = "#4B0082"
-WHITE = "#FFFFFF"
-
-def unit_vector(vector):
-    """ Returns the unit vector of the vector.  """
-    return vector / np.linalg.norm(vector)
 
 class AnglePath(Scene):
     def construct(self):
