@@ -32,11 +32,11 @@ class PathTrace(Scene):
         # Create multiple dots with different colors and path tracers
         dot_configs = [
             {'color': PURE_BLUE, 'path_color': BLUE_C},
-            {'color': PURE_BLUE, 'path_color': BLUE_D},
-            {'color': PURE_BLUE, 'path_color': BLUE_E},
+            {'color': PURE_BLUE, 'path_color': BLUE_C},
+            {'color': PURE_BLUE, 'path_color': BLUE_C},
             {'color': PURE_RED, 'path_color': RED_C},
-            {'color': PURE_RED, 'path_color': RED_D},
-            {'color': PURE_RED, 'path_color': RED_E}
+            {'color': PURE_RED, 'path_color': RED_C},
+            {'color': PURE_RED, 'path_color': RED_C}
         ]
 
         dots = []
@@ -77,15 +77,15 @@ class PathTrace(Scene):
             custom_path = VMobject()
             points = [[0, -1, 0]]  # Start lower to avoid title overlap
             
-            for _ in range(40):  # More points for a longer, more interesting path
+            for _ in range(128):  # More points for a longer, more interesting path
                 while True:
                     angle = random.uniform(0, TAU)
                     new_point = points[-1] + np.array([np.cos(angle), np.sin(angle), 0])
                     
                     # Keep the path in the lower 2/3 of the screen to avoid title
                     if (abs(new_point[0]) <= 7 and 
-                        new_point[1] <= 0.5 and  # Stay below this y-value to avoid title
-                        new_point[1] >= -4):
+                        new_point[1] <= 2.5 and  # Stay below this y-value to avoid title
+                        new_point[1] >= -3.75):
                         points.append(new_point)
                         break
                         
@@ -95,7 +95,7 @@ class PathTrace(Scene):
         # Animate dots along their respective paths
         self.play(
             *[MoveAlongPath(dot, custom_path, rate_func=linear) for dot, custom_path in zip(dots, custom_paths)], 
-            run_time=15  # Reduced from 30 to make it more engaging
+            run_time=20  
         ) 
         
         # Add a final animation to show the completed paths
