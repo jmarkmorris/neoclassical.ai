@@ -75,7 +75,7 @@ class AnglesMoving(Scene):
             )
             paths.append(path)
 
-            angle_group = AngleGroup(initial_alpha, path, duration=animation_duration)
+            angle_group = AngleGroup(initial_alpha, path, duration=animation_duration, colors="random")
             angle_groups.append(angle_group)
 
             # Add updater to the angle group
