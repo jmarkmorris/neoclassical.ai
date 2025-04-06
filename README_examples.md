@@ -130,28 +130,35 @@ A detailed visualization of polar coordinate systems:
 - Axis and label configuration
 - Demonstration of coordinate system visualization
 
-### 17. TextFontsSizes.py
+### 17. Square.py
+A configurable scene that tiles the Manim frame with colored squares:
+- Loads configuration (size, color scheme, borders, opacity) from `examples/Square.json`
+- Supports multiple color schemes (alternating, random, etc.)
+- Allows enabling/disabling borders and opacity variation
+- Demonstrates loading external configuration and grid-based layouts
+
+### 18. TextFontsSizes.py
 A comprehensive text rendering showcase:
 - Exploration of font variations
 - Size and weight demonstrations
 - Text styling and formatting
 - Systematic display of text rendering capabilities
 
-### 18. UpdatersExample.py
+### 19. UpdatersExample.py
 An advanced demonstration of Manim's updater functionality:
 - Multiple interactive objects with dynamic behaviors
 - Complex updater interactions
 - Real-time object transformations
 - Showcasing the power of Manim's updater system
 
-### 19. VectorArrow.py
+### 20. VectorArrow.py
 A precise vector and coordinate visualization:
 - Vector arrow creation and placement
 - Number plane rendering
 - Coordinate system labeling
 - Demonstration of vector visualization techniques
 
-### 20. WriteStuff.py
+### 21. WriteStuff.py
 A basic introduction to Manim's text and animation capabilities:
 - Text and LaTeX writing animations
 - Simple text transformations
