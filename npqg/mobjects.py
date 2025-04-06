@@ -101,33 +101,41 @@ class AngleGroup(VGroup):
         self._update_visuals(self.current_alpha)
 
     # --- Public method to trigger scaling ---
-    def dynamic_scale(self, target_scale, duration):
+    def dynamic_scale(self, start_time, end_time, target_scale):
         """
-        Starts an animation to scale the AngleGroup to a target scale factor
-        over a specified duration using the updater.
-
-        The scaling happens incrementally on each frame update, with the amount
-        of change per frame determined by:
-        1. The total change in scale (target_scale - current_scale)
-        2. The duration of the animation
-        3. The easing function applied to the progress
-
+        Schedule a scaling operation with precise start and end times.
+        
         Args:
-            target_scale (float): The final scale factor (e.g., 1.0 is original size,
-                                  0.5 is half size, 2.0 is double size).
-            duration (float): The time in seconds the scaling animation should take.
+            start_time (float): The time at which scaling should begin
+            end_time (float): The time at which scaling should complete
+            target_scale (float): The final scale factor to reach
         """
-        if duration <= 0:
-            # Apply instantly if duration is zero or negative
-            self._set_scale_factor(target_scale)
-            self._is_scaling = False
-        else:
-            # Store parameters for the scaling animation
-            self._scale_target = target_scale
-            self._scale_duration = duration
-            self._scale_elapsed_time = 0.0
-            self._scale_start_value = self._get_current_scale_factor() # Start from current scale
-            self._is_scaling = True # Activate scaling in the updater
+        # If no scaling operations exist, initialize the queue
+        if not hasattr(self, '_scale_queue'):
+            self._scale_queue = []
+        
+        # Check for conflicts with existing scaling operations
+        for existing_scale in self._scale_queue:
+            if not (end_time <= existing_scale['start_time'] or 
+                    start_time >= existing_scale['end_time']):
+                print(f"Warning: Scaling operation from {start_time} to {end_time} "
+                      f"conflicts with existing operation from "
+                      f"{existing_scale['start_time']} to {existing_scale['end_time']}. "
+                      "Operation ignored.")
+                return
+        
+        # Add the new scaling operation to the queue
+        new_scale_op = {
+            'start_time': start_time,
+            'end_time': end_time,
+            'start_scale': self._current_scale_factor,
+            'target_scale': target_scale,
+            'duration': end_time - start_time
+        }
+        self._scale_queue.append(new_scale_op)
+        
+        # Sort the queue by start time to ensure proper order of operations
+        self._scale_queue.sort(key=lambda x: x['start_time'])
             
     def pause_animation(self):
         """
@@ -297,37 +305,37 @@ class AngleGroup(VGroup):
             self.current_alpha = min(self.current_alpha, 1.0)
             self._update_visuals(self.current_alpha)
         else:
-            # Optionally stop updating once alpha reaches 1
-            # self.is_updating = False
-            # Or handle looping if desired
-            # self.current_alpha = self.current_alpha % 1.0 # Loop
             pass # Keep showing the final state if clamped
 
-        # --- Handle Dynamic Scaling ---
-        if self._is_scaling:
-            # Increment elapsed time by the frame delta time
-            self._scale_elapsed_time += dt
-
-            if self._scale_elapsed_time >= self._scale_duration:
-                # Animation finished, snap to target and stop scaling
-                self._set_scale_factor(self._scale_target)
-                self._is_scaling = False
-            else:
-                # Calculate progress (0 to 1) with smooth easing
-                linear_progress = self._scale_elapsed_time / self._scale_duration
+        # Track the current time of the animation
+        if not hasattr(self, '_current_animation_time'):
+            self._current_animation_time = 0.0
+        
+        self._current_animation_time += dt
+        
+        # Process scaling queue
+        if hasattr(self, '_scale_queue') and self._scale_queue:
+            current_op = self._scale_queue[0]
+            
+            # Check if it's time to start this scaling operation
+            if self._current_animation_time >= current_op['start_time']:
+                # If we're within the scaling window
+                if self._current_animation_time <= current_op['end_time']:
+                    # Calculate progress
+                    progress = (self._current_animation_time - current_op['start_time']) / current_op['duration']
+                    
+                    # Apply smooth interpolation
+                    interpolated_scale = (
+                        current_op['start_scale'] + 
+                        (current_op['target_scale'] - current_op['start_scale']) * progress
+                    )
+                    
+                    self._set_scale_factor(interpolated_scale)
                 
-                # Apply smooth easing function (ease in-out)
-                # This creates a more natural, less jumpy animation
-                if linear_progress < 0.5:
-                    # Ease in: slow start, accelerate
-                    progress = 2 * linear_progress * linear_progress
-                else:
-                    # Ease out: decelerate to end
-                    progress = 1 - pow(-2 * linear_progress + 2, 2) / 2
-                
-                # Interpolate the scale factor with the eased progress
-                # This ensures a smooth transition from start to target scale
-                interpolated_scale = self._scale_start_value + (self._scale_target - self._scale_start_value) * progress
-                
-                # Apply the interpolated scale for this frame
-                self._set_scale_factor(interpolated_scale)
+                # If we've completed this scaling operation
+                if self._current_animation_time >= current_op['end_time']:
+                    # Ensure we reach the exact target scale
+                    self._set_scale_factor(current_op['target_scale'])
+                    
+                    # Remove this operation from the queue
+                    self._scale_queue.pop(0)

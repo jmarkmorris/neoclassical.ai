@@ -107,20 +107,23 @@ class AngleClassUse(Scene):
         self.add(*paths)
         self.add(*angle_groups)
 
-        # --- Trigger dynamic scaling  
+        # --- Trigger dynamic scaling with new time-based method
         if angle_groups: # Ensure there's at least one group
-            # Apply scaling to all angle groups with different scales and timings
-            # First group scales to 0.5x over 10.0 seconds
-            angle_groups[0].dynamic_scale(0.5, 10.0)
+            # Demonstrate precise time-based scaling with start and end times
+            # First group: Scale to 0.5x from 0 to 10 seconds
+            angle_groups[0].dynamic_scale(0, 10, 0.5)
             
             # Apply scaling to other angle groups with different scales and timings
             for i, group in enumerate(angle_groups[1:], 1):
                 if i % 3 == 0:
-                    group.dynamic_scale(0.7, 8.0)  # Scale to 0.7x over 8.0 seconds
+                    # Scale to 0.7x from 5 to 13 seconds
+                    group.dynamic_scale(5, 13, 0.7)
                 elif i % 3 == 1:
-                    group.dynamic_scale(0.4, 12.0)  # Scale to 0.4x over 12.0 seconds
+                    # Scale to 0.4x from 8 to 20 seconds
+                    group.dynamic_scale(8, 20, 0.4)
                 else:
-                    group.dynamic_scale(0.6, 9.0)  # Scale to 0.6x over 9.0 seconds
+                    # Scale to 0.6x from 3 to 12 seconds
+                    group.dynamic_scale(3, 12, 0.6)
 
         # Wait for half of the animation duration
         self.wait(animation_duration / 2)
