@@ -26,18 +26,18 @@ A comprehensive demonstration of advanced angle visualization using a custom `An
 
 ### 2. AnimatedAngle.py
 An exploration of angle rotation with dynamic visual properties:
-- Randomized color generation for lines, arcs, and labels
-- Smooth rotation of angle components
-- Demonstration of angle creation and transformation
-- Showcasing Manim's flexibility in geometric animations
+- Randomized color generation for lines, arcs, and labels using the shared `AngleGroup`
+- Smooth rotation simulated using `UpdateFromAlphaFunc` on `AngleGroup`
+- Demonstration of `AngleGroup` instantiation and color setting
+- Showcasing Manim's flexibility in geometric animations via `AngleGroup`
 
 ### 3. AnglePath.py
-An advanced visualization of angle movement along a complex parametric path:
+An advanced visualization of angle movement along a complex parametric path using the shared `AngleGroup`:
 - Parametric curve generation using trigonometric functions
-- Dynamic angle updates based on path progression
-- Handling of degenerate angle cases
-- Smooth angle and label positioning
-- Exploration of non-linear path following
+- Dynamic angle updates handled by `AngleGroup` based on path progression
+- Handling of degenerate angle cases within `AngleGroup`
+- Smooth angle and label positioning managed by `AngleGroup`
+- Exploration of non-linear path following with `AngleGroup`
 
 ### 4. ArrowTips.py
 A comprehensive showcase of Manim's arrow tip styles:

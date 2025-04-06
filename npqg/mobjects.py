@@ -219,78 +219,80 @@ class AngleGroup(VGroup):
                          np.isclose(actual_angle_deg, 180, atol=tolerance) or 
                          np.isclose(actual_angle_deg, 360, atol=tolerance))
 
-        # Always update the angle object, even if the angle is degenerate
-        # This ensures consistent scaling behavior throughout the animation
-        try:
-            # Preserve the existing colors of the arc and dot
-            current_arc_color = self.angle_obj.get_color()
-            current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE
-            
-            # Create a new angle with the current scale factor applied
-            scaled_radius = self.base_radius * scale_factor
-            scaled_dot_radius = self.base_dot_radius * scale_factor
-            
-            # Create a new angle with the scaled dimensions
-            temp_angle = Angle(
-                self.line1, self.line2, 
-                radius=scaled_radius, 
-                color=current_arc_color,
-                dot=True, 
-                dot_radius=scaled_dot_radius, 
-                dot_distance=0, 
-                fill_opacity=0
-            )
-            
-            # Set the dot color explicitly
-            if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
-                temp_angle.dot.set_color(current_dot_color)
-            
-            # Update the angle object
-            self.angle_obj.become(temp_angle)
-            
-            # Set visibility based on whether the angle is degenerate
-            opacity = 0 if is_degenerate else 1
-            self.angle_obj.set_stroke(opacity=opacity)
-            
-            # Re-apply dot color
-            if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
-                self.angle_obj.dot.set_color(current_dot_color)
-                self.angle_obj.dot.set_opacity(opacity)
-                
-        except ValueError:
-            # If angle creation fails, hide the angle
+        # Handle degenerate angles first by hiding components
+        if is_degenerate:
             self.angle_obj.set_stroke(opacity=0)
             if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
                 self.angle_obj.dot.set_opacity(0)
-            is_degenerate = True
-
-        # Position the theta label
-        # Calculate theta position using the bisector method
-        line_length = 1.0 * scale_factor  # Scale the unit vector
-        
-        # Calculate the bisector vector
-        bisector = A_vec + B_vec
-        bisector_norm = np.linalg.norm(bisector)
-        
-        if bisector_norm > 1e-6:
-            # Normalize the bisector
-            unit_bisector = bisector / bisector_norm
-            
-            # Flip the bisector for angles > 180°
-            if cross_product < 0:
-                unit_bisector = -unit_bisector
-            
-            # Position theta along the bisector
-            theta_pos = position + unit_bisector * 1.1 * line_length
-            self.theta.move_to(theta_pos)
+            self.theta.set_opacity(0)
         else:
-            # Handle degenerate case (bisector is zero)
-            default_offset_vector = A_vec / np.linalg.norm(A_vec)
-            theta_pos = position + default_offset_vector * 1.1 * line_length
-            self.theta.move_to(theta_pos)
-        
-        # Set theta visibility based on whether the angle is degenerate
-        self.theta.set_opacity(0 if is_degenerate else 1)
+            # If not degenerate, update the angle object and theta
+            try:
+                # Preserve the existing colors of the arc and dot
+                current_arc_color = self.angle_obj.get_color()
+                current_dot_color = self.angle_obj.dot.get_color() if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None else WHITE
+
+                # Create a new angle with the current scale factor applied
+                scaled_radius = self.base_radius * scale_factor
+                scaled_dot_radius = self.base_dot_radius * scale_factor
+
+                # Create a new angle with the scaled dimensions
+                temp_angle = Angle(
+                    self.line1, self.line2,
+                    radius=scaled_radius,
+                    color=current_arc_color,
+                    dot=True,
+                    dot_radius=scaled_dot_radius,
+                    dot_distance=0,
+                    fill_opacity=0
+                )
+
+                # Set the dot color explicitly
+                if hasattr(temp_angle, 'dot') and temp_angle.dot is not None:
+                    temp_angle.dot.set_color(current_dot_color)
+
+                # Update the angle object
+                self.angle_obj.become(temp_angle)
+
+                # Set visibility to 1 (since it's not degenerate)
+                self.angle_obj.set_stroke(opacity=1)
+                if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+                    self.angle_obj.dot.set_color(current_dot_color) # Re-apply color after become
+                    self.angle_obj.dot.set_opacity(1)
+
+                # Position the theta label only if not degenerate
+                line_length = 1.0 * scale_factor  # Scale the unit vector
+
+                # Calculate the bisector vector
+                bisector = A_vec + B_vec
+                bisector_norm = np.linalg.norm(bisector)
+
+                if bisector_norm > 1e-6:
+                    # Normalize the bisector
+                    unit_bisector = bisector / bisector_norm
+
+                    # Flip the bisector for angles > 180°
+                    if cross_product < 0:
+                        unit_bisector = -unit_bisector
+
+                    # Position theta along the bisector
+                    theta_pos = position + unit_bisector * 1.1 * line_length
+                    self.theta.move_to(theta_pos)
+                else:
+                    # Handle degenerate case (bisector is zero) for theta positioning
+                    default_offset_vector = A_vec / np.linalg.norm(A_vec)
+                    theta_pos = position + default_offset_vector * 1.1 * line_length
+                    self.theta.move_to(theta_pos)
+
+                # Set theta visibility to 1
+                self.theta.set_opacity(1)
+
+            except ValueError:
+                # If angle creation fails even when not initially degenerate, hide components
+                self.angle_obj.set_stroke(opacity=0)
+                if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
+                    self.angle_obj.dot.set_opacity(0)
+                self.theta.set_opacity(0)
 
     # Accept 'recursive' as the third positional argument passed by Manim's internal update loop
     def update(self, dt, recursive=True, **kwargs):

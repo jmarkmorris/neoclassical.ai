@@ -1,6 +1,9 @@
 from manim import *
 import numpy as np
 import random
+# Import the AngleGroup from the npqg library
+from npqg import AngleGroup
+
 INDIGO = "#4B0082"
 ELECTRIC_PURPLE = "#8F00FF"
 
@@ -19,84 +22,86 @@ MANIM_COLORS = [
     # Add more colors as needed, ensuring they are valid Manim constants
 ]
 
-class AngleObject(VGroup):
-    def __init__(self, location=np.array([0, 0, 0]), **kwargs):
-        super().__init__(**kwargs)
-
-        self.location = location
-
-        # Randomize colors
-        line1_color = random.choice(MANIM_COLORS)
-        line2_color = random.choice(MANIM_COLORS)
-        while line2_color == line1_color:  # Ensure different colors for lines
-            line2_color = random.choice(MANIM_COLORS)
-        angle_arc_color = random.choice(MANIM_COLORS)
-        dot_color = random.choice(MANIM_COLORS)
-        theta_color = random.choice(MANIM_COLORS)
-
-        # Define the initial and final angles in degrees
-        initial_angle_deg = random.uniform(10, 170)  # Ensure non-zero initial angle
-        final_angle_deg = random.uniform(190, 350)    # Ensure non-zero final angle
-
-        # Create the first line
-        self.line1 = Line(self.location, self.location + RIGHT, color=line1_color)
-        # Create the second line, initially rotated to the initial angle
-        self.line2 = Line(self.location, self.location + RIGHT, color=line2_color).rotate(
-            initial_angle_deg * DEGREES, about_point=self.location
-        )
-
-        # Create the angle
-        self.angle = Angle(self.line1, self.line2, radius=0.5, color=angle_arc_color)
-
-        # Create a dot at the rotation center
-        self.dot = Dot(point=self.location, color=dot_color)
-
-        # Create the theta label
-        self.theta_label = MathTex(r"\theta", color=theta_color).scale(0.7)
-
-        # Add updater to the angle
-        self.angle.add_updater(lambda a: a.become(Angle(self.line1, self.line2, radius=0.5, color=angle_arc_color)))
-
-        # Add updater to the theta label
-        def update_theta_label(obj):
-            angle_obj = Angle(self.line1, self.line2, radius=0.5 + 3 * SMALL_BUFF)
-            obj.move_to(angle_obj.point_from_proportion(0.5))
-
-        self.theta_label.add_updater(update_theta_label)
-
-        # Add the components to the VGroup
-        self.add(self.line1, self.line2, self.angle, self.dot, self.theta_label)
-
-        # Store the initial and final angles for animation
-        self.initial_angle_deg = initial_angle_deg
-        self.final_angle_deg = final_angle_deg
-
-    def create_rotation_animation(self, run_time=3):
-        return Rotate(
-            self.line2,
-            angle=(self.final_angle_deg - self.initial_angle_deg) * DEGREES,
-            about_point=self.location,
-            run_time=run_time
-        )
 
 class AnimatedAngle(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
+        run_time = 3
 
-        # Create the first AngleObject
-        angle1 = AngleObject(location=np.array([-3, 0, 0]))
+        # --- Create First Angle ---
+        location1 = np.array([-3, 0, 0])
+        # Randomize colors
+        line1_color_1 = random.choice(MANIM_COLORS)
+        line2_color_1 = random.choice(MANIM_COLORS)
+        while line2_color_1 == line1_color_1: line2_color_1 = random.choice(MANIM_COLORS)
+        angle_arc_color_1 = random.choice(MANIM_COLORS)
+        dot_color_1 = random.choice(MANIM_COLORS)
+        theta_color_1 = random.choice(MANIM_COLORS)
+        # Define angles
+        initial_angle_deg_1 = random.uniform(10, 170)
+        final_angle_deg_1 = random.uniform(190, 350)
+        initial_alpha_1 = initial_angle_deg_1 / 360.0
+        final_alpha_1 = final_angle_deg_1 / 360.0
 
-        # Create the second AngleObject
-        angle2 = AngleObject(location=np.array([3, 0, 0]))
+        # Create a dummy path (a single point)
+        path1 = Dot(location1, radius=0) # Invisible dot as path
+        # Create AngleGroup instance
+        angle1 = AngleGroup(initial_alpha=initial_alpha_1, path=path1, duration=1.0) # Duration doesn't matter here
+        angle1.is_updating = False # Disable automatic updates
+        angle1.set_color(
+            line1_color=line1_color_1, line2_color=line2_color_1,
+            arc_color=angle_arc_color_1, dot_color=dot_color_1, theta_color=theta_color_1
+        )
+        # Updater function for manual animation control
+        def update_angle_anim_1(mob, alpha):
+            mob._update_visuals(alpha)
 
-        # Create the rotation animations
-        rotate_animation1 = angle1.create_rotation_animation()
-        rotate_animation2 = angle2.create_rotation_animation()
+        # --- Create Second Angle ---
+        location2 = np.array([3, 0, 0])
+        # Randomize colors
+        line1_color_2 = random.choice(MANIM_COLORS)
+        line2_color_2 = random.choice(MANIM_COLORS)
+        while line2_color_2 == line1_color_2: line2_color_2 = random.choice(MANIM_COLORS)
+        angle_arc_color_2 = random.choice(MANIM_COLORS)
+        dot_color_2 = random.choice(MANIM_COLORS)
+        theta_color_2 = random.choice(MANIM_COLORS)
+        # Define angles
+        initial_angle_deg_2 = random.uniform(10, 170)
+        final_angle_deg_2 = random.uniform(190, 350)
+        initial_alpha_2 = initial_angle_deg_2 / 360.0
+        final_alpha_2 = final_angle_deg_2 / 360.0
 
-        # Add the AngleObjects to the scene
+        # Create a dummy path
+        path2 = Dot(location2, radius=0)
+        # Create AngleGroup instance
+        angle2 = AngleGroup(initial_alpha=initial_alpha_2, path=path2, duration=1.0)
+        angle2.is_updating = False # Disable automatic updates
+        angle2.set_color(
+            line1_color=line1_color_2, line2_color=line2_color_2,
+            arc_color=angle_arc_color_2, dot_color=dot_color_2, theta_color=theta_color_2
+        )
+        # Updater function for manual animation control
+        def update_angle_anim_2(mob, alpha):
+            mob._update_visuals(alpha)
+
+        # Add AngleGroups to the scene
         self.add(angle1, angle2)
 
-        # Play the rotation animations
-        self.play(rotate_animation1, rotate_animation2)
+        # Create the animations using UpdateFromAlphaFunc
+        animation1 = UpdateFromAlphaFunc(
+            angle1,
+            update_angle_anim_1,
+            alpha_range=(initial_alpha_1, final_alpha_1),
+            run_time=run_time
+        )
+        animation2 = UpdateFromAlphaFunc(
+            angle2,
+            update_angle_anim_2,
+            alpha_range=(initial_alpha_2, final_alpha_2),
+            run_time=run_time
+        )
+
+        # Play the animations
+        self.play(animation1, animation2)
 
         self.wait()
