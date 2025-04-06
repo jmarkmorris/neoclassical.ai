@@ -134,10 +134,11 @@ display_mode_selection_menu() {
     echo -n "Enter your choice [0-2]: "
 }
 
-# Function to launch aider with the selected model
+# Function to launch aider with the selected model and mode
 launch_aider() {
     local vendor=$1
     local model=$2
+    local mode=$3 # Added mode parameter
     local api_key_var="${vendor}_API_KEY"
     local api_key=$(eval echo \$$api_key_var)
 
@@ -211,11 +212,11 @@ main() {
                     read model_choice
                     
                     case $model_choice in
-                        1) local model="gpt-4o"; launch_aider "OPENAI" "$model"; break ;;
-                        2) local model="gpt-4o-mini"; launch_aider "OPENAI" "$model"; break ;;
-                        3) local model="gpt-4-turbo"; launch_aider "OPENAI" "$model"; break ;;
-                        4) local model="gpt-4"; launch_aider "OPENAI" "$model"; break ;;
-                        5) local model="gpt-3.5-turbo"; launch_aider "OPENAI" "$model"; break ;;
+                        1) local model="gpt-4o"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
+                        2) local model="gpt-4o-mini"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
+                        3) local model="gpt-4-turbo"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
+                        4) local model="gpt-4"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
+                        5) local model="gpt-3.5-turbo"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
@@ -228,9 +229,9 @@ main() {
                     read model_choice
                     
                     case $model_choice in
-                        1) local model="claude-3-7-sonnet-20250219"; launch_aider "ANTHROPIC" "$model"; break ;;
-                        2) local model="claude-3-5-haiku-20241022"; launch_aider "ANTHROPIC" "$model"; break ;;
-                        3) local model="claude-3-opus-20240229"; launch_aider "ANTHROPIC" "$model"; break ;;
+                        1) local model="claude-3-7-sonnet-20250219"; launch_aider "ANTHROPIC" "$model" "$selected_mode"; break ;;
+                        2) local model="claude-3-5-haiku-20241022"; launch_aider "ANTHROPIC" "$model" "$selected_mode"; break ;;
+                        3) local model="claude-3-opus-20240229"; launch_aider "ANTHROPIC" "$model" "$selected_mode"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
@@ -243,11 +244,11 @@ main() {
                     read model_choice
                     
                     case $model_choice in
-                        1) local model="gemini/gemini-1.5-pro"; launch_aider "GOOGLE" "$model"; break ;;
-                        2) local model="gemini/gemini-2.0-flash"; launch_aider "GOOGLE" "$model"; break ;;
-                        3) local model="gemini/gemini-2.0-flash-exp"; launch_aider "GOOGLE" "$model"; break ;;
-                        4) local model="gemini/gemini-2.5-pro-exp-03-25"; launch_aider "GOOGLE" "$model"; break ;;
-                        5) local model="gemini/gemini-2.5-pro-preview-03-25"; launch_aider "GOOGLE" "$model"; break ;;
+                        1) local model="gemini/gemini-1.5-pro"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
+                        2) local model="gemini/gemini-2.0-flash"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
+                        3) local model="gemini/gemini-2.0-flash-exp"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
+                        4) local model="gemini/gemini-2.5-pro-exp-03-25"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
+                        5) local model="gemini/gemini-2.5-pro-preview-03-25"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
