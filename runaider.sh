@@ -139,15 +139,15 @@ launch_aider() {
     case $vendor in
         OPENAI)
             export OPENAI_API_KEY="$api_key"
-            aider_cmd="aider --no-auto-commit --openai-api-key $api_key --model $model"
+            aider_cmd="aider --vim --no-auto-commit --openai-api-key $api_key --model $model"
             ;;
         ANTHROPIC)
             export ANTHROPIC_API_KEY="$api_key"
-            aider_cmd="aider --no-auto-commit --anthropic-api-key $api_key --model $model"
+            aider_cmd="aider --vim --no-auto-commit --anthropic-api-key $api_key --model $model"
             ;;
         GOOGLE)
             export GOOGLE_API_KEY="$api_key"
-            aider_cmd="aider --no-auto-commit --api-key google=$api_key --model $model"
+            aider_cmd="aider --vim --no-auto-commit --api-key google=$api_key --model $model"
             ;;
         *)
             echo "Unknown vendor: $vendor"

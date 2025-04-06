@@ -6,14 +6,12 @@ class CircleSizes(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
         
-        
-
         # Create coordinate grid
         grid = NumberPlane(
             x_range=[-7, 7],
             y_range=[-4, 4],
             axis_config={
-                "stroke_color": WHITE,
+                "stroke_color": ELECTRIC_PURPLE,
                 "stroke_width": 1,
                 "include_ticks": False,
                 "include_tip": False,
@@ -53,7 +51,7 @@ class CircleSizes(Scene):
                 label = Text(
                     f"r = {radius:.3f}", 
                     color=WHITE, 
-                    font_size=16, 
+                    font_size=14, 
                     font="Helvetica Neue",
                     weight="LIGHT"
                 ).move_to([x + 0.5, y-0.75, 0])

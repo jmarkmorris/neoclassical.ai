@@ -49,7 +49,8 @@ class TiledSquares(Scene):
             for j in range(num_squares_y):
                 x = (i - num_squares_x / 2 + 0.5) * self.square_size
                 y = (j - num_squares_y / 2 + 0.5) * self.square_size
-                square = Square(side_length=self.square_size, stroke_width=1)
+                # square = Square(side_length=self.square_size, stroke_width=1)
+                square = Circle(radius=self.square_size, stroke_width=1)
                 if not self.borders:
                     square.set_stroke(width=0)
                 square.move_to([x, y, 0])
