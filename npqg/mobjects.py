@@ -81,9 +81,14 @@ class AngleGroup(VGroup):
         # Explicitly set the dot color after creation
         if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
             self.angle_obj.dot.set_color(dot_color)
-
-        self.theta = Text("θ", color=theta_color, font_size=16) 
-
+    
+        # Calculate initial angle in degrees
+        initial_angle_deg = int(round(initial_alpha * 360))
+        # Store font size for updates
+        self._theta_font_size = 16 
+        # Create initial text with degrees (forcing WHITE color)
+        self.theta = Text(f"θ = {initial_angle_deg}°", color=WHITE, font_size=self._theta_font_size) 
+    
         # Initial theta position calculation
         line_length = 1.0 # Since A is unit vector
 
@@ -94,11 +99,13 @@ class AngleGroup(VGroup):
         mid_vector_norm = np.linalg.norm(mid_vector)
         if mid_vector_norm > 1e-6:
             unit_mid_vector = mid_vector / mid_vector_norm
-            theta_pos = initial_position + unit_mid_vector * 1.1 * line_length
+            # Position farther out (1.1 * 1.4 = 1.54)
+            theta_pos = initial_position + unit_mid_vector * 1.54 * line_length 
         else:
             # Handle degenerate case
             default_offset_vector = A_vec / np.linalg.norm(A_vec)
-            theta_pos = initial_position + default_offset_vector * 1.1 * line_length
+            # Position farther out (1.1 * 1.4 = 1.54)
+            theta_pos = initial_position + default_offset_vector * 1.54 * line_length 
         self.theta.move_to(theta_pos)
 
         # Add components to the VGroup
@@ -306,10 +313,23 @@ class AngleGroup(VGroup):
                 if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
                     self.angle_obj.dot.set_color(current_dot_color) # Re-apply color after become
                     self.angle_obj.dot.set_opacity(1)
-
+    
+                # --- Update Theta Text ---
+                current_degrees = int(round(actual_angle_deg))
+                new_theta_string = f"θ = {current_degrees}°"
+                # Create a new Text object with the updated string and original style (forcing WHITE color)
+                new_theta_text = Text(
+                    new_theta_string, 
+                    color=WHITE, 
+                    font_size=self._theta_font_size # Use stored font size
+                )
+                # Use become to update the existing theta object
+                self.theta.become(new_theta_text)
+                # --- End Update Theta Text ---
+    
                 # Position the theta label only if not degenerate
                 line_length = 1.0 * scale_factor  # Scale the unit vector
-
+    
                 # Calculate the bisector vector
                 bisector = A_vec + B_vec
                 bisector_norm = np.linalg.norm(bisector)
@@ -322,13 +342,13 @@ class AngleGroup(VGroup):
                     if cross_product < 0:
                         unit_bisector = -unit_bisector
 
-                    # Position theta along the bisector
-                    theta_pos = position + unit_bisector * 1.1 * line_length
+                    # Position theta along the bisector (farther out)
+                    theta_pos = position + unit_bisector * 1.54 * line_length 
                     self.theta.move_to(theta_pos)
                 else:
-                    # Handle degenerate case (bisector is zero) for theta positioning
+                    # Handle degenerate case (bisector is zero) for theta positioning (farther out)
                     default_offset_vector = A_vec / np.linalg.norm(A_vec)
-                    theta_pos = position + default_offset_vector * 1.1 * line_length
+                    theta_pos = position + default_offset_vector * 1.54 * line_length 
                     self.theta.move_to(theta_pos)
 
                 # Set theta visibility to 1, unless it's a full circle (position is ambiguous)
