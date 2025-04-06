@@ -42,9 +42,9 @@ update_api_key() {
 
 # Function to display the main menu (accepts mode as $1)
 display_main_menu() {
-    local mode_label=$( [ "$1" == "architect" ] && echo "Architect Code Model" || echo "Code Model" ) # Clarify role in Architect mode and add 'Model' to Code
+    local mode_label=$( [ "$1" == "architect" ] && echo "Architect Code" || echo "Code" ) # Clarify role in Architect mode
     clear
-    echo -e "Step 2: Select LLM Vendor for ${mode_label} or Manage Keys" # Removed duplicate 'Model' here
+    echo -e "Step 2: Select LLM Vendor for ${mode_label} Model or Manage Keys"
     echo -e "=============================="
     echo -e "    LLM VENDOR SELECTION     "
     echo -e "=============================="
@@ -57,11 +57,11 @@ display_main_menu() {
     echo -n "Enter your choice [1-4, Enter=0]: "
 }
 
-# Function to display OpenAI models (accepts mode as $1)
+# Function to display OpenAI models (accepts role label as $1: "Architect" or "Editor" or "Code")
 display_openai_models() {
-    local mode_label=$( [ "$1" == "architect" ] && echo "Architect" || echo "Code" )
+    local role_label=$1
     clear
-    echo -e "Step 3: Select OpenAI ${mode_label} Model"
+    echo -e "Step 3: Select OpenAI ${role_label} Model"
     echo -e "=============================="
     echo -e "      OpenAI MODELS          "
     echo -e "=============================="
@@ -75,11 +75,11 @@ display_openai_models() {
     echo -n "Enter your choice [1-5, Enter=0]: "
 }
 
-# Function to display Anthropic models (accepts mode as $1)
+# Function to display Anthropic models (accepts role label as $1: "Architect" or "Editor" or "Code")
 display_anthropic_models() {
-    local mode_label=$( [ "$1" == "architect" ] && echo "Architect" || echo "Code" )
+    local role_label=$1
     clear
-    echo -e "Step 3: Select Anthropic ${mode_label} Model"
+    echo -e "Step 3: Select Anthropic ${role_label} Model"
     echo -e "=============================="
     echo -e "      ANTHROPIC MODELS       "
     echo -e "=============================="
@@ -91,11 +91,11 @@ display_anthropic_models() {
     echo -n "Enter your choice [1-3, Enter=0]: " # Corrected range
 }
 
-# Function to display Google models (accepts mode as $1)
+# Function to display Google models (accepts role label as $1: "Architect" or "Editor" or "Code")
 display_google_models() {
-    local mode_label=$( [ "$1" == "architect" ] && echo "Architect" || echo "Code" )
+    local role_label=$1
     clear
-    echo -e "Step 3: Select Google ${mode_label} Model"
+    echo -e "Step 3: Select Google ${role_label} Model"
     echo -e "=============================="
     echo -e "       GOOGLE MODELS         "
     echo -e "=============================="
@@ -107,58 +107,6 @@ display_google_models() {
     echo "0. Back to main menu"
     echo -e "=============================="
     echo -n "Enter your choice [1-5, Enter=0]: "
-}
-
-# Function to display OpenAI editor models
-display_openai_editor_models() {
-    clear
-    echo -e "Step 4 (Architect Mode Only): Select OpenAI Editor Model"
-    echo -e "=============================="
-    echo -e "   SELECT OpenAI EDITOR MODEL "
-    echo -e "=============================="
-    echo "1. gpt-4o"
-    echo "2. gpt-4o-mini"
-    echo "3. gpt-4-turbo"
-    echo "4. gpt-4"
-    echo "5. gpt-3.5-turbo"
-    echo "9. Use Default Editor"
-    echo "0. Back to OpenAI Models"
-    echo -e "=============================="
-    echo -n "Enter your choice [1-5, 9, Enter=0]: "
-}
-
-# Function to display Anthropic editor models
-display_anthropic_editor_models() {
-    clear
-    echo -e "Step 4 (Architect Mode Only): Select Anthropic Editor Model"
-    echo -e "=============================="
-    echo -e "  SELECT ANTHROPIC EDITOR MODEL "
-    echo -e "=============================="
-    echo "1. claude-3-7-sonnet-20250219"
-    echo "2. claude-3-5-haiku-20241022"
-    echo "3. claude-3-opus-20240229"
-    echo "9. Use Default Editor"
-    echo "0. Back to Anthropic Models"
-    echo -e "=============================="
-    echo -n "Enter your choice [1-3, 9, Enter=0]: "
-}
-
-# Function to display Google editor models
-display_google_editor_models() {
-    clear
-    echo -e "Step 4 (Architect Mode Only): Select Google Editor Model"
-    echo -e "=============================="
-    echo -e "    SELECT GOOGLE EDITOR MODEL  "
-    echo -e "=============================="
-    echo "1. gemini/gemini-1.5-pro"
-    echo "2. gemini/gemini-2.0-flash"
-    echo "3. gemini/gemini-2.0-flash-exp"
-    echo "4. gemini/gemini-2.5-pro-exp-03-25"
-    echo "5. gemini/gemini-2.5-pro-preview-03-25"
-    echo "9. Use Default Editor"
-    echo "0. Back to Google Models"
-    echo -e "=============================="
-    echo -n "Enter your choice [1-5, 9, Enter=0]: "
 }
 
 # Function to update API keys menu
@@ -309,7 +257,7 @@ main() {
                     # If architect mode, select editor model
                     if [ "$selected_mode" == "architect" ]; then
                         while true; do
-                            display_openai_editor_models
+                            display_openai_models "Editor" # Use the main function with "Editor" role
                             read editor_choice
                             case $editor_choice in
                                 1) selected_editor_model="gpt-4o"; break ;;
@@ -352,7 +300,7 @@ main() {
                     # If architect mode, select editor model
                     if [ "$selected_mode" == "architect" ]; then
                         while true; do
-                            display_anthropic_editor_models
+                            display_anthropic_models "Editor" # Use the main function with "Editor" role
                             read editor_choice
                             case $editor_choice in
                                 1) selected_editor_model="claude-3-7-sonnet-20250219"; break ;;
@@ -395,7 +343,7 @@ main() {
                     # If architect mode, select editor model
                     if [ "$selected_mode" == "architect" ]; then
                         while true; do
-                            display_google_editor_models
+                            display_google_models "Editor" # Use the main function with "Editor" role
                             read editor_choice
                             case $editor_choice in
                                 1) selected_editor_model="gemini/gemini-1.5-pro"; break ;;
