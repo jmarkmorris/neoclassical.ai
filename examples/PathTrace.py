@@ -31,7 +31,6 @@ class PathTrace(Scene):
 
         # Create multiple dots with different colors and path tracers
         dot_configs = [
-            {'color': WHITE, 'path_color': WHITE},
             {'color': PURE_BLUE, 'path_color': BLUE_C},
             {'color': PURE_BLUE, 'path_color': BLUE_D},
             {'color': PURE_BLUE, 'path_color': BLUE_E},
@@ -58,13 +57,13 @@ class PathTrace(Scene):
 
             path.set_points_as_corners([dot.get_center(), dot.get_center()])
             
-            def create_update_trail(trail):
+            def create_update_trail(dot, trail):
                 def update_trail(trail):
                     # Add a new line segment to the trail at each dot position
                     trail.add_line_to(dot.get_center())
                 return update_trail
             
-            trail.add_updater(create_update_trail(trail))
+            trail.add_updater(create_update_trail(dot, trail))
             
             dots.append(dot)
             paths.append(path)
