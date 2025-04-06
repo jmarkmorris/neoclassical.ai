@@ -19,7 +19,7 @@ print_banner() {
     clear
     echo "╔════════════════════════════════════════════════════════════╗"
     echo "║                                                            ║"
-    echo "║                 MANIM TOOLCHEST LAUNCHER                   ║"
+    echo "║                 MANIM EXAMPLES LAUNCHER                    ║"
     echo "║                                                            ║"
     echo "╚════════════════════════════════════════════════════════════╝"
 }
@@ -108,9 +108,9 @@ run_tool() {
 
 # Function to display help
 show_help() {
-    echo "Manim Toolchest Help:"
+    echo "Manim Examples Help:"
     echo ""
-    echo "This script allows you to run various Manim animations from the toolchest."
+    echo "This script allows you to run various Manim animations from the examples."
     echo ""
     echo "Commands:"
     echo "  [number]   - Run the animation with the corresponding number"
@@ -209,7 +209,7 @@ while true; do
             show_help
             ;;
         q|quit|exit)
-            echo "Exiting Manim Toolchest. Goodbye!"
+            echo "Exiting Manim Examples. Goodbye!"
             exit 0
             ;;
         *)
