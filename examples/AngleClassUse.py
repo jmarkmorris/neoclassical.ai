@@ -4,15 +4,6 @@ import numpy as np
 # Import the AngleGroup from the npqg library
 from npqg import AngleGroup
 
-# Define the updater function separately
-def angle_group_updater(mobject, dt, *args): # Add *args to accept extra positional args
-    """Updater function passed to Manim's add_updater.
-    Accepts potential extra arguments from Manim but only uses mobject and dt
-    to call the mobject's own update method.
-    """
-    # Explicitly call update with only dt, ignoring any extra args Manim might send
-    mobject.update(dt)
-
 # Colors used specifically by the AnglesMoving Scene
 INDIGO = "#4B0082"
 
@@ -100,8 +91,8 @@ class AngleClassUse(Scene):
             )
             angle_groups.append(angle_group)
 
-            # Add updater using the named function
-            angle_group.add_updater(angle_group_updater)
+            # Add updater using the lambda function for consistency
+            angle_group.add_updater(lambda mob, dt: mob.update(dt))
 
         # Add all paths and angle groups to the scene
         self.add(*paths)
@@ -125,8 +116,9 @@ class AngleClassUse(Scene):
                     # Scale to 0.6x from 3 to 12 seconds
                     group.dynamic_scale(3, 12, 0.6)
 
-        # Wait for half of the animation duration
-        self.wait(animation_duration / 2)
+        # Wait until the angle reaches 225 degrees (0.625 * 15s = 9.375s)
+        pause_time = (225 / 360) * animation_duration
+        self.wait(pause_time)
         
         # Demonstrate pause/resume functionality
         # Pause all animations
@@ -146,8 +138,9 @@ class AngleClassUse(Scene):
         resume_text = Text("Animation Resumed", color=WHITE).to_edge(UP)
         self.play(Transform(pause_text, resume_text))
         
-        # Wait for the remaining animation time
-        self.wait(animation_duration / 2)
+        # Wait for the remaining animation time (15s - 9.375s = 5.625s)
+        remaining_time = animation_duration - pause_time
+        self.wait(remaining_time)
         
         # Optional: Remove updaters from all angle groups after the main animation
         for group in angle_groups:

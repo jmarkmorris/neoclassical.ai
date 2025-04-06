@@ -215,12 +215,13 @@ class AngleGroup(VGroup):
         # Use a scale-aware tolerance for floating point comparisons
         # Adjust tolerance based on scale factor to handle scaled angles better
         tolerance = 1e-6 * max(1.0, self._current_scale_factor)
-        is_degenerate = (np.isclose(actual_angle_deg, 0, atol=tolerance) or 
-                         np.isclose(actual_angle_deg, 180, atol=tolerance) or 
-                         np.isclose(actual_angle_deg, 360, atol=tolerance))
+        # Consider 0 and 180 degenerate, but allow 360 to show the full arc
+        is_degenerate = (np.isclose(actual_angle_deg, 0, atol=tolerance) or
+                         np.isclose(actual_angle_deg, 180, atol=tolerance))
+        is_full_circle = np.isclose(actual_angle_deg, 360, atol=tolerance)
 
-        # Handle degenerate angles first by hiding components
-        if is_degenerate:
+        # Handle degenerate angles (0, 180) first by hiding components
+        if is_degenerate and not is_full_circle: # Exclude the 360 case from hiding
             self.angle_obj.set_stroke(opacity=0)
             if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
                 self.angle_obj.dot.set_opacity(0)
@@ -284,11 +285,11 @@ class AngleGroup(VGroup):
                     theta_pos = position + default_offset_vector * 1.1 * line_length
                     self.theta.move_to(theta_pos)
 
-                # Set theta visibility to 1
-                self.theta.set_opacity(1)
+                # Set theta visibility to 1, unless it's a full circle (position is ambiguous)
+                self.theta.set_opacity(0 if is_full_circle else 1)
 
             except ValueError:
-                # If angle creation fails even when not initially degenerate, hide components
+                # If angle creation fails even when not initially degenerate or full circle, hide components
                 self.angle_obj.set_stroke(opacity=0)
                 if hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
                     self.angle_obj.dot.set_opacity(0)
