@@ -1,52 +1,74 @@
 # Prompts for Manim
 
-- name the scene the same as the filename (or actually the requested output) to avoid warning.
-- do not add comments specific to a problem or issue or reversion
-- all comments added should be professional and concise and explanatory of the overall design
+*   Name the scene the same as the filename (or the requested output file) to avoid warnings.
+*   Do not add comments specific to a particular problem, issue, or reversion.
+*   All comments added should be professional, concise, and explain the overall design or purpose of the code block.
+
+---
+
+# General Coding Principles
 
 When writing code, you MUST follow these principles:
 
-Code should be easy to read and understand.
-Keep the code as simple as possible. Avoid unnecessary complexity.
-Use meaningful names for variables, functions, etc. Names should reveal intent.
-Functions should be small and do one thing well. They should not exceed a few lines.
-Function names should describe the action being performed.
-Prefer fewer arguments in functions. Ideally, aim for no more than two or three.
-Only use comments when necessary, as they can become outdated. Instead, strive to make the code self-explanatory.
-When comments are used, they should add useful information that is not readily apparent from the code itself.
-Properly handle errors and exceptions to ensure the software's robustness.
-Use exceptions rather than error codes for handling errors.
-Consider security implications of the code. Implement security best practices to protect against vulnerabilities and attacks.
-Adhere to these 4 principles of Functional Programming:
-Pure Functions
-Immutability
-Function Composition
-Declarative Code
+*   **Readability:** Code should be easy to read and understand.
+*   **Simplicity:** Keep the code as simple as possible. Avoid unnecessary complexity.
+*   **Meaningful Names:** Use meaningful names for variables, functions, classes, etc. Names should reveal intent.
+*   **Small Functions:** Functions should be small and do one thing well. Aim for functions not exceeding a few logical lines.
+*   **Descriptive Function Names:** Function names should clearly describe the action being performed.
+*   **Limited Arguments:** Prefer fewer arguments in functions. Ideally, aim for no more than two or three.
+*   **Self-Explanatory Code:** Strive to make the code self-explanatory, reducing the need for comments.
+*   **Useful Comments:** Only use comments when necessary. When used, they should add useful information not readily apparent from the code itself (e.g., explaining *why* something is done a certain way, not *what* it does).
+*   **Robustness:** Properly handle errors and exceptions to ensure the software's robustness. Use exceptions rather than error codes.
+*   **Security:** Consider security implications. Implement security best practices to protect against vulnerabilities and attacks.
+*   **Functional Programming Principles:** Adhere to these principles where applicable:
+    *   Pure Functions
+    *   Immutability
+    *   Function Composition
+    *   Declarative Code
+
+---
+
+# Aider Conventions Files
 
 Convention files are markdown files that specify coding guidelines for aider to follow. They can include preferences like:
 
-Coding style rules
-Preferred libraries and packages
-Type hint requirements
-Testing conventions
-Documentation standards
-And more
-For more information about using conventions with aider, see the conventions documentation.
+*   Coding style rules
+*   Preferred libraries and packages
+*   Type hint requirements
+*   Testing conventions
+*   Documentation standards
+*   And more
 
-How to Use These Conventions
+For more information about using conventions with aider, see the [aider conventions documentation](https://aider.chat/docs/conventions.html).
 
-Browse the subdirectories to find a conventions file that matches your needs
-Copy the desired CONVENTIONS.md to your project
-Load it in aider using either:
-aider --read-only CONVENTIONS.md
-Or add it to your .aider.conf.yml:
-read-only: CONVENTIONS.md
+## How to Use These Conventions
 
-Always load conventions
-You can also configure aider to always load your conventions file in the .aider.conf.yml config file:
+1.  Browse the subdirectories to find a conventions file that matches your needs.
+2.  Copy the desired `README_prompts.md` to your project.
+3.  Load it in aider using either:
+    *   Command line:
+        ```bash
+        aider --read-only README_prompts.md
+        ```
+    *   Or add it to your `.aider.conf.yml`:
+        ```yaml
+        read-only: README_prompts.md
+        ```
 
-# alone
-read: CONVENTIONS.md
+## Always Load Conventions
 
-# multiple files
-read: [CONVENTIONS.md, anotherfile.txt]
+You can configure aider to always load your conventions file by adding it to the `.aider.conf.yml` config file:
+
+*   **Single file:**
+    ```yaml
+    # .aider.conf.yml
+    read: README_prompts.md
+    ```
+
+*   **Multiple files:**
+    ```yaml
+    # .aider.conf.yml
+    read:
+      - README_prompts.md
+      - anotherfile.txt
+    ```
