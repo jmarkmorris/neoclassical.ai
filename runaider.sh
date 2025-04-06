@@ -54,7 +54,7 @@ display_main_menu() {
     echo "4. Update API Keys"
     echo "0. Exit"
     echo -e "=============================="
-    echo -n "Enter your choice [0-4]: "
+    echo -n "Enter your choice [1-4, Enter=0]: "
 }
 
 # Function to display OpenAI models (accepts mode as $1)
@@ -72,7 +72,7 @@ display_openai_models() {
     echo "5. gpt-3.5-turbo"
     echo "0. Back to main menu"
     echo -e "=============================="
-    echo -n "Enter your choice [0-5]: "
+    echo -n "Enter your choice [1-5, Enter=0]: "
 }
 
 # Function to display Anthropic models (accepts mode as $1)
@@ -88,7 +88,7 @@ display_anthropic_models() {
     echo "3. claude-3-opus-20240229"
     echo "0. Back to main menu"
     echo -e "=============================="
-    echo -n "Enter your choice [0-6]: "
+    echo -n "Enter your choice [1-3, Enter=0]: " # Corrected range
 }
 
 # Function to display Google models (accepts mode as $1)
@@ -106,7 +106,7 @@ display_google_models() {
     echo "5. gemini/gemini-2.5-pro-preview-03-25"
     echo "0. Back to main menu"
     echo -e "=============================="
-    echo -n "Enter your choice [0-5]: "
+    echo -n "Enter your choice [1-5, Enter=0]: "
 }
 
 # Function to display OpenAI editor models
@@ -124,7 +124,7 @@ display_openai_editor_models() {
     echo "9. Use Default Editor"
     echo "0. Back to OpenAI Models"
     echo -e "=============================="
-    echo -n "Enter your choice [0-5, 9]: "
+    echo -n "Enter your choice [1-5, 9, Enter=0]: "
 }
 
 # Function to display Anthropic editor models
@@ -140,7 +140,7 @@ display_anthropic_editor_models() {
     echo "9. Use Default Editor"
     echo "0. Back to Anthropic Models"
     echo -e "=============================="
-    echo -n "Enter your choice [0-3, 9]: "
+    echo -n "Enter your choice [1-3, 9, Enter=0]: "
 }
 
 # Function to display Google editor models
@@ -158,7 +158,7 @@ display_google_editor_models() {
     echo "9. Use Default Editor"
     echo "0. Back to Google Models"
     echo -e "=============================="
-    echo -n "Enter your choice [0-5, 9]: "
+    echo -n "Enter your choice [1-5, 9, Enter=0]: "
 }
 
 # Function to update API keys menu
@@ -173,7 +173,7 @@ display_update_api_keys_menu() {
     echo "3. Google API Key"
     echo "0. Back to main menu"
     echo -e "=============================="
-    echo -n "Enter your choice [0-3]: "
+    echo -n "Enter your choice [1-3, Enter=0]: "
 }
 
 # Function to display the mode selection menu
@@ -187,7 +187,7 @@ display_mode_selection_menu() {
     echo "2. Architect Mode"
     echo "0. Exit"
     echo -e "=============================="
-    echo -n "Enter your choice [0-2]: "
+    echo -n "Enter your choice [1-2, Enter=0]: "
 }
 
 # Function to launch aider with the selected model, mode, and editor model
@@ -279,7 +279,7 @@ main() {
         case $mode_choice in
             1) selected_mode="code"; break ;;
             2) selected_mode="architect"; break ;;
-            0) echo "Goodbye!"; exit 0 ;;
+            ""|0) echo "Goodbye!"; exit 0 ;; # Treat Enter as 0
             *) echo "Invalid choice. Press Enter to continue..."; read ;;
         esac
     done
@@ -302,7 +302,7 @@ main() {
                         3) model="gpt-4-turbo" ;;
                         4) model="gpt-4" ;;
                         5) model="gpt-3.5-turbo" ;;
-                        0) break ;; # Back to main menu
+                        ""|0) break ;; # Back to main menu on Enter or 0
                         *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue OpenAI loop
                     esac # END Main model selection case
 
@@ -318,7 +318,7 @@ main() {
                                 4) selected_editor_model="gpt-4"; break ;;
                                 5) selected_editor_model="gpt-3.5-turbo"; break ;;
                                 9) selected_editor_model="default"; break ;; # Explicitly default
-                                0) model=""; break ;; # Go back to selecting main OpenAI model
+                                ""|0) model=""; break ;; # Go back to selecting main OpenAI model on Enter or 0
                                 *) echo "Invalid choice. Press Enter to continue..."; read ;;
                             esac
                         done
@@ -345,7 +345,7 @@ main() {
                         1) model="claude-3-7-sonnet-20250219" ;;
                         2) model="claude-3-5-haiku-20241022" ;;
                         3) model="claude-3-opus-20240229" ;;
-                        0) break ;; # Back to main menu
+                        ""|0) break ;; # Back to main menu on Enter or 0
                         *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue Anthropic loop
                     esac # END Main model selection case
 
@@ -359,7 +359,7 @@ main() {
                                 2) selected_editor_model="claude-3-5-haiku-20241022"; break ;;
                                 3) selected_editor_model="claude-3-opus-20240229"; break ;;
                                 9) selected_editor_model="default"; break ;; # Explicitly default
-                                0) model=""; break ;; # Go back to selecting main Anthropic model
+                                ""|0) model=""; break ;; # Go back to selecting main Anthropic model on Enter or 0
                                 *) echo "Invalid choice. Press Enter to continue..."; read ;;
                             esac
                         done
@@ -388,7 +388,7 @@ main() {
                         3) model="gemini/gemini-2.0-flash-exp" ;;
                         4) model="gemini/gemini-2.5-pro-exp-03-25" ;;
                         5) model="gemini/gemini-2.5-pro-preview-03-25" ;;
-                        0) break ;; # Back to main menu
+                        ""|0) break ;; # Back to main menu on Enter or 0
                         *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue Google loop
                     esac # END Main model selection case
 
@@ -404,7 +404,7 @@ main() {
                                 4) selected_editor_model="gemini/gemini-2.5-pro-exp-03-25"; break ;;
                                 5) selected_editor_model="gemini/gemini-2.5-pro-preview-03-25"; break ;;
                                 9) selected_editor_model="default"; break ;; # Explicitly default
-                                0) model=""; break ;; # Go back to selecting main Google model
+                                ""|0) model=""; break ;; # Go back to selecting main Google model on Enter or 0
                                 *) echo "Invalid choice. Press Enter to continue..."; read ;;
                             esac
                         done
@@ -429,7 +429,7 @@ main() {
                         1) update_api_key "OPENAI"; ;;
                         2) update_api_key "ANTHROPIC"; ;;
                         3) update_api_key "GOOGLE"; ;;
-                        0) break ;;
+                        ""|0) break ;; # Back to main menu on Enter or 0
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
                     
@@ -442,7 +442,12 @@ main() {
                 echo "Goodbye!"
                 exit 0
                 ;;
-                
+
+            ""|0) # Exit on Enter or 0
+                echo "Goodbye!"
+                exit 0
+                ;;
+
             *) # Invalid choice
                 echo "Invalid choice. Press Enter to continue..."
                 read
