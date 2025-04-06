@@ -88,7 +88,7 @@ display_anthropic_models() {
     echo "3. claude-3-opus-20240229"
     echo "0. Back to main menu"
     echo -e "=============================="
-    echo -n "Enter your choice [1-3, Enter=0]: " # Corrected range
+    echo -n "Enter your choice [1-3, Enter=0]: " 
 }
 
 # Function to display Google models (accepts role label as $1: "Architect" or "Editor" or "Code")
