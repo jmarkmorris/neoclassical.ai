@@ -40,11 +40,21 @@ update_api_key() {
     echo -e "API key updated successfully!"
 }
 
-# Function to display the main menu (accepts mode as $1)
+# Function to display the main menu (accepts mode label as $1)
 display_main_menu() {
-    local mode_label=$( [ "$1" == "architect" ] && echo "Architect Code" || echo "Code" ) # Clarify role in Architect mode
+    local mode_label=$1 # Use the passed label directly
+    local prompt_range="1-4" # Default prompt range
+
     clear
-    echo -e "Step 2: Select LLM Vendor for ${mode_label} Model or Manage Keys"
+    # Adjust title based on whether it's Architect (Code) or Editor selection
+    if [[ "$mode_label" == "Architect (Code)" ]]; then
+        echo -e "Step 2: Select LLM Vendor for Architect Model or Manage Keys"
+    elif [[ "$mode_label" == "Editor" ]]; then
+        echo -e "Step 4: Select LLM Vendor for Editor Model or Manage Keys" # Changed step number for clarity
+    else # Code mode
+        echo -e "Step 2: Select LLM Vendor for Code Model or Manage Keys"
+    fi
+
     echo -e "=============================="
     echo -e "    LLM VENDOR SELECTION     "
     echo -e "=============================="
@@ -52,9 +62,16 @@ display_main_menu() {
     echo "2. Anthropic"
     echo "3. Google"
     echo "4. Update API Keys"
-    echo "0. Exit"
+
+    # Add option 9 only when selecting the Editor vendor
+    if [[ "$mode_label" == "Editor" ]]; then
+        echo "9. Use Default (Same model as Architect)"
+        prompt_range="1-4, 9" # Update prompt range
+    fi
+
+    echo "0. Back / Exit" # Changed Exit to Back / Exit for clarity
     echo -e "=============================="
-    echo -n "Enter your choice [1-4, Enter=0]: "
+    echo -n "Enter your choice [${prompt_range}, Enter=0]: "
 }
 
 # Function to display OpenAI models (accepts role label as $1: "Architect" or "Editor" or "Code")
@@ -127,7 +144,7 @@ display_update_api_keys_menu() {
 # Function to display the mode selection menu
 display_mode_selection_menu() {
     clear
-    echo -e "Step 1: Select Operating Mode"
+    echo -e "Step 1: Select Aider Operating Mode"
     echo -e "=============================="
     echo -e "      SELECT MODE            "
     echo -e "=============================="
@@ -343,7 +360,7 @@ main() {
 
             # Phase 1: Select Architect Vendor
             if [ -z "$main_vendor" ]; then
-                display_main_menu "Architect (Main)"
+                display_main_menu "Architect (Code)"
                 read vendor_choice
                 case $vendor_choice in
                     1) main_vendor="OPENAI" ;;
