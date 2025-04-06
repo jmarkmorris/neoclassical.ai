@@ -49,6 +49,7 @@ update_api_key() {
 # Function to display the main menu
 display_main_menu() {
     clear
+    echo -e "${YELLOW}Step 2: Select LLM Vendor or Manage Keys${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}    LLM VENDOR SELECTION     ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -64,6 +65,7 @@ display_main_menu() {
 # Function to display OpenAI models
 display_openai_models() {
     clear
+    echo -e "${YELLOW}Step 3: Select OpenAI Model (Architect/Code)${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}      OpenAI MODELS          ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -80,6 +82,7 @@ display_openai_models() {
 # Function to display Anthropic models
 display_anthropic_models() {
     clear
+    echo -e "${YELLOW}Step 3: Select Anthropic Model (Architect/Code)${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}      ANTHROPIC MODELS       ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -94,6 +97,7 @@ display_anthropic_models() {
 # Function to display Google models
 display_google_models() {
     clear
+    echo -e "${YELLOW}Step 3: Select Google Model (Architect/Code)${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}       GOOGLE MODELS         ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -107,9 +111,62 @@ display_google_models() {
     echo -n "Enter your choice [0-5]: "
 }
 
+# Function to display OpenAI editor models
+display_openai_editor_models() {
+    clear
+    echo -e "${YELLOW}Step 4 (Architect Mode Only): Select OpenAI Editor Model${NC}"
+    echo -e "${BLUE}==============================${NC}"
+    echo -e "${BLUE}   SELECT OpenAI EDITOR MODEL ${NC}"
+    echo -e "${BLUE}==============================${NC}"
+    echo "1. gpt-4o"
+    echo "2. gpt-4o-mini"
+    echo "3. gpt-4-turbo"
+    echo "4. gpt-4"
+    echo "5. gpt-3.5-turbo"
+    echo "9. Use Default Editor"
+    echo "0. Back to OpenAI Models"
+    echo -e "${BLUE}==============================${NC}"
+    echo -n "Enter your choice [0-5, 9]: "
+}
+
+# Function to display Anthropic editor models
+display_anthropic_editor_models() {
+    clear
+    echo -e "${YELLOW}Step 4 (Architect Mode Only): Select Anthropic Editor Model${NC}"
+    echo -e "${BLUE}==============================${NC}"
+    echo -e "${BLUE}  SELECT ANTHROPIC EDITOR MODEL ${NC}"
+    echo -e "${BLUE}==============================${NC}"
+    echo "1. claude-3-7-sonnet-20250219"
+    echo "2. claude-3-5-haiku-20241022"
+    echo "3. claude-3-opus-20240229"
+    echo "9. Use Default Editor"
+    echo "0. Back to Anthropic Models"
+    echo -e "${BLUE}==============================${NC}"
+    echo -n "Enter your choice [0-3, 9]: "
+}
+
+# Function to display Google editor models
+display_google_editor_models() {
+    clear
+    echo -e "${YELLOW}Step 4 (Architect Mode Only): Select Google Editor Model${NC}"
+    echo -e "${BLUE}==============================${NC}"
+    echo -e "${BLUE}    SELECT GOOGLE EDITOR MODEL  ${NC}"
+    echo -e "${BLUE}==============================${NC}"
+    echo "1. gemini/gemini-1.5-pro"
+    echo "2. gemini/gemini-2.0-flash"
+    echo "3. gemini/gemini-2.0-flash-exp"
+    echo "4. gemini/gemini-2.5-pro-exp-03-25"
+    echo "5. gemini/gemini-2.5-pro-preview-03-25"
+    echo "9. Use Default Editor"
+    echo "0. Back to Google Models"
+    echo -e "${BLUE}==============================${NC}"
+    echo -n "Enter your choice [0-5, 9]: "
+}
+
 # Function to update API keys menu
 display_update_api_keys_menu() {
     clear
+    echo -e "${YELLOW}Manage API Keys${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}      UPDATE API KEYS        ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -124,6 +181,7 @@ display_update_api_keys_menu() {
 # Function to display the mode selection menu
 display_mode_selection_menu() {
     clear
+    echo -e "${YELLOW}Step 1: Select Operating Mode${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo -e "${BLUE}      SELECT MODE            ${NC}"
     echo -e "${BLUE}==============================${NC}"
@@ -134,11 +192,12 @@ display_mode_selection_menu() {
     echo -n "Enter your choice [0-2]: "
 }
 
-# Function to launch aider with the selected model and mode
+# Function to launch aider with the selected model, mode, and editor model
 launch_aider() {
     local vendor=$1
     local model=$2
-    local mode=$3 # Added mode parameter
+    local mode=$3
+    local editor_model=$4 # Added editor_model parameter
     local api_key_var="${vendor}_API_KEY"
     local api_key=$(eval echo \$$api_key_var)
 
@@ -169,6 +228,35 @@ launch_aider() {
             ;;
     esac
 
+    # --- Construct aider command arguments ---
+
+    # Base command with common flags and the main model (used as architect in architect mode)
+    aider_cmd="$aider_cmd --model $model"
+
+    # Add mode flag and potentially editor model flag
+    local mode_flag=""
+    local editor_model_flag=""
+    local mode_display_name=""
+    local editor_display_name=""
+
+    if [ "$mode" == "architect" ]; then
+        mode_flag="--architect"
+        mode_display_name="Architect Mode"
+        # Add editor model flag only if not default
+        if [ "$editor_model" != "default" ] && [ -n "$editor_model" ]; then
+             editor_model_flag="--editor-model $editor_model"
+             editor_display_name=" (Editor: $editor_model)"
+        else
+             editor_display_name=" (Editor: Default)"
+        fi
+    else # Default to code mode
+        mode_flag="--chat-mode code"
+        mode_display_name="Code Mode"
+    fi
+    # Append the mode flag (--chat-mode code or --architect)
+    # Append the editor model flag (--editor-model <model>) only if in architect mode and a specific editor was chosen
+    aider_cmd="$aider_cmd $mode_flag $editor_model_flag"
+
     # Check if aider is installed
     if ! command -v aider &> /dev/null; then
         echo -e "${YELLOW}Aider is not installed. Please install it first with:${NC}"
@@ -178,7 +266,7 @@ launch_aider() {
     fi
 
     # Launch aider
-    echo -e "${GREEN}Launching aider with $model...${NC}"
+    echo -e "${GREEN}Launching aider in ${mode_display_name} with $model${editor_display_name}...${NC}"
     echo "Command: $aider_cmd"
     echo
     eval $aider_cmd
@@ -210,16 +298,44 @@ main() {
                 while true; do
                     display_openai_models
                     read model_choice
-                    
+                    local model=""
+                    local selected_editor_model="default" # Default value
+
                     case $model_choice in
-                        1) local model="gpt-4o"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
-                        2) local model="gpt-4o-mini"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
-                        3) local model="gpt-4-turbo"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
-                        4) local model="gpt-4"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
-                        5) local model="gpt-3.5-turbo"; launch_aider "OPENAI" "$model" "$selected_mode"; break ;;
-                        0) break ;;
-                        *) echo "Invalid choice. Press Enter to continue..."; read ;;
-                    esac
+                        1) model="gpt-4o" ;;
+                        2) model="gpt-4o-mini" ;;
+                        3) model="gpt-4-turbo" ;;
+                        4) model="gpt-4" ;;
+                        5) model="gpt-3.5-turbo" ;;
+                        0) break ;; # Back to main menu
+                        *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue OpenAI loop
+                    esac # END Main model selection case
+
+                    # If architect mode, select editor model
+                    if [ "$selected_mode" == "architect" ]; then
+                        while true; do
+                            display_openai_editor_models
+                            read editor_choice
+                            case $editor_choice in
+                                1) selected_editor_model="gpt-4o"; break ;;
+                                2) selected_editor_model="gpt-4o-mini"; break ;;
+                                3) selected_editor_model="gpt-4-turbo"; break ;;
+                                4) selected_editor_model="gpt-4"; break ;;
+                                5) selected_editor_model="gpt-3.5-turbo"; break ;;
+                                9) selected_editor_model="default"; break ;; # Explicitly default
+                                0) model=""; break ;; # Go back to selecting main OpenAI model
+                                *) echo "Invalid choice. Press Enter to continue..."; read ;;
+                            esac
+                        done
+                        # If user chose 'Back' (model is empty), restart main model selection
+                        if [ -z "$model" ]; then continue; fi
+                    fi
+
+                    # Launch aider if a model was selected
+                    if [ -n "$model" ]; then
+                        launch_aider "OPENAI" "$model" "$selected_mode" "$selected_editor_model"
+                        break # Break OpenAI loop after launch
+                    fi
                 done
                 ;;
                 
@@ -227,14 +343,40 @@ main() {
                 while true; do
                     display_anthropic_models
                     read model_choice
-                    
+                    local model=""
+                    local selected_editor_model="default" # Default value
+
                     case $model_choice in
-                        1) local model="claude-3-7-sonnet-20250219"; launch_aider "ANTHROPIC" "$model" "$selected_mode"; break ;;
-                        2) local model="claude-3-5-haiku-20241022"; launch_aider "ANTHROPIC" "$model" "$selected_mode"; break ;;
-                        3) local model="claude-3-opus-20240229"; launch_aider "ANTHROPIC" "$model" "$selected_mode"; break ;;
-                        0) break ;;
-                        *) echo "Invalid choice. Press Enter to continue..."; read ;;
-                    esac
+                        1) model="claude-3-7-sonnet-20250219" ;;
+                        2) model="claude-3-5-haiku-20241022" ;;
+                        3) model="claude-3-opus-20240229" ;;
+                        0) break ;; # Back to main menu
+                        *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue Anthropic loop
+                    esac # END Main model selection case
+
+                    # If architect mode, select editor model
+                    if [ "$selected_mode" == "architect" ]; then
+                        while true; do
+                            display_anthropic_editor_models
+                            read editor_choice
+                            case $editor_choice in
+                                1) selected_editor_model="claude-3-7-sonnet-20250219"; break ;;
+                                2) selected_editor_model="claude-3-5-haiku-20241022"; break ;;
+                                3) selected_editor_model="claude-3-opus-20240229"; break ;;
+                                9) selected_editor_model="default"; break ;; # Explicitly default
+                                0) model=""; break ;; # Go back to selecting main Anthropic model
+                                *) echo "Invalid choice. Press Enter to continue..."; read ;;
+                            esac
+                        done
+                        # If user chose 'Back' (model is empty), restart main model selection
+                        if [ -z "$model" ]; then continue; fi
+                    fi
+
+                    # Launch aider if a model was selected
+                    if [ -n "$model" ]; then
+                        launch_aider "ANTHROPIC" "$model" "$selected_mode" "$selected_editor_model"
+                        break # Break Anthropic loop after launch
+                    fi
                 done
                 ;;
                 
@@ -242,16 +384,44 @@ main() {
                 while true; do
                     display_google_models
                     read model_choice
-                    
+                    local model=""
+                    local selected_editor_model="default" # Default value
+
                     case $model_choice in
-                        1) local model="gemini/gemini-1.5-pro"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
-                        2) local model="gemini/gemini-2.0-flash"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
-                        3) local model="gemini/gemini-2.0-flash-exp"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
-                        4) local model="gemini/gemini-2.5-pro-exp-03-25"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
-                        5) local model="gemini/gemini-2.5-pro-preview-03-25"; launch_aider "GOOGLE" "$model" "$selected_mode"; break ;;
-                        0) break ;;
-                        *) echo "Invalid choice. Press Enter to continue..."; read ;;
-                    esac
+                        1) model="gemini/gemini-1.5-pro" ;;
+                        2) model="gemini/gemini-2.0-flash" ;;
+                        3) model="gemini/gemini-2.0-flash-exp" ;;
+                        4) model="gemini/gemini-2.5-pro-exp-03-25" ;;
+                        5) model="gemini/gemini-2.5-pro-preview-03-25" ;;
+                        0) break ;; # Back to main menu
+                        *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue Google loop
+                    esac # END Main model selection case
+
+                    # If architect mode, select editor model
+                    if [ "$selected_mode" == "architect" ]; then
+                        while true; do
+                            display_google_editor_models
+                            read editor_choice
+                            case $editor_choice in
+                                1) selected_editor_model="gemini/gemini-1.5-pro"; break ;;
+                                2) selected_editor_model="gemini/gemini-2.0-flash"; break ;;
+                                3) selected_editor_model="gemini/gemini-2.0-flash-exp"; break ;;
+                                4) selected_editor_model="gemini/gemini-2.5-pro-exp-03-25"; break ;;
+                                5) selected_editor_model="gemini/gemini-2.5-pro-preview-03-25"; break ;;
+                                9) selected_editor_model="default"; break ;; # Explicitly default
+                                0) model=""; break ;; # Go back to selecting main Google model
+                                *) echo "Invalid choice. Press Enter to continue..."; read ;;
+                            esac
+                        done
+                        # If user chose 'Back' (model is empty), restart main model selection
+                        if [ -z "$model" ]; then continue; fi
+                    fi
+
+                    # Launch aider if a model was selected
+                    if [ -n "$model" ]; then
+                        launch_aider "GOOGLE" "$model" "$selected_mode" "$selected_editor_model"
+                        break # Break Google loop after launch
+                    fi
                 done
                 ;;
                 
