@@ -32,17 +32,16 @@ class PathTrace(Scene):
         
         # Create a path that will show the trail
         path = VMobject(stroke_width=2, stroke_color=YELLOW, stroke_opacity=0.8)
-        trail = VMobject(stroke_width=2, stroke_color=WHITE, stroke_opacity=0.8)
+        trail = VMobject(stroke_width=2, stroke_color=WHITE, stroke_opacity=0.5)
         trail.start_new_path(dot.get_center()) # Initialize trail with a point
 
         path.set_points_as_corners([dot.get_center(), dot.get_center()])
         
-        def update_path(path):
-            path.add_points_as_corners([dot.get_center()])
-            if len(path.points) > 200:
-                path.remove_points(0, 1)
+        def update_trail(trail):
+            # Add a new line segment to the trail at each dot position
+            trail.add_line_to(dot.get_center())
         
-        path.add_updater(update_path)
+        trail.add_updater(update_trail)
         self.add(path, dot, trail)
 
         # Create random path within screen bounds, staying in lower part of screen
