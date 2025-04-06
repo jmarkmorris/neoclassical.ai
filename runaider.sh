@@ -42,9 +42,9 @@ update_api_key() {
 
 # Function to display the main menu (accepts mode as $1)
 display_main_menu() {
-    local mode_label=$( [ "$1" == "architect" ] && echo "Architect (Main)" || echo "Code" ) # Clarify role in Architect mode
+    local mode_label=$( [ "$1" == "architect" ] && echo "Architect Code Model" || echo "Code Model" ) # Clarify role in Architect mode and add 'Model' to Code
     clear
-    echo -e "Step 2: Select LLM Vendor for ${mode_label} Model or Manage Keys"
+    echo -e "Step 2: Select LLM Vendor for ${mode_label} or Manage Keys" # Removed duplicate 'Model' here
     echo -e "=============================="
     echo -e "    LLM VENDOR SELECTION     "
     echo -e "=============================="
