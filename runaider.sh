@@ -84,11 +84,8 @@ display_anthropic_models() {
     echo -e "${BLUE}      ANTHROPIC MODELS       ${NC}"
     echo -e "${BLUE}==============================${NC}"
     echo "1. claude-3-7-sonnet-20250219"
-    echo "2. claude-3-5-sonnet-20240620"
+    echo "2. claude-3-5-haiku-20241022"
     echo "3. claude-3-opus-20240229"
-    echo "4. claude-3-5-haiku-20240307"
-    echo "5. claude-3-sonnet-20240229"
-    echo "6. claude-3-haiku-20240307"
     echo "0. Back to main menu"
     echo -e "${BLUE}==============================${NC}"
     echo -n "Enter your choice [0-6]: "
@@ -206,11 +203,8 @@ main() {
                     
                     case $model_choice in
                         1) local model="claude-3-7-sonnet-20250219"; launch_aider "ANTHROPIC" "$model"; break ;;
-                        2) local model="claude-3-5-sonnet-20240620"; launch_aider "ANTHROPIC" "$model"; break ;;
+                        2) local model="claude-3-5-haiku-20241022"; launch_aider "ANTHROPIC" "$model"; break ;;
                         3) local model="claude-3-opus-20240229"; launch_aider "ANTHROPIC" "$model"; break ;;
-                        4) local model="claude-3-5-haiku-20240307"; launch_aider "ANTHROPIC" "$model"; break ;;
-                        5) local model="claude-3-sonnet-20240229"; launch_aider "ANTHROPIC" "$model"; break ;;
-                        6) local model="claude-3-haiku-20240307"; launch_aider "ANTHROPIC" "$model"; break ;;
                         0) break ;;
                         *) echo "Invalid choice. Press Enter to continue..."; read ;;
                     esac
