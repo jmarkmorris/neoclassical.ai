@@ -40,7 +40,6 @@ class PathTrace(Scene):
         ]
 
         dots = []
-        paths = []
         trails = []
 
         for config in dot_configs:
@@ -66,7 +65,6 @@ class PathTrace(Scene):
             trail.add_updater(create_update_trail(dot, trail))
             
             dots.append(dot)
-            paths.append(path)
             trails.append(trail)
 
         # Create random paths for each dot
@@ -91,8 +89,8 @@ class PathTrace(Scene):
             custom_paths.append(custom_path)
         
         # Add all Mobjects to the scene, ensuring dots are on top
-        for path, dot, trail in zip(paths, dots, trails):
-            self.add(path, trail, dot)
+        for dot, trail in zip(dots, trails):
+            self.add(trail, dot)
         
         # Animate dots along their respective paths
         self.play(

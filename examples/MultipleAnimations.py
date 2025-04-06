@@ -1,5 +1,4 @@
 from manim import *
-import random
 INDIGO = "#4B0082"
 
 class MultipleAnimations(Scene):
@@ -56,36 +55,12 @@ class MultipleAnimations(Scene):
             ).move_to(config["location"] + DOWN * 0.5)  # Move down to center in square
             
             text_objects.append(text)
-
-            # Define text update function
-            def update_animation(obj, dt, config_dict):
-                current_length = len(obj.text)
-                target_length = len(config_dict["text"])
-                if current_length < target_length:
-                    obj.become(
-                        Text(
-                            config_dict["text"][:current_length + 1], 
-                            font="Helvetica Neue",
-                            weight="LIGHT",
-                            font_size=config_dict["font_size"],
-                            color=obj.color
-                        ).move_to(obj.get_center())  # Maintain the same position
-                    )
-
-            # Add updater to text
-            text.add_updater(lambda obj, dt, config_dict=config: update_animation(obj, dt, config_dict))
-            self.add(text)
+            self.add(text) # Add text directly
 
             # Create square animation - smaller and moved down
             square = Square().move_to(config["location"] + DOWN * 0.5).scale(0.9)
             square_objects.append(square)
-            
-            # Define square rotation updater
-            def update_square_rotation(obj, dt):
-                obj.rotate(0.1 * dt, about_point=obj.get_center())
-
-            square.add_updater(update_square_rotation)
-            self.add(square)
+            self.add(square) # Add square directly
         
         # Create animation groups
         text_animations = AnimationGroup(
