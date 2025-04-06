@@ -4,7 +4,6 @@ import numpy as np
 from npqg import AngleGroup
 
 INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
 WHITE = "#FFFFFF"
 
 def unit_vector(vector):

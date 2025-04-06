@@ -2,7 +2,7 @@ from manim import *
 import random
 import numpy as np
 INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
+
 class PathTrace(Scene):
     def construct(self):
         self.camera.background_color = INDIGO

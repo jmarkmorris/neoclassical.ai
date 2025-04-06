@@ -1,6 +1,6 @@
 from manim import *
 INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
+
 class VectorArrow(Scene):
     def construct(self):
         self.camera.background_color = INDIGO

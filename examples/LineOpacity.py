@@ -1,6 +1,6 @@
 from manim import *
 INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
+
 class LineOpacity(Scene):
     def construct(self):
         # Disable anti-aliasing for clearer lines

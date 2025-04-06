@@ -1,7 +1,7 @@
 from manim import *
 import random
 INDIGO = "#4B0082"
-ELECTRIC_PURPLE = "#8F00FF"
+
 class MultipleAnimations(Scene):
     def construct(self):
         self.camera.background_color = INDIGO
