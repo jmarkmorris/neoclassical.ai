@@ -7,6 +7,13 @@ if [ ! -f "pyproject.toml" ]; then
     exit 1
 fi
 
+# Check for jq dependency (needed for Square configuration)
+if ! command -v jq &> /dev/null; then
+    echo "Error: 'jq' command not found. Please install jq to configure the Square example."
+    echo "Installation instructions: https://jqlang.github.io/jq/download/"
+    exit 1
+fi
+
 # Print banner
 print_banner() {
     clear
@@ -15,6 +22,20 @@ print_banner() {
     echo "║                 MANIM TOOLCHEST LAUNCHER                   ║"
     echo "║                                                            ║"
     echo "╚════════════════════════════════════════════════════════════╝"
+}
+
+# Function to display a menu and get user choice (ported from square.sh)
+get_menu_choice() {
+  PS3="$1" # Use the prompt passed as the first argument
+  shift    # Remove the prompt from the arguments list
+  select choice in "$@"; do
+    if [[ -n "$choice" ]]; then
+      echo "$choice" # Output the selected choice
+      break         # Exit the loop once a valid choice is made
+    else
+      echo "Invalid choice. Please select again." >&2 # Error message to stderr
+    fi
+  done
 }
 
 # Function to list available Python files
@@ -104,6 +125,11 @@ show_help() {
     read
 }
 
+# --- Configuration options for the Square example ---
+square_size_options=("0.04" "0.05" "0.10" "0.2" "0.5" "Custom")
+color_scheme_options=("alternating_red_blue" "black_and_white" "random_color" "random_red_blue")
+# --- End Square configuration options ---
+
 # Main script
 while true; do
     print_banner
@@ -113,14 +139,71 @@ while true; do
 
     case "$choice" in
         [0-9]*)
-            # Find the selected file in the 'examples' directory and extract the base name (class name)
+            # Find the selected file and extract the base name (class name)
             tool_name=$(find examples -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's#.*/##' | sed 's/\.py$//')
-            if [ -n "$tool_name" ]; then
-                run_tool "$tool_name"
-            else
+
+            if [ -z "$tool_name" ]; then
                 echo "Invalid selection."
                 sleep 1
+                continue # Go back to the start of the loop
             fi
+
+            # --- Configuration specific to the Square example ---
+            if [ "$tool_name" == "Square" ]; then
+                echo ""
+                echo "--- Configuring Square Example ---"
+
+                # Set default values (can be overridden by user)
+                SQUARE_SIZE=0.1
+                COLOR_SCHEME="random_color"
+                BORDERS="no"
+                OPACITY_VARIATION="yes" # Default is variation enabled
+
+                # Menu for square size
+                chosen_size=$(get_menu_choice "Choose square size: " "${square_size_options[@]}")
+                if [[ "$chosen_size" == "Custom" ]]; then
+                  read -p "Enter custom square size: " SQUARE_SIZE
+                else
+                  SQUARE_SIZE="$chosen_size"
+                fi
+                echo ""
+
+                # Menu for color scheme
+                COLOR_SCHEME=$(get_menu_choice "Choose color scheme: " "${color_scheme_options[@]}")
+                echo ""
+
+                # Ask about borders
+                read -r -p "Show borders? [y/N] " borders_input
+                if [[ "$borders_input" =~ ^[yY] ]]; then
+                  BORDERS="yes"
+                else
+                  BORDERS="no"
+                fi
+                echo ""
+
+                # Ask about opacity variation (phrased as disabling it)
+                read -r -p "Disable opacity variation? [y/N] " opacity_input
+                if [[ "$opacity_input" =~ ^[yY] ]]; then
+                  OPACITY_VARIATION="no" # User wants to disable it
+                else
+                  OPACITY_VARIATION="yes" # User wants to keep it enabled (default)
+                fi
+                echo ""
+
+                # Update Square.json using jq (ensure correct path)
+                echo "Updating examples/Square.json..."
+                jq ".square_size = $(echo "$SQUARE_SIZE" | bc)" examples/Square.json > tmp.json && mv tmp.json examples/Square.json
+                jq ".color_scheme = \"$COLOR_SCHEME\"" examples/Square.json > tmp.json && mv tmp.json examples/Square.json
+                jq ".borders = \"$BORDERS\"" examples/Square.json > tmp.json && mv tmp.json examples/Square.json
+                jq ".opacity_variation = \"$OPACITY_VARIATION\"" examples/Square.json > tmp.json && mv tmp.json examples/Square.json # Add opacity update
+                echo "Configuration updated."
+                echo "---------------------------------"
+                echo ""
+            fi
+            # --- End Square specific configuration ---
+
+            # Run the selected tool (runs for all, after Square config if applicable)
+            run_tool "$tool_name"
             ;;
         h|help)
             show_help
