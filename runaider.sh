@@ -138,67 +138,82 @@ display_mode_selection_menu() {
     echo -n "Enter your choice [1-2, Enter=0]: "
 }
 
-# Function to launch aider with the selected model, mode, and editor model
+# Function to launch aider with potentially different vendors/models for architect and editor
+# Usage for Code Mode: launch_aider "code" $vendor $model "" ""
+# Usage for Architect Mode: launch_aider "architect" $architect_vendor $architect_model $editor_vendor $editor_model
 launch_aider() {
-    local vendor=$1
-    local model=$2
-    local mode=$3
-    local editor_model=$4 # Added editor_model parameter
-    local api_key_var="${vendor}_API_KEY"
-    local api_key=$(eval echo \$$api_key_var)
+    local mode=$1
+    local main_vendor=$2      # Vendor for Code model or Architect model
+    local main_model=$3       # Code model or Architect model
+    local editor_vendor=$4    # Vendor for Editor model (empty in Code mode)
+    local editor_model=$5     # Editor model (empty in Code mode, can be "default" in Architect mode)
 
-    # Check if API key is set
-    if [ -z "$api_key" ]; then
-        echo -e "API key for $vendor is not set. Let's update it."
-        update_api_key $vendor
-        api_key=$(eval echo \$$api_key_var)
+    local main_api_key_var="${main_vendor}_API_KEY"
+    local main_api_key=$(eval echo \$$main_api_key_var)
+    local editor_api_key=""
+    local editor_api_key_var=""
+
+    # Check and potentially update main API key
+    if [ -z "$main_api_key" ]; then
+        echo -e "API key for main vendor ($main_vendor) is not set. Let's update it."
+        update_api_key "$main_vendor"
+        main_api_key=$(eval echo \$$main_api_key_var)
     fi
 
-    # Prepare aider command based on vendor
-    case $vendor in
-        OPENAI)
-            export OPENAI_API_KEY="$api_key"
-            aider_cmd="aider --vim --no-auto-commit --openai-api-key $api_key --model $model"
-            ;;
-        ANTHROPIC)
-            export ANTHROPIC_API_KEY="$api_key"
-            aider_cmd="aider --vim --no-auto-commit --anthropic-api-key $api_key --model $model"
-            ;;
-        GOOGLE)
-            export GOOGLE_API_KEY="$api_key"
-            aider_cmd="aider --vim --no-auto-commit --api-key google=$api_key --model $model"
-            ;;
-        *)
-            echo "Unknown vendor: $vendor"
-            return 1
-            ;;
+    # Base aider command
+    local aider_cmd="aider --vim --no-auto-commit"
+
+    # Add main model and its API key flag
+    aider_cmd="$aider_cmd --model $main_model"
+    case $main_vendor in
+        OPENAI)    aider_cmd="$aider_cmd --openai-api-key $main_api_key" ;;
+        ANTHROPIC) aider_cmd="$aider_cmd --anthropic-api-key $main_api_key" ;;
+        GOOGLE)    aider_cmd="$aider_cmd --api-key google=$main_api_key" ;;
+        *) echo "Unknown main vendor: $main_vendor"; return 1 ;;
     esac
 
-    # --- Construct aider command arguments ---
-
-    # Add mode flag and potentially editor model flag
+    # --- Construct mode-specific arguments ---
     local mode_flag=""
     local editor_model_flag=""
     local mode_display_name=""
-    local editor_display_name=""
+    local editor_display_info="" # For the launch message
 
     if [ "$mode" == "architect" ]; then
-        mode_flag="--architect"
         mode_display_name="Architect Mode"
-        # Add editor model flag only if not default
+        aider_cmd="$aider_cmd --architect"
+
+        # Add editor model flag and potentially its API key flag
         if [ "$editor_model" != "default" ] && [ -n "$editor_model" ]; then
-             editor_model_flag="--editor-model $editor_model"
-             editor_display_name=" (Editor: $editor_model)"
+            aider_cmd="$aider_cmd --editor-model $editor_model"
+            editor_display_info=" (Editor: $editor_vendor/$editor_model)"
+
+            # Check if editor vendor is different and handle its API key
+            if [ "$editor_vendor" != "$main_vendor" ]; then
+                editor_api_key_var="${editor_vendor}_API_KEY"
+                editor_api_key=$(eval echo \$$editor_api_key_var)
+
+                if [ -z "$editor_api_key" ]; then
+                    echo -e "API key for editor vendor ($editor_vendor) is not set. Let's update it."
+                    update_api_key "$editor_vendor"
+                    editor_api_key=$(eval echo \$$editor_api_key_var)
+                fi
+
+                # Add the specific API key flag for the editor vendor
+                case $editor_vendor in
+                    OPENAI)    aider_cmd="$aider_cmd --openai-api-key $editor_api_key" ;;
+                    ANTHROPIC) aider_cmd="$aider_cmd --anthropic-api-key $editor_api_key" ;;
+                    GOOGLE)    aider_cmd="$aider_cmd --api-key google=$editor_api_key" ;;
+                    *) echo "Unknown editor vendor: $editor_vendor"; return 1 ;;
+                esac
+            fi
         else
-             editor_display_name=" (Editor: Default)"
+            editor_display_info=" (Editor: Default)"
         fi
-    else # Default to code mode
-        mode_flag="--chat-mode code"
+
+    else # Code mode
         mode_display_name="Code Mode"
+        aider_cmd="$aider_cmd --chat-mode code"
     fi
-    # Append the mode flag (--chat-mode code or --architect)
-    # Append the editor model flag (--editor-model <model>) only if in architect mode and a specific editor was chosen
-    aider_cmd="$aider_cmd $mode_flag $editor_model_flag"
 
     # Check if aider is installed
     if ! command -v aider &> /dev/null; then
@@ -209,7 +224,7 @@ launch_aider() {
     fi
 
     # Launch aider
-    echo -e "Launching aider in ${mode_display_name} with $model${editor_display_name}..."
+    echo -e "Launching aider in ${mode_display_name} with $main_vendor/$main_model${editor_display_info}..."
     echo "Command: $aider_cmd"
     echo
     eval $aider_cmd
@@ -232,176 +247,269 @@ main() {
         esac
     done
 
-    # Existing vendor/model selection loop
+    # Variables to store selections
+    local main_vendor=""
+    local main_model=""
+    local editor_vendor=""
+    local editor_model="" # Use "default" to signify default editor
+
+    # --- Main Selection Loop ---
     while true; do
-        display_main_menu "$selected_mode" # Pass mode
-        read choice
-        case $choice in
-            1) # OpenAI
-                while true; do
-                    display_openai_models "$selected_mode" # Pass mode
-                    read model_choice
-                    local model=""
-                    local selected_editor_model="default" # Default value
 
-                    case $model_choice in
-                        1) model="gpt-4o" ;;
-                        2) model="gpt-4o-mini" ;;
-                        3) model="gpt-4-turbo" ;;
-                        4) model="gpt-4" ;;
-                        5) model="gpt-3.5-turbo" ;;
-                        ""|0) break ;; # Back to main menu on Enter or 0
-                        *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue OpenAI loop
-                    esac # END Main model selection case
+        # --- Code Mode Logic ---
+        if [ "$selected_mode" == "code" ]; then
+            display_main_menu "Code"
+            read vendor_choice
+            case $vendor_choice in
+                1) main_vendor="OPENAI" ;;
+                2) main_vendor="ANTHROPIC" ;;
+                3) main_vendor="GOOGLE" ;;
+                4) # Update API Keys (handled below)
+                   ;;
+                ""|0) echo "Goodbye!"; exit 0 ;;
+                *) echo "Invalid choice."; read -p "Press Enter..."; continue ;;
+            esac
 
-                    # If architect mode, select editor model
-                    if [ "$selected_mode" == "architect" ]; then
-                        while true; do
-                            display_openai_models "Editor" # Use the main function with "Editor" role
-                            read editor_choice
-                            case $editor_choice in
-                                1) selected_editor_model="gpt-4o"; break ;;
-                                2) selected_editor_model="gpt-4o-mini"; break ;;
-                                3) selected_editor_model="gpt-4-turbo"; break ;;
-                                4) selected_editor_model="gpt-4"; break ;;
-                                5) selected_editor_model="gpt-3.5-turbo"; break ;;
-                                9) selected_editor_model="default"; break ;; # Explicitly default
-                                ""|0) model=""; break ;; # Go back to selecting main OpenAI model on Enter or 0
-                                *) echo "Invalid choice. Press Enter to continue..."; read ;;
-                            esac
-                        done
-                        # If user chose 'Back' (model is empty), restart main model selection
-                        if [ -z "$model" ]; then continue; fi
-                    fi
-
-                    # Launch aider if a model was selected
-                    if [ -n "$model" ]; then
-                        launch_aider "OPENAI" "$model" "$selected_mode" "$selected_editor_model"
-                        break # Break OpenAI loop after launch
-                    fi
-                done
-                ;;
-                
-            2) # Anthropic
-                while true; do
-                    display_anthropic_models "$selected_mode" # Pass mode
-                    read model_choice
-                    local model=""
-                    local selected_editor_model="default" # Default value
-
-                    case $model_choice in
-                        1) model="claude-3-7-sonnet-20250219" ;;
-                        2) model="claude-3-5-haiku-20241022" ;;
-                        3) model="claude-3-opus-20240229" ;;
-                        ""|0) break ;; # Back to main menu on Enter or 0
-                        *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue Anthropic loop
-                    esac # END Main model selection case
-
-                    # If architect mode, select editor model
-                    if [ "$selected_mode" == "architect" ]; then
-                        while true; do
-                            display_anthropic_models "Editor" # Use the main function with "Editor" role
-                            read editor_choice
-                            case $editor_choice in
-                                1) selected_editor_model="claude-3-7-sonnet-20250219"; break ;;
-                                2) selected_editor_model="claude-3-5-haiku-20241022"; break ;;
-                                3) selected_editor_model="claude-3-opus-20240229"; break ;;
-                                9) selected_editor_model="default"; break ;; # Explicitly default
-                                ""|0) model=""; break ;; # Go back to selecting main Anthropic model on Enter or 0
-                                *) echo "Invalid choice. Press Enter to continue..."; read ;;
-                            esac
-                        done
-                        # If user chose 'Back' (model is empty), restart main model selection
-                        if [ -z "$model" ]; then continue; fi
-                    fi
-
-                    # Launch aider if a model was selected
-                    if [ -n "$model" ]; then
-                        launch_aider "ANTHROPIC" "$model" "$selected_mode" "$selected_editor_model"
-                        break # Break Anthropic loop after launch
-                    fi
-                done
-                ;;
-                
-            3) # Google
-                while true; do
-                    display_google_models "$selected_mode" # Pass mode
-                    read model_choice
-                    local model=""
-                    local selected_editor_model="default" # Default value
-
-                    case $model_choice in
-                        1) model="gemini/gemini-1.5-pro" ;;
-                        2) model="gemini/gemini-2.0-flash" ;;
-                        3) model="gemini/gemini-2.0-flash-exp" ;;
-                        4) model="gemini/gemini-2.5-pro-exp-03-25" ;;
-                        5) model="gemini/gemini-2.5-pro-preview-03-25" ;;
-                        ""|0) break ;; # Back to main menu on Enter or 0
-                        *) echo "Invalid choice. Press Enter to continue..."; read; continue ;; # Continue Google loop
-                    esac # END Main model selection case
-
-                    # If architect mode, select editor model
-                    if [ "$selected_mode" == "architect" ]; then
-                        while true; do
-                            display_google_models "Editor" # Use the main function with "Editor" role
-                            read editor_choice
-                            case $editor_choice in
-                                1) selected_editor_model="gemini/gemini-1.5-pro"; break ;;
-                                2) selected_editor_model="gemini/gemini-2.0-flash"; break ;;
-                                3) selected_editor_model="gemini/gemini-2.0-flash-exp"; break ;;
-                                4) selected_editor_model="gemini/gemini-2.5-pro-exp-03-25"; break ;;
-                                5) selected_editor_model="gemini/gemini-2.5-pro-preview-03-25"; break ;;
-                                9) selected_editor_model="default"; break ;; # Explicitly default
-                                ""|0) model=""; break ;; # Go back to selecting main Google model on Enter or 0
-                                *) echo "Invalid choice. Press Enter to continue..."; read ;;
-                            esac
-                        done
-                        # If user chose 'Back' (model is empty), restart main model selection
-                        if [ -z "$model" ]; then continue; fi
-                    fi
-
-                    # Launch aider if a model was selected
-                    if [ -n "$model" ]; then
-                        launch_aider "GOOGLE" "$model" "$selected_mode" "$selected_editor_model"
-                        break # Break Google loop after launch
-                    fi
-                done
-                ;;
-                
-            4) # Update API Keys
+            if [ "$vendor_choice" == "4" ]; then
+                # Handle API Key Update Menu
                 while true; do
                     display_update_api_keys_menu
                     read api_choice
-                    
                     case $api_choice in
                         1) update_api_key "OPENAI"; ;;
                         2) update_api_key "ANTHROPIC"; ;;
                         3) update_api_key "GOOGLE"; ;;
-                        ""|0) break ;; # Back to main menu on Enter or 0
-                        *) echo "Invalid choice. Press Enter to continue..."; read ;;
+                        ""|0) break ;; # Back to main menu
+                        *) echo "Invalid choice."; read -p "Press Enter..."; ;;
                     esac
-                    
-                    echo "Press Enter to continue..."
-                    read
+                    read -p "Press Enter to return to vendor selection..."
                 done
-                ;;
-                
-            0) # Exit
-                echo "Goodbye!"
-                exit 0
-                ;;
+                continue # Go back to vendor selection
+            fi
 
-            ""|0) # Exit on Enter or 0
-                echo "Goodbye!"
-                exit 0
-                ;;
+            # Select Code Model from chosen vendor
+            while true; do
+                case $main_vendor in
+                    OPENAI)    display_openai_models "Code" ;;
+                    ANTHROPIC) display_anthropic_models "Code" ;;
+                    GOOGLE)    display_google_models "Code" ;;
+                esac
+                read model_choice
 
-            *) # Invalid choice
-                echo "Invalid choice. Press Enter to continue..."
-                read
-                ;;
-        esac
-    done
+                # Assign model based on choice and vendor
+                local model_selected=false
+                case $main_vendor in
+                    OPENAI)
+                        case $model_choice in
+                            1) main_model="gpt-4o"; model_selected=true ;;
+                            2) main_model="gpt-4o-mini"; model_selected=true ;;
+                            3) main_model="gpt-4-turbo"; model_selected=true ;;
+                            4) main_model="gpt-4"; model_selected=true ;;
+                            5) main_model="gpt-3.5-turbo"; model_selected=true ;;
+                            ""|0) break ;; # Back to vendor selection
+                            *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                        esac ;;
+                    ANTHROPIC)
+                        case $model_choice in
+                            1) main_model="claude-3-7-sonnet-20250219"; model_selected=true ;;
+                            2) main_model="claude-3-5-haiku-20241022"; model_selected=true ;;
+                            3) main_model="claude-3-opus-20240229"; model_selected=true ;;
+                            ""|0) break ;; # Back to vendor selection
+                            *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                        esac ;;
+                    GOOGLE)
+                        case $model_choice in
+                            1) main_model="gemini/gemini-1.5-pro"; model_selected=true ;;
+                            2) main_model="gemini/gemini-2.0-flash"; model_selected=true ;;
+                            3) main_model="gemini/gemini-2.0-flash-exp"; model_selected=true ;;
+                            4) main_model="gemini/gemini-2.5-pro-exp-03-25"; model_selected=true ;;
+                            5) main_model="gemini/gemini-2.5-pro-preview-03-25"; model_selected=true ;;
+                            ""|0) break ;; # Back to vendor selection
+                            *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                        esac ;;
+                esac
+
+                if $model_selected; then
+                    launch_aider "code" "$main_vendor" "$main_model" "" ""
+                    exit 0 # Exit script after launch
+                fi
+            done
+            # If loop broken (user chose 0), reset vendor and restart vendor selection
+            main_vendor=""
+            continue
+
+        # --- Architect Mode Logic ---
+        elif [ "$selected_mode" == "architect" ]; then
+
+            # Phase 1: Select Architect Vendor
+            if [ -z "$main_vendor" ]; then
+                display_main_menu "Architect (Main)"
+                read vendor_choice
+                case $vendor_choice in
+                    1) main_vendor="OPENAI" ;;
+                    2) main_vendor="ANTHROPIC" ;;
+                    3) main_vendor="GOOGLE" ;;
+                    4) # Update API Keys (handled below)
+                       ;;
+                    ""|0) echo "Goodbye!"; exit 0 ;;
+                    *) echo "Invalid choice."; read -p "Press Enter..."; continue ;;
+                esac
+
+                if [ "$vendor_choice" == "4" ]; then
+                    # Handle API Key Update Menu
+                    while true; do
+                        display_update_api_keys_menu
+                        read api_choice
+                        case $api_choice in
+                            1) update_api_key "OPENAI"; ;;
+                            2) update_api_key "ANTHROPIC"; ;;
+                            3) update_api_key "GOOGLE"; ;;
+                            ""|0) break ;; # Back to main menu
+                            *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                        esac
+                        read -p "Press Enter to return to vendor selection..."
+                    done
+                    continue # Go back to architect vendor selection
+                fi
+            fi
+
+            # Phase 2: Select Architect Model
+            if [ -n "$main_vendor" ] && [ -z "$main_model" ]; then
+                 while true; do # Loop for selecting architect model
+                    case $main_vendor in
+                        OPENAI)    display_openai_models "Architect" ;;
+                        ANTHROPIC) display_anthropic_models "Architect" ;;
+                        GOOGLE)    display_google_models "Architect" ;;
+                    esac
+                    read model_choice
+
+                    local model_selected=false
+                    case $main_vendor in
+                        OPENAI)
+                            case $model_choice in
+                                1) main_model="gpt-4o"; model_selected=true ;;
+                                2) main_model="gpt-4o-mini"; model_selected=true ;;
+                                3) main_model="gpt-4-turbo"; model_selected=true ;;
+                                4) main_model="gpt-4"; model_selected=true ;;
+                                5) main_model="gpt-3.5-turbo"; model_selected=true ;;
+                                ""|0) main_vendor=""; break ;; # Back to architect vendor selection
+                                *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                            esac ;;
+                        ANTHROPIC)
+                            case $model_choice in
+                                1) main_model="claude-3-7-sonnet-20250219"; model_selected=true ;;
+                                2) main_model="claude-3-5-haiku-20241022"; model_selected=true ;;
+                                3) main_model="claude-3-opus-20240229"; model_selected=true ;;
+                                ""|0) main_vendor=""; break ;; # Back to architect vendor selection
+                                *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                            esac ;;
+                        GOOGLE)
+                            case $model_choice in
+                                1) main_model="gemini/gemini-1.5-pro"; model_selected=true ;;
+                                2) main_model="gemini/gemini-2.0-flash"; model_selected=true ;;
+                                3) main_model="gemini/gemini-2.0-flash-exp"; model_selected=true ;;
+                                4) main_model="gemini/gemini-2.5-pro-exp-03-25"; model_selected=true ;;
+                                5) main_model="gemini/gemini-2.5-pro-preview-03-25"; model_selected=true ;;
+                                ""|0) main_vendor=""; break ;; # Back to architect vendor selection
+                                *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                            esac ;;
+                    esac
+                    if $model_selected || [ -z "$main_vendor" ]; then break; fi # Exit model loop if selected or backed out
+                done
+                if [ -z "$main_vendor" ]; then continue; fi # Restart main loop if backed out
+            fi
+
+            # Phase 3: Select Editor Vendor
+            if [ -n "$main_model" ] && [ -z "$editor_vendor" ]; then
+                display_main_menu "Editor"
+                read vendor_choice
+                case $vendor_choice in
+                    1) editor_vendor="OPENAI" ;;
+                    2) editor_vendor="ANTHROPIC" ;;
+                    3) editor_vendor="GOOGLE" ;;
+                    4) # Update API Keys (handled below)
+                       ;;
+                    9) editor_vendor="default"; editor_model="default" ;; # Option 9: Use Default Editor
+                    ""|0) main_model=""; main_vendor=""; continue ;; # Back to architect model selection
+                    *) echo "Invalid choice."; read -p "Press Enter..."; continue ;;
+                esac
+
+                 if [ "$vendor_choice" == "4" ]; then
+                    # Handle API Key Update Menu
+                    while true; do
+                        display_update_api_keys_menu
+                        read api_choice
+                        case $api_choice in
+                            1) update_api_key "OPENAI"; ;;
+                            2) update_api_key "ANTHROPIC"; ;;
+                            3) update_api_key "GOOGLE"; ;;
+                            ""|0) break ;; # Back to main menu
+                            *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                        esac
+                        read -p "Press Enter to return to vendor selection..."
+                    done
+                    continue # Go back to editor vendor selection
+                fi
+            fi
+
+            # Phase 4: Select Editor Model (Skip if default was chosen)
+            if [ -n "$editor_vendor" ] && [ "$editor_vendor" != "default" ] && [ -z "$editor_model" ]; then
+                 while true; do # Loop for selecting editor model
+                    case $editor_vendor in
+                        OPENAI)    display_openai_models "Editor" ;;
+                        ANTHROPIC) display_anthropic_models "Editor" ;;
+                        GOOGLE)    display_google_models "Editor" ;;
+                    esac
+                    read model_choice
+
+                    local model_selected=false
+                    case $editor_vendor in
+                        OPENAI)
+                            case $model_choice in
+                                1) editor_model="gpt-4o"; model_selected=true ;;
+                                2) editor_model="gpt-4o-mini"; model_selected=true ;;
+                                3) editor_model="gpt-4-turbo"; model_selected=true ;;
+                                4) editor_model="gpt-4"; model_selected=true ;;
+                                5) editor_model="gpt-3.5-turbo"; model_selected=true ;;
+                                ""|0) editor_vendor=""; break ;; # Back to editor vendor selection
+                                *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                            esac ;;
+                        ANTHROPIC)
+                            case $model_choice in
+                                1) editor_model="claude-3-7-sonnet-20250219"; model_selected=true ;;
+                                2) editor_model="claude-3-5-haiku-20241022"; model_selected=true ;;
+                                3) editor_model="claude-3-opus-20240229"; model_selected=true ;;
+                                ""|0) editor_vendor=""; break ;; # Back to editor vendor selection
+                                *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                            esac ;;
+                        GOOGLE)
+                            case $model_choice in
+                                1) editor_model="gemini/gemini-1.5-pro"; model_selected=true ;;
+                                2) editor_model="gemini/gemini-2.0-flash"; model_selected=true ;;
+                                3) editor_model="gemini/gemini-2.0-flash-exp"; model_selected=true ;;
+                                4) editor_model="gemini/gemini-2.5-pro-exp-03-25"; model_selected=true ;;
+                                5) editor_model="gemini/gemini-2.5-pro-preview-03-25"; model_selected=true ;;
+                                ""|0) editor_vendor=""; break ;; # Back to editor vendor selection
+                                *) echo "Invalid choice."; read -p "Press Enter..."; ;;
+                            esac ;;
+                    esac
+                    if $model_selected || [ -z "$editor_vendor" ]; then break; fi # Exit model loop if selected or backed out
+                done
+                if [ -z "$editor_vendor" ]; then continue; fi # Restart main loop if backed out
+            fi
+
+            # Phase 5: Launch if all architect/editor info is present
+            if [ -n "$main_model" ] && [ -n "$editor_model" ]; then
+                 launch_aider "architect" "$main_vendor" "$main_model" "$editor_vendor" "$editor_model"
+                 exit 0 # Exit script after launch
+            fi
+
+        fi # End architect mode logic
+
+        # If we somehow fall through without exiting (e.g., error), loop again
+        sleep 1
+
+    done # End Main Selection Loop
 }
 
 # Run the main function
