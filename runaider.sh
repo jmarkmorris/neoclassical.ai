@@ -121,6 +121,19 @@ display_update_api_keys_menu() {
     echo -n "Enter your choice [0-3]: "
 }
 
+# Function to display the mode selection menu
+display_mode_selection_menu() {
+    clear
+    echo -e "${BLUE}==============================${NC}"
+    echo -e "${BLUE}      SELECT MODE            ${NC}"
+    echo -e "${BLUE}==============================${NC}"
+    echo "1. Code Mode"
+    echo "2. Architect Mode"
+    echo "0. Exit"
+    echo -e "${BLUE}==============================${NC}"
+    echo -n "Enter your choice [0-2]: "
+}
+
 # Function to launch aider with the selected model
 launch_aider() {
     local vendor=$1
@@ -173,11 +186,15 @@ launch_aider() {
 # Main function
 main() {
     load_api_keys
-    
+
+    # Select mode first
+    display_mode_selection_menu
+    read mode_choice
+
+    # Existing vendor/model selection loop
     while true; do
         display_main_menu
         read choice
-        
         case $choice in
             1) # OpenAI
                 while true; do
