@@ -1,11 +1,10 @@
 # Prompts for Manim
 
-*   Name the scene the same as the filename (or the requested output file) to avoid warnings.
+*   Name the {name}(scene) the same as the filename (or the requested output file) to avoid warnings.
 *   Do not add comments specific to a particular problem, issue, or reversion.
 *   All comments added should be professional, concise, and explain the overall design or purpose of the code block.
 *   When running in architect mode, ensure that the editor LLM actually makes its edits.
-*   Before confirming completion of a set of edits, explicitly verify that *all* requested changes within the current instruction set have been successfully applied to the relevant files. Use file system checks (`ls -lt`, `git diff`, etc.)
-if necessary.
+*   Before confirming completion of a set of edits, explicitly verify that *all* requested changes within the current instruction set have been successfully applied to the relevant files. Use file system checks (`ls -lt`, `git diff`, etc.) if necessary.
 
 ---
 
@@ -28,6 +27,40 @@ When writing code, you MUST follow these principles:
     *   Immutability
     *   Function Composition
     *   Declarative Code
+
+---
+
+# Coding Standards & Style
+
+*   **Import Order:** Group imports: 1. Standard library, 2. Third-party packages, 3. Local application/library imports. Alphabetize within each group.
+*   **Type Hinting:** Use type hints for all function signatures. Encouraged for complex variable assignments.
+*   **Docstrings:** Use well written docstrings for all public classes and functions. Include `Args`, `Returns`, and `Raises` sections where applicable.
+*   **Constants:** Define constants at the module level using `UPPER_SNAKE_CASE`.
+*   **Formatting:** Code should adhere to Black formatting standards. Run `black .` before committing.
+
+---
+
+# Design & Architecture
+
+*   **Configuration Management:** Prefer loading configuration from YAML files or using environment variables over hardcoding.
+*   **Error Handling Specifics:** Define custom exception classes inheriting from a base application exception where appropriate for distinct error conditions.
+
+---
+
+# AI Interaction & Workflow
+
+*   **Ask Clarifying Questions:** If a request is unclear or ambiguous, please ask for clarification before proceeding.
+*   **Explain Rationale:** For non-trivial changes, briefly explain the 'why' behind the chosen approach, not just the 'what'.
+*   **Suggest Alternatives:** Feel free to suggest alternative implementations if you believe they offer significant advantages (e.g., performance, readability, simplicity).
+*   **Handling Large Requests:** If a request involves extensive changes, propose a plan or ask for the request to be broken down into smaller, manageable steps.
+
+---
+
+# Project-Specific Conventions
+
+*   **Manim Base Classes:** Default to `Scene` or `ThreeDScene` unless zoom/panning capabilities are needed, then use `ZoomableScene`.
+*   **Manim Colors:** Prefer Manim's built-in color constants (e.g., `BLUE`, `RED`).
+*   **Vector Operations:** Use NumPy arrays for vector calculations unless Manim's specific Mobject methods are more convenient. Avoid custom `Vector3D` classes for new code.
 
 ---
 
