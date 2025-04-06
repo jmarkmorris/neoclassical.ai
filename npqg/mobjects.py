@@ -50,16 +50,17 @@ class AngleGroup(VGroup):
         
         # --- Determine Component Colors ---
         if colors == "random":
-            distinct_colors = get_distinct_random_colors(5)
-            line1_color, line2_color, arc_color, dot_color, theta_color = distinct_colors
-        elif isinstance(colors, (list, tuple)) and len(colors) == 5:
-            line1_color, line2_color, arc_color, dot_color, theta_color = colors
+            # Request 4 colors, theta is always WHITE
+            distinct_colors = get_distinct_random_colors(4)
+            line1_color, line2_color, arc_color, dot_color = distinct_colors
+        elif isinstance(colors, (list, tuple)) and len(colors) == 4:
+            # Expect 4 colors if providing a list
+            line1_color, line2_color, arc_color, dot_color = colors
         else: # Default colors
             line1_color = GREEN
             line2_color = ORANGE
             arc_color = BLUE_C
             dot_color = WHITE # Default dot color
-            theta_color = WHITE # Default theta color
 
         # Calculate initial state based on initial_alpha
         initial_position = path.point_from_proportion(initial_alpha)
@@ -85,12 +86,13 @@ class AngleGroup(VGroup):
         # Calculate initial angle in degrees
         initial_angle_deg = int(round(initial_alpha * 360))
         # Store font size for updates
-        self._theta_font_size = 16 
+        self._theta_font_size = 16
         # Create initial text with degrees (forcing WHITE color)
-        self.theta = Text(f"θ = {initial_angle_deg}°", color=WHITE, font_size=self._theta_font_size) 
-    
+        self.theta = Text(f"θ = {initial_angle_deg}°", color=WHITE, font_size=self._theta_font_size)
+
         # Initial theta position calculation
-        line_length = 1.0 # Since A is unit vector
+        # Use base_radius for initial positioning consistency
+        base_offset_distance = self.base_radius + 0.5 # Base radius + buffer
 
         # Alternative theta positioning
         A_vec = A
@@ -99,13 +101,18 @@ class AngleGroup(VGroup):
         mid_vector_norm = np.linalg.norm(mid_vector)
         if mid_vector_norm > 1e-6:
             unit_mid_vector = mid_vector / mid_vector_norm
-            # Position farther out (1.1 * 1.4 = 1.54)
-            theta_pos = initial_position + unit_mid_vector * 1.54 * line_length 
+            # Position farther out using base offset distance
+            theta_pos = initial_position + unit_mid_vector * base_offset_distance
         else:
             # Handle degenerate case
-            default_offset_vector = A_vec / np.linalg.norm(A_vec)
-            # Position farther out (1.1 * 1.4 = 1.54)
-            theta_pos = initial_position + default_offset_vector * 1.54 * line_length 
+            # Use a default offset if mid_vector is zero (e.g., angle is 180 degrees)
+            # A reasonable default might be perpendicular to A_vec
+            default_offset_vector = np.array([-A_vec[1], A_vec[0], 0]) # Perpendicular in xy-plane
+            if np.linalg.norm(default_offset_vector) < 1e-6: # If A_vec was along z? Fallback
+                default_offset_vector = np.array([0, 1, 0])
+            default_offset_vector = unit_vector(default_offset_vector)
+            # Position farther out using base offset distance
+            theta_pos = initial_position + default_offset_vector * base_offset_distance
         self.theta.move_to(theta_pos)
 
         # Add components to the VGroup
@@ -209,10 +216,11 @@ class AngleGroup(VGroup):
         if self._scale_elapsed_time < self._scale_duration and abs(self._current_scale_factor - self._scale_target) > 1e-6:
             self._is_scaling = True
 
-    def set_color(self, line1_color=None, line2_color=None, arc_color=None, dot_color=None, theta_color=None):
+    def set_color(self, line1_color=None, line2_color=None, arc_color=None, dot_color=None):
         """
         Sets the color of individual components of the AngleGroup.
         Any component whose color is not specified will retain its current color.
+        The theta label color is always WHITE and cannot be changed via this method.
         """
 
         if line1_color is not None:
@@ -225,8 +233,6 @@ class AngleGroup(VGroup):
         if dot_color is not None and hasattr(self.angle_obj, 'dot') and self.angle_obj.dot is not None:
             # The dot is a submobject of the Angle
             self.angle_obj.dot.set_color(dot_color)
-        if theta_color is not None:
-            self.theta.set_color(theta_color)
         # Return self to allow chaining if needed
         return self
 
@@ -319,18 +325,19 @@ class AngleGroup(VGroup):
                 new_theta_string = f"θ = {current_degrees}°"
                 # Create a new Text object with the updated string and original style (forcing WHITE color)
                 new_theta_text = Text(
-                    new_theta_string, 
-                    color=WHITE, 
-                    font_size=self._theta_font_size # Use stored font size
+                    new_theta_string,
+                    color=WHITE,
+                    font_size=self._theta_font_size # Use fixed font size
                 )
                 # Use become to update the existing theta object
                 self.theta.become(new_theta_text)
                 # --- End Update Theta Text ---
-    
+
                 # Position the theta label only if not degenerate
-                line_length = 1.0 * scale_factor  # Scale the unit vector
-    
-                # Calculate the bisector vector
+                # Calculate offset: scaled base radius + fixed buffer
+                theta_offset_distance = self.base_radius * scale_factor + 0.5 # Adjusted buffer
+
+                # Calculate the bisector vector (using unscaled vectors for direction)
                 bisector = A_vec + B_vec
                 bisector_norm = np.linalg.norm(bisector)
 
@@ -342,13 +349,18 @@ class AngleGroup(VGroup):
                     if cross_product < 0:
                         unit_bisector = -unit_bisector
 
-                    # Position theta along the bisector (farther out)
-                    theta_pos = position + unit_bisector * 1.54 * line_length 
+                    # Position theta along the bisector using the calculated offset distance
+                    theta_pos = position + unit_bisector * theta_offset_distance
                     self.theta.move_to(theta_pos)
                 else:
-                    # Handle degenerate case (bisector is zero) for theta positioning (farther out)
-                    default_offset_vector = A_vec / np.linalg.norm(A_vec)
-                    theta_pos = position + default_offset_vector * 1.54 * line_length 
+                    # Handle degenerate case (bisector is zero) for theta positioning
+                    # Use a default offset if bisector is zero (e.g., angle is 180 degrees)
+                    # A reasonable default might be perpendicular to A_vec
+                    default_offset_vector = np.array([-A_vec[1], A_vec[0], 0]) # Perpendicular in xy-plane
+                    if np.linalg.norm(default_offset_vector) < 1e-6: # If A_vec was along z? Fallback
+                         default_offset_vector = np.array([0, 1, 0])
+                    default_offset_vector = unit_vector(default_offset_vector)
+                    theta_pos = position + default_offset_vector * theta_offset_distance
                     self.theta.move_to(theta_pos)
 
                 # Set theta visibility to 1, unless it's a full circle (position is ambiguous)

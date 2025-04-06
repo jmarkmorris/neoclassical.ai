@@ -86,8 +86,7 @@ class AngleClassUse(Scene):
                 line1_color=random.choice(PASTEL_COLORS),
                 line2_color=random.choice(PASTEL_COLORS),
                 arc_color=random.choice(PASTEL_COLORS),
-                dot_color=random.choice(PASTEL_COLORS),
-                theta_color=random.choice(PASTEL_COLORS)
+                dot_color=random.choice(PASTEL_COLORS)
             )
             angle_groups.append(angle_group)
 
