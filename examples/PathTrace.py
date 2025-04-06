@@ -45,7 +45,7 @@ class PathTrace(Scene):
 
         for config in dot_configs:
             # Create dot and path with styling
-            dot = Dot(color=config['color'], radius=0.05)  # Reduced dot size
+            dot = Dot(color=config['color'], radius=0.075)  # Increased dot size by 50%
             
             # Start the dot lower to avoid overlap with titles
             dot.move_to([0, -1, 0])
@@ -68,8 +68,6 @@ class PathTrace(Scene):
             dots.append(dot)
             paths.append(path)
             trails.append(trail)
-            
-            self.add(path, dot, trail)
 
         # Create random paths for each dot
         custom_paths = []
@@ -92,10 +90,14 @@ class PathTrace(Scene):
             custom_path.set_points_smoothly(points)
             custom_paths.append(custom_path)
         
+        # Add all Mobjects to the scene, ensuring dots are on top
+        for path, dot, trail in zip(paths, dots, trails):
+            self.add(path, trail, dot)
+        
         # Animate dots along their respective paths
         self.play(
             *[MoveAlongPath(dot, custom_path, rate_func=linear) for dot, custom_path in zip(dots, custom_paths)], 
-            run_time=20  
+            run_time=30  # Slow down the movement by 50%
         ) 
         
         # Add a final animation to show the completed paths
