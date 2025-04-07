@@ -43,10 +43,11 @@ list_tools() {
     echo "Available tools:"
     echo ""
     
-    # Get all Python files except __init__.py and tools.py
-    # Find Python files within the 'examples' directory
-    files=$(find examples -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort)
-
+    # Find directories within 'examples/' that contain a matching .py file
+    # Exclude __pycache__ and any directories starting with '.'
+    dirs=$(find examples -mindepth 1 -maxdepth 1 -type d ! -name '__pycache__' ! -name '.*' | sort)
+    valid_tools=()
+    
     # Calculate the number of columns based on terminal width
     term_width=$(tput cols)
     max_name_length=25
@@ -60,21 +61,25 @@ list_tools() {
     # Create a temporary file with numbered entries
     temp_file=$(mktemp)
     counter=1
-    while read -r file; do
-        # Extract class name from file
-        file_basename=$(basename "$file")
-        class_name=${file_basename%.py}
-        
-        # Format the entry with padding
-        printf "%3d) %-${max_name_length}s" $counter "$class_name" >> "$temp_file"
-        
-        # Add newline if we've reached the end of a row
-        if [ $((counter % num_cols)) -eq 0 ]; then
-            echo "" >> "$temp_file"
+    while read -r dir; do
+        dir_basename=$(basename "$dir")
+        script_path="$dir/$dir_basename.py"
+        # Check if the corresponding Python file exists
+        if [ -f "$script_path" ]; then
+            class_name="$dir_basename"
+            valid_tools+=("$class_name") # Store valid tool names
+            
+            # Format the entry with padding
+            printf "%3d) %-${max_name_length}s" $counter "$class_name" >> "$temp_file"
+            
+            # Add newline if we've reached the end of a row
+            if [ $((counter % num_cols)) -eq 0 ]; then
+                echo "" >> "$temp_file"
+            fi
+            
+            counter=$((counter + 1))
         fi
-        
-        counter=$((counter + 1))
-    done <<< "$files"
+    done <<< "$dirs"
 
     # Add final newline if needed
     if [ $(((counter-1) % num_cols)) -ne 0 ]; then
@@ -91,7 +96,7 @@ list_tools() {
 # Function to run the selected tool
 run_tool() {
     local tool_name="$1" # This is just the class name (e.g., AngleClassUse)
-    local script_path="examples/${tool_name}.py" # Construct the path relative to project root
+    local script_path="examples/${tool_name}/${tool_name}.py" # Construct the path relative to project root
     echo "Running $tool_name from $script_path..."
     # Use python -m manim to ensure the correct environment is used
     echo "Command: python -m manim -pqk --disable_caching $script_path $tool_name -p"
@@ -139,8 +144,10 @@ while true; do
 
     case "$choice" in
         [0-9]*)
-            # Find the selected file and extract the base name (class name)
-            tool_name=$(find examples -maxdepth 1 -name "*.py" | grep -v '__init__.py' | grep -v 'tools.py' | sort | sed -n "${choice}p" | sed 's#.*/##' | sed 's/\.py$//')
+            # Adjust index for 0-based array access
+            index=$((choice - 1))
+            # Get the tool name from the valid_tools array
+            tool_name="${valid_tools[$index]}"
 
             if [ -z "$tool_name" ]; then
                 echo "Invalid selection."
@@ -191,11 +198,11 @@ while true; do
                 echo ""
 
                 # Update Square.json using jq (ensure correct path)
-                echo "Updating examples/Square.json..."
-                jq ".square_size = $(echo "$SQUARE_SIZE" | bc)" examples/Square.json > tmp.json && mv tmp.json examples/Square.json
-                jq ".color_scheme = \"$COLOR_SCHEME\"" examples/Square.json > tmp.json && mv tmp.json examples/Square.json
-                jq ".borders = \"$BORDERS\"" examples/Square.json > tmp.json && mv tmp.json examples/Square.json
-                jq ".opacity_variation = \"$OPACITY_VARIATION\"" examples/Square.json > tmp.json && mv tmp.json examples/Square.json # Add opacity update
+                echo "Updating examples/Square/Square.json..."
+                jq ".square_size = $(echo "$SQUARE_SIZE" | bc)" examples/Square/Square.json > tmp.json && mv tmp.json examples/Square/Square.json
+                jq ".color_scheme = \"$COLOR_SCHEME\"" examples/Square/Square.json > tmp.json && mv tmp.json examples/Square/Square.json
+                jq ".borders = \"$BORDERS\"" examples/Square/Square.json > tmp.json && mv tmp.json examples/Square/Square.json
+                jq ".opacity_variation = \"$OPACITY_VARIATION\"" examples/Square/Square.json > tmp.json && mv tmp.json examples/Square/Square.json # Add opacity update
                 echo "Configuration updated."
                 echo "---------------------------------"
                 echo ""

@@ -1,6 +1,0 @@
-for i in AngleClassUse AnglesMoving AnimatedAngle ArrowTips CircleSizes Dot3DGrid LatexPlus LineOpacity Lorenz3D MakeGraph Morph MovingFrameBox MultipleAnimations PathTrace PointMovingOnShapes PolarCoordinates Square TextFontsSizes UpdatersExample VectorArrow WriteStuff
-do
-	ls -l ${i}.py
-	mkdir $i
-	mv ${i}.py $i
-done
