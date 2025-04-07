@@ -19,3 +19,6 @@ media
 media*/
 simulator-1/simulation_results/*.json
 .aider*
+
+# Godot project cache/metadata
+.godot/
