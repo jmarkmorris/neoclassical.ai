@@ -19,6 +19,17 @@ const PATH_THICKNESS: float = 0.05 # Radius for the TubeTrailMesh
 const INITIAL_CLOCK_RADIUS_FACTOR: float = 2.0 * 0.95 * 0.95 # Matches Manim example
 const GLOBAL_SCALE: float = 0.6 # Scale factor for 40% reduction
 
+# --- UI Constants ---
+const UI_MARGIN := 20.0
+const UI_CONTROL_HEIGHT := 30.0
+const UI_BUTTON_WIDTH := 80.0
+const UI_SLIDER_H_OFFSET := UI_MARGIN + UI_BUTTON_WIDTH + 10.0
+
+# --- State Variables ---
+var time_elapsed := 0.0
+var is_playing: bool = true # Start playing by default
+var is_slider_dragging: bool = false # To prevent conflicts
+
 # --- Properties ---
 ## Instance of the clock assembly node.
 var clock_assembly_instance: ClockAssembly
@@ -28,6 +39,11 @@ var path_node: Path3D
 var path_follow_node: PathFollow3D
 ## Optional MeshInstance3D to visualize the path itself.
 var path_visualization_mesh: MeshInstance3D
+## UI Elements (added to CanvasLayer)
+var play_pause_button: Button = null
+var time_slider: HSlider = null
+## CanvasLayer for UI
+var ui_layer: CanvasLayer = null
 
 ## Called when the node enters the scene tree for the first time.
 ## Orchestrates the setup of the entire scene.
@@ -37,7 +53,8 @@ func _ready() -> void:
 	_create_path()
 	_create_clock()
 	_setup_path_following()
-	_start_animation()
+	_setup_ui() # Setup UI elements
+	# Animation is now driven by _process
 
 ## Sets up the basic 3D environment, including lighting and camera.
 func _setup_environment() -> void:
@@ -162,28 +179,100 @@ func _setup_path_following() -> void:
 	print("Added PathFollow3D as child of Path3D.")
 
 
-## Starts the animation of the clock moving along the path using a Tween.
-func _start_animation() -> void:
-	# Ensure the path follower node exists before creating the tween
-	if not is_instance_valid(path_follow_node):
-		printerr("PathFollow3D node is not valid for starting animation.")
-		return
+## Sets up the UI elements (Button, Slider) on a CanvasLayer.
+func _setup_ui() -> void:
+	# Create a CanvasLayer to hold UI elements
+	ui_layer = CanvasLayer.new()
+	ui_layer.name = "UILayer"
+	add_child(ui_layer)
 
-	print("Starting path animation tween...")
-	# 1. Create a new Tween
-	# SceneTreeTween is automatically bound to the scene lifecycle
-	var tween: Tween = create_tween()
+	# --- CREATE CONTAINER ---
+	var bottom_hbox = HBoxContainer.new()
+	bottom_hbox.name = "BottomControlsContainer"
+	# Anchor to bottom, stretch horizontally
+	bottom_hbox.anchor_left = 0.0
+	bottom_hbox.anchor_top = 1.0
+	bottom_hbox.anchor_right = 1.0
+	bottom_hbox.anchor_bottom = 1.0
+	# Set margins relative to anchors (negative top margin to pull it up from bottom)
+	bottom_hbox.offset_left = UI_MARGIN
+	bottom_hbox.offset_top = -(UI_CONTROL_HEIGHT + UI_MARGIN)
+	bottom_hbox.offset_right = -UI_MARGIN
+	bottom_hbox.offset_bottom = -UI_MARGIN
+	# Add some spacing between button and slider
+	bottom_hbox.add_theme_constant_override("separation", 10)
+	ui_layer.add_child(bottom_hbox) # Add container to CanvasLayer
 
-	# 2. Configure the Tween
-	tween.set_loops() # Make the animation loop indefinitely
-	tween.set_trans(Tween.TRANS_LINEAR) # Use linear interpolation for constant speed
-	# set_ease(Tween.EASE_IN_OUT) is not needed for TRANS_LINEAR
+	# --- CREATE PLAY/PAUSE BUTTON ---
+	play_pause_button = Button.new()
+	play_pause_button.text = "Pause" # Initial state is playing
+	play_pause_button.custom_minimum_size = Vector2(UI_BUTTON_WIDTH, UI_CONTROL_HEIGHT)
+	# Connect signal
+	play_pause_button.pressed.connect(_on_play_pause_pressed)
+	bottom_hbox.add_child(play_pause_button) # Add to HBoxContainer
 
-	# 3. Animate the 'progress_ratio' property
-	# This property controls the position along the Path3D (0.0 = start, 1.0 = end)
-	# Animate from 0.0 to 1.0 over PATH_ANIMATION_DURATION seconds
-	tween.tween_property(path_follow_node, "progress_ratio", 1.0, PATH_ANIMATION_DURATION).from(0.0)
+	# --- CREATE TIME SLIDER ---
+	time_slider = HSlider.new()
+	time_slider.min_value = 0.0
+	time_slider.max_value = PATH_ANIMATION_DURATION
+	time_slider.step = 0.01 # Allow fine control
+	time_slider.value = 0.0 # Initial value
+	# Make slider expand horizontally to fill available space in HBoxContainer
+	time_slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	# Set minimum vertical size
+	time_slider.custom_minimum_size.y = UI_CONTROL_HEIGHT
+	# Connect signals
+	time_slider.value_changed.connect(_on_slider_value_changed)
+	# Also track dragging state to avoid fighting between _process and user input
+	time_slider.drag_started.connect(func(): is_slider_dragging = true)
+	time_slider.drag_ended.connect(func(_value_is_final): is_slider_dragging = false)
+	bottom_hbox.add_child(time_slider) # Add to HBoxContainer
 
-	# The tween starts automatically. No need to call tween.play() for SceneTreeTween
+	print("UI setup complete.")
 
-	print("Tween created and started for path following.")
+
+## Called every frame. Delta is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	# 1. Handle Time Progression if Playing
+	if is_playing:
+		time_elapsed += delta
+		# Check for end of animation
+		if time_elapsed >= PATH_ANIMATION_DURATION:
+			time_elapsed = PATH_ANIMATION_DURATION
+			is_playing = false # Stop playing
+			if play_pause_button: play_pause_button.text = "Play" # Update button text
+
+		# Update slider position smoothly ONLY if user isn't dragging it
+		if time_slider and not is_slider_dragging:
+			time_slider.set_value_no_signal(time_elapsed)
+
+	# 2. Update PathFollower position based on time_elapsed
+	if is_instance_valid(path_follow_node):
+		var progress_ratio = 0.0
+		if PATH_ANIMATION_DURATION > 0.0:
+			progress_ratio = clampf(time_elapsed / PATH_ANIMATION_DURATION, 0.0, 1.0)
+		path_follow_node.progress_ratio = progress_ratio
+	else:
+		printerr("_process: PathFollowNode is not valid!")
+
+
+# --- Signal Handlers ---
+func _on_play_pause_pressed() -> void:
+	is_playing = not is_playing # Toggle state
+	if is_playing:
+		play_pause_button.text = "Pause"
+		# If user paused exactly at the end, reset to beginning to play again
+		if time_elapsed >= PATH_ANIMATION_DURATION:
+			time_elapsed = 0.0
+	else:
+		play_pause_button.text = "Play"
+
+func _on_slider_value_changed(new_value: float) -> void:
+	# Only update time if the user is actually dragging
+	if is_slider_dragging:
+		time_elapsed = new_value
+		# When scrubbing, ensure playback state doesn't change unexpectedly
+		if time_elapsed >= PATH_ANIMATION_DURATION and is_playing:
+			is_playing = false
+			if play_pause_button: play_pause_button.text = "Play"
+		# Note: _process will handle updating the path follower position based on the new time_elapsed
