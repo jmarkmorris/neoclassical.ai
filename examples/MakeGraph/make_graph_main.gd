@@ -36,10 +36,18 @@ func _ready() -> void:
 func setup_environment() -> void:
 	# Add camera
 	var camera = Camera3D.new()
-	camera.position = Vector3(0, 0, 15)
+	camera.position = Vector3(0, 0, 8)  # Zoom in
 	camera.look_at(Vector3.ZERO)
 	add_child(camera)
 	
+	# Set background color
+	var environment: WorldEnvironment = WorldEnvironment.new()
+	var environment_settings: Environment = Environment.new()
+	environment_settings.background_mode = Environment.BG_COLOR
+	environment_settings.background_color = INDIGO
+	environment.environment = environment_settings
+	add_child(environment)
+
 	# Add lighting
 	var light = DirectionalLight3D.new()
 	light.position = Vector3(10, 10, 10)
