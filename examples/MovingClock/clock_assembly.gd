@@ -124,6 +124,7 @@ func _create_ticks_mesh(p_radius: float, count: int, length_factor: float) -> Im
 	return mesh
 
 
+
 ## Creates the dynamic elements of the clock (hands, center dot).
 func _create_dynamic_elements() -> void:
 	# 1. Hour Hand
@@ -160,19 +161,20 @@ func _create_dynamic_elements() -> void:
 	center_dot = MeshInstance3D.new()
 	center_dot.name = "CenterDot"
 	var dot_mesh = SphereMesh.new()
+	# Use slightly larger radius for dot mesh to ensure it covers hand bases
 	dot_mesh.radius = CENTER_DOT_RADIUS
 	dot_mesh.height = CENTER_DOT_RADIUS * 2.0 # Default height is 2*radius
 	center_dot.mesh = dot_mesh
 	var dot_material = StandardMaterial3D.new()
 	dot_material.albedo_color = WHITE
 	dot_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	# Optional: Higher render priority to ensure it's always on top
-	# dot_material.render_priority = 1
+	# Higher render priority to ensure it's always on top of hands/ticks
+	dot_material.render_priority = 1
 	center_dot.material_override = dot_material
 	add_child(center_dot)
 
 
-## Helper function to create a simple line mesh for a clock hand pointing UP.
+## Helper function to create a hand line using ImmediateMesh.
 ## @param length: The length of the hand.
 ## @return: An ImmediateMesh resource representing the hand line.
 func _create_hand_mesh(length: float) -> ImmediateMesh:
@@ -217,7 +219,7 @@ func _update_hands() -> void:
 	var target_second_angle: float = PI / 2.0 - (fmod(second_progress, 60.0) / 60.0) * TAU
 
 	# 4. Apply rotations
-	# We set the absolute rotation around the Z axis each frame.
+	# We set the absolute rotation of the hand MeshInstance3D nodes around the Z axis each frame.
 	hour_hand.rotation.z = target_hour_angle
 	minute_hand.rotation.z = target_minute_angle
 	second_hand.rotation.z = target_second_angle

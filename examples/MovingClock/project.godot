@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MovingClock"
-run/main_scene="uid://2py0ui4da104"
+run/main_scene="res://moving_clock_main.gd"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

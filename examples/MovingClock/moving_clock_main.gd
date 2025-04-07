@@ -13,6 +13,7 @@ const PATH_PARAM_X_FREQ: float = 2.0
 const PATH_PARAM_Y_AMP: float = 2.0
 const PATH_PARAM_Y_FREQ: float = 3.0
 const PATH_SAMPLE_STEPS: int = 100
+const ORTHOGONAL_CAMERA_SIZE: float = 5.0 # Controls the vertical view size
 const PATH_ANIMATION_DURATION: float = 15.0
 const INITIAL_CLOCK_RADIUS_FACTOR: float = 2.0 * 0.95 * 0.95 # Matches Manim example
 
@@ -55,6 +56,9 @@ func _setup_environment() -> void:
 	camera.position = Vector3(0, 0, CAMERA_Z_POSITION)
 	# Point the camera towards the origin
 	camera.look_at(Vector3.ZERO)
+	# Use Orthogonal projection for a flat 2D look
+	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+	camera.size = ORTHOGONAL_CAMERA_SIZE # Set the view size
 	add_child(camera)
 	print("Added Camera3D.")
 
@@ -93,7 +97,8 @@ func _create_path() -> void:
 	path_visualization_mesh.name = "PathVisualization"
 	var path_mesh = ImmediateMesh.new()
 	var path_material = StandardMaterial3D.new()
-	path_material.albedo_color = ClockAssembly.YELLOW_A # Use constant from ClockAssembly
+	# Use semi-transparent white for the path, closer to the example image
+	path_material.albedo_color = Color(1.0, 1.0, 1.0, 0.5)
 	path_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	# Enable transparency for the alpha component of YELLOW_A
 	path_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -136,8 +141,8 @@ func _setup_path_following() -> void:
 	path_follow_node.name = "ClockPathFollower"
 
 	# 2. Configure PathFollow3D properties
-	# ROTATION_ORIENTED makes the Z-axis of the follower point along the path tangent
-	path_follow_node.rotation_mode = PathFollow3D.ROTATION_ORIENTED
+	# ROTATION_NONE prevents the follower from rotating its children.
+	path_follow_node.rotation_mode = PathFollow3D.ROTATION_NONE
 	path_follow_node.loop = true # Make the movement loop continuously
 
 	# 3. Parent the clock assembly to the PathFollow3D node

@@ -3,5 +3,4 @@
 [ext_resource type="Script" uid="uid://bsgk74kff5ds0" path="res://moving_clock_main.gd" id="1_ild2k"]
 
 [node name="MovingClockMain" type="Node3D"]
-visible = false
 script = ExtResource("1_ild2k")
