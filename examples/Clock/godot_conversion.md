@@ -244,3 +244,20 @@ No `.tscn` files will be manually created in the editor. All nodes will be insta
     *   Check for console errors.
 
 This detailed plan provides a step-by-step guide for converting the Manim `Clock.py` example into a programmatic Godot project, suitable for implementation by an AI agent.
+
+## Workflow Automation
+
+### Options to Make Video
+
+- record window while running in Godot app.
+- save frames and stitch them together
+
+### Run Godot and Write Frames
+
+- /Applications/Godot.app/Contents/MacOS/Godot angle_path.tscn --write-movie movie_frames/frame_%04d.png --movie-fps 60 --quit-after 900
+- Issue: The '%04d' portion needs fixing. Had to patch filenames up.
+
+### Stitch Frames into Video
+
+- ffmpeg -framerate 60 -i movie_frames/frame_%04d.png -c:v libx264 -pix_fmt yuv420p -crf 18 output_video.mp4
+- Issue: produced a .mov file? Why?
