@@ -98,22 +98,23 @@ func _create_path() -> void:
 	path_visualization_mesh = MeshInstance3D.new()
 	path_visualization_mesh.name = "PathVisualization"
 
-	# Use TubeTrailMesh for thickness
-	var path_mesh = TubeTrailMesh.new()
-	path_mesh.radius = PATH_THICKNESS
-	path_mesh.curve = curve # Assign the generated curve
-	# Adjust sections/radial steps for smoothness if needed
-	# path_mesh.section_segments = 8
-	# path_mesh.section_rings = 4
+	# Use ImmediateMesh for path visualization (more robust than TubeTrailMesh here)
+	var path_mesh = ImmediateMesh.new()
 
 	var path_material = StandardMaterial3D.new()
 	# Use a muted, semi-transparent grey color
 	path_material.albedo_color = Color(0.6, 0.6, 0.6, 0.5)
 	path_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	path_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-
 	path_visualization_mesh.mesh = path_mesh
 	path_visualization_mesh.material_override = path_material
+
+	# Draw the lines using the curve points
+	path_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+	for point in curve.get_baked_points(): # Use baked points for ImmediateMesh
+		path_mesh.surface_add_vertex(point)
+	path_mesh.surface_end()
+
 	add_child(path_visualization_mesh) # Add visualization directly to the main scene
 	print("Added path visualization mesh.")
 

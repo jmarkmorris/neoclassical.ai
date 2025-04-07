@@ -46,10 +46,6 @@ var center_dot: MeshInstance3D
 # References to static parts (face, ticks)
 ## MeshInstance3D for the clock face outline circle.
 var face_circle: MeshInstance3D
-## MeshInstance3D holding the ImmediateMesh for all minute ticks.
-var minute_ticks_mesh: MeshInstance3D
-## MeshInstance3D holding the ImmediateMesh for all hour ticks.
-var hour_ticks_mesh: MeshInstance3D
 
 # --- Initialization ---
 ## Constructor for the ClockAssembly.
