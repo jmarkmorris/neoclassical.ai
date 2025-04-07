@@ -9,7 +9,7 @@ mkdir -p "$TARGET_DIR"
 
 echo "Checking hostname: $HOSTNAME"
 
-if [[ "$HOSTNAME" == *"Air"* ]]; then
+if [[ "$HOSTNAME" =~ *(?i)Air* ]]; then
   echo "Hostname contains 'Air'. Copying Air-specific files..."
 
   # Copy activate script if venv exists
@@ -36,7 +36,7 @@ if [[ "$HOSTNAME" == *"Air"* ]]; then
     echo "Warning: $USER_HOME/.bashrc not found. Skipping copy."
   fi
 
-elif [[ "$HOSTNAME" == *"pro"* ]]; then
+elif [[ "$HOSTNAME" =~ *(?i)pro* ]]; then
   echo "Hostname contains 'pro'. Copying Pro-specific files..."
 
   # Copy activate script if venv exists
