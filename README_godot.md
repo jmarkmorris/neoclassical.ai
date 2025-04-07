@@ -240,10 +240,6 @@ Based on the goal of sharing GDScript code (custom nodes, data structures, algor
     *   **C#:** Allows creating shared DLLs but increases complexity and moves away from GDScript.
     *   **GDExtension:** Powerful for native code integration but significantly more complex than desired.
 
-## Future Exploration
-
-*   Develop a core Godot Addon (`neoclassical_core`?) containing common GDScript classes and nodes for point potentials, path tracing, and wave visualization.
-*   Explore helper scripts (Python or GDScript using `--script`) for automating the creation of new Godot example projects based on templates and incorporating the core addon.
                                                                                                                          
 =======                                                                                                                                                                              
                                                                                                                          
