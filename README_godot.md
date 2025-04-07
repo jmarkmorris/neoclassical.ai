@@ -517,4 +517,33 @@ func check_boundaries(index):
 ```
 
 This architecture enables you to simulate and visualize point particles with customizable physics, creating a versatile system for scientific visualization, educational demonstrations, or game effects in Godot.
+
+---
+
+## GUI Project Setup and Workflow (Minimal)
+
+While the goal is a programmatic workflow, sometimes minimal GUI setup is the quickest way to establish the basic project structure before switching to code. Use the GUI primarily for initial setup and visualization.
+
+### 1. Create a New Project
+
+*   **Choose Name:** Decide on a `<name>` for your project or tool (e.g., `ParticleSimulator`).
+*   **Open Godot:** Launch the Godot Project Manager.
+*   **New Project:** Click the "New Project" button.
+*   **Project Path:** Enter a valid directory path for your project *ending* in the chosen `<name>`. For example, `~/GodotProjects/ParticleSimulator`. **Important:** Do *not* create the directory beforehand; Godot will do this.
+*   **Renderer:** Select a renderer (e.g., "Forward+").
+*   **Create & Edit:** Click the "Create & Edit" button. Godot will create the directory, the `project.godot` file, `icon.svg`, and open the editor.
+
+### 2. Adjust Project Settings (Optional but Recommended)
+
+*   **Window Settings:** Go to `Project -> Project Settings -> Display -> Window`. Adjust `Width`, `Height`, `Stretch Mode`, etc., if needed.
+*   **Background Color:** Go to `Project -> Project Settings -> Rendering -> Environment`. Click the `Default Clear Color` property and set it to your desired color (e.g., INDIGO #4B0082). Click "Close".
+
+### 3. Create and Save the Main Scene
+
+*   **New Scene:** In the main editor window, click the "Scene" menu -> "New Scene".
+*   **Add Root Node:** In the "Scene" dock (usually top-left), click the "+" button ("Add Child Node"). Select an appropriate root node type (e.g., `Node2D` for 2D, `Node3D` for 3D) and click "Create".
+*   **Select Root:** Ensure the newly created root node (e.g., `Node2D`) is selected in the Scene dock.
+*   **Save Scene:** Click "Scene" menu -> "Save Scene As...". Name the scene file, typically matching your project name (e.g., `particle_simulator.tscn` or `main.tscn`). Save it in the root of your project (`res://`).
+
+Now you have a basic project structure (`project.godot`, `icon.svg`, `<name>.tscn`) and can proceed with programmatic development (adding scripts, nodes via code, etc.).
                                                                                                                          
