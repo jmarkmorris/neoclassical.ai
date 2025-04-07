@@ -47,6 +47,10 @@ var center_dot: MeshInstance3D
 ## MeshInstance3D for the clock face outline circle.
 var face_circle: MeshInstance3D
 
+# --- State ---
+## Controls whether the clock hands update their rotation in _process.
+var is_active: bool = true
+
 # --- Initialization ---
 ## Constructor for the ClockAssembly.
 ## @param p_radius: The desired radius for the clock face.
@@ -239,6 +243,10 @@ func _set_initial_hand_positions() -> void:
 ## Called every frame. Updates the clock hand rotations based on elapsed time and speed factors.
 ## @param _delta: Time elapsed since the previous frame.
 func _process(_delta: float) -> void:
+	# Only update hands if the clock is active (controlled by main scene)
+	if not is_active:
+		return
+		
 	# Ensure hands are valid before rotating
 	if not is_instance_valid(hour_hand) or \
 	   not is_instance_valid(minute_hand) or \

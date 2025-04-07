@@ -196,17 +196,17 @@ func _setup_ui() -> void:
 	bottom_hbox.anchor_right = 1.0
 	bottom_hbox.anchor_bottom = 1.0
 	# Set margins relative to anchors (negative top margin to pull it up from bottom)
-	bottom_hbox.offset_left = UI_MARGIN
-	bottom_hbox.offset_top = -(UI_CONTROL_HEIGHT + UI_MARGIN)
-	bottom_hbox.offset_right = -UI_MARGIN
-	bottom_hbox.offset_bottom = -UI_MARGIN
+	bottom_hbox.offset_left = UI_MARGIN * 2.0 # Add more horizontal margin too
+	bottom_hbox.offset_top = -(UI_CONTROL_HEIGHT + UI_MARGIN * 2.0) # Move further up
+	bottom_hbox.offset_right = -UI_MARGIN * 2.0 # Add more horizontal margin too
+	bottom_hbox.offset_bottom = -UI_MARGIN * 2.0 # Move further up
 	# Add some spacing between button and slider
 	bottom_hbox.add_theme_constant_override("separation", 10)
 	ui_layer.add_child(bottom_hbox) # Add container to CanvasLayer
 
 	# --- CREATE PLAY/PAUSE BUTTON ---
 	play_pause_button = Button.new()
-	play_pause_button.text = "Pause" # Initial state is playing
+	play_pause_button.text = "⏸" # Initial state is playing, use Pause symbol
 	# Use size flags instead of fixed size for better scalability
 	play_pause_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	play_pause_button.add_theme_font_size_override("font_size", UI_BUTTON_FONT_SIZE)
@@ -243,7 +243,7 @@ func _process(delta: float) -> void:
 		if time_elapsed >= PATH_ANIMATION_DURATION:
 			time_elapsed = PATH_ANIMATION_DURATION
 			is_playing = false # Stop playing
-			if play_pause_button: play_pause_button.text = "Play" # Update button text
+			if play_pause_button: play_pause_button.text = "▶" # Use Play symbol
 
 		# Update slider position smoothly ONLY if user isn't dragging it
 		if time_slider and not is_slider_dragging:
@@ -255,6 +255,10 @@ func _process(delta: float) -> void:
 		if PATH_ANIMATION_DURATION > 0.0:
 			progress_ratio = clampf(time_elapsed / PATH_ANIMATION_DURATION, 0.0, 1.0)
 		path_follow_node.progress_ratio = progress_ratio
+		
+		# Update the clock's active state based on the main playing state
+		if is_instance_valid(clock_assembly_instance):
+			clock_assembly_instance.is_active = is_playing
 	else:
 		printerr("_process: PathFollowNode is not valid!")
 
@@ -276,12 +280,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func _toggle_play_pause() -> void:
 	is_playing = not is_playing # Toggle state
 	if is_playing:
-		play_pause_button.text = "Pause"
+		if play_pause_button: play_pause_button.text = "⏸" # Use Pause symbol
 		# If user paused exactly at the end, reset to beginning to play again
 		if time_elapsed >= PATH_ANIMATION_DURATION:
 			time_elapsed = 0.0
 	else:
-		play_pause_button.text = "Play"
+		if play_pause_button: play_pause_button.text = "▶" # Use Play symbol
 
 func _on_slider_value_changed(new_value: float) -> void:
 	# Only update time if the user is actually dragging
@@ -290,5 +294,5 @@ func _on_slider_value_changed(new_value: float) -> void:
 		# When scrubbing, ensure playback state doesn't change unexpectedly
 		if time_elapsed >= PATH_ANIMATION_DURATION and is_playing:
 			is_playing = false
-			if play_pause_button: play_pause_button.text = "Play"
+			if play_pause_button: play_pause_button.text = "▶" # Use Play symbol
 		# Note: _process will handle updating the path follower position based on the new time_elapsed
