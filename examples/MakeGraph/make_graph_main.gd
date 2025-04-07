@@ -58,17 +58,17 @@ func create_title() -> void:
 	# Create title
 	title_text = Label3D.new()
 	title_text.text = "Function Graphing Example"
-	title_text.font_size = 72
+	title_text.font_size = 144
 	title_text.modulate = WHITE
-	title_text.position = Vector3(0, 5, 0)
+	title_text.position = Vector3(0, 6.5, 0)
 	add_child(title_text)
 	
 	# Create subtitle
 	subtitle_text = Label3D.new()
 	subtitle_text.text = "axes.plot(lambda x: np.sin(x)) + axes.get_graph_label(graph, label)"
-	subtitle_text.font_size = 36
+	subtitle_text.font_size = 64
 	subtitle_text.modulate = YELLOW
-	subtitle_text.position = Vector3(0, 4, 0)
+	subtitle_text.position = Vector3(0, 5.5, 0)
 	add_child(subtitle_text)
 
 func create_axes() -> void:
