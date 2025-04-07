@@ -9,8 +9,8 @@ mkdir -p "$TARGET_DIR"
 
 echo "Checking hostname: $HOSTNAME"
 
-if [[ "$HOSTNAME" =~ *(?i)Air* ]]; then
-  echo "Hostname contains 'Air'. Copying Air-specific files..."
+if [[ "$HOSTNAME" =~ [Aa][Ii][Rr]] ]; then
+  echo "Hostname contains 'air'. Copying mac air-specific files..."
 
   # Copy activate script if venv exists
   if [ -d ".venv_air" ] && [ -f ".venv_air/bin/activate" ]; then
@@ -36,8 +36,8 @@ if [[ "$HOSTNAME" =~ *(?i)Air* ]]; then
     echo "Warning: $USER_HOME/.bashrc not found. Skipping copy."
   fi
 
-elif [[ "$HOSTNAME" =~ *(?i)pro* ]]; then
-  echo "Hostname contains 'pro'. Copying Pro-specific files..."
+elif [[ "$HOSTNAME" =~ [Pp][Rr][Oo] ]]; then
+  echo "Hostname contains 'pro'. Copying mac pro-specific files..."
 
   # Copy activate script if venv exists
   if [ -d ".venv_pro" ] && [ -f ".venv_pro/bin/activate" ]; then
@@ -64,7 +64,7 @@ elif [[ "$HOSTNAME" =~ *(?i)pro* ]]; then
   fi
 
 else
-  echo "Hostname does not match 'Air' or 'pro'. No host-specific files copied."
+  echo "Hostname does not match 'air' or 'pro'. No host-specific files copied."
 fi
 
 echo "mysettings.sh script finished."
