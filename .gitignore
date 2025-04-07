@@ -22,3 +22,5 @@ simulator-1/simulation_results/*.json
 
 # Godot project cache/metadata
 .godot/
+*.gd.uid
+*.jpg.import
