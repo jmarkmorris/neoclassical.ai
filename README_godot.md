@@ -247,3 +247,67 @@ Based on the goal of sharing GDScript code (custom nodes, data structures, algor
 *   Develop a core Godot Addon (`neoclassical_core`?) containing common GDScript classes and nodes for point potentials, path tracing, and wave visualization.
 *   Explore helper scripts (Python or GDScript using `--script`) for automating the creation of new Godot example projects based on templates and incorporating the core addon.
 *   Evaluate the effectiveness of multimodal AI (like Gemini) for understanding visual aspects by providing screenshots or diagrams of Godot scenes or Manim outputs during the conversion process.
+
+## Open Questions & Future Exploration                                                                                   
+                                                                                                                         
+*   Investigate Godot's capabilities for creating reusable code libraries or modules (e.g., Autoloads, custom            
+`class_name` scripts, potentially C# libraries or GDNative/GDExtension for more complex needs).                          
+*   Explore helper scripts for tasks like batch processing assets or automating parts of the build/export pipeline.      
+*   Evaluate the effectiveness of multimodal AI (like Gemini) for understanding visual aspects by providing screenshots  
+or diagrams.                                                                                                             
+=======                                                                                                                  
+## Reusable Code Strategies in Godot                                                                                     
+                                                                                                                         
+Godot offers several ways to create reusable code, suitable for different scopes and complexity levels.                  
+                                                                                                                         
+**1. Intra-Project Reuse (Within a Single Project):**                                                                    
+                                                                                                                         
+*   **`class_name` Scripts:** The primary method for creating reusable components within a project. Define a script with 
+`class_name MyCustomNode extends Node2D` or `class_name MyDataContainer extends RefCounted`. This makes the script a     
+distinct type that can be instantiated (`MyCustomNode.new()`) or selected directly in the editor's "Add Node" dialog (if 
+inheriting from Node). Ideal for custom nodes, data structures, and utility classes used throughout one project.         
+*   **Autoloads (Singletons):** Scripts or scenes loaded automatically when the project starts, providing globally       
+accessible objects. Perfect for managing global state (e.g., game settings, player score), providing universally needed  
+functions (e.g., a `MathUtils` singleton), or implementing event buses. Configure them in `Project -> Project Settings ->
+Autoload`.                                                                                                               
+                                                                                                                         
+**2. Inter-Project Reuse (Sharing Between Separate Projects):**                                                          
+                                                                                                                         
+Based on the goal of sharing GDScript code (custom nodes, data structures, algorithms) between multiple separate Godot   
+projects with a preference for low complexity:                                                                           
+                                                                                                                         
+*   **Godot Addons (using GDScript) (Recommended):** This is the standard Godot approach for packaging reusable code and 
+scenes.                                                                                                                  
+    *   **How:** Structure your shared GDScript files (using `class_name`), custom scenes (`.tscn`), and assets within a 
+dedicated directory inside the `addons/` folder (e.g., `addons/my_shared_lib/`). Create a simple `plugin.cfg` file in    
+that directory to define the addon.                                                                                      
+    *   **Usage:** To use the shared code in another project, simply copy the `addons/my_shared_lib/` folder into the    
+target project's `addons/` directory. Then, enable the plugin via `Project -> Project Settings -> Plugins`.              
+    *   **Pros:** Idiomatic Godot solution, keeps shared code organized and self-contained, integrates well with the     
+editor (custom types can appear in menus), uses only GDScript, relatively low complexity.                                
+    *   **Cons:** Requires understanding the `addons/` structure and creating the `plugin.cfg` file (minimal effort).    
+                                                                                                                         
+*   **Manual Copying / Symlinking:** The simplest method.                                                                
+    *   **How:** Maintain a central directory outside your projects containing your shared `.gd` files (using            
+`class_name`). Manually copy these files/folders into each project that needs them, or use symbolic links (`ln -s` on    
+macOS/Linux) to point from within each project to the central shared directory/files.                                    
+    *   **Pros:** Lowest setup complexity.                                                                               
+    *   **Cons:** Requires manual synchronization of copied files. Symlinks can sometimes be less intuitive or robust    
+depending on tools and OS. Poorer editor integration compared to addons.                                                 
+                                                                                                                         
+*   **Other Options (Less Suitable for Current Goals):**                                                                 
+    *   **C#:** Allows creating shared DLLs but increases complexity and moves away from GDScript.                       
+    *   **GDExtension:** Powerful for native code integration but significantly more complex than desired.               
+                                                                                                                         
+**Conclusion for Project:** The **Godot Addon (using GDScript)** approach is recommended for creating a shared library of
+components (like particle representations, path tracers, wave visualizers) to be used across different Godot example     
+projects, balancing reusability, organization, and low complexity.                                                       
+                                                                                                                         
+## Future Exploration                                                                                                    
+                                                                                                                         
+*   Develop a core Godot Addon (`neoclassical_core`?) containing common GDScript classes and nodes for point potentials, 
+path tracing, and wave visualization.                                                                                    
+*   Explore helper scripts (Python or GDScript using `--script`) for automating the creation of new Godot example        
+projects based on templates and incorporating the core addon.                                                            
+*   Evaluate the effectiveness of multimodal AI (like Gemini) for understanding visual aspects by providing screenshots  
+or diagrams of Godot scenes or Manim outputs during the conversion process. 
