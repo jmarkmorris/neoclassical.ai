@@ -9,7 +9,7 @@ mkdir -p "$TARGET_DIR"
 
 echo "Checking hostname: $HOSTNAME"
 
-if [[ "$HOSTNAME" =~ [Aa][Ii][Rr]] ]; then
+if [[ "$HOSTNAME" =~ [Aa][Ii][Rr] ]]; then
   echo "Hostname contains 'air'. Copying mac air-specific files..."
 
   # Copy activate script if venv exists
