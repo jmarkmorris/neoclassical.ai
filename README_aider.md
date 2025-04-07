@@ -70,3 +70,8 @@ Run aider with the `--vim` switch to enable vi/vim keybindings:
 | dd | Delete current line |
 | u | Undo last change |
 | Ctrl-R | Redo last undone change |
+
+## Tips
+
+- /paste : pastes image from clipboard
+- /web : goes to url and scrapes it.
