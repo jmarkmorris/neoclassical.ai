@@ -71,7 +71,7 @@ func _create_static_elements() -> void:
 	# 1. Face Circle
 	face_circle = MeshInstance3D.new()
 	face_circle.name = "FaceCircle"
-	face_circle.mesh = _create_torus_face_mesh(radius, FACE_THICKNESS)
+	face_circle.mesh = _create_circle_mesh(radius, FACE_CIRCLE_SEGMENTS) # Use ImmediateMesh circle
 	face_circle.material_override = static_material
 	add_child(face_circle)
 
@@ -84,21 +84,22 @@ func _create_static_elements() -> void:
 	_create_thick_ticks(radius, HOUR_TICKS_COUNT, HOUR_TICK_LENGTH_FACTOR, HOUR_TICK_THICKNESS, static_material, "HourTick")
 
 
-## Helper function to create a torus mesh for the clock face outline.
-## @param p_radius: The centerline radius of the torus ring.
-## @param thickness: The thickness (diameter) of the torus tube.
-## @return: A TorusMesh resource.
-func _create_torus_face_mesh(p_radius: float, thickness: float) -> TorusMesh:
-	var mesh := TorusMesh.new()
-	mesh.inner_radius = p_radius - thickness / 2.0
-	mesh.outer_radius = p_radius + thickness / 2.0
-	# Adjust segments for smoothness if needed
-	mesh.rings = FACE_CIRCLE_SEGMENTS # Segments along the main radius
-	mesh.ring_segments = 16 # Segments around the tube itself
+## Helper function to create a circle outline using ImmediateMesh.
+## @param p_radius: The radius of the circle.
+## @param segments: The number of line segments to approximate the circle.
+## @return: An ImmediateMesh resource representing the circle outline.
+func _create_circle_mesh(p_radius: float, segments: int) -> ImmediateMesh:
+	var mesh := ImmediateMesh.new()
+	mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+	for i in range(segments + 1): # +1 to close the loop
+		var angle: float = float(i) / segments * TAU
+		var point: Vector3 = Vector3(cos(angle), sin(angle), 0) * p_radius
+		mesh.surface_add_vertex(point)
+	mesh.surface_end()
 	return mesh
 
 
-## Helper function to create tick marks using ImmediateMesh.
+## Helper function to create tick marks using CylinderMesh.
 ## @param p_radius: The base radius from which ticks extend inwards.
 ## @param count: The number of ticks to create.
 ## @param length_factor: Factor determining the inner end point (relative to radius).
@@ -110,7 +111,8 @@ func _create_thick_ticks(p_radius: float, count: int, length_factor: float, thic
 	var cylinder_radius: float = thickness / 2.0
 
 	for i in range(count):
-		var angle: float = float(i) / count * TAU
+		# Calculate angle starting from 12 o'clock (positive Y = PI/2) and moving clockwise.
+		var angle: float = PI / 2.0 - float(i) / count * TAU
 		var direction: Vector3 = Vector3(cos(angle), sin(angle), 0)
 		var outer_point: Vector3 = direction * p_radius
 		var inner_point: Vector3 = outer_point * length_factor
@@ -130,8 +132,9 @@ func _create_thick_ticks(p_radius: float, count: int, length_factor: float, thic
 		# Position the cylinder at the midpoint of the tick line
 		tick_mesh_instance.position = midpoint
 		# Rotate the cylinder to align with the tick direction
-		# Cylinder height is along Y, so rotate Z by angle + 90 degrees (PI/2)
-		tick_mesh_instance.rotation.z = angle + PI / 2.0
+		# Cylinder height is along its local Y axis. To align local Y with the calculated `angle`,
+		# we need to rotate it by `angle - PI/2.0` (since local Y starts at PI/2).
+		tick_mesh_instance.rotation.z = angle - PI / 2.0
 
 		add_child(tick_mesh_instance)
 
@@ -211,7 +214,7 @@ func _set_initial_hand_positions() -> void:
 	   not is_instance_valid(second_hand):
 		printerr("Hands not ready for initial positioning.")
 		return
-
+	
 	# 1. Get current time
 	var now: Dictionary = Time.get_datetime_dict_from_system()
 	var hour: float = now["hour"]
@@ -234,7 +237,7 @@ func _set_initial_hand_positions() -> void:
 
 
 ## Called every frame. Updates the clock hand rotations based on elapsed time and speed factors.
-## @param _delta: Time elapsed since the previous frame (unused).
+## @param _delta: Time elapsed since the previous frame.
 func _process(_delta: float) -> void:
 	# Ensure hands are valid before rotating
 	if not is_instance_valid(hour_hand) or \
@@ -242,7 +245,6 @@ func _process(_delta: float) -> void:
 	   not is_instance_valid(second_hand):
 		return
 
-	# Calculate angular speed (radians per second) for each hand
 	# Normal speed: Hour=TAU/12h, Minute=TAU/60m, Second=TAU/60s
 	# TAU / (12 * 3600 seconds) for hour hand normal speed
 	# TAU / (60 * 60 seconds) for minute hand normal speed
