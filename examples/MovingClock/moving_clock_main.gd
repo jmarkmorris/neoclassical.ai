@@ -12,10 +12,12 @@ const PATH_PARAM_X_AMP: float = 3.0
 const PATH_PARAM_X_FREQ: float = 2.0
 const PATH_PARAM_Y_AMP: float = 2.0
 const PATH_PARAM_Y_FREQ: float = 3.0
-const PATH_SAMPLE_STEPS: int = 100
+const PATH_SAMPLE_STEPS: int = 300 # Increased for smoother path
 const ORTHOGONAL_CAMERA_SIZE: float = 5.0 # Controls the vertical view size
 const PATH_ANIMATION_DURATION: float = 15.0
+const PATH_THICKNESS: float = 0.05 # Radius for the TubeTrailMesh
 const INITIAL_CLOCK_RADIUS_FACTOR: float = 2.0 * 0.95 * 0.95 # Matches Manim example
+const GLOBAL_SCALE: float = 0.6 # Scale factor for 40% reduction
 
 # --- Properties ---
 ## Instance of the clock assembly node.
@@ -77,8 +79,8 @@ func _create_path() -> void:
 	# Using a Lambda function here for conciseness
 	var path_func = func(t: float) -> Vector3:
 		return Vector3(
-			PATH_PARAM_X_AMP * sin(t * PATH_PARAM_X_FREQ),
-			PATH_PARAM_Y_AMP * cos(t * PATH_PARAM_Y_FREQ),
+			PATH_PARAM_X_AMP * sin(t * PATH_PARAM_X_FREQ) * GLOBAL_SCALE, # Apply scale
+			PATH_PARAM_Y_AMP * cos(t * PATH_PARAM_Y_FREQ) * GLOBAL_SCALE, # Apply scale
 			0.0 # Keep it in the XY plane
 		)
 
@@ -95,19 +97,20 @@ func _create_path() -> void:
 	# 6. (Optional) Visualize the path
 	path_visualization_mesh = MeshInstance3D.new()
 	path_visualization_mesh.name = "PathVisualization"
-	var path_mesh = ImmediateMesh.new()
-	var path_material = StandardMaterial3D.new()
-	# Use semi-transparent white for the path, closer to the example image
-	path_material.albedo_color = Color(1.0, 1.0, 1.0, 0.5)
-	path_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	# Enable transparency for the alpha component of YELLOW_A
-	path_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
-	path_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-	# Iterate through the baked points of the curve for visualization
-	for point in curve.get_baked_points():
-		path_mesh.surface_add_vertex(point)
-	path_mesh.surface_end()
+	# Use TubeTrailMesh for thickness
+	var path_mesh = TubeTrailMesh.new()
+	path_mesh.radius = PATH_THICKNESS
+	path_mesh.curve = curve # Assign the generated curve
+	# Adjust sections/radial steps for smoothness if needed
+	# path_mesh.section_segments = 8
+	# path_mesh.section_rings = 4
+
+	var path_material = StandardMaterial3D.new()
+	# Use a muted, semi-transparent grey color
+	path_material.albedo_color = Color(0.6, 0.6, 0.6, 0.5)
+	path_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	path_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
 	path_visualization_mesh.mesh = path_mesh
 	path_visualization_mesh.material_override = path_material
@@ -122,6 +125,8 @@ func _create_clock() -> void:
 	# Pass the adjusted radius factor defined as a constant
 	clock_assembly_instance = ClockAssembly.new(INITIAL_CLOCK_RADIUS_FACTOR)
 	clock_assembly_instance.name = "ClockAssemblyInstance"
+	# Apply the global scale reduction to the clock instance itself
+	clock_assembly_instance.scale = Vector3(GLOBAL_SCALE, GLOBAL_SCALE, GLOBAL_SCALE)
 
 	# IMPORTANT: Do NOT add clock_assembly_instance as a child of the main scene here.
 	# It will be added as a child of the PathFollow3D node in the next step.

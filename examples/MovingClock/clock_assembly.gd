@@ -19,21 +19,27 @@ const SECOND_HAND_LENGTH_FACTOR: float = 0.8
 const MINUTE_TICK_LENGTH_FACTOR: float = 0.95
 const HOUR_TICK_LENGTH_FACTOR: float = 0.85
 const CENTER_DOT_RADIUS: float = 0.05
-const FACE_CIRCLE_SEGMENTS: int = 64
+const FACE_CIRCLE_SEGMENTS: int = 64 # Used for TorusMesh sections/rings
 const MINUTE_TICKS_COUNT: int = 60
 const HOUR_TICKS_COUNT: int = 12
+
+# --- Thickness Constants ---
+const FACE_THICKNESS: float = 0.04
+const HOUR_TICK_THICKNESS: float = 0.03
+const MINUTE_TICK_THICKNESS: float = 0.02
+const HAND_THICKNESS: float = 0.03
 
 # --- Properties ---
 ## The radius of the clock face circle. Determines the overall size.
 var radius: float = 2.0
 
-# References to MeshInstance3D nodes for dynamic parts (hands)
-## MeshInstance3D representing the hour hand.
-var hour_hand: MeshInstance3D
-## MeshInstance3D representing the minute hand.
-var minute_hand: MeshInstance3D
-## MeshInstance3D representing the second hand.
-var second_hand: MeshInstance3D
+# References to Node3D nodes for dynamic parts (hands)
+## Node3D pivot for the hour hand.
+var hour_hand: Node3D
+## Node3D pivot for the minute hand.
+var minute_hand: Node3D
+## Node3D pivot for the second hand.
+var second_hand: Node3D
 ## MeshInstance3D for the small dot at the center of the clock.
 var center_dot: MeshInstance3D
 
@@ -56,7 +62,7 @@ func _init(p_radius: float = 2.0) -> void:
 func _ready() -> void:
 	_create_static_elements()
 	_create_dynamic_elements()
-	_update_hands() # Set initial hand positions based on current time
+	_set_initial_hand_positions() # Set initial hand positions based on current time
 
 # --- Private Methods ---
 ## Creates the static elements of the clock (face, ticks).
@@ -69,92 +75,87 @@ func _create_static_elements() -> void:
 	# 1. Face Circle
 	face_circle = MeshInstance3D.new()
 	face_circle.name = "FaceCircle"
-	face_circle.mesh = _create_circle_mesh(radius, FACE_CIRCLE_SEGMENTS)
+	face_circle.mesh = _create_torus_face_mesh(radius, FACE_THICKNESS)
 	face_circle.material_override = static_material
 	add_child(face_circle)
 
 	# 2. Minute Ticks
-	minute_ticks_mesh = MeshInstance3D.new()
-	minute_ticks_mesh.name = "MinuteTicks"
-	minute_ticks_mesh.mesh = _create_ticks_mesh(radius, MINUTE_TICKS_COUNT, MINUTE_TICK_LENGTH_FACTOR)
-	minute_ticks_mesh.material_override = static_material
-	add_child(minute_ticks_mesh)
+	# Create individual cylinder meshes for minute ticks
+	_create_thick_ticks(radius, MINUTE_TICKS_COUNT, MINUTE_TICK_LENGTH_FACTOR, MINUTE_TICK_THICKNESS, static_material, "MinuteTick")
 
 	# 3. Hour Ticks
-	hour_ticks_mesh = MeshInstance3D.new()
-	hour_ticks_mesh.name = "HourTicks"
-	# Note: Manim used thicker stroke for hour ticks. ImmediateMesh lines have no thickness.
-	# If thickness is desired, CylinderMesh/BoxMesh per tick would be needed.
-	# Sticking to ImmediateMesh as per plan for now.
-	hour_ticks_mesh.mesh = _create_ticks_mesh(radius, HOUR_TICKS_COUNT, HOUR_TICK_LENGTH_FACTOR)
-	hour_ticks_mesh.material_override = static_material
-	add_child(hour_ticks_mesh)
+	# Create individual cylinder meshes for hour ticks
+	_create_thick_ticks(radius, HOUR_TICKS_COUNT, HOUR_TICK_LENGTH_FACTOR, HOUR_TICK_THICKNESS, static_material, "HourTick")
 
 
-## Helper function to create a circle outline using ImmediateMesh.
-## @param p_radius: The radius of the circle.
-## @param segments: The number of line segments to approximate the circle.
-## @return: An ImmediateMesh resource representing the circle.
-func _create_circle_mesh(p_radius: float, segments: int) -> ImmediateMesh:
-	var mesh := ImmediateMesh.new()
-	mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-	for i in range(segments + 1): # +1 to close the loop
-		var angle: float = float(i) / segments * TAU
-		var point: Vector3 = Vector3(cos(angle), sin(angle), 0) * p_radius
-		mesh.surface_add_vertex(point)
-	mesh.surface_end()
+## Helper function to create a torus mesh for the clock face outline.
+## @param p_radius: The centerline radius of the torus ring.
+## @param thickness: The thickness (diameter) of the torus tube.
+## @return: A TorusMesh resource.
+func _create_torus_face_mesh(p_radius: float, thickness: float) -> TorusMesh:
+	var mesh := TorusMesh.new()
+	mesh.inner_radius = p_radius - thickness / 2.0
+	mesh.outer_radius = p_radius + thickness / 2.0
+	# Adjust segments for smoothness if needed
+	mesh.rings = FACE_CIRCLE_SEGMENTS # Segments along the main radius
+	mesh.ring_segments = 16 # Segments around the tube itself
 	return mesh
 
 
 ## Helper function to create tick marks using ImmediateMesh.
 ## @param p_radius: The base radius from which ticks extend inwards.
 ## @param count: The number of ticks to create.
-## @param length_factor: The factor determining the inner end point of the tick (relative to radius).
-## @return: An ImmediateMesh resource representing the ticks.
-func _create_ticks_mesh(p_radius: float, count: int, length_factor: float) -> ImmediateMesh:
-	var mesh := ImmediateMesh.new()
-	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+## @param length_factor: Factor determining the inner end point (relative to radius).
+## @param thickness: The diameter of the cylinder used for the tick.
+## @param material: The material to apply to the ticks.
+## @param name_prefix: String prefix for the tick node names.
+func _create_thick_ticks(p_radius: float, count: int, length_factor: float, thickness: float, material: Material, name_prefix: String) -> void:
+	var tick_length: float = p_radius * (1.0 - length_factor)
+	var cylinder_radius: float = thickness / 2.0
+
 	for i in range(count):
 		var angle: float = float(i) / count * TAU
-		var start_point: Vector3 = Vector3(cos(angle), sin(angle), 0) * p_radius
-		var end_point: Vector3 = start_point * length_factor
-		mesh.surface_add_vertex(start_point)
-		mesh.surface_add_vertex(end_point)
-	mesh.surface_end()
-	return mesh
+		var direction: Vector3 = Vector3(cos(angle), sin(angle), 0)
+		var outer_point: Vector3 = direction * p_radius
+		var inner_point: Vector3 = outer_point * length_factor
+		var midpoint: Vector3 = (outer_point + inner_point) / 2.0
+
+		var tick_mesh_instance = MeshInstance3D.new()
+		tick_mesh_instance.name = "%s_%d" % [name_prefix, i]
+
+		var cylinder_mesh = CylinderMesh.new()
+		cylinder_mesh.height = tick_length
+		cylinder_mesh.top_radius = cylinder_radius
+		cylinder_mesh.bottom_radius = cylinder_radius
+
+		tick_mesh_instance.mesh = cylinder_mesh
+		tick_mesh_instance.material_override = material
+
+		# Position the cylinder at the midpoint of the tick line
+		tick_mesh_instance.position = midpoint
+		# Rotate the cylinder to align with the tick direction
+		# Cylinder height is along Y, so rotate Z by angle + 90 degrees (PI/2)
+		tick_mesh_instance.rotation.z = angle + PI / 2.0
+
+		add_child(tick_mesh_instance)
 
 
 
 ## Creates the dynamic elements of the clock (hands, center dot).
 func _create_dynamic_elements() -> void:
 	# 1. Hour Hand
-	hour_hand = MeshInstance3D.new()
+	hour_hand = _create_hand_pivot("HourHand", radius * HOUR_HAND_LENGTH_FACTOR, HAND_THICKNESS, BLUE)
 	hour_hand.name = "HourHand"
-	hour_hand.mesh = _create_hand_mesh(radius * HOUR_HAND_LENGTH_FACTOR)
-	var hour_material = StandardMaterial3D.new()
-	hour_material.albedo_color = BLUE
-	hour_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	hour_hand.material_override = hour_material
 	add_child(hour_hand)
 
 	# 2. Minute Hand
-	minute_hand = MeshInstance3D.new()
+	minute_hand = _create_hand_pivot("MinuteHand", radius * MINUTE_HAND_LENGTH_FACTOR, HAND_THICKNESS, GREEN)
 	minute_hand.name = "MinuteHand"
-	minute_hand.mesh = _create_hand_mesh(radius * MINUTE_HAND_LENGTH_FACTOR)
-	var minute_material = StandardMaterial3D.new()
-	minute_material.albedo_color = GREEN
-	minute_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	minute_hand.material_override = minute_material
 	add_child(minute_hand)
 
 	# 3. Second Hand
-	second_hand = MeshInstance3D.new()
+	second_hand = _create_hand_pivot("SecondHand", radius * SECOND_HAND_LENGTH_FACTOR, HAND_THICKNESS, RED)
 	second_hand.name = "SecondHand"
-	second_hand.mesh = _create_hand_mesh(radius * SECOND_HAND_LENGTH_FACTOR)
-	var second_material = StandardMaterial3D.new()
-	second_material.albedo_color = RED
-	second_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	second_hand.material_override = second_material
 	add_child(second_hand)
 
 	# 4. Center Dot (Added last to render on top initially)
@@ -174,58 +175,94 @@ func _create_dynamic_elements() -> void:
 	add_child(center_dot)
 
 
-## Helper function to create a hand line using ImmediateMesh.
+## Helper function to create a pivot Node3D containing a thick hand mesh (Cylinder).
+## @param name_prefix: String prefix for node names.
 ## @param length: The length of the hand.
-## @return: An ImmediateMesh resource representing the hand line.
-func _create_hand_mesh(length: float) -> ImmediateMesh:
-	var mesh := ImmediateMesh.new()
-	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	# Start at origin, end pointing UP along Y-axis
-	mesh.surface_add_vertex(Vector3.ZERO)
-	mesh.surface_add_vertex(Vector3(0, length, 0))
-	mesh.surface_end()
-	return mesh
+## @param thickness: The diameter of the hand cylinder.
+## @param color: The color of the hand.
+## @return: A Node3D pivot containing the hand's MeshInstance3D.
+func _create_hand_pivot(name_prefix: String, length: float, thickness: float, color: Color) -> Node3D:
+	var pivot = Node3D.new()
+	pivot.name = name_prefix + "Pivot" # Renamed pivot for clarity
+
+	var hand_mesh_instance = MeshInstance3D.new()
+	hand_mesh_instance.name = name_prefix + "Mesh"
+
+	var cylinder_mesh = CylinderMesh.new()
+	cylinder_mesh.height = length
+	cylinder_mesh.top_radius = thickness / 2.0
+	cylinder_mesh.bottom_radius = thickness / 2.0
+	hand_mesh_instance.mesh = cylinder_mesh
+
+	var material = StandardMaterial3D.new()
+	material.albedo_color = color
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	hand_mesh_instance.material_override = material
+
+	# Offset the mesh instance so the base of the cylinder is at the pivot point (origin of Node3D)
+	hand_mesh_instance.position.y = length / 2.0
+
+	pivot.add_child(hand_mesh_instance)
+	return pivot
 
 
-## Updates the rotation of the clock hands based on the current system time.
-func _update_hands() -> void:
-	# Ensure hands have been created before trying to update them
+## Sets the initial rotation of the clock hands based on the current system time.
+## Called once from _ready().
+func _set_initial_hand_positions() -> void:
+	# Ensure hands have been created before trying to set them
 	if not is_instance_valid(hour_hand) or \
 	   not is_instance_valid(minute_hand) or \
 	   not is_instance_valid(second_hand):
-		return # Don't update if nodes aren't ready
+		printerr("Hands not ready for initial positioning.")
+		return
 
 	# 1. Get current time
 	var now: Dictionary = Time.get_datetime_dict_from_system()
 	var hour: float = now["hour"]
 	var minute: float = now["minute"]
-	var second: float = now["second"] + float(Time.get_ticks_usec() % 1000000) / 1000000.0 # Add microseconds for smoother seconds
+	var second: float = now["second"] + float(Time.get_ticks_usec() % 1000000) / 1000000.0
 
-	# 2. Calculate progress with speed modifiers
-	# Hour hand at 0.5x speed
-	var hour_progress: float = (fmod(hour, 12.0) + minute / 60.0 + second / 3600.0) * 0.5
-	# Minute hand at 10x speed
-	var minute_progress: float = (minute + second / 60.0) * 10.0
-	# Second hand at 2x speed
-	var second_progress: float = second * 2.0
+	# 2. Calculate initial progress (without speed modifiers here)
+	var initial_hour_progress: float = fmod(hour, 12.0) + minute / 60.0 + second / 3600.0
+	var initial_minute_progress: float = minute + second / 60.0
+	var initial_second_progress: float = second
 
-	# 3. Convert progress to angles
+	# 3. Convert initial progress to initial angles
 	# Godot rotation: Z-axis, positive is counter-clockwise (CCW).
 	# Hands start pointing UP (+Y, which is PI/2 or 90 degrees CCW from +X).
 	# Clockwise movement means decreasing the angle from PI/2.
 	# Angle = Initial Angle (PI/2) - Fraction of Circle * TAU
-	var target_hour_angle: float = PI / 2.0 - (fmod(hour_progress, 12.0) / 12.0) * TAU
-	var target_minute_angle: float = PI / 2.0 - (fmod(minute_progress, 60.0) / 60.0) * TAU
-	var target_second_angle: float = PI / 2.0 - (fmod(second_progress, 60.0) / 60.0) * TAU
-
-	# 4. Apply rotations
-	# We set the absolute rotation of the hand MeshInstance3D nodes around the Z axis each frame.
-	hour_hand.rotation.z = target_hour_angle
-	minute_hand.rotation.z = target_minute_angle
-	second_hand.rotation.z = target_second_angle
+	hour_hand.rotation.z = PI / 2.0 - (fmod(initial_hour_progress, 12.0) / 12.0) * TAU
+	minute_hand.rotation.z = PI / 2.0 - (fmod(initial_minute_progress, 60.0) / 60.0) * TAU
+	second_hand.rotation.z = PI / 2.0 - (fmod(initial_second_progress, 60.0) / 60.0) * TAU
 
 
-## Called every frame. Updates the clock hands.
+## Called every frame. Updates the clock hand rotations based on elapsed time and speed factors.
 ## @param _delta: Time elapsed since the previous frame (unused).
 func _process(_delta: float) -> void:
-	_update_hands()
+	# Ensure hands are valid before rotating
+	if not is_instance_valid(hour_hand) or \
+	   not is_instance_valid(minute_hand) or \
+	   not is_instance_valid(second_hand):
+		return
+
+	# Calculate angular speed (radians per second) for each hand
+	# Normal speed: Hour=TAU/12h, Minute=TAU/60m, Second=TAU/60s
+	# TAU / (12 * 3600 seconds) for hour hand normal speed
+	# TAU / (60 * 60 seconds) for minute hand normal speed
+	# TAU / 60 seconds for second hand normal speed
+
+	var hour_angular_speed: float = (TAU / (12.0 * 3600.0)) * 0.5 # Apply 0.5x speed modifier
+	var minute_angular_speed: float = (TAU / 3600.0) * 10.0      # Apply 10x speed modifier
+	var second_angular_speed: float = (TAU / 60.0) * 2.0        # Apply 2x speed modifier
+
+	# Calculate rotation change for this frame (speed * time)
+	# Negative sign because clockwise rotation decreases the angle in Godot's Z-rotation
+	var hour_delta_angle: float = -hour_angular_speed * _delta
+	var minute_delta_angle: float = -minute_angular_speed * _delta
+	var second_delta_angle: float = -second_angular_speed * _delta
+
+	# Apply rotation change to each hand
+	hour_hand.rotate_z(hour_delta_angle)
+	minute_hand.rotate_z(minute_delta_angle)
+	second_hand.rotate_z(second_delta_angle)
