@@ -23,6 +23,7 @@ const GLOBAL_SCALE: float = 0.6 # Scale factor for 40% reduction
 const UI_MARGIN := 20.0
 const UI_CONTROL_HEIGHT := 30.0
 const UI_BUTTON_WIDTH := 80.0
+const UI_BUTTON_FONT_SIZE := 48 # Increased font size for the button
 const UI_SLIDER_H_OFFSET := UI_MARGIN + UI_BUTTON_WIDTH + 10.0
 
 # --- State Variables ---
@@ -206,9 +207,11 @@ func _setup_ui() -> void:
 	# --- CREATE PLAY/PAUSE BUTTON ---
 	play_pause_button = Button.new()
 	play_pause_button.text = "Pause" # Initial state is playing
-	play_pause_button.custom_minimum_size = Vector2(UI_BUTTON_WIDTH, UI_CONTROL_HEIGHT)
+	# Use size flags instead of fixed size for better scalability
+	play_pause_button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	play_pause_button.add_theme_font_size_override("font_size", UI_BUTTON_FONT_SIZE)
 	# Connect signal
-	play_pause_button.pressed.connect(_on_play_pause_pressed)
+	play_pause_button.pressed.connect(_toggle_play_pause)
 	bottom_hbox.add_child(play_pause_button) # Add to HBoxContainer
 
 	# --- CREATE TIME SLIDER ---
@@ -256,8 +259,21 @@ func _process(delta: float) -> void:
 		printerr("_process: PathFollowNode is not valid!")
 
 
+# --- Input Handling ---
+func _unhandled_input(event: InputEvent) -> void:
+	# Check for spacebar press (default mapped to ui_accept)
+	if event.is_action_pressed("ui_accept"):
+		_toggle_play_pause()
+		get_viewport().set_input_as_handled() # Mark event as handled
+	# Check for Escape key press (default mapped to ui_cancel)
+	elif event.is_action_pressed("ui_cancel"):
+		get_tree().quit() # Quit the application
+		# No need to mark as handled, as quitting stops further processing
+
 # --- Signal Handlers ---
-func _on_play_pause_pressed() -> void:
+## Toggles the play/pause state and updates the button text.
+## Called by button press and spacebar input.
+func _toggle_play_pause() -> void:
 	is_playing = not is_playing # Toggle state
 	if is_playing:
 		play_pause_button.text = "Pause"
