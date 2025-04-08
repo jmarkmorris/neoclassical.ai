@@ -26,14 +26,13 @@ const LABEL_PIXEL_SIZE = 0.001 # Controls render quality/sharpness
 
 func _ready():
 	# --- Ensure required nodes exist ---
-	# LeftCircle (assuming this one is reliably in the .tscn)
+	# LeftCircle
 	left_circle = get_node_or_null("LeftCircle")
 	if not left_circle:
-		push_error("LeftCircle node is missing in CircleCell scene!")
-		# Optionally create it too, but assuming it's the base
-		# left_circle = MeshInstance3D.new()
-		# left_circle.name = "LeftCircle"
-		# add_child(left_circle)
+		print("Creating LeftCircle programmatically.")
+		left_circle = MeshInstance3D.new()
+		left_circle.name = "LeftCircle"
+		add_child(left_circle)
 
 	# RightCircle
 	right_circle = get_node_or_null("RightCircle")
