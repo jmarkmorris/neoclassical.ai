@@ -11,7 +11,7 @@ const SEAFOAM_GREEN: Color = Color(0.596, 0.984, 0.596, 1)
 const LIGHT_BLUE: Color = Color.LIGHT_BLUE # Use Godot's built-in light blue
 
 const LINE_THICKNESS: float = 0.05 # Made axes slightly thinner
-const GRAPH_VERTICAL_STRETCH: float = 4.0 # Factor to stretch graphs vertically
+const GRAPH_VERTICAL_STRETCH: float = 1.0 # Factor to stretch graphs vertically
 
 # References to key nodes
 var axes: Node3D
@@ -92,8 +92,8 @@ func create_axes() -> void:
 	# Define axis limits
 	var x_min = -10.0
 	var x_max = 10.0
-	var y_min = -4.5 # Extended y-axis lower bound to accommodate stretch
-	var y_max = 4.5 # Extended y-axis upper bound to accommodate stretch
+	var y_min = -1.5 # Extended y-axis lower bound to accommodate stretch
+	var y_max = 1.5 # Extended y-axis upper bound to accommodate stretch
 
 	# Create thick x-axis
 	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), LINE_THICKNESS, SEAFOAM_GREEN)
@@ -198,8 +198,8 @@ func create_graphs() -> void:
 
 func create_vertical_line() -> void:
 	# Create vertical line at x=2π
-	var y_min = -4.5 # Use the new extended limits matching create_axes
-	var y_max = 4.5 # Use the new extended limits matching create_axes
+	var y_min = -1.5 # Use the new extended limits matching create_axes
+	var y_max = 1.5 # Use the new extended limits matching create_axes
 	var x_pos = TAU # Constant x position (2 * PI)
 
 	var line_start = Vector3(x_pos, y_min, 0)
