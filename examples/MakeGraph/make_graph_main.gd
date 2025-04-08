@@ -130,9 +130,9 @@ func create_x_ticks() -> void:
 		# Create number label
 		var number = Label3D.new()
 		number.text = str(i)
-		number.font_size = 32
+		number.font_size = 48 # Increased size
 		number.modulate = WHITE
-		number.position = Vector3(i, -0.3, 0)
+		number.position = Vector3(i, -0.5, 0) # Moved lower
 		axes.add_child(number)
 
 func create_y_ticks() -> void:
@@ -151,9 +151,9 @@ func create_y_ticks() -> void:
 		if i != 0:
 			var number = Label3D.new()
 			number.text = str(i)
-			number.font_size = 32
+			number.font_size = 48 # Increased size
 			number.modulate = WHITE
-			number.position = Vector3(-0.3, i, 0)
+			number.position = Vector3(-0.6, i, 0) # Moved further left
 			axes.add_child(number)
 
 func create_graphs() -> void:
