@@ -18,12 +18,13 @@ const MANIM_HEIGHT_UNITS = float(MANIM_Y_MAX - MANIM_Y_MIN) # Height covered by 
 
 # Grid line parameters
 const GRID_LINE_THICKNESS = 0.02
-const GRID_X_START = float(MANIM_X_MIN) - 0.5 # Grid lines are typically at half-integer coords
-const GRID_X_END = float(MANIM_X_MAX) - 0.5
-const GRID_Y_START = float(MANIM_Y_MIN) + 0.5
-const GRID_Y_END = float(MANIM_Y_MAX) + 0.5
-const GRID_WIDTH_WORLD = GRID_X_END - GRID_X_START
-const GRID_HEIGHT_WORLD = GRID_Y_END - GRID_Y_START
+# Grid lines will be at integer coordinates
+const GRID_X_START = float(MANIM_X_MIN)
+const GRID_X_END = float(MANIM_X_MAX)
+const GRID_Y_START = float(MANIM_Y_MIN)
+const GRID_Y_END = float(MANIM_Y_MAX)
+const GRID_WIDTH_WORLD = GRID_X_END - GRID_X_START # Total span for horizontal lines
+const GRID_HEIGHT_WORLD = GRID_Y_END - GRID_Y_START # Total span for vertical lines
 
 # Cell instantiation parameters (from Step 5)
 const RADIUS_START = 0.002
@@ -48,28 +49,28 @@ func _create_grid():
 	grid_material.albedo_color = ELECTRIC_PURPLE
 	grid_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 
-	# Vertical lines (at x = -6.5, -5.5, ..., 6.5)
-	for i in range(MANIM_X_MIN, MANIM_X_MAX): # Iterate through cell columns
-		var x_pos = float(i) + 0.5
+	# Vertical lines (at x = -7, -6, ..., 7)
+	for i in range(MANIM_X_MIN, MANIM_X_MAX + 1): # Iterate through integer coordinates
+		var x_pos = float(i) # Position lines at integers
 		var line = MeshInstance3D.new()
-		var mesh = CylinderMesh.new() # Using Cylinder for thickness control
+		var mesh = CylinderMesh.new()
 		mesh.top_radius = GRID_LINE_THICKNESS / 2.0
 		mesh.bottom_radius = GRID_LINE_THICKNESS / 2.0
-		mesh.height = GRID_HEIGHT_WORLD
+		mesh.height = GRID_HEIGHT_WORLD # Height spans the full Y range
 		line.mesh = mesh
 		line.material_override = grid_material
 		# Position cylinder center: x=x_pos, y=center_of_grid_height
 		line.position = Vector3(x_pos, (GRID_Y_START + GRID_Y_END) / 2.0, 0)
 		grid_container.add_child(line)
 
-	# Horizontal lines (at y = -3.5, -2.5, ..., 3.5)
-	for i in range(MANIM_Y_MIN, MANIM_Y_MAX): # Iterate through cell rows
-		var y_pos = float(i) + 0.5
+	# Horizontal lines (at y = -4, -3, ..., 4)
+	for i in range(MANIM_Y_MIN, MANIM_Y_MAX + 1): # Iterate through integer coordinates
+		var y_pos = float(i) # Position lines at integers
 		var line = MeshInstance3D.new()
 		var mesh = CylinderMesh.new()
 		mesh.top_radius = GRID_LINE_THICKNESS / 2.0
 		mesh.bottom_radius = GRID_LINE_THICKNESS / 2.0
-		mesh.height = GRID_WIDTH_WORLD # Height is along cylinder axis before rotation
+		mesh.height = GRID_WIDTH_WORLD # Height spans the full X range (before rotation)
 		line.mesh = mesh
 		line.material_override = grid_material
 		# Rotate 90 deg around Z to make it horizontal
