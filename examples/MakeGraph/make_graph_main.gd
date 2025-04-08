@@ -198,25 +198,25 @@ func create_labels() -> void:
 	# Create sin label
 	var sin_label = Label3D.new()
 	sin_label.text = "sin(x)"
-	sin_label.font_size = 40
+	sin_label.font_size = 64 # Increased size
 	sin_label.modulate = BLUE
-	sin_label.position = Vector3(-8, -1, 0)
+	sin_label.position = Vector3(-9.5, 0.8, 0) # Adjusted position
 	axes.add_child(sin_label)
 	
 	# Create cos label
 	var cos_label = Label3D.new()
 	cos_label.text = "cos(x)"
-	cos_label.font_size = 40
+	cos_label.font_size = 64 # Increased size
 	cos_label.modulate = RED
-	cos_label.position = Vector3(8, -1, 0)
+	cos_label.position = Vector3(9.5, -0.8, 0) # Adjusted position
 	axes.add_child(cos_label)
 	
 	# Create vertical line label
 	var line_label = Label3D.new()
 	line_label.text = "x = 2π"
-	line_label.font_size = 40
+	line_label.font_size = 64 # Increased size
 	line_label.modulate = WHITE
-	line_label.position = Vector3(TAU + 0.5, 1, 0)
+	line_label.position = Vector3(TAU, 1.8, 0) # Centered above line
 	axes.add_child(line_label)
 
 # Helper function to create a thick line mesh using TRIANGLE_STRIP
