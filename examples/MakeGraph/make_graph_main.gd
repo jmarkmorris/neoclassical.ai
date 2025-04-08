@@ -148,9 +148,6 @@ func create_axes() -> void:
 	# Create x-axis ticks
 	create_x_ticks()
 	
-	# Create y-axis ticks
-	create_y_ticks()
-	
 	# Create axis labels
 	var x_label: Label3D = Label3D.new()
 	x_label.text = "x"
@@ -191,20 +188,6 @@ func create_x_ticks() -> void:
 		number.position = Vector3(i, TICK_LABEL_OFFSET_Y, 0) # Position below tick
 		axes.add_child(number)
 		apply_font_to_label(number)
-
-func create_y_ticks() -> void:
-	"""
-	Creates tick marks along the Y-axis. (Currently incomplete - only creates meshes, doesn't add them or labels).
-	"""
-	# Create y-axis ticks and numbers
-	var tick_width = 0.2 # Total width of the tick mark
-	var tick_thickness: float = LINE_THICKNESS * 0.7 # Make ticks slightly thinner than axes
-
-	for i in range(-1, 2): # TODO: Make range dynamic based on Y_MIN/Y_MAX and desired step
-		# Create tick
-		var tick_start: Vector3 = Vector3(-Y_TICK_WIDTH / 2.0, i, 0)
-		var tick_end: Vector3 = Vector3(Y_TICK_WIDTH / 2.0, i, 0)
-		var tick: MeshInstance3D = create_thick_line_mesh(tick_start, tick_end, tick_thickness, SEAFOAM_GREEN)
 
 
 func create_graphs() -> void:
