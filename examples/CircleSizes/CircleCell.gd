@@ -20,7 +20,7 @@ const RIGHT_CIRCLE_OFFSET = Vector3(0.75, -0.25, 0)
 const LABEL_OFFSET = Vector3(0.5, -0.75, 0)
 
 # Label configuration
-const LABEL_FONT_SIZE = 0.5 # Increased size for visibility testing
+const LABEL_FONT_SIZE = 0.15 # Adjusted size for better fit
 const LABEL_PIXEL_SIZE = 0.001 # Controls render quality/sharpness
 
 
@@ -45,7 +45,7 @@ func _ready():
 	# RadiusLabel
 	radius_label = get_node_or_null("RadiusLabel")
 	if not radius_label:
-		print("Creating RadiusLabel programmatically.")
+		# print("Creating RadiusLabel programmatically.")
 		radius_label = Label3D.new()
 		radius_label.name = "RadiusLabel"
 		add_child(radius_label)
@@ -117,17 +117,17 @@ func update_display(radius: float):
 		left_circle.mesh = sphere_mesh
 		left_circle.position = LEFT_CIRCLE_OFFSET
 
-	# --- Temporarily disable RightCircle update ---
-	#if right_circle:
-		## Need a separate mesh instance for the right circle
-		#var sphere_mesh_right = SphereMesh.new()
-		#sphere_mesh_right.radius = radius
-		#sphere_mesh_right.height = radius * 2.0
-		#sphere_mesh_right.radial_segments = 16
-		#sphere_mesh_right.rings = 8
-		#right_circle.mesh = sphere_mesh_right
-		#right_circle.position = RIGHT_CIRCLE_OFFSET
-	# --- End RightCircle disable ---
+	# --- Enable RightCircle update ---
+	if right_circle:
+		# Need a separate mesh instance for the right circle
+		var sphere_mesh_right = SphereMesh.new()
+		sphere_mesh_right.radius = radius
+		sphere_mesh_right.height = radius * 2.0
+		sphere_mesh_right.radial_segments = 16
+		sphere_mesh_right.rings = 8
+		right_circle.mesh = sphere_mesh_right
+		right_circle.position = RIGHT_CIRCLE_OFFSET
+	# --- End RightCircle enable ---
 
 	# Update Label
 	if radius_label:

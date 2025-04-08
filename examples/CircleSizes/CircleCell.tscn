@@ -8,3 +8,5 @@ script = ExtResource("1_m7f5k")
 [node name="LeftCircle" type="MeshInstance3D" parent="."]
 
 [node name="RightCircle" type="MeshInstance3D" parent="."]
+
+[node name="RadiusLabel" type="Label3D" parent="."]
