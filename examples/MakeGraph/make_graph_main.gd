@@ -10,6 +10,7 @@ const WHITE: Color = Color(1, 1, 1)
 const SEAFOAM_GREEN: Color = Color(0.596, 0.984, 0.596, 1)
 
 const LINE_THICKNESS: float = 0.06 # Reduced thickness
+const GRAPH_VERTICAL_STRETCH: float = 3.0 # Factor to stretch graphs vertically
 
 # References to key nodes
 var axes: Node3D
@@ -162,8 +163,9 @@ func create_graphs() -> void:
 	# Generate points for sin curve
 	for x in range(-1000, 1001):
 		var x_val = x * 0.01
-		var y_val = sin(x_val)
-		sin_points.append(Vector3(x_val, y_val, 0))
+		var y_data = sin(x_val) # Original data value
+		var y_visual = y_data * GRAPH_VERTICAL_STRETCH # Stretched visual position
+		sin_points.append(Vector3(x_val, y_visual, 0))
 
 	# Create thick sin graph using the helper function
 	sin_graph = create_thick_curve_mesh(sin_points, LINE_THICKNESS, BLUE)
@@ -174,8 +176,9 @@ func create_graphs() -> void:
 	# Generate points for cos curve
 	for x in range(-1000, 1001):
 		var x_val = x * 0.01
-		var y_val = cos(x_val)
-		cos_points.append(Vector3(x_val, y_val, 0))
+		var y_val = cos(x_val) # Original data value
+		var y_visual = y_val * GRAPH_VERTICAL_STRETCH # Stretched visual position
+		cos_points.append(Vector3(x_val, y_visual, 0))
 
 	# Create thick cos graph using the helper function
 	cos_graph = create_thick_curve_mesh(cos_points, LINE_THICKNESS, RED)
