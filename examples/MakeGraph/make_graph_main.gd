@@ -221,6 +221,18 @@ func create_labels() -> void:
 
 # Helper function to create a thick line mesh using TRIANGLE_STRIP
 func create_thick_line_mesh(start_point: Vector3, end_point: Vector3, thickness: float, color: Color) -> MeshInstance3D:
+	"""
+	Creates a thick line mesh between two points using a triangle strip.
+
+	Args:
+		start_point: The starting point of the line.
+		end_point: The ending point of the line.
+		thickness: The thickness of the line.
+		color: The color of the line.
+
+	Returns:
+		A MeshInstance3D representing the thick line.
+	"""
 	var mesh_instance = MeshInstance3D.new()
 	var mesh = ImmediateMesh.new()
 	
@@ -258,6 +270,17 @@ func create_thick_line_mesh(start_point: Vector3, end_point: Vector3, thickness:
 # Helper function to create a thick curve mesh using TRIANGLE_STRIP
 # Takes an array of points defining the curve path.
 func create_thick_curve_mesh(points: Array[Vector3], thickness: float, color: Color) -> MeshInstance3D:
+	"""
+	Creates a thick curve mesh from an array of points using a triangle strip.
+
+	Args:
+		points: An array of Vector3 points defining the curve.
+		thickness: The thickness of the curve.
+		color: The color of the curve.
+
+	Returns:
+		A MeshInstance3D representing the thick curve.
+	"""
 	var mesh_instance = MeshInstance3D.new()
 	var mesh = ImmediateMesh.new()
 	
