@@ -27,6 +27,8 @@ const GRID_WIDTH_WORLD = GRID_X_END - GRID_X_START # Total span for horizontal l
 const GRID_HEIGHT_WORLD = GRID_Y_END - GRID_Y_START # Total span for vertical lines
 
 # Cell instantiation parameters
+const CELL_WIDTH = 1.0 # Width of each grid cell in world units
+const CELL_HEIGHT = 1.0 # Height of each grid cell in world units
 const RADIUS_START = 0.002
 const RADIUS_INCREMENT = 0.002
 # Preload Cell Scene
@@ -99,8 +101,11 @@ func _create_cells():
 			else:
 				push_warning("CircleCell scene is missing update_display method.")
 
-			# Position the cell instance at the integer grid coordinates
-			cell_instance.position = Vector3(float(grid_x), float(grid_y), 0.0)
+			# Position the cell instance based on grid coordinates and cell size
+			# The cell's origin (Node3D position) is placed at the calculated coordinates.
+			var cell_pos_x = float(grid_x) * CELL_WIDTH
+			var cell_pos_y = float(grid_y) * CELL_HEIGHT
+			cell_instance.position = Vector3(cell_pos_x, cell_pos_y, 0.0)
 
 			# Add to scene tree under the container
 			cell_container.add_child(cell_instance)
