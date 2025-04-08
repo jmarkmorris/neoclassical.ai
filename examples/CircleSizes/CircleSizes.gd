@@ -85,12 +85,14 @@ func _create_cells():
 	var current_radius = RADIUS_START
 
 	# Manim loops from y=4 down to y=-3, and x=-7 to x=6
-	# Godot range needs adjustment: range(max, min, -1) -> range(max-1, min-1, -1)
-	# Godot range needs adjustment: range(min, max) -> range(min, max)
-	for y_manim in range(MANIM_Y_MAX -1, MANIM_Y_MIN -1, -1): # Corresponds to Manim's 4 down to -3
-		for x_manim in range(MANIM_X_MIN, MANIM_X_MAX):      # Corresponds to Manim's -7 to 6
+	# Manim loops from y=4 down to y=-3 (inclusive), and x=-7 to x=6 (inclusive).
+	# Godot range(start, end, step) stops *before* end.
+	# For y: range(4, -4, -1) yields 4, 3, 2, 1, 0, -1, -2, -3.
+	# For x: range(-7, 7) yields -7, -6, ..., 5, 6.
+	for y_manim in range(MANIM_Y_MAX, MANIM_Y_MIN, -1): # Corrected range: 4 down to -3
+		for x_manim in range(MANIM_X_MIN, MANIM_X_MAX): # Correct range: -7 to 6
 			# Instantiate cell
-			var cell_instance = CircleCell.instantiate() # Assumes CircleCell scene exists
+			var cell_instance = CircleCell.instantiate()
 
 			# Configure cell (update_display should be defined in CircleCell.gd)
 			if cell_instance.has_method("update_display"):
