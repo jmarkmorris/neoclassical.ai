@@ -20,7 +20,7 @@ const RIGHT_CIRCLE_OFFSET = Vector3(0.75, -0.25, 0)
 const LABEL_OFFSET = Vector3(0.5, -0.75, 0)
 
 # Label configuration
-const LABEL_FONT_SIZE = 0.1 # Adjust as needed (world units)
+const LABEL_FONT_SIZE = 0.5 # Increased size for visibility testing
 const LABEL_PIXEL_SIZE = 0.001 # Controls render quality/sharpness
 
 

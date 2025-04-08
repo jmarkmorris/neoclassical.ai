@@ -112,3 +112,11 @@ func _create_cells():
 
 			# Increment radius
 			current_radius += RADIUS_INCREMENT
+
+
+# Handle input events
+func _input(event):
+	# Check if the Escape key was pressed
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		# Quit the application
+		get_tree().quit()
