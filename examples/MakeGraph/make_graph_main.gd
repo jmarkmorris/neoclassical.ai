@@ -33,6 +33,15 @@ const SIN_LABEL_POS: Vector3 = Vector3(X_MIN - 0.5, 2.7, 0) # Relative to X_MIN
 const COS_LABEL_POS: Vector3 = Vector3(X_MAX + 0.5, -4.0, 0) # Relative to X_MAX
 const LINE_LABEL_POS: Vector3 = Vector3(TAU, Y_MAX + 0.1, 0) # Relative to Y_MAX
 
+# Environment
+const CAMERA_POSITION: Vector3 = Vector3(0, 0, 10)
+const LIGHT_POSITION: Vector3 = Vector3(10, 10, 10)
+
+# Label Texts
+const SIN_LABEL_TEXT: String = "sin(x)"
+const COS_LABEL_TEXT: String = "cos(x)"
+const LINE_LABEL_TEXT: String = "x = 2π"
+
 # Ticks
 const X_TICK_STEP: int = 2
 const X_TICK_HEIGHT: float = 0.2
@@ -82,10 +91,9 @@ func setup_environment() -> void:
 	"""
 	# Add camera
 	var camera: Camera3D = Camera3D.new()
-	camera.position = Vector3(0, 0, 10) # TODO: Consider making camera position a constant or calculated
+	camera.position = CAMERA_POSITION
 	camera.look_at(Vector3.ZERO)
 	add_child(camera)
-	
 	# Set background color
 	var environment: WorldEnvironment = WorldEnvironment.new()
 	var environment_settings: Environment = Environment.new()
@@ -96,7 +104,7 @@ func setup_environment() -> void:
 
 	# Add lighting
 	var light: DirectionalLight3D = DirectionalLight3D.new()
-	light.position = Vector3(10, 10, 10) # TODO: Consider making light position a constant
+	light.position = LIGHT_POSITION
 	light.look_at(Vector3.ZERO)
 	add_child(light)
 
@@ -243,7 +251,7 @@ func create_labels() -> void:
 	"""
 	# Create sin label
 	var sin_label: Label3D = Label3D.new()
-	sin_label.text = "sin(x)" # TODO: Consider making label text constants
+	sin_label.text = SIN_LABEL_TEXT
 	sin_label.font_size = AXIS_LABEL_FONT_SIZE
 	sin_label.modulate = SIN_COLOR # Match graph color
 	sin_label.position = SIN_LABEL_POS
@@ -252,7 +260,7 @@ func create_labels() -> void:
 	
 	# Create cos label
 	var cos_label: Label3D = Label3D.new()
-	cos_label.text = "cos(x)" # TODO: Consider making label text constants
+	cos_label.text = COS_LABEL_TEXT
 	cos_label.font_size = AXIS_LABEL_FONT_SIZE
 	cos_label.modulate = RED
 	cos_label.position = COS_LABEL_POS
@@ -261,7 +269,7 @@ func create_labels() -> void:
 	
 	# Create vertical line label
 	var line_label: Label3D = Label3D.new()
-	line_label.text = "x = 2π" # TODO: Consider making label text constants
+	line_label.text = LINE_LABEL_TEXT
 	line_label.font_size = AXIS_LABEL_FONT_SIZE
 	line_label.modulate = WHITE
 	line_label.position = LINE_LABEL_POS
