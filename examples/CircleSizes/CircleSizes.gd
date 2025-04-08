@@ -85,11 +85,11 @@ func _create_cells():
 	var current_radius = RADIUS_START
 
 	# Iterate through grid cells top-to-bottom (y descending), then left-to-right (x ascending).
-	# This specific order ensures radii are assigned sequentially matching the original visualization.
+	# This specific order is required to assign radii sequentially, increasing from top-left to bottom-right.
 	# Y range: GRID_Y_MAX down to GRID_Y_MIN + 1 (e.g., 4 down to -3)
 	# X range: GRID_X_MIN up to GRID_X_MAX - 1 (e.g., -7 up to 6)
-	for grid_y in range(GRID_Y_MAX, GRID_Y_MIN, -1):
-		for grid_x in range(GRID_X_MIN, GRID_X_MAX):
+	for grid_y in range(GRID_Y_MAX, GRID_Y_MIN, -1): # Iterate Y downwards
+		for grid_x in range(GRID_X_MIN, GRID_X_MAX): # Iterate X upwards
 			# Instantiate cell
 			var cell_instance = CircleCell.instantiate()
 
