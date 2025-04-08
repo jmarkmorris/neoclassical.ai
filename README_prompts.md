@@ -1,11 +1,13 @@
 # Prompts for Manim
 
+*   Always provide feedback as your last message regarding how to express the request concisely!
 *   Name the {name}(scene) the same as the filename (or the requested output file) to avoid warnings.
+*   Comments should explain the overall design and purpose of the code block.
+*   All comments added should be professional, concise, 
 *   Do not add comments specific to a particular problem, issue, or reversion.
-*   All comments added should be professional, concise, and explain the overall design or purpose of the code block.
+*   Ensure the editor makes small incremental search/replace blocks and keep the changes that suceed.
 *   When running in architect mode, ensure that the editor LLM actually makes its edits.
 *   Before confirming completion of a set of edits, explicitly verify that *all* requested changes within the current instruction set have been successfully applied to the relevant files. Use file system checks (`ls -lt`, `git diff`, etc.) if necessary.
-*   Ensure the editor makes small incremental search/replace blocks and keep the changes that suceed.
 
 ---
 
