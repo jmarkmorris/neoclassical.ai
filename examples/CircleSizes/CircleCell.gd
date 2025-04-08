@@ -14,7 +14,7 @@ const PURE_BLUE = Color.BLUE
 const PURE_RED = Color.RED
 const WHITE = Color.WHITE
 
-# Relative positions based on Manim script (Step 6 Correction in convert.md)
+# Relative positions of elements within the cell (in world units)
 const LEFT_CIRCLE_OFFSET = Vector3(0.25, -0.25, 0)
 const RIGHT_CIRCLE_OFFSET = Vector3(0.75, -0.25, 0)
 const LABEL_OFFSET = Vector3(0.5, -0.75, 0)
