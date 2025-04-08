@@ -20,8 +20,8 @@ const RIGHT_CIRCLE_OFFSET = Vector3(0.75, -0.25, 0)
 const LABEL_OFFSET = Vector3(0.5, -0.75, 0)
 
 # Label configuration
-const LABEL_FONT_SIZE = 0.15 # Adjusted size for better fit
-const LABEL_PIXEL_SIZE = 0.001 # Controls render quality/sharpness
+const LABEL_FONT_SIZE = 0.25 # Increased size for visibility
+const LABEL_PIXEL_SIZE = 0.0005 # Smaller pixel size = higher resolution texture
 
 
 func _ready():
@@ -43,12 +43,10 @@ func _ready():
 		add_child(right_circle)
 
 	# RadiusLabel
-	radius_label = get_node_or_null("RadiusLabel")
-	if not radius_label:
-		# print("Creating RadiusLabel programmatically.")
-		radius_label = Label3D.new()
-		radius_label.name = "RadiusLabel"
-		add_child(radius_label)
+	# Always create RadiusLabel programmatically to ensure a fresh instance
+	radius_label = Label3D.new()
+	radius_label.name = "RadiusLabel"
+	add_child(radius_label)
 	# --- End Node Creation ---
 
 
@@ -76,12 +74,17 @@ func _ready():
 		radius_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		radius_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 		radius_label.pixel_size = LABEL_PIXEL_SIZE
-		# Explicitly load and set the default theme font
-		var default_font = ThemeDB.get_fallback_font()
-		if default_font:
-			radius_label.font = default_font
-		else:
-			push_warning("Could not load default theme font for Label3D.")
+
+		# --- Explicit Font Loading ---
+		# Try loading the default project font directly first
+		var loaded_font = load("res://default_font.tres") if ResourceLoader.exists("res://default_font.tres") else null
+		if loaded_font:
+			radius_label.font = loaded_font
+			print("Loaded default project font: res://default_font.tres")
+		else: # Fallback to creating a SystemFont if default isn't found/loadable
+			radius_label.font = SystemFont.new()
+			print("Using SystemFont as fallback.")
+		# --- End Explicit Font Loading ---
 
 
 # Called from CircleSizes.gd to configure this cell instance
@@ -131,5 +134,11 @@ func update_display(radius: float):
 
 	# Update Label
 	if radius_label:
+		# --- Debug Print ---
+		# print("Updating label for radius: ", radius) # Keep prints, but remove the force-set line above
+		print("  Label node: ", radius_label)
+		print("  Assigned font: ", radius_label.font)
+		print("  Assigned font_size: ", radius_label.font_size)
+		# --- End Debug Print ---
 		radius_label.text = "r = %.3f" % radius
 		radius_label.position = LABEL_OFFSET
