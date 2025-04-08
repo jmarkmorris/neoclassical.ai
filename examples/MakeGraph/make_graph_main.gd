@@ -161,15 +161,15 @@ func create_y_ticks() -> void:
 		var tick = create_thick_line_mesh(tick_start, tick_end, tick_thickness, SEAFOAM_GREEN)
 		axes.add_child(tick)
 
-		# Create number label if not at origin
-		if i != 0:
-			var number = Label3D.new()
-			number.text = str(i)
-			number.font_size = 64 # Larger
-			number.modulate = WHITE
-			number.position = Vector3(-0.6, i, 0) # Moved further left
-			axes.add_child(number)
-			apply_font_to_label(number)
+#		# Create number label if not at origin
+#		if i != 0:
+#			var number = Label3D.new()
+#			number.text = str(i)
+#			number.font_size = 64 # Larger
+#			number.modulate = WHITE
+#			number.position = Vector3(-0.6, i, 0) # Moved further left
+#			axes.add_child(number)
+#			apply_font_to_label(number)
 
 func create_graphs() -> void:
 	# Generate points for sin curve
