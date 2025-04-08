@@ -89,7 +89,7 @@ func set_label_text(label: Label3D, text: String) -> void:
 func create_axes() -> void:
 	# Create axes container
 	axes = Node3D.new()
-	axes.position = Vector3(0, -1.85, 0) # Shift entire graph assembly down further (approx 15%)
+	axes.position = Vector3(0, -1.35, 0) # Shift entire graph assembly up 5%
 	add_child(axes)
 
 	# Define axis limits
@@ -160,7 +160,7 @@ func create_y_ticks() -> void:
 		var tick_start = Vector3(-tick_width / 2.0, i, 0)
 		var tick_end = Vector3(tick_width / 2.0, i, 0)
 		var tick = create_thick_line_mesh(tick_start, tick_end, tick_thickness, SEAFOAM_GREEN)
-		axes.add_child(tick)
+		#axes.add_child(tick)
 
 #		# Create number label if not at origin
 #		if i != 0:
