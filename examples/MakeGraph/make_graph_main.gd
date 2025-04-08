@@ -54,6 +54,9 @@ var subtitle_text: Label3D
 var label_font: Font = null # Variable to hold the loaded font
 
 func _ready() -> void:
+	"""
+	Called when the node enters the scene tree for the first time. Initializes the scene.
+	"""
 	# Load custom font (if available)
 	load_custom_font()
 	
@@ -74,6 +77,9 @@ func _ready() -> void:
 	create_labels()
 
 func setup_environment() -> void:
+	"""
+	Sets up the 3D environment including camera, background, and lighting.
+	"""
 	# Add camera
 	var camera: Camera3D = Camera3D.new()
 	camera.position = Vector3(0, 0, 10) # TODO: Consider making camera position a constant or calculated
@@ -95,6 +101,9 @@ func setup_environment() -> void:
 	add_child(light)
 
 func create_title() -> void:
+	"""
+	Creates and positions the main title and subtitle Label3D nodes.
+	"""
 	# Create title
 	title_text = Label3D.new()
 	title_text.font_size = TITLE_FONT_SIZE
@@ -112,10 +121,16 @@ func create_title() -> void:
 	set_label_text(subtitle_text, "points.append(Vector3(x, f(x), 0)); mesh = create_thick_curve_mesh(points)")
 
 func set_label_text(label: Label3D, text: String) -> void:
+	"""
+	Sets the text for a Label3D node and applies the custom font if loaded.
+	"""
 	label.text = text
 	apply_font_to_label(label)
 
 func create_axes() -> void:
+	"""
+	Creates the main axes container, draws the X and Y axis lines, and adds ticks and labels.
+	"""
 	# Create axes container
 	axes = Node3D.new()
 	axes.position = AXES_POS
@@ -154,6 +169,9 @@ func create_axes() -> void:
 	apply_font_to_label(y_label)
 
 func create_x_ticks() -> void:
+	"""
+	Creates tick marks and corresponding number labels along the X-axis.
+	"""
 	# Create x-axis ticks and numbers
 	var tick_height = 0.2 # Total height of the tick mark
 	var tick_thickness: float = LINE_THICKNESS * 0.7 # Make ticks slightly thinner than axes
@@ -175,6 +193,9 @@ func create_x_ticks() -> void:
 		apply_font_to_label(number)
 
 func create_y_ticks() -> void:
+	"""
+	Creates tick marks along the Y-axis. (Currently incomplete - only creates meshes, doesn't add them or labels).
+	"""
 	# Create y-axis ticks and numbers
 	var tick_width = 0.2 # Total width of the tick mark
 	var tick_thickness: float = LINE_THICKNESS * 0.7 # Make ticks slightly thinner than axes
@@ -187,6 +208,9 @@ func create_y_ticks() -> void:
 
 
 func create_graphs() -> void:
+	"""
+	Generates the data points and creates the visual meshes for the sin(x) and cos(x) graphs.
+	"""
 	# Generate points for sin curve
 	var sin_points: Array[Vector3] = []
 	# Generate points for sin curve
@@ -216,6 +240,9 @@ func create_graphs() -> void:
 	axes.add_child(cos_graph)
 
 func create_vertical_line() -> void:
+	"""
+	Creates a vertical line mesh at x = 2π.
+	"""
 	# Create vertical line at x=2π
 	# Use defined axis limits
 	var x_pos: float = TAU # Constant x position (2 * PI)
@@ -228,6 +255,9 @@ func create_vertical_line() -> void:
 	axes.add_child(vert_line)
 
 func create_labels() -> void:
+	"""
+	Creates and positions the Label3D nodes for sin(x), cos(x), and the vertical line (x=2π).
+	"""
 	# Create sin label
 	var sin_label: Label3D = Label3D.new()
 	sin_label.text = "sin(x)" # TODO: Consider making label text constants
@@ -258,6 +288,9 @@ func create_labels() -> void:
 # Add this new function
 @export var font_path: String = "res://fonts/HelveticaNeue.ttf" # Adjust filename if needed (e.g., .otf)
 func load_custom_font() -> void:
+	"""
+	Loads the custom font specified by the exported 'font_path' variable.
+	"""
 	if ResourceLoader.exists(font_path):
 		label_font = load(font_path)
 		if label_font == null:
@@ -268,6 +301,9 @@ func load_custom_font() -> void:
 
 # Add this new helper function
 func apply_font_to_label(label: Label3D) -> void:
+	"""
+	Applies the loaded custom font to a given Label3D node, if the font was loaded successfully.
+	"""
 	if label_font != null:
 		label.font = label_font
 
