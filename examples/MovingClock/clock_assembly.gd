@@ -72,11 +72,19 @@ func _create_static_elements() -> void:
 	static_material.albedo_color = WHITE
 	static_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED # No lighting needed
 
-	# 1. Face Circle
+	# 1. Face Circle (using TorusMesh for thickness)
 	face_circle = MeshInstance3D.new()
 	face_circle.name = "FaceCircle"
-	face_circle.mesh = _create_circle_mesh(radius, FACE_CIRCLE_SEGMENTS) # Use ImmediateMesh circle
+	var face_mesh = TorusMesh.new()
+	# Calculate inner/outer radii based on desired center radius and thickness
+	face_mesh.inner_radius = radius - FACE_THICKNESS / 2.0
+	face_mesh.outer_radius = radius + FACE_THICKNESS / 2.0
+	face_mesh.rings = 8 # Smoothness of the thickness profile
+	face_mesh.ring_segments = FACE_CIRCLE_SEGMENTS # Smoothness around the circle
+	face_circle.mesh = face_mesh
 	face_circle.material_override = static_material
+	# Rotate the torus mesh instance 90 degrees around the X-axis to align with the XY plane
+	face_circle.rotate_x(PI / 2.0)
 	add_child(face_circle)
 
 	# 2. Minute Ticks
@@ -86,21 +94,6 @@ func _create_static_elements() -> void:
 	# 3. Hour Ticks
 	# Create individual cylinder meshes for hour ticks
 	_create_thick_ticks(radius, HOUR_TICKS_COUNT, HOUR_TICK_LENGTH_FACTOR, HOUR_TICK_THICKNESS, static_material, "HourTick")
-
-
-## Helper function to create a circle outline using ImmediateMesh.
-## @param p_radius: The radius of the circle.
-## @param segments: The number of line segments to approximate the circle.
-## @return: An ImmediateMesh resource representing the circle outline.
-func _create_circle_mesh(p_radius: float, segments: int) -> ImmediateMesh:
-	var mesh := ImmediateMesh.new()
-	mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-	for i in range(segments + 1): # +1 to close the loop
-		var angle: float = float(i) / segments * TAU
-		var point: Vector3 = Vector3(cos(angle), sin(angle), 0) * p_radius
-		mesh.surface_add_vertex(point)
-	mesh.surface_end()
-	return mesh
 
 
 ## Helper function to create tick marks using CylinderMesh.
