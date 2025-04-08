@@ -67,21 +67,23 @@ func setup_environment() -> void:
 func create_title() -> void:
 	# Create title
 	title_text = Label3D.new()
-	title_text.text = "Function Graphing Example"
 	title_text.font_size = 160 # Larger
 	title_text.modulate = WHITE
 	title_text.position = Vector3(0, 6.5, 0)
 	add_child(title_text)
-	apply_font_to_label(title_text) # Apply custom font
+	set_label_text(title_text, "Function Graphing Example")
 	
 	# Create subtitle
 	subtitle_text = Label3D.new()
-	subtitle_text.text = "axes.plot(lambda x: np.sin(x)) + axes.get_graph_label(graph, label)"
 	subtitle_text.font_size = 80 # Larger
 	subtitle_text.modulate = YELLOW
 	subtitle_text.position = Vector3(0, 5.5, 0)
 	add_child(subtitle_text)
-	apply_font_to_label(subtitle_text) # Apply custom font
+	set_label_text(subtitle_text, "axes.plot(lambda x: np.sin(x)) + axes.get_graph_label(graph, label)")
+
+func set_label_text(label: Label3D, text: String) -> void:
+	label.text = text
+	apply_font_to_label(label)
 
 func create_axes() -> void:
 	# Create axes container
