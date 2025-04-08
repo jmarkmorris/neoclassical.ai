@@ -183,7 +183,7 @@ func create_graphs() -> void:
 		sin_points.append(Vector3(x_val, y_visual, 0))
 
 	# Create thick sin graph using the helper function
-	sin_graph = create_thick_curve_mesh(sin_points, GRAPH_LINE_THICKNESS, BLUE)
+	sin_graph = create_thick_curve_mesh(sin_points, GRAPH_LINE_THICKNESS, Color("#58C4DD"))
 	axes.add_child(sin_graph)
 
 	# Generate points for cos curve
@@ -217,8 +217,8 @@ func create_labels() -> void:
 	var sin_label = Label3D.new()
 	sin_label.text = "sin(x)"
 	sin_label.font_size = 80 # Larger
-	sin_label.modulate = BLUE # Match graph color
-	sin_label.position = Vector3(-9.5, 0.8, 0) # Adjusted position
+	sin_label.modulate = Color("#58C4DD") # Match graph color
+	sin_label.position = Vector3(-10.5, 2.7, 0) # Position near start of curve
 	axes.add_child(sin_label)
 	apply_font_to_label(sin_label)
 	
@@ -227,7 +227,7 @@ func create_labels() -> void:
 	cos_label.text = "cos(x)"
 	cos_label.font_size = 80 # Larger
 	cos_label.modulate = RED
-	cos_label.position = Vector3(9.5, -0.8, 0) # Adjusted position
+	cos_label.position = Vector3(10.5, -4.0, 0) # Position near end of curve
 	axes.add_child(cos_label)
 	apply_font_to_label(cos_label)
 	
