@@ -24,3 +24,7 @@ simulator-1/simulation_results/*.json
 .godot/
 *.gd.uid
 *.jpg.import
+*.svg.import
+.editorconfig
+.gitattributes
+

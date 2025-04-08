@@ -1,5 +1,6 @@
 from manim import *
 INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 
 class CircleSizes(Scene):
     def construct(self):

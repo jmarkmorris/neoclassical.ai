@@ -1,6 +1,7 @@
 from manim import *
 import numpy as np
 INDIGO = "#4B0082"
+ELECTRIC_PURPLE = "#8F00FF"
 
 class Lorenz3D(ThreeDScene):
     """Visualization of the Lorenz attractor in 3D space (takes time to render)"""
