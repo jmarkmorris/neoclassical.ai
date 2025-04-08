@@ -1,9 +1,9 @@
 extends Node3D
 
-# Node references (ensure these nodes exist in CircleCell.tscn)
-@onready var left_circle: MeshInstance3D = $LeftCircle
-@onready var right_circle: MeshInstance3D = $RightCircle
-@onready var radius_label: Label3D = $RadiusLabel
+# Node references - will be assigned in _ready after ensuring nodes exist
+var left_circle: MeshInstance3D
+var right_circle: MeshInstance3D
+var radius_label: Label3D
 
 # Materials (Consider creating these as resources in the editor and exporting them)
 var mat_blue: StandardMaterial3D
@@ -25,6 +25,34 @@ const LABEL_PIXEL_SIZE = 0.001 # Controls render quality/sharpness
 
 
 func _ready():
+	# --- Ensure required nodes exist ---
+	# LeftCircle (assuming this one is reliably in the .tscn)
+	left_circle = get_node_or_null("LeftCircle")
+	if not left_circle:
+		push_error("LeftCircle node is missing in CircleCell scene!")
+		# Optionally create it too, but assuming it's the base
+		# left_circle = MeshInstance3D.new()
+		# left_circle.name = "LeftCircle"
+		# add_child(left_circle)
+
+	# RightCircle
+	right_circle = get_node_or_null("RightCircle")
+	if not right_circle:
+		print("Creating RightCircle programmatically.")
+		right_circle = MeshInstance3D.new()
+		right_circle.name = "RightCircle"
+		add_child(right_circle)
+
+	# RadiusLabel
+	radius_label = get_node_or_null("RadiusLabel")
+	if not radius_label:
+		print("Creating RadiusLabel programmatically.")
+		radius_label = Label3D.new()
+		radius_label.name = "RadiusLabel"
+		add_child(radius_label)
+	# --- End Node Creation ---
+
+
 	# Create materials programmatically (alternative: export vars and assign in editor)
 	mat_blue = StandardMaterial3D.new()
 	mat_blue.albedo_color = PURE_BLUE
@@ -49,8 +77,12 @@ func _ready():
 		radius_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		radius_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 		radius_label.pixel_size = LABEL_PIXEL_SIZE
-		# Consider loading a font resource here:
-		# radius_label.font = load("res://path/to/your/font.tres")
+		# Explicitly load and set the default theme font
+		var default_font = ThemeDB.get_fallback_font()
+		if default_font:
+			radius_label.font = default_font
+		else:
+			push_warning("Could not load default theme font for Label3D.")
 
 
 # Called from CircleSizes.gd to configure this cell instance
@@ -86,15 +118,17 @@ func update_display(radius: float):
 		left_circle.mesh = sphere_mesh
 		left_circle.position = LEFT_CIRCLE_OFFSET
 
-	if right_circle:
-		# Need a separate mesh instance for the right circle
-		var sphere_mesh_right = SphereMesh.new()
-		sphere_mesh_right.radius = radius
-		sphere_mesh_right.height = radius * 2.0
-		sphere_mesh_right.radial_segments = 16
-		sphere_mesh_right.rings = 8
-		right_circle.mesh = sphere_mesh_right
-		right_circle.position = RIGHT_CIRCLE_OFFSET
+	# --- Temporarily disable RightCircle update ---
+	#if right_circle:
+		## Need a separate mesh instance for the right circle
+		#var sphere_mesh_right = SphereMesh.new()
+		#sphere_mesh_right.radius = radius
+		#sphere_mesh_right.height = radius * 2.0
+		#sphere_mesh_right.radial_segments = 16
+		#sphere_mesh_right.rings = 8
+		#right_circle.mesh = sphere_mesh_right
+		#right_circle.position = RIGHT_CIRCLE_OFFSET
+	# --- End RightCircle disable ---
 
 	# Update Label
 	if radius_label:
