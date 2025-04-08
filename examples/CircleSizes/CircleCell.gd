@@ -54,14 +54,14 @@ func _ready():
 
 
 # Called from CircleSizes.gd to configure this cell instance
-func update_display(manim_radius: float):
+func update_display(radius: float):
 	# Ensure nodes are ready
 	if not is_node_ready():
 		await ready # Wait if called before _ready completes
 
 	# Validate radius
-	if manim_radius <= 0:
-		push_warning("Invalid radius provided: %f" % manim_radius)
+	if radius <= 0:
+		push_warning("Invalid radius provided: %f" % radius)
 		# Optionally hide the elements or set a default small size
 		if left_circle: left_circle.visible = false
 		if right_circle: right_circle.visible = false
@@ -75,9 +75,9 @@ func update_display(manim_radius: float):
 	# Update Circles
 	# Create new SphereMesh instances to ensure radius is updated correctly
 	var sphere_mesh = SphereMesh.new()
-	sphere_mesh.radius = manim_radius
+	sphere_mesh.radius = radius
 	# Height should be diameter for a sphere
-	sphere_mesh.height = manim_radius * 2.0
+	sphere_mesh.height = radius * 2.0
 	# Increase detail for smoother spheres, especially small ones
 	sphere_mesh.radial_segments = 16
 	sphere_mesh.rings = 8
@@ -89,8 +89,8 @@ func update_display(manim_radius: float):
 	if right_circle:
 		# Need a separate mesh instance for the right circle
 		var sphere_mesh_right = SphereMesh.new()
-		sphere_mesh_right.radius = manim_radius
-		sphere_mesh_right.height = manim_radius * 2.0
+		sphere_mesh_right.radius = radius
+		sphere_mesh_right.height = radius * 2.0
 		sphere_mesh_right.radial_segments = 16
 		sphere_mesh_right.rings = 8
 		right_circle.mesh = sphere_mesh_right
@@ -98,5 +98,5 @@ func update_display(manim_radius: float):
 
 	# Update Label
 	if radius_label:
-		radius_label.text = "r = %.3f" % manim_radius
+		radius_label.text = "r = %.3f" % radius
 		radius_label.position = LABEL_OFFSET
