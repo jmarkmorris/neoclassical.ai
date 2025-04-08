@@ -95,8 +95,8 @@ func create_axes() -> void:
 	# Define axis limits
 	var x_min = -10.0
 	var x_max = 10.0
-	var y_min = -5.0 # Extended y-axis lower bound for 4.4x stretch
-	var y_max = 5.0 # Extended y-axis upper bound for 4.4x stretch
+	var y_min = -5.0 # Extended y-axis lower bound for GRAPH_VERTICAL_STRETCH=4.4
+	var y_max = 5.0 # Extended y-axis upper bound for GRAPH_VERTICAL_STRETCH=4.4
 
 	# Create thick x-axis
 	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), 0.01, Color.GRAY)
@@ -162,15 +162,6 @@ func create_y_ticks() -> void:
 		var tick = create_thick_line_mesh(tick_start, tick_end, tick_thickness, SEAFOAM_GREEN)
 		#axes.add_child(tick)
 
-#		# Create number label if not at origin
-#		if i != 0:
-#			var number = Label3D.new()
-#			number.text = str(i)
-#			number.font_size = 64 # Larger
-#			number.modulate = WHITE
-#			number.position = Vector3(-0.6, i, 0) # Moved further left
-#			axes.add_child(number)
-#			apply_font_to_label(number)
 
 func create_graphs() -> void:
 	# Generate points for sin curve
@@ -201,8 +192,8 @@ func create_graphs() -> void:
 
 func create_vertical_line() -> void:
 	# Create vertical line at x=2π
-	var y_min = -5.0 # Use the extended limits matching create_axes
-	var y_max = 5.0 # Use the extended limits matching create_axes
+	var y_min = -5.0 # Use the extended limits matching create_axes, GRAPH_VERTICAL_STRETCH=4.4
+	var y_max = 5.0 # Use the extended limits matching create_axes, GRAPH_VERTICAL_STRETCH=4.4
 	var x_pos = TAU # Constant x position (2 * PI)
 
 	var line_start = Vector3(x_pos, y_min, 0)
@@ -236,17 +227,18 @@ func create_labels() -> void:
 	line_label.text = "x = 2π"
 	line_label.font_size = 80 # Larger
 	line_label.modulate = WHITE
-	line_label.position = Vector3(TAU, 5.1, 0) # Centered near top of line
+	line_label.position = Vector3(TAU, 5.1, 0) # Centered near top of line, GRAPH_VERTICAL_STRETCH=4.4
 	axes.add_child(line_label)
 	apply_font_to_label(line_label)
 
 # Add this new function
+@export var font_path: String = "res://fonts/HelveticaNeue.ttf" # Adjust filename if needed (e.g., .otf)
 func load_custom_font() -> void:
-	var font_path = "res://fonts/HelveticaNeue.ttf" # Adjust filename if needed (e.g., .otf)
 	if ResourceLoader.exists(font_path):
 		label_font = load(font_path)
 		if label_font == null:
 			printerr("Failed to load font at: ", font_path)
+			assert(label_font != null, "Failed to load required font!")
 	else:
 		print("Custom font not found at: ", font_path, ". Using default font.")
 
