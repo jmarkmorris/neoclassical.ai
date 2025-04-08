@@ -70,14 +70,14 @@ func create_title() -> void:
 	title_text = Label3D.new()
 	title_text.font_size = 160 # Larger
 	title_text.modulate = WHITE
-	title_text.position = Vector3(0, 6.5, 0)
+	title_text.position = Vector3(0, 6.5, 0) # Positioned high above the graph
 	add_child(title_text)
 	set_label_text(title_text, "Function Graphing Example")
 	
 	# Create subtitle
 	subtitle_text = Label3D.new()
 	subtitle_text.font_size = 80 # Larger
-	subtitle_text.modulate = YELLOW
+	subtitle_text.modulate = YELLOW # Color for emphasis
 	subtitle_text.position = Vector3(0, 5.5, 0)
 	add_child(subtitle_text) # Example Godot approach
 	set_label_text(subtitle_text, "points.append(Vector3(x, f(x), 0)); mesh = create_thick_curve_mesh(points)")
@@ -89,7 +89,7 @@ func set_label_text(label: Label3D, text: String) -> void:
 func create_axes() -> void:
 	# Create axes container
 	axes = Node3D.new()
-	axes.position = Vector3(0, -1.35, 0) # Shift entire graph assembly up 5%
+	axes.position = Vector3(0, -1.35, 0) # Global vertical adjustment for the entire graph assembly
 	add_child(axes)
 
 	# Define axis limits
@@ -117,14 +117,14 @@ func create_axes() -> void:
 	x_label.text = "x"
 	x_label.font_size = 80 # Larger
 	x_label.modulate = WHITE
-	x_label.position = Vector3(10.5, -0.3, 0) # Adjusted position
+	x_label.position = Vector3(10.5, -0.3, 0) # Positioned just right of the x-axis end
 	axes.add_child(x_label)
 	apply_font_to_label(x_label)
 	
 	var y_label = Label3D.new()
 	y_label.text = "y"
 	y_label.font_size = 80 # Larger
-	y_label.modulate = WHITE
+	y_label.modulate = WHITE # Standard axis label color
 	y_label.position = Vector3(0.3, 5.1, 0) # Adjusted position for new y_max
 	axes.add_child(y_label)
 	apply_font_to_label(y_label)
@@ -160,7 +160,6 @@ func create_y_ticks() -> void:
 		var tick_start = Vector3(-tick_width / 2.0, i, 0)
 		var tick_end = Vector3(tick_width / 2.0, i, 0)
 		var tick = create_thick_line_mesh(tick_start, tick_end, tick_thickness, SEAFOAM_GREEN)
-		#axes.add_child(tick)
 
 
 func create_graphs() -> void:
@@ -209,7 +208,7 @@ func create_labels() -> void:
 	sin_label.text = "sin(x)"
 	sin_label.font_size = 80 # Larger
 	sin_label.modulate = Color("#58C4DD") # Match graph color
-	sin_label.position = Vector3(-10.5, 2.7, 0) # Position near start of curve
+	sin_label.position = Vector3(-10.5, 2.7, 0) # Positioned near visual start of sine curve
 	axes.add_child(sin_label)
 	apply_font_to_label(sin_label)
 	
@@ -218,7 +217,7 @@ func create_labels() -> void:
 	cos_label.text = "cos(x)"
 	cos_label.font_size = 80 # Larger
 	cos_label.modulate = RED
-	cos_label.position = Vector3(10.5, -4.0, 0) # Position near end of curve
+	cos_label.position = Vector3(10.5, -4.0, 0) # Positioned near visual end of cosine curve
 	axes.add_child(cos_label)
 	apply_font_to_label(cos_label)
 	
