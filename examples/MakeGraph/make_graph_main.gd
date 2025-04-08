@@ -8,8 +8,9 @@ const GREEN: Color = Color(0, 1, 0)
 const YELLOW: Color = Color(1, 1, 0)
 const WHITE: Color = Color(1, 1, 1)
 const SEAFOAM_GREEN: Color = Color(0.596, 0.984, 0.596, 1)
+const LIGHT_BLUE: Color = Color.LIGHT_BLUE # Use Godot's built-in light blue
 
-const LINE_THICKNESS: float = 0.06 # Reduced thickness
+const LINE_THICKNESS: float = 0.05 # Made axes slightly thinner
 const GRAPH_VERTICAL_STRETCH: float = 3.0 # Factor to stretch graphs vertically
 
 # References to key nodes
@@ -20,7 +21,12 @@ var vert_line: MeshInstance3D
 var title_text: Label3D
 var subtitle_text: Label3D
 
+var label_font: Font = null # Variable to hold the loaded font
+
 func _ready() -> void:
+	# Load custom font (if available)
+	load_custom_font()
+	
 	# Setup environment
 	setup_environment()
 	
@@ -62,37 +68,39 @@ func create_title() -> void:
 	# Create title
 	title_text = Label3D.new()
 	title_text.text = "Function Graphing Example"
-	title_text.font_size = 144
+	title_text.font_size = 160 # Larger
 	title_text.modulate = WHITE
 	title_text.position = Vector3(0, 6.5, 0)
 	add_child(title_text)
+	apply_font_to_label(title_text) # Apply custom font
 	
 	# Create subtitle
 	subtitle_text = Label3D.new()
 	subtitle_text.text = "axes.plot(lambda x: np.sin(x)) + axes.get_graph_label(graph, label)"
-	subtitle_text.font_size = 64
+	subtitle_text.font_size = 80 # Larger
 	subtitle_text.modulate = YELLOW
 	subtitle_text.position = Vector3(0, 5.5, 0)
 	add_child(subtitle_text)
+	apply_font_to_label(subtitle_text) # Apply custom font
 
 func create_axes() -> void:
 	# Create axes container
 	axes = Node3D.new()
-	axes.position = Vector3(0, 0, 0)
+	axes.position = Vector3(0, -0.5, 0) # Shift entire graph assembly down slightly
 	add_child(axes)
 
 	# Define axis limits
 	var x_min = -10.0
 	var x_max = 10.0
-	var y_min = -1.5
-	var y_max = 1.5
+	var y_min = -3.5 # Extended y-axis lower bound
+	var y_max = 3.5 # Extended y-axis upper bound
 
 	# Create thick x-axis
 	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), LINE_THICKNESS, SEAFOAM_GREEN)
 	axes.add_child(x_axis_mesh_instance)
 
 	# Create thick y-axis
-	var y_axis_mesh_instance = create_thick_line_mesh(Vector3(0, y_min, 0), Vector3(0, y_max, 0), LINE_THICKNESS, SEAFOAM_GREEN)
+	var y_axis_mesh_instance = create_thick_line_mesh(Vector3(0, y_min, 0), Vector3(0, y_max, 0), LINE_THICKNESS, SEAFOAM_GREEN) # Use updated limits
 	axes.add_child(y_axis_mesh_instance)
 
 	# Create x-axis ticks
@@ -104,17 +112,19 @@ func create_axes() -> void:
 	# Create axis labels
 	var x_label = Label3D.new()
 	x_label.text = "x"
-	x_label.font_size = 64 # Increased size
+	x_label.font_size = 80 # Larger
 	x_label.modulate = WHITE
 	x_label.position = Vector3(10.5, -0.3, 0) # Adjusted position
 	axes.add_child(x_label)
+	apply_font_to_label(x_label)
 	
 	var y_label = Label3D.new()
 	y_label.text = "y"
-	y_label.font_size = 64 # Increased size
+	y_label.font_size = 80 # Larger
 	y_label.modulate = WHITE
 	y_label.position = Vector3(0.3, 1.8, 0) # Adjusted position
 	axes.add_child(y_label)
+	apply_font_to_label(y_label)
 
 func create_x_ticks() -> void:
 	# Create x-axis ticks and numbers
@@ -131,10 +141,11 @@ func create_x_ticks() -> void:
 		# Create number label
 		var number = Label3D.new()
 		number.text = str(i)
-		number.font_size = 48 # Increased size
+		number.font_size = 64 # Larger
 		number.modulate = WHITE
 		number.position = Vector3(i, -0.5, 0) # Moved lower
 		axes.add_child(number)
+		apply_font_to_label(number)
 
 func create_y_ticks() -> void:
 	# Create y-axis ticks and numbers
@@ -152,10 +163,11 @@ func create_y_ticks() -> void:
 		if i != 0:
 			var number = Label3D.new()
 			number.text = str(i)
-			number.font_size = 48 # Increased size
+			number.font_size = 64 # Larger
 			number.modulate = WHITE
 			number.position = Vector3(-0.6, i, 0) # Moved further left
 			axes.add_child(number)
+			apply_font_to_label(number)
 
 func create_graphs() -> void:
 	# Generate points for sin curve
@@ -168,7 +180,7 @@ func create_graphs() -> void:
 		sin_points.append(Vector3(x_val, y_visual, 0))
 
 	# Create thick sin graph using the helper function
-	sin_graph = create_thick_curve_mesh(sin_points, LINE_THICKNESS, BLUE)
+	sin_graph = create_thick_curve_mesh(sin_points, LINE_THICKNESS, LIGHT_BLUE)
 	axes.add_child(sin_graph)
 
 	# Generate points for cos curve
@@ -186,8 +198,8 @@ func create_graphs() -> void:
 
 func create_vertical_line() -> void:
 	# Create vertical line at x=2π
-	var y_min = -1.5 # Use the same limits as the y-axis
-	var y_max = 1.5
+	var y_min = -3.5 # Use the new extended limits
+	var y_max = 3.5 # Use the new extended limits
 	var x_pos = TAU # Constant x position (2 * PI)
 
 	var line_start = Vector3(x_pos, y_min, 0)
@@ -201,26 +213,44 @@ func create_labels() -> void:
 	# Create sin label
 	var sin_label = Label3D.new()
 	sin_label.text = "sin(x)"
-	sin_label.font_size = 64 # Increased size
-	sin_label.modulate = BLUE
+	sin_label.font_size = 80 # Larger
+	sin_label.modulate = LIGHT_BLUE # Match graph color
 	sin_label.position = Vector3(-9.5, 0.8, 0) # Adjusted position
 	axes.add_child(sin_label)
+	apply_font_to_label(sin_label)
 	
 	# Create cos label
 	var cos_label = Label3D.new()
 	cos_label.text = "cos(x)"
-	cos_label.font_size = 64 # Increased size
+	cos_label.font_size = 80 # Larger
 	cos_label.modulate = RED
 	cos_label.position = Vector3(9.5, -0.8, 0) # Adjusted position
 	axes.add_child(cos_label)
+	apply_font_to_label(cos_label)
 	
 	# Create vertical line label
 	var line_label = Label3D.new()
 	line_label.text = "x = 2π"
-	line_label.font_size = 64 # Increased size
+	line_label.font_size = 80 # Larger
 	line_label.modulate = WHITE
 	line_label.position = Vector3(TAU, 1.8, 0) # Centered above line
 	axes.add_child(line_label)
+	apply_font_to_label(line_label)
+
+# Add this new function
+func load_custom_font() -> void:
+	var font_path = "res://fonts/HelveticaNeue.ttf" # Adjust filename if needed (e.g., .otf)
+	if ResourceLoader.exists(font_path):
+		label_font = load(font_path)
+		if label_font == null:
+			printerr("Failed to load font at: ", font_path)
+	else:
+		print("Custom font not found at: ", font_path, ". Using default font.")
+
+# Add this new helper function
+func apply_font_to_label(label: Label3D) -> void:
+	if label_font != null:
+		label.font = label_font
 
 # Helper function to create a thick line mesh using TRIANGLE_STRIP
 func create_thick_line_mesh(start_point: Vector3, end_point: Vector3, thickness: float, color: Color) -> MeshInstance3D:
