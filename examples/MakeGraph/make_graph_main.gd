@@ -7,8 +7,9 @@ const RED: Color = Color(1, 0, 0)
 const GREEN: Color = Color(0, 1, 0)
 const YELLOW: Color = Color(1, 1, 0)
 const WHITE: Color = Color(1, 1, 1)
+const SEAFOAM_GREEN: Color = Color(0.596, 0.984, 0.596, 1)
 
-const LINE_THICKNESS: float = 0.1 # Adjust as needed for visual match
+const LINE_THICKNESS: float = 0.06 # Reduced thickness
 
 # References to key nodes
 var axes: Node3D
@@ -86,13 +87,13 @@ func create_axes() -> void:
 	var y_max = 1.5
 
 	# Create thick x-axis
-	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), LINE_THICKNESS, GREEN)
+	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), LINE_THICKNESS, SEAFOAM_GREEN)
 	axes.add_child(x_axis_mesh_instance)
 
 	# Create thick y-axis
-	var y_axis_mesh_instance = create_thick_line_mesh(Vector3(0, y_min, 0), Vector3(0, y_max, 0), LINE_THICKNESS, GREEN)
+	var y_axis_mesh_instance = create_thick_line_mesh(Vector3(0, y_min, 0), Vector3(0, y_max, 0), LINE_THICKNESS, SEAFOAM_GREEN)
 	axes.add_child(y_axis_mesh_instance)
-	
+
 	# Create x-axis ticks
 	create_x_ticks()
 	
@@ -116,22 +117,16 @@ func create_axes() -> void:
 
 func create_x_ticks() -> void:
 	# Create x-axis ticks and numbers
+	var tick_height = 0.2 # Total height of the tick mark
+	var tick_thickness = LINE_THICKNESS * 0.7 # Make ticks slightly thinner than axes
+
 	for i in range(-10, 11, 2):
 		# Create tick
-		var tick = MeshInstance3D.new()
-		var tick_mesh = ImmediateMesh.new()
-		tick_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-		tick_mesh.surface_add_vertex(Vector3(i, -0.1, 0))
-		tick_mesh.surface_add_vertex(Vector3(i, 0.1, 0))
-		tick_mesh.surface_end()
-		tick.mesh = tick_mesh
-		
-		var tick_material = StandardMaterial3D.new()
-		tick_material.albedo_color = GREEN
-		tick_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		tick.material_override = tick_material
+		var tick_start = Vector3(i, -tick_height / 2.0, 0)
+		var tick_end = Vector3(i, tick_height / 2.0, 0)
+		var tick = create_thick_line_mesh(tick_start, tick_end, tick_thickness, SEAFOAM_GREEN)
 		axes.add_child(tick)
-		
+
 		# Create number label
 		var number = Label3D.new()
 		number.text = str(i)
@@ -142,22 +137,16 @@ func create_x_ticks() -> void:
 
 func create_y_ticks() -> void:
 	# Create y-axis ticks and numbers
+	var tick_width = 0.2 # Total width of the tick mark
+	var tick_thickness = LINE_THICKNESS * 0.7 # Make ticks slightly thinner than axes
+
 	for i in range(-1, 2):
 		# Create tick
-		var tick = MeshInstance3D.new()
-		var tick_mesh = ImmediateMesh.new()
-		tick_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-		tick_mesh.surface_add_vertex(Vector3(-0.1, i, 0))
-		tick_mesh.surface_add_vertex(Vector3(0.1, i, 0))
-		tick_mesh.surface_end()
-		tick.mesh = tick_mesh
-		
-		var tick_material = StandardMaterial3D.new()
-		tick_material.albedo_color = GREEN
-		tick_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		tick.material_override = tick_material
+		var tick_start = Vector3(-tick_width / 2.0, i, 0)
+		var tick_end = Vector3(tick_width / 2.0, i, 0)
+		var tick = create_thick_line_mesh(tick_start, tick_end, tick_thickness, SEAFOAM_GREEN)
 		axes.add_child(tick)
-		
+
 		# Create number label if not at origin
 		if i != 0:
 			var number = Label3D.new()
