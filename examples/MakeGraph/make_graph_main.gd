@@ -183,18 +183,15 @@ func create_graphs() -> void:
 
 func create_vertical_line() -> void:
 	# Create vertical line at x=2π
-	vert_line = MeshInstance3D.new()
-	var line_mesh = ImmediateMesh.new()
-	line_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	line_mesh.surface_add_vertex(Vector3(TAU, -1.5, 0))
-	line_mesh.surface_add_vertex(Vector3(TAU, 1.5, 0))
-	line_mesh.surface_end()
-	vert_line.mesh = line_mesh
-	
-	var line_material = StandardMaterial3D.new()
-	line_material.albedo_color = YELLOW
-	line_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	vert_line.material_override = line_material
+	var y_min = -1.5 # Use the same limits as the y-axis
+	var y_max = 1.5
+	var x_pos = TAU # Constant x position (2 * PI)
+
+	var line_start = Vector3(x_pos, y_min, 0)
+	var line_end = Vector3(x_pos, y_max, 0)
+
+	# Create thick vertical line using the helper function
+	vert_line = create_thick_line_mesh(line_start, line_end, LINE_THICKNESS, YELLOW)
 	axes.add_child(vert_line)
 
 func create_labels() -> void:
