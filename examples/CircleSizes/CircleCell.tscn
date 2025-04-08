@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5w5h4q3v1y7x"]
+
+[ext_resource type="Script" path="res://examples/CircleSizes/CircleCell.gd" id="1_m7f5k"]
+
+[node name="CircleCell" type="Node3D"]
+script = ExtResource("1_m7f5k")
+
+[node name="LeftCircle" type="MeshInstance3D" parent="."]
+# Initial mesh/material/position will be set by CircleCell.gd
+
+[node name="RightCircle" type="MeshInstance3D" parent="."]
+# Initial mesh/material/position will be set by CircleCell.gd
+
+[node name="RadiusLabel" type="Label3D" parent="."]
+# Initial text/font/position will be set by CircleCell.gd
+text = "r = 0.000" # Placeholder text
+horizontal_alignment = 1 # Center
+vertical_alignment = 1 # Center
