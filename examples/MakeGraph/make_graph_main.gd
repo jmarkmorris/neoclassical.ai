@@ -11,6 +11,7 @@ const SEAFOAM_GREEN: Color = Color(0.596, 0.984, 0.596, 1)
 const LIGHT_BLUE: Color = Color.LIGHT_BLUE # Use Godot's built-in light blue
 
 const LINE_THICKNESS: float = 0.05 # Made axes slightly thinner
+const GRAPH_LINE_THICKNESS: float = 0.08 # Thickness for the function graphs
 const GRAPH_VERTICAL_STRETCH: float = 4.4 # Factor to stretch graphs vertically (increased 10%)
 
 # References to key nodes
@@ -182,7 +183,7 @@ func create_graphs() -> void:
 		sin_points.append(Vector3(x_val, y_visual, 0))
 
 	# Create thick sin graph using the helper function
-	sin_graph = create_thick_curve_mesh(sin_points, LINE_THICKNESS, LIGHT_BLUE)
+	sin_graph = create_thick_curve_mesh(sin_points, GRAPH_LINE_THICKNESS, BLUE)
 	axes.add_child(sin_graph)
 
 	# Generate points for cos curve
@@ -195,7 +196,7 @@ func create_graphs() -> void:
 		cos_points.append(Vector3(x_val, y_visual, 0))
 
 	# Create thick cos graph using the helper function
-	cos_graph = create_thick_curve_mesh(cos_points, LINE_THICKNESS, RED)
+	cos_graph = create_thick_curve_mesh(cos_points, GRAPH_LINE_THICKNESS, RED)
 	axes.add_child(cos_graph)
 
 func create_vertical_line() -> void:
@@ -216,7 +217,7 @@ func create_labels() -> void:
 	var sin_label = Label3D.new()
 	sin_label.text = "sin(x)"
 	sin_label.font_size = 80 # Larger
-	sin_label.modulate = LIGHT_BLUE # Match graph color
+	sin_label.modulate = BLUE # Match graph color
 	sin_label.position = Vector3(-9.5, 0.8, 0) # Adjusted position
 	axes.add_child(sin_label)
 	apply_font_to_label(sin_label)
