@@ -8,7 +8,7 @@ const GREEN: Color = Color(0, 1, 0)
 const YELLOW: Color = Color(1, 1, 0)
 const WHITE: Color = Color(1, 1, 1)
 const SEAFOAM_GREEN: Color = Color(0.596, 0.984, 0.596, 1)
-const LIGHT_BLUE: Color = Color.LIGHT_BLUE # Use Godot's built-in light blue
+const LIGHT_BLUE: Color = Color(0.678, 0.847, 0.902, 1) # Approx Godot LIGHT_BLUE
 
 const LINE_THICKNESS: float = 0.05 # Made axes slightly thinner
 const GRAPH_LINE_THICKNESS: float = 0.08 # Thickness for the function graphs
