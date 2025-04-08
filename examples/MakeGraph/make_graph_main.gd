@@ -36,7 +36,7 @@ func _ready() -> void:
 func setup_environment() -> void:
 	# Add camera
 	var camera = Camera3D.new()
-	camera.position = Vector3(0, 0, 8)  # Zoom in
+	camera.position = Vector3(0, 0, 12) # Zoomed out slightly
 	camera.look_at(Vector3.ZERO)
 	add_child(camera)
 	
@@ -262,3 +262,39 @@ func create_labels() -> void:
 	line_label.modulate = WHITE
 	line_label.position = Vector3(TAU + 0.5, 1, 0)
 	axes.add_child(line_label)
+
+# Helper function to create a thick line mesh using TRIANGLE_STRIP
+func create_thick_line_mesh(start_point: Vector3, end_point: Vector3, thickness: float, color: Color) -> MeshInstance3D:
+	var mesh_instance = MeshInstance3D.new()
+	var mesh = ImmediateMesh.new()
+	
+	var dir = (end_point - start_point).normalized()
+	# Perpendicular vector in the XY plane (assuming Z=0 for 2D drawing)
+	var perp = Vector3(-dir.y, dir.x, 0) 
+	var offset = perp * thickness / 2.0
+	
+	# Calculate the four corners of the rectangle representing the thick line
+	var v1 = start_point - offset # Bottom-left (relative to line direction)
+	var v2 = start_point + offset # Top-left
+	var v3 = end_point - offset   # Bottom-right
+	var v4 = end_point + offset   # Top-right
+	
+	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
+	
+	# Add vertices in triangle strip order (v1, v2, v3, v4 makes a quad)
+	mesh.surface_add_vertex(v1)
+	mesh.surface_add_vertex(v2)
+	mesh.surface_add_vertex(v3)
+	mesh.surface_add_vertex(v4)
+	
+	mesh.surface_end()
+	
+	mesh_instance.mesh = mesh
+	
+	# Use an unshaded material so the color is exact
+	var material = StandardMaterial3D.new()
+	material.albedo_color = color
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mesh_instance.material_override = material
+	
+	return mesh_instance
