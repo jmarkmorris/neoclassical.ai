@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="CircleSizes"
+run/main_scene="res://examples/CircleSizes/CircleSizes.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_environment="res://examples/CircleSizes/default_env.tres"
