@@ -79,8 +79,8 @@ func create_title() -> void:
 	subtitle_text.font_size = 80 # Larger
 	subtitle_text.modulate = YELLOW
 	subtitle_text.position = Vector3(0, 5.5, 0)
-	add_child(subtitle_text)
-	set_label_text(subtitle_text, "axes.plot(lambda x: np.sin(x)) + axes.get_graph_label(graph, label)")
+	add_child(subtitle_text) # Example Godot approach
+	set_label_text(subtitle_text, "points.append(Vector3(x, f(x), 0)); mesh = create_thick_curve_mesh(points)")
 
 func set_label_text(label: Label3D, text: String) -> void:
 	label.text = text
