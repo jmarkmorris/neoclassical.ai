@@ -88,8 +88,8 @@ func _create_cells():
 	# This specific order ensures radii are assigned sequentially matching the original visualization.
 	# Y range: MANIM_Y_MAX down to MANIM_Y_MIN + 1 (e.g., 4 down to -3)
 	# X range: MANIM_X_MIN up to MANIM_X_MAX - 1 (e.g., -7 up to 6)
-	for y_manim in range(MANIM_Y_MAX, MANIM_Y_MIN, -1):
-		for x_manim in range(MANIM_X_MIN, MANIM_X_MAX):
+	for grid_y in range(MANIM_Y_MAX, MANIM_Y_MIN, -1):
+		for grid_x in range(MANIM_X_MIN, MANIM_X_MAX):
 			# Instantiate cell
 			var cell_instance = CircleCell.instantiate()
 
@@ -100,7 +100,7 @@ func _create_cells():
 				push_warning("CircleCell scene is missing update_display method.")
 
 			# Position the cell instance at the integer grid coordinates
-			cell_instance.position = Vector3(float(x_manim), float(y_manim), 0.0)
+			cell_instance.position = Vector3(float(grid_x), float(grid_y), 0.0)
 
 			# Add to scene tree under the container
 			cell_container.add_child(cell_instance)
