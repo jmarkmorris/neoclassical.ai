@@ -98,11 +98,11 @@ func create_axes() -> void:
 	var y_max = 5.0 # Extended y-axis upper bound for 4.4x stretch
 
 	# Create thick x-axis
-	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), LINE_THICKNESS, SEAFOAM_GREEN)
+	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), 0.01, Color.GRAY)
 	axes.add_child(x_axis_mesh_instance)
 
 	# Create thick y-axis
-	var y_axis_mesh_instance = create_thick_line_mesh(Vector3(0, y_min, 0), Vector3(0, y_max, 0), LINE_THICKNESS, SEAFOAM_GREEN) # Use updated limits
+	var y_axis_mesh_instance = create_thick_line_mesh(Vector3(0, y_min, 0), Vector3(0, y_max, 0), 0.01, Color.GRAY) # Use updated limits
 	axes.add_child(y_axis_mesh_instance)
 
 	# Create x-axis ticks
