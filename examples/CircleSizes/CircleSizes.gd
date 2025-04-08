@@ -9,20 +9,20 @@ const WHITE = Color.WHITE
 
 # Grid Definition Variables & Constants
 # Grid dimensions (world units, inclusive ranges for iteration)
-const MANIM_X_MIN = -7
-const MANIM_X_MAX = 7
-const MANIM_Y_MIN = -4
-const MANIM_Y_MAX = 4
-const MANIM_WIDTH_UNITS = float(MANIM_X_MAX - MANIM_X_MIN) # Width covered by cells
-const MANIM_HEIGHT_UNITS = float(MANIM_Y_MAX - MANIM_Y_MIN) # Height covered by cells
+const GRID_X_MIN = -7
+const GRID_X_MAX = 7
+const GRID_Y_MIN = -4
+const GRID_Y_MAX = 4
+const GRID_WIDTH_UNITS = float(GRID_X_MAX - GRID_X_MIN) # Width covered by cells
+const GRID_HEIGHT_UNITS = float(GRID_Y_MAX - GRID_Y_MIN) # Height covered by cells
 
 # Grid line parameters
 const GRID_LINE_THICKNESS = 0.02
 # Grid lines will be at integer coordinates
-const GRID_X_START = float(MANIM_X_MIN)
-const GRID_X_END = float(MANIM_X_MAX)
-const GRID_Y_START = float(MANIM_Y_MIN)
-const GRID_Y_END = float(MANIM_Y_MAX)
+const GRID_X_START = float(GRID_X_MIN)
+const GRID_X_END = float(GRID_X_MAX)
+const GRID_Y_START = float(GRID_Y_MIN)
+const GRID_Y_END = float(GRID_Y_MAX)
 const GRID_WIDTH_WORLD = GRID_X_END - GRID_X_START # Total span for horizontal lines
 const GRID_HEIGHT_WORLD = GRID_Y_END - GRID_Y_START # Total span for vertical lines
 
@@ -50,7 +50,7 @@ func _create_grid():
 	grid_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 
 	# Vertical lines (at x = -7, -6, ..., 7)
-	for i in range(MANIM_X_MIN, MANIM_X_MAX + 1): # Iterate through integer coordinates
+	for i in range(GRID_X_MIN, GRID_X_MAX + 1): # Iterate through integer coordinates
 		var x_pos = float(i) # Position lines at integers
 		var line = MeshInstance3D.new()
 		var mesh = CylinderMesh.new()
@@ -64,7 +64,7 @@ func _create_grid():
 		grid_container.add_child(line)
 
 	# Horizontal lines (at y = -4, -3, ..., 4)
-	for i in range(MANIM_Y_MIN, MANIM_Y_MAX + 1): # Iterate through integer coordinates
+	for i in range(GRID_Y_MIN, GRID_Y_MAX + 1): # Iterate through integer coordinates
 		var y_pos = float(i) # Position lines at integers
 		var line = MeshInstance3D.new()
 		var mesh = CylinderMesh.new()
@@ -86,10 +86,10 @@ func _create_cells():
 
 	# Iterate through grid cells top-to-bottom (y descending), then left-to-right (x ascending).
 	# This specific order ensures radii are assigned sequentially matching the original visualization.
-	# Y range: MANIM_Y_MAX down to MANIM_Y_MIN + 1 (e.g., 4 down to -3)
-	# X range: MANIM_X_MIN up to MANIM_X_MAX - 1 (e.g., -7 up to 6)
-	for grid_y in range(MANIM_Y_MAX, MANIM_Y_MIN, -1):
-		for grid_x in range(MANIM_X_MIN, MANIM_X_MAX):
+	# Y range: GRID_Y_MAX down to GRID_Y_MIN + 1 (e.g., 4 down to -3)
+	# X range: GRID_X_MIN up to GRID_X_MAX - 1 (e.g., -7 up to 6)
+	for grid_y in range(GRID_Y_MAX, GRID_Y_MIN, -1):
+		for grid_x in range(GRID_X_MIN, GRID_X_MAX):
 			# Instantiate cell
 			var cell_instance = CircleCell.instantiate()
 
