@@ -157,44 +157,28 @@ func create_y_ticks() -> void:
 			axes.add_child(number)
 
 func create_graphs() -> void:
-	# Create sin graph
-	sin_graph = MeshInstance3D.new()
-	var sin_mesh = ImmediateMesh.new()
-	sin_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-	
+	# Generate points for sin curve
+	var sin_points: Array[Vector3] = []
 	# Generate points for sin curve
 	for x in range(-1000, 1001):
 		var x_val = x * 0.01
 		var y_val = sin(x_val)
-		sin_mesh.surface_add_vertex(Vector3(x_val, y_val, 0))
-	
-	sin_mesh.surface_end()
-	sin_graph.mesh = sin_mesh
-	
-	var sin_material = StandardMaterial3D.new()
-	sin_material.albedo_color = BLUE
-	sin_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	sin_graph.material_override = sin_material
+		sin_points.append(Vector3(x_val, y_val, 0))
+
+	# Create thick sin graph using the helper function
+	sin_graph = create_thick_curve_mesh(sin_points, LINE_THICKNESS, BLUE)
 	axes.add_child(sin_graph)
-	
-	# Create cos graph
-	cos_graph = MeshInstance3D.new()
-	var cos_mesh = ImmediateMesh.new()
-	cos_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-	
+
+	# Generate points for cos curve
+	var cos_points: Array[Vector3] = []
 	# Generate points for cos curve
 	for x in range(-1000, 1001):
 		var x_val = x * 0.01
 		var y_val = cos(x_val)
-		cos_mesh.surface_add_vertex(Vector3(x_val, y_val, 0))
-	
-	cos_mesh.surface_end()
-	cos_graph.mesh = cos_mesh
-	
-	var cos_material = StandardMaterial3D.new()
-	cos_material.albedo_color = RED
-	cos_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	cos_graph.material_override = cos_material
+		cos_points.append(Vector3(x_val, y_val, 0))
+
+	# Create thick cos graph using the helper function
+	cos_graph = create_thick_curve_mesh(cos_points, LINE_THICKNESS, RED)
 	axes.add_child(cos_graph)
 
 func create_vertical_line() -> void:
@@ -262,6 +246,66 @@ func create_thick_line_mesh(start_point: Vector3, end_point: Vector3, thickness:
 	mesh.surface_add_vertex(v3)
 	mesh.surface_add_vertex(v4)
 	
+	mesh.surface_end()
+	
+	mesh_instance.mesh = mesh
+	
+	# Use an unshaded material so the color is exact
+	var material = StandardMaterial3D.new()
+	material.albedo_color = color
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mesh_instance.material_override = material
+	
+	return mesh_instance
+
+# Helper function to create a thick curve mesh using TRIANGLE_STRIP
+# Takes an array of points defining the curve path.
+func create_thick_curve_mesh(points: Array[Vector3], thickness: float, color: Color) -> MeshInstance3D:
+	var mesh_instance = MeshInstance3D.new()
+	var mesh = ImmediateMesh.new()
+	
+	if points.size() < 2:
+		printerr("Need at least 2 points for a thick curve.")
+		return mesh_instance # Return empty mesh instance
+
+	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
+	
+	var half_thickness = thickness / 2.0
+	
+	# Iterate through each point to generate vertices for the strip
+	for i in range(points.size()):
+		var current_point = points[i]
+		var tangent: Vector3
+		
+		# Calculate tangent vector at the current point
+		if i == 0:
+			# First point: tangent is direction to the next point
+			tangent = (points[i+1] - current_point).normalized()
+		elif i == points.size() - 1:
+			# Last point: tangent is direction from the previous point
+			tangent = (current_point - points[i-1]).normalized()
+		else:
+			# Intermediate point: tangent is the average direction 
+			# from the previous point and to the next point. This helps smooth corners.
+			var dir_from_prev = (current_point - points[i-1]).normalized()
+			var dir_to_next = (points[i+1] - current_point).normalized()
+			tangent = (dir_from_prev + dir_to_next).normalized()
+			# Handle potential zero vector if directions cancel (e.g., sharp 180 turn)
+			if tangent.length_squared() < 0.0001:
+				tangent = (points[i+1] - current_point).normalized() # Fallback
+
+		# Calculate the normal vector (perpendicular to tangent in XY plane)
+		var normal = Vector3(-tangent.y, tangent.x, 0)
+		
+		# Calculate the two vertices for the strip at this point (left and right)
+		var v_left = current_point - normal * half_thickness
+		var v_right = current_point + normal * half_thickness
+		
+		# Add the pair of vertices to the strip. 
+		# The strip connects (left[i], right[i], left[i+1], right[i+1]) to form quads.
+		mesh.surface_add_vertex(v_left)
+		mesh.surface_add_vertex(v_right)
+
 	mesh.surface_end()
 	
 	mesh_instance.mesh = mesh
