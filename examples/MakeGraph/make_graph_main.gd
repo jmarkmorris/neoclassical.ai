@@ -8,6 +8,8 @@ const GREEN: Color = Color(0, 1, 0)
 const YELLOW: Color = Color(1, 1, 0)
 const WHITE: Color = Color(1, 1, 1)
 
+const LINE_THICKNESS: float = 0.1 # Adjust as needed for visual match
+
 # References to key nodes
 var axes: Node3D
 var sin_graph: MeshInstance3D
@@ -36,7 +38,7 @@ func _ready() -> void:
 func setup_environment() -> void:
 	# Add camera
 	var camera = Camera3D.new()
-	camera.position = Vector3(0, 0, 12) # Zoomed out slightly
+	camera.position = Vector3(0, 0, 10) # Zoomed in a bit more
 	camera.look_at(Vector3.ZERO)
 	add_child(camera)
 	
@@ -76,36 +78,20 @@ func create_axes() -> void:
 	axes = Node3D.new()
 	axes.position = Vector3(0, 0, 0)
 	add_child(axes)
-	
-	# Create x-axis
-	var x_axis = MeshInstance3D.new()
-	var x_mesh = ImmediateMesh.new()
-	x_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	x_mesh.surface_add_vertex(Vector3(-10, 0, 0))
-	x_mesh.surface_add_vertex(Vector3(10, 0, 0))
-	x_mesh.surface_end()
-	x_axis.mesh = x_mesh
-	
-	var x_material = StandardMaterial3D.new()
-	x_material.albedo_color = GREEN
-	x_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	x_axis.material_override = x_material
-	axes.add_child(x_axis)
-	
-	# Create y-axis
-	var y_axis = MeshInstance3D.new()
-	var y_mesh = ImmediateMesh.new()
-	y_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
-	y_mesh.surface_add_vertex(Vector3(0, -1.5, 0))
-	y_mesh.surface_add_vertex(Vector3(0, 1.5, 0))
-	y_mesh.surface_end()
-	y_axis.mesh = y_mesh
-	
-	var y_material = StandardMaterial3D.new()
-	y_material.albedo_color = GREEN
-	y_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	y_axis.material_override = y_material
-	axes.add_child(y_axis)
+
+	# Define axis limits
+	var x_min = -10.0
+	var x_max = 10.0
+	var y_min = -1.5
+	var y_max = 1.5
+
+	# Create thick x-axis
+	var x_axis_mesh_instance = create_thick_line_mesh(Vector3(x_min, 0, 0), Vector3(x_max, 0, 0), LINE_THICKNESS, GREEN)
+	axes.add_child(x_axis_mesh_instance)
+
+	# Create thick y-axis
+	var y_axis_mesh_instance = create_thick_line_mesh(Vector3(0, y_min, 0), Vector3(0, y_max, 0), LINE_THICKNESS, GREEN)
+	axes.add_child(y_axis_mesh_instance)
 	
 	# Create x-axis ticks
 	create_x_ticks()
