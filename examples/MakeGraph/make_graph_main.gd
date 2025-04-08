@@ -103,16 +103,16 @@ func create_axes() -> void:
 	# Create axis labels
 	var x_label = Label3D.new()
 	x_label.text = "x"
-	x_label.font_size = 48
+	x_label.font_size = 64 # Increased size
 	x_label.modulate = WHITE
-	x_label.position = Vector3(10.5, 0, 0)
+	x_label.position = Vector3(10.5, -0.3, 0) # Adjusted position
 	axes.add_child(x_label)
 	
 	var y_label = Label3D.new()
 	y_label.text = "y"
-	y_label.font_size = 48
+	y_label.font_size = 64 # Increased size
 	y_label.modulate = WHITE
-	y_label.position = Vector3(0, 2, 0)
+	y_label.position = Vector3(0.3, 1.8, 0) # Adjusted position
 	axes.add_child(y_label)
 
 func create_x_ticks() -> void:
