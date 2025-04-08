@@ -24,7 +24,7 @@ const MINUTE_TICKS_COUNT: int = 60
 const HOUR_TICKS_COUNT: int = 12
 
 # --- Thickness Constants ---
-const FACE_THICKNESS: float = 0.04
+const FACE_THICKNESS: float = 0.036 # Reduced by 10% from 0.04
 const HOUR_TICK_THICKNESS: float = 0.03
 const MINUTE_TICK_THICKNESS: float = 0.02
 const HAND_THICKNESS: float = 0.03

@@ -29,7 +29,7 @@ const GRID_HEIGHT_WORLD = GRID_Y_END - GRID_Y_START
 const RADIUS_START = 0.002
 const RADIUS_INCREMENT = 0.002
 # Preload Cell Scene (adjust path if needed)
-const CircleCell = preload("res://examples/CircleSizes/CircleCell.tscn")
+const CircleCell = preload("res://CircleCell.tscn")
 
 # Node references
 @onready var grid_container = $GridContainer # Assumes a Node3D named GridContainer exists

@@ -2,12 +2,24 @@
 
 This document outlines strategies and considerations for developing Godot projects, focusing on a programmatic approach potentially assisted by AI tools like `aider` within a VS Code environment. The primary goal is to minimize reliance on the Godot Editor GUI for setup and scene construction, using it mainly for running and visualizing the results.
 
-## Opening a Visualization
+## Workflow
 
 * Start the godot app.
+
+### Enable automatic reloading of files that have changed on disk by adjusting the editor settings. Here's how:
+
+* Go to Editor Settings in the Godot editor.
+* Navigate to Text Editor > Behavior.
+* Turn on advanced settings
+* Look for the option Auto Reload Scripts on External Change and set it to On.
+
+### Opening a Visualization
+
 * Import or Scan for the Project
 * In the FileSystem dock (lower-left) open the main scene (e.g., Main.tscn) by double-clicking it.
 * Click on the 'run' icon in the upper right.
+
+---
 
 ## Goal: Programmatic Godot Workflow
 

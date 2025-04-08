@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://b2ysw47s1r0n0"]
+[gd_scene load_steps=3 format=3 uid="uid://b2ysw47s1r0n0"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Script" uid="uid://cechvaf5x1xd8" path="res://CircleSizes.gd" id="1_jrh8y"]
+
+[sub_resource type="Environment" id="Environment_xyz"]
+background_mode = 1
+background_color = Color(0.294118, 0, 0.509804, 1)
+
+[node name="CircleSizes" type="Node3D"]
+script = ExtResource("1_jrh8y")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+projection = 1
+size = 10.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xyz")
+
+[node name="GridContainer" type="Node3D" parent="."]
+
+[node name="CellContainer" type="Node3D" parent="."]
