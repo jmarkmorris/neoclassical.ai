@@ -19,7 +19,7 @@ const SECOND_HAND_LENGTH_FACTOR: float = 0.8
 const MINUTE_TICK_LENGTH_FACTOR: float = 0.95
 const HOUR_TICK_LENGTH_FACTOR: float = 0.85
 const CENTER_DOT_RADIUS: float = 0.05
-const FACE_CIRCLE_SEGMENTS: int = 360 # Used for TorusMesh sections/rings
+const FACE_CIRCLE_SEGMENTS: int = 64 # Used for TorusMesh sections/rings
 const MINUTE_TICKS_COUNT: int = 60
 const HOUR_TICKS_COUNT: int = 12
 
@@ -79,7 +79,7 @@ func _create_static_elements() -> void:
 	# Calculate inner/outer radii based on desired center radius and thickness
 	face_mesh.inner_radius = radius - FACE_THICKNESS / 2.0
 	face_mesh.outer_radius = radius + FACE_THICKNESS / 2.0
-	face_mesh.rings = 32 # Increased smoothness of the thickness profile
+	face_mesh.rings = 128 # Increased smoothness of the thickness profile significantly
 	face_mesh.ring_segments = FACE_CIRCLE_SEGMENTS # Smoothness around the circle
 	face_circle.mesh = face_mesh
 	face_circle.material_override = static_material
