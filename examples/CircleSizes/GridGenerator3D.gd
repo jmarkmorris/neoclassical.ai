@@ -7,7 +7,9 @@ extends Node3D
 @export var grid_line_color: Color = Color(0.5, 0.2, 0.6, 0.8) # Lighter purple
 
 # --- Dot Configuration ---
-@export var dot_radius: float = 0.2 # Initial fixed radius for all dots
+@export var start_radius: float = 0.002
+@export var radius_increment: float = 0.002
+@export var dot_separation_factor: float = 0.3 # How far apart dots are within a cell (fraction of cell width)
 @export var dot_color_red: Color = Color.RED
 @export var dot_color_blue: Color = Color.BLUE
 
@@ -84,11 +86,7 @@ func generate_dots() -> void:
 	var start_x: float = -grid_size.x / 2.0 + step_x / 2.0
 	var start_y: float = -grid_size.y / 2.0 + step_y / 2.0
 
-	# Pre-create mesh and materials (optimization)
-	var sphere_mesh: SphereMesh = SphereMesh.new()
-	sphere_mesh.radius = dot_radius
-	sphere_mesh.height = dot_radius * 2.0 # Standard sphere height
-
+	# Pre-create materials (optimization)
 	var red_material: StandardMaterial3D = StandardMaterial3D.new()
 	red_material.albedo_color = dot_color_red
 	red_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
@@ -97,24 +95,47 @@ func generate_dots() -> void:
 	blue_material.albedo_color = dot_color_blue
 	blue_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
 
-	# Iterate through rows and columns to place dots
+	# Iterate through rows and columns to place dot pairs
 	for row in range(grid_rows):
 		for col in range(grid_cols):
-			# Calculate cell center position
-			var cell_center_x: float = start_x + col * step_x
-			var cell_center_y: float = start_y + row * step_y
-			var cell_center_pos: Vector3 = Vector3(cell_center_x, cell_center_y, 0.01) # Slightly offset Z
+			# --- Calculate Radius for this cell ---
+			var current_radius: float = start_radius + (row * grid_cols + col) * radius_increment
 
-			# Create MeshInstance for the dot
-			var dot_instance: MeshInstance3D = MeshInstance3D.new()
-			dot_instance.mesh = sphere_mesh # Reuse the same mesh resource
+			# --- Create SphereMesh for this cell's radius ---
+			# Mesh needs to be created per cell as radius changes
+			var cell_sphere_mesh: SphereMesh = SphereMesh.new()
+			cell_sphere_mesh.radius = current_radius
+			cell_sphere_mesh.height = current_radius * 2.0
 
-			# Determine color based on grid position (alternating pattern)
+			# --- Calculate Positions ---
+			var cell_base_center_x: float = start_x + col * step_x
+			var cell_base_center_y: float = start_y + row * step_y
+			var horizontal_offset: float = (step_x * dot_separation_factor) / 2.0
+			var z_pos: float = 0.01 # Slight offset
+
+			var blue_pos: Vector3
+			var red_pos: Vector3
+
+			# Determine left/right position based on grid pattern
 			if (row + col) % 2 == 0:
-				dot_instance.material_override = blue_material # Use material override
+				# Blue left, Red right
+				blue_pos = Vector3(cell_base_center_x - horizontal_offset, cell_base_center_y, z_pos)
+				red_pos = Vector3(cell_base_center_x + horizontal_offset, cell_base_center_y, z_pos)
 			else:
-				dot_instance.material_override = red_material # Use material override
+				# Red left, Blue right
+				red_pos = Vector3(cell_base_center_x - horizontal_offset, cell_base_center_y, z_pos)
+				blue_pos = Vector3(cell_base_center_x + horizontal_offset, cell_base_center_y, z_pos)
 
-			# Set position and add to the container
-			dot_instance.position = cell_center_pos
-			dots_parent.add_child(dot_instance)
+			# --- Create Blue Dot Instance ---
+			var blue_dot_instance: MeshInstance3D = MeshInstance3D.new()
+			blue_dot_instance.mesh = cell_sphere_mesh # Use the mesh for this cell
+			blue_dot_instance.material_override = blue_material
+			blue_dot_instance.position = blue_pos
+			dots_parent.add_child(blue_dot_instance)
+
+			# --- Create Red Dot Instance ---
+			var red_dot_instance: MeshInstance3D = MeshInstance3D.new()
+			red_dot_instance.mesh = cell_sphere_mesh # Use the same mesh for this cell
+			red_dot_instance.material_override = red_material
+			red_dot_instance.position = red_pos
+			dots_parent.add_child(red_dot_instance)
