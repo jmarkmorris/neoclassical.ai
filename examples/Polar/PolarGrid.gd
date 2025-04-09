@@ -11,13 +11,6 @@ const LABEL_OFFSET := 0.3 # Distance labels are placed outside the max radius
 const LABEL_FONT_SIZE := 128 # Reverted to previous size for grid labels
 const LABEL_PIXEL_SIZE := 0.0020 # Keep this for sharpness
 
-# Vector constants
-const VECTOR_RADIUS := 2.4 # Length of the vector
-const VECTOR_ANGLE := PI/4.0 # Angle of the vector (π/4 or 45 degrees)
-const VECTOR_THICKNESS := 0.06 # Thickness of the vector line
-const ARROWHEAD_LENGTH := 0.3 # Length of the arrowhead
-const ARROWHEAD_WIDTH := 0.2 # Width of the arrowhead base
-
 const CIRCLE_SEGMENTS := 128 # Increased for smoother circles
 
 # Node references (optional, could also find_child)
@@ -27,7 +20,6 @@ var grid_container: Node3D
 
 # Materials
 var white_material: StandardMaterial3D
-var vector_material: StandardMaterial3D
 
 # Called when the node enters the scene tree for the first time.
 # In @tool mode, this also runs in the editor.
@@ -69,7 +61,6 @@ func _clear_children_and_rebuild():
 	_create_circles(grid_container)
 	_create_radial_lines(grid_container)
 	_create_labels(grid_container)
-	_create_vector(grid_container)
 
 # Initialize unshaded materials
 func _initialize_materials():
@@ -78,13 +69,6 @@ func _initialize_materials():
 	white_material.albedo_color = WHITE_COLOR
 	white_material.emission_enabled = true # Enable emission
 	white_material.emission = WHITE_COLOR # Add emission for brightness boost
-	
-	# Red-orange material for the vector
-	vector_material = StandardMaterial3D.new()
-	vector_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
-	vector_material.albedo_color = RED_ORANGE_COLOR
-	vector_material.emission_enabled = true
-	vector_material.emission = RED_ORANGE_COLOR
 
 # Helper to convert polar coordinates to Cartesian Vector3 (on XY plane)
 func _polar_to_cartesian(r: float, theta: float) -> Vector3:
@@ -144,58 +128,6 @@ func _create_labels(parent_node: Node3D):
 		var azimuth_label = _create_label(azimuth_texts[i], label_pos)
 		azimuth_label.name = "AzimuthLabel_" + str(i)
 		parent_node.add_child(azimuth_label)
-		
-# Creates the vector arrow pointing from origin to the specified polar coordinates.
-func _create_vector(parent_node: Node3D):
-	# Calculate the endpoint in Cartesian coordinates
-	var end_point = _polar_to_cartesian(VECTOR_RADIUS, VECTOR_ANGLE)
-	
-	# Create a container for the vector elements
-	var vector_container = Node3D.new()
-	vector_container.name = "VectorArrow"
-	parent_node.add_child(vector_container)
-	
-	# Create the vector line using CSGCylinder3D
-	var line = CSGCylinder3D.new()
-	line.radius = VECTOR_THICKNESS / 2.0
-	line.height = VECTOR_RADIUS
-	line.material = vector_material
-	
-	# Position and rotate the line to point from origin to end_point
-	# Cylinders in Godot are oriented along Y axis by default
-	line.transform.origin = Vector3(0, VECTOR_RADIUS / 2.0, 0)
-	
-	# Create a basis that orients the cylinder along the vector direction
-	var look_at_pos = Vector3(end_point.x, end_point.y, -1) # Look at point in front of the XY plane
-	var up_vector = Vector3.BACK # Use -Z as up to keep the cylinder on XY plane
-	var basis = Basis.looking_at(look_at_pos - Vector3.ZERO, up_vector)
-	
-	# Apply the rotation
-	line.transform.basis = basis
-	vector_container.add_child(line)
-	
-	# Create the arrowhead using CSGPolygon3D
-	var arrowhead = CSGPolygon3D.new()
-	
-	# Define the arrowhead shape as a triangle
-	var polygon = PackedVector2Array()
-	polygon.append(Vector2(0, 0)) # Tip
-	polygon.append(Vector2(-ARROWHEAD_LENGTH, ARROWHEAD_WIDTH / 2.0)) # Right base
-	polygon.append(Vector2(-ARROWHEAD_LENGTH, -ARROWHEAD_WIDTH / 2.0)) # Left base
-	
-	arrowhead.polygon = polygon
-	arrowhead.material = vector_material
-	arrowhead.mode = CSGPolygon3D.MODE_DEPTH
-	arrowhead.depth = VECTOR_THICKNESS
-	
-	# Position the arrowhead at the end of the vector
-	arrowhead.transform.origin = end_point
-	
-	# Rotate the arrowhead to align with the vector direction
-	arrowhead.rotation.z = VECTOR_ANGLE - PI/2.0 # Adjust for polygon's default orientation
-	
-	vector_container.add_child(arrowhead)
-
 
 # Helper function to create and configure a Label3D
 # Note: This helper now only configures the label, positioning is handled by the caller
