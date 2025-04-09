@@ -13,13 +13,20 @@ extends Node3D
 @export var dot_color_red: Color = Color.RED
 @export var dot_color_blue: Color = Color.BLUE
 
+# --- Label Configuration ---
+@export var label_font_size: int = 16 # Adjust as needed for visibility
+@export var label_color: Color = Color.WHITE
+@export var label_vertical_offset: float = -0.3 # Offset below cell center (adjust as needed)
+
 # --- Node References ---
 var mesh_instance: MeshInstance3D = null
 var dots_parent: Node3D = null # Node to hold all dot meshes
+var labels_parent: Node3D = null # Node to hold all label nodes
 
 func _ready() -> void:
 	generate_grid_mesh()
 	generate_dots()
+	generate_labels()
 
 func generate_grid_mesh() -> void:
 	# Create or clear previous mesh instance
@@ -148,3 +155,47 @@ func generate_dots() -> void:
 			red_dot_instance.material_override = red_material
 			red_dot_instance.position = red_pos
 			dots_parent.add_child(red_dot_instance)
+
+
+func generate_labels() -> void:
+	# Create or clear parent node for labels
+	if labels_parent != null:
+		labels_parent.queue_free()
+	labels_parent = Node3D.new()
+	labels_parent.name = "LabelsContainer"
+	add_child(labels_parent)
+
+	# Calculate step sizes (same as grid)
+	var step_x: float = grid_size.x / grid_cols
+	var step_y: float = grid_size.y / grid_rows
+
+	# Calculate start offset for cell centers (same as dots)
+	var start_x: float = -grid_size.x / 2.0 + step_x / 2.0
+	var start_y: float = -grid_size.y / 2.0 + step_y / 2.0
+
+	# Iterate through rows and columns to place labels
+	for row in range(grid_rows):
+		for col in range(grid_cols):
+			# Calculate cell center position
+			var cell_center_x: float = start_x + col * step_x
+			var cell_center_y: float = start_y + row * step_y
+			# Position label slightly below center and slightly in front of dots
+			var label_pos: Vector3 = Vector3(cell_center_x, cell_center_y + label_vertical_offset, 0.02) 
+
+			# Create Label3D node
+			var label_instance: Label3D = Label3D.new()
+
+			# Set text to "[row, col]"
+			label_instance.text = "[%d, %d]" % [row, col]
+
+			# Configure label appearance
+			label_instance.font_size = label_font_size
+			label_instance.modulate = label_color # Use modulate for color
+			label_instance.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			label_instance.vertical_alignment = VERTICAL_ALIGNMENT_CENTER # Align text vertically within its bounds
+			label_instance.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Always face camera
+			label_instance.no_depth_test = true # Render on top of other objects
+
+			# Set position and add to the container
+			label_instance.position = label_pos
+			labels_parent.add_child(label_instance)
