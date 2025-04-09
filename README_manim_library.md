@@ -1,8 +1,6 @@
-Try this out!
-
 ## Developing a Reusable Library for Python/Manim
 
-Yes, you can develop your own reusable library for Python/Manim. This involves creating a package with your custom classes, functions, and modules.
+You can develop a reusable library for Python/Manim. This involves creating a package with your custom classes, functions, and modules.
 
 Here's a step-by-step guide to help you get started:
 
