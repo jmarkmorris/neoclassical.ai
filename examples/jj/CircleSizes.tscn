@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8yvt5xj2ykgx"]
-
-[ext_resource type="Script" uid="uid://cp2kyriw3m0lq" path="res://CircleGrid.gd" id="1_yvmqr"]
-
-[node name="CircleSizes" type="Node3D"]
-script = ExtResource("1_yvmqr")
