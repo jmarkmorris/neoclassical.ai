@@ -3,22 +3,12 @@ extends Node3D
 
 # Configuration constants based on design.md and reference image/script
 const WHITE_COLOR := Color(1.0, 1.0, 1.0)
-# Match Manim RED_E (#FC6255), closest is maybe a lighter red/orange
-const VECTOR_COLOR := Color(1.0, 0.38, 0.33) 
 const RADII := [1.0, 2.0, 3.0, 4.0]
 const MAX_RADIUS := 4.0
 const NUM_RADIAL_LINES := 12
 const LABEL_OFFSET := 0.3 # Distance labels are placed outside the max radius
 const LABEL_FONT_SIZE := 128 # Reverted to previous size for grid labels
 const LABEL_PIXEL_SIZE := 0.0020 # Keep this for sharpness
-
-const VECTOR_R := 2.4
-const VECTOR_THETA := PI / 4.0
-# --- Reverted sizes back to smaller values ---
-const VECTOR_LINE_WIDTH := 0.03 # Original value
-const ARROWHEAD_HEIGHT := 0.2  # Original value
-const ARROWHEAD_RADIUS := 0.1  # Original value
-# --- End reverted sizes ---
 
 const CIRCLE_SEGMENTS := 128 # Increased for smoother circles
 
@@ -29,7 +19,6 @@ var grid_container: Node3D
 
 # Materials
 var white_material: StandardMaterial3D
-var vector_material: StandardMaterial3D
 
 # Called when the node enters the scene tree for the first time.
 # In @tool mode, this also runs in the editor.
@@ -71,7 +60,6 @@ func _clear_children_and_rebuild():
 	_create_circles(grid_container)
 	_create_radial_lines(grid_container)
 	_create_labels(grid_container)
-	_create_vector(grid_container)
 
 # Initialize unshaded materials
 func _initialize_materials():
@@ -80,10 +68,6 @@ func _initialize_materials():
 	white_material.albedo_color = WHITE_COLOR
 	white_material.emission_enabled = true # Enable emission
 	white_material.emission = WHITE_COLOR # Add emission for brightness boost
-
-	vector_material = StandardMaterial3D.new()
-	vector_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
-	vector_material.albedo_color = VECTOR_COLOR
 
 # Helper to convert polar coordinates to Cartesian Vector3 (on XY plane)
 func _polar_to_cartesian(r: float, theta: float) -> Vector3:
@@ -162,65 +146,3 @@ func _create_label(text: String, position: Vector3, font_size_override: int = -1
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	return label
-
-# Create the vector arrow (line + arrowhead)
-func _create_vector(parent_node: Node3D):
-	var vector_end_point = _polar_to_cartesian(VECTOR_R, VECTOR_THETA)
-	
-	# Use ClassDB to instantiate CylinderMesh to avoid parser issues
-	var line := MeshInstance3D.new()
-	line.name = "VectorLine"
-	var line_mesh = ClassDB.instantiate("CylinderMesh")
-	if line_mesh == null:
-		push_error("Failed to instantiate CylinderMesh using ClassDB")
-		return # Avoid further errors
-	line_mesh.top_radius = VECTOR_LINE_WIDTH / 2.0
-	line_mesh.bottom_radius = VECTOR_LINE_WIDTH / 2.0
-	line_mesh.height = vector_end_point.length() # Length of the vector
-	line.mesh = line_mesh
-	line.material_override = vector_material
-	
-	# Create a basis that aligns the cylinder with the vector direction
-	var vector_dir = vector_end_point.normalized()
-	var up = Vector3.UP
-	if vector_dir.is_equal_approx(up) or vector_dir.is_equal_approx(-up):
-		up = Vector3.RIGHT
-	var x_axis = vector_dir.cross(up).normalized()
-	var y_axis = vector_dir
-	var z_axis = x_axis.cross(y_axis).normalized()
-	var basis = Basis(x_axis, y_axis, z_axis)
-	
-	# Position and orient the cylinder
-	line.transform = Transform3D(basis, vector_end_point / 2.0) # Center the line mesh
-	parent_node.add_child(line)
-
-	# --- Create Triangle Arrowhead using ImmediateMesh ---
-	var arrowhead_mi := MeshInstance3D.new()
-	arrowhead_mi.name = "VectorArrowhead"
-	var arrowhead_im := ImmediateMesh.new()
-	arrowhead_mi.mesh = arrowhead_im
-	arrowhead_mi.material_override = vector_material # Use the vector material
-
-	# Define triangle vertices in local space (pointing along +Y)
-	var tip_h = ARROWHEAD_HEIGHT # Height = 0.2
-	# Use a noticeable width (e.g., 3x height) for visibility
-	var tip_w = ARROWHEAD_HEIGHT * 3.0 # Width = 0.6 
-	var local_p1 = Vector3(0, 0, 0)            # Tip at local origin
-	var local_p2 = Vector3(-tip_w / 2.0, -tip_h, 0) # Base left (local -Y)
-	var local_p3 = Vector3(tip_w / 2.0, -tip_h, 0)  # Base right (local -Y)
-
-	# Draw the triangle
-	arrowhead_im.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
-	arrowhead_im.surface_add_vertex(local_p1)
-	arrowhead_im.surface_add_vertex(local_p2)
-	arrowhead_im.surface_add_vertex(local_p3)
-	arrowhead_im.surface_end()
-
-	# Position and orient the MeshInstance containing the ImmediateMesh triangle.
-	# Use the same basis calculated for the line. This aligns the mesh's
-	# local +Y axis (where the tip points) with the vector_dir.
-	# Setting the origin to vector_end_point places the tip (local_p1) there.
-	arrowhead_mi.transform = Transform3D(basis, vector_end_point)
-
-	parent_node.add_child(arrowhead_mi)
-	# --- End ImmediateMesh Triangle Arrowhead ---
