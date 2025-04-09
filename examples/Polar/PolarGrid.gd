@@ -3,15 +3,17 @@ extends Node3D
 
 # Configuration constants based on design.md and reference image/script
 const WHITE_COLOR := Color(1.0, 1.0, 1.0)
-const RED_ORANGE_COLOR := Color(1.0, 0.27, 0.0) # Red-orange color for vector (similar to #FF4500)
+# const RED_ORANGE_COLOR := Color(1.0, 0.27, 0.0) # Removed - No longer used after vector removal
 const RADII := [1.0, 2.0, 3.0, 4.0]
 const MAX_RADIUS := 4.0
 const NUM_RADIAL_LINES := 12
-const LABEL_OFFSET := 0.3 # Distance labels are placed outside the max radius
-const LABEL_FONT_SIZE := 128 # Reverted to previous size for grid labels
-const LABEL_PIXEL_SIZE := 0.0020 # Keep this for sharpness
+const LABEL_OFFSET := 0.3 # Base distance labels are placed outside the max radius
+# Label3D font size - larger values increase detail but require smaller pixel_size
+const LABEL_FONT_SIZE := 128 
+# Label3D pixel size - smaller values make text appear larger and sharper for a given font_size
+const LABEL_PIXEL_SIZE := 0.0020 
 
-const CIRCLE_SEGMENTS := 128 # Increased for smoother circles
+const CIRCLE_SEGMENTS := 128 # Number of segments for drawing circles (higher is smoother)
 
 # Node references (optional, could also find_child)
 var camera: Camera3D
@@ -21,62 +23,80 @@ var grid_container: Node3D
 # Materials
 var white_material: StandardMaterial3D
 
+# --- Initialization & Scene Building ---
+
 # Called when the node enters the scene tree for the first time.
 # In @tool mode, this also runs in the editor.
 func _ready():
-	# Clear previous children if any (useful for @tool script reloading)
-	# Use call_deferred to avoid issues during editor initialization/reloading
+	# Use call_deferred to ensure node manipulation happens safely,
+	# especially important in @tool mode during editor initialization or script reloading.
 	call_deferred("_clear_children_and_rebuild")
 
+# Clears existing children and rebuilds the entire visualization scene.
+# This function orchestrates the creation of all visual elements.
+# Essential for @tool mode to reflect script changes without manual scene clearing.
 func _clear_children_and_rebuild():
-	# Clear previous children safely
+	# Clear previous children safely before rebuilding to prevent duplicates
 	for child in get_children():
 		child.queue_free()
 
-	# Create and configure Camera
+	# --- Camera Setup ---
+	# Create and configure the main camera for viewing the 2D visualization in 3D space.
 	camera = Camera3D.new()
-	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-	# Adjust size to fit the grid (max radius 4 + offset) and title comfortably
-	camera.size = 11.0 # Increased from 9.6 to ensure title and labels fit
-	# Position camera to view the XY plane from the front
+	camera.projection = Camera3D.PROJECTION_ORTHOGONAL # Use orthogonal for a flat 2D look
+	# Set camera size to encompass the grid and labels comfortably
+	camera.size = 11.0 
+	# Position camera along the Z-axis to view the XY plane
 	camera.transform.origin = Vector3(0, 0, 10) 
-	camera.current = true
+	camera.current = true # Make this the active camera for the scene
 	add_child(camera)
 
-	# Create and configure Title Label, passing specific larger font size
-	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO, 256) # Pass 256 override for title
-	# Position title above the grid area, moved up slightly
-	title_label.transform.origin = Vector3(0, MAX_RADIUS + 0.7, 0) # Raised Y from +0.5 to +0.7
+	# --- Title Label Setup ---
+	# Create and configure the main title label.
+	# Pass a specific font size override to make it larger than grid labels.
+	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO, 256) 
+	# Position title above the main grid area
+	title_label.transform.origin = Vector3(0, MAX_RADIUS + 0.7, 0)
 	add_child(title_label)
 
-	# Create container for grid elements
+	# --- Grid Container Setup ---
+	# Create a container Node3D to hold all grid elements (circles, lines, labels).
+	# This allows positioning the entire grid group easily.
 	grid_container = Node3D.new()
 	grid_container.name = "GridContainer"
-	# Position grid container slightly below center as per design.md
-	grid_container.position = Vector3(0, -0.5, 0) 
+	# Position grid container slightly below the scene origin (as per design.md)
+	grid_container.position = Vector3(0, -0.5, 0)
 	add_child(grid_container)
 		
+	# --- Material Initialization and Grid Element Creation ---
+	# Initialize materials needed for the grid elements.
 	_initialize_materials()
-	# Pass the container to the creation functions
+	# Call functions to create grid elements, passing the container node as parent.
 	_create_circles(grid_container)
 	_create_radial_lines(grid_container)
 	_create_labels(grid_container)
 
-# Initialize unshaded materials
+# --- Material Initialization ---
+
+# Creates and configures the materials used for the visualization elements.
 func _initialize_materials():
+	# Configure the white material used for grid lines and labels.
 	white_material = StandardMaterial3D.new()
-	white_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
-	white_material.albedo_color = WHITE_COLOR
-	white_material.emission_enabled = true # Enable emission
-	white_material.emission = WHITE_COLOR # Add emission for brightness boost
+	white_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED # Ignore lighting
+	white_material.albedo_color = WHITE_COLOR # Base color
+	white_material.emission_enabled = true # Use emission for consistent brightness
+	white_material.emission = WHITE_COLOR # Set emission color to match albedo
 
 # Helper to convert polar coordinates to Cartesian Vector3 (on XY plane)
 func _polar_to_cartesian(r: float, theta: float) -> Vector3:
 	return Vector3(r * cos(theta), r * sin(theta), 0)
 
-# Create concentric circles using ImmediateMesh
+# --- Grid Element Creation Functions ---
+
+# Creates the concentric circle grid lines using ImmediateMesh.
 func _create_circles(parent_node: Node3D):
-	for r in RADII:
+	for r in RADII: # Iterate through the defined radii (e.g., 1.0, 2.0, ...)
+		# Create ImmediateMesh and a MeshInstance to render it for each circle
 		var im := ImmediateMesh.new()
 		var mi := MeshInstance3D.new()
 		mi.name = "Circle_r" + str(r)
@@ -84,18 +104,21 @@ func _create_circles(parent_node: Node3D):
 		mi.material_override = white_material
 		parent_node.add_child(mi)
 
+		# Begin defining the line strip for the circle
 		im.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
-		for i in range(CIRCLE_SEGMENTS + 1):
+		# Add vertices around the circle
+		for i in range(CIRCLE_SEGMENTS + 1): # +1 to close the loop
 			var angle = float(i) / CIRCLE_SEGMENTS * TAU # TAU is 2*PI
 			im.surface_add_vertex(_polar_to_cartesian(r, angle))
-		im.surface_end()
+		im.surface_end() # Finish defining the surface
 
-# Create radial lines using ImmediateMesh
+# Creates the radial grid lines extending from the origin using ImmediateMesh.
 func _create_radial_lines(parent_node: Node3D):
-	for i in range(NUM_RADIAL_LINES):
-		var angle = float(i) / NUM_RADIAL_LINES * TAU
-		var end_point = _polar_to_cartesian(MAX_RADIUS, angle)
+	for i in range(NUM_RADIAL_LINES): # Iterate for each required line (e.g., 12 lines)
+		var angle = float(i) / NUM_RADIAL_LINES * TAU # Calculate angle for this line
+		var end_point = _polar_to_cartesian(MAX_RADIUS, angle) # Calculate endpoint at max radius
 		
+		# Create ImmediateMesh and MeshInstance for each radial line
 		var im := ImmediateMesh.new()
 		var mi := MeshInstance3D.new()
 		mi.name = "RadialLine_" + str(i)
@@ -103,46 +126,50 @@ func _create_radial_lines(parent_node: Node3D):
 		mi.material_override = white_material
 		parent_node.add_child(mi)
 
+		# Begin defining the line segment
 		im.surface_begin(Mesh.PRIMITIVE_LINES)
-		im.surface_add_vertex(Vector3.ZERO) # Start at origin
-		im.surface_add_vertex(end_point)   # End at max radius
-		im.surface_end()
+		im.surface_add_vertex(Vector3.ZERO) # Line starts at origin
+		im.surface_add_vertex(end_point)   # Line ends at max radius
+		im.surface_end() # Finish defining the surface
 
-# Create Label3D nodes for radius and azimuth markers
+# Creates the Label3D nodes for radius values and azimuth angle markers.
 func _create_labels(parent_node: Node3D):
-	# Radius Labels (along positive X axis)
+	# --- Radius Labels --- (Placed along the positive X-axis)
 	for r in RADII:
-		# Adjust downward offset (closer to axis)
-		var label_pos = Vector3(r, -LABEL_OFFSET * 1.0, 0) # Multiplier reduced from 1.5 to 1.0
-		var label_text = str(snapped(r, 0.1)) # Format to one decimal place
-		var radius_label = _create_label(label_text, label_pos)
+		# Position label slightly below the corresponding radius point on the X-axis
+		var label_pos = Vector3(r, -LABEL_OFFSET * 1.0, 0) 
+		var label_text = str(snapped(r, 0.1)) # Format radius value (e.g., "1.0")
+		var radius_label = _create_label(label_text, label_pos) # Use helper to create label
 		radius_label.name = "RadiusLabel_" + str(r)
 		parent_node.add_child(radius_label)
 
-	# Azimuth Labels (around the perimeter)
+	# --- Azimuth Labels --- (Placed around the perimeter)
+	# Define the text representation for each angle label
 	var azimuth_texts = ["0", "π/6", "π/3", "π/2", "2π/3", "5π/6", "π", "7π/6", "4π/3", "3π/2", "5π/3", "11π/6"]
 	for i in range(NUM_RADIAL_LINES):
-		var angle = float(i) / NUM_RADIAL_LINES * TAU
-		# Place label slightly further outside the max radius
-		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET * 1.5, angle) # Multiplier added (1.5)
-		var azimuth_label = _create_label(azimuth_texts[i], label_pos)
+		var angle = float(i) / NUM_RADIAL_LINES * TAU # Calculate angle for this label
+		# Position label slightly further outside the max radius circle
+		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET * 1.5, angle) 
+		var azimuth_label = _create_label(azimuth_texts[i], label_pos) # Use helper
 		azimuth_label.name = "AzimuthLabel_" + str(i)
 		parent_node.add_child(azimuth_label)
 
-# Helper function to create and configure a Label3D
-# Note: This helper now only configures the label, positioning is handled by the caller
-# Added optional font_size parameter
+# --- Label Creation Helper ---
+
+# Creates and configures a Label3D node with common settings used throughout the scene.
+# Allows overriding the default font size for specific labels (like the title).
+# Note: Positioning is set based on the 'position' argument passed by the caller.
 func _create_label(text: String, position: Vector3, font_size_override: int = -1) -> Label3D:
 	var label := Label3D.new()
 	label.text = text
-	# Use override if provided, otherwise use the default constant
+	# Use font size override if provided (>0), otherwise use the default constant
 	label.font_size = font_size_override if font_size_override > 0 else LABEL_FONT_SIZE
-	label.pixel_size = LABEL_PIXEL_SIZE
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label.no_depth_test = true # Use no_depth_test instead of shading_mode
-	label.modulate = WHITE_COLOR # Use modulate for color
-	label.transform.origin = position # Set initial position
-	# Center align text horizontally and vertically
+	label.pixel_size = LABEL_PIXEL_SIZE # Controls sharpness/apparent size
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Ensure label always faces camera
+	label.no_depth_test = true # Render label on top of other geometry
+	label.modulate = WHITE_COLOR # Set label color
+	label.transform.origin = position # Set initial position based on argument
+	# Center align text horizontally and vertically within the label's boundary
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	return label
