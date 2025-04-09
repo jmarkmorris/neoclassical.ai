@@ -1,8 +1,8 @@
 extends Node3D
 
 # --- Grid Configuration ---
-@export var grid_rows: int = 10
-@export var grid_cols: int = 15
+@export var grid_rows: int = 8
+@export var grid_cols: int = 14
 @export var grid_size: Vector2 = Vector2(14, 8) # World units for total grid width and height
 @export var grid_line_color: Color = Color(0.5, 0.2, 0.6, 0.8) # Lighter purple
 
