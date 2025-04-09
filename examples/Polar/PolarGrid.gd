@@ -194,27 +194,33 @@ func _create_vector(parent_node: Node3D):
 	line.transform = Transform3D(basis, vector_end_point / 2.0) # Center the line mesh
 	parent_node.add_child(line)
 
-	# --- Create Triangle Arrowhead using CSGPolygon3D ---
-	var arrowhead := CSGPolygon3D.new()
-	arrowhead.name = "VectorArrowhead"
-	
-	# Define triangle vertices (pointing along local +Y)
-	# Tip point at origin, base points behind it along -Y
+	# --- Create Triangle Arrowhead using ImmediateMesh ---
+	var arrowhead_mi := MeshInstance3D.new()
+	arrowhead_mi.name = "VectorArrowhead"
+	var arrowhead_im := ImmediateMesh.new()
+	arrowhead_mi.mesh = arrowhead_im
+	arrowhead_mi.material_override = vector_material # Use the vector material
+
+	# Define triangle vertices in local space (pointing along +Y)
 	var tip_h = ARROWHEAD_HEIGHT # Height = 0.2
-	var tip_w = ARROWHEAD_HEIGHT * 2.0 # Make width twice the height (Width = 0.4)
-	var p1 := Vector2(0, 0)            # Tip point (0, 0)
-	var p2 := Vector2(-tip_w / 2.0, -tip_h) # Base left (-0.2, -0.2)
-	var p3 := Vector2(tip_w / 2.0, -tip_h)  # Base right (0.2, -0.2)
-	
-	arrowhead.polygon = PackedVector2Array([p1, p2, p3])
-	arrowhead.mode = CSGPolygon3D.MODE_DEPTH
-	arrowhead.depth = VECTOR_LINE_WIDTH # Give it some thickness
-	arrowhead.material = vector_material # Use the vector material
+	# Use a noticeable width (e.g., 3x height) for visibility
+	var tip_w = ARROWHEAD_HEIGHT * 3.0 # Width = 0.6 
+	var local_p1 = Vector3(0, 0, 0)            # Tip at local origin
+	var local_p2 = Vector3(-tip_w / 2.0, -tip_h, 0) # Base left (local -Y)
+	var local_p3 = Vector3(tip_w / 2.0, -tip_h, 0)  # Base right (local -Y)
 
-	# Use the same basis calculated for the line to orient the arrowhead.
-	# The basis aligns the CSG node's local Y-axis with vector_dir.
-	# Setting the origin to vector_end_point places the tip (p1) there.
-	arrowhead.transform = Transform3D(basis, vector_end_point)
+	# Draw the triangle
+	arrowhead_im.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+	arrowhead_im.surface_add_vertex(local_p1)
+	arrowhead_im.surface_add_vertex(local_p2)
+	arrowhead_im.surface_add_vertex(local_p3)
+	arrowhead_im.surface_end()
 
-	parent_node.add_child(arrowhead)
-	# --- End Triangle Arrowhead ---
+	# Position and orient the MeshInstance containing the ImmediateMesh triangle.
+	# Use the same basis calculated for the line. This aligns the mesh's
+	# local +Y axis (where the tip points) with the vector_dir.
+	# Setting the origin to vector_end_point places the tip (local_p1) there.
+	arrowhead_mi.transform = Transform3D(basis, vector_end_point)
+
+	parent_node.add_child(arrowhead_mi)
+	# --- End ImmediateMesh Triangle Arrowhead ---
