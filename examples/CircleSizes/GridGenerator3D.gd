@@ -182,11 +182,14 @@ func generate_labels() -> void:
 			# Position label slightly below center and slightly in front of dots
 			var label_pos: Vector3 = Vector3(cell_center_x, cell_center_y + label_vertical_offset, 0.02) 
 
+			# --- Calculate Radius for this cell (same as in generate_dots) ---
+			var current_radius: float = start_radius + (row * grid_cols + col) * radius_increment
+
 			# Create Label3D node
 			var label_instance: Label3D = Label3D.new()
 
-			# Set text to "[row, col]"
-			label_instance.text = "[%d, %d]" % [row, col]
+			# Set text to "r = 0.xxx" format
+			label_instance.text = "r = %.3f" % current_radius
 
 			# Configure label appearance
 			label_instance.font_size = label_font_size
