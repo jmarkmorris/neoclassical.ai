@@ -15,9 +15,9 @@ enum TipStyle {
 const WHITE: Color = Color.WHITE
 const YELLOW: Color = Color.YELLOW
 
-const TITLE_FONT_SIZE: int = 36
+const TITLE_FONT_SIZE: int = 72
 const SUBTITLE_FONT_SIZE: int = 20
-const LABEL_FONT_SIZE: int = 24
+const LABEL_FONT_SIZE: int = 36
 
 const AXIS_LENGTH: float = 1.5
 const AXIS_THICKNESS: float = 0.06 # Used for CSG thickness. ImmediateMesh lines remain thin.
@@ -26,13 +26,20 @@ const TIP_SIZE: float = 0.15 # Base size, will be adjusted per tip
 
 const GRID_COLS: int = 4
 const GRID_H_SPACING: float = 3.25
-const GRID_V_SPACING: float = 2.5
+const GRID_V_SPACING: float = 4.9 # Original 2.5 + (0.20 * 12.0 camera height)
 
 # Preload a basic material for lines/unshaded shapes
 var unshaded_white_material: StandardMaterial3D
+# Container to hold all generated elements for easy positioning
+var main_container: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Create the main container and position it
+	main_container = Node3D.new()
+	main_container.position.y = 1.2 # Move up by 10% of camera height (12.0 * 0.10)
+	add_child(main_container)
+
 	# Create the material once
 	unshaded_white_material = StandardMaterial3D.new()
 	unshaded_white_material.albedo_color = WHITE
@@ -51,7 +58,7 @@ func _setup_text_elements() -> void:
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER # Helps centering
 	title_label.position = Vector3(0, 4.0, 0) # Adjust Y as needed
-	add_child(title_label)
+	main_container.add_child(title_label) # Add to container
 
 
 func _setup_axes_grid() -> void:
@@ -96,7 +103,7 @@ func _create_axes_example(tip_style: TipStyle, tip_name: String, position: Vecto
 	var container := Node3D.new()
 	container.name = tip_name # Set node name for easier debugging
 	container.position = position
-	add_child(container)
+	main_container.add_child(container) # Add to container
 
 	# Label for the tip style
 	var label := Label3D.new()
