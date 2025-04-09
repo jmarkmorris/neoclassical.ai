@@ -9,8 +9,8 @@ const RADII := [1.0, 2.0, 3.0, 4.0]
 const MAX_RADIUS := 4.0
 const NUM_RADIAL_LINES := 12
 const LABEL_OFFSET := 0.3 # Distance labels are placed outside the max radius
-const LABEL_FONT_SIZE := 256 # Doubled font size
-const LABEL_PIXEL_SIZE := 0.0020 # Decrease further for sharper/bolder text
+const LABEL_FONT_SIZE := 128 # Reverted to previous size for grid labels
+const LABEL_PIXEL_SIZE := 0.0020 # Keep this for sharpness
 
 const VECTOR_R := 2.4
 const VECTOR_THETA := PI / 4.0
@@ -53,8 +53,8 @@ func _clear_children_and_rebuild():
 	camera.current = true
 	add_child(camera)
 
-	# Create and configure Title Label (using default LABEL_FONT_SIZE now)
-	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO) # Removed font_size override
+	# Create and configure Title Label, passing specific larger font size
+	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO, 256) # Pass 256 override for title
 	# Position title above the grid area, moved down slightly
 	title_label.transform.origin = Vector3(0, MAX_RADIUS + 0.5, 0) # Lowered Y from +1.0 to +0.5
 	add_child(title_label)
