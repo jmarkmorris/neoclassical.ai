@@ -27,7 +27,7 @@ const OUTLINE_THICKNESS: float = 0.015 # Thickness for ImmediateMesh outline tip
 
 const GRID_COLS: int = 4
 const GRID_H_SPACING: float = 3.25
-const GRID_V_SPACING: float = 4.9 # Original 2.5 + (0.20 * 12.0 camera height)
+const GRID_V_SPACING: float = 4.47 # Original 4.9 - (0.05 * 8.6 camera height)
 
 # Preload a basic material for lines/unshaded shapes
 var unshaded_white_material: StandardMaterial3D
@@ -38,7 +38,7 @@ var main_container: Node3D
 func _ready() -> void:
 	# Create the main container and position it
 	main_container = Node3D.new()
-	main_container.position.y = 1.2 # Move up by 10% of camera height (12.0 * 0.10)
+	main_container.position.y = 0.77 # Original 1.2 - (0.05 * 8.6 camera height)
 	add_child(main_container)
 
 	# Create the material once
@@ -126,11 +126,17 @@ func _create_axes_example(tip_style: TipStyle, tip_name: String, position: Vecto
 
 func _get_tip_shortening_distance(tip_style: TipStyle) -> float:
 	match tip_style:
-		TipStyle.TRIANGLE, TipStyle.TRIANGLE_FILLED:
+		TipStyle.TRIANGLE:
 			return TIP_SIZE
-		TipStyle.SQUARE, TipStyle.SQUARE_FILLED:
-			return TIP_SIZE * 0.8 * 2.0
-		TipStyle.CIRCLE, TipStyle.CIRCLE_FILLED:
+		TipStyle.TRIANGLE_FILLED:
+			return TIP_SIZE
+		TipStyle.SQUARE:
+			return TIP_SIZE * 0.8 * 2.0 # Back point is at -size * 2.0
+		TipStyle.SQUARE_FILLED:
+			return TIP_SIZE * 0.8 * 2.0 # Back point is at -size * 2.0
+		TipStyle.CIRCLE:
+			return TIP_SIZE * 0.8 * 2.0 # Match new radius scaling
+		TipStyle.CIRCLE_FILLED:
 			return TIP_SIZE * 0.8 * 2.0 # Match new radius scaling
 		TipStyle.STEALTH:
 			return TIP_SIZE * 1.5
@@ -191,7 +197,7 @@ func _draw_single_tip(parent: Node3D, tip_style: TipStyle, material: StandardMat
 	# Create a container Node3D for the tip elements to handle rotation easily
 	var tip_container := Node3D.new()
 	tip_container.position = position
-	tip_container.rotation.z = Vector3.RIGHT.angle_to(direction)
+	tip_container.rotation.z = direction.angle_to(Vector3.RIGHT)
 	parent.add_child(tip_container)
 
 	match tip_style:
@@ -266,7 +272,7 @@ func _draw_triangle_tip(parent: Node3D, material: StandardMaterial3D, filled: bo
 		polygon.polygon = PackedVector2Array([Vector2(p1.x, p1.y), Vector2(p2.x, p2.y), Vector2(p3.x, p3.y)]) # Use Vector2 for CSGPolygon
 		polygon.material = material
 		polygon.mode = CSGPolygon3D.MODE_DEPTH
-		polygon.depth = AXIS_THICKNESS * 0.5 # Minimal depth
+		polygon.depth = AXIS_THICKNESS # Use axis thickness for depth consistency
 		# No position/rotation needed as parent container handles it
 		parent.add_child(polygon)
 	else: # Outline
@@ -287,7 +293,7 @@ func _draw_square_tip(parent: Node3D, material: StandardMaterial3D, filled: bool
 		polygon.polygon = PackedVector2Array([Vector2(p1.x, p1.y), Vector2(p2.x, p2.y), Vector2(p3.x, p3.y), Vector2(p4.x, p4.y)])
 		polygon.material = material
 		polygon.mode = CSGPolygon3D.MODE_DEPTH
-		polygon.depth = AXIS_THICKNESS * 0.5
+		polygon.depth = AXIS_THICKNESS
 		parent.add_child(polygon)
 	else: # Outline
 		var points := PackedVector3Array([p1, p2, p3, p4])
@@ -301,7 +307,7 @@ func _draw_circle_tip(parent: Node3D, material: StandardMaterial3D, filled: bool
 	if filled:
 		var circle := CSGCylinder3D.new()
 		circle.radius = radius
-		circle.height = AXIS_THICKNESS * 0.5
+		circle.height = AXIS_THICKNESS
 		circle.sides = segments # Make it smooth
 		circle.material = material
 		# Position center of circle relative to the axis end point (which is parent's origin)
@@ -336,5 +342,5 @@ func _draw_stealth_tip(parent: Node3D, material: StandardMaterial3D) -> void:
 	polygon.polygon = PackedVector2Array([Vector2(p1.x, p1.y), Vector2(p2.x, p2.y), Vector2(p3.x, p3.y), Vector2(p4.x, p4.y)])
 	polygon.material = material
 	polygon.mode = CSGPolygon3D.MODE_DEPTH
-	polygon.depth = AXIS_THICKNESS * 0.5
+	polygon.depth = AXIS_THICKNESS
 	parent.add_child(polygon)
