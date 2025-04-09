@@ -20,9 +20,10 @@ const SUBTITLE_FONT_SIZE: int = 20
 const LABEL_FONT_SIZE: int = 36
 
 const AXIS_LENGTH: float = 1.5
-const AXIS_THICKNESS: float = 0.06 # Used for CSG thickness. ImmediateMesh lines remain thin.
+const AXIS_THICKNESS: float = 0.02 # Thickness for CSG axes/ticks/filled tips
 const TICK_LENGTH: float = 0.1
-const TIP_SIZE: float = 0.15 # Base size, will be adjusted per tip
+const TIP_SIZE: float = 0.225 # Base size, will be adjusted per tip (Increased by 50%)
+const OUTLINE_THICKNESS: float = 0.015 # Thickness for ImmediateMesh outline tips
 
 const GRID_COLS: int = 4
 const GRID_H_SPACING: float = 3.25
@@ -192,20 +193,44 @@ func _draw_single_tip(parent: Node3D, tip_style: TipStyle, material: StandardMat
 
 # --- Specific Tip Drawing Functions ---
 
-# Helper to create an ImmediateMesh line loop
+# Helper to create a thick line loop using ImmediateMesh triangles
 func _create_line_loop(parent: Node3D, material: StandardMaterial3D, points: PackedVector3Array) -> void:
 	if points.size() < 2: return
 
 	var im_mesh := ImmediateMesh.new()
 	var mesh_inst := MeshInstance3D.new()
 	mesh_inst.mesh = im_mesh
+	# Assign material to the MeshInstance, not the ImmediateMesh surface for triangles
+	mesh_inst.material_override = material
 	parent.add_child(mesh_inst) # Add MeshInstance to the container
 
-	im_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, material) # Use LINE_STRIP for connected lines
-	for point in points:
-		im_mesh.surface_add_vertex(point)
-	# Add the first point again to close the loop
-	im_mesh.surface_add_vertex(points[0])
+	im_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+
+	var half_thickness: float = OUTLINE_THICKNESS / 2.0
+
+	for i in range(points.size()):
+		var p1: Vector3 = points[i]
+		var p2: Vector3 = points[(i + 1) % points.size()] # Loop back to start
+
+		var direction: Vector3 = (p2 - p1).normalized()
+		# Perpendicular vector in 2D (on XY plane)
+		var perpendicular := Vector3(-direction.y, direction.x, 0)
+
+		# Calculate the 4 vertices of the quad for this segment
+		var v1: Vector3 = p1 - perpendicular * half_thickness
+		var v2: Vector3 = p1 + perpendicular * half_thickness
+		var v3: Vector3 = p2 + perpendicular * half_thickness
+		var v4: Vector3 = p2 - perpendicular * half_thickness
+
+		# Add the two triangles forming the quad
+		im_mesh.surface_add_vertex(v1)
+		im_mesh.surface_add_vertex(v2)
+		im_mesh.surface_add_vertex(v3)
+
+		im_mesh.surface_add_vertex(v1)
+		im_mesh.surface_add_vertex(v3)
+		im_mesh.surface_add_vertex(v4)
+
 	im_mesh.surface_end()
 
 
