@@ -14,9 +14,9 @@ extends Node3D
 @export var dot_color_blue: Color = Color.BLUE
 
 # --- Label Configuration ---
-@export var label_font_size: int = 22 # Adjust as needed for visibility
+@export var label_font_size: int = 26 # Adjust as needed for visibility
 @export var label_color: Color = Color.WHITE
-@export var label_vertical_offset: float = -0.3 # Offset below cell center (adjust as needed)
+# @export var label_vertical_offset: float = -0.3 # Offset below cell center (adjust as needed) # REMOVED
 
 # --- Node References ---
 var mesh_instance: MeshInstance3D = null
@@ -127,7 +127,11 @@ func generate_dots() -> void:
 			
 			# Use the larger of the two offsets to ensure separation
 			var horizontal_offset: float = max(min_radius_offset, desired_cell_offset)
-			
+
+			# Calculate vertical offset for dots (10% of cell height upwards from center)
+			var dot_vertical_offset: float = step_y * 0.10
+			var dot_y_pos: float = cell_base_center_y + dot_vertical_offset
+
 			var z_pos: float = 0.01 # Slight offset
 
 			var blue_pos: Vector3
@@ -136,12 +140,12 @@ func generate_dots() -> void:
 			# Determine left/right position based on grid pattern
 			if (row + col) % 2 == 0:
 				# Blue left, Red right
-				blue_pos = Vector3(cell_base_center_x - horizontal_offset, cell_base_center_y, z_pos)
-				red_pos = Vector3(cell_base_center_x + horizontal_offset, cell_base_center_y, z_pos)
+				blue_pos = Vector3(cell_base_center_x - horizontal_offset, dot_y_pos, z_pos)
+				red_pos = Vector3(cell_base_center_x + horizontal_offset, dot_y_pos, z_pos)
 			else:
 				# Red left, Blue right
-				red_pos = Vector3(cell_base_center_x - horizontal_offset, cell_base_center_y, z_pos)
-				blue_pos = Vector3(cell_base_center_x + horizontal_offset, cell_base_center_y, z_pos)
+				red_pos = Vector3(cell_base_center_x - horizontal_offset, dot_y_pos, z_pos)
+				blue_pos = Vector3(cell_base_center_x + horizontal_offset, dot_y_pos, z_pos)
 
 			# --- Create Blue Dot Instance ---
 			var blue_dot_instance: MeshInstance3D = MeshInstance3D.new()
@@ -177,11 +181,16 @@ func generate_labels() -> void:
 	# Iterate through rows and columns to place labels
 	for row in range(grid_rows):
 		for col in range(grid_cols):
-			# Calculate cell center position
-			var cell_center_x: float = start_x + col * step_x
-			var cell_center_y: float = start_y + row * step_y
-			# Position label slightly below center and slightly in front of dots
-			var label_pos: Vector3 = Vector3(cell_center_x, cell_center_y + label_vertical_offset, 0.02) 
+			# Calculate cell base center position (X is same, Y needs adjustment)
+			var cell_base_center_x: float = start_x + col * step_x
+			var cell_base_center_y: float = start_y + row * step_y # Base Y for calculations
+
+			# Calculate vertical offset for labels (5% of cell height downwards from center)
+			var label_vertical_offset_dynamic: float = step_y * 0.05
+			var label_y_pos: float = cell_base_center_y - label_vertical_offset_dynamic
+
+			# Position label slightly in front of dots
+			var label_pos: Vector3 = Vector3(cell_base_center_x, label_y_pos, 0.02)
 
 			# --- Calculate Radius for this cell (same as in generate_dots) ---
 			var current_radius: float = start_radius + (row * grid_cols + col) * radius_increment
