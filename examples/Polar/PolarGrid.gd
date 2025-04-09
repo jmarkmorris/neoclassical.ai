@@ -78,6 +78,8 @@ func _initialize_materials():
 	white_material = StandardMaterial3D.new()
 	white_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
 	white_material.albedo_color = WHITE_COLOR
+	white_material.emission_enabled = true # Enable emission
+	white_material.emission = WHITE_COLOR # Add emission for brightness boost
 
 	vector_material = StandardMaterial3D.new()
 	vector_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
@@ -202,12 +204,17 @@ func _create_vector(parent_node: Node3D):
 	arrowhead.mesh = arrowhead_mesh
 	arrowhead.material_override = vector_material
 
-	# Position the arrowhead at the end of the vector using the calculated basis
-	# The basis aligns the cone's local Y-axis (its height direction) with the vector direction.
-	# Setting the origin directly to the endpoint places the base of the cone there.
-	arrowhead.transform = Transform3D(basis, vector_end_point)
+	# --- Alternative Arrowhead Orientation using look_at ---
+	# Position the arrowhead origin at the endpoint
+	arrowhead.global_position = parent_node.to_global(vector_end_point) 
 	
-	# No manual offset needed if basis and origin are set correctly.
-	# The cone mesh points along +Y, and our basis maps Y to vector_dir.
+	# Make it look slightly further along the vector direction from its position
+	# Use parent's global transform to ensure correct world direction
+	var look_target = arrowhead.global_position + parent_node.global_transform.basis * vector_dir
+	arrowhead.look_at(look_target, Vector3.UP)
 	
+	# look_at points the mesh's -Z axis. Cone points along +Y. Rotate to align.
+	arrowhead.rotate_object_local(Vector3.RIGHT, -PI / 2.0) 
+	# --- End Alternative Orientation ---
+
 	parent_node.add_child(arrowhead)
