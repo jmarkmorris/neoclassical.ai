@@ -14,7 +14,7 @@ extends Node3D
 @export var dot_color_blue: Color = Color.BLUE
 
 # --- Label Configuration ---
-@export var label_font_size: int = 16 # Adjust as needed for visibility
+@export var label_font_size: int = 18 # Adjust as needed for visibility
 @export var label_color: Color = Color.WHITE
 @export var label_vertical_offset: float = -0.3 # Offset below cell center (adjust as needed)
 
@@ -118,8 +118,9 @@ func generate_dots() -> void:
 			var cell_base_center_x: float = start_x + col * step_x
 			var cell_base_center_y: float = start_y + row * step_y
 			
-			# Calculate minimum offset needed based on radius to prevent overlap
-			var min_radius_offset: float = current_radius 
+			# Calculate minimum offset needed based on radius, adding a small gap
+			var small_gap = 0.01 # Adjust this value if needed
+			var min_radius_offset: float = current_radius + small_gap
 			
 			# Calculate desired offset based on cell width and separation factor
 			var desired_cell_offset: float = (step_x * dot_separation_factor) / 2.0
