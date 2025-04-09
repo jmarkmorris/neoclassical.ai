@@ -15,6 +15,14 @@ const LABEL_PIXEL_SIZE := 0.0020
 
 const CIRCLE_SEGMENTS := 128 # Number of segments for drawing circles (higher is smoother)
 
+# --- Scene Layout Constants ---
+const CAMERA_ORTHO_SIZE := 11.0 # Orthogonal camera view size
+const CAMERA_Z_POS := 10.0      # Camera distance from XY plane
+const GRID_Y_OFFSET := -0.5     # Vertical offset for the entire grid container
+const TITLE_Y_OFFSET_FROM_MAX_RADIUS := 0.7 # Title distance above max radius circle
+const RADIUS_LABEL_OFFSET_FACTOR := 1.0 # Multiplier for radius label distance below X-axis
+const AZIMUTH_LABEL_OFFSET_FACTOR := 1.5 # Multiplier for azimuth label distance outside max radius
+
 # Node references (optional, could also find_child)
 var camera: Camera3D
 var title_label: Label3D
@@ -44,10 +52,10 @@ func _clear_children_and_rebuild():
 	# Create and configure the main camera for viewing the 2D visualization in 3D space.
 	camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL # Use orthogonal for a flat 2D look
-	# Set camera size to encompass the grid and labels comfortably
-	camera.size = 11.0 
-	# Position camera along the Z-axis to view the XY plane
-	camera.transform.origin = Vector3(0, 0, 10) 
+	# Set camera size using constant
+	camera.size = CAMERA_ORTHO_SIZE 
+	# Position camera along the Z-axis using constant
+	camera.transform.origin = Vector3(0, 0, CAMERA_Z_POS) 
 	camera.current = true # Make this the active camera for the scene
 	add_child(camera)
 
@@ -55,8 +63,8 @@ func _clear_children_and_rebuild():
 	# Create and configure the main title label.
 	# Pass a specific font size override to make it larger than grid labels.
 	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO, 256) 
-	# Position title above the main grid area
-	title_label.transform.origin = Vector3(0, MAX_RADIUS + 0.7, 0)
+	# Position title above the main grid area using constant
+	title_label.transform.origin = Vector3(0, MAX_RADIUS + TITLE_Y_OFFSET_FROM_MAX_RADIUS, 0)
 	add_child(title_label)
 
 	# --- Grid Container Setup ---
@@ -64,8 +72,8 @@ func _clear_children_and_rebuild():
 	# This allows positioning the entire grid group easily.
 	grid_container = Node3D.new()
 	grid_container.name = "GridContainer"
-	# Position grid container slightly below the scene origin (as per design.md)
-	grid_container.position = Vector3(0, -0.5, 0)
+	# Position grid container using constant
+	grid_container.position = Vector3(0, GRID_Y_OFFSET, 0)
 	add_child(grid_container)
 		
 	# --- Material Initialization and Grid Element Creation ---
@@ -136,8 +144,8 @@ func _create_radial_lines(parent_node: Node3D):
 func _create_labels(parent_node: Node3D):
 	# --- Radius Labels --- (Placed along the positive X-axis)
 	for r in RADII:
-		# Position label slightly below the corresponding radius point on the X-axis
-		var label_pos = Vector3(r, -LABEL_OFFSET * 1.0, 0) 
+		# Position label slightly below the corresponding radius point on the X-axis using constant factor
+		var label_pos = Vector3(r, -LABEL_OFFSET * RADIUS_LABEL_OFFSET_FACTOR, 0) 
 		var label_text = str(snapped(r, 0.1)) # Format radius value (e.g., "1.0")
 		var radius_label = _create_label(label_text, label_pos) # Use helper to create label
 		radius_label.name = "RadiusLabel_" + str(r)
@@ -148,8 +156,8 @@ func _create_labels(parent_node: Node3D):
 	var azimuth_texts = ["0", "π/6", "π/3", "π/2", "2π/3", "5π/6", "π", "7π/6", "4π/3", "3π/2", "5π/3", "11π/6"]
 	for i in range(NUM_RADIAL_LINES):
 		var angle = float(i) / NUM_RADIAL_LINES * TAU # Calculate angle for this label
-		# Position label slightly further outside the max radius circle
-		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET * 1.5, angle) 
+		# Position label slightly further outside the max radius circle using constant factor
+		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET * AZIMUTH_LABEL_OFFSET_FACTOR, angle) 
 		var azimuth_label = _create_label(azimuth_texts[i], label_pos) # Use helper
 		azimuth_label.name = "AzimuthLabel_" + str(i)
 		parent_node.add_child(azimuth_label)
