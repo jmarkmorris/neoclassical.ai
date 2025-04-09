@@ -119,6 +119,8 @@ func generate_dots() -> void:
 			var cell_sphere_mesh: SphereMesh = SphereMesh.new()
 			cell_sphere_mesh.radius = current_radius
 			cell_sphere_mesh.height = current_radius * 2.0
+			cell_sphere_mesh.radial_segments = 128 # Increase horizontal smoothness
+			cell_sphere_mesh.rings = 64 # Increase vertical smoothness
 
 			# --- Calculate Positions ---
 			var cell_base_center_x: float = start_x + col * step_x
