@@ -3,7 +3,7 @@ extends Node3D
 # Configuration
 const FONT_DIR_PATH: String = "res://fonts/"
 const DISPLAY_TEXT: String = "The quick brown fox jumps over the lazy dog."
-const FONT_SIZE: int = 24
+const FONT_SIZE: int = 32
 # Decreased pixel size for potentially better resolution
 const PIXEL_SIZE: float = 0.005
 # Adjusted start Y and spacing slightly due to smaller pixel size
@@ -25,7 +25,7 @@ func _load_and_display_fonts() -> void:
 		return
 
 	var font_dirs: PackedStringArray = base_dir.get_directories()
-	var label_count: int = 0
+	var created_labels: Array[Label3D] = [] # Array to hold labels before positioning
 
 	print("FontDisplayManager: Found font directories: ", font_dirs)
 
@@ -64,13 +64,9 @@ func _load_and_display_fonts() -> void:
 					label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make it face the camera
 					label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER # Center the text
 
-					# Position the label vertically
-					label.position.y = START_Y - (label_count * VERTICAL_SPACING)
-					label.position.x = 0.0 # Center horizontally
-
-					# Add to the scene
+					# Add to the scene and store for later positioning
 					add_child(label)
-					label_count += 1
+					created_labels.append(label)
 					# Optional: break here if you only expect one .tres per folder
 					# break
 				elif resource:
@@ -80,9 +76,24 @@ func _load_and_display_fonts() -> void:
 
 		# font_dir goes out of scope and closes here
 
+	# --- Positioning Phase ---
+	var label_count: int = created_labels.size()
 	if label_count == 0:
 		print("FontDisplayManager: No .tres font files found or loaded in subdirectories of ", FONT_DIR_PATH)
 	else:
-		print("FontDisplayManager: Finished. Loaded %d fonts." % label_count)
+		print("FontDisplayManager: Positioning %d loaded fonts." % label_count)
+		# Calculate total height and starting position for vertical centering
+		var total_block_height: float = float(label_count) * VERTICAL_SPACING
+		# Adjust start_y to center the block around y=0
+		# Subtract half a spacing to center the lines themselves, not the gaps
+		var actual_start_y: float = (total_block_height / 2.0) - (VERTICAL_SPACING / 2.0)
+
+		# Position each label
+		for i in range(label_count):
+			var label: Label3D = created_labels[i]
+			label.position.y = actual_start_y - (i * VERTICAL_SPACING)
+			label.position.x = 0.0 # Center horizontally
+
+		print("FontDisplayManager: Finished positioning.")
 
 	# base_dir goes out of scope and closes here
