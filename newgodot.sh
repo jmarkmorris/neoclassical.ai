@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -x
 
 # --- Step 1 & 2: Argument Check ---
 # Check if exactly one argument is provided
