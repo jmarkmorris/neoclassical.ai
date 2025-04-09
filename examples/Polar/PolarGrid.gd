@@ -9,8 +9,8 @@ const RADII := [1.0, 2.0, 3.0, 4.0]
 const MAX_RADIUS := 4.0
 const NUM_RADIAL_LINES := 12
 const LABEL_OFFSET := 0.3 # Distance labels are placed outside the max radius
-const LABEL_FONT_SIZE := 64 # Adjust for visual clarity
-const LABEL_PIXEL_SIZE := 0.005 # Adjust for visual clarity
+const LABEL_FONT_SIZE := 128 # Increased for larger title/labels
+const LABEL_PIXEL_SIZE := 0.0025 # Decreased for sharper, larger text
 
 const VECTOR_R := 2.4
 const VECTOR_THETA := PI / 4.0
@@ -53,8 +53,8 @@ func _clear_children_and_rebuild():
 
 	# Create and configure Title Label
 	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO) # Position set below
-	# Position title above the grid area
-	title_label.transform.origin = Vector3(0, MAX_RADIUS + 1.5, 0) 
+	# Position title above the grid area, slightly lower than before
+	title_label.transform.origin = Vector3(0, MAX_RADIUS + 1.0, 0) # Lowered Y from +1.5 to +1.0
 	add_child(title_label)
 
 	# Create container for grid elements
