@@ -11,7 +11,15 @@ This document outlines strategies and considerations for developing Godot projec
 
 Here’s how you can create a bare-bones Godot Engine project with a single `Node3D`:
 
----
+### Creating and Using MyGodotTemplate
+
+The quickest possible setup is to set up and use a bare bones template using the Step-by-Step instructions below. Let's assume you have set up a project called 'MyGodotTemplate' as examples/MyGodotTemplate.
+
+- cd to the examples directory
+- cp -r MyGodotTemplate NewProjectName
+- cd NewProjectName
+- edit 'project.godot' and replace config/name="MyGodotTemplate" with config/name="NewProjectName"
+- go to the Godot app and open NewProjectName, click on the .tscn file, and you are ready to build.
 
 ### Step-by-Step Instructions
 
