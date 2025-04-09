@@ -110,7 +110,16 @@ func generate_dots() -> void:
 			# --- Calculate Positions ---
 			var cell_base_center_x: float = start_x + col * step_x
 			var cell_base_center_y: float = start_y + row * step_y
-			var horizontal_offset: float = (step_x * dot_separation_factor) / 2.0
+			
+			# Calculate minimum offset needed based on radius to prevent overlap
+			var min_radius_offset: float = current_radius 
+			
+			# Calculate desired offset based on cell width and separation factor
+			var desired_cell_offset: float = (step_x * dot_separation_factor) / 2.0
+			
+			# Use the larger of the two offsets to ensure separation
+			var horizontal_offset: float = max(min_radius_offset, desired_cell_offset)
+			
 			var z_pos: float = 0.01 # Slight offset
 
 			var blue_pos: Vector3
