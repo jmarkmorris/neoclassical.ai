@@ -200,11 +200,11 @@ func _create_vector(parent_node: Node3D):
 	
 	# Define triangle vertices (pointing along local +Y)
 	# Tip point at origin, base points behind it along -Y
-	var tip_h = ARROWHEAD_HEIGHT
-	var tip_w = ARROWHEAD_RADIUS * 2.0 # Use radius to define base width
-	var p1 := Vector2(0, 0)            # Tip point
-	var p2 := Vector2(-tip_w / 2.0, -tip_h) # Base left
-	var p3 := Vector2(tip_w / 2.0, -tip_h)  # Base right
+	var tip_h = ARROWHEAD_HEIGHT # Height = 0.2
+	var tip_w = ARROWHEAD_HEIGHT * 2.0 # Make width twice the height (Width = 0.4)
+	var p1 := Vector2(0, 0)            # Tip point (0, 0)
+	var p2 := Vector2(-tip_w / 2.0, -tip_h) # Base left (-0.2, -0.2)
+	var p3 := Vector2(tip_w / 2.0, -tip_h)  # Base right (0.2, -0.2)
 	
 	arrowhead.polygon = PackedVector2Array([p1, p2, p3])
 	arrowhead.mode = CSGPolygon3D.MODE_DEPTH
