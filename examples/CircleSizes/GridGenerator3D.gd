@@ -14,7 +14,7 @@ extends Node3D
 @export var dot_color_blue: Color = Color.BLUE
 
 # --- Label Configuration ---
-@export var label_font_size: int = 18 # Adjust as needed for visibility
+@export var label_font_size: int = 22 # Adjust as needed for visibility
 @export var label_color: Color = Color.WHITE
 @export var label_vertical_offset: float = -0.3 # Offset below cell center (adjust as needed)
 
