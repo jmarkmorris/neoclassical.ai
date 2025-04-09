@@ -20,7 +20,7 @@ const ARROWHEAD_HEIGHT := 0.2  # Original value
 const ARROWHEAD_RADIUS := 0.1  # Original value
 # --- End reverted sizes ---
 
-const CIRCLE_SEGMENTS := 64 # Number of segments for drawing circles
+const CIRCLE_SEGMENTS := 128 # Increased for smoother circles
 
 # Node references (optional, could also find_child)
 var camera: Camera3D
@@ -53,8 +53,8 @@ func _clear_children_and_rebuild():
 	camera.current = true
 	add_child(camera)
 
-	# Create and configure Title Label
-	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO) # Position set below
+	# Create and configure Title Label, passing specific font size
+	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO, 48) # Pass 48 for font_size
 	# Position title above the grid area, slightly lower than before
 	title_label.transform.origin = Vector3(0, MAX_RADIUS + 1.0, 0) # Lowered Y from +1.5 to +1.0
 	add_child(title_label)
@@ -127,8 +127,8 @@ func _create_radial_lines(parent_node: Node3D):
 func _create_labels(parent_node: Node3D):
 	# Radius Labels (along positive X axis)
 	for r in RADII:
-		# Adjust downward offset (closer to axis than before)
-		var label_pos = Vector3(r, -LABEL_OFFSET * 1.5, 0) # Multiplier reduced from 2.0 to 1.5
+		# Adjust downward offset (closer to axis)
+		var label_pos = Vector3(r, -LABEL_OFFSET * 1.0, 0) # Multiplier reduced from 1.5 to 1.0
 		var label_text = str(snapped(r, 0.1)) # Format to one decimal place
 		var radius_label = _create_label(label_text, label_pos)
 		radius_label.name = "RadiusLabel_" + str(r)
@@ -147,10 +147,12 @@ func _create_labels(parent_node: Node3D):
 
 # Helper function to create and configure a Label3D
 # Note: This helper now only configures the label, positioning is handled by the caller
-func _create_label(text: String, position: Vector3) -> Label3D:
+# Added optional font_size parameter
+func _create_label(text: String, position: Vector3, font_size_override: int = -1) -> Label3D:
 	var label := Label3D.new()
 	label.text = text
-	label.font_size = LABEL_FONT_SIZE
+	# Use override if provided, otherwise use the default constant
+	label.font_size = font_size_override if font_size_override > 0 else LABEL_FONT_SIZE
 	label.pixel_size = LABEL_PIXEL_SIZE
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	label.no_depth_test = true # Use no_depth_test instead of shading_mode
