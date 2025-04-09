@@ -14,11 +14,11 @@ const LABEL_PIXEL_SIZE := 0.0025 # Decreased for sharper, larger text
 
 const VECTOR_R := 2.4
 const VECTOR_THETA := PI / 4.0
-# --- Temporarily increased sizes for debugging ---
-const VECTOR_LINE_WIDTH := 0.15 # Increased from 0.03
-const ARROWHEAD_HEIGHT := 1.0  # Increased from 0.2
-const ARROWHEAD_RADIUS := 0.5  # Increased from 0.1
-# --- End temporary increase ---
+# --- Reverted sizes back to smaller values ---
+const VECTOR_LINE_WIDTH := 0.03 # Original value
+const ARROWHEAD_HEIGHT := 0.2  # Original value
+const ARROWHEAD_RADIUS := 0.1  # Original value
+# --- End reverted sizes ---
 
 const CIRCLE_SEGMENTS := 64 # Number of segments for drawing circles
 
@@ -202,11 +202,12 @@ func _create_vector(parent_node: Node3D):
 	arrowhead.mesh = arrowhead_mesh
 	arrowhead.material_override = vector_material
 
-	# Position the arrowhead at the end of the vector
-	# Create a basis that aligns the cone with the vector direction
+	# Position the arrowhead at the end of the vector using the calculated basis
+	# The basis aligns the cone's local Y-axis (its height direction) with the vector direction.
+	# Setting the origin directly to the endpoint places the base of the cone there.
 	arrowhead.transform = Transform3D(basis, vector_end_point)
 	
-	# Offset the arrowhead slightly to connect with the line
-	arrowhead.transform.origin -= vector_dir * (ARROWHEAD_HEIGHT / 2.0)
+	# No manual offset needed if basis and origin are set correctly.
+	# The cone mesh points along +Y, and our basis maps Y to vector_dir.
 	
 	parent_node.add_child(arrowhead)
