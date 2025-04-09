@@ -3,7 +3,7 @@
 # Check if we're in the project root directory (where pyproject.toml is)
 if [ ! -f "pyproject.toml" ]; then
     echo "Please run this script from the project root directory (the one containing pyproject.toml)"
-    echo "Example: cd /path/to/project/root && ./examples/run_tool.sh"
+    echo "Example: cd /path/to/project/root && ./run_example.sh"
     exit 1
 fi
 
