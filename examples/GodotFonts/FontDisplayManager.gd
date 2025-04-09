@@ -64,6 +64,7 @@ func _load_and_display_fonts() -> void:
 					label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make it face the camera
 					label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER # Center the text
 					label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER # Center the text vertically
+					label.outline_size = 0 # Explicitly disable outline via script
 
 					# Add to the scene and store for later positioning
 					add_child(label)
