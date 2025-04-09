@@ -1,4 +1,5 @@
 #!/bin/bash
+# set -x
 
 # Define target directory and user home for clarity
 TARGET_DIR="/Users/markmorris/Documents/NPQG_Code_Base/MySettings"
@@ -9,62 +10,62 @@ mkdir -p "$TARGET_DIR"
 
 echo "Checking hostname: $HOSTNAME"
 
+# Determine host type
+HOST_TYPE=""
 if [[ "$HOSTNAME" =~ [Aa][Ii][Rr] ]]; then
-  echo "Hostname contains 'air'. Copying mac air-specific files..."
-
-  # Copy activate script if venv exists
-  if [ -d ".venv_air" ] && [ -f ".venv_air/bin/activate" ]; then
-    cp .venv_air/bin/activate "$TARGET_DIR/air_activate"
-    echo "Copied .venv_air/bin/activate to $TARGET_DIR/air_activate"
-  else
-    echo "Warning: .venv_air/bin/activate not found. Skipping copy."
-  fi
-
-  # Copy bash profile if it exists
-  if [ -f "$USER_HOME/.bash_profile" ]; then
-    cp "$USER_HOME/.bash_profile" "$TARGET_DIR/air.bash_profile"
-    echo "Copied $USER_HOME/.bash_profile to $TARGET_DIR/air.bash_profile"
-  else
-    echo "Warning: $USER_HOME/.bash_profile not found. Skipping copy."
-  fi
-
-  # Copy bashrc if it exists
-  if [ -f "$USER_HOME/.bashrc" ]; then
-    cp "$USER_HOME/.bashrc" "$TARGET_DIR/air.bashrc"
-    echo "Copied $USER_HOME/.bashrc to $TARGET_DIR/air.bashrc"
-  else
-    echo "Warning: $USER_HOME/.bashrc not found. Skipping copy."
-  fi
-
+ HOST_TYPE="air"
 elif [[ "$HOSTNAME" =~ [Pp][Rr][Oo] ]]; then
-  echo "Hostname contains 'pro'. Copying mac pro-specific files..."
+ HOST_TYPE="pro"
+fi
 
-  # Copy activate script if venv exists
-  if [ -d ".venv_pro" ] && [ -f ".venv_pro/bin/activate" ]; then
-    cp .venv_pro/bin/activate "$TARGET_DIR/pro_activate"
-    echo "Copied .venv_pro/bin/activate to $TARGET_DIR/pro_activate"
-  else
-    echo "Warning: .venv_pro/bin/activate not found. Skipping copy."
-  fi
+# Proceed only if a known host type is detected
+if [ -n "$HOST_TYPE" ]; then
+ echo "Hostname contains '$HOST_TYPE'. Copying ${HOST_TYPE}-specific files..."
 
-  # Copy bash profile if it exists
-  if [ -f "$USER_HOME/.bash_profile" ]; then
-    cp "$USER_HOME/.bash_profile" "$TARGET_DIR/pro.bash_profile"
-    echo "Copied $USER_HOME/.bash_profile to $TARGET_DIR/pro.bash_profile"
-  else
-    echo "Warning: $USER_HOME/.bash_profile not found. Skipping copy."
-  fi
+ # Define source and destination paths based on host type
+ VENV_DIR=".venv_${HOST_TYPE}"
+ ACTIVATE_SRC="${VENV_DIR}/bin/activate"
+ ACTIVATE_DEST="${TARGET_DIR}/${HOST_TYPE}_activate"
 
-  # Copy bashrc if it exists
-  if [ -f "$USER_HOME/.bashrc" ]; then
-    cp "$USER_HOME/.bashrc" "$TARGET_DIR/pro.bashrc"
-    echo "Copied $USER_HOME/.bashrc to $TARGET_DIR/pro.bashrc"
-  else
-    echo "Warning: $USER_HOME/.bashrc not found. Skipping copy."
-  fi
+ BASH_PROFILE_SRC="${USER_HOME}/.bash_profile"
+ BASH_PROFILE_DEST="${TARGET_DIR}/${HOST_TYPE}.bash_profile"
+
+ BASHRC_SRC="${USER_HOME}/.bashrc"
+ BASHRC_DEST="${TARGET_DIR}/${HOST_TYPE}.bashrc"
+
+ # --- Common Copy Logic ---
+
+ # Copy activate script if venv and activate script exist
+ if [ -d "$VENV_DIR" ] && [ -f "$ACTIVATE_SRC" ]; then
+   cp "$ACTIVATE_SRC" "$ACTIVATE_DEST"
+   echo "Copied $ACTIVATE_SRC to $ACTIVATE_DEST"
+ else
+   # More specific warning based on which check failed might be useful
+   if [ ! -d "$VENV_DIR" ]; then
+       echo "Warning: Directory $VENV_DIR not found. Skipping activate script copy."
+   elif [ ! -f "$ACTIVATE_SRC" ]; then
+       echo "Warning: File $ACTIVATE_SRC not found. Skipping activate script copy."
+   fi
+ fi
+
+ # Copy bash profile if it exists
+ if [ -f "$BASH_PROFILE_SRC" ]; then
+   cp "$BASH_PROFILE_SRC" "$BASH_PROFILE_DEST"
+   echo "Copied $BASH_PROFILE_SRC to $BASH_PROFILE_DEST"
+ else
+   echo "Warning: $BASH_PROFILE_SRC not found. Skipping copy."
+ fi
+
+ # Copy bashrc if it exists
+ if [ -f "$BASHRC_SRC" ]; then
+   cp "$BASHRC_SRC" "$BASHRC_DEST"
+   echo "Copied $BASHRC_SRC to $BASHRC_DEST"
+ else
+   echo "Warning: $BASHRC_SRC not found. Skipping copy."
+ fi
 
 else
-  echo "Hostname does not match 'air' or 'pro'. No host-specific files copied."
+ echo "Hostname does not match 'air' or 'pro'. No host-specific files copied."
 fi
 
 echo "mysettings.sh script finished."
