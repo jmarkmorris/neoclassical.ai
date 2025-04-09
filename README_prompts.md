@@ -1,16 +1,3 @@
-# Prompts for Manim
-
-*   Always provide feedback as your last message regarding how to express the request concisely!
-*   Name the {name}(scene) the same as the filename (or the requested output file) to avoid warnings.
-*   Comments should explain the overall design and purpose of the code block.
-*   All comments added should be professional, concise, 
-*   Do not add comments specific to a particular problem, issue, or reversion.
-*   Ensure the editor makes small incremental search/replace blocks and keep the changes that suceed.
-*   When running in architect mode, ensure that the editor LLM actually makes its edits.
-*   Before confirming completion of a set of edits, explicitly verify that *all* requested changes within the current instruction set have been successfully applied to the relevant files. Use file system checks (`ls -lt`, `git diff`, etc.) if necessary.
-
----
-
 # General Coding Principles
 
 When writing code, you MUST follow these principles:
@@ -31,7 +18,6 @@ When writing code, you MUST follow these principles:
     *   Function Composition
     *   Declarative Code
 
----
 
 # Coding Standards & Style
 
@@ -41,29 +27,27 @@ When writing code, you MUST follow these principles:
 *   **Constants:** Define constants at the module level using `UPPER_SNAKE_CASE`.
 *   **Formatting:** Code should adhere to Black formatting standards. Run `black .` before committing.
 
----
 
 # Design & Architecture
 
 *   **Configuration Management:** Prefer loading configuration from YAML files or using environment variables over hardcoding.
 *   **Error Handling Specifics:** Define custom exception classes inheriting from a base application exception where appropriate for distinct error conditions.
 
----
-
-# AI Interaction & Workflow
+# AI Prompts, Interaction, & Workflow
 
 *   **Ask Clarifying Questions:** If a request is unclear or ambiguous, please ask for clarification before proceeding.
 *   **Explain Rationale:** For non-trivial changes, briefly explain the 'why' behind the chosen approach, not just the 'what'.
 *   **Suggest Alternatives:** Feel free to suggest alternative implementations if you believe they offer significant advantages (e.g., performance, readability, simplicity).
 *   **Handling Large Requests:** If a request involves extensive changes, propose a plan or ask for the request to be broken down into smaller, manageable steps.
+*   Always provide feedback, as your last message, regarding how to express the prompt request concisely!
+*   Comments should explain the overall design and purpose of the code block.
+*   All comments added should be professional and concise.
+*   Do not add comments specific to a particular problem, issue, or reversion.
+*   Ensure the editor makes small incremental search/replace blocks and keep the changes that succeed.
+*   When running in architect mode, ensure that the editor engineer actually makes its edits.
+*   Explicitly verify that *all* requested changes within the prompt have been successfully applied to the relevant files. 
 
----
+# Godot Engine Project-Specific Conventions
 
-# Project-Specific Conventions
-
-*   **Manim Base Classes:** Default to `Scene` or `ThreeDScene` unless zoom/panning capabilities are needed, then use `ZoomableScene`.
-*   **Manim Colors:** Prefer Manim's built-in color constants (e.g., `BLUE`, `RED`).
-*   **Vector Operations:** Use NumPy arrays for vector calculations unless Manim's specific Mobject methods are more convenient. Avoid custom `Vector3D` classes for new code.
-
----
+*   Default to Node3D.
 
