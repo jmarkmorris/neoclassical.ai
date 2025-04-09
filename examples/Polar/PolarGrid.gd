@@ -127,8 +127,8 @@ func _create_radial_lines(parent_node: Node3D):
 func _create_labels(parent_node: Node3D):
 	# Radius Labels (along positive X axis)
 	for r in RADII:
-		# Increase downward offset to match goal.jpg more closely
-		var label_pos = Vector3(r, -LABEL_OFFSET * 2.0, 0) # Position further below the axis
+		# Adjust downward offset (closer to axis than before)
+		var label_pos = Vector3(r, -LABEL_OFFSET * 1.5, 0) # Multiplier reduced from 2.0 to 1.5
 		var label_text = str(snapped(r, 0.1)) # Format to one decimal place
 		var radius_label = _create_label(label_text, label_pos)
 		radius_label.name = "RadiusLabel_" + str(r)
@@ -138,8 +138,8 @@ func _create_labels(parent_node: Node3D):
 	var azimuth_texts = ["0", "π/6", "π/3", "π/2", "2π/3", "5π/6", "π", "7π/6", "4π/3", "3π/2", "5π/3", "11π/6"]
 	for i in range(NUM_RADIAL_LINES):
 		var angle = float(i) / NUM_RADIAL_LINES * TAU
-		# Place label slightly outside the max radius
-		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET, angle)
+		# Place label slightly further outside the max radius
+		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET * 1.5, angle) # Multiplier added (1.5)
 		var azimuth_label = _create_label(azimuth_texts[i], label_pos)
 		azimuth_label.name = "AzimuthLabel_" + str(i)
 		parent_node.add_child(azimuth_label)
