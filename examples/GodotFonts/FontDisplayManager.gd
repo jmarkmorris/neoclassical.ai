@@ -7,7 +7,7 @@ const FONT_SIZE: int = 32
 # Decreased pixel size for potentially better resolution
 const PIXEL_SIZE: float = 0.005
 # Adjusted start Y and spacing slightly due to smaller pixel size
-const START_Y: float = 1.5
+const START_Y: float = .5
 const VERTICAL_SPACING: float = 0.35
 
 func _ready() -> void:
@@ -83,18 +83,24 @@ func _load_and_display_fonts() -> void:
 		print("FontDisplayManager: No .tres font files found or loaded in subdirectories of ", FONT_DIR_PATH)
 	else:
 		print("FontDisplayManager: Positioning %d loaded fonts." % label_count)
+
 		# Calculate total height and starting position for vertical centering
 		var total_block_height: float = float(label_count) * VERTICAL_SPACING
+
 		# Adjust start_y to center the block around y=0
 		# Subtract half a spacing to center the lines themselves, not the gaps
 		var actual_start_y: float = (total_block_height / 2.0) - (VERTICAL_SPACING / 2.0)
 
+		# Define the upward shift amount (adjust this value as needed)
+		var vertical_shift: float = 1.0 # Adjust this value to control the shift
+
 		# Position each label
 		for i in range(label_count):
 			var label: Label3D = created_labels[i]
-			label.position.y = actual_start_y - (i * VERTICAL_SPACING)
+			# Calculate base centered position and add the shift
+			label.position.y = (actual_start_y - (i * VERTICAL_SPACING)) + vertical_shift
 			label.position.x = 0.0 # Center horizontally
 
-		print("FontDisplayManager: Finished positioning.")
+		print("FontDisplayManager: Finished positioning with vertical shift.")
 
 	# base_dir goes out of scope and closes here
