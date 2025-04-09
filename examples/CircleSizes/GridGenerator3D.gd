@@ -185,8 +185,8 @@ func generate_labels() -> void:
 			var cell_base_center_x: float = start_x + col * step_x
 			var cell_base_center_y: float = start_y + row * step_y # Base Y for calculations
 
-			# Calculate vertical offset for labels (5% of cell height downwards from center)
-			var label_vertical_offset_dynamic: float = step_y * 0.05
+			# Calculate vertical offset for labels (35% of cell height downwards from center, placing it near bottom)
+			var label_vertical_offset_dynamic: float = step_y * 0.35
 			var label_y_pos: float = cell_base_center_y - label_vertical_offset_dynamic
 
 			# Position label slightly in front of dots
