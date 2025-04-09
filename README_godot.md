@@ -30,7 +30,12 @@ Here’s how you can create a bare-bones Godot Engine project with a single `Nod
 
 4. **Save the Scene**:
    - Since you’re planning to add everything programmatically later, you don’t need to modify the scene further.
-   - Save the empty scene to preserve the `Node3D` as the root. Click **File** > **Save Scene**, and name it `main.tscn` (or leave the default name).
+   - Save the empty scene to preserve the `Node3D` as the root. Click **Scene** > **Save Scene**, and name it `main.tscn` (or leave the default name). The tscn file will look like this:
+        ```
+        cat node_3d.tscn
+        [gd_scene format=3 uid="uid://7xu24s130gkk"]
+        [node name="Node3D" type="Node3D"]
+        ```
 
 5. **Ensure Minimal Setup**:
    - Avoid creating `.gd` script files or adding additional nodes. The project will remain empty apart from the single `Node3D`.
