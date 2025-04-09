@@ -16,13 +16,12 @@ extends Node3D
 # --- Label Configuration ---
 @export var label_font_size: int = 26 # Adjust as needed for visibility
 @export var label_color: Color = Color.WHITE
-# @export var label_vertical_offset: float = -0.3 # Offset below cell center (adjust as needed) # REMOVED
 
 # --- Positioning Constants ---
 const DOT_Z_OFFSET: float = 0.01
 const LABEL_Z_OFFSET: float = 0.02
 const DOT_VERTICAL_FACTOR: float = 0.05 # Percentage of cell height above center (Adjusted for goal.jpg)
-const LABEL_VERTICAL_FACTOR: float = 0.40 # Percentage of cell height below center (Adjusted for goal.jpg)
+const LABEL_VERTICAL_FACTOR: float = 0.30 # Percentage of cell height below center (Adjusted for goal.jpg)
 
 # --- Node References ---
 var mesh_instance: MeshInstance3D = null
