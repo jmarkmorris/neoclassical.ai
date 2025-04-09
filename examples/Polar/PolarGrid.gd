@@ -9,8 +9,8 @@ const RADII := [1.0, 2.0, 3.0, 4.0]
 const MAX_RADIUS := 4.0
 const NUM_RADIAL_LINES := 12
 const LABEL_OFFSET := 0.3 # Distance labels are placed outside the max radius
-const LABEL_FONT_SIZE := 128 # Increased for larger title/labels
-const LABEL_PIXEL_SIZE := 0.0025 # Decreased for sharper, larger text
+const LABEL_FONT_SIZE := 128 # Keep font size
+const LABEL_PIXEL_SIZE := 0.0020 # Decrease further for sharper/bolder text
 
 const VECTOR_R := 2.4
 const VECTOR_THETA := PI / 4.0
@@ -204,17 +204,11 @@ func _create_vector(parent_node: Node3D):
 	arrowhead.mesh = arrowhead_mesh
 	arrowhead.material_override = vector_material
 
-	# --- Alternative Arrowhead Orientation using look_at ---
-	# Position the arrowhead origin at the endpoint
-	arrowhead.global_position = parent_node.to_global(vector_end_point) 
-	
-	# Make it look slightly further along the vector direction from its position
-	# Use parent's global transform to ensure correct world direction
-	var look_target = arrowhead.global_position + parent_node.global_transform.basis * vector_dir
-	arrowhead.look_at(look_target, Vector3.UP)
-	
-	# look_at points the mesh's -Z axis. Cone points along +Y. Rotate to align.
-	arrowhead.rotate_object_local(Vector3.RIGHT, -PI / 2.0) 
-	# --- End Alternative Orientation ---
+	# --- Revert to Basis Orientation for Arrowhead ---
+	# The basis calculated earlier aligns the Y-axis with vector_dir.
+	# ConeMesh extends along +Y from its origin (base center).
+	# Setting the transform origin to vector_end_point places the cone's base there.
+	arrowhead.transform = Transform3D(basis, vector_end_point)
+	# --- End Basis Orientation ---
 
 	parent_node.add_child(arrowhead)
