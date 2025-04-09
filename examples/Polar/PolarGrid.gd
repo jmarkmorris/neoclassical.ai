@@ -105,20 +105,20 @@ func _polar_to_cartesian(r: float, theta: float) -> Vector3:
 func _create_circles(parent_node: Node3D):
 	for r: float in RADII: # Iterate through the defined radii (e.g., 1.0, 2.0, ...)
 		# Create ImmediateMesh and a MeshInstance to render it for each circle
-		var im: ImmediateMesh = ImmediateMesh.new()
-		var mi: MeshInstance3D = MeshInstance3D.new()
-		mi.name = "Circle_r" + str(r)
-		mi.mesh = im
-		mi.material_override = white_material
-		parent_node.add_child(mi)
+		var immediate_mesh: ImmediateMesh = ImmediateMesh.new()
+		var mesh_instance: MeshInstance3D = MeshInstance3D.new()
+		mesh_instance.name = "Circle_r" + str(r)
+		mesh_instance.mesh = immediate_mesh
+		mesh_instance.material_override = white_material
+		parent_node.add_child(mesh_instance)
 
 		# Begin defining the line strip for the circle
-		im.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
+		immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
 		# Add vertices around the circle
 		for i: int in range(CIRCLE_SEGMENTS + 1): # +1 to close the loop
 			var angle: float = float(i) / CIRCLE_SEGMENTS * TAU # TAU is 2*PI
-			im.surface_add_vertex(_polar_to_cartesian(r, angle))
-		im.surface_end() # Finish defining the surface
+			immediate_mesh.surface_add_vertex(_polar_to_cartesian(r, angle))
+		immediate_mesh.surface_end() # Finish defining the surface
 
 # Creates the radial grid lines extending from the origin using ImmediateMesh.
 func _create_radial_lines(parent_node: Node3D):
@@ -127,18 +127,18 @@ func _create_radial_lines(parent_node: Node3D):
 		var end_point: Vector3 = _polar_to_cartesian(MAX_RADIUS, angle) # Calculate endpoint at max radius
 		
 		# Create ImmediateMesh and MeshInstance for each radial line
-		var im: ImmediateMesh = ImmediateMesh.new()
-		var mi: MeshInstance3D = MeshInstance3D.new()
-		mi.name = "RadialLine_" + str(i)
-		mi.mesh = im
-		mi.material_override = white_material
-		parent_node.add_child(mi)
+		var immediate_mesh: ImmediateMesh = ImmediateMesh.new()
+		var mesh_instance: MeshInstance3D = MeshInstance3D.new()
+		mesh_instance.name = "RadialLine_" + str(i)
+		mesh_instance.mesh = immediate_mesh
+		mesh_instance.material_override = white_material
+		parent_node.add_child(mesh_instance)
 
 		# Begin defining the line segment
-		im.surface_begin(Mesh.PRIMITIVE_LINES)
-		im.surface_add_vertex(Vector3.ZERO) # Line starts at origin
-		im.surface_add_vertex(end_point)   # Line ends at max radius
-		im.surface_end() # Finish defining the surface
+		immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+		immediate_mesh.surface_add_vertex(Vector3.ZERO) # Line starts at origin
+		immediate_mesh.surface_add_vertex(end_point)   # Line ends at max radius
+		immediate_mesh.surface_end() # Finish defining the surface
 
 # Creates the Label3D nodes for radius values and azimuth angle markers.
 func _create_labels(parent_node: Node3D):
