@@ -117,24 +117,45 @@ func _create_axes_example(tip_style: TipStyle, tip_name: String, position: Vecto
 	label.position = Vector3(0, AXIS_LENGTH / 2.0 + 0.8, 0)
 	container.add_child(label)
 
+	# Calculate how much to shorten the axis line based on the tip
+	var shortening_distance: float = _get_tip_shortening_distance(tip_style)
+
 	# Draw axes, ticks, and tips
-	_draw_axes_lines(container)
+	_draw_axes_lines(container, shortening_distance)
 	_draw_ticks(container)
 	_draw_arrow_tips(container, tip_style)
 
+func _get_tip_shortening_distance(tip_style: TipStyle) -> float:
+	match tip_style:
+		TipStyle.TRIANGLE, TipStyle.TRIANGLE_FILLED:
+			return TIP_SIZE
+		TipStyle.SQUARE, TipStyle.SQUARE_FILLED:
+			return TIP_SIZE * 0.8 * 2.0
+		TipStyle.CIRCLE, TipStyle.CIRCLE_FILLED:
+			return TIP_SIZE * 0.6 * 2.0
+		TipStyle.STEALTH:
+			return TIP_SIZE * 1.5
+	return 0.0 # Default case
+
 # --- Drawing Helper Functions ---
 
-func _draw_axes_lines(parent: Node3D) -> void:
+func _draw_axes_lines(parent: Node3D, shorten_by: float) -> void:
+	# Calculate new length, ensuring it doesn't go below zero
+	var x_axis_length = max(0.0, AXIS_LENGTH - shorten_by)
+	var y_axis_length = max(0.0, AXIS_LENGTH - shorten_by)
+
 	# Horizontal Axis using CSGBox3D
 	var x_axis := CSGBox3D.new()
-	x_axis.size = Vector3(AXIS_LENGTH, AXIS_THICKNESS, AXIS_THICKNESS * 0.5) # Make slightly flatter
+	x_axis.size = Vector3(x_axis_length, AXIS_THICKNESS, AXIS_THICKNESS * 0.5) # Use new length
 	x_axis.material = unshaded_white_material
+	x_axis.position = Vector3(-shorten_by / 2.0, 0, 0) # Shift left to keep negative end fixed
 	parent.add_child(x_axis)
 
 	# Vertical Axis using CSGBox3D
 	var y_axis := CSGBox3D.new()
-	y_axis.size = Vector3(AXIS_THICKNESS, AXIS_LENGTH, AXIS_THICKNESS * 0.5) # Make slightly flatter
+	y_axis.size = Vector3(AXIS_THICKNESS, y_axis_length, AXIS_THICKNESS * 0.5) # Use new length
 	y_axis.material = unshaded_white_material
+	y_axis.position = Vector3(0, -shorten_by / 2.0, 0) # Shift down to keep negative end fixed
 	parent.add_child(y_axis)
 
 
