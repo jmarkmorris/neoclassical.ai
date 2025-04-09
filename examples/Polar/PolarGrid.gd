@@ -123,7 +123,8 @@ func _create_radial_lines(parent_node: Node3D):
 func _create_labels(parent_node: Node3D):
 	# Radius Labels (along positive X axis)
 	for r in RADII:
-		var label_pos = Vector3(r, -LABEL_OFFSET, 0) # Position slightly below the axis
+		# Increase downward offset to match goal.jpg more closely
+		var label_pos = Vector3(r, -LABEL_OFFSET * 2.0, 0) # Position further below the axis
 		var label_text = str(snapped(r, 0.1)) # Format to one decimal place
 		var radius_label = _create_label(label_text, label_pos)
 		radius_label.name = "RadiusLabel_" + str(r)
