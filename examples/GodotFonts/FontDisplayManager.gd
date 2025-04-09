@@ -5,7 +5,7 @@ const FONT_DIR_PATH: String = "res://fonts/"
 const DISPLAY_TEXT: String = "The quick brown fox jumps over the lazy dog."
 const FONT_SIZE: int = 32
 # Decreased pixel size for potentially better resolution
-const PIXEL_SIZE: float = 0.005
+const PIXEL_SIZE: float = 0.006
 # Adjusted start Y and spacing slightly due to smaller pixel size
 const START_Y: float = .5
 const VERTICAL_SPACING: float = 0.35
