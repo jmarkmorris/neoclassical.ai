@@ -55,8 +55,8 @@ func _clear_children_and_rebuild():
 
 	# Create and configure Title Label, passing specific larger font size
 	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO, 256) # Pass 256 override for title
-	# Position title above the grid area, moved down slightly
-	title_label.transform.origin = Vector3(0, MAX_RADIUS + 0.5, 0) # Lowered Y from +1.0 to +0.5
+	# Position title above the grid area, moved up slightly
+	title_label.transform.origin = Vector3(0, MAX_RADIUS + 0.7, 0) # Raised Y from +0.5 to +0.7
 	add_child(title_label)
 
 	# Create container for grid elements
@@ -191,26 +191,30 @@ func _create_vector(parent_node: Node3D):
 	var basis = Basis(x_axis, y_axis, z_axis)
 	
 	# Position and orient the cylinder
-	line.transform = Transform3D(basis, vector_end_point / 2.0)
+	line.transform = Transform3D(basis, vector_end_point / 2.0) # Center the line mesh
 	parent_node.add_child(line)
 
-	# Use ClassDB to instantiate ConeMesh for the arrowhead
-	var arrowhead := MeshInstance3D.new()
+	# --- Create Triangle Arrowhead using CSGPolygon3D ---
+	var arrowhead := CSGPolygon3D.new()
 	arrowhead.name = "VectorArrowhead"
-	var arrowhead_mesh = ClassDB.instantiate("ConeMesh")
-	if arrowhead_mesh == null:
-		push_error("Failed to instantiate ConeMesh using ClassDB")
-		return # Avoid further errors
-	arrowhead_mesh.radius = ARROWHEAD_RADIUS
-	arrowhead_mesh.height = ARROWHEAD_HEIGHT
-	arrowhead.mesh = arrowhead_mesh
-	arrowhead.material_override = vector_material
+	
+	# Define triangle vertices (pointing along local +Y)
+	# Tip point at origin, base points behind it along -Y
+	var tip_h = ARROWHEAD_HEIGHT
+	var tip_w = ARROWHEAD_RADIUS * 2.0 # Use radius to define base width
+	var p1 := Vector2(0, 0)            # Tip point
+	var p2 := Vector2(-tip_w / 2.0, -tip_h) # Base left
+	var p3 := Vector2(tip_w / 2.0, -tip_h)  # Base right
+	
+	arrowhead.polygon = PackedVector2Array([p1, p2, p3])
+	arrowhead.mode = CSGPolygon3D.MODE_DEPTH
+	arrowhead.depth = VECTOR_LINE_WIDTH # Give it some thickness
+	arrowhead.material = vector_material # Use the vector material
 
-	# --- Revert to Basis Orientation for Arrowhead ---
-	# The basis calculated earlier aligns the Y-axis with vector_dir.
-	# ConeMesh extends along +Y from its origin (base center).
-	# Setting the transform origin to vector_end_point places the cone's base there.
+	# Use the same basis calculated for the line to orient the arrowhead.
+	# The basis aligns the CSG node's local Y-axis with vector_dir.
+	# Setting the origin to vector_end_point places the tip (p1) there.
 	arrowhead.transform = Transform3D(basis, vector_end_point)
-	# --- End Basis Orientation ---
 
 	parent_node.add_child(arrowhead)
+	# --- End Triangle Arrowhead ---
