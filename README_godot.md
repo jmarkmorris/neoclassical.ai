@@ -20,6 +20,7 @@ The quickest possible setup is to set up and use a bare bones template using the
 - cd NewProjectName
 - edit 'project.godot' and replace config/name="MyGodotTemplate" with config/name="NewProjectName"
 - go to the Godot app and open NewProjectName, click on the .tscn file, and you are ready to build.
+- as an added bonus, the MyGodotTemplate contains a font directory with several fonts and their .tres and .ttf files.
 
 ### Step-by-Step Instructions
 
