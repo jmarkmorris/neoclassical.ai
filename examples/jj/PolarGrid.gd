@@ -20,56 +20,21 @@ const ARROWHEAD_RADIUS := 0.1
 
 const CIRCLE_SEGMENTS := 64 # Number of segments for drawing circles
 
-# Node references (optional, could also find_child)
-var camera: Camera3D
-var title_label: Label3D
-var grid_container: Node3D
-
 # Materials
 var white_material: StandardMaterial3D
 var vector_material: StandardMaterial3D
 
 # Called when the node enters the scene tree for the first time.
-# In @tool mode, this also runs in the editor.
 func _ready():
 	# Clear previous children if any (useful for @tool script reloading)
-	# Use call_deferred to avoid issues during editor initialization/reloading
-	call_deferred("_clear_children_and_rebuild")
-
-func _clear_children_and_rebuild():
-	# Clear previous children safely
 	for child in get_children():
 		child.queue_free()
-
-	# Create and configure Camera
-	camera = Camera3D.new()
-	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-	# Adjust size to fit the grid (max radius 4 + offset) and title comfortably
-	camera.size = 11.0 # Increased from 9.6 to ensure title and labels fit
-	# Position camera to view the XY plane from the front
-	camera.transform.origin = Vector3(0, 0, 10) 
-	camera.current = true
-	add_child(camera)
-
-	# Create and configure Title Label
-	title_label = _create_label("Polar Coordinates Visualization", Vector3.ZERO) # Position set below
-	# Position title above the grid area
-	title_label.transform.origin = Vector3(0, MAX_RADIUS + 1.5, 0) 
-	add_child(title_label)
-
-	# Create container for grid elements
-	grid_container = Node3D.new()
-	grid_container.name = "GridContainer"
-	# Position grid container slightly below center as per design.md
-	grid_container.position = Vector3(0, -0.5, 0) 
-	add_child(grid_container)
 		
 	_initialize_materials()
-	# Pass the container to the creation functions
-	_create_circles(grid_container)
-	_create_radial_lines(grid_container)
-	_create_labels(grid_container)
-	_create_vector(grid_container)
+	_create_circles()
+	_create_radial_lines()
+	_create_labels()
+	_create_vector()
 
 # Initialize unshaded materials
 func _initialize_materials():
@@ -86,14 +51,13 @@ func _polar_to_cartesian(r: float, theta: float) -> Vector3:
 	return Vector3(r * cos(theta), r * sin(theta), 0)
 
 # Create concentric circles using ImmediateMesh
-func _create_circles(parent_node: Node3D):
+func _create_circles():
 	for r in RADII:
 		var im := ImmediateMesh.new()
 		var mi := MeshInstance3D.new()
-		mi.name = "Circle_r" + str(r)
 		mi.mesh = im
 		mi.material_override = white_material
-		parent_node.add_child(mi)
+		add_child(mi)
 
 		im.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
 		for i in range(CIRCLE_SEGMENTS + 1):
@@ -102,17 +66,16 @@ func _create_circles(parent_node: Node3D):
 		im.surface_end()
 
 # Create radial lines using ImmediateMesh
-func _create_radial_lines(parent_node: Node3D):
+func _create_radial_lines():
 	for i in range(NUM_RADIAL_LINES):
 		var angle = float(i) / NUM_RADIAL_LINES * TAU
 		var end_point = _polar_to_cartesian(MAX_RADIUS, angle)
 		
 		var im := ImmediateMesh.new()
 		var mi := MeshInstance3D.new()
-		mi.name = "RadialLine_" + str(i)
 		mi.mesh = im
 		mi.material_override = white_material
-		parent_node.add_child(mi)
+		add_child(mi)
 
 		im.surface_begin(Mesh.PRIMITIVE_LINES)
 		im.surface_add_vertex(Vector3.ZERO) # Start at origin
@@ -120,14 +83,12 @@ func _create_radial_lines(parent_node: Node3D):
 		im.surface_end()
 
 # Create Label3D nodes for radius and azimuth markers
-func _create_labels(parent_node: Node3D):
+func _create_labels():
 	# Radius Labels (along positive X axis)
 	for r in RADII:
 		var label_pos = Vector3(r, -LABEL_OFFSET, 0) # Position slightly below the axis
 		var label_text = str(snapped(r, 0.1)) # Format to one decimal place
-		var radius_label = _create_label(label_text, label_pos)
-		radius_label.name = "RadiusLabel_" + str(r)
-		parent_node.add_child(radius_label)
+		add_child(_create_label(label_text, label_pos))
 
 	# Azimuth Labels (around the perimeter)
 	var azimuth_texts = ["0", "π/6", "π/3", "π/2", "2π/3", "5π/6", "π", "7π/6", "4π/3", "3π/2", "5π/3", "11π/6"]
@@ -135,39 +96,30 @@ func _create_labels(parent_node: Node3D):
 		var angle = float(i) / NUM_RADIAL_LINES * TAU
 		# Place label slightly outside the max radius
 		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET, angle)
-		var azimuth_label = _create_label(azimuth_texts[i], label_pos)
-		azimuth_label.name = "AzimuthLabel_" + str(i)
-		parent_node.add_child(azimuth_label)
-
+		add_child(_create_label(azimuth_texts[i], label_pos))
 
 # Helper function to create and configure a Label3D
-# Note: This helper now only configures the label, positioning is handled by the caller
 func _create_label(text: String, position: Vector3) -> Label3D:
 	var label := Label3D.new()
 	label.text = text
 	label.font_size = LABEL_FONT_SIZE
 	label.pixel_size = LABEL_PIXEL_SIZE
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label.no_depth_test = true # Use no_depth_test instead of shading_mode
+	label.shading_mode = Label3D.SHADING_MODE_UNSHADED
 	label.modulate = WHITE_COLOR # Use modulate for color
-	label.transform.origin = position # Set initial position
+	label.transform.origin = position
 	# Center align text horizontally and vertically
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	return label
 
 # Create the vector arrow (line + arrowhead)
-func _create_vector(parent_node: Node3D):
+func _create_vector():
 	var vector_end_point = _polar_to_cartesian(VECTOR_R, VECTOR_THETA)
 	
 	# Use CylinderMesh for the line part to give it thickness
 	var line := MeshInstance3D.new()
-	line.name = "VectorLine"
-	# Use ClassDB to instantiate in case of parser issues with direct type name
-	var line_mesh = ClassDB.instantiate("CylinderMesh") 
-	if line_mesh == null: # Check if instantiation failed
-		push_error("Failed to instantiate CylinderMesh using ClassDB")
-		return # Avoid further errors
+	var line_mesh := CylinderMesh.new()
 	line_mesh.top_radius = VECTOR_LINE_WIDTH / 2.0
 	line_mesh.bottom_radius = VECTOR_LINE_WIDTH / 2.0
 	line_mesh.height = vector_end_point.length() # Length of the vector
@@ -180,18 +132,13 @@ func _create_vector(parent_node: Node3D):
 	# Align the cylinder's Y-axis (height) with the vector direction
 	line.look_at(vector_end_point, Vector3.UP) 
 	# Cylinder points along its +Y axis by default, look_at points -Z. Rotate to fix.
-	line.rotate_object_local(Vector3.RIGHT, PI / 2.0)
+	line.rotate_object_local(Vector3.RIGHT, PI / 2.0) 
 	
-	parent_node.add_child(line)
+	add_child(line)
 
 	# Use ConeMesh for the arrowhead
 	var arrowhead := MeshInstance3D.new()
-	arrowhead.name = "VectorArrowhead"
-	# Use ClassDB to instantiate in case of parser issues with direct type name
-	var arrowhead_mesh = ClassDB.instantiate("ConeMesh")
-	if arrowhead_mesh == null: # Check if instantiation failed
-		push_error("Failed to instantiate ConeMesh using ClassDB")
-		return # Avoid further errors
+	var arrowhead_mesh := ConeMesh.new()
 	arrowhead_mesh.radius = ARROWHEAD_RADIUS
 	arrowhead_mesh.height = ARROWHEAD_HEIGHT
 	arrowhead.mesh = arrowhead_mesh
@@ -203,6 +150,6 @@ func _create_vector(parent_node: Node3D):
 	# Align the cone's Y-axis (height) with the vector direction
 	arrowhead.look_at(vector_end_point + vector_end_point.normalized() * ARROWHEAD_HEIGHT, Vector3.UP)
 	# Cone points along its +Y axis by default, look_at points -Z. Rotate to fix.
-	arrowhead.rotate_object_local(Vector3.RIGHT, PI / 2.0)
+	arrowhead.rotate_object_local(Vector3.RIGHT, PI / 2.0) 
 
-	parent_node.add_child(arrowhead)
+	add_child(arrowhead)

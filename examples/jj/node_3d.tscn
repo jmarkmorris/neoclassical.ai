@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgi5pwhy47wq8"]
+
+[sub_resource type="Transform3D" id="Transform3D_abcde"]
+basis = Basis(1, 0, 0, 0, 1, 0, 0, 0, 1)
+origin = Vector3(0, 0, 10)
+
+[ext_resource type="Script" path="res://examples/PolarCoordinates/PolarGrid.gd" id="1_xxxxx"]
+
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = SubResource("Transform3D_abcde")
+projection = 1
+size = 7.0
+
+[node name="TitleLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+modulate = Color(1, 1, 1, 1)
+pixel_size = 0.01
+billboard = 1
+shading_mode = 0
+text = "Polar Coordinates Visualization"
+font_size = 128
+
+[node name="PolarGrid" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+script = ExtResource("1_xxxxx")
