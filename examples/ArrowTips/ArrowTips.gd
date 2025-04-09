@@ -20,7 +20,7 @@ const SUBTITLE_FONT_SIZE: int = 20
 const LABEL_FONT_SIZE: int = 36
 
 const AXIS_LENGTH: float = 1.5
-const AXIS_THICKNESS: float = 0.02 # Thickness for CSG axes/ticks/filled tips
+const AXIS_THICKNESS: float = 0.02 # Thickness for CSG axes/ticks and depth for filled tips
 const TICK_LENGTH: float = 0.1
 const TIP_SIZE: float = 0.225 # Base size, will be adjusted per tip (Increased by 50%)
 const OUTLINE_THICKNESS: float = 0.015 # Thickness for ImmediateMesh outline tips
@@ -50,15 +50,20 @@ func _ready() -> void:
 	_setup_axes_grid()
 
 
+# Helper function to create and configure Label3D nodes
+func _create_label(text: String, font_size: int, color: Color, position: Vector3) -> Label3D:
+	var label := Label3D.new()
+	label.text = text
+	label.font_size = font_size
+	label.modulate = color
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.position = position
+	return label
+
 func _setup_text_elements() -> void:
 	# Title
-	var title_label := Label3D.new()
-	title_label.text = "Arrow Tips Showcase"
-	title_label.font_size = TITLE_FONT_SIZE
-	title_label.modulate = WHITE
-	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER # Helps centering
-	title_label.position = Vector3(0, 4.0, 0) # Adjust Y as needed
+	var title_label := _create_label("Arrow Tips Showcase", TITLE_FONT_SIZE, WHITE, Vector3(0, 4.0, 0))
 	main_container.add_child(title_label) # Add to container
 
 
@@ -107,14 +112,8 @@ func _create_axes_example(tip_style: TipStyle, tip_name: String, position: Vecto
 	main_container.add_child(container) # Add to container
 
 	# Label for the tip style
-	var label := Label3D.new()
-	label.text = tip_name
-	label.font_size = LABEL_FONT_SIZE
-	label.modulate = WHITE
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	# Adjust label position based on image
-	label.position = Vector3(0, AXIS_LENGTH / 2.0 + 0.8, 0)
+	var label_pos := Vector3(0, AXIS_LENGTH / 2.0 + 0.8, 0) # Position above the axes center
+	var label := _create_label(tip_name, LABEL_FONT_SIZE, WHITE, label_pos)
 	container.add_child(label)
 
 	# Calculate how much to shorten the axis line based on the tip
@@ -192,7 +191,7 @@ func _draw_single_tip(parent: Node3D, tip_style: TipStyle, material: StandardMat
 	# Create a container Node3D for the tip elements to handle rotation easily
 	var tip_container := Node3D.new()
 	tip_container.position = position
-	tip_container.rotate_z(Vector3.RIGHT.angle_to(direction))
+	tip_container.rotation.z = Vector3.RIGHT.angle_to(direction)
 	parent.add_child(tip_container)
 
 	match tip_style:
