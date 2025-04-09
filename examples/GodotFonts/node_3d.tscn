@@ -1,33 +1,9 @@
-[gd_scene format=3 uid="uid://bgi5pwhy47wq8"]
+[gd_scene load_steps=2 format=3 uid="uid://bgi5pwhy47wq8"]
+
+[ext_resource type="Script" uid="uid://b2ewflhadixd5" path="res://FontDisplayManager.gd" id="1_fontmgr"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_fontmgr")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
-current = true
-
-[node name="Label3D_Size32" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-pixel_size = 0.01
-billboard = 1
-text = "The quick brown fox (Size 32)"
-
-[node name="Label3D_Size48" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-pixel_size = 0.01
-billboard = 1
-text = "The quick brown fox (Size 48)"
-font_size = 48
-
-[node name="Label3D_Size64" type="Label3D" parent="."]
-pixel_size = 0.01
-billboard = 1
-text = "The quick brown fox (Size 64)"
-font_size = 64
-
-[node name="Label3D_Size24" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-pixel_size = 0.01
-billboard = 1
-text = "The quick brown fox (Size 24)"
-font_size = 24
