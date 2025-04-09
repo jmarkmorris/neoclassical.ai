@@ -5,6 +5,7 @@ This document outlines strategies and considerations for developing Godot projec
 ## Workflow
 
 * Start the godot app.
+* Go to editor settings -> Text Editor -> Behaviour and enable "Auto reload scripts on external change"
 
 ## Initialize a Bare Bones Project
 
