@@ -63,6 +63,7 @@ func _load_and_display_fonts() -> void:
 					label.pixel_size = PIXEL_SIZE
 					label.billboard = BaseMaterial3D.BILLBOARD_ENABLED # Make it face the camera
 					label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER # Center the text
+					label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER # Center the text vertically
 
 					# Add to the scene and store for later positioning
 					add_child(label)
