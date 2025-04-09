@@ -20,7 +20,7 @@ const SUBTITLE_FONT_SIZE: int = 20
 const LABEL_FONT_SIZE: int = 24
 
 const AXIS_LENGTH: float = 1.5
-const AXIS_THICKNESS: float = 0.02 # Used for CSG thickness and ImmediateMesh line width proxy
+const AXIS_THICKNESS: float = 0.06 # Used for CSG thickness. ImmediateMesh lines remain thin.
 const TICK_LENGTH: float = 0.1
 const TIP_SIZE: float = 0.15 # Base size, will be adjusted per tip
 
