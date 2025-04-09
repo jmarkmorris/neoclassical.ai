@@ -6,6 +6,45 @@ This document outlines strategies and considerations for developing Godot projec
 
 * Start the godot app.
 
+## Initialize a Bare Bones Project
+
+Here’s how you can create a bare-bones Godot Engine project with a single `Node3D`:
+
+---
+
+### Step-by-Step Instructions
+
+1. **Launch Godot Engine**:
+   Open the Godot Engine application on your computer.
+
+2. **Create a New Project**:
+   - On the project manager screen, click on **“New Project”**.
+   - In the **Project Path** field, input the desired directory path: `/Users/markmorris/Documents/NPQG_Code_Base/neoclassical.ai/examples/CircleSizes`.
+   - Name the project as `CircleSizes`.
+   - Click **“Create Folder”** to ensure the directory is created, then click **“Create & Edit”** to proceed.
+
+3. **Set Up the Base Node**:
+   - In the Godot editor, go to the **Scene** panel and click **“+”** to create a new node.
+   - Select **Node3D** from the node list (you can search for it in the search bar).
+   - This will create a single `Node3D` object in the scene tree.
+
+4. **Save the Scene**:
+   - Since you’re planning to add everything programmatically later, you don’t need to modify the scene further.
+   - Save the empty scene to preserve the `Node3D` as the root. Click **File** > **Save Scene**, and name it `main.tscn` (or leave the default name).
+
+5. **Ensure Minimal Setup**:
+   - Avoid creating `.gd` script files or adding additional nodes. The project will remain empty apart from the single `Node3D`.
+
+6. **Check the Files**:
+   - Godot automatically creates necessary files such as `project.godot` (project configuration) in the project directory.
+
+7. **Ready for Programmatic Development**:
+   - You can now start building your project programmatically. Use your scripts to add nodes, scenes, or any functionality as needed.
+
+---
+
+Your project will now be initialized in `/Users/markmorris/Documents/NPQG_Code_Base/neoclassical.ai/examples/CircleSizes` with a minimal setup. 
+
 ### Enable automatic reloading of files that have changed on disk by adjusting the editor settings. Here's how:
 
 * Go to Editor Settings in the Godot editor.
