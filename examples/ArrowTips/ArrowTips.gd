@@ -132,7 +132,7 @@ func _get_tip_shortening_distance(tip_style: TipStyle) -> float:
 		TipStyle.SQUARE, TipStyle.SQUARE_FILLED:
 			return TIP_SIZE * 0.8 * 2.0
 		TipStyle.CIRCLE, TipStyle.CIRCLE_FILLED:
-			return TIP_SIZE * 0.6 * 2.0
+			return TIP_SIZE * 0.8 * 2.0 # Match new radius scaling
 		TipStyle.STEALTH:
 			return TIP_SIZE * 1.5
 	return 0.0 # Default case
@@ -296,7 +296,7 @@ func _draw_square_tip(parent: Node3D, material: StandardMaterial3D, filled: bool
 
 
 func _draw_circle_tip(parent: Node3D, material: StandardMaterial3D, filled: bool) -> void:
-	var radius := TIP_SIZE * 0.6 # Adjust size for circle
+	var radius := TIP_SIZE * 0.8 # Adjust size for circle (Increased scaling)
 	var segments := 16 # Number of segments for outline circle
 
 	if filled:
