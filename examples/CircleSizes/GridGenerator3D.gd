@@ -18,6 +18,12 @@ extends Node3D
 @export var label_color: Color = Color.WHITE
 # @export var label_vertical_offset: float = -0.3 # Offset below cell center (adjust as needed) # REMOVED
 
+# --- Positioning Constants ---
+const DOT_Z_OFFSET: float = 0.01
+const LABEL_Z_OFFSET: float = 0.02
+const DOT_VERTICAL_FACTOR: float = 0.05 # Percentage of cell height above center (Adjusted for goal.jpg)
+const LABEL_VERTICAL_FACTOR: float = 0.40 # Percentage of cell height below center (Adjusted for goal.jpg)
+
 # --- Node References ---
 var mesh_instance: MeshInstance3D = null
 var dots_parent: Node3D = null # Node to hold all dot meshes
@@ -128,11 +134,11 @@ func generate_dots() -> void:
 			# Use the larger of the two offsets to ensure separation
 			var horizontal_offset: float = max(min_radius_offset, desired_cell_offset)
 
-			# Calculate vertical offset for dots (10% of cell height upwards from center)
-			var dot_vertical_offset: float = step_y * 0.10
-			var dot_y_pos: float = cell_base_center_y + dot_vertical_offset
+			# Calculate vertical offset for dots using constant factor
+			var dot_vertical_offset: float = step_y * DOT_VERTICAL_FACTOR
+			var dot_y_pos: float = cell_base_center_y + dot_vertical_offset # Add offset to move up
 
-			var z_pos: float = 0.01 # Slight offset
+			var z_pos: float = DOT_Z_OFFSET # Use constant
 
 			var blue_pos: Vector3
 			var red_pos: Vector3
@@ -185,12 +191,12 @@ func generate_labels() -> void:
 			var cell_base_center_x: float = start_x + col * step_x
 			var cell_base_center_y: float = start_y + row * step_y # Base Y for calculations
 
-			# Calculate vertical offset for labels (35% of cell height downwards from center, placing it near bottom)
-			var label_vertical_offset_dynamic: float = step_y * 0.35
-			var label_y_pos: float = cell_base_center_y - label_vertical_offset_dynamic
+			# Calculate vertical offset for labels using constant factor
+			var label_vertical_offset_dynamic: float = step_y * LABEL_VERTICAL_FACTOR
+			var label_y_pos: float = cell_base_center_y - label_vertical_offset_dynamic # Subtract offset to move down
 
-			# Position label slightly in front of dots
-			var label_pos: Vector3 = Vector3(cell_base_center_x, label_y_pos, 0.02)
+			# Position label slightly in front of dots using constant Z offset
+			var label_pos: Vector3 = Vector3(cell_base_center_x, label_y_pos, LABEL_Z_OFFSET)
 
 			# --- Calculate Radius for this cell (same as in generate_dots) ---
 			var current_radius: float = start_radius + (row * grid_cols + col) * radius_increment
