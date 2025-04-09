@@ -103,10 +103,10 @@ func _polar_to_cartesian(r: float, theta: float) -> Vector3:
 
 # Creates the concentric circle grid lines using ImmediateMesh.
 func _create_circles(parent_node: Node3D):
-	for r in RADII: # Iterate through the defined radii (e.g., 1.0, 2.0, ...)
+	for r: float in RADII: # Iterate through the defined radii (e.g., 1.0, 2.0, ...)
 		# Create ImmediateMesh and a MeshInstance to render it for each circle
-		var im := ImmediateMesh.new()
-		var mi := MeshInstance3D.new()
+		var im: ImmediateMesh = ImmediateMesh.new()
+		var mi: MeshInstance3D = MeshInstance3D.new()
 		mi.name = "Circle_r" + str(r)
 		mi.mesh = im
 		mi.material_override = white_material
@@ -115,20 +115,20 @@ func _create_circles(parent_node: Node3D):
 		# Begin defining the line strip for the circle
 		im.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
 		# Add vertices around the circle
-		for i in range(CIRCLE_SEGMENTS + 1): # +1 to close the loop
-			var angle = float(i) / CIRCLE_SEGMENTS * TAU # TAU is 2*PI
+		for i: int in range(CIRCLE_SEGMENTS + 1): # +1 to close the loop
+			var angle: float = float(i) / CIRCLE_SEGMENTS * TAU # TAU is 2*PI
 			im.surface_add_vertex(_polar_to_cartesian(r, angle))
 		im.surface_end() # Finish defining the surface
 
 # Creates the radial grid lines extending from the origin using ImmediateMesh.
 func _create_radial_lines(parent_node: Node3D):
-	for i in range(NUM_RADIAL_LINES): # Iterate for each required line (e.g., 12 lines)
-		var angle = float(i) / NUM_RADIAL_LINES * TAU # Calculate angle for this line
-		var end_point = _polar_to_cartesian(MAX_RADIUS, angle) # Calculate endpoint at max radius
+	for i: int in range(NUM_RADIAL_LINES): # Iterate for each required line (e.g., 12 lines)
+		var angle: float = float(i) / NUM_RADIAL_LINES * TAU # Calculate angle for this line
+		var end_point: Vector3 = _polar_to_cartesian(MAX_RADIUS, angle) # Calculate endpoint at max radius
 		
 		# Create ImmediateMesh and MeshInstance for each radial line
-		var im := ImmediateMesh.new()
-		var mi := MeshInstance3D.new()
+		var im: ImmediateMesh = ImmediateMesh.new()
+		var mi: MeshInstance3D = MeshInstance3D.new()
 		mi.name = "RadialLine_" + str(i)
 		mi.mesh = im
 		mi.material_override = white_material
@@ -143,22 +143,22 @@ func _create_radial_lines(parent_node: Node3D):
 # Creates the Label3D nodes for radius values and azimuth angle markers.
 func _create_labels(parent_node: Node3D):
 	# --- Radius Labels --- (Placed along the positive X-axis)
-	for r in RADII:
+	for r: float in RADII:
 		# Position label slightly below the corresponding radius point on the X-axis using constant factor
-		var label_pos = Vector3(r, -LABEL_OFFSET * RADIUS_LABEL_OFFSET_FACTOR, 0) 
-		var label_text = str(snapped(r, 0.1)) # Format radius value (e.g., "1.0")
-		var radius_label = _create_label(label_text, label_pos) # Use helper to create label
+		var label_pos: Vector3 = Vector3(r, -LABEL_OFFSET * RADIUS_LABEL_OFFSET_FACTOR, 0) 
+		var label_text: String = str(snapped(r, 0.1)) # Format radius value (e.g., "1.0")
+		var radius_label: Label3D = _create_label(label_text, label_pos) # Use helper to create label
 		radius_label.name = "RadiusLabel_" + str(r)
 		parent_node.add_child(radius_label)
 
 	# --- Azimuth Labels --- (Placed around the perimeter)
 	# Define the text representation for each angle label
-	var azimuth_texts = ["0", "π/6", "π/3", "π/2", "2π/3", "5π/6", "π", "7π/6", "4π/3", "3π/2", "5π/3", "11π/6"]
-	for i in range(NUM_RADIAL_LINES):
-		var angle = float(i) / NUM_RADIAL_LINES * TAU # Calculate angle for this label
+	var azimuth_texts: PackedStringArray = ["0", "π/6", "π/3", "π/2", "2π/3", "5π/6", "π", "7π/6", "4π/3", "3π/2", "5π/3", "11π/6"]
+	for i: int in range(NUM_RADIAL_LINES):
+		var angle: float = float(i) / NUM_RADIAL_LINES * TAU # Calculate angle for this label
 		# Position label slightly further outside the max radius circle using constant factor
-		var label_pos = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET * AZIMUTH_LABEL_OFFSET_FACTOR, angle) 
-		var azimuth_label = _create_label(azimuth_texts[i], label_pos) # Use helper
+		var label_pos: Vector3 = _polar_to_cartesian(MAX_RADIUS + LABEL_OFFSET * AZIMUTH_LABEL_OFFSET_FACTOR, angle) 
+		var azimuth_label: Label3D = _create_label(azimuth_texts[i], label_pos) # Use helper
 		azimuth_label.name = "AzimuthLabel_" + str(i)
 		parent_node.add_child(azimuth_label)
 
@@ -168,7 +168,7 @@ func _create_labels(parent_node: Node3D):
 # Allows overriding the default font size for specific labels (like the title).
 # Note: Positioning is set based on the 'position' argument passed by the caller.
 func _create_label(text: String, position: Vector3, font_size_override: int = -1) -> Label3D:
-	var label := Label3D.new()
+	var label: Label3D = Label3D.new()
 	label.text = text
 	# Use font size override if provided (>0), otherwise use the default constant
 	label.font_size = font_size_override if font_size_override > 0 else LABEL_FONT_SIZE
