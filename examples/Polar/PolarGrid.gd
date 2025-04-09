@@ -14,9 +14,11 @@ const LABEL_PIXEL_SIZE := 0.0025 # Decreased for sharper, larger text
 
 const VECTOR_R := 2.4
 const VECTOR_THETA := PI / 4.0
-const VECTOR_LINE_WIDTH := 0.03 # Visual thickness for the vector line
-const ARROWHEAD_HEIGHT := 0.2
-const ARROWHEAD_RADIUS := 0.1
+# --- Temporarily increased sizes for debugging ---
+const VECTOR_LINE_WIDTH := 0.15 # Increased from 0.03
+const ARROWHEAD_HEIGHT := 1.0  # Increased from 0.2
+const ARROWHEAD_RADIUS := 0.5  # Increased from 0.1
+# --- End temporary increase ---
 
 const CIRCLE_SEGMENTS := 64 # Number of segments for drawing circles
 
@@ -161,12 +163,11 @@ func _create_label(text: String, position: Vector3) -> Label3D:
 func _create_vector(parent_node: Node3D):
 	var vector_end_point = _polar_to_cartesian(VECTOR_R, VECTOR_THETA)
 	
-	# Use CylinderMesh for the line part to give it thickness
+	# Use ClassDB to instantiate CylinderMesh to avoid parser issues
 	var line := MeshInstance3D.new()
 	line.name = "VectorLine"
-	# Use ClassDB to instantiate in case of parser issues with direct type name
-	var line_mesh = ClassDB.instantiate("CylinderMesh") 
-	if line_mesh == null: # Check if instantiation failed
+	var line_mesh = ClassDB.instantiate("CylinderMesh")
+	if line_mesh == null:
 		push_error("Failed to instantiate CylinderMesh using ClassDB")
 		return # Avoid further errors
 	line_mesh.top_radius = VECTOR_LINE_WIDTH / 2.0
@@ -175,22 +176,25 @@ func _create_vector(parent_node: Node3D):
 	line.mesh = line_mesh
 	line.material_override = vector_material
 	
-	# Position the cylinder center at half the vector length along its direction
-	# and rotate it to align with the vector direction
-	line.transform.origin = vector_end_point / 2.0 
-	# Align the cylinder's Y-axis (height) with the vector direction
-	line.look_at(vector_end_point, Vector3.UP) 
-	# Cylinder points along its +Y axis by default, look_at points -Z. Rotate to fix.
-	line.rotate_object_local(Vector3.RIGHT, PI / 2.0)
+	# Create a basis that aligns the cylinder with the vector direction
+	var vector_dir = vector_end_point.normalized()
+	var up = Vector3.UP
+	if vector_dir.is_equal_approx(up) or vector_dir.is_equal_approx(-up):
+		up = Vector3.RIGHT
+	var x_axis = vector_dir.cross(up).normalized()
+	var y_axis = vector_dir
+	var z_axis = x_axis.cross(y_axis).normalized()
+	var basis = Basis(x_axis, y_axis, z_axis)
 	
+	# Position and orient the cylinder
+	line.transform = Transform3D(basis, vector_end_point / 2.0)
 	parent_node.add_child(line)
 
-	# Use ConeMesh for the arrowhead
+	# Use ClassDB to instantiate ConeMesh for the arrowhead
 	var arrowhead := MeshInstance3D.new()
 	arrowhead.name = "VectorArrowhead"
-	# Use ClassDB to instantiate in case of parser issues with direct type name
 	var arrowhead_mesh = ClassDB.instantiate("ConeMesh")
-	if arrowhead_mesh == null: # Check if instantiation failed
+	if arrowhead_mesh == null:
 		push_error("Failed to instantiate ConeMesh using ClassDB")
 		return # Avoid further errors
 	arrowhead_mesh.radius = ARROWHEAD_RADIUS
@@ -198,12 +202,11 @@ func _create_vector(parent_node: Node3D):
 	arrowhead.mesh = arrowhead_mesh
 	arrowhead.material_override = vector_material
 
-	# Position the base of the cone at the vector's end point
-	# Rotate it to point in the vector's direction
-	arrowhead.transform.origin = vector_end_point
-	# Align the cone's Y-axis (height) with the vector direction
-	arrowhead.look_at(vector_end_point + vector_end_point.normalized() * ARROWHEAD_HEIGHT, Vector3.UP)
-	# Cone points along its +Y axis by default, look_at points -Z. Rotate to fix.
-	arrowhead.rotate_object_local(Vector3.RIGHT, PI / 2.0)
-
+	# Position the arrowhead at the end of the vector
+	# Create a basis that aligns the cone with the vector direction
+	arrowhead.transform = Transform3D(basis, vector_end_point)
+	
+	# Offset the arrowhead slightly to connect with the line
+	arrowhead.transform.origin -= vector_dir * (ARROWHEAD_HEIGHT / 2.0)
+	
 	parent_node.add_child(arrowhead)
