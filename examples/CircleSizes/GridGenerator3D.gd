@@ -10,14 +10,11 @@ extends Node3D
 var mesh_instance: MeshInstance3D = null
 
 func _ready() -> void:
-	print("GridGenerator3D: _ready() called.") # DEBUG
 	generate_grid_mesh()
 
 func generate_grid_mesh() -> void:
-	print("GridGenerator3D: generate_grid_mesh() called.") # DEBUG
 	# Create or clear previous mesh instance
 	if mesh_instance != null:
-		print("GridGenerator3D: Clearing previous mesh instance.") # DEBUG
 		mesh_instance.queue_free()
 
 	mesh_instance = MeshInstance3D.new()
@@ -28,9 +25,7 @@ func generate_grid_mesh() -> void:
 
 	# Create a material for the lines
 	var material: StandardMaterial3D = StandardMaterial3D.new()
-	# material.albedo_color = grid_line_color # DEBUG: Use plain white first
-	material.albedo_color = Color.WHITE # DEBUG: Use plain white first
-	material.albedo_color.a = 1.0 # DEBUG: Ensure fully opaque
+	material.albedo_color = grid_line_color
 	material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED # Make lines ignore lighting
 	# material.use_point_size = true # Often not needed for ImmediateMesh lines
 	# material.render_priority = 1 # Optional: Render grid on top if needed
@@ -65,5 +60,3 @@ func generate_grid_mesh() -> void:
 
 	# Assign the generated mesh to the MeshInstance3D
 	mesh_instance.mesh = immediate_mesh
-	mesh_instance.layers = 1 # DEBUG: Ensure it's on the default rendering layer
-	print("GridGenerator3D: Mesh generated and assigned to layer 1.") # DEBUG
