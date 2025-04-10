@@ -1,6 +1,8 @@
 # Implementation Guidelines for Godot Projects
 
-- do everything possible to not make changes to the project .tscn file. Build programmatically.
+- /read-only <myproject>.tscn
+- do everything possible to not require changes to the project .tscn file. Build programmatically.
+- choose standard godot interfaces as a first option
 
 
 

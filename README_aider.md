@@ -33,15 +33,9 @@ To create a new file:
 
 Multiple options for sending long, multi-line messages:
 
-- Paste a multi-line message directly into the chat
 - Enter `{` alone on the first line to start a multiline message and `}` alone on the last line to end it
 - Use `{tag` to start and `tag}` to end (useful when your message contains closing braces)
-- Press Meta-ENTER (Esc+ENTER in some environments) to start a new line without sending
-- Use `/paste` to insert text from clipboard
-- Use the `/editor` command to open your configured editor for message creation
-- Enable multiline-mode to swap Enter and Meta-Enter functionality:
-  - Toggle with the `/multiline-mode` command during a session
-  - Use the `--multiline` switch at startup
+- Use `/paste` to insert text from clipboard directly into the chat
 
 ## Vi/Vim Keybindings
 
@@ -75,3 +69,4 @@ Run aider with the `--vim` switch to enable vi/vim keybindings:
 
 - /paste : pastes image from clipboard
 - /web : goes to url and scrapes it.
+- /clear : erases context other than the files.
