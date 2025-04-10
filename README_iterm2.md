@@ -6,3 +6,5 @@ To ensure iTerm2 starts fresh from your .bash_profile and doesn't open in a prev
 - Go to the General tab.
 - Disable "Restore Previous Session"
 
+- there is a similar setting in vscode. Type cmd+comma and search on 'restore'
+
