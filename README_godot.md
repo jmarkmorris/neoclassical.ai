@@ -489,3 +489,27 @@ While the goal is a programmatic workflow, sometimes minimal GUI setup is the qu
 
 Now you have a basic project structure (`project.godot`, `icon.svg`, `<name>.tscn`) and can proceed with programmatic development (adding scripts, nodes via code, etc.).
                                                                                                                          
+# Godot Tools VsCode Extension
+
+## GDScript (.gd) language features:
+
+- syntax highlighting
+- ctrl+click on any symbol to jump to its definition or open its documentation
+- ctrl+click on res://resource/path links
+- hover previews on res://resource/path links
+- builtin code formatter
+- autocompletions
+- full typed GDScript support
+- optional "Smart Mode" to improve productivity with dynamically typed scripts
+- Hover previews show function/variable definitions including doc-comments
+- switch from a .gd file to the related .tscn file (default keybind is alt+o)
+- display script warnings and errors
+
+## The extension adds a few entries to the VS Code Command Palette under "Godot Tools":
+
+- Open workspace with Godot editor
+- List Godot's native classes (and open their documentation)
+- Debug the current .tscn/.gd file
+- Debug the pinned .tscn/.gd file
+- Pin/Unpin the current .tscn/.gd file for debugging
+- Open the pinned file
