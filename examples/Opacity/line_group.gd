@@ -25,8 +25,10 @@ func generate_lines_mesh():
 
 	for i in range(num_lines):
 		var x_center = i * spacing - group_width / 2.0
-		# Use stroke_width for quad dimensions
-		var half_width = stroke_width / 2.0
+		# Scale the stroke width similarly to other dimensions
+		var scaled_stroke_width = stroke_width * 0.3 
+		# Use scaled_stroke_width for quad dimensions
+		var half_width = scaled_stroke_width / 2.0
 		var x_left = x_center - half_width
 		var x_right = x_center + half_width
 

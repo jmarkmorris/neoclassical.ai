@@ -12,7 +12,7 @@ const TITLE_FONT_SIZE = 18 # Adjust for Label3D
 const SUBTITLE_FONT_SIZE = 12 # Adjust for Label3D
 const WIDTH_LABEL_FONT_SIZE = 14 # Adjust for Label3D
 const PERCENT_LABEL_FONT_SIZE = 12 # Adjust for Label3D
-const LABEL_PIXEL_SIZE = 0.01 # Adjust for Label3D rendering size
+const LABEL_PIXEL_SIZE = 0.05 # Increased significantly (was 0.01)
 
 const GROUP_WIDTH = 800.0 * 0.3 # Scale down 3D size
 const GROUP_HEIGHT = 100.0 * 0.3 # Scale down 3D size
@@ -35,6 +35,18 @@ func _ready():
 	camera.position = Vector3(0, 0, CAMERA_SIZE) # Adjust Z based on near/far clip if needed
 	camera.look_at(Vector3.ZERO, Vector3.UP)
 	add_child(camera)
+	
+	# --- DEBUG: Add a test cube ---
+	var test_cube_mesh = BoxMesh.new()
+	var test_cube_mat = StandardMaterial3D.new()
+	test_cube_mat.albedo_color = Color.RED
+	var test_cube = MeshInstance3D.new()
+	test_cube.mesh = test_cube_mesh
+	test_cube.material_override = test_cube_mat
+	test_cube.position = Vector3.ZERO # Place at origin
+	test_cube.scale = Vector3(20, 20, 20) # Make it reasonably large
+	add_child(test_cube)
+	# --- END DEBUG ---
 
 	# --- UI Elements (using Label3D) ---
 	# Calculate approximate center based on constants
