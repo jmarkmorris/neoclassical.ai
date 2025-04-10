@@ -16,7 +16,7 @@
 .venv_air
 .venv_pro
 media
-media*/
+**/media/**
 simulator-1/simulation_results/*.json
 .aider*
 
@@ -28,3 +28,6 @@ simulator-1/simulation_results/*.json
 .editorconfig
 .gitattributes
 
+**/fonts/**
+.*
+.vscode/
