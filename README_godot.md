@@ -13,7 +13,12 @@ Here’s how you can create a bare-bones Godot Engine project with a single `Nod
 
 ### Creating and Using MyGodotTemplate (not reliable due to uid not refreshed)
 
+*Broken* : This method doesn't work because uid is unique per project. It would need to be regenerated. We do need the fonts directory in the MyGodotTemplate if we want to use a font other than the default. Need to rethink how to approach this.
+
 The quickest possible setup is to set up and use a bare bones template using the Step-by-Step instructions below. Let's assume you have set up a project called 'MyGodotTemplate' as examples/MyGodotTemplate.
+
+- cd to neoclassical.ai repo root
+- run run-new-godot.sh (which does all of the following)
 
 - cd to the examples directory
 - cp -r MyGodotTemplate NewProjectName
