@@ -6,6 +6,7 @@ extends Node3D
 @export var group_width: float = 240.0 # Adjusted default
 
 func _ready():
+	print("  LineGroup (Width: %d): _ready() called. Generating mesh..." % stroke_width) # DEBUG
 	generate_lines_mesh()
 
 func generate_lines_mesh():
@@ -60,6 +61,7 @@ func generate_lines_mesh():
 
 		current_vert_index += 4
 
+	print("  LineGroup (Width: %d): Generated %d vertices, %d indices." % [stroke_width, vertices.size(), indices.size()]) # DEBUG
 	# Assemble mesh arrays
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
@@ -81,7 +83,9 @@ func generate_lines_mesh():
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	# Optional: Disable culling if lines are very thin and might disappear
 	# material.cull_mode = BaseMaterial3D.CULL_DISABLED
+	print("  LineGroup (Width: %d): Material created. Shading: %s, Transparency: %s, VertexColorAlbedo: %s" % [stroke_width, material.shading_mode, material.transparency, material.vertex_color_use_as_albedo]) # DEBUG
 
 	mesh_instance.material_override = material # Apply material
 
 	add_child(mesh_instance)
+	print("  LineGroup (Width: %d): MeshInstance3D added as child." % stroke_width) # DEBUG

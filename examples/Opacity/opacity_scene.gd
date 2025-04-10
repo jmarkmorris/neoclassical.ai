@@ -27,6 +27,7 @@ const SUBTITLE_GROUP_SPACING = 50.0 * 0.3 # Scale down 3D size
 
 
 func _ready():
+	print("--- opacity_scene.gd: _ready() started ---") # DEBUG START
 	# --- Camera Setup ---
 	var camera = Camera3D.new()
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
@@ -35,6 +36,19 @@ func _ready():
 	camera.position = Vector3(0, 0, CAMERA_SIZE) # Adjust Z based on near/far clip if needed
 	camera.look_at(Vector3.ZERO, Vector3.UP)
 	add_child(camera)
+	print("Camera3D added. Position: %s, Size: %s" % [camera.global_position, camera.size]) # DEBUG
+
+	# --- Add WorldEnvironment ---
+	var world_env = WorldEnvironment.new()
+	var env = Environment.new()
+	# Use a clear background mode initially to ensure background isn't obscuring
+	env.background_mode = Environment.BG_CLEAR_COLOR 
+	# Optional: Set clear color explicitly if needed, otherwise uses project default
+	# env.background_color = Color(0.294118, 0, 0.509804, 1) 
+	world_env.environment = env
+	add_child(world_env)
+	print("WorldEnvironment added.") # DEBUG
+	# --- End WorldEnvironment ---
 	
 	# --- DEBUG: Add a test cube ---
 	var test_cube_mesh = BoxMesh.new()
@@ -46,6 +60,7 @@ func _ready():
 	test_cube.position = Vector3.ZERO # Place at origin
 	test_cube.scale = Vector3(20, 20, 20) # Make it reasonably large
 	add_child(test_cube)
+	print("DEBUG Test Cube added. Position: %s, Scale: %s" % [test_cube.global_position, test_cube.scale]) # DEBUG
 	# --- END DEBUG ---
 
 	# --- UI Elements (using Label3D) ---
@@ -62,6 +77,7 @@ func _ready():
 	# Position centered horizontally, at current_y
 	title_label.position = Vector3(center_x, current_y, 0)
 	add_child(title_label)
+	print("Title Label3D added. Position: %s" % title_label.global_position) # DEBUG
 	current_y -= (TITLE_FONT_SIZE * LABEL_PIXEL_SIZE * 1.5) # Approximate height + spacing
 
 	# Create subtitle label
@@ -73,6 +89,7 @@ func _ready():
 	subtitle_label.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
 	subtitle_label.position = Vector3(center_x, current_y, 0)
 	add_child(subtitle_label)
+	print("Subtitle Label3D added. Position: %s" % subtitle_label.global_position) # DEBUG
 	current_y -= (SUBTITLE_FONT_SIZE * LABEL_PIXEL_SIZE * 1.5) + SUBTITLE_GROUP_SPACING # Approximate height + spacing
 
 	# --- Line Groups ---
@@ -89,6 +106,7 @@ func _ready():
 		group.group_width = GROUP_WIDTH
 		group.position = Vector3(center_x, current_y - GROUP_HEIGHT / 2.0, 0) # Center vertically
 		add_child(group)
+		print("LineGroup (Width: %d) added. Position: %s" % [width, group.global_position]) # DEBUG
 		group_nodes.append(group)
 
 		# Create Width Label (Child of Group)
@@ -102,6 +120,7 @@ func _ready():
 		var label_x_pos = -GROUP_WIDTH / 2.0 - WIDTH_LABEL_PADDING
 		label_width.position = Vector3(label_x_pos, 0, 0.1) # Slightly in front
 		group.add_child(label_width) # Add as child
+		print("  Width Label3D added to Group %d. Relative Position: %s" % [width, label_width.position]) # DEBUG
 
 		# Update Y for next group
 		current_y -= (GROUP_HEIGHT + VERTICAL_SPACING)
@@ -112,6 +131,7 @@ func _ready():
 	# Position below the last group
 	axis_display.position = Vector3(center_x, current_y, 0)
 	add_child(axis_display)
+	print("AxisDisplay added. Position: %s" % axis_display.global_position) # DEBUG
 
 	# --- Percentage Labels (Children of Axis Display) ---
 	var percentages = ["0%", "25%", "50%", "75%", "100%"]
@@ -129,3 +149,5 @@ func _ready():
 		# Position below the tick, centered horizontally
 		percent_label.position = Vector3(tick_x_pos, -axis_display.tick_height - AXIS_TICK_LABEL_OFFSET_Y, 0.1) # Slightly in front
 		axis_display.add_child(percent_label) # Add as child
+		print("  Percent Label3D '%s' added to AxisDisplay. Relative Position: %s" % [percent_label.text, percent_label.position]) # DEBUG
+	print("--- opacity_scene.gd: _ready() finished ---") # DEBUG END

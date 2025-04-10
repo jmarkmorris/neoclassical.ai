@@ -6,6 +6,7 @@ extends Node3D
 @export var group_width: float = 800.0 * 0.3 # Scale down (must match LineGroup)
 
 func _ready():
+	print("AxisDisplay: _ready() called. Generating mesh...") # DEBUG
 	generate_ticks_mesh()
 
 func generate_ticks_mesh():
@@ -52,6 +53,7 @@ func generate_ticks_mesh():
 
 		current_vert_index += 4
 
+	print("AxisDisplay: Generated %d vertices, %d indices." % [vertices.size(), indices.size()]) # DEBUG
 	# Assemble mesh arrays
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
@@ -72,7 +74,9 @@ func generate_ticks_mesh():
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	# Ticks are opaque, but keep alpha for consistency if needed later
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	print("AxisDisplay: Material created. Shading: %s, Transparency: %s, VertexColorAlbedo: %s" % [material.shading_mode, material.transparency, material.vertex_color_use_as_albedo]) # DEBUG
 
 	mesh_instance.material_override = material # Apply material
 
 	add_child(mesh_instance)
+	print("AxisDisplay: MeshInstance3D added as child.") # DEBUG
