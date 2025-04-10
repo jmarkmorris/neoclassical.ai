@@ -2,6 +2,10 @@
 
 This document outlines strategies and considerations for developing Godot projects, focusing on a programmatic approach potentially assisted by AI tools like `aider` within a VS Code environment. The primary goal is to minimize reliance on the Godot Editor GUI for setup and scene construction, using it mainly for running and visualizing the results.
 
+## Godot Installation
+
+If Godot gets corrupted, reinstall it from https://godotengine.org/.
+
 ## Workflow
 
 * Start the godot app.
