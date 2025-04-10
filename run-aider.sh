@@ -201,8 +201,8 @@ launch_aider() {
 
         # Add editor model flag and potentially its API key flag
         if [ "$editor_model" != "default" ] && [ -n "$editor_model" ]; then
-            aider_cmd="$aider_cmd --editor-model $editor_model"
-            editor_display_info=" (Editor: $editor_vendor/$editor_model)"
+            aider_cmd="$aider_cmd --editor-model $editor_model --edit-format editor-diff"
+            editor_display_info=" (Editor: $editor_vendor/$editor_model) --edit-format editor-diff"
 
             # Check if editor vendor is different and handle its API key
             if [ "$editor_vendor" != "$main_vendor" ]; then
