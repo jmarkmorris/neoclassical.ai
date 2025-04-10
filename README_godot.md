@@ -11,7 +11,7 @@ This document outlines strategies and considerations for developing Godot projec
 
 Here’s how you can create a bare-bones Godot Engine project with a single `Node3D`:
 
-### Creating and Using MyGodotTemplate
+### Creating and Using MyGodotTemplate (not reliable)
 
 The quickest possible setup is to set up and use a bare bones template using the Step-by-Step instructions below. Let's assume you have set up a project called 'MyGodotTemplate' as examples/MyGodotTemplate.
 
