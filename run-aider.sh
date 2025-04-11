@@ -401,11 +401,22 @@ _build_main_model_args() {
 }
 
 # Builds the command-line arguments specific to Architect mode.
-# Args: $1: editor_vendor
-#       $2: editor_model
-#       $3: editor_api_key
-#       $4: main_vendor
-# Returns: The argument string.
+# This includes --architect, --edit-format, potentially --editor-model,
+# and the editor's API key flag if the editor vendor is different from the main vendor
+# and the key was loaded from a file.
+#
+# Args:
+#   $1: editor_vendor - The selected editor vendor name (or "default").
+#   $2: editor_model - The selected editor model name (or "default").
+#   $3: editor_api_key - The API key value for the editor vendor (only needed if editor_vendor != main_vendor).
+#   $4: main_vendor - The selected main vendor name (used for comparison).
+#
+# Outputs:
+#   - Prints the constructed argument string (e.g., "--architect --edit-format editor-diff --editor-model claude-3-5-haiku...") to stdout.
+#   - Prints error/warning messages to stderr.
+# Returns:
+#   - 0 on success.
+#   - 1 if the editor vendor index is not found when needed.
 _build_architect_args() {
     local editor_vendor=$1
     local editor_model=$2
