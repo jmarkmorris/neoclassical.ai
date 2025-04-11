@@ -56,6 +56,18 @@ CODE_EDIT_FORMAT="diff"
 # 2. File specified by PRIMARY_KEYS_FILE env var
 # 3. File at $HOME/.llm_api_keys
 # Exits with an error if a required key is missing after checking all sources.
+#
+# Args: None
+#
+# Outputs:
+#   - Exports API key environment variables (e.g., OPENAI_API_KEY) if found.
+#   - Populates the global VENDOR_KEY_SOURCE array.
+#   - Prints status messages to stdout.
+#   - Exits with status 1 if required keys are missing and no keys file is found.
+#
+# Modifies:
+#   - Environment variables for API keys.
+#   - VENDOR_KEY_SOURCE array.
 load_api_keys() {
     local vendor api_key_var env_api_key key_loaded key_source_msg="" all_keys_loaded_from_env=true
 
