@@ -478,12 +478,22 @@ _build_code_args() {
 # --- End Helper functions for launch_aider ---
 
 
-# Launches aider with the specified mode, vendors, and models.
-# Args: $1: mode (code or architect)
-#       $2: main_vendor
-#       $3: main_model
-#       $4: editor_vendor (for architect mode)
-#       $5: editor_model (for architect mode)
+# Constructs and executes the final aider command based on the selected mode and models.
+#
+# Args:
+#   $1: mode - The operating mode ("code" or "architect").
+#   $2: main_vendor - The selected main vendor.
+#   $3: main_model - The selected main model.
+#   $4: editor_vendor - The selected editor vendor (used only in architect mode, can be "default").
+#   $5: editor_model - The selected editor model (used only in architect mode, can be "default").
+#
+# Outputs:
+#   - Prints status messages and the final command to stdout before execution.
+#   - Executes the aider command.
+#   - Prints error messages to stderr if aider is not found or if the command fails.
+# Returns:
+#   - 1 if the aider command is not found.
+#   - The exit status of the aider command itself otherwise.
 launch_aider() {
     local mode=$1
     local main_vendor=$2
