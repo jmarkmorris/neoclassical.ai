@@ -2,8 +2,8 @@
 
 ## Installling aider
 
-python -m pip install aider-install
-aider-install
+* python -m pip install aider-install
+* aider-install
 
 Note: there is also an aider package known to pip, but that is something else.
 
@@ -19,6 +19,8 @@ The `runaider.sh` script provides an interactive command-line interface to confi
     - **Architect Mode:** Uses separate LLMs for high-level planning (Architect) and detailed code implementation (Editor).
 - Guiding you through selecting the LLM vendor (OpenAI, Anthropic, Google) and specific model for each role (Code, Architect, Editor).
 - Managing API keys securely.
+- Automatic /add of files in read-only mode. See this line: 
+- local aider_cmd="aider --vim --no-auto-commit --read README_prompts.md --read README_ask.md"
 
 Use `./runaider.sh` in your terminal to start the configuration process.
 

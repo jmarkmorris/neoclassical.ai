@@ -308,7 +308,7 @@ launch_aider() {
     local editor_api_key_var=""
 
     # Base aider command
-    local aider_cmd="aider --vim --no-auto-commit"
+    local aider_cmd="aider --vim --no-auto-commit --read README_prompts.md --read README_ask.md"
     local mode_display_name=""
     local editor_display_info=""
 
