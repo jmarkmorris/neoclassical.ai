@@ -28,9 +28,9 @@ DEEPSEEK_MODELS=(
 
 # --- Vendor Definitions ---
 VENDORS=(
-    "OPENAI"
-    "ANTHROPIC"
     "GOOGLE"
+    "ANTHROPIC"
+    "OPENAI"
     "DEEPSEEK"
 )
 
