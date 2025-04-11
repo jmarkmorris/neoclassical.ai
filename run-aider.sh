@@ -47,44 +47,83 @@ VENDOR_API_KEY_FLAGS=(
 ARCHITECT_EDIT_FORMAT="editor-diff"
 CODE_EDIT_FORMAT="diff"
 
-# Function to load API keys from standard locations.
-# Checks hardcoded path first, then $HOME/.llm_api_keys.
-# Exits with an error if neither file is found.
+# Function to load API keys.
+# Priority:
+# 1. Environment variables (e.g., OPENAI_API_KEY)
+# 2. File specified by PRIMARY_KEYS_FILE env var
+# 3. File at $HOME/.llm_api_keys
+# Exits with an error if a required key is missing after checking all sources.
 load_api_keys() {
-    # Define potential locations
-    # Primary location is now checked via environment variable $PRIMARY_KEYS_FILE
+    local vendor api_key_var env_api_key key_loaded key_source_msg="" all_keys_loaded_from_env=true
+
+    echo "Attempting to load API keys..."
+
+    # 1. Check Environment Variables first
+    for vendor in "${VENDORS[@]}"; do
+        api_key_var="${vendor}_API_KEY"
+        # Use indirect expansion to get the value of the env var
+        env_api_key="${!api_key_var}"
+
+        if [ -n "$env_api_key" ]; then
+            # Export the variable within the script's environment so check_api_key can see it
+            export "$api_key_var"="$env_api_key"
+            # echo "Loaded $api_key_var from environment." # Optional debug
+            key_source_msg="environment variables"
+        else
+            # Mark that at least one key was not found in env
+            all_keys_loaded_from_env=false
+            # Ensure the variable is unset in the script's env if not found in the process env
+            # This prevents a previously sourced file's value from persisting incorrectly
+            # if the env var is later removed.
+            unset "$api_key_var"
+        fi
+    done
+
+    if $all_keys_loaded_from_env; then
+        echo "All required API keys loaded from environment variables."
+        return 0 # Successfully loaded all keys from env
+    fi
+
+    # 2. & 3. Check File Locations if not all keys were in env
     local secondary_keys_file="$HOME/.llm_api_keys"
     local keys_file_to_use=""
 
-    # Check primary location via environment variable first
     if [ -n "$PRIMARY_KEYS_FILE" ] && [ -f "$PRIMARY_KEYS_FILE" ]; then
         keys_file_to_use="$PRIMARY_KEYS_FILE"
-        # echo "Using primary keys file from environment variable: $keys_file_to_use" # Optional debug
-    # Check secondary location if primary env var is not set or file doesn't exist
+        key_source_msg="keys file (PRIMARY_KEYS_FILE): $keys_file_to_use"
     elif [ -f "$secondary_keys_file" ]; then
         keys_file_to_use="$secondary_keys_file"
-        # echo "Using secondary keys file: $keys_file_to_use" # Optional debug
+        key_source_msg="keys file (default): $keys_file_to_use"
     fi
 
-    # Source the file if found
+    # Source the file if found (will define/overwrite *_API_KEY vars)
     if [ -n "$keys_file_to_use" ]; then
-        # echo "Loading API keys from: $keys_file_to_use" # Optional debug message
+        echo "Loading API keys from $key_source_msg..."
+        # Disable unbound variable errors temporarily during source
+        set +u
         source "$keys_file_to_use"
+        set -u # Re-enable unbound variable errors
     else
-        # Neither file found, print error and exit
-        echo "Error: API keys file not found."
-        echo "Please either:"
-        echo "  1. Set the PRIMARY_KEYS_FILE environment variable to the full path of your keys file:"
-        echo "     export PRIMARY_KEYS_FILE=\"/path/to/your/.llm_api_keys\""
-        echo "  2. Or place your keys file at the default location: '$secondary_keys_file'"
-        echo ""
-        echo "Example content for the keys file:"
-        echo "# LLM API Keys Configuration"
-        echo "OPENAI_API_KEY=\"sk-...\""
-        echo "ANTHROPIC_API_KEY=\"sk-...\""
-        echo "GOOGLE_API_KEY=\"AIza...\""
-        exit 1 # Exit if keys file is missing
+        # Only error out if *no* keys file was found AND not all keys were loaded from env
+        if ! $all_keys_loaded_from_env; then
+             echo "Error: No API keys file found and keys not provided via environment variables."
+             echo "Please either:"
+             echo "  1. Set environment variables (e.g., export OPENAI_API_KEY=...)"
+             echo "  2. Set the PRIMARY_KEYS_FILE environment variable to the full path of your keys file."
+             echo "  3. Place your keys file at the default location: '$secondary_keys_file'"
+             echo ""
+             echo "Example content for the keys file:"
+             echo "# LLM API Keys Configuration"
+             echo "OPENAI_API_KEY=\"sk-...\""
+             echo "ANTHROPIC_API_KEY=\"sk-...\""
+             echo "GOOGLE_API_KEY=\"AIza...\""
+             echo "DEEPSEEK_API_KEY=\"sk-...\"" # Added Deepseek example
+             exit 1
+        fi
     fi
+    # If we reached here, keys were loaded either from env, file, or a combination.
+    # The check_api_key function will verify if the *specific* needed key is present later.
+    echo "API key loading complete (using environment variables and/or file)."
 }
 
 # Generalized function to select an entity (vendor or model).
@@ -95,7 +134,7 @@ load_api_keys() {
 select_entity() {
     local entity_type=$1  # "vendor" or "model"
     local role_label=$2  # "Code", "Architect", or "Editor"
-    local vendor=$3      # Vendor (only used if entity_type is "model")
+    # local vendor=$3      # Vendor - Moved inside the 'model' block below
     local entities=()    # Use a regular array instead of nameref
     local num_entities
     local choice i         # Added 'i' for loop counter
@@ -103,6 +142,7 @@ select_entity() {
     if [[ "$entity_type" == "vendor" ]]; then
         entities=("${VENDORS[@]}")
     elif [[ "$entity_type" == "model" ]]; then
+        local vendor=$3 # Assign vendor here, only when needed for models
         # Use indirect expansion to dynamically get the correct model array elements
         local models_array_ref="${vendor}_MODELS[@]" # Create reference string including [@]
         # Check if the base array variable exists
@@ -172,10 +212,18 @@ check_api_key() {
     local api_key="${!api_key_var}"
 
     if [ -z "$api_key" ]; then
-        # Reference the standard secondary location in the error message
-        local secondary_keys_file="$HOME/.llm_api_keys"
-        echo -e "API key for $vendor is not set."
-        echo -e "Please ensure it is defined in your API keys file (e.g., '$secondary_keys_file') and try again."
+        local secondary_keys_file="$HOME/.llm_api_keys" # Define for error message
+        echo -e "\nError: API key for $vendor is not set." >&2
+        echo -e "Please ensure it is defined either as an environment variable (${vendor}_API_KEY)" >&2
+        echo -e "or within your API keys file." >&2
+        echo -e "Checked locations:" >&2
+        echo -e "  - Environment Variable: ${vendor}_API_KEY" >&2
+        if [ -n "$PRIMARY_KEYS_FILE" ]; then
+            echo -e "  - Primary Keys File (env): \$PRIMARY_KEYS_FILE -> $PRIMARY_KEYS_FILE" >&2
+        else
+            echo -e "  - Primary Keys File (env): \$PRIMARY_KEYS_FILE (not set)" >&2
+        fi
+        echo -e "  - Secondary Keys File (default): $secondary_keys_file" >&2
         exit 1
     fi
 }
