@@ -358,11 +358,21 @@ _get_vendor_index() {
     echo "$index"
 }
 
-# Builds the command-line arguments for the main model (Code or Architect).
-# Args: $1: main_vendor
-#       $2: main_model
-#       $3: main_api_key
-# Returns: The argument string.
+# Builds the command-line arguments related to the main model selection.
+# This includes the --model flag and potentially the vendor-specific API key flag
+# if the key was loaded from a file (not from environment variables).
+#
+# Args:
+#   $1: main_vendor - The selected main vendor name.
+#   $2: main_model - The selected main model name.
+#   $3: main_api_key - The API key value for the main vendor.
+#
+# Outputs:
+#   - Prints the constructed argument string (e.g., "--model gpt-4o --openai-api-key sk-...") to stdout.
+#   - Prints error messages to stderr if the vendor index is not found.
+# Returns:
+#   - 0 on success.
+#   - 1 if the vendor index is not found.
 _build_main_model_args() {
     local main_vendor=$1
     local main_model=$2
