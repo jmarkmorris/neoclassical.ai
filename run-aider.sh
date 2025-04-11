@@ -61,14 +61,31 @@ load_api_keys() {
     # 1. Check Environment Variables first
     for vendor in "${VENDORS[@]}"; do
         api_key_var="${vendor}_API_KEY"
-        # Use indirect expansion to get the value of the env var
-        env_api_key="${!api_key_var}"
+        env_api_key="" # Initialize
+
+        # --- Special handling for GOOGLE ---
+        if [[ "$vendor" == "GOOGLE" ]]; then
+            # Prioritize GEMINI_API_KEY if set
+            if [ -n "$GEMINI_API_KEY" ]; then
+                env_api_key="$GEMINI_API_KEY"
+                # echo "Loaded GOOGLE key from GEMINI_API_KEY environment variable." # Optional debug
+            # Otherwise, check for GOOGLE_API_KEY
+            elif [ -n "$GOOGLE_API_KEY" ]; then
+                env_api_key="$GOOGLE_API_KEY"
+                # echo "Loaded GOOGLE key from GOOGLE_API_KEY environment variable." # Optional debug
+            fi
+        else
+            # --- Standard handling for other vendors ---
+            # Use indirect expansion to get the value of the env var
+            env_api_key="${!api_key_var}"
+        fi
+        # --- End Vendor Specific Handling ---
 
         if [ -n "$env_api_key" ]; then
-            # Export the variable within the script's environment so check_api_key can see it
+            # Export the variable using the *standard* vendor name (e.g., GOOGLE_API_KEY)
+            # so the rest of the script finds it consistently.
             export "$api_key_var"="$env_api_key"
-            # echo "Loaded $api_key_var from environment." # Optional debug
-            key_source_msg="environment variables"
+            key_source_msg="environment variables" # Update message source if needed
         else
             # Mark that at least one key was not found in env
             all_keys_loaded_from_env=false
@@ -108,7 +125,7 @@ load_api_keys() {
         if ! $all_keys_loaded_from_env; then
              echo "Error: No API keys file found and keys not provided via environment variables."
              echo "Please either:"
-             echo "  1. Set environment variables (e.g., export OPENAI_API_KEY=...)"
+             echo "  1. Set environment variables (e.g., export OPENAI_API_KEY=..., export GEMINI_API_KEY=...)"
              echo "  2. Set the PRIMARY_KEYS_FILE environment variable to the full path of your keys file."
              echo "  3. Place your keys file at the default location: '$secondary_keys_file'"
              echo ""
@@ -116,8 +133,10 @@ load_api_keys() {
              echo "# LLM API Keys Configuration"
              echo "OPENAI_API_KEY=\"sk-...\""
              echo "ANTHROPIC_API_KEY=\"sk-...\""
-             echo "GOOGLE_API_KEY=\"AIza...\""
-             echo "DEEPSEEK_API_KEY=\"sk-...\"" # Added Deepseek example
+             echo "# For Google, use either:"
+             echo "GEMINI_API_KEY=\"AIza...\"  # Preferred"
+             echo "# GOOGLE_API_KEY=\"AIza...\" # Also supported"
+             echo "DEEPSEEK_API_KEY=\"sk-...\""
              exit 1
         fi
     fi
@@ -214,10 +233,21 @@ check_api_key() {
     if [ -z "$api_key" ]; then
         local secondary_keys_file="$HOME/.llm_api_keys" # Define for error message
         echo -e "\nError: API key for $vendor is not set." >&2
-        echo -e "Please ensure it is defined either as an environment variable (${vendor}_API_KEY)" >&2
-        echo -e "or within your API keys file." >&2
-        echo -e "Checked locations:" >&2
-        echo -e "  - Environment Variable: ${vendor}_API_KEY" >&2
+        # --- Special error message for GOOGLE ---
+        if [[ "$vendor" == "GOOGLE" ]]; then
+            echo -e "Please ensure it is defined either as an environment variable (GEMINI_API_KEY or GOOGLE_API_KEY)" >&2
+            echo -e "or within your API keys file (GEMINI_API_KEY or GOOGLE_API_KEY)." >&2
+            echo -e "Checked locations:" >&2
+            echo -e "  - Environment Variable: GEMINI_API_KEY" >&2
+            echo -e "  - Environment Variable: GOOGLE_API_KEY" >&2
+        else
+        # --- Standard error message for other vendors ---
+            echo -e "Please ensure it is defined either as an environment variable (${vendor}_API_KEY)" >&2
+            echo -e "or within your API keys file." >&2
+            echo -e "Checked locations:" >&2
+            echo -e "  - Environment Variable: ${vendor}_API_KEY" >&2
+        fi
+        # --- Common part of error message ---
         if [ -n "$PRIMARY_KEYS_FILE" ]; then
             echo -e "  - Primary Keys File (env): \$PRIMARY_KEYS_FILE -> $PRIMARY_KEYS_FILE" >&2
         else
