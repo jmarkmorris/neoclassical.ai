@@ -560,7 +560,16 @@ launch_aider() {
     # Function will return normally after this, leading back to the main menu loop.
 }
 
-# The main function of the script.
+# The main entry point and control loop of the script.
+# Handles mode selection and calls the appropriate mode-specific function.
+#
+# Args: None
+#
+# Outputs:
+#   - Calls display_mode_selection_menu to show the mode selection UI.
+#   - Reads user input for mode selection.
+#   - Prints "Goodbye!" on exit.
+#   - Prints error messages for unknown modes.
 main() {
     load_api_keys
 
