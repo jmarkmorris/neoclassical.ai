@@ -46,16 +46,18 @@ CODE_EDIT_FORMAT="diff"
 # Exits with an error if neither file is found.
 load_api_keys() {
     # Define potential locations
-    local primary_keys_file="/Users/marmorri/Library/CloudStorage/OneDrive-InterSystemsCorporation/MyDesk/.llm_api_keys"
+    # Primary location is now checked via environment variable $PRIMARY_KEYS_FILE
     local secondary_keys_file="$HOME/.llm_api_keys"
     local keys_file_to_use=""
 
-    # Check primary location
-    if [ -f "$primary_keys_file" ]; then
-        keys_file_to_use="$primary_keys_file"
-    # Check secondary location
+    # Check primary location via environment variable first
+    if [ -n "$PRIMARY_KEYS_FILE" ] && [ -f "$PRIMARY_KEYS_FILE" ]; then
+        keys_file_to_use="$PRIMARY_KEYS_FILE"
+        # echo "Using primary keys file from environment variable: $keys_file_to_use" # Optional debug
+    # Check secondary location if primary env var is not set or file doesn't exist
     elif [ -f "$secondary_keys_file" ]; then
         keys_file_to_use="$secondary_keys_file"
+        # echo "Using secondary keys file: $keys_file_to_use" # Optional debug
     fi
 
     # Source the file if found
