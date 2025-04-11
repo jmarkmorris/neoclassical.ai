@@ -25,7 +25,7 @@ set -o pipefail
 # --- Configuration ---
 # Use standard $HOME variable for portability
 USER_HOME="$HOME"
-TARGET_DIR="${USER_HOME}/Users/markmorris/Documents/NPQG_Code_Base/MySettings"
+TARGET_DIR="${USER_HOME}/Documents/NPQG_Code_Base/MySettings"
 
 # Source file paths
 BASH_PROFILE_SRC="${USER_HOME}/.bash_profile"
