@@ -338,9 +338,14 @@ display_mode_selection_menu() {
 
 # --- Helper functions ---
 
-# Gets the index of a vendor in the VENDORS array.
-# Args: $1: vendor_name (UPPERCASE)
-# Returns: The index (0-based) or -1 if not found.
+# Gets the numerical index (0-based) of a vendor within the global VENDORS array.
+#
+# Args:
+#   $1: vendor_name - The uppercase name of the vendor (e.g., "OPENAI").
+#
+# Outputs:
+#   - Prints the numerical index to stdout if found.
+#   - Prints -1 to stdout if the vendor is not found in the VENDORS array.
 _get_vendor_index() {
     local vendor_name=$1
     local index=-1
