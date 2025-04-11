@@ -465,8 +465,12 @@ _build_architect_args() {
 }
 
 # Builds the command-line arguments specific to Code mode.
+# Sets the chat mode and the appropriate edit format.
+#
 # Args: None
-# Returns: The argument string.
+#
+# Outputs:
+#   - Prints the argument string ("--chat-mode code --edit-format diff") to stdout.
 _build_code_args() {
     echo "--chat-mode code --edit-format ${CODE_EDIT_FORMAT}"
 }
