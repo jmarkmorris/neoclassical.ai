@@ -274,9 +274,14 @@ select_entity() {
 }
 
 
-# Checks if the API key for the given vendor is set.
-# Args: $1: vendor name
-# Exits with an error if the key is not set.
+# Checks if the API key for the specified vendor is available as an environment variable.
+# It relies on load_api_keys having been called previously to load keys from files into env vars if necessary.
+#
+# Args:
+#   $1: vendor - The name of the vendor (e.g., "OPENAI", "GOOGLE").
+#
+# Outputs:
+#   - Prints an error message to stderr and exits with status 1 if the key is not set.
 check_api_key() {
     local vendor=$1
     local api_key_var="${vendor}_API_KEY"
