@@ -1,3 +1,7 @@
+# Coding Environment
+
+* The development environment is MacOS.  Focus on that operating system. Microsoft Windows is not used in the development environment.
+
 # General Coding Principles
 
 When writing code, you MUST follow these principles:
@@ -42,12 +46,7 @@ When writing code, you MUST follow these principles:
 *   Always provide feedback, as your last message, regarding how to express the prompt request concisely!
 *   Comments should explain the overall design and purpose of the code block.
 *   All comments added should be professional and concise.
-*   Do not add comments specific to a particular problem, issue, or reversion.
+*   Comments should not be parochial, i.e., specific to a particular problem, issue, or revision.
 *   Ensure the editor makes small incremental search/replace blocks and keep the changes that succeed.
-*   When running in architect mode, ensure that the editor engineer actually makes its edits.
 *   Explicitly verify that *all* requested changes within the prompt have been successfully applied to the relevant files. 
-
-# Godot Engine Project-Specific Conventions
-
-*   Default to Node3D.
 
