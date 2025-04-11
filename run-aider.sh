@@ -47,8 +47,8 @@ VENDOR_KEY_SOURCE=() # Initialize as empty
 
 # --- Edit Format Definitions ---
 # Define the edit formats used by different modes
-ARCHITECT_EDIT_FORMAT="editor-diff"
-CODE_EDIT_FORMAT="diff"
+ARCHITECT_EDIT_FORMAT="editor-whole"
+CODE_EDIT_FORMAT="whole"
 
 # Function to load API keys.
 # Priority:
