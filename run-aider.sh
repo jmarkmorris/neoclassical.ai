@@ -659,8 +659,22 @@ run_code_mode() {
         return # Return control to the main loop
     done
 }
-# Runs aider in Architect mode using a state machine.
-# Returns control to the caller (main loop) when done or when 'back' is selected from the initial vendor choice.
+# Handles the user interaction flow for selecting the main vendor/model and
+# editor vendor/model for Architect mode using a state machine pattern.
+# It then calls launch_aider to execute the command.
+# Returns control to the main loop after aider exits or if the user selects "Back".
+#
+# Args: None
+#
+# Outputs:
+#   - Calls select_entity to display menus and get user input.
+#   - Calls check_api_key to validate key presence.
+#   - Calls launch_aider to run the final command.
+#   - Prints error messages for invalid states.
+#
+# Modifies:
+#   - Uses and potentially clears local variables main_vendor, main_model,
+#     editor_vendor, editor_model, current_step.
 run_architect_mode() {
     local main_vendor=""
     local main_model=""
