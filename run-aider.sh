@@ -42,13 +42,20 @@ VENDOR_API_KEY_FLAGS=(
     "deepseek-api-key "  # DEEPSEEK (Note the trailing space)
 )
 
-# Parallel array to track the source of the API key ("env", "file", or "unset")                                                           
-VENDOR_KEY_SOURCE=() # Initialize as empty 
+# Parallel array to track the source of the API key ("env", "file", or "unset")
+VENDOR_KEY_SOURCE=() # Initialize as empty
 
 # --- Edit Format Definitions ---
-# Define the edit formats used by different modes
-ARCHITECT_EDIT_FORMAT="editor-whole"
-CODE_EDIT_FORMAT="whole"
+# Define the specific format strings to use
+CODE_DIFF_FORMAT="diff"
+CODE_WHOLE_FORMAT="whole"
+ARCHITECT_DIFF_FORMAT="editor-diff" # Diff-based format for Architect mode
+ARCHITECT_WHOLE_FORMAT="editor-whole" # Whole-based format for Architect mode
+
+# Define the INITIAL default format to use when the script starts
+# Set these to your preferred defaults
+INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT # Or $CODE_DIFF_FORMAT
+INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
 
 # Function to load API keys.
 # Priority:
@@ -73,16 +80,16 @@ load_api_keys() {
 
     echo "Attempting to load API keys..."
 
-    # Initialize source array                                                                                                             
-    for i in "${!VENDORS[@]}"; do                                                                                                         
-        VENDOR_KEY_SOURCE[$i]="unset"                                                                                                     
-    done 
+    # Initialize source array
+    for i in "${!VENDORS[@]}"; do
+        VENDOR_KEY_SOURCE[$i]="unset"
+    done
 
-    # 1. Check Environment Variables first                                                                                                
-    local i=0 # Index for parallel arrays                                                                                                 
-    for vendor in "${VENDORS[@]}"; do                                                                                                     
-        api_key_var="${vendor}_API_KEY"                                                                                                   
-        env_api_key="" # Initialize 
+    # 1. Check Environment Variables first
+    local i=0 # Index for parallel arrays
+    for vendor in "${VENDORS[@]}"; do
+        api_key_var="${vendor}_API_KEY"
+        env_api_key="" # Initialize
 
         # --- Special handling for GOOGLE ---
         if [[ "$vendor" == "GOOGLE" ]]; then
@@ -103,25 +110,25 @@ load_api_keys() {
         # --- End Vendor Specific Handling ---
 
         if [ -n "$env_api_key" ]; then
-            # Key found in environment                                                                                                    
-            # Export the variable using the *standard* vendor name (e.g., GOOGLE_API_KEY)                                                 
-            # so check_api_key and potentially build_args (if needed) can see it.                                                         
-            export "$api_key_var"="$env_api_key"                                                                                          
-            VENDOR_KEY_SOURCE[$i]="env" # Mark source as environment                                                                      
-            key_source_msg="environment variables" # Update message source if needed                                                      
-        else                                                                                                                              
-            # Key not found in environment for this vendor                                                                                
-            VENDOR_KEY_SOURCE[$i]="unset" # Ensure it's marked as unset                                                                   
-            all_keys_loaded_from_env=false                                                                                                
+            # Key found in environment
+            # Export the variable using the *standard* vendor name (e.g., GOOGLE_API_KEY)
+            # so check_api_key and potentially build_args (if needed) can see it.
+            export "$api_key_var"="$env_api_key"
+            VENDOR_KEY_SOURCE[$i]="env" # Mark source as environment
+            key_source_msg="environment variables" # Update message source if needed
+        else
+            # Key not found in environment for this vendor
+            VENDOR_KEY_SOURCE[$i]="unset" # Ensure it's marked as unset
+            all_keys_loaded_from_env=false
             # Ensure the variable is unset in the script's env if not found in the process env
             # This prevents a previously sourced file's value from persisting incorrectly
-            # if the env var is later removed.                                                                                            
-            # We still unset the shell variable here to ensure the file source below                                                      
-            # doesn't pick up a stale value if the env var was removed but the shell var wasn't cleared.                                  
-            unset "$api_key_var"                                                                                                          
-        fi                                                                                                                                
-        i=$((i + 1)) # Increment index                                                                                                    
-    done                                
+            # if the env var is later removed.
+            # We still unset the shell variable here to ensure the file source below
+            # doesn't pick up a stale value if the env var was removed but the shell var wasn't cleared.
+            unset "$api_key_var"
+        fi
+        i=$((i + 1)) # Increment index
+    done
 
     if $all_keys_loaded_from_env; then
         echo "All required API keys loaded from environment variables."
@@ -144,25 +151,25 @@ load_api_keys() {
     if [ -n "$keys_file_to_use" ]; then
         echo "Loading API keys from $key_source_msg..."
         # Disable unbound variable errors temporarily during source
-        set +u                                                                                                                            
-        source "$keys_file_to_use"                                                                                                        
-        set -u # Re-enable unbound variable errors                                                                                        
-                                                                                                                                          
-        # Now, update source for keys that were loaded from the file                                                                      
-        local j=0                                                                                                                         
-        for vendor_check in "${VENDORS[@]}"; do                                                                                           
-            local key_var_check="${vendor_check}_API_KEY"                                                                                 
-            local key_val_check="${!key_var_check}" # Check the value *after* sourcing                                                    
-            # If source is still unset AND the variable now has a value, it came from the file                                            
-            if [[ "${VENDOR_KEY_SOURCE[$j]}" == "unset" && -n "$key_val_check" ]]; then                                                   
-                 VENDOR_KEY_SOURCE[$j]="file"                                                                                             
-                 # No need to re-export, source already did that.                                                                         
-            fi                                                                                                                            
-             j=$((j + 1))                                                                                                                 
-        done                                                                                                                              
-    else                                                                                                                                  
-        # No keys file found. Error if keys weren't fully loaded from env.                                                                
-        if ! $all_keys_loaded_from_env; then   
+        set +u
+        source "$keys_file_to_use"
+        set -u # Re-enable unbound variable errors
+
+        # Now, update source for keys that were loaded from the file
+        local j=0
+        for vendor_check in "${VENDORS[@]}"; do
+            local key_var_check="${vendor_check}_API_KEY"
+            local key_val_check="${!key_var_check}" # Check the value *after* sourcing
+            # If source is still unset AND the variable now has a value, it came from the file
+            if [[ "${VENDOR_KEY_SOURCE[$j]}" == "unset" && -n "$key_val_check" ]]; then
+                 VENDOR_KEY_SOURCE[$j]="file"
+                 # No need to re-export, source already did that.
+            fi
+             j=$((j + 1))
+        done
+    else
+        # No keys file found. Error if keys weren't fully loaded from env.
+        if ! $all_keys_loaded_from_env; then
              echo "Error: No API keys file found and keys not provided via environment variables."
              echo "Please either:"
              echo "  1. Set environment variables (e.g., export OPENAI_API_KEY=..., export GEMINI_API_KEY=...)"
@@ -380,20 +387,20 @@ _build_main_model_args() {
     local args=""
     local vendor_index=$(_get_vendor_index "$main_vendor")
 
-    args="$args --model $main_model"                                                                                                      
-                                                                                                                                          
-    if [ "$vendor_index" -ne -1 ]; then                                                                                                   
-        local key_source="${VENDOR_KEY_SOURCE[$vendor_index]}"                                                                            
-        # Only add the API key flag if the key was loaded from a file                                                                     
-        if [[ "$key_source" == "file" ]]; then                                                                                            
-            local api_key_flag="${VENDOR_API_KEY_FLAGS[$vendor_index]}"                                                                   
-            args="$args --${api_key_flag}${main_api_key}"                                                                                 
-            # echo "Debug: Adding main API key flag for $main_vendor (source: file)" # Optional debug                                     
-        # else                                                                                                                            
-            # echo "Debug: Skipping main API key flag for $main_vendor (source: $key_source)" # Optional debug                            
-        fi                                                                                                                                
-    else                                                                                                                                  
-        echo "Error: Unknown main vendor index in _build_main_model_args for: $main_vendor" >&2 
+    args="$args --model $main_model"
+
+    if [ "$vendor_index" -ne -1 ]; then
+        local key_source="${VENDOR_KEY_SOURCE[$vendor_index]}"
+        # Only add the API key flag if the key was loaded from a file
+        if [[ "$key_source" == "file" ]]; then
+            local api_key_flag="${VENDOR_API_KEY_FLAGS[$vendor_index]}"
+            args="$args --${api_key_flag}${main_api_key}"
+            # echo "Debug: Adding main API key flag for $main_vendor (source: file)" # Optional debug
+        # else
+            # echo "Debug: Skipping main API key flag for $main_vendor (source: $key_source)" # Optional debug
+        fi
+    else
+        echo "Error: Unknown main vendor index in _build_main_model_args for: $main_vendor" >&2
         return 1
     fi
 
@@ -401,9 +408,9 @@ _build_main_model_args() {
 }
 
 # Builds the command-line arguments specific to Architect mode.
-# This includes --architect, --edit-format, potentially --editor-model,
+# This includes --architect, potentially --editor-model,
 # and the editor's API key flag if the editor vendor is different from the main vendor
-# and the key was loaded from a file.
+# and the key was loaded from a file. The --edit-format flag is NOT added here.
 #
 # Args:
 #   $1: editor_vendor - The selected editor vendor name (or "default").
@@ -412,7 +419,7 @@ _build_main_model_args() {
 #   $4: main_vendor - The selected main vendor name (used for comparison).
 #
 # Outputs:
-#   - Prints the constructed argument string (e.g., "--architect --edit-format editor-diff --editor-model claude-3-5-haiku...") to stdout.
+#   - Prints the constructed argument string (e.g., "--architect --editor-model claude-3-5-haiku...") to stdout.
 #   - Prints error/warning messages to stderr.
 # Returns:
 #   - 0 on success.
@@ -422,8 +429,8 @@ _build_architect_args() {
     local editor_model=$2
     local editor_api_key=$3
     local main_vendor=$4 # Needed to check if editor vendor differs
-    # Always add --architect and the defined edit format for architect mode
-    local args="--architect --edit-format ${ARCHITECT_EDIT_FORMAT}" # Use constant
+    # Always add --architect. Edit format is added in launch_aider.
+    local args="--architect"
     # editor_display_info is handled in launch_aider, removed from here
 
     # Add --editor-model only if a specific one is chosen (not default)
@@ -431,23 +438,23 @@ _build_architect_args() {
         args="$args --editor-model $editor_model"
         # editor_display_info=" (Editor: $editor_vendor/$editor_model) --edit-format editor-diff" # Removed
 
-        # Check if editor vendor is different from main vendor                                                                            
-        if [ "$editor_vendor" != "$main_vendor" ]; then                                                                                   
-            # We need the API key value if it came from a file                                                                            
-            if [ -n "$editor_api_key" ]; then # editor_api_key is passed only if needed (diff vendor)                                     
-                local editor_vendor_index=$(_get_vendor_index "$editor_vendor")                                                           
-                if [ "$editor_vendor_index" -ne -1 ]; then                                                                                
-                    local editor_key_source="${VENDOR_KEY_SOURCE[$editor_vendor_index]}"                                                  
-                    # Only add the API key flag if the key was loaded from a file                                                         
-                    if [[ "$editor_key_source" == "file" ]]; then                                                                         
-                        local editor_api_key_flag="${VENDOR_API_KEY_FLAGS[$editor_vendor_index]}"                                         
-                        args="$args --${editor_api_key_flag}${editor_api_key}"                                                            
-                        # echo "Debug: Adding editor API key flag for $editor_vendor (source: file)" # Optional debug                     
-                    # else                                                                                                                
-                        # echo "Debug: Skipping editor API key flag for $editor_vendor (source: $editor_key_source)" # Optional debug     
-                    fi                                                                                                                    
-                else                                                                                                                      
-                    echo "Error: Unknown editor vendor index in _build_architect_args for: $editor_vendor" >&2  
+        # Check if editor vendor is different from main vendor
+        if [ "$editor_vendor" != "$main_vendor" ]; then
+            # We need the API key value if it came from a file
+            if [ -n "$editor_api_key" ]; then # editor_api_key is passed only if needed (diff vendor)
+                local editor_vendor_index=$(_get_vendor_index "$editor_vendor")
+                if [ "$editor_vendor_index" -ne -1 ]; then
+                    local editor_key_source="${VENDOR_KEY_SOURCE[$editor_vendor_index]}"
+                    # Only add the API key flag if the key was loaded from a file
+                    if [[ "$editor_key_source" == "file" ]]; then
+                        local editor_api_key_flag="${VENDOR_API_KEY_FLAGS[$editor_vendor_index]}"
+                        args="$args --${editor_api_key_flag}${editor_api_key}"
+                        # echo "Debug: Adding editor API key flag for $editor_vendor (source: file)" # Optional debug
+                    # else
+                        # echo "Debug: Skipping editor API key flag for $editor_vendor (source: $editor_key_source)" # Optional debug
+                    fi
+                else
+                    echo "Error: Unknown editor vendor index in _build_architect_args for: $editor_vendor" >&2
                     return 1 # Explicitly return error code
                 fi
             else
@@ -465,20 +472,21 @@ _build_architect_args() {
 }
 
 # Builds the command-line arguments specific to Code mode.
-# Sets the chat mode and the appropriate edit format.
+# Sets the chat mode. The --edit-format flag is NOT added here.
 #
 # Args: None
 #
 # Outputs:
-#   - Prints the argument string ("--chat-mode code --edit-format diff") to stdout.
+#   - Prints the argument string ("--chat-mode code") to stdout. Edit format is added in launch_aider.
 _build_code_args() {
-    echo "--chat-mode code --edit-format ${CODE_EDIT_FORMAT}"
+    echo "--chat-mode code"
 }
 
 # --- End Helper functions for launch_aider ---
 
 
 # Constructs and executes the final aider command based on the selected mode and models.
+# Includes a pre-launch confirmation step allowing the user to switch the edit format.
 #
 # Args:
 #   $1: mode - The operating mode ("code" or "architect").
@@ -488,11 +496,11 @@ _build_code_args() {
 #   $5: editor_model - The selected editor model (used only in architect mode, can be "default").
 #
 # Outputs:
-#   - Prints status messages and the final command to stdout before execution.
+#   - Prints status messages, the pre-launch menu, and the final command to stdout before execution.
 #   - Executes the aider command.
 #   - Prints error messages to stderr if aider is not found or if the command fails.
 # Returns:
-#   - 1 if the aider command is not found.
+#   - 1 if the aider command is not found or if the user chooses to go back.
 #   - The exit status of the aider command itself otherwise.
 launch_aider() {
     local mode=$1
@@ -502,62 +510,118 @@ launch_aider() {
     local editor_model=$5
 
     local main_api_key_var="${main_vendor}_API_KEY"
-    # Use indirect expansion instead of eval
     local main_api_key="${!main_api_key_var}"
-    local editor_api_key="" # Initialize editor_api_key
+    local editor_api_key=""
     local editor_api_key_var=""
 
-    # Base aider command
-    local aider_cmd="aider --vim --no-auto-commit --read README_prompts.md --read README_ask.md"
+    # Base aider command parts (edit format added later)
+    local base_aider_cmd="aider --vim --no-auto-commit --read README_prompts.md --read README_ask.md"
+    local main_args=$(_build_main_model_args "$main_vendor" "$main_model" "$main_api_key")
+    local mode_args=""
     local mode_display_name=""
     local editor_display_info=""
+    local actual_format=""
+    local alternative_format=""
+    local format_constant_base="" # Will be CODE or ARCHITECT
 
-    local main_args=$(_build_main_model_args "$main_vendor" "$main_model" "$main_api_key")
-    aider_cmd="$aider_cmd $main_args"
-
+    # Determine initial format and mode-specific args
     if [ "$mode" == "architect" ]; then
         mode_display_name="Architect Mode"
+        format_constant_base="ARCHITECT"
+        actual_format="$INITIAL_ARCHITECT_FORMAT" # Set initial format
 
-        # Retrieve editor API key ONLY if editor vendor is different from main vendor
+        # Retrieve editor API key ONLY if editor vendor is different and not default
         if [[ "$editor_vendor" != "$main_vendor" && "$editor_vendor" != "default" && -n "$editor_vendor" ]]; then
              editor_api_key_var="${editor_vendor}_API_KEY"
              editor_api_key="${!editor_api_key_var}"
-             # We rely on check_api_key having already validated this key exists
         fi
+        # Get architect-specific args (without edit format)
+        mode_args=$(_build_architect_args "$editor_vendor" "$editor_model" "$editor_api_key" "$main_vendor")
 
-        # Pass the potentially retrieved editor_api_key to the build function
-        local architect_args=$(_build_architect_args "$editor_vendor" "$editor_model" "$editor_api_key" "$main_vendor")
-        aider_cmd="$aider_cmd $architect_args"
-
+        # Set editor display info for the menu
         if [[ "$editor_model" != "default" && -n "$editor_model" ]]; then
             editor_display_info=" (Editor: $editor_vendor/$editor_model)"
         else
             editor_display_info=" (Editor: Default)"
         fi
-    else
+    else # Code mode
         mode_display_name="Code Mode"
-        local code_args=$(_build_code_args)
-        aider_cmd="$aider_cmd $code_args"
+        format_constant_base="CODE"
+        actual_format="$INITIAL_CODE_FORMAT" # Set initial format
+        # Get code-specific args (without edit format)
+        mode_args=$(_build_code_args)
+        editor_display_info="" # No editor in code mode
     fi
 
+    # Check if aider command exists before entering the loop
     if ! command -v aider &> /dev/null; then
-        echo -e "Aider is not installed. Please install it first with:"
-        echo "pip install aider-chat"
-        read -p "Press Enter to continue..."
-        return 1
+        echo -e "\nError: Aider command not found." >&2
+        echo -e "Please ensure 'aider-chat' is installed and in your PATH." >&2
+        read -p "Press Enter to return to the main menu..."
+        return 1 # Indicate error/abort
     fi
 
-    echo -e "Launching aider in ${mode_display_name} with ${main_vendor}/${main_model}${editor_display_info}..."
-    echo "Command: $aider_cmd"
-    echo
-    eval "$aider_cmd"
-    local exit_status=$?
-    if [ $exit_status -ne 0 ]; then
-        echo "Error: aider command failed with exit status $exit_status." >&2
-        # Optionally add a pause or specific handling here
-        read -p "Press Enter to return to the main menu..."
-    fi
-    # Function will return normally after this, leading back to the main menu loop.
+    # Pre-launch confirmation loop
+    while true; do
+        # Determine the alternative format
+        local diff_format_var="${format_constant_base}_DIFF_FORMAT"
+        local whole_format_var="${format_constant_base}_WHOLE_FORMAT"
+        local diff_format="${!diff_format_var}"
+        local whole_format="${!whole_format_var}"
+
+        if [[ "$actual_format" == "$diff_format" ]]; then
+            alternative_format="$whole_format"
+        else
+            alternative_format="$diff_format"
+        fi
+
+        # Build the *full* command for display *inside* the loop
+        local current_aider_cmd="${base_aider_cmd} ${main_args} ${mode_args} --edit-format ${actual_format}"
+
+        clear
+        echo -e "Launching Aider: ${mode_display_name}"
+        echo -e "Main Model:      ${main_vendor}/${main_model}${editor_display_info}"
+        echo -e "------------------------------"
+        echo -e "Current Edit Format: ${actual_format}"
+        echo -e "------------------------------"
+        echo -e "Command to Run:"
+        # Wrap command for potentially better readability in terminal
+        echo -e "$current_aider_cmd" | fold -s -w "$(tput cols)"
+        echo -e "------------------------------"
+        echo "1. Launch Aider with this command"
+        echo "2. Switch to Format: ${alternative_format}"
+        echo "3. Back to Main Menu (Abort Launch)"
+        echo -e "------------------------------"
+        echo -n "Enter choice [1-3, Enter=1]: "
+        read confirm_choice
+
+        case "${confirm_choice:-1}" in # Default to 1 if Enter is pressed
+            1)  # Launch
+                echo # Newline before execution
+                eval "$current_aider_cmd"
+                local exit_status=$?
+                if [ $exit_status -ne 0 ]; then
+                    echo "Error: aider command failed with exit status $exit_status." >&2
+                    read -p "Press Enter to return to the main menu..."
+                fi
+                # Whether success or failure, return to main menu after execution attempt
+                return $exit_status # Return aider's exit status or 0 if successful
+                ;;
+            2)  # Switch format
+                actual_format="$alternative_format"
+                # Loop continues, will rebuild command and redisplay
+                continue
+                ;;
+            3)  # Back to Main Menu
+                return 1 # Use 1 to indicate user aborted, distinct from aider exit code 0
+                ;;
+            *)  # Invalid choice
+                echo "Invalid choice. Press Enter to try again..." >&2
+                read
+                # Loop continues
+                ;;
+        esac
+    done
 }
 
 # The main entry point and control loop of the script.
@@ -654,9 +718,11 @@ run_code_mode() {
         # Model selected successfully
         main_model="$SELECT_ENTITY_RESULT"
 
-        # Launch aider and then return to the main menu loop
+        # Launch aider (which now includes the confirmation menu)
+        # launch_aider returns 0 on successful execution, non-zero on error or user abort (Back)
         launch_aider "code" "$main_vendor" "$main_model" "" ""
-        return # Return control to the main loop
+        # Regardless of launch_aider's return status, we go back to the main menu
+        return
     done
 }
 # Handles the user interaction flow for selecting the main vendor/model and
@@ -753,11 +819,11 @@ run_architect_mode() {
                 ;;
 
             "launch")
-                # Handle the case where editor vendor wasn't selected (e.g., if default was chosen)
-                # This logic assumes editor_vendor and editor_model are set appropriately before reaching here.
-                # If we add a "default" option earlier, this needs adjustment.
+                # Launch aider (which now includes the confirmation menu)
+                # launch_aider returns 0 on successful execution, non-zero on error or user abort (Back)
                 launch_aider "architect" "$main_vendor" "$main_model" "$editor_vendor" "$editor_model"
-                return # Return control to the main loop
+                # Regardless of launch_aider's return status, we go back to the main menu
+                return
                 ;;
 
             *) # Should not happen
@@ -770,3 +836,4 @@ run_architect_mode() {
 
 # Run the main function
 main
+
