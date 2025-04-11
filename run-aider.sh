@@ -67,8 +67,12 @@ load_api_keys() {
     else
         # Neither file found, print error and exit
         echo "Error: API keys file not found."
-        echo "Please create '$secondary_keys_file' and add your API keys."
-        echo "Example content:"
+        echo "Please either:"
+        echo "  1. Set the PRIMARY_KEYS_FILE environment variable to the full path of your keys file:"
+        echo "     export PRIMARY_KEYS_FILE=\"/path/to/your/.llm_api_keys\""
+        echo "  2. Or place your keys file at the default location: '$secondary_keys_file'"
+        echo ""
+        echo "Example content for the keys file:"
         echo "# LLM API Keys Configuration"
         echo "OPENAI_API_KEY=\"sk-...\""
         echo "ANTHROPIC_API_KEY=\"sk-...\""
