@@ -185,11 +185,24 @@ load_api_keys() {
     echo "API key loading complete (using environment variables and/or file)."
 }
 
-# Generalized function to select an entity (vendor or model).
-# Args: $1: entity_type (vendor or model)
-#       $2: role_label (e.g., "Code", "Architect")
-#       $3: vendor (if entity_type is model)
-# Output: Sets SELECT_ENTITY_RESULT to the selected entity or "" for back/invalid.
+# Generalized function to select an entity (vendor or model) via an interactive menu.
+#
+# Args:
+#   $1: entity_type - The type of entity to select ("vendor" or "model").
+#   $2: role_label - A label describing the role for the selection (e.g., "Code", "Architect", "Editor").
+#   $3: vendor (optional) - The vendor name, required only when entity_type is "model".
+#
+# Outputs:
+#   - Prints menu options to stdout.
+#   - Reads user choice from stdin.
+#   - Prints error messages to stderr for invalid input.
+#
+# Modifies:
+#   - Sets the global variable SELECT_ENTITY_RESULT to:
+#     - The selected entity name (e.g., "OPENAI", "gpt-4o").
+#     - An empty string "" if the user chooses "Back".
+#     - "default" if the user chooses "Use same VENDOR and MODEL as Architect" (Editor vendor only).
+#     - "invalid" if the user enters an invalid choice.
 select_entity() {
     local entity_type=$1  # "vendor" or "model"
     local role_label=$2  # "Code", "Architect", or "Editor"
