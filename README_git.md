@@ -51,6 +51,7 @@
    
    # Pull and rebase current branch
    git pull --rebase origin [branch-name]
+   git pull --rebase origin master
    ```
 
 ## Conflict Resolution Strategies
