@@ -606,8 +606,19 @@ main() {
     # effectively showing the mode selection menu again.
     # The only clean exit is choosing '0' from the mode selection menu.
 }
-# Runs aider in Code mode using a linear flow.
-# Returns control to the caller (main loop) when done or when 'back' is selected from vendor choice.
+# Handles the user interaction flow for selecting the vendor and model for Code mode.
+# It then calls launch_aider to execute the command.
+# Returns control to the main loop after aider exits or if the user selects "Back".
+#
+# Args: None
+#
+# Outputs:
+#   - Calls select_entity to display menus and get user input.
+#   - Calls check_api_key to validate key presence.
+#   - Calls launch_aider to run the final command.
+#
+# Modifies:
+#   - Uses and potentially clears local variables main_vendor, main_model.
 run_code_mode() {
     local main_vendor=""
     local main_model=""
