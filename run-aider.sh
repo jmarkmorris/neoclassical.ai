@@ -316,7 +316,13 @@ check_api_key() {
     fi
 }
 
-# Displays the menu for selecting the aider operating mode.
+# Displays the main menu for selecting the aider operating mode (Code/Architect) or exiting.
+#
+# Args: None
+#
+# Outputs:
+#   - Clears the screen.
+#   - Prints the menu options to stdout.
 display_mode_selection_menu() {
     clear
     echo -e "Step 1: Select Aider Operating Mode"
