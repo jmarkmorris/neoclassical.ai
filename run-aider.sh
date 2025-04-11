@@ -3,23 +3,27 @@
 # --- Model Definitions ---
 # Using indexed arrays for broader bash compatibility
 OPENAI_MODELS=(
+    "chatgpt-4o-latest"
+    "gpt-4.5-preview"
+    "openai/o3-mini"
     "gpt-4o"
-    "gpt-4o-mini"
     "gpt-4-turbo"
-    "gpt-4"
-    "gpt-3.5-turbo"
 )
 ANTHROPIC_MODELS=(
     "claude-3-7-sonnet-20250219"
     "claude-3-5-haiku-20241022"
-    "claude-3-opus-20240229"
 )
 GOOGLE_MODELS=(
-    "gemini/gemini-1.5-pro"
-    "gemini/gemini-2.0-flash"
-    "gemini/gemini-2.0-flash-exp"
     "gemini/gemini-2.5-pro-exp-03-25"
     "gemini/gemini-2.5-pro-preview-03-25"
+    "gemini/gemini-2.0-flash-exp"
+    "gemini/gemini-2.0-flash"
+)
+DEEPSEEK_MODELS=(
+    "deepseek/deepseek-coder"
+    "deepseek-reasoner"
+    "deepseek/deepseek-reasoner"
+    "deepseek/deepseek-chat"
 )
 
 # --- Vendor Definitions ---
@@ -27,6 +31,7 @@ VENDORS=(
     "OPENAI"
     "ANTHROPIC"
     "GOOGLE"
+    "DEEPSEEK"
 )
 
 # Parallel array holding the API key flag for each vendor
@@ -34,6 +39,7 @@ VENDOR_API_KEY_FLAGS=(
     "openai-api-key "    # OPENAI (Note the trailing space)
     "anthropic-api-key " # ANTHROPIC (Note the trailing space)
     "api-key google="   # GOOGLE (Note: includes 'google=')
+    "deepseek-api-key "  # DEEPSEEK (Note the trailing space)
 )
 
 # --- Edit Format Definitions ---
