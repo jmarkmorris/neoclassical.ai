@@ -4,13 +4,13 @@
 
 /ask Review the current code. Identify potential areas for improvement (e.g., readability, performance, error handling, security). Propose a step-by-step plan for implementing these changes, ordered by least risk.
 
-/ask Analyze the code for adherence to the principles outlined in README_prompts.md (readability, simplicity, meaningful names, small functions, etc.). Suggest specific refactorings to improve compliance and provide a safe, incremental plan.
+/ask Analyze the code for adherence to the principles outlined in README-prompts.md (readability, simplicity, meaningful names, small functions, etc.). Suggest specific refactorings to improve compliance and provide a safe, incremental plan.
 
 /ask Review the code specifically for opportunities to improve robustness and error handling. Identify areas where exceptions could be handled better or where edge cases might not be covered. Propose changes with a step-by-step plan.
 
 /ask Examine the code for redundancy (DRY principle violations). Suggest ways to consolidate duplicated logic or data. Provide a step-by-step refactoring plan.
 
-/ask Review the code for adherence to popular conventions and the style guide in README_prompts.md (import order, type hinting, docstrings, constants, formatting). Ensure all constants and tunable parameters are defined appropriately (e.g., at the module level). Create a plan to apply these changes incrementally.
+/ask Review the code for adherence to popular conventions and the style guide in README-prompts.md (import order, type hinting, docstrings, constants, formatting). Ensure all constants and tunable parameters are defined appropriately (e.g., at the module level). Create a plan to apply these changes incrementally.
 
 # --- Specific Tasks ---
 
@@ -26,4 +26,4 @@
 
 /ask Refactor the function `[function_name]` (or class `[class_name]`) to improve its [readability|performance|robustness]. Provide a step-by-step plan.
 
-/ask Ensure all public functions and classes have comprehensive docstrings following the format specified in README_prompts.md. Create a plan to add or update them.
+/ask Ensure all public functions and classes have comprehensive docstrings following the format specified in README-prompts.md. Create a plan to add or update them.

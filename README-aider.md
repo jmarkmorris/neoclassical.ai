@@ -19,7 +19,7 @@ The `runaider.sh` script provides an interactive command-line interface to confi
 - Guiding you through selecting the LLM vendor (OpenAI, Anthropic, Google, Deepseek) and specific model for each role (Code, Architect, Editor).
 - Managing API keys securely (loading from environment or files).
 - **Allowing pre-launch selection of the Aider edit format** (`whole`/`diff` for Code mode, `editor-whole`/`editor-diff` for Architect mode) via an interactive menu.
-- Automatically adding `README_prompts.md` and `README_ask.md` as read-only files to the Aider chat context.
+- Automatically adding `README-prompts.md` and `README-ask.md` as read-only files to the Aider chat context.
 
 Use `./run-aider.sh` in your terminal to start the configuration process.
 

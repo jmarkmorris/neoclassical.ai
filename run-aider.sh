@@ -628,7 +628,7 @@ launch_aider() {
     local editor_api_key_var=""
 
     # Base aider command parts in an array
-    local cmd_array=("aider" "--vim" "--no-auto-commit" "--read" "README_prompts.md" "--read" "README_ask.md")
+    local cmd_array=("aider" "--vim" "--no-auto-commit" "--read" "README-prompts.md" "--read" "README-ask.md")
 
     # Capture main model args
     local main_args_str
