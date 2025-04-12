@@ -57,12 +57,152 @@ ARCHITECT_WHOLE_FORMAT="editor-whole" # Whole-based format for Architect mode
 INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT # Or $CODE_DIFF_FORMAT
 INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
 
-# Function to load API keys.
-# Priority:
-# 1. Environment variables (e.g., OPENAI_API_KEY)
-# 2. File specified by PRIMARY_KEYS_FILE env var
-# 3. File at $HOME/.llm_api_keys
-# Exits with an error if a required key is missing after checking all sources.
+
+# --- API Key Loading Helper Functions ---
+
+# Attempts to load API keys from environment variables.
+# Updates VENDOR_KEY_SOURCE and exports found keys.
+#
+# Args: None
+#
+# Outputs:
+#   - Exports API key environment variables (e.g., OPENAI_API_KEY) if found.
+#   - Modifies the global VENDOR_KEY_SOURCE array.
+#
+# Returns:
+#   - 0 if all vendor keys were found in the environment.
+#   - 1 if one or more keys were not found in the environment.
+_load_keys_from_env() {
+    local vendor api_key_var env_api_key all_found=true i=0
+
+    echo "Checking environment variables for API keys..."
+
+    for vendor in "${VENDORS[@]}"; do
+        api_key_var="${vendor}_API_KEY"
+        env_api_key="" # Reset for each vendor
+
+        # --- Special handling for GOOGLE ---
+        if [[ "$vendor" == "GOOGLE" ]]; then
+            if [ -n "$GEMINI_API_KEY" ]; then
+                env_api_key="$GEMINI_API_KEY"
+            elif [ -n "$GOOGLE_API_KEY" ]; then
+                env_api_key="$GOOGLE_API_KEY"
+            fi
+        else
+            # --- Standard handling for other vendors ---
+            env_api_key="${!api_key_var}" # Indirect expansion
+        fi
+        # --- End Vendor Specific Handling ---
+
+        if [ -n "$env_api_key" ]; then
+            # Key found in environment, export the standard var and update source
+            export "$api_key_var"="$env_api_key"
+            VENDOR_KEY_SOURCE[$i]="env"
+            # echo "Debug: Found $vendor key in env." # Optional debug
+        else
+            # Key not found in environment for this vendor
+            VENDOR_KEY_SOURCE[$i]="unset"
+            all_found=false
+            # Ensure the shell variable is also unset in case it lingered from a previous run/source
+            unset "$api_key_var"
+            # echo "Debug: Did not find $vendor key in env." # Optional debug
+        fi
+        i=$((i + 1))
+    done
+
+    if $all_found; then
+        echo "All required API keys found in environment variables."
+        return 0 # Success code (all found)
+    else
+        echo "One or more API keys not found in environment variables. Will check files."
+        return 1 # Failure code (some missing)
+    fi
+}
+
+# Finds the API keys file to use based on environment variable or default path.
+#
+# Args: None
+#
+# Outputs:
+#   - Prints the full path of the keys file to stdout if found.
+#   - Prints nothing if no suitable file is found.
+#
+# Returns: None
+_find_keys_file() {
+    local primary_file="$PRIMARY_KEYS_FILE"
+    local secondary_file="$HOME/.llm_api_keys"
+    local file_to_use=""
+
+    if [ -n "$primary_file" ] && [ -f "$primary_file" ]; then
+        file_to_use="$primary_file"
+        # echo "Debug: Using primary keys file: $file_to_use" # Optional debug
+    elif [ -f "$secondary_file" ]; then
+        file_to_use="$secondary_file"
+        # echo "Debug: Using secondary keys file: $file_to_use" # Optional debug
+    # else
+        # echo "Debug: No API keys file found." # Optional debug
+    fi
+
+    # Print the path to stdout if found
+    echo "$file_to_use"
+}
+
+# Loads API keys from the specified file by sourcing it.
+# Updates VENDOR_KEY_SOURCE for keys loaded from the file.
+#
+# Args:
+#   $1: keys_file_path - The full path to the API keys file.
+#
+# Outputs:
+#   - Modifies the global VENDOR_KEY_SOURCE array.
+#   - Sources the file, potentially exporting environment variables.
+#
+# Returns: None
+_load_keys_from_file() {
+    local keys_file_path=$1
+    local j=0 vendor_check key_var_check key_val_check
+
+    if [ ! -f "$keys_file_path" ]; then
+        echo "Error: Keys file not found at path: $keys_file_path" >&2
+        # This should ideally not happen if _find_keys_file worked, but good practice
+        return 1
+    fi
+
+    echo "Loading API keys from file: $keys_file_path"
+    # Disable unbound variable errors temporarily during source
+    set +u
+    # shellcheck source=/dev/null # Tell shellcheck we are intentionally sourcing a variable path
+    source "$keys_file_path"
+    set -u # Re-enable unbound variable errors
+
+    # Update source array for keys that were loaded from the file
+    for vendor_check in "${VENDORS[@]}"; do
+        key_var_check="${vendor_check}_API_KEY"
+        # Check the value *after* sourcing, using indirect expansion
+        key_val_check="${!key_var_check}"
+
+        # If source is still unset AND the variable now has a value, it came from the file
+        if [[ "${VENDOR_KEY_SOURCE[$j]}" == "unset" && -n "$key_val_check" ]]; then
+            VENDOR_KEY_SOURCE[$j]="file"
+            # echo "Debug: Loaded $vendor_check key from file." # Optional debug
+            # No need to re-export, source should handle that if keys were exported in the file
+            # If keys were just assigned (e.g., VAR="value"), export them now
+             if ! export -p | grep -q "declare -x ${key_var_check}="; then
+                 export "$key_var_check"="$key_val_check"
+                 # echo "Debug: Exported $vendor_check key loaded from file." # Optional debug
+             fi
+        # else
+             # echo "Debug: $vendor_check key status unchanged (Source: ${VENDOR_KEY_SOURCE[$j]}, Value present: $( [ -n "$key_val_check" ] && echo true || echo false ))" # Optional debug
+        fi
+        j=$((j + 1))
+    done
+}
+
+# --- Main API Key Loading Function ---
+
+# Loads API keys, coordinating checks between environment and files.
+# Priority: Environment -> PRIMARY_KEYS_FILE -> $HOME/.llm_api_keys
+# Exits with an error if required keys are missing after checking all sources.
 #
 # Args: None
 #
@@ -76,121 +216,58 @@ INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
 #   - Environment variables for API keys.
 #   - VENDOR_KEY_SOURCE array.
 load_api_keys() {
-    local vendor api_key_var env_api_key key_loaded key_source_msg="" all_keys_loaded_from_env=true
+    local env_load_status keys_file_path
 
     echo "Attempting to load API keys..."
 
     # Initialize source array
+    local i
     for i in "${!VENDORS[@]}"; do
         VENDOR_KEY_SOURCE[$i]="unset"
     done
 
-    # 1. Check Environment Variables first
-    local i=0 # Index for parallel arrays
-    for vendor in "${VENDORS[@]}"; do
-        api_key_var="${vendor}_API_KEY"
-        env_api_key="" # Initialize
+    # 1. Try loading from environment variables
+    _load_keys_from_env
+    env_load_status=$? # Capture return status (0=all found, 1=some missing)
 
-        # --- Special handling for GOOGLE ---
-        if [[ "$vendor" == "GOOGLE" ]]; then
-            # Prioritize GEMINI_API_KEY if set
-            if [ -n "$GEMINI_API_KEY" ]; then
-                env_api_key="$GEMINI_API_KEY"
-                # echo "Loaded GOOGLE key from GEMINI_API_KEY environment variable." # Optional debug
-            # Otherwise, check for GOOGLE_API_KEY
-            elif [ -n "$GOOGLE_API_KEY" ]; then
-                env_api_key="$GOOGLE_API_KEY"
-                # echo "Loaded GOOGLE key from GOOGLE_API_KEY environment variable." # Optional debug
-            fi
+    # 2. If not all keys were in env, try loading from file
+    if [ "$env_load_status" -ne 0 ]; then
+        keys_file_path=$(_find_keys_file)
+
+        if [ -n "$keys_file_path" ]; then
+            # File found, attempt to load from it
+            _load_keys_from_file "$keys_file_path"
         else
-            # --- Standard handling for other vendors ---
-            # Use indirect expansion to get the value of the env var
-            env_api_key="${!api_key_var}"
-        fi
-        # --- End Vendor Specific Handling ---
-
-        if [ -n "$env_api_key" ]; then
-            # Key found in environment
-            # Export the variable using the *standard* vendor name (e.g., GOOGLE_API_KEY)
-            # so check_api_key and potentially build_args (if needed) can see it.
-            export "$api_key_var"="$env_api_key"
-            VENDOR_KEY_SOURCE[$i]="env" # Mark source as environment
-            key_source_msg="environment variables" # Update message source if needed
-        else
-            # Key not found in environment for this vendor
-            VENDOR_KEY_SOURCE[$i]="unset" # Ensure it's marked as unset
-            all_keys_loaded_from_env=false
-            # Ensure the variable is unset in the script's env if not found in the process env
-            # This prevents a previously sourced file's value from persisting incorrectly
-            # if the env var is later removed.
-            # We still unset the shell variable here to ensure the file source below
-            # doesn't pick up a stale value if the env var was removed but the shell var wasn't cleared.
-            unset "$api_key_var"
-        fi
-        i=$((i + 1)) # Increment index
-    done
-
-    if $all_keys_loaded_from_env; then
-        echo "All required API keys loaded from environment variables."
-        return 0 # Successfully loaded all keys from env
-    fi
-
-    # 2. & 3. Check File Locations if not all keys were in env
-    local secondary_keys_file="$HOME/.llm_api_keys"
-    local keys_file_to_use=""
-
-    if [ -n "$PRIMARY_KEYS_FILE" ] && [ -f "$PRIMARY_KEYS_FILE" ]; then
-        keys_file_to_use="$PRIMARY_KEYS_FILE"
-        key_source_msg="keys file (PRIMARY_KEYS_FILE): $keys_file_to_use"
-    elif [ -f "$secondary_keys_file" ]; then
-        keys_file_to_use="$secondary_keys_file"
-        key_source_msg="keys file (default): $keys_file_to_use"
-    fi
-
-    # Source the file if found (will define/overwrite *_API_KEY vars)
-    if [ -n "$keys_file_to_use" ]; then
-        echo "Loading API keys from $key_source_msg..."
-        # Disable unbound variable errors temporarily during source
-        set +u
-        source "$keys_file_to_use"
-        set -u # Re-enable unbound variable errors
-
-        # Now, update source for keys that were loaded from the file
-        local j=0
-        for vendor_check in "${VENDORS[@]}"; do
-            local key_var_check="${vendor_check}_API_KEY"
-            local key_val_check="${!key_var_check}" # Check the value *after* sourcing
-            # If source is still unset AND the variable now has a value, it came from the file
-            if [[ "${VENDOR_KEY_SOURCE[$j]}" == "unset" && -n "$key_val_check" ]]; then
-                 VENDOR_KEY_SOURCE[$j]="file"
-                 # No need to re-export, source already did that.
-            fi
-             j=$((j + 1))
-        done
-    else
-        # No keys file found. Error if keys weren't fully loaded from env.
-        if ! $all_keys_loaded_from_env; then
-             echo "Error: No API keys file found and keys not provided via environment variables."
-             echo "Please either:"
-             echo "  1. Set environment variables (e.g., export OPENAI_API_KEY=..., export GEMINI_API_KEY=...)"
-             echo "  2. Set the PRIMARY_KEYS_FILE environment variable to the full path of your keys file."
-             echo "  3. Place your keys file at the default location: '$secondary_keys_file'"
-             echo ""
-             echo "Example content for the keys file:"
-             echo "# LLM API Keys Configuration"
-             echo "OPENAI_API_KEY=\"sk-...\""
-             echo "ANTHROPIC_API_KEY=\"sk-...\""
-             echo "# For Google, use either:"
-             echo "GEMINI_API_KEY=\"AIza...\"  # Preferred"
-             echo "# GOOGLE_API_KEY=\"AIza...\" # Also supported"
-             echo "DEEPSEEK_API_KEY=\"sk-...\""
-             exit 1
+            # No keys file found, and keys were missing from env. This is an error.
+            local secondary_keys_file="$HOME/.llm_api_keys" # Define for error message
+            echo "Error: No API keys file found and keys not fully provided via environment variables." >&2
+            echo "Please either:" >&2
+            echo "  1. Set environment variables for all required vendors (e.g., export OPENAI_API_KEY=..., export GEMINI_API_KEY=...)" >&2
+            echo "  2. Set the PRIMARY_KEYS_FILE environment variable to the full path of your keys file." >&2
+            echo "  3. Place your keys file at the default location: '$secondary_keys_file'" >&2
+            echo "" >&2
+            echo "Example content for the keys file:" >&2
+            echo "# LLM API Keys Configuration" >&2
+            echo "OPENAI_API_KEY=\"sk-...\"" >&2
+            echo "ANTHROPIC_API_KEY=\"sk-...\"" >&2
+            echo "# For Google, use either:" >&2
+            echo "GEMINI_API_KEY=\"AIza...\"  # Preferred" >&2
+            echo "# GOOGLE_API_KEY=\"AIza...\" # Also supported" >&2
+            echo "DEEPSEEK_API_KEY=\"sk-...\"" >&2
+            exit 1
         fi
     fi
+
     # If we reached here, keys were loaded either from env, file, or a combination.
     # The check_api_key function will verify if the *specific* needed key is present later.
-    echo "API key loading complete (using environment variables and/or file)."
+    echo "API key loading process complete."
+    # Optional: Print final status of each key source
+    # local k
+    # for k in "${!VENDORS[@]}"; do
+    #     echo "Debug: Final source for ${VENDORS[$k]}: ${VENDOR_KEY_SOURCE[$k]}"
+    # done
 }
+
 
 # Generalized function to select an entity (vendor or model) via an interactive menu.
 #
@@ -297,10 +374,18 @@ check_api_key() {
     local api_key_var="${vendor}_API_KEY"
     # Use indirect expansion instead of eval
     local api_key="${!api_key_var}"
+    local vendor_index=$(_get_vendor_index "$vendor") # Get index for source check
+    local key_source="unset" # Default if index is invalid
+    if [ "$vendor_index" -ne -1 ]; then
+        key_source="${VENDOR_KEY_SOURCE[$vendor_index]}"
+    fi
 
-    if [ -z "$api_key" ]; then
+    # Check if the key is actually set *and* its source is known (env or file)
+    # This prevents errors if load_api_keys failed silently or VENDOR_KEY_SOURCE is somehow wrong.
+    if [ -z "$api_key" ] || [[ "$key_source" == "unset" ]]; then
         local secondary_keys_file="$HOME/.llm_api_keys" # Define for error message
-        echo -e "\nError: API key for $vendor is not set." >&2
+        echo -e "\nError: API key for $vendor is not set or could not be loaded." >&2
+        echo -e "Source status: $key_source" >&2 # Add source status to error
         # --- Special error message for GOOGLE ---
         if [[ "$vendor" == "GOOGLE" ]]; then
             echo -e "Please ensure it is defined either as an environment variable (GEMINI_API_KEY or GOOGLE_API_KEY)" >&2
@@ -324,6 +409,7 @@ check_api_key() {
         echo -e "  - Secondary Keys File (default): $secondary_keys_file" >&2
         exit 1
     fi
+    # echo "Debug: API key for $vendor confirmed (Source: $key_source)." # Optional debug
 }
 
 # Displays the main menu for selecting the aider operating mode (Code/Architect) or exiting.
@@ -358,7 +444,7 @@ display_mode_selection_menu() {
 #   - Prints -1 to stdout if the vendor is not found in the VENDORS array.
 _get_vendor_index() {
     local vendor_name=$1
-    local index=-1
+    local index=-1 i
     for i in "${!VENDORS[@]}"; do
         if [[ "${VENDORS[$i]}" == "$vendor_name" ]]; then
             index=$i
@@ -459,12 +545,14 @@ _build_architect_args() {
         # Check if editor vendor is different from main vendor
         if [ "$editor_vendor" != "$main_vendor" ]; then
             # We need the API key value if it came from a file
-            if [ -n "$editor_api_key" ]; then # editor_api_key is passed only if needed (diff vendor)
-                local editor_vendor_index=$(_get_vendor_index "$editor_vendor")
-                if [ "$editor_vendor_index" -ne -1 ]; then
-                    local editor_key_source="${VENDOR_KEY_SOURCE[$editor_vendor_index]}"
-                    # Only add the API key flag if the key was loaded from a file
-                    if [[ "$editor_key_source" == "file" ]]; then
+            # The key value is passed in $editor_api_key only if needed (diff vendor)
+            local editor_vendor_index=$(_get_vendor_index "$editor_vendor")
+            if [ "$editor_vendor_index" -ne -1 ]; then
+                local editor_key_source="${VENDOR_KEY_SOURCE[$editor_vendor_index]}"
+                # Only add the API key flag if the key was loaded from a file
+                if [[ "$editor_key_source" == "file" ]]; then
+                    # Ensure the key value is actually available before adding the flag
+                    if [ -n "$editor_api_key" ]; then
                         local editor_flag_def="${VENDOR_API_KEY_FLAGS[$editor_vendor_index]}"
                         local editor_flag_name=""
                         local editor_key_prefix=""
@@ -481,16 +569,16 @@ _build_architect_args() {
                             args_array+=("--${editor_flag_name}" "$editor_api_key")
                         fi
                         # echo "Debug: Adding editor API key flag for $editor_vendor (source: file)" # Optional debug
-                    # else
-                        # echo "Debug: Skipping editor API key flag for $editor_vendor (source: $editor_key_source)" # Optional debug
+                    else
+                         # This indicates a logic error - key source is file, but key value wasn't passed
+                         echo "Warning: Editor key source for $editor_vendor is 'file', but key value is missing in _build_architect_args." >&2
                     fi
-                else
-                    echo "Error: Unknown editor vendor index in _build_architect_args for: $editor_vendor" >&2
-                    return 1 # Explicitly return error code
+                # else
+                    # echo "Debug: Skipping editor API key flag for $editor_vendor (source: $editor_key_source)" # Optional debug
                 fi
             else
-                # This case should ideally be handled before calling launch_aider (Step 2)
-                echo "Warning: Editor API key for $editor_vendor not provided to _build_architect_args" >&2
+                echo "Error: Unknown editor vendor index in _build_architect_args for: $editor_vendor" >&2
+                return 1 # Explicitly return error code
             fi
         fi
     fi
@@ -542,7 +630,7 @@ launch_aider() {
     local editor_model=$5
 
     local main_api_key_var="${main_vendor}_API_KEY"
-    local main_api_key="${!main_api_key_var}"
+    local main_api_key="${!main_api_key_var}" # Get key value using indirect expansion
     local editor_api_key=""
     local editor_api_key_var=""
 
@@ -571,12 +659,14 @@ launch_aider() {
         format_constant_base="ARCHITECT"
         actual_format="$INITIAL_ARCHITECT_FORMAT" # Set initial format
 
-        # Retrieve editor API key ONLY if editor vendor is different and not default
+        # Retrieve editor API key value ONLY if editor vendor is different and not default
+        # This value is needed by _build_architect_args if the source is 'file'
         if [[ "$editor_vendor" != "$main_vendor" && "$editor_vendor" != "default" && -n "$editor_vendor" ]]; then
              editor_api_key_var="${editor_vendor}_API_KEY"
-             editor_api_key="${!editor_api_key_var}"
+             editor_api_key="${!editor_api_key_var}" # Get key value using indirect expansion
         fi
         # Get architect-specific args (without edit format)
+        # Pass the potentially needed editor_api_key value
         mode_args_str=$(_build_architect_args "$editor_vendor" "$editor_model" "$editor_api_key" "$main_vendor")
         if [ $? -ne 0 ]; then return 1; fi # Exit if helper failed
 
@@ -705,11 +795,11 @@ main() {
             esac
         done
 
-        # Variables to store selections
-        local main_vendor=""
-        local main_model=""
-        local editor_vendor=""
-        local editor_model="" # Use "default" to signify default editor
+        # Variables to store selections are now local to the mode functions
+        # local main_vendor=""
+        # local main_model=""
+        # local editor_vendor=""
+        # local editor_model="" # Use "default" to signify default editor
 
         # Call the appropriate function based on selected mode
         if [ "$selected_mode" == "code" ]; then
@@ -760,7 +850,7 @@ run_code_mode() {
             fi
             # Vendor selected successfully
             main_vendor="$SELECT_ENTITY_RESULT"
-            check_api_key "$main_vendor"
+            check_api_key "$main_vendor" # Verify the key is loaded and source is known
             # Continue within the same loop iteration to select model
         fi
 
@@ -820,7 +910,7 @@ run_architect_mode() {
                     return # Back to main menu
                 fi
                 main_vendor="$SELECT_ENTITY_RESULT"
-                check_api_key "$main_vendor"
+                check_api_key "$main_vendor" # Verify the key is loaded and source is known
                 current_step="select_main_model"
                 ;;
 
@@ -858,7 +948,7 @@ run_architect_mode() {
                 fi
 
                 # If not default, proceed to check key and select model
-                check_api_key "$editor_vendor"
+                check_api_key "$editor_vendor" # Verify the key is loaded and source is known
                 current_step="select_editor_model"
                 ;;
 
