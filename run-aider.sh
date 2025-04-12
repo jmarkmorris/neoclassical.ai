@@ -57,6 +57,75 @@ ARCHITECT_WHOLE_FORMAT="editor-whole" # Whole-based format for Architect mode
 INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT # Or $CODE_DIFF_FORMAT
 INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
 
+# --- Usage Message Function ---
+display_usage() {
+    cat << EOF
+Usage: ./run-aider.sh [-h|--help]
+
+This script provides an interactive menu to configure and launch the 'aider' tool.
+
+Options:
+  -h, --help    Display this help message and exit.
+
+Description:
+  The script guides you through selecting the operating mode (Code or Architect),
+  the LLM vendor (Google, Anthropic, OpenAI, Deepseek), and the specific model.
+  It manages API keys and prepares the final 'aider' command.
+
+API Key Setup:
+  API keys are required for the selected LLM vendor(s). They can be provided in
+  one of the following ways (checked in this order):
+
+  1. Environment Variables:
+     Export the required variables before running the script:
+       export OPENAI_API_KEY="sk-..."
+       export ANTHROPIC_API_KEY="sk-..."
+       export GEMINI_API_KEY="AIza..."  # Preferred for Google
+       # or export GOOGLE_API_KEY="AIza..."
+       export DEEPSEEK_API_KEY="sk-..."
+
+  2. API Keys File:
+     - If the 'PRIMARY_KEYS_FILE' environment variable is set, the script will
+       look for a file at that path.
+     - Otherwise, it will look for a file at the default location:
+       \$HOME/.llm_api_keys
+
+     The keys file should contain lines like:
+       # LLM API Keys Configuration
+       OPENAI_API_KEY="sk-..."
+       ANTHROPIC_API_KEY="sk-..."
+       GEMINI_API_KEY="AIza..."
+       DEEPSEEK_API_KEY="sk-..."
+       # Ensure the file is not world-readable (chmod 600)
+
+Menu Flow:
+  - Select Mode: Choose between 'Code' (standard aider) or 'Architect' (uses
+    separate models for planning and editing).
+  - Select Vendor(s): Choose the LLM provider (e.g., OpenAI).
+  - Select Model(s): Choose the specific model (e.g., gpt-4o). In Architect
+    mode, you'll select models for both the Architect and Editor roles.
+
+Pre-Launch Confirmation:
+  Before running 'aider', the script will display:
+  - The exact 'aider' command that will be executed.
+  - The currently selected edit format (e.g., 'whole', 'editor-diff').
+  You will then have options to:
+  - Launch 'aider' with the displayed command and format.
+  - Switch to the alternative edit format ('diff'/'whole' or
+    'editor-diff'/'editor-whole') before launching.
+  - Go back to the main menu to change selections.
+
+Running Aider:
+  The script executes 'aider' with common options like '--vim', '--no-auto-commit',
+  and automatically includes 'README-prompts.md' and 'README-ask.md'.
+
+Invocation:
+  - To start the interactive menu: ./run-aider.sh
+  - To display this help:      ./run-aider.sh -h  OR  ./run-aider.sh --help
+EOF
+}
+
+
 # --- API Key Loading Helper Functions ---
 
 # Attempts to load API keys from environment variables.
