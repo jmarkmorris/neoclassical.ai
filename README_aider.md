@@ -1,6 +1,6 @@
 # Aider Documentation
 
-## Installling aider
+## Installing aider
 
 * python -m pip install aider-install
 * aider-install
@@ -87,7 +87,7 @@ Run aider with the `--vim` switch (automatically included by `run-aider.sh`) to 
 
 ## Edit Formats (`--edit-format`) and `run-aider.sh`
 
-Aider's `--edit-format` option controls how code changes are presented to the LLM. The `run-aider.sh` script helps select this format before launching.
+Aider's `--edit-format` option controls how code changes are presented to the LLM. The `run-aider.sh` script helps select this format before launching. Understanding the differences can help troubleshoot failed edits.
 
 **`run-aider.sh` Behavior:**
 
@@ -104,40 +104,48 @@ Aider's `--edit-format` option controls how code changes are presented to the LL
 
 1.  **`diff`**
     *   **What it does:** Presents changes in standard `diff` format (`+`/`-` lines).
-    *   **How it works:** Sends only calculated differences to the LLM.
+    *   **How it works:** Sends only calculated differences to the LLM. Aider then attempts to apply this diff/patch to the local file.
     *   **Compatibility:** Primarily for **Code Mode**. Concise, focuses LLM on changes.
+    *   **Potential Issues:** Edits can sometimes fail if the LLM generates an invalid diff, if the context lines in the diff don't perfectly match the current file, or if the changes are complex/overlapping.
     *   **`run-aider.sh` Usage:** Selectable via the pre-launch confirmation menu in Code Mode (alternative to `whole`).
 
 2.  **`whole` (Initial Default for Code Mode in script)**
     *   **What it does:** Presents the *entire* proposed file content to the LLM.
-    *   **How it works:** Sends the complete intended file text.
-    *   **Compatibility:** Works in **Code Mode**. Useful if diffs confuse the LLM; uses more tokens.
+    *   **How it works:** Sends the complete intended file text. Aider replaces the existing file content with the new content received from the LLM. This bypasses the complexities of patch application.
+    *   **Compatibility:** Works in **Code Mode**. Can be more reliable if `diff` edits fail frequently, as it avoids diff generation/application errors.
+    *   **Downsides:** Uses significantly more tokens (higher cost, potentially slower), may hit context limits on very large files, and might encourage the LLM to make broader, unintended changes if not prompted carefully.
     *   **`run-aider.sh` Usage:** The *initial default* in Code Mode. Switchable to `diff` via the pre-launch confirmation menu.
 
 3.  **`udiff`**
     *   **What it does:** Uses the "unified" diff format (like `git diff -U`).
-    *   **How it works:** Calculates and presents changes using the unified diff standard.
+    *   **How it works:** Similar to `diff`, but with potentially more context lines. Subject to similar potential issues as `diff`.
     *   **Compatibility:** Works in **Code Mode**.
     *   **`run-aider.sh` Usage:** Not directly selectable via the script's menu.
 
 **Architect Mode Specific Formats:**
 
-These control how the *main* LLM's output is presented to the *editor* LLM.
+These control how the *main* LLM's output is presented to the *editor* LLM. The same trade-offs between diff-based and whole-file approaches apply.
 
 4.  **`editor-diff`**
     *   **What it does:** Sends the diff from the *main* LLM's changes to the *editor* LLM.
-    *   **How it works:** Editor LLM receives only the diff to review/refine.
+    *   **How it works:** Editor LLM receives only the diff to review/refine. Aider then attempts to apply the (potentially refined) diff.
     *   **Compatibility:** Only for **Architect Mode**. Focuses editor on refining specific changes.
+    *   **Potential Issues:** Subject to the same diff application risks as the standard `diff` format if the main or editor LLM produces a problematic diff.
     *   **`run-aider.sh` Usage:** Selectable via the pre-launch confirmation menu in Architect Mode (alternative to `editor-whole`).
 
 5.  **`editor-whole` (Initial Default for Architect Mode in script)**
     *   **What it does:** Sends the *entire file content* proposed by the *main* LLM to the *editor* LLM.
-    *   **How it works:** Editor LLM receives the full proposed file content.
-    *   **Compatibility:** Only for **Architect Mode**. Gives editor full context; uses more tokens.
+    *   **How it works:** Editor LLM receives the full proposed file content for review/refinement. Aider then replaces the local file with the final version from the editor LLM. This bypasses diff application issues between the main and editor steps.
+    *   **Compatibility:** Only for **Architect Mode**. Gives editor full context; can be more reliable if `editor-diff` fails.
+    *   **Downsides:** Uses significantly more tokens than `editor-diff`, potentially increasing cost and latency.
     *   **`run-aider.sh` Usage:** The *initial default* in Architect Mode. Switchable to `editor-diff` via the pre-launch confirmation menu.
+
+**Troubleshooting Edit Failures:**
+
+If you experience frequent failed edits, especially with complex changes, switching from a `diff`-based format (`diff`, `editor-diff`) to a `whole`-based format (`whole`, `editor-whole`) using the `run-aider.sh` pre-launch menu might improve reliability, at the cost of increased token usage.
 
 **Summary:**
 
 *   `run-aider.sh` simplifies selecting Aider's edit format.
-*   **Code Mode:** Starts with `whole`, allows switching to `diff` before launch.
-*   **Architect Mode:** Starts with `editor-whole`, allows switching to `editor-diff` before launch.
+*   **Code Mode:** Starts with `whole` (more reliable, higher tokens), allows switching to `diff` (more concise, potential diff issues) before launch.
+*   **Architect Mode:** Starts with `editor-whole` (more reliable, higher tokens), allows switching to `editor-diff` (more concise, potential diff issues) before launch.
