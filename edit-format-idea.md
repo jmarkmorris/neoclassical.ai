@@ -31,4 +31,4 @@
         *   **3. Back to Main Menu:** Aborts the launch and returns to the script's main mode selection menu.
     *   **Execution:** The `aider` command is executed using `eval` only when option 1 is chosen, ensuring the correct `--edit-format` flag is included based on the final selection in the menu.
 
-**Outcome:** The script now provides a user-friendly way to choose between the primary edit format styles (`diff` vs `whole` based) immediately before launching Aider, while starting with configurable defaults.
+**Outcome:** The script provides a user-friendly way to choose between the primary edit format styles (`diff` vs `whole` based) via a pre-launch confirmation menu, starting with configurable defaults.
