@@ -7,11 +7,6 @@ Based on the analysis using `README_ask.md` and `README_prompts.md`, here are po
     *   **Goal:** Improve data flow clarity, reduce reliance on global variables, adhere closer to functional principles.
     *   **Risk:** Low-Medium. Requires careful changes in `select_entity` and its call sites.
 
-2.  **Refactor `eval` in `launch_aider`:**
-    *   **Action:** Instead of building `$current_aider_cmd` as a single string, build the command and its arguments into a bash array (e.g., `local cmd_array=("aider" "--vim" ...)`). Handle arguments that might contain spaces (like API keys from files) correctly within the array. Execute using `"${cmd_array[@]}"`.
-    *   **Goal:** Improve security posture and robustness by avoiding `eval` and letting bash handle argument quoting/splitting via the array expansion.
-    *   **Risk:** Medium. Requires careful construction of the array, especially handling arguments that need quoting or contain spaces. Need to verify correct argument passing to `aider`.
-
 3.  **Refactor `load_api_keys`:**
     *   **Action:** Break down the function into smaller, more focused units (e.g., `_load_keys_from_env`, `_find_keys_file`, `_load_keys_from_file`). The main `load_api_keys` function would orchestrate calls to these helpers.
     *   **Goal:** Improve readability, testability, and maintainability by reducing the size and complexity of the main loading function.
