@@ -209,7 +209,7 @@ Just `rm -rf myenv` (⚠️ be careful with `rm -rf`). That's it. All gone. Crea
 
 ## Notes for neoclassical.ai Users
 
-- `neoclassical.ai` is the directory where the virtual environments (plural) exists.
+- `neoclassical.ai` is the directory where the virtual environments (plural) exist.
 - A virtual environment needs to be activated before installing packages so as not to change system files.
 - Each laptop must have its own virtual environment to prevent stepping on one another.
 

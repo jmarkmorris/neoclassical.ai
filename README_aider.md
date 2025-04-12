@@ -7,8 +7,7 @@
 
 Note: there is also an aider package known to pip, but that is something else.
 
-You can run Aider with the --verbose flag to enable verbose output. This will provide detailed logs and information about the operations being performed.
-If you are using a configuration file for Aider, you can add the --verbose option to the configuration settings.
+You can run Aider with the --verbose flag to enable verbose output. This will provide detailed logs and information about the operations being performed. If you are using a configuration file for Aider, you can add the --verbose option to the configuration settings.
 
 ## Running Aider with runaider.sh
 
@@ -22,7 +21,7 @@ The `runaider.sh` script provides an interactive command-line interface to confi
 - **Allowing pre-launch selection of the Aider edit format** (`whole`/`diff` for Code mode, `editor-whole`/`editor-diff` for Architect mode) via an interactive menu.
 - Automatically adding `README_prompts.md` and `README_ask.md` as read-only files to the Aider chat context.
 
-Use `./runaider.sh` in your terminal to start the configuration process.
+Use `./run-aider.sh` in your terminal to start the configuration process.
 
 ---
 
@@ -116,24 +115,18 @@ Aider's `--edit-format` option controls how code changes are presented to the LL
     *   **Downsides:** Uses significantly more tokens (higher cost, potentially slower), may hit context limits on very large files, and might encourage the LLM to make broader, unintended changes if not prompted carefully.
     *   **`run-aider.sh` Usage:** The *initial default* in Code Mode. Switchable to `diff` via the pre-launch confirmation menu.
 
-3.  **`udiff`**
-    *   **What it does:** Uses the "unified" diff format (like `git diff -U`).
-    *   **How it works:** Similar to `diff`, but with potentially more context lines. Subject to similar potential issues as `diff`.
-    *   **Compatibility:** Works in **Code Mode**.
-    *   **`run-aider.sh` Usage:** Not directly selectable via the script's menu.
-
 **Architect Mode Specific Formats:**
 
 These control how the *main* LLM's output is presented to the *editor* LLM. The same trade-offs between diff-based and whole-file approaches apply.
 
-4.  **`editor-diff`**
+3.  **`editor-diff`**
     *   **What it does:** Sends the diff from the *main* LLM's changes to the *editor* LLM.
     *   **How it works:** Editor LLM receives only the diff to review/refine. Aider then attempts to apply the (potentially refined) diff.
     *   **Compatibility:** Only for **Architect Mode**. Focuses editor on refining specific changes.
     *   **Potential Issues:** Subject to the same diff application risks as the standard `diff` format if the main or editor LLM produces a problematic diff.
     *   **`run-aider.sh` Usage:** Selectable via the pre-launch confirmation menu in Architect Mode (alternative to `editor-whole`).
 
-5.  **`editor-whole` (Initial Default for Architect Mode in script)**
+4.  **`editor-whole` (Initial Default for Architect Mode in script)**
     *   **What it does:** Sends the *entire file content* proposed by the *main* LLM to the *editor* LLM.
     *   **How it works:** Editor LLM receives the full proposed file content for review/refinement. Aider then replaces the local file with the final version from the editor LLM. This bypasses diff application issues between the main and editor steps.
     *   **Compatibility:** Only for **Architect Mode**. Gives editor full context; can be more reliable if `editor-diff` fails.

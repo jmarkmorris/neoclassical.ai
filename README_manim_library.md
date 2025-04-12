@@ -76,32 +76,7 @@ animation = FadeIn(circle)
 # Use the animation in a Manim scene
 ```
 
-### Tips and Variations
-
-*   Use a consistent naming convention throughout your library.
-*   Include documentation for your library using docstrings and/or a documentation generator like Sphinx.
-*   Consider using a version control system like Git to track changes to your library.
-*   If you plan to share your library with others, consider publishing it on a package repository like PyPI.
-
-By following these steps, you can create a reusable library for Python/Manim that saves you time and effort in the long run.
-
 ---
-
-## Designing Reusable Manim Object Structures
-
-To create reusable Manim object structures that are entirely self-referential and independent, consider the following design principles:
-
-1.  **Encapsulate Complexity**
-    Create a top-level object that encapsulates the entire assembly. This object should have its own updaters and handle the updating of its sub-objects.
-
-2.  **Use Composition**
-    Break down complex objects into smaller, independent sub-objects. Each sub-object should have its own updaters and be responsible for its own state.
-
-3.  **Minimize External Dependencies**
-    Avoid referencing external objects or variables within your assembly. Instead, pass any necessary data as arguments to the object's constructor or updaters.
-
-4.  **Use Relative Positioning**
-    Use relative positioning to place sub-objects within the assembly. This allows the assembly to be moved or scaled without affecting the relative positions of its sub-objects.
 
 ### Example: Reusable Button Assembly
 
@@ -133,10 +108,3 @@ button.update_color(BLUE)
 ```
 
 By following these design principles, you can create reusable Manim object structures that are easy to work with and require minimal external dependencies.
-
-### Additional Tips
-
-*   Use meaningful variable names and docstrings to document your code.
-*   Consider using a consistent naming convention throughout your code.
-*   Use type hints to specify the types of function arguments and return values.
-*   Keep your code organized by using separate files or modules for different components.

@@ -1,6 +1,9 @@
 # Coding Environment
 
-* The development environment is MacOS.  Focus on that operating system. Microsoft Windows is not used in the development environment.
+* The development environment operating system is MacOS. Microsoft Windows is not used in the development environment.
+* iterm2 is the main terminal interface, although VsCode uses its own terminal implementation.
+* The shell is bash.
+* The run-aider.sh script that enables choice of LLM models and aider command line options.
 
 # General Coding Principles
 
@@ -22,7 +25,6 @@ When writing code, you MUST follow these principles:
     *   Function Composition
     *   Declarative Code
 
-
 # Coding Standards & Style
 
 *   **Import Order:** Group imports: 1. Standard library, 2. Third-party packages, 3. Local application/library imports. Alphabetize within each group.
@@ -30,7 +32,6 @@ When writing code, you MUST follow these principles:
 *   **Docstrings:** Use well written docstrings for all public classes and functions. Include `Args`, `Returns`, and `Raises` sections where applicable.
 *   **Constants:** Define constants at the module level using `UPPER_SNAKE_CASE`.
 *   **Formatting:** Code should adhere to Black formatting standards. Run `black .` before committing.
-
 
 # Design & Architecture
 
@@ -49,4 +50,21 @@ When writing code, you MUST follow these principles:
 *   Comments should not be parochial, i.e., specific to a particular problem, issue, or revision.
 *   Ensure the editor makes small incremental search/replace blocks and keep the changes that succeed.
 *   Explicitly verify that *all* requested changes within the prompt have been successfully applied to the relevant files. 
+
+## Designing Reusable Manim Object Structures
+
+To create reusable Manim object structures that are entirely self-referential and independent, consider the following design principles:
+
+1.  **Encapsulate Complexity**
+    Create a top-level object that encapsulates the entire assembly. This object should have its own updaters and handle the updating of its sub-objects.
+
+2.  **Use Composition**
+    Break down complex objects into smaller, independent sub-objects. Each sub-object should have its own updaters and be responsible for its own state.
+
+3.  **Minimize External Dependencies**
+    Avoid referencing external objects or variables within your assembly. Instead, pass any necessary data as arguments to the object's constructor or updaters.
+
+4.  **Use Relative Positioning**
+    Use relative positioning to place sub-objects within the assembly. This allows the assembly to be moved or scaled without affecting the relative positions of its sub-objects.
+
 
