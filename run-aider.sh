@@ -563,7 +563,7 @@ launch_aider() {
 
     # Pre-launch confirmation loop
     while true; do
-        # Determine the alternative format
+        # --- Determine the alternative format for the menu ---
         local diff_format_var="${format_constant_base}_DIFF_FORMAT"
         local whole_format_var="${format_constant_base}_WHOLE_FORMAT"
         local diff_format="${!diff_format_var}"
@@ -575,9 +575,10 @@ launch_aider() {
             alternative_format="$diff_format"
         fi
 
-        # Build the *full* command for display *inside* the loop
+        # --- Build the full command string for display ---
         local current_aider_cmd="${base_aider_cmd} ${main_args} ${mode_args} --edit-format ${actual_format}"
 
+        # --- Display the pre-launch menu ---
         clear
         echo -e "Launching Aider: ${mode_display_name}"
         echo -e "Main Model:      ${main_vendor}/${main_model}${editor_display_info}"
@@ -595,9 +596,13 @@ launch_aider() {
         echo -n "Enter choice [1-3, Enter=1]: "
         read confirm_choice
 
+        # --- Handle user choice ---
         case "${confirm_choice:-1}" in # Default to 1 if Enter is pressed
             1)  # Launch
                 echo # Newline before execution
+                # Use eval to handle the dynamically constructed command string,
+                # which may contain spaces within arguments (e.g., API key flags).
+                # Inputs are controlled via script logic, reducing security risks.
                 eval "$current_aider_cmd"
                 local exit_status=$?
                 if [ $exit_status -ne 0 ]; then
