@@ -1,80 +1,34 @@
-# Plan: Add Edit Format Switching via Pre-Launch Confirmation
+# Feature: Edit Format Switching via Pre-Launch Confirmation
 
 **Goal:** Allow users to easily switch between the `diff`-based and `whole`-based edit formats just before launching Aider, using the script's interactive menu.
 
-**Constraint:** Aider uses a single `--edit-format` flag per run. This plan focuses only on `diff`, `whole`, `editor-diff`, and `editor-whole`.
+**Constraint:** Aider uses a single `--edit-format` flag per run. This feature focuses only on `diff`, `whole`, `editor-diff`, and `editor-whole`.
 
-**Refined Step-by-Step Plan (Based on current `run-aider.sh`):**
+**Implemented Functionality (in `run-aider.sh`):**
 
-1.  **Define All Necessary Format Constants:**
-    *   **Action:** In `run-aider.sh`:
-        *   Identify the existing format constants (`CODE_EDIT_FORMAT="whole"`, `ARCHITECT_EDIT_FORMAT="editor-whole"`). Rename them for clarity if desired (e.g., to `CODE_WHOLE_FORMAT`, `ARCHITECT_WHOLE_FORMAT`).
-        *   *Add* constants for the alternative formats: `CODE_DIFF_FORMAT="diff"` and `ARCHITECT_DIFF_FORMAT="editor-diff"`.
-        *   *Add* constants to define the *initial* default format the script should start with for each mode: `INITIAL_CODE_FORMAT` (e.g., `=CODE_WHOLE_FORMAT`) and `INITIAL_ARCHITECT_FORMAT` (e.g., `=ARCHITECT_WHOLE_FORMAT`).
-    *   **Example (Target State in `run-aider.sh`):**
-        ```bash
-        # --- Edit Format Definitions ---
-        # Define the specific format strings to use
-        CODE_DIFF_FORMAT="diff"
-        CODE_WHOLE_FORMAT="whole"
-        ARCHITECT_DIFF_FORMAT="editor-diff" # Diff-based format for Architect mode
-        ARCHITECT_WHOLE_FORMAT="editor-whole" # Whole-based format for Architect mode
+1.  **Format Constants Defined:**
+    *   The script defines constants for all relevant edit format strings:
+        *   `CODE_DIFF_FORMAT="diff"`
+        *   `CODE_WHOLE_FORMAT="whole"`
+        *   `ARCHITECT_DIFF_FORMAT="editor-diff"`
+        *   `ARCHITECT_WHOLE_FORMAT="editor-whole"`
+    *   It also defines the *initial* default formats used when the script starts:
+        *   `INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT` (Defaults to `whole` for Code Mode)
+        *   `INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT` (Defaults to `editor-whole` for Architect Mode)
 
-        # Define the INITIAL default format to use when the script starts
-        INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT # Or $CODE_DIFF_FORMAT
-        INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
-        ```
-    *   **Goal:** Clearly define all four relevant format strings and the starting defaults within the script.
-    *   **Risk:** Low. Adding constants is safe.
+2.  **Helper Functions Modified:**
+    *   The internal helper functions (`_build_code_args`, `_build_architect_args`) no longer hardcode the `--edit-format` flag.
 
-2.  **Confirm No Intermediate Format Selection:**
-    *   **Action:** Verify that no separate format selection function (like `select_format`) or selection steps exist within `run_code_mode` or `run_architect_mode`. (Based on current `run-aider.sh`, this is true).
-    *   **Goal:** Ensure selection only happens in the pre-launch menu.
-    *   **Risk:** N/A (Verification step).
+3.  **Pre-Launch Confirmation Menu in `launch_aider`:**
+    *   After selecting the mode (Code/Architect) and models, the `launch_aider` function presents a final confirmation menu.
+    *   **Displays:**
+        *   The selected mode and models.
+        *   The *currently selected* edit format (initialized from the `INITIAL_..._FORMAT` constants).
+        *   The full `aider` command that will be run with the current format.
+    *   **Options:**
+        *   **1. Launch Aider:** Executes the displayed command with the current edit format.
+        *   **2. Switch Format:** Toggles the edit format to the alternative (e.g., `whole` -> `diff`, `editor-whole` -> `editor-diff`, and vice-versa) and redisplays the menu with the updated format and command.
+        *   **3. Back to Main Menu:** Aborts the launch and returns to the script's main mode selection menu.
+    *   **Execution:** The `aider` command is executed using `eval` only when option 1 is chosen, ensuring the correct `--edit-format` flag is included based on the final selection in the menu.
 
-3.  **Modify `launch_aider` and Helpers (Incorporate Pre-Launch Switching Menu):**
-    *   **Action:**
-        *   Ensure the `launch_aider` function signature does *not* accept a format choice argument.
-        *   **Modify Helper Functions:**
-            *   Modify `_build_code_args`: Change `echo "--chat-mode code --edit-format ${CODE_EDIT_FORMAT}"` to simply `echo "--chat-mode code"`. The `--edit-format` flag will now be added in `launch_aider`.
-            *   Modify `_build_architect_args`: Remove the `--edit-format ${ARCHITECT_EDIT_FORMAT}` part from the `args` string construction. The `--edit-format` flag will now be added in `launch_aider`.
-        *   **Initial Command Build in `launch_aider`:**
-            *   Inside `launch_aider`, determine the *initial* `actual_format` based on the `mode` argument ("code" or "architect") and the corresponding *initial* default constant (`INITIAL_CODE_FORMAT` or `INITIAL_ARCHITECT_FORMAT`) defined in Step 1.
-            *   Build the initial `aider_cmd` string by calling the modified helpers (`_build_main_model_args`, `_build_code_args` or `_build_architect_args`) and then appending the *initial* `--edit-format $actual_format`. Store this complete command in a variable like `current_aider_cmd`.
-        *   **Pre-Launch Confirmation Loop:**
-            *   Start a `while true` loop.
-            *   Inside the loop:
-                *   `clear` the screen.
-                *   Display the *current* `actual_format` being used.
-                *   Display the *current* full command string (`current_aider_cmd`).
-                *   Determine the *alternative* format using the constants defined in Step 1:
-                    *   If `mode` is "code": if `actual_format` == `$CODE_DIFF_FORMAT`, alternative is `$CODE_WHOLE_FORMAT`; else alternative is `$CODE_DIFF_FORMAT`.
-                    *   If `mode` is "architect": if `actual_format` == `$ARCHITECT_DIFF_FORMAT`, alternative is `$ARCHITECT_WHOLE_FORMAT`; else alternative is `$ARCHITECT_DIFF_FORMAT`.
-                *   Display the menu, dynamically showing the alternative format:
-                    ```
-                    ------------------------------
-                    Current Edit Format: <actual_format>
-                    ------------------------------
-                    Command to Run:
-                    <current_aider_cmd>
-                    ------------------------------
-                    1. Launch Aider with this command
-                    2. Switch to Format: <alternative_format> and Launch
-                    3. Back to Main Menu (Abort Launch)
-                    ------------------------------
-                    Enter choice [1-3, Enter=1]:
-                    ```
-                *   Read user `confirm_choice`. Default to "1" if empty.
-                *   Use a `case` statement on `confirm_choice`:
-                    *   `1)`: `break` the loop (proceeds to launch with `current_aider_cmd`).
-                    *   `2)`:
-                        *   Set `actual_format` to the `alternative_format`.
-                        *   **Rebuild `current_aider_cmd`:** Re-call the `_build_main_model_args` and the modified `_build_code_args` or `_build_architect_args` helpers, then append the *new* `--edit-format $actual_format`.
-                        *   `continue` the loop (to show the updated command and format). *Correction: Changed from `break` to `continue` to redisplay.*
-                    *   `3)`: `return` from `launch_aider` (goes back to the main script menu).
-                    *   `*)`: Invalid choice message, `continue` the loop.
-        *   **Execute Command:**
-            *   After the loop breaks (only on choice 1), execute `eval "$current_aider_cmd"`.
-            *   Handle exit status as before.
-    *   **Goal:** Provide a final confirmation menu that allows a simple toggle between the relevant `diff`-based and `whole`-based formats before execution, using clearly defined constants and ensuring helper functions no longer add the format flag.
-    *   **Risk:** Medium. Modifies `launch_aider` significantly, including command rebuilding logic within the loop. Requires careful modification of helper functions (`_build_code_args`, `_build_architect_args`).
+**Outcome:** The script now provides a user-friendly way to choose between the primary edit format styles (`diff` vs `whole` based) immediately before launching Aider, while starting with configurable defaults.
