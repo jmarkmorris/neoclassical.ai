@@ -26,6 +26,7 @@ set -o pipefail
 # Use standard $HOME variable for portability
 USER_HOME="$HOME"
 TARGET_DIR="${USER_HOME}/Documents/NPQG_Code_Base/MySettings"
+SEPARATOR="--------------------------------------------------------------------------------" # 80 dashes
 
 # Source file paths
 BASH_PROFILE_SRC="${USER_HOME}/.bash_profile"
@@ -33,6 +34,17 @@ BASHRC_SRC="${USER_HOME}/.bashrc"
 VSCODE_SETTINGS_SRC="${USER_HOME}/Library/Application Support/Code/User/settings.json"
 # Virtual environment directory name prefix (suffix added based on host type)
 VENV_DIR_PREFIX=".venv_"
+
+
+# --- Error Handling ---
+handle_error() {
+  local exit_code=$?
+  echo "$SEPARATOR" >&2
+  echo "mysettings.sh script finished: FAILURE (Exit Code: $exit_code)" >&2
+  # No need to explicitly exit here if trapping ERR with set -e
+}
+trap handle_error ERR
+
 
 # --- Functions ---
 
@@ -59,7 +71,9 @@ copy_file_if_exists() {
       echo "ERROR: Failed to copy $desc from '$src' to '$dest'." >&2
       # set -e will cause script to exit here
     else
-      echo "Copied $desc: '$src' to '$dest'"
+      echo "Copied......: $desc"
+      echo "  Source: $src"
+      echo "  Target: $dest"
     fi
   else
     echo "Warning: $desc source not found at '$src'. Skipping copy."
@@ -68,8 +82,10 @@ copy_file_if_exists() {
 
 # --- Main Script ---
 
+echo "$SEPARATOR" # Print separator at the beginning
+
 # Ensure the base target directory exists
-echo "Ensuring target directory exists: $TARGET_DIR"
+echo "Check target directory: $TARGET_DIR"
 mkdir -p "$TARGET_DIR"
 if [ $? -ne 0 ]; then
     echo "ERROR: Failed to create base target directory '$TARGET_DIR'." >&2
@@ -124,4 +140,5 @@ else
   echo "Hostname does not match 'air' or 'pro'. No host-specific files copied."
 fi
 
-echo "mysettings.sh script finished."
+echo "$SEPARATOR"
+echo "mysettings.sh script finished: SUCCESS"
