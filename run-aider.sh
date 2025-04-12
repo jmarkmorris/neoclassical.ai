@@ -630,12 +630,12 @@ launch_aider() {
     # Base aider command parts in an array
     local cmd_array=("aider" "--vim" "--no-auto-commit" "--read" "README-prompts.md" "--read" "README-ask.md")
 
-    # Capture main model args
-    local main_args_str
-    main_args_str=$(_build_main_model_args "$main_vendor" "$main_model" "$main_api_key")
-    if [ $? -ne 0 ]; then return 1; fi # Exit if helper failed
     local main_args_array=()
-    mapfile -t main_args_array < <(echo "$main_args_str") # Use mapfile (readarray)
+    while IFS= read -r arg; do
+        main_args_array+=("$arg")
+    done < <(_build_main_model_args "$main_vendor" "$main_model" "$main_api_key")
+    if [ $? -ne 0 ]; then return 1; fi # Exit if helper failed
+    # Append main model args to the command array
     cmd_array+=("${main_args_array[@]}")
 
     local mode_args_str
@@ -679,8 +679,12 @@ launch_aider() {
         editor_display_info="" # No editor in code mode
     fi
 
-    # Capture mode args
-    mapfile -t mode_args_array < <(echo "$mode_args_str")
+    # Capture mode args using a while read loop and here-string                                                                                   
+    local mode_args_array=()                                                                                                                      
+    while IFS= read -r arg; do                                                                                                                    
+        # Ensure we don't add empty strings if mode_args_str was empty or had blank lines                                                         
+        [[ -n "$arg" ]] && mode_args_array+=("$arg")                                                                                              
+    done <<< "$mode_args_str"                                                                                                                     
     cmd_array+=("${mode_args_array[@]}")
 
     # Check if aider command exists before entering the loop
