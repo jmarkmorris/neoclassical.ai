@@ -741,7 +741,7 @@ launch_aider() {
                     read -p "Press Enter to return to the main menu..."
                 fi
                 # Whether success or failure, return to main menu after execution attempt
-                return $exit_status # Return aider's exit status or 0 if successful
+                return $exit_status # Return aider exit status or 0 if successful
                 ;;
             2)  # Switch format
                 actual_format="$alternative_format"
@@ -862,7 +862,7 @@ run_code_mode() {
         # Launch aider (which now includes the confirmation menu)
         # launch_aider returns 0 on successful execution, non-zero on error or user abort (Back)
         launch_aider "code" "$main_vendor" "$main_model" "" ""
-        # Regardless of launch_aider's return status, we go back to the main menu
+        # Regardless of launch_aider return status, we go back to the main menu
         return
     done
 }
