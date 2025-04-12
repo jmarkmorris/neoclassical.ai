@@ -1,145 +1,7 @@
 #!/bin/bash
 
-# --- Argument Parsing for Help ---
-# Check if the first argument is -h or --help
-if [[ "$1" == "-h" || "$1" == "--help" ]]; then
-    # Define display_usage here temporarily or ensure it's defined before main logic
-    # For simplicity, we'll define it again here, assuming it might be called before full script sourcing
-    # Or better, define it early and call it. Let's assume it's defined below and just call it.
-    # We need to ensure display_usage is defined *before* this check runs.
-    # Moving the function definition up.
-
-    # --- Usage Message Function ---
-    display_usage() {
-        cat << EOF
-Usage: ./run-aider.sh [-h|--help]
-
-This script provides an interactive menu to configure and launch the 'aider' tool.
-
-Options:
-  -h, --help    Display this help message and exit.
-
-Description:
-  The script guides you through selecting the operating mode (Code or Architect),
-  the LLM vendor (Google, Anthropic, OpenAI, Deepseek), and the specific model.
-  It manages API keys and prepares the final 'aider' command.
-
-API Key Setup:
-  API keys are required for the selected LLM vendor(s). They can be provided in
-  one of the following ways (checked in this order):
-
-  1. Environment Variables:
-     Export the required variables before running the script:
-       export OPENAI_API_KEY="sk-..."
-       export ANTHROPIC_API_KEY="sk-..."
-       export GEMINI_API_KEY="AIza..."  # Preferred for Google
-       # or export GOOGLE_API_KEY="AIza..."
-       export DEEPSEEK_API_KEY="sk-..."
-
-  2. API Keys File:
-     - If the 'PRIMARY_KEYS_FILE' environment variable is set, the script will
-       look for a file at that path.
-     - Otherwise, it will look for a file at the default location:
-       \$HOME/.llm_api_keys
-
-     The keys file should contain lines like:
-       # LLM API Keys Configuration
-       OPENAI_API_KEY="sk-..."
-       ANTHROPIC_API_KEY="sk-..."
-       GEMINI_API_KEY="AIza..."
-       DEEPSEEK_API_KEY="sk-..."
-       # Ensure the file is not world-readable (chmod 600)
-
-Menu Flow:
-  - Select Mode: Choose between 'Code' (standard aider) or 'Architect' (uses
-    separate models for planning and editing).
-  - Select Vendor(s): Choose the LLM provider (e.g., OpenAI).
-  - Select Model(s): Choose the specific model (e.g., gpt-4o). In Architect
-    mode, you'll select models for both the Architect and Editor roles.
-
-Pre-Launch Confirmation:
-  Before running 'aider', the script will display:
-  - The exact 'aider' command that will be executed.
-  - The currently selected edit format (e.g., 'whole', 'editor-diff').
-  You will then have options to:
-  - Launch 'aider' with the displayed command and format.
-  - Switch to the alternative edit format ('diff'/'whole' or
-    'editor-diff'/'editor-whole') before launching.
-  - Go back to the main menu to change selections.
-
-Running Aider:
-  The script executes 'aider' with common options like '--vim', '--no-auto-commit',
-  and automatically includes 'README-prompts.md' and 'README-ask.md'.
-
-Invocation:
-  - To start the interactive menu: ./run-aider.sh
-  - To display this help:      ./run-aider.sh -h  OR  ./run-aider.sh --help
-EOF
-    }
-
-    display_usage # Call the function
-    exit 0        # Exit successfully after displaying help
-fi
-
-# --- Model Definitions ---
-# Using indexed arrays for broader bash compatibility
-GOOGLE_MODELS=(
-    "gemini/gemini-2.5-pro-exp-03-25"
-    "gemini/gemini-2.5-pro-preview-03-25"
-    "gemini/gemini-2.0-flash-exp"
-    "gemini/gemini-2.0-flash"
-)
-ANTHROPIC_MODELS=(
-    "claude-3-7-sonnet-20250219"
-    "claude-3-5-haiku-20241022"
-)
-OPENAI_MODELS=(
-    "chatgpt-4o-latest"
-    "gpt-4.5-preview"
-    "openai/o3-mini"
-    "gpt-4o"
-    "gpt-4-turbo"
-)
-DEEPSEEK_MODELS=(
-    "deepseek/deepseek-coder"
-    "deepseek-reasoner"
-    "deepseek/deepseek-reasoner"
-    "deepseek/deepseek-chat"
-)
-
-# --- Vendor Definitions ---
-VENDORS=(
-    "GOOGLE"
-    "ANTHROPIC"
-    "OPENAI"
-    "DEEPSEEK"
-)
-
-# Parallel array holding the API key flag for each vendor
-VENDOR_API_KEY_FLAGS=(
-    "api-key google="   # GOOGLE (Note: includes 'google=')
-    "anthropic-api-key " # ANTHROPIC (Note the trailing space)
-    "openai-api-key "    # OPENAI (Note the trailing space)
-    "deepseek-api-key "  # DEEPSEEK (Note the trailing space)
-)
-
-# Parallel array to track the source of the API key ("env", "file", or "unset")
-VENDOR_KEY_SOURCE=() # Initialize as empty
-
-# --- Edit Format Definitions ---
-# Define the specific format strings to use
-CODE_DIFF_FORMAT="diff"
-CODE_WHOLE_FORMAT="whole"
-ARCHITECT_DIFF_FORMAT="editor-diff" # Diff-based format for Architect mode
-ARCHITECT_WHOLE_FORMAT="editor-whole" # Whole-based format for Architect mode
-
-# Define the INITIAL default format to use when the script starts
-# Set these to your preferred defaults
-INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT # Or $CODE_DIFF_FORMAT
-INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
-
 # --- Usage Message Function ---
-# Defined earlier for the help flag check, but keep it here for clarity if not called via help flag
+# Define this early so it's available for the help flag check below
 display_usage() {
     cat << EOF
 Usage: ./run-aider.sh [-h|--help]
@@ -207,6 +69,69 @@ Invocation:
 EOF
 }
 
+# --- Argument Parsing for Help ---
+# Check if the first argument is -h or --help
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+    display_usage # Call the function defined above
+    exit 0        # Exit successfully after displaying help
+fi
+
+# --- Model Definitions ---
+# Using indexed arrays for broader bash compatibility
+GOOGLE_MODELS=(
+    "gemini/gemini-2.5-pro-exp-03-25"
+    "gemini/gemini-2.5-pro-preview-03-25"
+    "gemini/gemini-2.0-flash-exp"
+    "gemini/gemini-2.0-flash"
+)
+ANTHROPIC_MODELS=(
+    "claude-3-7-sonnet-20250219"
+    "claude-3-5-haiku-20241022"
+)
+OPENAI_MODELS=(
+    "chatgpt-4o-latest"
+    "gpt-4.5-preview"
+    "openai/o3-mini"
+    "gpt-4o"
+    "gpt-4-turbo"
+)
+DEEPSEEK_MODELS=(
+    "deepseek/deepseek-coder"
+    "deepseek-reasoner"
+    "deepseek/deepseek-reasoner"
+    "deepseek/deepseek-chat"
+)
+
+# --- Vendor Definitions ---
+VENDORS=(
+    "GOOGLE"
+    "ANTHROPIC"
+    "OPENAI"
+    "DEEPSEEK"
+)
+
+# Parallel array holding the API key flag for each vendor
+VENDOR_API_KEY_FLAGS=(
+    "api-key google="   # GOOGLE (Note: includes 'google=')
+    "anthropic-api-key " # ANTHROPIC (Note the trailing space)
+    "openai-api-key "    # OPENAI (Note the trailing space)
+    "deepseek-api-key "  # DEEPSEEK (Note the trailing space)
+)
+
+# Parallel array to track the source of the API key ("env", "file", or "unset")
+VENDOR_KEY_SOURCE=() # Initialize as empty
+
+# --- Edit Format Definitions ---
+# Define the specific format strings to use
+CODE_DIFF_FORMAT="diff"
+CODE_WHOLE_FORMAT="whole"
+ARCHITECT_DIFF_FORMAT="editor-diff" # Diff-based format for Architect mode
+ARCHITECT_WHOLE_FORMAT="editor-whole" # Whole-based format for Architect mode
+
+# Define the INITIAL default format to use when the script starts
+# Set these to your preferred defaults
+INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT # Or $CODE_DIFF_FORMAT
+INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
 
 # --- API Key Loading Helper Functions ---
 
