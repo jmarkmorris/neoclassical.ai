@@ -21,7 +21,7 @@ The `runaider.sh` script provides an interactive command-line interface to confi
 - **Allowing pre-launch selection of the Aider edit format** (`whole`/`diff` for Code mode, `editor-whole`/`editor-diff` for Architect mode) via an interactive menu.
 - Automatically adding `README-prompts.md` and `README-ask.md` as read-only files to the Aider chat context.
 
-Use `./run-aider.sh` in your terminal to start the configuration process.
+Use `./run-aider.sh` in your terminal to start the configuration process. To see detailed usage instructions, including API key setup and menu flow, run `./run-aider.sh -h` or `./run-aider.sh --help`.
 
 ---
 
