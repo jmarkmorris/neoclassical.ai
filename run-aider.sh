@@ -378,7 +378,7 @@ _get_vendor_index() {
 #   $3: main_api_key - The API key value for the main vendor.
 #
 # Outputs:
-#   - Prints the constructed argument string (e.g., "--model gpt-4o --openai-api-key sk-...") to stdout.
+#   - Prints the constructed arguments, one per line, to stdout.
 #   - Prints error messages to stderr if the vendor index is not found.
 # Returns:
 #   - 0 on success.
@@ -387,17 +387,30 @@ _build_main_model_args() {
     local main_vendor=$1
     local main_model=$2
     local main_api_key=$3
-    local args=""
+    local args_array=() # Use an array to build arguments
     local vendor_index=$(_get_vendor_index "$main_vendor")
 
-    args="$args --model $main_model"
+    args_array+=("--model" "$main_model")
 
     if [ "$vendor_index" -ne -1 ]; then
         local key_source="${VENDOR_KEY_SOURCE[$vendor_index]}"
         # Only add the API key flag if the key was loaded from a file
         if [[ "$key_source" == "file" ]]; then
-            local api_key_flag="${VENDOR_API_KEY_FLAGS[$vendor_index]}"
-            args="$args --${api_key_flag}${main_api_key}"
+            local flag_def="${VENDOR_API_KEY_FLAGS[$vendor_index]}"
+            local flag_name=""
+            local key_prefix=""
+            # Remove trailing space if exists
+            flag_def="${flag_def% }"
+            if [[ "$flag_def" == *= ]]; then
+                # Ends with '=', split it (e.g., "api-key google=")
+                key_prefix="${flag_def#*=}" # Get "google="
+                flag_name="${flag_def%=*}"  # Get "api-key"
+                args_array+=("--${flag_name}" "${key_prefix}${main_api_key}")
+            else
+                # No '=', use the whole definition as flag name (e.g., "openai-api-key")
+                flag_name="$flag_def"
+                args_array+=("--${flag_name}" "$main_api_key")
+            fi
             # echo "Debug: Adding main API key flag for $main_vendor (source: file)" # Optional debug
         # else
             # echo "Debug: Skipping main API key flag for $main_vendor (source: $key_source)" # Optional debug
@@ -407,7 +420,9 @@ _build_main_model_args() {
         return 1
     fi
 
-    echo "$args"
+    # Print array elements one per line
+    printf "%s\n" "${args_array[@]}"
+    return 0
 }
 
 # Builds the command-line arguments specific to Architect mode.
@@ -422,7 +437,7 @@ _build_main_model_args() {
 #   $4: main_vendor - The selected main vendor name (used for comparison).
 #
 # Outputs:
-#   - Prints the constructed argument string (e.g., "--architect --editor-model claude-3-5-haiku...") to stdout.
+#   - Prints the constructed arguments, one per line, to stdout.
 #   - Prints error/warning messages to stderr.
 # Returns:
 #   - 0 on success.
@@ -432,14 +447,14 @@ _build_architect_args() {
     local editor_model=$2
     local editor_api_key=$3
     local main_vendor=$4 # Needed to check if editor vendor differs
+    local args_array=() # Use an array to build arguments
+
     # Always add --architect. Edit format is added in launch_aider.
-    local args="--architect"
-    # editor_display_info is handled in launch_aider, removed from here
+    args_array+=("--architect")
 
     # Add --editor-model only if a specific one is chosen (not default)
     if [ "$editor_model" != "default" ] && [ -n "$editor_model" ]; then
-        args="$args --editor-model $editor_model"
-        # editor_display_info=" (Editor: $editor_vendor/$editor_model) --edit-format editor-diff" # Removed
+        args_array+=("--editor-model" "$editor_model")
 
         # Check if editor vendor is different from main vendor
         if [ "$editor_vendor" != "$main_vendor" ]; then
@@ -450,8 +465,21 @@ _build_architect_args() {
                     local editor_key_source="${VENDOR_KEY_SOURCE[$editor_vendor_index]}"
                     # Only add the API key flag if the key was loaded from a file
                     if [[ "$editor_key_source" == "file" ]]; then
-                        local editor_api_key_flag="${VENDOR_API_KEY_FLAGS[$editor_vendor_index]}"
-                        args="$args --${editor_api_key_flag}${editor_api_key}"
+                        local editor_flag_def="${VENDOR_API_KEY_FLAGS[$editor_vendor_index]}"
+                        local editor_flag_name=""
+                        local editor_key_prefix=""
+                        # Remove trailing space if exists
+                        editor_flag_def="${editor_flag_def% }"
+                        if [[ "$editor_flag_def" == *= ]]; then
+                            # Ends with '=', split it
+                            editor_key_prefix="${editor_flag_def#*=}"
+                            editor_flag_name="${editor_flag_def%=*}"
+                            args_array+=("--${editor_flag_name}" "${editor_key_prefix}${editor_api_key}")
+                        else
+                            # No '=', use the whole definition as flag name
+                            editor_flag_name="$editor_flag_def"
+                            args_array+=("--${editor_flag_name}" "$editor_api_key")
+                        fi
                         # echo "Debug: Adding editor API key flag for $editor_vendor (source: file)" # Optional debug
                     # else
                         # echo "Debug: Skipping editor API key flag for $editor_vendor (source: $editor_key_source)" # Optional debug
@@ -465,13 +493,11 @@ _build_architect_args() {
                 echo "Warning: Editor API key for $editor_vendor not provided to _build_architect_args" >&2
             fi
         fi
-    # else
-        # editor_display_info=" (Editor: Default)" # Removed
     fi
-    # Echo args and display info separately? Or combine? Let's echo args for now.
-    # The display info needs to be handled differently, maybe return it too?
-    # For now, just echo the command args. Display info logic remains in launch_aider.
-    echo "$args"
+
+    # Print array elements one per line
+    printf "%s\n" "${args_array[@]}"
+    return 0
 }
 
 # Builds the command-line arguments specific to Code mode.
@@ -480,9 +506,12 @@ _build_architect_args() {
 # Args: None
 #
 # Outputs:
-#   - Prints the argument string ("--chat-mode code") to stdout. Edit format is added in launch_aider.
+#   - Prints the argument string ("--chat-mode", "code"), one per line, to stdout.
 _build_code_args() {
-    echo "--chat-mode code"
+    local args_array=("--chat-mode" "code")
+    # Print array elements one per line
+    printf "%s\n" "${args_array[@]}"
+    return 0
 }
 
 # --- End Helper functions for launch_aider ---
@@ -517,10 +546,19 @@ launch_aider() {
     local editor_api_key=""
     local editor_api_key_var=""
 
-    # Base aider command parts (edit format added later)
-    local base_aider_cmd="aider --vim --no-auto-commit --read README_prompts.md --read README_ask.md"
-    local main_args=$(_build_main_model_args "$main_vendor" "$main_model" "$main_api_key")
-    local mode_args=""
+    # Base aider command parts in an array
+    local cmd_array=("aider" "--vim" "--no-auto-commit" "--read" "README_prompts.md" "--read" "README_ask.md")
+
+    # Capture main model args
+    local main_args_str
+    main_args_str=$(_build_main_model_args "$main_vendor" "$main_model" "$main_api_key")
+    if [ $? -ne 0 ]; then return 1; fi # Exit if helper failed
+    local main_args_array=()
+    mapfile -t main_args_array < <(echo "$main_args_str") # Use mapfile (readarray)
+    cmd_array+=("${main_args_array[@]}")
+
+    local mode_args_str
+    local mode_args_array=()
     local mode_display_name=""
     local editor_display_info=""
     local actual_format=""
@@ -539,7 +577,8 @@ launch_aider() {
              editor_api_key="${!editor_api_key_var}"
         fi
         # Get architect-specific args (without edit format)
-        mode_args=$(_build_architect_args "$editor_vendor" "$editor_model" "$editor_api_key" "$main_vendor")
+        mode_args_str=$(_build_architect_args "$editor_vendor" "$editor_model" "$editor_api_key" "$main_vendor")
+        if [ $? -ne 0 ]; then return 1; fi # Exit if helper failed
 
         # Set editor display info for the menu
         if [[ "$editor_model" != "default" && -n "$editor_model" ]]; then
@@ -552,9 +591,14 @@ launch_aider() {
         format_constant_base="CODE"
         actual_format="$INITIAL_CODE_FORMAT" # Set initial format
         # Get code-specific args (without edit format)
-        mode_args=$(_build_code_args)
+        mode_args_str=$(_build_code_args)
+        if [ $? -ne 0 ]; then return 1; fi # Exit if helper failed
         editor_display_info="" # No editor in code mode
     fi
+
+    # Capture mode args
+    mapfile -t mode_args_array < <(echo "$mode_args_str")
+    cmd_array+=("${mode_args_array[@]}")
 
     # Check if aider command exists before entering the loop
     if ! command -v aider &> /dev/null; then
@@ -578,8 +622,10 @@ launch_aider() {
             alternative_format="$diff_format"
         fi
 
-        # --- Build the full command string for display ---
-        local current_aider_cmd="${base_aider_cmd} ${main_args} ${mode_args} --edit-format ${actual_format}"
+        # --- Build the full command array *for the current format* ---
+        # We need to rebuild the array if the format changes
+        local current_cmd_array=("${cmd_array[@]}") # Copy base + main + mode args
+        current_cmd_array+=("--edit-format" "$actual_format") # Add current format
 
         # --- Display the pre-launch menu ---
         clear
@@ -589,8 +635,9 @@ launch_aider() {
         echo -e "Current Edit Format: ${actual_format}"
         echo -e "------------------------------"
         echo -e "Command to Run:"
-        # Wrap command for potentially better readability in terminal
-        echo -e "$current_aider_cmd" | fold -s -w "$(tput cols)"
+        # Print the command array elements, quoted for safety/clarity, and wrap
+        printf "%q " "${current_cmd_array[@]}" | fold -s -w "$(tput cols)"
+        echo # Add a newline after the command
         echo -e "------------------------------"
         echo "1. Launch Aider with this command"
         echo "2. Switch to Format: ${alternative_format}"
@@ -603,10 +650,8 @@ launch_aider() {
         case "${confirm_choice:-1}" in # Default to 1 if Enter is pressed
             1)  # Launch
                 echo # Newline before execution
-                # Use eval to handle the dynamically constructed command string,
-                # which may contain spaces within arguments (e.g., API key flags).
-                # Inputs are controlled via script logic, reducing security risks.
-                eval "$current_aider_cmd"
+                # Execute the command directly using the array
+                "${current_cmd_array[@]}"
                 local exit_status=$?
                 if [ $exit_status -ne 0 ]; then
                     echo "Error: aider command failed with exit status $exit_status." >&2
@@ -617,7 +662,7 @@ launch_aider() {
                 ;;
             2)  # Switch format
                 actual_format="$alternative_format"
-                # Loop continues, will rebuild command and redisplay
+                # Loop continues, will rebuild command array and redisplay
                 continue
                 ;;
             3|0)  # Back to Main Menu (Accepts 3 or 0)
