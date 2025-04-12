@@ -238,6 +238,7 @@ select_entity() {
         fi
     else
         echo "Error: Invalid entity type: $entity_type" >&2
+        SELECT_ENTITY_RESULT="invalid" # Set global var on error too
         return 1
     fi
 
@@ -278,6 +279,8 @@ select_entity() {
         read -p "Press Enter..."
         SELECT_ENTITY_RESULT="invalid"  # Indicate invalid input
     fi
+    # Return 0 for success in setting the global var (or indicating invalid choice)
+    return 0
 }
 
 
@@ -593,7 +596,7 @@ launch_aider() {
         echo "2. Switch to Format: ${alternative_format}"
         echo "3. Back to Main Menu (Abort Launch)"
         echo -e "------------------------------"
-        echo -n "Enter choice [1-3, Enter=1]: "
+        echo -n "Enter choice [1-3, 0=Back, Enter=1]: "
         read confirm_choice
 
         # --- Handle user choice ---
@@ -617,7 +620,7 @@ launch_aider() {
                 # Loop continues, will rebuild command and redisplay
                 continue
                 ;;
-            3)  # Back to Main Menu
+            3|0)  # Back to Main Menu (Accepts 3 or 0)
                 return 1 # Use 1 to indicate user aborted, distinct from aider exit code 0
                 ;;
             *)  # Invalid choice
@@ -642,38 +645,43 @@ launch_aider() {
 main() {
     load_api_keys
 
-    # Select mode first
-    local selected_mode=""
+    # Loop indefinitely until user explicitly exits (choice 0)
     while true; do
-        display_mode_selection_menu
-        read mode_choice
-        case "$mode_choice" in
-            1) selected_mode="code"; break ;;
-            2) selected_mode="architect"; break ;;
-            ""|0) echo "Goodbye!"; exit 0 ;; # Treat Enter as 0
-            *) echo "Invalid choice. Press Enter to continue..."; read ;;
-        esac
+        # Select mode first
+        local selected_mode=""
+        while true; do
+            display_mode_selection_menu
+            read mode_choice
+            case "$mode_choice" in
+                1) selected_mode="code"; break ;;
+                2) selected_mode="architect"; break ;;
+                ""|0) echo "Goodbye!"; exit 0 ;; # Treat Enter as 0
+                *) echo "Invalid choice. Press Enter to continue..."; read ;;
+            esac
+        done
+
+        # Variables to store selections
+        local main_vendor=""
+        local main_model=""
+        local editor_vendor=""
+        local editor_model="" # Use "default" to signify default editor
+
+        # Call the appropriate function based on selected mode
+        if [ "$selected_mode" == "code" ]; then
+            run_code_mode  # No arguments needed anymore
+        elif [ "$selected_mode" == "architect" ]; then
+            run_architect_mode # No arguments needed anymore
+        else
+            # This case should not be reachable due to the inner loop validation
+            echo "Error: Unknown mode selected: $selected_mode" >&2
+            exit 1
+        fi
+
+        # After run_code_mode or run_architect_mode returns (either after aider runs
+        # or the user backs out), the main loop continues, showing the mode selection again.
+        # Explicitly continue to ensure the loop restarts correctly.
+        continue
     done
-
-    # Variables to store selections
-    local main_vendor=""
-    local main_model=""
-    local editor_vendor=""
-    local editor_model="" # Use "default" to signify default editor
-
-    # Call the appropriate function based on selected mode
-    if [ "$selected_mode" == "code" ]; then
-        run_code_mode  # No arguments needed anymore
-    elif [ "$selected_mode" == "architect" ]; then
-        run_architect_mode # No arguments needed anymore
-    else
-        echo "Error: Unknown mode selected: $selected_mode"
-        exit 1
-    fi
-
-    # After run_code_mode or run_architect_mode returns, the loop continues,
-    # effectively showing the mode selection menu again.
-    # The only clean exit is choosing '0' from the mode selection menu.
 }
 # Handles the user interaction flow for selecting the vendor and model for Code mode.
 # It then calls launch_aider to execute the command.
