@@ -874,7 +874,7 @@ run_code_mode() {
     done
 }
 # Handles the user interaction flow for selecting the main vendor/model and
-# editor vendor/model for Architect mode using a state machine pattern.
+# editor vendor/model for Architect mode using a linear sequence with validation loops.
 # It then calls launch_aider to execute the command.
 # Returns control to the main loop after aider exits or if the user selects "Back".
 #
@@ -884,102 +884,80 @@ run_code_mode() {
 #   - Calls select_entity to display menus and get user input.
 #   - Calls check_api_key to validate key presence.
 #   - Calls launch_aider to run the final command.
-#   - Prints error messages for invalid states.
 #
 # Modifies:
 #   - Uses and potentially clears local variables main_vendor, main_model,
-#     editor_vendor, editor_model, current_step.
+#     editor_vendor, editor_model.
 run_architect_mode() {
     local main_vendor=""
     local main_model=""
     local editor_vendor=""
     local editor_model=""
-    # Removed local selection variable
 
-    # State machine flow: vendor -> model -> editor_vendor -> editor_model -> launch
-    local current_step="select_main_vendor"
-
+    # Step 1: Select Main Vendor
     while true; do
-        case "$current_step" in
-            "select_main_vendor")
-                select_entity "vendor" "Architect" # Sets SELECT_ENTITY_RESULT
-                if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
-                    continue
-                elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
-                    # User selected "Back" (empty string)
-                    return # Back to main menu
-                fi
-                main_vendor="$SELECT_ENTITY_RESULT"
-                check_api_key "$main_vendor" # Verify the key is loaded and source is known
-                current_step="select_main_model"
-                ;;
-
-            "select_main_model")
-                select_entity "model" "Architect" "$main_vendor" # Sets SELECT_ENTITY_RESULT
-                if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
-                    continue
-                elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
-                    # User selected "Back" (empty string)
-                    main_vendor="" # Clear selection
-                    current_step="select_main_vendor" # Go back to previous step
-                    continue
-                fi
-                main_model="$SELECT_ENTITY_RESULT"
-                current_step="select_editor_vendor"
-                ;;
-
-            "select_editor_vendor")
-                select_entity "vendor" "Editor" # Sets SELECT_ENTITY_RESULT
-                if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
-                    continue
-                elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
-                     # User selected "Back" (empty string)
-                    main_model="" # Clear selection
-                    current_step="select_main_model" # Go back to previous step
-                    continue
-                fi
-                editor_vendor="$SELECT_ENTITY_RESULT"
-
-                # Handle the "default" selection from select_entity
-                if [[ "$editor_vendor" == "default" ]]; then
-                   editor_model="default" # Also set model to default
-                   current_step="launch"  # Skip editor model selection and key check
-                   continue               # Go directly to launch state
-                fi
-
-                # If not default, proceed to check key and select model
-                check_api_key "$editor_vendor" # Verify the key is loaded and source is known
-                current_step="select_editor_model"
-                ;;
-
-            "select_editor_model")
-                select_entity "model" "Editor" "$editor_vendor" # Sets SELECT_ENTITY_RESULT
-                if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
-                    continue
-                elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
-                    # User selected "Back" (empty string)
-                    editor_vendor="" # Clear selection
-                    current_step="select_editor_vendor" # Go back to previous step
-                    continue
-                fi
-                editor_model="$SELECT_ENTITY_RESULT"
-                current_step="launch"
-                ;;
-
-            "launch")
-                # Launch aider (which now includes the confirmation menu)
-                # launch_aider returns 0 on successful execution, non-zero on error or user abort (Back)
-                launch_aider "architect" "$main_vendor" "$main_model" "$editor_vendor" "$editor_model"
-                # Regardless of launch_aider's return status, we go back to the main menu
-                return
-                ;;
-
-            *) # Should not happen
-                echo "Error: Invalid state in run_architect_mode: $current_step" >&2
-                exit 1
-                ;;
-        esac
+        select_entity "vendor" "Architect" # Sets SELECT_ENTITY_RESULT
+        if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
+            continue # Re-prompt for main vendor
+        elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
+            return # Back to main menu
+        fi
+        main_vendor="$SELECT_ENTITY_RESULT"
+        check_api_key "$main_vendor" # Verify key is loaded
+        break # Vendor selected, exit loop
     done
+
+    # Step 2: Select Main Model
+    while true; do
+        select_entity "model" "Architect" "$main_vendor" # Sets SELECT_ENTITY_RESULT
+        if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
+            continue # Re-prompt for main model
+        elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
+             # Back selected, return to main menu (clearing vendor is not needed as function returns)
+            return
+        fi
+        main_model="$SELECT_ENTITY_RESULT"
+        break # Model selected, exit loop
+    done
+
+    # Step 3: Select Editor Vendor
+    while true; do
+        select_entity "vendor" "Editor" # Sets SELECT_ENTITY_RESULT
+        if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
+            continue # Re-prompt for editor vendor
+        elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
+            # Back selected, return to main menu
+            return
+        fi
+        editor_vendor="$SELECT_ENTITY_RESULT"
+        break # Vendor selected (or "default"), exit loop
+    done
+
+    # Step 4: Select Editor Model (or skip if default)
+    if [[ "$editor_vendor" == "default" ]]; then
+        editor_model="default" # Set model to default as well
+    else
+        # Specific editor vendor chosen, need to check key and select model
+        check_api_key "$editor_vendor" # Verify key is loaded
+        while true; do
+            select_entity "model" "Editor" "$editor_vendor" # Sets SELECT_ENTITY_RESULT
+            if [[ "$SELECT_ENTITY_RESULT" == "invalid" ]]; then
+                continue # Re-prompt for editor model
+            elif [[ -z "$SELECT_ENTITY_RESULT" ]]; then
+                # Back selected, return to main menu
+                return
+            fi
+            editor_model="$SELECT_ENTITY_RESULT"
+            break # Model selected, exit loop
+        done
+    fi
+
+    # Step 5: Launch Aider
+    # launch_aider returns 0 on successful execution, non-zero on error or user abort (Back)
+    launch_aider "architect" "$main_vendor" "$main_model" "$editor_vendor" "$editor_model"
+
+    # Regardless of launch_aider's return status, we go back to the main menu
+    return
 }
 
 # Run the main function
