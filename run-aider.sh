@@ -57,7 +57,6 @@ ARCHITECT_WHOLE_FORMAT="editor-whole" # Whole-based format for Architect mode
 INITIAL_CODE_FORMAT=$CODE_WHOLE_FORMAT # Or $CODE_DIFF_FORMAT
 INITIAL_ARCHITECT_FORMAT=$ARCHITECT_WHOLE_FORMAT # Or $ARCHITECT_DIFF_FORMAT
 
-
 # --- API Key Loading Helper Functions ---
 
 # Attempts to load API keys from environment variables.
@@ -184,7 +183,6 @@ _load_keys_from_file() {
         # If source is still unset AND the variable now has a value, it came from the file
         if [[ "${VENDOR_KEY_SOURCE[$j]}" == "unset" && -n "$key_val_check" ]]; then
             VENDOR_KEY_SOURCE[$j]="file"
-            # echo "Debug: Loaded $vendor_check key from file." # Optional debug
             # No need to re-export, source should handle that if keys were exported in the file
             # If keys were just assigned (e.g., VAR="value"), export them now
              if ! export -p | grep -q "declare -x ${key_var_check}="; then
@@ -261,11 +259,6 @@ load_api_keys() {
     # If we reached here, keys were loaded either from env, file, or a combination.
     # The check_api_key function will verify if the *specific* needed key is present later.
     echo "API key loading process complete."
-    # Optional: Print final status of each key source
-    # local k
-    # for k in "${!VENDORS[@]}"; do
-    #     echo "Debug: Final source for ${VENDORS[$k]}: ${VENDOR_KEY_SOURCE[$k]}"
-    # done
 }
 
 
@@ -325,7 +318,7 @@ select_entity() {
     local upper_entity_type
     upper_entity_type=$(echo "$entity_type" | tr '[:lower:]' '[:upper:]') # More portable uppercase
     echo -e "Select ${role_label} ${upper_entity_type}: "
-    echo -e "=============================="
+    echo -e "====================================="
 
     # Use C-style for loop for better compatibility
     for ((i=0; i<num_entities; i++)); do
@@ -338,7 +331,7 @@ select_entity() {
         prompt_range="1-${num_entities}, 9"
     fi
     echo "0. Back"
-    echo -e "=============================="
+    echo -e "====================================="
     echo -n "Enter your choice [${prompt_range}, Enter=0]: "
     read choice
 
@@ -422,13 +415,13 @@ check_api_key() {
 display_mode_selection_menu() {
     clear
     echo -e "Step 1: Select Aider Operating Mode"
-    echo -e "=============================="
-    echo -e "         SELECT MODE          "
-    echo -e "=============================="
+    echo -e "====================================="
+    echo -e "             SELECT MODE             "
+    echo -e "====================================="
     echo "1. Code Mode"
     echo "2. Architect Mode"
     echo "0. Exit"
-    echo -e "=============================="
+    echo -e "====================================="
     echo -n "Enter your choice [1-2, Enter=0]: "
 }
 
@@ -721,18 +714,18 @@ launch_aider() {
         clear
         echo -e "Launching Aider: ${mode_display_name}"
         echo -e "Main Model:      ${main_vendor}/${main_model}${editor_display_info}"
-        echo -e "------------------------------"
+        echo -e "-------------------------------------"
         echo -e "Current Edit Format: ${actual_format}"
-        echo -e "------------------------------"
+        echo -e "-------------------------------------"
         echo -e "Command to Run:"
         # Print the command array elements, quoted for safety/clarity, and wrap
         printf "%q " "${current_cmd_array[@]}" | fold -s -w "$(tput cols)"
         echo # Add a newline after the command
-        echo -e "------------------------------"
+        echo -e "-------------------------------------"
         echo "1. Launch Aider with this command"
         echo "2. Switch to Format: ${alternative_format}"
         echo "3. Back to Main Menu (Abort Launch)"
-        echo -e "------------------------------"
+        echo -e "-------------------------------------"
         echo -n "Enter choice [1-3, 0=Back, Enter=1]: "
         read confirm_choice
 
