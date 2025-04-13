@@ -1,52 +1,72 @@
-neoclassical.ai
+# Neoclassical.ai - The Point Potential Universe
 
-Imagine that nature emerges from constant rate potential emitter/receivers, each modeled as a geometric point in R4 (Euclidean space and time).
-In this scenario, action on a receiver depends the emission point in path history. 
-The point potentials are the electrino and the positrino, which emit equal yet opposite potential. 
-The point potentials are the only carriers of energy, in electromagnetic and kinetic form. 
-They are located in a possibly infinite time and space, where each are Euclidean.
-This is distinct from Einstein's spacetime, but we will show how Einstein's spacetime is implemented in this environment. 
-Point potentials are neoclassical, behaving like classical point charges below potential field speed, yet revealing an entirely unexplored dynamical geometry when they travel at or greater than their own potential emission speed. 
-Historically, during the classical to quantum transition, only a single primitive point charge model was examined and properly falsified.
-They erred. It is easy to dream up an unlimited number of point potential systems more sophisticated than mapping |q| = |e|.
+**Nature and the universe emerge from a dynamical geometry of equal and opposite point potentials in Euclidean time and 3D space.**
 
-- What is the point potential magnitude? 
-- What is the spherical potential emission speed? 
-- What is the speed limit of a point potential?
-- What are the physics of the action function? 
-- Can two point potentials occupy the same point in real time and space? 
-    - If so, what happens? 
-    - If not, why not?
-- Can point potentials be created and destroyed? In {q-, q+} sets?
-- Are point potentials immutable? 
+This repository serves as a reference implementation and exploration hub for **Neoclassical Physics and Quantum Gravity (NPQG)**, also referred to as the **Point Potential Universe**. This framework presents a novel and elegant approach to understanding the emergent assembly that results in nature and the universe.
 
-125 years later, it is clear that this a failure of imagination occurred in the period 1875 through 1927. 
-General relativity and quantum mechanics became popular and match observations well. 
-Yet they are both effective theories having no foundation in nature. Study the meaning of "effective theory"!.  
-With the observation that there are many point charge systems possible, and with GR and QM as reference theories, it is not difficult to discover an amazingly parsimonious solution to nature. 
+The core idea is that the classical model of geometrical point charges (circa 1900) was too restrictive. By redefining these as immutable, energetic **point potentials** – the electrino (-) and positrino (+) – moving within a fixed Euclidean background of 3D space and 1D time, we uncover a parsimonious neoclassical assembly architecture.
 
-Point potential characteristics include immutability, meaning they cannot be created nor destroyed. Why? Here are a few possiblities
-1. Any two point potentials have a finite closest possible approach based upon the dynamical geometry of partner-action combined with self-action.
-2. If it were possible to arrive at the same point in time and space, maybe it's a mundane event. Afterall, when radius = 0 their emission is the Dirac delta. Either way they superimpose.
+**Project Goal:** To provide a reference implementation of this fundamental ontology of nature based upon the emergence of assemblies from these simple ingredients.
 
-Point potentials emit spherically expanding potential waves. 
-We can visualize point potentials as blue and red spheres, even though they are truly a geometric point objects, i.e., have zero radius. 
+**Aims:** To create an integrated design for learning, teaching, simulation, and understanding the Point Potential Universe.
 
-This neoclassical model requires only three free large scale empirical parameters, 
-1. The demographics of point potential polarity, presumed to be 50/50.
-2. the volumetric density of point potentials and
-3. the volumetric density of the energy carried by those point charges in potential and kinetic forms.
+**Languages:** Python, Godot Engine, Manim (Community Edition)
 
-This model explores this recipe for nature and how it emerges as a narrative and theory that maps easily between GR, QM, and ΛCDM.
-All existing physic and cosmology models will require enhancements based on this new ontology.
-Point potential theory is superior in ability to explain nature and the universe.
+**Main Website:** For detailed posts, glossary, pictures, and the full body of work, please visit [**https://neoclassical.ai/**](https://neoclassical.ai/)
 
-The neoclassical.ai blog and detailed posts are available at https://neoclassical.ai/
+---
 
-Check out the Idealized Neoclassical Model and the New Physics in Pictures posts.  A glossary is also provided.
+## Core Principles of the Point Potential Universe
 
-Project Goal: Reference implementation of the fundamental ontology of nature based upon emergence of assemblies from fundamentals.
+*   **Foundation:** Nature emerges from fundamental, immutable point potentials: the **electrino** (negative potential) and the **positrino** (positive potential). These exist and move within a fixed, flat **Euclidean R4** background (3D space and 1D linear time). This is distinct from Einstein's dynamic spacetime, but NPQG explains how an *effective* spacetime emerges.
+*   **Energy Carriers:** Point potentials are the *only* fundamental carriers of energy, in both electromagnetic potential and kinetic forms.
+*   **Mechanics:** Governed by **Neoclassical Mechanics**. This extends classical mechanics by removing any speed limit for point potentials. Point potentials behave classically below the potential emission speed but reveal an unexplored dynamical geometry when traveling at or above this speed.
+*   **Action:** The action (force) experienced by a receiving point potential depends on the state (position, velocity) of an emitting point potential at a specific point in the emitter's **path history**, determined by the finite speed of potential propagation. This incorporates retarded potentials fundamentally.
+*   **Potential Emission:** Point potentials emit spherically expanding potential waves. At radius = 0, their emission can be modeled as a Dirac delta function. We often visualize them as blue (-) and red (+) spheres, though they are truly geometric points with zero radius.
+*   **Immutability:** Point potentials cannot be created or destroyed. They are fundamental. (See Open Questions below).
 
-Aims: Integrated design for learning/teaching, simulation, and understanding.
+## Emergence and Key Concepts
 
-Languages: Python, Manim (Community Edition)
+NPQG posits that all observed structures and phenomena emerge from the interactions of these point potentials:
+
+*   **Emergent Assemblies:** Complex structures arise dynamically from the interactions of simple point potentials. Key emergent structures include:
+    *   **Point Potential Binaries:** Orbiting pairs of electrinos and positrinos form the basis for many stable structures.
+    *   **Noether Cores:** Triply nested hierarchies of point potential binaries form stable, self-tuning cores that are the foundation for standard model particles and spacetime itself.
+    *   **Spacetime Aether:** Noether cores form a dynamic background medium (aether) whose properties give rise to the effects described by General Relativity (like gravity and spacetime curvature) and the Higgs mechanism. Spacetime is not fundamental but an emergent structure. Generations include the Graviton, Higgs, and Binary structures.
+    *   **Standard Model Particles:** Fermions (quarks, electrons, neutrinos) and Bosons (photons, W/Z, gluons) are specific stable assemblies of point potentials built upon Noether cores.
+*   **Unification:** NPQG provides a physical basis for both General Relativity (GR) and Quantum Mechanics (QM), bridging these theories and explaining their observations from a single, underlying reality. It aims to transform the Lambda-CDM model of cosmology (ΛCDM).
+*   **Energy Shielding & Superposition:** The superposition of potentials within nested Noether cores leads to significant shielding of the total energy contained within. This shielded energy is proposed as the physical reality behind the concepts of **dark matter** and **dark energy**.
+*   **Grand Cycle:** The universe operates in cycles. Point potentials aggregate, form structures, eventually fall into black holes, are processed into high-energy Planck cores, and are re-emitted (e.g., via jets) as high-energy point potentials or spacetime assemblies, restarting the cycle. This reinterprets Big Bang events as possibly localized phenomena related to black hole emissions.
+
+## Critique of Standard Models & Historical Context
+
+*   **Failure of Imagination:** Physics between 1875-1927 explored only a limited model of point charges (mapping |q| = |e|) and incorrectly dismissed point particle approaches. Many more sophisticated point potential systems are possible.
+*   **Effective Theories:** GR, QM, and ΛCDM are highly successful *effective theories* that match observations well but lack a fundamental grounding in physical reality. They contain ontological errors and paradoxes arising from incorrect assumptions about the fundamental nature of space, time, and matter. NPQG provides the underlying physical ontology.
+
+## This Repository
+
+This repository contains code, simulations, and visualizations related to NPQG. It aims to:
+
+*   Provide concrete implementations of NPQG concepts.
+*   Serve as a tool for learning and teaching the Point Potential Universe.
+*   Facilitate simulation and exploration of emergent phenomena.
+*   Foster understanding of the underlying physics.
+
+## Further Information
+
+The neoclassical.ai blog provides extensive detail on all aspects of NPQG:
+
+*   **Main Site:** [https://neoclassical.ai/](https://neoclassical.ai/)
+*   **Key Introductions:**
+    *   [New Physics in Pictures](https://johnmarkmorris.com/2021/06/15/new-physics-in-pictures/)
+    *   [The Point Potential Model](https://johnmarkmorris.com/2019/06/24/idealized-neoclassical-model/)
+    *   [Glossary](https://johnmarkmorris.com/2019/06/12/glossary-of-neoclassical-physics-and-quantum-gravity/)
+
+This model requires only a few free large-scale empirical parameters for cosmology:
+1.  The demographics of point potential polarity (presumed 50/50 electrinos/positrinos).
+2.  The average volumetric density of point potentials.
+3.  The average volumetric density of the energy carried by those point potentials.
+
+NPQG offers a parsimonious recipe for nature, mapping readily to GR, QM, and ΛCDM while resolving their paradoxes and offering superior explanatory power. All existing physics and cosmology models may require enhancements based on this new ontology.
+
+**Contact:** For inquiries regarding the point potential universe, contact J Mark Morris at `inquiries@neoclassical.ai`.
