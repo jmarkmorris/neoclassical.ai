@@ -1,4 +1,4 @@
-# Manim Visualization Toolchest
+# Manim Visualization Examples
 
 ## Project Overview
 
@@ -6,7 +6,7 @@ This project is a comprehensive collection of Manim (Mathematical Animation Engi
 
 ## Run Tool Script
 
-`run_tool.sh` is an interactive bash script that provides a user-friendly interface to explore and run the Manim examples. Key features include:
+`run_example.sh` is an interactive bash script that provides a user-friendly interface to explore and run the Manim examples. Key features include:
 - Dynamic listing of available Python visualization scripts
 - Numbered menu for easy selection
 - High-quality rendering with preview
@@ -172,5 +172,5 @@ A basic introduction to Manim's text and animation capabilities:
 ## Getting Started
 1. Ensure Manim is installed
 2. Navigate to the project root
-3. Use `./examples/run_tool.sh` to explore and run examples
+3. Use `./examples/run_example.sh` to explore and run examples
 ```
