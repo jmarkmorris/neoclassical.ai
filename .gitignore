@@ -27,9 +27,16 @@ simulator-1/simulation_results/*.json
 *.svg.import
 .editorconfig
 .gitattributes
-
 **/fonts/**
 .*
-.vscode/
-
+.vscode*
 config.yaml
+
+# these ignores don't work, perhaps related to them being symbolic links
+README-aider.md
+README-ask.md
+README-git.md
+README-iterm2.md
+README-prompts.md
+README-venv.md
+README-vscode.md
