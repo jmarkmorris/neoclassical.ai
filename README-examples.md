@@ -1,8 +1,8 @@
-# Manim Visualization Examples
+# Visualization Examples
 
 ## Project Overview
 
-This project is a comprehensive collection of Manim (Mathematical Animation Engine) examples designed to showcase the powerful visualization and animation capabilities of the Manim library. Each script demonstrates different aspects of mathematical, scientific, and programmatic visualization techniques.
+This project is a comprehensive collection of Godot Engine and Manim (Mathematical Animation Engine) examples designed to showcase the powerful visualization and animation capabilities of the Manim library. Each script demonstrates different aspects of mathematical, scientific, and programmatic visualization techniques. Examples may be implemented in Godot engine or Manim or both.
 
 ## Run Tool Script
 
