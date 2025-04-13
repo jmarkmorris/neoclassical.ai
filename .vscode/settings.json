@@ -1,7 +1,2 @@
 {
-    "files.readonlyExclude": {
-        "*.py": true,
-        "*NPQG*": true,
-        "/Users/markmorris/Documents/NPQG_Code_Base/NPQG": true
-    }
 }
