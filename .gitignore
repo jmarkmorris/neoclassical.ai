@@ -31,6 +31,8 @@ simulator-1/simulation_results/*.json
 .*
 .vscode*
 config.yaml
+__pycache__
+.vscode
 
 # these ignores don't work, perhaps related to them being symbolic links
 README-aider.md
