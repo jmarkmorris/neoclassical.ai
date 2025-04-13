@@ -142,3 +142,23 @@ If you experience frequent failed edits, especially with complex changes, switch
 *   `run-aider.sh` simplifies selecting Aider's edit format.
 *   **Code Mode:** Starts with `whole` (more reliable, higher tokens), allows switching to `diff` (more concise, potential diff issues) before launch.
 *   **Architect Mode:** Starts with `editor-whole` (more reliable, higher tokens), allows switching to `editor-diff` (more concise, potential diff issues) before launch.
+
+---
+
+## Changing Aider Settings
+
+You can change aider settings using command line options, a `.aider.conf.yml` file, or environment variables.
+
+*   **Command Line Options:** You can specify settings directly when you run the `aider` command. For example, `aider --dark-mode` enables dark mode.
+*   **.aider.conf.yml File:** Create a file named `.aider.conf.yml` in your home directory or at the root of your git repository. You can then add settings to this file in YAML format. For example:
+
+    ```yaml
+    dark-mode: true
+    ```
+*   **Environment Variables:** You can set environment variables to configure aider. The environment variable name is usually `AIDER_` followed by the option name in uppercase. For example, to enable dark mode, you would set `AIDER_DARK_MODE=true`. You can set these variables in your shell or in a `.env` file.
+
+See also:
+
+*   https://aider.chat/docs/config.html
+*   https://aider.chat/docs/config/options.html
+*   https://aider.chat/docs/faq.html

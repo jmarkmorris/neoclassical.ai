@@ -31,3 +31,5 @@ simulator-1/simulation_results/*.json
 **/fonts/**
 .*
 .vscode/
+
+config.yaml
