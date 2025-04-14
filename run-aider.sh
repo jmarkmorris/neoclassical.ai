@@ -276,7 +276,8 @@ _load_keys_from_file() {
 
 # Loads API keys, coordinating checks between environment and files.
 # Priority: Environment -> PRIMARY_KEYS_FILE -> $HOME/.llm_api_keys
-# Exits with an error if required keys are missing after checking all sources.
+# Populates VENDOR_KEY_SOURCE. The check_api_key function handles exiting
+# if the *required* key is missing later.
 #
 # Args: None
 #
@@ -284,13 +285,12 @@ _load_keys_from_file() {
 #   - Exports API key environment variables (e.g., OPENAI_API_KEY) if found.
 #   - Populates the global VENDOR_KEY_SOURCE array.
 #   - Prints status messages to stdout.
-#   - Exits with status 1 if required keys are missing and no keys file is found.
 #
 # Modifies:
 #   - Environment variables for API keys.
 #   - VENDOR_KEY_SOURCE array.
 load_api_keys() {
-    local env_load_status keys_file_path
+    local keys_file_path # Removed env_load_status
 
     echo "Attempting to load API keys..."
 
@@ -302,38 +302,24 @@ load_api_keys() {
 
     # 1. Try loading from environment variables
     _load_keys_from_env
-    env_load_status=$? # Capture return status (0=all found, 1=some missing)
+    # env_load_status=$? # Status is no longer needed for control flow here
 
-    # 2. If not all keys were in env, try loading from file
-    if [ "$env_load_status" -ne 0 ]; then
-        keys_file_path=$(_find_keys_file)
+    # 2. Always check for a keys file, regardless of env status
+    keys_file_path=$(_find_keys_file)
 
-        if [ -n "$keys_file_path" ]; then
-            # File found, attempt to load from it
-            _load_keys_from_file "$keys_file_path"
-        else
-            # No keys file found, and keys were missing from env. This is an error.
-            local secondary_keys_file="$HOME/.llm_api_keys" # Define for error message
-            echo "Error: No API keys file found and keys not fully provided via environment variables." >&2
-            echo "Please either:" >&2
-            echo "  1. Set environment variables for all required vendors (e.g., export OPENAI_API_KEY=..., export GEMINI_API_KEY=...)" >&2
-            echo "  2. Set the PRIMARY_KEYS_FILE environment variable to the full path of your keys file." >&2
-            echo "  3. Place your keys file at the default location: '$secondary_keys_file'" >&2
-            echo "" >&2
-            echo "Example content for the keys file:" >&2
-            echo "# LLM API Keys Configuration" >&2
-            echo "OPENAI_API_KEY=\"sk-...\"" >&2
-            echo "ANTHROPIC_API_KEY=\"sk-...\"" >&2
-            echo "# For Google, use either:" >&2
-            echo "GEMINI_API_KEY=\"AIza...\"  # Preferred" >&2
-            echo "# GOOGLE_API_KEY=\"AIza...\" # Also supported" >&2
-            echo "DEEPSEEK_API_KEY=\"sk-...\"" >&2
-            exit 1
-        fi
+    # 3. If a keys file exists, attempt to load from it
+    #    This will update the source for keys not found in env.
+    if [ -n "$keys_file_path" ]; then
+        _load_keys_from_file "$keys_file_path"
+    # else # No need for an else block, just proceed if no file found
+        # echo "Debug: No API keys file found, proceeding with environment keys only." # Optional debug message
     fi
 
-    # If we reached here, keys were loaded either from env, file, or a combination.
-    # The check_api_key function will verify if the *specific* needed key is present later.
+    # REMOVED the premature exit block that was here.
+    # The check_api_key function, called *after* vendor selection,
+    # will now be responsible for exiting if the *specifically required*
+    # key is missing.
+
     echo "API key loading process complete."
 }
 
