@@ -7,26 +7,25 @@ Polar
 Opacity (LineOpacity)
 ArrowTips
 
+Started
+VectorArrow
 
 Not Started/Incomplete/Error
-
 AngleClassUse
 AnglesMoving
 AnimatedAngle
 Dot3DGrid
-LatexPlus
 Lorenz3D
 MovingFrameBox
 MultipleAnimations
-MyGodotTemplate
 PathTrace
 PointMovingOnShapes
 Square
 UpdatersExample
-VectorArrow
 
 Text Oriented
 GodotFonts - looks like i started this one but the fonts directory is missing now
 TextFontsSizes
 Morph
 WriteStuff
+LatexPlus
