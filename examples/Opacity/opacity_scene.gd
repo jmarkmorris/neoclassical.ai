@@ -106,12 +106,12 @@ func _ready():
 		group.group_width = GROUP_WIDTH
 		group.position = Vector3(center_x, current_y - GROUP_HEIGHT / 2.0, 0) # Center vertically
 		add_child(group)
-		print("LineGroup (Width: %d) added. Position: %s" % [width, group.global_position]) # DEBUG
+		print("LineGroup (Width: %s) added. Position: %s" % [str(width), group.global_position]) # DEBUG
 		group_nodes.append(group)
 
 		# Create Width Label (Child of Group)
 		var label_width = Label3D.new()
-		label_width.text = "Width: %d" % width
+		label_width.text = "Width: %s" % str(width)
 		label_width.font_size = WIDTH_LABEL_FONT_SIZE
 		label_width.pixel_size = LABEL_PIXEL_SIZE
 		label_width.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_RIGHT)
