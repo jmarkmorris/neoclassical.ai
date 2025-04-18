@@ -4,7 +4,7 @@ CircleSizes
 MakeGraph
 MovingClock
 Polar
-Opacity
+Opacity (LineOpacity)
 ArrowTips
 
 
@@ -14,18 +14,19 @@ AngleClassUse
 AnglesMoving
 AnimatedAngle
 Dot3DGrid
-GodotFonts
 LatexPlus
-LineOpacity
 Lorenz3D
-Morph
 MovingFrameBox
 MultipleAnimations
 MyGodotTemplate
 PathTrace
 PointMovingOnShapes
 Square
-TextFontsSizes
 UpdatersExample
 VectorArrow
+
+Text Oriented
+GodotFonts - looks like i started this one but the fonts directory is missing now
+TextFontsSizes
+Morph
 WriteStuff
