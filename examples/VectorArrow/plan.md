@@ -18,7 +18,7 @@
     *   Used `ImmediateMesh` for drawing lines.
 
 4.  **Implement Vector Arrow:** (DONE)
-    *   Created a function `_create_vector_arrow` using `CylinderMesh` and `ConeMesh`.
+    *   Created a function `_create_vector_arrow` using `CylinderMesh` for the shaft and `CSGPolygon3D` for the tip.
     *   Positioned and oriented the arrow from (0,0,0) to (2,2,0).
     *   Set the arrow color to white using `StandardMaterial3D`.
 

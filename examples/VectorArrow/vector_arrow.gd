@@ -1,4 +1,3 @@
-@tool # Add tool mode annotation as a diagnostic step
 extends Node3D
 
 # Grid configuration
@@ -113,20 +112,28 @@ func _create_vector_arrow(start_point: Vector3, end_point: Vector3):
 	shaft_instance.position.z = -shaft_length / 2.0
 	arrow_node.add_child(shaft_instance)
 
-	# --- Create Tip (using PrismMesh as workaround) ---
-	var tip_mesh = PrismMesh.new()
-	tip_mesh.left_to_right = 0 # Make it a pyramid
-	# Size: X=width, Y=height, Z=depth. We want height along arrow direction.
-	tip_mesh.size = Vector3(ARROW_TIP_RADIUS * 2, ARROW_TIP_HEIGHT, ARROW_TIP_RADIUS * 2)
+	# --- Create Tip (using CSGPolygon3D based on ArrowTips.gd) ---
+	var tip_node = CSGPolygon3D.new()
+	tip_node.name = "Tip"
+	tip_node.material = material # Assign the white unshaded material
 
-	var tip_instance = MeshInstance3D.new()
-	tip_instance.mesh = tip_mesh
-	tip_instance.material_override = material
-	tip_instance.name = "Tip"
+	# Define triangle vertices for the tip (relative to its own origin)
+	# Pointing along the positive X-axis initially, like in ArrowTips.gd
+	var tip_size = ARROW_TIP_HEIGHT # Use height as the primary size metric
+	var p1 := Vector2(0, 0) # Tip point at origin
+	var p2 := Vector2(-tip_size, tip_size / 2.0)
+	var p3 := Vector2(-tip_size, -tip_size / 2.0)
+	tip_node.polygon = PackedVector2Array([p1, p2, p3])
+
+	# Set CSG properties for a filled shape
+	tip_node.mode = CSGPolygon3D.MODE_DEPTH
+	tip_node.depth = ARROW_SHAFT_RADIUS * 2 # Give it some thickness, match shaft diameter
 
 	# Position and orient the tip *locally* within the arrow_node
-	# Rotate Prism's Y-axis (height) to align with parent's -Z axis
-	tip_instance.rotation.x = PI / 2
-	# Position center of tip along parent's -Z axis, at the end of the shaft
-	tip_instance.position.z = -shaft_length - (ARROW_TIP_HEIGHT / 2.0)
-	arrow_node.add_child(tip_instance)
+	# 1. Rotate the CSGPolygon's XY plane to align with the arrow_node's XY plane (it's already there)
+	# 2. Rotate the CSGPolygon so its local +X direction (where the tip points) aligns with the arrow_node's -Z direction (the arrow direction)
+	tip_node.rotation.y = -PI / 2
+	# 3. Position the tip point (p1, which is at the CSGPolygon's origin) at the end of the shaft
+	tip_node.position.z = -shaft_length
+
+	arrow_node.add_child(tip_node)
