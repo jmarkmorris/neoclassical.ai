@@ -1,1 +1,0 @@
-/Users/markmorris/Documents/Globals-code-base/my-globals/README-iterm2.md
