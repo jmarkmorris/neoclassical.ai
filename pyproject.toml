@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "npqg"
+version = "0.0.1"
+description = "A reusable library for NPQG Manim visualizations"
+readme = "README.md" # Optional: if you have a README.md
+license = { text = "MIT License" } # Optional: Choose your license
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License", # Optional
+    "Operating System :: OS Independent",
+]
+# Add dependencies if your library code (not the example scene) needs them
+# dependencies = [
+#     "numpy", # Already needed by manim
+#     # Add other dependencies here
+# ]
+
+[tool.setuptools.packages.find]
+where = ["."] # Look for packages in the current directory
+include = ["npqg*"] # Include the npqg directory and potentially sub-packages
+exclude = ["tests*", "docs*"] # Optional: exclude test/doc directories
+namespaces = false # Set to true if using namespace packages
+
+# Optional: Specify Python version requirement
+# python_requires = ">=3.13"

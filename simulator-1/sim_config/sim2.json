@@ -1,0 +1,62 @@
+{
+  "simulation": {
+    "particles": [
+      {
+        "id": 1,
+        "charge": 1,
+        "position": [5.0, 5.0, 0.0],
+        "velocity": [0.0, -0.25, 0.0]
+      },
+      {
+        "id": 2,
+        "charge": -1,
+        "position": [-5.0, -5.0, 0.0],
+        "velocity": [0.0, 0.25, 0.0]
+      }
+    ],
+    "duration": 120,
+    "dt": 0.01,
+    "max_history": 10000,
+    "action_function": "basic"
+  },
+  "physics": {
+    "coulomb_constant": 0.8,
+    "min_distance": 0.001,
+    "min_velocity": 0.001,
+  },
+  "visualization": {
+    "colors": {
+      "background": "#4B0082",
+      "positive": "#FF0000",
+      "negative": "#0000FF",
+      "tracer": "#FFFFFF",
+      "tracer_positive": "#FC6255",
+      "tracer_negative": "#58C4DD"
+    },
+    "marker_size": 0.04,
+    "use_dot3d": true,
+    "tracer": {
+      "enabled": true,
+      "history_length": 12000,
+      "stroke_width": 1,
+      "add_spheres": false,
+      "frames_between_trail_segments": 60,
+      "sphere_radius": 0.03,
+      "max_sphere_radius": 5.0,
+      "use_particle_color": true
+    },
+    "scaling": {
+      "enabled": false,
+      "initial_scale": 0.75,
+      "max_display_limit": 5.0,
+      "min_display_limit": 2.0,
+      "scale_stability_threshold": 0.2
+    },
+    "sim_to_manim_ratio": 10,
+    "manim_frame_rate": 60,
+    "camera": {
+      "phi": 75,
+      "theta": 30
+    }
+  }
+}
