@@ -17,10 +17,10 @@
     *   Configure the grid's color, spacing, and size to match the reference image.
     *   Used `ImmediateMesh` for drawing lines.
 
-4.  **Implement Vector Arrow:**
-    *   Create a function to draw a 3D arrow using `MeshInstance3D` and a `ConeMesh` for the arrowhead and a `CylinderMesh` for the shaft.
-    *   Position and orient the arrow to start at the origin (0, 0, 0) and point to (2, 2, 0).
-    *   Set the arrow color to white.
+4.  **Implement Vector Arrow:** (DONE)
+    *   Created a function `_create_vector_arrow` using `CylinderMesh` and `ConeMesh`.
+    *   Positioned and oriented the arrow from (0,0,0) to (2,2,0).
+    *   Set the arrow color to white using `StandardMaterial3D`.
 
 5.  **Implement Text Labels:**
     *   Add 3D text labels for the origin (0, 0) and the arrow tip (2, 2).
@@ -55,4 +55,4 @@
 
 **Next Steps:**
 
-*   Implement the vector arrow (Step 4).
+*   Implement text labels (Step 5).

@@ -13,3 +13,7 @@ config_version=5
 config/name="VectorArrow"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.294118, 0, 0.509804, 1)
