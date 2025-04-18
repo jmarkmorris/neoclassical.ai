@@ -21,7 +21,7 @@ const WIDTH_LABEL_PADDING = 20.0 * 0.3 # Scale down 3D size
 const AXIS_TICK_LABEL_OFFSET_Y = 10.0 * 0.3 # Scale down 3D size
 const AXIS_DISPLAY_OFFSET_Y = 20.0 * 0.3 # Scale down 3D size
 
-const TOP_MARGIN = 50.0 * 0.3 # Scale down 3D size
+const TOP_MARGIN = (50.0 + 36.0) * 0.3 # Scale down 3D size
 const TITLE_SUBTITLE_SPACING = 10.0 * 0.3 # Scale down 3D size
 const SUBTITLE_GROUP_SPACING = 50.0 * 0.3 # Scale down 3D size
 
@@ -93,7 +93,7 @@ func _ready():
 	current_y -= (SUBTITLE_FONT_SIZE * LABEL_PIXEL_SIZE * 1.5) + SUBTITLE_GROUP_SPACING # Approximate height + spacing
 
 	# --- Line Groups ---
-	var line_group_widths = [3, 2, 1]
+	var line_group_widths = [2, 1.5, 1]
 	var group_nodes = [] # To store group nodes for later reference if needed
 
 	for i in range(line_group_widths.size()):
