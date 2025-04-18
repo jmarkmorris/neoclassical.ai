@@ -1,17 +1,18 @@
-Y AnglePath
-Y CircleSizes
-Y MakeGraph
-Y MovingClock
-Y Polar
-
-
-Incomplete/Error
+Done
+AnglePath
+CircleSizes
+MakeGraph
+MovingClock
+Polar
 Opacity
+ArrowTips
+
+
+Not Started/Incomplete/Error
 
 AngleClassUse
 AnglesMoving
 AnimatedAngle
-ArrowTips
 Dot3DGrid
 GodotFonts
 LatexPlus
