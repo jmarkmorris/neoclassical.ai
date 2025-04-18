@@ -88,51 +88,45 @@ func _create_vector_arrow(start_point: Vector3, end_point: Vector3):
 	material.albedo_color = ARROW_COLOR
 	material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
 
+	# Position and orient the main arrow container
+	arrow_node.position = start_point
+	arrow_node.look_at(end_point, Vector3.UP) # Point container's -Z towards end_point
+
 	# --- Create Shaft ---
+	var shaft_length = length - ARROW_TIP_HEIGHT # Calculate actual shaft length
+	if shaft_length < 0: shaft_length = 0 # Ensure non-negative length
+
 	var shaft_mesh = CylinderMesh.new()
 	shaft_mesh.top_radius = ARROW_SHAFT_RADIUS
 	shaft_mesh.bottom_radius = ARROW_SHAFT_RADIUS
-	# Adjust height slightly to prevent Z-fighting with the tip base
-	shaft_mesh.height = length - ARROW_TIP_HEIGHT * 0.95
+	shaft_mesh.height = shaft_length
 
 	var shaft_instance = MeshInstance3D.new()
 	shaft_instance.mesh = shaft_mesh
-	shaft_instance.material_override = material # Use material_override
+	shaft_instance.material_override = material
 	shaft_instance.name = "Shaft"
 
-	# Position and orient the shaft
-	# CylinderMesh is oriented along Y-axis by default
-	# We need to rotate it to align with the direction vector
-	# Then position its center between start and (end - tip_height)
-	var shaft_center = start_point + direction.normalized() * (shaft_mesh.height / 2.0)
-	shaft_instance.global_position = shaft_center
-	# Align the cylinder's Y-axis with the arrow's direction
-	shaft_instance.look_at(end_point, Vector3.UP)
-	# CylinderMesh points along +Y, look_at points along -Z. Rotate to fix.
-	shaft_instance.rotate_object_local(Vector3.RIGHT, PI / 2)
-
+	# Position and orient the shaft *locally* within the arrow_node
+	# Rotate Cylinder's Y-axis to align with parent's -Z axis
+	shaft_instance.rotation.x = PI / 2
+	# Position center of shaft along parent's -Z axis
+	shaft_instance.position.z = -shaft_length / 2.0
 	arrow_node.add_child(shaft_instance)
 
-	# --- Create Tip (using PrismMesh as workaround for ConeMesh issue) ---
+	# --- Create Tip (using PrismMesh as workaround) ---
 	var tip_mesh = PrismMesh.new()
-	# Make it a pyramid (pointy top)
-	tip_mesh.left_to_right = 0
-	# Set base size (X and Z) and height (Y)
+	tip_mesh.left_to_right = 0 # Make it a pyramid
+	# Size: X=width, Y=height, Z=depth. We want height along arrow direction.
 	tip_mesh.size = Vector3(ARROW_TIP_RADIUS * 2, ARROW_TIP_HEIGHT, ARROW_TIP_RADIUS * 2)
 
 	var tip_instance = MeshInstance3D.new()
 	tip_instance.mesh = tip_mesh
-	tip_instance.material_override = material # Use material_override
+	tip_instance.material_override = material
 	tip_instance.name = "Tip"
 
-	# Position and orient the tip
-	# ConeMesh is oriented along Y-axis by default, base at Y=0
-	# Position the base of the cone at the end point
-	# Align the cone's Y-axis with the arrow's direction
-	var tip_base_position = end_point - direction.normalized() * ARROW_TIP_HEIGHT
-	tip_instance.global_position = tip_base_position + direction.normalized() * (ARROW_TIP_HEIGHT / 2.0)
-	tip_instance.look_at(end_point + direction.normalized(), Vector3.UP) # Look slightly past the end point
-	# ConeMesh points along +Y, look_at points along -Z. Rotate to fix.
-	tip_instance.rotate_object_local(Vector3.RIGHT, PI / 2)
-
+	# Position and orient the tip *locally* within the arrow_node
+	# Rotate Prism's Y-axis (height) to align with parent's -Z axis
+	tip_instance.rotation.x = PI / 2
+	# Position center of tip along parent's -Z axis, at the end of the shaft
+	tip_instance.position.z = -shaft_length - (ARROW_TIP_HEIGHT / 2.0)
 	arrow_node.add_child(tip_instance)
