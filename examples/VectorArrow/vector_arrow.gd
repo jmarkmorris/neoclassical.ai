@@ -14,8 +14,8 @@ const ARROW_START = Vector3.ZERO
 const ARROW_END = Vector3(2, 2, 0)
 const ARROW_COLOR = Color.WHITE
 const ARROW_SHAFT_RADIUS = 0.05
-const ARROW_TIP_HEIGHT = 0.3
-const ARROW_TIP_RADIUS = 0.15
+const ARROW_TIP_HEIGHT = 0.9 # Tripled from 0.3
+const ARROW_TIP_RADIUS = 0.45 # Tripled from 0.15 (Keep proportion)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -130,10 +130,10 @@ func _create_vector_arrow(start_point: Vector3, end_point: Vector3):
 	tip_node.depth = ARROW_SHAFT_RADIUS * 2 # Give it some thickness, match shaft diameter
 
 	# Position and orient the tip *locally* within the arrow_node
-	# 1. Rotate the CSGPolygon's XY plane to align with the arrow_node's XY plane (it's already there)
-	# 2. Rotate the CSGPolygon so its local +X direction (where the tip points) aligns with the arrow_node's -Z direction (the arrow direction)
-	tip_node.rotation.y = -PI / 2
-	# 3. Position the tip point (p1, which is at the CSGPolygon's origin) at the end of the shaft
+	# 1. Rotate the CSGPolygon's XY plane to align with the arrow_node's XY plane (it's already there).
+	# 2. Rotate the CSGPolygon so its local +X direction (where the tip point p1 is defined) aligns with the arrow_node's -Z direction (the arrow's forward direction).
+	tip_node.rotation.y = PI / 2 # Flipped rotation from -PI/2
+	# 3. Position the tip point (p1, which is at the CSGPolygon's origin) at the end of the shaft.
 	tip_node.position.z = -shaft_length
 
 	arrow_node.add_child(tip_node)
