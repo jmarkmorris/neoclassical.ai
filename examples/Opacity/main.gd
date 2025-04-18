@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
+	print("main.gd: _ready() called") # DEBUG
 	# Create the opacity scene programmatically
-	var opacity_scene = Node2D.new()
-	opacity_scene.set_script(load("res://opacity_scene.gd"))
+	var opacity_scene = load("res://opacity_scene.gd").new()
 	add_child(opacity_scene)

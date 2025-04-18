@@ -2,7 +2,7 @@ extends Node3D
 
 @export var num_ticks: int = 5
 @export var tick_height: float = 10.0 * 0.3 # Scale down
-@export var tick_width: float = 1.0 * 0.3 # Scale down
+@export var tick_width: float = 3.0 * 0.3 # Scale down
 @export var group_width: float = 800.0 * 0.3 # Scale down (must match LineGroup)
 
 func _ready():
@@ -10,6 +10,7 @@ func _ready():
 	generate_ticks_mesh()
 
 func generate_ticks_mesh():
+	print("  AxisDisplay: generate_ticks_mesh() called.") # DEBUG
 	var mesh = ArrayMesh.new()
 	var vertices = PackedVector3Array()
 	var colors = PackedColorArray()
@@ -53,7 +54,7 @@ func generate_ticks_mesh():
 
 		current_vert_index += 4
 
-	print("AxisDisplay: Generated %d vertices, %d indices." % [vertices.size(), indices.size()]) # DEBUG
+	print("  AxisDisplay: Generated %d vertices, %d indices." % [vertices.size(), indices.size()]) # DEBUG
 	# Assemble mesh arrays
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
@@ -74,9 +75,9 @@ func generate_ticks_mesh():
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	# Ticks are opaque, but keep alpha for consistency if needed later
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	print("AxisDisplay: Material created. Shading: %s, Transparency: %s, VertexColorAlbedo: %s" % [material.shading_mode, material.transparency, material.vertex_color_use_as_albedo]) # DEBUG
+	print("  AxisDisplay: Material created. Shading: %s, Transparency: %s, VertexColorAlbedo: %s" % [material.shading_mode, material.transparency, material.vertex_color_use_as_albedo]) # DEBUG
 
 	mesh_instance.material_override = material # Apply material
 
 	add_child(mesh_instance)
-	print("AxisDisplay: MeshInstance3D added as child.") # DEBUG
+	print("  AxisDisplay: MeshInstance3D added as child.") # DEBUG

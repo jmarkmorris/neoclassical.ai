@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var stroke_width: float = 1.0 # Use float for potential scaling
+@export var stroke_width: float = 3.0 # Use float for potential scaling
 @export var num_lines: int = 101
 @export var line_height: float = 30.0 # Adjusted default
 @export var group_width: float = 240.0 # Adjusted default
@@ -10,6 +10,7 @@ func _ready():
 	generate_lines_mesh()
 
 func generate_lines_mesh():
+	print("    LineGroup (Width: %d): generate_lines_mesh() called." % stroke_width) # DEBUG
 	var mesh = ArrayMesh.new()
 	var vertices = PackedVector3Array()
 	var colors = PackedColorArray()
@@ -27,7 +28,7 @@ func generate_lines_mesh():
 	for i in range(num_lines):
 		var x_center = i * spacing - group_width / 2.0
 		# Scale the stroke width similarly to other dimensions
-		var scaled_stroke_width = stroke_width * 0.3 
+		var scaled_stroke_width = stroke_width
 		# Use scaled_stroke_width for quad dimensions
 		var half_width = scaled_stroke_width / 2.0
 		var x_left = x_center - half_width
@@ -61,7 +62,7 @@ func generate_lines_mesh():
 
 		current_vert_index += 4
 
-	print("  LineGroup (Width: %d): Generated %d vertices, %d indices." % [stroke_width, vertices.size(), indices.size()]) # DEBUG
+	print("    LineGroup (Width: %d): Generated %d vertices, %d indices." % [stroke_width, vertices.size(), indices.size()]) # DEBUG
 	# Assemble mesh arrays
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
@@ -78,14 +79,15 @@ func generate_lines_mesh():
 
 	# Create Material
 	var material = StandardMaterial3D.new()
-	material.vertex_color_use_as_albedo = true
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.vertex_color_use_as_albedo = true # Enable vertex colors
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED # Unshaded for direct color
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA # Enable transparency
+	material.cull_mode = BaseMaterial3D.CULL_DISABLED # Disable culling
 	# Optional: Disable culling if lines are very thin and might disappear
 	# material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	print("  LineGroup (Width: %d): Material created. Shading: %s, Transparency: %s, VertexColorAlbedo: %s" % [stroke_width, material.shading_mode, material.transparency, material.vertex_color_use_as_albedo]) # DEBUG
+	print("    LineGroup (Width: %d): Material created. Shading: %s, Transparency: %s, VertexColorAlbedo: %s" % [stroke_width, material.shading_mode, material.transparency, material.vertex_color_use_as_albedo]) # DEBUG
 
 	mesh_instance.material_override = material # Apply material
 
 	add_child(mesh_instance)
-	print("  LineGroup (Width: %d): MeshInstance3D added as child." % stroke_width) # DEBUG
+	print("    LineGroup (Width: %d): MeshInstance3D added as child." % stroke_width) # DEBUG
