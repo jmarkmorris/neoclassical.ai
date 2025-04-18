@@ -6,9 +6,13 @@ const GRID_SPACING = 1.0
 const GRID_COLOR = Color(0, 0.7, 1.0) # Cyan/Blue color similar to reference
 const GRID_LINE_WIDTH = 2.0 # Approximate line width
 
+# Camera configuration (basic for now)
+const CAMERA_DISTANCE = 20.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_create_grid()
+	_setup_basic_camera()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,3 +52,10 @@ func _create_grid():
 	# The visual width depends on resolution and distance.
 	# For thicker lines, consider using TubeTrailMesh or custom shaders.
 	grid_node.add_child(mesh_instance)
+
+# Sets up a basic camera to view the scene
+func _setup_basic_camera():
+	var camera = Camera3D.new()
+	camera.position = Vector3(0, 0, CAMERA_DISTANCE) # Position camera back along Z-axis
+	camera.look_at(Vector3.ZERO) # Make camera look at the origin
+	add_child(camera)
