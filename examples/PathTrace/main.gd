@@ -18,6 +18,24 @@ const PARTICLE_CONFIGS: Array[Dictionary] = [
 	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
 	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
 	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
 	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
 	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
 	{"object_color": PURE_RED, "trail_color": LIGHT_RED}
@@ -41,7 +59,7 @@ const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store 
 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
-const BOUNDARY_FORCE_MULTIPLIER: float = 15.0  # Scales the magnitude of boundary push-back forces
+const BOUNDARY_FORCE_MULTIPLIER: float = 2.5  # Scales the magnitude of boundary push-back forces
 
 # Physics simulation steps per frame
 const SIM_STEPS_PER_FRAME: int = 10
@@ -246,7 +264,7 @@ func _ready() -> void:
 
 		# --- Randomize Initial Velocity ---
 		var random_direction = Vector3(randf_range(-1, 1), randf_range(-1, 1), 0).normalized()
-		var initial_velocity = random_direction * INITIAL_VEL_MAGNITUDE
+		var initial_velocity = random_direction * (INITIAL_VEL_MAGNITUDE / 2.0)
 		particle_velocities.append(initial_velocity)
 
 		# --- Assign charge based on color ---
@@ -383,7 +401,9 @@ func _process(delta: float) -> void:
 			# F = ma => a = F/m
 			var acceleration = forces[i] / PARTICLE_MASS
 			particle_velocities[i] += acceleration * sub_step_delta  # Update velocity
-			particle_meshes[i].position += particle_velocities[i] * sub_step_delta  # Update position
+			var new_position = particle_meshes[i].position + particle_velocities[i] * sub_step_delta  # Update position
+
+			particle_meshes[i].position = new_position
 
 			# --- Update Trail ---
 			var trail_points = trail_points[i]
