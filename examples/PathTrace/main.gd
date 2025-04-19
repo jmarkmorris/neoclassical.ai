@@ -32,7 +32,7 @@ const BOUNDS_Y_MAX: float = 2.5 # Keep below title
 # Path Generation Parameters
 const PATH_START_POS: Vector3 = Vector3(0, -1, 0)
 const PATH_NUM_POINTS: int = 128
-const PATH_STEP_SIZE: float = 0.5 # Controls distance between points
+const PATH_STEP_SIZE: float = 1.5 # Controls distance between points - Increased from 0.5
 
 
 # --- Helper Functions ---
@@ -63,6 +63,9 @@ func generate_random_path(start_pos: Vector3, num_points: int, step_size: float,
 			push_warning("Could not find a valid point within bounds after 10 attempts for point %d. Path might be shorter." % (i + 1))
 			# Optionally, just add the last valid point again or stop generation
 			# curve.add_point(current_point) # Repeat last point if stuck
+
+	# Bake the curve for smoother interpolation between generated points
+	curve.bake_interval = 0.1 # Lower values = smoother curve
 
 	return curve
 
@@ -193,6 +196,32 @@ func _ready() -> void:
 		trail_meshes.append(trail_immediate_mesh)    # Store the mesh resource for updating
 		trail_materials.append(trail_material)       # Store the material (used in _process)
 		trail_points.append(PackedVector3Array())    # Initialize empty point array for this trail
+
+	# 7. Animation Setup
+	var animation_player := AnimationPlayer.new()
+	add_child(animation_player)
+
+	var animation := Animation.new()
+	animation.length = 30.0 # Animation duration in seconds
+
+	for i in range(path_followers.size()):
+		var follower: PathFollow3D = path_followers[i]
+		# Create a unique path to the node for the animation track
+		var node_path: NodePath = get_path_to(follower)
+
+		# Add track for progress_ratio
+		var track_idx: int = animation.add_track(Animation.TYPE_VALUE)
+		animation.track_set_path(track_idx, str(node_path) + ":progress_ratio")
+
+		# Insert keyframes: start at 0, end at 1
+		animation.track_insert_key(track_idx, 0.0, 0.0) # time=0, value=0
+		animation.track_insert_key(track_idx, animation.length, 1.0) # time=30, value=1
+
+	# Add the animation to the player and play it
+	var anim_lib := AnimationLibrary.new()
+	anim_lib.add_animation("move_particles", animation)
+	animation_player.add_animation_library("", anim_lib) # Add library with empty prefix
+	animation_player.play("move_particles")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
