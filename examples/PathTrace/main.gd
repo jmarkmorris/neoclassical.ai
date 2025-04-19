@@ -23,15 +23,15 @@ const PARTICLE_CONFIGS: Array[Dictionary] = [
 	{"object_color": PURE_RED, "trail_color": LIGHT_RED}
 ]
 
-# Screen Boundaries (adjust as needed based on camera view)
-const BOUNDS_X_MIN: float = -7.0
-const BOUNDS_X_MAX: float = 7.0
-const BOUNDS_Y_MIN: float = -3.75
-const BOUNDS_Y_MAX: float = 2.5 # Keep below title
+# Screen Boundaries (adjust as needed based on camera view) - Doubled Range
+const BOUNDS_X_MIN: float = -14.0
+const BOUNDS_X_MAX: float = 14.0
+const BOUNDS_Y_MIN: float = -7.5
+const BOUNDS_Y_MAX: float = 5.0 # Keep below title
 
 # Path Generation Parameters
 const PATH_START_POS: Vector3 = Vector3(0, -1, 0)
-const PATH_NUM_POINTS: int = 128
+const PATH_NUM_POINTS: int = 256 # Increased from 128 for smoother paths
 const PATH_STEP_SIZE: float = 1.5 # Controls distance between points - Increased from 0.5
 
 
