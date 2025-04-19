@@ -33,7 +33,7 @@ func _ready() -> void:
 	camera.position = Vector3(0, 0, 15) # Position the camera
 	camera.look_at(Vector3.ZERO)       # Make it look towards the origin
 	add_child(camera)
-	get_viewport().set_camera_3d(camera) # Make this the active camera
+	camera.current = true              # Make this the active camera
 
 	# 2. Environment Setup
 	var world_env := WorldEnvironment.new()
