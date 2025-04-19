@@ -31,8 +31,8 @@ const BOUNDS_Y_MAX: float = 7.625  # 5.0 + 2.625
 
 # Path Generation Parameters
 const PATH_START_POS: Vector3 = Vector3(0, 1.625, 0) # -1.0 + 2.625
-const PATH_NUM_POINTS: int = 256 # Increased from 128 for smoother paths
-const PATH_STEP_SIZE: float = 1.2 # Controls distance between points - Decreased from 1.5 for potentially smoother curves
+const PATH_NUM_POINTS: int = 512 # Increased from 256 for smoother paths
+const PATH_STEP_SIZE: float = 0.8 # Controls distance between points - Decreased from 1.2
 
 
 # --- Helper Functions ---
@@ -43,12 +43,15 @@ func generate_random_path(start_pos: Vector3, num_points: int, step_size: float,
 	var curve := Curve3D.new()
 	curve.add_point(start_pos)
 	var current_point := start_pos
+	# var previous_angle: float = randf_range(0, TAU) # No longer needed
 
 	for i in range(num_points):
 		var attempts := 0
 		while attempts < 10: # Prevent infinite loops if bounds are too tight
-			var angle: float = randf_range(0, TAU) # Random angle (0 to 2*PI)
-			var offset := Vector3(cos(angle), sin(angle), 0) * step_size
+			# Calculate new angle completely randomly
+			var current_angle: float = randf_range(0, TAU) # Random angle (0 to 2*PI)
+
+			var offset := Vector3(cos(current_angle), sin(current_angle), 0) * step_size
 			var next_point := current_point + offset
 
 			# Check bounds
@@ -56,8 +59,11 @@ func generate_random_path(start_pos: Vector3, num_points: int, step_size: float,
 				next_point.y >= y_min and next_point.y <= y_max):
 				curve.add_point(next_point)
 				current_point = next_point
+				# previous_angle = current_angle # No longer needed
 				break # Valid point found, exit while loop
 			else:
+				# If boundary hit, try a new random angle
+				# previous_angle = randf_range(0, TAU) # No longer needed
 				attempts += 1
 		if attempts >= 10:
 			push_warning("Could not find a valid point within bounds after 10 attempts for point %d. Path might be shorter." % (i + 1))
@@ -65,7 +71,7 @@ func generate_random_path(start_pos: Vector3, num_points: int, step_size: float,
 			# curve.add_point(current_point) # Repeat last point if stuck
 
 	# Bake the curve for smoother interpolation between generated points
-	curve.bake_interval = 0.05 # Lower values = smoother curve - Decreased from 0.1
+	curve.bake_interval = 0.1 # Lower values = smoother curve - Adjusted from 0.05
 
 	return curve
 
