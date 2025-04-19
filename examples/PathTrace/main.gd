@@ -40,8 +40,9 @@ const MAX_HISTORY_SECONDS: float = 5.0 # How many seconds of position history to
 const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store in history
 
 # Boundary Constraint Constants
-const BOUNDARY_SOFTNESS: float = 0.5  # Controls the "elasticity" of boundary constraints
-const BOUNDARY_FORCE_MULTIPLIER: float = 10.0  # Scales the magnitude of boundary push-back forces
+const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
+const BOUNDARY_FORCE_MULTIPLIER: float = 15.0  # Scales the magnitude of boundary push-back forces
+const BOUNDARY_INNER_MARGIN: float = 1.0  # Distance from boundary where soft constraint begins
 
 
 # --- Scene Variables ---
@@ -214,25 +215,25 @@ func _get_historical_position(history: Array, target_time: float) -> Vector3:
 	push_warning("Could not find bracketing time in history for interpolation.")
 	return history[-1][1]
 
-# Soft boundary force calculation method
+# Soft boundary force calculation method with more nuanced constraint
 func _calculate_boundary_force(particle_pos: Vector3) -> Vector3:
 	var force = Vector3.ZERO
 	
 	# X-axis boundary constraints
 	if particle_pos.x < BOUNDS_X_MIN:
 		var distance_outside = BOUNDS_X_MIN - particle_pos.x
-		force.x = BOUNDARY_SOFTNESS * exp(distance_outside)
+		force.x = BOUNDARY_SOFTNESS * pow(distance_outside + 1, 3)  # Cubic growth for smoother transition
 	elif particle_pos.x > BOUNDS_X_MAX:
 		var distance_outside = particle_pos.x - BOUNDS_X_MAX
-		force.x = -BOUNDARY_SOFTNESS * exp(distance_outside)
+		force.x = -BOUNDARY_SOFTNESS * pow(distance_outside + 1, 3)
 	
 	# Y-axis boundary constraints
 	if particle_pos.y < BOUNDS_Y_MIN:
 		var distance_outside = BOUNDS_Y_MIN - particle_pos.y
-		force.y = BOUNDARY_SOFTNESS * exp(distance_outside)
+		force.y = BOUNDARY_SOFTNESS * pow(distance_outside + 1, 3)
 	elif particle_pos.y > BOUNDS_Y_MAX:
 		var distance_outside = particle_pos.y - BOUNDS_Y_MAX
-		force.y = -BOUNDARY_SOFTNESS * exp(distance_outside)
+		force.y = -BOUNDARY_SOFTNESS * pow(distance_outside + 1, 3)
 	
 	return force * BOUNDARY_FORCE_MULTIPLIER
 
