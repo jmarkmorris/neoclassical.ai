@@ -32,81 +32,68 @@ Create a Godot engine mp4 video animation that visually replicates the behavior 
 
 ---
 
-# Implementation Plan
+# Updated Implementation Plan
 
-1.  **Project Setup:**
-    *   Create a new Godot 4.x project.
-    *   Use the existing `node_3d.tscn` as the main scene.
-    *   Create and attach a new GDScript named `main.gd` to the root `Node3D` in `node_3d.tscn`.
+## Boundary Constraint Implementation
 
-2.  **Basic Scene Setup (`main.gd` - `_ready` function):**
-    *   **Camera:** Create a `Camera3D` node, position it to view the origin (e.g., at `Vector3(0, 0, 15)` looking towards `-Z`), and make it the current camera.
-    *   **Environment:** Create a `WorldEnvironment` node. Create a new `Environment` resource for it. Set the `Background` mode to `Color` and set the `Background Color` to Indigo (`Color("#4B0082")`).
-    *   **Lighting:** Create a `DirectionalLight3D` node for basic illumination.
-    *   **Title:**
-        *   Create a `Label` node.
-        *   Set its `text` property to "Path Tracing Animation".
-        *   Configure font properties (requires importing a font like Helvetica Neue Light or using a default, set size to ~36).
-        *   Position the label at the top-center of the viewport using `anchor` and `margin` properties or by calculating position based on viewport size. Ensure it uses a `StandardMaterial3D` with `shading_mode = unshaded` and `use_point_size = true` if rendering in 3D space, or consider using a `CanvasLayer` for 2D overlay.
+1. **Soft Boundary Physics Modification**
+   - Implement a force-based boundary constraint mechanism in the `_process` function.
+   - Create a new method `_apply_boundary_constraints(particle_pos: Vector3) -> Vector3`:
+     * Check if the particle's position is outside the defined boundaries.
+     * If outside, apply a soft "pushing" force back towards the center.
+     * The force should:
+       - Increase exponentially as the particle moves further from the boundary.
+       - Be proportional to the distance outside the boundary.
+       - Smoothly guide particles back into the animation area without abrupt stops.
 
-3.  **Particle Definition (`main.gd`):**
-    *   Define constants for colors: `INDIGO`, `PURE_BLUE`, `PURE_RED`, `LIGHT_BLUE`, `LIGHT_RED`.
-    *   Define particle configurations (e.g., an array of dictionaries, each specifying object color and trail color).
-    *   Define particle radius (adjust based on Manim's `0.075` relative to scene scale).
+2. **Boundary Force Calculation**
+   - Develop a quadratic or exponential force function that:
+     * Returns zero when inside the boundary.
+     * Increases non-linearly as the particle approaches/crosses boundary.
+     * Provides a gentle "elastic" constraint.
 
-4.  **Path Generation (`main.gd`):**
-    *   Create a function `generate_random_path(start_pos, num_points, bounds)`:
-        *   Takes a starting position, number of points, and boundary limits.
-        *   Initializes a `Curve3D` resource.
-        *   Adds the `start_pos`.
-        *   Loops `num_points` times:
-            *   Generates a random direction (angle in XY plane).
-            *   Calculates the next point based on the previous point and a small step in the random direction.
-            *   **Clamping:** Checks if the `new_point` is within the specified `bounds` (e.g., X between -7 and 7, Y between -3.75 and 2.5, Z=0). If outside, generate a new random direction until the point is inside.
-            *   Adds the valid `new_point` to the `Curve3D` using `add_point()`.
-        *   Returns the generated `Curve3D`.
-    *   Define screen boundary constants based on camera view and desired constraints.
+3. **Boundary Constraint Integration**
+   - Modify the force calculation in `_process()`:
+     * Before updating particle velocities, apply boundary constraint forces.
+     * Ensure these forces are added to the existing Coulomb-like interaction forces.
 
-5.  **Particle and Path Instantiation (`main.gd` - `_ready` function):**
-    *   Loop through the particle configurations:
-        *   **Particle Mesh:** Create a `MeshInstance3D` node. Assign a `SphereMesh` resource to it, setting its `radius`. Create a `StandardMaterial3D`, set its `albedo_color` to the particle color, and assign it to the mesh.
-        *   **Path:** Call `generate_random_path` to create a unique `Curve3D` for this particle, starting near the center (e.g., `Vector3(0, -1, 0)`).
-        *   **Path Node:** Create a `Path3D` node and assign the generated `Curve3D` to its `curve` property. Add this `Path3D` to the scene.
-        *   **Path Follow:** Create a `PathFollow3D` node. Set its `target` to the `Path3D` node created above. Add the particle's `MeshInstance3D` as a child of this `PathFollow3D`. Add the `PathFollow3D` to the scene.
-        *   Store references to the `PathFollow3D` nodes (e.g., in an array).
+4. **Tuning Parameters**
+   - Add new constants to control boundary behavior:
+     * `BOUNDARY_SOFTNESS`: Controls the "elasticity" of boundary constraints.
+     * `BOUNDARY_FORCE_MULTIPLIER`: Scales the magnitude of boundary push-back forces.
 
-6.  **Trail Rendering (`main.gd`):**
-    *   Choose a method (e.g., `ImmediateMesh`):
-        *   For each particle, create an `ImmediateMesh` node. Add it to the scene.
-        *   Create a `StandardMaterial3D` for the trail (set `albedo_color` to the trail color, potentially adjust transparency `alpha`, set `shading_mode = unshaded`).
-        *   Store references to these `ImmediateMesh` nodes and their corresponding particle `MeshInstance3D` nodes.
-        *   Maintain an array (e.g., `trail_points`) for each trail to store `Vector3` positions.
-    *   In the `_process(delta)` function:
-        *   Loop through each particle's `MeshInstance3D`:
-            *   Get its current `global_transform.origin`.
-            *   Append this position to the corresponding `trail_points` array.
-            *   Access the corresponding `ImmediateMesh` node:
-                *   Call `clear_surfaces()`.
-                *   Call `surface_begin(Mesh.PRIMITIVE_LINE_STRIP, trail_material)`.
-                *   Iterate through the `trail_points` array, calling `surface_add_vertex(point)` for each.
-                *   Call `surface_end()`.
+5. **Visualization Refinement**
+   - Ensure trail rendering continues to work smoothly with the new boundary constraints.
+   - Verify that particle paths remain visually interesting while staying within bounds.
 
-7.  **Animation (`main.gd` - `_ready` function):**
-    *   Create an `AnimationPlayer` node and add it to the scene.
-    *   Create a new `Animation` resource.
-    *   Set its `length` to 30 seconds.
-    *   For each `PathFollow3D` node stored earlier:
-        *   Add a track for its `progress_ratio` property.
-        *   Insert a keyframe at time 0 with value 0.
-        *   Insert a keyframe at time 30 with value 1.
-    *   Assign this `Animation` resource to the `AnimationPlayer`.
-    *   Call `play()` on the `AnimationPlayer` with the animation name.
+## Additional Refinement Tasks
 
-8.  **Final Polish (Optional - `main.gd`):**
-    *   Connect to the `AnimationPlayer`'s `animation_finished` signal.
-    *   In the connected function, implement a brief visual effect (e.g., using a `Tween` to quickly change the `emission` color or `scale` of the particle meshes).
+1. **Performance Optimization**
+   - Profile the current implementation.
+   - Optimize force calculations and history tracking if needed.
 
-9.  **Refinement & Export:**
-    *   Adjust particle size, trail width/opacity, path complexity (`num_points`), and animation timing for desired visual outcome.
-    *   Use Godot's Movie Maker mode or screen recording tools to export the animation as an MP4 video.
+2. **Randomness Improvement**
+   - Review and potentially adjust the random path generation to create more diverse trajectories.
+
+3. **Final Polish
+   - Fine-tune animation parameters.
+   - Ensure visual consistency with the Manim reference implementation.
+
+## Testing Approach
+
+1. Implement unit tests for:
+   - Boundary constraint force calculation
+   - Particle position clamping
+   - Force magnitude and direction
+
+2. Visual verification:
+   - Compare output with goal images
+   - Ensure particles stay within defined boundaries
+   - Maintain natural, chaotic movement
+
+## Export Considerations
+
+- Use Godot's movie maker or screen recording for MP4 export
+- Target 30-second animation duration
+- Maintain high-quality rendering settings
 
