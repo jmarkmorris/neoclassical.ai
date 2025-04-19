@@ -53,15 +53,34 @@ var trail_materials: Array[StandardMaterial3D] = [] # To store trail materials
 var trail_points: Array[PackedVector3Array] = [] # To store points for each trail
 var particle_meshes: Array[MeshInstance3D] = [] # To easily access particle positions
 
-# Particle Physics State
-var particle_velocities: Array[Vector3] = []
-var particle_charges: Array[float] = [] # +1.0 for Red, -1.0 for Blue
-var particle_histories: Array[Array] = [] # Array of arrays, each inner array stores [timestamp, position] pairs
+# Particle Path State
+var particle_paths: Array[Array] = [] # Array of predefined paths for each particle
+var particle_velocities: Array[Vector3] = [] # Velocities for each particle
+var particle_charges: Array[float] = [] # Charges for each particle
+var particle_histories: Array[Array] = [] # History of particle positions
 
-var current_time: float = 0.0 # Keep track of simulation time for history
+var current_time: float = 0.0 # Keep track of animation time
 
 
 # --- Scene Setup ---
+
+# Generate a random path for a particle
+func _generate_particle_path(start_pos: Vector3) -> Array:
+	var path: Array = [start_pos]
+	var current_pos = start_pos
+	
+	for _i in range(127): # Generate 128 points total
+		var angle = randf() * TAU # Random angle between 0 and 2π
+		var next_pos = current_pos + Vector3(cos(angle), sin(angle), 0)
+		
+		# Check boundary constraints
+		# Constrain to lower 2/3 of screen and within X bounds
+		if (next_pos.x >= BOUNDS_X_MIN and next_pos.x <= BOUNDS_X_MAX and 
+			next_pos.y >= BOUNDS_Y_MIN and next_pos.y <= BOUNDS_Y_MAX):
+			path.append(next_pos)
+			current_pos = next_pos
+	
+	return path
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -122,7 +141,7 @@ func _ready() -> void:
 	canvas_layer.add_child(title_label)
 
 	# 5. Particle Instantiation and Physics State Initialization
-	var center_pos = Vector3(0, 1.625, 0) # Use the previous start area center
+	var start_pos = Vector3(0, -1, 0) # Fixed start position
 
 	for config in PARTICLE_CONFIGS:
 		# --- Create Particle Mesh (Same as before) ---
@@ -135,20 +154,15 @@ func _ready() -> void:
 		# Create Particle Material
 		var particle_material := StandardMaterial3D.new()
 		particle_material.albedo_color = config["object_color"]
-		# Optional: Make particles emissive/unshaded if lighting is distracting
-		# particle_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
-		particle_mesh_instance.material_override = particle_material # Use override for simplicity
+		particle_mesh_instance.material_override = particle_material
 
-		# --- Initialize Physics State ---
-		# Random initial position around the center
-		# Random position within simulation area
-		var random_pos = Vector3(
-			randf_range(BOUNDS_X_MIN, BOUNDS_X_MAX),
-			randf_range(BOUNDS_Y_MIN, BOUNDS_Y_MAX),
-			0
-		)
-		particle_mesh_instance.position = random_pos
-		add_child(particle_mesh_instance) # Add mesh directly to scene now
+		# Generate predefined path
+		var path = _generate_particle_path(start_pos)
+		particle_paths.append(path)
+
+		# Set initial position to first path point
+		particle_mesh_instance.position = path[0]
+		add_child(particle_mesh_instance)
 
 		# Start with zero velocity
 		particle_velocities.append(Vector3.ZERO)
@@ -165,26 +179,24 @@ func _ready() -> void:
 		# Store mesh reference (needed for position access and trail)
 		particle_meshes.append(particle_mesh_instance)
 
-		# --- Create Trail Rendering Components (Mostly same as before) ---
-		var trail_immediate_mesh := ImmediateMesh.new() # Create the mesh resource
-		var trail_mesh_node := MeshInstance3D.new()    # Create the node to display it
-		trail_mesh_node.mesh = trail_immediate_mesh     # Assign the resource to the node
-		add_child(trail_mesh_node)                      # Add the NODE to the scene
+		# --- Create Trail Rendering Components ---
+		var trail_immediate_mesh := ImmediateMesh.new()
+		var trail_mesh_node := MeshInstance3D.new()
+		trail_mesh_node.mesh = trail_immediate_mesh
+		add_child(trail_mesh_node)
 
 		var trail_material := StandardMaterial3D.new()
 		trail_material.albedo_color = config["trail_color"]
-		trail_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED # Trails look better unshaded
-		# Optional: Add transparency
-		# trail_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-		# trail_material.albedo_color.a = 0.5 # 50% opacity
-		trail_mesh_node.material_override = trail_material # Apply material to the node
+		trail_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
+		trail_mesh_node.material_override = trail_material
 
-		trail_mesh_instances.append(trail_mesh_node) # Store the node if needed later
-		trail_meshes.append(trail_immediate_mesh)    # Store the mesh resource for updating
-		trail_materials.append(trail_material)       # Store the material (used in _process)
-		trail_points.append(PackedVector3Array())    # Initialize empty point array for this trail
+		trail_mesh_instances.append(trail_mesh_node)
+		trail_meshes.append(trail_immediate_mesh)
+		trail_materials.append(trail_material)
+		trail_points.append(PackedVector3Array())
 
-	# 7. Animation Setup - REMOVED
+	# Ensure paths are generated before animation starts
+	print("Generated ", particle_paths.size(), " particle paths")
 
 
 # Helper function to find historical position via interpolation
@@ -241,92 +253,43 @@ func _calculate_boundary_force(particle_pos: Vector3) -> Vector3:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	current_time += delta
-	var num_particles = particle_meshes.size()
-	var forces: Array[Vector3] = [] # Array to store total force on each particle for this frame
-	forces.resize(num_particles)
-	forces.fill(Vector3.ZERO)
-
-	# 1. Calculate Forces using Historical Positions
-	for i in range(num_particles): # Receiver particle
-		var receiver_pos: Vector3 = particle_meshes[i].global_transform.origin
-		var receiver_charge: float = particle_charges[i]
-
-		for j in range(num_particles): # Emitter particle
-			if i == j: continue # Particle doesn't interact with itself
-
-			var emitter_charge: float = particle_charges[j]
-			var emitter_history: Array = particle_histories[j]
-
-			# Estimate distance to get approximate time delay
-			# Using current distance is an approximation, but needed to query history
-			var approx_dist = receiver_pos.distance_to(particle_meshes[j].global_transform.origin)
-			var time_delay = approx_dist / SPEED_OF_POTENTIAL
-			var historical_time = current_time - time_delay
-
-			# Get emitter's position at that historical time
-			var emitter_historical_pos = _get_historical_position(emitter_history, historical_time)
-
-			# Calculate force based on historical position
-			var vec_to_emitter = emitter_historical_pos - receiver_pos
-			var dist_sq = vec_to_emitter.length_squared()
-
-			# Clamp distance to avoid extreme forces at close range
-			dist_sq = max(dist_sq, MIN_DISTANCE_SQ)
-
-			# Calculate Coulomb-like force: F = k * q1 * q2 / r^2 * direction
-			# Negative sign because q1*q2 is negative for attraction, positive for repulsion
-			# We want force vector pointing *away* from emitter for repulsion, *towards* for attraction
-			var force_magnitude = COULOMB_CONSTANT * receiver_charge * emitter_charge / dist_sq
-			var force_direction = vec_to_emitter.normalized()
-			var force_on_i = -force_direction * force_magnitude # The negative handles attraction/repulsion correctly
-
-			forces[i] += force_on_i
-
-	# 2. Update Velocities and Positions (Simple Euler integration)
-	for i in range(num_particles):
-		# Calculate boundary force
-		var boundary_force = _calculate_boundary_force(particle_meshes[i].global_transform.origin)
-
-		# Calculate acceleration
-		var acceleration = (forces[i] + boundary_force) / PARTICLE_MASS
-
-		# Update velocity and position
-		particle_velocities[i] += acceleration * delta
-		particle_meshes[i].global_transform.origin += particle_velocities[i] * delta
-
-	# 3. Record History (Store current state after position update)
-	var history_interval = 1.0 / HISTORY_POINTS_PER_SECOND
-	for i in range(num_particles):
-		var history: Array = particle_histories[i]
-		# Add point if enough time has passed since last record or if history is empty
-		if history.is_empty() or current_time - history[-1][0] >= history_interval:
-			history.append([current_time, particle_meshes[i].global_transform.origin])
-
-			# Prune old history
-			var oldest_allowed_time = current_time - MAX_HISTORY_SECONDS
-			while history.size() > 1 and history[0][0] < oldest_allowed_time:
-				history.pop_front() # Remove oldest entry
-
-	# 4. Update Trail Rendering (Using the NEW current position)
-	for i in range(num_particles):
-		var particle_mesh: MeshInstance3D = particle_meshes[i]
-		var trail_immediate_mesh: ImmediateMesh = trail_meshes[i] # Get the mesh resource
-		var points: PackedVector3Array = trail_points[i]
-		var material: StandardMaterial3D = trail_materials[i]
-
-		# Get current particle position (already updated by physics)
-		var current_pos: Vector3 = particle_mesh.global_transform.origin
-
-		# Add point to trail if it's different from the last one (or if it's the first)
-		# Use the default tolerance for is_equal_approx
-		if points.is_empty() or not points[-1].is_equal_approx(current_pos):
-			points.append(current_pos)
-
-		# Redraw the trail using ImmediateMesh resource
+	# Safety check to ensure we have paths and meshes
+	if particle_paths.is_empty() or particle_meshes.is_empty():
+		return
+	
+	# Animate particles along their predefined paths
+	for i in range(min(particle_meshes.size(), particle_paths.size())):
+		var path = particle_paths[i]
+		
+		# Skip if path is empty
+		if path.is_empty():
+			continue
+		
+		var particle_mesh = particle_meshes[i]
+		var trail_points = trail_points[i]
+		var trail_immediate_mesh = trail_meshes[i]
+		var trail_material = trail_materials[i]
+		
+		# Interpolate position along the path
+		var path_progress = (current_time / 30.0) * (path.size() - 1)
+		var current_index = int(path_progress)
+		var next_index = min(current_index + 1, path.size() - 1)
+		var t = path_progress - current_index
+		
+		# Interpolate between path points
+		var current_pos = path[current_index].lerp(path[next_index], t)
+		particle_mesh.position = current_pos
+		
+		# Update trail
+		if trail_points.is_empty() or not trail_points[-1].is_equal_approx(current_pos):
+			trail_points.append(current_pos)
+		
+		# Redraw trail
 		trail_immediate_mesh.clear_surfaces()
-		if points.size() > 1: # Need at least two points to draw a line
-			trail_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, material)
-			for point in points:
+		if trail_points.size() > 1:
+			trail_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, trail_material)
+			for point in trail_points:
 				trail_immediate_mesh.surface_add_vertex(point)
 			trail_immediate_mesh.surface_end()
+	
+	current_time += delta
