@@ -42,7 +42,9 @@ const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
 const BOUNDARY_FORCE_MULTIPLIER: float = 15.0  # Scales the magnitude of boundary push-back forces
-const BOUNDARY_INNER_MARGIN: float = 1.0  # Distance from boundary where soft constraint begins
+
+# Physics simulation steps per frame
+const SIM_STEPS_PER_FRAME: int = 10
 
 
 # --- Scene Variables ---
@@ -222,8 +224,6 @@ func _ready() -> void:
 	canvas_layer.add_child(title_label)
 
 	# 5. Particle Instantiation and Physics State Initialization
-	var start_pos = Vector3(0, -1, 0) # Fixed start position
-
 	for config in PARTICLE_CONFIGS:
 		# --- Create Particle Mesh (Same as before) ---
 		var particle_mesh_instance := MeshInstance3D.new()
@@ -237,18 +237,19 @@ func _ready() -> void:
 		particle_material.albedo_color = config["object_color"]
 		particle_mesh_instance.material_override = particle_material
 
-		# Generate predefined path
-		var path = _generate_particle_path(start_pos)
-		particle_paths.append(path)
-
-		# Set initial position to first path point
-		particle_mesh_instance.position = path[0]
+		# --- Randomize Initial Position ---
+		var random_x = randf_range(BOUNDS_X_MIN, BOUNDS_X_MAX)
+		var random_y = randf_range(BOUNDS_Y_MIN, BOUNDS_Y_MAX)
+		var start_pos = Vector3(random_x, random_y, 0)
+		particle_mesh_instance.position = start_pos
 		add_child(particle_mesh_instance)
 
-		# Start with zero velocity
-		particle_velocities.append(Vector3.ZERO)
+		# --- Randomize Initial Velocity ---
+		var random_direction = Vector3(randf_range(-1, 1), randf_range(-1, 1), 0).normalized()
+		var initial_velocity = random_direction * INITIAL_VEL_MAGNITUDE
+		particle_velocities.append(initial_velocity)
 
-		# Assign charge based on color
+		# --- Assign charge based on color ---
 		var charge = 1.0 if config["object_color"] == PURE_RED else -1.0
 		particle_charges.append(charge)
 
@@ -259,6 +260,10 @@ func _ready() -> void:
 
 		# Store mesh reference (needed for position access and trail)
 		particle_meshes.append(particle_mesh_instance)
+
+		# No longer using predefined paths
+		# var path = _generate_particle_path(start_pos)
+		# particle_paths.append(path)
 
 		# --- Create Trail Rendering Components ---
 		var trail_immediate_mesh := ImmediateMesh.new()
@@ -335,76 +340,64 @@ func _calculate_boundary_force(particle_pos: Vector3) -> Vector3:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Safety check to ensure we have paths and meshes
-	if particle_paths.is_empty() or particle_meshes.is_empty():
+	if particle_meshes.is_empty():
 		return
-	
-	# Animate particles along their predefined paths
-	for i in range(min(particle_meshes.size(), particle_paths.size())):
-		var path = particle_paths[i]
-		
-		# Skip if path is empty
-		if path.is_empty():
-			continue
-		
-		var particle_mesh = particle_meshes[i]
-		var trail_points = trail_points[i]
-		var trail_immediate_mesh = trail_meshes[i]
-		var trail_material = trail_materials[i]
-		
-		# Calculate smooth path progress (0.0 to 1.0)
-		var path_progress = min((current_time / 30.0), 1.0)
-		
-		# Get position along the path using arc-length parameterization
-		var current_pos: Vector3
-		
-		if path_progress >= 1.0:
-			# If at the end, use the last point
-			current_pos = path[path.size() - 1]
-		else:
-			# Use a smoother parameterization method
-			var total_path_length = 0.0
-			var segment_lengths = []
-			
-			# Calculate the length of each segment
-			for j in range(1, path.size()):
-				var segment_length = path[j-1].distance_to(path[j])
-				segment_lengths.append(segment_length)
-				total_path_length += segment_length
-			
-			# Find the target distance along the path
-			var target_distance = path_progress * total_path_length
-			
-			# Find the segment containing the target distance
-			var accumulated_distance = 0.0
-			var segment_index = 0
-			
-			for j in range(segment_lengths.size()):
-				if accumulated_distance + segment_lengths[j] >= target_distance:
-					segment_index = j
-					break
-				accumulated_distance += segment_lengths[j]
-			
-			# Calculate interpolation parameter within the segment
-			var segment_progress = 0.0
-			if segment_lengths[segment_index] > 0:
-				segment_progress = (target_distance - accumulated_distance) / segment_lengths[segment_index]
-			
-			# Interpolate between points in the segment
-			current_pos = path[segment_index].lerp(path[segment_index + 1], segment_progress)
-		
-		# Update particle position
-		particle_mesh.position = current_pos
-		
-		# Update trail
-		if trail_points.is_empty() or not trail_points[-1].is_equal_approx(current_pos):
-			trail_points.append(current_pos)
-		
-		# Redraw trail
-		trail_immediate_mesh.clear_surfaces()
-		if trail_points.size() > 1:
-			trail_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, trail_material)
-			for point in trail_points:
-				trail_immediate_mesh.surface_add_vertex(point)
-			trail_immediate_mesh.surface_end()
-	
+
+	# --- Physics Simulation ---
+	var sub_step_delta = delta / float(SIM_STEPS_PER_FRAME)
+
+	for step in range(SIM_STEPS_PER_FRAME):
+		# 1. Calculate Forces
+		var forces: Array[Vector3] = []
+		for i in range(particle_meshes.size()):
+			var net_force = Vector3.ZERO
+
+			# --- Interaction with other particles ---
+			for j in range(particle_meshes.size()):
+				if i == j:
+					continue  # Skip interaction with self
+
+				var p1_pos = particle_meshes[i].position
+				var p2_pos = particle_meshes[j].position
+				var distance_vector = p2_pos - p1_pos
+				var distance_sq = distance_vector.length_squared()
+
+				# Regularize distance to prevent infinities
+				distance_sq = max(distance_sq, MIN_DISTANCE_SQ)
+
+				# Coulomb-like force calculation
+				var force_direction = distance_vector.normalized()
+				var force_magnitude = COULOMB_CONSTANT * particle_charges[i] * particle_charges[j] / distance_sq
+				net_force += force_direction * force_magnitude
+
+			# --- Boundary Repulsion ---
+			net_force += _calculate_boundary_force(particle_meshes[i].position)
+
+			forces.append(net_force)
+
+		# 2. Apply Forces and Update Positions
+		for i in range(particle_meshes.size()):
+			# F = ma => a = F/m
+			var acceleration = forces[i] / PARTICLE_MASS
+			particle_velocities[i] += acceleration * sub_step_delta  # Update velocity
+			particle_meshes[i].position += particle_velocities[i] * sub_step_delta  # Update position
+
+			# --- Update Trail ---
+			var trail_points = trail_points[i]
+			var current_pos = particle_meshes[i].position
+
+			if trail_points.is_empty() or not trail_points[-1].is_equal_approx(current_pos):
+				trail_points.append(current_pos)
+
+			# Redraw trail
+			var trail_immediate_mesh = trail_meshes[i]
+			var trail_material = trail_materials[i]
+
+			trail_immediate_mesh.clear_surfaces()
+			if trail_points.size() > 1:
+				trail_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, trail_material)
+				for point in trail_points:
+					trail_immediate_mesh.surface_add_vertex(point)
+				trail_immediate_mesh.surface_end()
+
 	current_time += delta
