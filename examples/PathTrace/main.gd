@@ -11,8 +11,8 @@ const LIGHT_RED: Color = Color("#FFC0CB")  # Or RED_C from Manim: Color("#FC6255
 
 # Particle Properties
 const PARTICLE_RADIUS: float = 0.15 # Adjusted from Manim's 0.075 for visibility
-const POSITIVE_PARTICLES: int = 24
-const NEGATIVE_PARTICLES: int = 24
+const POSITIVE_PARTICLES: int = 16
+const NEGATIVE_PARTICLES: int = 16
 
 # Particle Configurations (Object Color, Trail Color)
 var PARTICLE_CONFIGS: Array[Dictionary] = []
@@ -36,7 +36,7 @@ const TRAIL_DISPLAY_DURATION: float = 6.0 # How long of a trail to display, in s
 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 1.0  # Controls the "elasticity" of boundary constraints
-const BOUNDARY_FORCE_MULTIPLIER: float = 1.0  # Scales the magnitude of boundary push-back forces
+const BOUNDARY_FORCE_MULTIPLIER: float = 0.5  # Scales the magnitude of boundary push-back forces
 
 # Physics simulation steps per frame
 const SIM_STEPS_PER_FRAME: int = 10
