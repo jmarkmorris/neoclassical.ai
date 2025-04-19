@@ -11,8 +11,8 @@ const LIGHT_RED: Color = Color("#FFC0CB")  # Or RED_C from Manim: Color("#FC6255
 
 # Particle Properties
 const PARTICLE_RADIUS: float = 0.15 # Adjusted from Manim's 0.075 for visibility
-const POSITIVE_PARTICLES: int = 12
-const NEGATIVE_PARTICLES: int = 12
+const POSITIVE_PARTICLES: int = 24
+const NEGATIVE_PARTICLES: int = 24
 
 # Particle Configurations (Object Color, Trail Color)
 var PARTICLE_CONFIGS: Array[Dictionary] = []
@@ -28,11 +28,11 @@ const INITIAL_POS_SPREAD: float = 2.0 # Spread for initial random positions arou
 const INITIAL_VEL_MAGNITUDE: float = 1.0 # Initial speed magnitude for particles
 const SPEED_OF_POTENTIAL: float = 1.0 # Speed at which interaction propagates (set equal to initial speed as requested)
 const COULOMB_CONSTANT: float = 5.0 # Strength of attraction/repulsion force
-const MIN_DISTANCE_SQ: float = 0.02 # Minimum distance squared to prevent division by zero/huge forces
+const MIN_DISTANCE_SQ: float = 0.04 # Minimum distance squared to prevent division by zero/huge forces
 const PARTICLE_MASS: float = 1.0 # Mass of particles (affects acceleration)
 const MAX_HISTORY_SECONDS: float = 5.0 # How many seconds of position history to store
 const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store in history
-const TRAIL_DISPLAY_DURATION: float = 10.0 # How long of a trail to display, in seconds
+const TRAIL_DISPLAY_DURATION: float = 6.0 # How long of a trail to display, in seconds
 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 1.0  # Controls the "elasticity" of boundary constraints
