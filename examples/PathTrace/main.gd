@@ -211,7 +211,7 @@ func _ready() -> void:
 	add_child(animation_player)
 
 	var animation := Animation.new()
-	animation.length = 30.0 # Animation duration in seconds
+	animation.length = 60.0 # Animation duration in seconds - Doubled from 30.0
 
 	for i in range(path_followers.size()):
 		var follower: PathFollow3D = path_followers[i]
@@ -224,7 +224,7 @@ func _ready() -> void:
 
 		# Insert keyframes: start at 0, end at 1
 		animation.track_insert_key(track_idx, 0.0, 0.0) # time=0, value=0
-		animation.track_insert_key(track_idx, animation.length, 1.0) # time=30, value=1
+		animation.track_insert_key(track_idx, animation.length, 1.0) # time=60, value=1
 
 	# Add the animation to the player and play it
 	var anim_lib := AnimationLibrary.new()
