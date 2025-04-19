@@ -23,6 +23,49 @@ const PARTICLE_CONFIGS: Array[Dictionary] = [
 	{"object_color": PURE_RED, "trail_color": LIGHT_RED}
 ]
 
+# Screen Boundaries (adjust as needed based on camera view)
+const BOUNDS_X_MIN: float = -7.0
+const BOUNDS_X_MAX: float = 7.0
+const BOUNDS_Y_MIN: float = -3.75
+const BOUNDS_Y_MAX: float = 2.5 # Keep below title
+
+# Path Generation Parameters
+const PATH_START_POS: Vector3 = Vector3(0, -1, 0)
+const PATH_NUM_POINTS: int = 128
+const PATH_STEP_SIZE: float = 0.5 # Controls distance between points
+
+
+# --- Helper Functions ---
+
+# Generates a random 3D path within specified boundaries
+func generate_random_path(start_pos: Vector3, num_points: int, step_size: float,
+						  x_min: float, x_max: float, y_min: float, y_max: float) -> Curve3D:
+	var curve := Curve3D.new()
+	curve.add_point(start_pos)
+	var current_point := start_pos
+
+	for i in range(num_points):
+		var attempts := 0
+		while attempts < 10: # Prevent infinite loops if bounds are too tight
+			var angle: float = randf_range(0, TAU) # Random angle (0 to 2*PI)
+			var offset := Vector3(cos(angle), sin(angle), 0) * step_size
+			var next_point := current_point + offset
+
+			# Check bounds
+			if (next_point.x >= x_min and next_point.x <= x_max and
+				next_point.y >= y_min and next_point.y <= y_max):
+				curve.add_point(next_point)
+				current_point = next_point
+				break # Valid point found, exit while loop
+			else:
+				attempts += 1
+		if attempts >= 10:
+			push_warning("Could not find a valid point within bounds after 10 attempts for point %d. Path might be shorter." % (i + 1))
+			# Optionally, just add the last valid point again or stop generation
+			# curve.add_point(current_point) # Repeat last point if stuck
+
+	return curve
+
 
 # --- Scene Setup ---
 
