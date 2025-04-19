@@ -69,15 +69,16 @@ func _generate_particle_path(start_pos: Vector3) -> Array:
 	var path: Array = [start_pos]
 	var current_pos = start_pos
 	
-	# Dynamically generate path points
-	while path.size() < 128:
+	# Dynamically generate path points (fewer points initially, will be expanded by smoothing)
+	while path.size() < 32:
+		# Use a smaller step size for more controlled randomness
 		var angle = randf() * TAU # Random angle between 0 and 2π
-		var next_pos = current_pos + Vector3(cos(angle), sin(angle), 0)
+		var step_size = randf_range(0.5, 2.0)
+		var next_pos = current_pos + Vector3(cos(angle), sin(angle), 0) * step_size
 		
-		# Check boundary constraints
-		# Constrain to lower 2/3 of screen and within X bounds
-		if (next_pos.x >= BOUNDS_X_MIN and next_pos.x <= BOUNDS_X_MAX and 
-			next_pos.y >= BOUNDS_Y_MIN and next_pos.y <= BOUNDS_Y_MAX):
+		# Check boundary constraints with margin to avoid edge cases
+		if (next_pos.x >= BOUNDS_X_MIN + 1.0 and next_pos.x <= BOUNDS_X_MAX - 1.0 and 
+			next_pos.y >= BOUNDS_Y_MIN + 1.0 and next_pos.y <= BOUNDS_Y_MAX - 1.0):
 			path.append(next_pos)
 			current_pos = next_pos
 		
@@ -85,7 +86,40 @@ func _generate_particle_path(start_pos: Vector3) -> Array:
 		if path.size() > 1000:
 			break
 	
-	return path
+	# Apply Bézier curve smoothing
+	return _smooth_path_with_bezier(path)
+
+# Smooth a path using quadratic Bézier curves
+func _smooth_path_with_bezier(original_path: Array) -> Array:
+	if original_path.size() < 3:
+		return original_path  # Not enough points to smooth
+	
+	var smoothed_path: Array = []
+	var segments_per_curve = 10  # More segments = smoother curve
+	
+	# Start with the first point
+	smoothed_path.append(original_path[0])
+	
+	# Process each set of three points to create a quadratic Bézier curve
+	for i in range(original_path.size() - 2):
+		var p0 = original_path[i]
+		var p1 = original_path[i + 1]
+		var p2 = original_path[i + 2]
+		
+		# Generate points along the Bézier curve
+		for t_idx in range(1, segments_per_curve + 1):
+			var t = float(t_idx) / segments_per_curve
+			
+			# Quadratic Bézier formula: B(t) = (1-t)²P₀ + 2(1-t)tP₁ + t²P₂
+			var t_inv = 1.0 - t
+			var b_point = p0 * (t_inv * t_inv) + p1 * (2.0 * t_inv * t) + p2 * (t * t)
+			
+			smoothed_path.append(b_point)
+	
+	# Add the last point
+	smoothed_path.append(original_path[-1])
+	
+	return smoothed_path
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
