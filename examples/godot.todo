@@ -7,10 +7,10 @@ Polar
 Opacity (LineOpacity)
 ArrowTips
 VectorArrow
+PathTrace - sort of working but there is no physics
 
 Started
-PathTrace - not implementing boundaries correctly and coulomb interaction too weak.
-
+none
 
 Not Started/Incomplete/Error
 AngleClassUse
