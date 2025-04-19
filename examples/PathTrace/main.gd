@@ -69,7 +69,8 @@ func _generate_particle_path(start_pos: Vector3) -> Array:
 	var path: Array = [start_pos]
 	var current_pos = start_pos
 	
-	for _i in range(127): # Generate 128 points total
+	# Dynamically generate path points
+	while path.size() < 128:
 		var angle = randf() * TAU # Random angle between 0 and 2π
 		var next_pos = current_pos + Vector3(cos(angle), sin(angle), 0)
 		
@@ -79,6 +80,10 @@ func _generate_particle_path(start_pos: Vector3) -> Array:
 			next_pos.y >= BOUNDS_Y_MIN and next_pos.y <= BOUNDS_Y_MAX):
 			path.append(next_pos)
 			current_pos = next_pos
+		
+		# Prevent infinite loop if boundaries are too restrictive
+		if path.size() > 1000:
+			break
 	
 	return path
 
