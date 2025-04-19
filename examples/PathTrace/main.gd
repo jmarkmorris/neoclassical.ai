@@ -56,6 +56,7 @@ const MIN_DISTANCE_SQ: float = 0.01 # Minimum distance squared to prevent divisi
 const PARTICLE_MASS: float = 1.0 # Mass of particles (affects acceleration)
 const MAX_HISTORY_SECONDS: float = 5.0 # How many seconds of position history to store
 const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store in history
+const TRAIL_DISPLAY_DURATION: float = 100.0 # How long of a trail to display, in seconds
 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
@@ -417,9 +418,22 @@ func _process(delta: float) -> void:
 			var trail_material = trail_materials[i]
 
 			trail_immediate_mesh.clear_surfaces()
-			if trail_points.size() > 1:
+
+			# Calculate the time threshold for displaying the trail
+			var display_threshold_time = current_time - TRAIL_DISPLAY_DURATION
+
+			# Filter trail points to only include those within the display duration
+			var display_points: PackedVector3Array = PackedVector3Array()
+			for j in range(trail_points.size()):
+				# Find the time of the current trail point
+				var point_time = current_time - (float(trail_points.size() - 1 - j) / HISTORY_POINTS_PER_SECOND)
+
+				if point_time >= display_threshold_time:
+					display_points.append(trail_points[j])
+
+			if display_points.size() > 1:
 				trail_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, trail_material)
-				for point in trail_points:
+				for point in display_points:
 					trail_immediate_mesh.surface_add_vertex(point)
 				trail_immediate_mesh.surface_end()
 
