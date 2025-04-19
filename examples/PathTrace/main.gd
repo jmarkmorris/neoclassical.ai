@@ -367,7 +367,10 @@ func _process(delta: float) -> void:
 
 				# Coulomb-like force calculation
 				var force_direction = distance_vector.normalized()
-				var force_magnitude = COULOMB_CONSTANT * particle_charges[i] * particle_charges[j] / distance_sq
+				# Use particle colors to determine charges: red = positive, blue = negative
+				var charge1 = 1.0 if PARTICLE_CONFIGS[i]["object_color"] == PURE_RED else -1.0
+				var charge2 = 1.0 if PARTICLE_CONFIGS[j]["object_color"] == PURE_RED else -1.0
+				var force_magnitude = -COULOMB_CONSTANT * charge1 * charge2 / distance_sq
 				net_force += force_direction * force_magnitude
 
 			# --- Boundary Repulsion ---
