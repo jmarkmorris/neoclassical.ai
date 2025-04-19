@@ -64,60 +64,79 @@ var current_time: float = 0.0 # Keep track of animation time
 
 # --- Scene Setup ---
 
-# Generate a random path for a particle
+# Generate a random path for a particle with more natural flow
 func _generate_particle_path(start_pos: Vector3) -> Array:
 	var path: Array = [start_pos]
 	var current_pos = start_pos
+	var current_direction = Vector3(randf_range(-1, 1), randf_range(-1, 1), 0).normalized()
+	var max_turn_angle = PI / 4  # Maximum 45-degree turn per step
 	
-	# Dynamically generate path points (fewer points initially, will be expanded by smoothing)
-	while path.size() < 32:
-		# Use a smaller step size for more controlled randomness
-		var angle = randf() * TAU # Random angle between 0 and 2π
-		var step_size = randf_range(0.5, 2.0)
-		var next_pos = current_pos + Vector3(cos(angle), sin(angle), 0) * step_size
+	# Dynamically generate path points with directional coherence
+	while path.size() < 20:  # Fewer control points, will be expanded by smoothing
+		# Generate a new direction that's not too different from the current one
+		var angle_change = randf_range(-max_turn_angle, max_turn_angle)
+		var new_direction = current_direction.rotated(Vector3.BACK, angle_change).normalized()
 		
-		# Check boundary constraints with margin to avoid edge cases
-		if (next_pos.x >= BOUNDS_X_MIN + 1.0 and next_pos.x <= BOUNDS_X_MAX - 1.0 and 
-			next_pos.y >= BOUNDS_Y_MIN + 1.0 and next_pos.y <= BOUNDS_Y_MAX - 1.0):
+		# Use varying step sizes for more natural movement
+		var step_size = randf_range(1.0, 3.0)
+		var next_pos = current_pos + new_direction * step_size
+		
+		# Check boundary constraints with margin
+		if (next_pos.x >= BOUNDS_X_MIN + 2.0 and next_pos.x <= BOUNDS_X_MAX - 2.0 and 
+			next_pos.y >= BOUNDS_Y_MIN + 2.0 and next_pos.y <= BOUNDS_Y_MAX - 2.0):
 			path.append(next_pos)
 			current_pos = next_pos
+			current_direction = new_direction  # Update direction for next step
+		else:
+			# If we hit a boundary, bounce back
+			current_direction = -current_direction
+			continue
 		
-		# Prevent infinite loop if boundaries are too restrictive
+		# Prevent infinite loop
 		if path.size() > 1000:
 			break
 	
 	# Apply Bézier curve smoothing
 	return _smooth_path_with_bezier(path)
 
-# Smooth a path using quadratic Bézier curves
+# Smooth a path using cubic Bézier curves for better continuity
 func _smooth_path_with_bezier(original_path: Array) -> Array:
-	if original_path.size() < 3:
-		return original_path  # Not enough points to smooth
+	if original_path.size() < 4:
+		return original_path  # Need at least 4 points for cubic Bézier
 	
 	var smoothed_path: Array = []
-	var segments_per_curve = 10  # More segments = smoother curve
+	var segments_per_curve = 15  # More segments = smoother curve
 	
 	# Start with the first point
 	smoothed_path.append(original_path[0])
 	
-	# Process each set of three points to create a quadratic Bézier curve
-	for i in range(original_path.size() - 2):
+	# Process points to create a series of connected cubic Bézier curves
+	for i in range(original_path.size() - 3):
 		var p0 = original_path[i]
 		var p1 = original_path[i + 1]
 		var p2 = original_path[i + 2]
+		var p3 = original_path[i + 3]
 		
-		# Generate points along the Bézier curve
+		# Generate control points for cubic Bézier (using Catmull-Rom to Bézier conversion)
+		var c1 = p1
+		var c2 = p2
+		
+		# Generate points along the cubic Bézier curve
 		for t_idx in range(1, segments_per_curve + 1):
 			var t = float(t_idx) / segments_per_curve
-			
-			# Quadratic Bézier formula: B(t) = (1-t)²P₀ + 2(1-t)tP₁ + t²P₂
 			var t_inv = 1.0 - t
-			var b_point = p0 * (t_inv * t_inv) + p1 * (2.0 * t_inv * t) + p2 * (t * t)
+			
+			# Cubic Bézier formula: B(t) = (1-t)³P₀ + 3(1-t)²tC₁ + 3(1-t)t²C₂ + t³P₃
+			var b_point = p0 * (t_inv * t_inv * t_inv) + \
+						  c1 * (3.0 * t_inv * t_inv * t) + \
+						  c2 * (3.0 * t_inv * t * t) + \
+						  p3 * (t * t * t)
 			
 			smoothed_path.append(b_point)
 	
 	# Add the last point
-	smoothed_path.append(original_path[-1])
+	if not smoothed_path[-1].is_equal_approx(original_path[-1]):
+		smoothed_path.append(original_path[-1])
 	
 	return smoothed_path
 
@@ -309,14 +328,26 @@ func _process(delta: float) -> void:
 		var trail_immediate_mesh = trail_meshes[i]
 		var trail_material = trail_materials[i]
 		
-		# Interpolate position along the path
-		var path_progress = min((current_time / 30.0), 1.0) * (path.size() - 1)
-		var current_index = min(int(path_progress), path.size() - 2)
-		var next_index = current_index + 1
-		var t = path_progress - current_index
+		# Calculate smooth path progress (0.0 to 1.0)
+		var path_progress = min((current_time / 30.0), 1.0)
 		
-		# Interpolate between path points
-		var current_pos = path[current_index].lerp(path[next_index], t)
+		# Get position along the path using a continuous interpolation
+		var current_pos: Vector3
+		
+		if path_progress >= 1.0:
+			# If at the end, use the last point
+			current_pos = path[path.size() - 1]
+		else:
+			# Convert progress to a position in the path array
+			var float_index = path_progress * (path.size() - 1)
+			var current_index = int(float_index)
+			var next_index = min(current_index + 1, path.size() - 1)
+			var t = float_index - current_index
+			
+			# Interpolate between path points
+			current_pos = path[current_index].lerp(path[next_index], t)
+		
+		# Update particle position
 		particle_mesh.position = current_pos
 		
 		# Update trail
