@@ -69,16 +69,16 @@ func _generate_particle_path(start_pos: Vector3) -> Array:
 	var path: Array = [start_pos]
 	var current_pos = start_pos
 	var current_direction = Vector3(randf_range(-1, 1), randf_range(-1, 1), 0).normalized()
-	var max_turn_angle = PI / 4  # Maximum 45-degree turn per step
+	var max_turn_angle = PI / 8  # Reduced to 22.5-degree max turn for smoother paths
 	
 	# Dynamically generate path points with directional coherence
-	while path.size() < 20:  # Fewer control points, will be expanded by smoothing
+	while path.size() < 30:  # More control points for better path definition
 		# Generate a new direction that's not too different from the current one
 		var angle_change = randf_range(-max_turn_angle, max_turn_angle)
 		var new_direction = current_direction.rotated(Vector3.BACK, angle_change).normalized()
 		
-		# Use varying step sizes for more natural movement
-		var step_size = randf_range(1.0, 3.0)
+		# Use smaller, more consistent step sizes for smoother paths
+		var step_size = randf_range(0.8, 1.5)
 		var next_pos = current_pos + new_direction * step_size
 		
 		# Check boundary constraints with margin
@@ -88,8 +88,17 @@ func _generate_particle_path(start_pos: Vector3) -> Array:
 			current_pos = next_pos
 			current_direction = new_direction  # Update direction for next step
 		else:
-			# If we hit a boundary, bounce back
-			current_direction = -current_direction
+			# If we hit a boundary, reflect the direction vector instead of reversing it
+			# This creates a more natural bounce effect
+			var normal = Vector3.ZERO
+			if next_pos.x < BOUNDS_X_MIN + 2.0 or next_pos.x > BOUNDS_X_MAX - 2.0:
+				normal = Vector3(1, 0, 0)  # X-axis normal
+			else:
+				normal = Vector3(0, 1, 0)  # Y-axis normal
+			
+			# Reflect the direction vector (r = d - 2(d·n)n)
+			var dot_product = current_direction.dot(normal)
+			current_direction = current_direction - (2 * dot_product * normal)
 			continue
 		
 		# Prevent infinite loop
@@ -99,27 +108,45 @@ func _generate_particle_path(start_pos: Vector3) -> Array:
 	# Apply Bézier curve smoothing
 	return _smooth_path_with_bezier(path)
 
-# Smooth a path using cubic Bézier curves for better continuity
+# Smooth a path using cubic Bézier curves with proper control points
 func _smooth_path_with_bezier(original_path: Array) -> Array:
 	if original_path.size() < 4:
 		return original_path  # Need at least 4 points for cubic Bézier
 	
 	var smoothed_path: Array = []
-	var segments_per_curve = 15  # More segments = smoother curve
+	var segments_per_curve = 20  # More segments for smoother curves
 	
 	# Start with the first point
 	smoothed_path.append(original_path[0])
 	
-	# Process points to create a series of connected cubic Bézier curves
-	for i in range(original_path.size() - 3):
-		var p0 = original_path[i]
-		var p1 = original_path[i + 1]
-		var p2 = original_path[i + 2]
-		var p3 = original_path[i + 3]
+	# Calculate tangent vectors for each point (for better control points)
+	var tangents = []
+	for i in range(original_path.size()):
+		var tangent = Vector3.ZERO
 		
-		# Generate control points for cubic Bézier (using Catmull-Rom to Bézier conversion)
-		var c1 = p1
-		var c2 = p2
+		if i == 0:  # First point
+			tangent = (original_path[1] - original_path[0]).normalized()
+		elif i == original_path.size() - 1:  # Last point
+			tangent = (original_path[i] - original_path[i-1]).normalized()
+		else:  # Middle points - average of incoming and outgoing directions
+			var incoming = (original_path[i] - original_path[i-1]).normalized()
+			var outgoing = (original_path[i+1] - original_path[i]).normalized()
+			tangent = ((incoming + outgoing) / 2.0).normalized()
+		
+		tangents.append(tangent)
+	
+	# Process points to create a series of connected cubic Bézier curves
+	for i in range(original_path.size() - 1):
+		var p0 = original_path[i]
+		var p3 = original_path[i + 1]
+		
+		# Calculate distance between points
+		var segment_length = p0.distance_to(p3)
+		var control_point_distance = segment_length / 3.0
+		
+		# Generate proper control points using tangents
+		var c1 = p0 + tangents[i] * control_point_distance
+		var c2 = p3 - tangents[i+1] * control_point_distance
 		
 		# Generate points along the cubic Bézier curve
 		for t_idx in range(1, segments_per_curve + 1):
@@ -133,10 +160,6 @@ func _smooth_path_with_bezier(original_path: Array) -> Array:
 						  p3 * (t * t * t)
 			
 			smoothed_path.append(b_point)
-	
-	# Add the last point
-	if not smoothed_path[-1].is_equal_approx(original_path[-1]):
-		smoothed_path.append(original_path[-1])
 	
 	return smoothed_path
 
@@ -331,21 +354,43 @@ func _process(delta: float) -> void:
 		# Calculate smooth path progress (0.0 to 1.0)
 		var path_progress = min((current_time / 30.0), 1.0)
 		
-		# Get position along the path using a continuous interpolation
+		# Get position along the path using arc-length parameterization
 		var current_pos: Vector3
 		
 		if path_progress >= 1.0:
 			# If at the end, use the last point
 			current_pos = path[path.size() - 1]
 		else:
-			# Convert progress to a position in the path array
-			var float_index = path_progress * (path.size() - 1)
-			var current_index = int(float_index)
-			var next_index = min(current_index + 1, path.size() - 1)
-			var t = float_index - current_index
+			# Use a smoother parameterization method
+			var total_path_length = 0.0
+			var segment_lengths = []
 			
-			# Interpolate between path points
-			current_pos = path[current_index].lerp(path[next_index], t)
+			# Calculate the length of each segment
+			for j in range(1, path.size()):
+				var segment_length = path[j-1].distance_to(path[j])
+				segment_lengths.append(segment_length)
+				total_path_length += segment_length
+			
+			# Find the target distance along the path
+			var target_distance = path_progress * total_path_length
+			
+			# Find the segment containing the target distance
+			var accumulated_distance = 0.0
+			var segment_index = 0
+			
+			for j in range(segment_lengths.size()):
+				if accumulated_distance + segment_lengths[j] >= target_distance:
+					segment_index = j
+					break
+				accumulated_distance += segment_lengths[j]
+			
+			# Calculate interpolation parameter within the segment
+			var segment_progress = 0.0
+			if segment_lengths[segment_index] > 0:
+				segment_progress = (target_distance - accumulated_distance) / segment_lengths[segment_index]
+			
+			# Interpolate between points in the segment
+			current_pos = path[segment_index].lerp(path[segment_index + 1], segment_progress)
 		
 		# Update particle position
 		particle_mesh.position = current_pos
