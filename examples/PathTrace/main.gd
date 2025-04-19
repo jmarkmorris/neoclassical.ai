@@ -67,10 +67,17 @@ func generate_random_path(start_pos: Vector3, num_points: int, step_size: float,
 	return curve
 
 
+# --- Scene Variables ---
+var path_followers: Array[PathFollow3D] = [] # To store references for animation
+
+
 # --- Scene Setup ---
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Initialize Random Number Generator (optional but good practice for reproducibility if needed)
+	# seed(42) # Uncomment for deterministic paths like Manim example
+
 	# 1. Camera Setup
 	var camera := Camera3D.new()
 	camera.position = Vector3(0, 0, 15) # Position the camera
@@ -120,6 +127,47 @@ func _ready() -> void:
 	title_label.offset_bottom = 60 # Define a nominal height for the label area
 
 	canvas_layer.add_child(title_label)
+
+	# 5. Particle and Path Instantiation
+	for config in PARTICLE_CONFIGS:
+		# Create Particle Mesh
+		var particle_mesh_instance := MeshInstance3D.new()
+		var sphere_mesh := SphereMesh.new()
+		sphere_mesh.radius = PARTICLE_RADIUS
+		sphere_mesh.height = PARTICLE_RADIUS * 2
+		particle_mesh_instance.mesh = sphere_mesh
+
+		# Create Particle Material
+		var particle_material := StandardMaterial3D.new()
+		particle_material.albedo_color = config["object_color"]
+		# Optional: Make particles emissive/unshaded if lighting is distracting
+		# particle_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
+		particle_mesh_instance.material_override = particle_material # Use override for simplicity
+
+		# Generate Path
+		var path_curve: Curve3D = generate_random_path(
+			PATH_START_POS,
+			PATH_NUM_POINTS,
+			PATH_STEP_SIZE,
+			BOUNDS_X_MIN, BOUNDS_X_MAX, BOUNDS_Y_MIN, BOUNDS_Y_MAX
+		)
+
+		# Create Path Node
+		var path_node := Path3D.new()
+		path_node.curve = path_curve
+		add_child(path_node) # Add the path itself to the scene
+
+		# Create Path Follow Node
+		var path_follow_node := PathFollow3D.new()
+		# path_follow_node.target = path_node # This is incorrect in Godot 4
+		# PathFollow3D needs to be a child of Path3D
+		path_node.add_child(path_follow_node) # Make follower a child of the path
+
+		# Add Particle Mesh to Path Follower
+		path_follow_node.add_child(particle_mesh_instance)
+
+		# Store reference for animation
+		path_followers.append(path_follow_node)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
