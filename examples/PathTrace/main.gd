@@ -36,7 +36,7 @@ const TRAIL_DISPLAY_DURATION: float = 12.0 # How long of a trail to display, in 
 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
-const BOUNDARY_FORCE_MULTIPLIER: float = 2.5  # Scales the magnitude of boundary push-back forces
+const BOUNDARY_FORCE_MULTIPLIER: float = 1.5  # Scales the magnitude of boundary push-back forces
 
 # Physics simulation steps per frame
 const SIM_STEPS_PER_FRAME: int = 10
