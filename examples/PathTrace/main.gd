@@ -69,6 +69,11 @@ func generate_random_path(start_pos: Vector3, num_points: int, step_size: float,
 
 # --- Scene Variables ---
 var path_followers: Array[PathFollow3D] = [] # To store references for animation
+var trail_mesh_instances: Array[MeshInstance3D] = [] # Nodes to hold the trail meshes
+var trail_meshes: Array[ImmediateMesh] = []   # The actual ImmediateMesh resources
+var trail_materials: Array[StandardMaterial3D] = [] # To store trail materials
+var trail_points: Array[PackedVector3Array] = [] # To store points for each trail
+var particle_meshes: Array[MeshInstance3D] = [] # To easily access particle positions
 
 
 # --- Scene Setup ---
@@ -166,10 +171,50 @@ func _ready() -> void:
 		# Add Particle Mesh to Path Follower
 		path_follow_node.add_child(particle_mesh_instance)
 
-		# Store reference for animation
+		# Store references for animation and trail updates
 		path_followers.append(path_follow_node)
+		particle_meshes.append(particle_mesh_instance) # Store particle mesh ref
+
+		# Create Trail Rendering Components
+		var trail_immediate_mesh := ImmediateMesh.new() # Create the mesh resource
+		var trail_mesh_node := MeshInstance3D.new()    # Create the node to display it
+		trail_mesh_node.mesh = trail_immediate_mesh     # Assign the resource to the node
+		add_child(trail_mesh_node)                      # Add the NODE to the scene
+
+		var trail_material := StandardMaterial3D.new()
+		trail_material.albedo_color = config["trail_color"]
+		trail_material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED # Trails look better unshaded
+		# Optional: Add transparency
+		# trail_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		# trail_material.albedo_color.a = 0.5 # 50% opacity
+		trail_mesh_node.material_override = trail_material # Apply material to the node
+
+		trail_mesh_instances.append(trail_mesh_node) # Store the node if needed later
+		trail_meshes.append(trail_immediate_mesh)    # Store the mesh resource for updating
+		trail_materials.append(trail_material)       # Store the material (used in _process)
+		trail_points.append(PackedVector3Array())    # Initialize empty point array for this trail
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	# 6. Update Trail Rendering
+	for i in range(particle_meshes.size()):
+		var particle_mesh: MeshInstance3D = particle_meshes[i]
+		var trail_immediate_mesh: ImmediateMesh = trail_meshes[i] # Get the mesh resource
+		var points: PackedVector3Array = trail_points[i]
+		var material: StandardMaterial3D = trail_materials[i]
+
+		# Get current particle position
+		var current_pos: Vector3 = particle_mesh.global_transform.origin
+
+		# Add point to trail if it's different from the last one (or if it's the first)
+		if points.is_empty() or not points[-1].is_equal_approx(current_pos):
+			points.append(current_pos)
+
+		# Redraw the trail using ImmediateMesh resource
+		trail_immediate_mesh.clear_surfaces()
+		if points.size() > 1: # Need at least two points to draw a line
+			trail_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, material)
+			for point in points:
+				trail_immediate_mesh.surface_add_vertex(point)
+			trail_immediate_mesh.surface_end()
