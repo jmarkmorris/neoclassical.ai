@@ -10,9 +10,9 @@ const LIGHT_BLUE: Color = Color("#ADD8E6") # Or BLUE_C from Manim: Color("#58C4D
 const LIGHT_RED: Color = Color("#FFC0CB")  # Or RED_C from Manim: Color("#FC6255")
 
 # Particle Properties
-const PARTICLE_RADIUS: float = 0.1 # Adjusted from Manim's 0.075 for visibility
-const POSITIVE_PARTICLES: int = 18
-const NEGATIVE_PARTICLES: int = 12
+const PARTICLE_RADIUS: float = 0.15 # Adjusted from Manim's 0.075 for visibility
+const POSITIVE_PARTICLES: int = 16
+const NEGATIVE_PARTICLES: int = 16
 
 # Particle Configurations (Object Color, Trail Color)
 var PARTICLE_CONFIGS: Array[Dictionary] = []
@@ -20,19 +20,19 @@ var PARTICLE_CONFIGS: Array[Dictionary] = []
 # Screen Boundaries (adjust as needed based on camera view) - Moved Up 15%
 const BOUNDS_X_MIN: float = -14.0
 const BOUNDS_X_MAX: float = 14.0
-const BOUNDS_Y_MIN: float = -9.875 # -12.5 + 2.625
+const BOUNDS_Y_MIN: float = -9.0 
 const BOUNDS_Y_MAX: float = 7.625  # 5.0 + 2.625 # Keep bounds for initial placement/containment? Or remove? Let's keep for now.
 
 # Physics Parameters
 const INITIAL_POS_SPREAD: float = 2.0 # Spread for initial random positions around center
 const INITIAL_VEL_MAGNITUDE: float = 1.0 # Initial speed magnitude for particles
 const SPEED_OF_POTENTIAL: float = 1.0 # Speed at which interaction propagates (set equal to initial speed as requested)
-const COULOMB_CONSTANT: float = 5.0 # Strength of attraction/repulsion force
+const COULOMB_CONSTANT: float = 4.0 # Strength of attraction/repulsion force
 const MIN_DISTANCE_SQ: float = 0.01 # Minimum distance squared to prevent division by zero/huge forces
 const PARTICLE_MASS: float = 1.0 # Mass of particles (affects acceleration)
 const MAX_HISTORY_SECONDS: float = 5.0 # How many seconds of position history to store
 const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store in history
-const TRAIL_DISPLAY_DURATION: float = 16.0 # How long of a trail to display, in seconds
+const TRAIL_DISPLAY_DURATION: float = 12.0 # How long of a trail to display, in seconds
 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
