@@ -141,16 +141,17 @@ func _ready() -> void:
 
 		# --- Initialize Physics State ---
 		# Random initial position around the center
-		var random_offset = Vector3(randf_range(-INITIAL_POS_SPREAD, INITIAL_POS_SPREAD),
-									randf_range(-INITIAL_POS_SPREAD, INITIAL_POS_SPREAD),
-									0) # Keep Z=0 for 2D-like movement
-		particle_mesh_instance.position = center_pos + random_offset
+		# Random position within simulation area
+		var random_pos = Vector3(
+			randf_range(BOUNDS_X_MIN, BOUNDS_X_MAX),
+			randf_range(BOUNDS_Y_MIN, BOUNDS_Y_MAX),
+			0
+		)
+		particle_mesh_instance.position = random_pos
 		add_child(particle_mesh_instance) # Add mesh directly to scene now
 
-		# Random initial velocity
-		var random_angle = randf_range(0, TAU)
-		var initial_velocity = Vector3(cos(random_angle), sin(random_angle), 0) * INITIAL_VEL_MAGNITUDE
-		particle_velocities.append(initial_velocity)
+		# Start with zero velocity
+		particle_velocities.append(Vector3.ZERO)
 
 		# Assign charge based on color
 		var charge = 1.0 if config["object_color"] == PURE_RED else -1.0
