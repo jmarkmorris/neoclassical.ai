@@ -1,7 +1,30 @@
 extends Node3D
 
+# --- Constants ---
+
 # Define Colors
 const INDIGO: Color = Color("#4B0082")
+const PURE_BLUE: Color = Color("#0000FF")
+const PURE_RED: Color = Color("#FF0000")
+const LIGHT_BLUE: Color = Color("#ADD8E6") # Or BLUE_C from Manim: Color("#58C4DD")
+const LIGHT_RED: Color = Color("#FFC0CB")  # Or RED_C from Manim: Color("#FC6255")
+
+# Particle Properties
+const PARTICLE_RADIUS: float = 0.1 # Adjusted from Manim's 0.075 for visibility
+const NUM_PARTICLES_PER_COLOR: int = 3
+
+# Particle Configurations (Object Color, Trail Color)
+const PARTICLE_CONFIGS: Array[Dictionary] = [
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
+	{"object_color": PURE_RED, "trail_color": LIGHT_RED}
+]
+
+
+# --- Scene Setup ---
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
