@@ -8,7 +8,8 @@ Opacity (LineOpacity)
 ArrowTips
 VectorArrow
 
-
+Started
+PathTrace
 
 
 Not Started/Incomplete/Error
@@ -19,7 +20,6 @@ Dot3DGrid
 Lorenz3D
 MovingFrameBox
 MultipleAnimations
-PathTrace
 PointMovingOnShapes
 Square
 UpdatersExample
