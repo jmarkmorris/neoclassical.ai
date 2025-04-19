@@ -276,9 +276,9 @@ func _process(delta: float) -> void:
 		var trail_material = trail_materials[i]
 		
 		# Interpolate position along the path
-		var path_progress = (current_time / 30.0) * (path.size() - 1)
-		var current_index = int(path_progress)
-		var next_index = min(current_index + 1, path.size() - 1)
+		var path_progress = min((current_time / 30.0), 1.0) * (path.size() - 1)
+		var current_index = min(int(path_progress), path.size() - 2)
+		var next_index = current_index + 1
 		var t = path_progress - current_index
 		
 		# Interpolate between path points
