@@ -20,23 +20,23 @@ var PARTICLE_CONFIGS: Array[Dictionary] = []
 # Screen Boundaries (adjust as needed based on camera view) - Moved Up 15%
 const BOUNDS_X_MIN: float = -14.0
 const BOUNDS_X_MAX: float = 14.0
-const BOUNDS_Y_MIN: float = -9.0 
-const BOUNDS_Y_MAX: float = 7.625  # 5.0 + 2.625 # Keep bounds for initial placement/containment? Or remove? Let's keep for now.
+const BOUNDS_Y_MIN: float = -8.0 
+const BOUNDS_Y_MAX: float = 7.0  
 
 # Physics Parameters
 const INITIAL_POS_SPREAD: float = 2.0 # Spread for initial random positions around center
 const INITIAL_VEL_MAGNITUDE: float = 1.0 # Initial speed magnitude for particles
 const SPEED_OF_POTENTIAL: float = 1.0 # Speed at which interaction propagates (set equal to initial speed as requested)
-const COULOMB_CONSTANT: float = 4.0 # Strength of attraction/repulsion force
-const MIN_DISTANCE_SQ: float = 0.01 # Minimum distance squared to prevent division by zero/huge forces
+const COULOMB_CONSTANT: float = 5.0 # Strength of attraction/repulsion force
+const MIN_DISTANCE_SQ: float = 0.02 # Minimum distance squared to prevent division by zero/huge forces
 const PARTICLE_MASS: float = 1.0 # Mass of particles (affects acceleration)
 const MAX_HISTORY_SECONDS: float = 5.0 # How many seconds of position history to store
 const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store in history
 const TRAIL_DISPLAY_DURATION: float = 12.0 # How long of a trail to display, in seconds
 
 # Boundary Constraint Constants
-const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
-const BOUNDARY_FORCE_MULTIPLIER: float = 1.5  # Scales the magnitude of boundary push-back forces
+const BOUNDARY_SOFTNESS: float = 1.0  # Controls the "elasticity" of boundary constraints
+const BOUNDARY_FORCE_MULTIPLIER: float = 1.0  # Scales the magnitude of boundary push-back forces
 
 # Physics simulation steps per frame
 const SIM_STEPS_PER_FRAME: int = 10
@@ -212,7 +212,7 @@ func _ready() -> void:
 
 	# Adjust top margin dynamically based on viewport height
 	var viewport_height = get_viewport().size.y
-	title_label.offset_top = viewport_height * 0.10 # 10% from the top edge
+	title_label.offset_top = viewport_height * 0.05 
 	# Adjust bottom offset based on new font size to ensure it has space
 	title_label.offset_bottom = title_label.offset_top + label_settings.font_size * 1.2 # Approximate height
 
