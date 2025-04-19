@@ -39,6 +39,10 @@ const PARTICLE_MASS: float = 1.0 # Mass of particles (affects acceleration)
 const MAX_HISTORY_SECONDS: float = 5.0 # How many seconds of position history to store
 const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store in history
 
+# Boundary Constraint Constants
+const BOUNDARY_SOFTNESS: float = 0.5  # Controls the "elasticity" of boundary constraints
+const BOUNDARY_FORCE_MULTIPLIER: float = 10.0  # Scales the magnitude of boundary push-back forces
+
 
 # --- Scene Variables ---
 # var path_followers: Array[PathFollow3D] = [] # No longer needed
@@ -210,6 +214,28 @@ func _get_historical_position(history: Array, target_time: float) -> Vector3:
 	push_warning("Could not find bracketing time in history for interpolation.")
 	return history[-1][1]
 
+# Soft boundary force calculation method
+func _calculate_boundary_force(particle_pos: Vector3) -> Vector3:
+	var force = Vector3.ZERO
+	
+	# X-axis boundary constraints
+	if particle_pos.x < BOUNDS_X_MIN:
+		var distance_outside = BOUNDS_X_MIN - particle_pos.x
+		force.x = BOUNDARY_SOFTNESS * exp(distance_outside)
+	elif particle_pos.x > BOUNDS_X_MAX:
+		var distance_outside = particle_pos.x - BOUNDS_X_MAX
+		force.x = -BOUNDARY_SOFTNESS * exp(distance_outside)
+	
+	# Y-axis boundary constraints
+	if particle_pos.y < BOUNDS_Y_MIN:
+		var distance_outside = BOUNDS_Y_MIN - particle_pos.y
+		force.y = BOUNDARY_SOFTNESS * exp(distance_outside)
+	elif particle_pos.y > BOUNDS_Y_MAX:
+		var distance_outside = particle_pos.y - BOUNDS_Y_MAX
+		force.y = -BOUNDARY_SOFTNESS * exp(distance_outside)
+	
+	return force * BOUNDARY_FORCE_MULTIPLIER
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -257,7 +283,13 @@ func _process(delta: float) -> void:
 
 	# 2. Update Velocities and Positions (Simple Euler integration)
 	for i in range(num_particles):
-		var acceleration = forces[i] / PARTICLE_MASS
+		# Calculate boundary force
+		var boundary_force = _calculate_boundary_force(particle_meshes[i].global_transform.origin)
+
+		# Calculate acceleration
+		var acceleration = (forces[i] + boundary_force) / PARTICLE_MASS
+
+		# Update velocity and position
 		particle_velocities[i] += acceleration * delta
 		particle_meshes[i].global_transform.origin += particle_velocities[i] * delta
 
