@@ -11,35 +11,11 @@ const LIGHT_RED: Color = Color("#FFC0CB")  # Or RED_C from Manim: Color("#FC6255
 
 # Particle Properties
 const PARTICLE_RADIUS: float = 0.1 # Adjusted from Manim's 0.075 for visibility
-const NUM_PARTICLES_PER_COLOR: int = 3
+const POSITIVE_PARTICLES: int = 18
+const NEGATIVE_PARTICLES: int = 12
 
 # Particle Configurations (Object Color, Trail Color)
-const PARTICLE_CONFIGS: Array[Dictionary] = [
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED},
-	{"object_color": PURE_RED, "trail_color": LIGHT_RED}
-]
+var PARTICLE_CONFIGS: Array[Dictionary] = []
 
 # Screen Boundaries (adjust as needed based on camera view) - Moved Up 15%
 const BOUNDS_X_MIN: float = -14.0
@@ -56,7 +32,7 @@ const MIN_DISTANCE_SQ: float = 0.01 # Minimum distance squared to prevent divisi
 const PARTICLE_MASS: float = 1.0 # Mass of particles (affects acceleration)
 const MAX_HISTORY_SECONDS: float = 5.0 # How many seconds of position history to store
 const HISTORY_POINTS_PER_SECOND: int = 30 # How many points per second to store in history
-const TRAIL_DISPLAY_DURATION: float = 100.0 # How long of a trail to display, in seconds
+const TRAIL_DISPLAY_DURATION: float = 16.0 # How long of a trail to display, in seconds
 
 # Boundary Constraint Constants
 const BOUNDARY_SOFTNESS: float = 2.0  # Controls the "elasticity" of boundary constraints
@@ -243,6 +219,13 @@ func _ready() -> void:
 	canvas_layer.add_child(title_label)
 
 	# 5. Particle Instantiation and Physics State Initialization
+
+	# --- Build PARTICLE_CONFIGS array based on constants ---
+	for i in range(POSITIVE_PARTICLES):
+		PARTICLE_CONFIGS.append({"object_color": PURE_RED, "trail_color": LIGHT_RED})
+	for i in range(NEGATIVE_PARTICLES):
+		PARTICLE_CONFIGS.append({"object_color": PURE_BLUE, "trail_color": LIGHT_BLUE})
+
 	for config in PARTICLE_CONFIGS:
 		# --- Create Particle Mesh (Same as before) ---
 		var particle_mesh_instance := MeshInstance3D.new()
