@@ -23,11 +23,11 @@ const PARTICLE_CONFIGS: Array[Dictionary] = [
 	{"object_color": PURE_RED, "trail_color": LIGHT_RED}
 ]
 
-# Screen Boundaries (adjust as needed based on camera view) - Doubled Range
+# Screen Boundaries (adjust as needed based on camera view) - Doubled X Range, Increased Y Range by 40%
 const BOUNDS_X_MIN: float = -14.0
 const BOUNDS_X_MAX: float = 14.0
-const BOUNDS_Y_MIN: float = -7.5
-const BOUNDS_Y_MAX: float = 5.0 # Keep below title
+const BOUNDS_Y_MIN: float = -12.5 # Extended downwards (5.0 - (12.5 * 1.4))
+const BOUNDS_Y_MAX: float = 5.0   # Keep below title
 
 # Path Generation Parameters
 const PATH_START_POS: Vector3 = Vector3(0, -1, 0)
@@ -118,7 +118,7 @@ func _ready() -> void:
 	# title_label.add_theme_font_size_override("font_size", 36) # Requires Godot 4.1+
 	# For Godot 4.0 compatibility or if themes are preferred:
 	var label_settings = LabelSettings.new()
-	label_settings.font_size = 36
+	label_settings.font_size = 72 # Doubled font size
 	title_label.label_settings = label_settings
 
 	# Center the label horizontally and place it near the top
@@ -130,9 +130,12 @@ func _ready() -> void:
 	title_label.anchor_right = 1.0
 	title_label.anchor_top = 0.0
 	title_label.anchor_bottom = 0.0 # Anchor only to top
-	# Adjust top margin for padding from the edge
-	title_label.offset_top = 20 # Pixels from the top edge
-	title_label.offset_bottom = 60 # Define a nominal height for the label area
+
+	# Adjust top margin dynamically based on viewport height
+	var viewport_height = get_viewport().size.y
+	title_label.offset_top = viewport_height * 0.10 # 10% from the top edge
+	# Adjust bottom offset based on new font size to ensure it has space
+	title_label.offset_bottom = title_label.offset_top + label_settings.font_size * 1.2 # Approximate height
 
 	canvas_layer.add_child(title_label)
 
