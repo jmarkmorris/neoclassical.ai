@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0xvmg5b13ogr"]
+
+[ext_resource type="Script" uid="uid://b4v3rkvhjscrj" path="res://angle_path.gd" id="1_2cdvq"]
+
+[node name="AnglePath" type="Node2D"]
+script = ExtResource("1_2cdvq")

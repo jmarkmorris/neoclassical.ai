@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ew56j0tt0ax"]
+
+[ext_resource type="Script" uid="uid://d1wwifb7bjrat" path="res://PolarGrid.gd" id="1_b1234"]
+
+[node name="PolarScene" type="Node3D"]
+script = ExtResource("1_b1234")

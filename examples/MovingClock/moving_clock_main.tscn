@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2py0ui4da104"]
+
+[ext_resource type="Script" uid="uid://dnouvi186h6nf" path="res://moving_clock_main.gd" id="1_ild2k"]
+
+[node name="MovingClockMain" type="Node3D"]
+script = ExtResource("1_ild2k")

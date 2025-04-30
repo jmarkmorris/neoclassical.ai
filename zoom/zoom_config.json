@@ -1,0 +1,390 @@
+{
+  "global_settings": {
+    "default_zoom_rate": 0.5,
+    "constant_scale_rate": true,
+    "scale_seconds_per_decade": 3.0,
+    "min_transition_duration": 4.0,
+    "max_transition_duration": 15.0,
+    "fixed_transition_duration": 5.0,
+    "background_color": "#4B0082",
+    "scale_range": [
+      -60,
+      60
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "frame_rate": 60,
+    "font_size": 36,
+    "stroke_width": 2,
+    "color_text": "#FFFFFF",
+    "color_circle": "#FFFFFF",
+    "fill_color": "#3366CC",
+    "fill_opacity": 0.8,
+    "dot3d_radius": 0.04,
+    "quality": "h",
+    "use_custom_images": false
+  },
+  "scenes": [
+    {
+      "name": "Universe",
+      "scale": 26,
+      "objects": [
+        {
+          "label": "Observable Universe",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "GalaxyCluster",
+      "scale": 23,
+      "objects": [
+        {
+          "label": "Galaxy Cluster",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "Galaxy",
+      "scale": 21,
+      "objects": [
+        {
+          "label": "Galaxy",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "BlackHole",
+      "scale": 12,
+      "objects": [
+        {
+          "label": "Black Hole",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "SolarSystem",
+      "scale": 11,
+      "objects": [
+        {
+          "label": "Solar System",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "Star",
+      "scale": 9,
+      "objects": [
+        {
+          "label": "Star",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "Molecule",
+      "scale": -8,
+      "objects": [
+        {
+          "label": "Molecule",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "Atom",
+      "scale": -10,
+      "objects": [
+        {
+          "label": "Atom",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "Electron",
+      "scale": -15,
+      "objects": [
+        {
+          "label": "Electron",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "Quark",
+      "scale": -18,
+      "objects": [
+        {
+          "label": "Quark",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    },
+    {
+      "name": "PointPotential",
+      "scale": -60,
+      "objects": [
+        {
+          "label": "Point Potential",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "radius": 3
+        }
+      ],
+      "zoom_rate_override": null
+    }
+  ],
+  "animation_sequence": [
+    {
+      "from_scene": "Universe",
+      "to_scene": "GalaxyCluster",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "GalaxyCluster",
+      "to_scene": "Galaxy",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Galaxy",
+      "to_scene": "BlackHole",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "BlackHole",
+      "to_scene": "SolarSystem",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "SolarSystem",
+      "to_scene": "Star",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Star",
+      "to_scene": "Molecule",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Molecule",
+      "to_scene": "Atom",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Atom",
+      "to_scene": "Electron",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Electron",
+      "to_scene": "Quark",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Quark",
+      "to_scene": "PointPotential",
+      "direction": "in",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "PointPotential",
+      "to_scene": "Quark",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Quark",
+      "to_scene": "Electron",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Electron",
+      "to_scene": "Atom",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Atom",
+      "to_scene": "Molecule",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Molecule",
+      "to_scene": "Star",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Star",
+      "to_scene": "SolarSystem",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "SolarSystem",
+      "to_scene": "BlackHole",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "BlackHole",
+      "to_scene": "Galaxy",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "Galaxy",
+      "to_scene": "GalaxyCluster",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    },
+    {
+      "from_scene": "GalaxyCluster",
+      "to_scene": "Universe",
+      "direction": "out",
+      "easing_function": "smooth",
+      "pause_before": 0,
+      "pause_after": 0,
+      "scale_indicator_visible": false
+    }
+  ],
+  "audio": {}
+}

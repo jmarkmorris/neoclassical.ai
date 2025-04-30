@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgi5pwhy47wq8"]
+
+[ext_resource type="Script" uid="uid://b07uanps0kn7p" path="res://FontDisplayManager.gd" id="1_fontmgr"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_fontmgr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
