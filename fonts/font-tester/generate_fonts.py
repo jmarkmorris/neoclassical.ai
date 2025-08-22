@@ -22,7 +22,7 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 UNITS_PER_EM_VALUES = [1024]
 CIRCLE_RADII = [64, 128, 256]  # In font units
 FONT_SIZES_PT = [12, 18, 24, 36, 48, 72]  # For HTML report
-HEX_RADIUS = 368
+HEX_RADIUS = 374
 CIRCLE_IN_HEX_RADIUS = 80
 GLYPH_THICKNESS = 32
 
@@ -223,6 +223,59 @@ def concentric_and_hexagon_circles_to_glyph(
 
     return pen.glyph()
 
+def square_concentric_and_hexagon_circles_to_glyph(
+    cx, cy, square_width, square_height, radii, thickness,
+    hex_radius, circle_radius, glyph_set,
+    num_segments_concentric=64, num_segments_hex_circles=32
+):
+    """Creates a composite glyph of a square, concentric circles, and a hexagon of circles."""
+    pen = TTGlyphPen(glyph_set)
+
+    # --- Draw Square ---
+    x = cx - square_width / 2
+    y = cy - square_height / 2
+    outer_points = [(x, y), (x + square_width, y), (x + square_width, y + square_height), (x, y + square_height)]
+    pen.moveTo(outer_points[0])
+    for point in outer_points[1:]: pen.lineTo(point)
+    pen.closePath()
+    inner_x, inner_y = x + thickness, y + thickness
+    inner_width, inner_height = square_width - 2 * thickness, square_height - 2 * thickness
+    if inner_width > 0 and inner_height > 0:
+        inner_points = [(inner_x, inner_y), (inner_x, inner_y + inner_height), (inner_x + inner_width, inner_y + inner_height), (inner_x + inner_width, inner_y)]
+        pen.moveTo(inner_points[0])
+        for point in inner_points[1:]: pen.lineTo(point)
+        pen.closePath()
+
+    # --- Draw Concentric Circles ---
+    for r in sorted(radii, reverse=True):
+        outer_points = arc_poly(cx, cy, r, r, 0, 2 * np.pi, num_segments=num_segments_concentric)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]: pen.lineTo(point)
+        pen.closePath()
+        inner_r = r - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(cx, cy, inner_r, inner_r, 2 * np.pi, 0, num_segments=num_segments_concentric)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]: pen.lineTo(point)
+            pen.closePath()
+
+    # --- Draw Hexagon of Circles ---
+    for i in range(6):
+        angle = i * np.pi / 3
+        ccx, ccy = cx + hex_radius * np.cos(angle), cy + hex_radius * np.sin(angle)
+        outer_points = arc_poly(ccx, ccy, circle_radius, circle_radius, 0, 2 * np.pi, num_segments=num_segments_hex_circles)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]: pen.lineTo(point)
+        pen.closePath()
+        inner_r = circle_radius - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(ccx, ccy, inner_r, inner_r, 2 * np.pi, 0, num_segments=num_segments_hex_circles)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]: pen.lineTo(point)
+            pen.closePath()
+
+    return pen.glyph()
+
 def arc_poly(cx, cy, rx, ry, start_angle, end_angle, num_segments=16):
     """Generates points for a polygonal approximation of an elliptical arc."""
     theta = np.linspace(start_angle, end_angle, num_segments + 1)
@@ -269,6 +322,11 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
         elif data.get('type') == 'concentric_and_hexagon_circles':
             glyph = concentric_and_hexagon_circles_to_glyph(
                 data['cx'], data['cy'], data['radii'], data['thickness'],
+                data['hex_radius'], data['circle_radius'], glyf_table.glyphs
+            )
+        elif data.get('type') == 'square_concentric_and_hexagon_circles':
+            glyph = square_concentric_and_hexagon_circles_to_glyph(
+                data['cx'], data['cy'], data['square_width'], data['square_height'], data['radii'], data['thickness'],
                 data['hex_radius'], data['circle_radius'], glyf_table.glyphs
             )
         else:
@@ -534,11 +592,14 @@ def main():
             'width': em_size
         }
 
-        # Glyph 'F' (Hexagon of smaller circles near edge, formerly 'I')
+        # Glyph 'F': All-in-one composite, formerly 'G'
         glyphs['F'] = {
-            'type': 'hexagon_circles',
+            'type': 'square_concentric_and_hexagon_circles',
             'cx': em_size / 2,
             'cy': center_y,
+            'square_width': square_dim,
+            'square_height': square_dim,
+            'radii': [64, 128, 256],
             'hex_radius': HEX_RADIUS,
             'circle_radius': CIRCLE_IN_HEX_RADIUS,
             'thickness': GLYPH_THICKNESS,
