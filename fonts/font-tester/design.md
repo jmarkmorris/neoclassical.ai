@@ -18,9 +18,9 @@ I recommend a four-step approach:
 
 #### 1. Project Setup
 
-*   **Dependencies**: You will need the `fontTools` library to build the font files and `svg.path` to parse SVG path data. Install them via pip:
+*   **Dependencies**: You will need the `fontTools` library to build the font files and `numpy` to assist with generating geometric shapes. Install them via pip:
     ```bash
-    pip install fonttools svg.path
+    pip install fonttools numpy
     ```
 *   **File Structure**: Create a simple project structure.
     ```
@@ -33,31 +33,32 @@ I recommend a four-step approach:
 
 This involves creating a function that takes font parameters and glyph data as input and outputs a `.ttf` file.
 
-*   **SVG Path Generation**: Since font glyphs are defined by paths, you first need a way to represent your circle as an SVG path. A circle can be closely approximated by four cubic Bezier curves. You can create a helper function for this.
+*   **Glyph Generation**: Instead of using SVG paths, this approach generates glyphs directly from geometric primitives (polygons) using `fontTools`' `TTGlyphPen`. This provides more control and avoids external parsing libraries. Helper functions are used to create shapes like circles by approximating them with polygons.
 
     ```python
-    # Example helper to convert a circle to an SVG path string
-    def circle_to_svg_path(cx, cy, r):
-        kappa = 0.552284749831
-        kr = r * kappa
-        return (
-            f"M {cx},{cy+r} "
-            f"C {cx+kr},{cy+r} {cx+r},{cy+kr} {cx+r},{cy} "
-            f"C {cx+r},{cy-kr} {cx+kr},{cy-r} {cx},{cy-r} "
-            f"C {cx-kr},{cy-r} {cx-r},{cy-kr} {cx-r},{cy} "
-            f"C {cx-r},{cy+kr} {cx-kr},{cy+r} {cx},{cy+r} Z"
-        )
+    # Example helper to generate points for a circle's outline
+    def arc_poly(cx, cy, r, start_angle, end_angle, num_segments=64):
+        theta = np.linspace(start_angle, end_angle, num_segments + 1)
+        return [(cx + r * np.cos(angle), cy + r * np.sin(angle)) for angle in theta]
+
+    # Example helper to convert a list of points into a glyph
+    def polygon_to_glyph(points, glyph_set):
+        pen = TTGlyphPen(glyph_set)
+        pen.moveTo(points[0])
+        for point in points[1:]:
+            pen.lineTo(point)
+        pen.closePath()
+        return pen.glyph()
     ```
 
 *   **Font Assembly Function**: Create a main function, e.g., `create_font(font_name, units_per_em, glyphs_data, output_path)`. This function will perform the following actions using `fontTools`:
     1.  **Initialize a `TTFont` object**: This is the main container for your font.
     2.  **Set up required font tables**: You'll need to create and configure tables like `head` (metadata), `hhea` (horizontal header), `OS/2` (OS-specific metrics), `name` (font name, family), and `cmap` (character-to-glyph mapping). Set the `unitsPerEm` in the `head` table.
     3.  **Process Glyphs**:
-        *   Iterate through your `glyphs_data`, which could be a dictionary mapping characters to shape parameters (e.g., `{'A': {'radius': 100}, 'B': {'radius': 200}}`).
-        *   For each character, generate the SVG path string for its circle.
-        *   Use `svg.path.parse_path` to convert the string into path objects.
-        *   Convert the parsed path objects into a `fontTools` `TTGlyph` object.
-        *   Set the glyph's metrics, like its advance width (how far the "cursor" moves after the character). A good starting point is the width of the shape.
+        *   Iterate through your `glyphs_data`, which could be a dictionary mapping characters to shape parameters (e.g., `{'A': {'type': 'circle', 'radius': 100}}`).
+        *   For each character, call the appropriate helper function (e.g., `circle_to_glyph`) to generate a `fontTools` `TTGlyph` object.
+        *   To create hollow shapes, use two contours with opposite winding directions (e.g., outer contour counter-clockwise, inner contour clockwise).
+        *   Set the glyph's metrics, like its advance width.
         *   Add the glyph to the font and map its character code in the `cmap` table.
     4.  **Save the Font**: Call `font.save(output_path)` to write the `.ttf` file.
 
@@ -85,10 +86,13 @@ This is the top-level part of your script that defines the combinations you want
         # Map 'A', 'B', 'C', etc. to different circle sizes
         for i, radius in enumerate(CIRCLE_RADII):
             char = chr(ord('A') + i)
-            # Center the circle within the em box
-            center_x = em_size / 2
-            center_y = em_size / 2
-            glyphs[char] = {'path': circle_to_svg_path(center_x, center_y, radius), 'width': em_size}
+            glyphs[char] = {
+                'type': 'circle',
+                'cx': em_size / 2,
+                'cy': em_size / 2,
+                'radius': radius,
+                'width': em_size
+            }
 
         create_font(font_name, em_size, glyphs, output_file)
     ```
@@ -105,11 +109,12 @@ To avoid the manual process of installing each font, the script should also gene
 
     ```html
     <!-- Example HTML structure for one font -->
-    <div>
-        <h2>Font: CircleTest-EM1000</h2>
-        <p style="font-family: 'CircleTest-EM1000'; font-size: 12pt;">ABC</p>
-        <p style="font-family: 'CircleTest-EM1000'; font-size: 24pt;">ABC</p>
-        <p style="font-family: 'CircleTest-EM1000'; font-size: 48pt;">ABC</p>
+    <div class="font-showcase">
+        <h2>Font: <span class="font-spec">CircleTest-EM1024</span></h2>
+        <p style="font-family: 'CircleTest-EM1024'; font-size: 12pt;">12pt: ABCDEF|<>()</p>
+        <p style="font-family: 'CircleTest-EM1024'; font-size: 24pt;">24pt: ABCDEF|<>()</p>
+        <p style="font-family: 'CircleTest-EM1024'; font-size: 48pt;">48pt: ABCDEF|<>()</p>
+        <p style="font-family: 'CircleTest-EM1024'; font-size: 72pt;">72pt: ABCDEF|<>()</p>
     </div>
     ```
 

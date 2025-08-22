@@ -481,8 +481,8 @@ def main():
             'cy': center_y,
             'square_width': square_dim,
             'square_height': square_dim,
-            'hex_radius': 300,
-            'circle_radius': 80,
+            'hex_radius': 450,
+            'circle_radius': 50,
             'thickness': 16,
             'width': em_size
         }
@@ -493,8 +493,8 @@ def main():
             'cx': em_size / 2,
             'cy': center_y,
             'radii': [64, 128, 256],
-            'hex_radius': 300,
-            'circle_radius': 80,
+            'hex_radius': 450,
+            'circle_radius': 50,
             'thickness': 16,
             'width': em_size
         }
@@ -514,8 +514,8 @@ def main():
             'type': 'hexagon_circles',
             'cx': em_size / 2,
             'cy': center_y,
-            'hex_radius': 300,
-            'circle_radius': 80,
+            'hex_radius': 450,
+            'circle_radius': 50,
             'thickness': 16,
             'width': em_size
         }
@@ -543,24 +543,24 @@ def main():
         }
 
         # Glyph '|' (vertical bar)
-        thickness = em_size * 0.1
-        bar_width = thickness
+        bar_thickness = 16
         bar_height = em_size * 0.7
         x_center = em_size / 2
         y_bottom = (em_size - bar_height) / 2
         points_bar = [
-            (x_center - bar_width / 2, y_bottom),
-            (x_center + bar_width / 2, y_bottom),
-            (x_center + bar_width / 2, y_bottom + bar_height),
-            (x_center - bar_width / 2, y_bottom + bar_height),
+            (x_center - bar_thickness / 2, y_bottom),
+            (x_center + bar_thickness / 2, y_bottom),
+            (x_center + bar_thickness / 2, y_bottom + bar_height),
+            (x_center - bar_thickness / 2, y_bottom + bar_height),
         ]
         glyphs['|'] = {'type': 'polygon', 'points': shift_points(points_bar, y_shift), 'width': em_size}
 
         # Glyph '<'
+        chevron_thickness = 16
         x1, y1 = em_size * 0.7, em_size * 0.9
-        x2, y2 = em_size * 0.7, em_size * 0.8
-        x3, y3 = em_size * 0.4, em_size * 0.5
-        x4, y4 = em_size * 0.7, em_size * 0.2
+        x2, y2 = em_size * 0.7, em_size * 0.9 - chevron_thickness
+        x3, y3 = em_size * 0.3 + chevron_thickness, em_size * 0.5
+        x4, y4 = em_size * 0.7, em_size * 0.1 + chevron_thickness
         x5, y5 = em_size * 0.7, em_size * 0.1
         x6, y6 = em_size * 0.3, em_size * 0.5
         points_lt = [(x1,y1), (x2,y2), (x3,y3), (x4,y4), (x5,y5), (x6,y6)]
@@ -571,9 +571,9 @@ def main():
         glyphs['>'] = {'type': 'polygon', 'points': shift_points(points_gt, y_shift), 'width': em_size}
 
         # Glyphs for '(' and ')'
-        paren_thickness = em_size * 0.08
-        paren_ry = em_size * 0.4
-        paren_rx = em_size * 0.1
+        paren_thickness = 16
+        paren_ry = em_size * 0.45
+        paren_rx = em_size * 0.05
         paren_cy = center_y
 
         # Glyph ')'
