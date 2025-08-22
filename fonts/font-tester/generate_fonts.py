@@ -26,17 +26,34 @@ FONT_SIZES_PT = [12, 24, 48, 72]  # For HTML report
 # --- Helper Functions ---
 
 def circle_to_glyph(cx, cy, r, glyph_set):
-    """Creates a circle glyph directly using a pen, avoiding SVG parsing."""
+    """Creates a hollow circle glyph (a ring) using two contours."""
     pen = TTGlyphPen(glyph_set)
     kappa = 0.552284749831
-    kr = r * kappa
 
-    pen.moveTo((cx, cy + r))
-    pen.curveTo((cx + kr, cy + r), (cx + r, cy + kr), (cx + r, cy))
-    pen.curveTo((cx + r, cy - kr), (cx + kr, cy - r), (cx, cy - r))
-    pen.curveTo((cx - kr, cy - r), (cx - r, cy - kr), (cx - r, cy))
-    pen.curveTo((cx - r, cy + kr), (cx - kr, cy + r), (cx, cy + r))
+    # Outer circle (clockwise)
+    outer_r = r
+    kr_outer = outer_r * kappa
+    pen.moveTo((cx, cy + outer_r))
+    pen.curveTo((cx + kr_outer, cy + outer_r), (cx + outer_r, cy + kr_outer), (cx + outer_r, cy))
+    pen.curveTo((cx + outer_r, cy - kr_outer), (cx + kr_outer, cy - outer_r), (cx, cy - outer_r))
+    pen.curveTo((cx - kr_outer, cy - outer_r), (cx - outer_r, cy - kr_outer), (cx - outer_r, cy))
+    pen.curveTo((cx - outer_r, cy + kr_outer), (cx - kr_outer, cy + outer_r), (cx, cy + outer_r))
     pen.closePath()
+
+    # Inner circle (counter-clockwise to create a hole)
+    # A thickness of 20% of the radius is used.
+    thickness = r * 0.2
+    inner_r = r - thickness
+    if inner_r > 0:
+        kr_inner = inner_r * kappa
+        pen.moveTo((cx, cy + inner_r))
+        # Reverse order of curveTo for opposite winding
+        pen.curveTo((cx - kr_inner, cy + inner_r), (cx - inner_r, cy + kr_inner), (cx - inner_r, cy))
+        pen.curveTo((cx - inner_r, cy - kr_inner), (cx - kr_inner, cy - inner_r), (cx, cy - inner_r))
+        pen.curveTo((cx + kr_inner, cy - inner_r), (cx + inner_r, cy - kr_inner), (cx + inner_r, cy))
+        pen.curveTo((cx + inner_r, cy + kr_inner), (cx + kr_inner, cy + inner_r), (cx, cy + inner_r))
+        pen.closePath()
+
     return pen.glyph()
 
 def svg_path_to_glyph(svg_path, glyph_set):
@@ -298,11 +315,22 @@ def main():
                 'width': em_size
             }
 
-        # Add a diagonal line for 'D' as a test case
+        # Add a thick diagonal line for 'D' as a test case
+        margin = em_size * 0.1
+        thickness = em_size * 0.1
+        offset = thickness / 2
+        p1_x, p1_y = margin, margin
+        p2_x, p2_y = em_size - margin, em_size - margin
+        path_d = (
+            f"M {p1_x - offset},{p1_y + offset} "
+            f"L {p2_x - offset},{p2_y + offset} "
+            f"L {p2_x + offset},{p2_y - offset} "
+            f"L {p1_x + offset},{p1_y - offset} Z"
+        )
         glyphs['D'] = {
             'type': 'path',
             'radius': 0,  # Not applicable
-            'path': f"M {em_size*0.1},{em_size*0.1} L {em_size*0.9},{em_size*0.9} Z",
+            'path': path_d,
             'width': em_size
         }
 
