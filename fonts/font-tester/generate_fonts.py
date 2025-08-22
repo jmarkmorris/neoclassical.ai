@@ -20,8 +20,11 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 # UNITS_PER_EM_VALUES = [1000, 2048]
 UNITS_PER_EM_VALUES = [1024]
-CIRCLE_RADII = [64, 128, 256, 512]  # In font units
-FONT_SIZES_PT = [12, 24, 48, 72]  # For HTML report
+CIRCLE_RADII = [64, 128, 256]  # In font units
+FONT_SIZES_PT = [12, 18, 24, 36, 48, 72]  # For HTML report
+HEX_RADIUS = 352
+CIRCLE_IN_HEX_RADIUS = 80
+GLYPH_THICKNESS = 20
 
 # --- Helper Functions ---
 
@@ -37,7 +40,7 @@ def circle_to_glyph(cx, cy, r, glyph_set, num_segments=64):
     pen.closePath()
 
     # Inner circle (counter-clockwise to create a hole)
-    thickness = 16  # Fixed thickness of 16 font units
+    thickness = GLYPH_THICKNESS
     inner_r = r - thickness
     if inner_r > 0:
         # Generate points in reverse for opposite winding direction
@@ -414,7 +417,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "ABCDEF|<>()"
+    sample_text = "AA ABCDEF|<>()"
 
     style_rules = ""
     for font_file in font_files:
@@ -470,8 +473,8 @@ def main():
 
 
         # --- Define glyphs ---
-        square_margin = 50
-        square_thickness = 16
+        square_margin = 0
+        square_thickness = GLYPH_THICKNESS
         square_dim = em_size - 2 * square_margin
 
         # Glyph 'A': Square overlapped with small circle hexagon
@@ -481,9 +484,9 @@ def main():
             'cy': center_y,
             'square_width': square_dim,
             'square_height': square_dim,
-            'hex_radius': 450,
-            'circle_radius': 50,
-            'thickness': 16,
+            'hex_radius': HEX_RADIUS,
+            'circle_radius': CIRCLE_IN_HEX_RADIUS,
+            'thickness': GLYPH_THICKNESS,
             'width': em_size
         }
 
@@ -493,9 +496,9 @@ def main():
             'cx': em_size / 2,
             'cy': center_y,
             'radii': [64, 128, 256],
-            'hex_radius': 450,
-            'circle_radius': 50,
-            'thickness': 16,
+            'hex_radius': HEX_RADIUS,
+            'circle_radius': CIRCLE_IN_HEX_RADIUS,
+            'thickness': GLYPH_THICKNESS,
             'width': em_size
         }
 
@@ -505,7 +508,7 @@ def main():
             'cx': em_size / 2,
             'cy': center_y,
             'radii': CIRCLE_RADII,
-            'thickness': 16,
+            'thickness': GLYPH_THICKNESS,
             'width': em_size
         }
 
@@ -514,9 +517,9 @@ def main():
             'type': 'hexagon_circles',
             'cx': em_size / 2,
             'cy': center_y,
-            'hex_radius': 450,
-            'circle_radius': 50,
-            'thickness': 16,
+            'hex_radius': HEX_RADIUS,
+            'circle_radius': CIRCLE_IN_HEX_RADIUS,
+            'thickness': GLYPH_THICKNESS,
             'width': em_size
         }
 
@@ -536,14 +539,14 @@ def main():
             'type': 'hexagon_circles',
             'cx': em_size / 2,
             'cy': center_y,
-            'hex_radius': 450,
-            'circle_radius': 50,
-            'thickness': 16,
+            'hex_radius': HEX_RADIUS,
+            'circle_radius': CIRCLE_IN_HEX_RADIUS,
+            'thickness': GLYPH_THICKNESS,
             'width': em_size
         }
 
         # Glyph '|' (vertical bar)
-        bar_thickness = 16
+        bar_thickness = GLYPH_THICKNESS
         bar_height = em_size * 0.7
         x_center = em_size / 2
         y_bottom = (em_size - bar_height) / 2
@@ -556,7 +559,7 @@ def main():
         glyphs['|'] = {'type': 'polygon', 'points': shift_points(points_bar, y_shift), 'width': em_size}
 
         # Glyph '<'
-        chevron_thickness = 16
+        chevron_thickness = GLYPH_THICKNESS
         x1, y1 = em_size * 0.7, em_size * 0.9
         x2, y2 = em_size * 0.7, em_size * 0.9 - chevron_thickness
         x3, y3 = em_size * 0.3 + chevron_thickness, em_size * 0.5
@@ -571,7 +574,7 @@ def main():
         glyphs['>'] = {'type': 'polygon', 'points': shift_points(points_gt, y_shift), 'width': em_size}
 
         # Glyphs for '(' and ')'
-        paren_thickness = 16
+        paren_thickness = GLYPH_THICKNESS
         paren_ry = em_size * 0.45
         paren_rx = em_size * 0.05
         paren_cy = center_y
