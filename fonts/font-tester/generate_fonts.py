@@ -16,11 +16,15 @@ FONT_SIZES_PT = [12, 24, 48, 72]  # For HTML report
 # --- Helper Functions ---
 
 def circle_to_svg_path(cx, cy, r):
-    """Converts circle parameters to an SVG path string."""
+    """Converts circle parameters to an SVG path string using cubic Beziers."""
+    kappa = 0.552284749831
+    kr = r * kappa
     return (
-        f"M {cx-r},{cy} "
-        f"a {r},{r} 0 1,0 {2*r},0 "
-        f"a {r},{r} 0 1,0 {-2*r},0 Z"
+        f"M {cx},{cy+r} "
+        f"C {cx+kr},{cy+r} {cx+r},{cy+kr} {cx+r},{cy} "
+        f"C {cx+r},{cy-kr} {cx+kr},{cy-r} {cx},{cy-r} "
+        f"C {cx-kr},{cy-r} {cx-r},{cy-kr} {cx-r},{cy} "
+        f"C {cx-r},{cy+kr} {cx-kr},{cy+r} {cx},{cy+r} Z"
     )
 
 def svg_path_to_glyph(svg_path, glyf_table):
@@ -37,13 +41,7 @@ def svg_path_to_glyph(svg_path, glyf_table):
             pen.lineTo((seg.end.real, seg.end.imag))
             current_pos = seg.end
         elif isinstance(seg, Arc):
-            for cubic in seg.to_cubic(start=current_pos):
-                pen.curveTo(
-                    (cubic.control1.real, cubic.control1.imag),
-                    (cubic.control2.real, cubic.control2.imag),
-                    (cubic.end.real, cubic.end.imag)
-                )
-                current_pos = cubic.end
+            raise NotImplementedError("Arc segments are not supported.")
         elif isinstance(seg, CubicBezier):
             pen.curveTo(
                 (seg.control1.real, seg.control1.imag),
@@ -86,12 +84,15 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
         hmtx_table[char] = (data['width'], lsb)
 
     # --- Cmap Table ---
-    cmap = cmap_format_4.new_cmap(4)
+    cmap = cmap_format_4(4)
     cmap.platformID = 3
     cmap.platEncID = 1
     cmap.language = 0
     cmap.cmap = {ord(c): c for c in glyphs_data.keys()}
-    font['cmap'] = cmap
+    cmap_table = ttLib.tables._c_m_a_p.table__c_m_a_p()
+    cmap_table.tableVersion = 0
+    cmap_table.tables = [cmap]
+    font['cmap'] = cmap_table
 
     # --- Font Header Tables ---
     font['head'] = head = ttLib.tables._h_e_a_d.table__h_e_a_d()
