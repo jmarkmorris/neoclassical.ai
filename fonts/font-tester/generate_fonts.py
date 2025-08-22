@@ -157,7 +157,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     hhea.reserved2 = 0
     hhea.reserved3 = 0
     hhea.metricDataFormat = 0
-    hhea.numberOfHMetrics = 0  # Will be recalculated
+    hhea.numberOfHMetrics = len(hmtx_table.metrics)
 
     font['OS/2'] = os2 = table_O_S_2f_2()
     os2.version = 4
