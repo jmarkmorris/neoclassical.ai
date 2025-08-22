@@ -1,5 +1,6 @@
 # generate_fonts.py
 import os
+import numpy as np
 from fontTools import ttLib
 from fontTools.ttLib import TTFont
 from fontTools.pens.ttGlyphPen import TTGlyphPen
@@ -13,7 +14,6 @@ from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e
 from fontTools.ttLib.tables._p_o_s_t import table__p_o_s_t
 from fontTools.ttLib.tables._m_a_x_p import table__m_a_x_p
 from fontTools.ttLib.tables._l_o_c_a import table__l_o_c_a
-from svg.path import parse_path, Move, Line, Arc, CubicBezier, QuadraticBezier, Close
 
 # --- Configuration ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -56,40 +56,23 @@ def circle_to_glyph(cx, cy, r, glyph_set):
 
     return pen.glyph()
 
-def svg_path_to_glyph(svg_path, glyph_set):
-    """Converts an SVG path string to a fontTools TTGlyph object."""
+def polygon_to_glyph(points, glyph_set):
+    """Creates a glyph from a list of polygon points."""
     pen = TTGlyphPen(glyph_set)
-    path = parse_path(svg_path)
+    if not points:
+        return pen.glyph()
 
-    current_pos = 0j
-    for seg in path:
-        if isinstance(seg, Move):
-            pen.moveTo((seg.end.real, seg.end.imag))
-            current_pos = seg.end
-        elif isinstance(seg, Line):
-            pen.lineTo((seg.end.real, seg.end.imag))
-            current_pos = seg.end
-        elif isinstance(seg, Arc):
-            raise NotImplementedError("Arc segments are not supported.")
-        elif isinstance(seg, CubicBezier):
-            pen.curveTo(
-                (seg.control1.real, seg.control1.imag),
-                (seg.control2.real, seg.control2.imag),
-                (seg.end.real, seg.end.imag)
-            )
-            current_pos = seg.end
-        elif isinstance(seg, QuadraticBezier):
-            pen.qCurveTo(
-                (seg.control.real, seg.control.imag),
-                (seg.end.real, seg.end.imag)
-            )
-            current_pos = seg.end
-        elif isinstance(seg, Close):
-            pen.closePath()
-            if hasattr(path, 'start') and path.start:
-                current_pos = path.start
-
+    pen.moveTo(points[0])
+    for point in points[1:]:
+        pen.lineTo(point)
+    pen.closePath()
     return pen.glyph()
+
+def arc_poly(cx, cy, rx, ry, start_angle, end_angle, num_segments=16):
+    """Generates points for a polygonal approximation of an elliptical arc."""
+    theta = np.linspace(start_angle, end_angle, num_segments + 1)
+    points = [(cx + rx * np.cos(angle), cy + ry * np.sin(angle)) for angle in theta]
+    return points
 
 # --- Core Font Generation ---
 
@@ -111,8 +94,8 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     for char, data in glyphs_data.items():
         if data.get('type') == 'circle':
             glyph = circle_to_glyph(data['cx'], data['cy'], data['radius'], glyf_table.glyphs)
-        elif data.get('type') == 'path':
-            glyph = svg_path_to_glyph(data['path'], glyf_table.glyphs)
+        elif data.get('type') == 'polygon':
+            glyph = polygon_to_glyph(data['points'], glyf_table.glyphs)
         else:
             continue  # Skip unknown glyph types
 
@@ -258,7 +241,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "".join([chr(ord('A') + i) for i in range(len(CIRCLE_RADII))]) + "D"
+    sample_text = "".join([chr(ord('A') + i) for i in range(len(CIRCLE_RADII))]) + "D|<>()"
 
     style_rules = ""
     for font_file in font_files:
@@ -315,24 +298,68 @@ def main():
                 'width': em_size
             }
 
-        # Add a thick diagonal line for 'D' as a test case
-        margin = em_size * 0.1
+        # --- Define additional glyphs ---
         thickness = em_size * 0.1
+
+        # Glyph 'D' (thick diagonal line)
+        margin = em_size * 0.1
         offset = thickness / 2
         p1_x, p1_y = margin, margin
         p2_x, p2_y = em_size - margin, em_size - margin
-        path_d = (
-            f"M {p1_x - offset},{p1_y + offset} "
-            f"L {p2_x - offset},{p2_y + offset} "
-            f"L {p2_x + offset},{p2_y - offset} "
-            f"L {p1_x + offset},{p1_y - offset} Z"
-        )
-        glyphs['D'] = {
-            'type': 'path',
-            'radius': 0,  # Not applicable
-            'path': path_d,
-            'width': em_size
-        }
+        points_d = [
+            (p1_x - offset, p1_y + offset),
+            (p2_x - offset, p2_y + offset),
+            (p2_x + offset, p2_y - offset),
+            (p1_x + offset, p1_y - offset),
+        ]
+        glyphs['D'] = {'type': 'polygon', 'points': points_d, 'width': em_size}
+
+        # Glyph '|' (vertical bar)
+        bar_width = thickness
+        bar_height = em_size * 0.7
+        x_center = em_size / 2
+        y_bottom = (em_size - bar_height) / 2
+        points_bar = [
+            (x_center - bar_width / 2, y_bottom),
+            (x_center + bar_width / 2, y_bottom),
+            (x_center + bar_width / 2, y_bottom + bar_height),
+            (x_center - bar_width / 2, y_bottom + bar_height),
+        ]
+        glyphs['|'] = {'type': 'polygon', 'points': points_bar, 'width': int(em_size * 0.3)}
+
+        # Glyph '<'
+        x1, y1 = em_size * 0.7, em_size * 0.9
+        x2, y2 = em_size * 0.7, em_size * 0.8
+        x3, y3 = em_size * 0.4, em_size * 0.5
+        x4, y4 = em_size * 0.7, em_size * 0.2
+        x5, y5 = em_size * 0.7, em_size * 0.1
+        x6, y6 = em_size * 0.3, em_size * 0.5
+        points_lt = [(x1,y1), (x2,y2), (x3,y3), (x4,y4), (x5,y5), (x6,y6)]
+        glyphs['<'] = {'type': 'polygon', 'points': points_lt, 'width': int(em_size * 0.8)}
+
+        # Glyph '>'
+        points_gt = [(em_size - x, y) for x, y in points_lt]
+        glyphs['>'] = {'type': 'polygon', 'points': points_gt, 'width': int(em_size * 0.8)}
+
+        # Glyphs for '(' and ')'
+        paren_thickness = em_size * 0.08
+        paren_ry = em_size * 0.4
+        paren_rx = em_size * 0.1
+        paren_cy = em_size / 2
+
+        # Glyph ')'
+        paren_r_cx = em_size * 0.4
+        outer_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx, paren_ry, -np.pi / 2, np.pi / 2)
+        inner_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx - paren_thickness, paren_ry, np.pi / 2, -np.pi / 2)
+        points_r_paren = outer_arc_r + inner_arc_r
+        glyphs[')'] = {'type': 'polygon', 'points': points_r_paren, 'width': int(em_size * 0.4)}
+
+        # Glyph '('
+        paren_l_cx = em_size * 0.6
+        outer_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx, paren_ry, np.pi / 2, 3 * np.pi / 2)
+        inner_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx - paren_thickness, paren_ry, 3 * np.pi / 2, np.pi / 2)
+        points_l_paren = outer_arc_l + inner_arc_l
+        glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': int(em_size * 0.4)}
 
         output_file = os.path.join(OUTPUT_DIR, f"{font_name}.ttf")
         create_font(font_name, em_size, glyphs, output_file)
