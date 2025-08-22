@@ -22,7 +22,7 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 # UNITS_PER_EM_VALUES = [1000, 2048]
 UNITS_PER_EM_VALUES = [1024]
 CIRCLE_RADII = [64, 128, 256]  # In font units
-FONT_SIZES_PT = [12, 18, 24, 36, 48, 60, 72, 84]  # For HTML report
+FONT_SIZES_PT = [24, 36, 48, 60, 72]  # For HTML report
 HEX_RADIUS = 400
 CIRCLE_IN_HEX_RADIUS = 80
 GLYPH_THICKNESS = 32
@@ -741,7 +741,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "ABCDEF|<>() TUVWXY"
+    sample_text = "F|<>() TUVWX"
 
     style_rules = ""
     for font_file in font_files:
@@ -805,68 +805,6 @@ def main():
         square_margin = 0
         square_thickness = GLYPH_THICKNESS
         square_dim = em_size - 2 * square_margin
-
-        # Glyph 'A': Partially inverted composite with two filled hex circles
-        background_radius = CIRCLE_RADII[-1] + 1.5*GLYPH_THICKNESS
-        glyphs['A'] = {
-            'type': 'partially_inverted_with_filled_hex_circles',
-            'cx': em_size / 2,
-            'cy': center_y,
-            'background_radius': background_radius,
-            'radii': CIRCLE_RADII,
-            'hex_radius': HEX_RADIUS,
-            'circle_radius': CIRCLE_IN_HEX_RADIUS,
-            'thickness': GLYPH_THICKNESS,
-            'width': em_size,
-            'filled_hex_indices': [1, 4]  # Top-right and bottom-left
-        }
-
-        # Glyph 'B': Hexagon with three concentric circles
-        glyphs['B'] = {
-            'type': 'concentric_and_hexagon_circles',
-            'cx': em_size / 2,
-            'cy': center_y,
-            'radii': [64, 128, 256],
-            'hex_radius': HEX_RADIUS,
-            'circle_radius': CIRCLE_IN_HEX_RADIUS,
-            'thickness': GLYPH_THICKNESS,
-            'width': em_size
-        }
-
-        # Glyph 'C' (Concentric circles, formerly 'F')
-        glyphs['C'] = {
-            'type': 'concentric_circles',
-            'cx': em_size / 2,
-            'cy': center_y,
-            'radii': CIRCLE_RADII,
-            'thickness': GLYPH_THICKNESS,
-            'width': em_size
-        }
-
-        # Glyph 'D' (Hexagon of circles, formerly 'G')
-        glyphs['D'] = {
-            'type': 'hexagon_circles',
-            'cx': em_size / 2,
-            'cy': center_y,
-            'hex_radius': HEX_RADIUS,
-            'circle_radius': CIRCLE_IN_HEX_RADIUS,
-            'thickness': GLYPH_THICKNESS,
-            'width': em_size
-        }
-
-        # Glyph 'E': Partially inverted composite
-        background_radius = CIRCLE_RADII[-1] + 1.5*GLYPH_THICKNESS
-        glyphs['E'] = {
-            'type': 'partially_inverted_concentric_and_hexagon_circles',
-            'cx': em_size / 2,
-            'cy': center_y,
-            'background_radius': background_radius,
-            'radii': CIRCLE_RADII,
-            'hex_radius': HEX_RADIUS,
-            'circle_radius': CIRCLE_IN_HEX_RADIUS,
-            'thickness': GLYPH_THICKNESS,
-            'width': em_size
-        }
 
         # Glyph 'F': All-in-one composite, formerly 'G'
         glyphs['F'] = {
