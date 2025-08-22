@@ -25,17 +25,19 @@ FONT_SIZES_PT = [12, 24, 48, 72]  # For HTML report
 
 # --- Helper Functions ---
 
-def circle_to_svg_path(cx, cy, r):
-    """Converts circle parameters to an SVG path string using cubic Beziers."""
+def circle_to_glyph(cx, cy, r, glyph_set):
+    """Creates a circle glyph directly using a pen, avoiding SVG parsing."""
+    pen = TTGlyphPen(glyph_set)
     kappa = 0.552284749831
     kr = r * kappa
-    return (
-        f"M {cx},{cy+r} "
-        f"C {cx+kr},{cy+r} {cx+r},{cy+kr} {cx+r},{cy} "
-        f"C {cx+r},{cy-kr} {cx+kr},{cy-r} {cx},{cy-r} "
-        f"C {cx-kr},{cy-r} {cx-r},{cy-kr} {cx-r},{cy} "
-        f"C {cx-r},{cy+kr} {cx-kr},{cy+r} {cx},{cy+r} Z"
-    )
+
+    pen.moveTo((cx, cy + r))
+    pen.curveTo((cx + kr, cy + r), (cx + r, cy + kr), (cx + r, cy))
+    pen.curveTo((cx + r, cy - kr), (cx + kr, cy - r), (cx, cy - r))
+    pen.curveTo((cx - kr, cy - r), (cx - r, cy - kr), (cx - r, cy))
+    pen.curveTo((cx - r, cy + kr), (cx - kr, cy + r), (cx, cy + r))
+    pen.closePath()
+    return pen.glyph()
 
 def svg_path_to_glyph(svg_path, glyph_set):
     """Converts an SVG path string to a fontTools TTGlyph object."""
@@ -90,7 +92,13 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     hmtx_table.metrics['.notdef'] = (int(units_per_em / 2), 0)
 
     for char, data in glyphs_data.items():
-        glyph = svg_path_to_glyph(data['path'], glyf_table.glyphs)
+        if data.get('type') == 'circle':
+            glyph = circle_to_glyph(data['cx'], data['cy'], data['radius'], glyf_table.glyphs)
+        elif data.get('type') == 'path':
+            glyph = svg_path_to_glyph(data['path'], glyf_table.glyphs)
+        else:
+            continue  # Skip unknown glyph types
+
         glyph.recalcBounds(glyf_table)
 
         glyf_table.glyphs[char] = glyph
@@ -282,16 +290,17 @@ def main():
         glyphs = {}
         for i, radius in enumerate(CIRCLE_RADII):
             char = chr(ord('A') + i)
-            center_x = em_size / 2
-            center_y = em_size / 2
             glyphs[char] = {
+                'type': 'circle',
+                'cx': em_size / 2,
+                'cy': em_size / 2,
                 'radius': radius,
-                'path': circle_to_svg_path(center_x, center_y, radius),
                 'width': em_size
             }
 
         # Add a diagonal line for 'D' as a test case
         glyphs['D'] = {
+            'type': 'path',
             'radius': 0,  # Not applicable
             'path': f"M {em_size*0.1},{em_size*0.1} L {em_size*0.9},{em_size*0.9} Z",
             'width': em_size
