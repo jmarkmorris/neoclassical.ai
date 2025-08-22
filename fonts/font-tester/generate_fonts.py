@@ -176,9 +176,14 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 
     font['post'] = post = table__p_o_s_t()
     post.formatType = 2.0
+    post.italicAngle = 0.0
     post.underlinePosition = -100
     post.underlineThickness = 50
     post.isFixedPitch = 0
+    post.minMemType42 = 0
+    post.maxMemType42 = 0
+    post.minMemType1 = 0
+    post.maxMemType1 = 0
     post.glyphOrder = glyph_order
 
     # fontTools will compute maxp and loca tables on save
