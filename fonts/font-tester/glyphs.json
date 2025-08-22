@@ -34,7 +34,7 @@
       },
       {
         "type": "hexagon_circles",
-        "fill_pattern": "111111"
+        "fill_pattern": "101010"
       }
     ]
   },
@@ -49,6 +49,10 @@
           128,
           256
         ]
+      },
+      {
+        "type": "hexagon_circles",
+        "fill_pattern": "101110"
       }
     ]
   },
@@ -87,9 +91,6 @@
     "width": 1024,
     "background": null,
     "components": [
-      {
-        "type": "square"
-      },
       {
         "type": "concentric_circles",
         "radii": [
