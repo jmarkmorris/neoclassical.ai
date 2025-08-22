@@ -1,5 +1,6 @@
 # generate_fonts.py
 import os
+import json
 import numpy as np
 from fontTools import ttLib
 from fontTools.ttLib import TTFont
@@ -409,27 +410,114 @@ def partially_inverted_with_filled_hex_circles_glyph(
             for point in inner_points[1:]: pen.lineTo(point)
             pen.closePath()
 
-    # --- Cut out or leave filled Hexagon Circle Rings ---
+    # --- Handle Hexagon Circles ---
     for i in range(6):
-        if i in filled_hex_indices:
-            continue  # Leave this circle filled
-
         angle = i * np.pi / 3
         ccx, ccy = cx + hex_radius * np.cos(angle), cy + hex_radius * np.sin(angle)
-        
-        # Outer boundary of ring (counter-clockwise)
-        outer_points = arc_poly(ccx, ccy, circle_radius, circle_radius, 0, 2 * np.pi, num_segments=num_segments_hex_circles)
-        pen.moveTo(outer_points[0])
-        for point in outer_points[1:]: pen.lineTo(point)
-        pen.closePath()
 
-        # Inner boundary of ring (clockwise)
-        inner_r = circle_radius - thickness
-        if inner_r > 0:
-            inner_points = arc_poly(ccx, ccy, inner_r, inner_r, 2 * np.pi, 0, num_segments=num_segments_hex_circles)
-            pen.moveTo(inner_points[0])
-            for point in inner_points[1:]: pen.lineTo(point)
+        if i in filled_hex_indices:
+            # Draw a filled black circle on top of the inverted background
+            points = arc_poly(ccx, ccy, circle_radius, circle_radius, 0, 2 * np.pi, num_segments=num_segments_hex_circles)
+            pen.moveTo(points[0])
+            for point in points[1:]:
+                pen.lineTo(point)
             pen.closePath()
+        else:
+            # Cut out the hollow circles from the background
+            # Outer boundary of ring (counter-clockwise)
+            outer_points = arc_poly(ccx, ccy, circle_radius, circle_radius, 0, 2 * np.pi, num_segments=num_segments_hex_circles)
+            pen.moveTo(outer_points[0])
+            for point in outer_points[1:]: pen.lineTo(point)
+            pen.closePath()
+
+            # Inner boundary of ring (clockwise)
+            inner_r = circle_radius - thickness
+            if inner_r > 0:
+                inner_points = arc_poly(ccx, ccy, inner_r, inner_r, 2 * np.pi, 0, num_segments=num_segments_hex_circles)
+                pen.moveTo(inner_points[0])
+                for point in inner_points[1:]: pen.lineTo(point)
+                pen.closePath()
+
+    return pen.glyph()
+
+def build_glyph_from_definition(definition, glyph_set, em_size, center_y):
+    """Builds a glyph by assembling a list of declarative components from a definition."""
+    pen = TTGlyphPen(glyph_set)
+    background = definition.get('background')
+    components = definition.get('components', [])
+    is_inverted = (background is not None)
+
+    # --- 1. Draw Background (if any) ---
+    if is_inverted:
+        if background['shape'] == 'square':
+            square_dim = em_size - 2 * 0 # square_margin is 0
+            x = (em_size - square_dim) / 2
+            y = (em_size - square_dim) / 2 + (center_y - em_size / 2)
+            # Draw CW for solid fill
+            points = [(x, y), (x, y + square_dim), (x + square_dim, y + square_dim), (x + square_dim, y)]
+            pen.moveTo(points[0]); [pen.lineTo(p) for p in points[1:]]; pen.closePath()
+        elif background['shape'] == 'circle':
+            radius = background['radius']
+            # Draw CW for solid fill
+            points = arc_poly(em_size / 2, center_y, radius, radius, 2 * np.pi, 0, num_segments=64)
+            pen.moveTo(points[0]); [pen.lineTo(p) for p in points[1:]]; pen.closePath()
+
+    # --- 2. Draw Components ---
+    for comp in components:
+        comp_type = comp['type']
+
+        if comp_type == 'square':
+            thickness = GLYPH_THICKNESS
+            square_dim = em_size - 2 * 0
+            x = (em_size - square_dim) / 2
+            y = (em_size - square_dim) / 2 + (center_y - em_size / 2)
+            # Outer contour: CW for draw, CCW for cutout
+            outer_points = [(x, y), (x, y + square_dim), (x + square_dim, y + square_dim), (x + square_dim, y)] # CW
+            if is_inverted: outer_points.reverse() # Becomes CCW
+            pen.moveTo(outer_points[0]); [pen.lineTo(p) for p in outer_points[1:]]; pen.closePath()
+            # Inner contour: CCW for draw, CW for cutout
+            inner_x, inner_y = x + thickness, y + thickness
+            inner_width, inner_height = square_dim - 2 * thickness, square_dim - 2 * thickness
+            inner_points = [(inner_x, inner_y), (inner_x + inner_width, inner_y), (inner_x + inner_width, inner_y + inner_height), (inner_x, inner_y + inner_height)] # CW
+            if not is_inverted: inner_points.reverse() # Becomes CCW
+            pen.moveTo(inner_points[0]); [pen.lineTo(p) for p in inner_points[1:]]; pen.closePath()
+
+        elif comp_type == 'concentric_circles':
+            radii = comp['radii']
+            thickness = GLYPH_THICKNESS
+            for r in sorted(radii, reverse=True):
+                # Outer contour: CW for draw, CCW for cutout
+                outer_points = arc_poly(em_size / 2, center_y, r, r, 2 * np.pi if not is_inverted else 0, 0 if not is_inverted else 2 * np.pi, num_segments=64)
+                pen.moveTo(outer_points[0]); [pen.lineTo(p) for p in outer_points[1:]]; pen.closePath()
+                # Inner contour: CCW for draw, CW for cutout
+                inner_r = r - thickness
+                if inner_r > 0:
+                    inner_points = arc_poly(em_size / 2, center_y, inner_r, inner_r, 0 if not is_inverted else 2 * np.pi, 2 * np.pi if not is_inverted else 0, num_segments=64)
+                    pen.moveTo(inner_points[0]); [pen.lineTo(p) for p in inner_points[1:]]; pen.closePath()
+
+        elif comp_type == 'hexagon_circles':
+            fill_pattern = comp['fill_pattern']
+            thickness = GLYPH_THICKNESS
+            for i in range(6):
+                angle = i * np.pi / 3
+                ccx = em_size / 2 + HEX_RADIUS * np.cos(angle)
+                ccy = center_y + HEX_RADIUS * np.sin(angle)
+                
+                is_filled = (fill_pattern[i] == '1')
+
+                if is_filled:
+                    # Filled circle is always drawn on top, so it's always CW.
+                    points = arc_poly(ccx, ccy, CIRCLE_IN_HEX_RADIUS, CIRCLE_IN_HEX_RADIUS, 2 * np.pi, 0, num_segments=32)
+                    pen.moveTo(points[0]); [pen.lineTo(p) for p in points[1:]]; pen.closePath()
+                else: # Hollow
+                    # Outer contour: CW for draw, CCW for cutout
+                    outer_points = arc_poly(ccx, ccy, CIRCLE_IN_HEX_RADIUS, CIRCLE_IN_HEX_RADIUS, 2 * np.pi if not is_inverted else 0, 0 if not is_inverted else 2 * np.pi, num_segments=32)
+                    pen.moveTo(outer_points[0]); [pen.lineTo(p) for p in outer_points[1:]]; pen.closePath()
+                    # Inner contour: CCW for draw, CW for cutout
+                    inner_r = CIRCLE_IN_HEX_RADIUS - thickness
+                    if inner_r > 0:
+                        inner_points = arc_poly(ccx, ccy, inner_r, inner_r, 0 if not is_inverted else 2 * np.pi, 2 * np.pi if not is_inverted else 0, num_segments=32)
+                        pen.moveTo(inner_points[0]); [pen.lineTo(p) for p in inner_points[1:]]; pen.closePath()
 
     return pen.glyph()
 
@@ -461,7 +549,12 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     hmtx_table.metrics['.notdef'] = (int(units_per_em / 2), 0)
 
     for char, data in glyphs_data.items():
-        if data.get('type') == 'circle':
+        if data.get('type') == 'json_defined':
+            ascent = int(data['width'] * 0.8)
+            descent = -(data['width'] - ascent)
+            center_y = (ascent + descent) / 2.0
+            glyph = build_glyph_from_definition(data, glyf_table.glyphs, data['width'], center_y)
+        elif data.get('type') == 'circle':
             glyph = circle_to_glyph(data['cx'], data['cy'], data['radius'], glyf_table.glyphs)
         elif data.get('type') == 'polygon':
             glyph = polygon_to_glyph(data['points'], glyf_table.glyphs)
@@ -648,7 +741,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "ABCDEF|<>()"
+    sample_text = "ABCDEF|<>() TUVWXY"
 
     style_rules = ""
     for font_file in font_files:
@@ -690,6 +783,11 @@ def main():
     """Main script to generate fonts and the report."""
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
+
+    # Load glyph definitions from JSON
+    json_path = os.path.join(SCRIPT_DIR, 'glyphs.json')
+    with open(json_path, 'r') as f:
+        json_definitions = json.load(f)
 
     generated_fonts = []
     for em_size in UNITS_PER_EM_VALUES:
@@ -831,6 +929,11 @@ def main():
         inner_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx - paren_thickness, paren_ry, 3 * np.pi / 2, np.pi / 2)
         points_l_paren = outer_arc_l + inner_arc_l
         glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': em_size}
+
+        # Add JSON-defined glyphs
+        for char, definition in json_definitions.items():
+            glyphs[char] = definition
+            glyphs[char]['type'] = 'json_defined'
 
         output_file = os.path.join(OUTPUT_DIR, f"{font_name}.ttf")
         create_font(font_name, em_size, glyphs, output_file)

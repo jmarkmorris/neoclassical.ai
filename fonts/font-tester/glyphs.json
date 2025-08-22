@@ -1,0 +1,107 @@
+{
+  "T": {
+    "width": 1024,
+    "background": {
+      "shape": "circle",
+      "radius": 304
+    },
+    "components": [
+      {
+        "type": "concentric_circles",
+        "radii": [
+          64,
+          128,
+          256
+        ]
+      },
+      {
+        "type": "hexagon_circles",
+        "fill_pattern": "010010"
+      }
+    ]
+  },
+  "U": {
+    "width": 1024,
+    "background": null,
+    "components": [
+      {
+        "type": "concentric_circles",
+        "radii": [
+          64,
+          128,
+          256
+        ]
+      },
+      {
+        "type": "hexagon_circles",
+        "fill_pattern": "000000"
+      }
+    ]
+  },
+  "V": {
+    "width": 1024,
+    "background": null,
+    "components": [
+      {
+        "type": "concentric_circles",
+        "radii": [
+          64,
+          128,
+          256
+        ]
+      }
+    ]
+  },
+  "W": {
+    "width": 1024,
+    "background": null,
+    "components": [
+      {
+        "type": "hexagon_circles",
+        "fill_pattern": "000000"
+      }
+    ]
+  },
+  "X": {
+    "width": 1024,
+    "background": {
+      "shape": "circle",
+      "radius": 304
+    },
+    "components": [
+      {
+        "type": "concentric_circles",
+        "radii": [
+          64,
+          128,
+          256
+        ]
+      },
+      {
+        "type": "hexagon_circles",
+        "fill_pattern": "000000"
+      }
+    ]
+  },
+  "Y": {
+    "width": 1024,
+    "background": null,
+    "components": [
+      {
+        "type": "square"
+      },
+      {
+        "type": "concentric_circles",
+        "radii": [
+          64,
+          128,
+          256
+        ]
+      },
+      {
+        "type": "hexagon_circles",
+        "fill_pattern": "000000"
+      }
+    ]
+  }
+}
