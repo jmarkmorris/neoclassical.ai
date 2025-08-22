@@ -22,7 +22,7 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 # UNITS_PER_EM_VALUES = [1000, 2048]
 UNITS_PER_EM_VALUES = [1024]
 CIRCLE_RADII = [64, 128, 256]  # In font units
-FONT_SIZES_PT = [24, 36, 48, 60, 72]  # For HTML report
+FONT_SIZES_PT = [36, 48, 60]  # For HTML report
 HEX_RADIUS = 400
 CIRCLE_IN_HEX_RADIUS = 80
 GLYPH_THICKNESS = 32
@@ -741,7 +741,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "F|<>() TUVWX"
+    sample_text = "AF|<>() TUVWX"
 
     style_rules = ""
     for font_file in font_files:

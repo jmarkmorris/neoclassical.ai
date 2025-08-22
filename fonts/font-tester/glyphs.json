@@ -1,4 +1,25 @@
 {
+  "A": {
+    "width": 1024,
+    "background": {
+      "shape": "circle",
+      "radius": 304
+    },
+    "components": [
+      {
+        "type": "concentric_circles",
+        "radii": [
+          64,
+          128,
+          256
+        ]
+      },
+      {
+        "type": "hexagon_circles",
+        "fill_pattern": "011110"
+      }
+    ]
+  },
   "T": {
     "width": 1024,
     "background": {
