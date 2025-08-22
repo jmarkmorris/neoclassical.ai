@@ -3,8 +3,15 @@ import os
 from fontTools import ttLib
 from fontTools.ttLib import TTFont
 from fontTools.pens.ttGlyphPen import TTGlyphPen
-from fontTools.ttLib.tables._c_m_a_p import cmap_format_4
+from fontTools.ttLib.tables._c_m_a_p import cmap_format_4, table__c_m_a_p
 from fontTools.ttLib.tables._g_l_y_f import Glyph
+from fontTools.ttLib.tables._h_e_a_d import table__h_e_a_d
+from fontTools.ttLib.tables._h_h_e_a import table__h_h_e_a
+from fontTools.ttLib.tables.O_S_2f_2 import table_O_S_2f_2
+from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e
+from fontTools.ttLib.tables._p_o_s_t import table__p_o_s_t
+from fontTools.ttLib.tables._m_a_x_p import table__m_a_x_p
+from fontTools.ttLib.tables._l_o_c_a import table__l_o_c_a
 from svg.path import parse_path, Move, Line, Arc, CubicBezier, QuadraticBezier, Close
 
 # --- Configuration ---
@@ -89,22 +96,22 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     cmap.platEncID = 1
     cmap.language = 0
     cmap.cmap = {ord(c): c for c in glyphs_data.keys()}
-    cmap_table = ttLib.tables._c_m_a_p.table__c_m_a_p()
+    cmap_table = table__c_m_a_p()
     cmap_table.tableVersion = 0
     cmap_table.tables = [cmap]
     font['cmap'] = cmap_table
 
     # --- Font Header Tables ---
-    font['head'] = head = ttLib.tables._h_e_a_d.table__h_e_a_d()
+    font['head'] = head = table__h_e_a_d()
     head.unitsPerEm = units_per_em
     head.fontRevision = 1.0
 
-    font['hhea'] = hhea = ttLib.tables._h_h_e_a.table__h_h_e_a()
+    font['hhea'] = hhea = table__h_h_e_a()
     hhea.ascent = int(units_per_em * 0.85)
     hhea.descent = -int(units_per_em * 0.15)
     hhea.lineGap = 0
 
-    font['OS/2'] = os2 = ttLib.tables.O_S_2f_2.table_O_S_2f_2()
+    font['OS/2'] = os2 = table_O_S_2f_2()
     os2.version = 4
     os2.xAvgCharWidth = units_per_em
     os2.usWeightClass = 400
@@ -123,13 +130,13 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     os2.sTypoAscender, os2.sTypoDescender, os2.sTypoLineGap = (hhea.ascent, hhea.descent, 0)
     os2.usWinAscent, os2.usWinDescent = (hhea.ascent, abs(hhea.descent))
 
-    font['name'] = name = ttLib.tables._n_a_m_e.table__n_a_m_e()
+    font['name'] = name = table__n_a_m_e()
     name.setName(font_name, 1, 3, 1, 0x409)
     name.setName("Regular", 2, 3, 1, 0x409)
     name.setName(font_name, 4, 3, 1, 0x409)
     name.setName(font_name.replace(" ", ""), 6, 3, 1, 0x409)
 
-    font['post'] = post = ttLib.tables._p_o_s_t.table__p_o_s_t()
+    font['post'] = post = table__p_o_s_t()
     post.formatType = 2.0
     post.underlinePosition = -100
     post.underlineThickness = 50
@@ -137,8 +144,8 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     post.glyphOrder = glyph_order
 
     # fontTools will compute maxp and loca tables on save
-    font['maxp'] = ttLib.tables._m_a_x_p.table__m_a_x_p()
-    font['loca'] = ttLib.tables._l_o_c_a.table__l_o_c_a()
+    font['maxp'] = table__m_a_x_p()
+    font['loca'] = table__l_o_c_a()
 
     font.save(output_path)
     print(f"Successfully created {output_path}")
