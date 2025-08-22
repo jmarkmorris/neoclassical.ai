@@ -22,7 +22,7 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 # UNITS_PER_EM_VALUES = [1000, 2048]
 UNITS_PER_EM_VALUES = [1024]
 CIRCLE_RADII = [64, 128, 256]  # In font units
-FONT_SIZES_PT = [36, 48, 60]  # For HTML report
+FONT_SIZES_PT = [24, 36, 48, 60]  # For HTML report
 HEX_RADIUS = 400
 CIRCLE_IN_HEX_RADIUS = 80
 GLYPH_THICKNESS = 32
@@ -99,9 +99,10 @@ def build_glyph_from_definition(definition, glyph_set, em_size, center_y):
 
         elif comp_type == 'hexagon_circles':
             fill_pattern = comp['fill_pattern']
+            rotation_rad = np.deg2rad(comp.get('rotation', 0))
             thickness = GLYPH_THICKNESS
             for i in range(6):
-                angle = i * np.pi / 3
+                angle = i * np.pi / 3 + rotation_rad
                 ccx = em_size / 2 + HEX_RADIUS * np.cos(angle)
                 ccy = center_y + HEX_RADIUS * np.sin(angle)
                 
@@ -304,7 +305,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "ABCDEF|<>()"
+    sample_text = "DUEe|<>(dud)e(udu)"
 
     style_rules = ""
     for font_file in font_files:
@@ -320,21 +321,31 @@ def generate_html_report(font_files, output_dir):
         font_name = os.path.splitext(font_file)[0]
         body_content += f"""
     <div class="font-showcase">
-        <h2>Font: <span class="font-spec">{font_name}</span></h2>"""
+        <h2>Font: <span class="font-spec">{font_name}</span></h2>
+"""
         for size in FONT_SIZES_PT:
-            body_content += f"""
-        <p style="font-family: '{font_name}'; font-size: {size}pt;">{size}pt: {sample_text}</p>"""
-        body_content += "</div>"
+            body_content += f"""        <p style="font-family: '{font_name}'; font-size: {size}pt;">{size}pt: {sample_text}</p>
+"""
+        body_content += "    </div>"
 
-    html_content = f"""
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Font Test Report</title>
-<style>
-    body {{ font-family: sans-serif; padding: 2em; color: #333; background-color: #fdfdfd; }}
-    .font-showcase {{ border: 1px solid #ddd; padding: 1.5em; margin-bottom: 2em; border-radius: 8px; background-color: #fff; }}
-    h1 {{ text-align: center; }} h2 {{ border-bottom: 2px solid #eee; padding-bottom: 0.5em; margin-top: 0; }}
-    .font-spec {{ font-family: monospace; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; }}
-    {style_rules}
-</style></head><body><h1>Font Generation Test Report</h1>{body_content}</body></html>"""
+    html_content = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Font Test Report</title>
+    <style>
+        body {{ font-family: sans-serif; padding: 2em; color: #333; background-color: #fdfdfd; }}
+        .font-showcase {{ border: 1px solid #ddd; padding: 1.5em; margin-bottom: 2em; border-radius: 8px; background-color: #fff; }}
+        h1 {{ text-align: center; }}
+        h2 {{ border-bottom: 2px solid #eee; padding-bottom: 0.5em; margin-top: 0; }}
+        .font-spec {{ font-family: monospace; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; }}
+{style_rules}
+    </style>
+</head>
+<body>
+    <h1>Font Generation Test Report</h1>{body_content}
+</body>
+</html>"""
 
     report_path = os.path.join(output_dir, "index.html")
     with open(report_path, "w", encoding="utf-8") as f:
