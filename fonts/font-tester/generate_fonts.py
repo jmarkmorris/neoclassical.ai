@@ -232,7 +232,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "".join([chr(ord('A') + i) for i in range(len(CIRCLE_RADII))])
+    sample_text = "".join([chr(ord('A') + i) for i in range(len(CIRCLE_RADII))]) + "D"
 
     style_rules = ""
     for font_file in font_files:
@@ -288,6 +288,13 @@ def main():
                 'path': circle_to_svg_path(center_x, center_y, radius),
                 'width': em_size
             }
+
+        # Add a diagonal line for 'D' as a test case
+        glyphs['D'] = {
+            'radius': 0,  # Not applicable
+            'path': f"M {em_size*0.1},{em_size*0.1} L {em_size*0.9},{em_size*0.9} Z",
+            'width': em_size
+        }
 
         output_file = os.path.join(OUTPUT_DIR, f"{font_name}.ttf")
         create_font(font_name, em_size, glyphs, output_file)
