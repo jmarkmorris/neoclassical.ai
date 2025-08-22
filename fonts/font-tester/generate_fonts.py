@@ -152,6 +152,10 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     os2.sFamilyClass = 0
     os2.panose = Panose()
     os2.ulUnicodeRange1, os2.ulCodePageRange1 = (1, 1)
+    os2.ulUnicodeRange2 = 0
+    os2.ulUnicodeRange3 = 0
+    os2.ulUnicodeRange4 = 0
+    os2.ulCodePageRange2 = 0
     os2.achVendID = 'TEST'
     os2.fsSelection = 1 << 6
     os2.usFirstCharIndex = min(ord(c) for c in glyphs_data.keys())
