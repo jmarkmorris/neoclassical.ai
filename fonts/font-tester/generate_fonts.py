@@ -162,6 +162,11 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     os2.usLastCharIndex = max(ord(c) for c in glyphs_data.keys())
     os2.sTypoAscender, os2.sTypoDescender, os2.sTypoLineGap = (hhea.ascent, hhea.descent, 0)
     os2.usWinAscent, os2.usWinDescent = (hhea.ascent, abs(hhea.descent))
+    os2.sxHeight = int(units_per_em * 0.7)
+    os2.sCapHeight = int(units_per_em * 0.7)
+    os2.usDefaultChar = 0
+    os2.usBreakChar = 0
+    os2.usMaxContext = 0
 
     font['name'] = name = table__n_a_m_e()
     name.setName(font_name, 1, 3, 1, 0x409)
