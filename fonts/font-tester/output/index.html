@@ -1,0 +1,29 @@
+
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Font Test Report</title>
+<style>
+    body { font-family: sans-serif; padding: 2em; color: #333; background-color: #fdfdfd; }
+    .font-showcase { border: 1px solid #ddd; padding: 1.5em; margin-bottom: 2em; border-radius: 8px; background-color: #fff; }
+    h1 { text-align: center; } h2 { border-bottom: 2px solid #eee; padding-bottom: 0.5em; margin-top: 0; }
+    .font-spec { font-family: monospace; background-color: #f0f0f0; padding: 2px 6px; border-radius: 4px; }
+    
+        @font-face {
+            font-family: 'CircleTest-EM1000';
+            src: url('CircleTest-EM1000.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'CircleTest-EM2048';
+            src: url('CircleTest-EM2048.ttf') format('truetype');
+        }
+</style></head><body><h1>Font Generation Test Report</h1>
+    <div class="font-showcase">
+        <h2>Font: <span class="font-spec">CircleTest-EM1000</span></h2>
+        <p style="font-family: 'CircleTest-EM1000'; font-size: 12pt;">12pt: ABC</p>
+        <p style="font-family: 'CircleTest-EM1000'; font-size: 24pt;">24pt: ABC</p>
+        <p style="font-family: 'CircleTest-EM1000'; font-size: 48pt;">48pt: ABC</p>
+        <p style="font-family: 'CircleTest-EM1000'; font-size: 72pt;">72pt: ABC</p></div>
+    <div class="font-showcase">
+        <h2>Font: <span class="font-spec">CircleTest-EM2048</span></h2>
+        <p style="font-family: 'CircleTest-EM2048'; font-size: 12pt;">12pt: ABC</p>
+        <p style="font-family: 'CircleTest-EM2048'; font-size: 24pt;">24pt: ABC</p>
+        <p style="font-family: 'CircleTest-EM2048'; font-size: 48pt;">48pt: ABC</p>
+        <p style="font-family: 'CircleTest-EM2048'; font-size: 72pt;">72pt: ABC</p></div></body></html>

@@ -16,7 +16,8 @@ from fontTools.ttLib.tables._l_o_c_a import table__l_o_c_a
 from svg.path import parse_path, Move, Line, Arc, CubicBezier, QuadraticBezier, Close
 
 # --- Configuration ---
-OUTPUT_DIR = "output"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 UNITS_PER_EM_VALUES = [1000, 2048]
 CIRCLE_RADII = [100, 250, 400]  # In font units
 FONT_SIZES_PT = [12, 24, 48, 72]  # For HTML report
