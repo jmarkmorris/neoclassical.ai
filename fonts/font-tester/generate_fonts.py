@@ -105,7 +105,7 @@ def build_glyph_from_definition(definition, glyph_set, em_size, center_y):
                 ccx = em_size / 2 + HEX_RADIUS * np.cos(angle)
                 ccy = center_y + HEX_RADIUS * np.sin(angle)
                 
-                is_filled = (fill_pattern[i] == '1')
+                is_filled = (fill_pattern[i] == '0')
 
                 if is_filled:
                     # Filled circle is always drawn on top, so it's always CW.
@@ -412,17 +412,10 @@ def main():
         points_l_paren = outer_arc_l + inner_arc_l
         glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': em_size}
 
-        # Load JSON-defined glyphs and add polygon glyphs
-        glyphs = {}
+        # Add JSON-defined glyphs
         for char, definition in json_definitions.items():
             glyphs[char] = definition
             glyphs[char]['type'] = 'json_defined'
-        
-        glyphs['|'] = {'type': 'polygon', 'points': shift_points(points_bar, y_shift), 'width': em_size}
-        glyphs['<'] = {'type': 'polygon', 'points': shift_points(points_lt, y_shift), 'width': em_size}
-        glyphs['>'] = {'type': 'polygon', 'points': shift_points(points_gt, y_shift), 'width': em_size}
-        glyphs[')'] = {'type': 'polygon', 'points': points_r_paren, 'width': em_size}
-        glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': em_size}
 
         output_file = os.path.join(OUTPUT_DIR, f"{font_name}.ttf")
         create_font(font_name, em_size, glyphs, output_file)

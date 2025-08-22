@@ -16,32 +16,11 @@
       },
       {
         "type": "hexagon_circles",
-        "fill_pattern": "011110"
+        "fill_pattern": "101101"
       }
     ]
   },
   "B": {
-    "width": 1024,
-    "background": {
-      "shape": "circle",
-      "radius": 304
-    },
-    "components": [
-      {
-        "type": "concentric_circles",
-        "radii": [
-          64,
-          128,
-          256
-        ]
-      },
-      {
-        "type": "hexagon_circles",
-        "fill_pattern": "010010"
-      }
-    ]
-  },
-  "U": {
     "width": 1024,
     "background": null,
     "components": [
@@ -55,7 +34,7 @@
       },
       {
         "type": "hexagon_circles",
-        "fill_pattern": "000000"
+        "fill_pattern": "111111"
       }
     ]
   },
@@ -79,7 +58,7 @@
     "components": [
       {
         "type": "hexagon_circles",
-        "fill_pattern": "000000"
+        "fill_pattern": "111111"
       }
     ]
   },
@@ -100,7 +79,7 @@
       },
       {
         "type": "hexagon_circles",
-        "fill_pattern": "000000"
+        "fill_pattern": "111111"
       }
     ]
   },
@@ -121,7 +100,7 @@
       },
       {
         "type": "hexagon_circles",
-        "fill_pattern": "000000"
+        "fill_pattern": "111111"
       }
     ]
   }
