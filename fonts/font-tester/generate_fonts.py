@@ -142,8 +142,8 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 
     font['hhea'] = hhea = table__h_h_e_a()
     hhea.tableVersion = 0x00010000
-    hhea.ascent = int(units_per_em * 0.85)
-    hhea.descent = -int(units_per_em * 0.15)
+    hhea.ascent = head.yMax
+    hhea.descent = 0
     hhea.lineGap = 0
     hhea.advanceWidthMax = 0  # Will be recalculated
     hhea.minLeftSideBearing = 0  # Will be recalculated
