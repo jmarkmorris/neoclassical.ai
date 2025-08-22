@@ -161,6 +161,20 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     # fontTools will compute maxp and loca tables on save
     font['maxp'] = maxp = table__m_a_x_p()
     maxp.tableVersion = 0x00010000
+    maxp.numGlyphs = 0  # Will be recalculated
+    maxp.maxPoints = 0  # Will be recalculated
+    maxp.maxContours = 0  # Will be recalculated
+    maxp.maxCompositePoints = 0  # Will be recalculated
+    maxp.maxCompositeContours = 0  # Will be recalculated
+    maxp.maxZones = 1  # Default for non-hinted fonts
+    maxp.maxTwilightPoints = 0  # Default
+    maxp.maxStorage = 0  # Default
+    maxp.maxFunctionDefs = 0  # Default
+    maxp.maxInstructionDefs = 0  # Default
+    maxp.maxStackElements = 0  # Default
+    maxp.maxSizeOfInstructions = 0  # Default
+    maxp.maxComponentElements = 0  # Will be recalculated
+    maxp.maxComponentDepth = 0  # Will be recalculated
     font['loca'] = table__l_o_c_a()
 
     font.save(output_path)
