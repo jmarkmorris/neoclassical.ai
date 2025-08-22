@@ -21,8 +21,8 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 # UNITS_PER_EM_VALUES = [1000, 2048]
 UNITS_PER_EM_VALUES = [1024]
 CIRCLE_RADII = [64, 128, 256]  # In font units
-FONT_SIZES_PT = [12, 18, 24, 36, 48, 72]  # For HTML report
-HEX_RADIUS = 384
+FONT_SIZES_PT = [12, 18, 24, 36, 48, 72, 84]  # For HTML report
+HEX_RADIUS = 400
 CIRCLE_IN_HEX_RADIUS = 80
 GLYPH_THICKNESS = 32
 THIN_GLYPH_THICKNESS = 24
@@ -277,6 +277,58 @@ def square_concentric_and_hexagon_circles_to_glyph(
 
     return pen.glyph()
 
+def inverted_concentric_and_hexagon_circles_to_glyph(
+    cx, cy, square_width, square_height, radii, thickness, hex_radius, circle_radius, glyph_set,
+    num_segments_concentric=64, num_segments_hex_circles=32
+):
+    """Creates an inverted composite glyph of concentric circles and a hexagon of circles."""
+    pen = TTGlyphPen(glyph_set)
+
+    # --- Draw solid background square ---
+    x = cx - square_width / 2
+    y = cy - square_height / 2
+    background_points = [(x, y), (x + square_width, y), (x + square_width, y + square_height), (x, y + square_height)]
+    pen.moveTo(background_points[0])
+    for point in background_points[1:]: pen.lineTo(point)
+    pen.closePath()
+
+    # --- Cut out Concentric Circle Rings ---
+    for r in sorted(radii, reverse=True):
+        # Outer boundary of ring (counter-clockwise to start hole)
+        outer_points = arc_poly(cx, cy, r, r, 2 * np.pi, 0, num_segments=num_segments_concentric)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]: pen.lineTo(point)
+        pen.closePath()
+
+        # Inner boundary of ring (clockwise to fill hole's center)
+        inner_r = r - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(cx, cy, inner_r, inner_r, 0, 2 * np.pi, num_segments=num_segments_concentric)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]: pen.lineTo(point)
+            pen.closePath()
+
+    # --- Cut out Hexagon Circle Rings ---
+    for i in range(6):
+        angle = i * np.pi / 3
+        ccx, ccy = cx + hex_radius * np.cos(angle), cy + hex_radius * np.sin(angle)
+        
+        # Outer boundary of ring (counter-clockwise)
+        outer_points = arc_poly(ccx, ccy, circle_radius, circle_radius, 2 * np.pi, 0, num_segments=num_segments_hex_circles)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]: pen.lineTo(point)
+        pen.closePath()
+
+        # Inner boundary of ring (clockwise)
+        inner_r = circle_radius - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(ccx, ccy, inner_r, inner_r, 0, 2 * np.pi, num_segments=num_segments_hex_circles)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]: pen.lineTo(point)
+            pen.closePath()
+
+    return pen.glyph()
+
 def arc_poly(cx, cy, rx, ry, start_angle, end_angle, num_segments=16):
     """Generates points for a polygonal approximation of an elliptical arc."""
     theta = np.linspace(start_angle, end_angle, num_segments + 1)
@@ -327,6 +379,11 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
             )
         elif data.get('type') == 'square_concentric_and_hexagon_circles':
             glyph = square_concentric_and_hexagon_circles_to_glyph(
+                data['cx'], data['cy'], data['square_width'], data['square_height'], data['radii'], data['thickness'],
+                data['hex_radius'], data['circle_radius'], glyf_table.glyphs
+            )
+        elif data.get('type') == 'inverted_concentric_and_hexagon_circles':
+            glyph = inverted_concentric_and_hexagon_circles_to_glyph(
                 data['cx'], data['cy'], data['square_width'], data['square_height'], data['radii'], data['thickness'],
                 data['hex_radius'], data['circle_radius'], glyf_table.glyphs
             )
@@ -476,7 +533,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "ABBBCDEF|<>()"
+    sample_text = "ABCDEF|<>()"
 
     style_rules = ""
     for font_file in font_files:
@@ -536,13 +593,14 @@ def main():
         square_thickness = GLYPH_THICKNESS
         square_dim = em_size - 2 * square_margin
 
-        # Glyph 'A': Square overlapped with small circle hexagon
+        # Glyph 'A': Inversion of character 'B'
         glyphs['A'] = {
-            'type': 'square_and_hexagon_circles',
+            'type': 'inverted_concentric_and_hexagon_circles',
             'cx': em_size / 2,
             'cy': center_y,
             'square_width': square_dim,
             'square_height': square_dim,
+            'radii': [64, 128, 256],
             'hex_radius': HEX_RADIUS,
             'circle_radius': CIRCLE_IN_HEX_RADIUS,
             'thickness': GLYPH_THICKNESS,
