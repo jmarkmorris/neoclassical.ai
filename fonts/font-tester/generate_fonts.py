@@ -82,16 +82,16 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     font['glyf'] = glyf_table = table__g_l_y_f()
     glyf_table.glyphs = {}
     font['hmtx'] = hmtx_table = table__h_m_t_x()
-    hmtx_table.hmtx = {}
+    hmtx_table.metrics = {}
 
     glyf_table.glyphs['.notdef'] = Glyph()
-    hmtx_table.hmtx['.notdef'] = (units_per_em, 0)
+    hmtx_table.metrics['.notdef'] = (units_per_em, 0)
 
     for char, data in glyphs_data.items():
         glyph = svg_path_to_glyph(data['path'], glyf_table.glyphs)
         glyf_table.glyphs[char] = glyph
         lsb = int((data['width'] / 2) - data['radius'])
-        hmtx_table.hmtx[char] = (data['width'], lsb)
+        hmtx_table.metrics[char] = (data['width'], lsb)
 
     # --- Cmap Table ---
     cmap = cmap_format_4(4)
