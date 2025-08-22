@@ -106,8 +106,20 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 
     # --- Font Header Tables ---
     font['head'] = head = table__h_e_a_d()
-    head.unitsPerEm = units_per_em
+    head.tableVersion = 1.0
     head.fontRevision = 1.0
+    head.checkSumAdjustment = 0
+    head.magicNumber = 0x5F0F3CF5
+    head.flags = 3  # Set default flags
+    head.unitsPerEm = units_per_em
+    head.created = 0
+    head.modified = 0
+    head.xMin, head.yMin, head.xMax, head.yMax = (0, 0, 0, 0)
+    head.macStyle = 0
+    head.lowestRecPPEM = 0
+    head.fontDirectionHint = 2
+    head.indexToLocFormat = 0
+    head.glyphDataFormat = 0
 
     font['hhea'] = hhea = table__h_h_e_a()
     hhea.ascent = int(units_per_em * 0.85)
