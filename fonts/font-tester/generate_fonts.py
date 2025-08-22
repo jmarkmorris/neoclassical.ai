@@ -329,6 +329,56 @@ def inverted_concentric_and_hexagon_circles_to_glyph(
 
     return pen.glyph()
 
+def partially_inverted_concentric_and_hexagon_circles_to_glyph(
+    cx, cy, background_radius, radii, thickness, hex_radius, circle_radius, glyph_set,
+    num_segments_concentric=64, num_segments_hex_circles=32
+):
+    """Creates a partially inverted composite glyph."""
+    pen = TTGlyphPen(glyph_set)
+
+    # --- Draw solid background circle ---
+    background_points = arc_poly(cx, cy, background_radius, background_radius, 0, 2 * np.pi, num_segments=num_segments_concentric)
+    pen.moveTo(background_points[0])
+    for point in background_points[1:]: pen.lineTo(point)
+    pen.closePath()
+
+    # --- Cut out Concentric Circle Rings ---
+    for r in sorted(radii, reverse=True):
+        # Outer boundary of ring (counter-clockwise to start hole)
+        outer_points = arc_poly(cx, cy, r, r, 2 * np.pi, 0, num_segments=num_segments_concentric)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]: pen.lineTo(point)
+        pen.closePath()
+
+        # Inner boundary of ring (clockwise to fill hole's center)
+        inner_r = r - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(cx, cy, inner_r, inner_r, 0, 2 * np.pi, num_segments=num_segments_concentric)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]: pen.lineTo(point)
+            pen.closePath()
+
+    # --- Cut out Hexagon Circle Rings ---
+    for i in range(6):
+        angle = i * np.pi / 3
+        ccx, ccy = cx + hex_radius * np.cos(angle), cy + hex_radius * np.sin(angle)
+        
+        # Outer boundary of ring (counter-clockwise)
+        outer_points = arc_poly(ccx, ccy, circle_radius, circle_radius, 2 * np.pi, 0, num_segments=num_segments_hex_circles)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]: pen.lineTo(point)
+        pen.closePath()
+
+        # Inner boundary of ring (clockwise)
+        inner_r = circle_radius - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(ccx, ccy, inner_r, inner_r, 0, 2 * np.pi, num_segments=num_segments_hex_circles)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]: pen.lineTo(point)
+            pen.closePath()
+
+    return pen.glyph()
+
 def arc_poly(cx, cy, rx, ry, start_angle, end_angle, num_segments=16):
     """Generates points for a polygonal approximation of an elliptical arc."""
     theta = np.linspace(start_angle, end_angle, num_segments + 1)
@@ -385,6 +435,11 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
         elif data.get('type') == 'inverted_concentric_and_hexagon_circles':
             glyph = inverted_concentric_and_hexagon_circles_to_glyph(
                 data['cx'], data['cy'], data['square_width'], data['square_height'], data['radii'], data['thickness'],
+                data['hex_radius'], data['circle_radius'], glyf_table.glyphs
+            )
+        elif data.get('type') == 'partially_inverted_concentric_and_hexagon_circles':
+            glyph = partially_inverted_concentric_and_hexagon_circles_to_glyph(
+                data['cx'], data['cy'], data['background_radius'], data['radii'], data['thickness'],
                 data['hex_radius'], data['circle_radius'], glyf_table.glyphs
             )
         else:
@@ -640,14 +695,17 @@ def main():
             'width': em_size
         }
 
-        # Glyph 'E' (Hollow Square, formerly 'H')
+        # Glyph 'E': Partially inverted composite
+        background_radius = CIRCLE_RADII[-1] + GLYPH_THICKNESS
         glyphs['E'] = {
-            'type': 'square',
-            'x': square_margin,
-            'y': square_margin + y_shift,
-            'square_width': square_dim,
-            'square_height': square_dim,
-            'thickness': square_thickness,
+            'type': 'partially_inverted_concentric_and_hexagon_circles',
+            'cx': em_size / 2,
+            'cy': center_y,
+            'background_radius': background_radius,
+            'radii': CIRCLE_RADII,
+            'hex_radius': HEX_RADIUS,
+            'circle_radius': CIRCLE_IN_HEX_RADIUS,
+            'thickness': GLYPH_THICKNESS,
             'width': em_size
         }
 
