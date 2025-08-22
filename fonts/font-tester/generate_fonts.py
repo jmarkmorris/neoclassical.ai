@@ -36,9 +36,9 @@ def circle_to_svg_path(cx, cy, r):
         f"C {cx-r},{cy+kr} {cx-kr},{cy+r} {cx},{cy+r} Z"
     )
 
-def svg_path_to_glyph(svg_path, glyf_table):
+def svg_path_to_glyph(svg_path, glyph_set):
     """Converts an SVG path string to a fontTools TTGlyph object."""
-    pen = TTGlyphPen(glyf_table)
+    pen = TTGlyphPen(glyph_set)
     path = parse_path(svg_path)
 
     current_pos = 0j
@@ -86,22 +86,14 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     hmtx_table.metrics = {}
 
     glyf_table.glyphs['.notdef'] = Glyph()
-    hmtx_table.metrics['.notdef'] = (units_per_em, 0)
+    hmtx_table.metrics['.notdef'] = (int(units_per_em / 2), 0)
 
     for char, data in glyphs_data.items():
         glyph = svg_path_to_glyph(data['path'], glyf_table.glyphs)
-
-        # Manually set glyph bounds
-        center_x = units_per_em / 2
-        center_y = units_per_em / 2
-        radius = data['radius']
-        glyph.xMin = int(center_x - radius)
-        glyph.yMin = int(center_y - radius)
-        glyph.xMax = int(center_x + radius)
-        glyph.yMax = int(center_y + radius)
+        glyph.recalcBounds(glyf_table)
 
         glyf_table.glyphs[char] = glyph
-        lsb = glyph.xMin
+        lsb = glyph.xMin if hasattr(glyph, 'xMin') else 0
         hmtx_table.metrics[char] = (data['width'], lsb)
 
     # --- Cmap Table ---

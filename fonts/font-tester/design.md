@@ -114,3 +114,11 @@ To avoid the manual process of installing each font, the script should also gene
     ```
 
 By generating both the fonts and a visual HTML report, you can quickly iterate and assess the impact of different font parameters without leaving your development environment.
+
+### More Characters - Make them consistent with overall font.
+
+`|`
+`<`
+`>`
+`(`
+`)`
