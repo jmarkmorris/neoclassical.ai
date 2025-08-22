@@ -4,7 +4,8 @@ from fontTools import ttLib
 from fontTools.ttLib import TTFont
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.ttLib.tables._c_m_a_p import cmap_format_4, table__c_m_a_p
-from fontTools.ttLib.tables._g_l_y_f import Glyph
+from fontTools.ttLib.tables._g_l_y_f import Glyph, table__g_l_y_f
+from fontTools.ttLib.tables._h_m_t_x import table__h_m_t_x
 from fontTools.ttLib.tables._h_e_a_d import table__h_e_a_d
 from fontTools.ttLib.tables._h_h_e_a import table__h_h_e_a
 from fontTools.ttLib.tables.O_S_2f_2 import table_O_S_2f_2
@@ -78,17 +79,19 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     font.setGlyphOrder(glyph_order)
 
     # --- Glyf and Hmtx Tables ---
-    glyf_table = font['glyf'] = {}
-    hmtx_table = font['hmtx'] = {}
+    font['glyf'] = glyf_table = table__g_l_y_f()
+    glyf_table.glyphs = {}
+    font['hmtx'] = hmtx_table = table__h_m_t_x()
+    hmtx_table.hmtx = {}
 
-    glyf_table['.notdef'] = Glyph()
-    hmtx_table['.notdef'] = (units_per_em, 0)
+    glyf_table.glyphs['.notdef'] = Glyph()
+    hmtx_table.hmtx['.notdef'] = (units_per_em, 0)
 
     for char, data in glyphs_data.items():
-        glyph = svg_path_to_glyph(data['path'], glyf_table)
-        glyf_table[char] = glyph
+        glyph = svg_path_to_glyph(data['path'], glyf_table.glyphs)
+        glyf_table.glyphs[char] = glyph
         lsb = int((data['width'] / 2) - data['radius'])
-        hmtx_table[char] = (data['width'], lsb)
+        hmtx_table.hmtx[char] = (data['width'], lsb)
 
     # --- Cmap Table ---
     cmap = cmap_format_4(4)

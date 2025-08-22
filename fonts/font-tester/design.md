@@ -33,15 +33,19 @@ I recommend a four-step approach:
 
 This involves creating a function that takes font parameters and glyph data as input and outputs a `.ttf` file.
 
-*   **SVG Path Generation**: Since font glyphs are defined by paths, you first need a way to represent your circle as an SVG path. A circle can be represented by two conjoined elliptical arc commands. You can create a helper function for this.
+*   **SVG Path Generation**: Since font glyphs are defined by paths, you first need a way to represent your circle as an SVG path. A circle can be closely approximated by four cubic Bezier curves. You can create a helper function for this.
 
     ```python
     # Example helper to convert a circle to an SVG path string
     def circle_to_svg_path(cx, cy, r):
+        kappa = 0.552284749831
+        kr = r * kappa
         return (
-            f"M {cx-r},{cy} "
-            f"a {r},{r} 0 1,0 {2*r},0 "
-            f"a {r},{r} 0 1,0 {-2*r},0 Z"
+            f"M {cx},{cy+r} "
+            f"C {cx+kr},{cy+r} {cx+r},{cy+kr} {cx+r},{cy} "
+            f"C {cx+r},{cy-kr} {cx+kr},{cy-r} {cx},{cy-r} "
+            f"C {cx-kr},{cy-r} {cx-r},{cy-kr} {cx-r},{cy} "
+            f"C {cx-r},{cy+kr} {cx-kr},{cy+r} {cx},{cy+r} Z"
         )
     ```
 
