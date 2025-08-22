@@ -20,7 +20,7 @@
       }
     ]
   },
-  "T": {
+  "B": {
     "width": 1024,
     "background": {
       "shape": "circle",
@@ -59,7 +59,7 @@
       }
     ]
   },
-  "V": {
+  "C": {
     "width": 1024,
     "background": null,
     "components": [
@@ -73,7 +73,7 @@
       }
     ]
   },
-  "W": {
+  "D": {
     "width": 1024,
     "background": null,
     "components": [
@@ -83,7 +83,7 @@
       }
     ]
   },
-  "X": {
+  "E": {
     "width": 1024,
     "background": {
       "shape": "circle",
@@ -104,7 +104,7 @@
       }
     ]
   },
-  "Y": {
+  "F": {
     "width": 1024,
     "background": null,
     "components": [
