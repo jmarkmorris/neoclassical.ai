@@ -184,6 +184,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     post.maxMemType42 = 0
     post.minMemType1 = 0
     post.maxMemType1 = 0
+    post.extraNames = []
     post.glyphOrder = glyph_order
 
     # fontTools will compute maxp and loca tables on save
