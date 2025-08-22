@@ -159,7 +159,8 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     post.glyphOrder = glyph_order
 
     # fontTools will compute maxp and loca tables on save
-    font['maxp'] = table__m_a_x_p()
+    font['maxp'] = maxp = table__m_a_x_p()
+    maxp.tableVersion = 0x00010000
     font['loca'] = table__l_o_c_a()
 
     font.save(output_path)
