@@ -20,38 +20,31 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 # UNITS_PER_EM_VALUES = [1000, 2048]
 UNITS_PER_EM_VALUES = [1024]
-CIRCLE_RADII = [100, 250, 400]  # In font units
+CIRCLE_RADII = [64, 128, 256, 512]  # In font units
 FONT_SIZES_PT = [12, 24, 48, 72]  # For HTML report
 
 # --- Helper Functions ---
 
-def circle_to_glyph(cx, cy, r, glyph_set):
-    """Creates a hollow circle glyph (a ring) using two contours."""
+def circle_to_glyph(cx, cy, r, glyph_set, num_segments=64):
+    """Creates a hollow circle glyph (a ring) using polygonal approximation."""
     pen = TTGlyphPen(glyph_set)
-    kappa = 0.552284749831
 
     # Outer circle (clockwise)
-    outer_r = r
-    kr_outer = outer_r * kappa
-    pen.moveTo((cx, cy + outer_r))
-    pen.curveTo((cx + kr_outer, cy + outer_r), (cx + outer_r, cy + kr_outer), (cx + outer_r, cy))
-    pen.curveTo((cx + outer_r, cy - kr_outer), (cx + kr_outer, cy - outer_r), (cx, cy - outer_r))
-    pen.curveTo((cx - kr_outer, cy - outer_r), (cx - outer_r, cy - kr_outer), (cx - outer_r, cy))
-    pen.curveTo((cx - outer_r, cy + kr_outer), (cx - kr_outer, cy + outer_r), (cx, cy + outer_r))
+    outer_points = arc_poly(cx, cy, r, r, 0, 2 * np.pi, num_segments=num_segments)
+    pen.moveTo(outer_points[0])
+    for point in outer_points[1:]:
+        pen.lineTo(point)
     pen.closePath()
 
     # Inner circle (counter-clockwise to create a hole)
-    # A thickness of 20% of the radius is used.
-    thickness = r * 0.2
+    thickness = 16  # Fixed thickness of 16 font units
     inner_r = r - thickness
     if inner_r > 0:
-        kr_inner = inner_r * kappa
-        pen.moveTo((cx, cy + inner_r))
-        # Reverse order of curveTo for opposite winding
-        pen.curveTo((cx - kr_inner, cy + inner_r), (cx - inner_r, cy + kr_inner), (cx - inner_r, cy))
-        pen.curveTo((cx - inner_r, cy - kr_inner), (cx - kr_inner, cy - inner_r), (cx, cy - inner_r))
-        pen.curveTo((cx + kr_inner, cy - inner_r), (cx + inner_r, cy - kr_inner), (cx + inner_r, cy))
-        pen.curveTo((cx + inner_r, cy + kr_inner), (cx + kr_inner, cy + inner_r), (cx, cy + inner_r))
+        # Generate points in reverse for opposite winding direction
+        inner_points = arc_poly(cx, cy, inner_r, inner_r, 2 * np.pi, 0, num_segments=num_segments)
+        pen.moveTo(inner_points[0])
+        for point in inner_points[1:]:
+            pen.lineTo(point)
         pen.closePath()
 
     return pen.glyph()
@@ -68,11 +61,98 @@ def polygon_to_glyph(points, glyph_set):
     pen.closePath()
     return pen.glyph()
 
+def square_to_glyph(x, y, width, height, thickness, glyph_set):
+    """Creates a hollow square glyph."""
+    pen = TTGlyphPen(glyph_set)
+
+    # Outer square (clockwise)
+    outer_points = [
+        (x, y),
+        (x + width, y),
+        (x + width, y + height),
+        (x, y + height)
+    ]
+    pen.moveTo(outer_points[0])
+    for point in outer_points[1:]:
+        pen.lineTo(point)
+    pen.closePath()
+
+    # Inner square (counter-clockwise)
+    inner_x = x + thickness
+    inner_y = y + thickness
+    inner_width = width - 2 * thickness
+    inner_height = height - 2 * thickness
+    if inner_width > 0 and inner_height > 0:
+        inner_points = [
+            (inner_x, inner_y),
+            (inner_x, inner_y + inner_height),
+            (inner_x + inner_width, inner_y + inner_height),
+            (inner_x + inner_width, inner_y)
+        ]
+        pen.moveTo(inner_points[0])
+        for point in inner_points[1:]:
+            pen.lineTo(point)
+        pen.closePath()
+
+    return pen.glyph()
+
+def concentric_circles_to_glyph(cx, cy, radii, thickness, glyph_set, num_segments=64):
+    """Creates a glyph with multiple concentric hollow circles."""
+    pen = TTGlyphPen(glyph_set)
+
+    for r in sorted(radii, reverse=True):
+        # Outer circle (clockwise)
+        outer_points = arc_poly(cx, cy, r, r, 0, 2 * np.pi, num_segments=num_segments)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]:
+            pen.lineTo(point)
+        pen.closePath()
+
+        # Inner circle (counter-clockwise)
+        inner_r = r - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(cx, cy, inner_r, inner_r, 2 * np.pi, 0, num_segments=num_segments)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]:
+                pen.lineTo(point)
+            pen.closePath()
+    return pen.glyph()
+
+def hexagon_circles_to_glyph(cx, cy, hex_radius, circle_radius, thickness, glyph_set, num_segments=32):
+    """Creates a glyph with six small circles in a hexagon layout."""
+    pen = TTGlyphPen(glyph_set)
+
+    for i in range(6):
+        angle = i * np.pi / 3
+        ccx = cx + hex_radius * np.cos(angle)
+        ccy = cy + hex_radius * np.sin(angle)
+
+        # Outer circle
+        outer_points = arc_poly(ccx, ccy, circle_radius, circle_radius, 0, 2 * np.pi, num_segments=num_segments)
+        pen.moveTo(outer_points[0])
+        for point in outer_points[1:]:
+            pen.lineTo(point)
+        pen.closePath()
+
+        # Inner circle
+        inner_r = circle_radius - thickness
+        if inner_r > 0:
+            inner_points = arc_poly(ccx, ccy, inner_r, inner_r, 2 * np.pi, 0, num_segments=num_segments)
+            pen.moveTo(inner_points[0])
+            for point in inner_points[1:]:
+                pen.lineTo(point)
+            pen.closePath()
+    return pen.glyph()
+
 def arc_poly(cx, cy, rx, ry, start_angle, end_angle, num_segments=16):
     """Generates points for a polygonal approximation of an elliptical arc."""
     theta = np.linspace(start_angle, end_angle, num_segments + 1)
     points = [(cx + rx * np.cos(angle), cy + ry * np.sin(angle)) for angle in theta]
     return points
+
+def shift_points(points, y_shift):
+    """Shifts the y-coordinate of all points in a list."""
+    return [(x, y + y_shift) for x, y in points]
 
 # --- Core Font Generation ---
 
@@ -96,6 +176,12 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
             glyph = circle_to_glyph(data['cx'], data['cy'], data['radius'], glyf_table.glyphs)
         elif data.get('type') == 'polygon':
             glyph = polygon_to_glyph(data['points'], glyf_table.glyphs)
+        elif data.get('type') == 'square':
+            glyph = square_to_glyph(data['x'], data['y'], data['square_width'], data['square_height'], data['thickness'], glyf_table.glyphs)
+        elif data.get('type') == 'concentric_circles':
+            glyph = concentric_circles_to_glyph(data['cx'], data['cy'], data['radii'], data['thickness'], glyf_table.glyphs)
+        elif data.get('type') == 'hexagon_circles':
+            glyph = hexagon_circles_to_glyph(data['cx'], data['cy'], data['hex_radius'], data['circle_radius'], data['thickness'], glyf_table.glyphs)
         else:
             continue  # Skip unknown glyph types
 
@@ -151,8 +237,9 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 
     font['hhea'] = hhea = table__h_h_e_a()
     hhea.tableVersion = 0x00010000
-    hhea.ascent = units_per_em
-    hhea.descent = 0
+    # Use an 80/20 split for ascent/descent for better vertical alignment
+    hhea.ascent = int(units_per_em * 0.8)
+    hhea.descent = -(units_per_em - hhea.ascent)
     hhea.lineGap = 0
     hhea.advanceWidthMax = 0  # Will be recalculated
     hhea.minLeftSideBearing = 0  # Will be recalculated
@@ -241,7 +328,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "".join([chr(ord('A') + i) for i in range(len(CIRCLE_RADII))]) + "D|<>()"
+    sample_text = "".join([chr(ord('A') + i) for i in range(len(CIRCLE_RADII))]) + "EFGHI|<>()"
 
     style_rules = ""
     for font_file in font_files:
@@ -288,12 +375,19 @@ def main():
     for em_size in UNITS_PER_EM_VALUES:
         font_name = f"CircleTest-EM{em_size}"
         glyphs = {}
+
+        # Adjust vertical alignment by setting a baseline and shifting glyphs
+        ascent = int(em_size * 0.8)
+        descent = -(em_size - ascent)
+        center_y = (ascent + descent) / 2.0
+        y_shift = center_y - (em_size / 2.0)
+
         for i, radius in enumerate(CIRCLE_RADII):
             char = chr(ord('A') + i)
             glyphs[char] = {
                 'type': 'circle',
                 'cx': em_size / 2,
-                'cy': em_size / 2,
+                'cy': center_y,
                 'radius': radius,
                 'width': em_size
             }
@@ -301,7 +395,7 @@ def main():
         # --- Define additional glyphs ---
         thickness = em_size * 0.1
 
-        # Glyph 'D' (thick diagonal line)
+        # Glyph 'E' (thick diagonal line, formerly 'D')
         margin = em_size * 0.1
         offset = thickness / 2
         p1_x, p1_y = margin, margin
@@ -312,7 +406,52 @@ def main():
             (p2_x + offset, p2_y - offset),
             (p1_x + offset, p1_y - offset),
         ]
-        glyphs['D'] = {'type': 'polygon', 'points': points_d, 'width': em_size}
+        glyphs['E'] = {'type': 'polygon', 'points': shift_points(points_d, y_shift), 'width': em_size}
+
+        # Glyph 'F' (Concentric circles)
+        glyphs['F'] = {
+            'type': 'concentric_circles',
+            'cx': em_size / 2,
+            'cy': center_y,
+            'radii': CIRCLE_RADII,
+            'thickness': 16,
+            'width': em_size
+        }
+
+        # Glyph 'G' (Hexagon of circles)
+        glyphs['G'] = {
+            'type': 'hexagon_circles',
+            'cx': em_size / 2,
+            'cy': center_y,
+            'hex_radius': 300,
+            'circle_radius': 80,
+            'thickness': 16,
+            'width': em_size
+        }
+
+        # Glyph 'H' (Hollow Square)
+        square_margin = 50
+        square_thickness = 16
+        glyphs['H'] = {
+            'type': 'square',
+            'x': square_margin,
+            'y': square_margin + y_shift,
+            'square_width': em_size - 2 * square_margin,
+            'square_height': em_size - 2 * square_margin,
+            'thickness': square_thickness,
+            'width': em_size
+        }
+
+        # Glyph 'I' (Hexagon of smaller circles near edge)
+        glyphs['I'] = {
+            'type': 'hexagon_circles',
+            'cx': em_size / 2,
+            'cy': center_y,
+            'hex_radius': 450,
+            'circle_radius': 50,
+            'thickness': 16,
+            'width': em_size
+        }
 
         # Glyph '|' (vertical bar)
         bar_width = thickness
@@ -325,7 +464,7 @@ def main():
             (x_center + bar_width / 2, y_bottom + bar_height),
             (x_center - bar_width / 2, y_bottom + bar_height),
         ]
-        glyphs['|'] = {'type': 'polygon', 'points': points_bar, 'width': int(em_size * 0.3)}
+        glyphs['|'] = {'type': 'polygon', 'points': shift_points(points_bar, y_shift), 'width': em_size}
 
         # Glyph '<'
         x1, y1 = em_size * 0.7, em_size * 0.9
@@ -335,31 +474,31 @@ def main():
         x5, y5 = em_size * 0.7, em_size * 0.1
         x6, y6 = em_size * 0.3, em_size * 0.5
         points_lt = [(x1,y1), (x2,y2), (x3,y3), (x4,y4), (x5,y5), (x6,y6)]
-        glyphs['<'] = {'type': 'polygon', 'points': points_lt, 'width': int(em_size * 0.8)}
+        glyphs['<'] = {'type': 'polygon', 'points': shift_points(points_lt, y_shift), 'width': em_size}
 
         # Glyph '>'
         points_gt = [(em_size - x, y) for x, y in points_lt]
-        glyphs['>'] = {'type': 'polygon', 'points': points_gt, 'width': int(em_size * 0.8)}
+        glyphs['>'] = {'type': 'polygon', 'points': shift_points(points_gt, y_shift), 'width': em_size}
 
         # Glyphs for '(' and ')'
         paren_thickness = em_size * 0.08
         paren_ry = em_size * 0.4
         paren_rx = em_size * 0.1
-        paren_cy = em_size / 2
+        paren_cy = center_y
 
         # Glyph ')'
         paren_r_cx = em_size * 0.4
         outer_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx, paren_ry, -np.pi / 2, np.pi / 2)
         inner_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx - paren_thickness, paren_ry, np.pi / 2, -np.pi / 2)
         points_r_paren = outer_arc_r + inner_arc_r
-        glyphs[')'] = {'type': 'polygon', 'points': points_r_paren, 'width': int(em_size * 0.4)}
+        glyphs[')'] = {'type': 'polygon', 'points': points_r_paren, 'width': em_size}
 
         # Glyph '('
         paren_l_cx = em_size * 0.6
         outer_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx, paren_ry, np.pi / 2, 3 * np.pi / 2)
         inner_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx - paren_thickness, paren_ry, 3 * np.pi / 2, np.pi / 2)
         points_l_paren = outer_arc_l + inner_arc_l
-        glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': int(em_size * 0.4)}
+        glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': em_size}
 
         output_file = os.path.join(OUTPUT_DIR, f"{font_name}.ttf")
         create_font(font_name, em_size, glyphs, output_file)
