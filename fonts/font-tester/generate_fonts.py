@@ -22,9 +22,9 @@ OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 UNITS_PER_EM_VALUES = [1024]
 CIRCLE_RADII = [64, 128, 256]  # In font units
 FONT_SIZES_PT = [12, 18, 24, 36, 48, 72]  # For HTML report
-HEX_RADIUS = 352
+HEX_RADIUS = 368
 CIRCLE_IN_HEX_RADIUS = 80
-GLYPH_THICKNESS = 20
+GLYPH_THICKNESS = 32
 
 # --- Helper Functions ---
 
