@@ -90,8 +90,18 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 
     for char, data in glyphs_data.items():
         glyph = svg_path_to_glyph(data['path'], glyf_table.glyphs)
+
+        # Manually set glyph bounds
+        center_x = units_per_em / 2
+        center_y = units_per_em / 2
+        radius = data['radius']
+        glyph.xMin = int(center_x - radius)
+        glyph.yMin = int(center_y - radius)
+        glyph.xMax = int(center_x + radius)
+        glyph.yMax = int(center_y + radius)
+
         glyf_table.glyphs[char] = glyph
-        lsb = int((data['width'] / 2) - data['radius'])
+        lsb = glyph.xMin
         hmtx_table.metrics[char] = (data['width'], lsb)
 
     # --- Cmap Table ---
@@ -115,7 +125,23 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     head.unitsPerEm = units_per_em
     head.created = 0
     head.modified = 0
-    head.xMin, head.yMin, head.xMax, head.yMax = (0, 0, 0, 0)
+
+    # Calculate font bounding box from all glyphs
+    all_glyphs = [glyf_table.glyphs[name] for name in glyphs_data.keys()]
+
+    xMins = [g.xMin for g in all_glyphs if hasattr(g, 'xMin')]
+    yMins = [g.yMin for g in all_glyphs if hasattr(g, 'yMin')]
+    xMaxs = [g.xMax for g in all_glyphs if hasattr(g, 'xMax')]
+    yMaxs = [g.yMax for g in all_glyphs if hasattr(g, 'yMax')]
+
+    if xMins:
+        head.xMin = min(xMins)
+        head.yMin = min(yMins)
+        head.xMax = max(xMaxs)
+        head.yMax = max(yMaxs)
+    else:
+        head.xMin, head.yMin, head.xMax, head.yMax = (0, 0, 0, 0)
+
     head.macStyle = 0
     head.lowestRecPPEM = 0
     head.fontDirectionHint = 2
