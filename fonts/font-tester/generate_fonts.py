@@ -122,9 +122,23 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     head.glyphDataFormat = 0
 
     font['hhea'] = hhea = table__h_h_e_a()
+    hhea.tableVersion = 0x00010000
     hhea.ascent = int(units_per_em * 0.85)
     hhea.descent = -int(units_per_em * 0.15)
     hhea.lineGap = 0
+    hhea.advanceWidthMax = 0  # Will be recalculated
+    hhea.minLeftSideBearing = 0  # Will be recalculated
+    hhea.minRightSideBearing = 0  # Will be recalculated
+    hhea.xMaxExtent = 0  # Will be recalculated
+    hhea.caretSlopeRise = 1
+    hhea.caretSlopeRun = 0
+    hhea.caretOffset = 0
+    hhea.reserved0 = 0
+    hhea.reserved1 = 0
+    hhea.reserved2 = 0
+    hhea.reserved3 = 0
+    hhea.metricDataFormat = 0
+    hhea.numberOfHMetrics = 0  # Will be recalculated
 
     font['OS/2'] = os2 = table_O_S_2f_2()
     os2.version = 4
