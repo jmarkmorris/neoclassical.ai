@@ -476,7 +476,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "ABCDEF|<>()"
+    sample_text = "ABBBCDEF|<>()"
 
     style_rules = ""
     for font_file in font_files:
@@ -638,18 +638,18 @@ def main():
         # Glyphs for '(' and ')'
         paren_thickness = THIN_GLYPH_THICKNESS
         paren_ry = em_size * 0.45
-        paren_rx = em_size * 0.05
+        paren_rx = em_size * 0.1  # Increased for a more 'bowed' appearance
         paren_cy = center_y
 
         # Glyph ')'
-        paren_r_cx = em_size * 0.4
+        paren_r_cx = em_size * 0.3  # Adjusted for new width
         outer_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx, paren_ry, -np.pi / 2, np.pi / 2)
         inner_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx - paren_thickness, paren_ry, np.pi / 2, -np.pi / 2)
         points_r_paren = outer_arc_r + inner_arc_r
         glyphs[')'] = {'type': 'polygon', 'points': points_r_paren, 'width': em_size}
 
         # Glyph '('
-        paren_l_cx = em_size * 0.6
+        paren_l_cx = em_size * 0.7  # Adjusted for new width
         outer_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx, paren_ry, np.pi / 2, 3 * np.pi / 2)
         inner_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx - paren_thickness, paren_ry, 3 * np.pi / 2, np.pi / 2)
         points_l_paren = outer_arc_l + inner_arc_l
