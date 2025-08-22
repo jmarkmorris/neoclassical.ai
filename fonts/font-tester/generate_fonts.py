@@ -8,7 +8,7 @@ from fontTools.ttLib.tables._g_l_y_f import Glyph, table__g_l_y_f
 from fontTools.ttLib.tables._h_m_t_x import table__h_m_t_x
 from fontTools.ttLib.tables._h_e_a_d import table__h_e_a_d
 from fontTools.ttLib.tables._h_h_e_a import table__h_h_e_a
-from fontTools.ttLib.tables.O_S_2f_2 import table_O_S_2f_2
+from fontTools.ttLib.tables.O_S_2f_2 import table_O_S_2f_2, Panose
 from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e
 from fontTools.ttLib.tables._p_o_s_t import table__p_o_s_t
 from fontTools.ttLib.tables._m_a_x_p import table__m_a_x_p
@@ -150,7 +150,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     os2.ySuperscriptXSize, os2.ySuperscriptYSize, os2.ySuperscriptXOffset, os2.ySuperscriptYOffset = (650, 700, 0, 480)
     os2.yStrikeoutSize, os2.yStrikeoutPosition = (50, 258)
     os2.sFamilyClass = 0
-    os2.panose = b'\x00' * 10
+    os2.panose = Panose()
     os2.ulUnicodeRange1, os2.ulCodePageRange1 = (1, 1)
     os2.achVendID = 'TEST'
     os2.fsSelection = 1 << 6
