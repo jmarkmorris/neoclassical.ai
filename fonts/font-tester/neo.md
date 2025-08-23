@@ -1,6 +1,9 @@
----
-css: style.css
----
+<style>
+@font-face {
+  font-family: 'neoclassical';
+  src: url('output/neoclassical.ttf') format('truetype');
+}
+</style>
 
 # Neoclassical Font Test
 
