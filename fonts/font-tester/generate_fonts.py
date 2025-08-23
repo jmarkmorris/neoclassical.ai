@@ -305,7 +305,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 # --- Visual Report Generation ---
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
-    sample_text = "DUEe|<>(dud)e(udu)"
+    sample_text = "DUEe<|>(dud)e(udu)"
 
     style_rules = ""
     for font_file in font_files:
