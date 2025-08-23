@@ -19,8 +19,20 @@ up and anti-up = <span style="font-family: 'neoclassical'; font-size: 24pt;">u U
 
 electron and anti-electron (positron) = <span style="font-family: 'neoclassical'; font-size: 24pt;">e E</span>
 
-Hydrogen = <span style="font-family: 'neoclassical'; font-size: 24pt;">(dud)e(udu)</span>
+Deuterium = <span style="font-family: 'neoclassical'; font-size: 24pt;">(dud)e(udu)</span>
 
 Spacetime = <span style="font-family: 'neoclassical'; font-size: 24pt;">&lt;hH|hH&gt;</span>
+
+
+Hydrogen in spacetime<br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhH</span><span style="font-family: 'neoclassical'; font-size: 24pt;">udu</span><span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHh</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
+
+
 
 
