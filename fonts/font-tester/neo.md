@@ -5,13 +5,11 @@
 }
 </style>
 
-# Neoclassical Font Test
-
-This text will be styled using the custom font:
+# Guide to Symbols in the Neoclassical Font
 
 Noether core and anti-Noether core = <span style="font-family: 'neoclassical'; font-size: 24pt;">h H</span>
 
-Personality charges = <span style="font-family: 'neoclassical'; font-size: 24pt;">P p</span>
+personality charges = <span style="font-family: 'neoclassical'; font-size: 24pt;">P p</span>
 
 down and anti-down = <span style="font-family: 'neoclassical'; font-size: 24pt;">d D</span>
 
@@ -19,16 +17,17 @@ up and anti-up = <span style="font-family: 'neoclassical'; font-size: 24pt;">u U
 
 electron and anti-electron (positron) = <span style="font-family: 'neoclassical'; font-size: 24pt;">e E</span>
 
-Deuterium = <span style="font-family: 'neoclassical'; font-size: 24pt;">(dud)e(udu)</span>
+deuterium = <span style="font-family: 'neoclassical'; font-size: 24pt;">(dud)e(udu)</span>
 
-Spacetime = <span style="font-family: 'neoclassical'; font-size: 24pt;">&lt;hH|hH&gt;</span>
+spacetime = <span style="font-family: 'neoclassical'; font-size: 24pt;">&lt;hH|hH&gt;</span>
 
 
-Hydrogen in spacetime<br>
+hydrogen in spacetime<br>
 <span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
 <span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
 <span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
-<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhH</span><span style="font-family: 'neoclassical'; font-size: 24pt;">udu</span><span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHh</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhH</span><span style="font-family: 'neoclassical'; font-size: 24pt;">uu</span><span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHh</span><br>
+<span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHh</span><span style="font-family: 'neoclassical'; font-size: 24pt;">d</span><span style="font-family: 'neoclassical'; font-size: 16pt;">HhHhHhHhH</span><span style="font-family: 'neoclassical'; font-size: 24pt;">e</span> - electron<br>
 <span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
 <span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
 <span style="font-family: 'neoclassical'; font-size: 16pt;">hHhHhHhHhHhHhHhHhHhHhHhH</span><br>
