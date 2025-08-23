@@ -373,12 +373,13 @@ def main():
         descent = -(em_size - ascent)
         center_y = (ascent + descent) / 2.0
         y_shift = center_y - (em_size / 2.0)
+        narrow_width = int(em_size / 4)
 
 
         # --- Define symbol glyphs (still using polygon method) ---
         bar_thickness = THIN_GLYPH_THICKNESS
         bar_height = em_size * 0.7
-        x_center = em_size / 2
+        x_center = narrow_width / 2
         y_bottom = (em_size - bar_height) / 2
         points_bar = [
             (x_center - bar_thickness / 2, y_bottom),
@@ -386,42 +387,46 @@ def main():
             (x_center + bar_thickness / 2, y_bottom + bar_height),
             (x_center - bar_thickness / 2, y_bottom + bar_height),
         ]
-        glyphs['|'] = {'type': 'polygon', 'points': shift_points(points_bar, y_shift), 'width': em_size}
+        glyphs['|'] = {'type': 'polygon', 'points': shift_points(points_bar, y_shift), 'width': narrow_width}
 
         # Glyph '<'
         chevron_thickness = THIN_GLYPH_THICKNESS
-        x1, y1 = em_size * 0.7, em_size * 0.9
-        x2, y2 = em_size * 0.7, em_size * 0.9 - chevron_thickness
-        x3, y3 = em_size * 0.3 + chevron_thickness, em_size * 0.5
-        x4, y4 = em_size * 0.7, em_size * 0.1 + chevron_thickness
-        x5, y5 = em_size * 0.7, em_size * 0.1
-        x6, y6 = em_size * 0.3, em_size * 0.5
+        side_bearing_x = narrow_width * 0.2
+        x_left_point = side_bearing_x
+        x_right_base = narrow_width - side_bearing_x
+        x1, y1 = x_right_base, em_size * 0.9
+        x2, y2 = x_right_base, em_size * 0.9 - chevron_thickness
+        x3, y3 = x_left_point + chevron_thickness, em_size * 0.5
+        x4, y4 = x_right_base, em_size * 0.1 + chevron_thickness
+        x5, y5 = x_right_base, em_size * 0.1
+        x6, y6 = x_left_point, em_size * 0.5
         points_lt = [(x1,y1), (x2,y2), (x3,y3), (x4,y4), (x5,y5), (x6,y6)]
-        glyphs['<'] = {'type': 'polygon', 'points': shift_points(points_lt, y_shift), 'width': em_size}
+        glyphs['<'] = {'type': 'polygon', 'points': shift_points(points_lt, y_shift), 'width': narrow_width}
 
         # Glyph '>'
-        points_gt = [(em_size - x, y) for x, y in points_lt]
-        glyphs['>'] = {'type': 'polygon', 'points': shift_points(points_gt, y_shift), 'width': em_size}
+        points_gt = [(narrow_width - x, y) for x, y in points_lt]
+        glyphs['>'] = {'type': 'polygon', 'points': shift_points(points_gt, y_shift), 'width': narrow_width}
 
         # Glyphs for '(' and ')'
         paren_thickness = THIN_GLYPH_THICKNESS
         paren_ry = em_size * 0.45
-        paren_rx = em_size * 0.1  # Increased for a more 'bowed' appearance
+        paren_rx = em_size * 0.1  # Keep this relative to em_size for a 'bowed' appearance
         paren_cy = center_y
+        side_bearing_x = narrow_width * 0.2 # Using a side bearing to position parentheses
 
-        # Glyph ')'
-        paren_r_cx = em_size * 0.3  # Adjusted for new width
-        outer_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx, paren_ry, -np.pi / 2, np.pi / 2)
-        inner_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx - paren_thickness, paren_ry, np.pi / 2, -np.pi / 2)
-        points_r_paren = outer_arc_r + inner_arc_r
-        glyphs[')'] = {'type': 'polygon', 'points': points_r_paren, 'width': em_size}
-
-        # Glyph '('
-        paren_l_cx = em_size * 0.7  # Adjusted for new width
+        # Glyph '(' - left parenthesis
+        paren_l_cx = narrow_width - side_bearing_x
         outer_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx, paren_ry, np.pi / 2, 3 * np.pi / 2)
         inner_arc_l = arc_poly(paren_l_cx, paren_cy, paren_rx - paren_thickness, paren_ry, 3 * np.pi / 2, np.pi / 2)
         points_l_paren = outer_arc_l + inner_arc_l
-        glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': em_size}
+        glyphs['('] = {'type': 'polygon', 'points': points_l_paren, 'width': narrow_width}
+
+        # Glyph ')' - right parenthesis
+        paren_r_cx = side_bearing_x
+        outer_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx, paren_ry, -np.pi / 2, np.pi / 2)
+        inner_arc_r = arc_poly(paren_r_cx, paren_cy, paren_rx - paren_thickness, paren_ry, np.pi / 2, -np.pi / 2)
+        points_r_paren = outer_arc_r + inner_arc_r
+        glyphs[')'] = {'type': 'polygon', 'points': points_r_paren, 'width': narrow_width}
 
         # Add JSON-defined glyphs
         for char, definition in json_definitions.items():
