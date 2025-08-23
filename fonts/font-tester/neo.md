@@ -11,7 +11,7 @@ This text will be styled using the custom font:
 
 Noether core and anti-Noether core = <span style="font-family: 'neoclassical'; font-size: 24pt;">h H</span>
 
-Personality charges = <span style="font-family: 'neoclassical'; font-size: 24pt;">p P</span>
+Personality charges = <span style="font-family: 'neoclassical'; font-size: 24pt;">P p</span>
 
 down and anti-down = <span style="font-family: 'neoclassical'; font-size: 24pt;">d D</span>
 
