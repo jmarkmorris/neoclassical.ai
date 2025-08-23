@@ -19,7 +19,7 @@ from fontTools.ttLib.tables._l_o_c_a import table__l_o_c_a
 
 # --- Configuration ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
+OUTPUT_DIR = SCRIPT_DIR
 # UNITS_PER_EM_VALUES = [1000, 2048]
 UNITS_PER_EM_VALUES = [1024]
 CIRCLE_RADII = [64, 128, 256]  # In font units
@@ -358,9 +358,6 @@ def generate_html_report(font_files, output_dir):
 # --- Main Execution ---
 def main():
     """Main script to generate fonts and the report."""
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
-
     # Load glyph definitions from JSON
     json_path = os.path.join(SCRIPT_DIR, 'glyphs.json')
     with open(json_path, 'r') as f:

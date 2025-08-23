@@ -1,7 +1,7 @@
 <style>
 @font-face {
   font-family: 'neoclassical';
-  src: url('output/neoclassical.ttf') format('truetype');
+  src: url('neoclassical.ttf') format('truetype');
 }
 </style>
 
