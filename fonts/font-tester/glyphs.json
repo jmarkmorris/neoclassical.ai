@@ -125,8 +125,7 @@
     "components": [
       {
         "type": "hexagon_circles",
-        "fill_pattern": "010000",
-        "rotation": 30
+        "fill_pattern": "011000"
       }
     ]
   },

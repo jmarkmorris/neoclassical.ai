@@ -43,7 +43,7 @@ def polygon_to_glyph(points, glyph_set):
     pen.closePath()
     return pen.glyph()
 
-def build_glyph_from_definition(definition, glyph_set, em_height, center_y, glyph_width):
+def build_glyph_from_definition(definition, glyph_set, em_size, center_y):
     """Builds a glyph by assembling a list of declarative components from a definition."""
     pen = TTGlyphPen(glyph_set)
     background = definition.get('background')
@@ -53,16 +53,16 @@ def build_glyph_from_definition(definition, glyph_set, em_height, center_y, glyp
     # --- 1. Draw Background (if any) ---
     if is_inverted:
         if background['shape'] == 'square':
-            square_dim = em_height - 2 * 0 # square_margin is 0
-            x = (glyph_width - square_dim) / 2
-            y = (em_height - square_dim) / 2 + (center_y - em_height / 2)
+            square_dim = em_size - 2 * 0 # square_margin is 0
+            x = (em_size - square_dim) / 2
+            y = (em_size - square_dim) / 2 + (center_y - em_size / 2)
             # Draw CW for solid fill
             points = [(x, y), (x, y + square_dim), (x + square_dim, y + square_dim), (x + square_dim, y)]
             pen.moveTo(points[0]); [pen.lineTo(p) for p in points[1:]]; pen.closePath()
         elif background['shape'] == 'circle':
             radius = background['radius']
             # Draw CW for solid fill
-            points = arc_poly(glyph_width / 2, center_y, radius, radius, 2 * np.pi, 0, num_segments=64)
+            points = arc_poly(em_size / 2, center_y, radius, radius, 2 * np.pi, 0, num_segments=64)
             pen.moveTo(points[0]); [pen.lineTo(p) for p in points[1:]]; pen.closePath()
 
     # --- 2. Draw Components ---
@@ -71,9 +71,9 @@ def build_glyph_from_definition(definition, glyph_set, em_height, center_y, glyp
 
         if comp_type == 'square':
             thickness = GLYPH_THICKNESS
-            square_dim = em_height - 2 * 0
-            x = (glyph_width - square_dim) / 2
-            y = (em_height - square_dim) / 2 + (center_y - em_height / 2)
+            square_dim = em_size - 2 * 0
+            x = (em_size - square_dim) / 2
+            y = (em_size - square_dim) / 2 + (center_y - em_size / 2)
             # Outer contour: CW for draw, CCW for cutout
             outer_points = [(x, y), (x, y + square_dim), (x + square_dim, y + square_dim), (x + square_dim, y)] # CW
             if is_inverted: outer_points.reverse() # Becomes CCW
@@ -90,12 +90,12 @@ def build_glyph_from_definition(definition, glyph_set, em_height, center_y, glyp
             thickness = GLYPH_THICKNESS
             for r in sorted(radii, reverse=True):
                 # Outer contour: CW for draw, CCW for cutout
-                outer_points = arc_poly(glyph_width / 2, center_y, r, r, 2 * np.pi if not is_inverted else 0, 0 if not is_inverted else 2 * np.pi, num_segments=64)
+                outer_points = arc_poly(em_size / 2, center_y, r, r, 2 * np.pi if not is_inverted else 0, 0 if not is_inverted else 2 * np.pi, num_segments=64)
                 pen.moveTo(outer_points[0]); [pen.lineTo(p) for p in outer_points[1:]]; pen.closePath()
                 # Inner contour: CCW for draw, CW for cutout
                 inner_r = r - thickness
                 if inner_r > 0:
-                    inner_points = arc_poly(glyph_width / 2, center_y, inner_r, inner_r, 0 if not is_inverted else 2 * np.pi, 2 * np.pi if not is_inverted else 0, num_segments=64)
+                    inner_points = arc_poly(em_size / 2, center_y, inner_r, inner_r, 0 if not is_inverted else 2 * np.pi, 2 * np.pi if not is_inverted else 0, num_segments=64)
                     pen.moveTo(inner_points[0]); [pen.lineTo(p) for p in inner_points[1:]]; pen.closePath()
 
         elif comp_type == 'hexagon_circles':
@@ -104,7 +104,7 @@ def build_glyph_from_definition(definition, glyph_set, em_height, center_y, glyp
             thickness = GLYPH_THICKNESS
             for i in range(6):
                 angle = i * np.pi / 3 + rotation_rad
-                ccx = glyph_width / 2 + HEX_RADIUS * np.cos(angle)
+                ccx = em_size / 2 + HEX_RADIUS * np.cos(angle)
                 ccy = center_y + HEX_RADIUS * np.sin(angle)
                 
                 is_filled = (fill_pattern[i] == '0')
@@ -152,13 +152,12 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
     glyf_table.glyphs['.notdef'] = Glyph()
     hmtx_table.metrics['.notdef'] = (int(units_per_em / 2), 0)
 
-    ascent = int(units_per_em * 0.8)
-    descent = -(units_per_em - ascent)
-    center_y = (ascent + descent) / 2.0
-
     for char, data in glyphs_data.items():
         if data.get('type') == 'json_defined':
-            glyph = build_glyph_from_definition(data, glyf_table.glyphs, units_per_em, center_y, data['width'])
+            ascent = int(data['width'] * 0.8)
+            descent = -(data['width'] - ascent)
+            center_y = (ascent + descent) / 2.0
+            glyph = build_glyph_from_definition(data, glyf_table.glyphs, data['width'], center_y)
         elif data.get('type') == 'polygon':
             glyph = polygon_to_glyph(data['points'], glyf_table.glyphs)
         else:
@@ -327,7 +326,7 @@ def generate_html_report(font_files, output_dir):
         <h2>Font: <span class="font-spec">{font_name}</span></h2>
 """
         for size in FONT_SIZES_PT:
-            body_content += f"""        <p style="font-family: '{font_name}'; font-size: {size}pt;">{size}pt: {escaped_sample_text}</p>
+            body_content += f"""        <p style="font-family: '{font_name}'; font-size: {size}pt;">{size}: {escaped_sample_text}</p>
 """
         body_content += "    </div>"
 
