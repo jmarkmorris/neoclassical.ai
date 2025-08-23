@@ -1,6 +1,7 @@
 # generate_fonts.py
 import os
 import json
+import html
 import numpy as np
 from fontTools import ttLib
 from fontTools.ttLib import TTFont
@@ -306,6 +307,7 @@ def create_font(font_name, units_per_em, glyphs_data, output_path):
 def generate_html_report(font_files, output_dir):
     """Generates an HTML file to display the fonts."""
     sample_text = "DUEe<|>(dud)e(udu)"
+    escaped_sample_text = html.escape(sample_text)
 
     style_rules = ""
     for font_file in font_files:
@@ -324,7 +326,7 @@ def generate_html_report(font_files, output_dir):
         <h2>Font: <span class="font-spec">{font_name}</span></h2>
 """
         for size in FONT_SIZES_PT:
-            body_content += f"""        <p style="font-family: '{font_name}'; font-size: {size}pt;">{size}pt: {sample_text}</p>
+            body_content += f"""        <p style="font-family: '{font_name}'; font-size: {size}pt;">{size}pt: {escaped_sample_text}</p>
 """
         body_content += "    </div>"
 
@@ -365,7 +367,7 @@ def main():
 
     generated_fonts = []
     for em_size in UNITS_PER_EM_VALUES:
-        font_name = f"CircleTest-EM{em_size}"
+        font_name = "neoclassical"
         glyphs = {}
 
         # Adjust vertical alignment by setting a baseline and shifting glyphs
