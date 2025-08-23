@@ -8,7 +8,19 @@
 # Neoclassical Font Test
 
 This text will be styled using the custom font:
-<p style="font-family: 'neoclassical'; font-size: 24pt;">DUEe &lt;|&gt; (dud)e(udu)</p>
 
-Make pro and anti Noether cores. Then make a spacetime cluster.
-show spacetime clusters in a tiny font with protons and neutrons and electrons in a larger font.
+Noether core and anti-Noether core = <span style="font-family: 'neoclassical'; font-size: 24pt;">h H</span>
+
+Personality charges = <span style="font-family: 'neoclassical'; font-size: 24pt;">p P</span>
+
+down and anti-down = <span style="font-family: 'neoclassical'; font-size: 24pt;">d D</span>
+
+up and anti-up = <span style="font-family: 'neoclassical'; font-size: 24pt;">u U</span>
+
+electron and anti-electron (positron) = <span style="font-family: 'neoclassical'; font-size: 24pt;">e E</span>
+
+Hydrogen = <span style="font-family: 'neoclassical'; font-size: 24pt;">(dud)e(udu)</span>
+
+Spacetime = <span style="font-family: 'neoclassical'; font-size: 24pt;">&lt;hH|hH&gt;</span>
+
+
