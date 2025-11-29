@@ -336,6 +336,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     hits_at_stop: List[Hit] = []
     dt = 1.0 / cfg.fps
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
+    pending_speed_mult = speed_mult
+    pending_recompute = False
     # Enforce positive field speed
     field_v = max(cfg.field_speed, 1e-6)
 
@@ -404,12 +406,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         surf = font.render(text, True, color)
         screen.blit(surf, (x, y))
 
-    def show_precompute_progress(deg: float, current: int, total: int) -> None:
+    def show_precompute_progress(deg: float, current: int, total: int, surface: "pygame.Surface" = None) -> None:
         pct = (current / max(total, 1)) * 100
         bar_len = 30
         filled = int(bar_len * pct / 100)
         bar = "#" * filled + "-" * (bar_len - filled)
         print(f"\rPrecomputing [{bar}] {pct:5.1f}% ({deg:5.0f}°)", end="", flush=True)
+        if surface is not None:
+            screen.blit(surface, (panel_w, 0))
+            pygame.display.flip()
 
     def precompute_worker(args: Tuple[int, float, float, float, float, bool]) -> Tuple[int, Dict[str, Vec2], List[Hit], np.ndarray]:
         idx, t, path_t, emission_retention_local, field_v_local, allow_self = args
@@ -515,13 +520,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             results = [None] * n_frames
             chunksize = max(1, n_frames // max(1, (os.cpu_count() or 4)))
             with ProcessPoolExecutor() as pool:
+                last_preview_deg = -1
                 for idx, positions, hits, rgb in pool.map(precompute_worker_static, tasks, chunksize=chunksize):
-                    if idx % max(1, n_frames // 90) == 0 or idx == n_frames - 1:
-                        deg = (tasks[idx][2] * 180.0 / math.pi) % 360.0
-                        show_precompute_progress(deg, idx + 1, n_frames)
                     surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
                     surf = pygame.transform.smoothscale(surf, (canvas_w, height)).convert()
                     results[idx] = RenderFrame(positions=positions, hits=hits, field_surface=surf)
+                    deg = (tasks[idx][2] * 180.0 / math.pi) % 360.0
+                    # Show preview every 90 degrees
+                    if abs((deg % 90)) < 1e-3 or idx == n_frames - 1:
+                        last_preview_deg = deg
+                        show_precompute_progress(deg, idx + 1, n_frames, surface=surf)
+                if last_preview_deg < 0:
+                    show_precompute_progress(360.0, n_frames, n_frames, surface=results[-1].field_surface)
             print()
             return results
 
@@ -583,6 +593,29 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 show_precompute_progress(deg)
         return local_frames
 
+    # Render initial state before precompute
+    initial_positions = {
+        "positrino": positrino.position(0.0),
+        "electrino": electrino.position(0.0),
+    }
+    screen.fill((255, 255, 255))
+    screen.blit(compute_field_surface(0.0, [], initial_positions), (panel_w, 0))
+    if path_name == "unit_circle":
+        center = world_to_screen((0.0, 0.0))
+        scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
+        pygame.draw.circle(screen, GRAY, center, int(scale), 1)
+    # Architrinos with white edge
+    pos_posi_screen = world_to_screen(initial_positions["positrino"])
+    pos_elec_screen = world_to_screen(initial_positions["electrino"])
+    pygame.draw.circle(screen, PURE_RED, pos_posi_screen, 6)
+    pygame.draw.circle(screen, PURE_WHITE, pos_posi_screen, 7, 1)
+    pygame.draw.circle(screen, PURE_BLUE, pos_elec_screen, 6)
+    pygame.draw.circle(screen, PURE_WHITE, pos_elec_screen, 7, 1)
+    # Panel background and basic info
+    pygame.draw.rect(screen, (245, 245, 245), (0, 0, panel_w, height))
+    draw_text("Paused (precompute pending)", 10, 10, color=(0, 0, 0))
+    pygame.display.flip()
+
     # Precompute initial frames
     pre_frames = precompute_frames(speed_mult)
     max_frame_idx = len(pre_frames) - 1
@@ -595,23 +628,37 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 if event.key == pygame.K_ESCAPE:
                     running = False
                 elif event.key == pygame.K_SPACE:
-                    paused = not paused
+                    if paused:
+                        # Apply pending speed change and recompute if needed
+                        if pending_recompute or pending_speed_mult != speed_mult:
+                            speed_mult = pending_speed_mult
+                            pre_frames = precompute_frames(speed_mult)
+                            max_frame_idx = len(pre_frames) - 1
+                            frame_idx = 0
+                            target_stop_at_posi_start = False
+                            stop_reached = False
+                            hits_at_stop = []
+                            pending_recompute = False
+                        paused = False
+                    else:
+                        paused = True
                 elif event.key == pygame.K_UP:
-                    speed_mult = min(100.0, speed_mult + 0.1)
+                    pending_speed_mult = min(100.0, pending_speed_mult + 0.1)
+                    pending_recompute = True
+                    paused = True
                 elif event.key == pygame.K_DOWN:
-                    speed_mult = max(0.0, speed_mult - 0.1)
+                    pending_speed_mult = max(0.0, pending_speed_mult - 0.1)
+                    pending_recompute = True
+                    paused = True
                 elif event.key == pygame.K_RIGHT:
+                    if pending_recompute or pending_speed_mult != speed_mult:
+                        speed_mult = pending_speed_mult
+                        pre_frames = precompute_frames(speed_mult)
+                        max_frame_idx = len(pre_frames) - 1
+                        frame_idx = 0
+                        pending_recompute = False
                     target_stop_at_posi_start = True
                     paused = False
-                # Reset to initial state on speed change
-                if event.key in (pygame.K_UP, pygame.K_DOWN):
-                    pre_frames = precompute_frames(speed_mult)
-                    max_frame_idx = len(pre_frames) - 1
-                    frame_idx = 0
-                    paused = False
-                    target_stop_at_posi_start = False
-                    stop_reached = False
-                    hits_at_stop = []
 
         if paused:
             clock.tick(cfg.fps)
