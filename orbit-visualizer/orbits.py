@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import math
+from collections import deque
 from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Tuple
 
@@ -42,7 +43,7 @@ class PathSpec:
 
 
 def unit_circle_sampler(t: float) -> Vec2:
-    """Unit circle at unit angular speed; default phase 0 (clockwise)."""
+    """Unit circle at unit angular speed; default phase 0 (counterclockwise in math coords)."""
     return math.cos(t), math.sin(t)
 
 
@@ -168,7 +169,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
 
     pygame.init()
-    width, height = 1280, 960
+    panel_w = 320
+    width, height = 1400, 960
+    canvas_w = width - panel_w
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Orbit Visualizer (prototype)")
     clock = pygame.time.Clock()
@@ -190,18 +193,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     # Retain emissions while their shells are on-canvas.
     max_radius = math.sqrt(2) * cfg.domain_half_extent * 1.1
     emission_retention = max_radius / field_v
+    recent_hits = deque(maxlen=20)
 
     def world_to_screen(p: Vec2) -> Vec2:
-        scale = min(width, height) / (2 * cfg.domain_half_extent)
-        sx = width / 2 + p[0] * scale
-        sy = height / 2 - p[1] * scale
+        scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
+        sx = panel_w + canvas_w / 2 + p[0] * scale
+        sy = height / 2 + p[1] * scale  # do not flip y to preserve rotation orientation
         return sx, sy
 
     def compute_field_surface(current_time: float, emissions: List[Emission], current_positions: Dict[str, Vec2]) -> "pygame.Surface":
         # Downsampled field grid for speed; match aspect ratio to avoid distortion.
         res = 256
-        min_dim = min(width, height)
-        x_extent = cfg.domain_half_extent * (width / min_dim)
+        min_dim = min(canvas_w, height)
+        x_extent = cfg.domain_half_extent * (canvas_w / min_dim)
         y_extent = cfg.domain_half_extent * (height / min_dim)
         xs = np.linspace(-x_extent, x_extent, res)
         ys = np.linspace(-y_extent, y_extent, res)
@@ -239,7 +243,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         green = np.zeros_like(red, dtype=np.uint8)
         rgb = np.stack([red, green, blue], axis=-1)
         surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
-        surf = pygame.transform.smoothscale(surf, (width, height)).convert_alpha()
+        surf = pygame.transform.smoothscale(surf, (canvas_w, height)).convert_alpha()
         surf.set_alpha(180)
         return surf
 
@@ -284,12 +288,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         emissions = [e for e in emissions if (t - e.time) <= emission_retention]
 
         hits: List[Hit] = []
-        radius_tol = max(cfg.field_speed * dt, 0.02)
+        radius_tol = max(field_v * dt, 0.02)
         for emission in emissions:
             tau = t - emission.time
             if tau <= 0:
                 continue
-            radius = cfg.field_speed * tau
+            radius = field_v * tau
             for receiver_name, receiver_pos in positions.items():
                 dist = l2(receiver_pos, emission.pos)
                 if abs(dist - radius) <= radius_tol:
@@ -310,17 +314,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             )
                         )
 
+        # Update recent hit log
+        if hits:
+            recent_hits.extend(hits)
+
         # Draw
         screen.fill((255, 255, 255))
 
         # Field overlay
         field_surface = compute_field_surface(t, emissions, positions)
-        screen.blit(field_surface, (0, 0))
+        screen.blit(field_surface, (panel_w, 0))
 
-        # Static orbit guide: unit circle as thin white line
+        # Static orbit guide: unit circle as thin white line on canvas
         if path_name == "unit_circle":
             center = world_to_screen((0.0, 0.0))
-            scale = min(width, height) / (2 * cfg.domain_half_extent)
+            scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
             pygame.draw.circle(screen, PURE_WHITE, center, int(scale), 1)
 
         # Hit connectors
@@ -339,8 +347,28 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         pygame.draw.circle(screen, PURE_BLUE, world_to_screen(pos_elec), 6)
 
         # UI text
-        draw_text(f"t={t:.2f}s | fps={cfg.fps} | speed_mult={speed_mult:.1f} | hits this frame={len(hits)}", 10, 10)
-        draw_text("Controls: ESC quit, SPACE pause, UP/DOWN speed multiplier", 10, 30)
+        # Panel background
+        pygame.draw.rect(screen, (245, 245, 245), (0, 0, panel_w, height))
+        draw_text(f"t={t:.2f}s", 10, 10, color=(0, 0, 0))
+        draw_text(f"fps={cfg.fps}", 10, 30, color=(0, 0, 0))
+        draw_text(f"speed_mult={speed_mult:.1f}", 10, 50, color=(0, 0, 0))
+        draw_text("Controls:", 10, 80, color=(0, 0, 0))
+        draw_text("ESC quit, SPACE pause", 10, 100, color=(0, 0, 0))
+        draw_text("UP/DOWN speed", 10, 120, color=(0, 0, 0))
+        draw_text("Hit table (recent):", 10, 150, color=(0, 0, 0))
+        y = 170
+        max_rows = 12
+        # Show most recent hits first
+        for idx, h in enumerate(reversed(list(recent_hits)[-max_rows:])):
+            recv_angle = angle_from_x_axis(positions.get(h.receiver, (0.0, 0.0)))
+            color = PURE_RED if h.receiver == "positrino" else PURE_BLUE
+            text = (
+                f"{idx+1:02d} recv={h.receiver[0].upper()} "
+                f"ang_now={recv_angle:.2f} hit_ang={h.angle:.2f} "
+                f"str={h.strength:.3f} emit={h.emitter[0].upper()}"
+            )
+            draw_text(text, 10, y, color=color)
+            y += 18
 
         pygame.display.flip()
         clock.tick(cfg.fps)
