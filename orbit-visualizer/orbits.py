@@ -16,13 +16,138 @@ from __future__ import annotations
 
 import argparse
 import math
+import os
 from collections import deque
 from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Tuple
+from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 
 Vec2 = Tuple[float, float]
+
+
+def precompute_worker_static(
+    args: Tuple[
+        int,
+        float,
+        float,
+        float,
+        float,
+        bool,
+        str,
+        bool,
+        float,
+        float,
+        int,
+        int,
+        int,
+        float,
+    ]
+) -> Tuple[int, Dict[str, Vec2], List["Hit"], np.ndarray]:
+    (
+        idx,
+        t,
+        path_t,
+        emission_retention_local,
+        field_v_local,
+        allow_self,
+        path_name,
+        reverse,
+        dt,
+        domain_half_extent,
+        canvas_w,
+        height,
+        fps,
+        speed_mult_local,
+    ) = args
+
+    path = PATH_LIBRARY[path_name]
+    positrino = Architrino("positrino", +1, PURE_RED, 0.0, path, reverse=reverse)
+    electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path, reverse=reverse)
+
+    pos_posi = positrino.position(path_t)
+    pos_elec = electrino.position(path_t)
+    positions = {"positrino": pos_posi, "electrino": pos_elec}
+
+    emissions_local: List[Emission] = []
+    for j in range(idx + 1):
+        tj = j * dt
+        emissions_local.append(Emission(time=tj, pos=positrino.position(speed_mult_local * tj), emitter="positrino"))
+        emissions_local.append(Emission(time=tj, pos=electrino.position(speed_mult_local * tj), emitter="electrino"))
+    emissions_local = [e for e in emissions_local if (t - e.time) <= emission_retention_local]
+
+    hits: List[Hit] = []
+    radius_tol = max(field_v_local * dt, 0.005)
+    seen_local = set()
+    for emission in emissions_local:
+        tau = t - emission.time
+        if tau <= 0:
+            continue
+        radius = field_v_local * tau
+        for receiver_name, receiver_pos in positions.items():
+            dist = l2(receiver_pos, emission.pos)
+            if abs(dist - radius) <= radius_tol:
+                key = (emission.time, emission.emitter, receiver_name)
+                if key in seen_local:
+                    continue
+                if emission.emitter == receiver_name and not allow_self:
+                    continue
+                seen_local.add(key)
+                strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
+                ang = angle_from_x_axis(receiver_pos)
+                hits.append(
+                    Hit(
+                        t_obs=t,
+                        t_emit=emission.time,
+                        emitter=emission.emitter,
+                        receiver=receiver_name,
+                        distance=dist,
+                        strength=strength,
+                        angle=ang,
+                        speed_multiplier=speed_mult_local,
+                        emit_pos=emission.pos,
+                    )
+                )
+
+    res = 512
+    min_dim = min(canvas_w, height)
+    x_extent = domain_half_extent * (canvas_w / min_dim)
+    y_extent = domain_half_extent * (height / min_dim)
+    xs = np.linspace(-x_extent, x_extent, res)
+    ys = np.linspace(-y_extent, y_extent, res)
+    xx, yy = np.meshgrid(xs, ys)
+    eps = 1e-6
+    net = np.zeros_like(xx, dtype=np.float64)
+    shell_thickness = max(field_v_local * (1.5 / fps), 0.005)
+    for em in emissions_local:
+        tau = t - em.time
+        if tau < 0:
+            continue
+        r = field_v_local * tau
+        if r > emission_retention_local * field_v_local:
+            continue
+        ex, ey = em.pos
+        dist = np.sqrt((xx - ex) ** 2 + (yy - ey) ** 2) + eps
+        mask = np.abs(dist - r) <= shell_thickness
+        if not np.any(mask):
+            continue
+        sign = 1.0 if em.emitter == "positrino" else -1.0
+        contrib = np.zeros_like(dist)
+        contrib[mask] = sign / (dist[mask] ** 2)
+        net += contrib
+
+    log_net = np.sign(net) * np.log1p(np.abs(net))
+    max_abs = np.percentile(np.abs(log_net), 99) if np.any(log_net) else 1.0
+    if max_abs < 1e-9:
+        max_abs = 1.0
+    pos_norm = np.clip(np.maximum(log_net, 0.0) / max_abs, 0.0, 1.0)
+    neg_norm = np.clip(np.maximum(-log_net, 0.0) / max_abs, 0.0, 1.0)
+    red = (255 * (1 - neg_norm)).astype(np.uint8)
+    blue = (255 * (1 - pos_norm)).astype(np.uint8)
+    green = (255 * (1 - np.maximum(pos_norm, neg_norm))).astype(np.uint8)
+    rgb = np.stack([red, green, blue], axis=-1)
+    return idx, positions, hits, rgb
 
 
 # Color constants (RGB)
@@ -126,6 +251,13 @@ class Frame:
 
 
 @dataclass
+class RenderFrame:
+    positions: Dict[str, Vec2]
+    hits: List[Hit]
+    field_surface: "pygame.Surface"
+
+
+@dataclass
 class SimulationConfig:
     fps: int = 60
     duration: float = 4.0
@@ -170,7 +302,7 @@ def estimate_coverage_duration(cfg: SimulationConfig) -> float:
     return cfg.coverage_margin * (cfg.domain_half_extent + diag)
 
 
-def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str = "unit_circle", reverse: bool = False) -> None:
+def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str = "unit_circle", reverse: bool = False, parallel_precompute: bool = False) -> None:
     """
     Minimal PyGame renderer: draws architrinos and hit connectors.
     """
@@ -197,7 +329,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     emissions: List[Emission] = []
 
     running = True
-    paused = False
+    paused = True
     frame_idx = 0
     target_stop_at_posi_start = False
     stop_reached = False
@@ -272,6 +404,189 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         surf = font.render(text, True, color)
         screen.blit(surf, (x, y))
 
+    def show_precompute_progress(deg: float, current: int, total: int) -> None:
+        pct = (current / max(total, 1)) * 100
+        bar_len = 30
+        filled = int(bar_len * pct / 100)
+        bar = "#" * filled + "-" * (bar_len - filled)
+        print(f"\rPrecomputing [{bar}] {pct:5.1f}% ({deg:5.0f}°)", end="", flush=True)
+
+    def precompute_worker(args: Tuple[int, float, float, float, float, bool]) -> Tuple[int, Dict[str, Vec2], List[Hit], np.ndarray]:
+        idx, t, path_t, emission_retention_local, field_v_local, allow_self = args
+        pos_posi = positrino.position(path_t)
+        pos_elec = electrino.position(path_t)
+        positions = {"positrino": pos_posi, "electrino": pos_elec}
+
+        # Build emissions up to this frame
+        # For simplicity, regenerate emissions history; acceptable for small n_frames
+        emissions_local: List[Emission] = []
+        n_local = idx + 1
+        for j in range(n_local):
+            tj = j * dt
+            emissions_local.append(Emission(time=tj, pos=positrino.position(speed_mult_local * tj), emitter="positrino"))
+            emissions_local.append(Emission(time=tj, pos=electrino.position(speed_mult_local * tj), emitter="electrino"))
+        emissions_local = [e for e in emissions_local if (t - e.time) <= emission_retention_local]
+
+        hits: List[Hit] = []
+        radius_tol = max(field_v_local * dt, 0.005)
+        seen_local = set()
+        for emission in emissions_local:
+            tau = t - emission.time
+            if tau <= 0:
+                continue
+            radius = field_v_local * tau
+            for receiver_name, receiver_pos in positions.items():
+                dist = l2(receiver_pos, emission.pos)
+                if abs(dist - radius) <= radius_tol:
+                    key = (emission.time, emission.emitter, receiver_name)
+                    if key in seen_local:
+                        continue
+                    if emission.emitter == receiver_name and not allow_self:
+                        continue
+                    seen_local.add(key)
+                    strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
+                    ang = angle_from_x_axis(receiver_pos)
+                    hits.append(
+                        Hit(
+                            t_obs=t,
+                            t_emit=emission.time,
+                            emitter=emission.emitter,
+                            receiver=receiver_name,
+                            distance=dist,
+                            strength=strength,
+                            angle=ang,
+                            speed_multiplier=speed_mult_local,
+                            emit_pos=emission.pos,
+                        )
+                    )
+        # Field grid as numpy array for later conversion
+        res = 512
+        min_dim = min(canvas_w, height)
+        x_extent = cfg.domain_half_extent * (canvas_w / min_dim)
+        y_extent = cfg.domain_half_extent * (height / min_dim)
+        xs = np.linspace(-x_extent, x_extent, res)
+        ys = np.linspace(-y_extent, y_extent, res)
+        xx, yy = np.meshgrid(xs, ys)
+        eps = 1e-6
+        net = np.zeros_like(xx, dtype=np.float64)
+        shell_thickness = max(field_v_local * (1.5 / cfg.fps), 0.005)
+        for em in emissions_local:
+            tau = t - em.time
+            if tau < 0:
+                continue
+            r = field_v_local * tau
+            if r > emission_retention_local * field_v_local:
+                continue
+            ex, ey = em.pos
+            dist = np.sqrt((xx - ex) ** 2 + (yy - ey) ** 2) + eps
+            mask = np.abs(dist - r) <= shell_thickness
+            if not np.any(mask):
+                continue
+            sign = 1.0 if em.emitter == "positrino" else -1.0
+            contrib = np.zeros_like(dist)
+            contrib[mask] = sign / (dist[mask] ** 2)
+            net += contrib
+
+        log_net = np.sign(net) * np.log1p(np.abs(net))
+        max_abs = np.percentile(np.abs(log_net), 99) if np.any(log_net) else 1.0
+        if max_abs < 1e-9:
+            max_abs = 1.0
+        pos_norm = np.clip(np.maximum(log_net, 0.0) / max_abs, 0.0, 1.0)
+        neg_norm = np.clip(np.maximum(-log_net, 0.0) / max_abs, 0.0, 1.0)
+        red = (255 * (1 - neg_norm)).astype(np.uint8)
+        blue = (255 * (1 - pos_norm)).astype(np.uint8)
+        green = (255 * (1 - np.maximum(pos_norm, neg_norm))).astype(np.uint8)
+        rgb = np.stack([red, green, blue], axis=-1)
+        return idx, positions, hits, rgb
+
+    def precompute_frames(speed_mult_local: float) -> List[RenderFrame]:
+        # Duration to cover two full revolutions (4π path time)
+        duration_target = (4 * math.pi) / max(speed_mult_local, 1e-6)
+        duration_local = duration_target
+        n_frames = int(math.ceil(duration_local * cfg.fps))
+        allow_self = speed_mult_local > 1.0
+
+        if parallel_precompute:
+            tasks = []
+            for i in range(n_frames):
+                t = i * dt
+                path_t = speed_mult_local * t
+                tasks.append((i, t, path_t, emission_retention, field_v, allow_self, path.name, reverse, dt, cfg.domain_half_extent, canvas_w, height, cfg.fps, speed_mult_local))
+            results = [None] * n_frames
+            chunksize = max(1, n_frames // max(1, (os.cpu_count() or 4)))
+            with ProcessPoolExecutor() as pool:
+                for idx, positions, hits, rgb in pool.map(precompute_worker_static, tasks, chunksize=chunksize):
+                    if idx % max(1, n_frames // 90) == 0 or idx == n_frames - 1:
+                        deg = (tasks[idx][2] * 180.0 / math.pi) % 360.0
+                        show_precompute_progress(deg, idx + 1, n_frames)
+                    surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
+                    surf = pygame.transform.smoothscale(surf, (canvas_w, height)).convert()
+                    results[idx] = RenderFrame(positions=positions, hits=hits, field_surface=surf)
+            print()
+            return results
+
+        # Fallback sequential
+        local_emissions: List[Emission] = []
+        local_frames: List[RenderFrame] = []
+        local_seen_hits: set = set()
+        for i in range(n_frames):
+            t = i * dt
+            path_t = speed_mult_local * t
+            pos_posi = positrino.position(path_t)
+            pos_elec = electrino.position(path_t)
+            positions = {"positrino": pos_posi, "electrino": pos_elec}
+
+            local_emissions.append(Emission(time=t, pos=pos_posi, emitter="positrino"))
+            local_emissions.append(Emission(time=t, pos=pos_elec, emitter="electrino"))
+
+            # Drop emissions off-canvas
+            local_emissions = [e for e in local_emissions if (t - e.time) <= emission_retention]
+            cutoff_time = t - emission_retention
+            local_seen_hits = {k for k in local_seen_hits if k[0] >= cutoff_time}
+
+            hits: List[Hit] = []
+            radius_tol = max(field_v * dt, 0.005)
+            for emission in local_emissions:
+                tau = t - emission.time
+                if tau <= 0:
+                    continue
+                radius = field_v * tau
+                for receiver_name, receiver_pos in positions.items():
+                    dist = l2(receiver_pos, emission.pos)
+                    if abs(dist - radius) <= radius_tol:
+                        key = (emission.time, emission.emitter, receiver_name)
+                        if key in local_seen_hits:
+                            continue
+                        if emission.emitter == receiver_name and not allow_self:
+                            continue
+                        local_seen_hits.add(key)
+                        strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
+                        ang = angle_from_x_axis(receiver_pos)
+                        hits.append(
+                            Hit(
+                                t_obs=t,
+                                t_emit=emission.time,
+                                emitter=emission.emitter,
+                                receiver=receiver_name,
+                                distance=dist,
+                                strength=strength,
+                                angle=ang,
+                                speed_multiplier=speed_mult_local,
+                                emit_pos=emission.pos,
+                            )
+                        )
+            field_surface = compute_field_surface(t, local_emissions, positions)
+            local_frames.append(RenderFrame(positions=positions, hits=hits, field_surface=field_surface))
+            if i % max(1, n_frames // 90) == 0:
+                deg = (path_t * 180.0 / math.pi) % 360.0
+                pygame.event.pump()
+                show_precompute_progress(deg)
+        return local_frames
+
+    # Precompute initial frames
+    pre_frames = precompute_frames(speed_mult)
+    max_frame_idx = len(pre_frames) - 1
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -290,7 +605,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     paused = False
                 # Reset to initial state on speed change
                 if event.key in (pygame.K_UP, pygame.K_DOWN):
-                    emissions.clear()
+                    pre_frames = precompute_frames(speed_mult)
+                    max_frame_idx = len(pre_frames) - 1
                     frame_idx = 0
                     paused = False
                     target_stop_at_posi_start = False
@@ -301,64 +617,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             clock.tick(cfg.fps)
             continue
 
-        t = frame_idx * dt
-        path_t = speed_mult * t
-
-        pos_posi = positrino.position(path_t)
-        pos_elec = electrino.position(path_t)
-        positions = {"positrino": pos_posi, "electrino": pos_elec}
-
-        emissions.append(Emission(time=t, pos=pos_posi, emitter="positrino"))
-        emissions.append(Emission(time=t, pos=pos_elec, emitter="electrino"))
-
-        # Drop emissions whose shells are fully off-canvas; also prune seen_hits
-        emissions = [e for e in emissions if (t - e.time) <= emission_retention]
-        cutoff_time = t - emission_retention
-        seen_hits_queue = deque([k for k in seen_hits_queue if k[0] >= cutoff_time], maxlen=seen_hits_queue.maxlen or 0)
-        seen_hits = {(time, emitter, receiver) for (time, emitter, receiver) in seen_hits_queue}
-
-        hits: List[Hit] = []
-        radius_tol = max(field_v * dt, 0.005)
-        for emission in emissions:
-            tau = t - emission.time
-            if tau <= 0:
-                continue
-            radius = field_v * tau
-            for receiver_name, receiver_pos in positions.items():
-                dist = l2(receiver_pos, emission.pos)
-                if abs(dist - radius) <= radius_tol:
-                    key = (emission.time, emission.emitter, receiver_name)
-                    if key in seen_hits:
-                        continue
-                    seen_hits.add(key)
-                    strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
-                    ang = angle_from_x_axis(receiver_pos)
-                    if not (emission.emitter == receiver_name and speed_mult <= 1.0):
-                        hit = Hit(
-                            t_obs=t,
-                            t_emit=emission.time,
-                            emitter=emission.emitter,
-                            receiver=receiver_name,
-                            distance=dist,
-                            strength=strength,
-                            angle=ang,
-                            speed_multiplier=speed_mult,
-                            emit_pos=emission.pos,
-                        )
-                        hits.append(hit)
-                        seen_hits_queue.append(key)
-
-        # Update recent hit log (current-frame hits only)
+        # Advance frame
+        frame_idx = min(frame_idx, max_frame_idx)
+        frame = pre_frames[frame_idx]
+        positions = frame.positions
+        hits = frame.hits
         recent_hits.clear()
-        if hits:
-            recent_hits.extend(hits)
+        recent_hits.extend(hits)
 
         # Draw
         screen.fill((255, 255, 255))
 
         # Field overlay
-        field_surface = compute_field_surface(t, emissions, positions)
-        screen.blit(field_surface, (panel_w, 0))
+        screen.blit(frame.field_surface, (panel_w, 0))
 
         # Static orbit guide: unit circle as thin white line on canvas
         if path_name == "unit_circle":
@@ -374,12 +645,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             # Emitter marker in lighter color
             if h.emitter == "positrino":
                 pygame.draw.circle(screen, LIGHT_RED, start, 4)
+                pygame.draw.circle(screen, PURE_WHITE, start, 5, 1)
             else:
                 pygame.draw.circle(screen, LIGHT_BLUE, start, 4)
+                pygame.draw.circle(screen, PURE_WHITE, start, 5, 1)
 
         # Architrinos with thin white edge
-        pos_posi_screen = world_to_screen(pos_posi)
-        pos_elec_screen = world_to_screen(pos_elec)
+        pos_posi_screen = world_to_screen(positions["positrino"])
+        pos_elec_screen = world_to_screen(positions["electrino"])
         pygame.draw.circle(screen, PURE_RED, pos_posi_screen, 6)
         pygame.draw.circle(screen, PURE_WHITE, pos_posi_screen, 7, 1)
         pygame.draw.circle(screen, PURE_BLUE, pos_elec_screen, 6)
@@ -388,7 +661,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         # UI text
         # Panel background
         pygame.draw.rect(screen, (245, 245, 245), (0, 0, panel_w, height))
-        draw_text(f"t={t:.2f}s", 10, 10, color=(0, 0, 0))
+        draw_text(f"frame={frame_idx+1}/{max_frame_idx+1}", 10, 10, color=(0, 0, 0))
         draw_text(f"fps={cfg.fps}", 10, 30, color=(0, 0, 0))
         draw_text(f"speed_mult={speed_mult:.1f}", 10, 50, color=(0, 0, 0))
         draw_text("Controls:", 10, 80, color=(0, 0, 0))
@@ -433,12 +706,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         pygame.display.flip()
         clock.tick(cfg.fps)
-        frame_idx += 1
+        if not paused:
+            frame_idx = min(frame_idx + 1, max_frame_idx)
 
         # Stop at positrino start when requested
         if target_stop_at_posi_start:
-            dx = pos_posi[0] - 1.0
-            dy = pos_posi[1] - 0.0
+            dx = positions["positrino"][0] - 1.0
+            dy = positions["positrino"][1] - 0.0
             if math.hypot(dx, dy) <= 0.02 and frame_idx > 1:
                 paused = True
                 target_stop_at_posi_start = False
@@ -557,6 +831,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--speed-mult", type=float, default=0.5, help="Path speed multiplier in [0, 100]; 0 => stationary.")
     parser.add_argument("--self-test", action="store_true", help="Run a quick simulation and print a summary.")
     parser.add_argument("--render", action="store_true", help="Open a PyGame window and render the live simulation.")
+    parser.add_argument("--parallel-precompute", action="store_true", help="Parallelize precompute using process pool.")
     return parser.parse_args()
 
 
@@ -564,7 +839,7 @@ def main() -> None:
     args = parse_args()
     cfg = SimulationConfig(fps=args.fps, duration=args.duration, speed_multiplier=args.speed_mult)
     if args.render:
-        render_live(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse)
+        render_live(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse, parallel_precompute=args.parallel_precompute)
         return
 
     frames = simulate(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse)
