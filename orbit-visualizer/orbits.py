@@ -19,6 +19,8 @@ import math
 from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Tuple
 
+import numpy as np
+
 Vec2 = Tuple[float, float]
 
 
@@ -27,6 +29,8 @@ PURE_RED = (255, 0, 0)
 PURE_BLUE = (0, 0, 255)
 PURE_PURPLE = (255, 0, 255)  # neutral (red + blue)
 PURE_WHITE = (255, 255, 255)
+LIGHT_RED = (255, 160, 160)
+LIGHT_BLUE = (160, 200, 255)
 
 
 @dataclass
@@ -38,7 +42,7 @@ class PathSpec:
 
 
 def unit_circle_sampler(t: float) -> Vec2:
-    """Unit circle at unit angular speed; default phase 0."""
+    """Unit circle at unit angular speed; default phase 0 (clockwise)."""
     return math.cos(t), math.sin(t)
 
 
@@ -127,7 +131,7 @@ class SimulationConfig:
     domain_half_extent: float = 2.0  # domain [-2,2] by default
     coverage_margin: float = 1.1  # scale for coverage duration heuristic
     max_memory_bytes: int = 8 * 1024 * 1024 * 1024  # default budget (~8 GiB) for frames if caching
-    speed_multiplier: float = 1.0  # path speed scaling in [0, 100]; 0 => stationary
+    speed_multiplier: float = 0.5  # path speed scaling in [0, 100]; 0 => stationary
 
 
 def l2(a: Vec2, b: Vec2) -> float:
@@ -180,13 +184,64 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     frame_idx = 0
     dt = 1.0 / cfg.fps
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
-    emission_retention = estimate_coverage_duration(cfg)
+    # Enforce positive field speed
+    field_v = max(cfg.field_speed, 1e-6)
+
+    # Retain emissions while their shells are on-canvas.
+    max_radius = math.sqrt(2) * cfg.domain_half_extent * 1.1
+    emission_retention = max_radius / field_v
 
     def world_to_screen(p: Vec2) -> Vec2:
         scale = min(width, height) / (2 * cfg.domain_half_extent)
         sx = width / 2 + p[0] * scale
         sy = height / 2 - p[1] * scale
         return sx, sy
+
+    def compute_field_surface(current_time: float, emissions: List[Emission], current_positions: Dict[str, Vec2]) -> "pygame.Surface":
+        # Downsampled field grid for speed; match aspect ratio to avoid distortion.
+        res = 256
+        min_dim = min(width, height)
+        x_extent = cfg.domain_half_extent * (width / min_dim)
+        y_extent = cfg.domain_half_extent * (height / min_dim)
+        xs = np.linspace(-x_extent, x_extent, res)
+        ys = np.linspace(-y_extent, y_extent, res)
+        xx, yy = np.meshgrid(xs, ys)
+
+        eps = 1e-6
+        net = np.zeros_like(xx, dtype=np.float64)
+
+        shell_thickness = max(field_v * (1.5 / cfg.fps), 0.01)
+        for em in emissions:
+            tau = current_time - em.time
+            if tau < 0:
+                continue
+            r = field_v * tau
+            if r > max_radius:
+                continue
+            ex, ey = em.pos
+            dist = np.sqrt((xx - ex) ** 2 + (yy - ey) ** 2) + eps
+            mask = np.abs(dist - r) <= shell_thickness
+            if not np.any(mask):
+                continue
+            sign = 1.0 if em.emitter == "positrino" else -1.0
+            contrib = np.zeros_like(dist)
+            contrib[mask] = sign / (dist[mask] ** 2)
+            net += contrib
+
+        # Percentile-based normalization to avoid a flat wash; zero regions stay near-black.
+        max_abs = np.percentile(np.abs(net), 99) if np.any(net) else 1.0
+        if max_abs < 1e-9:
+            max_abs = 1.0
+        pos_norm = np.clip(np.maximum(net, 0.0) / max_abs, 0.0, 1.0)
+        neg_norm = np.clip(np.maximum(-net, 0.0) / max_abs, 0.0, 1.0)
+        red = (pos_norm * 255).astype(np.uint8)
+        blue = (neg_norm * 255).astype(np.uint8)
+        green = np.zeros_like(red, dtype=np.uint8)
+        rgb = np.stack([red, green, blue], axis=-1)
+        surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
+        surf = pygame.transform.smoothscale(surf, (width, height)).convert_alpha()
+        surf.set_alpha(180)
+        return surf
 
     def draw_text(text: str, x: int, y: int, color=(255, 255, 255)) -> None:
         surf = font.render(text, True, color)
@@ -202,9 +257,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 elif event.key == pygame.K_SPACE:
                     paused = not paused
                 elif event.key == pygame.K_UP:
-                    speed_mult = min(100.0, speed_mult + 1.0)
+                    speed_mult = min(100.0, speed_mult + 0.1)
                 elif event.key == pygame.K_DOWN:
-                    speed_mult = max(0.0, speed_mult - 1.0)
+                    speed_mult = max(0.0, speed_mult - 0.1)
+                # Reset to initial state on speed change
+                if event.key in (pygame.K_UP, pygame.K_DOWN):
+                    emissions.clear()
+                    frame_idx = 0
+                    paused = False
 
         if paused:
             clock.tick(cfg.fps)
@@ -220,7 +280,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         emissions.append(Emission(time=t, pos=pos_posi, emitter="positrino"))
         emissions.append(Emission(time=t, pos=pos_elec, emitter="electrino"))
 
-        # Drop old emissions to avoid unbounded growth
+        # Drop emissions whose shells are fully off-canvas
         emissions = [e for e in emissions if (t - e.time) <= emission_retention]
 
         hits: List[Hit] = []
@@ -251,13 +311,28 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         )
 
         # Draw
-        screen.fill((0, 0, 0))
+        screen.fill((255, 255, 255))
+
+        # Field overlay
+        field_surface = compute_field_surface(t, emissions, positions)
+        screen.blit(field_surface, (0, 0))
+
+        # Static orbit guide: unit circle as thin white line
+        if path_name == "unit_circle":
+            center = world_to_screen((0.0, 0.0))
+            scale = min(width, height) / (2 * cfg.domain_half_extent)
+            pygame.draw.circle(screen, PURE_WHITE, center, int(scale), 1)
 
         # Hit connectors
         for h in hits:
             start = world_to_screen(h.emit_pos)
             end = world_to_screen(positions[h.receiver])
             pygame.draw.line(screen, PURE_WHITE, start, end, 1)
+            # Emitter marker in lighter color
+            if h.emitter == "positrino":
+                pygame.draw.circle(screen, LIGHT_RED, start, 4)
+            else:
+                pygame.draw.circle(screen, LIGHT_BLUE, start, 4)
 
         # Architrinos
         pygame.draw.circle(screen, PURE_RED, world_to_screen(pos_posi), 6)
@@ -282,8 +357,9 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
     if path_name not in paths:
         raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
 
-    # Clamp speed multiplier to [0, 100]
+    # Clamp speed multiplier to [0, 100]; enforce positive field speed
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
+    field_v = max(cfg.field_speed, 1e-6)
 
     dt = 1.0 / cfg.fps
     duration = max(cfg.duration, estimate_coverage_duration(cfg))
@@ -310,12 +386,12 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
 
         hits: List[Hit] = []
         # Check hits against past emissions (naive O(N^2); acceptable for small pre-bakes).
-        radius_tol = max(cfg.field_speed * dt, 0.02)  # relaxed tolerance for discrete stepping
+        radius_tol = max(field_v * dt, 0.02)  # relaxed tolerance for discrete stepping
         for emission in emissions:
             tau = t - emission.time
             if tau <= 0:
                 continue
-            radius = cfg.field_speed * tau
+            radius = field_v * tau
             # Check each receiver
             for receiver_name, receiver_pos in positions.items():
                 # Skip zero-delay self-interaction (H(0)=0)
@@ -374,7 +450,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--duration", type=float, default=4.0, help="Minimum duration in seconds (coverage heuristic may increase this).")
     parser.add_argument("--path", type=str, default="unit_circle", choices=list(PATH_LIBRARY.keys()), help="Trajectory name.")
     parser.add_argument("--reverse", action="store_true", help="Reverse path orientation.")
-    parser.add_argument("--speed-mult", type=float, default=1.0, help="Path speed multiplier in [0, 100]; 0 => stationary.")
+    parser.add_argument("--speed-mult", type=float, default=0.5, help="Path speed multiplier in [0, 100]; 0 => stationary.")
     parser.add_argument("--self-test", action="store_true", help="Run a quick simulation and print a summary.")
     parser.add_argument("--render", action="store_true", help="Open a PyGame window and render the live simulation.")
     return parser.parse_args()

@@ -20,6 +20,7 @@ Build a continuously animated 2-D dynamical geometry visualizer for orbiting par
 - Each architrino emits potential shells at constant cadence and amplitude; shells expand as circles with radius $r = v\,\tau$.
 - Potential magnitude follows $1/r^2$ on the shell; the visualization shows the planar cross-section via per-pixel color.
 - Delayed-potential overlay can be toggled live without pausing.
+- Always use delayed potentials from the actual emission point at the actual emission time (no instantaneous field shortcuts).
 - Architrino markers: electrino as a small pure-blue circle (RGB 0,0,255), positrino as a small pure-red circle (RGB 255,0,0); emitter markers are visually distinct (e.g., baby blue for electrino emitters, pink for positrino emitters).
 - Field color equals the per-pixel superposition of red and blue contributions; neutral potential ($0$) renders as pure purple.
 - Non-neutral pixels shade proportionally to net superposition with linear scaling initially; logarithmic scaling is deferred (future toggle).
@@ -31,6 +32,7 @@ Build a continuously animated 2-D dynamical geometry visualizer for orbiting par
 - Any control change that alters the current field depiction or emitter-to-target lines forces a restart from the initial state.
 - Control panel exposes an architrino speed multiplier on path speed in [0, 100]; multiplier 0 means stationary on the path.
 - Self-hits are disallowed when the speed multiplier is ≤ 1; permit self-hits only when speed exceeds field speed.
+- Field speed is strictly positive (no zero or negative values); shells always expand from true emission points.
 
 ## Hits and diagnostics
 - A hit occurs at times $t$ and emissions $t_0$ satisfying $\|\mathbf{s}_r(t) - \mathbf{s}_e(t_0)\| = v\,(t - t_0)$; display the emitter position $\mathbf{s}_e(t_0)$ at that hit time.
