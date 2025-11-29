@@ -30,7 +30,7 @@ PURE_RED = (255, 0, 0)
 PURE_BLUE = (0, 0, 255)
 PURE_PURPLE = (255, 0, 255)  # neutral (red + blue)
 PURE_WHITE = (255, 255, 255)
-GRAY = (180, 180, 180)
+GRAY = (120, 120, 120)
 LIGHT_RED = (255, 160, 160)
 LIGHT_BLUE = (160, 200, 255)
 
@@ -222,7 +222,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def compute_field_surface(current_time: float, emissions: List[Emission], current_positions: Dict[str, Vec2]) -> "pygame.Surface":
         # Downsampled field grid for speed; match aspect ratio to avoid distortion.
-        res = 256
+        res = 512
         min_dim = min(canvas_w, height)
         x_extent = cfg.domain_half_extent * (canvas_w / min_dim)
         y_extent = cfg.domain_half_extent * (height / min_dim)
@@ -233,7 +233,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         eps = 1e-6
         net = np.zeros_like(xx, dtype=np.float64)
 
-        shell_thickness = max(field_v * (1.5 / cfg.fps), 0.01)
+        shell_thickness = max(field_v * (1.5 / cfg.fps), 0.005)
         for em in emissions:
             tau = current_time - em.time
             if tau < 0:
@@ -318,7 +318,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         seen_hits = {(time, emitter, receiver) for (time, emitter, receiver) in seen_hits_queue}
 
         hits: List[Hit] = []
-        radius_tol = max(field_v * dt, 0.02)
+        radius_tol = max(field_v * dt, 0.005)
         for emission in emissions:
             tau = t - emission.time
             if tau <= 0:
@@ -486,7 +486,7 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
 
         hits: List[Hit] = []
         # Check hits against past emissions (naive O(N^2); acceptable for small pre-bakes).
-        radius_tol = max(field_v * dt, 0.02)  # relaxed tolerance for discrete stepping
+        radius_tol = max(field_v * dt, 0.005)  # relaxed tolerance to avoid missing hits
         for emission in emissions:
             tau = t - emission.time
             if tau <= 0:
