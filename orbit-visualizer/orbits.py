@@ -30,6 +30,7 @@ PURE_RED = (255, 0, 0)
 PURE_BLUE = (0, 0, 255)
 PURE_PURPLE = (255, 0, 255)  # neutral (red + blue)
 PURE_WHITE = (255, 255, 255)
+GRAY = (180, 180, 180)
 LIGHT_RED = (255, 160, 160)
 LIGHT_BLUE = (160, 200, 255)
 
@@ -126,7 +127,7 @@ class Frame:
 
 @dataclass
 class SimulationConfig:
-    fps: int = 30
+    fps: int = 60
     duration: float = 4.0
     field_speed: float = 1.0  # v=1
     domain_half_extent: float = 2.0  # domain [-2,2] by default
@@ -250,12 +251,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             contrib[mask] = sign / (dist[mask] ** 2)
             net += contrib
 
-        # Percentile-based normalization to avoid a flat wash; zero regions map to white.
-        max_abs = np.percentile(np.abs(net), 99) if np.any(net) else 1.0
+        # Logarithmic scaling to reveal far-field structure.
+        log_net = np.sign(net) * np.log1p(np.abs(net))
+        max_abs = np.percentile(np.abs(log_net), 99) if np.any(log_net) else 1.0
         if max_abs < 1e-9:
             max_abs = 1.0
-        pos_norm = np.clip(np.maximum(net, 0.0) / max_abs, 0.0, 1.0)
-        neg_norm = np.clip(np.maximum(-net, 0.0) / max_abs, 0.0, 1.0)
+        pos_norm = np.clip(np.maximum(log_net, 0.0) / max_abs, 0.0, 1.0)
+        neg_norm = np.clip(np.maximum(-log_net, 0.0) / max_abs, 0.0, 1.0)
         # Blend toward red/blue from white; zero stays white.
         red = (255 * (1 - neg_norm)).astype(np.uint8)
         blue = (255 * (1 - pos_norm)).astype(np.uint8)
@@ -362,22 +364,26 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if path_name == "unit_circle":
             center = world_to_screen((0.0, 0.0))
             scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-            pygame.draw.circle(screen, PURE_WHITE, center, int(scale), 1)
+            pygame.draw.circle(screen, GRAY, center, int(scale), 1)
 
         # Hit connectors
         for h in hits:
             start = world_to_screen(h.emit_pos)
             end = world_to_screen(positions[h.receiver])
-            pygame.draw.line(screen, PURE_WHITE, start, end, 1)
+            pygame.draw.line(screen, GRAY, start, end, 1)
             # Emitter marker in lighter color
             if h.emitter == "positrino":
                 pygame.draw.circle(screen, LIGHT_RED, start, 4)
             else:
                 pygame.draw.circle(screen, LIGHT_BLUE, start, 4)
 
-        # Architrinos
-        pygame.draw.circle(screen, PURE_RED, world_to_screen(pos_posi), 6)
-        pygame.draw.circle(screen, PURE_BLUE, world_to_screen(pos_elec), 6)
+        # Architrinos with thin white edge
+        pos_posi_screen = world_to_screen(pos_posi)
+        pos_elec_screen = world_to_screen(pos_elec)
+        pygame.draw.circle(screen, PURE_RED, pos_posi_screen, 6)
+        pygame.draw.circle(screen, PURE_WHITE, pos_posi_screen, 7, 1)
+        pygame.draw.circle(screen, PURE_BLUE, pos_elec_screen, 6)
+        pygame.draw.circle(screen, PURE_WHITE, pos_elec_screen, 7, 1)
 
         # UI text
         # Panel background
@@ -414,12 +420,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 ang_rad_screen = math.radians(ang_deg_disp)
                 recv_screen = world_to_screen(recv_now)
                 xaxis_proj = world_to_screen((recv_now[0], 0.0))
-                pygame.draw.line(screen, (0, 0, 0), recv_screen, xaxis_proj, 2)
+                pygame.draw.line(screen, GRAY, recv_screen, xaxis_proj, 2)
                 # Arc indicator around receiver (clockwise angles in screen space)
                 radius_px = 30
                 rect = pygame.Rect(0, 0, radius_px * 2, radius_px * 2)
                 rect.center = recv_screen
-                arc_color = PURE_RED if h.receiver == "positrino" else PURE_BLUE
+                arc_color = GRAY
                 pygame.draw.arc(screen, arc_color, rect, 0, ang_rad_screen, 2)
                 # Label angle
                 label = f"{ang_deg_disp:.1f}°"
@@ -544,7 +550,7 @@ def summarize(frames: List[Frame], max_hits: int = 5, max_frames: int = 5) -> st
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Orbit visualizer prototype (pre-bake simulation).")
-    parser.add_argument("--fps", type=int, default=30, help="Frames per second (default 30).")
+    parser.add_argument("--fps", type=int, default=60, help="Frames per second (default 60).")
     parser.add_argument("--duration", type=float, default=4.0, help="Minimum duration in seconds (coverage heuristic may increase this).")
     parser.add_argument("--path", type=str, default="unit_circle", choices=list(PATH_LIBRARY.keys()), help="Trajectory name.")
     parser.add_argument("--reverse", action="store_true", help="Reverse path orientation.")
