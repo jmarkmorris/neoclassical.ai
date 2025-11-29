@@ -147,6 +147,12 @@ def angle_from_x_axis(p: Vec2) -> float:
     return ang if ang >= 0 else ang + 2 * math.pi
 
 
+def angle_deg(p: Vec2) -> float:
+    """Angle in degrees [0, 360) from +x axis."""
+    ang = angle_from_x_axis(p)
+    return math.degrees(ang)
+
+
 def estimate_coverage_duration(cfg: SimulationConfig) -> float:
     """
     Heuristic duration until emissions can cover the domain:
@@ -185,6 +191,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     running = True
     paused = False
     frame_idx = 0
+    target_stop_at_posi_start = False
+    stop_reached = False
+    hits_at_stop: List[Hit] = []
     dt = 1.0 / cfg.fps
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
     # Enforce positive field speed
@@ -194,6 +203,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     max_radius = math.sqrt(2) * cfg.domain_half_extent * 1.1
     emission_retention = max_radius / field_v
     recent_hits = deque(maxlen=20)
+    seen_hits = set()
+    seen_hits_queue = deque()
 
     def world_to_screen(p: Vec2) -> Vec2:
         scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
@@ -244,7 +255,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         rgb = np.stack([red, green, blue], axis=-1)
         surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
         surf = pygame.transform.smoothscale(surf, (canvas_w, height)).convert_alpha()
-        surf.set_alpha(180)
+        # Use full opacity; underlying base is white.
+        surf.set_alpha(255)
         return surf
 
     def draw_text(text: str, x: int, y: int, color=(255, 255, 255)) -> None:
@@ -264,11 +276,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     speed_mult = min(100.0, speed_mult + 0.1)
                 elif event.key == pygame.K_DOWN:
                     speed_mult = max(0.0, speed_mult - 0.1)
+                elif event.key == pygame.K_RIGHT:
+                    target_stop_at_posi_start = True
+                    paused = False
                 # Reset to initial state on speed change
                 if event.key in (pygame.K_UP, pygame.K_DOWN):
                     emissions.clear()
                     frame_idx = 0
                     paused = False
+                    target_stop_at_posi_start = False
+                    stop_reached = False
+                    hits_at_stop = []
 
         if paused:
             clock.tick(cfg.fps)
@@ -284,8 +302,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         emissions.append(Emission(time=t, pos=pos_posi, emitter="positrino"))
         emissions.append(Emission(time=t, pos=pos_elec, emitter="electrino"))
 
-        # Drop emissions whose shells are fully off-canvas
+        # Drop emissions whose shells are fully off-canvas; also prune seen_hits
         emissions = [e for e in emissions if (t - e.time) <= emission_retention]
+        cutoff_time = t - emission_retention
+        seen_hits_queue = deque([k for k in seen_hits_queue if k[0] >= cutoff_time], maxlen=seen_hits_queue.maxlen or 0)
+        seen_hits = {(time, emitter, receiver) for (time, emitter, receiver) in seen_hits_queue}
 
         hits: List[Hit] = []
         radius_tol = max(field_v * dt, 0.02)
@@ -297,24 +318,29 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             for receiver_name, receiver_pos in positions.items():
                 dist = l2(receiver_pos, emission.pos)
                 if abs(dist - radius) <= radius_tol:
+                    key = (emission.time, emission.emitter, receiver_name)
+                    if key in seen_hits:
+                        continue
+                    seen_hits.add(key)
                     strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
                     ang = angle_from_x_axis(receiver_pos)
                     if not (emission.emitter == receiver_name and speed_mult <= 1.0):
-                        hits.append(
-                            Hit(
-                                t_obs=t,
-                                t_emit=emission.time,
-                                emitter=emission.emitter,
-                                receiver=receiver_name,
-                                distance=dist,
-                                strength=strength,
-                                angle=ang,
-                                speed_multiplier=speed_mult,
-                                emit_pos=emission.pos,
-                            )
+                        hit = Hit(
+                            t_obs=t,
+                            t_emit=emission.time,
+                            emitter=emission.emitter,
+                            receiver=receiver_name,
+                            distance=dist,
+                            strength=strength,
+                            angle=ang,
+                            speed_multiplier=speed_mult,
+                            emit_pos=emission.pos,
                         )
+                        hits.append(hit)
+                        seen_hits_queue.append(key)
 
-        # Update recent hit log
+        # Update recent hit log (current-frame hits only)
+        recent_hits.clear()
         if hits:
             recent_hits.extend(hits)
 
@@ -355,24 +381,52 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         draw_text("Controls:", 10, 80, color=(0, 0, 0))
         draw_text("ESC quit, SPACE pause", 10, 100, color=(0, 0, 0))
         draw_text("UP/DOWN speed", 10, 120, color=(0, 0, 0))
-        draw_text("Hit table (recent):", 10, 150, color=(0, 0, 0))
-        y = 170
+        draw_text("RIGHT: run until positrino @ (1,0)", 10, 140, color=(0, 0, 0))
+        draw_text("Hit table (current frame):", 10, 170, color=(0, 0, 0))
+        y = 190
         max_rows = 12
-        # Show most recent hits first
-        for idx, h in enumerate(reversed(list(recent_hits)[-max_rows:])):
-            recv_angle = angle_from_x_axis(positions.get(h.receiver, (0.0, 0.0)))
+        for idx, h in enumerate(list(recent_hits)[:max_rows]):
+            # Angle from historical emission to receiver, measured at emission->receiver vector
+            recv_now = positions.get(h.receiver, (0.0, 0.0))
+            emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
+            hit_angle_deg = angle_deg(emit_to_recv)
             color = PURE_RED if h.receiver == "positrino" else PURE_BLUE
             text = (
-                f"{idx+1:02d} recv={h.receiver[0].upper()} "
-                f"ang_now={recv_angle:.2f} hit_ang={h.angle:.2f} "
+                f"{idx+1:02d} recv={h.receiver[0].upper()} hit_ang={hit_angle_deg:.1f}° "
                 f"str={h.strength:.3f} emit={h.emitter[0].upper()}"
             )
             draw_text(text, 10, y, color=color)
             y += 18
 
+        # Visualize angles at stop condition
+        if stop_reached and hits_at_stop:
+            for h in hits_at_stop:
+                recv_now = positions.get(h.receiver, (0.0, 0.0))
+                emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
+                ang = angle_from_x_axis(emit_to_recv)
+                recv_screen = world_to_screen(recv_now)
+                xaxis_proj = world_to_screen((recv_now[0], 0.0))
+                pygame.draw.line(screen, PURE_WHITE, recv_screen, xaxis_proj, 2)
+                # Arc indicator around receiver
+                radius_px = 30
+                rect = pygame.Rect(0, 0, radius_px * 2, radius_px * 2)
+                rect.center = recv_screen
+                # Pygame angles are in radians, clockwise due to y-down; invert angle for display
+                pygame.draw.arc(screen, PURE_WHITE, rect, 0, -ang, 2)
+
         pygame.display.flip()
         clock.tick(cfg.fps)
         frame_idx += 1
+
+        # Stop at positrino start when requested
+        if target_stop_at_posi_start:
+            dx = pos_posi[0] - 1.0
+            dy = pos_posi[1] - 0.0
+            if math.hypot(dx, dy) <= 0.02 and frame_idx > 1:
+                paused = True
+                target_stop_at_posi_start = False
+                stop_reached = True
+                hits_at_stop = list(recent_hits)
 
     pygame.quit()
 
@@ -401,6 +455,7 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
     emissions: List[Emission] = []
     frames: List[Frame] = []
 
+    seen_hits = set()
     for i in range(n_frames):
         t = i * dt
         path_t = speed_mult * t
@@ -431,6 +486,10 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
                 dist = l2(receiver_pos, emission.pos)
                 # Allow small tolerance for discrete stepping
                 if abs(dist - radius) <= radius_tol:
+                    key = (emission.time, emission.emitter, receiver_name)
+                    if key in seen_hits:
+                        continue
+                    seen_hits.add(key)
                     strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
                     ang = angle_from_x_axis(receiver_pos)
                     hits.append(
