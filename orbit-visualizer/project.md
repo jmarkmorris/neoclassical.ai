@@ -29,12 +29,15 @@ Build a continuously animated 2-D dynamical geometry visualizer for orbiting par
 - Architrino speed is user-settable from near zero up to and beyond field speed.
 - Above field speed, depict self-hits using the same rules as partner hits.
 - Any control change that alters the current field depiction or emitter-to-target lines forces a restart from the initial state.
+- Control panel exposes an architrino speed multiplier on path speed in [0, 100]; multiplier 0 means stationary on the path.
+- Self-hits are disallowed when the speed multiplier is ≤ 1; permit self-hits only when speed exceeds field speed.
 
 ## Hits and diagnostics
 - A hit occurs at times $t$ and emissions $t_0$ satisfying $\|\mathbf{s}_r(t) - \mathbf{s}_e(t_0)\| = v\,(t - t_0)$; display the emitter position $\mathbf{s}_e(t_0)$ at that hit time.
 - Log hits on the positrino: record strength proportional to $1/r^2$ and polar angle $\theta \in [0, 2\pi)$ measured from the $+x$ axis.
 - Hit table formatting: text color follows receiver polarity (pure red for positrino hits, pure blue for electrino hits). Columns: receiver angle at $t=\text{now}$ (relative to origin), hit angle, superimposed hit strength, hit index (for multiple hits).
 - In hit tables/indicators, color entries by emitter (pure red or pure blue); self-hits use the receiver’s color.
+- Hit table includes the current architrino speed multiplier.
 - Support exporting screenshots in PNG/JPG now; plan for MOV animation export later.
 
 # Design
