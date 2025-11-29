@@ -153,6 +153,13 @@ def angle_deg(p: Vec2) -> float:
     return math.degrees(ang)
 
 
+def angle_deg_screen(vec: Vec2) -> float:
+    """Angle in degrees [0, 360) from +x axis in screen coords (y down)."""
+    ang = math.atan2(-vec[1], vec[0])
+    ang = ang if ang >= 0 else ang + 2 * math.pi
+    return math.degrees(ang)
+
+
 def estimate_coverage_duration(cfg: SimulationConfig) -> float:
     """
     Heuristic duration until emissions can cover the domain:
@@ -243,20 +250,20 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             contrib[mask] = sign / (dist[mask] ** 2)
             net += contrib
 
-        # Percentile-based normalization to avoid a flat wash; zero regions stay near-black.
+        # Percentile-based normalization to avoid a flat wash; zero regions map to white.
         max_abs = np.percentile(np.abs(net), 99) if np.any(net) else 1.0
         if max_abs < 1e-9:
             max_abs = 1.0
         pos_norm = np.clip(np.maximum(net, 0.0) / max_abs, 0.0, 1.0)
         neg_norm = np.clip(np.maximum(-net, 0.0) / max_abs, 0.0, 1.0)
-        red = (pos_norm * 255).astype(np.uint8)
-        blue = (neg_norm * 255).astype(np.uint8)
-        green = np.zeros_like(red, dtype=np.uint8)
+        # Blend toward red/blue from white; zero stays white.
+        red = (255 * (1 - neg_norm)).astype(np.uint8)
+        blue = (255 * (1 - pos_norm)).astype(np.uint8)
+        green = (255 * (1 - np.maximum(pos_norm, neg_norm))).astype(np.uint8)
         rgb = np.stack([red, green, blue], axis=-1)
         surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
-        surf = pygame.transform.smoothscale(surf, (canvas_w, height)).convert_alpha()
-        # Use full opacity; underlying base is white.
-        surf.set_alpha(255)
+        # Use an opaque surface; no per-pixel alpha.
+        surf = pygame.transform.smoothscale(surf, (canvas_w, height)).convert()
         return surf
 
     def draw_text(text: str, x: int, y: int, color=(255, 255, 255)) -> None:
@@ -389,7 +396,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             # Angle from historical emission to receiver, measured at emission->receiver vector
             recv_now = positions.get(h.receiver, (0.0, 0.0))
             emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
-            hit_angle_deg = angle_deg(emit_to_recv)
+            hit_angle_deg = angle_deg_screen(emit_to_recv)
             color = PURE_RED if h.receiver == "positrino" else PURE_BLUE
             text = (
                 f"{idx+1:02d} recv={h.receiver[0].upper()} hit_ang={hit_angle_deg:.1f}° "
@@ -403,16 +410,20 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             for h in hits_at_stop:
                 recv_now = positions.get(h.receiver, (0.0, 0.0))
                 emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
-                ang = angle_from_x_axis(emit_to_recv)
+                ang_deg_disp = angle_deg_screen(emit_to_recv)
+                ang_rad_screen = math.radians(ang_deg_disp)
                 recv_screen = world_to_screen(recv_now)
                 xaxis_proj = world_to_screen((recv_now[0], 0.0))
-                pygame.draw.line(screen, PURE_WHITE, recv_screen, xaxis_proj, 2)
-                # Arc indicator around receiver
+                pygame.draw.line(screen, (0, 0, 0), recv_screen, xaxis_proj, 2)
+                # Arc indicator around receiver (clockwise angles in screen space)
                 radius_px = 30
                 rect = pygame.Rect(0, 0, radius_px * 2, radius_px * 2)
                 rect.center = recv_screen
-                # Pygame angles are in radians, clockwise due to y-down; invert angle for display
-                pygame.draw.arc(screen, PURE_WHITE, rect, 0, -ang, 2)
+                arc_color = PURE_RED if h.receiver == "positrino" else PURE_BLUE
+                pygame.draw.arc(screen, arc_color, rect, 0, ang_rad_screen, 2)
+                # Label angle
+                label = f"{ang_deg_disp:.1f}°"
+                draw_text(label, int(recv_screen[0] + radius_px), int(recv_screen[1] - radius_px), color=(0, 0, 0))
 
         pygame.display.flip()
         clock.tick(cfg.fps)
