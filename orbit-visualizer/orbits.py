@@ -769,10 +769,31 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             y += 18
 
         hits_for_labels = hits_at_stop if stop_reached and hits_at_stop else hits
+        circle_center_screen = world_to_screen((0.0, 0.0))
+        circle_radius = min(canvas_w, height) / (2 * cfg.domain_half_extent)
         for h in hits_for_labels:
             emit_canvas = world_to_canvas(h.emit_pos)
-            label = f"{angle_deg_screen((positions[h.receiver][0] - h.emit_pos[0], positions[h.receiver][1] - h.emit_pos[1])):.1f}°"
-            draw_text(ui_layer, label, int(panel_w + emit_canvas[0] + 8), int(emit_canvas[1] - 12), color=GRAY)
+            vec_to_receiver = positions[h.receiver][0] - h.emit_pos[0], positions[h.receiver][1] - h.emit_pos[1]
+            ang_screen_deg = angle_deg_screen(vec_to_receiver)
+            label = f"{ang_screen_deg:.1f}°"
+            emit_screen = (panel_w + emit_canvas[0], emit_canvas[1])
+            dir_vec = (
+                emit_screen[0] - circle_center_screen[0],
+                emit_screen[1] - circle_center_screen[1],
+            )
+            dir_len = math.hypot(dir_vec[0], dir_vec[1]) or 1.0
+            offset = circle_radius / 6
+            label_pos = (
+                emit_screen[0] + (dir_vec[0] / dir_len) * offset + 8,
+                emit_screen[1] + (dir_vec[1] / dir_len) * offset - 12,
+            )
+            draw_text(
+                ui_layer,
+                label,
+                int(label_pos[0]),
+                int(label_pos[1]),
+                color=GRAY,
+            )
 
         if paused:
             draw_text(ui_layer, "PAUSED", 10, height - 30)
