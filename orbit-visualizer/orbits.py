@@ -687,33 +687,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             draw_text(ui_layer, text, 10, y, color=color)
             y += 18
 
-        hits_for_angles = hits_at_stop if stop_reached and hits_at_stop else hits
-        for idx, h in enumerate(hits_for_angles[:6]):
-            recv_now = positions.get(h.receiver, (0.0, 0.0))
-            emit_pos = h.emit_pos
-            recv_canvas = world_to_canvas(recv_now)
-            emit_canvas = world_to_canvas(emit_pos)
-            vec_screen = (recv_canvas[0] - emit_canvas[0], recv_canvas[1] - emit_canvas[1])
-            ang_screen = math.atan2(-vec_screen[1], vec_screen[0])
-            if ang_screen < 0:
-                ang_screen += 2 * math.pi
-            ang_deg_disp = math.degrees(ang_screen)
-            radius_px = 30
-            rect = pygame.Rect(0, 0, radius_px * 2, radius_px * 2)
-            rect.center = (panel_w + recv_canvas[0], recv_canvas[1])
-            gfxdraw.line(
-                ui_layer,
-                int(panel_w + recv_canvas[0]),
-                int(recv_canvas[1]),
-                int(panel_w + recv_canvas[0] + radius_px),
-                int(recv_canvas[1]),
-                GRAY,
-            )
-            gfxdraw.arc(ui_layer, int(rect.centerx), int(rect.centery), radius_px, 0, int(math.degrees(ang_screen)), GRAY)
-            label_x = panel_w + recv_canvas[0] + radius_px * math.cos(ang_screen)
-            label_y = recv_canvas[1] - radius_px * math.sin(ang_screen)
-            label = f"{ang_deg_disp:.1f}°"
-            draw_text(ui_layer, label, int(label_x), int(label_y))
+        hits_for_labels = hits_at_stop if stop_reached and hits_at_stop else hits
+        for h in hits_for_labels:
+            emit_canvas = world_to_canvas(h.emit_pos)
+            label = f"{angle_deg_screen((positions[h.receiver][0] - h.emit_pos[0], positions[h.receiver][1] - h.emit_pos[1])):.1f}°"
+            draw_text(ui_layer, label, int(panel_w + emit_canvas[0] + 8), int(emit_canvas[1] - 12), color=GRAY)
 
         if paused:
             draw_text(ui_layer, "PAUSED", 10, height - 30)
