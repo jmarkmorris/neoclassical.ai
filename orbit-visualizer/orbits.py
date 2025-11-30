@@ -401,13 +401,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         return max(0.0, min(v, 100.0))
 
     def compute_self_delta(speed: float, v_field: float) -> float | None:
-        """Smallest positive root of 2*sin(w*dt/2) = v*dt for a unit circle self-hit."""
+        """
+        Smallest positive root of 2*sin(s*Δ/2) = v*Δ for a unit circle self-hit.
+        Returns None if speed <= v_field (no self hits) or no root found.
+        """
         if speed <= v_field + 1e-6:
             return None
 
         def f(d: float) -> float:
             return 2.0 * math.sin(0.5 * speed * d) - v_field * d
 
+        # Initial bracket around the smallest root
         hi = max(2.0, 2 * math.pi / max(speed, 1e-6))
         for _ in range(120):
             if f(hi) < 0:
@@ -416,7 +420,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         else:
             return None
         lo = 0.0
-        for _ in range(60):
+        for _ in range(80):
             mid = 0.5 * (lo + hi)
             if f(mid) > 0:
                 lo = mid
@@ -521,6 +525,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         radius_tol_cross = max(field_v * dt * 0.6, 0.002)
         radius_tol_self = max(field_v * dt * 1.5, 0.01)
         cleanup_hits(current_time)
+
+        # Partner hits (emitter != receiver)
         for em in emissions:
             tau = current_time - em.time
             if tau <= 0:
@@ -529,9 +535,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if radius > max_radius:
                 continue
             for receiver_name, receiver_pos in positions.items():
-                is_self = em.emitter == receiver_name
-                tol = radius_tol_self if is_self else radius_tol_cross
-                if is_self and not allow_self:
+                if em.emitter == receiver_name:
                     continue
                 dist = l2(receiver_pos, em.pos)
                 diff = dist - radius
@@ -540,7 +544,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 crossing = prev is not None and prev * diff <= 0.0
                 last_diff[key] = diff
                 last_diff_queue.append((em.time, key))
-                if abs(diff) <= tol or crossing:
+                if abs(diff) <= radius_tol_cross or crossing:
                     if key in seen_hits:
                         continue
                     seen_hits.add(key)
@@ -561,6 +565,41 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             emit_pos=em.pos,
                         )
                     )
+
+        # Self hits (analytic for unit circle using self_delta; fallback to none otherwise)
+        if allow_self and self_delta is not None and current_time >= self_delta:
+            for name, receiver_pos in positions.items():
+                t_emit = current_time - self_delta
+                emit_pos = emitter_lookup[name].position(speed_mult * t_emit)
+                dist = l2(receiver_pos, emit_pos)
+                diff = dist - field_v * self_delta
+                key = (t_emit, name, name)
+                prev = last_diff.get(key)
+                crossing = prev is not None and prev * diff <= 0.0
+                last_diff[key] = diff
+                last_diff_queue.append((t_emit, key))
+                if abs(diff) <= radius_tol_self or crossing:
+                    if key in seen_hits:
+                        continue
+                    seen_hits.add(key)
+                    seen_hits_queue.append((t_emit, key))
+                    vec = (receiver_pos[0] - emit_pos[0], receiver_pos[1] - emit_pos[1])
+                    ang = angle_from_x_axis(vec)
+                    strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
+                    hits.append(
+                        Hit(
+                            t_obs=current_time,
+                            t_emit=t_emit,
+                            emitter=name,
+                            receiver=name,
+                            distance=dist,
+                            strength=strength,
+                            angle=ang,
+                            speed_multiplier=speed_mult,
+                            emit_pos=emit_pos,
+                        )
+                    )
+
         return hits
 
     def draw_text(target: "pygame.Surface", text: str, x: int, y: int, color=(0, 0, 0)) -> None:
@@ -625,9 +664,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         draw_text(ui_layer, f"frame={frame_idx+1}", 10, 10)
         draw_text(ui_layer, f"fps={cfg.fps}", 10, 30)
         if paused and pending_speed_mult != speed_mult:
-            draw_text(ui_layer, f"speed_mult={speed_mult:.1f} -> {pending_speed_mult:.1f}", 10, 50)
+            draw_text(ui_layer, f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
         else:
-            draw_text(ui_layer, f"speed_mult={speed_mult:.1f}", 10, 50)
+            draw_text(ui_layer, f"speed_mult={speed_mult:.2f}", 10, 50)
         draw_text(ui_layer, "Controls:", 10, 80)
         draw_text(ui_layer, "ESC quit, SPACE pause", 10, 100)
         draw_text(ui_layer, "UP/DOWN speed (auto-pause)", 10, 120)
@@ -741,11 +780,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     else:
                         paused = True
                 elif event.key == pygame.K_UP:
-                    pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
+                    pending_speed_mult = clamp_speed(pending_speed_mult + 0.01)
                     reset_state(apply_pending_speed=True, prewarm=True)
                     paused = True
                 elif event.key == pygame.K_DOWN:
-                    pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
+                    pending_speed_mult = clamp_speed(pending_speed_mult - 0.01)
                     reset_state(apply_pending_speed=True, prewarm=True)
                     paused = True
                 elif event.key == pygame.K_RIGHT:
