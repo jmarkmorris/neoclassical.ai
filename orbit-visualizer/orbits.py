@@ -625,7 +625,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 if is_self:
                     if not allow_self or allow_self and speed_mult <= field_v + 1e-6:
                         continue
-                max_roots = 2 if is_self else 1
+                max_roots = None
                 roots_found = 0
                 last_root_time = None
                 prev_delta = max(step * 0.5, 1e-4)
@@ -681,7 +681,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         )
                         roots_found += 1
                         last_root_time = root
-                        if roots_found >= max_roots:
+                        if max_roots is not None and roots_found >= max_roots:
                             break
                     prev_delta = delta
                     prev_val = val
