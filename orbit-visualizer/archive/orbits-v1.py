@@ -1,4 +1,11 @@
 """
+This version was archived on Nov 30, 2025.
+It animates the orbit. That is kinda cool but it takes a lot of computation.
+I am thinking about changing it so that it only keeps track of the path and I can fast forward or reverse to jump over frames.
+Also, I am having problems with the visualization so I want to build the frame up in layers.
+So this is an archive of v1 before I make those major changes.
+--------
+
 Orbit visualizer prototype (single-file).
 
 Implements core math and a non-graphical, testable pipeline:
@@ -338,7 +345,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     dt = 1.0 / cfg.fps
     field_v = max(cfg.field_speed, 1e-6)
-    shell_thickness = 0.0
+    # Grid spacing used to set a minimum shell thickness to avoid aliasing.
+    shell_thickness = max(field_v * dt, 0.003)
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
     pending_speed_mult = speed_mult
 
@@ -371,30 +379,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     field_grid = np.zeros_like(xx, dtype=np.float32)
     field_surface = None
 
+    # Adjust shell thickness to be at least a fraction of a grid cell to reduce aliasing.
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
-
-    def update_time_params(new_fps: int) -> None:
-        nonlocal dt, shell_thickness
-        cfg.fps = new_fps
-        dt = 1.0 / cfg.fps
-        base_shell = max(field_v * dt, 0.003)
-        shell_thickness_local = max(base_shell, 0.75 * min(grid_dx, grid_dy))
-        shell_thickness_local = max(shell_thickness_local, 0.003)
-        shell_thickness = shell_thickness_local
-
-    update_time_params(cfg.fps)
+    shell_thickness = max(shell_thickness, 0.75 * min(grid_dx, grid_dy))
 
     def world_to_screen(p: Vec2) -> Vec2:
         scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
         sx = panel_w + canvas_w / 2 + p[0] * scale
         sy = height / 2 + p[1] * scale
         return sx, sy
-
-    def world_to_canvas(p: Vec2) -> Vec2:
-        """Like world_to_screen but with the canvas origin at (0, 0)."""
-        sx, sy = world_to_screen(p)
-        return sx - panel_w, sy
 
     def clamp_speed(v: float) -> float:
         return max(0.0, min(v, 100.0))
@@ -614,9 +608,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         )
         return hits
 
-    def draw_text(target: "pygame.Surface", text: str, x: int, y: int, color=(0, 0, 0)) -> None:
+    def draw_text(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
         surf = font.render(text, True, color)
-        target.blit(surf, (x, y))
+        screen.blit(surf, (x, y))
 
     def reset_state(apply_pending_speed: bool = True) -> None:
         nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta
@@ -642,47 +636,41 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         screen.fill(PURE_WHITE)
         fs = field_surf if field_surf is not None else field_surface
         screen.blit(fs, (panel_w, 0))
-
-        geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
         if path_name == "unit_circle":
-            center = world_to_canvas((0.0, 0.0))
+            center = world_to_screen((0.0, 0.0))
             scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-            pygame.draw.circle(geometry_layer, GRAY, center, int(scale), 1)
+            pygame.draw.circle(screen, GRAY, center, int(scale), 1)
 
         for h in hits:
-            start = world_to_canvas(h.emit_pos)
-            end = world_to_canvas(positions[h.receiver])
-            pygame.draw.line(geometry_layer, GRAY, start, end, 1)
+            start = world_to_screen(h.emit_pos)
+            end = world_to_screen(positions[h.receiver])
+            pygame.draw.line(screen, GRAY, start, end, 1)
+            if h.emitter == "positrino":
+                pygame.draw.circle(screen, LIGHT_RED, start, 4)
+            else:
+                pygame.draw.circle(screen, LIGHT_BLUE, start, 4)
+            pygame.draw.circle(screen, PURE_WHITE, start, 5, 1)
 
-        particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-        for h in hits:
-            start = world_to_canvas(h.emit_pos)
-            marker_color = LIGHT_RED if h.emitter == "positrino" else LIGHT_BLUE
-            pygame.draw.circle(particle_layer, marker_color, start, 4)
-            pygame.draw.circle(particle_layer, PURE_WHITE, start, 5, 1)
+        pos_posi_screen = world_to_screen(positions["positrino"])
+        pos_elec_screen = world_to_screen(positions["electrino"])
+        pygame.draw.circle(screen, PURE_RED, pos_posi_screen, 6)
+        pygame.draw.circle(screen, PURE_WHITE, pos_posi_screen, 7, 1)
+        pygame.draw.circle(screen, PURE_BLUE, pos_elec_screen, 6)
+        pygame.draw.circle(screen, PURE_WHITE, pos_elec_screen, 7, 1)
 
-        pos_posi_canvas = world_to_canvas(positions["positrino"])
-        pos_elec_canvas = world_to_canvas(positions["electrino"])
-        pygame.draw.circle(particle_layer, PURE_RED, pos_posi_canvas, 6)
-        pygame.draw.circle(particle_layer, PURE_WHITE, pos_posi_canvas, 7, 1)
-        pygame.draw.circle(particle_layer, PURE_BLUE, pos_elec_canvas, 6)
-        pygame.draw.circle(particle_layer, PURE_WHITE, pos_elec_canvas, 7, 1)
-
-        ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
-        pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
-        draw_text(ui_layer, f"frame={frame_idx+1}", 10, 10)
-        draw_text(ui_layer, f"fps={cfg.fps}", 10, 30)
+        pygame.draw.rect(screen, (245, 245, 245), (0, 0, panel_w, height))
+        draw_text(f"frame={frame_idx+1}", 10, 10)
+        draw_text(f"fps={cfg.fps}", 10, 30)
         if paused and pending_speed_mult != speed_mult:
-            draw_text(ui_layer, f"speed_mult={speed_mult:.1f} -> {pending_speed_mult:.1f}", 10, 50)
+            draw_text(f"speed_mult={speed_mult:.1f} -> {pending_speed_mult:.1f}", 10, 50)
         else:
-            draw_text(ui_layer, f"speed_mult={speed_mult:.1f}", 10, 50)
-        draw_text(ui_layer, "Controls:", 10, 80)
-        draw_text(ui_layer, "ESC quit, SPACE pause", 10, 100)
-        draw_text(ui_layer, "UP/DOWN speed (auto-pause)", 10, 120)
-        draw_text(ui_layer, "RIGHT: run to positrino start", 10, 140)
-        draw_text(ui_layer, "F: toggle fps 30/60", 10, 160)
-        draw_text(ui_layer, "Hit table (t = now):", 10, 190)
-        y = 210
+            draw_text(f"speed_mult={speed_mult:.1f}", 10, 50)
+        draw_text("Controls:", 10, 80)
+        draw_text("ESC quit, SPACE pause", 10, 100)
+        draw_text("UP/DOWN speed (auto-pause)", 10, 120)
+        draw_text("RIGHT: run to positrino start", 10, 140)
+        draw_text("Hit table (t = now):", 10, 170)
+        y = 190
         for idx, h in enumerate(list(hits)[:12]):
             recv_now = positions.get(h.receiver, (0.0, 0.0))
             emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
@@ -693,42 +681,27 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
                 f"emit={h.emitter[0].upper()} v={h.speed_multiplier:.2f}"
             )
-            draw_text(ui_layer, text, 10, y, color=color)
+            draw_text(text, 10, y, color=color)
             y += 18
 
-        hits_for_angles = hits_at_stop if stop_reached and hits_at_stop else hits
-        for idx, h in enumerate(hits_for_angles[:6]):
-            recv_now = positions.get(h.receiver, (0.0, 0.0))
-            emit_pos = h.emit_pos
-            recv_canvas = world_to_canvas(recv_now)
-            emit_canvas = world_to_canvas(emit_pos)
-            vec_screen = (recv_canvas[0] - emit_canvas[0], recv_canvas[1] - emit_canvas[1])
-            ang_screen = math.atan2(-vec_screen[1], vec_screen[0])
-            if ang_screen < 0:
-                ang_screen += 2 * math.pi
-            ang_deg_disp = math.degrees(ang_screen)
-            radius_px = 30
-            rect = pygame.Rect(0, 0, radius_px * 2, radius_px * 2)
-            rect.center = (panel_w + recv_canvas[0], recv_canvas[1])
-            pygame.draw.line(
-                ui_layer,
-                GRAY,
-                (panel_w + recv_canvas[0], recv_canvas[1]),
-                (panel_w + recv_canvas[0] + radius_px, recv_canvas[1]),
-                2,
-            )
-            pygame.draw.arc(ui_layer, GRAY, rect, 0, ang_screen, 2)
-            label_x = panel_w + recv_canvas[0] + radius_px * math.cos(ang_screen)
-            label_y = recv_canvas[1] - radius_px * math.sin(ang_screen)
-            label = f"{ang_deg_disp:.1f}°"
-            draw_text(ui_layer, label, int(label_x), int(label_y))
+        if stop_reached and hits_at_stop:
+            for h in hits_at_stop:
+                recv_now = positions.get(h.receiver, (0.0, 0.0))
+                emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
+                ang_deg_disp = angle_deg_screen(emit_to_recv)
+                ang_rad_screen = math.radians(ang_deg_disp)
+                recv_screen = world_to_screen(recv_now)
+                xaxis_proj = world_to_screen((recv_now[0], 0.0))
+                pygame.draw.line(screen, GRAY, recv_screen, xaxis_proj, 2)
+                radius_px = 30
+                rect = pygame.Rect(0, 0, radius_px * 2, radius_px * 2)
+                rect.center = recv_screen
+                pygame.draw.arc(screen, GRAY, rect, 0, ang_rad_screen, 2)
+                label = f"{ang_deg_disp:.1f}°"
+                draw_text(label, int(recv_screen[0] + radius_px), int(recv_screen[1] - radius_px))
 
         if paused:
-            draw_text(ui_layer, "PAUSED", 10, height - 30)
-
-        screen.blit(geometry_layer, (panel_w, 0))
-        screen.blit(particle_layer, (panel_w, 0))
-        screen.blit(ui_layer, (0, 0))
+            draw_text("PAUSED", 10, height - 30)
         pygame.display.flip()
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
@@ -755,6 +728,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     running = False
                 elif event.key == pygame.K_SPACE:
                     if paused:
+                        # Only reset when a staged speed change exists; otherwise resume where we left off.
                         if pending_speed_mult != speed_mult:
                             reset_state(apply_pending_speed=True)
                         paused = False
@@ -767,17 +741,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
                     paused = True
                 elif event.key == pygame.K_RIGHT:
+                    # Apply staged speed if any, but do not force a full reset otherwise.
                     if pending_speed_mult != speed_mult:
                         reset_state(apply_pending_speed=True)
                     stop_reached = False
                     hits_at_stop = []
                     target_stop_at_posi_start = True
                     paused = False
-                elif event.key == pygame.K_f:
-                    new_fps = 60 if cfg.fps == 30 else 30
-                    update_time_params(new_fps)
-                    reset_state(apply_pending_speed=False)
-                    paused = True
 
         if paused:
             if stop_reached and hits_at_stop:
