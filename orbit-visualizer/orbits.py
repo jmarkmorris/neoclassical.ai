@@ -306,6 +306,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     Incremental PyGame renderer that keeps a rolling accumulator grid instead of cached frames.
     """
     os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "hide")
+    os.environ.setdefault("SDL_VIDEO_CENTERED", "1")
     try:
         import pygame
         from pygame import gfxdraw
@@ -317,7 +318,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     pygame.init()
     panel_w = 320
-    width, height = 1710, 1107
+    info = pygame.display.Info()
+    width, height = info.current_w, info.current_h
     canvas_w = width - panel_w
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Orbit Visualizer (prototype)")
