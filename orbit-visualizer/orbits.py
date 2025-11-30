@@ -347,6 +347,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     recent_hits = deque(maxlen=20)
     seen_hits = set()
     seen_hits_queue = deque()
+    last_diff = {}
+    last_diff_queue = deque()
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640  # on the shorter side
@@ -468,11 +470,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         while seen_hits_queue and seen_hits_queue[0][0] < cutoff:
             _, key = seen_hits_queue.popleft()
             seen_hits.discard(key)
+        while last_diff_queue and last_diff_queue[0][0] < cutoff:
+            _, key = last_diff_queue.popleft()
+            last_diff.pop(key, None)
 
     def detect_hits(current_time: float, positions: Dict[str, Vec2], allow_self: bool) -> List[Hit]:
         hits: List[Hit] = []
-        radius_tol_cross = max(shell_thickness * 1.2, field_v * dt * 1.2)
-        radius_tol_self = max(shell_thickness * 0.6, field_v * dt * 0.6)
+        radius_tol_cross = max(field_v * dt * 0.6, 0.002)
+        radius_tol_self = max(field_v * dt * 0.3, 0.001)
         cleanup_hits(current_time)
         for em in emissions:
             tau = current_time - em.time
@@ -493,7 +498,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 else:
                     tol = radius_tol_cross
                 dist = l2(receiver_pos, em.pos)
-                if abs(dist - radius) <= tol:
+                diff = dist - radius
+                key = (em.time, em.emitter, receiver_name)
+                # Track latest diff for oscillation damping.
+                last_diff[key] = diff
+                last_diff_queue.append((em.time, key))
+
+                if abs(diff) <= tol:
+                    prev = last_diff.get(key)
+                    # Require approaching zero or crossing sign to reduce oscillations.
+                    if prev is not None and abs(diff) > abs(prev) and diff * prev > 0:
+                        continue
                     key = (em.time, em.emitter, receiver_name)
                     if key in seen_hits:
                         continue
