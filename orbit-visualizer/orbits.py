@@ -608,10 +608,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def analytic_hits(current_time: float, positions: Dict[str, Vec2], allow_self: bool, max_time: float) -> List[Hit]:
         hits: List[Hit] = []
-        sample_steps = 720
+        sample_steps = 1440
         max_time = min(max_time, emission_retention)
         step = max_time / sample_steps if sample_steps > 0 else max_time
-        tol = 1e-6
+        tol = 1e-7
 
         def g(emitter_name: str, receiver_name: str, delta_t: float) -> float:
             t_emit = current_time - delta_t
@@ -619,72 +619,87 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             dist = l2(positions[receiver_name], emit_pos)
             return dist - field_v * delta_t
 
-        for emitter_name in ("positrino", "electrino"):
-            for receiver_name in ("positrino", "electrino"):
-                is_self = emitter_name == receiver_name
-                if is_self:
-                    if not allow_self or allow_self and speed_mult <= field_v + 1e-6:
-                        continue
-                max_roots = None
-                roots_found = 0
-                last_root_time = None
-                prev_delta = max(step * 0.5, 1e-4)
-                prev_val = g(emitter_name, receiver_name, prev_delta)
-                for j in range(1, sample_steps + 1):
-                    delta = j * step
-                    val = g(emitter_name, receiver_name, delta)
-                    root = None
-                    if abs(val) <= tol:
-                        root = delta
-                    elif prev_val * val < 0:
-                        lo, hi = prev_delta, delta
-                        for _ in range(30):
-                            mid = 0.5 * (lo + hi)
-                            mid_val = g(emitter_name, receiver_name, mid)
-                            if abs(mid_val) <= tol:
-                                root = mid
-                                break
-                            if prev_val * mid_val <= 0:
-                                hi = mid
-                                val = mid_val
-                            else:
-                                lo = mid
-                                prev_val = mid_val
-                        if root is None:
-                            root = 0.5 * (lo + hi)
-                    if root is not None and root > 0:
-                        if last_root_time is not None and abs(root - last_root_time) < max(10 * tol, 0.001):
-                            prev_delta = delta
-                            prev_val = val
-                            continue
-                        t_emit = current_time - root
-                        emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit)
-                        recv_pos = positions[receiver_name]
-                        dist = l2(recv_pos, emit_pos)
-                        if dist <= 0:
-                            continue
-                        strength = 1.0 / (dist * dist)
-                        vec = (recv_pos[0] - emit_pos[0], recv_pos[1] - emit_pos[1])
-                        ang = angle_from_x_axis(vec)
-                        hits.append(
-                            Hit(
-                                t_obs=current_time,
-                                t_emit=t_emit,
-                                emitter=emitter_name,
-                                receiver=receiver_name,
-                                distance=dist,
-                                strength=strength,
-                                angle=ang,
-                                speed_multiplier=speed_mult,
-                                emit_pos=emit_pos,
-                            )
-                        )
-                        roots_found += 1
-                        last_root_time = root
-                        if max_roots is not None and roots_found >= max_roots:
+        def solve_roots(emitter_name: str, receiver_name: str, enable_self: bool) -> List[float]:
+            is_self = emitter_name == receiver_name
+            if is_self and not enable_self:
+                return []
+            roots: List[float] = []
+            prev_delta = max(step * 0.5, 1e-4)
+            prev_val = g(emitter_name, receiver_name, prev_delta)
+            last_root = None
+            for j in range(1, sample_steps + 1):
+                delta = j * step
+                if delta > max_time:
+                    break
+                val = g(emitter_name, receiver_name, delta)
+                root = None
+                if abs(val) <= tol:
+                    root = delta
+                elif prev_val * val < 0:
+                    lo, hi = prev_delta, delta
+                    for _ in range(60):
+                        mid = 0.5 * (lo + hi)
+                        mid_val = g(emitter_name, receiver_name, mid)
+                        if abs(mid_val) <= tol:
+                            root = mid
                             break
-                    prev_delta = delta
-                    prev_val = val
+                        if prev_val * mid_val <= 0:
+                            hi = mid
+                            val = mid_val
+                        else:
+                            lo = mid
+                            prev_val = mid_val
+                    if root is None:
+                        root = 0.5 * (lo + hi)
+                if root is not None and root > 0:
+                    residual = abs(g(emitter_name, receiver_name, root))
+                    max_resid = 5e-7 if current_time == 0.0 else 1e-6
+                    if residual > max_resid:
+                        prev_delta = delta
+                        prev_val = val
+                        continue
+                    if last_root is not None and abs(root - last_root) < max(50 * tol, 1e-4):
+                        prev_delta = delta
+                        prev_val = val
+                        continue
+                    roots.append(root)
+                    last_root = root
+                prev_delta = delta
+                prev_val = val
+            roots.sort()
+            return roots[:4] if is_self else roots[:2]
+
+        def make_hit(delta_t: float, emitter_name: str, receiver_name: str) -> Hit:
+            t_emit = current_time - delta_t
+            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit)
+            recv_pos = positions[receiver_name]
+            dist = l2(recv_pos, emit_pos)
+            strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
+            vec = (recv_pos[0] - emit_pos[0], recv_pos[1] - emit_pos[1])
+            ang = angle_from_x_axis(vec)
+            return Hit(
+                t_obs=current_time,
+                t_emit=t_emit,
+                emitter=emitter_name,
+                receiver=receiver_name,
+                distance=dist,
+                strength=strength,
+                angle=ang,
+                speed_multiplier=speed_mult,
+                emit_pos=emit_pos,
+            )
+
+        partner_roots = solve_roots("positrino", "electrino", enable_self=False)
+        for delta in partner_roots:
+            hits.append(make_hit(delta, "positrino", "electrino"))
+            hits.append(make_hit(delta, "electrino", "positrino"))
+
+        if allow_self and speed_mult > field_v + 1e-6:
+            self_roots = solve_roots("positrino", "positrino", enable_self=True)
+            for delta in self_roots:
+                hits.append(make_hit(delta, "positrino", "positrino"))
+                hits.append(make_hit(delta, "electrino", "electrino"))
+
         return hits
 
     def draw_text(target: "pygame.Surface", text: str, x: int, y: int, color=(0, 0, 0)) -> None:
