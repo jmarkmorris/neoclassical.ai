@@ -336,6 +336,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     dt = 1.0 / cfg.fps
     field_v = max(cfg.field_speed, 1e-6)
+    # Grid spacing used to set a minimum shell thickness to avoid aliasing.
     shell_thickness = max(field_v * dt, 0.003)
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
     pending_speed_mult = speed_mult
@@ -347,8 +348,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     seen_hits = set()
     seen_hits_queue = deque()
 
-    # Grid for the accumulator at canvas resolution to reduce moire/scaling artifacts.
-    res_x, res_y = canvas_w, height
+    # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
+    base_res = 640  # on the shorter side
+    min_dim = min(canvas_w, height)
+    res_x = int(base_res * (canvas_w / min_dim))
+    res_y = int(base_res * (height / min_dim))
+    res_x = max(64, res_x)
+    res_y = max(64, res_y)
     min_dim = min(canvas_w, height)
     x_extent = cfg.domain_half_extent * (canvas_w / min_dim)
     y_extent = cfg.domain_half_extent * (height / min_dim)
@@ -359,6 +365,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     field_grid = np.zeros_like(xx, dtype=np.float64)
     field_surface = None
+
+    # Adjust shell thickness to be at least a fraction of a grid cell to reduce aliasing.
+    grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
+    grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
+    shell_thickness = max(shell_thickness, 0.75 * min(grid_dx, grid_dy))
 
     def world_to_screen(p: Vec2) -> Vec2:
         scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
@@ -381,6 +392,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         green = (255 * (1 - np.maximum(pos_norm, neg_norm))).astype(np.uint8)
         rgb = np.stack([red, green, blue], axis=-1)
         surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
+        surf = pygame.transform.smoothscale(surf, (canvas_w, height))
         return surf.convert()
 
     def apply_shell(em: Emission, radius: float, remove: bool = False) -> None:
