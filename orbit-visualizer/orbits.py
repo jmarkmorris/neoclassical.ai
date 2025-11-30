@@ -321,7 +321,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     info = pygame.display.Info()
     width, height = info.current_w, info.current_h
     canvas_w = width - panel_w
-    screen = pygame.display.set_mode((width, height))
+    display_flags = pygame.RESIZABLE | pygame.SCALED
+    screen = pygame.display.set_mode((width, height), display_flags)
     pygame.display.set_caption("Orbit Visualizer (prototype)")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 16)
@@ -604,11 +605,82 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         return hits
 
+    def analytic_hits(current_time: float, positions: Dict[str, Vec2], allow_self: bool, max_time: float) -> List[Hit]:
+        hits: List[Hit] = []
+        sample_steps = 360
+        step = max_time / sample_steps if sample_steps > 0 else max_time
+        tol = 1e-3
+
+        def g(emitter_name: str, receiver_name: str, delta_t: float) -> float:
+            t_emit = current_time - delta_t
+            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit)
+            dist = l2(positions[receiver_name], emit_pos)
+            return dist - field_v * delta_t
+
+        for emitter_name in ("positrino", "electrino"):
+            for receiver_name in ("positrino", "electrino"):
+                if emitter_name == receiver_name and not allow_self:
+                    continue
+                roots_found = 0
+                prev_delta = max(step * 0.5, 1e-4)
+                prev_val = g(emitter_name, receiver_name, prev_delta)
+                for j in range(1, sample_steps + 1):
+                    delta = j * step
+                    val = g(emitter_name, receiver_name, delta)
+                    root = None
+                    if abs(val) <= tol:
+                        root = delta
+                    elif prev_val * val < 0:
+                        lo, hi = prev_delta, delta
+                        for _ in range(30):
+                            mid = 0.5 * (lo + hi)
+                            mid_val = g(emitter_name, receiver_name, mid)
+                            if abs(mid_val) <= tol:
+                                root = mid
+                                break
+                            if prev_val * mid_val <= 0:
+                                hi = mid
+                                val = mid_val
+                            else:
+                                lo = mid
+                                prev_val = mid_val
+                        if root is None:
+                            root = 0.5 * (lo + hi)
+                    if root is not None and root > 0:
+                        t_emit = current_time - root
+                        emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit)
+                        recv_pos = positions[receiver_name]
+                        dist = l2(recv_pos, emit_pos)
+                        if dist <= 0:
+                            continue
+                        strength = 1.0 / (dist * dist)
+                        vec = (recv_pos[0] - emit_pos[0], recv_pos[1] - emit_pos[1])
+                        ang = angle_from_x_axis(vec)
+                        hits.append(
+                            Hit(
+                                t_obs=current_time,
+                                t_emit=t_emit,
+                                emitter=emitter_name,
+                                receiver=receiver_name,
+                                distance=dist,
+                                strength=strength,
+                                angle=ang,
+                                speed_multiplier=speed_mult,
+                                emit_pos=emit_pos,
+                            )
+                        )
+                        roots_found += 1
+                        if roots_found >= 2:
+                            break
+                    prev_delta = delta
+                    prev_val = val
+        return hits
+
     def draw_text(target: "pygame.Surface", text: str, x: int, y: int, color=(0, 0, 0)) -> None:
         surf = font.render(text, True, color)
         target.blit(surf, (x, y))
 
-    def reset_state(apply_pending_speed: bool = True, prewarm: bool = True) -> None:
+    def reset_state(apply_pending_speed: bool = True) -> None:
         nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
@@ -628,8 +700,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         last_diff.clear()
         last_diff_queue.clear()
         positions = current_positions(0.0)
-        if prewarm:
-            prewarm_to_revolutions(2.0)
+        recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         screen.fill(PURE_WHITE)
@@ -723,26 +794,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             return
         emissions = [em for em in emissions if em.time >= cutoff]
 
-    def prewarm_to_revolutions(revs: float = 2.0) -> None:
-        nonlocal positions, frame_idx
-        if speed_mult <= 0:
-            return
-        target_time = (2.0 * math.pi * revs) / speed_mult
-        steps = int(target_time / dt)
-        last_hits: List[Hit] = []
-        for i in range(steps):
-            current_time = i * dt
-            positions = current_positions(current_time)
-            emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
-            emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
-            prune_emissions(current_time)
-            last_hits = detect_hits(current_time, positions, allow_self=speed_mult > 1.0)
-        frame_idx = steps
-        recent_hits.clear()
-        recent_hits.extend(last_hits)
-
-    # Pre-warm two full revolutions (field accumulation is skipped during prewarm)
-    prewarm_to_revolutions(2.0)
     render_frame(positions, list(recent_hits))
 
     while running:
@@ -761,11 +812,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         paused = True
                 elif event.key == pygame.K_UP:
                     pending_speed_mult = clamp_speed(pending_speed_mult + 0.01)
-                    reset_state(apply_pending_speed=True, prewarm=True)
+                    reset_state(apply_pending_speed=True)
                     paused = True
                 elif event.key == pygame.K_DOWN:
                     pending_speed_mult = clamp_speed(pending_speed_mult - 0.01)
-                    reset_state(apply_pending_speed=True, prewarm=True)
+                    reset_state(apply_pending_speed=True)
                     paused = True
                 elif event.key == pygame.K_RIGHT:
                     if pending_speed_mult != speed_mult:
@@ -797,12 +848,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         update_emissions(current_time)
         allow_self = speed_mult > 1.0
         hits = detect_hits(current_time, positions, allow_self=allow_self)
+        display_hits = hits
+        if not display_hits:
+            display_hits = analytic_hits(current_time, positions, allow_self, emission_retention)
         recent_hits.clear()
-        recent_hits.extend(hits)
+        recent_hits.extend(display_hits)
 
         if frame_idx % accum_stride == 0:
             field_surface = make_field_surface()
-        render_frame(positions, hits)
+        render_frame(positions, display_hits)
 
         frame_idx += 1
         clock.tick(cfg.fps)
