@@ -363,7 +363,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     xx, yy = np.meshgrid(xs, ys)
     eps = 1e-6
 
-    field_grid = np.zeros_like(xx, dtype=np.float64)
+    field_grid = np.zeros_like(xx, dtype=np.float32)
     field_surface = None
 
     # Adjust shell thickness to be at least a fraction of a grid cell to reduce aliasing.
@@ -380,8 +380,24 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def clamp_speed(v: float) -> float:
         return max(0.0, min(v, 100.0))
 
+    def smooth3(mat: np.ndarray) -> np.ndarray:
+        """Cheap 3x3 box blur (edge-padded) to soften moire in display mapping."""
+        padded = np.pad(mat, ((1, 1), (1, 1)), mode="edge")
+        return (
+            padded[1:-1, 1:-1]
+            + padded[:-2, 1:-1]
+            + padded[2:, 1:-1]
+            + padded[1:-1, :-2]
+            + padded[1:-1, 2:]
+            + padded[:-2, :-2]
+            + padded[:-2, 2:]
+            + padded[2:, :-2]
+            + padded[2:, 2:]
+        ) / 9.0
+
     def make_field_surface() -> "pygame.Surface":
         log_net = np.sign(field_grid) * np.log1p(np.abs(field_grid))
+        log_net = smooth3(log_net)
         max_abs = np.percentile(np.abs(log_net), 99) if np.any(log_net) else 1.0
         if max_abs < 1e-9:
             max_abs = 1.0
@@ -573,6 +589,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     field_surface = make_field_surface()
     render_frame(positions, [])
 
+    # Only refresh the field surface every few frames to reduce cost.
+    accum_stride = 2
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -620,7 +639,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         recent_hits.clear()
         recent_hits.extend(hits)
 
-        field_surface = make_field_surface()
+        if frame_idx % accum_stride == 0:
+            field_surface = make_field_surface()
         render_frame(positions, hits)
 
         frame_idx += 1
