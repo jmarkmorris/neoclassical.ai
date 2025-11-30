@@ -333,6 +333,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     target_stop_at_posi_start = False
     stop_reached = False
     hits_at_stop: List[Hit] = []
+    stop_positions: Dict[str, Vec2] | None = None
+    stop_field_surface = None
 
     dt = 1.0 / cfg.fps
     field_v = max(cfg.field_speed, 1e-6)
@@ -349,6 +351,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     seen_hits_queue = deque()
     last_diff = {}
     last_diff_queue = deque()
+    self_delta = None
+    emitter_lookup = {"positrino": positrino, "electrino": electrino}
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640  # on the shorter side
@@ -381,6 +385,30 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def clamp_speed(v: float) -> float:
         return max(0.0, min(v, 100.0))
+
+    def compute_self_delta(speed: float, v_field: float) -> float | None:
+        """Smallest positive root of 2*sin(w*dt/2) = v*dt for a unit circle self-hit."""
+        if speed <= v_field + 1e-6:
+            return None
+
+        def f(d: float) -> float:
+            return 2.0 * math.sin(0.5 * speed * d) - v_field * d
+
+        hi = max(2.0, 2 * math.pi / max(speed, 1e-6))
+        for _ in range(120):
+            if f(hi) < 0:
+                break
+            hi *= 1.5
+        else:
+            return None
+        lo = 0.0
+        for _ in range(60):
+            mid = 0.5 * (lo + hi)
+            if f(mid) > 0:
+                lo = mid
+            else:
+                hi = mid
+        return hi
 
     def smooth5(mat: np.ndarray) -> np.ndarray:
         """Separable 5x5 box blur (edge-padded) to smooth residual banding."""
@@ -489,47 +517,88 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             for receiver_name, receiver_pos in positions.items():
                 is_self = em.emitter == receiver_name
                 if is_self:
-                    if not allow_self:
+                    if not allow_self or self_delta is None:
                         continue
-                    # Avoid near-instant trailing self-hits; require some propagation.
-                    if tau <= dt * 2.0:
+                    t_emit_target = current_time - self_delta
+                    # Find the closest emission from this emitter to the target emission time.
+                    best_em = None
+                    best_dt = None
+                    for candidate in emissions:
+                        if candidate.emitter != em.emitter:
+                            continue
+                        if candidate.time > t_emit_target + dt:
+                            continue
+                        delta_t = abs(candidate.time - t_emit_target)
+                        if best_dt is None or delta_t < best_dt:
+                            best_dt = delta_t
+                            best_em = candidate
+                    if best_em is None:
+                        # Fallback: compute position analytically.
+                        emit_pos = emitter_lookup[em.emitter].position(speed_mult * t_emit_target)
+                        t_emit_used = t_emit_target
+                    else:
+                        emit_pos = best_em.pos
+                        t_emit_used = best_em.time
+                    tau_self = current_time - t_emit_used
+                    radius_self = field_v * tau_self
+                    dist = l2(receiver_pos, emit_pos)
+                    diff = dist - radius_self
+                    key = (t_emit_used, em.emitter, receiver_name)
+                    last_diff[key] = diff
+                    last_diff_queue.append((t_emit_used, key))
+                    if abs(diff) > radius_tol_self:
                         continue
-                    tol = radius_tol_self
-                else:
-                    tol = radius_tol_cross
-                dist = l2(receiver_pos, em.pos)
-                diff = dist - radius
-                key = (em.time, em.emitter, receiver_name)
-                # Track latest diff for oscillation damping.
-                last_diff[key] = diff
-                last_diff_queue.append((em.time, key))
-
-                if abs(diff) <= tol:
-                    prev = last_diff.get(key)
-                    # Require approaching zero or crossing sign to reduce oscillations.
-                    if prev is not None and abs(diff) > abs(prev) and diff * prev > 0:
-                        continue
-                    key = (em.time, em.emitter, receiver_name)
                     if key in seen_hits:
                         continue
                     seen_hits.add(key)
-                    seen_hits_queue.append((em.time, key))
-                    vec = (receiver_pos[0] - em.pos[0], receiver_pos[1] - em.pos[1])
+                    seen_hits_queue.append((t_emit_used, key))
+                    vec = (receiver_pos[0] - emit_pos[0], receiver_pos[1] - emit_pos[1])
                     ang = angle_from_x_axis(vec)
                     strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
                     hits.append(
                         Hit(
                             t_obs=current_time,
-                            t_emit=em.time,
+                            t_emit=t_emit_used,
                             emitter=em.emitter,
                             receiver=receiver_name,
                             distance=dist,
                             strength=strength,
                             angle=ang,
                             speed_multiplier=speed_mult,
-                            emit_pos=em.pos,
+                            emit_pos=emit_pos,
                         )
                     )
+                else:
+                    tol = radius_tol_cross
+                    dist = l2(receiver_pos, em.pos)
+                    diff = dist - radius
+                    key = (em.time, em.emitter, receiver_name)
+                    last_diff[key] = diff
+                    last_diff_queue.append((em.time, key))
+                    if abs(diff) <= tol:
+                        prev = last_diff.get(key)
+                        if prev is not None and abs(diff) > abs(prev) and diff * prev > 0:
+                            continue
+                        if key in seen_hits:
+                            continue
+                        seen_hits.add(key)
+                        seen_hits_queue.append((em.time, key))
+                        vec = (receiver_pos[0] - em.pos[0], receiver_pos[1] - em.pos[1])
+                        ang = angle_from_x_axis(vec)
+                        strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
+                        hits.append(
+                            Hit(
+                                t_obs=current_time,
+                                t_emit=em.time,
+                                emitter=em.emitter,
+                                receiver=receiver_name,
+                                distance=dist,
+                                strength=strength,
+                                angle=ang,
+                                speed_multiplier=speed_mult,
+                                emit_pos=em.pos,
+                            )
+                        )
         return hits
 
     def draw_text(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
@@ -537,9 +606,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         screen.blit(surf, (x, y))
 
     def reset_state(apply_pending_speed: bool = True) -> None:
-        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface
+        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
+        self_delta = compute_self_delta(speed_mult, field_v)
         emissions = []
         field_grid[:] = 0.0
         field_surface = make_field_surface()
@@ -547,13 +617,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         stop_reached = False
         target_stop_at_posi_start = False
         hits_at_stop = []
+        stop_positions = None
+        stop_field_surface = None
         recent_hits.clear()
         seen_hits.clear()
         seen_hits_queue.clear()
+        last_diff.clear()
+        last_diff_queue.clear()
 
-    def render_frame(positions: Dict[str, Vec2], hits: List[Hit]) -> None:
+    def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         screen.fill(PURE_WHITE)
-        screen.blit(field_surface, (panel_w, 0))
+        fs = field_surf if field_surf is not None else field_surface
+        screen.blit(fs, (panel_w, 0))
         if path_name == "unit_circle":
             center = world_to_screen((0.0, 0.0))
             scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
@@ -668,7 +743,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     paused = False
 
         if paused:
-            render_frame(positions, list(recent_hits))
+            if stop_reached and hits_at_stop:
+                render_frame(stop_positions or positions, hits_at_stop, stop_field_surface)
+            else:
+                render_frame(positions, list(recent_hits))
             clock.tick(cfg.fps)
             continue
 
@@ -699,6 +777,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 target_stop_at_posi_start = False
                 stop_reached = True
                 hits_at_stop = list(recent_hits)
+                stop_positions = positions.copy()
+                stop_field_surface = field_surface
+                # Freeze the field/positions at stop; do not advance frame_idx further.
+                frame_idx = frame_idx  # no-op for clarity
 
     pygame.quit()
 
