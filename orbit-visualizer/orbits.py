@@ -412,19 +412,45 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         return surf.convert()
 
     def apply_shell(em: Emission, radius: float, remove: bool = False) -> None:
+        """Apply a smooth annular band for this emission at the given radius."""
         if radius <= 0 or radius > max_radius:
             return
         ex, ey = em.pos
-        dist = np.sqrt((xx - ex) ** 2 + (yy - ey) ** 2) + eps
-        mask = np.abs(dist - radius) <= shell_thickness
+        band_half = max(shell_thickness * 1.5, shell_thickness)
+
+        # Bounding box in world coords
+        x_min = ex - (radius + band_half)
+        x_max = ex + (radius + band_half)
+        y_min = ey - (radius + band_half)
+        y_max = ey + (radius + band_half)
+        # Early reject if box is outside domain
+        if x_max < xs[0] or x_min > xs[-1] or y_max < ys[0] or y_min > ys[-1]:
+            return
+
+        # Convert to index range
+        x0 = max(0, np.searchsorted(xs, x_min, side="left"))
+        x1 = min(len(xs), np.searchsorted(xs, x_max, side="right"))
+        y0 = max(0, np.searchsorted(ys, y_min, side="left"))
+        y1 = min(len(ys), np.searchsorted(ys, y_max, side="right"))
+        if x0 >= x1 or y0 >= y1:
+            return
+
+        sub_xx = xx[y0:y1, x0:x1]
+        sub_yy = yy[y0:y1, x0:x1]
+        dist = np.sqrt((sub_xx - ex) ** 2 + (sub_yy - ey) ** 2) + eps
+        delta = np.abs(dist - radius)
+        mask = delta <= band_half
         if not np.any(mask):
             return
+
+        # Smooth radial weight (raised cosine) to reduce aliasing.
+        radial_weight = 0.5 * (1.0 + np.cos(np.pi * delta[mask] / band_half))
         sign = 1.0 if em.emitter == "positrino" else -1.0
-        contrib = sign / (dist[mask] ** 2)
+        contrib = sign * radial_weight / (dist[mask] ** 2)
         if remove:
-            field_grid[mask] -= contrib
+            field_grid[y0:y1, x0:x1][mask] -= contrib
         else:
-            field_grid[mask] += contrib
+            field_grid[y0:y1, x0:x1][mask] += contrib
 
     def update_emissions(current_time: float) -> None:
         nonlocal emissions
