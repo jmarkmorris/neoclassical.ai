@@ -783,14 +783,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         else:
             panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
         panel_draw("Controls:", 10, 80)
-        panel_draw("ESC quit, SPACE pause", 10, 100)
+        panel_draw("ESC quit", 10, 100)
         panel_draw("UP/DOWN speed (auto-pause)", 10, 120)
-        panel_draw("RIGHT: run to positrino start", 10, 140)
-        panel_draw("F: toggle fps 30/60", 10, 160)
-        panel_draw("C: copy panel", 10, 180)
-        panel_draw("V: color field", 10, 200)
-        panel_draw("Hit table (t = now):", 10, 230)
-        y = 250
+        panel_draw("F: toggle fps 30/60", 10, 140)
+        panel_draw("C: copy panel", 10, 160)
+        panel_draw("V: color field", 10, 180)
+        panel_draw("Hit table (t = now):", 10, 210)
+        y = 230
 
         # Net strength/angle per architrino at t = now (superposition of hits).
         net_by_receiver: Dict[str, complex] = {"positrino": 0j, "electrino": 0j}
@@ -892,13 +891,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
-                elif event.key == pygame.K_SPACE:
-                    if paused:
-                        if pending_speed_mult != speed_mult:
-                            reset_state(apply_pending_speed=True)
-                        paused = False
-                    else:
-                        paused = True
                 elif event.key == pygame.K_UP:
                     pending_speed_mult = clamp_speed(pending_speed_mult + 0.01)
                     reset_state(apply_pending_speed=True)
@@ -907,13 +899,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     pending_speed_mult = clamp_speed(pending_speed_mult - 0.01)
                     reset_state(apply_pending_speed=True)
                     paused = True
-                elif event.key == pygame.K_RIGHT:
-                    if pending_speed_mult != speed_mult:
-                        reset_state(apply_pending_speed=True)
-                    stop_reached = False
-                    hits_at_stop = []
-                    target_stop_at_posi_start = True
-                    paused = False
                 elif event.key == pygame.K_f:
                     new_fps = 60 if cfg.fps == 30 else 30
                     update_time_params(new_fps)
