@@ -308,6 +308,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "hide")
     try:
         import pygame
+        from pygame import gfxdraw
     except ImportError as exc:
         raise SystemExit("PyGame is required for rendering. Install with `pip install pygame`.") from exc
 
@@ -647,26 +648,26 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if path_name == "unit_circle":
             center = world_to_canvas((0.0, 0.0))
             scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-            pygame.draw.circle(geometry_layer, GRAY, center, int(scale), 1)
+            gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), int(scale), GRAY)
 
         for h in hits:
             start = world_to_canvas(h.emit_pos)
             end = world_to_canvas(positions[h.receiver])
-            pygame.draw.line(geometry_layer, GRAY, start, end, 1)
+            gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), GRAY)
 
         particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
         for h in hits:
             start = world_to_canvas(h.emit_pos)
             marker_color = LIGHT_RED if h.emitter == "positrino" else LIGHT_BLUE
-            pygame.draw.circle(particle_layer, marker_color, start, 4)
-            pygame.draw.circle(particle_layer, PURE_WHITE, start, 5, 1)
+            gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
+            gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
         pos_posi_canvas = world_to_canvas(positions["positrino"])
         pos_elec_canvas = world_to_canvas(positions["electrino"])
-        pygame.draw.circle(particle_layer, PURE_RED, pos_posi_canvas, 6)
-        pygame.draw.circle(particle_layer, PURE_WHITE, pos_posi_canvas, 7, 1)
-        pygame.draw.circle(particle_layer, PURE_BLUE, pos_elec_canvas, 6)
-        pygame.draw.circle(particle_layer, PURE_WHITE, pos_elec_canvas, 7, 1)
+        gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
+        gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
+        gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
+        gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
 
         ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
         pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
@@ -710,14 +711,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             radius_px = 30
             rect = pygame.Rect(0, 0, radius_px * 2, radius_px * 2)
             rect.center = (panel_w + recv_canvas[0], recv_canvas[1])
-            pygame.draw.line(
+            gfxdraw.line(
                 ui_layer,
+                int(panel_w + recv_canvas[0]),
+                int(recv_canvas[1]),
+                int(panel_w + recv_canvas[0] + radius_px),
+                int(recv_canvas[1]),
                 GRAY,
-                (panel_w + recv_canvas[0], recv_canvas[1]),
-                (panel_w + recv_canvas[0] + radius_px, recv_canvas[1]),
-                2,
             )
-            pygame.draw.arc(ui_layer, GRAY, rect, 0, ang_screen, 2)
+            gfxdraw.arc(ui_layer, int(rect.centerx), int(rect.centery), radius_px, 0, int(math.degrees(ang_screen)), GRAY)
             label_x = panel_w + recv_canvas[0] + radius_px * math.cos(ang_screen)
             label_y = recv_canvas[1] - radius_px * math.sin(ang_screen)
             label = f"{ang_deg_disp:.1f}°"
