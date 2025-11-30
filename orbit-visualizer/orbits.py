@@ -380,24 +380,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def clamp_speed(v: float) -> float:
         return max(0.0, min(v, 100.0))
 
-    def smooth3(mat: np.ndarray) -> np.ndarray:
-        """Cheap 3x3 box blur (edge-padded) to soften moire in display mapping."""
-        padded = np.pad(mat, ((1, 1), (1, 1)), mode="edge")
-        return (
-            padded[1:-1, 1:-1]
-            + padded[:-2, 1:-1]
-            + padded[2:, 1:-1]
-            + padded[1:-1, :-2]
-            + padded[1:-1, 2:]
-            + padded[:-2, :-2]
-            + padded[:-2, 2:]
-            + padded[2:, :-2]
-            + padded[2:, 2:]
-        ) / 9.0
+    def smooth5(mat: np.ndarray) -> np.ndarray:
+        """Separable 5x5 box blur (edge-padded) to smooth residual banding."""
+        # Horizontal blur
+        p = np.pad(mat, ((0, 0), (2, 2)), mode="edge")
+        h = (p[:, 2:-2] + p[:, 1:-3] + p[:, 3:-1] + p[:, :-4] + p[:, 4:]) / 5.0
+        # Vertical blur
+        p2 = np.pad(h, ((2, 2), (0, 0)), mode="edge")
+        v = (p2[2:-2, :] + p2[1:-3, :] + p2[3:-1, :] + p2[:-4, :] + p2[4:, :]) / 5.0
+        return v.astype(np.float32, copy=False)
 
     def make_field_surface() -> "pygame.Surface":
         log_net = np.sign(field_grid) * np.log1p(np.abs(field_grid))
-        log_net = smooth3(log_net)
+        log_net = smooth5(log_net)
         max_abs = np.percentile(np.abs(log_net), 99) if np.any(log_net) else 1.0
         if max_abs < 1e-9:
             max_abs = 1.0
