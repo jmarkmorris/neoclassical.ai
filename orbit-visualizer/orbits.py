@@ -826,6 +826,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     reset_state(apply_pending_speed=False)
     render_frame(positions, list(recent_hits))
 
+    pygame.key.set_repeat(200, 50)
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
