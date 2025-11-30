@@ -584,7 +584,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
                     paused = True
                 elif event.key == pygame.K_RIGHT:
-                    reset_state(apply_pending_speed=True)
+                    # Apply staged speed if any, but do not force a full reset otherwise.
+                    if pending_speed_mult != speed_mult:
+                        reset_state(apply_pending_speed=True)
+                    stop_reached = False
+                    hits_at_stop = []
                     target_stop_at_posi_start = True
                     paused = False
 
