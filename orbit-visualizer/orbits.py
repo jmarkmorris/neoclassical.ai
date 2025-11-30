@@ -693,7 +693,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def build_field_snapshot() -> None:
         nonlocal field_surface
         field_grid[:] = 0.0
-        snapshot_time = emission_retention
+        orbit_duration = (2 * math.pi) / max(speed_mult, 1e-6) if speed_mult > 0 else 0.0
+        snapshot_time = max(emission_retention, 3.0 * orbit_duration)
         if snapshot_time <= 0:
             field_surface = make_field_surface()
             return
@@ -702,19 +703,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         steps = max(min_samples, int(snapshot_time / dt_snap))
         dt_snap = snapshot_time / steps
         for i in range(steps + 1):
-            sample_t = i * dt_snap
+            delta_t = i * dt_snap
+            if delta_t <= 0:
+                continue
             positions_snap = {
-                "positrino": positrino.position(speed_mult * sample_t),
-                "electrino": electrino.position(speed_mult * sample_t),
+                "positrino": positrino.position(-speed_mult * delta_t),
+                "electrino": electrino.position(-speed_mult * delta_t),
             }
             for name, pos in positions_snap.items():
-                tau = snapshot_time - sample_t
-                if tau <= 0:
-                    continue
+                tau = delta_t
                 radius = field_v * tau
                 if radius > max_radius:
                     continue
-                apply_shell(Emission(time=sample_t, pos=pos, emitter=name), radius, remove=False)
+                apply_shell(Emission(time=-delta_t, pos=pos, emitter=name), radius, remove=False)
         field_surface = make_field_surface()
 
     def reset_state(apply_pending_speed: bool = True) -> None:
