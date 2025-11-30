@@ -499,22 +499,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         else:
             field_grid[y0:y1, x0:x1][mask] += contrib
 
-    def update_emissions(current_time: float) -> None:
-        nonlocal emissions
-        updated: List[Emission] = []
-        for em in emissions:
-            r_prev = em.last_radius
-            r_new = field_v * (current_time - em.time)
-            if r_prev > 0:
-                apply_shell(em, r_prev, remove=True)
-            if r_new > max_radius:
-                continue
-            if r_new > 0:
-                apply_shell(em, r_new, remove=False)
-                em.last_radius = r_new
-            updated.append(em)
-        emissions = updated
-
     def cleanup_hits(current_time: float) -> None:
         cutoff = current_time - emission_retention
         while seen_hits_queue and seen_hits_queue[0][0] < cutoff:
@@ -706,6 +690,33 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         surf = font.render(text, True, color)
         target.blit(surf, (x, y))
 
+    def build_field_snapshot() -> None:
+        nonlocal field_surface
+        field_grid[:] = 0.0
+        snapshot_time = emission_retention
+        if snapshot_time <= 0:
+            field_surface = make_field_surface()
+            return
+        min_samples = 720
+        dt_snap = max(1.0 / (cfg.fps * 4), snapshot_time / (min_samples * 4))
+        steps = max(min_samples, int(snapshot_time / dt_snap))
+        dt_snap = snapshot_time / steps
+        for i in range(steps + 1):
+            sample_t = i * dt_snap
+            positions_snap = {
+                "positrino": positrino.position(speed_mult * sample_t),
+                "electrino": electrino.position(speed_mult * sample_t),
+            }
+            for name, pos in positions_snap.items():
+                tau = snapshot_time - sample_t
+                if tau <= 0:
+                    continue
+                radius = field_v * tau
+                if radius > max_radius:
+                    continue
+                apply_shell(Emission(time=sample_t, pos=pos, emitter=name), radius, remove=False)
+        field_surface = make_field_surface()
+
     def reset_state(apply_pending_speed: bool = True) -> None:
         nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions
         if apply_pending_speed:
@@ -713,7 +724,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         self_delta = compute_self_delta(speed_mult, field_v)
         emissions = []
         field_grid[:] = 0.0
-        field_surface = make_field_surface()
+        field_surface = None
         frame_idx = 0
         stop_reached = False
         target_stop_at_posi_start = False
@@ -732,7 +743,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         nonlocal panel_log
         screen.fill(PURE_WHITE)
         fs = field_surf if field_surf is not None else field_surface
-        screen.blit(fs, (panel_w, 0))
+        if fs is not None:
+            screen.blit(fs, (panel_w, 0))
 
         geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
         if path_name == "unit_circle":
@@ -777,7 +789,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_draw("ESC quit, SPACE pause", 10, 100)
         panel_draw("UP/DOWN speed (auto-pause)", 10, 120)
         panel_draw("RIGHT: run to positrino start", 10, 140)
-        panel_draw("F: toggle fps 30/60, C: copy panel", 10, 160)
+        panel_draw("F: toggle fps 30/60, C: copy panel, V: color field", 10, 160)
         panel_draw("Hit table (t = now):", 10, 190)
         y = 210
 
@@ -862,12 +874,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             "electrino": electrino.position(path_t),
         }
 
-    positions = current_positions(0.0)
-    field_surface = make_field_surface()
-
-    # Only refresh the field surface every few frames to reduce cost.
-    accum_stride = 2
-
     def prune_emissions(current_time: float) -> None:
         nonlocal emissions
         cutoff = current_time - emission_retention
@@ -916,6 +922,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     paused = True
                 elif event.key == pygame.K_c:
                     print("\n".join(panel_log))
+                elif event.key == pygame.K_v:
+                    build_field_snapshot()
 
         if paused:
             if stop_reached and hits_at_stop:
@@ -931,7 +939,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
         emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
 
-        update_emissions(current_time)
+        prune_emissions(current_time)
         allow_self = speed_mult > field_v + 1e-6
         hits = detect_hits(current_time, positions, allow_self=allow_self)
         display_hits = hits
@@ -939,9 +947,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             display_hits = analytic_hits(current_time, positions, allow_self, emission_retention)
         recent_hits.clear()
         recent_hits.extend(display_hits)
-
-        if frame_idx % accum_stride == 0:
-            field_surface = make_field_surface()
         render_frame(positions, display_hits)
 
         frame_idx += 1
