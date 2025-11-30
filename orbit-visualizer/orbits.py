@@ -667,7 +667,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 prev_delta = delta
                 prev_val = val
             roots.sort()
-            return roots[:4] if is_self else roots[:2]
+            return roots
 
         def make_hit(delta_t: float, emitter_name: str, receiver_name: str) -> Hit:
             t_emit = current_time - delta_t
