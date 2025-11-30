@@ -350,6 +350,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     emission_retention = max_radius / field_v
     emissions: List[Emission] = []
     recent_hits = deque(maxlen=20)
+    panel_log: List[str] = []
     seen_hits = set()
     seen_hits_queue = deque()
     last_diff = {}
@@ -607,7 +608,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def analytic_hits(current_time: float, positions: Dict[str, Vec2], allow_self: bool, max_time: float) -> List[Hit]:
         hits: List[Hit] = []
-        sample_steps = 360
+        sample_steps = 720
         step = max_time / sample_steps if sample_steps > 0 else max_time
         tol = 1e-3
 
@@ -623,6 +624,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 if is_self:
                     if not allow_self or allow_self and speed_mult <= field_v + 1e-6:
                         continue
+                max_roots = 8 if is_self else 2
                 roots_found = 0
                 last_root_time = None
                 prev_delta = max(step * 0.5, 1e-4)
@@ -678,7 +680,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         )
                         roots_found += 1
                         last_root_time = root
-                        if roots_found >= 2:
+                        if roots_found >= max_roots:
                             break
                     prev_delta = delta
                     prev_val = val
@@ -711,6 +713,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
+        nonlocal panel_log
         screen.fill(PURE_WHITE)
         fs = field_surf if field_surf is not None else field_surface
         screen.blit(fs, (panel_w, 0))
@@ -742,18 +745,24 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
         pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
-        draw_text(ui_layer, f"frame={frame_idx+1}", 10, 10)
-        draw_text(ui_layer, f"fps={cfg.fps}", 10, 30)
+        panel_lines: List[str] = []
+
+        def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
+            panel_lines.append(text)
+            draw_text(ui_layer, text, x, y, color=color)
+
+        panel_draw(f"frame={frame_idx+1}", 10, 10)
+        panel_draw(f"fps={cfg.fps}", 10, 30)
         if paused and pending_speed_mult != speed_mult:
-            draw_text(ui_layer, f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
+            panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
         else:
-            draw_text(ui_layer, f"speed_mult={speed_mult:.2f}", 10, 50)
-        draw_text(ui_layer, "Controls:", 10, 80)
-        draw_text(ui_layer, "ESC quit, SPACE pause", 10, 100)
-        draw_text(ui_layer, "UP/DOWN speed (auto-pause)", 10, 120)
-        draw_text(ui_layer, "RIGHT: run to positrino start", 10, 140)
-        draw_text(ui_layer, "F: toggle fps 30/60", 10, 160)
-        draw_text(ui_layer, "Hit table (t = now):", 10, 190)
+            panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
+        panel_draw("Controls:", 10, 80)
+        panel_draw("ESC quit, SPACE pause", 10, 100)
+        panel_draw("UP/DOWN speed (auto-pause)", 10, 120)
+        panel_draw("RIGHT: run to positrino start", 10, 140)
+        panel_draw("F: toggle fps 30/60, C: copy panel", 10, 160)
+        panel_draw("Hit table (t = now):", 10, 190)
         y = 210
         for idx, h in enumerate(list(hits)[:12]):
             recv_now = positions.get(h.receiver, (0.0, 0.0))
@@ -765,7 +774,29 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
                 f"emit={h.emitter[0].upper()} v={h.speed_multiplier:.2f}"
             )
+            panel_lines.append(text)
             draw_text(ui_layer, text, 10, y, color=color)
+            y += 18
+
+        # Net strength/angle per architrino at t = now (superposition of hits).
+        net_by_receiver: Dict[str, complex] = {"positrino": 0j, "electrino": 0j}
+        for h in hits:
+            recv = h.receiver
+            angle = angle_deg_screen(
+                (positions[h.receiver][0] - h.emit_pos[0], positions[h.receiver][1] - h.emit_pos[1])
+            )
+            angle_rad = math.radians(angle)
+            net_by_receiver[recv] += h.strength * complex(math.cos(angle_rad), math.sin(angle_rad))
+
+        panel_draw("Net superposition:", 10, y + 10)
+        y += 30
+        for recv in ("positrino", "electrino"):
+            net = net_by_receiver[recv]
+            strength = abs(net)
+            angle = math.degrees(math.atan2(net.imag, net.real)) % 360 if strength > 0 else 0.0
+            color = PURE_RED if recv == "positrino" else PURE_BLUE
+            panel_lines.append(f"{recv}: |net|={strength:.3f} angle={angle:.1f}°")
+            draw_text(ui_layer, panel_lines[-1], 10, y, color=color)
             y += 18
 
         hits_for_labels = hits_at_stop if stop_reached and hits_at_stop else hits
@@ -796,12 +827,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             )
 
         if paused:
-            draw_text(ui_layer, "PAUSED", 10, height - 30)
+            panel_draw("PAUSED", 10, height - 30)
 
         screen.blit(geometry_layer, (panel_w, 0))
         screen.blit(particle_layer, (panel_w, 0))
         screen.blit(ui_layer, (0, 0))
         pygame.display.flip()
+        panel_log = panel_lines[:]
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         path_t = speed_mult * time_t
@@ -862,6 +894,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     update_time_params(new_fps)
                     reset_state(apply_pending_speed=False)
                     paused = True
+                elif event.key == pygame.K_c:
+                    print("\n".join(panel_log))
 
         if paused:
             if stop_reached and hits_at_stop:
