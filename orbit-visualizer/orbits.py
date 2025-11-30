@@ -780,40 +780,44 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_draw("F: toggle fps 30/60, C: copy panel", 10, 160)
         panel_draw("Hit table (t = now):", 10, 190)
         y = 210
-        for idx, h in enumerate(list(hits)[:12]):
-            recv_now = positions.get(h.receiver, (0.0, 0.0))
-            emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
-            hit_angle_deg = angle_deg_screen(emit_to_recv)
-            color = PURE_RED if h.receiver == "positrino" else PURE_BLUE
-            text = (
-                f"{idx+1:02d} recv={h.receiver[0].upper()} "
-                f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
-                f"emit={h.emitter[0].upper()} v={h.speed_multiplier:.2f}"
-            )
-            panel_lines.append(text)
-            draw_text(ui_layer, text, 10, y, color=color)
-            y += 18
 
         # Net strength/angle per architrino at t = now (superposition of hits).
         net_by_receiver: Dict[str, complex] = {"positrino": 0j, "electrino": 0j}
+        hits_by_receiver: Dict[str, List[Hit]] = {"positrino": [], "electrino": []}
         for h in hits:
             recv = h.receiver
-            angle = angle_deg_screen(
-                (positions[h.receiver][0] - h.emit_pos[0], positions[h.receiver][1] - h.emit_pos[1])
-            )
+            recv_pos = positions[h.receiver]
+            vec = (recv_pos[0] - h.emit_pos[0], recv_pos[1] - h.emit_pos[1])
+            polarity_recv = +1 if recv == "positrino" else -1
+            polarity_emit = +1 if h.emitter == "positrino" else -1
+            if polarity_recv != polarity_emit:
+                vec = (-vec[0], -vec[1])
+            angle = angle_deg_screen(vec)
             angle_rad = math.radians(angle)
             net_by_receiver[recv] += h.strength * complex(math.cos(angle_rad), math.sin(angle_rad))
+            hits_by_receiver[recv].append(h)
 
-        panel_draw("Net superposition:", 10, y + 10)
-        y += 30
         for recv in ("positrino", "electrino"):
             net = net_by_receiver[recv]
             strength = abs(net)
             angle = math.degrees(math.atan2(net.imag, net.real)) % 360 if strength > 0 else 0.0
             color = PURE_RED if recv == "positrino" else PURE_BLUE
-            panel_lines.append(f"{recv}: |net|={strength:.3f} angle={angle:.1f}°")
-            draw_text(ui_layer, panel_lines[-1], 10, y, color=color)
-            y += 18
+            heading = f"{recv.capitalize()} |net|={strength:.3f} angle={angle:.1f}°"
+            panel_draw(heading, 10, y, color=color)
+            y += 20
+            for idx, h in enumerate(hits_by_receiver[recv], start=1):
+                recv_now = positions.get(h.receiver, (0.0, 0.0))
+                emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
+                hit_angle_deg = angle_deg_screen(emit_to_recv)
+                text = (
+                    f"  {idx:02d} "
+                    f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
+                    f"emit={h.emitter[0].upper()} v={h.speed_multiplier:.2f}"
+                )
+                panel_lines.append(text.strip())
+                draw_text(ui_layer, text, 10, y, color=color)
+                y += 18
+            y += 10
 
         hits_for_labels = hits_at_stop if stop_reached and hits_at_stop else hits
         circle_center_screen = world_to_screen((0.0, 0.0))
