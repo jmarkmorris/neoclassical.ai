@@ -812,7 +812,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 text = (
                     f"  {idx:02d} "
                     f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
-                    f"emit={h.emitter[0].upper()} v={h.speed_multiplier:.2f}"
+                    f"emit={h.emitter[0].upper()}"
                 )
                 panel_lines.append(text.strip())
                 draw_text(ui_layer, text, 10, y, color=color)
