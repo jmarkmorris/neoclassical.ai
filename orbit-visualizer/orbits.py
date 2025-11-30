@@ -319,9 +319,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     pygame.init()
     panel_w = 320
     info = pygame.display.Info()
-    width, height = info.current_w, info.current_h
-    canvas_w = width - panel_w
     display_flags = pygame.RESIZABLE | pygame.SCALED
+    canvas_side = min(info.current_h, info.current_w - panel_w)
+    canvas_w = canvas_side
+    width = panel_w + canvas_w
+    height = canvas_w
     screen = pygame.display.set_mode((width, height), display_flags)
     pygame.display.set_caption("Orbit Visualizer (prototype)")
     clock = pygame.time.Clock()
@@ -359,15 +361,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     emitter_lookup = {"positrino": positrino, "electrino": electrino}
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
-    base_res = 640  # on the shorter side
-    min_dim = min(canvas_w, height)
-    res_x = int(base_res * (canvas_w / min_dim))
-    res_y = int(base_res * (height / min_dim))
-    res_x = max(64, res_x)
-    res_y = max(64, res_y)
-    min_dim = min(canvas_w, height)
-    x_extent = cfg.domain_half_extent * (canvas_w / min_dim)
-    y_extent = cfg.domain_half_extent * (height / min_dim)
+    base_res = 640
+    res_x = res_y = max(64, base_res)
+    x_extent = y_extent = cfg.domain_half_extent
     xs = np.linspace(-x_extent, x_extent, res_x)
     ys = np.linspace(-y_extent, y_extent, res_y)
     xx, yy = np.meshgrid(xs, ys)
@@ -391,9 +387,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     update_time_params(cfg.fps)
 
     def world_to_screen(p: Vec2) -> Vec2:
-        scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
+        scale = canvas_w / (2 * cfg.domain_half_extent)
         sx = panel_w + canvas_w / 2 + p[0] * scale
-        sy = height / 2 + p[1] * scale
+        sy = canvas_w / 2 + p[1] * scale
         return sx, sy
 
     def world_to_canvas(p: Vec2) -> Vec2:
