@@ -567,8 +567,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         surf = font.render(text, True, color)
         target.blit(surf, (x, y))
 
-    def reset_state(apply_pending_speed: bool = True) -> None:
-        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta
+    def reset_state(apply_pending_speed: bool = True, prewarm: bool = True) -> None:
+        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         self_delta = compute_self_delta(speed_mult, field_v)
@@ -586,6 +586,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         seen_hits_queue.clear()
         last_diff.clear()
         last_diff_queue.clear()
+        positions = current_positions(0.0)
+        if prewarm:
+            prewarm_to_revolutions(2.0)
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         screen.fill(PURE_WHITE)
@@ -688,13 +691,40 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             "electrino": electrino.position(path_t),
         }
 
-    # Initial frame
     positions = current_positions(0.0)
     field_surface = make_field_surface()
-    render_frame(positions, [])
 
     # Only refresh the field surface every few frames to reduce cost.
     accum_stride = 2
+
+    def prune_emissions(current_time: float) -> None:
+        nonlocal emissions
+        cutoff = current_time - emission_retention
+        if cutoff <= 0:
+            return
+        emissions = [em for em in emissions if em.time >= cutoff]
+
+    def prewarm_to_revolutions(revs: float = 2.0) -> None:
+        nonlocal positions, frame_idx
+        if speed_mult <= 0:
+            return
+        target_time = (2.0 * math.pi * revs) / speed_mult
+        steps = int(target_time / dt)
+        last_hits: List[Hit] = []
+        for i in range(steps):
+            current_time = i * dt
+            positions = current_positions(current_time)
+            emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
+            emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
+            prune_emissions(current_time)
+            last_hits = detect_hits(current_time, positions, allow_self=speed_mult > 1.0)
+        frame_idx = steps
+        recent_hits.clear()
+        recent_hits.extend(last_hits)
+
+    # Pre-warm two full revolutions (field accumulation is skipped during prewarm)
+    prewarm_to_revolutions(2.0)
+    render_frame(positions, list(recent_hits))
 
     while running:
         for event in pygame.event.get():
@@ -712,9 +742,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         paused = True
                 elif event.key == pygame.K_UP:
                     pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
+                    reset_state(apply_pending_speed=True, prewarm=True)
                     paused = True
                 elif event.key == pygame.K_DOWN:
                     pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
+                    reset_state(apply_pending_speed=True, prewarm=True)
                     paused = True
                 elif event.key == pygame.K_RIGHT:
                     if pending_speed_mult != speed_mult:
