@@ -316,7 +316,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     pygame.init()
     panel_w = 320
-    width, height = 1400, 960
+    width, height = 1710, 1107
     canvas_w = width - panel_w
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Orbit Visualizer (prototype)")
@@ -347,13 +347,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     seen_hits = set()
     seen_hits_queue = deque()
 
-    # Grid for the accumulator (square); stretched later to canvas size.
-    res = 512
+    # Grid for the accumulator at canvas resolution to reduce moire/scaling artifacts.
+    res_x, res_y = canvas_w, height
     min_dim = min(canvas_w, height)
     x_extent = cfg.domain_half_extent * (canvas_w / min_dim)
     y_extent = cfg.domain_half_extent * (height / min_dim)
-    xs = np.linspace(-x_extent, x_extent, res)
-    ys = np.linspace(-y_extent, y_extent, res)
+    xs = np.linspace(-x_extent, x_extent, res_x)
+    ys = np.linspace(-y_extent, y_extent, res_y)
     xx, yy = np.meshgrid(xs, ys)
     eps = 1e-6
 
@@ -381,8 +381,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         green = (255 * (1 - np.maximum(pos_norm, neg_norm))).astype(np.uint8)
         rgb = np.stack([red, green, blue], axis=-1)
         surf = pygame.surfarray.make_surface(np.transpose(rgb, (1, 0, 2)))
-        surf = pygame.transform.smoothscale(surf, (canvas_w, height)).convert()
-        return surf
+        return surf.convert()
 
     def apply_shell(em: Emission, radius: float, remove: bool = False) -> None:
         if radius <= 0 or radius > max_radius:
