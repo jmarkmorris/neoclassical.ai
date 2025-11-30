@@ -790,9 +790,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_draw("ESC quit, SPACE pause", 10, 100)
         panel_draw("UP/DOWN speed (auto-pause)", 10, 120)
         panel_draw("RIGHT: run to positrino start", 10, 140)
-        panel_draw("F: toggle fps 30/60, C: copy panel, V: color field", 10, 160)
-        panel_draw("Hit table (t = now):", 10, 190)
-        y = 210
+        panel_draw("F: toggle fps 30/60", 10, 160)
+        panel_draw("C: copy panel", 10, 180)
+        panel_draw("V: color field", 10, 200)
+        panel_draw("Hit table (t = now):", 10, 230)
+        y = 250
 
         # Net strength/angle per architrino at t = now (superposition of hits).
         net_by_receiver: Dict[str, complex] = {"positrino": 0j, "electrino": 0j}
