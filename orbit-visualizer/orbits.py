@@ -619,9 +619,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         for emitter_name in ("positrino", "electrino"):
             for receiver_name in ("positrino", "electrino"):
-                if emitter_name == receiver_name and not allow_self:
-                    continue
+                is_self = emitter_name == receiver_name
+                if is_self:
+                    if not allow_self or allow_self and speed_mult <= field_v + 1e-6:
+                        continue
                 roots_found = 0
+                last_root_time = None
                 prev_delta = max(step * 0.5, 1e-4)
                 prev_val = g(emitter_name, receiver_name, prev_delta)
                 for j in range(1, sample_steps + 1):
@@ -647,6 +650,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         if root is None:
                             root = 0.5 * (lo + hi)
                     if root is not None and root > 0:
+                        if last_root_time is not None and abs(root - last_root_time) < max(5 * tol, 0.002):
+                            prev_delta = delta
+                            prev_val = val
+                            continue
                         t_emit = current_time - root
                         emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit)
                         recv_pos = positions[receiver_name]
@@ -670,6 +677,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             )
                         )
                         roots_found += 1
+                        last_root_time = root
                         if roots_found >= 2:
                             break
                     prev_delta = delta
@@ -794,6 +802,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             return
         emissions = [em for em in emissions if em.time >= cutoff]
 
+    reset_state(apply_pending_speed=False)
     render_frame(positions, list(recent_hits))
 
     while running:
@@ -846,7 +855,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
 
         update_emissions(current_time)
-        allow_self = speed_mult > 1.0
+        allow_self = speed_mult > field_v + 1e-6
         hits = detect_hits(current_time, positions, allow_self=allow_self)
         display_hits = hits
         if not display_hits:
