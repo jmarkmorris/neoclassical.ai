@@ -519,7 +519,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def detect_hits(current_time: float, positions: Dict[str, Vec2], allow_self: bool) -> List[Hit]:
         hits: List[Hit] = []
         radius_tol_cross = max(field_v * dt * 0.6, 0.002)
-        radius_tol_self = max(field_v * dt * 0.3, 0.001)
+        radius_tol_self = max(field_v * dt * 1.5, 0.01)
         cleanup_hits(current_time)
         for em in emissions:
             tau = current_time - em.time
@@ -530,89 +530,37 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 continue
             for receiver_name, receiver_pos in positions.items():
                 is_self = em.emitter == receiver_name
-                if is_self:
-                    if not allow_self or self_delta is None:
-                        continue
-                    t_emit_target = current_time - self_delta
-                    # Find the closest emission from this emitter to the target emission time.
-                    best_em = None
-                    best_dt = None
-                    for candidate in emissions:
-                        if candidate.emitter != em.emitter:
-                            continue
-                        if candidate.time > t_emit_target + dt:
-                            continue
-                        delta_t = abs(candidate.time - t_emit_target)
-                        if best_dt is None or delta_t < best_dt:
-                            best_dt = delta_t
-                            best_em = candidate
-                    if best_em is None:
-                        # Fallback: compute position analytically.
-                        emit_pos = emitter_lookup[em.emitter].position(speed_mult * t_emit_target)
-                        t_emit_used = t_emit_target
-                    else:
-                        emit_pos = best_em.pos
-                        t_emit_used = best_em.time
-                    tau_self = current_time - t_emit_used
-                    radius_self = field_v * tau_self
-                    dist = l2(receiver_pos, emit_pos)
-                    diff = dist - radius_self
-                    key = (t_emit_used, em.emitter, receiver_name)
-                    last_diff[key] = diff
-                    last_diff_queue.append((t_emit_used, key))
-                    if abs(diff) > radius_tol_self:
-                        continue
+                tol = radius_tol_self if is_self else radius_tol_cross
+                if is_self and not allow_self:
+                    continue
+                dist = l2(receiver_pos, em.pos)
+                diff = dist - radius
+                key = (em.time, em.emitter, receiver_name)
+                prev = last_diff.get(key)
+                crossing = prev is not None and prev * diff <= 0.0
+                last_diff[key] = diff
+                last_diff_queue.append((em.time, key))
+                if abs(diff) <= tol or crossing:
                     if key in seen_hits:
                         continue
                     seen_hits.add(key)
-                    seen_hits_queue.append((t_emit_used, key))
-                    vec = (receiver_pos[0] - emit_pos[0], receiver_pos[1] - emit_pos[1])
+                    seen_hits_queue.append((em.time, key))
+                    vec = (receiver_pos[0] - em.pos[0], receiver_pos[1] - em.pos[1])
                     ang = angle_from_x_axis(vec)
                     strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
                     hits.append(
                         Hit(
                             t_obs=current_time,
-                            t_emit=t_emit_used,
+                            t_emit=em.time,
                             emitter=em.emitter,
                             receiver=receiver_name,
                             distance=dist,
                             strength=strength,
                             angle=ang,
                             speed_multiplier=speed_mult,
-                            emit_pos=emit_pos,
+                            emit_pos=em.pos,
                         )
                     )
-                else:
-                    tol = radius_tol_cross
-                    dist = l2(receiver_pos, em.pos)
-                    diff = dist - radius
-                    key = (em.time, em.emitter, receiver_name)
-                    last_diff[key] = diff
-                    last_diff_queue.append((em.time, key))
-                    if abs(diff) <= tol:
-                        prev = last_diff.get(key)
-                        if prev is not None and abs(diff) > abs(prev) and diff * prev > 0:
-                            continue
-                        if key in seen_hits:
-                            continue
-                        seen_hits.add(key)
-                        seen_hits_queue.append((em.time, key))
-                        vec = (receiver_pos[0] - em.pos[0], receiver_pos[1] - em.pos[1])
-                        ang = angle_from_x_axis(vec)
-                        strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
-                        hits.append(
-                            Hit(
-                                t_obs=current_time,
-                                t_emit=em.time,
-                                emitter=em.emitter,
-                                receiver=receiver_name,
-                                distance=dist,
-                                strength=strength,
-                                angle=ang,
-                                speed_multiplier=speed_mult,
-                                emit_pos=em.pos,
-                            )
-                        )
         return hits
 
     def draw_text(target: "pygame.Surface", text: str, x: int, y: int, color=(0, 0, 0)) -> None:
