@@ -507,7 +507,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         pygame.draw.rect(screen, (245, 245, 245), (0, 0, panel_w, height))
         draw_text(f"frame={frame_idx+1}", 10, 10)
         draw_text(f"fps={cfg.fps}", 10, 30)
-        draw_text(f"speed_mult={speed_mult:.1f}", 10, 50)
+        if paused and pending_speed_mult != speed_mult:
+            draw_text(f"speed_mult={speed_mult:.1f} -> {pending_speed_mult:.1f}", 10, 50)
+        else:
+            draw_text(f"speed_mult={speed_mult:.1f}", 10, 50)
         draw_text("Controls:", 10, 80)
         draw_text("ESC quit, SPACE pause", 10, 100)
         draw_text("UP/DOWN speed (auto-pause)", 10, 120)
