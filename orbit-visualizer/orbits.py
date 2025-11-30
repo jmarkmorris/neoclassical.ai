@@ -609,8 +609,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def analytic_hits(current_time: float, positions: Dict[str, Vec2], allow_self: bool, max_time: float) -> List[Hit]:
         hits: List[Hit] = []
         sample_steps = 720
+        max_time = min(max_time, emission_retention)
         step = max_time / sample_steps if sample_steps > 0 else max_time
-        tol = 1e-3
+        tol = 1e-6
 
         def g(emitter_name: str, receiver_name: str, delta_t: float) -> float:
             t_emit = current_time - delta_t
@@ -624,7 +625,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 if is_self:
                     if not allow_self or allow_self and speed_mult <= field_v + 1e-6:
                         continue
-                max_roots = 8 if is_self else 2
+                max_roots = 2 if is_self else 1
                 roots_found = 0
                 last_root_time = None
                 prev_delta = max(step * 0.5, 1e-4)
@@ -652,7 +653,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         if root is None:
                             root = 0.5 * (lo + hi)
                     if root is not None and root > 0:
-                        if last_root_time is not None and abs(root - last_root_time) < max(5 * tol, 0.002):
+                        if last_root_time is not None and abs(root - last_root_time) < max(10 * tol, 0.001):
                             prev_delta = delta
                             prev_val = val
                             continue
