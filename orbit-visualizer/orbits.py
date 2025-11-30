@@ -471,7 +471,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def detect_hits(current_time: float, positions: Dict[str, Vec2], allow_self: bool) -> List[Hit]:
         hits: List[Hit] = []
-        radius_tol = max(shell_thickness * 1.2, field_v * dt * 1.2)
+        radius_tol_cross = max(shell_thickness * 1.2, field_v * dt * 1.2)
+        radius_tol_self = max(shell_thickness * 0.6, field_v * dt * 0.6)
         cleanup_hits(current_time)
         for em in emissions:
             tau = current_time - em.time
@@ -481,10 +482,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if radius > max_radius:
                 continue
             for receiver_name, receiver_pos in positions.items():
-                if em.emitter == receiver_name and not allow_self:
-                    continue
+                is_self = em.emitter == receiver_name
+                if is_self:
+                    if not allow_self:
+                        continue
+                    # Avoid near-instant trailing self-hits; require some propagation.
+                    if tau <= dt * 2.0:
+                        continue
+                    tol = radius_tol_self
+                else:
+                    tol = radius_tol_cross
                 dist = l2(receiver_pos, em.pos)
-                if abs(dist - radius) <= radius_tol:
+                if abs(dist - radius) <= tol:
                     key = (em.time, em.emitter, receiver_name)
                     if key in seen_hits:
                         continue
