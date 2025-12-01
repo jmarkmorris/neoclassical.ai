@@ -351,7 +351,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     max_radius = math.sqrt(2) * cfg.domain_half_extent * 1.1
     emission_retention = max_radius / field_v
     emissions: List[Emission] = []
-    recent_hits = deque(maxlen=20)
+    recent_hits = deque()
     panel_log: List[str] = []
     seen_hits = set()
     seen_hits_queue = deque()
@@ -892,11 +892,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 if event.key == pygame.K_ESCAPE:
                     running = False
                 elif event.key == pygame.K_UP:
-                    pending_speed_mult = clamp_speed(pending_speed_mult + 0.01)
+                    pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
                     reset_state(apply_pending_speed=True)
                     paused = True
                 elif event.key == pygame.K_DOWN:
-                    pending_speed_mult = clamp_speed(pending_speed_mult - 0.01)
+                    pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
                     reset_state(apply_pending_speed=True)
                     paused = True
                 elif event.key == pygame.K_f:
