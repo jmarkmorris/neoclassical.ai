@@ -235,12 +235,17 @@ class Architrino:
     def position(self, t: float, speed_mult: float | None = None, field_v: float | None = None) -> Vec2:
         """Position on the assigned path with phase offset."""
         sampler = self.path.reverse_sampler if self.reverse else self.path.sampler
-        param = t + self.phase
+        # For spirals, decay is based on the traveled angle; phase only rotates the angle.
         if self.path.name == "exp_inward_spiral" and self.path.decay is not None:
-            time_param = t if not self.reverse else -t
-            angle = (time_param + self.phase)
-            radius = math.exp(-self.path.decay * abs(time_param))
+            base_param = t
+            signed_param = base_param if not self.reverse else -base_param
+            decay_scale = 1.0
+            if speed_mult is not None and field_v is not None and speed_mult > field_v + 1e-6:
+                decay_scale = 2.0
+            angle = signed_param + self.phase
+            radius = math.exp(-self.path.decay * abs(base_param) * decay_scale)
             return radius * math.cos(angle), radius * math.sin(angle)
+        param = t + self.phase
         x, y = sampler(param)
         return x, y
 
@@ -388,7 +393,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     PATH_ORDER = list(paths.keys())
     path_traces: Dict[str, List[Vec2]] = {"positrino": [], "electrino": []}
     path_time_offset = 0.0
-    trace_limit = 4000
+    trace_limit = 40000
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -770,6 +775,20 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if len(path_traces[name]) > trace_limit:
                 path_traces[name] = path_traces[name][-trace_limit:]
 
+    def rebuild_trace_for_offset(offset: float) -> None:
+        nonlocal path_traces
+        steps = max(2, int(abs(offset) / (2 * math.pi) * 360))
+        path_traces = {"positrino": [], "electrino": []}
+        for name, emitter in emitter_lookup.items():
+            trace: List[Vec2] = []
+            for j in range(steps + 1):
+                alpha = j / steps
+                s = alpha * offset
+                trace.append(emitter.position(s, speed_mult, field_v))
+            if len(trace) > trace_limit:
+                trace = trace[-trace_limit:]
+            path_traces[name] = trace
+
     def reset_state(apply_pending_speed: bool = True, keep_trace: bool = False, keep_offset: bool = False) -> None:
         nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible, path_traces, pending_speed_mult, path_time_offset
         if apply_pending_speed:
@@ -797,10 +816,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         last_diff_queue.clear()
         positions = current_positions(0.0)
         if not keep_trace:
-            path_traces = {
-                "positrino": [positions["positrino"], positions["positrino"]],
-                "electrino": [positions["electrino"], positions["electrino"]],
-            }
+            rebuild_trace_for_offset(path_time_offset)
         recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
@@ -1043,15 +1059,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     if event.key == pygame.K_ESCAPE:
                         running = False
                     elif event.key == pygame.K_RIGHT:
-                        prev_offset = path_time_offset
                         path_time_offset += 2.0 * math.pi
-                        add_trace_segment(prev_offset, path_time_offset)
-                        positions = current_positions(frame_idx * dt)
+                        rebuild_trace_for_offset(path_time_offset)
+                        reset_state(apply_pending_speed=False, keep_trace=True, keep_offset=True)
                     elif event.key == pygame.K_LEFT:
-                        prev_offset = path_time_offset
                         path_time_offset -= 2.0 * math.pi
-                        add_trace_segment(prev_offset, path_time_offset)
-                        positions = current_positions(frame_idx * dt)
+                        rebuild_trace_for_offset(path_time_offset)
+                        reset_state(apply_pending_speed=False, keep_trace=True, keep_offset=True)
                     elif event.key == pygame.K_UP:
                         pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
                         reset_state(apply_pending_speed=True)
