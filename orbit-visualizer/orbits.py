@@ -392,7 +392,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     emitter_lookup = {"positrino": positrino, "electrino": electrino}
     PATH_ORDER = list(paths.keys())
     path_traces: Dict[str, List[Vec2]] = {"positrino": [], "electrino": []}
-    path_time_offset = 0.0
+    BASE_OFFSET = 6.0 * math.pi  # start with 3 full revolutions
+    path_time_offset = BASE_OFFSET
     trace_limit = 40000
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
@@ -777,6 +778,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def rebuild_trace_for_offset(offset: float) -> None:
         nonlocal path_traces
+        offset = max(offset, BASE_OFFSET)
         steps = max(2, int(abs(offset) / (2 * math.pi) * 360))
         path_traces = {"positrino": [], "electrino": []}
         for name, emitter in emitter_lookup.items():
@@ -789,6 +791,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 trace = trace[-trace_limit:]
             path_traces[name] = trace
 
+    def refresh_hits_for_current_time() -> None:
+        """Recompute hits for the current frame time using analytic hits after path adjustments."""
+        nonlocal recent_hits, seen_hits, seen_hits_queue, last_diff, last_diff_queue, positions
+        current_time = frame_idx * dt
+        positions = current_positions(current_time)
+        recent_hits.clear()
+        seen_hits.clear()
+        seen_hits_queue.clear()
+        last_diff.clear()
+        last_diff_queue.clear()
+        recent_hits.extend(analytic_hits(current_time, positions, speed_mult > field_v, emission_retention))
+
     def reset_state(apply_pending_speed: bool = True, keep_trace: bool = False, keep_offset: bool = False) -> None:
         nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible, path_traces, pending_speed_mult, path_time_offset
         if apply_pending_speed:
@@ -797,7 +811,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             speed_mult = clamp_speed(cfg.speed_multiplier)
             pending_speed_mult = speed_mult
         if not keep_offset:
-            path_time_offset = 0.0
+            path_time_offset = BASE_OFFSET
         self_delta = compute_self_delta(speed_mult, field_v)
         emissions = []
         field_grid[:] = 0.0
@@ -1061,11 +1075,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     elif event.key == pygame.K_RIGHT:
                         path_time_offset += 2.0 * math.pi
                         rebuild_trace_for_offset(path_time_offset)
-                        reset_state(apply_pending_speed=False, keep_trace=True, keep_offset=True)
+                        refresh_hits_for_current_time()
                     elif event.key == pygame.K_LEFT:
-                        path_time_offset -= 2.0 * math.pi
+                        path_time_offset = max(BASE_OFFSET, path_time_offset - 2.0 * math.pi)
                         rebuild_trace_for_offset(path_time_offset)
-                        reset_state(apply_pending_speed=False, keep_trace=True, keep_offset=True)
+                        refresh_hits_for_current_time()
                     elif event.key == pygame.K_UP:
                         pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
                         reset_state(apply_pending_speed=True)
