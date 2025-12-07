@@ -10,6 +10,7 @@ Implements core math and a non-graphical, testable pipeline:
 Usage:
     python orbits.py --self-test
     python orbits.py --duration 4 --fps 30 --path unit_circle
+    python orbits.py --render
 """
 
 from __future__ import annotations
@@ -328,6 +329,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     pygame.display.set_caption("Orbit Visualizer (prototype)")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 16)
+    small_font = pygame.font.SysFont("Arial", 12)
 
     path = paths[path_name]
     positrino = Architrino("positrino", +1, PURE_RED, 0.0, path, reverse=reverse)
@@ -682,8 +684,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         return hits
 
-    def draw_text(target: "pygame.Surface", text: str, x: int, y: int, color=(0, 0, 0)) -> None:
-        surf = font.render(text, True, color)
+    def draw_text(target: "pygame.Surface", text: str, x: int, y: int, color=(0, 0, 0), fnt=None) -> None:
+        surf = (fnt or font).render(text, True, color)
         target.blit(surf, (x, y))
 
     def build_field_snapshot() -> None:
@@ -749,6 +751,46 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
             gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), int(scale), GRAY)
 
+        # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
+        def draw_hit_arc(hit: Hit) -> None:
+            recv_pos = positions.get(hit.receiver)
+            if recv_pos is None:
+                return
+            scale = canvas_w / (2 * cfg.domain_half_extent)
+            tau = max(0.0, hit.t_obs - hit.t_emit)
+            radius_world = field_v * tau
+            radius_px = int(radius_world * scale)
+            if radius_px < 2:
+                return
+            vec = (recv_pos[0] - hit.emit_pos[0], recv_pos[1] - hit.emit_pos[1])
+            ang = angle_deg_screen(vec)
+            arc_half = 5.0
+            start = (ang - arc_half) % 360
+            end = (ang + arc_half) % 360
+            color = PURE_RED if hit.emitter == "positrino" else PURE_BLUE
+            cx, cy = world_to_canvas(hit.emit_pos)
+
+            def draw_arc_span(s: float, e: float) -> None:
+                gfxdraw.arc(
+                    geometry_layer,
+                    int(cx),
+                    int(cy),
+                    radius_px,
+                    int(s),
+                    int(e),
+                    color,
+                )
+
+            if start <= end:
+                draw_arc_span(start, end)
+            else:
+                # Wrap-around case: split into two arcs.
+                draw_arc_span(start, 360)
+                draw_arc_span(0, end)
+
+        for h in hits:
+            draw_hit_arc(h)
+
         for h in hits:
             start = world_to_canvas(h.emit_pos)
             end = world_to_canvas(positions[h.receiver])
@@ -793,6 +835,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         # Net strength/angle per architrino at t = now (superposition of hits).
         net_by_receiver: Dict[str, complex] = {"positrino": 0j, "electrino": 0j}
+        net_vec_world: Dict[str, Vec2] = {"positrino": (0.0, 0.0), "electrino": (0.0, 0.0)}
         hits_by_receiver: Dict[str, List[Hit]] = {"positrino": [], "electrino": []}
         for h in hits:
             recv = h.receiver
@@ -802,6 +845,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             polarity_emit = +1 if h.emitter == "positrino" else -1
             if polarity_recv != polarity_emit:
                 vec = (-vec[0], -vec[1])
+            dist = math.hypot(vec[0], vec[1]) or 1.0
+            unit_vec = (vec[0] / dist, vec[1] / dist)
+            net_world = net_vec_world[recv]
+            net_vec_world[recv] = (
+                net_world[0] + h.strength * unit_vec[0],
+                net_world[1] + h.strength * unit_vec[1],
+            )
             angle = angle_deg_screen(vec)
             angle_rad = math.radians(angle)
             net_by_receiver[recv] += h.strength * complex(math.cos(angle_rad), math.sin(angle_rad))
@@ -827,6 +877,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 panel_lines.append(text.strip())
                 draw_text(ui_layer, text, 10, y, color=color)
                 y += 18
+            # Net radial strength relative to the orbit center (outward positive, inward negative).
+            pos_now = positions.get(recv, (0.0, 0.0))
+            r_norm = math.hypot(pos_now[0], pos_now[1])
+            if r_norm > 1e-9:
+                radial_dir = (pos_now[0] / r_norm, pos_now[1] / r_norm)
+                radial_strength = net_vec_world[recv][0] * radial_dir[0] + net_vec_world[recv][1] * radial_dir[1]
+            else:
+                radial_strength = 0.0
+            radial_text = f"  net radial to center: {radial_strength:+.3f}"
+            panel_lines.append(radial_text.strip())
+            draw_text(ui_layer, radial_text, 10, y, color=color)
+            y += 18
             y += 10
 
         hits_for_labels = hits_at_stop if stop_reached and hits_at_stop else hits
@@ -854,6 +916,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 int(label_pos[0]),
                 int(label_pos[1]),
                 color=GRAY,
+                fnt=small_font,
             )
 
         if paused:
