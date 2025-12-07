@@ -218,7 +218,7 @@ PATH_LIBRARY: Dict[str, PathSpec] = {
         sampler=exp_inward_spiral_sampler,
         reverse_sampler=exp_inward_spiral_sampler_reversed,
         description="Exponential inward spiral toward origin; steady angular speed.",
-        decay=0.0025,
+        decay=0.005,
     ),
 }
 
@@ -236,11 +236,10 @@ class Architrino:
         """Position on the assigned path with phase offset."""
         sampler = self.path.reverse_sampler if self.reverse else self.path.sampler
         param = t + self.phase
-        if self.path.name == "exp_inward_spiral" and self.path.decay is not None and speed_mult is not None and field_v is not None:
-            decay_scale = 2.0 if speed_mult > field_v + 1e-6 else 1.0
+        if self.path.name == "exp_inward_spiral" and self.path.decay is not None:
             time_param = t if not self.reverse else -t
             angle = (time_param + self.phase)
-            radius = math.exp(-self.path.decay * abs(time_param) * decay_scale)
+            radius = math.exp(-self.path.decay * abs(time_param))
             return radius * math.cos(angle), radius * math.sin(angle)
         x, y = sampler(param)
         return x, y
@@ -910,13 +909,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_draw(f"path={current_path_name}", 10, 70)
         panel_draw("Controls:", 10, 90)
         panel_draw("ESC quit", 10, 110)
-        panel_draw("UP/DOWN speed (auto-pause)", 10, 130)
-        panel_draw("F: toggle fps 30/60", 10, 150)
-        panel_draw("C: copy panel", 10, 170)
-        panel_draw("V: toggle field", 10, 190)
-        panel_draw("P: cycle paths; 1/2 set path", 10, 210)
-        panel_draw("Hit table (t = now):", 10, 230)
-        y = 250
+        panel_draw("LEFT/RIGHT: ±1 rotation (spiral offset)", 10, 130)
+        panel_draw("UP/DOWN speed (auto-pause)", 10, 150)
+        panel_draw("F: toggle fps 30/60", 10, 170)
+        panel_draw("C: copy panel", 10, 190)
+        panel_draw("V: toggle field", 10, 210)
+        panel_draw("P: cycle paths; 1/2 set path", 10, 230)
+        panel_draw("Hit table (t = now):", 10, 250)
+        y = 270
 
         # Net strength/angle per architrino at t = now (superposition of hits), in world coords.
         net_vec_world: Dict[str, Vec2] = {"positrino": (0.0, 0.0), "electrino": (0.0, 0.0)}
@@ -1042,19 +1042,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False
-                    elif event.key == pygame.K_UP:
+                    elif event.key == pygame.K_RIGHT:
                         prev_offset = path_time_offset
-                        path_time_offset += 6.0 * math.pi
+                        path_time_offset += 2.0 * math.pi
                         add_trace_segment(prev_offset, path_time_offset)
+                        positions = current_positions(frame_idx * dt)
+                    elif event.key == pygame.K_LEFT:
+                        prev_offset = path_time_offset
+                        path_time_offset -= 2.0 * math.pi
+                        add_trace_segment(prev_offset, path_time_offset)
+                        positions = current_positions(frame_idx * dt)
+                    elif event.key == pygame.K_UP:
                         pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
-                        reset_state(apply_pending_speed=True, keep_trace=True, keep_offset=True)
+                        reset_state(apply_pending_speed=True)
                         paused = True
                     elif event.key == pygame.K_DOWN:
-                        prev_offset = path_time_offset
-                        path_time_offset += 6.0 * math.pi
-                        add_trace_segment(prev_offset, path_time_offset)
                         pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
-                        reset_state(apply_pending_speed=True, keep_trace=True, keep_offset=True)
+                        reset_state(apply_pending_speed=True)
                         paused = True
                     elif event.key == pygame.K_f:
                         new_fps = 60 if cfg.fps == 30 else 30
