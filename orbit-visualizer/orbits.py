@@ -218,7 +218,7 @@ PATH_LIBRARY: Dict[str, PathSpec] = {
         sampler=exp_inward_spiral_sampler,
         reverse_sampler=exp_inward_spiral_sampler_reversed,
         description="Exponential inward spiral toward origin; steady angular speed.",
-        decay=0.05,
+        decay=0.0025,
     ),
 }
 
@@ -238,8 +238,9 @@ class Architrino:
         param = t + self.phase
         if self.path.name == "exp_inward_spiral" and self.path.decay is not None and speed_mult is not None and field_v is not None:
             decay_scale = 2.0 if speed_mult > field_v + 1e-6 else 1.0
-            angle = param
-            radius = math.exp(-self.path.decay * param * decay_scale)
+            time_param = t if not self.reverse else -t
+            angle = (time_param + self.phase)
+            radius = math.exp(-self.path.decay * abs(time_param) * decay_scale)
             return radius * math.cos(angle), radius * math.sin(angle)
         x, y = sampler(param)
         return x, y
@@ -755,9 +756,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         field_surface = make_field_surface()
 
     def reset_state(apply_pending_speed: bool = True) -> None:
-        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible, path_traces
+        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible, path_traces, pending_speed_mult
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
+        else:
+            speed_mult = clamp_speed(cfg.speed_multiplier)
+            pending_speed_mult = speed_mult
         self_delta = compute_self_delta(speed_mult, field_v)
         emissions = []
         field_grid[:] = 0.0
@@ -779,7 +783,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             "positrino": [positions["positrino"], positions["positrino"]],
             "electrino": [positions["electrino"], positions["electrino"]],
         }
-        recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
         recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
