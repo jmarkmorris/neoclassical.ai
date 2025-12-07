@@ -388,6 +388,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     emitter_lookup = {"positrino": positrino, "electrino": electrino}
     PATH_ORDER = list(paths.keys())
     path_traces: Dict[str, List[Vec2]] = {"positrino": [], "electrino": []}
+    path_time_offset = 0.0
     trace_limit = 4000
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
@@ -407,11 +408,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
 
     def rebuild_architrinos(new_path_name: str) -> None:
-        nonlocal path, positrino, electrino, emitter_lookup, current_path_name
+        nonlocal path, positrino, electrino, emitter_lookup, current_path_name, path_time_offset
         if new_path_name not in paths:
             return
         path = paths[new_path_name]
         current_path_name = new_path_name
+        path_time_offset = 0.0
         positrino = Architrino("positrino", +1, PURE_RED, 0.0, path, reverse=reverse)
         electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path, reverse=reverse)
         emitter_lookup = {"positrino": positrino, "electrino": electrino}
@@ -595,7 +597,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if allow_self and self_delta is not None and current_time >= self_delta:
             for name, receiver_pos in positions.items():
                 t_emit = current_time - self_delta
-                emit_pos = emitter_lookup[name].position(speed_mult * t_emit, speed_mult, field_v)
+                emit_pos = emitter_lookup[name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
                 dist = l2(receiver_pos, emit_pos)
                 diff = dist - field_v * self_delta
                 key = (t_emit, name, name)
@@ -636,7 +638,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         def g(emitter_name: str, receiver_name: str, delta_t: float) -> float:
             t_emit = current_time - delta_t
-            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit, speed_mult, field_v)
+            emit_pos = emitter_lookup[emitter_name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
             dist = l2(positions[receiver_name], emit_pos)
             return dist - field_v * delta_t
 
@@ -692,7 +694,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         def make_hit(delta_t: float, emitter_name: str, receiver_name: str) -> Hit:
             t_emit = current_time - delta_t
-            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit, speed_mult, field_v)
+            emit_pos = emitter_lookup[emitter_name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
             recv_pos = positions[receiver_name]
             dist = l2(recv_pos, emit_pos)
             strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
@@ -744,8 +746,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if delta_t <= 0:
                 continue
             positions_snap = {
-                "positrino": positrino.position(-speed_mult * delta_t, speed_mult, field_v),
-                "electrino": electrino.position(-speed_mult * delta_t, speed_mult, field_v),
+                "positrino": positrino.position(path_time_offset - speed_mult * delta_t, speed_mult, field_v),
+                "electrino": electrino.position(path_time_offset - speed_mult * delta_t, speed_mult, field_v),
             }
             for name, pos in positions_snap.items():
                 tau = delta_t
@@ -755,13 +757,29 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 apply_shell(Emission(time=-delta_t, pos=pos, emitter=name), radius, remove=False)
         field_surface = make_field_surface()
 
-    def reset_state(apply_pending_speed: bool = True) -> None:
-        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible, path_traces, pending_speed_mult
+    def add_trace_segment(start_offset: float, end_offset: float, steps: int = 180) -> None:
+        nonlocal path_traces
+        if end_offset == start_offset:
+            return
+        for name, emitter in emitter_lookup.items():
+            segment = []
+            for j in range(steps + 1):
+                alpha = j / steps
+                s = start_offset + alpha * (end_offset - start_offset)
+                segment.append(emitter.position(s, speed_mult, field_v))
+            path_traces[name].extend(segment)
+            if len(path_traces[name]) > trace_limit:
+                path_traces[name] = path_traces[name][-trace_limit:]
+
+    def reset_state(apply_pending_speed: bool = True, keep_trace: bool = False, keep_offset: bool = False) -> None:
+        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible, path_traces, pending_speed_mult, path_time_offset
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         else:
             speed_mult = clamp_speed(cfg.speed_multiplier)
             pending_speed_mult = speed_mult
+        if not keep_offset:
+            path_time_offset = 0.0
         self_delta = compute_self_delta(speed_mult, field_v)
         emissions = []
         field_grid[:] = 0.0
@@ -779,10 +797,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         last_diff.clear()
         last_diff_queue.clear()
         positions = current_positions(0.0)
-        path_traces = {
-            "positrino": [positions["positrino"], positions["positrino"]],
-            "electrino": [positions["electrino"], positions["electrino"]],
-        }
+        if not keep_trace:
+            path_traces = {
+                "positrino": [positions["positrino"], positions["positrino"]],
+                "electrino": [positions["electrino"], positions["electrino"]],
+            }
         recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
@@ -997,9 +1016,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         path_t = speed_mult * time_t
+        param = path_time_offset + path_t
         return {
-            "positrino": positrino.position(path_t, speed_mult, field_v),
-            "electrino": electrino.position(path_t, speed_mult, field_v),
+            "positrino": positrino.position(param, speed_mult, field_v),
+            "electrino": electrino.position(param, speed_mult, field_v),
         }
 
     def prune_emissions(current_time: float) -> None:
@@ -1023,12 +1043,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     if event.key == pygame.K_ESCAPE:
                         running = False
                     elif event.key == pygame.K_UP:
+                        prev_offset = path_time_offset
+                        path_time_offset += 6.0 * math.pi
+                        add_trace_segment(prev_offset, path_time_offset)
                         pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
-                        reset_state(apply_pending_speed=True)
+                        reset_state(apply_pending_speed=True, keep_trace=True, keep_offset=True)
                         paused = True
                     elif event.key == pygame.K_DOWN:
+                        prev_offset = path_time_offset
+                        path_time_offset += 6.0 * math.pi
+                        add_trace_segment(prev_offset, path_time_offset)
                         pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
-                        reset_state(apply_pending_speed=True)
+                        reset_state(apply_pending_speed=True, keep_trace=True, keep_offset=True)
                         paused = True
                     elif event.key == pygame.K_f:
                         new_fps = 60 if cfg.fps == 30 else 30
