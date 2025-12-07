@@ -13,6 +13,23 @@ Usage:
     python orbits.py --render
 """
 
+"""
+Per codex: You can push the field snapshot finer in a few ways; each trades directly against CPU time/memory:
+
+  - Increase the grid resolution: bump base_res above 640 to shrink pixel size; or shrink the
+    domain_half_extent if you only care about a tighter view.
+  - Make shells thinner: lower shell_thickness toward field_v*dt (or a fixed small value) so the
+    annulus band is narrower.
+  - Sample more times: raise the minimum samples (min_samples in build_field_snapshot) or reduce
+    dt_snap so more shell positions are accumulated.
+  - Reduce smoothing: tone down or remove the 5×5 blur to keep sharper features.
+  - Use a tighter log map: not about grain, but if you want more dynamic range resolution, adjust
+    the percentile cut or disable the log compression.
+
+  Beyond that, heavier options are GPU rendering (e.g., CUDA/Metal) or adaptive/multi-resolution
+  grids, but those require more refactor.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -373,6 +390,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     field_grid = np.zeros_like(xx, dtype=np.float32)
     field_surface = None
+    field_visible = False
 
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
@@ -717,13 +735,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         field_surface = make_field_surface()
 
     def reset_state(apply_pending_speed: bool = True) -> None:
-        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions
+        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         self_delta = compute_self_delta(speed_mult, field_v)
         emissions = []
         field_grid[:] = 0.0
         field_surface = None
+        field_visible = False
         frame_idx = 0
         stop_reached = False
         target_stop_at_posi_start = False
@@ -741,7 +760,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal panel_log
         screen.fill(PURE_WHITE)
-        fs = field_surf if field_surf is not None else field_surface
+        fs = field_surf if field_surf is not None else (field_surface if field_visible else None)
         if fs is not None:
             screen.blit(fs, (panel_w, 0))
 
@@ -749,37 +768,40 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if path_name == "unit_circle":
             center = world_to_canvas((0.0, 0.0))
             scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-            gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), int(scale), GRAY)
+            for r in (int(scale), int(scale) + 1):
+                gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, GRAY)
 
         # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
         def draw_hit_arc(hit: Hit) -> None:
             recv_pos = positions.get(hit.receiver)
             if recv_pos is None:
                 return
-            scale = canvas_w / (2 * cfg.domain_half_extent)
-            tau = max(0.0, hit.t_obs - hit.t_emit)
-            radius_world = field_v * tau
-            radius_px = int(radius_world * scale)
+            cx, cy = world_to_canvas(hit.emit_pos)
+            tx, ty = world_to_canvas(recv_pos)
+            dx = tx - cx
+            dy = ty - cy
+            radius_px = int(math.hypot(dx, dy))
             if radius_px < 2:
                 return
-            vec = (recv_pos[0] - hit.emit_pos[0], recv_pos[1] - hit.emit_pos[1])
-            ang = angle_deg_screen(vec)
+            # Use screen-space angle directly (y down in screen coords).
+            ang = (math.degrees(math.atan2(dy, dx)) + 360.0) % 360.0
             arc_half = 5.0
             start = (ang - arc_half) % 360
             end = (ang + arc_half) % 360
             color = PURE_RED if hit.emitter == "positrino" else PURE_BLUE
-            cx, cy = world_to_canvas(hit.emit_pos)
 
             def draw_arc_span(s: float, e: float) -> None:
-                gfxdraw.arc(
-                    geometry_layer,
-                    int(cx),
-                    int(cy),
-                    radius_px,
-                    int(s),
-                    int(e),
-                    color,
-                )
+                # Thicker arc via small radial offsets
+                for r_off in (0, 1):
+                    gfxdraw.arc(
+                        geometry_layer,
+                        int(cx),
+                        int(cy),
+                        radius_px + r_off,
+                        int(s),
+                        int(e),
+                        color,
+                    )
 
             if start <= end:
                 draw_arc_span(start, end)
@@ -794,7 +816,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         for h in hits:
             start = world_to_canvas(h.emit_pos)
             end = world_to_canvas(positions[h.receiver])
-            gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), GRAY)
+            line_color = PURE_RED if h.emitter == "positrino" else PURE_BLUE
+            # Thicker line by drawing twice with slight offsets
+            gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
+            gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
 
         particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
         for h in hits:
@@ -833,8 +858,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_draw("Hit table (t = now):", 10, 210)
         y = 230
 
-        # Net strength/angle per architrino at t = now (superposition of hits).
-        net_by_receiver: Dict[str, complex] = {"positrino": 0j, "electrino": 0j}
+        # Net strength/angle per architrino at t = now (superposition of hits), in world coords.
         net_vec_world: Dict[str, Vec2] = {"positrino": (0.0, 0.0), "electrino": (0.0, 0.0)}
         hits_by_receiver: Dict[str, List[Hit]] = {"positrino": [], "electrino": []}
         for h in hits:
@@ -843,40 +867,25 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             vec = (recv_pos[0] - h.emit_pos[0], recv_pos[1] - h.emit_pos[1])
             polarity_recv = +1 if recv == "positrino" else -1
             polarity_emit = +1 if h.emitter == "positrino" else -1
-            if polarity_recv != polarity_emit:
-                vec = (-vec[0], -vec[1])
-            dist = math.hypot(vec[0], vec[1]) or 1.0
-            unit_vec = (vec[0] / dist, vec[1] / dist)
+            sigma = 1.0 if polarity_recv == polarity_emit else -1.0  # repulsion vs attraction
+            dir_vec = (vec[0] * sigma, vec[1] * sigma)
+            dist = math.hypot(dir_vec[0], dir_vec[1]) or 1.0
+            unit_vec = (dir_vec[0] / dist, dir_vec[1] / dist)
             net_world = net_vec_world[recv]
             net_vec_world[recv] = (
                 net_world[0] + h.strength * unit_vec[0],
                 net_world[1] + h.strength * unit_vec[1],
             )
-            angle = angle_deg_screen(vec)
-            angle_rad = math.radians(angle)
-            net_by_receiver[recv] += h.strength * complex(math.cos(angle_rad), math.sin(angle_rad))
             hits_by_receiver[recv].append(h)
 
         for recv in ("positrino", "electrino"):
-            net = net_by_receiver[recv]
-            strength = abs(net)
-            angle = math.degrees(math.atan2(net.imag, net.real)) % 360 if strength > 0 else 0.0
+            net_w = net_vec_world[recv]
+            strength = math.hypot(net_w[0], net_w[1])
+            angle = (math.degrees(math.atan2(net_w[1], net_w[0])) + 360.0) % 360 if strength > 0 else 0.0
             color = PURE_RED if recv == "positrino" else PURE_BLUE
             heading = f"{recv.capitalize()} |net|={strength:.3f} angle={angle:.1f}°"
             panel_draw(heading, 10, y, color=color)
-            y += 20
-            for idx, h in enumerate(hits_by_receiver[recv], start=1):
-                recv_now = positions.get(h.receiver, (0.0, 0.0))
-                emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
-                hit_angle_deg = angle_deg_screen(emit_to_recv)
-                text = (
-                    f"  {idx:02d} "
-                    f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
-                    f"emit={h.emitter[0].upper()}"
-                )
-                panel_lines.append(text.strip())
-                draw_text(ui_layer, text, 10, y, color=color)
-                y += 18
+            y += 18
             # Net radial strength relative to the orbit center (outward positive, inward negative).
             pos_now = positions.get(recv, (0.0, 0.0))
             r_norm = math.hypot(pos_now[0], pos_now[1])
@@ -889,6 +898,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             panel_lines.append(radial_text.strip())
             draw_text(ui_layer, radial_text, 10, y, color=color)
             y += 18
+            total_hits = len(hits_by_receiver[recv])
+            note_text = f"  hits: total {total_hits}, showing up to 16"
+            panel_lines.append(note_text.strip())
+            draw_text(ui_layer, note_text, 10, y, color=color)
+            y += 18
+            for idx, h in enumerate(hits_by_receiver[recv][:16], start=1):
+                recv_now = positions.get(h.receiver, (0.0, 0.0))
+                emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
+                hit_angle_deg = angle_deg_screen(emit_to_recv)
+                text = (
+                    f"  {idx:02d} "
+                    f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
+                    f"emit={h.emitter[0].upper()}"
+                )
+                panel_lines.append(text.strip())
+                draw_text(ui_layer, text, 10, y, color=color)
+                y += 18
             y += 10
 
         hits_for_labels = hits_at_stop if stop_reached and hits_at_stop else hits
@@ -947,70 +973,79 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     pygame.key.set_repeat(200, 50)
 
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
+    try:
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
                     running = False
-                elif event.key == pygame.K_UP:
-                    pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
-                    reset_state(apply_pending_speed=True)
-                    paused = True
-                elif event.key == pygame.K_DOWN:
-                    pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
-                    reset_state(apply_pending_speed=True)
-                    paused = True
-                elif event.key == pygame.K_f:
-                    new_fps = 60 if cfg.fps == 30 else 30
-                    update_time_params(new_fps)
-                    reset_state(apply_pending_speed=False)
-                    paused = True
-                elif event.key == pygame.K_c:
-                    print("\n".join(panel_log))
-                elif event.key == pygame.K_v:
-                    build_field_snapshot()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        running = False
+                    elif event.key == pygame.K_UP:
+                        pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
+                        reset_state(apply_pending_speed=True)
+                        paused = True
+                    elif event.key == pygame.K_DOWN:
+                        pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
+                        reset_state(apply_pending_speed=True)
+                        paused = True
+                    elif event.key == pygame.K_f:
+                        new_fps = 60 if cfg.fps == 30 else 30
+                        update_time_params(new_fps)
+                        reset_state(apply_pending_speed=False)
+                        paused = True
+                    elif event.key == pygame.K_c:
+                        print("\n".join(panel_log))
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_v:
+                        if field_visible:
+                            field_visible = False
+                        else:
+                            if field_surface is None:
+                                build_field_snapshot()
+                            field_visible = True
 
-        if paused:
-            if stop_reached and hits_at_stop:
-                render_frame(stop_positions or positions, hits_at_stop, stop_field_surface)
-            else:
-                render_frame(positions, list(recent_hits))
+            if paused:
+                if stop_reached and hits_at_stop:
+                    render_frame(stop_positions or positions, hits_at_stop, stop_field_surface if field_visible else None)
+                else:
+                    render_frame(positions, list(recent_hits))
+                clock.tick(cfg.fps)
+                continue
+
+            current_time = frame_idx * dt
+            positions = current_positions(current_time)
+
+            emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
+            emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
+
+            prune_emissions(current_time)
+            allow_self = speed_mult > field_v + 1e-6
+            hits = detect_hits(current_time, positions, allow_self=allow_self)
+            display_hits = hits
+            if not display_hits:
+                display_hits = analytic_hits(current_time, positions, allow_self, emission_retention)
+            recent_hits.clear()
+            recent_hits.extend(display_hits)
+            render_frame(positions, display_hits)
+
+            frame_idx += 1
             clock.tick(cfg.fps)
-            continue
 
-        current_time = frame_idx * dt
-        positions = current_positions(current_time)
-
-        emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
-        emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
-
-        prune_emissions(current_time)
-        allow_self = speed_mult > field_v + 1e-6
-        hits = detect_hits(current_time, positions, allow_self=allow_self)
-        display_hits = hits
-        if not display_hits:
-            display_hits = analytic_hits(current_time, positions, allow_self, emission_retention)
-        recent_hits.clear()
-        recent_hits.extend(display_hits)
-        render_frame(positions, display_hits)
-
-        frame_idx += 1
-        clock.tick(cfg.fps)
-
-        if target_stop_at_posi_start:
-            dx = positions["positrino"][0] - 1.0
-            dy = positions["positrino"][1] - 0.0
-            if math.hypot(dx, dy) <= 0.02 and frame_idx > 1:
-                paused = True
-                target_stop_at_posi_start = False
-                stop_reached = True
-                hits_at_stop = list(recent_hits)
-                stop_positions = positions.copy()
-                stop_field_surface = field_surface
-                # Freeze the field/positions at stop; do not advance frame_idx further.
-                frame_idx = frame_idx  # no-op for clarity
+            if target_stop_at_posi_start:
+                dx = positions["positrino"][0] - 1.0
+                dy = positions["positrino"][1] - 0.0
+                if math.hypot(dx, dy) <= 0.02 and frame_idx > 1:
+                    paused = True
+                    target_stop_at_posi_start = False
+                    stop_reached = True
+                    hits_at_stop = list(recent_hits)
+                    stop_positions = positions.copy()
+                    stop_field_surface = field_surface if field_visible else None
+                    # Freeze the field/positions at stop; do not advance frame_idx further.
+                    frame_idx = frame_idx  # no-op for clarity
+    except KeyboardInterrupt:
+        running = False
 
     pygame.quit()
 
@@ -1128,18 +1163,27 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    args = parse_args()
-    cfg = SimulationConfig(fps=args.fps, duration=args.duration, speed_multiplier=args.speed_mult)
-    if args.render:
-        render_live(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse, parallel_precompute=args.parallel_precompute)
-        return
+    try:
+        args = parse_args()
+        cfg = SimulationConfig(fps=args.fps, duration=args.duration, speed_multiplier=args.speed_mult)
+        if args.render:
+            render_live(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse, parallel_precompute=args.parallel_precompute)
+            return
 
-    frames = simulate(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse)
-    if args.self_test:
-        print(summarize(frames))
-    else:
-        print("Simulation complete.")
-        print(summarize(frames, max_hits=3, max_frames=3))
+        frames = simulate(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse)
+        if args.self_test:
+            print(summarize(frames))
+        else:
+            print("Simulation complete.")
+            print(summarize(frames, max_hits=3, max_frames=3))
+    except KeyboardInterrupt:
+        # Graceful exit on Ctrl-C without traceback.
+        try:
+            import pygame
+
+            pygame.quit()
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":
