@@ -11,9 +11,7 @@ Usage:
     python orbits.py --self-test
     python orbits.py --duration 4 --fps 30 --path unit_circle
     python orbits.py --render
-"""
 
-"""
 Per codex: You can push the field snapshot finer in a few ways; each trades directly against CPU time/memory:
 
   - Increase the grid resolution: bump base_res above 640 to shrink pixel size; or shrink the
@@ -82,15 +80,15 @@ def precompute_worker_static(
     positrino = Architrino("positrino", +1, PURE_RED, 0.0, path, reverse=reverse)
     electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path, reverse=reverse)
 
-    pos_posi = positrino.position(path_t)
-    pos_elec = electrino.position(path_t)
+    pos_posi = positrino.position(path_t, speed_mult_local, field_v_local)
+    pos_elec = electrino.position(path_t, speed_mult_local, field_v_local)
     positions = {"positrino": pos_posi, "electrino": pos_elec}
 
     emissions_local: List[Emission] = []
     for j in range(idx + 1):
         tj = j * dt
-        emissions_local.append(Emission(time=tj, pos=positrino.position(speed_mult_local * tj), emitter="positrino"))
-        emissions_local.append(Emission(time=tj, pos=electrino.position(speed_mult_local * tj), emitter="electrino"))
+        emissions_local.append(Emission(time=tj, pos=positrino.position(speed_mult_local * tj, speed_mult_local, field_v_local), emitter="positrino"))
+        emissions_local.append(Emission(time=tj, pos=electrino.position(speed_mult_local * tj, speed_mult_local, field_v_local), emitter="electrino"))
     emissions_local = [e for e in emissions_local if (t - e.time) <= emission_retention_local]
 
     hits: List[Hit] = []
@@ -182,6 +180,7 @@ class PathSpec:
     sampler: Callable[[float], Vec2]
     reverse_sampler: Callable[[float], Vec2]
     description: str
+    decay: float | None = None  # optional radial decay parameter
 
 
 def unit_circle_sampler(t: float) -> Vec2:
@@ -219,6 +218,7 @@ PATH_LIBRARY: Dict[str, PathSpec] = {
         sampler=exp_inward_spiral_sampler,
         reverse_sampler=exp_inward_spiral_sampler_reversed,
         description="Exponential inward spiral toward origin; steady angular speed.",
+        decay=0.05,
     ),
 }
 
@@ -232,10 +232,16 @@ class Architrino:
     path: PathSpec
     reverse: bool = False
 
-    def position(self, t: float) -> Vec2:
+    def position(self, t: float, speed_mult: float | None = None, field_v: float | None = None) -> Vec2:
         """Position on the assigned path with phase offset."""
         sampler = self.path.reverse_sampler if self.reverse else self.path.sampler
-        x, y = sampler(t + self.phase)
+        param = t + self.phase
+        if self.path.name == "exp_inward_spiral" and self.path.decay is not None and speed_mult is not None and field_v is not None:
+            decay_scale = 2.0 if speed_mult > field_v + 1e-6 else 1.0
+            angle = param
+            radius = math.exp(-self.path.decay * param * decay_scale)
+            return radius * math.cos(angle), radius * math.sin(angle)
+        x, y = sampler(param)
         return x, y
 
 
@@ -348,7 +354,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     font = pygame.font.SysFont("Arial", 16)
     small_font = pygame.font.SysFont("Arial", 12)
 
-    path = paths[path_name]
+    current_path_name = path_name
+    path = paths[current_path_name]
     positrino = Architrino("positrino", +1, PURE_RED, 0.0, path, reverse=reverse)
     electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path, reverse=reverse)
 
@@ -378,6 +385,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     last_diff_queue = deque()
     self_delta = None
     emitter_lookup = {"positrino": positrino, "electrino": electrino}
+    PATH_ORDER = list(paths.keys())
+    path_traces: Dict[str, List[Vec2]] = {"positrino": [], "electrino": []}
+    trace_limit = 4000
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -394,6 +404,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
+
+    def rebuild_architrinos(new_path_name: str) -> None:
+        nonlocal path, positrino, electrino, emitter_lookup, current_path_name
+        if new_path_name not in paths:
+            return
+        path = paths[new_path_name]
+        current_path_name = new_path_name
+        positrino = Architrino("positrino", +1, PURE_RED, 0.0, path, reverse=reverse)
+        electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path, reverse=reverse)
+        emitter_lookup = {"positrino": positrino, "electrino": electrino}
 
     def update_time_params(new_fps: int) -> None:
         nonlocal dt, shell_thickness
@@ -574,7 +594,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if allow_self and self_delta is not None and current_time >= self_delta:
             for name, receiver_pos in positions.items():
                 t_emit = current_time - self_delta
-                emit_pos = emitter_lookup[name].position(speed_mult * t_emit)
+                emit_pos = emitter_lookup[name].position(speed_mult * t_emit, speed_mult, field_v)
                 dist = l2(receiver_pos, emit_pos)
                 diff = dist - field_v * self_delta
                 key = (t_emit, name, name)
@@ -615,7 +635,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         def g(emitter_name: str, receiver_name: str, delta_t: float) -> float:
             t_emit = current_time - delta_t
-            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit)
+            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit, speed_mult, field_v)
             dist = l2(positions[receiver_name], emit_pos)
             return dist - field_v * delta_t
 
@@ -671,7 +691,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         def make_hit(delta_t: float, emitter_name: str, receiver_name: str) -> Hit:
             t_emit = current_time - delta_t
-            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit)
+            emit_pos = emitter_lookup[emitter_name].position(speed_mult * t_emit, speed_mult, field_v)
             recv_pos = positions[receiver_name]
             dist = l2(recv_pos, emit_pos)
             strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
@@ -723,8 +743,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if delta_t <= 0:
                 continue
             positions_snap = {
-                "positrino": positrino.position(-speed_mult * delta_t),
-                "electrino": electrino.position(-speed_mult * delta_t),
+                "positrino": positrino.position(-speed_mult * delta_t, speed_mult, field_v),
+                "electrino": electrino.position(-speed_mult * delta_t, speed_mult, field_v),
             }
             for name, pos in positions_snap.items():
                 tau = delta_t
@@ -735,7 +755,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         field_surface = make_field_surface()
 
     def reset_state(apply_pending_speed: bool = True) -> None:
-        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible
+        nonlocal emissions, field_grid, frame_idx, stop_reached, target_stop_at_posi_start, hits_at_stop, speed_mult, field_surface, stop_positions, stop_field_surface, self_delta, positions, field_visible, path_traces
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         self_delta = compute_self_delta(speed_mult, field_v)
@@ -755,6 +775,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         last_diff.clear()
         last_diff_queue.clear()
         positions = current_positions(0.0)
+        path_traces = {
+            "positrino": [positions["positrino"], positions["positrino"]],
+            "electrino": [positions["electrino"], positions["electrino"]],
+        }
+        recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
         recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
@@ -765,11 +790,22 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             screen.blit(fs, (panel_w, 0))
 
         geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-        if path_name == "unit_circle":
+        if current_path_name == "unit_circle":
             center = world_to_canvas((0.0, 0.0))
             scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
             for r in (int(scale), int(scale) + 1):
                 gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, GRAY)
+
+        # Draw path traces.
+        for name, trace in path_traces.items():
+            if len(trace) < 2:
+                continue
+            color = PURE_RED if name == "positrino" else PURE_BLUE
+            prev = world_to_canvas(trace[0])
+            for pt in trace[1:]:
+                cur = world_to_canvas(pt)
+                gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
+                prev = cur
 
         # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
         def draw_hit_arc(hit: Hit) -> None:
@@ -849,14 +885,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
         else:
             panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
-        panel_draw("Controls:", 10, 80)
-        panel_draw("ESC quit", 10, 100)
-        panel_draw("UP/DOWN speed (auto-pause)", 10, 120)
-        panel_draw("F: toggle fps 30/60", 10, 140)
-        panel_draw("C: copy panel", 10, 160)
-        panel_draw("V: color field", 10, 180)
-        panel_draw("Hit table (t = now):", 10, 210)
-        y = 230
+        panel_draw(f"path={current_path_name}", 10, 70)
+        panel_draw("Controls:", 10, 90)
+        panel_draw("ESC quit", 10, 110)
+        panel_draw("UP/DOWN speed (auto-pause)", 10, 130)
+        panel_draw("F: toggle fps 30/60", 10, 150)
+        panel_draw("C: copy panel", 10, 170)
+        panel_draw("V: toggle field", 10, 190)
+        panel_draw("P: cycle paths; 1/2 set path", 10, 210)
+        panel_draw("Hit table (t = now):", 10, 230)
+        y = 250
 
         # Net strength/angle per architrino at t = now (superposition of hits), in world coords.
         net_vec_world: Dict[str, Vec2] = {"positrino": (0.0, 0.0), "electrino": (0.0, 0.0)}
@@ -957,8 +995,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         path_t = speed_mult * time_t
         return {
-            "positrino": positrino.position(path_t),
-            "electrino": electrino.position(path_t),
+            "positrino": positrino.position(path_t, speed_mult, field_v),
+            "electrino": electrino.position(path_t, speed_mult, field_v),
         }
 
     def prune_emissions(current_time: float) -> None:
@@ -1004,8 +1042,24 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             if field_surface is None:
                                 build_field_snapshot()
                             field_visible = True
+                    elif event.key == pygame.K_p:
+                        idx = PATH_ORDER.index(current_path_name)
+                        next_name = PATH_ORDER[(idx + 1) % len(PATH_ORDER)]
+                        rebuild_architrinos(next_name)
+                        reset_state(apply_pending_speed=False)
+                    elif event.key in (pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5):
+                        num = event.key - pygame.K_1
+                        if num < len(PATH_ORDER):
+                            target = PATH_ORDER[num]
+                            rebuild_architrinos(target)
+                            reset_state(apply_pending_speed=False)
 
             if paused:
+                # Keep traces updating while paused.
+                for name, pos in positions.items():
+                    path_traces[name].append(pos)
+                    if len(path_traces[name]) > trace_limit:
+                        path_traces[name] = path_traces[name][-trace_limit:]
                 if stop_reached and hits_at_stop:
                     render_frame(stop_positions or positions, hits_at_stop, stop_field_surface if field_visible else None)
                 else:
@@ -1015,6 +1069,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
             current_time = frame_idx * dt
             positions = current_positions(current_time)
+            for name, pos in positions.items():
+                path_traces[name].append(pos)
+                if len(path_traces[name]) > trace_limit:
+                    path_traces[name] = path_traces[name][-trace_limit:]
 
             emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
             emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
@@ -1077,8 +1135,8 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
     for i in range(n_frames):
         t = i * dt
         path_t = speed_mult * t
-        pos_posi = positrino.position(path_t)
-        pos_elec = electrino.position(path_t)
+        pos_posi = positrino.position(path_t, speed_mult, field_v)
+        pos_elec = electrino.position(path_t, speed_mult, field_v)
         positions = {"positrino": pos_posi, "electrino": pos_elec}
 
         # Each particle emits once per frame (constant cadence).
