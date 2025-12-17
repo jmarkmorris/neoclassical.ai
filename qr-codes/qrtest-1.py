@@ -66,7 +66,9 @@ def compose_canvas() -> Image.Image:
 
     # Add footer text describing the payload.
     footer_text = f"Payload: {LINK} · Error correction: High"
-    text_width, text_height = draw.textsize(footer_text, font=font)
+    text_bbox = draw.textbbox((0, 0), footer_text, font=font)
+    text_width = text_bbox[2] - text_bbox[0]
+    text_height = text_bbox[3] - text_bbox[1]
     draw.rectangle(
         (60, CANVAS_SIZE[1] - text_height - 30, 60 + text_width + 16, CANVAS_SIZE[1] - 20),
         fill=(255, 255, 255, 25),
