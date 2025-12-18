@@ -40,3 +40,9 @@ Assuming high error correction (Q or H) for resilience, the following guidance e
 | 1a. Optimal link to `https://neoclassical.ai` | Single HTTPS URL, high error correction, minimal modules | 18% × 30% | 15% × 25% | 20% × 30% | Clean link, no additional text; iOS Camera/Photos and third-party readers auto-open the URL quickly. |
 | 1b. Standard web-link presentation | Same URL with slightly lower pixel budget to stay subtle | 12% × 20% | 10% × 18% | 12% × 22% | Works on YouTube/Reddit thumbnails when contrast is solid; keep surrounding art simple. |
 | 2. Link plus paragraph (short descriptive blurb) | `https://neoclassical.ai` plus ~100 characters of plain text | 25% × 35% | 20% × 30% | 25% × 35% | Readers (including iOS Camera/Photos) list the text payload but may show only the first line; keep the paragraph short and consider hosting the full copy on the linked page. |
+
+## Unique QR codes
+- neoclassical.ai
+- youtube channel
+- discord
+- any other social media
