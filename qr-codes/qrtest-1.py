@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+import argparse
 from PIL import Image, ImageChops, ImageColor, ImageDraw, ImageFont
 import qrcode
 from qrcode.constants import ERROR_CORRECT_H
@@ -28,10 +29,10 @@ BOTTOM_BLOCK_DEFS = [
 ]
 
 
-def make_qr(size: int, *, fill_color: str, back_color: str) -> Image.Image:
+def make_qr(size: int, *, fill_color: str, back_color: str, data: str) -> Image.Image:
     """Create a single QR code pre-sized by resizing after generation."""
     qr = qrcode.QRCode(error_correction=ERROR_CORRECT_H, border=2)
-    qr.add_data(LINK)
+    qr.add_data(data)
     qr.make(fit=True)
     img = qr.make_image(fill_color=fill_color, back_color=back_color).convert("RGB")
     return img.resize((size, size), Image.NEAREST)
@@ -63,9 +64,10 @@ def make_block_qr(
     palette: tuple[str, ...],
     back_color: str,
     block_size: int,
+    payload: str,
 ) -> Image.Image:
     """Composite a tiled color pattern into the QR modules."""
-    base = make_qr(size, fill_color="black", back_color="white")
+    base = make_qr(size, fill_color="black", back_color="white", data=payload)
     mask = ImageChops.invert(base.convert("L"))
     pattern = make_block_pattern(size, palette, block_size)
     background = Image.new("RGB", (size, size), back_color)
@@ -115,7 +117,7 @@ def draw_section_annotation(draw: ImageDraw.Draw, text: str, position: tuple[int
     draw.text(position, text, font=font, fill=(255, 255, 255))
 
 
-def compose_canvas() -> Image.Image:
+def compose_canvas(payload: str) -> Image.Image:
     """Build the full-screen composition with the requested QR variants."""
     canvas = Image.new("RGB", CANVAS_SIZE, (12, 12, 12))
     draw = ImageDraw.Draw(canvas)
@@ -131,6 +133,7 @@ def compose_canvas() -> Image.Image:
             palette=palette,
             back_color=back_color,
             block_size=block_size,
+            payload=payload,
         )
         canvas.paste(qr_img, (top_x_offset, top_y_offset))
         label_text = f"{size} pix"
@@ -151,6 +154,7 @@ def compose_canvas() -> Image.Image:
             palette=palette,
             back_color=back_color,
             block_size=block_size,
+            payload=payload,
         )
         canvas.paste(qr_img, (color_x, color_y))
         draw_label(draw, f"{size} pix", (color_x, color_y + size + 8), font)
@@ -158,7 +162,7 @@ def compose_canvas() -> Image.Image:
         color_x += size + 80
 
     # Add footer text describing the payload.
-    footer_text = f"Payload: {LINK} · Error correction: High"
+    footer_text = f"Payload: {payload} · Error correction: High"
     text_bbox = draw.textbbox((0, 0), footer_text, font=font)
     text_width = text_bbox[2] - text_bbox[0]
     text_height = text_bbox[3] - text_bbox[1]
@@ -171,9 +175,21 @@ def compose_canvas() -> Image.Image:
     return canvas
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__.strip())
+    parser.add_argument(
+        "--payload",
+        "-p",
+        default=LINK,
+        help="Data (URL or text) to encode in all QR variants.",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
     """Entrypoint to render and store the QR collage."""
-    output = compose_canvas()
+    args = parse_args()
+    output = compose_canvas(args.payload)
     output.save(OUTPUT_PATH)
     print(f"Saved QR collage to {OUTPUT_PATH}")
 
