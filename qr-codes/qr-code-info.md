@@ -45,4 +45,3 @@ Assuming high error correction (Q or H) for resilience, the following guidance e
 - neoclassical.ai
 - youtube channel
 - discord
-- any other social media

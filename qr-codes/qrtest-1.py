@@ -1,5 +1,7 @@
 """Generate a fullscreen demo of high-contrast QR codes using vivid palettes."""
 
+# python qr-codes/qrtest-1.py --payload "https://neoclassical.ai Follow-up text")
+
 from pathlib import Path
 
 import argparse
