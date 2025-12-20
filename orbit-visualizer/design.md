@@ -13,7 +13,7 @@ Render a 2-D timespace slice with predefined architrino trajectories, delayed ci
 - **Playback/Export**: Plays live-computed frames or pre-baked frames; exports image stacks or video via ffmpeg/imageio.
 
 ## Data flow (pre-baked mode)
-1) Select path, speed profile, duration, and resolution (via run file or CLI).  
+1) Select path, speed profile, and resolution (via run file).  
 2) Trajectory Library emits $(\mathbf{s}(t), \mathbf{v}(t))$ samples.  
 3) Field Engine computes per-frame field textures; Hit Detector logs hits.  
 4) Frames (RGB) + hit tables serialized to disk (or RAM cache).  
@@ -26,12 +26,12 @@ Render a 2-D timespace slice with predefined architrino trajectories, delayed ci
 
 ## Run file structure
 Run files define `directives` and `groups`.
-- `directives`: global settings (fps, duration, field speed, snaps, render flags).
+- `directives`: global settings (hz, field speed, snaps, render flags).
 - `groups`: array of architrino groups; each group declares counts and either `orbit` or `simulation`.
 - Current limit: one group with 1 electrino + 1 positrino; simulation rules are reserved for future scenarios.
 
 ## Path history granularity
-- **Temporal cadence**: one emission per architrino per frame (`dt = 1 / fps`).
+- **Temporal cadence**: one emission per architrino per frame (`dt = 1 / hz`).
 - **Retention window**: emissions older than `max_radius / field_speed` are dropped; `max_radius` depends on `domain_half_extent`.
 - **Path snapping**: `path_snap` quantizes the path parameter (keeps positions on the path).
 - **Position snapping**: `position_snap` quantizes XY positions only when `path_snap` is unset.

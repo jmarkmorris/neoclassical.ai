@@ -34,11 +34,9 @@ python orbit-visualizer/orbits.py --render --path unit_circle
 
 ## `directives` settings
 - `format_version` (int): Version marker for future migrations.
-- `fps` (int): Frames per second.
-- `duration` (float): Minimum duration in seconds (coverage heuristic may extend).
+- `hz` (int): Simulation frequency in Hz.
 - `field_speed` (float): Field propagation speed.
 - `domain_half_extent` (float): Half extent of square domain, in world units.
-- `coverage_margin` (float): Multiplier for auto-coverage duration.
 - `max_memory_bytes` (int): Memory budget for cached frames (future use).
 - `speed_multiplier` (float): Default path speed multiplier.
 - `position_snap` (float): Optional XY snap grid size; ignored if `path_snap` is set.
@@ -46,8 +44,6 @@ python orbit-visualizer/orbits.py --render --path unit_circle
 - `render` (bool): Start in render mode (PyGame).
 - `field_visible` (bool): Show field texture by default.
 - `start_paused` (bool): Start paused when rendering.
-- `self_test` (bool): Print summary instead of normal output.
-- `parallel_precompute` (bool): Toggle parallel precompute (reserved).
 - `reverse` (bool): Default reverse flag for orbit (can be overridden per group).
 
 Aliases (optional):

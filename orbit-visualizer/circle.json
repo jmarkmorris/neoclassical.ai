@@ -1,18 +1,15 @@
 {
   "directives": {
     "format_version": 1,
-    "fps": 120,
-    "duration": 4.0,
+    "hz": 1000,
     "field_speed": 1.0,
     "domain_half_extent": 2.0,
-    "coverage_margin": 1.1,
     "max_memory_bytes": 8589934592,
     "speed_multiplier": 0.5,
     "path_snap": 0.002,
     "render": true,
     "field_visible": true,
-    "start_paused": false,
-    "self_test": false
+    "start_paused": true
   },
   "groups": [
     {
