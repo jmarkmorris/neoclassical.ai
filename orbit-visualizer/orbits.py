@@ -367,6 +367,13 @@ def load_run_file(
     paths: Dict[str, PathSpec],
 ) -> Tuple[SimulationConfig, str, bool, bool, bool, bool, Dict[str, PathSpec]]:
     run_file = Path(run_path).expanduser()
+    if not run_file.is_file():
+        script_dir = Path(__file__).resolve().parent
+        fallback = script_dir / run_file.name
+        if fallback.is_file():
+            run_file = fallback
+        else:
+            raise FileNotFoundError(f"Run file not found: {run_path}")
     with run_file.open("r", encoding="utf-8") as handle:
         payload = json.load(handle)
     payload = _expect_dict(payload, "run file")
