@@ -12,7 +12,6 @@ Usage:
     python orbits.py --duration 4 --fps 30 --path unit_circle
     python orbits.py --render
     python orbits.py --run circle.json
-    python orbits.py --run spiral.json
 
 Run files expect top-level "directives" and a "groups" array; see orbit-visualizer/circle.json.
 
@@ -293,7 +292,7 @@ class RenderFrame:
 
 @dataclass
 class SimulationConfig:
-    fps: int = 120
+    fps: int = 60
     duration: float = 4.0
     field_speed: float = 1.0  # v=1
     domain_half_extent: float = 2.0  # domain [-2,2] by default
@@ -302,40 +301,8 @@ class SimulationConfig:
     speed_multiplier: float = 0.5  # path speed scaling in [0, 100]; 0 => stationary
     position_snap: float | None = None  # optional spatial quantization step
     path_snap: float | None = None  # optional path-parameter snap step
-    field_visible: bool = True  # show field texture by default in render mode
+    field_visible: bool = False  # show field texture by default in render mode
     start_paused: bool = True  # render loop starts paused unless overridden
-
-
-@dataclass
-class OrbitConfig:
-    path: str
-    reverse: bool = False
-    speed_multiplier: float | None = None
-    decay: float | None = None
-
-
-@dataclass
-class ArchitrinoGroupSpec:
-    name: str
-    electrinos: int
-    positrinos: int
-    orbit: OrbitConfig | None = None
-    simulation: Dict[str, object] | None = None
-
-
-@dataclass
-class RunScenario:
-    config: SimulationConfig
-    groups: List[ArchitrinoGroupSpec]
-    paths: Dict[str, PathSpec]
-    render: bool = False
-    self_test: bool = False
-    parallel_precompute: bool = False
-
-    def primary_orbit(self) -> OrbitConfig:
-        if not self.groups or self.groups[0].orbit is None:
-            raise ValueError("Scenario has no primary orbit configured.")
-        return self.groups[0].orbit
 
 
 def l2(a: Vec2, b: Vec2) -> float:
@@ -401,7 +368,7 @@ def _coerce_int(value: object, label: str) -> int:
 def load_run_file(
     run_path: str,
     paths: Dict[str, PathSpec],
-) -> RunScenario:
+) -> Tuple[SimulationConfig, str, bool, bool, bool, bool, Dict[str, PathSpec]]:
     run_file = Path(run_path).expanduser()
     if not run_file.is_file():
         script_dir = Path(__file__).resolve().parent
@@ -466,11 +433,11 @@ def load_run_file(
         if position_snap <= 0:
             raise ValueError("directives.position_snap must be > 0.")
 
-    field_visible = bool(directives.get("field_visible", directives.get("field_on", True)))
+    field_visible = bool(directives.get("field_visible", directives.get("field_on", False)))
     start_paused = bool(directives.get("start_paused", True))
 
     cfg = SimulationConfig(
-        fps=_coerce_int(directives.get("fps", 120), "directives.fps"),
+        fps=_coerce_int(directives.get("fps", 60), "directives.fps"),
         duration=_coerce_float(directives.get("duration", 4.0), "directives.duration"),
         field_speed=_coerce_float(directives.get("field_speed", 1.0), "directives.field_speed"),
         domain_half_extent=_coerce_float(directives.get("domain_half_extent", 2.0), "directives.domain_half_extent"),
@@ -487,7 +454,6 @@ def load_run_file(
     )
 
     paths_override = paths
-    decay = None
     decay_value = orbit.get("decay")
     if decay_value is not None:
         if path_name != "exp_inward_spiral":
@@ -506,26 +472,7 @@ def load_run_file(
     render = bool(directives.get("render", False))
     self_test = bool(directives.get("self_test", False))
     parallel_precompute = bool(directives.get("parallel_precompute", False))
-    orbit_spec = OrbitConfig(
-        path=path_name,
-        reverse=reverse,
-        speed_multiplier=speed_mult,
-        decay=decay,
-    )
-    group_spec = ArchitrinoGroupSpec(
-        name=group_name,
-        electrinos=electrinos,
-        positrinos=positrinos,
-        orbit=orbit_spec,
-    )
-    return RunScenario(
-        config=cfg,
-        groups=[group_spec],
-        paths=paths_override,
-        render=render,
-        self_test=self_test,
-        parallel_precompute=parallel_precompute,
-    )
+    return cfg, path_name, reverse, render, self_test, parallel_precompute, paths_override
 
 
 def estimate_coverage_duration(cfg: SimulationConfig) -> float:
@@ -587,7 +534,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     pending_speed_mult = speed_mult
     position_snap = cfg.position_snap
     path_snap = cfg.path_snap
-    frame_skip = 0
 
     def snap_param(param: float) -> float:
         if path_snap is None or path_snap <= 0:
@@ -618,7 +564,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     BASE_OFFSET = 6.0 * math.pi  # start with 3 full revolutions
     path_time_offset = BASE_OFFSET
     trace_limit = 40000
-    show_hit_table = False  # disabled for now
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -709,19 +654,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         p2 = np.pad(h, ((2, 2), (0, 0)), mode="edge")
         v = (p2[2:-2, :] + p2[1:-3, :] + p2[3:-1, :] + p2[:-4, :] + p2[4:, :]) / 5.0
         return v.astype(np.float32, copy=False)
-
-    def apply_speed_change(new_speed: float, auto_pause: bool = True) -> None:
-        nonlocal speed_mult, pending_speed_mult, self_delta, paused, path_time_offset
-        current_time = frame_idx * dt
-        prev_speed = speed_mult
-        speed_mult = clamp_speed(new_speed)
-        pending_speed_mult = speed_mult
-        # Preserve the current path parameter so paused positions stay fixed.
-        path_time_offset += (prev_speed - speed_mult) * current_time
-        self_delta = compute_self_delta(speed_mult, field_v)
-        refresh_hits_for_current_time()
-        if auto_pause:
-            paused = True
 
     def make_field_surface() -> "pygame.Surface":
         log_net = np.sign(field_grid) * np.log1p(np.abs(field_grid))
@@ -999,19 +931,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 apply_shell(Emission(time=-delta_t, pos=pos, emitter=name), radius, remove=False)
         field_surface = make_field_surface()
 
-    def rebuild_field_surface(current_time: float) -> None:
-        nonlocal field_surface
-        field_grid[:] = 0.0
-        for em in emissions:
-            tau = current_time - em.time
-            if tau <= 0:
-                continue
-            radius = field_v * tau
-            if radius > max_radius:
-                continue
-            apply_shell(em, radius, remove=False)
-        field_surface = make_field_surface()
-
     def add_trace_segment(start_offset: float, end_offset: float, steps: int = 180) -> None:
         nonlocal path_traces
         if end_offset == start_offset:
@@ -1083,7 +1002,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             rebuild_trace_for_offset(path_time_offset)
         recent_hits.extend(analytic_hits(0.0, positions, speed_mult > field_v, emission_retention))
         if field_visible:
-            rebuild_field_surface(0.0)
+            build_field_snapshot()
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal panel_log
@@ -1184,83 +1103,80 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         panel_draw(f"frame={frame_idx+1}", 10, 10)
         panel_draw(f"fps={cfg.fps}", 10, 30)
-        panel_draw(f"frame_skip={frame_skip}", 10, 50)
         if paused and pending_speed_mult != speed_mult:
-            panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 70)
+            panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
         else:
-            panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
-        panel_draw(f"path={current_path_name}", 10, 90)
-        panel_draw("Controls:", 10, 110)
-        panel_draw("ESC quit", 10, 130)
-        panel_draw("SPACE: pause/resume", 10, 150)
-        panel_draw("LEFT/RIGHT frame skip", 10, 170)
-        panel_draw("UP/DOWN speed (auto-pause)", 10, 190)
-        panel_draw("F: toggle fps 30/60/120", 10, 210)
-        panel_draw("C: copy panel", 10, 230)
-        panel_draw("V: toggle field", 10, 250)
-        panel_draw("P: cycle paths; 1/2 set path", 10, 270)
-        if show_hit_table:
-            panel_draw("Hit table (t = now):", 10, 250)
-            y = 270
+            panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
+        panel_draw(f"path={current_path_name}", 10, 70)
+        panel_draw("Controls:", 10, 90)
+        panel_draw("ESC quit", 10, 110)
+        panel_draw("LEFT/RIGHT: ±1 rotation (spiral offset)", 10, 130)
+        panel_draw("UP/DOWN speed (auto-pause)", 10, 150)
+        panel_draw("F: toggle fps 30/60", 10, 170)
+        panel_draw("C: copy panel", 10, 190)
+        panel_draw("V: toggle field", 10, 210)
+        panel_draw("P: cycle paths; 1/2 set path", 10, 230)
+        panel_draw("Hit table (t = now):", 10, 250)
+        y = 270
 
-            # Net strength/angle per architrino at t = now (superposition of hits), in world coords.
-            net_vec_world: Dict[str, Vec2] = {"positrino": (0.0, 0.0), "electrino": (0.0, 0.0)}
-            hits_by_receiver: Dict[str, List[Hit]] = {"positrino": [], "electrino": []}
-            for h in hits:
-                recv = h.receiver
-                recv_pos = positions[h.receiver]
-                vec = (recv_pos[0] - h.emit_pos[0], recv_pos[1] - h.emit_pos[1])
-                polarity_recv = +1 if recv == "positrino" else -1
-                polarity_emit = +1 if h.emitter == "positrino" else -1
-                sigma = 1.0 if polarity_recv == polarity_emit else -1.0  # repulsion vs attraction
-                dir_vec = (vec[0] * sigma, vec[1] * sigma)
-                dist = math.hypot(dir_vec[0], dir_vec[1]) or 1.0
-                unit_vec = (dir_vec[0] / dist, dir_vec[1] / dist)
-                net_world = net_vec_world[recv]
-                net_vec_world[recv] = (
-                    net_world[0] + h.strength * unit_vec[0],
-                    net_world[1] + h.strength * unit_vec[1],
+        # Net strength/angle per architrino at t = now (superposition of hits), in world coords.
+        net_vec_world: Dict[str, Vec2] = {"positrino": (0.0, 0.0), "electrino": (0.0, 0.0)}
+        hits_by_receiver: Dict[str, List[Hit]] = {"positrino": [], "electrino": []}
+        for h in hits:
+            recv = h.receiver
+            recv_pos = positions[h.receiver]
+            vec = (recv_pos[0] - h.emit_pos[0], recv_pos[1] - h.emit_pos[1])
+            polarity_recv = +1 if recv == "positrino" else -1
+            polarity_emit = +1 if h.emitter == "positrino" else -1
+            sigma = 1.0 if polarity_recv == polarity_emit else -1.0  # repulsion vs attraction
+            dir_vec = (vec[0] * sigma, vec[1] * sigma)
+            dist = math.hypot(dir_vec[0], dir_vec[1]) or 1.0
+            unit_vec = (dir_vec[0] / dist, dir_vec[1] / dist)
+            net_world = net_vec_world[recv]
+            net_vec_world[recv] = (
+                net_world[0] + h.strength * unit_vec[0],
+                net_world[1] + h.strength * unit_vec[1],
+            )
+            hits_by_receiver[recv].append(h)
+
+        for recv in ("positrino", "electrino"):
+            net_w = net_vec_world[recv]
+            strength = math.hypot(net_w[0], net_w[1])
+            angle = (math.degrees(math.atan2(net_w[1], net_w[0])) + 360.0) % 360 if strength > 0 else 0.0
+            color = PURE_RED if recv == "positrino" else PURE_BLUE
+            heading = f"{recv.capitalize()} |net|={strength:.3f} angle={angle:.1f}°"
+            panel_draw(heading, 10, y, color=color)
+            y += 18
+            # Net radial strength relative to the orbit center (outward positive, inward negative).
+            pos_now = positions.get(recv, (0.0, 0.0))
+            r_norm = math.hypot(pos_now[0], pos_now[1])
+            if r_norm > 1e-9:
+                radial_dir = (pos_now[0] / r_norm, pos_now[1] / r_norm)
+                radial_strength = net_vec_world[recv][0] * radial_dir[0] + net_vec_world[recv][1] * radial_dir[1]
+            else:
+                radial_strength = 0.0
+            radial_text = f"  net radial to center: {radial_strength:+.3f}"
+            panel_lines.append(radial_text.strip())
+            draw_text(ui_layer, radial_text, 10, y, color=color)
+            y += 18
+            total_hits = len(hits_by_receiver[recv])
+            note_text = f"  hits: total {total_hits}, showing up to 16"
+            panel_lines.append(note_text.strip())
+            draw_text(ui_layer, note_text, 10, y, color=color)
+            y += 18
+            for idx, h in enumerate(hits_by_receiver[recv][:16], start=1):
+                recv_now = positions.get(h.receiver, (0.0, 0.0))
+                emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
+                hit_angle_deg = angle_deg_screen(emit_to_recv)
+                text = (
+                    f"  {idx:02d} "
+                    f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
+                    f"emit={h.emitter[0].upper()}"
                 )
-                hits_by_receiver[recv].append(h)
-
-            for recv in ("positrino", "electrino"):
-                net_w = net_vec_world[recv]
-                strength = math.hypot(net_w[0], net_w[1])
-                angle = (math.degrees(math.atan2(net_w[1], net_w[0])) + 360.0) % 360 if strength > 0 else 0.0
-                color = PURE_RED if recv == "positrino" else PURE_BLUE
-                heading = f"{recv.capitalize()} |net|={strength:.3f} angle={angle:.1f}°"
-                panel_draw(heading, 10, y, color=color)
+                panel_lines.append(text.strip())
+                draw_text(ui_layer, text, 10, y, color=color)
                 y += 18
-                # Net radial strength relative to the orbit center (outward positive, inward negative).
-                pos_now = positions.get(recv, (0.0, 0.0))
-                r_norm = math.hypot(pos_now[0], pos_now[1])
-                if r_norm > 1e-9:
-                    radial_dir = (pos_now[0] / r_norm, pos_now[1] / r_norm)
-                    radial_strength = net_vec_world[recv][0] * radial_dir[0] + net_vec_world[recv][1] * radial_dir[1]
-                else:
-                    radial_strength = 0.0
-                radial_text = f"  net radial to center: {radial_strength:+.3f}"
-                panel_lines.append(radial_text.strip())
-                draw_text(ui_layer, radial_text, 10, y, color=color)
-                y += 18
-                total_hits = len(hits_by_receiver[recv])
-                note_text = f"  hits: total {total_hits}, showing up to 16"
-                panel_lines.append(note_text.strip())
-                draw_text(ui_layer, note_text, 10, y, color=color)
-                y += 18
-                for idx, h in enumerate(hits_by_receiver[recv][:16], start=1):
-                    recv_now = positions.get(h.receiver, (0.0, 0.0))
-                    emit_to_recv = (recv_now[0] - h.emit_pos[0], recv_now[1] - h.emit_pos[1])
-                    hit_angle_deg = angle_deg_screen(emit_to_recv)
-                    text = (
-                        f"  {idx:02d} "
-                        f"hit={hit_angle_deg:.1f}° str={h.strength:.3f} "
-                        f"emit={h.emitter[0].upper()}"
-                    )
-                    panel_lines.append(text.strip())
-                    draw_text(ui_layer, text, 10, y, color=color)
-                    y += 18
-                y += 10
+            y += 10
 
         hits_for_labels = hits_at_stop if stop_reached and hits_at_stop else hits
         circle_center_screen = world_to_screen((0.0, 0.0))
@@ -1327,23 +1243,24 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False
-                    elif event.key == pygame.K_SPACE:
-                        paused = not paused
                     elif event.key == pygame.K_RIGHT:
-                        frame_skip += 1
+                        path_time_offset += 2.0 * math.pi
+                        rebuild_trace_for_offset(path_time_offset)
+                        refresh_hits_for_current_time()
                     elif event.key == pygame.K_LEFT:
-                        frame_skip = max(0, frame_skip - 1)
+                        path_time_offset = max(BASE_OFFSET, path_time_offset - 2.0 * math.pi)
+                        rebuild_trace_for_offset(path_time_offset)
+                        refresh_hits_for_current_time()
                     elif event.key == pygame.K_UP:
-                        apply_speed_change(speed_mult + 0.1, auto_pause=True)
+                        pending_speed_mult = clamp_speed(pending_speed_mult + 0.1)
+                        reset_state(apply_pending_speed=True)
+                        paused = True
                     elif event.key == pygame.K_DOWN:
-                        apply_speed_change(speed_mult - 0.1, auto_pause=True)
+                        pending_speed_mult = clamp_speed(pending_speed_mult - 0.1)
+                        reset_state(apply_pending_speed=True)
+                        paused = True
                     elif event.key == pygame.K_f:
-                        if cfg.fps == 30:
-                            new_fps = 60
-                        elif cfg.fps == 60:
-                            new_fps = 120
-                        else:
-                            new_fps = 30
+                        new_fps = 60 if cfg.fps == 30 else 30
                         update_time_params(new_fps)
                         reset_state(apply_pending_speed=False)
                         paused = True
@@ -1354,8 +1271,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         if field_visible:
                             field_visible = False
                         else:
+                            if field_surface is None:
+                                build_field_snapshot()
                             field_visible = True
-                            rebuild_field_surface(frame_idx * dt)
                     elif event.key == pygame.K_p:
                         idx = PATH_ORDER.index(current_path_name)
                         next_name = PATH_ORDER[(idx + 1) % len(PATH_ORDER)]
@@ -1369,6 +1287,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             reset_state(apply_pending_speed=False)
 
             if paused:
+                # Keep traces updating while paused.
+                for name, pos in positions.items():
+                    path_traces[name].append(pos)
+                    if len(path_traces[name]) > trace_limit:
+                        path_traces[name] = path_traces[name][-trace_limit:]
                 if stop_reached and hits_at_stop:
                     render_frame(stop_positions or positions, hits_at_stop, stop_field_surface if field_visible else None)
                 else:
@@ -1376,39 +1299,28 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 clock.tick(cfg.fps)
                 continue
 
-            steps = frame_skip + 1
-            display_hits: List[Hit] = []
-            sim_idx = frame_idx
-            current_time = sim_idx * dt
-            for step in range(steps):
-                current_time = sim_idx * dt
-                positions = current_positions(current_time)
-                for name, pos in positions.items():
-                    path_traces[name].append(pos)
-                    if len(path_traces[name]) > trace_limit:
-                        path_traces[name] = path_traces[name][-trace_limit:]
+            current_time = frame_idx * dt
+            positions = current_positions(current_time)
+            for name, pos in positions.items():
+                path_traces[name].append(pos)
+                if len(path_traces[name]) > trace_limit:
+                    path_traces[name] = path_traces[name][-trace_limit:]
 
-                emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
-                emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
+            emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
+            emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
 
-                prune_emissions(current_time)
-                allow_self = speed_mult > field_v + 1e-6
-                hits = detect_hits(current_time, positions, allow_self=allow_self)
-                if step == steps - 1:
-                    display_hits = hits
-                    if not display_hits:
-                        display_hits = analytic_hits(current_time, positions, allow_self, emission_retention)
-                    recent_hits.clear()
-                    recent_hits.extend(display_hits)
-
-                sim_idx += 1
-
-            last_frame_idx = sim_idx - 1
-            frame_idx = last_frame_idx
-            rebuild_field_surface(current_time)
+            prune_emissions(current_time)
+            allow_self = speed_mult > field_v + 1e-6
+            hits = detect_hits(current_time, positions, allow_self=allow_self)
+            display_hits = hits
+            if not display_hits:
+                display_hits = analytic_hits(current_time, positions, allow_self, emission_retention)
+            recent_hits.clear()
+            recent_hits.extend(display_hits)
             render_frame(positions, display_hits)
 
-            clock.tick(max(1.0, cfg.fps / steps))
+            frame_idx += 1
+            clock.tick(cfg.fps)
 
             if target_stop_at_posi_start:
                 dx = positions["positrino"][0] - 1.0
@@ -1422,8 +1334,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     stop_field_surface = field_surface if field_visible else None
                     # Freeze the field/positions at stop; do not advance frame_idx further.
                     frame_idx = frame_idx  # no-op for clarity
-            if not stop_reached:
-                frame_idx = sim_idx
     except KeyboardInterrupt:
         running = False
 
@@ -1547,7 +1457,7 @@ def summarize(frames: List[Frame], max_hits: int = 5, max_frames: int = 5) -> st
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Orbit visualizer prototype (pre-bake simulation).")
     parser.add_argument("--run", type=str, help="JSON run file with directives and architrino groups.")
-    parser.add_argument("--fps", type=int, default=120, help="Frames per second (default 120).")
+    parser.add_argument("--fps", type=int, default=60, help="Frames per second (default 60).")
     parser.add_argument("--duration", type=float, default=4.0, help="Minimum duration in seconds (coverage heuristic may increase this).")
     parser.add_argument("--path", type=str, default="unit_circle", choices=list(PATH_LIBRARY.keys()), help="Trajectory name.")
     parser.add_argument("--reverse", action="store_true", help="Reverse path orientation.")
@@ -1563,15 +1473,7 @@ def main() -> None:
         args = parse_args()
         paths = PATH_LIBRARY
         if args.run:
-            scenario = load_run_file(args.run, PATH_LIBRARY)
-            cfg = scenario.config
-            paths = scenario.paths
-            orbit = scenario.primary_orbit()
-            path_name = orbit.path
-            reverse = orbit.reverse
-            render = scenario.render
-            self_test = scenario.self_test
-            parallel_precompute = scenario.parallel_precompute
+            cfg, path_name, reverse, render, self_test, parallel_precompute, paths = load_run_file(args.run, PATH_LIBRARY)
             if args.render:
                 render = True
             if args.self_test:
