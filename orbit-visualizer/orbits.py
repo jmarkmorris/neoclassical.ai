@@ -350,7 +350,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     pygame.init()
     panel_w = 320
-    canvas_scale = 0.5
+    canvas_scale = 0.25
     info = pygame.display.Info()
     display_flags = pygame.RESIZABLE | pygame.SCALED
     max_side = min(info.current_h, max(1, info.current_w - panel_w))
@@ -361,8 +361,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     screen = pygame.display.set_mode((width, height), display_flags)
     pygame.display.set_caption("Orbit Visualizer (prototype)")
     clock = pygame.time.Clock()
-    font = pygame.font.SysFont("Arial", 16)
-    small_font = pygame.font.SysFont("Arial", 12)
+    font = pygame.font.SysFont("Arial", 12)
+    small_font = pygame.font.SysFont("Arial", 10)
 
     current_path_name = path_name
     path = paths[current_path_name]
