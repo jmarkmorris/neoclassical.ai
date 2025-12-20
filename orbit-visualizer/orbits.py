@@ -350,9 +350,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     pygame.init()
     panel_w = 320
+    canvas_scale = 0.5
     info = pygame.display.Info()
     display_flags = pygame.RESIZABLE | pygame.SCALED
-    canvas_side = min(info.current_h, info.current_w - panel_w)
+    max_side = min(info.current_h, max(1, info.current_w - panel_w))
+    canvas_side = max(1, int(max_side * canvas_scale))
     canvas_w = canvas_side
     width = panel_w + canvas_w
     height = canvas_w
@@ -746,10 +748,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
         pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
-        panel_lines: List[str] = []
-
         def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
-            panel_lines.append(text)
             draw_text(ui_layer, text, x, y, color=color)
 
         panel_draw(f"frame={frame_idx+1}", 10, 10)
@@ -767,8 +766,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_draw("H: toggle hits (paused only)", 10, 190)
         panel_draw("UP/DOWN speed (auto-pause)", 10, 210)
         panel_draw("F: toggle hz 250/500/1000", 10, 230)
-        panel_draw("C: copy panel", 10, 250)
-        panel_draw("V: toggle field", 10, 270)
+        panel_draw("V: toggle field", 10, 250)
         if paused:
             panel_draw("PAUSED", 10, height - 30)
 
@@ -776,7 +774,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         screen.blit(particle_layer, (panel_w, 0))
         screen.blit(ui_layer, (0, 0))
         pygame.display.flip()
-        panel_log = panel_lines[:]
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         path_t = speed_mult * time_t
@@ -835,8 +832,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         update_time_params(new_hz)
                         reset_state(apply_pending_speed=False)
                         paused = True
-                    elif event.key == pygame.K_c:
-                        print("\n".join(panel_log))
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_v:
                         if field_visible:
