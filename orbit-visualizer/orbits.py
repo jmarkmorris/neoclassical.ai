@@ -154,7 +154,6 @@ class SimulationConfig:
     hz: int = 1000
     field_speed: float = 1.0  # v=1
     domain_half_extent: float = 2.0  # domain [-2,2] by default
-    max_memory_bytes: int = 8 * 1024 * 1024 * 1024  # default budget (~8 GiB) for frames if caching
     speed_multiplier: float = 0.5  # path speed scaling in [0, 100]; 0 => stationary
     position_snap: float | None = None  # optional spatial quantization step
     path_snap: float | None = None  # optional path-parameter snap step
@@ -308,10 +307,6 @@ def load_run_file(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
         field_speed=_coerce_float(directives.get("field_speed", 1.0), "directives.field_speed"),
         domain_half_extent=_coerce_float(directives.get("domain_half_extent", 2.0), "directives.domain_half_extent"),
-        max_memory_bytes=_coerce_int(
-            directives.get("max_memory_bytes", 8 * 1024 * 1024 * 1024),
-            "directives.max_memory_bytes",
-        ),
         speed_multiplier=speed_mult,
         position_snap=position_snap,
         path_snap=path_snap,
@@ -502,7 +497,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         surf = pygame.transform.smoothscale(surf, (canvas_w, height))
         return surf.convert()
 
-    def apply_shell(em: Emission, radius: float, remove: bool = False) -> None:
+    def apply_shell(em: Emission, radius: float) -> None:
         """Apply a smooth annular band for this emission at the given radius."""
         if radius <= 0 or radius > max_radius:
             return
@@ -538,10 +533,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         radial_weight = 0.5 * (1.0 + np.cos(np.pi * delta[mask] / band_half))
         sign = 1.0 if em.emitter == "positrino" else -1.0
         contrib = sign * radial_weight / (dist[mask] ** 2)
-        if remove:
-            field_grid[y0:y1, x0:x1][mask] -= contrib
-        else:
-            field_grid[y0:y1, x0:x1][mask] += contrib
+        field_grid[y0:y1, x0:x1][mask] += contrib
 
     def cleanup_hits(current_time: float) -> None:
         cutoff = current_time - emission_retention
@@ -610,7 +602,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             radius = field_v * tau
             if radius > max_radius:
                 continue
-            apply_shell(em, radius, remove=False)
+            apply_shell(em, radius)
         field_surface = make_field_surface()
 
     def add_trace_segment(start_offset: float, end_offset: float, steps: int = 180) -> None:
@@ -904,8 +896,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
                 sim_idx += 1
 
-            last_frame_idx = sim_idx - 1
-            frame_idx = last_frame_idx
+            frame_idx = sim_idx - 1
             rebuild_field_surface(current_time)
             render_frame(positions, display_hits)
 

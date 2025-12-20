@@ -37,7 +37,6 @@ python orbit-visualizer/orbits.py --render --path unit_circle
 - `hz` (int): Simulation frequency in Hz.
 - `field_speed` (float): Field propagation speed.
 - `domain_half_extent` (float): Half extent of square domain, in world units.
-- `max_memory_bytes` (int): Memory budget for cached frames (future use).
 - `speed_multiplier` (float): Default path speed multiplier.
 - `position_snap` (float): Optional XY snap grid size; ignored if `path_snap` is set.
 - `path_snap` (float): Snap step in path parameter space (keeps positions on the path).
