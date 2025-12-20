@@ -11,6 +11,9 @@ Usage:
     python orbits.py --self-test
     python orbits.py --duration 4 --fps 30 --path unit_circle
     python orbits.py --render
+    python orbits.py --run run-example.json
+
+Run files expect top-level "directives" and a "groups" array; see orbit-visualizer/run-example.json.
 
 Per codex: You can push the field snapshot finer in a few ways; each trades directly against CPU time/memory:
 
@@ -31,10 +34,12 @@ Per codex: You can push the field snapshot finer in a few ways; each trades dire
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import os
 from collections import deque
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Callable, Dict, List, Tuple
 import numpy as np
 
@@ -294,6 +299,7 @@ class SimulationConfig:
     coverage_margin: float = 1.1  # scale for coverage duration heuristic
     max_memory_bytes: int = 8 * 1024 * 1024 * 1024  # default budget (~8 GiB) for frames if caching
     speed_multiplier: float = 0.5  # path speed scaling in [0, 100]; 0 => stationary
+    position_snap: float | None = None  # optional spatial quantization step
 
 
 def l2(a: Vec2, b: Vec2) -> float:
@@ -319,6 +325,132 @@ def angle_deg_screen(vec: Vec2) -> float:
     ang = math.atan2(-vec[1], vec[0])
     ang = ang if ang >= 0 else ang + 2 * math.pi
     return math.degrees(ang)
+
+
+def snap_position(pos: Vec2, snap_distance: float | None) -> Vec2:
+    if snap_distance is None or snap_distance <= 0:
+        return pos
+    return (
+        round(pos[0] / snap_distance) * snap_distance,
+        round(pos[1] / snap_distance) * snap_distance,
+    )
+
+
+def _expect_dict(value: object, label: str) -> Dict[str, object]:
+    if not isinstance(value, dict):
+        raise ValueError(f"{label} must be a JSON object.")
+    return value
+
+
+def _expect_list(value: object, label: str) -> List[object]:
+    if not isinstance(value, list):
+        raise ValueError(f"{label} must be a JSON array.")
+    return value
+
+
+def _coerce_float(value: object, label: str) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{label} must be a number.") from exc
+
+
+def _coerce_int(value: object, label: str) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{label} must be an integer.") from exc
+
+
+def load_run_file(
+    run_path: str,
+    paths: Dict[str, PathSpec],
+) -> Tuple[SimulationConfig, str, bool, bool, bool, bool, Dict[str, PathSpec]]:
+    run_file = Path(run_path).expanduser()
+    with run_file.open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    payload = _expect_dict(payload, "run file")
+
+    directives = payload.get("directives", {})
+    if directives is None:
+        directives = {}
+    directives = _expect_dict(directives, "directives")
+
+    groups = _expect_list(payload.get("groups"), "groups")
+    if not groups:
+        raise ValueError("Run file requires at least one architrino group.")
+    if len(groups) != 1:
+        raise ValueError("Run file currently supports exactly one group.")
+    group = _expect_dict(groups[0], "group")
+    group_name = group.get("name", "group-1")
+
+    if "electrinos" not in group or "positrinos" not in group:
+        raise ValueError(f"Group '{group_name}' requires 'electrinos' and 'positrinos' counts.")
+    electrinos = _coerce_int(group.get("electrinos"), f"group '{group_name}' electrinos")
+    positrinos = _coerce_int(group.get("positrinos"), f"group '{group_name}' positrinos")
+    if electrinos != 1 or positrinos != 1:
+        raise ValueError("Run file currently supports exactly 1 electrino and 1 positrino per group.")
+
+    orbit = group.get("orbit")
+    simulation = group.get("simulation")
+    if orbit is not None and simulation is not None:
+        raise ValueError(f"Group '{group_name}' cannot define both 'orbit' and 'simulation'.")
+    if simulation is not None:
+        raise NotImplementedError("Simulation groups are not implemented yet.")
+    if orbit is None:
+        raise ValueError(f"Group '{group_name}' must define an 'orbit' or 'simulation' block.")
+    orbit = _expect_dict(orbit, f"group '{group_name}' orbit")
+
+    path_name = orbit.get("path") or orbit.get("name")
+    if not isinstance(path_name, str):
+        raise ValueError(f"Group '{group_name}' orbit requires a string 'path'.")
+    if path_name not in paths:
+        raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
+
+    reverse = bool(orbit.get("reverse", directives.get("reverse", False)))
+    speed_mult_value = orbit.get("speed_multiplier", directives.get("speed_multiplier", 0.5))
+    speed_mult = _coerce_float(speed_mult_value, f"group '{group_name}' speed_multiplier")
+
+    position_snap = directives.get("position_snap", directives.get("snap_distance"))
+    if position_snap is not None:
+        position_snap = _coerce_float(position_snap, "directives.position_snap")
+        if position_snap <= 0:
+            raise ValueError("directives.position_snap must be > 0.")
+
+    cfg = SimulationConfig(
+        fps=_coerce_int(directives.get("fps", 60), "directives.fps"),
+        duration=_coerce_float(directives.get("duration", 4.0), "directives.duration"),
+        field_speed=_coerce_float(directives.get("field_speed", 1.0), "directives.field_speed"),
+        domain_half_extent=_coerce_float(directives.get("domain_half_extent", 2.0), "directives.domain_half_extent"),
+        coverage_margin=_coerce_float(directives.get("coverage_margin", 1.1), "directives.coverage_margin"),
+        max_memory_bytes=_coerce_int(
+            directives.get("max_memory_bytes", 8 * 1024 * 1024 * 1024),
+            "directives.max_memory_bytes",
+        ),
+        speed_multiplier=speed_mult,
+        position_snap=position_snap,
+    )
+
+    paths_override = paths
+    decay_value = orbit.get("decay")
+    if decay_value is not None:
+        if path_name != "exp_inward_spiral":
+            raise ValueError("orbit.decay is only supported for exp_inward_spiral.")
+        decay = _coerce_float(decay_value, f"group '{group_name}' orbit.decay")
+        base = paths[path_name]
+        paths_override = dict(paths)
+        paths_override[path_name] = PathSpec(
+            name=base.name,
+            sampler=base.sampler,
+            reverse_sampler=base.reverse_sampler,
+            description=base.description,
+            decay=decay,
+        )
+
+    render = bool(directives.get("render", False))
+    self_test = bool(directives.get("self_test", False))
+    parallel_precompute = bool(directives.get("parallel_precompute", False))
+    return cfg, path_name, reverse, render, self_test, parallel_precompute, paths_override
 
 
 def estimate_coverage_duration(cfg: SimulationConfig) -> float:
@@ -378,6 +510,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     shell_thickness = 0.0
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
     pending_speed_mult = speed_mult
+    position_snap = cfg.position_snap
+
+    def snap_pos(pos: Vec2) -> Vec2:
+        return snap_position(pos, position_snap)
 
     max_radius = math.sqrt(2) * cfg.domain_half_extent * 1.1
     emission_retention = max_radius / field_v
@@ -602,7 +738,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if allow_self and self_delta is not None and current_time >= self_delta:
             for name, receiver_pos in positions.items():
                 t_emit = current_time - self_delta
-                emit_pos = emitter_lookup[name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
+                emit_pos = snap_pos(
+                    emitter_lookup[name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
+                )
                 dist = l2(receiver_pos, emit_pos)
                 diff = dist - field_v * self_delta
                 key = (t_emit, name, name)
@@ -643,7 +781,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         def g(emitter_name: str, receiver_name: str, delta_t: float) -> float:
             t_emit = current_time - delta_t
-            emit_pos = emitter_lookup[emitter_name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
+            emit_pos = snap_pos(
+                emitter_lookup[emitter_name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
+            )
             dist = l2(positions[receiver_name], emit_pos)
             return dist - field_v * delta_t
 
@@ -699,7 +839,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
         def make_hit(delta_t: float, emitter_name: str, receiver_name: str) -> Hit:
             t_emit = current_time - delta_t
-            emit_pos = emitter_lookup[emitter_name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
+            emit_pos = snap_pos(
+                emitter_lookup[emitter_name].position(path_time_offset + speed_mult * t_emit, speed_mult, field_v)
+            )
             recv_pos = positions[receiver_name]
             dist = l2(recv_pos, emit_pos)
             strength = 1.0 / (dist * dist) if dist > 0 else float("inf")
@@ -751,8 +893,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if delta_t <= 0:
                 continue
             positions_snap = {
-                "positrino": positrino.position(path_time_offset - speed_mult * delta_t, speed_mult, field_v),
-                "electrino": electrino.position(path_time_offset - speed_mult * delta_t, speed_mult, field_v),
+                "positrino": snap_pos(
+                    positrino.position(path_time_offset - speed_mult * delta_t, speed_mult, field_v)
+                ),
+                "electrino": snap_pos(
+                    electrino.position(path_time_offset - speed_mult * delta_t, speed_mult, field_v)
+                ),
             }
             for name, pos in positions_snap.items():
                 tau = delta_t
@@ -771,7 +917,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             for j in range(steps + 1):
                 alpha = j / steps
                 s = start_offset + alpha * (end_offset - start_offset)
-                segment.append(emitter.position(s, speed_mult, field_v))
+                segment.append(snap_pos(emitter.position(s, speed_mult, field_v)))
             path_traces[name].extend(segment)
             if len(path_traces[name]) > trace_limit:
                 path_traces[name] = path_traces[name][-trace_limit:]
@@ -786,7 +932,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             for j in range(steps + 1):
                 alpha = j / steps
                 s = alpha * offset
-                trace.append(emitter.position(s, speed_mult, field_v))
+                trace.append(snap_pos(emitter.position(s, speed_mult, field_v)))
             if len(trace) > trace_limit:
                 trace = trace[-trace_limit:]
             path_traces[name] = trace
@@ -1048,8 +1194,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         path_t = speed_mult * time_t
         param = path_time_offset + path_t
         return {
-            "positrino": positrino.position(param, speed_mult, field_v),
-            "electrino": electrino.position(param, speed_mult, field_v),
+            "positrino": snap_pos(positrino.position(param, speed_mult, field_v)),
+            "electrino": snap_pos(electrino.position(param, speed_mult, field_v)),
         }
 
     def prune_emissions(current_time: float) -> None:
@@ -1179,6 +1325,10 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
     # Clamp speed multiplier to [0, 100]; enforce positive field speed
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
     field_v = max(cfg.field_speed, 1e-6)
+    position_snap = cfg.position_snap
+
+    def snap_pos(pos: Vec2) -> Vec2:
+        return snap_position(pos, position_snap)
 
     dt = 1.0 / cfg.fps
     duration = max(cfg.duration, estimate_coverage_duration(cfg))
@@ -1196,8 +1346,8 @@ def simulate(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str =
     for i in range(n_frames):
         t = i * dt
         path_t = speed_mult * t
-        pos_posi = positrino.position(path_t, speed_mult, field_v)
-        pos_elec = electrino.position(path_t, speed_mult, field_v)
+        pos_posi = snap_pos(positrino.position(path_t, speed_mult, field_v))
+        pos_elec = snap_pos(electrino.position(path_t, speed_mult, field_v))
         positions = {"positrino": pos_posi, "electrino": pos_elec}
 
         # Each particle emits once per frame (constant cadence).
@@ -1270,6 +1420,7 @@ def summarize(frames: List[Frame], max_hits: int = 5, max_frames: int = 5) -> st
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Orbit visualizer prototype (pre-bake simulation).")
+    parser.add_argument("--run", type=str, help="JSON run file with directives and architrino groups.")
     parser.add_argument("--fps", type=int, default=60, help="Frames per second (default 60).")
     parser.add_argument("--duration", type=float, default=4.0, help="Minimum duration in seconds (coverage heuristic may increase this).")
     parser.add_argument("--path", type=str, default="unit_circle", choices=list(PATH_LIBRARY.keys()), help="Trajectory name.")
@@ -1284,13 +1435,29 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     try:
         args = parse_args()
-        cfg = SimulationConfig(fps=args.fps, duration=args.duration, speed_multiplier=args.speed_mult)
-        if args.render:
-            render_live(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse, parallel_precompute=args.parallel_precompute)
+        paths = PATH_LIBRARY
+        if args.run:
+            cfg, path_name, reverse, render, self_test, parallel_precompute, paths = load_run_file(args.run, PATH_LIBRARY)
+            if args.render:
+                render = True
+            if args.self_test:
+                self_test = True
+            if args.parallel_precompute:
+                parallel_precompute = True
+        else:
+            cfg = SimulationConfig(fps=args.fps, duration=args.duration, speed_multiplier=args.speed_mult)
+            path_name = args.path
+            reverse = args.reverse
+            render = args.render
+            self_test = args.self_test
+            parallel_precompute = args.parallel_precompute
+
+        if render:
+            render_live(cfg, paths, path_name=path_name, reverse=reverse, parallel_precompute=parallel_precompute)
             return
 
-        frames = simulate(cfg, PATH_LIBRARY, path_name=args.path, reverse=args.reverse)
-        if args.self_test:
+        frames = simulate(cfg, paths, path_name=path_name, reverse=reverse)
+        if self_test:
             print(summarize(frames))
         else:
             print("Simulation complete.")

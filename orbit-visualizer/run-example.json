@@ -1,0 +1,27 @@
+{
+  "directives": {
+    "format_version": 1,
+    "fps": 60,
+    "duration": 4.0,
+    "field_speed": 1.0,
+    "domain_half_extent": 2.0,
+    "coverage_margin": 1.1,
+    "max_memory_bytes": 8589934592,
+    "speed_multiplier": 0.5,
+    "position_snap": 0.002,
+    "render": false,
+    "self_test": true
+  },
+  "groups": [
+    {
+      "name": "pair",
+      "electrinos": 1,
+      "positrinos": 1,
+      "orbit": {
+        "path": "unit_circle",
+        "reverse": false,
+        "speed_multiplier": 0.5
+      }
+    }
+  ]
+}
