@@ -43,7 +43,6 @@ python orbit-visualizer/orbits.py --render --path unit_circle
 - `render` (bool): Start in render mode (PyGame).
 - `field_visible` (bool): Show field texture by default.
 - `start_paused` (bool): Start paused when rendering.
-- `reverse` (bool): Default reverse flag for orbit (can be overridden per group).
 
 Aliases (optional):
 - `field_on` → `field_visible`
@@ -58,7 +57,6 @@ Each group describes architrino counts and a motion block.
 - `positrinos` (int): Number of positrinos (currently only `1` is supported).
 - `orbit` (object): Use a predefined path.
   - `path` (string): Path name (`unit_circle`, `exp_inward_spiral`).
-  - `reverse` (bool): Reverse path orientation for the group.
   - `speed_multiplier` (float): Path speed multiplier override for the group.
   - `decay` (float): Spiral decay override (only for `exp_inward_spiral`).
 - `simulation` (object): Reserved for future simulation rules (do not include with `orbit`).

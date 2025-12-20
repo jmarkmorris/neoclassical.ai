@@ -18,7 +18,6 @@
       "positrinos": 1,
       "orbit": {
         "path": "unit_circle",
-        "reverse": false,
         "speed_multiplier": 0.5
       }
     }

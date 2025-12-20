@@ -18,7 +18,6 @@
       "positrinos": 1,
       "orbit": {
         "path": "exp_inward_spiral",
-        "reverse": false,
         "speed_multiplier": 0.5,
         "decay": 0.1
       }

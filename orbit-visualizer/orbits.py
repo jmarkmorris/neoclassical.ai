@@ -57,7 +57,6 @@ LIGHT_BLUE = (160, 200, 255)
 class PathSpec:
     name: str
     sampler: Callable[[float], Vec2]
-    reverse_sampler: Callable[[float], Vec2]
     description: str
     decay: float | None = None  # optional radial decay parameter
 
@@ -65,11 +64,6 @@ class PathSpec:
 def unit_circle_sampler(t: float) -> Vec2:
     """Unit circle at unit angular speed; default phase 0 (counterclockwise in math coords)."""
     return math.cos(t), math.sin(t)
-
-
-def unit_circle_sampler_reversed(t: float) -> Vec2:
-    """Reverse orientation of unit circle."""
-    return unit_circle_sampler(-t)
 
 
 def exp_inward_spiral_sampler(t: float, decay: float = 0.2) -> Vec2:
@@ -81,21 +75,15 @@ def exp_inward_spiral_sampler(t: float, decay: float = 0.2) -> Vec2:
     return r * math.cos(t), r * math.sin(t)
 
 
-def exp_inward_spiral_sampler_reversed(t: float, decay: float = 0.2) -> Vec2:
-    return exp_inward_spiral_sampler(-t, decay=decay)
-
-
 PATH_LIBRARY: Dict[str, PathSpec] = {
     "unit_circle": PathSpec(
         name="unit_circle",
         sampler=unit_circle_sampler,
-        reverse_sampler=unit_circle_sampler_reversed,
         description="Unit circle, unit angular speed, phase offset configurable per particle.",
     ),
     "exp_inward_spiral": PathSpec(
         name="exp_inward_spiral",
         sampler=exp_inward_spiral_sampler,
-        reverse_sampler=exp_inward_spiral_sampler_reversed,
         description="Exponential inward spiral toward origin; steady angular speed.",
         decay=0.005,
     ),
@@ -109,23 +97,20 @@ class Architrino:
     color: Tuple[int, int, int]
     phase: float  # radians
     path: PathSpec
-    reverse: bool = False
 
     def position(self, t: float, speed_mult: float | None = None, field_v: float | None = None) -> Vec2:
         """Position on the assigned path with phase offset."""
-        sampler = self.path.reverse_sampler if self.reverse else self.path.sampler
         # For spirals, decay is based on the traveled angle; phase only rotates the angle.
         if self.path.name == "exp_inward_spiral" and self.path.decay is not None:
             base_param = t
-            signed_param = base_param if not self.reverse else -base_param
             decay_scale = 1.0
             if speed_mult is not None and field_v is not None and speed_mult > field_v + 1e-6:
                 decay_scale = 2.0
-            angle = signed_param + self.phase
+            angle = base_param + self.phase
             radius = math.exp(-self.path.decay * abs(base_param) * decay_scale)
             return radius * math.cos(angle), radius * math.sin(angle)
         param = t + self.phase
-        x, y = sampler(param)
+        x, y = self.path.sampler(param)
         return x, y
 
 
@@ -164,7 +149,6 @@ class SimulationConfig:
 @dataclass
 class OrbitConfig:
     path: str
-    reverse: bool = False
     speed_multiplier: float | None = None
     decay: float | None = None
 
@@ -284,7 +268,6 @@ def load_run_file(
     if path_name not in paths:
         raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
 
-    reverse = bool(orbit.get("reverse", directives.get("reverse", False)))
     speed_mult_value = orbit.get("speed_multiplier", directives.get("speed_multiplier", 0.5))
     speed_mult = _coerce_float(speed_mult_value, f"group '{group_name}' speed_multiplier")
 
@@ -326,7 +309,6 @@ def load_run_file(
         paths_override[path_name] = PathSpec(
             name=base.name,
             sampler=base.sampler,
-            reverse_sampler=base.reverse_sampler,
             description=base.description,
             decay=decay,
         )
@@ -334,7 +316,6 @@ def load_run_file(
     render = bool(directives.get("render", False))
     orbit_spec = OrbitConfig(
         path=path_name,
-        reverse=reverse,
         speed_multiplier=speed_mult,
         decay=decay,
     )
@@ -352,7 +333,7 @@ def load_run_file(
     )
 
 
-def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str = "unit_circle", reverse: bool = False) -> None:
+def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str = "unit_circle") -> None:
     """
     Incremental PyGame renderer that keeps a rolling accumulator grid instead of cached frames.
     """
@@ -383,8 +364,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     current_path_name = path_name
     path = paths[current_path_name]
-    positrino = Architrino("positrino", +1, PURE_RED, 0.0, path, reverse=reverse)
-    electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path, reverse=reverse)
+    positrino = Architrino("positrino", +1, PURE_RED, 0.0, path)
+    electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path)
 
     running = True
     paused = cfg.start_paused
@@ -923,7 +904,7 @@ def main() -> None:
         render = scenario.render or args.render
         if not render:
             raise SystemExit("Render disabled. Set directives.render or pass --render.")
-        render_live(scenario.config, scenario.paths, path_name=orbit.path, reverse=orbit.reverse)
+        render_live(scenario.config, scenario.paths, path_name=orbit.path)
     except KeyboardInterrupt:
         # Graceful exit on Ctrl-C without traceback.
         try:

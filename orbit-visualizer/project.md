@@ -10,7 +10,7 @@ Build a continuously animated 2-D dynamical geometry visualizer for orbiting par
 ## Kinematics and paths
 - Dimensionless 2-D spatial slice $(x,y)$ with absolute time $t$; field speed is fixed to $v=1$.
 - Initial positions at $t=0$: electrino at $(-1, 0)$, positrino at $(1, 0)$; default worldlines are the unit circle with a $\pi$ phase separation.
-- Trajectories are predefined, piecewise-smooth curves parameterized by $t$; the user selects from a library with an option to reverse path orientation. Path library (stub): unit circle (default) and exponential inward spirals; more to be added later.
+- Trajectories are predefined, piecewise-smooth curves parameterized by $t$; the user selects from a library of paths. Path library (stub): unit circle (default) and exponential inward spirals; more to be added later.
 - Changing the orbit/path definition or reversing orientation triggers a full restart; other controls either resume from pause or restart as appropriate.
 - Motion follows the selected trajectory; no force-based integration is performed at this stage.
 - Future extensibility: support new orbits/paths and varying the number of architrinos.
