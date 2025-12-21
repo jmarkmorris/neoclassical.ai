@@ -33,6 +33,7 @@ import argparse
 import json
 import math
 import os
+import time
 from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
@@ -148,6 +149,7 @@ class SimulationConfig:
     shell_thickness_scale_with_canvas: bool = False  # scale shell thickness by 1/canvas_scale
     field_color_falloff: str = "inverse_r2"  # "inverse_r2" (log10) or "inverse_r" (sqrt log10)
     shell_weight: str = "raised_cosine"  # "raised_cosine" or "hard"
+    field_backend: str = "cpu_incremental"  # "cpu_rebuild" or "cpu_incremental"
 
 
 @dataclass
@@ -303,6 +305,12 @@ def load_run_file(
     shell_weight = shell_weight.lower()
     if shell_weight not in {"raised_cosine", "hard"}:
         raise ValueError("directives.shell_weight must be 'raised_cosine' or 'hard'.")
+    field_backend = directives.get("field_backend", "cpu_incremental")
+    if not isinstance(field_backend, str):
+        raise ValueError("directives.field_backend must be a string.")
+    field_backend = field_backend.lower()
+    if field_backend not in {"cpu_rebuild", "cpu_incremental"}:
+        raise ValueError("directives.field_backend must be 'cpu_rebuild' or 'cpu_incremental'.")
 
     cfg = SimulationConfig(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
@@ -317,6 +325,7 @@ def load_run_file(
         shell_thickness_scale_with_canvas=shell_thickness_scale_with_canvas,
         field_color_falloff=field_color_falloff,
         shell_weight=shell_weight,
+        field_backend=field_backend,
     )
 
     paths_override = paths
@@ -395,6 +404,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     running = True
     paused = cfg.start_paused
     frame_idx = 0
+    sim_clock_start = time.monotonic()
+    sim_clock_elapsed = 0.0
 
     dt = 1.0 / cfg.hz
     field_v = max(cfg.field_speed, 1e-6)
@@ -450,6 +461,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     field_surface = None
     field_visible = cfg.field_visible
     shell_weight = cfg.shell_weight
+    field_backend = cfg.field_backend
 
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
@@ -519,7 +531,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         surf = pygame.transform.smoothscale(surf, (canvas_w, height))
         return surf.convert()
 
-    def apply_shell(em: Emission, radius: float) -> None:
+    def apply_shell(em: Emission, radius: float, weight_scale: float = 1.0) -> None:
         """Apply a smooth annular band for this emission at the given radius."""
         if radius <= 0 or radius > max_radius:
             return
@@ -557,7 +569,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             # Smooth radial weight (raised cosine) to reduce aliasing.
             radial_weight = 0.5 * (1.0 + np.cos(np.pi * delta[mask] / band_half))
         sign = 1.0 if em.emitter == "positrino" else -1.0
-        contrib = sign * radial_weight / (dist[mask] ** 2)
+        contrib = (sign * weight_scale) * radial_weight / (dist[mask] ** 2)
         field_grid[y0:y1, x0:x1][mask] += contrib
 
     def cleanup_hits(current_time: float) -> None:
@@ -617,17 +629,45 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         surf = (fnt or font).render(text, True, color)
         target.blit(surf, (x, y))
 
-    def rebuild_field_surface(current_time: float) -> None:
+    def rebuild_field_surface(current_time: float, update_last_radius: bool = False) -> None:
         nonlocal field_surface
         field_grid[:] = 0.0
+        for em in emissions:
+            tau = current_time - em.time
+            if tau <= 0:
+                if update_last_radius:
+                    em.last_radius = 0.0
+                continue
+            radius = field_v * tau
+            if radius > max_radius:
+                if update_last_radius:
+                    em.last_radius = 0.0
+                continue
+            apply_shell(em, radius)
+            if update_last_radius:
+                em.last_radius = radius
+        field_surface = make_field_surface()
+
+    def update_field_surface(current_time: float) -> None:
+        nonlocal field_surface
+        radius_quantum = max(0.5 * min(grid_dx, grid_dy), 0.5 * shell_thickness)
         for em in emissions:
             tau = current_time - em.time
             if tau <= 0:
                 continue
             radius = field_v * tau
             if radius > max_radius:
+                if em.last_radius > 0:
+                    apply_shell(em, em.last_radius, weight_scale=-1.0)
+                    em.last_radius = 0.0
                 continue
+            last_radius = em.last_radius
+            if last_radius > 0 and abs(radius - last_radius) < radius_quantum:
+                continue
+            if last_radius > 0:
+                apply_shell(em, last_radius, weight_scale=-1.0)
             apply_shell(em, radius)
+            em.last_radius = radius
         field_surface = make_field_surface()
 
     def add_trace_segment(start_offset: float, end_offset: float, steps: int = 180) -> None:
@@ -672,7 +712,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         recent_hits.extend(detect_hits(current_time, positions, allow_self=speed_mult > field_v))
 
     def reset_state(apply_pending_speed: bool = True, keep_trace: bool = False, keep_offset: bool = False) -> None:
-        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, path_time_offset
+        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, path_time_offset, sim_clock_start, sim_clock_elapsed
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         else:
@@ -694,8 +734,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if not keep_trace:
             rebuild_trace_for_offset(path_time_offset)
         recent_hits.clear()
+        sim_clock_start = time.monotonic()
+        sim_clock_elapsed = 0.0
         if field_visible:
-            rebuild_field_surface(0.0)
+            rebuild_field_surface(0.0, update_last_radius=field_backend == "cpu_incremental")
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal panel_log
@@ -801,7 +843,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         else:
             panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
         panel_draw(f"path={current_path_name}", 10, 90)
-        panel_draw(f"shell={shell_weight}", 10, 110)
+        panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 110)
+        backend_state = "on" if field_backend == "cpu_incremental" else "off"
         panel_draw("Controls:", 10, 130)
         panel_draw("ESC reset", 10, 150)
         panel_draw("SPACE pause/resume", 10, 170)
@@ -810,7 +853,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_draw("UP/DOWN speed", 10, 230)
         panel_draw("F: hz 250/500/1000", 10, 250)
         panel_draw("V: field on/off", 10, 270)
-        panel_draw("W: shell weight", 10, 290)
+        panel_draw(f"B: field backend ({backend_state})", 10, 290)
         if paused:
             panel_draw("PAUSED", 10, height - 30)
 
@@ -832,7 +875,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         cutoff = current_time - emission_retention
         if cutoff <= 0:
             return
-        emissions = [em for em in emissions if em.time >= cutoff]
+        if field_backend != "cpu_incremental":
+            emissions = [em for em in emissions if em.time >= cutoff]
+            return
+        kept: List[Emission] = []
+        for em in emissions:
+            if em.time < cutoff:
+                if em.last_radius > 0:
+                    apply_shell(em, em.last_radius, weight_scale=-1.0)
+                continue
+            kept.append(em)
+        emissions = kept
 
     reset_state(apply_pending_speed=False)
     render_frame(positions, list(recent_hits))
@@ -855,6 +908,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         if not paused:
                             hit_overlay_enabled = False
                             show_hit_overlays = False
+                            sim_clock_start = time.monotonic()
+                        else:
+                            sim_clock_elapsed += time.monotonic() - sim_clock_start
                     elif event.key == pygame.K_h:
                         if paused:
                             hit_overlay_enabled = not hit_overlay_enabled
@@ -876,19 +932,24 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         update_time_params(new_hz)
                         reset_state(apply_pending_speed=False)
                         paused = True
-                    elif event.key == pygame.K_w:
-                        shell_weight = "hard" if shell_weight == "raised_cosine" else "raised_cosine"
-                        if field_visible:
-                            rebuild_field_surface(frame_idx * dt)
+                    elif event.key == pygame.K_b:
+                        field_backend = "cpu_incremental" if field_backend == "cpu_rebuild" else "cpu_rebuild"
+                        rebuild_field_surface(
+                            frame_idx * dt,
+                            update_last_radius=field_backend == "cpu_incremental",
+                        )
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_v:
                         if field_visible:
                             field_visible = False
                         else:
                             field_visible = True
-                            rebuild_field_surface(frame_idx * dt)
+                            rebuild_field_surface(frame_idx * dt, update_last_radius=field_backend == "cpu_incremental")
 
             show_hit_overlays = paused and hit_overlay_enabled
+            if not paused:
+                sim_clock_elapsed += time.monotonic() - sim_clock_start
+                sim_clock_start = time.monotonic()
             if paused:
                 render_frame(positions, list(recent_hits))
                 clock.tick(cfg.hz)
@@ -921,7 +982,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 sim_idx += 1
 
             frame_idx = sim_idx - 1
-            rebuild_field_surface(current_time)
+            if field_backend == "cpu_incremental":
+                update_field_surface(current_time)
+            else:
+                rebuild_field_surface(current_time)
             render_frame(positions, display_hits)
 
             clock.tick(0)

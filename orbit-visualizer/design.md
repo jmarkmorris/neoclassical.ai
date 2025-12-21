@@ -51,7 +51,7 @@ Each frame clears the field grid and re-applies every retained emission as an an
 - **De-duplication**: a `(t_emit, emitter, receiver)` key avoids repeated hits across frames.
 
 ### Field rendering
-- **Per-frame rebuild**: the field grid is reset each frame and reconstructed from retained emissions.
+- **Field update**: either rebuild the grid each frame or incrementally update emission rings (configurable backend).
 - **Shell contribution**: for each emission, an annular band is added where `|dist - r| <= band_half`; contribution is `sign / dist^2` with a raised-cosine or hard radial weight.
 - **Polarity**: positrino contributions are positive, electrino contributions negative.
 - **Color map**: the signed field is scaled by the 99th percentile magnitude on a log10 scale and mapped to RGB (red/blue superposition with green for near-neutral, white at zero).

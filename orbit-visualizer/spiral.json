@@ -10,7 +10,8 @@
     "render": true,
     "field_visible": true,
     "start_paused": true,
-    "shell_weight": "raised_cosine"
+    "shell_weight": "raised_cosine",
+    "field_backend": "cpu_incremental"
   },
   "groups": [
     {
