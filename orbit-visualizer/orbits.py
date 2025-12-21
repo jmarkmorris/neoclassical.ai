@@ -462,6 +462,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     field_visible = cfg.field_visible
     shell_weight = cfg.shell_weight
     field_backend = cfg.field_backend
+    ui_overlay_visible = True
 
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
@@ -746,120 +747,126 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if fs is not None:
             screen.blit(fs, (panel_w, 0))
 
-        geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-        if current_path_name == "unit_circle":
-            center = world_to_canvas((0.0, 0.0))
-            scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-            for r in (int(scale), int(scale) + 1):
-                gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, LIGHT_GRAY)
+        overlay_visible = ui_overlay_visible
+        panel_visible = ui_overlay_visible and paused
+        if overlay_visible:
+            geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+            if current_path_name == "unit_circle":
+                center = world_to_canvas((0.0, 0.0))
+                scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
+                for r in (int(scale), int(scale) + 1):
+                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, LIGHT_GRAY)
 
-        # Draw path traces.
-        for name, trace in path_traces.items():
-            if len(trace) < 2:
-                continue
-            color = LIGHT_GRAY
-            prev = world_to_canvas(trace[0])
-            for pt in trace[1:]:
-                cur = world_to_canvas(pt)
-                gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
-                prev = cur
+            # Draw path traces.
+            for name, trace in path_traces.items():
+                if len(trace) < 2:
+                    continue
+                color = LIGHT_GRAY
+                prev = world_to_canvas(trace[0])
+                for pt in trace[1:]:
+                    cur = world_to_canvas(pt)
+                    gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
+                    prev = cur
 
-        # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
-        def draw_hit_arc(hit: Hit) -> None:
-            recv_pos = positions.get(hit.receiver)
-            if recv_pos is None:
-                return
-            cx, cy = world_to_canvas(hit.emit_pos)
-            tx, ty = world_to_canvas(recv_pos)
-            dx = tx - cx
-            dy = ty - cy
-            radius_px = int(math.hypot(dx, dy))
-            if radius_px < 2:
-                return
-            # Use screen-space angle directly (y down in screen coords).
-            ang = (math.degrees(math.atan2(dy, dx)) + 360.0) % 360.0
-            arc_half = 5.0
-            start = (ang - arc_half) % 360
-            end = (ang + arc_half) % 360
-            color = PURE_RED if hit.emitter == "positrino" else PURE_BLUE
+            # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
+            def draw_hit_arc(hit: Hit) -> None:
+                recv_pos = positions.get(hit.receiver)
+                if recv_pos is None:
+                    return
+                cx, cy = world_to_canvas(hit.emit_pos)
+                tx, ty = world_to_canvas(recv_pos)
+                dx = tx - cx
+                dy = ty - cy
+                radius_px = int(math.hypot(dx, dy))
+                if radius_px < 2:
+                    return
+                # Use screen-space angle directly (y down in screen coords).
+                ang = (math.degrees(math.atan2(dy, dx)) + 360.0) % 360.0
+                arc_half = 5.0
+                start = (ang - arc_half) % 360
+                end = (ang + arc_half) % 360
+                color = PURE_RED if hit.emitter == "positrino" else PURE_BLUE
 
-            def draw_arc_span(s: float, e: float) -> None:
-                # Thicker arc via small radial offsets
-                for r_off in (0, 1):
-                    gfxdraw.arc(
-                        geometry_layer,
-                        int(cx),
-                        int(cy),
-                        radius_px + r_off,
-                        int(s),
-                        int(e),
-                        color,
-                    )
+                def draw_arc_span(s: float, e: float) -> None:
+                    # Thicker arc via small radial offsets
+                    for r_off in (0, 1):
+                        gfxdraw.arc(
+                            geometry_layer,
+                            int(cx),
+                            int(cy),
+                            radius_px + r_off,
+                            int(s),
+                            int(e),
+                            color,
+                        )
 
-            if start <= end:
-                draw_arc_span(start, end)
+                if start <= end:
+                    draw_arc_span(start, end)
+                else:
+                    # Wrap-around case: split into two arcs.
+                    draw_arc_span(start, 360)
+                    draw_arc_span(0, end)
+
+            if show_hit_overlays:
+                for h in hits:
+                    draw_hit_arc(h)
+
+                for h in hits:
+                    start = world_to_canvas(h.emit_pos)
+                    end = world_to_canvas(positions[h.receiver])
+                    line_color = PURE_RED if h.emitter == "positrino" else PURE_BLUE
+                    # Thicker line by drawing twice with slight offsets
+                    gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
+                    gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
+
+            particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+            if show_hit_overlays:
+                for h in hits:
+                    start = world_to_canvas(h.emit_pos)
+                    marker_color = LIGHT_RED if h.emitter == "positrino" else LIGHT_BLUE
+                    gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
+                    gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
+
+            pos_posi_canvas = world_to_canvas(positions["positrino"])
+            pos_elec_canvas = world_to_canvas(positions["electrino"])
+            gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
+            gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
+            gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
+            gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
+
+            screen.blit(geometry_layer, (panel_w, 0))
+            screen.blit(particle_layer, (panel_w, 0))
+
+        if panel_visible:
+            ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
+            pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
+            def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
+                draw_text(ui_layer, text, x, y, color=color)
+
+            panel_draw(f"frame={frame_idx+1}", 10, 10)
+            panel_draw(f"hz={cfg.hz}", 10, 30)
+            panel_draw(f"frame_skip={frame_skip}", 10, 50)
+            if paused and pending_speed_mult != speed_mult:
+                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 70)
             else:
-                # Wrap-around case: split into two arcs.
-                draw_arc_span(start, 360)
-                draw_arc_span(0, end)
+                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
+            panel_draw(f"path={current_path_name}", 10, 90)
+            panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 110)
+            backend_state = "on" if field_backend == "cpu_incremental" else "off"
+            panel_draw("Controls:", 10, 130)
+            panel_draw("ESC reset", 10, 150)
+            panel_draw("SPACE pause/resume", 10, 170)
+            panel_draw("LEFT/RIGHT skip", 10, 190)
+            panel_draw("H: hits (paused)", 10, 210)
+            panel_draw("UP/DOWN speed", 10, 230)
+            panel_draw("F: hz 250/500/1000", 10, 250)
+            panel_draw("V: field on/off", 10, 270)
+            panel_draw(f"B: field backend ({backend_state})", 10, 290)
+            panel_draw("U: ui/overlays", 10, 310)
+            if paused:
+                panel_draw("PAUSED", 10, height - 30)
 
-        if show_hit_overlays:
-            for h in hits:
-                draw_hit_arc(h)
-
-            for h in hits:
-                start = world_to_canvas(h.emit_pos)
-                end = world_to_canvas(positions[h.receiver])
-                line_color = PURE_RED if h.emitter == "positrino" else PURE_BLUE
-                # Thicker line by drawing twice with slight offsets
-                gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
-                gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
-
-        particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-        if show_hit_overlays:
-            for h in hits:
-                start = world_to_canvas(h.emit_pos)
-                marker_color = LIGHT_RED if h.emitter == "positrino" else LIGHT_BLUE
-                gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
-                gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
-
-        pos_posi_canvas = world_to_canvas(positions["positrino"])
-        pos_elec_canvas = world_to_canvas(positions["electrino"])
-        gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
-        gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
-        gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
-        gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
-
-        ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
-        pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
-        def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
-            draw_text(ui_layer, text, x, y, color=color)
-
-        panel_draw(f"frame={frame_idx+1}", 10, 10)
-        panel_draw(f"hz={cfg.hz}", 10, 30)
-        panel_draw(f"frame_skip={frame_skip}", 10, 50)
-        if paused and pending_speed_mult != speed_mult:
-            panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 70)
-        else:
-            panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
-        panel_draw(f"path={current_path_name}", 10, 90)
-        panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 110)
-        backend_state = "on" if field_backend == "cpu_incremental" else "off"
-        panel_draw("Controls:", 10, 130)
-        panel_draw("ESC reset", 10, 150)
-        panel_draw("SPACE pause/resume", 10, 170)
-        panel_draw("LEFT/RIGHT skip", 10, 190)
-        panel_draw("H: hits (paused)", 10, 210)
-        panel_draw("UP/DOWN speed", 10, 230)
-        panel_draw("F: hz 250/500/1000", 10, 250)
-        panel_draw("V: field on/off", 10, 270)
-        panel_draw(f"B: field backend ({backend_state})", 10, 290)
-        if paused:
-            panel_draw("PAUSED", 10, height - 30)
-
-        screen.blit(geometry_layer, (panel_w, 0))
-        screen.blit(particle_layer, (panel_w, 0))
-        screen.blit(ui_layer, (0, 0))
+            screen.blit(ui_layer, (0, 0))
         pygame.display.flip()
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
@@ -938,6 +945,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             frame_idx * dt,
                             update_last_radius=field_backend == "cpu_incremental",
                         )
+                    elif event.key == pygame.K_u:
+                        ui_overlay_visible = not ui_overlay_visible
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_v:
                         if field_visible:
