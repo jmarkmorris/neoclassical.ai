@@ -551,9 +551,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     if cfg.shell_thickness_scale_with_canvas:
         shell_thickness_scale = 1.0 / canvas_scale
 
-    pygame.display.set_caption(
-        format_title(paused_flag=paused, label=run_label) + f" | frame {frame_idx+1} | t {sim_clock_elapsed:.2f}s"
-    )
+    def format_frame_and_time(frame_number: int, elapsed_s: float) -> str:
+        """
+        Stabilize the rightmost numeric fields for proportional fonts.
+        Uses figure spaces (U+2007) to pad digits to fixed widths so the decimal lines up.
+        """
+        frame_field = f"{frame_number:6d}".replace(" ", "\u2007")
+        time_field = f"{elapsed_s:6.1f}s".replace(" ", "\u2007")
+        return f"frame {frame_field} | t {time_field}"
+
+    pygame.display.set_caption(format_title(paused_flag=paused, label=run_label) + " | " + format_frame_and_time(frame_idx + 1, sim_clock_elapsed))
 
     def draw_ring(target: "pygame.Surface", center: Vec2, radius_px: int, thickness_px: int, color: Tuple[int, int, int]) -> None:
         """
@@ -974,7 +981,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         display_flags = pygame.RESIZABLE
         screen = pygame.display.set_mode((width, height), display_flags)
         pygame.display.set_caption(
-            format_title(paused_flag=paused, label=run_label) + f" | frame {frame_idx+1} | t {sim_clock_elapsed:.2f}s"
+            format_title(paused_flag=paused, label=run_label) + " | " + format_frame_and_time(frame_idx + 1, sim_clock_elapsed)
         )
 
     def gpu_rebuild_field_surface(current_time: float) -> None:
