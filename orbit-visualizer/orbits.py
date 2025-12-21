@@ -1128,8 +1128,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             elif field_surface is not None:
                 gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
 
-        overlay_visible = ui_overlay_visible or show_hit_overlays
-        panel_visible = ui_overlay_visible and paused
+        overlay_visible = (paused and ui_overlay_visible) or show_hit_overlays
+        panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if ui_overlay_visible and current_path_name == "unit_circle":
@@ -1256,8 +1256,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if fs is not None:
             screen.blit(fs, (panel_w, 0))
 
-        overlay_visible = ui_overlay_visible or show_hit_overlays
-        panel_visible = ui_overlay_visible and paused
+        overlay_visible = (paused and ui_overlay_visible) or show_hit_overlays
+        panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if ui_overlay_visible and current_path_name == "unit_circle":
