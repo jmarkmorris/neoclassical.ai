@@ -565,11 +565,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def format_frame_and_time(frame_number: int, elapsed_s: float) -> str:
         """
         Stabilize the rightmost numeric fields for proportional fonts.
-        Uses figure spaces (U+2007) to pad digits to fixed widths so the decimal lines up.
+        Fixed widths are chosen to absorb typical run ranges before widening.
         """
-        frame_field = f"{frame_number:6d}".replace(" ", "\u2007")
-        time_field = f"{elapsed_s:6.1f}s".replace(" ", "\u2007")
-        return f"frame {frame_field} | t {time_field}"
+        frame_field = pad_int(frame_number, 9)  # up to 999,999,999 frames before width grows
+        time_field = pad_float(elapsed_s, 8, 1)  # up to 999,999.9s before width grows
+        return f"frame {frame_field} | t {time_field}s"
 
     pygame.display.set_caption(format_title(paused_flag=paused, label=run_label) + " | " + format_frame_and_time(frame_idx + 1, sim_clock_elapsed))
 
