@@ -387,7 +387,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     if canvas_scale <= 0:
         raise ValueError("canvas_scale must be > 0.")
     info = pygame.display.Info()
+    field_alg = cfg.field_alg
+    gpu_display = False
+    if field_alg == "gpu_instanced":
+        try:
+            import moderngl  # noqa: F401
+            gpu_display = True
+        except ImportError:
+            field_alg = "cpu_incremental"
     display_flags = pygame.RESIZABLE
+    if gpu_display:
+        pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
+        pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 3)
+        pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE)
+        pygame.display.gl_set_attribute(pygame.GL_DOUBLEBUFFER, 1)
+        display_flags |= pygame.OPENGL | pygame.DOUBLEBUF
     max_side = min(info.current_h, max(1, info.current_w - panel_w))
     canvas_side = max(1, int(max_side * canvas_scale))
     canvas_w = canvas_side
@@ -463,7 +477,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     field_surface = None
     field_visible = cfg.field_visible
     shell_weight = cfg.shell_weight
-    field_alg = cfg.field_alg
     ui_overlay_visible = True
     gpu_state = None
 
@@ -674,7 +687,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             em.last_radius = radius
         field_surface = make_field_surface()
 
-    def init_gpu_renderer() -> bool:
+    def init_gpu_renderer(display: bool) -> bool:
         nonlocal gpu_state, field_alg
         if gpu_state is not None:
             return True
@@ -685,13 +698,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             field_alg = "cpu_incremental"
             return False
         try:
-            ctx = moderngl.create_standalone_context()
+            ctx = moderngl.create_context() if display else moderngl.create_standalone_context()
         except Exception as exc:
             print(f"GPU alg unavailable ({exc}); falling back to cpu_incremental.")
-            field_alg = "cpu_incremental"
+            if not display:
+                field_alg = "cpu_incremental"
             return False
-        ctx.enable(moderngl.BLEND)
-        ctx.blend_func = (moderngl.ONE, moderngl.ONE)
         field_tex = ctx.texture((res_x, res_y), components=1, dtype="f4")
         fbo = ctx.framebuffer(color_attachments=[field_tex])
         quad = np.array(
@@ -764,6 +776,93 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 (inst_buffer, "2f 1f 1f/i", "inst_center", "inst_radius", "inst_sign"),
             ],
         )
+        screen_prog = None
+        screen_vao = None
+        overlay_prog = None
+        overlay_vbo = None
+        overlay_vao = None
+        if display:
+            screen_prog = ctx.program(
+                vertex_shader="""
+                    #version 330
+                    in vec2 in_pos;
+                    in vec2 in_uv;
+                    out vec2 v_uv;
+                    void main() {
+                        v_uv = in_uv;
+                        gl_Position = vec4(in_pos, 0.0, 1.0);
+                    }
+                """,
+                fragment_shader="""
+                    #version 330
+                    uniform sampler2D field_tex;
+                    uniform float field_scale;
+                    uniform int falloff_mode;
+                    in vec2 v_uv;
+                    out vec4 out_color;
+                    void main() {
+                        const float LOG10 = 2.30258509299;
+                        float val = texture(field_tex, v_uv).r;
+                        float abs_val = abs(val);
+                        float log_max = log(1.0 + field_scale) / LOG10;
+                        float mag = log(1.0 + abs_val) / max(log_max, 1e-6);
+                        mag = clamp(mag, 0.0, 1.0);
+                        if (falloff_mode == 1) {
+                            mag = sqrt(mag);
+                        }
+                        float pos = val > 0.0 ? mag : 0.0;
+                        float neg = val < 0.0 ? mag : 0.0;
+                        float green = 1.0 - max(pos, neg);
+                        out_color = vec4(1.0 - neg, green, 1.0 - pos, 1.0);
+                    }
+                """,
+            )
+            overlay_prog = ctx.program(
+                vertex_shader="""
+                    #version 330
+                    in vec2 in_pos;
+                    in vec2 in_uv;
+                    out vec2 v_uv;
+                    void main() {
+                        v_uv = in_uv;
+                        gl_Position = vec4(in_pos, 0.0, 1.0);
+                    }
+                """,
+                fragment_shader="""
+                    #version 330
+                    uniform sampler2D overlay_tex;
+                    in vec2 v_uv;
+                    out vec4 out_color;
+                    void main() {
+                        out_color = texture(overlay_tex, v_uv);
+                    }
+                """,
+            )
+            screen_quad = np.array(
+                [
+                    -1.0,
+                    -1.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    -1.0,
+                    1.0,
+                    0.0,
+                    -1.0,
+                    1.0,
+                    0.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                ],
+                dtype=np.float32,
+            )
+            screen_vbo = ctx.buffer(screen_quad.tobytes())
+            screen_vao = ctx.vertex_array(screen_prog, [(screen_vbo, "2f 2f", "in_pos", "in_uv")])
+            overlay_vbo = ctx.buffer(reserve=4 * 4 * 4)
+            overlay_vao = ctx.vertex_array(overlay_prog, [(overlay_vbo, "2f 2f", "in_pos", "in_uv")])
         gpu_state = {
             "ctx": ctx,
             "moderngl": moderngl,
@@ -773,12 +872,26 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             "inst_buffer": inst_buffer,
             "ring_prog": ring_prog,
             "vao": vao,
+            "screen_prog": screen_prog,
+            "screen_vao": screen_vao,
+            "overlay_prog": overlay_prog,
+            "overlay_vbo": overlay_vbo,
+            "overlay_vao": overlay_vao,
+            "overlay_textures": {},
+            "display": display,
+            "field_scale": 1.0,
         }
         return True
 
+    if gpu_display and not init_gpu_renderer(display=True):
+        gpu_display = False
+        display_flags = pygame.RESIZABLE
+        screen = pygame.display.set_mode((width, height), display_flags)
+        pygame.display.set_caption("Orbit Visualizer (prototype)")
+
     def gpu_rebuild_field_surface(current_time: float) -> None:
         nonlocal field_surface
-        if not init_gpu_renderer():
+        if not init_gpu_renderer(display=False):
             rebuild_field_surface(current_time, update_last_radius=field_alg == "cpu_incremental")
             return
         inst_entries = []
@@ -803,6 +916,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         ring_prog["domain_half_extent"].value = cfg.domain_half_extent
         ring_prog["band_half"].value = band_half
         ring_prog["use_hard"].value = 1 if shell_weight == "hard" else 0
+        ctx = gpu_state["ctx"]
+        ctx.enable(gpu_state["moderngl"].BLEND)
+        ctx.blend_func = (gpu_state["moderngl"].ONE, gpu_state["moderngl"].ONE)
         fbo = gpu_state["fbo"]
         fbo.use()
         fbo.clear(0.0, 0.0, 0.0, 0.0)
@@ -814,6 +930,105 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         arr = np.frombuffer(raw, dtype=np.float32).reshape((res_y, res_x))
         field_grid[:] = np.flipud(arr)
         field_surface = make_field_surface()
+
+    def gpu_update_field_texture(current_time: float) -> None:
+        if not init_gpu_renderer(display=True):
+            return
+        inst_entries = []
+        r_min = None
+        for em in emissions:
+            tau = current_time - em.time
+            if tau <= 0:
+                continue
+            radius = field_v * tau
+            if radius > max_radius:
+                continue
+            sign = 1.0 if em.emitter == "positrino" else -1.0
+            inst_entries.append((em.pos[0], em.pos[1], radius, sign))
+            if r_min is None or radius < r_min:
+                r_min = radius
+        ctx = gpu_state["ctx"]
+        ctx.enable(gpu_state["moderngl"].BLEND)
+        ctx.blend_func = (gpu_state["moderngl"].ONE, gpu_state["moderngl"].ONE)
+        fbo = gpu_state["fbo"]
+        fbo.use()
+        fbo.clear(0.0, 0.0, 0.0, 0.0)
+        if inst_entries:
+            inst_arr = np.array(inst_entries, dtype=np.float32)
+            gpu_state["inst_buffer"].orphan(inst_arr.nbytes)
+            gpu_state["inst_buffer"].write(inst_arr.tobytes())
+            band_half = max(shell_thickness * 1.5, shell_thickness)
+            ring_prog = gpu_state["ring_prog"]
+            ring_prog["domain_half_extent"].value = cfg.domain_half_extent
+            ring_prog["band_half"].value = band_half
+            ring_prog["use_hard"].value = 1 if shell_weight == "hard" else 0
+            gpu_state["vao"].render(
+                mode=gpu_state["moderngl"].TRIANGLE_STRIP,
+                instances=inst_arr.shape[0],
+            )
+        if r_min is None or r_min <= 0:
+            gpu_state["field_scale"] = 1.0
+        else:
+            gpu_state["field_scale"] = max(1.0, 1.0 / (r_min * r_min))
+
+    def gpu_present_field() -> None:
+        if not gpu_state or not gpu_state["display"] or gpu_state["screen_prog"] is None:
+            return
+        ctx = gpu_state["ctx"]
+        ctx.screen.use()
+        ctx.disable(gpu_state["moderngl"].BLEND)
+        screen_prog = gpu_state["screen_prog"]
+        screen_prog["field_scale"].value = gpu_state["field_scale"]
+        screen_prog["falloff_mode"].value = 1 if cfg.field_color_falloff == "inverse_r" else 0
+        gpu_state["field_tex"].use(0)
+        screen_prog["field_tex"].value = 0
+        gpu_state["screen_vao"].render(mode=gpu_state["moderngl"].TRIANGLE_STRIP)
+
+    def gpu_draw_surface(surface: "pygame.Surface", x: int, y: int, key: str) -> None:
+        if not gpu_state or not gpu_state["display"]:
+            return
+        ctx = gpu_state["ctx"]
+        tex = gpu_state["overlay_textures"].get(key)
+        size = surface.get_size()
+        if tex is None or tex.size != size:
+            if tex is not None:
+                tex.release()
+            tex = ctx.texture(size, components=4)
+            tex.filter = (gpu_state["moderngl"].LINEAR, gpu_state["moderngl"].LINEAR)
+            gpu_state["overlay_textures"][key] = tex
+        data = pygame.image.tostring(surface, "RGBA", True)
+        tex.write(data)
+        x0 = (x / width) * 2.0 - 1.0
+        x1 = ((x + size[0]) / width) * 2.0 - 1.0
+        y0 = 1.0 - (y / height) * 2.0
+        y1 = 1.0 - ((y + size[1]) / height) * 2.0
+        verts = np.array(
+            [
+                x0,
+                y1,
+                0.0,
+                0.0,
+                x1,
+                y1,
+                1.0,
+                0.0,
+                x0,
+                y0,
+                0.0,
+                1.0,
+                x1,
+                y0,
+                1.0,
+                1.0,
+            ],
+            dtype=np.float32,
+        )
+        gpu_state["overlay_vbo"].write(verts.tobytes())
+        ctx.enable(gpu_state["moderngl"].BLEND)
+        ctx.blend_func = (gpu_state["moderngl"].SRC_ALPHA, gpu_state["moderngl"].ONE_MINUS_SRC_ALPHA)
+        tex.use(0)
+        gpu_state["overlay_prog"]["overlay_tex"].value = 0
+        gpu_state["overlay_vao"].render(mode=gpu_state["moderngl"].TRIANGLE_STRIP)
 
     def add_trace_segment(start_offset: float, end_offset: float, steps: int = 180) -> None:
         nonlocal path_traces
@@ -888,12 +1103,154 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         sim_clock_elapsed = 0.0
         if field_visible:
             if field_alg == "gpu_instanced":
-                gpu_rebuild_field_surface(0.0)
+                if gpu_display:
+                    gpu_update_field_texture(0.0)
+                else:
+                    gpu_rebuild_field_surface(0.0)
             else:
                 rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incremental")
 
+    def render_frame_gl(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
+        nonlocal gpu_display
+        if not init_gpu_renderer(display=True):
+            gpu_display = False
+            render_frame(positions, hits, field_surf)
+            return
+        ctx = gpu_state["ctx"]
+        ctx.screen.use()
+        ctx.viewport = (0, 0, width, height)
+        ctx.clear(1.0, 1.0, 1.0, 1.0)
+        if field_visible:
+            if field_alg == "gpu_instanced":
+                ctx.viewport = (panel_w, 0, canvas_w, height)
+                gpu_present_field()
+                ctx.viewport = (0, 0, width, height)
+            elif field_surface is not None:
+                gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
+
+        overlay_visible = ui_overlay_visible or show_hit_overlays
+        panel_visible = ui_overlay_visible and paused
+        if overlay_visible:
+            geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+            if ui_overlay_visible and current_path_name == "unit_circle":
+                center = world_to_canvas((0.0, 0.0))
+                scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
+                for r in (int(scale), int(scale) + 1):
+                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, LIGHT_GRAY)
+
+            if ui_overlay_visible:
+                for name, trace in path_traces.items():
+                    if len(trace) < 2:
+                        continue
+                    color = LIGHT_GRAY
+                    prev = world_to_canvas(trace[0])
+                    for pt in trace[1:]:
+                        cur = world_to_canvas(pt)
+                        gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
+                        prev = cur
+
+            def draw_hit_arc(hit: Hit) -> None:
+                recv_pos = positions.get(hit.receiver)
+                if recv_pos is None:
+                    return
+                cx, cy = world_to_canvas(hit.emit_pos)
+                tx, ty = world_to_canvas(recv_pos)
+                dx = tx - cx
+                dy = ty - cy
+                radius_px = int(math.hypot(dx, dy))
+                if radius_px < 2:
+                    return
+                ang = (math.degrees(math.atan2(dy, dx)) + 360.0) % 360.0
+                arc_half = 5.0
+                start = (ang - arc_half) % 360
+                end = (ang + arc_half) % 360
+                color = PURE_RED if hit.emitter == "positrino" else PURE_BLUE
+
+                def draw_arc_span(s: float, e: float) -> None:
+                    for r_off in (0, 1):
+                        gfxdraw.arc(
+                            geometry_layer,
+                            int(cx),
+                            int(cy),
+                            radius_px + r_off,
+                            int(s),
+                            int(e),
+                            color,
+                        )
+
+                if start <= end:
+                    draw_arc_span(start, end)
+                else:
+                    draw_arc_span(start, 360)
+                    draw_arc_span(0, end)
+
+            if show_hit_overlays:
+                for h in hits:
+                    draw_hit_arc(h)
+                for h in hits:
+                    start = world_to_canvas(h.emit_pos)
+                    end = world_to_canvas(positions[h.receiver])
+                    line_color = PURE_RED if h.emitter == "positrino" else PURE_BLUE
+                    gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
+                    gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
+
+            particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+            if show_hit_overlays:
+                for h in hits:
+                    start = world_to_canvas(h.emit_pos)
+                    marker_color = LIGHT_RED if h.emitter == "positrino" else LIGHT_BLUE
+                    gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
+                    gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
+
+            if ui_overlay_visible:
+                pos_posi_canvas = world_to_canvas(positions["positrino"])
+                pos_elec_canvas = world_to_canvas(positions["electrino"])
+                gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
+                gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
+                gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
+                gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
+
+            gpu_draw_surface(geometry_layer, panel_w, 0, "overlay_geom")
+            gpu_draw_surface(particle_layer, panel_w, 0, "overlay_particles")
+
+        if panel_visible:
+            ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
+            pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
+            def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
+                draw_text(ui_layer, text, x, y, color=color)
+
+            panel_draw(f"frame={frame_idx+1}", 10, 10)
+            panel_draw(f"hz={cfg.hz}", 10, 30)
+            panel_draw(f"frame_skip={frame_skip}", 10, 50)
+            if paused and pending_speed_mult != speed_mult:
+                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 70)
+            else:
+                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
+            panel_draw(f"path={current_path_name}", 10, 90)
+            panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 110)
+            alg_state = field_alg
+            panel_draw(f"alg={alg_state}", 10, 130)
+            panel_draw("Controls:", 10, 150)
+            panel_draw("ESC reset", 10, 170)
+            panel_draw("SPACE pause/resume", 10, 190)
+            panel_draw("LEFT/RIGHT skip", 10, 210)
+            panel_draw("H: hits (paused)", 10, 230)
+            panel_draw("UP/DOWN speed", 10, 250)
+            panel_draw("F: hz 250/500/1000", 10, 270)
+            panel_draw("V: field on/off", 10, 290)
+            panel_draw(f"B: field alg ({alg_state})", 10, 310)
+            panel_draw("U: ui/overlays", 10, 330)
+            if paused:
+                panel_draw("PAUSED", 10, height - 30)
+            gpu_draw_surface(ui_layer, 0, 0, "ui_panel")
+
+        pygame.display.flip()
+
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal panel_log
+        if gpu_display:
+            render_frame_gl(positions, hits, field_surf)
+            return
         screen.fill(PURE_WHITE)
         fs = field_surf if field_surf is not None else (field_surface if field_visible else None)
         if fs is not None:
@@ -1101,10 +1458,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         except ValueError:
                             idx = 0
                         field_alg = algs[(idx + 1) % len(algs)]
-                        if field_alg == "gpu_instanced" and not init_gpu_renderer():
-                            field_alg = "cpu_incremental"
                         if field_alg == "gpu_instanced":
-                            gpu_rebuild_field_surface(frame_idx * dt)
+                            if not init_gpu_renderer(display=gpu_display):
+                                field_alg = "cpu_incremental"
+                        if field_alg == "gpu_instanced":
+                            if gpu_display:
+                                gpu_update_field_texture(frame_idx * dt)
+                            else:
+                                gpu_rebuild_field_surface(frame_idx * dt)
                         else:
                             rebuild_field_surface(
                                 frame_idx * dt,
@@ -1119,7 +1480,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         else:
                             field_visible = True
                             if field_alg == "gpu_instanced":
-                                gpu_rebuild_field_surface(frame_idx * dt)
+                                if gpu_display:
+                                    gpu_update_field_texture(frame_idx * dt)
+                                else:
+                                    gpu_rebuild_field_surface(frame_idx * dt)
                             else:
                                 rebuild_field_surface(
                                     frame_idx * dt,
@@ -1165,7 +1529,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if field_alg == "cpu_incremental":
                 update_field_surface(current_time)
             elif field_alg == "gpu_instanced":
-                gpu_rebuild_field_surface(current_time)
+                if field_visible:
+                    if gpu_display:
+                        gpu_update_field_texture(current_time)
+                    else:
+                        gpu_rebuild_field_surface(current_time)
             else:
                 rebuild_field_surface(current_time)
             render_frame(positions, display_hits)
