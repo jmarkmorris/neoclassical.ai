@@ -469,32 +469,36 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     trace_layer.fill((0, 0, 0, 0))
     trace_layer_last_update = -trace_draw_stride
     display_info = (info.current_w, info.current_h)
+    header_printed = False
 
     def log_state(reason: str) -> None:
-        """Print a concise snapshot of the current render/sim state."""
-        state = {
-            "reason": reason,
-            "paused": paused,
-            "frame_idx": frame_idx,
-            "hz": cfg.hz,
-            "frame_skip": frame_skip,
-            "flip_stride": flip_stride,
-            "trace_stride": trace_draw_stride,
-            "speed_mult": f"{speed_mult:.2f}",
-            "pending_speed": f"{pending_speed_mult:.2f}",
-            "path": current_path_name,
-            "field_visible": field_visible,
-            "field_alg": field_alg,
-            "ui_overlay": ui_overlay_visible,
-            "hit_overlay_enabled": hit_overlay_enabled,
-            "show_hit_overlays": show_hit_overlays,
-            "width": width,
-            "height": height,
-            "canvas_w": canvas_w,
-            "panel_w": panel_w,
-            "display_info": display_info,
-        }
-        print("[state]", ", ".join(f"{k}={v}" for k, v in state.items()))
+        """Print a fixed-width table snapshot of the current render/sim state."""
+        nonlocal header_printed
+        cols = [
+            ("reason", reason, 18),
+            ("paused", str(paused), 6),
+            ("frame", str(frame_idx), 6),
+            ("hz", str(cfg.hz), 5),
+            ("skip", str(frame_skip), 4),
+            ("flip", str(flip_stride), 4),
+            ("trace", str(trace_draw_stride), 5),
+            ("speed", f"{speed_mult:.2f}", 8),
+            ("pending", f"{pending_speed_mult:.2f}", 8),
+            ("path", current_path_name, 18),
+            ("field", field_alg, 14),
+            ("field_vis", str(field_visible), 9),
+            ("ui", str(ui_overlay_visible), 5),
+            ("hits", str(hit_overlay_enabled), 5),
+            ("overlays", str(show_hit_overlays), 8),
+            ("size", f"{width}x{height} (panel={panel_w}, canvas={canvas_w})", 0),
+            ("display", f"{display_info[0]}x{display_info[1]}", 0),
+        ]
+        if not header_printed:
+            header_line = " | ".join(name.ljust(width) if width else name for name, _, width in cols)
+            print(header_line)
+            header_printed = True
+        value_line = " | ".join(val.ljust(width) if width else val for _, val, width in cols)
+        print(value_line)
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -1483,6 +1487,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         reset_state(apply_pending_speed=True, keep_field_visible=True)
                         paused = True
                         log_state("key_escape_reset")
+                    elif event.key == pygame.K_q:
+                        running = False
+                        log_state("key_q_quit")
                     elif event.key == pygame.K_SPACE:
                         paused = not paused
                         if not paused:
