@@ -63,7 +63,11 @@ python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer
 - `shell_thickness_scale_with_canvas` (bool): Multiply shell thickness by `1/canvas_scale`.
 - `field_color_falloff` (string): `"inverse_r2"` for log10 mapping, `"inverse_r"` for sqrt log10 mapping.
 - `shell_weight` (string): `"raised_cosine"` for smooth annular weights, `"hard"` for a flat band.
-- `field_backend` (string): `"cpu_rebuild"`, `"cpu_incremental"`, or `"gpu_instanced"` for field updates (`gpu_instanced` requires `moderngl`).
+- `field_backend` (string): Preferred field update backend. Use one of:
+  - `"gpu"`: GL instanced rings (requires `moderngl`).
+  - `"cpu_incr"`: CPU incremental ring updates.
+  - `"cpu_full"`: CPU full rebuild each frame.
+  Legacy values are mapped automatically: `"gpu_instanced"` → `"gpu"`, `"cpu_incremental"` → `"cpu_incr"`, `"cpu_rebuild"` → `"cpu_full"`.
 
 Aliases (optional):
 - `field_on` → `field_visible`

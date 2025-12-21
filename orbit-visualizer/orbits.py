@@ -496,11 +496,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             ("size", f"{width}x{height} (panel={panel_w}, canvas={canvas_w})", 36),
             ("disp", f"{display_info[0]}x{display_info[1]}", 12),
         ]
-        header_line = " | ".join(name.upper().ljust(w) for name, _, w in cols)
-        value_line = " | ".join(val.ljust(w) for _, val, w in cols)
+        if not hasattr(log_state, "_widths"):
+            widths = []
+            for name, val, w in cols:
+                base = w if w > 0 else len(name)
+                widths.append(max(len(name), base, len(val)))
+            log_state._widths = widths
+        widths = log_state._widths
+        header_line = " | ".join(name.upper().ljust(w) for (name, _, _), w in zip(cols, widths))
+        value_line = " | ".join(val.ljust(w) for (_, val, _), w in zip(cols, widths))
         if not hasattr(log_state, "_printed_header"):
             print(header_line)
-            print("FIELD: gpu=GL instanced rings, cpu_incr=CPU incremental rings, cpu_full=CPU full rebuild")
             log_state._printed_header = True
         print(value_line)
 
