@@ -490,11 +490,22 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         shell_thickness_scale = 1.0 / canvas_scale
 
     def draw_ring(target: "pygame.Surface", center: Vec2, radius_px: int, thickness_px: int, color: Tuple[int, int, int]) -> None:
-        """Draw a thick ring with a straightforward stroke (no extra AA/oversampling)."""
+        """
+        Draw a crisp ring by filling an outer circle then punching out the inner with full transparency.
+        Avoids gray borders from alpha blending while keeping the ring centered.
+        """
         cx, cy = int(round(center[0])), int(round(center[1]))
         radius_px = max(1, int(round(radius_px)))
         thickness_px = max(1, int(round(thickness_px)))
-        pygame.draw.circle(target, color, (cx, cy), radius_px, width=thickness_px)
+        outer_r = radius_px + (thickness_px // 2)
+        inner_r = max(0, outer_r - thickness_px)
+        diam = (outer_r * 2) + 2
+        ring_surface = pygame.Surface((diam, diam), pygame.SRCALPHA).convert_alpha()
+        center_pt = (diam // 2, diam // 2)
+        pygame.draw.circle(ring_surface, (*color, 255), center_pt, outer_r)
+        if inner_r > 0:
+            pygame.draw.circle(ring_surface, (0, 0, 0, 0), center_pt, inner_r)
+        target.blit(ring_surface, (cx - diam // 2, cy - diam // 2))
 
     def update_time_params(new_hz: int) -> None:
         nonlocal dt, shell_thickness
@@ -1159,7 +1170,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 center = world_to_canvas((0.0, 0.0))
                 scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
                 r_int = max(1, int(round(scale)))
-                draw_ring(geometry_layer, center, r_int, 5, PURE_WHITE)
+                draw_ring(geometry_layer, center, r_int, 6, PURE_WHITE)
 
             if ui_overlay_visible:
                 for name, trace in path_traces.items():
