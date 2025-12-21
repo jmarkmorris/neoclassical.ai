@@ -61,3 +61,10 @@
 - Short, direct prompts perform best for iterative changes.
 - Provide context only as needed; refer to file paths instead of pasting code.
 - When you need exploration, ask for a brief summary before editing.
+
+## Best Practices for Marko in Communication and Operations
+- Set the starting commit/branch explicitly when asking for changes; call out if you’ve reset to a specific commit.
+- When performance profiling, share the cProfile top lines and whether UI overlays were on/off, plus any toggles you used (e.g., frame skip, flip stride).
+- If you see visual anomalies (shrinking UI, missing lines), state whether the window size changed or just the content, and include a screenshot.
+- For rendering tweaks, note your display settings (resolution/scale) and any relevant hotkeys pressed (e.g., B, U, H, T).
+- When reverting or rerunning tests, specify uncommitted changes state; stash/commit before asking for a hard reset.

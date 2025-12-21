@@ -468,6 +468,33 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     trace_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
     trace_layer.fill((0, 0, 0, 0))
     trace_layer_last_update = -trace_draw_stride
+    display_info = (info.current_w, info.current_h)
+
+    def log_state(reason: str) -> None:
+        """Print a concise snapshot of the current render/sim state."""
+        state = {
+            "reason": reason,
+            "paused": paused,
+            "frame_idx": frame_idx,
+            "hz": cfg.hz,
+            "frame_skip": frame_skip,
+            "flip_stride": flip_stride,
+            "trace_stride": trace_draw_stride,
+            "speed_mult": f"{speed_mult:.2f}",
+            "pending_speed": f"{pending_speed_mult:.2f}",
+            "path": current_path_name,
+            "field_visible": field_visible,
+            "field_alg": field_alg,
+            "ui_overlay": ui_overlay_visible,
+            "hit_overlay_enabled": hit_overlay_enabled,
+            "show_hit_overlays": show_hit_overlays,
+            "width": width,
+            "height": height,
+            "canvas_w": canvas_w,
+            "panel_w": panel_w,
+            "display_info": display_info,
+        }
+        print("[state]", ", ".join(f"{k}={v}" for k, v in state.items()))
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -1138,6 +1165,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     gpu_rebuild_field_surface(0.0)
             else:
                 rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incremental")
+        log_state("reset")
 
     def render_frame_gl(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal gpu_display, trace_layer_last_update, trace_layer
@@ -1438,6 +1466,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         emissions = kept
 
     reset_state(apply_pending_speed=False)
+    log_state("startup")
     render_frame(positions, list(recent_hits))
 
     pygame.key.set_repeat(200, 50)
@@ -1453,6 +1482,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         show_hit_overlays = False
                         reset_state(apply_pending_speed=True, keep_field_visible=True)
                         paused = True
+                        log_state("key_escape_reset")
                     elif event.key == pygame.K_SPACE:
                         paused = not paused
                         if not paused:
@@ -1461,17 +1491,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             sim_clock_start = time.monotonic()
                         else:
                             sim_clock_elapsed += time.monotonic() - sim_clock_start
+                        log_state("key_space_toggle")
                     elif event.key == pygame.K_h:
                         if paused:
                             hit_overlay_enabled = not hit_overlay_enabled
+                            log_state("key_h_toggle_hit_overlay")
                     elif event.key == pygame.K_RIGHT:
                         frame_skip += 1
+                        log_state("key_right_frame_skip")
                     elif event.key == pygame.K_LEFT:
                         frame_skip = max(0, frame_skip - 1)
+                        log_state("key_left_frame_skip")
                     elif event.key == pygame.K_UP:
                         apply_speed_change(speed_mult + 0.1, auto_pause=True)
+                        log_state("key_up_speed")
                     elif event.key == pygame.K_DOWN:
                         apply_speed_change(speed_mult - 0.1, auto_pause=True)
+                        log_state("key_down_speed")
                     elif event.key == pygame.K_f:
                         if cfg.hz == 250:
                             new_hz = 500
@@ -1482,6 +1518,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         update_time_params(new_hz)
                         reset_state(apply_pending_speed=True, keep_field_visible=True)
                         paused = True
+                        log_state("key_f_hz_toggle")
                     elif event.key == pygame.K_b:
                         algs = ["cpu_incremental", "cpu_rebuild", "gpu_instanced"]
                         try:
@@ -1502,14 +1539,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                                 frame_idx * dt,
                                 update_last_radius=field_alg == "cpu_incremental",
                             )
+                        log_state("key_b_field_alg")
+                    elif event.key == pygame.K_i:
+                        log_state("key_i_info")
                     elif event.key == pygame.K_t:
                         trace_test_frames_remaining = 3000
                         paused = False
                         hit_overlay_enabled = False
                         show_hit_overlays = False
                         sim_clock_start = time.monotonic()
+                        log_state("key_t_trace_test")
                     elif event.key == pygame.K_u:
                         ui_overlay_visible = not ui_overlay_visible
+                        log_state("key_u_ui_overlay")
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_v:
                         if field_visible:
@@ -1526,6 +1568,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                                     frame_idx * dt,
                                     update_last_radius=field_alg == "cpu_incremental",
                                 )
+                        log_state("key_v_field_visible")
 
             show_hit_overlays = paused and hit_overlay_enabled
             if not paused:
@@ -1601,6 +1644,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     except KeyboardInterrupt:
         running = False
 
+    log_state("exit")
     pygame.quit()
 
 def parse_args() -> argparse.Namespace:
