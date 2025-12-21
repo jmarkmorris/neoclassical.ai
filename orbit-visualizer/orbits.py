@@ -489,6 +489,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     if cfg.shell_thickness_scale_with_canvas:
         shell_thickness_scale = 1.0 / canvas_scale
 
+    def draw_ring(target: "pygame.Surface", center: Vec2, radius_px: int, thickness_px: int, color: Tuple[int, int, int]) -> None:
+        """Draw a thick ring with a straightforward stroke (no extra AA/oversampling)."""
+        cx, cy = int(round(center[0])), int(round(center[1]))
+        radius_px = max(1, int(round(radius_px)))
+        thickness_px = max(1, int(round(thickness_px)))
+        pygame.draw.circle(target, color, (cx, cy), radius_px, width=thickness_px)
+
     def update_time_params(new_hz: int) -> None:
         nonlocal dt, shell_thickness
         cfg.hz = new_hz
@@ -1151,8 +1158,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if ui_overlay_visible and current_path_name == "unit_circle":
                 center = world_to_canvas((0.0, 0.0))
                 scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-                for r in (int(scale), int(scale) + 1):
-                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, PURE_WHITE)
+                r_int = max(1, int(round(scale)))
+                draw_ring(geometry_layer, center, r_int, 5, PURE_WHITE)
 
             if ui_overlay_visible:
                 for name, trace in path_traces.items():
@@ -1277,8 +1284,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if ui_overlay_visible and current_path_name == "unit_circle":
                 center = world_to_canvas((0.0, 0.0))
                 scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-                for r in (int(scale), int(scale) + 1):
-                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, PURE_WHITE)
+                r_int = max(1, int(round(scale)))
+                draw_aa_ring(geometry_layer, center, r_int, 10, PURE_WHITE)
 
             # Draw path traces.
             if ui_overlay_visible:
