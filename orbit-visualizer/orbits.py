@@ -510,7 +510,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def format_title(paused_flag: bool, label: str | None = None) -> str:
         """Compact title line carrying former panel info."""
-        status = "PAUSED" if paused_flag else ""
         speed_label = (
             f"velo↑↓ {speed_mult:.2f}->{pending_speed_mult:.2f}"
             if paused_flag and pending_speed_mult != speed_mult
@@ -522,7 +521,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         alg_label = f"alg 🅑 {field_alg}"
         field_label = f"field 🅥 {'on' if field_visible else 'off'}"
         prefix = f"Orbit Visualizer {label}" if label else "Orbit Visualizer"
-        parts = [p for p in [status, speed_label, skip_label, freq_label, path_label, alg_label, field_label] if p]
+        status = "PAUSED" if paused_flag else "ACTIVE"
+        parts = [p for p in [speed_label, skip_label, freq_label, path_label, alg_label, field_label, status] if p]
         return prefix + " | " + " | ".join(parts)
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
