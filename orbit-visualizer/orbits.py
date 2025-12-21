@@ -146,7 +146,7 @@ class SimulationConfig:
     start_paused: bool = True  # render loop starts paused unless overridden
     field_grid_scale_with_canvas: bool = False  # scale field grid resolution by canvas scale
     shell_thickness_scale_with_canvas: bool = False  # scale shell thickness by 1/canvas_scale
-    field_color_falloff: str = "inverse_r"  # "inverse_r2" (linear) or "inverse_r" (sqrt)
+    field_color_falloff: str = "inverse_r2"  # "inverse_r2" (linear) or "inverse_r" (sqrt)
 
 
 @dataclass
@@ -363,8 +363,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
 
     pygame.init()
-    panel_w = 320
-    canvas_scale = 1
+    panel_w = 160
+    canvas_scale = 1.0
     if canvas_scale <= 0:
         raise ValueError("canvas_scale must be > 0.")
     info = pygame.display.Info()
@@ -429,7 +429,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     show_hit_overlays = False
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
-    base_res = 320
+    base_res = 640
     if cfg.field_grid_scale_with_canvas:
         base_res = max(64, int(base_res * canvas_scale))
     res_x = res_y = max(64, base_res)
@@ -489,13 +489,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def make_field_surface() -> "pygame.Surface":
         net = field_grid
-        if cfg.field_color_falloff == "inverse_r":
-            net = np.sign(net) * np.sqrt(np.abs(net))
         max_abs = np.percentile(np.abs(net), 99) if np.any(net) else 1.0
         if max_abs < 1e-9:
             max_abs = 1.0
         pos_norm = np.clip(np.maximum(net, 0.0) / max_abs, 0.0, 1.0)
         neg_norm = np.clip(np.maximum(-net, 0.0) / max_abs, 0.0, 1.0)
+        if cfg.field_color_falloff == "inverse_r":
+            pos_norm = np.sqrt(pos_norm)
+            neg_norm = np.sqrt(neg_norm)
         red = (255 * (1 - neg_norm)).astype(np.uint8)
         blue = (255 * (1 - pos_norm)).astype(np.uint8)
         green = (255 * (1 - np.maximum(pos_norm, neg_norm))).astype(np.uint8)
