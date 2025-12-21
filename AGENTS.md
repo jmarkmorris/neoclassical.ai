@@ -1,7 +1,8 @@
 # AGENTS.md
 
-Repository root (workdir when starting Codex from the repo root): `/Users/markmorris/vibe/neoclassical.ai`.
-If workdir does not match `/Users/markmorris/vibe/neoclassical.ai` then immediately advise the user.
+- Repository root (workdir when starting Codex from the repo root): `/Users/markmorris/vibe/neoclassical.ai`.
+- If workdir does not match `/Users/markmorris/vibe/neoclassical.ai` then immediately advise the user.
+- Take assertions about user observations of behaviour in testing as factual. Do not doubt them.
 
 - This file describes best practices for working with Codex and ChatGPT-5.2 on this repository. 
 - The guidance is intended for both the human operator and the agent (shared expectations for prompts, scope, and behavior).
