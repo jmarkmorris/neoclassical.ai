@@ -149,7 +149,7 @@ class SimulationConfig:
     shell_thickness_scale_with_canvas: bool = False  # scale shell thickness by 1/canvas_scale
     field_color_falloff: str = "inverse_r2"  # "inverse_r2" (log10) or "inverse_r" (sqrt log10)
     shell_weight: str = "raised_cosine"  # "raised_cosine" or "hard"
-    field_backend: str = "cpu_incremental"  # "cpu_rebuild" or "cpu_incremental"
+    field_alg: str = "gpu_instanced"  # "cpu_rebuild", "cpu_incremental", or "gpu_instanced"
 
 
 @dataclass
@@ -305,12 +305,14 @@ def load_run_file(
     shell_weight = shell_weight.lower()
     if shell_weight not in {"raised_cosine", "hard"}:
         raise ValueError("directives.shell_weight must be 'raised_cosine' or 'hard'.")
-    field_backend = directives.get("field_backend", "cpu_incremental")
-    if not isinstance(field_backend, str):
-        raise ValueError("directives.field_backend must be a string.")
-    field_backend = field_backend.lower()
-    if field_backend not in {"cpu_rebuild", "cpu_incremental"}:
-        raise ValueError("directives.field_backend must be 'cpu_rebuild' or 'cpu_incremental'.")
+    field_alg = directives.get("field_alg", "gpu_instanced")
+    if not isinstance(field_alg, str):
+        raise ValueError("directives.field_alg must be a string.")
+    field_alg = field_alg.lower()
+    if field_alg not in {"cpu_rebuild", "cpu_incremental", "gpu_instanced"}:
+        raise ValueError(
+            "directives.field_alg must be 'cpu_rebuild', 'cpu_incremental', or 'gpu_instanced'."
+        )
 
     cfg = SimulationConfig(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
@@ -325,7 +327,7 @@ def load_run_file(
         shell_thickness_scale_with_canvas=shell_thickness_scale_with_canvas,
         field_color_falloff=field_color_falloff,
         shell_weight=shell_weight,
-        field_backend=field_backend,
+        field_alg=field_alg,
     )
 
     paths_override = paths
@@ -461,8 +463,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     field_surface = None
     field_visible = cfg.field_visible
     shell_weight = cfg.shell_weight
-    field_backend = cfg.field_backend
+    field_alg = cfg.field_alg
     ui_overlay_visible = True
+    gpu_state = None
 
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
@@ -671,6 +674,147 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             em.last_radius = radius
         field_surface = make_field_surface()
 
+    def init_gpu_renderer() -> bool:
+        nonlocal gpu_state, field_alg
+        if gpu_state is not None:
+            return True
+        try:
+            import moderngl
+        except ImportError:
+            print("Moderngl not available; falling back to cpu_incremental.")
+            field_alg = "cpu_incremental"
+            return False
+        try:
+            ctx = moderngl.create_standalone_context()
+        except Exception as exc:
+            print(f"GPU alg unavailable ({exc}); falling back to cpu_incremental.")
+            field_alg = "cpu_incremental"
+            return False
+        ctx.enable(moderngl.BLEND)
+        ctx.blend_func = (moderngl.ONE, moderngl.ONE)
+        field_tex = ctx.texture((res_x, res_y), components=1, dtype="f4")
+        fbo = ctx.framebuffer(color_attachments=[field_tex])
+        quad = np.array(
+            [
+                -1.0,
+                -1.0,
+                1.0,
+                -1.0,
+                -1.0,
+                1.0,
+                1.0,
+                1.0,
+            ],
+            dtype=np.float32,
+        )
+        vbo = ctx.buffer(quad.tobytes())
+        inst_buffer = ctx.buffer(reserve=4 * 4)
+        ring_prog = ctx.program(
+            vertex_shader="""
+                #version 330
+                in vec2 in_pos;
+                in vec2 inst_center;
+                in float inst_radius;
+                in float inst_sign;
+                uniform float domain_half_extent;
+                uniform float band_half;
+                out vec2 v_world;
+                flat out vec2 v_center;
+                flat out float v_radius;
+                flat out float v_band;
+                flat out float v_sign;
+                void main() {
+                    float extent = inst_radius + band_half;
+                    vec2 world = inst_center + in_pos * extent;
+                    v_world = world;
+                    v_center = inst_center;
+                    v_radius = inst_radius;
+                    v_band = band_half;
+                    v_sign = inst_sign;
+                    vec2 ndc = vec2(world.x / domain_half_extent, -world.y / domain_half_extent);
+                    gl_Position = vec4(ndc, 0.0, 1.0);
+                }
+            """,
+            fragment_shader="""
+                #version 330
+                in vec2 v_world;
+                flat in vec2 v_center;
+                flat in float v_radius;
+                flat in float v_band;
+                flat in float v_sign;
+                out vec4 out_color;
+                uniform int use_hard;
+                void main() {
+                    float dist = length(v_world - v_center);
+                    float delta = abs(dist - v_radius);
+                    if (delta > v_band) {
+                        discard;
+                    }
+                    float weight = use_hard == 1 ? 1.0 : 0.5 * (1.0 + cos(3.14159265 * delta / v_band));
+                    float denom = max(dist * dist, 1e-6);
+                    float contrib = v_sign * weight / denom;
+                    out_color = vec4(contrib, 0.0, 0.0, 1.0);
+                }
+            """,
+        )
+        vao = ctx.vertex_array(
+            ring_prog,
+            [
+                (vbo, "2f", "in_pos"),
+                (inst_buffer, "2f 1f 1f/i", "inst_center", "inst_radius", "inst_sign"),
+            ],
+        )
+        gpu_state = {
+            "ctx": ctx,
+            "moderngl": moderngl,
+            "field_tex": field_tex,
+            "fbo": fbo,
+            "vbo": vbo,
+            "inst_buffer": inst_buffer,
+            "ring_prog": ring_prog,
+            "vao": vao,
+        }
+        return True
+
+    def gpu_rebuild_field_surface(current_time: float) -> None:
+        nonlocal field_surface
+        if not init_gpu_renderer():
+            rebuild_field_surface(current_time, update_last_radius=field_alg == "cpu_incremental")
+            return
+        inst_entries = []
+        for em in emissions:
+            tau = current_time - em.time
+            if tau <= 0:
+                continue
+            radius = field_v * tau
+            if radius > max_radius:
+                continue
+            sign = 1.0 if em.emitter == "positrino" else -1.0
+            inst_entries.append((em.pos[0], em.pos[1], radius, sign))
+        if not inst_entries:
+            field_grid[:] = 0.0
+            field_surface = make_field_surface()
+            return
+        inst_arr = np.array(inst_entries, dtype=np.float32)
+        gpu_state["inst_buffer"].orphan(inst_arr.nbytes)
+        gpu_state["inst_buffer"].write(inst_arr.tobytes())
+        band_half = max(shell_thickness * 1.5, shell_thickness)
+        ring_prog = gpu_state["ring_prog"]
+        ring_prog["domain_half_extent"].value = cfg.domain_half_extent
+        ring_prog["band_half"].value = band_half
+        ring_prog["use_hard"].value = 1 if shell_weight == "hard" else 0
+        fbo = gpu_state["fbo"]
+        fbo.use()
+        fbo.clear(0.0, 0.0, 0.0, 0.0)
+        gpu_state["vao"].render(
+            mode=gpu_state["moderngl"].TRIANGLE_STRIP,
+            instances=inst_arr.shape[0],
+        )
+        raw = gpu_state["field_tex"].read(alignment=1)
+        arr = np.frombuffer(raw, dtype=np.float32).reshape((res_y, res_x))
+        field_grid[:] = np.flipud(arr)
+        field_surface = make_field_surface()
+
     def add_trace_segment(start_offset: float, end_offset: float, steps: int = 180) -> None:
         nonlocal path_traces
         if end_offset == start_offset:
@@ -712,7 +856,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         last_diff_queue.clear()
         recent_hits.extend(detect_hits(current_time, positions, allow_self=speed_mult > field_v))
 
-    def reset_state(apply_pending_speed: bool = True, keep_trace: bool = False, keep_offset: bool = False) -> None:
+    def reset_state(
+        apply_pending_speed: bool = True,
+        keep_trace: bool = False,
+        keep_offset: bool = False,
+        keep_field_visible: bool = False,
+    ) -> None:
         nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, path_time_offset, sim_clock_start, sim_clock_elapsed
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
@@ -724,7 +873,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         emissions = []
         field_grid[:] = 0.0
         field_surface = None
-        field_visible = cfg.field_visible
+        field_visible = field_visible if keep_field_visible else cfg.field_visible
         frame_idx = 0
         recent_hits.clear()
         seen_hits.clear()
@@ -738,7 +887,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         sim_clock_start = time.monotonic()
         sim_clock_elapsed = 0.0
         if field_visible:
-            rebuild_field_surface(0.0, update_last_radius=field_backend == "cpu_incremental")
+            if field_alg == "gpu_instanced":
+                gpu_rebuild_field_surface(0.0)
+            else:
+                rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incremental")
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal panel_log
@@ -747,26 +899,27 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if fs is not None:
             screen.blit(fs, (panel_w, 0))
 
-        overlay_visible = ui_overlay_visible
+        overlay_visible = ui_overlay_visible or show_hit_overlays
         panel_visible = ui_overlay_visible and paused
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-            if current_path_name == "unit_circle":
+            if ui_overlay_visible and current_path_name == "unit_circle":
                 center = world_to_canvas((0.0, 0.0))
                 scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
                 for r in (int(scale), int(scale) + 1):
                     gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, LIGHT_GRAY)
 
             # Draw path traces.
-            for name, trace in path_traces.items():
-                if len(trace) < 2:
-                    continue
-                color = LIGHT_GRAY
-                prev = world_to_canvas(trace[0])
-                for pt in trace[1:]:
-                    cur = world_to_canvas(pt)
-                    gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
-                    prev = cur
+            if ui_overlay_visible:
+                for name, trace in path_traces.items():
+                    if len(trace) < 2:
+                        continue
+                    color = LIGHT_GRAY
+                    prev = world_to_canvas(trace[0])
+                    for pt in trace[1:]:
+                        cur = world_to_canvas(pt)
+                        gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
+                        prev = cur
 
             # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
             def draw_hit_arc(hit: Hit) -> None:
@@ -827,12 +980,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
                     gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
-            pos_posi_canvas = world_to_canvas(positions["positrino"])
-            pos_elec_canvas = world_to_canvas(positions["electrino"])
-            gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
-            gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
-            gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
-            gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
+            if ui_overlay_visible:
+                pos_posi_canvas = world_to_canvas(positions["positrino"])
+                pos_elec_canvas = world_to_canvas(positions["electrino"])
+                gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
+                gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
+                gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
+                gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
 
             screen.blit(geometry_layer, (panel_w, 0))
             screen.blit(particle_layer, (panel_w, 0))
@@ -852,17 +1006,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
             panel_draw(f"path={current_path_name}", 10, 90)
             panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 110)
-            backend_state = "on" if field_backend == "cpu_incremental" else "off"
-            panel_draw("Controls:", 10, 130)
-            panel_draw("ESC reset", 10, 150)
-            panel_draw("SPACE pause/resume", 10, 170)
-            panel_draw("LEFT/RIGHT skip", 10, 190)
-            panel_draw("H: hits (paused)", 10, 210)
-            panel_draw("UP/DOWN speed", 10, 230)
-            panel_draw("F: hz 250/500/1000", 10, 250)
-            panel_draw("V: field on/off", 10, 270)
-            panel_draw(f"B: field backend ({backend_state})", 10, 290)
-            panel_draw("U: ui/overlays", 10, 310)
+            alg_state = field_alg
+            panel_draw(f"alg={alg_state}", 10, 130)
+            panel_draw("Controls:", 10, 150)
+            panel_draw("ESC reset", 10, 170)
+            panel_draw("SPACE pause/resume", 10, 190)
+            panel_draw("LEFT/RIGHT skip", 10, 210)
+            panel_draw("H: hits (paused)", 10, 230)
+            panel_draw("UP/DOWN speed", 10, 250)
+            panel_draw("F: hz 250/500/1000", 10, 270)
+            panel_draw("V: field on/off", 10, 290)
+            panel_draw(f"B: field alg ({alg_state})", 10, 310)
+            panel_draw("U: ui/overlays", 10, 330)
             if paused:
                 panel_draw("PAUSED", 10, height - 30)
 
@@ -882,7 +1037,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         cutoff = current_time - emission_retention
         if cutoff <= 0:
             return
-        if field_backend != "cpu_incremental":
+        if field_alg != "cpu_incremental":
             emissions = [em for em in emissions if em.time >= cutoff]
             return
         kept: List[Emission] = []
@@ -908,7 +1063,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     if event.key == pygame.K_ESCAPE:
                         hit_overlay_enabled = False
                         show_hit_overlays = False
-                        reset_state(apply_pending_speed=True)
+                        reset_state(apply_pending_speed=True, keep_field_visible=True)
                         paused = True
                     elif event.key == pygame.K_SPACE:
                         paused = not paused
@@ -937,14 +1092,24 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         else:
                             new_hz = 250
                         update_time_params(new_hz)
-                        reset_state(apply_pending_speed=False)
+                        reset_state(apply_pending_speed=False, keep_field_visible=True)
                         paused = True
                     elif event.key == pygame.K_b:
-                        field_backend = "cpu_incremental" if field_backend == "cpu_rebuild" else "cpu_rebuild"
-                        rebuild_field_surface(
-                            frame_idx * dt,
-                            update_last_radius=field_backend == "cpu_incremental",
-                        )
+                        algs = ["cpu_incremental", "cpu_rebuild", "gpu_instanced"]
+                        try:
+                            idx = algs.index(field_alg)
+                        except ValueError:
+                            idx = 0
+                        field_alg = algs[(idx + 1) % len(algs)]
+                        if field_alg == "gpu_instanced" and not init_gpu_renderer():
+                            field_alg = "cpu_incremental"
+                        if field_alg == "gpu_instanced":
+                            gpu_rebuild_field_surface(frame_idx * dt)
+                        else:
+                            rebuild_field_surface(
+                                frame_idx * dt,
+                                update_last_radius=field_alg == "cpu_incremental",
+                            )
                     elif event.key == pygame.K_u:
                         ui_overlay_visible = not ui_overlay_visible
                 elif event.type == pygame.KEYUP:
@@ -953,7 +1118,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             field_visible = False
                         else:
                             field_visible = True
-                            rebuild_field_surface(frame_idx * dt, update_last_radius=field_backend == "cpu_incremental")
+                            if field_alg == "gpu_instanced":
+                                gpu_rebuild_field_surface(frame_idx * dt)
+                            else:
+                                rebuild_field_surface(
+                                    frame_idx * dt,
+                                    update_last_radius=field_alg == "cpu_incremental",
+                                )
 
             show_hit_overlays = paused and hit_overlay_enabled
             if not paused:
@@ -991,8 +1162,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 sim_idx += 1
 
             frame_idx = sim_idx - 1
-            if field_backend == "cpu_incremental":
+            if field_alg == "cpu_incremental":
                 update_field_surface(current_time)
+            elif field_alg == "gpu_instanced":
+                gpu_rebuild_field_surface(current_time)
             else:
                 rebuild_field_surface(current_time)
             render_frame(positions, display_hits)

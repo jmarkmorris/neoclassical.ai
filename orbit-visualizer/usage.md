@@ -63,7 +63,7 @@ python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer
 - `shell_thickness_scale_with_canvas` (bool): Multiply shell thickness by `1/canvas_scale`.
 - `field_color_falloff` (string): `"inverse_r2"` for log10 mapping, `"inverse_r"` for sqrt log10 mapping.
 - `shell_weight` (string): `"raised_cosine"` for smooth annular weights, `"hard"` for a flat band.
-- `field_backend` (string): `"cpu_rebuild"` or `"cpu_incremental"` for field updates.
+- `field_backend` (string): `"cpu_rebuild"`, `"cpu_incremental"`, or `"gpu_instanced"` for field updates (`gpu_instanced` requires `moderngl`).
 
 Aliases (optional):
 - `field_on` → `field_visible`

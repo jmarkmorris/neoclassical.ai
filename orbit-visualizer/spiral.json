@@ -11,7 +11,7 @@
     "field_visible": true,
     "start_paused": true,
     "shell_weight": "raised_cosine",
-    "field_backend": "cpu_incremental"
+    "field_backend": "gpu_instanced"
   },
   "groups": [
     {
