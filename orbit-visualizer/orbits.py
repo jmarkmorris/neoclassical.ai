@@ -529,9 +529,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         skip_label = f"skip←→ {pad_int(frame_skip, 3)}"
         freq_label = f"🅕 {pad_int(cfg.hz, 4)}Hz"
         path_label = f"path {current_path_name}"
-        alg_label = f"alg 🅑 {field_alg}"
+        alg_label = f"🅑 {field_alg}"
         field_label = f"field 🅥 {'on' if field_visible else 'off'}"
-        prefix = f"Orbit Visualizer {label}" if label else "Orbit Visualizer"
+        prefix = f"ORBIT PATH VISUALIZER: {label}" if label else "Orbit Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
         parts = [p for p in [speed_label, skip_label, freq_label, path_label, alg_label, field_label, status] if p]
