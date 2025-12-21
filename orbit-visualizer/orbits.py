@@ -1128,7 +1128,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         recent_hits.clear()
         sim_clock_start = time.monotonic()
         sim_clock_elapsed = 0.0
-        dots_layer.fill((0, 0, 0, 0))
         if field_visible:
             if field_alg == "gpu_instanced":
                 if gpu_display:
@@ -1170,7 +1169,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             # Unit-circle ring disabled; using traces only.
 
-            if ui_overlay_visible and not paused:
+            if ui_overlay_visible:
                 for name, trace in path_traces.items():
                     if len(trace) < 2:
                         continue
