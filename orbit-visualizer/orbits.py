@@ -462,6 +462,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     hit_overlay_enabled = False
     show_hit_overlays = False
     trace_test_frames_remaining: int | None = None
+    last_caption_update = 0
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -1151,17 +1152,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 center = world_to_canvas((0.0, 0.0))
                 scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
                 for r in (int(scale), int(scale) + 1):
-                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, LIGHT_GRAY)
+                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, PURE_WHITE)
 
             if ui_overlay_visible:
                 for name, trace in path_traces.items():
                     if len(trace) < 2:
                         continue
-                    color = LIGHT_GRAY
+                    color = PURE_WHITE
                     prev = world_to_canvas(trace[0])
                     for pt in trace[1:]:
                         cur = world_to_canvas(pt)
-                        gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
+                        pygame.draw.aaline(geometry_layer, color, (int(prev[0]), int(prev[1])), (int(cur[0]), int(cur[1])))
                         prev = cur
 
             def draw_hit_arc(hit: Hit) -> None:
@@ -1234,27 +1235,25 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
                 draw_text(ui_layer, text, x, y, color=color)
 
-            panel_draw(f"frame={frame_idx+1}", 10, 10)
-            panel_draw(f"hz={cfg.hz}", 10, 30)
-            panel_draw(f"frame_skip={frame_skip}", 10, 50)
+            panel_draw(f"hz={cfg.hz}", 10, 10)
+            panel_draw(f"frame_skip={frame_skip}", 10, 30)
             if paused and pending_speed_mult != speed_mult:
-                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 70)
+                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
             else:
-                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
-            panel_draw(f"path={current_path_name}", 10, 90)
-            panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 110)
+                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
+            panel_draw(f"path={current_path_name}", 10, 70)
             alg_state = field_alg
-            panel_draw(f"alg={alg_state}", 10, 130)
-            panel_draw("Controls:", 10, 150)
-            panel_draw("ESC reset", 10, 170)
-            panel_draw("SPACE pause/resume", 10, 190)
-            panel_draw("LEFT/RIGHT skip", 10, 210)
-            panel_draw("H: hits (paused)", 10, 230)
-            panel_draw("UP/DOWN speed", 10, 250)
-            panel_draw("F: hz 250/500/1000", 10, 270)
-            panel_draw("V: field on/off", 10, 290)
-            panel_draw(f"B: field alg ({alg_state})", 10, 310)
-            panel_draw("U: ui/overlays", 10, 330)
+            panel_draw(f"alg={alg_state}", 10, 90)
+            panel_draw("Controls:", 10, 110)
+            panel_draw("ESC reset", 10, 130)
+            panel_draw("SPACE pause/resume", 10, 150)
+            panel_draw("LEFT/RIGHT skip", 10, 170)
+            panel_draw("H: hits (paused)", 10, 190)
+            panel_draw("UP/DOWN speed", 10, 210)
+            panel_draw("F: hz 250/500/1000", 10, 230)
+            panel_draw("V: field on/off", 10, 250)
+            panel_draw(f"B: field alg ({alg_state})", 10, 270)
+            panel_draw("U: ui/overlays", 10, 290)
             if paused:
                 panel_draw("PAUSED", 10, height - 30)
             gpu_draw_surface(ui_layer, 0, 0, "ui_panel")
@@ -1279,18 +1278,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 center = world_to_canvas((0.0, 0.0))
                 scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
                 for r in (int(scale), int(scale) + 1):
-                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, LIGHT_GRAY)
+                    gfxdraw.aacircle(geometry_layer, int(center[0]), int(center[1]), r, PURE_WHITE)
 
             # Draw path traces.
             if ui_overlay_visible:
                 for name, trace in path_traces.items():
                     if len(trace) < 2:
                         continue
-                    color = LIGHT_GRAY
+                    color = PURE_WHITE
                     prev = world_to_canvas(trace[0])
                     for pt in trace[1:]:
                         cur = world_to_canvas(pt)
-                        gfxdraw.line(geometry_layer, int(prev[0]), int(prev[1]), int(cur[0]), int(cur[1]), color)
+                        pygame.draw.aaline(geometry_layer, color, (int(prev[0]), int(prev[1])), (int(cur[0]), int(cur[1])))
                         prev = cur
 
             # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
@@ -1369,27 +1368,26 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
                 draw_text(ui_layer, text, x, y, color=color)
 
-            panel_draw(f"frame={frame_idx+1}", 10, 10)
-            panel_draw(f"hz={cfg.hz}", 10, 30)
-            panel_draw(f"frame_skip={frame_skip}", 10, 50)
+            panel_draw(f"hz={cfg.hz}", 10, 10)
+            panel_draw(f"frame_skip={frame_skip}", 10, 30)
             if paused and pending_speed_mult != speed_mult:
-                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 70)
+                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
             else:
-                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
-            panel_draw(f"path={current_path_name}", 10, 90)
-            panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 110)
+                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
+            panel_draw(f"path={current_path_name}", 10, 70)
+            panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 90)
             alg_state = field_alg
-            panel_draw(f"alg={alg_state}", 10, 130)
-            panel_draw("Controls:", 10, 150)
-            panel_draw("ESC reset", 10, 170)
-            panel_draw("SPACE pause/resume", 10, 190)
-            panel_draw("LEFT/RIGHT skip", 10, 210)
-            panel_draw("H: hits (paused)", 10, 230)
-            panel_draw("UP/DOWN speed", 10, 250)
-            panel_draw("F: hz 250/500/1000", 10, 270)
-            panel_draw("V: field on/off", 10, 290)
-            panel_draw(f"B: field alg ({alg_state})", 10, 310)
-            panel_draw("U: ui/overlays", 10, 330)
+            panel_draw(f"alg={alg_state}", 10, 110)
+            panel_draw("Controls:", 10, 130)
+            panel_draw("ESC reset", 10, 150)
+            panel_draw("SPACE pause/resume", 10, 170)
+            panel_draw("LEFT/RIGHT skip", 10, 190)
+            panel_draw("H: hits (paused)", 10, 210)
+            panel_draw("UP/DOWN speed", 10, 230)
+            panel_draw("F: hz 250/500/1000", 10, 250)
+            panel_draw("V: field on/off", 10, 270)
+            panel_draw(f"B: field alg ({alg_state})", 10, 290)
+            panel_draw("U: ui/overlays", 10, 310)
             if paused:
                 panel_draw("PAUSED", 10, height - 30)
 
@@ -1519,6 +1517,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 # Refresh hits once when paused with overlay requested.
                 if hit_overlay_enabled and not recent_hits:
                     refresh_hits_for_current_time()
+                pygame.display.set_caption(f"Orbit Visualizer (frame={frame_idx+1} sim={sim_clock_elapsed:.2f}s)")
                 render_frame(positions, list(recent_hits))
                 clock.tick(cfg.hz)
                 continue
@@ -1530,26 +1529,26 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             current_time = sim_idx * dt
             for step in range(steps):
                 current_time = sim_idx * dt
-            positions = current_positions(current_time)
-            for name, pos in positions.items():
-                path_traces[name].append(pos)
-                if len(path_traces[name]) > trace_limit:
-                    path_traces[name] = path_traces[name][-trace_limit:]
+                positions = current_positions(current_time)
+                for name, pos in positions.items():
+                    path_traces[name].append(pos)
+                    if len(path_traces[name]) > trace_limit:
+                        path_traces[name] = path_traces[name][-trace_limit:]
 
-            emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
-            emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
+                emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
+                emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
 
-            prune_emissions(current_time)
-            allow_self = speed_mult > field_v + 1e-6
-            hits: List[Hit] = []
-            # Skip hit detection unless we need to show it (paused hit overlay or overlay enabled).
-            if paused or hit_overlay_enabled or show_hit_overlays:
-                hits = detect_hits(current_time, positions, allow_self=allow_self)
-            if step == steps - 1:
-                display_hits = hits
-                recent_hits.clear()
-                if display_hits:
-                    recent_hits.extend(display_hits)
+                prune_emissions(current_time)
+                allow_self = speed_mult > field_v + 1e-6
+                hits: List[Hit] = []
+                # Skip hit detection unless we need to show it (paused hit overlay or overlay enabled).
+                if paused or hit_overlay_enabled or show_hit_overlays:
+                    hits = detect_hits(current_time, positions, allow_self=allow_self)
+                if step == steps - 1:
+                    display_hits = hits
+                    recent_hits.clear()
+                    if display_hits:
+                        recent_hits.extend(display_hits)
 
                 sim_idx += 1
 
@@ -1565,6 +1564,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             else:
                 rebuild_field_surface(current_time)
             render_frame(positions, display_hits)
+
+            # Throttled window title updates during simulation.
+            if not paused and (frame_idx - last_caption_update) >= 100:
+                pygame.display.set_caption(f"Orbit Visualizer (frame={frame_idx+1} sim={current_time:.2f}s)")
+                last_caption_update = frame_idx
 
             clock.tick(0)
 
