@@ -146,7 +146,8 @@ class SimulationConfig:
     start_paused: bool = True  # render loop starts paused unless overridden
     field_grid_scale_with_canvas: bool = False  # scale field grid resolution by canvas scale
     shell_thickness_scale_with_canvas: bool = False  # scale shell thickness by 1/canvas_scale
-    field_color_falloff: str = "inverse_r2"  # "inverse_r2" (linear) or "inverse_r" (sqrt)
+    field_color_falloff: str = "inverse_r2"  # "inverse_r2" (log10) or "inverse_r" (sqrt log10)
+    shell_weight: str = "raised_cosine"  # "raised_cosine" or "hard"
 
 
 @dataclass
@@ -296,6 +297,12 @@ def load_run_file(
     field_color_falloff = field_color_falloff.lower()
     if field_color_falloff not in {"inverse_r2", "inverse_r"}:
         raise ValueError("directives.field_color_falloff must be 'inverse_r2' or 'inverse_r'.")
+    shell_weight = directives.get("shell_weight", "raised_cosine")
+    if not isinstance(shell_weight, str):
+        raise ValueError("directives.shell_weight must be a string.")
+    shell_weight = shell_weight.lower()
+    if shell_weight not in {"raised_cosine", "hard"}:
+        raise ValueError("directives.shell_weight must be 'raised_cosine' or 'hard'.")
 
     cfg = SimulationConfig(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
@@ -309,6 +316,7 @@ def load_run_file(
         field_grid_scale_with_canvas=field_grid_scale_with_canvas,
         shell_thickness_scale_with_canvas=shell_thickness_scale_with_canvas,
         field_color_falloff=field_color_falloff,
+        shell_weight=shell_weight,
     )
 
     paths_override = paths
@@ -378,7 +386,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     pygame.display.set_caption("Orbit Visualizer (prototype)")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 12)
-    small_font = pygame.font.SysFont("Arial", 10)
 
     current_path_name = path_name
     path = paths[current_path_name]
@@ -442,6 +449,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     field_grid = np.zeros_like(xx, dtype=np.float32)
     field_surface = None
     field_visible = cfg.field_visible
+    shell_weight = cfg.shell_weight
 
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
@@ -489,11 +497,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def make_field_surface() -> "pygame.Surface":
         net = field_grid
-        max_abs = np.percentile(np.abs(net), 99) if np.any(net) else 1.0
+        abs_net = np.abs(net)
+        max_abs = np.percentile(abs_net, 99) if np.any(abs_net) else 1.0
         if max_abs < 1e-9:
             max_abs = 1.0
-        pos_norm = np.clip(np.maximum(net, 0.0) / max_abs, 0.0, 1.0)
-        neg_norm = np.clip(np.maximum(-net, 0.0) / max_abs, 0.0, 1.0)
+        log_max = math.log10(1.0 + max_abs)
+        if log_max <= 0:
+            log_max = 1.0
+        mag = np.log10(1.0 + abs_net) / log_max
+        mag = np.clip(mag, 0.0, 1.0)
+        pos_norm = np.where(net > 0.0, mag, 0.0)
+        neg_norm = np.where(net < 0.0, mag, 0.0)
         if cfg.field_color_falloff == "inverse_r":
             pos_norm = np.sqrt(pos_norm)
             neg_norm = np.sqrt(neg_norm)
@@ -537,8 +551,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if not np.any(mask):
             return
 
-        # Smooth radial weight (raised cosine) to reduce aliasing.
-        radial_weight = 0.5 * (1.0 + np.cos(np.pi * delta[mask] / band_half))
+        if shell_weight == "hard":
+            radial_weight = np.ones_like(delta[mask])
+        else:
+            # Smooth radial weight (raised cosine) to reduce aliasing.
+            radial_weight = 0.5 * (1.0 + np.cos(np.pi * delta[mask] / band_half))
         sign = 1.0 if em.emitter == "positrino" else -1.0
         contrib = sign * radial_weight / (dist[mask] ** 2)
         field_grid[y0:y1, x0:x1][mask] += contrib
@@ -784,14 +801,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         else:
             panel_draw(f"speed_mult={speed_mult:.2f}", 10, 70)
         panel_draw(f"path={current_path_name}", 10, 90)
-        panel_draw("Controls:", 10, 110)
-        panel_draw("ESC reset", 10, 130)
-        panel_draw("SPACE: pause/resume", 10, 150)
-        panel_draw("LEFT/RIGHT frame skip", 10, 170)
-        panel_draw("H: toggle hits (paused only)", 10, 190)
-        panel_draw("UP/DOWN speed (auto-pause)", 10, 210)
-        panel_draw("F: toggle hz 250/500/1000", 10, 230)
-        panel_draw("V: toggle field", 10, 250)
+        panel_draw(f"shell={shell_weight}", 10, 110)
+        panel_draw("Controls:", 10, 130)
+        panel_draw("ESC reset", 10, 150)
+        panel_draw("SPACE pause/resume", 10, 170)
+        panel_draw("LEFT/RIGHT skip", 10, 190)
+        panel_draw("H: hits (paused)", 10, 210)
+        panel_draw("UP/DOWN speed", 10, 230)
+        panel_draw("F: hz 250/500/1000", 10, 250)
+        panel_draw("V: field on/off", 10, 270)
+        panel_draw("W: shell weight", 10, 290)
         if paused:
             panel_draw("PAUSED", 10, height - 30)
 
@@ -857,6 +876,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         update_time_params(new_hz)
                         reset_state(apply_pending_speed=False)
                         paused = True
+                    elif event.key == pygame.K_w:
+                        shell_weight = "hard" if shell_weight == "raised_cosine" else "raised_cosine"
+                        if field_visible:
+                            rebuild_field_surface(frame_idx * dt)
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_v:
                         if field_visible:

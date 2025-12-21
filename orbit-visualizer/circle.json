@@ -9,7 +9,8 @@
     "path_snap": 0.002,
     "render": true,
     "field_visible": true,
-    "start_paused": true
+    "start_paused": true,
+    "shell_weight": "raised_cosine"
   },
   "groups": [
     {

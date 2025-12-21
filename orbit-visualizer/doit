@@ -1,0 +1,5 @@
+python - <<'PY'
+import pstats
+p = pstats.Stats("/tmp/orbits.prof")
+p.sort_stats("cumtime").print_stats(30)
+PY

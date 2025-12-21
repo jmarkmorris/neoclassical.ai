@@ -17,6 +17,22 @@ python orbit-visualizer/orbits.py --run orbit-visualizer/spiral.json
 python orbit-visualizer/orbits.py --render --path unit_circle
 ```
 
+## Profiling
+Built-in cProfile:
+```
+python -m cProfile -o /tmp/orbits.prof orbit-visualizer/orbits.py --run orbit-visualizer/circle.json
+python - <<'PY'
+import pstats
+p = pstats.Stats("/tmp/orbits.prof")
+p.sort_stats("cumtime").print_stats(30)
+PY
+```
+
+Optional pyinstrument (if installed):
+```
+python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer/circle.json
+```
+
 ## Top-level structure
 ```
 {
@@ -45,7 +61,8 @@ python orbit-visualizer/orbits.py --render --path unit_circle
 - `start_paused` (bool): Start paused when rendering.
 - `field_grid_scale_with_canvas` (bool): Scale field grid resolution by `canvas_scale`.
 - `shell_thickness_scale_with_canvas` (bool): Multiply shell thickness by `1/canvas_scale`.
-- `field_color_falloff` (string): `"inverse_r2"` for linear mapping, `"inverse_r"` for sqrt mapping.
+- `field_color_falloff` (string): `"inverse_r2"` for log10 mapping, `"inverse_r"` for sqrt log10 mapping.
+- `shell_weight` (string): `"raised_cosine"` for smooth annular weights, `"hard"` for a flat band.
 
 Aliases (optional):
 - `field_on` → `field_visible`
