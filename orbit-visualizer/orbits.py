@@ -149,7 +149,7 @@ class SimulationConfig:
     shell_thickness_scale_with_canvas: bool = False  # scale shell thickness by 1/canvas_scale
     field_color_falloff: str = "inverse_r2"  # "inverse_r2" (log10) or "inverse_r" (sqrt log10)
     shell_weight: str = "raised_cosine"  # "raised_cosine" or "hard"
-    field_alg: str = "gpu_instanced"  # "cpu_rebuild", "cpu_incremental", or "gpu_instanced"
+    field_alg: str = "gpu"  # "cpu_full", "cpu_incr", or "gpu"
 
 
 @dataclass
@@ -305,14 +305,18 @@ def load_run_file(
     shell_weight = shell_weight.lower()
     if shell_weight not in {"raised_cosine", "hard"}:
         raise ValueError("directives.shell_weight must be 'raised_cosine' or 'hard'.")
-    field_alg = directives.get("field_alg", "gpu_instanced")
+    field_alg = directives.get("field_alg", "gpu")
     if not isinstance(field_alg, str):
         raise ValueError("directives.field_alg must be a string.")
     field_alg = field_alg.lower()
-    if field_alg not in {"cpu_rebuild", "cpu_incremental", "gpu_instanced"}:
-        raise ValueError(
-            "directives.field_alg must be 'cpu_rebuild', 'cpu_incremental', or 'gpu_instanced'."
-        )
+    legacy_map = {
+        "gpu_instanced": "gpu",
+        "cpu_incremental": "cpu_incr",
+        "cpu_rebuild": "cpu_full",
+    }
+    field_alg = legacy_map.get(field_alg, field_alg)
+    if field_alg not in {"cpu_full", "cpu_incr", "gpu"}:
+        raise ValueError("directives.field_alg must be 'cpu_full', 'cpu_incr', or 'gpu'.")
 
     cfg = SimulationConfig(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
@@ -389,12 +393,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     info = pygame.display.Info()
     field_alg = cfg.field_alg
     gpu_display = False
-    if field_alg == "gpu_instanced":
+    if field_alg == "gpu":
         try:
             import moderngl  # noqa: F401
             gpu_display = True
         except ImportError:
-            field_alg = "cpu_incremental"
+            field_alg = "cpu_incr"
     display_flags = pygame.RESIZABLE
     if gpu_display:
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
@@ -474,7 +478,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         """Print a fixed-width table snapshot of the current render/sim state."""
         tf = lambda v: "T" if v else "F"
         cols = [
-            ("reason", reason, 14),
+            ("reason", reason, 24),
             ("p", tf(paused), 1),
             ("frm", str(frame_idx), 6),
             ("hz", str(cfg.hz), 4),
@@ -484,24 +488,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             ("spd", f"{speed_mult:.2f}", 6),
             ("pend", f"{pending_speed_mult:.2f}", 6),
             ("path", current_path_name, 24),
-            ("field", field_alg, 14),
+            ("field", field_alg, 15),
             ("fv", tf(field_visible), 1),
             ("ui", tf(ui_overlay_visible), 1),
             ("hit", tf(hit_overlay_enabled), 1),
             ("ovr", tf(show_hit_overlays), 1),
-            ("size", f"{width}x{height} (panel={panel_w}, canvas={canvas_w})", 0),
-            ("disp", f"{display_info[0]}x{display_info[1]}", 0),
+            ("size", f"{width}x{height} (panel={panel_w}, canvas={canvas_w})", 36),
+            ("disp", f"{display_info[0]}x{display_info[1]}", 12),
         ]
-        widths = []
-        for name, val, w in cols:
-            if w == 0:
-                widths.append(max(len(name), len(val)))
-            else:
-                widths.append(max(len(name), w, len(val)))
-        header_line = " | ".join(name.upper().ljust(w) for (name, _, _), w in zip(cols, widths))
-        value_line = " | ".join(val.ljust(w) for (_, val, _), w in zip(cols, widths))
+        header_line = " | ".join(name.upper().ljust(w) for name, _, w in cols)
+        value_line = " | ".join(val.ljust(w) for _, val, w in cols)
         if not hasattr(log_state, "_printed_header"):
             print(header_line)
+            print("FIELD: gpu=GL instanced rings, cpu_incr=CPU incremental rings, cpu_full=CPU full rebuild")
             log_state._printed_header = True
         print(value_line)
 
@@ -755,15 +754,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         try:
             import moderngl
         except ImportError:
-            print("Moderngl not available; falling back to cpu_incremental.")
-            field_alg = "cpu_incremental"
+            print("Moderngl not available; falling back to cpu_incr.")
+            field_alg = "cpu_incr"
             return False
         try:
             ctx = moderngl.create_context() if display else moderngl.create_standalone_context()
         except Exception as exc:
-            print(f"GPU alg unavailable ({exc}); falling back to cpu_incremental.")
+            print(f"GPU alg unavailable ({exc}); falling back to cpu_incr.")
             if not display:
-                field_alg = "cpu_incremental"
+                field_alg = "cpu_incr"
             return False
         field_tex = ctx.texture((res_x, res_y), components=1, dtype="f4")
         fbo = ctx.framebuffer(color_attachments=[field_tex])
@@ -953,7 +952,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     def gpu_rebuild_field_surface(current_time: float) -> None:
         nonlocal field_surface
         if not init_gpu_renderer(display=False):
-            rebuild_field_surface(current_time, update_last_radius=field_alg == "cpu_incremental")
+            rebuild_field_surface(current_time, update_last_radius=field_alg == "cpu_incr")
             return
         inst_entries = []
         for em in emissions:
@@ -1167,13 +1166,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         sim_clock_start = time.monotonic()
         sim_clock_elapsed = 0.0
         if field_visible:
-            if field_alg == "gpu_instanced":
+            if field_alg == "gpu":
                 if gpu_display:
                     gpu_update_field_texture(0.0)
                 else:
                     gpu_rebuild_field_surface(0.0)
             else:
-                rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incremental")
+                rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incr")
         log_state("reset")
 
     def render_frame_gl(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
@@ -1189,7 +1188,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         ctx.viewport = (0, 0, view_w, view_h)
         ctx.clear(1.0, 1.0, 1.0, 1.0)
         if field_visible:
-            if field_alg == "gpu_instanced":
+            if field_alg == "gpu":
                 ctx.viewport = (panel_w, 0, canvas_w, height)
                 gpu_present_field()
                 ctx.viewport = (0, 0, view_w, view_h)
@@ -1462,7 +1461,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         cutoff = current_time - emission_retention
         if cutoff <= 0:
             return
-        if field_alg != "cpu_incremental":
+        if field_alg != "cpu_incr":
             emissions = [em for em in emissions if em.time >= cutoff]
             return
         kept: List[Emission] = []
@@ -1532,16 +1531,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         paused = True
                         log_state("key_f_hz_toggle")
                     elif event.key == pygame.K_b:
-                        algs = ["cpu_incremental", "cpu_rebuild", "gpu_instanced"]
+                        algs = ["cpu_incr", "cpu_full", "gpu"]
                         try:
                             idx = algs.index(field_alg)
                         except ValueError:
                             idx = 0
                         field_alg = algs[(idx + 1) % len(algs)]
-                        if field_alg == "gpu_instanced":
+                        if field_alg == "gpu":
                             if not init_gpu_renderer(display=gpu_display):
-                                field_alg = "cpu_incremental"
-                        if field_alg == "gpu_instanced":
+                                field_alg = "cpu_incr"
+                        if field_alg == "gpu":
                             if gpu_display:
                                 gpu_update_field_texture(frame_idx * dt)
                             else:
@@ -1549,7 +1548,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         else:
                             rebuild_field_surface(
                                 frame_idx * dt,
-                                update_last_radius=field_alg == "cpu_incremental",
+                                update_last_radius=field_alg == "cpu_incr",
                             )
                         log_state("key_b_field_alg")
                     elif event.key == pygame.K_i:
@@ -1570,7 +1569,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             field_visible = False
                         else:
                             field_visible = True
-                            if field_alg == "gpu_instanced":
+                            if field_alg == "gpu":
                                 if gpu_display:
                                     gpu_update_field_texture(frame_idx * dt)
                                 else:
@@ -1578,7 +1577,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             else:
                                 rebuild_field_surface(
                                     frame_idx * dt,
-                                    update_last_radius=field_alg == "cpu_incremental",
+                                    update_last_radius=field_alg == "cpu_incr",
                                 )
                         log_state("key_v_field_visible")
 
@@ -1626,9 +1625,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 sim_idx += 1
 
             frame_idx = sim_idx - 1
-            if field_alg == "cpu_incremental":
+            if field_alg == "cpu_incr":
                 update_field_surface(current_time)
-            elif field_alg == "gpu_instanced":
+            elif field_alg == "gpu":
                 if field_visible:
                     if gpu_display:
                         gpu_update_field_texture(current_time)
