@@ -406,12 +406,39 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE)
         pygame.display.gl_set_attribute(pygame.GL_DOUBLEBUFFER, 1)
         display_flags |= pygame.OPENGL | pygame.DOUBLEBUF
+    # Frame controls and canvas sizing
+    flip_stride = 8  # flip every N frames when running
+    trace_draw_stride = 8  # redraw traces every N frames while running
+    canvas_w = 0
+    width = 0
+    height = 0
+    screen: "pygame.Surface | None" = None
+    trace_layer: "pygame.Surface | None" = None
+    trace_layer_last_update = -trace_draw_stride
+
+    def apply_window_size(request_w: int, request_h: int) -> None:
+        """Enforce a square canvas based on the min dimension and refresh dependent surfaces."""
+        nonlocal screen, width, height, canvas_w, trace_layer, trace_layer_last_update
+        request_w = max(request_w, panel_w + 1)
+        request_h = max(request_h, 1)
+        square_side = max(1, min(request_h, request_w - panel_w))
+        target_size = (panel_w + square_side, square_side)
+        screen = pygame.display.set_mode(target_size, display_flags)
+        actual_w, actual_h = screen.get_size()
+        square_side = max(1, min(actual_h, actual_w - panel_w))
+        width = panel_w + square_side
+        height = square_side
+        if (actual_w, actual_h) != (width, height):
+            # Force a square client area if the OS adjusted our request.
+            screen = pygame.display.set_mode((width, height), display_flags)
+        canvas_w = square_side
+        trace_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+        trace_layer.fill((0, 0, 0, 0))
+        trace_layer_last_update = -trace_draw_stride
+
     max_side = min(info.current_h, max(1, info.current_w - panel_w))
     canvas_side = max(1, int(max_side * canvas_scale))
-    canvas_w = canvas_side
-    width = panel_w + canvas_w
-    height = canvas_w
-    screen = pygame.display.set_mode((width, height), display_flags)
+    apply_window_size(panel_w + canvas_side, canvas_side)
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 12)
 
@@ -464,12 +491,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     hit_overlay_enabled = False
     show_hit_overlays = False
     trace_test_frames_remaining: int | None = None
-    last_caption_update = 0
-    flip_stride = 8  # flip every N frames when running
-    trace_draw_stride = 8  # redraw traces every N frames while running
-    trace_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-    trace_layer.fill((0, 0, 0, 0))
-    trace_layer_last_update = -trace_draw_stride
     display_info = (info.current_w, info.current_h)
 
     def log_state(reason: str) -> None:
@@ -571,7 +592,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         time_field = pad_float(elapsed_s, 8, 1)  # up to 999,999.9s before width grows
         return f"frame {frame_field} | t {time_field}s"
 
-    pygame.display.set_caption(format_title(paused_flag=paused, label=run_label) + " | " + format_frame_and_time(frame_idx + 1, sim_clock_elapsed))
+    def set_caption(paused_flag: bool, frame_number: int, elapsed_s: float) -> None:
+        """Single caption updater to keep all title parts in sync and width-stable."""
+        pygame.display.set_caption(format_title(paused_flag=paused_flag, label=run_label) + " | " + format_frame_and_time(frame_number, elapsed_s))
+
+    set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed)
 
     def draw_ring(target: "pygame.Surface", center: Vec2, radius_px: int, thickness_px: int, color: Tuple[int, int, int]) -> None:
         """
@@ -991,9 +1016,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         gpu_display = False
         display_flags = pygame.RESIZABLE
         screen = pygame.display.set_mode((width, height), display_flags)
-        pygame.display.set_caption(
-            format_title(paused_flag=paused, label=run_label) + " | " + format_frame_and_time(frame_idx + 1, sim_clock_elapsed)
-        )
+        set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed)
 
     def gpu_rebuild_field_surface(current_time: float) -> None:
         nonlocal field_surface
@@ -1486,7 +1509,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                             sim_clock_start = time.monotonic()
                         else:
                             sim_clock_elapsed += time.monotonic() - sim_clock_start
-                        log_state("key_space_toggle")
                     elif event.key == pygame.K_h:
                         if paused:
                             hit_overlay_enabled = not hit_overlay_enabled
@@ -1547,6 +1569,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     elif event.key == pygame.K_u:
                         ui_overlay_visible = not ui_overlay_visible
                         log_state("key_u_ui_overlay")
+                elif event.type == pygame.VIDEORESIZE:
+                    apply_window_size(event.w, event.h)
+                    log_state("resize")
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_v:
                         if field_visible:
@@ -1573,10 +1598,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 # Refresh hits once when paused with overlay requested.
                 if hit_overlay_enabled and not recent_hits:
                     refresh_hits_for_current_time()
-                pygame.display.set_caption(
-                    format_title(paused_flag=True, label=run_label)
-                    + f" | frame {frame_idx+1} | t {sim_clock_elapsed:.2f}s"
-                )
+                set_caption(paused_flag=True, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed)
                 render_frame(positions, list(recent_hits))
                 clock.tick(cfg.hz)
                 continue
@@ -1624,13 +1646,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 rebuild_field_surface(current_time)
             render_frame(positions, display_hits)
 
-            # Throttled window title updates during simulation.
-            if not paused and (frame_idx - last_caption_update) >= 100:
-                pygame.display.set_caption(
-                    format_title(paused_flag=False, label=run_label)
-                    + f" | frame {frame_idx+1} | t {current_time:.2f}s"
-                )
-                last_caption_update = frame_idx
+            # Always refresh caption once per loop to keep frame/time accurate.
+            set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=current_time if not paused else sim_clock_elapsed)
 
             clock.tick(0)
 
