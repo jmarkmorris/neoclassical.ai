@@ -463,6 +463,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     show_hit_overlays = False
     trace_test_frames_remaining: int | None = None
     last_caption_update = 0
+    flip_stride = 8  # flip every N frames when running
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -1276,7 +1277,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 panel_draw("PAUSED", 10, height - 30)
             gpu_draw_surface(ui_layer, 0, 0, "ui_panel")
 
-        pygame.display.flip()
+        # Throttled flipping: always flip when paused; otherwise flip every flip_stride frames.
+        if paused or frame_idx % flip_stride == 0:
+            pygame.display.flip()
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal panel_log
