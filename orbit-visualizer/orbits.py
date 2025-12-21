@@ -366,7 +366,7 @@ def load_run_file(
     )
 
 
-def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str = "unit_circle") -> None:
+def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str = "unit_circle", run_label: str = "") -> None:
     """
     Incremental PyGame renderer that keeps a rolling accumulator grid instead of cached frames.
     """
@@ -456,7 +456,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     last_diff_queue = deque()
     emitter_lookup = {"positrino": positrino, "electrino": electrino}
     path_traces: Dict[str, List[Vec2]] = {"positrino": [], "electrino": []}
-    BASE_OFFSET = 6.0 * math.pi  # start with 3 full revolutions
+    BASE_OFFSET = 0.0  # start at param = 0
     path_time_offset = BASE_OFFSET
     trace_limit = 40000
     hit_overlay_enabled = False
@@ -1128,6 +1128,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         recent_hits.clear()
         sim_clock_start = time.monotonic()
         sim_clock_elapsed = 0.0
+        dots_layer.fill((0, 0, 0, 0))
         if field_visible:
             if field_alg == "gpu_instanced":
                 if gpu_display:
@@ -1167,22 +1168,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-            if ui_overlay_visible and current_path_name == "unit_circle":
-                center = world_to_canvas((0.0, 0.0))
-                scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-                r_int = max(1, int(round(scale)))
-                draw_ring(geometry_layer, center, r_int, 6, PURE_WHITE)
+            # Unit-circle ring disabled; using traces only.
 
-            if ui_overlay_visible:
+            if ui_overlay_visible and not paused:
                 for name, trace in path_traces.items():
                     if len(trace) < 2:
                         continue
                     color = PURE_WHITE
-                    prev = world_to_canvas(trace[0])
-                    for pt in trace[1:]:
-                        cur = world_to_canvas(pt)
-                        pygame.draw.aaline(geometry_layer, color, (int(prev[0]), int(prev[1])), (int(cur[0]), int(cur[1])))
-                        prev = cur
+                    pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
+                    try:
+                        pygame.draw.lines(geometry_layer, color, False, pts, 6)
+                    except ValueError:
+                        pass
 
             def draw_hit_arc(hit: Hit) -> None:
                 recv_pos = positions.get(hit.receiver)
@@ -1295,23 +1292,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-            if ui_overlay_visible and current_path_name == "unit_circle":
-                center = world_to_canvas((0.0, 0.0))
-                scale = min(canvas_w, height) / (2 * cfg.domain_half_extent)
-                r_int = max(1, int(round(scale)))
-                draw_aa_ring(geometry_layer, center, r_int, 10, PURE_WHITE)
+            # Unit-circle ring disabled; using traces only.
 
-            # Draw path traces.
-            if ui_overlay_visible:
+            if ui_overlay_visible and not paused:
                 for name, trace in path_traces.items():
                     if len(trace) < 2:
                         continue
                     color = PURE_WHITE
-                    prev = world_to_canvas(trace[0])
-                    for pt in trace[1:]:
-                        cur = world_to_canvas(pt)
-                        pygame.draw.aaline(geometry_layer, color, (int(prev[0]), int(prev[1])), (int(cur[0]), int(cur[1])))
-                        prev = cur
+                    pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
+                    try:
+                        pygame.draw.lines(geometry_layer, color, False, pts, 6)
+                    except ValueError:
+                        pass
 
             # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
             def draw_hit_arc(hit: Hit) -> None:
@@ -1538,7 +1530,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 # Refresh hits once when paused with overlay requested.
                 if hit_overlay_enabled and not recent_hits:
                     refresh_hits_for_current_time()
-                pygame.display.set_caption(f"Orbit Visualizer (frame={frame_idx+1} sim={sim_clock_elapsed:.2f}s)")
+                pygame.display.set_caption(f"Orbit Visualizer [{run_label}] (frame={frame_idx+1} sim={sim_clock_elapsed:.2f}s)")
                 render_frame(positions, list(recent_hits))
                 clock.tick(cfg.hz)
                 continue
@@ -1588,7 +1580,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
             # Throttled window title updates during simulation.
             if not paused and (frame_idx - last_caption_update) >= 100:
-                pygame.display.set_caption(f"Orbit Visualizer (frame={frame_idx+1} sim={current_time:.2f}s)")
+                pygame.display.set_caption(
+                    f"Orbit Visualizer [{run_label}] (frame={frame_idx+1} sim={current_time:.2f}s)"
+                )
                 last_caption_update = frame_idx
 
             clock.tick(0)
@@ -1619,7 +1613,8 @@ def main() -> None:
         render = scenario.render or args.render
         if not render:
             raise SystemExit("Render disabled. Set directives.render or pass --render.")
-        render_live(scenario.config, scenario.paths, path_name=orbit.path)
+        run_label = Path(args.run).name
+        render_live(scenario.config, scenario.paths, path_name=orbit.path, run_label=run_label)
     except KeyboardInterrupt:
         # Graceful exit on Ctrl-C without traceback.
         try:
