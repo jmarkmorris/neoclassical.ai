@@ -1092,7 +1092,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         else:
                             new_hz = 250
                         update_time_params(new_hz)
-                        reset_state(apply_pending_speed=False, keep_field_visible=True)
+                        reset_state(apply_pending_speed=True, keep_field_visible=True)
                         paused = True
                     elif event.key == pygame.K_b:
                         algs = ["cpu_incremental", "cpu_rebuild", "gpu_instanced"]
