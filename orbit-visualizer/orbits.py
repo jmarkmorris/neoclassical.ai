@@ -144,6 +144,9 @@ class SimulationConfig:
     path_snap: float | None = None  # optional path-parameter snap step
     field_visible: bool = True  # show field texture by default in render mode
     start_paused: bool = True  # render loop starts paused unless overridden
+    field_grid_scale_with_canvas: bool = False  # scale field grid resolution by canvas scale
+    shell_thickness_scale_with_canvas: bool = False  # scale shell thickness by 1/canvas_scale
+    field_color_falloff: str = "inverse_r"  # "inverse_r2" (linear) or "inverse_r" (sqrt)
 
 
 @dataclass
@@ -285,6 +288,14 @@ def load_run_file(
 
     field_visible = bool(directives.get("field_visible", directives.get("field_on", True)))
     start_paused = bool(directives.get("start_paused", True))
+    field_grid_scale_with_canvas = bool(directives.get("field_grid_scale_with_canvas", False))
+    shell_thickness_scale_with_canvas = bool(directives.get("shell_thickness_scale_with_canvas", False))
+    field_color_falloff = directives.get("field_color_falloff", "inverse_r2")
+    if not isinstance(field_color_falloff, str):
+        raise ValueError("directives.field_color_falloff must be a string.")
+    field_color_falloff = field_color_falloff.lower()
+    if field_color_falloff not in {"inverse_r2", "inverse_r"}:
+        raise ValueError("directives.field_color_falloff must be 'inverse_r2' or 'inverse_r'.")
 
     cfg = SimulationConfig(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
@@ -295,6 +306,9 @@ def load_run_file(
         path_snap=path_snap,
         field_visible=field_visible,
         start_paused=start_paused,
+        field_grid_scale_with_canvas=field_grid_scale_with_canvas,
+        shell_thickness_scale_with_canvas=shell_thickness_scale_with_canvas,
+        field_color_falloff=field_color_falloff,
     )
 
     paths_override = paths
@@ -350,9 +364,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     pygame.init()
     panel_w = 320
-    canvas_scale = 0.25
+    canvas_scale = 1
+    if canvas_scale <= 0:
+        raise ValueError("canvas_scale must be > 0.")
     info = pygame.display.Info()
-    display_flags = pygame.RESIZABLE | pygame.SCALED
+    display_flags = pygame.RESIZABLE
     max_side = min(info.current_h, max(1, info.current_w - panel_w))
     canvas_side = max(1, int(max_side * canvas_scale))
     canvas_w = canvas_side
@@ -413,7 +429,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     show_hit_overlays = False
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
-    base_res = 640
+    base_res = 320
+    if cfg.field_grid_scale_with_canvas:
+        base_res = max(64, int(base_res * canvas_scale))
     res_x = res_y = max(64, base_res)
     x_extent = y_extent = cfg.domain_half_extent
     xs = np.linspace(-x_extent, x_extent, res_x)
@@ -428,6 +446,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     grid_dx = (xs[-1] - xs[0]) / max(res_x - 1, 1)
     grid_dy = (ys[-1] - ys[0]) / max(res_y - 1, 1)
 
+    shell_thickness_scale = 1.0
+    if cfg.shell_thickness_scale_with_canvas:
+        shell_thickness_scale = 1.0 / canvas_scale
+
     def update_time_params(new_hz: int) -> None:
         nonlocal dt, shell_thickness
         cfg.hz = new_hz
@@ -435,7 +457,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         base_shell = max(field_v * dt, 0.003)
         shell_thickness_local = max(base_shell, 0.75 * min(grid_dx, grid_dy))
         shell_thickness_local = max(shell_thickness_local, 0.003)
-        shell_thickness = shell_thickness_local
+        shell_thickness = shell_thickness_local * shell_thickness_scale
 
     update_time_params(cfg.hz)
 
@@ -467,6 +489,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
     def make_field_surface() -> "pygame.Surface":
         net = field_grid
+        if cfg.field_color_falloff == "inverse_r":
+            net = np.sign(net) * np.sqrt(np.abs(net))
         max_abs = np.percentile(np.abs(net), 99) if np.any(net) else 1.0
         if max_abs < 1e-9:
             max_abs = 1.0

@@ -43,6 +43,9 @@ python orbit-visualizer/orbits.py --render --path unit_circle
 - `render` (bool): Start in render mode (PyGame).
 - `field_visible` (bool): Show field texture by default.
 - `start_paused` (bool): Start paused when rendering.
+- `field_grid_scale_with_canvas` (bool): Scale field grid resolution by `canvas_scale`.
+- `shell_thickness_scale_with_canvas` (bool): Multiply shell thickness by `1/canvas_scale`.
+- `field_color_falloff` (string): `"inverse_r2"` for linear mapping, `"inverse_r"` for sqrt mapping.
 
 Aliases (optional):
 - `field_on` → `field_visible`
