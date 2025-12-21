@@ -508,15 +508,26 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             log_state._printed_header = True
         print(value_line)
 
+    FIGURE_SPACE = "\u2007"  # tabular-space to stabilize numeral widths in proportional fonts
+
+    def pad_int(value: int, width: int) -> str:
+        """Pad integer with figure spaces so digit columns stay aligned."""
+        return f"{value:{width}d}".replace(" ", FIGURE_SPACE)
+
+    def pad_float(value: float, width: int, precision: int) -> str:
+        """Pad float with figure spaces; assumes width includes decimal and leading spaces."""
+        return f"{value:{width}.{precision}f}".replace(" ", FIGURE_SPACE)
+
     def format_title(paused_flag: bool, label: str | None = None) -> str:
         """Compact title line carrying former panel info."""
-        speed_label = (
-            f"velo↑↓ {speed_mult:.2f}->{pending_speed_mult:.2f}"
-            if paused_flag and pending_speed_mult != speed_mult
-            else f"velo↑↓ {speed_mult:.2f}"
-        )
-        skip_label = f"skip←→ {frame_skip}"
-        freq_label = f"🅕 {cfg.hz}Hz"
+        speed_field = pad_float(speed_mult, 6, 2)
+        speed_label = f"velo↑↓ {speed_field}"
+        if paused_flag and pending_speed_mult != speed_mult:
+            pending_field = pad_float(pending_speed_mult, 6, 2)
+            speed_label = f"velo↑↓ {speed_field}->{pending_field}"
+
+        skip_label = f"skip←→ {pad_int(frame_skip, 3)}"
+        freq_label = f"🅕 {pad_int(cfg.hz, 4)}Hz"
         path_label = f"path {current_path_name}"
         alg_label = f"alg 🅑 {field_alg}"
         field_label = f"field 🅥 {'on' if field_visible else 'off'}"
