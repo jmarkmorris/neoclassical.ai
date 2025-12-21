@@ -68,3 +68,4 @@
 - If you see visual anomalies (shrinking UI, missing lines), state whether the window size changed or just the content, and include a screenshot.
 - For rendering tweaks, note your display settings (resolution/scale) and any relevant hotkeys pressed (e.g., B, U, H, T).
 - When reverting or rerunning tests, specify uncommitted changes state; stash/commit before asking for a hard reset.
+- Assert that we have terse and clear labels for the objects and methods in our architecture, e.g. data structures, UI elements, concepts, features, and so on.

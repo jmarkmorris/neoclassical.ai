@@ -386,7 +386,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
 
     pygame.init()
-    panel_w = 160
+    panel_w = 0
     canvas_scale = 1.0
     if canvas_scale <= 0:
         raise ValueError("canvas_scale must be > 0.")
@@ -412,7 +412,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     width = panel_w + canvas_w
     height = canvas_w
     screen = pygame.display.set_mode((width, height), display_flags)
-    pygame.display.set_caption("Orbit Visualizer (prototype)")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 12)
 
@@ -453,7 +452,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     emission_retention = max_radius / field_v
     emissions: List[Emission] = []
     recent_hits = deque()
-    panel_log: List[str] = []
     seen_hits = set()
     seen_hits_queue = deque()
     last_diff = {}
@@ -510,6 +508,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             log_state._printed_header = True
         print(value_line)
 
+    def format_title(paused_flag: bool, label: str | None = None) -> str:
+        """Compact title line carrying former panel info."""
+        status = "[PAUSED]" if paused_flag else ""
+        speed_label = (
+            f"velo↑↓ {speed_mult:.2f}->{pending_speed_mult:.2f}"
+            if paused_flag and pending_speed_mult != speed_mult
+            else f"velo↑↓ {speed_mult:.2f}"
+        )
+        skip_label = f"skip←→ {frame_skip}"
+        freq_label = f"freqF {cfg.hz}"
+        path_label = f"path {current_path_name}"
+        alg_label = f"algB {field_alg}"
+        field_label = f"fieldV {'on' if field_visible else 'off'}"
+        prefix = f"Orbit Visualizer [{label}]" if label else "Orbit Visualizer"
+        parts = [p for p in [status, speed_label, skip_label, freq_label, path_label, alg_label, field_label] if p]
+        return prefix + " | " + " | ".join(parts)
+
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
     if cfg.field_grid_scale_with_canvas:
@@ -534,6 +549,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     shell_thickness_scale = 1.0
     if cfg.shell_thickness_scale_with_canvas:
         shell_thickness_scale = 1.0 / canvas_scale
+
+    pygame.display.set_caption(
+        format_title(paused_flag=paused, label=run_label) + f" | frame {frame_idx+1} | t {sim_clock_elapsed:.2f}s"
+    )
 
     def draw_ring(target: "pygame.Surface", center: Vec2, radius_px: int, thickness_px: int, color: Tuple[int, int, int]) -> None:
         """
@@ -953,7 +972,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         gpu_display = False
         display_flags = pygame.RESIZABLE
         screen = pygame.display.set_mode((width, height), display_flags)
-        pygame.display.set_caption("Orbit Visualizer (prototype)")
+        pygame.display.set_caption(
+            format_title(paused_flag=paused, label=run_label) + f" | frame {frame_idx+1} | t {sim_clock_elapsed:.2f}s"
+        )
 
     def gpu_rebuild_field_surface(current_time: float) -> None:
         nonlocal field_surface
@@ -1202,7 +1223,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
 
         overlay_visible = ui_overlay_visible or show_hit_overlays
-        panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             # Unit-circle ring disabled; using traces only.
@@ -1286,42 +1306,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
 
             gpu_draw_surface(geometry_layer, panel_w, 0, "overlay_geom")
             gpu_draw_surface(particle_layer, panel_w, 0, "overlay_particles")
-
-        if panel_visible:
-            ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
-            pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
-            def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
-                draw_text(ui_layer, text, x, y, color=color)
-
-            panel_draw(f"hz={cfg.hz}", 10, 10)
-            panel_draw(f"frame_skip={frame_skip}", 10, 30)
-            if paused and pending_speed_mult != speed_mult:
-                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
-            else:
-                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
-            panel_draw(f"path={current_path_name}", 10, 70)
-            alg_state = field_alg
-            panel_draw(f"alg={alg_state}", 10, 90)
-            panel_draw("Controls:", 10, 110)
-            panel_draw("ESC reset", 10, 130)
-            panel_draw("SPACE pause/resume", 10, 150)
-            panel_draw("LEFT/RIGHT skip", 10, 170)
-            panel_draw("H: hits (paused)", 10, 190)
-            panel_draw("UP/DOWN speed", 10, 210)
-            panel_draw("F: hz 250/500/1000", 10, 230)
-            panel_draw("V: field on/off", 10, 250)
-            panel_draw(f"B: field alg ({alg_state})", 10, 270)
-            panel_draw("U: ui/overlays", 10, 290)
-            if paused:
-                panel_draw("PAUSED", 10, height - 30)
-            gpu_draw_surface(ui_layer, 0, 0, "ui_panel")
-
         # Throttled flipping: always flip when paused; otherwise flip every flip_stride frames.
         if paused or frame_idx % flip_stride == 0:
             pygame.display.flip()
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
-        nonlocal panel_log, trace_layer_last_update, trace_layer
+        nonlocal trace_layer_last_update, trace_layer
         if gpu_display:
             render_frame_gl(positions, hits, field_surf)
             return
@@ -1331,7 +1321,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             screen.blit(fs, (panel_w, 0))
 
         overlay_visible = ui_overlay_visible or show_hit_overlays
-        panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             # Unit-circle ring disabled; using traces only.
@@ -1422,36 +1411,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             screen.blit(geometry_layer, (panel_w, 0))
             screen.blit(particle_layer, (panel_w, 0))
 
-        if panel_visible:
-            ui_layer = pygame.Surface((width, height), pygame.SRCALPHA).convert_alpha()
-            pygame.draw.rect(ui_layer, (245, 245, 245), (0, 0, panel_w, height))
-            def panel_draw(text: str, x: int, y: int, color=(0, 0, 0)) -> None:
-                draw_text(ui_layer, text, x, y, color=color)
-
-            panel_draw(f"hz={cfg.hz}", 10, 10)
-            panel_draw(f"frame_skip={frame_skip}", 10, 30)
-            if paused and pending_speed_mult != speed_mult:
-                panel_draw(f"speed_mult={speed_mult:.2f} -> {pending_speed_mult:.2f}", 10, 50)
-            else:
-                panel_draw(f"speed_mult={speed_mult:.2f}", 10, 50)
-            panel_draw(f"path={current_path_name}", 10, 70)
-            panel_draw(f"sim={sim_clock_elapsed:.1f}s", 10, 90)
-            alg_state = field_alg
-            panel_draw(f"alg={alg_state}", 10, 110)
-            panel_draw("Controls:", 10, 130)
-            panel_draw("ESC reset", 10, 150)
-            panel_draw("SPACE pause/resume", 10, 170)
-            panel_draw("LEFT/RIGHT skip", 10, 190)
-            panel_draw("H: hits (paused)", 10, 210)
-            panel_draw("UP/DOWN speed", 10, 230)
-            panel_draw("F: hz 250/500/1000", 10, 250)
-            panel_draw("V: field on/off", 10, 270)
-            panel_draw(f"B: field alg ({alg_state})", 10, 290)
-            panel_draw("U: ui/overlays", 10, 310)
-            if paused:
-                panel_draw("PAUSED", 10, height - 30)
-
-            screen.blit(ui_layer, (0, 0))
         pygame.display.flip()
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
@@ -1595,7 +1554,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 # Refresh hits once when paused with overlay requested.
                 if hit_overlay_enabled and not recent_hits:
                     refresh_hits_for_current_time()
-                pygame.display.set_caption(f"Orbit Visualizer [{run_label}] (frame={frame_idx+1} sim={sim_clock_elapsed:.2f}s)")
+                pygame.display.set_caption(
+                    format_title(paused_flag=True, label=run_label)
+                    + f" | frame {frame_idx+1} | t {sim_clock_elapsed:.2f}s"
+                )
                 render_frame(positions, list(recent_hits))
                 clock.tick(cfg.hz)
                 continue
@@ -1646,7 +1608,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             # Throttled window title updates during simulation.
             if not paused and (frame_idx - last_caption_update) >= 100:
                 pygame.display.set_caption(
-                    f"Orbit Visualizer [{run_label}] (frame={frame_idx+1} sim={current_time:.2f}s)"
+                    format_title(paused_flag=False, label=run_label)
+                    + f" | frame {frame_idx+1} | t {current_time:.2f}s"
                 )
                 last_caption_update = frame_idx
 
