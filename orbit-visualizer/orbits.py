@@ -461,6 +461,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     trace_limit = 40000
     hit_overlay_enabled = False
     show_hit_overlays = False
+    trace_test_frames_remaining: int | None = None
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -988,6 +989,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if not gpu_state or not gpu_state["display"]:
             return
         ctx = gpu_state["ctx"]
+        # Use the actual framebuffer size (after DPI / resize) and scale uniformly to preserve aspect.
+        # Use the current viewport (which may be smaller than the full framebuffer after scaling).
+        view_x, view_y, view_w, view_h = ctx.viewport
+        if view_w <= 0 or view_h <= 0:
+            return
+        scale = min(view_w / width, view_h / height)
         tex = gpu_state["overlay_textures"].get(key)
         size = surface.get_size()
         if tex is None or tex.size != size:
@@ -998,10 +1005,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             gpu_state["overlay_textures"][key] = tex
         data = pygame.image.tostring(surface, "RGBA", True)
         tex.write(data)
-        x0 = (x / width) * 2.0 - 1.0
-        x1 = ((x + size[0]) / width) * 2.0 - 1.0
-        y0 = 1.0 - (y / height) * 2.0
-        y1 = 1.0 - ((y + size[1]) / height) * 2.0
+        x0 = ((x * scale) / view_w) * 2.0 - 1.0
+        x1 = (((x + size[0]) * scale) / view_w) * 2.0 - 1.0
+        y0 = 1.0 - ((y * scale) / view_h) * 2.0
+        y1 = 1.0 - (((y + size[1]) * scale) / view_h) * 2.0
         verts = np.array(
             [
                 x0,
@@ -1118,13 +1125,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             return
         ctx = gpu_state["ctx"]
         ctx.screen.use()
-        ctx.viewport = (0, 0, width, height)
+        view_w, view_h = ctx.screen.viewport[2:]
+        if view_w <= 0 or view_h <= 0:
+            return
+        scale = min(view_w / width, view_h / height)
+        content_w = int(width * scale)
+        content_h = int(height * scale)
+        ctx.viewport = (0, 0, content_w, content_h)
         ctx.clear(1.0, 1.0, 1.0, 1.0)
         if field_visible:
             if field_alg == "gpu_instanced":
-                ctx.viewport = (panel_w, 0, canvas_w, height)
+                panel_px = int(panel_w * scale)
+                canvas_px = max(1, int(canvas_w * scale))
+                ctx.viewport = (panel_px, 0, canvas_px, canvas_px)
                 gpu_present_field()
-                ctx.viewport = (0, 0, width, height)
+                ctx.viewport = (0, 0, content_w, content_h)
             elif field_surface is not None:
                 gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
 
@@ -1471,6 +1486,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                                 frame_idx * dt,
                                 update_last_radius=field_alg == "cpu_incremental",
                             )
+                    elif event.key == pygame.K_t:
+                        trace_test_frames_remaining = 3000
+                        paused = False
+                        hit_overlay_enabled = False
+                        show_hit_overlays = False
+                        sim_clock_start = time.monotonic()
                     elif event.key == pygame.K_u:
                         ui_overlay_visible = not ui_overlay_visible
                 elif event.type == pygame.KEYUP:
@@ -1495,6 +1516,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 sim_clock_elapsed += time.monotonic() - sim_clock_start
                 sim_clock_start = time.monotonic()
             if paused:
+                # Refresh hits once when paused with overlay requested.
+                if hit_overlay_enabled and not recent_hits:
+                    refresh_hits_for_current_time()
                 render_frame(positions, list(recent_hits))
                 clock.tick(cfg.hz)
                 continue
@@ -1506,21 +1530,25 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             current_time = sim_idx * dt
             for step in range(steps):
                 current_time = sim_idx * dt
-                positions = current_positions(current_time)
-                for name, pos in positions.items():
-                    path_traces[name].append(pos)
-                    if len(path_traces[name]) > trace_limit:
-                        path_traces[name] = path_traces[name][-trace_limit:]
+            positions = current_positions(current_time)
+            for name, pos in positions.items():
+                path_traces[name].append(pos)
+                if len(path_traces[name]) > trace_limit:
+                    path_traces[name] = path_traces[name][-trace_limit:]
 
-                emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
-                emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
+            emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
+            emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
 
-                prune_emissions(current_time)
-                allow_self = speed_mult > field_v + 1e-6
+            prune_emissions(current_time)
+            allow_self = speed_mult > field_v + 1e-6
+            hits: List[Hit] = []
+            # Skip hit detection unless we need to show it (paused hit overlay or overlay enabled).
+            if paused or hit_overlay_enabled or show_hit_overlays:
                 hits = detect_hits(current_time, positions, allow_self=allow_self)
-                if step == steps - 1:
-                    display_hits = hits
-                    recent_hits.clear()
+            if step == steps - 1:
+                display_hits = hits
+                recent_hits.clear()
+                if display_hits:
                     recent_hits.extend(display_hits)
 
                 sim_idx += 1
@@ -1541,6 +1569,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             clock.tick(0)
 
             frame_idx = sim_idx
+            if trace_test_frames_remaining is not None:
+                trace_test_frames_remaining -= steps
+                if trace_test_frames_remaining <= 0:
+                    running = False
+                    continue
     except KeyboardInterrupt:
         running = False
 
