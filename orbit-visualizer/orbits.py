@@ -1013,12 +1013,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if not gpu_state or not gpu_state["display"]:
             return
         ctx = gpu_state["ctx"]
-        # Use the actual framebuffer size (after DPI / resize) and scale uniformly to preserve aspect.
-        # Use the current viewport (which may be smaller than the full framebuffer after scaling).
-        view_x, view_y, view_w, view_h = ctx.viewport
+        # Use fixed window dimensions for overlay quads; avoid per-frame scaling.
+        view_w, view_h = width, height
         if view_w <= 0 or view_h <= 0:
             return
-        scale = min(view_w / width, view_h / height)
         tex = gpu_state["overlay_textures"].get(key)
         size = surface.get_size()
         if tex is None or tex.size != size:
@@ -1029,10 +1027,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             gpu_state["overlay_textures"][key] = tex
         data = pygame.image.tostring(surface, "RGBA", True)
         tex.write(data)
-        x0 = ((x * scale) / view_w) * 2.0 - 1.0
-        x1 = (((x + size[0]) * scale) / view_w) * 2.0 - 1.0
-        y0 = 1.0 - ((y * scale) / view_h) * 2.0
-        y1 = 1.0 - (((y + size[1]) * scale) / view_h) * 2.0
+        x0 = (x / view_w) * 2.0 - 1.0
+        x1 = ((x + size[0]) / view_w) * 2.0 - 1.0
+        y0 = 1.0 - (y / view_h) * 2.0
+        y1 = 1.0 - ((y + size[1]) / view_h) * 2.0
         verts = np.array(
             [
                 x0,
@@ -1149,21 +1147,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             return
         ctx = gpu_state["ctx"]
         ctx.screen.use()
-        view_w, view_h = ctx.screen.viewport[2:]
-        if view_w <= 0 or view_h <= 0:
-            return
-        scale = min(view_w / width, view_h / height)
-        content_w = int(width * scale)
-        content_h = int(height * scale)
-        ctx.viewport = (0, 0, content_w, content_h)
+        # Fix viewport to the intended window size; avoid per-frame scaling.
+        view_w, view_h = width, height
+        ctx.viewport = (0, 0, view_w, view_h)
         ctx.clear(1.0, 1.0, 1.0, 1.0)
         if field_visible:
             if field_alg == "gpu_instanced":
-                panel_px = int(panel_w * scale)
-                canvas_px = max(1, int(canvas_w * scale))
-                ctx.viewport = (panel_px, 0, canvas_px, canvas_px)
+                ctx.viewport = (panel_w, 0, canvas_w, height)
                 gpu_present_field()
-                ctx.viewport = (0, 0, content_w, content_h)
+                ctx.viewport = (0, 0, view_w, view_h)
             elif field_surface is not None:
                 gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
 
