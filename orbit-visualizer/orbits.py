@@ -464,6 +464,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     trace_test_frames_remaining: int | None = None
     last_caption_update = 0
     flip_stride = 8  # flip every N frames when running
+    trace_draw_stride = 8  # redraw traces every N frames while running
+    trace_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+    trace_layer.fill((0, 0, 0, 0))
+    trace_layer_last_update = -trace_draw_stride
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
     base_res = 640
@@ -1138,7 +1142,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incremental")
 
     def render_frame_gl(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
-        nonlocal gpu_display
+        nonlocal gpu_display, trace_layer_last_update, trace_layer
         if not init_gpu_renderer(display=True):
             gpu_display = False
             render_frame(positions, hits, field_surf)
@@ -1163,22 +1167,27 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             elif field_surface is not None:
                 gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
 
-        overlay_visible = (paused and ui_overlay_visible) or show_hit_overlays
+        overlay_visible = ui_overlay_visible or show_hit_overlays
         panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             # Unit-circle ring disabled; using traces only.
 
             if ui_overlay_visible:
-                for name, trace in path_traces.items():
-                    if len(trace) < 2:
-                        continue
-                    color = PURE_WHITE
-                    pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
-                    try:
-                        pygame.draw.lines(geometry_layer, color, False, pts, 6)
-                    except ValueError:
-                        pass
+                need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
+                if need_redraw_traces:
+                    trace_layer.fill((0, 0, 0, 0))
+                    for name, trace in path_traces.items():
+                        if len(trace) < 2:
+                            continue
+                        color = PURE_WHITE
+                        pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
+                        try:
+                            pygame.draw.lines(trace_layer, color, False, pts, 6)
+                        except ValueError:
+                            pass
+                    trace_layer_last_update = frame_idx
+                geometry_layer.blit(trace_layer, (0, 0))
 
             def draw_hit_arc(hit: Hit) -> None:
                 recv_pos = positions.get(hit.receiver)
@@ -1278,7 +1287,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             pygame.display.flip()
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
-        nonlocal panel_log
+        nonlocal panel_log, trace_layer_last_update, trace_layer
         if gpu_display:
             render_frame_gl(positions, hits, field_surf)
             return
@@ -1287,22 +1296,27 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         if fs is not None:
             screen.blit(fs, (panel_w, 0))
 
-        overlay_visible = (paused and ui_overlay_visible) or show_hit_overlays
+        overlay_visible = ui_overlay_visible or show_hit_overlays
         panel_visible = paused and ui_overlay_visible
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             # Unit-circle ring disabled; using traces only.
 
-            if ui_overlay_visible and not paused:
-                for name, trace in path_traces.items():
-                    if len(trace) < 2:
-                        continue
-                    color = PURE_WHITE
-                    pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
-                    try:
-                        pygame.draw.lines(geometry_layer, color, False, pts, 6)
-                    except ValueError:
-                        pass
+            if ui_overlay_visible:
+                need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
+                if need_redraw_traces:
+                    trace_layer.fill((0, 0, 0, 0))
+                    for name, trace in path_traces.items():
+                        if len(trace) < 2:
+                            continue
+                        color = PURE_WHITE
+                        pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
+                        try:
+                            pygame.draw.lines(trace_layer, color, False, pts, 6)
+                        except ValueError:
+                            pass
+                    trace_layer_last_update = frame_idx
+                geometry_layer.blit(trace_layer, (0, 0))
 
             # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
             def draw_hit_arc(hit: Hit) -> None:
