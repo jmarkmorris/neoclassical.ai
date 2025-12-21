@@ -469,35 +469,40 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     trace_layer.fill((0, 0, 0, 0))
     trace_layer_last_update = -trace_draw_stride
     display_info = (info.current_w, info.current_h)
-    header_printed = False
 
     def log_state(reason: str) -> None:
         """Print a fixed-width table snapshot of the current render/sim state."""
-        nonlocal header_printed
+        tf = lambda v: "T" if v else "F"
         cols = [
-            ("reason", reason, 18),
-            ("paused", str(paused), 6),
-            ("frame", str(frame_idx), 6),
-            ("hz", str(cfg.hz), 5),
-            ("skip", str(frame_skip), 4),
-            ("flip", str(flip_stride), 4),
-            ("trace", str(trace_draw_stride), 5),
-            ("speed", f"{speed_mult:.2f}", 8),
-            ("pending", f"{pending_speed_mult:.2f}", 8),
-            ("path", current_path_name, 18),
+            ("reason", reason, 14),
+            ("p", tf(paused), 1),
+            ("frm", str(frame_idx), 6),
+            ("hz", str(cfg.hz), 4),
+            ("skp", str(frame_skip), 3),
+            ("flp", str(flip_stride), 3),
+            ("trc", str(trace_draw_stride), 3),
+            ("spd", f"{speed_mult:.2f}", 6),
+            ("pend", f"{pending_speed_mult:.2f}", 6),
+            ("path", current_path_name, 24),
             ("field", field_alg, 14),
-            ("field_vis", str(field_visible), 9),
-            ("ui", str(ui_overlay_visible), 5),
-            ("hits", str(hit_overlay_enabled), 5),
-            ("overlays", str(show_hit_overlays), 8),
+            ("fv", tf(field_visible), 1),
+            ("ui", tf(ui_overlay_visible), 1),
+            ("hit", tf(hit_overlay_enabled), 1),
+            ("ovr", tf(show_hit_overlays), 1),
             ("size", f"{width}x{height} (panel={panel_w}, canvas={canvas_w})", 0),
-            ("display", f"{display_info[0]}x{display_info[1]}", 0),
+            ("disp", f"{display_info[0]}x{display_info[1]}", 0),
         ]
-        if not header_printed:
-            header_line = " | ".join(name.ljust(width) if width else name for name, _, width in cols)
+        widths = []
+        for name, val, w in cols:
+            if w == 0:
+                widths.append(max(len(name), len(val)))
+            else:
+                widths.append(max(len(name), w, len(val)))
+        header_line = " | ".join(name.upper().ljust(w) for (name, _, _), w in zip(cols, widths))
+        value_line = " | ".join(val.ljust(w) for (_, val, _), w in zip(cols, widths))
+        if not hasattr(log_state, "_printed_header"):
             print(header_line)
-            header_printed = True
-        value_line = " | ".join(val.ljust(width) if width else val for _, val, width in cols)
+            log_state._printed_header = True
         print(value_line)
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
