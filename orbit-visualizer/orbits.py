@@ -491,6 +491,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     hit_overlay_enabled = False
     show_hit_overlays = False
     trace_test_frames_remaining: int | None = None
+    orbit_ring_visible = False
     display_info = (info.current_w, info.current_h)
 
     def log_state(reason: str) -> None:
@@ -1267,7 +1268,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         overlay_visible = ui_overlay_visible or show_hit_overlays
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-            # Unit-circle ring disabled; using traces only.
+            if orbit_ring_visible:
+                center = (canvas_w // 2, canvas_w // 2)
+                ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords
+                ring_radius_px = max(1, ring_radius_px)
+                draw_ring(geometry_layer, center, ring_radius_px, 6, PURE_WHITE)
 
             if ui_overlay_visible:
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
@@ -1276,20 +1281,35 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     for name, trace in path_traces.items():
                         if len(trace) < 2:
                             continue
-                        # Use neutral (white) trails to avoid one color dominating.
-                        base_color = PURE_WHITE
+                        # Use arch-specific color for visibility.
+                        base_color = PURE_RED if name == "positrino" else PURE_BLUE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
                         n = len(pts)
                         if n < 2:
                             continue
+                        max_segments = 24
+                        marker_step = max(12, n // max_segments)
+                        def inv_cube_weight(idx: int, total: int, strength: float = 4.0) -> float:
+                            """Fade newest strong, oldest quickly via 1/(1 + (age*strength)^3)."""
+                            age_frac = (total - 1 - idx) / max(1, total - 1)  # oldest≈1, newest≈0
+                            return 1.0 / (1.0 + (age_frac * strength) ** 3)
                         for i in range(n - 1):
-                            # Fade aggressively: newest segments bright, quickly dropping to near-white.
-                            frac = i / max(1, n - 2)
-                            alpha = int(255 * (0.2 + 0.8 * (1 - frac)))  # fade toward low alpha quickly
+                            w = inv_cube_weight(i, n)  # match marker fade profile
+                            alpha = int(255 * (0.1 + 0.8 * w))
                             color = (*base_color, alpha)
                             try:
-                                pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 6)
+                                pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 4)
                             except ValueError:
+                                pass
+                        # Distinct, spaced markers with outline for visibility.
+                        for i in range(0, n, marker_step):
+                            w = inv_cube_weight(i, n)
+                            alpha = int(255 * (0.1 + 0.8 * w))
+                            fill_color = (*base_color, alpha)
+                            try:
+                                gfxdraw.filled_circle(trace_layer, pts[i][0], pts[i][1], 5, fill_color)
+                                gfxdraw.aacircle(trace_layer, pts[i][0], pts[i][1], 6, PURE_WHITE)
+                            except Exception:
                                 pass
                     trace_layer_last_update = frame_idx
                 geometry_layer.blit(trace_layer, (0, 0))
@@ -1374,7 +1394,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         overlay_visible = ui_overlay_visible or show_hit_overlays
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-            # Unit-circle ring disabled; using traces only.
+            if orbit_ring_visible:
+                center = (canvas_w // 2, canvas_w // 2)
+                ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords
+                ring_radius_px = max(1, ring_radius_px)
+                draw_ring(geometry_layer, center, ring_radius_px, 6, PURE_WHITE)
 
             if ui_overlay_visible:
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
@@ -1578,6 +1602,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     elif event.key == pygame.K_u:
                         ui_overlay_visible = not ui_overlay_visible
                         log_state("key_u_ui_overlay")
+                    elif event.key == pygame.K_o:
+                        orbit_ring_visible = not orbit_ring_visible
+                        log_state("key_o_orbit_ring_toggle")
                 elif event.type == pygame.VIDEORESIZE:
                     apply_window_size(event.w, event.h)
                     log_state("resize")
