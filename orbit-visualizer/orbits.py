@@ -556,6 +556,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     emitter_lookup = {arch.name: arch for arch in arch_objs}
     arch_path_offsets: Dict[str, float] = {arch.name: arch.path_offset for arch in arch_objs}
     arch_initial_offsets: Dict[str, float] = dict(arch_path_offsets)
+    num_pos_arch = sum(1 for a in arch_objs if a.polarity > 0)
+    num_neg_arch = sum(1 for a in arch_objs if a.polarity < 0)
     BASE_OFFSET = 0.0  # start at param = 0
     trace_limit = 40000
     hit_overlay_enabled = False
@@ -737,8 +739,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             log_max = 1.0
         mag = np.log10(1.0 + abs_net) / log_max
         mag = np.clip(mag, 0.0, 1.0)
-        pos_norm = np.where(net > 0.0, mag, 0.0)
-        neg_norm = np.where(net < 0.0, mag, 0.0)
+        pos_norm_raw = np.where(net > 0.0, mag, 0.0)
+        neg_norm_raw = np.where(net < 0.0, mag, 0.0)
+        pos_scale = max(1, num_pos_arch)
+        neg_scale = max(1, num_neg_arch)
+        pos_norm = pos_norm_raw / (pos_scale * max_abs)
+        neg_norm = neg_norm_raw / (neg_scale * max_abs)
         if cfg.field_color_falloff == "inverse_r":
             pos_norm = np.sqrt(pos_norm)
             neg_norm = np.sqrt(neg_norm)
