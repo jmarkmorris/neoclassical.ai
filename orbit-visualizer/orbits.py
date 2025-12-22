@@ -1276,7 +1276,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     for name, trace in path_traces.items():
                         if len(trace) < 2:
                             continue
-                        base_color = PURE_RED if name == "positrino" else PURE_BLUE
+                        # Use neutral (white) trails to avoid one color dominating.
+                        base_color = PURE_WHITE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
                         n = len(pts)
                         if n < 2:
