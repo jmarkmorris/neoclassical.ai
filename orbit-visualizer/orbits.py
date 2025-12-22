@@ -1276,12 +1276,20 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     for name, trace in path_traces.items():
                         if len(trace) < 2:
                             continue
-                        color = PURE_WHITE
+                        base_color = PURE_RED if name == "positrino" else PURE_BLUE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
-                        try:
-                            pygame.draw.lines(trace_layer, color, False, pts, 6)
-                        except ValueError:
-                            pass
+                        n = len(pts)
+                        if n < 2:
+                            continue
+                        for i in range(n - 1):
+                            # Fade aggressively: newest segments bright, quickly dropping to near-white.
+                            frac = i / max(1, n - 2)
+                            alpha = int(255 * (0.2 + 0.8 * (1 - frac)))  # fade toward low alpha quickly
+                            color = (*base_color, alpha)
+                            try:
+                                pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 6)
+                            except ValueError:
+                                pass
                     trace_layer_last_update = frame_idx
                 geometry_layer.blit(trace_layer, (0, 0))
 
