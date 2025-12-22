@@ -27,6 +27,20 @@
       "path": "unit_circle",
       "start_pos": { "x": -1.0, "y": 0.0 },
       "velocity": { "speed": 0.5, "heading_deg": 90 }
+    },
+    {
+      "name": "p2",
+      "polarity": "p",
+      "path": "unit_circle",
+      "start_pos": { "x": 1.0, "y": 0.0 },
+      "velocity": { "speed": 0.5, "heading_deg": 90 }
+    },
+    {
+      "name": "e2",
+      "polarity": "e",
+      "path": "unit_circle",
+      "start_pos": { "x": -1.0, "y": 0.0 },
+      "velocity": { "speed": 0.5, "heading_deg": -90 }
     }
   ]
 }

@@ -13,16 +13,22 @@
     "shell_weight": "raised_cosine",
     "field_alg": "gpu_instanced"
   },
-  "groups": [
+  "architrinos": [
     {
-      "name": "spiral",
-      "electrinos": 1,
-      "positrinos": 1,
-      "orbit": {
-        "path": "exp_inward_spiral",
-        "speed_multiplier": 0.5,
-        "decay": 0.1
-      }
+      "name": "p1",
+      "polarity": "p",
+      "path": "exp_inward_spiral",
+      "start_pos": { "x": 1.0, "y": 0.0 },
+      "velocity": { "speed": 0.5, "heading_deg": 90 },
+      "decay": 0.1
+    },
+    {
+      "name": "e1",
+      "polarity": "e",
+      "path": "exp_inward_spiral",
+      "start_pos": { "x": -1.0, "y": 0.0 },
+      "velocity": { "speed": 0.5, "heading_deg": -90 },
+      "decay": 0.1
     }
   ]
 }

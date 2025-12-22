@@ -11,7 +11,7 @@ Usage:
     python orbits.py --run circle.json
     python orbits.py --run spiral.json
 
-Run files expect top-level "directives" and a "groups" array; see orbit-visualizer/circle.json.
+Run files expect top-level "directives" and an "architrinos" array; see orbit-visualizer/circle.json.
 
 Per codex: You can push the field snapshot finer in a few ways; each trades directly against CPU time/memory:
 
@@ -98,6 +98,10 @@ class Architrino:
     color: Tuple[int, int, int]
     phase: float  # radians
     path: PathSpec
+    path_offset: float = 0.0
+    base_speed: float = 1.0  # per-arch base speed (scaled by global speed multiplier)
+    heading_deg: float = 0.0
+    radial_scale: float = 1.0
 
     def position(self, t: float, speed_mult: float | None = None, field_v: float | None = None) -> Vec2:
         """Position on the assigned path with phase offset."""
@@ -112,7 +116,7 @@ class Architrino:
             return radius * math.cos(angle), radius * math.sin(angle)
         param = t + self.phase
         x, y = self.path.sampler(param)
-        return x, y
+        return x * self.radial_scale, y * self.radial_scale
 
 
 @dataclass
@@ -120,6 +124,7 @@ class Emission:
     time: float
     pos: Vec2
     emitter: str
+    polarity: int
     last_radius: float = 0.0
 
 
@@ -160,25 +165,27 @@ class OrbitConfig:
 
 
 @dataclass
-class ArchitrinoGroupSpec:
+class ArchitrinoSpec:
     name: str
-    electrinos: int
-    positrinos: int
-    orbit: OrbitConfig | None = None
-    simulation: Dict[str, object] | None = None
+    polarity: str  # "p" or "e"
+    path: str
+    start_pos: Vec2
+    velocity_speed: float
+    velocity_heading_deg: float
+    decay: float | None = None
 
 
 @dataclass
 class RunScenario:
     config: SimulationConfig
-    groups: List[ArchitrinoGroupSpec]
+    architrinos: List[ArchitrinoSpec]
     paths: Dict[str, PathSpec]
     render: bool = False
 
-    def primary_orbit(self) -> OrbitConfig:
-        if not self.groups or self.groups[0].orbit is None:
-            raise ValueError("Scenario has no primary orbit configured.")
-        return self.groups[0].orbit
+    def primary_path(self) -> str:
+        if not self.architrinos:
+            raise ValueError("Scenario has no architrinos configured.")
+        return self.architrinos[0].path
 
 
 def l2(a: Vec2, b: Vec2) -> float:
@@ -243,39 +250,9 @@ def load_run_file(
         directives = {}
     directives = _expect_dict(directives, "directives")
 
-    groups = _expect_list(payload.get("groups"), "groups")
-    if not groups:
-        raise ValueError("Run file requires at least one architrino group.")
-    if len(groups) != 1:
-        raise ValueError("Run file currently supports exactly one group.")
-    group = _expect_dict(groups[0], "group")
-    group_name = group.get("name", "group-1")
-
-    if "electrinos" not in group or "positrinos" not in group:
-        raise ValueError(f"Group '{group_name}' requires 'electrinos' and 'positrinos' counts.")
-    electrinos = _coerce_int(group.get("electrinos"), f"group '{group_name}' electrinos")
-    positrinos = _coerce_int(group.get("positrinos"), f"group '{group_name}' positrinos")
-    if electrinos != 1 or positrinos != 1:
-        raise ValueError("Run file currently supports exactly 1 electrino and 1 positrino per group.")
-
-    orbit = group.get("orbit")
-    simulation = group.get("simulation")
-    if orbit is not None and simulation is not None:
-        raise ValueError(f"Group '{group_name}' cannot define both 'orbit' and 'simulation'.")
-    if simulation is not None:
-        raise NotImplementedError("Simulation groups are not implemented yet.")
-    if orbit is None:
-        raise ValueError(f"Group '{group_name}' must define an 'orbit' or 'simulation' block.")
-    orbit = _expect_dict(orbit, f"group '{group_name}' orbit")
-
-    path_name = orbit.get("path") or orbit.get("name")
-    if not isinstance(path_name, str):
-        raise ValueError(f"Group '{group_name}' orbit requires a string 'path'.")
-    if path_name not in paths:
-        raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
-
-    speed_mult_value = orbit.get("speed_multiplier", directives.get("speed_multiplier", 0.5))
-    speed_mult = _coerce_float(speed_mult_value, f"group '{group_name}' speed_multiplier")
+    arch_list = _expect_list(payload.get("architrinos"), "architrinos")
+    if not arch_list:
+        raise ValueError("Run file requires an 'architrinos' array with at least one entry.")
 
     path_snap = directives.get("path_snap", directives.get("path_step"))
     if path_snap is not None:
@@ -322,7 +299,7 @@ def load_run_file(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
         field_speed=_coerce_float(directives.get("field_speed", 1.0), "directives.field_speed"),
         domain_half_extent=_coerce_float(directives.get("domain_half_extent", 2.0), "directives.domain_half_extent"),
-        speed_multiplier=speed_mult,
+        speed_multiplier=_coerce_float(directives.get("speed_multiplier", 0.5), "directives.speed_multiplier"),
         position_snap=position_snap,
         path_snap=path_snap,
         field_visible=field_visible,
@@ -334,43 +311,68 @@ def load_run_file(
         field_alg=field_alg,
     )
 
-    paths_override = paths
-    decay = None
-    decay_value = orbit.get("decay")
-    if decay_value is not None:
-        if path_name != "exp_inward_spiral":
-            raise ValueError("orbit.decay is only supported for exp_inward_spiral.")
-        decay = _coerce_float(decay_value, f"group '{group_name}' orbit.decay")
-        base = paths[path_name]
-        paths_override = dict(paths)
-        paths_override[path_name] = PathSpec(
-            name=base.name,
-            sampler=base.sampler,
-            description=base.description,
-            decay=decay,
+    paths_override = dict(paths)
+    arch_specs: List[ArchitrinoSpec] = []
+    for idx, entry in enumerate(arch_list):
+        arch = _expect_dict(entry, f"architrinos[{idx}]")
+        name = arch.get("name") or f"arch-{idx+1}"
+        if not isinstance(name, str):
+            raise ValueError(f"architrinos[{idx}].name must be a string.")
+        polarity = arch.get("type") or arch.get("polarity")
+        if polarity not in {"p", "e"}:
+            raise ValueError(f"architrinos[{idx}] polarity/type must be 'p' or 'e'.")
+        path_name = arch.get("path")
+        if not isinstance(path_name, str):
+            raise ValueError(f"architrinos[{idx}].path must be a string.")
+        if path_name not in paths_override:
+            raise ValueError(f"Unknown path '{path_name}' for architrinos[{idx}]. Available: {list(paths_override.keys())}")
+        decay_override = arch.get("decay")
+        if decay_override is not None:
+            if path_name != "exp_inward_spiral":
+                raise ValueError("decay override is only supported for exp_inward_spiral.")
+            decay_val = _coerce_float(decay_override, f"architrinos[{idx}].decay")
+            base = paths_override[path_name]
+            paths_override = dict(paths_override)
+            paths_override[path_name] = PathSpec(
+                name=base.name,
+                sampler=base.sampler,
+                description=base.description,
+                decay=decay_val,
+            )
+        start_pos_raw = arch.get("start_pos") or arch.get("start")
+        if start_pos_raw is None:
+            raise ValueError(f"architrinos[{idx}] requires start_pos.")
+        start_pos_dict = _expect_dict(start_pos_raw, f"architrinos[{idx}].start_pos")
+        if "x" not in start_pos_dict or "y" not in start_pos_dict:
+            raise ValueError(f"architrinos[{idx}].start_pos requires x and y.")
+        start_pos = (_coerce_float(start_pos_dict["x"], f"architrinos[{idx}].start_pos.x"),
+                     _coerce_float(start_pos_dict["y"], f"architrinos[{idx}].start_pos.y"))
+        vel_raw = arch.get("velocity") or {}
+        vel_raw = _expect_dict(vel_raw, f"architrinos[{idx}].velocity")
+        speed = _coerce_float(vel_raw.get("speed", cfg.speed_multiplier), f"architrinos[{idx}].velocity.speed")
+        heading_deg = _coerce_float(vel_raw.get("heading_deg", 0.0), f"architrinos[{idx}].velocity.heading_deg")
+        arch_specs.append(
+            ArchitrinoSpec(
+                name=name,
+                polarity=polarity,
+                path=path_name,
+                start_pos=start_pos,
+                velocity_speed=speed,
+                velocity_heading_deg=heading_deg,
+                decay=decay_override if decay_override is not None else None,
+            )
         )
 
     render = bool(directives.get("render", False))
-    orbit_spec = OrbitConfig(
-        path=path_name,
-        speed_multiplier=speed_mult,
-        decay=decay,
-    )
-    group_spec = ArchitrinoGroupSpec(
-        name=group_name,
-        electrinos=electrinos,
-        positrinos=positrinos,
-        orbit=orbit_spec,
-    )
     return RunScenario(
         config=cfg,
-        groups=[group_spec],
+        architrinos=arch_specs,
         paths=paths_override,
         render=render,
     )
 
 
-def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: str = "unit_circle", run_label: str = "") -> None:
+def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: List[ArchitrinoSpec], path_name: str = "unit_circle", run_label: str = "") -> None:
     """
     Incremental PyGame renderer that keeps a rolling accumulator grid instead of cached frames.
     """
@@ -382,8 +384,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     except ImportError as exc:
         raise SystemExit("PyGame is required for rendering. Install with `pip install pygame`.") from exc
 
-    if path_name not in paths:
-        raise ValueError(f"Unknown path '{path_name}'. Available: {list(paths.keys())}")
+    if not arch_specs:
+        raise ValueError("No architrinos defined.")
 
     pygame.init()
     panel_w = 0
@@ -442,10 +444,78 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 12)
 
-    current_path_name = path_name
-    path = paths[current_path_name]
-    positrino = Architrino("positrino", +1, PURE_RED, 0.0, path)
-    electrino = Architrino("electrino", -1, PURE_BLUE, math.pi, path)
+    # Build architrino instances with per-arch offsets and base speeds.
+    current_path_name = "multi" if len(arch_specs) > 1 else arch_specs[0].path
+    arch_objs: List[Architrino] = []
+    path_traces: Dict[str, List[Vec2]] = {}
+
+    def default_phase_from_start(path_name: str, start: Vec2, decay: float | None) -> Tuple[float, float]:
+        """Return (phase, path_offset) to hit start_pos on known paths."""
+        x, y = start
+        if path_name == "unit_circle":
+            angle = math.atan2(y, x)
+            return angle, 0.0
+        if path_name == "exp_inward_spiral" and decay is not None:
+            angle = math.atan2(y, x)
+            r = math.hypot(x, y)
+            base_param = 0.0
+            if r > 1e-9:
+                base_param = max(0.0, -math.log(r) / max(decay, 1e-9))
+            return angle, base_param
+        return 0.0, 0.0
+
+    def tangent_sign_for_heading(path: PathSpec, param: float, heading_deg: float) -> float:
+        """Choose +1/-1 so path tangent best aligns with requested heading.
+        Heading uses screen-friendly convention: 0=+x, 90=up (so y is inverted from math).
+        """
+        heading_rad = math.radians(heading_deg)
+        h_vec = (math.cos(heading_rad), -math.sin(heading_rad))  # invert y for screen coords
+        eps = 1e-3
+        p_fwd = path.sampler(param + eps)
+        p_back = path.sampler(param - eps)
+        tan = (p_fwd[0] - p_back[0], p_fwd[1] - p_back[1])
+        tan_len = math.hypot(*tan)
+        if tan_len < 1e-12:
+            return 1.0
+        tan_unit = (tan[0] / tan_len, tan[1] / tan_len)
+        dot = tan_unit[0] * h_vec[0] + tan_unit[1] * h_vec[1]
+        return 1.0 if dot >= 0 else -1.0
+
+    for spec in arch_specs:
+        if spec.path not in paths:
+            raise ValueError(f"Unknown path '{spec.path}'. Available: {list(paths.keys())}")
+        base_path = paths[spec.path]
+        decay = spec.decay if spec.decay is not None else base_path.decay
+        if decay is not None and base_path.decay != decay:
+            paths = dict(paths)
+            paths[spec.path] = PathSpec(
+                name=base_path.name,
+                sampler=base_path.sampler,
+                description=base_path.description,
+                decay=decay,
+            )
+            base_path = paths[spec.path]
+        phase, offset = default_phase_from_start(spec.path, spec.start_pos, base_path.decay)
+        sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg)
+        start_r = math.hypot(*spec.start_pos)
+        sample_x, sample_y = base_path.sampler(offset + phase)
+        sample_r = math.hypot(sample_x, sample_y)
+        radial_scale = start_r / sample_r if sample_r > 1e-9 else 1.0
+        color = PURE_RED if spec.polarity == "p" else PURE_BLUE
+        polarity_sign = 1 if spec.polarity == "p" else -1
+        arch = Architrino(
+            spec.name,
+            polarity_sign,
+            color,
+            phase,
+            base_path,
+            path_offset=offset,
+            base_speed=spec.velocity_speed * sign,
+            heading_deg=spec.velocity_heading_deg,
+            radial_scale=radial_scale,
+        )
+        arch_objs.append(arch)
+        path_traces[spec.name] = []
 
     running = True
     paused = cfg.start_paused
@@ -456,7 +526,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     dt = 1.0 / cfg.hz
     field_v = max(cfg.field_speed, 1e-6)
     shell_thickness = 0.0
-    speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))
+    speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))  # global speed scale
     pending_speed_mult = speed_mult
     position_snap = cfg.position_snap
     path_snap = cfg.path_snap
@@ -483,16 +553,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     seen_hits_queue = deque()
     last_diff = {}
     last_diff_queue = deque()
-    emitter_lookup = {"positrino": positrino, "electrino": electrino}
-    path_traces: Dict[str, List[Vec2]] = {"positrino": [], "electrino": []}
+    emitter_lookup = {arch.name: arch for arch in arch_objs}
+    arch_path_offsets: Dict[str, float] = {arch.name: arch.path_offset for arch in arch_objs}
+    arch_initial_offsets: Dict[str, float] = dict(arch_path_offsets)
     BASE_OFFSET = 0.0  # start at param = 0
-    path_time_offset = BASE_OFFSET
     trace_limit = 40000
     hit_overlay_enabled = False
     show_hit_overlays = False
     trace_test_frames_remaining: int | None = None
     orbit_ring_visible = False
     display_info = (info.current_w, info.current_h)
+    positions: Dict[str, Vec2] = {}
 
     def log_state(reason: str) -> None:
         """Print a fixed-width table snapshot of the current render/sim state."""
@@ -643,13 +714,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         return max(0.0, min(v, 100.0))
 
     def apply_speed_change(new_speed: float, auto_pause: bool = True) -> None:
-        nonlocal speed_mult, pending_speed_mult, paused, path_time_offset
+        nonlocal speed_mult, pending_speed_mult, paused
         current_time = frame_idx * dt
         prev_speed = speed_mult
         speed_mult = clamp_speed(new_speed)
         pending_speed_mult = speed_mult
         # Preserve the current path parameter so paused positions stay fixed.
-        path_time_offset += (prev_speed - speed_mult) * current_time
+        for arch in arch_objs:
+            arch_path_offsets[arch.name] += (prev_speed - speed_mult) * current_time * arch.base_speed
         refresh_hits_for_current_time()
         if auto_pause:
             paused = True
@@ -715,7 +787,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         else:
             # Smooth radial weight (raised cosine) to reduce aliasing.
             radial_weight = 0.5 * (1.0 + np.cos(np.pi * delta[mask] / band_half))
-        sign = 1.0 if em.emitter == "positrino" else -1.0
+        sign = float(em.polarity)
         contrib = (sign * weight_scale) * radial_weight / (dist[mask] ** 2)
         field_grid[y0:y1, x0:x1][mask] += contrib
 
@@ -1032,7 +1104,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             radius = field_v * tau
             if radius > max_radius:
                 continue
-            sign = 1.0 if em.emitter == "positrino" else -1.0
+            sign = float(em.polarity)
             inst_entries.append((em.pos[0], em.pos[1], radius, sign))
         if not inst_entries:
             field_grid[:] = 0.0
@@ -1073,7 +1145,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             radius = field_v * tau
             if radius > max_radius:
                 continue
-            sign = 1.0 if em.emitter == "positrino" else -1.0
+            sign = float(em.polarity)
             inst_entries.append((em.pos[0], em.pos[1], radius, sign))
             if r_min is None or radius < r_min:
                 r_min = radius
@@ -1164,34 +1236,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         gpu_state["overlay_prog"]["overlay_tex"].value = 0
         gpu_state["overlay_vao"].render(mode=gpu_state["moderngl"].TRIANGLE_STRIP)
 
-    def add_trace_segment(start_offset: float, end_offset: float, steps: int = 180) -> None:
+    def add_trace_segment(start_offsets: Dict[str, float], end_offsets: Dict[str, float], steps: int = 180) -> None:
         nonlocal path_traces
-        if end_offset == start_offset:
-            return
         for name, emitter in emitter_lookup.items():
+            if end_offsets.get(name, 0.0) == start_offsets.get(name, 0.0):
+                continue
             segment = []
             for j in range(steps + 1):
                 alpha = j / steps
-                s = start_offset + alpha * (end_offset - start_offset)
+                s = start_offsets.get(name, 0.0) + alpha * (end_offsets.get(name, 0.0) - start_offsets.get(name, 0.0))
                 segment.append(position_at(emitter, s))
             path_traces[name].extend(segment)
             if len(path_traces[name]) > trace_limit:
                 path_traces[name] = path_traces[name][-trace_limit:]
 
-    def rebuild_trace_for_offset(offset: float) -> None:
+    def rebuild_trace_for_offsets() -> None:
         nonlocal path_traces
-        offset = max(offset, BASE_OFFSET)
-        steps = max(2, int(abs(offset) / (2 * math.pi) * 360))
-        path_traces = {"positrino": [], "electrino": []}
-        for name, emitter in emitter_lookup.items():
-            trace: List[Vec2] = []
-            for j in range(steps + 1):
-                alpha = j / steps
-                s = alpha * offset
-                trace.append(position_at(emitter, s))
-            if len(trace) > trace_limit:
-                trace = trace[-trace_limit:]
-            path_traces[name] = trace
+        path_traces = {name: [] for name in emitter_lookup.keys()}
 
     def refresh_hits_for_current_time() -> None:
         """Recompute hits for the current frame time using emission history."""
@@ -1211,14 +1272,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         keep_offset: bool = False,
         keep_field_visible: bool = False,
     ) -> None:
-        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, path_time_offset, sim_clock_start, sim_clock_elapsed
+        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, sim_clock_start, sim_clock_elapsed, arch_path_offsets
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         else:
             speed_mult = clamp_speed(cfg.speed_multiplier)
             pending_speed_mult = speed_mult
         if not keep_offset:
-            path_time_offset = BASE_OFFSET
+            arch_path_offsets = dict(arch_initial_offsets)
         emissions = []
         field_grid[:] = 0.0
         field_surface = None
@@ -1231,7 +1292,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         last_diff_queue.clear()
         positions = current_positions(0.0)
         if not keep_trace:
-            rebuild_trace_for_offset(path_time_offset)
+            rebuild_trace_for_offsets()
         recent_hits.clear()
         sim_clock_start = time.monotonic()
         sim_clock_elapsed = 0.0
@@ -1282,7 +1343,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                         if len(trace) < 2:
                             continue
                         # Use arch-specific color for visibility.
-                        base_color = PURE_RED if name == "positrino" else PURE_BLUE
+                        arch_obj = emitter_lookup.get(name)
+                        base_color = arch_obj.color if arch_obj else PURE_WHITE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
                         n = len(pts)
                         if n < 2:
@@ -1329,7 +1391,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 arc_half = 5.0
                 start = (ang - arc_half) % 360
                 end = (ang + arc_half) % 360
-                color = PURE_RED if hit.emitter == "positrino" else PURE_BLUE
+                emitter_arch = emitter_lookup.get(hit.emitter)
+                color = emitter_arch.color if emitter_arch else PURE_WHITE
 
                 def draw_arc_span(s: float, e: float) -> None:
                     for r_off in (0, 1):
@@ -1355,7 +1418,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     end = world_to_canvas(positions[h.receiver])
-                    line_color = PURE_RED if h.emitter == "positrino" else PURE_BLUE
+                    emitter_arch = emitter_lookup.get(h.emitter)
+                    line_color = emitter_arch.color if emitter_arch else PURE_WHITE
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
 
@@ -1363,17 +1427,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if show_hit_overlays:
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
-                    marker_color = LIGHT_RED if h.emitter == "positrino" else LIGHT_BLUE
+                    emitter_arch = emitter_lookup.get(h.emitter)
+                    marker_color = LIGHT_RED if emitter_arch and emitter_arch.polarity > 0 else LIGHT_BLUE
                     gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
                     gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
             if ui_overlay_visible:
-                pos_posi_canvas = world_to_canvas(positions["positrino"])
-                pos_elec_canvas = world_to_canvas(positions["electrino"])
-                gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
-                gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
-                gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
-                gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
+                for name, pos in positions.items():
+                    arch = emitter_lookup.get(name)
+                    if arch is None:
+                        continue
+                    pos_canvas = world_to_canvas(pos)
+                    gfxdraw.filled_circle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 6, arch.color)
+                    gfxdraw.aacircle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 7, PURE_WHITE)
 
             gpu_draw_surface(geometry_layer, panel_w, 0, "overlay_geom")
             gpu_draw_surface(particle_layer, panel_w, 0, "overlay_particles")
@@ -1433,7 +1499,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 arc_half = 5.0
                 start = (ang - arc_half) % 360
                 end = (ang + arc_half) % 360
-                color = PURE_RED if hit.emitter == "positrino" else PURE_BLUE
+                emitter_arch = emitter_lookup.get(hit.emitter)
+                color = emitter_arch.color if emitter_arch else PURE_WHITE
 
                 def draw_arc_span(s: float, e: float) -> None:
                     # Thicker arc via small radial offsets
@@ -1462,7 +1529,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     end = world_to_canvas(positions[h.receiver])
-                    line_color = PURE_RED if h.emitter == "positrino" else PURE_BLUE
+                    emitter_arch = emitter_lookup.get(h.emitter)
+                    line_color = emitter_arch.color if emitter_arch else PURE_WHITE
                     # Thicker line by drawing twice with slight offsets
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
@@ -1471,17 +1539,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
             if show_hit_overlays:
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
-                    marker_color = LIGHT_RED if h.emitter == "positrino" else LIGHT_BLUE
+                    emitter_arch = emitter_lookup.get(h.emitter)
+                    marker_color = LIGHT_RED if emitter_arch and emitter_arch.polarity > 0 else LIGHT_BLUE
                     gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
                     gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
             if ui_overlay_visible:
-                pos_posi_canvas = world_to_canvas(positions["positrino"])
-                pos_elec_canvas = world_to_canvas(positions["electrino"])
-                gfxdraw.filled_circle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 6, PURE_RED)
-                gfxdraw.aacircle(particle_layer, int(pos_posi_canvas[0]), int(pos_posi_canvas[1]), 7, PURE_WHITE)
-                gfxdraw.filled_circle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 6, PURE_BLUE)
-                gfxdraw.aacircle(particle_layer, int(pos_elec_canvas[0]), int(pos_elec_canvas[1]), 7, PURE_WHITE)
+                for name, pos in positions.items():
+                    arch = emitter_lookup.get(name)
+                    if arch is None:
+                        continue
+                    pos_canvas = world_to_canvas(pos)
+                    gfxdraw.filled_circle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 6, arch.color)
+                    gfxdraw.aacircle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 7, PURE_WHITE)
 
             screen.blit(geometry_layer, (panel_w, 0))
             screen.blit(particle_layer, (panel_w, 0))
@@ -1489,12 +1559,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
         pygame.display.flip()
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
-        path_t = speed_mult * time_t
-        param = path_time_offset + path_t
-        return {
-            "positrino": position_at(positrino, param),
-            "electrino": position_at(electrino, param),
-        }
+        pos: Dict[str, Vec2] = {}
+        for arch in arch_objs:
+            path_t = speed_mult * arch.base_speed * time_t
+            param = arch_path_offsets.get(arch.name, 0.0) + path_t
+            pos[arch.name] = position_at(arch, param)
+        return pos
 
     def prune_emissions(current_time: float) -> None:
         nonlocal emissions
@@ -1652,8 +1722,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
                     if len(path_traces[name]) > trace_limit:
                         path_traces[name] = path_traces[name][-trace_limit:]
 
-                emissions.append(Emission(time=current_time, pos=positions["positrino"], emitter="positrino"))
-                emissions.append(Emission(time=current_time, pos=positions["electrino"], emitter="electrino"))
+                for arch in arch_objs:
+                    emissions.append(
+                        Emission(time=current_time, pos=positions[arch.name], emitter=arch.name, polarity=arch.polarity)
+                    )
 
                 prune_emissions(current_time)
                 allow_self = speed_mult > field_v + 1e-6
@@ -1710,12 +1782,11 @@ def main() -> None:
     try:
         args = parse_args()
         scenario = load_run_file(args.run, PATH_LIBRARY)
-        orbit = scenario.primary_orbit()
         render = scenario.render or args.render
         if not render:
             raise SystemExit("Render disabled. Set directives.render or pass --render.")
         run_label = Path(args.run).name
-        render_live(scenario.config, scenario.paths, path_name=orbit.path, run_label=run_label)
+        render_live(scenario.config, scenario.paths, arch_specs=scenario.architrinos, path_name=scenario.primary_path(), run_label=run_label)
     except KeyboardInterrupt:
         # Graceful exit on Ctrl-C without traceback.
         try:
