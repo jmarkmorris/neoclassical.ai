@@ -981,9 +981,25 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         surf = (fnt or font).render(text, True, color)
         target.blit(surf, (x, y))
 
-    def rebuild_field_surface(current_time: float, update_last_radius: bool = False) -> None:
+    def apply_static_coulomb(static_positions: Dict[str, Vec2] | None) -> None:
+        if not cfg.seed_static_field or not static_positions:
+            return
+        field_grid[:] = 0.0
+        for name, pos in static_positions.items():
+            state = state_lookup.get(name)
+            if state is None:
+                continue
+            px, py = pos
+            dx = xx - px
+            dy = yy - py
+            dist2 = dx * dx + dy * dy + 1e-9
+            contrib = state.polarity / dist2
+            field_grid[:] += contrib
+
+    def rebuild_field_surface(current_time: float, update_last_radius: bool = False, static_positions: Dict[str, Vec2] | None = None) -> None:
         nonlocal field_surface
         field_grid[:] = 0.0
+        apply_static_coulomb(static_positions)
         for em in emissions:
             tau = current_time - em.time
             if tau <= 0:
@@ -1434,14 +1450,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         sim_clock_elapsed = 0.0
         if cfg.seed_static_field:
             seed_static_emissions()
-        if field_visible:
-            if field_alg == "gpu":
+            # Build a static field snapshot from current positions.
+            rebuild_field_surface(0.0, static_positions=positions)
+            field_surface = make_field_surface()
+            if field_visible and field_alg == "gpu":
                 if gpu_display:
                     gpu_update_field_texture(0.0)
                 else:
                     gpu_rebuild_field_surface(0.0)
-            else:
-                rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incr")
+        else:
+            if field_visible:
+                if field_alg == "gpu":
+                    if gpu_display:
+                        gpu_update_field_texture(0.0)
+                    else:
+                        gpu_rebuild_field_surface(0.0)
+                else:
+                    rebuild_field_surface(0.0, update_last_radius=field_alg == "cpu_incr")
         log_state("reset")
 
     def render_frame_gl(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
@@ -1457,12 +1482,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         ctx.viewport = (0, 0, view_w, view_h)
         ctx.clear(1.0, 1.0, 1.0, 1.0)
         if field_visible:
-            if field_alg == "gpu":
+            seeded_static = cfg.seed_static_field and (frame_idx <= 1)
+            fs = field_surf if field_surf is not None else field_surface
+            if seeded_static and fs is not None:
+                gpu_draw_surface(fs, panel_w, 0, "field_rgb")
+            elif field_alg == "gpu":
                 ctx.viewport = (panel_w, 0, canvas_w, height)
                 gpu_present_field()
                 ctx.viewport = (0, 0, view_w, view_h)
-            elif field_surface is not None:
-                gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
+            elif fs is not None:
+                gpu_draw_surface(fs, panel_w, 0, "field_rgb")
 
         overlay_has_content = (
             orbit_ring_visible
