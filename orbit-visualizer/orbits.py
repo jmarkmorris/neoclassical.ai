@@ -289,6 +289,7 @@ class ArchitrinoSpec:
     velocity_speed: float
     velocity_heading_deg: float
     decay: float | None = None
+    mover: str | None = None
 
 
 @dataclass
@@ -478,6 +479,9 @@ def load_run_file(
         vel_raw = _expect_dict(vel_raw, f"architrinos[{idx}].velocity")
         speed = _coerce_float(vel_raw.get("speed", cfg.speed_multiplier), f"architrinos[{idx}].velocity.speed")
         heading_deg = _coerce_float(vel_raw.get("heading_deg", 0.0), f"architrinos[{idx}].velocity.heading_deg")
+        mover_type = arch.get("mover", "analytic")
+        if mover_type not in {"analytic", "physics"}:
+            raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
         arch_specs.append(
             ArchitrinoSpec(
                 name=name,
@@ -487,6 +491,7 @@ def load_run_file(
                 velocity_speed=speed,
                 velocity_heading_deg=heading_deg,
                 decay=decay_override if decay_override is not None else None,
+                mover=mover_type,
             )
         )
 
@@ -702,7 +707,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             name=spec.name,
             polarity=polarity_sign,
             color=color,
-            mover_type="analytic",
+            mover_type=spec.mover or "analytic",
             path_name=spec.path,
             phase=phase,
             path_offset=offset,
