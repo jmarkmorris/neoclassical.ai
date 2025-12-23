@@ -121,6 +121,111 @@ class Architrino:
 
 
 @dataclass
+class MoverEnv:
+    """
+    Per-frame context passed into movers.
+
+    This keeps analytic and physics movers symmetric and avoids reaching back
+    into module-level globals when computing the next position.
+    """
+    time: float
+    dt: float
+    field_speed: float
+    speed_mult: float
+    path_snap: float | None
+    position_snap: float | None
+
+
+@dataclass
+class ArchitrinoState:
+    """
+    Unified per-architrino state, covering identity, path params, and runtime
+    kinematics. This is forward-compatible with both analytic paths and
+    physics-based movers.
+    """
+    name: str
+    polarity: int
+    color: Tuple[int, int, int]
+    mover_type: str = "analytic"
+    path_name: str | None = None
+    phase: float = 0.0
+    path_offset: float = 0.0
+    base_speed: float = 1.0
+    heading_deg: float = 0.0
+    radial_scale: float = 1.0
+    param: float = 0.0  # path parameter (for analytic movers)
+    pos: Vec2 = (0.0, 0.0)
+    trace: List[Vec2] | None = None
+    speed_mult_override: float | None = None
+    last_emit_time: float = 0.0
+    path_snap: float | None = None
+    position_snap: float | None = None
+    initial_path_offset: float = 0.0
+
+
+class Mover:
+    """Interface for motion update; concrete movers implement `step`."""
+
+    mover_type: str = "base"
+
+    def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
+        raise NotImplementedError
+
+
+class AnalyticMover(Mover):
+    """
+    Analytic path mover: advances by parametric speed and samples a known path.
+    Uses snap settings from state/env to match the existing quantization rules.
+    """
+
+    mover_type = "analytic"
+
+    def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
+        speed_mult = state.speed_mult_override if state.speed_mult_override is not None else env.speed_mult
+        path_param = state.path_offset + state.base_speed * speed_mult * env.time
+        snap_step = state.path_snap if state.path_snap is not None else env.path_snap
+        if snap_step is not None and snap_step > 0:
+            path_param = round(path_param / snap_step) * snap_step
+
+        if path_spec.name == "exp_inward_spiral" and path_spec.decay is not None:
+            base_param = path_param  # snap before applying phase (matches previous behavior)
+            decay_scale = 1.0
+            if env.speed_mult is not None and env.field_speed is not None and env.speed_mult > env.field_speed + 1e-6:
+                decay_scale = 2.0
+            angle = base_param + state.phase
+            radius = math.exp(-path_spec.decay * abs(base_param) * decay_scale)
+            pos = (radius * math.cos(angle), radius * math.sin(angle))
+        else:
+            pos_param = path_param + state.phase
+            x, y = path_spec.sampler(pos_param)
+            pos = (x, y)
+
+        pos = (pos[0] * state.radial_scale, pos[1] * state.radial_scale)
+        snap_dist = state.position_snap if state.position_snap is not None else env.position_snap
+        if snap_dist is not None and (snap_step is None or snap_step <= 0):
+            pos = (
+                round(pos[0] / snap_dist) * snap_dist,
+                round(pos[1] / snap_dist) * snap_dist,
+            )
+        state.param = path_param
+        state.pos = pos
+        return pos
+
+
+class PhysicsMover(Mover):
+    """
+    Placeholder for Coulomb-style physics movers that operate on retarded hits.
+    The integration loop will supply neighbor context via MoverEnv extensions.
+    """
+
+    mover_type = "physics"
+
+    def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
+        # TODO: implement retarded-force integration when physics movers are added.
+        return state.pos
+
+
+@dataclass
 class Emission:
     time: float
     pos: Vec2
@@ -528,7 +633,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     # Build architrino instances with per-arch offsets and base speeds.
     current_path_name = "multi" if len(arch_specs) > 1 else arch_specs[0].path
-    arch_objs: List[Architrino] = []
+    states: List[ArchitrinoState] = []
+    movers: Dict[str, Mover] = {
+        "analytic": AnalyticMover(),
+        "physics": PhysicsMover(),
+    }
     path_traces: Dict[str, List[Vec2]] = {}
 
     def default_phase_from_start(path_name: str, start: Vec2, decay: float | None) -> Tuple[float, float]:
@@ -580,24 +689,36 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         phase, offset = default_phase_from_start(spec.path, spec.start_pos, base_path.decay)
         sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg)
         start_r = math.hypot(*spec.start_pos)
-        sample_x, sample_y = base_path.sampler(offset + phase)
-        sample_r = math.hypot(sample_x, sample_y)
+        if spec.path == "exp_inward_spiral" and base_path.decay is not None:
+            sample_r = math.exp(-base_path.decay * abs(offset))
+        else:
+            sample_x, sample_y = base_path.sampler(offset + phase)
+            sample_r = math.hypot(sample_x, sample_y)
         radial_scale = start_r / sample_r if sample_r > 1e-9 else 1.0
         color = PURE_RED if spec.polarity == "p" else PURE_BLUE
         polarity_sign = 1 if spec.polarity == "p" else -1
-        arch = Architrino(
-            spec.name,
-            polarity_sign,
-            color,
-            phase,
-            base_path,
+        state = ArchitrinoState(
+            name=spec.name,
+            polarity=polarity_sign,
+            color=color,
+            mover_type="analytic",
+            path_name=spec.path,
+            phase=phase,
             path_offset=offset,
             base_speed=spec.velocity_speed * sign,
             heading_deg=spec.velocity_heading_deg,
             radial_scale=radial_scale,
+            param=0.0,
+            pos=spec.start_pos,
+            trace=[],
+            speed_mult_override=None,
+            last_emit_time=0.0,
+            path_snap=cfg.path_snap,
+            position_snap=cfg.position_snap,
+            initial_path_offset=offset,
         )
-        arch_objs.append(arch)
-        path_traces[spec.name] = []
+        states.append(state)
+        path_traces[state.name] = state.trace if state.trace is not None else []
 
     running = True
     paused = False if offline else cfg.start_paused
@@ -610,22 +731,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     shell_thickness = 0.0
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))  # global speed scale
     pending_speed_mult = speed_mult
-    position_snap = cfg.position_snap
-    path_snap = cfg.path_snap
     frame_skip = 0
-
-    def snap_param(param: float) -> float:
-        if path_snap is None or path_snap <= 0:
-            return param
-        return round(param / path_snap) * path_snap
-
-    def snap_pos(pos: Vec2) -> Vec2:
-        if path_snap is not None and path_snap > 0:
-            return pos
-        return snap_position(pos, position_snap)
-
-    def position_at(emitter: Architrino, param: float) -> Vec2:
-        return snap_pos(emitter.position(snap_param(param), speed_mult, field_v))
 
     max_radius = math.sqrt(2) * cfg.domain_half_extent * 1.1
     emission_retention = max_radius / field_v
@@ -635,11 +741,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     seen_hits_queue = deque()
     last_diff = {}
     last_diff_queue = deque()
-    emitter_lookup = {arch.name: arch for arch in arch_objs}
-    arch_path_offsets: Dict[str, float] = {arch.name: arch.path_offset for arch in arch_objs}
-    arch_initial_offsets: Dict[str, float] = dict(arch_path_offsets)
-    num_pos_arch = sum(1 for a in arch_objs if a.polarity > 0)
-    num_neg_arch = sum(1 for a in arch_objs if a.polarity < 0)
+    state_lookup = {s.name: s for s in states}
+    num_pos_arch = sum(1 for s in states if s.polarity > 0)
+    num_neg_arch = sum(1 for s in states if s.polarity < 0)
     BASE_OFFSET = 0.0  # start at param = 0
     trace_limit = 40000
     hit_overlay_enabled = False
@@ -827,8 +931,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         speed_mult = clamp_speed(new_speed)
         pending_speed_mult = speed_mult
         # Preserve the current path parameter so paused positions stay fixed.
-        for arch in arch_objs:
-            arch_path_offsets[arch.name] += (prev_speed - speed_mult) * current_time * arch.base_speed
+        for state in states:
+            state.path_offset += (prev_speed - speed_mult) * current_time * state.base_speed
         refresh_hits_for_current_time()
         if auto_pause:
             paused = True
@@ -1348,23 +1452,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         gpu_state["overlay_prog"]["overlay_tex"].value = 0
         gpu_state["overlay_vao"].render(mode=gpu_state["moderngl"].TRIANGLE_STRIP)
 
-    def add_trace_segment(start_offsets: Dict[str, float], end_offsets: Dict[str, float], steps: int = 180) -> None:
-        nonlocal path_traces
-        for name, emitter in emitter_lookup.items():
-            if end_offsets.get(name, 0.0) == start_offsets.get(name, 0.0):
-                continue
-            segment = []
-            for j in range(steps + 1):
-                alpha = j / steps
-                s = start_offsets.get(name, 0.0) + alpha * (end_offsets.get(name, 0.0) - start_offsets.get(name, 0.0))
-                segment.append(position_at(emitter, s))
-            path_traces[name].extend(segment)
-            if len(path_traces[name]) > trace_limit:
-                path_traces[name] = path_traces[name][-trace_limit:]
-
     def rebuild_trace_for_offsets() -> None:
         nonlocal path_traces
-        path_traces = {name: [] for name in emitter_lookup.keys()}
+        for state in states:
+            state.trace = []
+            path_traces[state.name] = state.trace
 
     def refresh_hits_for_current_time() -> None:
         """Recompute hits for the current frame time using emission history."""
@@ -1384,14 +1476,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         keep_offset: bool = False,
         keep_field_visible: bool = False,
     ) -> None:
-        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, sim_clock_start, sim_clock_elapsed, arch_path_offsets
+        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, sim_clock_start, sim_clock_elapsed
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         else:
             speed_mult = clamp_speed(cfg.speed_multiplier)
             pending_speed_mult = speed_mult
         if not keep_offset:
-            arch_path_offsets = dict(arch_initial_offsets)
+            for state in states:
+                state.path_offset = state.initial_path_offset
         emissions = []
         field_grid[:] = 0.0
         field_surface = None
@@ -1460,7 +1553,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         if len(trace) < 2:
                             continue
                         # Use arch-specific color for visibility.
-                        arch_obj = emitter_lookup.get(name)
+                        arch_obj = state_lookup.get(name)
                         base_color = arch_obj.color if arch_obj else PURE_WHITE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
                         n = len(pts)
@@ -1509,7 +1602,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 arc_half = 5.0
                 start = (ang - arc_half) % 360
                 end = (ang + arc_half) % 360
-                emitter_arch = emitter_lookup.get(hit.emitter)
+                emitter_arch = state_lookup.get(hit.emitter)
                 color = emitter_arch.color if emitter_arch else PURE_WHITE
 
                 def draw_arc_span(s: float, e: float) -> None:
@@ -1536,7 +1629,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     end = world_to_canvas(positions[h.receiver])
-                    emitter_arch = emitter_lookup.get(h.emitter)
+                    emitter_arch = state_lookup.get(h.emitter)
                     line_color = emitter_arch.color if emitter_arch else PURE_WHITE
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
@@ -1545,14 +1638,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             if show_hit_overlays:
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
-                    emitter_arch = emitter_lookup.get(h.emitter)
+                    emitter_arch = state_lookup.get(h.emitter)
                     marker_color = LIGHT_RED if emitter_arch and emitter_arch.polarity > 0 else LIGHT_BLUE
                     gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
                     gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
             if ui_overlay_visible and architrinos_visible:
                 for name, pos in positions.items():
-                    arch = emitter_lookup.get(name)
+                    arch = state_lookup.get(name)
                     if arch is None:
                         continue
                     pos_canvas = world_to_canvas(pos)
@@ -1597,7 +1690,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     for name, trace in path_traces.items():
                         if len(trace) < 2:
                             continue
-                        arch_obj = emitter_lookup.get(name)
+                        arch_obj = state_lookup.get(name)
                         base_color = arch_obj.color if arch_obj else PURE_WHITE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
                         n = len(pts)
@@ -1646,7 +1739,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 arc_half = 5.0
                 start = (ang - arc_half) % 360
                 end = (ang + arc_half) % 360
-                emitter_arch = emitter_lookup.get(hit.emitter)
+                emitter_arch = state_lookup.get(hit.emitter)
                 color = emitter_arch.color if emitter_arch else PURE_WHITE
 
                 def draw_arc_span(s: float, e: float) -> None:
@@ -1676,7 +1769,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     end = world_to_canvas(positions[h.receiver])
-                    emitter_arch = emitter_lookup.get(h.emitter)
+                    emitter_arch = state_lookup.get(h.emitter)
                     line_color = emitter_arch.color if emitter_arch else PURE_WHITE
                     # Thicker line by drawing twice with slight offsets
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
@@ -1686,14 +1779,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             if show_hit_overlays:
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
-                    emitter_arch = emitter_lookup.get(h.emitter)
+                    emitter_arch = state_lookup.get(h.emitter)
                     marker_color = LIGHT_RED if emitter_arch and emitter_arch.polarity > 0 else LIGHT_BLUE
                     gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
                     gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
             if ui_overlay_visible and architrinos_visible:
                 for name, pos in positions.items():
-                    arch = emitter_lookup.get(name)
+                    arch = state_lookup.get(name)
                     if arch is None:
                         continue
                     pos_canvas = world_to_canvas(pos)
@@ -1708,10 +1801,39 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         pos: Dict[str, Vec2] = {}
-        for arch in arch_objs:
-            path_t = speed_mult * arch.base_speed * time_t
-            param = arch_path_offsets.get(arch.name, 0.0) + path_t
-            pos[arch.name] = position_at(arch, param)
+        for state in states:
+            if state.path_name is None:
+                continue
+            path_spec = paths.get(state.path_name)
+            if path_spec is None:
+                continue
+            snap_step = state.path_snap if state.path_snap is not None else cfg.path_snap
+            path_param = state.path_offset + speed_mult * state.base_speed * time_t
+            if snap_step is not None and snap_step > 0:
+                path_param = round(path_param / snap_step) * snap_step
+
+            if path_spec.name == "exp_inward_spiral" and path_spec.decay is not None:
+                base_param = path_param
+                decay_scale = 1.0
+                if speed_mult is not None and field_v is not None and speed_mult > field_v + 1e-6:
+                    decay_scale = 2.0
+                angle = base_param + state.phase
+                radius = math.exp(-path_spec.decay * abs(base_param) * decay_scale)
+                p = (radius * math.cos(angle), radius * math.sin(angle))
+            else:
+                x, y = path_spec.sampler(path_param + state.phase)
+                p = (x, y)
+
+            p = (p[0] * state.radial_scale, p[1] * state.radial_scale)
+            snap_dist = state.position_snap if state.position_snap is not None else cfg.position_snap
+            if snap_dist is not None and (snap_step is None or snap_step <= 0):
+                p = (
+                    round(p[0] / snap_dist) * snap_dist,
+                    round(p[1] / snap_dist) * snap_dist,
+                )
+            state.param = path_param
+            state.pos = p
+            pos[state.name] = p
         return pos
 
     def prune_emissions(current_time: float) -> None:
@@ -1896,9 +2018,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     if len(path_traces[name]) > trace_limit:
                         path_traces[name] = path_traces[name][-trace_limit:]
 
-                for arch in arch_objs:
+                for state in states:
+                    if state.name not in positions:
+                        continue
                     emissions.append(
-                        Emission(time=current_time, pos=positions[arch.name], emitter=arch.name, polarity=arch.polarity)
+                        Emission(time=current_time, pos=positions[state.name], emitter=state.name, polarity=state.polarity)
                     )
 
                 prune_emissions(current_time)
