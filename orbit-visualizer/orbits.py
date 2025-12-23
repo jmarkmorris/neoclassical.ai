@@ -92,6 +92,9 @@ class SimulationConfig:
     shell_weight: str = "raised_cosine"  # "raised_cosine" or "hard"
     field_alg: str = "gpu"  # "cpu_full", "cpu_incr", or "gpu"
     duration_seconds: float | None = None
+    canvas_shrink: float = 0.9
+    seed_static_field: bool = False
+    canvas_shrink: float = 0.9
 
 
 @dataclass
@@ -266,10 +269,15 @@ def load_run_file(
         shell_weight=shell_weight,
         field_alg=field_alg,
         duration_seconds=_coerce_float(directives["duration_seconds"], "directives.duration_seconds") if "duration_seconds" in directives else None,
+        canvas_shrink=_coerce_float(directives.get("canvas_shrink", 0.9), "directives.canvas_shrink"),
+        seed_static_field=bool(directives.get("seed_static_field", False)),
     )
 
     paths_override = dict(paths)
     arch_specs: List[ArchitrinoSpec] = []
+    physics_present = False
+    physics_present = False
+    physics_present = False
     for idx, entry in enumerate(arch_list):
         arch = _expect_dict(entry, f"architrinos[{idx}]")
         name = arch.get("name") or f"arch-{idx+1}"
@@ -281,6 +289,8 @@ def load_run_file(
         mover_type = mover_type.lower()
         if mover_type not in {"analytic", "physics"}:
             raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
+        if mover_type == "physics":
+            physics_present = True
         polarity = arch.get("type") or arch.get("polarity")
         if polarity not in {"p", "e"}:
             raise ValueError(f"architrinos[{idx}] polarity/type must be 'p' or 'e'.")
@@ -331,6 +341,9 @@ def load_run_file(
                 mover=mover_type,
             )
         )
+
+    if directives.get("seed_static_field", None) is None:
+        cfg.seed_static_field = physics_present
 
     render = bool(directives.get("render", False))
     return RunScenario(
@@ -420,9 +433,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     ffmpeg_log = None
     target_frames = None
 
+    shrink_factor = cfg.canvas_shrink  # reduce requested canvas to avoid OS downscale/resizes
     if not offline:
         max_side = min(info.current_h, max(1, info.current_w - panel_w))
-        canvas_side = max(1, int(max_side * canvas_scale))
+        canvas_side = max(1, int(max_side * shrink_factor * canvas_scale))
         apply_window_size(panel_w + canvas_side, canvas_side)
     else:
         # Use a fixed offscreen size for offline rendering (square).
@@ -740,6 +754,58 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             pygame.draw.circle(ring_surface, (0, 0, 0, 0), center_pt, inner_r)
         target.blit(ring_surface, (cx - diam // 2, cy - diam // 2))
 
+    grid_debug_printed = False
+
+    def draw_grid(target: "pygame.Surface") -> None:
+        """Draw a light grid at 0.25 spacing centered on the domain."""
+        nonlocal grid_debug_printed
+        step = 0.25
+        extent = cfg.domain_half_extent
+        color = (220, 220, 220)
+        axis_color = (180, 180, 180)
+        if step <= 0 or extent <= 0:
+            return
+        intervals = int(round((2 * extent) / step))
+        if intervals <= 0:
+            return
+        # Vertical lines
+        for i in range(intervals + 1):
+            x_world = -extent + i * step
+            p0 = world_to_canvas((x_world, -extent))
+            p1 = world_to_canvas((x_world, extent))
+            if vec_finite(p0) and vec_finite(p1):
+                pygame.draw.line(target, color, p0, p1, 1)
+        # Horizontal lines
+        for i in range(intervals + 1):
+            y_world = -extent + i * step
+            p0 = world_to_canvas((-extent, y_world))
+            p1 = world_to_canvas((extent, y_world))
+            if vec_finite(p0) and vec_finite(p1):
+                pygame.draw.line(target, color, p0, p1, 1)
+        # Axes
+        p0 = world_to_canvas((-extent, 0.0))
+        p1 = world_to_canvas((extent, 0.0))
+        if vec_finite(p0) and vec_finite(p1):
+            pygame.draw.line(target, axis_color, p0, p1, 2)
+        p0 = world_to_canvas((0.0, -extent))
+        p1 = world_to_canvas((0.0, extent))
+        if vec_finite(p0) and vec_finite(p1):
+            pygame.draw.line(target, axis_color, p0, p1, 2)
+
+        if not grid_debug_printed:
+            left = world_to_canvas((-extent, 0.0))[0]
+            right = world_to_canvas((extent, 0.0))[0]
+            top = world_to_canvas((0.0, extent))[1]
+            bottom = world_to_canvas((0.0, -extent))[1]
+            center = world_to_canvas((0.0, 0.0))
+            print(
+                f"[grid_debug] extent={extent} canvas_w={canvas_w} height={height} "
+                f"left_px={left:.2f} right_px={right:.2f} top_px={top:.2f} bottom_px={bottom:.2f} "
+                f"center_px=({center[0]:.2f},{center[1]:.2f}) intervals={intervals}",
+                flush=True,
+            )
+            grid_debug_printed = True
+
     def update_time_params(new_hz: int) -> None:
         nonlocal dt, shell_thickness
         cfg.hz = new_hz
@@ -752,9 +818,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     update_time_params(cfg.hz)
 
     def world_to_screen(p: Vec2) -> Vec2:
-        scale = canvas_w / (2 * cfg.domain_half_extent)
-        sx = panel_w + (canvas_w * 0.5) + p[0] * scale
-        sy = (height * 0.5) + p[1] * scale
+        extent = cfg.domain_half_extent
+        if extent <= 0:
+            return panel_w, 0
+        sx = panel_w + ((p[0] + extent) / (2 * extent)) * canvas_w
+        sy = ((p[1] + extent) / (2 * extent)) * height
         return sx, sy
 
     def world_to_canvas(p: Vec2) -> Vec2:
@@ -1319,6 +1387,20 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         last_diff_queue.clear()
         recent_hits.extend(detect_hits(current_time, positions, allow_self=speed_mult > field_v))
 
+    def seed_static_emissions() -> None:
+        """Prefill emission history to approximate a long-running static field."""
+        if not states:
+            return
+        steps = 64
+        span = emission_retention
+        if span <= 0 or steps <= 0:
+            return
+        for state in states:
+            base_pos = state.pos
+            for i in range(steps):
+                t_emit = -span + (span * i / max(1, steps - 1))
+                emissions.append(Emission(time=t_emit, pos=base_pos, emitter=state.name, polarity=state.polarity))
+
     def reset_state(
         apply_pending_speed: bool = True,
         keep_trace: bool = False,
@@ -1350,6 +1432,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         recent_hits.clear()
         sim_clock_start = time.monotonic()
         sim_clock_elapsed = 0.0
+        if cfg.seed_static_field:
+            seed_static_emissions()
         if field_visible:
             if field_alg == "gpu":
                 if gpu_display:
@@ -1388,6 +1472,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         overlay_visible = overlay_has_content
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+            draw_grid(geometry_layer)
             if orbit_ring_visible:
                 center = (canvas_w // 2, canvas_w // 2)
                 ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords
@@ -1532,6 +1617,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         overlay_visible = overlay_has_content
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+            draw_grid(geometry_layer)
             if orbit_ring_visible:
                 center = (canvas_w // 2, canvas_w // 2)
                 ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords

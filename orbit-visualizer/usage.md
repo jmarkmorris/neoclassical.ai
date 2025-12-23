@@ -68,6 +68,8 @@ python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer
   - `"cpu_incr"`: CPU incremental ring updates.
   - `"cpu_full"`: CPU full rebuild each frame.
   Legacy values are mapped automatically: `"gpu_instanced"` → `"gpu"`, `"cpu_incremental"` → `"cpu_incr"`, `"cpu_rebuild"` → `"cpu_full"`.
+- `canvas_shrink` (float): Optional factor (default `0.9`) to reduce requested canvas size to avoid OS downscaling; set to `1.0` to request full size.
+- `seed_static_field` (bool): Pre-fill the field with stationary emissions for each architrino at startup. Defaults to `true` when any `mover` is `physics`.
 
 Aliases (optional):
 - `field_on` → `field_visible`
