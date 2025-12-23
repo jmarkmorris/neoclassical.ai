@@ -92,6 +92,24 @@ PATH_LIBRARY: Dict[str, PathSpec] = {
 }
 
 
+def default_phase_and_offset(path_name: str, start: Vec2, decay: float | None) -> Tuple[float, float]:
+    """
+    Compute phase and path_offset needed for the analytic path to hit start_pos.
+    """
+    x, y = start
+    if path_name == "unit_circle":
+        angle = math.atan2(y, x)
+        return angle, 0.0
+    if path_name == "exp_inward_spiral" and decay is not None:
+        angle = math.atan2(y, x)
+        r = math.hypot(x, y)
+        base_param = 0.0
+        if r > 1e-9:
+            base_param = max(0.0, -math.log(r) / max(decay, 1e-9))
+        return angle, base_param
+    return 0.0, 0.0
+
+
 @dataclass
 class Architrino:
     name: str
@@ -646,21 +664,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     }
     path_traces: Dict[str, List[Vec2]] = {}
 
-    def default_phase_from_start(path_name: str, start: Vec2, decay: float | None) -> Tuple[float, float]:
-        """Return (phase, path_offset) to hit start_pos on known paths."""
-        x, y = start
-        if path_name == "unit_circle":
-            angle = math.atan2(y, x)
-            return angle, 0.0
-        if path_name == "exp_inward_spiral" and decay is not None:
-            angle = math.atan2(y, x)
-            r = math.hypot(x, y)
-            base_param = 0.0
-            if r > 1e-9:
-                base_param = max(0.0, -math.log(r) / max(decay, 1e-9))
-            return angle, base_param
-        return 0.0, 0.0
-
     def tangent_sign_for_heading(path: PathSpec, param: float, heading_deg: float) -> float:
         """Choose +1/-1 so path tangent best aligns with requested heading.
         Heading uses screen-friendly convention: 0=+x, 90=up (so y is inverted from math).
@@ -692,7 +695,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 decay=decay,
             )
             base_path = paths[spec.path]
-        phase, offset = default_phase_from_start(spec.path, spec.start_pos, base_path.decay)
+        phase, offset = default_phase_and_offset(spec.path, spec.start_pos, base_path.decay)
         sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg)
         start_r = math.hypot(*spec.start_pos)
         if spec.path == "exp_inward_spiral" and base_path.decay is not None:
