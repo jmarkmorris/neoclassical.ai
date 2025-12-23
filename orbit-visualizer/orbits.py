@@ -470,6 +470,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     duration_limit = duration_seconds
     ffmpeg_proc = None
     ffmpeg_log = None
+    target_frames = None
 
     if not offline:
         max_side = min(info.current_h, max(1, info.current_w - panel_w))
@@ -1913,12 +1914,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         recent_hits.extend(display_hits)
 
                 sim_idx += 1
-                if duration_limit is not None and current_time >= duration_limit:
+                if offline and target_frames is not None and captured_frames >= target_frames:
                     running = False
                     break
 
             frame_idx = sim_idx - 1
-            if duration_limit is not None and current_time >= duration_limit:
+            if offline and target_frames is not None and captured_frames >= target_frames:
                 break
             if field_alg == "cpu_incr":
                 update_field_surface(current_time)
@@ -1946,6 +1947,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 except BrokenPipeError:
                     ffmpeg_failed = True
                     print("[offline] ffmpeg pipe closed; stopping capture.", flush=True)
+            if offline and target_frames is not None and captured_frames >= target_frames:
+                running = False
 
             # Refresh caption at a coarse cadence to reduce overhead; force on state changes.
             fps_samples.append((frame_idx, time.monotonic()))
