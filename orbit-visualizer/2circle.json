@@ -22,6 +22,7 @@
     {
       "name": "p1",
       "polarity": "p",
+      "mover": "analytic",
       "path": "unit_circle",
       "start_pos": { "x": 1.0, "y": 0.0 },
       "velocity": { "speed": 0.5, "heading_deg": -90 }
@@ -29,6 +30,7 @@
     {
       "name": "e1",
       "polarity": "e",
+      "mover": "analytic",
       "path": "unit_circle",
       "start_pos": { "x": -1.0, "y": 0.0 },
       "velocity": { "speed": 0.5, "heading_deg": 90 }
@@ -36,6 +38,7 @@
     {
       "name": "p2",
       "polarity": "p",
+      "mover": "analytic",
       "path": "unit_circle",
       "start_pos": { "x": 1.0, "y": 0.0 },
       "velocity": { "speed": 0.5, "heading_deg": 90 }
@@ -43,6 +46,7 @@
     {
       "name": "e2",
       "polarity": "e",
+      "mover": "analytic",
       "path": "unit_circle",
       "start_pos": { "x": -1.0, "y": 0.0 },
       "velocity": { "speed": 0.5, "heading_deg": -90 }

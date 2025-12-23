@@ -85,3 +85,4 @@ Each group describes architrino counts and a motion block.
   - `speed_multiplier` (float): Path speed multiplier override for the group.
   - `decay` (float): Spiral decay override (only for `exp_inward_spiral`).
 - `simulation` (object): Reserved for future simulation rules (do not include with `orbit`).
+  - `mover` (string, optional): Motion backend per architrino. Use `"analytic"` (default) for predefined paths, or `"physics"` (stubbed for future force-based motion).
