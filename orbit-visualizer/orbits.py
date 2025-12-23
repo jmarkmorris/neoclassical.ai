@@ -275,14 +275,25 @@ def load_run_file(
         name = arch.get("name") or f"arch-{idx+1}"
         if not isinstance(name, str):
             raise ValueError(f"architrinos[{idx}].name must be a string.")
+        mover_type = arch.get("mover", "analytic")
+        if not isinstance(mover_type, str):
+            raise ValueError(f"architrinos[{idx}].mover must be a string if provided.")
+        mover_type = mover_type.lower()
+        if mover_type not in {"analytic", "physics"}:
+            raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
         polarity = arch.get("type") or arch.get("polarity")
         if polarity not in {"p", "e"}:
             raise ValueError(f"architrinos[{idx}] polarity/type must be 'p' or 'e'.")
         path_name = arch.get("path")
         if not isinstance(path_name, str):
-            raise ValueError(f"architrinos[{idx}].path must be a string.")
-        if path_name not in paths_override:
-            raise ValueError(f"Unknown path '{path_name}' for architrinos[{idx}]. Available: {list(paths_override.keys())}")
+            if mover_type != "physics":
+                raise ValueError(f"architrinos[{idx}].path must be a string.")
+            path_name = None
+        if path_name and path_name not in paths_override:
+            if mover_type == "physics" and path_name.lower() in {"dynamic", "physics"}:
+                path_name = None
+            else:
+                raise ValueError(f"Unknown path '{path_name}' for architrinos[{idx}]. Available: {list(paths_override.keys())}")
         decay_override = arch.get("decay")
         if decay_override is not None:
             if path_name != "exp_inward_spiral":
@@ -308,14 +319,11 @@ def load_run_file(
         vel_raw = _expect_dict(vel_raw, f"architrinos[{idx}].velocity")
         speed = _coerce_float(vel_raw.get("speed", cfg.speed_multiplier), f"architrinos[{idx}].velocity.speed")
         heading_deg = _coerce_float(vel_raw.get("heading_deg", 0.0), f"architrinos[{idx}].velocity.heading_deg")
-        mover_type = arch.get("mover", "analytic")
-        if mover_type not in {"analytic", "physics"}:
-            raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
         arch_specs.append(
             ArchitrinoSpec(
                 name=name,
                 polarity=polarity,
-                path=path_name,
+                path=path_name or "dynamic",
                 start_pos=start_pos,
                 velocity_speed=speed,
                 velocity_heading_deg=heading_deg,
@@ -493,11 +501,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         return 1.0 if dot >= 0 else -1.0
 
     for spec in arch_specs:
-        if spec.path not in paths:
+        base_path = None
+        if spec.path in paths:
+            base_path = paths[spec.path]
+        elif spec.mover != "physics":
             raise ValueError(f"Unknown path '{spec.path}'. Available: {list(paths.keys())}")
-        base_path = paths[spec.path]
-        decay = spec.decay if spec.decay is not None else base_path.decay
-        if decay is not None and base_path.decay != decay:
+
+        decay = spec.decay if (spec.decay is not None and base_path is not None) else (base_path.decay if base_path else None)
+        if base_path is not None and decay is not None and base_path.decay != decay:
             paths = dict(paths)
             paths[spec.path] = PathSpec(
                 name=base_path.name,
@@ -506,15 +517,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 decay=decay,
             )
             base_path = paths[spec.path]
-        phase, offset = default_phase_and_offset(spec.path, spec.start_pos, base_path.decay)
-        sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg)
-        start_r = math.hypot(*spec.start_pos)
-        if spec.path == "exp_inward_spiral" and base_path.decay is not None:
-            sample_r = math.exp(-base_path.decay * abs(offset))
+
+        if spec.mover == "physics":
+            phase, offset = 0.0, 0.0
+            sign = 1.0
+            radial_scale = 1.0
         else:
-            sample_x, sample_y = base_path.sampler(offset + phase)
-            sample_r = math.hypot(sample_x, sample_y)
-        radial_scale = start_r / sample_r if sample_r > 1e-9 else 1.0
+            phase, offset = default_phase_and_offset(spec.path, spec.start_pos, base_path.decay if base_path else None)
+            sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg) if base_path else 1.0
+            start_r = math.hypot(*spec.start_pos)
+            if spec.path == "exp_inward_spiral" and base_path and base_path.decay is not None:
+                sample_r = math.exp(-base_path.decay * abs(offset))
+            elif base_path:
+                sample_x, sample_y = base_path.sampler(offset + phase)
+                sample_r = math.hypot(sample_x, sample_y)
+            else:
+                sample_r = start_r
+            radial_scale = start_r / sample_r if sample_r > 1e-9 else 1.0
         color = PURE_RED if spec.polarity == "p" else PURE_BLUE
         polarity_sign = 1 if spec.polarity == "p" else -1
         heading_rad = math.radians(spec.velocity_heading_deg)
@@ -734,8 +753,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     def world_to_screen(p: Vec2) -> Vec2:
         scale = canvas_w / (2 * cfg.domain_half_extent)
-        sx = panel_w + canvas_w / 2 + p[0] * scale
-        sy = canvas_w / 2 + p[1] * scale
+        sx = panel_w + (canvas_w * 0.5) + p[0] * scale
+        sy = (height * 0.5) + p[1] * scale
         return sx, sy
 
     def world_to_canvas(p: Vec2) -> Vec2:

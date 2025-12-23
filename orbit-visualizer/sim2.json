@@ -12,7 +12,7 @@
       "field_visible": true,
       "architrinos_visible": true,
       "path_trail_visible": true,
-      "path_trail_markers_visible": false
+      "path_trail_markers_visible": true
     }
   },
   "architrinos": [
@@ -21,16 +21,16 @@
       "polarity": "p",
       "mover": "physics",
       "path": "unit_circle",
-      "start_pos": { "x": 0.5, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": -90 }
+      "start_pos": { "x": 1, "y": 1 },
+      "velocity": { "speed": 0.1, "heading_deg": -90 }
     },
     {
       "name": "e1",
       "polarity": "e",
       "mover": "physics",
       "path": "unit_circle",
-      "start_pos": { "x": -0.5, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": 90 }
+      "start_pos": { "x": -1, "y": -1 },
+      "velocity": { "speed": 0.1, "heading_deg": 90 }
     }
   ]
 }
