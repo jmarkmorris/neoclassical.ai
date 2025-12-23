@@ -342,8 +342,8 @@ def load_run_file(
             )
         )
 
-    if directives.get("seed_static_field", None) is None:
-        cfg.seed_static_field = physics_present
+    # Default: do not pre-bake static fields; only enable when explicitly requested.
+    cfg.seed_static_field = bool(directives.get("seed_static_field", False))
 
     render = bool(directives.get("render", False))
     return RunScenario(
