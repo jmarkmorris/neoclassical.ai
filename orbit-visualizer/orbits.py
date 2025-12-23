@@ -161,6 +161,7 @@ class ArchitrinoState:
     path_snap: float | None = None
     position_snap: float | None = None
     initial_path_offset: float = 0.0
+    trace_limit: int = 40000
 
 
 class Mover:
@@ -1800,6 +1801,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             pygame.display.flip()
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
+        env = MoverEnv(
+            time=time_t,
+            dt=dt,
+            field_speed=field_v,
+            speed_mult=speed_mult,
+            path_snap=cfg.path_snap,
+            position_snap=cfg.position_snap,
+        )
         pos: Dict[str, Vec2] = {}
         for state in states:
             if state.path_name is None:
@@ -1807,33 +1816,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             path_spec = paths.get(state.path_name)
             if path_spec is None:
                 continue
-            snap_step = state.path_snap if state.path_snap is not None else cfg.path_snap
-            path_param = state.path_offset + speed_mult * state.base_speed * time_t
-            if snap_step is not None and snap_step > 0:
-                path_param = round(path_param / snap_step) * snap_step
-
-            if path_spec.name == "exp_inward_spiral" and path_spec.decay is not None:
-                base_param = path_param
-                decay_scale = 1.0
-                if speed_mult is not None and field_v is not None and speed_mult > field_v + 1e-6:
-                    decay_scale = 2.0
-                angle = base_param + state.phase
-                radius = math.exp(-path_spec.decay * abs(base_param) * decay_scale)
-                p = (radius * math.cos(angle), radius * math.sin(angle))
-            else:
-                x, y = path_spec.sampler(path_param + state.phase)
-                p = (x, y)
-
-            p = (p[0] * state.radial_scale, p[1] * state.radial_scale)
-            snap_dist = state.position_snap if state.position_snap is not None else cfg.position_snap
-            if snap_dist is not None and (snap_step is None or snap_step <= 0):
-                p = (
-                    round(p[0] / snap_dist) * snap_dist,
-                    round(p[1] / snap_dist) * snap_dist,
-                )
-            state.param = path_param
-            state.pos = p
-            pos[state.name] = p
+            mover = movers.get(state.mover_type, movers["analytic"])
+            pos[state.name] = mover.step(state, env, path_spec)
         return pos
 
     def prune_emissions(current_time: float) -> None:
