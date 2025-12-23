@@ -1,0 +1,36 @@
+{
+  "directives": {
+    "format_version": 1,
+    "hz": 500,
+    "field_speed": 1.0,
+    "domain_half_extent": 2.0,
+    "speed_multiplier": 1.0,
+    "render": true,
+    "start_paused": true,
+    "field_alg": "gpu_instanced",
+    "ui": {
+      "field_visible": true,
+      "architrinos_visible": true,
+      "path_trail_visible": true,
+      "path_trail_markers_visible": false
+    }
+  },
+  "architrinos": [
+    {
+      "name": "p1",
+      "polarity": "p",
+      "mover": "physics",
+      "path": "unit_circle",
+      "start_pos": { "x": 0.5, "y": 0.0 },
+      "velocity": { "speed": 0.5, "heading_deg": -90 }
+    },
+    {
+      "name": "e1",
+      "polarity": "e",
+      "mover": "physics",
+      "path": "unit_circle",
+      "start_pos": { "x": -0.5, "y": 0.0 },
+      "velocity": { "speed": 0.5, "heading_deg": 90 }
+    }
+  ]
+}

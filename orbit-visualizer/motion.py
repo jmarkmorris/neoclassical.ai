@@ -63,6 +63,7 @@ class ArchitrinoState:
     radial_scale: float = 1.0
     param: float = 0.0  # path parameter (for analytic movers)
     pos: Vec2 = (0.0, 0.0)
+    vel: Vec2 = (0.0, 0.0)
     trace: List[Vec2] | None = None
     speed_mult_override: float | None = None
     last_emit_time: float = 0.0
@@ -83,6 +84,9 @@ class MoverEnv:
     speed_mult: float
     path_snap: float | None
     position_snap: float | None
+    emissions: List["Emission"]
+    allow_self: bool = True
+    hit_tolerance: float | None = None
 
 
 class Mover:
@@ -142,8 +146,59 @@ class PhysicsMover(Mover):
     mover_type = "physics"
 
     def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
-        # TODO: implement retarded-force integration when physics movers are added.
+        # Retarded-force integration using historical emissions.
+        q = float(state.polarity)
+        mass = max(abs(q), 1e-6)
+        fx = fy = 0.0
+        tol = env.hit_tolerance
+        if tol is None:
+            tol = max(env.field_speed * env.dt * 0.6, 0.002)
+        max_force = 25.0  # simple clamp to avoid blow-ups
+        for em in env.emissions:
+            if not env.allow_self and em.emitter == state.name:
+                continue
+            tau = env.time - em.time
+            if tau <= 0:
+                continue
+            radius = env.field_speed * tau
+            dx = state.pos[0] - em.pos[0]
+            dy = state.pos[1] - em.pos[1]
+            dist = math.hypot(dx, dy)
+            if dist < 1e-9:
+                continue
+            diff = abs(dist - radius)
+            if diff > tol:
+                continue
+            force_mag = (q * em.polarity) / (dist * dist)
+            force_mag = max(-max_force, min(max_force, force_mag))
+            fx += force_mag * (dx / dist)
+            fy += force_mag * (dy / dist)
+        ax = fx / mass
+        ay = fy / mass
+        vx = state.vel[0] + ax * env.dt
+        vy = state.vel[1] + ay * env.dt
+        # Clamp velocity to keep integration stable.
+        vmag = math.hypot(vx, vy)
+        vcap = 10.0
+        if vmag > vcap:
+            scale = vcap / vmag
+            vx *= scale
+            vy *= scale
+        px = state.pos[0] + vx * env.dt
+        py = state.pos[1] + vy * env.dt
+        state.vel = (vx, vy)
+        state.pos = (px, py)
+        state.param = state.param  # unchanged for physics mover
         return state.pos
+
+
+@dataclass
+class Emission:
+    time: float
+    pos: Vec2
+    emitter: str
+    polarity: int
+    last_radius: float = 0.0
 
 
 def default_phase_and_offset(path_name: str, start: Vec2, decay: float | None) -> Tuple[float, float]:
@@ -173,6 +228,7 @@ __all__ = [
     "Mover",
     "AnalyticMover",
     "PhysicsMover",
+    "Emission",
     "default_phase_and_offset",
     "unit_circle_sampler",
     "exp_inward_spiral_sampler",

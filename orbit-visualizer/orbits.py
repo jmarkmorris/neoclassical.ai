@@ -44,6 +44,7 @@ import numpy as np
 from motion import (
     AnalyticMover,
     ArchitrinoState,
+    Emission,
     MoverEnv,
     PathSpec,
     PhysicsMover,
@@ -61,149 +62,6 @@ PURE_WHITE = (255, 255, 255)
 LIGHT_GRAY = (200, 200, 200)
 LIGHT_RED = (255, 160, 160)
 LIGHT_BLUE = (160, 200, 255)
-
-
-@dataclass
-class Architrino:
-    name: str
-    polarity: int  # +1 positrino, -1 electrino
-    color: Tuple[int, int, int]
-    phase: float  # radians
-    path: PathSpec
-    path_offset: float = 0.0
-    base_speed: float = 1.0  # per-arch base speed (scaled by global speed multiplier)
-    heading_deg: float = 0.0
-    radial_scale: float = 1.0
-
-    def position(self, t: float, speed_mult: float | None = None, field_v: float | None = None) -> Vec2:
-        """Position on the assigned path with phase offset."""
-        # For spirals, decay is based on the traveled angle; phase only rotates the angle.
-        if self.path.name == "exp_inward_spiral" and self.path.decay is not None:
-            base_param = t
-            decay_scale = 1.0
-            if speed_mult is not None and field_v is not None and speed_mult > field_v + 1e-6:
-                decay_scale = 2.0
-            angle = base_param + self.phase
-            radius = math.exp(-self.path.decay * abs(base_param) * decay_scale)
-            return radius * math.cos(angle), radius * math.sin(angle)
-        param = t + self.phase
-        x, y = self.path.sampler(param)
-        return x * self.radial_scale, y * self.radial_scale
-
-
-@dataclass
-class MoverEnv:
-    """
-    Per-frame context passed into movers.
-
-    This keeps analytic and physics movers symmetric and avoids reaching back
-    into module-level globals when computing the next position.
-    """
-    time: float
-    dt: float
-    field_speed: float
-    speed_mult: float
-    path_snap: float | None
-    position_snap: float | None
-
-
-@dataclass
-class ArchitrinoState:
-    """
-    Unified per-architrino state, covering identity, path params, and runtime
-    kinematics. This is forward-compatible with both analytic paths and
-    physics-based movers.
-    """
-    name: str
-    polarity: int
-    color: Tuple[int, int, int]
-    mover_type: str = "analytic"
-    path_name: str | None = None
-    phase: float = 0.0
-    path_offset: float = 0.0
-    base_speed: float = 1.0
-    heading_deg: float = 0.0
-    radial_scale: float = 1.0
-    param: float = 0.0  # path parameter (for analytic movers)
-    pos: Vec2 = (0.0, 0.0)
-    trace: List[Vec2] | None = None
-    speed_mult_override: float | None = None
-    last_emit_time: float = 0.0
-    path_snap: float | None = None
-    position_snap: float | None = None
-    initial_path_offset: float = 0.0
-    trace_limit: int = 40000
-
-
-class Mover:
-    """Interface for motion update; concrete movers implement `step`."""
-
-    mover_type: str = "base"
-
-    def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
-        raise NotImplementedError
-
-
-class AnalyticMover(Mover):
-    """
-    Analytic path mover: advances by parametric speed and samples a known path.
-    Uses snap settings from state/env to match the existing quantization rules.
-    """
-
-    mover_type = "analytic"
-
-    def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
-        speed_mult = state.speed_mult_override if state.speed_mult_override is not None else env.speed_mult
-        path_param = state.path_offset + state.base_speed * speed_mult * env.time
-        snap_step = state.path_snap if state.path_snap is not None else env.path_snap
-        if snap_step is not None and snap_step > 0:
-            path_param = round(path_param / snap_step) * snap_step
-
-        if path_spec.name == "exp_inward_spiral" and path_spec.decay is not None:
-            base_param = path_param  # snap before applying phase (matches previous behavior)
-            decay_scale = 1.0
-            if env.speed_mult is not None and env.field_speed is not None and env.speed_mult > env.field_speed + 1e-6:
-                decay_scale = 2.0
-            angle = base_param + state.phase
-            radius = math.exp(-path_spec.decay * abs(base_param) * decay_scale)
-            pos = (radius * math.cos(angle), radius * math.sin(angle))
-        else:
-            pos_param = path_param + state.phase
-            x, y = path_spec.sampler(pos_param)
-            pos = (x, y)
-
-        pos = (pos[0] * state.radial_scale, pos[1] * state.radial_scale)
-        snap_dist = state.position_snap if state.position_snap is not None else env.position_snap
-        if snap_dist is not None and (snap_step is None or snap_step <= 0):
-            pos = (
-                round(pos[0] / snap_dist) * snap_dist,
-                round(pos[1] / snap_dist) * snap_dist,
-            )
-        state.param = path_param
-        state.pos = pos
-        return pos
-
-
-class PhysicsMover(Mover):
-    """
-    Placeholder for Coulomb-style physics movers that operate on retarded hits.
-    The integration loop will supply neighbor context via MoverEnv extensions.
-    """
-
-    mover_type = "physics"
-
-    def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
-        # TODO: implement retarded-force integration when physics movers are added.
-        return state.pos
-
-
-@dataclass
-class Emission:
-    time: float
-    pos: Vec2
-    emitter: str
-    polarity: int
-    last_radius: float = 0.0
 
 
 @dataclass
@@ -659,6 +517,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         radial_scale = start_r / sample_r if sample_r > 1e-9 else 1.0
         color = PURE_RED if spec.polarity == "p" else PURE_BLUE
         polarity_sign = 1 if spec.polarity == "p" else -1
+        heading_rad = math.radians(spec.velocity_heading_deg)
+        vx = spec.velocity_speed * math.cos(heading_rad)
+        vy = -spec.velocity_speed * math.sin(heading_rad)  # screen-friendly (up is negative y)
         state = ArchitrinoState(
             name=spec.name,
             polarity=polarity_sign,
@@ -672,6 +533,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             radial_scale=radial_scale,
             param=0.0,
             pos=spec.start_pos,
+            vel=(vx, vy),
             trace=[],
             speed_mult_override=None,
             last_emit_time=0.0,
@@ -881,6 +743,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         sx, sy = world_to_screen(p)
         return sx - panel_w, sy
 
+    def vec_finite(p: Vec2) -> bool:
+        return math.isfinite(p[0]) and math.isfinite(p[1])
+
+    def vec_within_canvas(p: Vec2) -> bool:
+        return -0.6 * width <= p[0] <= 1.6 * width and -0.6 * height <= p[1] <= 1.6 * height
+
     def clamp_speed(v: float) -> float:
         return max(0.0, min(v, 100.0))
 
@@ -891,9 +759,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         prev_speed = speed_mult
         speed_mult = clamp_speed(new_speed)
         pending_speed_mult = speed_mult
-        # Preserve the current path parameter so paused positions stay fixed.
+        # Preserve the current path parameter so paused positions stay fixed for analytic movers.
         for state in states:
-            state.path_offset += (prev_speed - speed_mult) * current_time * state.base_speed
+            if state.mover_type == "analytic":
+                state.path_offset += (prev_speed - speed_mult) * current_time * state.base_speed
         refresh_hits_for_current_time()
         if auto_pause:
             paused = True
@@ -1606,10 +1475,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
             if ui_overlay_visible and architrinos_visible:
                 for name, pos in positions.items():
+                    if not vec_finite(pos):
+                        continue
                     arch = state_lookup.get(name)
                     if arch is None:
                         continue
                     pos_canvas = world_to_canvas(pos)
+                    if not vec_finite(pos_canvas):
+                        continue
+                    if abs(pos_canvas[0]) > 32760 or abs(pos_canvas[1]) > 32760:
+                        continue
                     gfxdraw.filled_circle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 6, arch.color)
                     gfxdraw.aacircle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 7, PURE_WHITE)
 
@@ -1768,16 +1643,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             speed_mult=speed_mult,
             path_snap=cfg.path_snap,
             position_snap=cfg.position_snap,
+            emissions=emissions,
+            allow_self=True,
+            hit_tolerance=None,
         )
         pos: Dict[str, Vec2] = {}
         for state in states:
-            if state.path_name is None:
-                continue
-            path_spec = paths.get(state.path_name)
-            if path_spec is None:
+            path_spec = None
+            if state.path_name is not None:
+                path_spec = paths.get(state.path_name)
+            if state.mover_type == "analytic" and path_spec is None:
                 continue
             mover = movers.get(state.mover_type, movers["analytic"])
-            pos[state.name] = mover.step(state, env, path_spec)
+            pos[state.name] = mover.step(state, env, path_spec if path_spec is not None else paths.get("unit_circle"))
         return pos
 
     def prune_emissions(current_time: float) -> None:
@@ -1957,7 +1835,20 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             for step in range(steps):
                 current_time = sim_idx * dt
                 positions = current_positions(current_time)
+                # Abort if any physics mover pushes outside a generous canvas bound.
                 for name, pos in positions.items():
+                    if not vec_finite(pos):
+                        running = False
+                        break
+                    pos_canvas = world_to_canvas(pos)
+                    if not vec_finite(pos_canvas) or not vec_within_canvas(pos_canvas):
+                        running = False
+                        break
+                if not running:
+                    break
+                for name, pos in positions.items():
+                    if not vec_finite(pos):
+                        continue
                     trace = path_traces.get(name)
                     if trace is None:
                         trace = []
