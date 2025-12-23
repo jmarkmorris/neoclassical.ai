@@ -13,7 +13,7 @@
     "field_alg": "gpu_instanced",
     "ui": {
       "field_visible": true,
-      "architrinos_visible": false,
+      "architrinos_visible": true,
       "path_trail_visible": false,
       "path_trail_markers_visible": false
     }

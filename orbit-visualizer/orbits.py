@@ -707,7 +707,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     num_pos_arch = sum(1 for s in states if s.polarity > 0)
     num_neg_arch = sum(1 for s in states if s.polarity < 0)
     BASE_OFFSET = 0.0  # start at param = 0
-    trace_limit = 40000
     hit_overlay_enabled = False
     show_hit_overlays = False
     trace_test_frames_remaining: int | None = None
@@ -1959,9 +1958,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 current_time = sim_idx * dt
                 positions = current_positions(current_time)
                 for name, pos in positions.items():
-                    path_traces[name].append(pos)
-                    if len(path_traces[name]) > trace_limit:
-                        path_traces[name] = path_traces[name][-trace_limit:]
+                    trace = path_traces.get(name)
+                    if trace is None:
+                        trace = []
+                        path_traces[name] = trace
+                    trace.append(pos)
+                    state = state_lookup.get(name)
+                    limit = state.trace_limit if state and state.trace_limit else 40000
+                    if len(trace) > limit:
+                        path_traces[name] = trace[-limit:]
 
                 for state in states:
                     if state.name not in positions:
