@@ -33,6 +33,7 @@ import argparse
 import json
 import math
 import os
+import subprocess
 import time
 from collections import deque
 from dataclasses import dataclass
@@ -155,6 +156,7 @@ class SimulationConfig:
     field_color_falloff: str = "inverse_r2"  # "inverse_r2" (log10) or "inverse_r" (sqrt log10)
     shell_weight: str = "raised_cosine"  # "raised_cosine" or "hard"
     field_alg: str = "gpu"  # "cpu_full", "cpu_incr", or "gpu"
+    duration_seconds: float | None = None
 
 
 @dataclass
@@ -327,6 +329,7 @@ def load_run_file(
         field_color_falloff=field_color_falloff,
         shell_weight=shell_weight,
         field_alg=field_alg,
+        duration_seconds=_coerce_float(directives["duration_seconds"], "directives.duration_seconds") if "duration_seconds" in directives else None,
     )
 
     paths_override = dict(paths)
@@ -391,7 +394,7 @@ def load_run_file(
     )
 
 
-def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: List[ArchitrinoSpec], ui: UIConfig | None, path_name: str = "unit_circle", run_label: str = "") -> None:
+def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: List[ArchitrinoSpec], ui: UIConfig | None, path_name: str = "unit_circle", run_label: str = "", offline: bool = False, offline_output: str = "output.mp4", offline_fps: int = 60, duration_seconds: float | None = None) -> None:
     """
     Incremental PyGame renderer that keeps a rolling accumulator grid instead of cached frames.
     """
@@ -406,6 +409,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     if not arch_specs:
         raise ValueError("No architrinos defined.")
 
+    if offline:
+        os.environ["SDL_VIDEODRIVER"] = "dummy"
     pygame.init()
     panel_w = 0
     canvas_scale = 1.0
@@ -414,7 +419,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     info = pygame.display.Info()
     field_alg = cfg.field_alg
     gpu_display = False
-    if field_alg == "gpu":
+    if offline and field_alg == "gpu":
+        field_alg = "cpu_full"
+    if field_alg == "gpu" and not offline:
         try:
             import moderngl  # noqa: F401
             gpu_display = True
@@ -427,6 +434,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE)
         pygame.display.gl_set_attribute(pygame.GL_DOUBLEBUFFER, 1)
         display_flags |= pygame.OPENGL | pygame.DOUBLEBUF
+    if offline:
+        os.environ["SDL_VIDEODRIVER"] = "dummy"
+        display_flags = 0
     # Frame controls and canvas sizing
     flip_stride = 8  # flip every N frames when running
     trace_draw_stride = 8  # redraw traces every N frames while running
@@ -457,11 +467,63 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         trace_layer.fill((0, 0, 0, 0))
         trace_layer_last_update = -trace_draw_stride
 
-    max_side = min(info.current_h, max(1, info.current_w - panel_w))
-    canvas_side = max(1, int(max_side * canvas_scale))
-    apply_window_size(panel_w + canvas_side, canvas_side)
+    duration_limit = duration_seconds
+    ffmpeg_proc = None
+    ffmpeg_log = None
+
+    if not offline:
+        max_side = min(info.current_h, max(1, info.current_w - panel_w))
+        canvas_side = max(1, int(max_side * canvas_scale))
+        apply_window_size(panel_w + canvas_side, canvas_side)
+    else:
+        # Use a fixed offscreen size for offline rendering (square).
+        canvas_side = 1080
+        apply_window_size(panel_w + canvas_side, canvas_side)
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 12)
+    if offline:
+        capture_stride = 1
+        target_frames = int(offline_fps * duration_limit) if (duration_limit is not None and offline_fps is not None) else None
+        ffmpeg_log_path = Path(offline_output).with_suffix(Path(offline_output).suffix + ".ffmpeg.log")
+        ffmpeg_log = ffmpeg_log_path.open("w", encoding="utf-8")
+        ffmpeg_cmd = [
+            "ffmpeg",
+            "-y",
+            "-loglevel",
+            "error",
+            "-f",
+            "rawvideo",
+            "-pix_fmt",
+            "rgba",
+            "-s",
+            f"{width}x{height}",
+            "-r",
+            str(offline_fps),
+            "-i",
+            "-",
+            "-c:v",
+            "libx264",
+            "-movflags",
+            "+faststart",
+            "-pix_fmt",
+            "yuv420p",
+            offline_output,
+        ]
+        try:
+            ffmpeg_proc = subprocess.Popen(
+                ffmpeg_cmd,
+                stdin=subprocess.PIPE,
+                stderr=ffmpeg_log,
+                start_new_session=True,
+            )
+        except FileNotFoundError as exc:
+            raise SystemExit("ffmpeg not found; install ffmpeg or disable --offline.") from exc
+        print(
+            f"[offline] capture start: size={width}x{height}, hz={cfg.hz}, fps={offline_fps}, stride={capture_stride}, duration={duration_limit}s, target_frames={target_frames or 'unbounded'}",
+            flush=True,
+        )
+        print(f"[offline] ffmpeg pid={ffmpeg_proc.pid}", flush=True)
+        print(f"[offline] ffmpeg log: {ffmpeg_log_path}", flush=True)
 
     # Build architrino instances with per-arch offsets and base speeds.
     current_path_name = "multi" if len(arch_specs) > 1 else arch_specs[0].path
@@ -537,7 +599,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         path_traces[spec.name] = []
 
     running = True
-    paused = cfg.start_paused
+    paused = False if offline else cfg.start_paused
     frame_idx = 0
     sim_clock_start = time.monotonic()
     sim_clock_elapsed = 0.0
@@ -592,6 +654,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     positions: Dict[str, Vec2] = {}
     fps_window = 100
     fps_samples = deque(maxlen=fps_window + 1)  # (frame_idx, wall_clock_time)
+    progress_stride = 100 if offline else None
+    captured_frames = 0
+    last_progress_log = time.monotonic()
+    ffmpeg_failed = False
 
     def log_state(reason: str) -> None:
         """Print a fixed-width table snapshot of the current render/sim state."""
@@ -1495,8 +1561,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             gpu_draw_surface(geometry_layer, panel_w, 0, "overlay_geom")
             gpu_draw_surface(particle_layer, panel_w, 0, "overlay_particles")
         # Throttled flipping: always flip when paused; otherwise flip every flip_stride frames.
-        if paused or frame_idx % flip_stride == 0:
-            pygame.display.flip()
+        if not offline:
+            if paused or frame_idx % flip_stride == 0:
+                pygame.display.flip()
 
     def render_frame(positions: Dict[str, Vec2], hits: List[Hit], field_surf=None) -> None:
         nonlocal trace_layer_last_update, trace_layer
@@ -1635,7 +1702,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             screen.blit(geometry_layer, (panel_w, 0))
             screen.blit(particle_layer, (panel_w, 0))
 
-        pygame.display.flip()
+        if not offline:
+            pygame.display.flip()
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         pos: Dict[str, Vec2] = {}
@@ -1805,6 +1873,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         force=caption_dirty,
                     )
                 render_frame(positions, list(recent_hits))
+                if offline and ffmpeg_proc and ffmpeg_proc.stdin:
+                    frame_bytes = pygame.image.tostring(screen, "RGBA")
+                    try:
+                        ffmpeg_proc.stdin.write(frame_bytes)
+                    except BrokenPipeError:
+                        pass
                 clock.tick(cfg.hz)
                 continue
             show_hit_overlays = False
@@ -1839,8 +1913,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         recent_hits.extend(display_hits)
 
                 sim_idx += 1
+                if duration_limit is not None and current_time >= duration_limit:
+                    running = False
+                    break
 
             frame_idx = sim_idx - 1
+            if duration_limit is not None and current_time >= duration_limit:
+                break
             if field_alg == "cpu_incr":
                 update_field_surface(current_time)
             elif field_alg == "gpu":
@@ -1852,6 +1931,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             else:
                 rebuild_field_surface(current_time)
             render_frame(positions, display_hits)
+            if offline and ffmpeg_proc and ffmpeg_proc.stdin and (frame_idx % capture_stride == 0) and not ffmpeg_failed:
+                frame_bytes = pygame.image.tostring(screen, "RGBA")
+                try:
+                    ffmpeg_proc.stdin.write(frame_bytes)
+                    captured_frames += 1
+                    now = time.monotonic()
+                    if progress_stride and (captured_frames % progress_stride == 0 or (now - last_progress_log) >= 5.0):
+                        print(
+                            f"[offline] captured {captured_frames} frames at sim_t={current_time:.2f}s (frame_idx={frame_idx})",
+                            flush=True,
+                        )
+                        last_progress_log = now
+                except BrokenPipeError:
+                    ffmpeg_failed = True
+                    print("[offline] ffmpeg pipe closed; stopping capture.", flush=True)
 
             # Refresh caption at a coarse cadence to reduce overhead; force on state changes.
             fps_samples.append((frame_idx, time.monotonic()))
@@ -1869,6 +1963,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 fps=fps_val,
             )
 
+            if offline:
+                now = time.monotonic()
+                if now - last_progress_log >= 5.0:
+                    print(
+                        f"[offline] progress: sim_t={current_time:.2f}s frame_idx={frame_idx} captured={captured_frames}",
+                        flush=True,
+                    )
+                    last_progress_log = now
+
             clock.tick(0)
 
             frame_idx = sim_idx
@@ -1879,14 +1982,30 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     continue
     except KeyboardInterrupt:
         running = False
-
-    log_state("exit")
-    pygame.quit()
+    finally:
+        log_state("exit")
+        if ffmpeg_proc:
+            try:
+                ffmpeg_proc.stdin.close()
+            except Exception:
+                pass
+            ffmpeg_proc.wait()
+            print(f"[offline] wrote video to {offline_output} (captured_frames={captured_frames})", flush=True)
+        if ffmpeg_log:
+            try:
+                ffmpeg_log.close()
+            except Exception:
+                pass
+        pygame.quit()
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Orbit visualizer prototype (live).")
     parser.add_argument("--run", type=str, required=True, help="JSON run file with directives and architrino groups.")
     parser.add_argument("--render", action="store_true", help="Open a PyGame window and render the live simulation.")
+    parser.add_argument("--offline", action="store_true", help="Render offline to an mp4 (no window, no vsync).")
+    parser.add_argument("--output", type=str, default="output.mp4", help="Output video filename for offline render.")
+    parser.add_argument("--fps", type=int, default=60, help="Playback FPS for offline encoding.")
+    parser.add_argument("--duration-seconds", type=float, default=None, help="Stop the simulation after this many simulation seconds.")
     return parser.parse_args()
 
 
@@ -1894,11 +2013,22 @@ def main() -> None:
     try:
         args = parse_args()
         scenario = load_run_file(args.run, PATH_LIBRARY)
-        render = scenario.render or args.render
+        render = scenario.render or args.render or args.offline
         if not render:
-            raise SystemExit("Render disabled. Set directives.render or pass --render.")
+            raise SystemExit("Render disabled. Set directives.render or pass --render/--offline.")
         run_label = Path(args.run).name
-        render_live(scenario.config, scenario.paths, arch_specs=scenario.architrinos, ui=scenario.ui, path_name=scenario.primary_path(), run_label=run_label)
+        render_live(
+            scenario.config,
+            scenario.paths,
+            arch_specs=scenario.architrinos,
+            ui=scenario.ui,
+            path_name=scenario.primary_path(),
+            run_label=run_label,
+            offline=args.offline,
+            offline_output=args.output,
+            offline_fps=args.fps,
+            duration_seconds=args.duration_seconds if args.duration_seconds is not None else scenario.config.duration_seconds,
+        )
     except KeyboardInterrupt:
         # Graceful exit on Ctrl-C without traceback.
         try:
