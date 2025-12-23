@@ -8,10 +8,15 @@
     "speed_multiplier": 0.5,
     "path_snap": 0.002,
     "render": true,
-    "field_visible": true,
     "start_paused": true,
     "shell_weight": "raised_cosine",
-    "field_alg": "gpu_instanced"
+    "field_alg": "gpu_instanced",
+    "ui": {
+      "field_visible": true,
+      "architrinos_visible": false,
+      "path_trail_visible": false,
+      "path_trail_markers_visible": false
+    }
   },
   "architrinos": [
     {

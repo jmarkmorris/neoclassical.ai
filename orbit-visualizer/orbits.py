@@ -158,6 +158,14 @@ class SimulationConfig:
 
 
 @dataclass
+class UIConfig:
+    field_visible: bool = True
+    architrinos_visible: bool = True
+    path_trail_visible: bool = False
+    path_trail_markers_visible: bool = False
+
+
+@dataclass
 class OrbitConfig:
     path: str
     speed_multiplier: float | None = None
@@ -181,6 +189,7 @@ class RunScenario:
     architrinos: List[ArchitrinoSpec]
     paths: Dict[str, PathSpec]
     render: bool = False
+    ui: UIConfig | None = None
 
     def primary_path(self) -> str:
         if not self.architrinos:
@@ -250,6 +259,15 @@ def load_run_file(
         directives = {}
     directives = _expect_dict(directives, "directives")
 
+    ui_raw = directives.get("ui", {}) or {}
+    ui_raw = _expect_dict(ui_raw, "directives.ui")
+    ui_cfg = UIConfig(
+        field_visible=bool(ui_raw.get("field_visible", True)),
+        architrinos_visible=bool(ui_raw.get("architrinos_visible", True)),
+        path_trail_visible=bool(ui_raw.get("path_trail_visible", False)),
+        path_trail_markers_visible=bool(ui_raw.get("path_trail_markers_visible", False)),
+    )
+
     arch_list = _expect_list(payload.get("architrinos"), "architrinos")
     if not arch_list:
         raise ValueError("Run file requires an 'architrinos' array with at least one entry.")
@@ -266,7 +284,7 @@ def load_run_file(
         if position_snap <= 0:
             raise ValueError("directives.position_snap must be > 0.")
 
-    field_visible = bool(directives.get("field_visible", directives.get("field_on", True)))
+    field_visible = bool(ui_cfg.field_visible)
     start_paused = bool(directives.get("start_paused", True))
     field_grid_scale_with_canvas = bool(directives.get("field_grid_scale_with_canvas", False))
     shell_thickness_scale_with_canvas = bool(directives.get("shell_thickness_scale_with_canvas", False))
@@ -369,10 +387,11 @@ def load_run_file(
         architrinos=arch_specs,
         paths=paths_override,
         render=render,
+        ui=ui_cfg,
     )
 
 
-def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: List[ArchitrinoSpec], path_name: str = "unit_circle", run_label: str = "") -> None:
+def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: List[ArchitrinoSpec], ui: UIConfig | None, path_name: str = "unit_circle", run_label: str = "") -> None:
     """
     Incremental PyGame renderer that keeps a rolling accumulator grid instead of cached frames.
     """
@@ -565,7 +584,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     trace_test_frames_remaining: int | None = None
     orbit_ring_visible = False
     display_info = (info.current_w, info.current_h)
+    field_visible = ui.field_visible if ui is not None else cfg.field_visible
+    architrinos_visible = ui.architrinos_visible if ui is not None else True
+    path_trail_visible = ui.path_trail_visible if ui is not None else False
+    path_trail_markers_visible = ui.path_trail_markers_visible if ui is not None else False
+    caption_dirty = True
     positions: Dict[str, Vec2] = {}
+    fps_window = 100
+    fps_samples = deque(maxlen=fps_window + 1)  # (frame_idx, wall_clock_time)
 
     def log_state(reason: str) -> None:
         """Print a fixed-width table snapshot of the current render/sim state."""
@@ -583,6 +609,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             ("path", current_path_name, 24),
             ("field", field_alg, 15),
             ("fv", tf(field_visible), 1),
+            ("arch", tf(architrinos_visible), 1),
             ("ui", tf(ui_overlay_visible), 1),
             ("hit", tf(hit_overlay_enabled), 1),
             ("ovr", tf(show_hit_overlays), 1),
@@ -613,7 +640,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         """Pad float with figure spaces; assumes width includes decimal and leading spaces."""
         return f"{value:{width}.{precision}f}".replace(" ", FIGURE_SPACE)
 
-    def format_title(paused_flag: bool, label: str | None = None) -> str:
+    def format_title(paused_flag: bool, label: str | None = None, fps: float | None = None) -> str:
         """Compact title line carrying former panel info."""
         speed_field = pad_float(speed_mult, 6, 2)
         speed_label = f"velo↑↓ {speed_field}"
@@ -623,13 +650,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
         skip_label = f"skip←→ {pad_int(frame_skip, 3)}"
         freq_label = f"🅕 {pad_int(cfg.hz, 4)}Hz"
-        path_label = f"path {current_path_name}"
-        alg_label = f"🅑 {field_alg}"
+        fps_val = int(round(fps)) if fps is not None else 0
+        fps_label = f"fps {pad_int(fps_val, 5)}"
         field_label = f"field 🅥 {'on' if field_visible else 'off'}"
         prefix = f"ORBIT PATH VISUALIZER: {label}" if label else "Orbit Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
-        parts = [p for p in [speed_label, skip_label, freq_label, path_label, alg_label, field_label, status] if p]
+        parts = [p for p in [speed_label, skip_label, freq_label, field_label, status, fps_label] if p]
         return prefix + " | " + " | ".join(parts)
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
@@ -666,9 +693,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         time_field = pad_float(elapsed_s, 8, 1)  # up to 999,999.9s before width grows
         return f"frame {frame_field} | t {time_field}s"
 
-    def set_caption(paused_flag: bool, frame_number: int, elapsed_s: float) -> None:
+    def set_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None) -> None:
         """Single caption updater to keep all title parts in sync and width-stable."""
-        pygame.display.set_caption(format_title(paused_flag=paused_flag, label=run_label) + " | " + format_frame_and_time(frame_number, elapsed_s))
+        pygame.display.set_caption(
+            format_title(paused_flag=paused_flag, label=run_label, fps=fps)
+            + " | "
+            + format_frame_and_time(frame_number, elapsed_s)
+        )
+
+    def maybe_update_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None, force: bool = False) -> None:
+        nonlocal caption_dirty
+        if force or caption_dirty or frame_number % 100 == 0:
+            set_caption(paused_flag=paused_flag, frame_number=frame_number, elapsed_s=elapsed_s, fps=fps)
+            caption_dirty = False
 
     set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed)
 
@@ -718,6 +755,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     def apply_speed_change(new_speed: float, auto_pause: bool = True) -> None:
         nonlocal speed_mult, pending_speed_mult, paused
         current_time = frame_idx * dt
+        nonlocal caption_dirty
         prev_speed = speed_mult
         speed_mult = clamp_speed(new_speed)
         pending_speed_mult = speed_mult
@@ -727,6 +765,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         refresh_hits_for_current_time()
         if auto_pause:
             paused = True
+        caption_dirty = True
 
     def make_field_surface() -> "pygame.Surface":
         net = field_grid
@@ -1332,7 +1371,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             elif field_surface is not None:
                 gpu_draw_surface(field_surface, panel_w, 0, "field_rgb")
 
-        overlay_visible = ui_overlay_visible or show_hit_overlays
+        overlay_has_content = (
+            orbit_ring_visible
+            or (ui_overlay_visible and (path_trail_visible or architrinos_visible))
+            or show_hit_overlays
+        )
+        overlay_visible = overlay_has_content
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if orbit_ring_visible:
@@ -1341,7 +1385,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 ring_radius_px = max(1, ring_radius_px)
                 draw_ring(geometry_layer, center, ring_radius_px, 6, PURE_WHITE)
 
-            if ui_overlay_visible:
+            if ui_overlay_visible and path_trail_visible:
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
                 if need_redraw_traces:
                     trace_layer.fill((0, 0, 0, 0))
@@ -1369,16 +1413,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                                 pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 4)
                             except ValueError:
                                 pass
-                        # Distinct, spaced markers with outline for visibility.
-                        for i in range(0, n, marker_step):
-                            w = inv_cube_weight(i, n)
-                            alpha = int(255 * (0.1 + 0.8 * w))
-                            fill_color = (*base_color, alpha)
-                            try:
-                                gfxdraw.filled_circle(trace_layer, pts[i][0], pts[i][1], 5, fill_color)
-                                gfxdraw.aacircle(trace_layer, pts[i][0], pts[i][1], 6, PURE_WHITE)
-                            except Exception:
-                                pass
+                        if path_trail_markers_visible:
+                            # Distinct, spaced markers with outline for visibility.
+                            for i in range(0, n, marker_step):
+                                w = inv_cube_weight(i, n)
+                                alpha = int(255 * (0.1 + 0.8 * w))
+                                fill_color = (*base_color, alpha)
+                                try:
+                                    gfxdraw.filled_circle(trace_layer, pts[i][0], pts[i][1], 5, fill_color)
+                                    gfxdraw.aacircle(trace_layer, pts[i][0], pts[i][1], 6, PURE_WHITE)
+                                except Exception:
+                                    pass
                     trace_layer_last_update = frame_idx
                 geometry_layer.blit(trace_layer, (0, 0))
 
@@ -1438,7 +1483,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
                     gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
-            if ui_overlay_visible:
+            if ui_overlay_visible and architrinos_visible:
                 for name, pos in positions.items():
                     arch = emitter_lookup.get(name)
                     if arch is None:
@@ -1463,7 +1508,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         if fs is not None:
             screen.blit(fs, (panel_w, 0))
 
-        overlay_visible = ui_overlay_visible or show_hit_overlays
+        overlay_has_content = (
+            orbit_ring_visible
+            or (ui_overlay_visible and (path_trail_visible or architrinos_visible))
+            or show_hit_overlays
+        )
+        overlay_visible = overlay_has_content
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if orbit_ring_visible:
@@ -1472,19 +1522,42 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 ring_radius_px = max(1, ring_radius_px)
                 draw_ring(geometry_layer, center, ring_radius_px, 6, PURE_WHITE)
 
-            if ui_overlay_visible:
+            if ui_overlay_visible and path_trail_visible:
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
                 if need_redraw_traces:
                     trace_layer.fill((0, 0, 0, 0))
                     for name, trace in path_traces.items():
                         if len(trace) < 2:
                             continue
-                        color = PURE_WHITE
+                        arch_obj = emitter_lookup.get(name)
+                        base_color = arch_obj.color if arch_obj else PURE_WHITE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
-                        try:
-                            pygame.draw.lines(trace_layer, color, False, pts, 6)
-                        except ValueError:
-                            pass
+                        n = len(pts)
+                        if n < 2:
+                            continue
+                        max_segments = 24
+                        marker_step = max(12, n // max_segments)
+                        def inv_cube_weight(idx: int, total: int, strength: float = 4.0) -> float:
+                            age_frac = (total - 1 - idx) / max(1, total - 1)
+                            return 1.0 / (1.0 + (age_frac * strength) ** 3)
+                        for i in range(n - 1):
+                            w = inv_cube_weight(i, n)
+                            alpha = int(255 * (0.1 + 0.8 * w))
+                            color = (*base_color, alpha)
+                            try:
+                                pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 4)
+                            except ValueError:
+                                pass
+                        if path_trail_markers_visible:
+                            for i in range(0, n, marker_step):
+                                w = inv_cube_weight(i, n)
+                                alpha = int(255 * (0.1 + 0.8 * w))
+                                fill_color = (*base_color, alpha)
+                                try:
+                                    gfxdraw.filled_circle(trace_layer, pts[i][0], pts[i][1], 5, fill_color)
+                                    gfxdraw.aacircle(trace_layer, pts[i][0], pts[i][1], 6, PURE_WHITE)
+                                except Exception:
+                                    pass
                     trace_layer_last_update = frame_idx
                 geometry_layer.blit(trace_layer, (0, 0))
 
@@ -1550,7 +1623,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
                     gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
 
-            if ui_overlay_visible:
+            if ui_overlay_visible and architrinos_visible:
                 for name, pos in positions.items():
                     arch = emitter_lookup.get(name)
                     if arch is None:
@@ -1624,9 +1697,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             log_state("key_h_toggle_hit_overlay")
                     elif event.key == pygame.K_RIGHT:
                         frame_skip += 1
+                        caption_dirty = True
                         log_state("key_right_frame_skip")
                     elif event.key == pygame.K_LEFT:
                         frame_skip = max(0, frame_skip - 1)
+                        caption_dirty = True
                         log_state("key_left_frame_skip")
                     elif event.key == pygame.K_UP:
                         apply_speed_change(speed_mult + 0.1, auto_pause=True)
@@ -1644,6 +1719,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         update_time_params(new_hz)
                         reset_state(apply_pending_speed=True, keep_field_visible=True)
                         paused = True
+                        caption_dirty = True
                         log_state("key_f_hz_toggle")
                     elif event.key == pygame.K_b:
                         algs = ["cpu_incr", "cpu_full", "gpu"]
@@ -1677,9 +1753,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         log_state("key_t_trace_test")
                     elif event.key == pygame.K_u:
                         ui_overlay_visible = not ui_overlay_visible
+                        caption_dirty = True
                         log_state("key_u_ui_overlay")
                     elif event.key == pygame.K_o:
                         orbit_ring_visible = not orbit_ring_visible
+                        caption_dirty = True
                         log_state("key_o_orbit_ring_toggle")
                 elif event.type == pygame.VIDEORESIZE:
                     apply_window_size(event.w, event.h)
@@ -1700,6 +1778,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                                     frame_idx * dt,
                                     update_last_radius=field_alg == "cpu_incr",
                                 )
+                        caption_dirty = True
                         log_state("key_v_field_visible")
 
             show_hit_overlays = paused and hit_overlay_enabled
@@ -1710,7 +1789,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 # Refresh hits once when paused with overlay requested.
                 if hit_overlay_enabled and not recent_hits:
                     refresh_hits_for_current_time()
-                set_caption(paused_flag=True, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed)
+                if frame_idx % 100 == 0 or caption_dirty:
+                    fps_val = 0.0
+                    if len(fps_samples) >= 2:
+                        oldest_frame, oldest_time = fps_samples[0]
+                        newest_frame, newest_time = fps_samples[-1]
+                        frame_delta = max(1, newest_frame - oldest_frame)
+                        time_delta = max(1e-6, newest_time - oldest_time)
+                        fps_val = frame_delta / time_delta
+                    maybe_update_caption(
+                        paused_flag=True,
+                        frame_number=frame_idx + 1,
+                        elapsed_s=sim_clock_elapsed,
+                        fps=fps_val,
+                        force=caption_dirty,
+                    )
                 render_frame(positions, list(recent_hits))
                 clock.tick(cfg.hz)
                 continue
@@ -1760,8 +1853,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 rebuild_field_surface(current_time)
             render_frame(positions, display_hits)
 
-            # Always refresh caption once per loop to keep frame/time accurate.
-            set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=current_time if not paused else sim_clock_elapsed)
+            # Refresh caption at a coarse cadence to reduce overhead; force on state changes.
+            fps_samples.append((frame_idx, time.monotonic()))
+            fps_val = 0.0
+            if len(fps_samples) >= 2:
+                oldest_frame, oldest_time = fps_samples[0]
+                newest_frame, newest_time = fps_samples[-1]
+                frame_delta = max(1, newest_frame - oldest_frame)
+                time_delta = max(1e-6, newest_time - oldest_time)
+                fps_val = frame_delta / time_delta
+            maybe_update_caption(
+                paused_flag=paused,
+                frame_number=frame_idx + 1,
+                elapsed_s=current_time if not paused else sim_clock_elapsed,
+                fps=fps_val,
+            )
 
             clock.tick(0)
 
@@ -1792,7 +1898,7 @@ def main() -> None:
         if not render:
             raise SystemExit("Render disabled. Set directives.render or pass --render.")
         run_label = Path(args.run).name
-        render_live(scenario.config, scenario.paths, arch_specs=scenario.architrinos, path_name=scenario.primary_path(), run_label=run_label)
+        render_live(scenario.config, scenario.paths, arch_specs=scenario.architrinos, ui=scenario.ui, path_name=scenario.primary_path(), run_label=run_label)
     except KeyboardInterrupt:
         # Graceful exit on Ctrl-C without traceback.
         try:
