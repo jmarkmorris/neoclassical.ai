@@ -38,11 +38,19 @@ import time
 from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Dict, List, Tuple
+from typing import Dict, List
 import numpy as np
 
-Vec2 = Tuple[float, float]
-
+from motion import (
+    AnalyticMover,
+    ArchitrinoState,
+    MoverEnv,
+    PathSpec,
+    PhysicsMover,
+    Vec2,
+    default_phase_and_offset,
+    PATH_LIBRARY,
+)
 
 
 # Color constants (RGB)
@@ -53,61 +61,6 @@ PURE_WHITE = (255, 255, 255)
 LIGHT_GRAY = (200, 200, 200)
 LIGHT_RED = (255, 160, 160)
 LIGHT_BLUE = (160, 200, 255)
-
-
-@dataclass
-class PathSpec:
-    name: str
-    sampler: Callable[[float], Vec2]
-    description: str
-    decay: float | None = None  # optional radial decay parameter
-
-
-def unit_circle_sampler(t: float) -> Vec2:
-    """Unit circle at unit angular speed; default phase 0 (counterclockwise in math coords)."""
-    return math.cos(t), math.sin(t)
-
-
-def exp_inward_spiral_sampler(t: float, decay: float = 0.2) -> Vec2:
-    """
-    Exponential inward spiral toward origin.
-    r(t) = exp(-decay * t), angle = t for steady rotation.
-    """
-    r = math.exp(-decay * t)
-    return r * math.cos(t), r * math.sin(t)
-
-
-PATH_LIBRARY: Dict[str, PathSpec] = {
-    "unit_circle": PathSpec(
-        name="unit_circle",
-        sampler=unit_circle_sampler,
-        description="Unit circle, unit angular speed, phase offset configurable per particle.",
-    ),
-    "exp_inward_spiral": PathSpec(
-        name="exp_inward_spiral",
-        sampler=exp_inward_spiral_sampler,
-        description="Exponential inward spiral toward origin; steady angular speed.",
-        decay=0.005,
-    ),
-}
-
-
-def default_phase_and_offset(path_name: str, start: Vec2, decay: float | None) -> Tuple[float, float]:
-    """
-    Compute phase and path_offset needed for the analytic path to hit start_pos.
-    """
-    x, y = start
-    if path_name == "unit_circle":
-        angle = math.atan2(y, x)
-        return angle, 0.0
-    if path_name == "exp_inward_spiral" and decay is not None:
-        angle = math.atan2(y, x)
-        r = math.hypot(x, y)
-        base_param = 0.0
-        if r > 1e-9:
-            base_param = max(0.0, -math.log(r) / max(decay, 1e-9))
-        return angle, base_param
-    return 0.0, 0.0
 
 
 @dataclass
