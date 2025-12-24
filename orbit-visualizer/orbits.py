@@ -94,6 +94,7 @@ class SimulationConfig:
     duration_seconds: float | None = None
     canvas_shrink: float = 0.9
     seed_static_field: bool = False
+    grid_visible: bool = False
     canvas_shrink: float = 0.9
 
 
@@ -281,6 +282,7 @@ def load_run_file(
         duration_seconds=_coerce_float(directives["duration_seconds"], "directives.duration_seconds") if "duration_seconds" in directives else None,
         canvas_shrink=_coerce_float(directives.get("canvas_shrink", 0.9), "directives.canvas_shrink"),
         seed_static_field=bool(directives.get("seed_static_field", False)),
+        grid_visible=bool(directives.get("grid_visible", False)),
     )
 
     paths_override = dict(paths)
@@ -1553,10 +1555,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             orbit_ring_visible
             or (ui_overlay_visible and (path_trail_visible or architrinos_visible))
             or show_hit_overlays
+            or cfg.grid_visible
         )
-        overlay_visible = overlay_has_content
-        if overlay_visible:
-            geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+    overlay_visible = overlay_has_content
+    if overlay_visible:
+        geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+        if cfg.grid_visible:
             draw_grid(geometry_layer)
             if orbit_ring_visible:
                 center = (canvas_w // 2, canvas_w // 2)
@@ -1698,11 +1702,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             orbit_ring_visible
             or (ui_overlay_visible and (path_trail_visible or architrinos_visible))
             or show_hit_overlays
+            or cfg.grid_visible
         )
         overlay_visible = overlay_has_content
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-            draw_grid(geometry_layer)
+            if cfg.grid_visible:
+                draw_grid(geometry_layer)
             if orbit_ring_visible:
                 center = (canvas_w // 2, canvas_w // 2)
                 ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords

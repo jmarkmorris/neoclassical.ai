@@ -70,6 +70,7 @@ python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer
   Legacy values are mapped automatically: `"gpu_instanced"` → `"gpu"`, `"cpu_incremental"` → `"cpu_incr"`, `"cpu_rebuild"` → `"cpu_full"`.
 - `canvas_shrink` (float): Optional factor (default `0.9`) to reduce requested canvas size to avoid OS downscaling; set to `1.0` to request full size.
 - `seed_static_field` (bool): Pre-fill the field with stationary emissions for each architrino at startup. Defaults to `false`; enable only when you want a pre-baked field snapshot.
+- `grid_visible` (bool): Show the 0.25x0.25 domain grid overlay. Defaults to `false`.
 
 Aliases (optional):
 - `field_on` → `field_visible`
