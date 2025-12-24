@@ -648,8 +648,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     pending_speed_mult = speed_mult
     frame_skip = 0
 
-    max_radius = math.sqrt(2) * cfg.domain_half_extent * 1.1
-    emission_retention = max_radius / field_v
+    max_radius = 0.0
+    emission_retention = 0.0
     emissions: List[Emission] = []
     recent_hits = deque()
     seen_hits = set()
@@ -671,6 +671,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     path_trail_markers_visible = ui.path_trail_markers_visible if ui is not None else False
     caption_dirty = True
     positions: Dict[str, Vec2] = {}
+    physics_mode = any(spec.mover == "physics" for spec in arch_specs)
     fps_window = 100
     fps_samples = deque(maxlen=fps_window + 1)  # (frame_idx, wall_clock_time)
     progress_stride = 100 if offline else None
@@ -725,7 +726,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         """Pad float with figure spaces; assumes width includes decimal and leading spaces."""
         return f"{value:{width}.{precision}f}".replace(" ", FIGURE_SPACE)
 
-    def format_title(paused_flag: bool, label: str | None = None, fps: float | None = None) -> str:
+    def format_title(paused_flag: bool, label: str | None = None, fps: float | None = None, max_vel: float | None = None) -> str:
         """Compact title line carrying former panel info."""
         speed_field = pad_float(speed_mult, 6, 2)
         speed_label = f"velo↑↓ {speed_field}"
@@ -737,11 +738,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         freq_label = f"🅕 {pad_int(cfg.hz, 4)}Hz"
         fps_val = int(round(fps)) if fps is not None else 0
         fps_label = f"fps {pad_int(fps_val, 5)}"
+        if max_vel is not None:
+            vel_field = pad_float(max_vel, 6, 2)
+            speed_label = f"velo↑↓ {vel_field}"
         field_label = f"field 🅥 {'on' if field_visible else 'off'}"
         prefix = f"ORBIT PATH VISUALIZER: {label}" if label else "Orbit Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
-        parts = [p for p in [speed_label, skip_label, freq_label, field_label, status, fps_label] if p]
+        parts = [speed_label, skip_label, freq_label, field_label, status, fps_label]
+        parts = [p for p in parts if p]
         return prefix + " | " + " | ".join(parts)
 
     # Grid for the accumulator at a coarser resolution to reduce work; upscale for display.
@@ -778,21 +783,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         time_field = pad_float(elapsed_s, 8, 1)  # up to 999,999.9s before width grows
         return f"frame {frame_field} | t {time_field}s"
 
-    def set_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None) -> None:
+    def set_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None, max_vel: float | None = None) -> None:
         """Single caption updater to keep all title parts in sync and width-stable."""
         pygame.display.set_caption(
-            format_title(paused_flag=paused_flag, label=run_label, fps=fps)
+            format_title(paused_flag=paused_flag, label=run_label, fps=fps, max_vel=max_vel)
             + " | "
             + format_frame_and_time(frame_number, elapsed_s)
         )
 
-    def maybe_update_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None, force: bool = False) -> None:
+    def maybe_update_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None, force: bool = False, max_vel: float | None = None) -> None:
         nonlocal caption_dirty
         if force or caption_dirty or frame_number % 100 == 0:
-            set_caption(paused_flag=paused_flag, frame_number=frame_number, elapsed_s=elapsed_s, fps=fps)
+            set_caption(paused_flag=paused_flag, frame_number=frame_number, elapsed_s=elapsed_s, fps=fps, max_vel=max_vel)
             caption_dirty = False
 
-    set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed)
+    set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed, max_vel=None)
 
     def draw_ring(target: "pygame.Surface", center: Vec2, radius_px: int, thickness_px: int, color: Tuple[int, int, int]) -> None:
         """
@@ -865,13 +870,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             grid_debug_printed = True
 
     def update_time_params(new_hz: int) -> None:
-        nonlocal dt, shell_thickness
+        nonlocal dt, shell_thickness, max_radius, emission_retention
         cfg.hz = new_hz
         dt = 1.0 / cfg.hz
         base_shell = max(field_v * dt, 0.003)
         shell_thickness_local = max(base_shell, 0.75 * min(grid_dx, grid_dy))
         shell_thickness_local = max(shell_thickness_local, 0.003)
         shell_thickness = shell_thickness_local * shell_thickness_scale
+        # Max corner distance from origin (for pruning); per-emission cutoff is computed with its own origin.
+        band_half = max(shell_thickness * 1.5, shell_thickness)
+        max_radius = math.hypot(cfg.domain_half_extent, cfg.domain_half_extent) + band_half
+        emission_retention = max_radius / field_v
 
     update_time_params(cfg.hz)
 
@@ -887,6 +896,20 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         """Like world_to_screen but with the canvas origin at (0, 0)."""
         sx, sy = world_to_screen(p)
         return sx - panel_w, sy
+
+    def emission_max_radius(em_pos: Vec2) -> float:
+        """Return the radius at which a shell centered at em_pos fully clears the domain (including band)."""
+        ex, ey = em_pos
+        extent = cfg.domain_half_extent
+        corners = [
+            (extent - ex, extent - ey),
+            (extent - ex, -extent - ey),
+            (-extent - ex, extent - ey),
+            (-extent - ex, -extent - ey),
+        ]
+        max_corner = max(math.hypot(dx, dy) for dx, dy in corners)
+        band_half = max(shell_thickness * 1.5, shell_thickness)
+        return max_corner + band_half
 
     def vec_finite(p: Vec2) -> bool:
         return math.isfinite(p[0]) and math.isfinite(p[1])
@@ -943,7 +966,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     def apply_shell(em: Emission, radius: float, weight_scale: float = 1.0) -> None:
         """Apply a smooth annular band for this emission at the given radius."""
-        if radius <= 0 or radius > max_radius:
+        if radius <= 0 or radius > emission_max_radius(em.pos):
             return
         ex, ey = em.pos
         band_half = max(shell_thickness * 1.5, shell_thickness)
@@ -1065,7 +1088,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     em.last_radius = 0.0
                 continue
             radius = field_v * tau
-            if radius > max_radius:
+            if radius > emission_max_radius(em.pos):
                 if update_last_radius:
                     em.last_radius = 0.0
                 continue
@@ -1082,7 +1105,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             if tau <= 0:
                 continue
             radius = field_v * tau
-            if radius > max_radius:
+            max_r = emission_max_radius(em.pos)
+            if radius > max_r:
                 if em.last_radius > 0:
                     apply_shell(em, em.last_radius, weight_scale=-1.0)
                     em.last_radius = 0.0
@@ -1309,7 +1333,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             if tau <= 0:
                 continue
             radius = field_v * tau
-            if radius > max_radius:
+            if radius > emission_max_radius(em.pos):
                 continue
             sign = float(em.polarity)
             inst_entries.append((em.pos[0], em.pos[1], radius, sign))
@@ -1350,7 +1374,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             if tau <= 0:
                 continue
             radius = field_v * tau
-            if radius > max_radius:
+            if radius > emission_max_radius(em.pos):
                 continue
             sign = float(em.polarity)
             inst_entries.append((em.pos[0], em.pos[1], radius, sign))
@@ -1557,11 +1581,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             or show_hit_overlays
             or cfg.grid_visible
         )
-    overlay_visible = overlay_has_content
-    if overlay_visible:
-        geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
-        if cfg.grid_visible:
-            draw_grid(geometry_layer)
+        overlay_visible = overlay_has_content
+        if overlay_visible:
+            geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
+            if cfg.grid_visible:
+                draw_grid(geometry_layer)
             if orbit_ring_visible:
                 center = (canvas_w // 2, canvas_w // 2)
                 ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords
@@ -1575,9 +1599,14 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     for name, trace in path_traces.items():
                         if len(trace) < 2:
                             continue
-                        # Use arch-specific color for visibility.
+                        # Use softened arch-specific color for visibility.
                         arch_obj = state_lookup.get(name)
-                        base_color = arch_obj.color if arch_obj else PURE_WHITE
+                        if arch_obj and arch_obj.polarity > 0:
+                            base_color = (255, 160, 200)  # light pink for positive
+                        elif arch_obj and arch_obj.polarity < 0:
+                            base_color = (160, 200, 255)  # light blue for negative
+                        else:
+                            base_color = PURE_WHITE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
                         n = len(pts)
                         if n < 2:
@@ -1723,7 +1752,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         if len(trace) < 2:
                             continue
                         arch_obj = state_lookup.get(name)
-                        base_color = arch_obj.color if arch_obj else PURE_WHITE
+                        if arch_obj and arch_obj.polarity > 0:
+                            base_color = (255, 160, 200)  # light pink for positive
+                        elif arch_obj and arch_obj.polarity < 0:
+                            base_color = (160, 200, 255)  # light blue for negative
+                        else:
+                            base_color = PURE_WHITE
                         pts = [(int(world_to_canvas(pt)[0]), int(world_to_canvas(pt)[1])) for pt in trace]
                         n = len(pts)
                         if n < 2:
@@ -1891,16 +1925,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         return pos
 
     def prune_emissions(current_time: float) -> None:
+        """Drop emissions whose rings are entirely off-domain, per-emitter."""
         nonlocal emissions
-        cutoff = current_time - emission_retention
-        if cutoff <= 0:
+        if not emissions:
             return
         if field_alg != "cpu_incr":
-            emissions = [em for em in emissions if em.time >= cutoff]
+            emissions = [
+                em
+                for em in emissions
+                if current_time - em.time <= emission_max_radius(em.pos) / field_v
+            ]
             return
         kept: List[Emission] = []
         for em in emissions:
-            if em.time < cutoff:
+            max_age = emission_max_radius(em.pos) / field_v
+            if current_time - em.time > max_age:
                 if em.last_radius > 0:
                     apply_shell(em, em.last_radius, weight_scale=-1.0)
                 continue
@@ -2156,11 +2195,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 frame_delta = max(1, newest_frame - oldest_frame)
                 time_delta = max(1e-6, newest_time - oldest_time)
                 fps_val = frame_delta / time_delta
+            max_vel = None
+            if physics_mode:
+                if states:
+                    max_vel = max(math.hypot(s.vel[0], s.vel[1]) for s in states)
+                else:
+                    max_vel = 0.0
             maybe_update_caption(
                 paused_flag=paused,
                 frame_number=frame_idx + 1,
                 elapsed_s=current_time if not paused else sim_clock_elapsed,
                 fps=fps_val,
+                max_vel=max_vel,
             )
 
             if offline:
