@@ -122,6 +122,7 @@ class ArchitrinoSpec:
     velocity_heading_deg: float
     decay: float | None = None
     mover: str | None = None
+    phases: list | None = None
 
 
 @dataclass
@@ -170,6 +171,15 @@ def _coerce_float(value: object, label: str) -> float:
         return float(value)
     except (TypeError, ValueError) as exc:
         raise ValueError(f"{label} must be a number.") from exc
+
+
+def _coerce_positive_float(value: object, label: str, allow_none: bool = True) -> float | None:
+    if value is None and allow_none:
+        return None
+    val = _coerce_float(value, label)
+    if val < 0:
+        raise ValueError(f"{label} must be >= 0.")
+    return val
 
 
 def _coerce_int(value: object, label: str) -> int:
@@ -329,6 +339,48 @@ def load_run_file(
         vel_raw = _expect_dict(vel_raw, f"architrinos[{idx}].velocity")
         speed = _coerce_float(vel_raw.get("speed", cfg.speed_multiplier), f"architrinos[{idx}].velocity.speed")
         heading_deg = _coerce_float(vel_raw.get("heading_deg", 0.0), f"architrinos[{idx}].velocity.heading_deg")
+        phases_raw = arch.get("phases") or []
+        if phases_raw:
+            if not isinstance(phases_raw, list):
+                raise ValueError(f"architrinos[{idx}].phases must be an array if provided.")
+            parsed_phases = []
+            cumulative = 0.0
+            for p_idx, phase_raw in enumerate(phases_raw):
+                phase_obj = _expect_dict(phase_raw, f"architrinos[{idx}].phases[{p_idx}]")
+                mode = phase_obj.get("mode", "move")
+                if not isinstance(mode, str):
+                    raise ValueError(f"architrinos[{idx}].phases[{p_idx}].mode must be a string.")
+                mode = mode.lower()
+                if mode not in {"move", "frozen"}:
+                    raise ValueError(f"architrinos[{idx}].phases[{p_idx}].mode must be 'move' or 'frozen'.")
+                duration = _coerce_positive_float(phase_obj.get("duration_seconds"), f"architrinos[{idx}].phases[{p_idx}].duration_seconds", allow_none=True)
+                velocity_override = phase_obj.get("velocity")
+                vel_vec = None
+                if velocity_override is not None:
+                    vel_dict = _expect_dict(velocity_override, f"architrinos[{idx}].phases[{p_idx}].velocity")
+                    v_speed = _coerce_float(vel_dict.get("speed", speed), f"architrinos[{idx}].phases[{p_idx}].velocity.speed")
+                    v_heading = _coerce_float(vel_dict.get("heading_deg", heading_deg), f"architrinos[{idx}].phases[{p_idx}].velocity.heading_deg")
+                    v_rad = math.radians(v_heading)
+                    vel_vec = (v_speed * math.cos(v_rad), -v_speed * math.sin(v_rad))
+                phase_speed = phase_obj.get("speed_multiplier")
+                if phase_speed is not None:
+                    phase_speed = _coerce_float(phase_speed, f"architrinos[{idx}].phases[{p_idx}].speed_multiplier")
+                start_t = cumulative
+                end_t = None
+                if duration is not None:
+                    end_t = cumulative + duration
+                    cumulative = end_t
+                parsed_phases.append(
+                    {
+                        "mode": mode,
+                        "start": start_t,
+                        "end": end_t,
+                        "speed_multiplier": phase_speed,
+                        "velocity": vel_vec,
+                    }
+                )
+        else:
+            parsed_phases = None
         arch_specs.append(
             ArchitrinoSpec(
                 name=name,
@@ -339,6 +391,7 @@ def load_run_file(
                 velocity_heading_deg=heading_deg,
                 decay=decay_override if decay_override is not None else None,
                 mover=mover_type,
+                phases=parsed_phases,
             )
         )
 
@@ -580,6 +633,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     running = True
     paused = False if offline else cfg.start_paused
     frame_idx = 0
+    phase_plans: Dict[str, list] = {spec.name: (spec.phases or []) for spec in arch_specs}
+    frozen_now: set[str] = set()
     sim_clock_start = time.monotonic()
     sim_clock_elapsed = 0.0
 
@@ -1769,6 +1824,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         if not offline:
             pygame.display.flip()
 
+    def active_phase_for(name: str, time_t: float) -> dict | None:
+        plan = phase_plans.get(name)
+        if not plan:
+            return None
+        for ph in plan:
+            if ph.get("end") is None or time_t < ph["end"]:
+                return ph
+        return plan[-1]
+
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         env = MoverEnv(
             time=time_t,
@@ -1782,6 +1846,27 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             hit_tolerance=None,
         )
         pos: Dict[str, Vec2] = {}
+        frozen_now.clear()
+        for state in states:
+            phase_cfg = active_phase_for(state.name, time_t)
+            if phase_cfg:
+                mode = phase_cfg.get("mode", "move")
+                if mode == "frozen":
+                    state.speed_mult_override = 0.0
+                    if state.mover_type == "physics":
+                        if phase_cfg.get("velocity") is not None:
+                            state.vel = phase_cfg["velocity"]
+                        else:
+                            state.vel = (0.0, 0.0)
+                    frozen_now.add(state.name)
+                else:
+                    sm = phase_cfg.get("speed_multiplier")
+                    state.speed_mult_override = sm
+                    if state.mover_type == "physics" and phase_cfg.get("velocity") is not None:
+                        state.vel = phase_cfg["velocity"]
+            else:
+                state.speed_mult_override = None
+
         for state in states:
             path_spec = None
             if state.path_name is not None:
@@ -1789,7 +1874,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             if state.mover_type == "analytic" and path_spec is None:
                 continue
             mover = movers.get(state.mover_type, movers["analytic"])
-            pos[state.name] = mover.step(state, env, path_spec if path_spec is not None else paths.get("unit_circle"))
+            if state.name in frozen_now:
+                pos[state.name] = state.pos
+            else:
+                pos[state.name] = mover.step(state, env, path_spec if path_spec is not None else paths.get("unit_circle"))
         return pos
 
     def prune_emissions(current_time: float) -> None:

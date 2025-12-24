@@ -22,7 +22,11 @@
       "mover": "physics",
       "path": "unit_circle",
       "start_pos": { "x": 1, "y": 1 },
-      "velocity": { "speed": 0.5, "heading_deg": 90 }
+      "velocity": { "speed": 0.5, "heading_deg": 90 },
+      "phases": [
+        { "mode": "frozen", "duration_seconds": 2 },
+        { "mode": "move" }
+      ]
     },
     {
       "name": "e1",
@@ -30,7 +34,11 @@
       "mover": "physics",
       "path": "unit_circle",
       "start_pos": { "x": -1, "y": -1 },
-      "velocity": { "speed": 0.5, "heading_deg": -90 }
+      "velocity": { "speed": 0.5, "heading_deg": -90 },
+      "phases": [
+        { "mode": "frozen", "duration_seconds": 2 },
+        { "mode": "move" }
+      ]
     }
   ]
 }
