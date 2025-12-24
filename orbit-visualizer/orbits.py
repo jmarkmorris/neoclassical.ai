@@ -1566,7 +1566,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         seen_hits_queue.clear()
         last_diff.clear()
         last_diff_queue.clear()
-        recent_hits.extend(detect_hits(current_time, positions, allow_self=speed_mult > field_v))
+        recent_hits.extend(detect_hits(current_time, positions, allow_self=True))
 
     def seed_static_emissions() -> None:
         """Prefill emission history to approximate a long-running static field."""
@@ -2338,7 +2338,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     )
 
                 prune_emissions(current_time)
-                allow_self = speed_mult > field_v + 1e-6
+                allow_self = True
                 hits: List[Hit] = []
                 # Skip hit detection unless we need to show it (paused hit overlay or overlay enabled).
                 if paused or hit_overlay_enabled or show_hit_overlays:
