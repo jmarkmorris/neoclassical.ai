@@ -6,7 +6,7 @@
     "domain_half_extent": 2.0,
     "speed_multiplier": 1.0,
     "render": true,
-    "start_paused": true,
+    "start_paused": false,
     "field_alg": "gpu_instanced",
     "ui": {
       "field_visible": true,
@@ -21,10 +21,10 @@
       "polarity": "p",
       "mover": "physics",
       "path": "unit_circle",
-      "start_pos": { "x": 1.5, "y": 0 },
-      "velocity": { "speed": 0.4125, "heading_deg": 90 },
+      "start_pos": { "x": 1.75, "y": 0 },
+      "velocity": { "speed": 0.6, "heading_deg": 90 },
       "phases": [
-        { "mode": "frozen", "duration_seconds": 4 },
+        { "mode": "frozen", "duration_seconds": 3.5 },
         { "mode": "move" }
       ]
     },
@@ -33,10 +33,10 @@
       "polarity": "e",
       "mover": "physics",
       "path": "unit_circle",
-      "start_pos": { "x": -1.5, "y": 0 },
-      "velocity": { "speed": 0.4125, "heading_deg": -90 },
+      "start_pos": { "x": -1.75, "y": 0 },
+      "velocity": { "speed": 0.6, "heading_deg": -90 },
       "phases": [
-        { "mode": "frozen", "duration_seconds": 4 },
+        { "mode": "frozen", "duration_seconds": 3.5 },
         { "mode": "move" }
       ]
     }

@@ -2196,11 +2196,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 time_delta = max(1e-6, newest_time - oldest_time)
                 fps_val = frame_delta / time_delta
             max_vel = None
-            if physics_mode:
-                if states:
-                    max_vel = max(math.hypot(s.vel[0], s.vel[1]) for s in states)
-                else:
-                    max_vel = 0.0
+            if physics_mode and states:
+                max_vel = 0.0
+                for s in states:
+                    if s.mover_type != "physics":
+                        continue
+                    vx, vy = s.vel
+                    if not (math.isfinite(vx) and math.isfinite(vy)):
+                        continue
+                    vmag = math.hypot(vx, vy)
+                    if vmag > max_vel:
+                        max_vel = vmag
             maybe_update_caption(
                 paused_flag=paused,
                 frame_number=frame_idx + 1,
