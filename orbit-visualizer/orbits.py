@@ -846,6 +846,42 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     set_caption(paused_flag=paused, frame_number=frame_idx + 1, elapsed_s=sim_clock_elapsed, max_vel=None)
 
+    def compute_state_speed(state: ArchitrinoState, time_t: float) -> float:
+        if state.mover_type == "physics":
+            vx, vy = state.vel
+            if not (math.isfinite(vx) and math.isfinite(vy)):
+                return 0.0
+            return math.hypot(vx, vy)
+        if state.mover_type != "analytic":
+            return 0.0
+        path_spec = paths.get(state.path_name) if state.path_name is not None else None
+        if path_spec is None:
+            return 0.0
+        speed_mult_local = state.speed_mult_override if state.speed_mult_override is not None else speed_mult
+        dparam_dt = state.base_speed * speed_mult_local
+        param = state.path_offset + state.base_speed * speed_mult_local * time_t
+        snap_step = state.path_snap if state.path_snap is not None else cfg.path_snap
+        if snap_step is not None and snap_step > 0:
+            param = round(param / snap_step) * snap_step
+        eps = 1e-3
+        p_fwd = path_spec.sampler(param + eps + state.phase)
+        p_back = path_spec.sampler(param - eps + state.phase)
+        dx = (p_fwd[0] - p_back[0]) / (2 * eps)
+        dy = (p_fwd[1] - p_back[1]) / (2 * eps)
+        dx *= state.radial_scale
+        dy *= state.radial_scale
+        return math.hypot(dx, dy) * abs(dparam_dt)
+
+    def compute_max_velocity(time_t: float) -> float:
+        if not states:
+            return 0.0
+        max_val = 0.0
+        for st in states:
+            val = compute_state_speed(st, time_t)
+            if val > max_val:
+                max_val = val
+        return max_val
+
     def draw_ring(target: "pygame.Surface", center: Vec2, radius_px: int, thickness_px: int, color: Tuple[int, int, int]) -> None:
         """
         Draw a crisp ring by filling an outer circle then punching out the inner with full transparency.
@@ -1921,11 +1957,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 return ph, idx
         return plan[-1], len(plan) - 1
 
-    def apply_phase_transition(state: ArchitrinoState, phase_cfg: dict | None) -> None:
+    def apply_phase_transition(state: ArchitrinoState, phase_cfg: dict | None, time_t: float, env: MoverEnv) -> None:
         """Apply mover/path/velocity changes when entering a new phase."""
         if phase_cfg is None:
             state.speed_mult_override = None
             return
+        prev_mover = state.mover_type
+        prev_path = state.path_name
+        prev_phase = state.phase
+        prev_offset = state.path_offset
+        prev_radial = state.radial_scale
+        prev_speed_mult = state.speed_mult_override if state.speed_mult_override is not None else env.speed_mult
         mover_override = phase_cfg.get("mover")
         path_override = phase_cfg.get("path")
         vel_override = phase_cfg.get("velocity")
@@ -1964,6 +2006,23 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             # Switch to physics; keep current pos, allow optional velocity override.
             state.mover_type = "physics"
             state.path_name = None
+            # Preserve analytic momentum when switching to physics without explicit velocity override.
+            if vel_override is None and prev_mover == "analytic" and prev_path in paths:
+                path_spec = paths[prev_path]
+                snap_step = state.path_snap if state.path_snap is not None else env.path_snap
+                dparam_dt = state.base_speed * prev_speed_mult
+                param = prev_offset + state.base_speed * prev_speed_mult * time_t
+                if snap_step is not None and snap_step > 0:
+                    param = round(param / snap_step) * snap_step
+                eps = 1e-3
+                p_fwd = path_spec.sampler(param + eps + prev_phase)
+                p_back = path_spec.sampler(param - eps + prev_phase)
+                tan_x = (p_fwd[0] - p_back[0]) / (2 * eps)
+                tan_y = (p_fwd[1] - p_back[1]) / (2 * eps)
+                tan_x *= prev_radial
+                tan_y *= prev_radial
+                state.vel = (tan_x * dparam_dt, tan_y * dparam_dt)
+                state.initial_vel = state.vel
         elif mover_override == "analytic" or (mover_override is None and state.mover_type == "analytic" and path_override):
             # Switch or retarget analytic path.
             target_path_name = path_override or state.path_name
@@ -2008,7 +2067,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             phase_idx = phase_cfg_idx[1] if phase_cfg_idx else None
             current_idx = phase_indices.get(state.name)
             if phase_idx is not None and phase_idx != current_idx:
-                apply_phase_transition(state, phase_cfg)
+                apply_phase_transition(state, phase_cfg, time_t, env)
                 phase_indices[state.name] = phase_idx
             if phase_cfg:
                 mode = phase_cfg.get("mode", "move")
@@ -2207,6 +2266,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         elapsed_s=sim_clock_elapsed,
                         fps=fps_val,
                         force=caption_dirty,
+                        max_vel=compute_max_velocity(frame_idx * dt),
                     )
                 render_frame(positions, list(recent_hits))
                 if offline and ffmpeg_proc and ffmpeg_proc.stdin:
@@ -2315,18 +2375,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 frame_delta = max(1, newest_frame - oldest_frame)
                 time_delta = max(1e-6, newest_time - oldest_time)
                 fps_val = frame_delta / time_delta
-            max_vel = None
-            if physics_mode and states:
-                max_vel = 0.0
-                for s in states:
-                    if s.mover_type != "physics":
-                        continue
-                    vx, vy = s.vel
-                    if not (math.isfinite(vx) and math.isfinite(vy)):
-                        continue
-                    vmag = math.hypot(vx, vy)
-                    if vmag > max_vel:
-                        max_vel = vmag
+            max_vel = compute_max_velocity(current_time)
             maybe_update_caption(
                 paused_flag=paused,
                 frame_number=frame_idx + 1,
