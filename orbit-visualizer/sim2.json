@@ -2,11 +2,14 @@
   "directives": {
     "format_version": 1,
     "hz": 500,
-    "field_speed": 1.0,
+    "field_speed": 10.0,
     "world_size": 4.0,
+    "max_memory_bytes": 8589934592,
     "speed_multiplier": 1.0,
+    "path_snap": 0.002,
     "render": true,
     "start_paused": false,
+    "shell_weight": "raised_cosine",
     "field_alg": "gpu_instanced",
     "grid_visible": false,
     "ui": {

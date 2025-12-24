@@ -239,7 +239,8 @@ def default_phase_and_offset(path_name: str, start: Vec2, decay: float | None) -
         base_param = 0.0
         if r > 1e-9:
             base_param = max(0.0, -math.log(r) / max(decay, 1e-9))
-        return angle, base_param
+        phase = angle - base_param
+        return phase, base_param
     return 0.0, 0.0
 
 
