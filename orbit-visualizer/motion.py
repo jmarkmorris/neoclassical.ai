@@ -72,6 +72,7 @@ class ArchitrinoState:
     position_snap: float | None = None
     initial_path_offset: float = 0.0
     trace_limit: int = 40000
+    last_time: float = 0.0
 
 
 @dataclass
@@ -109,22 +110,39 @@ class AnalyticMover(Mover):
 
     def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
         speed_mult = state.speed_mult_override if state.speed_mult_override is not None else env.speed_mult
-        path_param = state.path_offset + state.base_speed * speed_mult * env.time
         snap_step = state.path_snap if state.path_snap is not None else env.path_snap
+        path_param = state.param
+        dt_step = env.time - state.last_time
+        if dt_step < 0:
+            dt_step = 0.0
+
+        def pos_at(param: float) -> Vec2:
+            if path_spec.name == "exp_inward_spiral" and path_spec.decay is not None:
+                base_param = param
+                decay_scale = 1.0
+                if env.speed_mult is not None and env.field_speed is not None and env.speed_mult > env.field_speed + 1e-6:
+                    decay_scale = 2.0
+                angle = base_param + state.phase
+                radius = math.exp(-path_spec.decay * abs(base_param) * decay_scale)
+                return (radius * math.cos(angle), radius * math.sin(angle))
+            x, y = path_spec.sampler(param + state.phase)
+            return (x, y)
+
+        # Keep linear speed constant by adjusting param rate based on |dpos/dparam|.
+        eps = 1e-3
+        p_fwd = pos_at(path_param + eps)
+        p_back = pos_at(path_param - eps)
+        dx = (p_fwd[0] - p_back[0]) / (2 * eps)
+        dy = (p_fwd[1] - p_back[1]) / (2 * eps)
+        base_speed = math.hypot(dx, dy)
+        denom = max(base_speed * state.radial_scale, 1e-9)
+        dparam_dt = (state.base_speed * speed_mult) / denom
+        path_param = path_param + dparam_dt * dt_step
+
         if snap_step is not None and snap_step > 0:
             path_param = round(path_param / snap_step) * snap_step
 
-        if path_spec.name == "exp_inward_spiral" and path_spec.decay is not None:
-            base_param = path_param
-            decay_scale = 1.0
-            if env.speed_mult is not None and env.field_speed is not None and env.speed_mult > env.field_speed + 1e-6:
-                decay_scale = 2.0
-            angle = base_param + state.phase
-            radius = math.exp(-path_spec.decay * abs(base_param) * decay_scale)
-            pos = (radius * math.cos(angle), radius * math.sin(angle))
-        else:
-            x, y = path_spec.sampler(path_param + state.phase)
-            pos = (x, y)
+        pos = pos_at(path_param)
 
         pos = (pos[0] * state.radial_scale, pos[1] * state.radial_scale)
         snap_dist = state.position_snap if state.position_snap is not None else env.position_snap
@@ -135,6 +153,7 @@ class AnalyticMover(Mover):
             )
         state.param = path_param
         state.pos = pos
+        state.last_time = env.time
         return pos
 
 
@@ -148,12 +167,15 @@ class PhysicsMover(Mover):
 
     def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
         # Retarded-force integration using historical emissions.
+        dt_step = env.time - state.last_time
+        if dt_step <= 0:
+            return state.pos
         q = float(state.polarity)
         mass = max(abs(q), 1e-6)
         fx = fy = 0.0
         tol = env.hit_tolerance
         if tol is None:
-            tol = max(env.field_speed * env.dt * 0.6, 0.002)
+            tol = max(env.field_speed * dt_step * 0.6, 0.002)
         max_force = 25.0  # simple clamp to avoid blow-ups
         for em in env.emissions:
             if not env.allow_self and em.emitter == state.name:
@@ -176,8 +198,8 @@ class PhysicsMover(Mover):
             fy += force_mag * (dy / dist)
         ax = fx / mass
         ay = fy / mass
-        vx = state.vel[0] + ax * env.dt
-        vy = state.vel[1] + ay * env.dt
+        vx = state.vel[0] + ax * dt_step
+        vy = state.vel[1] + ay * dt_step
         # Clamp velocity to keep integration stable.
         vmag = math.hypot(vx, vy)
         vcap = 10.0
@@ -185,11 +207,12 @@ class PhysicsMover(Mover):
             scale = vcap / vmag
             vx *= scale
             vy *= scale
-        px = state.pos[0] + vx * env.dt
-        py = state.pos[1] + vy * env.dt
+        px = state.pos[0] + vx * dt_step
+        py = state.pos[1] + vy * dt_step
         state.vel = (vx, vy)
         state.pos = (px, py)
         state.param = state.param  # unchanged for physics mover
+        state.last_time = env.time
         return state.pos
 
 

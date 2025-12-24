@@ -665,7 +665,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             base_speed=spec.velocity_speed * sign,
             heading_deg=spec.velocity_heading_deg,
             radial_scale=radial_scale,
-            param=0.0,
+            param=offset,
             pos=spec.start_pos,
             initial_vel=(vx, vy),
             vel=(vx, vy),
@@ -718,7 +718,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     path_trail_markers_visible = ui.path_trail_markers_visible if ui is not None else False
     caption_dirty = True
     positions: Dict[str, Vec2] = {}
-    physics_mode = any(spec.mover == "physics" for spec in arch_specs)
     fps_window = 100
     fps_samples = deque(maxlen=fps_window + 1)  # (frame_idx, wall_clock_time)
     progress_stride = 100 if offline else None
@@ -854,23 +853,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             return math.hypot(vx, vy)
         if state.mover_type != "analytic":
             return 0.0
-        path_spec = paths.get(state.path_name) if state.path_name is not None else None
-        if path_spec is None:
-            return 0.0
         speed_mult_local = state.speed_mult_override if state.speed_mult_override is not None else speed_mult
-        dparam_dt = state.base_speed * speed_mult_local
-        param = state.path_offset + state.base_speed * speed_mult_local * time_t
-        snap_step = state.path_snap if state.path_snap is not None else cfg.path_snap
-        if snap_step is not None and snap_step > 0:
-            param = round(param / snap_step) * snap_step
-        eps = 1e-3
-        p_fwd = path_spec.sampler(param + eps + state.phase)
-        p_back = path_spec.sampler(param - eps + state.phase)
-        dx = (p_fwd[0] - p_back[0]) / (2 * eps)
-        dy = (p_fwd[1] - p_back[1]) / (2 * eps)
-        dx *= state.radial_scale
-        dy *= state.radial_scale
-        return math.hypot(dx, dy) * abs(dparam_dt)
+        return abs(state.base_speed * speed_mult_local)
 
     def compute_max_velocity(time_t: float) -> float:
         if not states:
@@ -1010,10 +994,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         prev_speed = speed_mult
         speed_mult = clamp_speed(new_speed)
         pending_speed_mult = speed_mult
-        # Preserve the current path parameter so paused positions stay fixed for analytic movers.
-        for state in states:
-            if state.mover_type == "analytic":
-                state.path_offset += (prev_speed - speed_mult) * current_time * state.base_speed
+        # Analytic movers now integrate by param; no offset shift needed.
         refresh_hits_for_current_time()
         if auto_pause:
             paused = True
@@ -1597,6 +1578,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         if not keep_offset:
             for state in states:
                 state.path_offset = state.initial_path_offset
+                if state.mover_type == "analytic":
+                    state.param = state.path_offset
         emissions = []
         field_grid[:] = 0.0
         field_surface = None
@@ -1957,6 +1940,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 return ph, idx
         return plan[-1], len(plan) - 1
 
+    def analytic_pos_at(state: ArchitrinoState, path_spec: PathSpec, param: float, env: MoverEnv) -> Vec2:
+        if path_spec.name == "exp_inward_spiral" and path_spec.decay is not None:
+            base_param = param
+            decay_scale = 1.0
+            if env.speed_mult is not None and env.field_speed is not None and env.speed_mult > env.field_speed + 1e-6:
+                decay_scale = 2.0
+            angle = base_param + state.phase
+            radius = math.exp(-path_spec.decay * abs(base_param) * decay_scale)
+            return (radius * math.cos(angle), radius * math.sin(angle))
+        x, y = path_spec.sampler(param + state.phase)
+        return (x, y)
+
     def apply_phase_transition(state: ArchitrinoState, phase_cfg: dict | None, time_t: float, env: MoverEnv) -> None:
         """Apply mover/path/velocity changes when entering a new phase."""
         if phase_cfg is None:
@@ -2009,20 +2004,21 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             # Preserve analytic momentum when switching to physics without explicit velocity override.
             if vel_override is None and prev_mover == "analytic" and prev_path in paths:
                 path_spec = paths[prev_path]
-                snap_step = state.path_snap if state.path_snap is not None else env.path_snap
-                dparam_dt = state.base_speed * prev_speed_mult
-                param = prev_offset + state.base_speed * prev_speed_mult * time_t
-                if snap_step is not None and snap_step > 0:
-                    param = round(param / snap_step) * snap_step
+                param = state.param
                 eps = 1e-3
-                p_fwd = path_spec.sampler(param + eps + prev_phase)
-                p_back = path_spec.sampler(param - eps + prev_phase)
+                p_fwd = analytic_pos_at(state, path_spec, param + eps, env)
+                p_back = analytic_pos_at(state, path_spec, param - eps, env)
                 tan_x = (p_fwd[0] - p_back[0]) / (2 * eps)
                 tan_y = (p_fwd[1] - p_back[1]) / (2 * eps)
                 tan_x *= prev_radial
                 tan_y *= prev_radial
-                state.vel = (tan_x * dparam_dt, tan_y * dparam_dt)
-                state.initial_vel = state.vel
+                tan_mag = math.hypot(tan_x, tan_y)
+                if tan_mag > 1e-9:
+                    tan_x /= tan_mag
+                    tan_y /= tan_mag
+                    linear_speed = state.base_speed * prev_speed_mult
+                    state.vel = (tan_x * linear_speed, tan_y * linear_speed)
+                    state.initial_vel = state.vel
         elif mover_override == "analytic" or (mover_override is None and state.mover_type == "analytic" and path_override):
             # Switch or retarget analytic path.
             target_path_name = path_override or state.path_name
@@ -2035,6 +2031,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             phase_val, offset_val = default_phase_and_offset(target_path_name, state.pos, target_path.decay)
             state.phase = phase_val
             state.path_offset = offset_val
+            state.param = offset_val
             # Adjust radial scale to keep radius consistent.
             sample_x, sample_y = target_path.sampler(offset_val + phase_val)
             sample_r = math.hypot(sample_x, sample_y)

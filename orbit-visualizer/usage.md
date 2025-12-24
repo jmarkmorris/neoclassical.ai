@@ -93,11 +93,11 @@ Each group describes architrino counts and a motion block.
 ### Per-arch settings (when you bypass `groups` and list `architrinos`)
 - `name` (string): Architrino label.
 - `polarity` (string): `"p"` or `"e"`.
-- `mover` (string): `"analytic"` or `"physics"`.
-- `path` (string): Path name for analytic movers; `"dynamic"` or omit for physics movers.
+- `mover` (string, optional): `"analytic"` or `"physics"`; required in `phases[0]` when phases are used.
+- `path` (string, optional): Path name for analytic movers; required in `phases[0]` for analytic phases.
 - `start_pos` (object): `{ "x": float, "y": float }`.
 - `velocity` (object): `{ "speed": float, "heading_deg": float }` (heading is screen-friendly: 0=+x, 90=up).
-- `phases` (array, optional): Time-ordered behavior phases.
+- `phases` (array, required): Time-ordered behavior phases. The first phase must include `mover` (and `path` if analytic).
   - Each phase supports:
     - `mode` (string): `"frozen"` (hold position) or `"move"` (normal motion). Default `"move"`.
     - `duration_seconds` (float, optional): Length of this phase; if omitted, phase runs until the end of the list.
