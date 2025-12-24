@@ -2304,19 +2304,27 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             for step in range(steps):
                 current_time = sim_idx * dt
                 positions = current_positions(current_time)
-                # Abort if any physics mover pushes outside a generous canvas bound.
-                for name, pos in positions.items():
+                # Drop movers that exit the padded canvas bounds; keep sim running.
+                removed = set()
+                for name, pos in list(positions.items()):
                     if not vec_finite(pos):
-                        exit_reason = exit_reason or "fault"
-                        running = False
-                        break
+                        removed.add(name)
+                        continue
                     pos_canvas = world_to_canvas(pos)
                     if not vec_finite(pos_canvas) or not vec_within_canvas(pos_canvas):
-                        exit_reason = exit_reason or "fault"
+                        removed.add(name)
+                if removed:
+                    for name in removed:
+                        positions.pop(name, None)
+                        path_traces.pop(name, None)
+                        state_lookup.pop(name, None)
+                    states[:] = [s for s in states if s.name not in removed]
+                    if emissions:
+                        emissions = [em for em in emissions if em.emitter not in removed]
+                    if not states:
+                        exit_reason = exit_reason or "complete"
                         running = False
                         break
-                if not running:
-                    break
                 for name, pos in positions.items():
                     if not vec_finite(pos):
                         continue

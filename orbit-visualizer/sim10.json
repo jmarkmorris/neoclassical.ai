@@ -2,11 +2,11 @@
   "directives": {
     "format_version": 1,
     "hz": 500,
-    "field_speed": 1.0,
+    "field_speed": 100.0,
     "world_size": 4.0,
     "speed_multiplier": 1.0,
     "render": true,
-    "start_paused": false,
+    "start_paused": true,
     "field_alg": "gpu_instanced",
     "grid_visible": false,
     "ui": {
@@ -21,12 +21,12 @@
       "name": "p1",
       "polarity": "p",
       "start_pos": {
-        "x": 0.278854,
-        "y": -0.949978
+        "x": 0.557707,
+        "y": -1.899957
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 80.355866
+        "speed": 0.1,
+        "heading_deg": -106.358902
       },
       "phases": [
         {
@@ -39,12 +39,12 @@
       "name": "p2",
       "polarity": "p",
       "start_pos": {
-        "x": 0.472942,
-        "y": 0.353399
+        "x": -0.899883,
+        "y": -1.107157
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 31.29798
+        "speed": 0.1,
+        "heading_deg": -50.896241
       },
       "phases": [
         {
@@ -57,12 +57,12 @@
       "name": "p3",
       "polarity": "p",
       "start_pos": {
-        "x": -0.156156,
-        "y": -0.940406
+        "x": 0.945885,
+        "y": 0.706798
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 181.927904
+        "speed": 0.1,
+        "heading_deg": 143.23164
       },
       "phases": [
         {
@@ -75,12 +75,12 @@
       "name": "p4",
       "polarity": "p",
       "start_pos": {
-        "x": 0.299769,
-        "y": 0.089883
+        "x": 1.568718,
+        "y": -1.652245
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 212.135646
+        "speed": 0.1,
+        "heading_deg": -133.514532
       },
       "phases": [
         {
@@ -93,12 +93,12 @@
       "name": "p5",
       "polarity": "p",
       "start_pos": {
-        "x": 0.611639,
-        "y": 0.396279
+        "x": -0.312313,
+        "y": -1.880811
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 55.97262
+        "speed": 0.1,
+        "heading_deg": -80.571939
       },
       "phases": [
         {
@@ -111,12 +111,12 @@
       "name": "e1",
       "polarity": "e",
       "start_pos": {
-        "x": 0.914426,
-        "y": -0.326811
+        "x": -1.125448,
+        "y": 0.021421
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 34.817896
+        "speed": 0.1,
+        "heading_deg": 1.090404
       },
       "phases": [
         {
@@ -129,12 +129,12 @@
       "name": "e2",
       "polarity": "e",
       "start_pos": {
-        "x": 0.694989,
-        "y": 0.207452
+        "x": -1.893856,
+        "y": -1.204649
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 262.703443
+        "speed": 0.1,
+        "heading_deg": -32.45974
       },
       "phases": [
         {
@@ -147,12 +147,12 @@
       "name": "e3",
       "polarity": "e",
       "start_pos": {
-        "x": 0.072456,
-        "y": 0.946232
+        "x": 0.599538,
+        "y": 0.179766
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 198.734627
+        "speed": 0.1,
+        "heading_deg": 163.309121
       },
       "phases": [
         {
@@ -165,12 +165,12 @@
       "name": "e4",
       "polarity": "e",
       "start_pos": {
-        "x": 0.658809,
-        "y": 0.23704
+        "x": -1.118238,
+        "y": 0.357063
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 207.846772
+        "speed": 0.1,
+        "heading_deg": 17.708724
       },
       "phases": [
         {
@@ -183,12 +183,12 @@
       "name": "e5",
       "polarity": "e",
       "start_pos": {
-        "x": 0.409144,
-        "y": -0.908351
+        "x": 1.237722,
+        "y": -1.974005
       },
       "velocity": {
-        "speed": 0,
-        "heading_deg": 104.179667
+        "speed": 0.1,
+        "heading_deg": -122.088144
       },
       "phases": [
         {
