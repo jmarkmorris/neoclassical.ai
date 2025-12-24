@@ -619,6 +619,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             radial_scale=radial_scale,
             param=0.0,
             pos=spec.start_pos,
+            initial_vel=(vx, vy),
             vel=(vx, vy),
             trace=[],
             speed_mult_override=None,
@@ -1864,6 +1865,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     state.speed_mult_override = sm
                     if state.mover_type == "physics" and phase_cfg.get("velocity") is not None:
                         state.vel = phase_cfg["velocity"]
+                    elif state.mover_type == "physics" and phase_cfg.get("velocity") is None and state.vel == (0.0, 0.0):
+                        # Restore base velocity when exiting a frozen phase without an explicit override.
+                        state.vel = state.initial_vel
             else:
                 state.speed_mult_override = None
 

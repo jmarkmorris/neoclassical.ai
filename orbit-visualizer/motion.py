@@ -63,6 +63,7 @@ class ArchitrinoState:
     radial_scale: float = 1.0
     param: float = 0.0  # path parameter (for analytic movers)
     pos: Vec2 = (0.0, 0.0)
+    initial_vel: Vec2 = (0.0, 0.0)
     vel: Vec2 = (0.0, 0.0)
     trace: List[Vec2] | None = None
     speed_mult_override: float | None = None

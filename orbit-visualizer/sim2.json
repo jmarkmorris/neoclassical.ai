@@ -21,8 +21,8 @@
       "polarity": "p",
       "mover": "physics",
       "path": "unit_circle",
-      "start_pos": { "x": 1, "y": 1 },
-      "velocity": { "speed": 0.5, "heading_deg": 90 },
+      "start_pos": { "x": 1, "y": 0.5 },
+      "velocity": { "speed": 0.1, "heading_deg": 90 },
       "phases": [
         { "mode": "frozen", "duration_seconds": 2 },
         { "mode": "move" }
@@ -33,8 +33,8 @@
       "polarity": "e",
       "mover": "physics",
       "path": "unit_circle",
-      "start_pos": { "x": -1, "y": -1 },
-      "velocity": { "speed": 0.5, "heading_deg": -90 },
+      "start_pos": { "x": -1, "y": -0.5 },
+      "velocity": { "speed": 0.1, "heading_deg": -90 },
       "phases": [
         { "mode": "frozen", "duration_seconds": 2 },
         { "mode": "move" }

@@ -69,7 +69,7 @@ python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer
   - `"cpu_full"`: CPU full rebuild each frame.
   Legacy values are mapped automatically: `"gpu_instanced"` → `"gpu"`, `"cpu_incremental"` → `"cpu_incr"`, `"cpu_rebuild"` → `"cpu_full"`.
 - `canvas_shrink` (float): Optional factor (default `0.9`) to reduce requested canvas size to avoid OS downscaling; set to `1.0` to request full size.
-- `seed_static_field` (bool): Pre-fill the field with stationary emissions for each architrino at startup. Defaults to `true` when any `mover` is `physics`.
+- `seed_static_field` (bool): Pre-fill the field with stationary emissions for each architrino at startup. Defaults to `false`; enable only when you want a pre-baked field snapshot.
 
 Aliases (optional):
 - `field_on` → `field_visible`
@@ -88,3 +88,32 @@ Each group describes architrino counts and a motion block.
   - `decay` (float): Spiral decay override (only for `exp_inward_spiral`).
 - `simulation` (object): Reserved for future simulation rules (do not include with `orbit`).
   - `mover` (string, optional): Motion backend per architrino. Use `"analytic"` (default) for predefined paths, or `"physics"` (stubbed for future force-based motion).
+
+### Per-arch settings (when you bypass `groups` and list `architrinos`)
+- `name` (string): Architrino label.
+- `polarity` (string): `"p"` or `"e"`.
+- `mover` (string): `"analytic"` or `"physics"`.
+- `path` (string): Path name for analytic movers; `"dynamic"` or omit for physics movers.
+- `start_pos` (object): `{ "x": float, "y": float }`.
+- `velocity` (object): `{ "speed": float, "heading_deg": float }` (heading is screen-friendly: 0=+x, 90=up).
+- `phases` (array, optional): Time-ordered behavior phases.
+  - Each phase supports:
+    - `mode` (string): `"frozen"` (hold position) or `"move"` (normal motion). Default `"move"`.
+    - `duration_seconds` (float, optional): Length of this phase; if omitted, phase runs until the end of the list.
+    - `speed_multiplier` (float, optional): Per-phase speed override (for both analytic and physics movers).
+    - `velocity` (object, optional): `{ "speed": float, "heading_deg": float }` override for physics movers during this phase.
+
+Example architrino with a 10s warm-up, then motion:
+```json
+{
+  "name": "p1",
+  "polarity": "p",
+  "mover": "physics",
+  "start_pos": { "x": 1, "y": 1 },
+  "velocity": { "speed": 0.5, "heading_deg": 90 },
+  "phases": [
+    { "mode": "frozen", "duration_seconds": 10 },
+    { "mode": "move" }
+  ]
+}
+```
