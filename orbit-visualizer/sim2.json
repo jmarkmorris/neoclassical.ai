@@ -21,7 +21,7 @@
       "name": "p1",
       "polarity": "p",
       "start_pos": { "x": 1.75, "y": 0 },
-      "velocity": { "speed": 0.45, "heading_deg": 90 },
+      "velocity": { "speed": 0.4228, "heading_deg": 90 },
       "phases": [
         {
           "mode": "move",
@@ -39,7 +39,7 @@
       "name": "e1",
       "polarity": "e",
       "start_pos": { "x": -1.75, "y": 0 },
-      "velocity": { "speed": 0.45, "heading_deg": -90 },
+      "velocity": { "speed": 0.4228, "heading_deg": -90 },
       "phases": [
         {
           "mode": "move",

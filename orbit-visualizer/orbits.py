@@ -698,6 +698,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         path_traces[state.name] = state.trace if state.trace is not None else []
 
     running = True
+    exit_reason: str | None = None
     paused = False if offline else cfg.start_paused
     frame_idx = 0
     phase_plans: Dict[str, list] = {spec.name: (spec.phases or []) for spec in arch_specs}
@@ -2150,6 +2151,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    exit_reason = exit_reason or "user"
                     running = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
@@ -2159,6 +2161,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         paused = True
                         log_state("key_escape_reset")
                     elif event.key == pygame.K_q:
+                        exit_reason = exit_reason or "user"
                         running = False
                         log_state("key_q_quit")
                     elif event.key == pygame.K_SPACE:
@@ -2304,10 +2307,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 # Abort if any physics mover pushes outside a generous canvas bound.
                 for name, pos in positions.items():
                     if not vec_finite(pos):
+                        exit_reason = exit_reason or "fault"
                         running = False
                         break
                     pos_canvas = world_to_canvas(pos)
                     if not vec_finite(pos_canvas) or not vec_within_canvas(pos_canvas):
+                        exit_reason = exit_reason or "fault"
                         running = False
                         break
                 if not running:
@@ -2346,11 +2351,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
                 sim_idx += 1
                 if offline and target_frames is not None and captured_frames >= target_frames:
+                    exit_reason = exit_reason or "complete"
                     running = False
                     break
 
             frame_idx = sim_idx - 1
             if offline and target_frames is not None and captured_frames >= target_frames:
+                exit_reason = exit_reason or "complete"
                 break
             if field_alg == "cpu_incr":
                 update_field_surface(current_time)
@@ -2379,6 +2386,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     ffmpeg_failed = True
                     print("[offline] ffmpeg pipe closed; stopping capture.", flush=True)
             if offline and target_frames is not None and captured_frames >= target_frames:
+                exit_reason = exit_reason or "complete"
                 running = False
 
             # Refresh caption at a coarse cadence to reduce overhead; force on state changes.
@@ -2414,12 +2422,26 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             if trace_test_frames_remaining is not None:
                 trace_test_frames_remaining -= steps
                 if trace_test_frames_remaining <= 0:
+                    exit_reason = exit_reason or "complete"
                     running = False
                     continue
     except KeyboardInterrupt:
+        exit_reason = exit_reason or "user"
         running = False
     finally:
         log_state("exit")
+        if not offline and exit_reason in {"complete", "fault"}:
+            # Keep the final frame on screen until user closes the window.
+            waiting = True
+            while waiting:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        waiting = False
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key in (pygame.K_q, pygame.K_ESCAPE, pygame.K_SPACE):
+                            waiting = False
+                render_frame(positions, list(recent_hits))
+                clock.tick(30)
         if ffmpeg_proc:
             try:
                 ffmpeg_proc.stdin.close()
