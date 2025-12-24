@@ -102,6 +102,8 @@ Each group describes architrino counts and a motion block.
     - `mode` (string): `"frozen"` (hold position) or `"move"` (normal motion). Default `"move"`.
     - `duration_seconds` (float, optional): Length of this phase; if omitted, phase runs until the end of the list.
     - `speed_multiplier` (float, optional): Per-phase speed override (for both analytic and physics movers).
+    - `mover` (string, optional): `"analytic"` or `"physics"` to switch mover in this phase.
+    - `path` (string, optional): Target path for analytic phases (`unit_circle`, `exp_inward_spiral`).
     - `velocity` (object, optional): `{ "speed": float, "heading_deg": float }` override for physics movers during this phase.
 
 Example architrino with a 10s warm-up, then motion:

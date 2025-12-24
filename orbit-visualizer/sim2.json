@@ -8,6 +8,7 @@
     "render": true,
     "start_paused": false,
     "field_alg": "gpu_instanced",
+    "grid_visible": false,
     "ui": {
       "field_visible": true,
       "architrinos_visible": true,
@@ -19,25 +20,37 @@
     {
       "name": "p1",
       "polarity": "p",
-      "mover": "physics",
-      "path": "unit_circle",
       "start_pos": { "x": 1.75, "y": 0 },
-      "velocity": { "speed": 0.6, "heading_deg": 90 },
+      "velocity": { "speed": 0.5, "heading_deg": 90 },
       "phases": [
-        { "mode": "frozen", "duration_seconds": 3.5 },
-        { "mode": "move" }
+        {
+          "mode": "move",
+          "duration_seconds": 10,
+          "mover": "analytic",
+          "path": "unit_circle"
+        },
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
       ]
     },
     {
       "name": "e1",
       "polarity": "e",
-      "mover": "physics",
-      "path": "unit_circle",
       "start_pos": { "x": -1.75, "y": 0 },
-      "velocity": { "speed": 0.6, "heading_deg": -90 },
+      "velocity": { "speed": 0.5, "heading_deg": -90 },
       "phases": [
-        { "mode": "frozen", "duration_seconds": 3.5 },
-        { "mode": "move" }
+        {
+          "mode": "move",
+          "duration_seconds": 10,
+          "mover": "analytic",
+          "path": "unit_circle"
+        },
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
       ]
     }
   ]

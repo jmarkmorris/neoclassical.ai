@@ -295,40 +295,22 @@ def load_run_file(
         name = arch.get("name") or f"arch-{idx+1}"
         if not isinstance(name, str):
             raise ValueError(f"architrinos[{idx}].name must be a string.")
-        mover_type = arch.get("mover", "analytic")
-        if not isinstance(mover_type, str):
-            raise ValueError(f"architrinos[{idx}].mover must be a string if provided.")
-        mover_type = mover_type.lower()
-        if mover_type not in {"analytic", "physics"}:
-            raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
-        if mover_type == "physics":
-            physics_present = True
+        mover_raw = arch.get("mover")
+        mover_type = None
+        if mover_raw is not None:
+            if not isinstance(mover_raw, str):
+                raise ValueError(f"architrinos[{idx}].mover must be a string if provided.")
+            mover_type = mover_raw.lower()
+            if mover_type not in {"analytic", "physics"}:
+                raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
         polarity = arch.get("type") or arch.get("polarity")
         if polarity not in {"p", "e"}:
             raise ValueError(f"architrinos[{idx}] polarity/type must be 'p' or 'e'.")
-        path_name = arch.get("path")
-        if not isinstance(path_name, str):
-            if mover_type != "physics":
-                raise ValueError(f"architrinos[{idx}].path must be a string.")
-            path_name = None
-        if path_name and path_name not in paths_override:
-            if mover_type == "physics" and path_name.lower() in {"dynamic", "physics"}:
-                path_name = None
-            else:
-                raise ValueError(f"Unknown path '{path_name}' for architrinos[{idx}]. Available: {list(paths_override.keys())}")
+        path_name_raw = arch.get("path")
+        if path_name_raw is not None and not isinstance(path_name_raw, str):
+            raise ValueError(f"architrinos[{idx}].path must be a string if provided.")
+        path_name = path_name_raw if isinstance(path_name_raw, str) else None
         decay_override = arch.get("decay")
-        if decay_override is not None:
-            if path_name != "exp_inward_spiral":
-                raise ValueError("decay override is only supported for exp_inward_spiral.")
-            decay_val = _coerce_float(decay_override, f"architrinos[{idx}].decay")
-            base = paths_override[path_name]
-            paths_override = dict(paths_override)
-            paths_override[path_name] = PathSpec(
-                name=base.name,
-                sampler=base.sampler,
-                description=base.description,
-                decay=decay_val,
-            )
         start_pos_raw = arch.get("start_pos") or arch.get("start")
         if start_pos_raw is None:
             raise ValueError(f"architrinos[{idx}] requires start_pos.")
@@ -341,10 +323,14 @@ def load_run_file(
         vel_raw = _expect_dict(vel_raw, f"architrinos[{idx}].velocity")
         speed = _coerce_float(vel_raw.get("speed", cfg.speed_multiplier), f"architrinos[{idx}].velocity.speed")
         heading_deg = _coerce_float(vel_raw.get("heading_deg", 0.0), f"architrinos[{idx}].velocity.heading_deg")
-        phases_raw = arch.get("phases") or []
+        phases_raw = arch.get("phases")
+        if not phases_raw:
+            raise ValueError(f"architrinos[{idx}] requires phases with at least one entry.")
+        if not isinstance(phases_raw, list):
+            raise ValueError(f"architrinos[{idx}].phases must be an array.")
+        if not phases_raw:
+            raise ValueError(f"architrinos[{idx}].phases must contain at least one entry.")
         if phases_raw:
-            if not isinstance(phases_raw, list):
-                raise ValueError(f"architrinos[{idx}].phases must be an array if provided.")
             parsed_phases = []
             cumulative = 0.0
             for p_idx, phase_raw in enumerate(phases_raw):
@@ -355,6 +341,16 @@ def load_run_file(
                 mode = mode.lower()
                 if mode not in {"move", "frozen"}:
                     raise ValueError(f"architrinos[{idx}].phases[{p_idx}].mode must be 'move' or 'frozen'.")
+                mover_override = phase_obj.get("mover")
+                if mover_override is not None and not isinstance(mover_override, str):
+                    raise ValueError(f"architrinos[{idx}].phases[{p_idx}].mover must be a string if provided.")
+                if mover_override is not None:
+                    mover_override = mover_override.lower()
+                    if mover_override not in {"analytic", "physics"}:
+                        raise ValueError(f"architrinos[{idx}].phases[{p_idx}].mover must be 'analytic' or 'physics'.")
+                path_override = phase_obj.get("path")
+                if path_override is not None and not isinstance(path_override, str):
+                    raise ValueError(f"architrinos[{idx}].phases[{p_idx}].path must be a string if provided.")
                 duration = _coerce_positive_float(phase_obj.get("duration_seconds"), f"architrinos[{idx}].phases[{p_idx}].duration_seconds", allow_none=True)
                 velocity_override = phase_obj.get("velocity")
                 vel_vec = None
@@ -377,22 +373,61 @@ def load_run_file(
                         "mode": mode,
                         "start": start_t,
                         "end": end_t,
+                        "mover": mover_override,
+                        "path": path_override,
                         "speed_multiplier": phase_speed,
                         "velocity": vel_vec,
                     }
                 )
         else:
             parsed_phases = None
+
+        first_phase = parsed_phases[0] if parsed_phases else None
+        phase0_mover = first_phase.get("mover") if first_phase else None
+        phase0_path = first_phase.get("path") if first_phase else None
+        if parsed_phases and phase0_mover is None:
+            raise ValueError(f"architrinos[{idx}].phases[0].mover is required when phases are provided.")
+
+        mover_effective = phase0_mover or mover_type or "analytic"
+        if mover_effective not in {"analytic", "physics"}:
+            raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
+        if mover_effective == "physics":
+            physics_present = True
+
+        path_effective = phase0_path or path_name
+        if mover_effective == "physics":
+            if path_effective and path_effective.lower() in {"dynamic", "physics"}:
+                path_effective = None
+            elif path_effective and path_effective not in paths_override:
+                raise ValueError(f"Unknown path '{path_effective}' for architrinos[{idx}]. Available: {list(paths_override.keys())}")
+        else:
+            if not path_effective:
+                raise ValueError(f"architrinos[{idx}].path must be set for analytic movers.")
+            if path_effective not in paths_override:
+                raise ValueError(f"Unknown path '{path_effective}' for architrinos[{idx}]. Available: {list(paths_override.keys())}")
+
+        if decay_override is not None:
+            if path_effective != "exp_inward_spiral":
+                raise ValueError("decay override is only supported for exp_inward_spiral.")
+            decay_val = _coerce_float(decay_override, f"architrinos[{idx}].decay")
+            base = paths_override[path_effective]
+            paths_override = dict(paths_override)
+            paths_override[path_effective] = PathSpec(
+                name=base.name,
+                sampler=base.sampler,
+                description=base.description,
+                decay=decay_val,
+            )
         arch_specs.append(
             ArchitrinoSpec(
                 name=name,
                 polarity=polarity,
-                path=path_name or "dynamic",
+                path=path_effective or "dynamic",
                 start_pos=start_pos,
                 velocity_speed=speed,
                 velocity_heading_deg=heading_deg,
                 decay=decay_override if decay_override is not None else None,
-                mover=mover_type,
+                mover=mover_effective,
                 phases=parsed_phases,
             )
         )
@@ -570,11 +605,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         return 1.0 if dot >= 0 else -1.0
 
     for spec in arch_specs:
+        # Derive initial mover/path/velocity from first phase if present; otherwise use top-level.
+        first_phase = (spec.phases or [])[0] if spec.phases else None
+        init_mover = (first_phase.get("mover") if first_phase else None) or spec.mover
+        init_path_name = (first_phase.get("path") if first_phase else None) or (spec.path if spec.mover == "analytic" else None)
         base_path = None
-        if spec.path in paths:
-            base_path = paths[spec.path]
-        elif spec.mover != "physics":
-            raise ValueError(f"Unknown path '{spec.path}'. Available: {list(paths.keys())}")
+        if init_path_name in paths:
+            base_path = paths[init_path_name]
+        elif init_mover == "analytic":
+            raise ValueError(f"Unknown path '{init_path_name}'. Available: {list(paths.keys())}")
 
         decay = spec.decay if (spec.decay is not None and base_path is not None) else (base_path.decay if base_path else None)
         if base_path is not None and decay is not None and base_path.decay != decay:
@@ -587,15 +626,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             )
             base_path = paths[spec.path]
 
-        if spec.mover == "physics":
+        if init_mover == "physics":
             phase, offset = 0.0, 0.0
             sign = 1.0
             radial_scale = 1.0
         else:
-            phase, offset = default_phase_and_offset(spec.path, spec.start_pos, base_path.decay if base_path else None)
+            phase, offset = default_phase_and_offset(init_path_name, spec.start_pos, base_path.decay if base_path else None)
             sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg) if base_path else 1.0
             start_r = math.hypot(*spec.start_pos)
-            if spec.path == "exp_inward_spiral" and base_path and base_path.decay is not None:
+            if init_path_name == "exp_inward_spiral" and base_path and base_path.decay is not None:
                 sample_r = math.exp(-base_path.decay * abs(offset))
             elif base_path:
                 sample_x, sample_y = base_path.sampler(offset + phase)
@@ -608,12 +647,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         heading_rad = math.radians(spec.velocity_heading_deg)
         vx = spec.velocity_speed * math.cos(heading_rad)
         vy = -spec.velocity_speed * math.sin(heading_rad)  # screen-friendly (up is negative y)
+        if first_phase and first_phase.get("velocity") is not None:
+            v_override = first_phase["velocity"]
+            v_speed = _coerce_float(v_override.get("speed", spec.velocity_speed), "phase0.velocity.speed")
+            v_heading = _coerce_float(v_override.get("heading_deg", spec.velocity_heading_deg), "phase0.velocity.heading_deg")
+            v_rad = math.radians(v_heading)
+            vx = v_speed * math.cos(v_rad)
+            vy = -v_speed * math.sin(v_rad)
         state = ArchitrinoState(
             name=spec.name,
             polarity=polarity_sign,
             color=color,
-            mover_type=spec.mover or "analytic",
-            path_name=spec.path,
+            mover_type=init_mover or "analytic",
+            path_name=init_path_name,
             phase=phase,
             path_offset=offset,
             base_speed=spec.velocity_speed * sign,
@@ -637,6 +683,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     paused = False if offline else cfg.start_paused
     frame_idx = 0
     phase_plans: Dict[str, list] = {spec.name: (spec.phases or []) for spec in arch_specs}
+    phase_indices: Dict[str, int | None] = {spec.name: None for spec in arch_specs}
     frozen_now: set[str] = set()
     sim_clock_start = time.monotonic()
     sim_clock_elapsed = 0.0
@@ -1869,10 +1916,77 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         plan = phase_plans.get(name)
         if not plan:
             return None
-        for ph in plan:
+        for idx, ph in enumerate(plan):
             if ph.get("end") is None or time_t < ph["end"]:
-                return ph
-        return plan[-1]
+                return ph, idx
+        return plan[-1], len(plan) - 1
+
+    def apply_phase_transition(state: ArchitrinoState, phase_cfg: dict | None) -> None:
+        """Apply mover/path/velocity changes when entering a new phase."""
+        if phase_cfg is None:
+            state.speed_mult_override = None
+            return
+        mover_override = phase_cfg.get("mover")
+        path_override = phase_cfg.get("path")
+        vel_override = phase_cfg.get("velocity")
+        speed_override = phase_cfg.get("speed_multiplier")
+
+        if speed_override is not None:
+            state.speed_mult_override = speed_override
+        else:
+            state.speed_mult_override = None
+
+        def compute_heading_sign(path: PathSpec, offset_val: float, heading_deg_val: float) -> float:
+            try:
+                return tangent_sign_for_heading(path, offset_val + state.phase, heading_deg_val)
+            except Exception:
+                return 1.0
+
+        # Velocity override vector (for physics or tracking)
+        if vel_override is not None:
+            v_speed = vel_override.get("speed", 0.0)
+            v_heading = vel_override.get("heading_deg", 0.0)
+            v_speed = _coerce_float(v_speed, "phase.velocity.speed")
+            v_heading = _coerce_float(v_heading, "phase.velocity.heading_deg")
+            heading_rad = math.radians(v_heading)
+            state.vel = (v_speed * math.cos(heading_rad), -v_speed * math.sin(heading_rad))
+
+        if mover_override is not None:
+            mover_override = mover_override.lower()
+            if mover_override not in {"analytic", "physics"}:
+                raise ValueError("phase.mover must be 'analytic' or 'physics'.")
+
+        if path_override is not None and not isinstance(path_override, str):
+            raise ValueError("phase.path must be a string if provided.")
+
+        # Handle mover/path transitions.
+        if mover_override == "physics" or (mover_override is None and state.mover_type == "physics"):
+            # Switch to physics; keep current pos, allow optional velocity override.
+            state.mover_type = "physics"
+            state.path_name = None
+        elif mover_override == "analytic" or (mover_override is None and state.mover_type == "analytic" and path_override):
+            # Switch or retarget analytic path.
+            target_path_name = path_override or state.path_name
+            if target_path_name is None or target_path_name not in paths:
+                raise ValueError(f"phase.path '{target_path_name}' is not a known path.")
+            target_path = paths[target_path_name]
+            state.mover_type = "analytic"
+            state.path_name = target_path_name
+            # Recompute phase/offset to place current position on the target path.
+            phase_val, offset_val = default_phase_and_offset(target_path_name, state.pos, target_path.decay)
+            state.phase = phase_val
+            state.path_offset = offset_val
+            # Adjust radial scale to keep radius consistent.
+            sample_x, sample_y = target_path.sampler(offset_val + phase_val)
+            sample_r = math.hypot(sample_x, sample_y)
+            current_r = math.hypot(*state.pos)
+            state.radial_scale = current_r / sample_r if sample_r > 1e-9 else 1.0
+            # Optional heading sign if we have a velocity override.
+            if vel_override is not None:
+                heading_deg = _coerce_float(vel_override.get("heading_deg", 0.0), "phase.velocity.heading_deg")
+                sign = compute_heading_sign(target_path, offset_val, heading_deg)
+                state.base_speed = abs(state.base_speed) * sign
+        # If mover type remains the same and no path override, nothing else to do.
 
     def current_positions(time_t: float) -> Dict[str, Vec2]:
         env = MoverEnv(
@@ -1889,7 +2003,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         pos: Dict[str, Vec2] = {}
         frozen_now.clear()
         for state in states:
-            phase_cfg = active_phase_for(state.name, time_t)
+            phase_cfg_idx = active_phase_for(state.name, time_t)
+            phase_cfg = phase_cfg_idx[0] if phase_cfg_idx else None
+            phase_idx = phase_cfg_idx[1] if phase_cfg_idx else None
+            current_idx = phase_indices.get(state.name)
+            if phase_idx is not None and phase_idx != current_idx:
+                apply_phase_transition(state, phase_cfg)
+                phase_indices[state.name] = phase_idx
             if phase_cfg:
                 mode = phase_cfg.get("mode", "move")
                 if mode == "frozen":
