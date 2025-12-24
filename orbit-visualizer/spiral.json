@@ -3,7 +3,7 @@
     "format_version": 1,
     "hz": 1000,
     "field_speed": 1.0,
-    "domain_half_extent": 2.0,
+    "world_size": 4.0,
     "max_memory_bytes": 8589934592,
     "speed_multiplier": 0.5,
     "path_snap": 0.002,

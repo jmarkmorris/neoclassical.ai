@@ -52,7 +52,8 @@ python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer
 - `format_version` (int): Version marker for future migrations.
 - `hz` (int): Simulation frequency in Hz.
 - `field_speed` (float): Field propagation speed.
-- `domain_half_extent` (float): Half extent of square domain, in world units.
+- `world_size` (float): Full width/height of the square world domain in world units. (Preferred.)
+- `domain_half_extent` (float): Half extent of square domain, in world units. (Legacy; use `world_size` instead.)
 - `speed_multiplier` (float): Default path speed multiplier.
 - `position_snap` (float): Optional XY snap grid size; ignored if `path_snap` is set.
 - `path_snap` (float): Snap step in path parameter space (keeps positions on the path).

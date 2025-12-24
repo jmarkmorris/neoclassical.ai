@@ -3,7 +3,7 @@
     "format_version": 1,
     "hz": 500,
     "field_speed": 1.0,
-    "domain_half_extent": 2.0,
+    "world_size": 4.0,
     "speed_multiplier": 1.0,
     "render": true,
     "start_paused": false,
@@ -21,7 +21,7 @@
       "name": "p1",
       "polarity": "p",
       "start_pos": { "x": 1.75, "y": 0 },
-      "velocity": { "speed": 0.25, "heading_deg": 90 },
+      "velocity": { "speed": 0.45, "heading_deg": 90 },
       "phases": [
         {
           "mode": "move",
@@ -39,7 +39,7 @@
       "name": "e1",
       "polarity": "e",
       "start_pos": { "x": -1.75, "y": 0 },
-      "velocity": { "speed": 0.25, "heading_deg": -90 },
+      "velocity": { "speed": 0.45, "heading_deg": -90 },
       "phases": [
         {
           "mode": "move",

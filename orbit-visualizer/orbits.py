@@ -265,10 +265,28 @@ def load_run_file(
     if field_alg not in {"cpu_full", "cpu_incr", "gpu"}:
         raise ValueError("directives.field_alg must be 'cpu_full', 'cpu_incr', or 'gpu'.")
 
+    world_size = directives.get("world_size", None)
+    if world_size is not None:
+        world_size = _coerce_float(world_size, "directives.world_size")
+        if world_size <= 0:
+            raise ValueError("directives.world_size must be > 0.")
+    domain_half_extent = directives.get("domain_half_extent", None)
+    if domain_half_extent is not None:
+        domain_half_extent = _coerce_float(domain_half_extent, "directives.domain_half_extent")
+        if domain_half_extent <= 0:
+            raise ValueError("directives.domain_half_extent must be > 0.")
+    if world_size is not None and domain_half_extent is not None:
+        if abs(world_size - 2.0 * domain_half_extent) > 1e-6:
+            raise ValueError("directives.world_size conflicts with directives.domain_half_extent.")
+    if world_size is not None:
+        domain_half_extent = world_size / 2.0
+    if domain_half_extent is None:
+        domain_half_extent = 2.0
+
     cfg = SimulationConfig(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
         field_speed=_coerce_float(directives.get("field_speed", 1.0), "directives.field_speed"),
-        domain_half_extent=_coerce_float(directives.get("domain_half_extent", 2.0), "directives.domain_half_extent"),
+        domain_half_extent=domain_half_extent,
         speed_multiplier=_coerce_float(directives.get("speed_multiplier", 0.5), "directives.speed_multiplier"),
         position_snap=position_snap,
         path_snap=path_snap,
