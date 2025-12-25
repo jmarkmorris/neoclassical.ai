@@ -823,8 +823,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         prefix = f"PATH VISUALIZER: {label}" if label else "Path Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
-        legend_hint = "?"
-        parts = [vel_label, skip_label, freq_label, field_label, status, fps_label, legend_hint]
+        parts = [vel_label, skip_label, freq_label, field_label, status, fps_label]
         parts = [p for p in parts if p]
         return prefix + " | " + " | ".join(parts)
 
@@ -868,6 +867,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             format_title(paused_flag=paused_flag, label=run_label, fps=fps, max_vel=max_vel)
             + " | "
             + format_frame_and_time(frame_number, elapsed_s)
+            + " | ?"
         )
 
     def maybe_update_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None, force: bool = False, max_vel: float | None = None) -> None:
@@ -979,7 +979,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             "h hits (paused)",
             "p trails",
             "t trail dots",
-            "f hz",
             "v field on/off",
             "i info",
             "? help",
@@ -2188,18 +2187,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         frame_skip = max(0, frame_skip - 1)
                         caption_dirty = True
                         log_state("key_left_frame_skip")
-                    elif event.key == pygame.K_f:
-                        if cfg.hz == 250:
-                            new_hz = 500
-                        elif cfg.hz == 500:
-                            new_hz = 1000
-                        else:
-                            new_hz = 250
-                        update_time_params(new_hz)
-                        reset_state(keep_field_visible=True)
-                        paused = True
-                        caption_dirty = True
-                        log_state("key_f_hz_toggle")
                     elif event.key == pygame.K_i:
                         log_state("key_i_info")
                     elif event.key == pygame.K_t:
