@@ -1731,8 +1731,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         n = len(pts)
                         if n < 2:
                             continue
-                        max_segments = 24
-                        marker_step = max(12, n // max_segments)
+                        marker_step = 32
                         def inv_cube_weight(idx: int, total: int, strength: float = 2.5) -> float:
                             """Fade newest strong, oldest quickly via 1/(1 + (age*strength)^3)."""
                             age_frac = (total - 1 - idx) / max(1, total - 1)  # oldest≈1, newest≈0
@@ -1877,8 +1876,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         n = len(pts)
                         if n < 2:
                             continue
-                        max_segments = 24
-                        marker_step = max(12, n // max_segments)
+                        marker_step = 32
                         def inv_cube_weight(idx: int, total: int, strength: float = 2.5) -> float:
                             age_frac = (total - 1 - idx) / max(1, total - 1)
                             return 1.0 / (1.0 + (age_frac * strength) ** 3)
