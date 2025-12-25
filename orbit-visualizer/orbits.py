@@ -988,13 +988,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         target.blit(legend, (12, 12))
 
     trail_marker_offsets = [
-        (-1, -3), (0, -3), (1, -3),
-        (-2, -2), (-1, -2), (0, -2), (1, -2), (2, -2),
-        (-3, -1), (-2, -1), (-1, -1), (0, -1), (1, -1), (2, -1), (3, -1),
-        (-3, 0), (-2, 0), (-1, 0), (0, 0), (1, 0), (2, 0), (3, 0),
-        (-3, 1), (-2, 1), (-1, 1), (0, 1), (1, 1), (2, 1), (3, 1),
-        (-2, 2), (-1, 2), (0, 2), (1, 2), (2, 2),
-        (-1, 3), (0, 3), (1, 3),
+        (-1, -2), (0, -2), (1, -2),
+        (-2, -1), (-1, -1), (0, -1), (1, -1), (2, -1),
+        (-2, 0), (-1, 0), (0, 0), (1, 0), (2, 0),
+        (-2, 1), (-1, 1), (0, 1), (1, 1), (2, 1),
+        (-1, 2), (0, 2), (1, 2),
     ]
 
     def update_time_params(new_hz: int) -> None:
@@ -1724,7 +1722,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         n = len(pts)
                         if n < 2:
                             continue
-                        marker_step = 32
                         def inv_cube_weight(idx: int, total: int, strength: float = 2.5) -> float:
                             """Fade newest strong, oldest quickly via 1/(1 + (age*strength)^3)."""
                             age_frac = (total - 1 - idx) / max(1, total - 1)  # oldest≈1, newest≈0
@@ -1739,8 +1736,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                                 except ValueError:
                                     pass
                         if path_trail_markers_visible:
-                            # Distinct, spaced markers with outline for visibility.
-                            for i in range(0, n, marker_step):
+                            spacing = max(1e-6, cfg.domain_half_extent * 0.05)
+                            spacing_sq = spacing * spacing
+                            last_mark = None
+                            for i, pt in enumerate(trace):
+                                if last_mark is not None:
+                                    dx = pt[0] - last_mark[0]
+                                    dy = pt[1] - last_mark[1]
+                                    if (dx * dx + dy * dy) < spacing_sq:
+                                        continue
+                                last_mark = pt
                                 w = inv_cube_weight(i, n)
                                 alpha = int(255 * (0.1 + 0.8 * w))
                                 marker_rgb = arch_obj.color if arch_obj is not None else base_color
@@ -1870,7 +1875,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         n = len(pts)
                         if n < 2:
                             continue
-                        marker_step = 32
                         def inv_cube_weight(idx: int, total: int, strength: float = 2.5) -> float:
                             age_frac = (total - 1 - idx) / max(1, total - 1)
                             return 1.0 / (1.0 + (age_frac * strength) ** 3)
@@ -1884,7 +1888,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                                 except ValueError:
                                     pass
                         if path_trail_markers_visible:
-                            for i in range(0, n, marker_step):
+                            spacing = max(1e-6, cfg.domain_half_extent * 0.05)
+                            spacing_sq = spacing * spacing
+                            last_mark = None
+                            for i, pt in enumerate(trace):
+                                if last_mark is not None:
+                                    dx = pt[0] - last_mark[0]
+                                    dy = pt[1] - last_mark[1]
+                                    if (dx * dx + dy * dy) < spacing_sq:
+                                        continue
+                                last_mark = pt
                                 w = inv_cube_weight(i, n)
                                 alpha = int(255 * (0.1 + 0.8 * w))
                                 marker_rgb = arch_obj.color if arch_obj is not None else base_color
