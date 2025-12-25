@@ -566,6 +566,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         apply_window_size(panel_w + canvas_side, canvas_side)
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 12)
+    try:
+        window_size = pygame.display.get_window_size() if hasattr(pygame.display, "get_window_size") else None
+    except Exception:
+        window_size = None
+    try:
+        desktop_sizes = pygame.display.get_desktop_sizes() if hasattr(pygame.display, "get_desktop_sizes") else None
+    except Exception:
+        desktop_sizes = None
+    print(
+        f"[dpi] hi_dpi={cfg.hi_dpi} screen={screen.get_size() if screen else None} "
+        f"window={window_size} desktop={desktop_sizes} display={info.current_w}x{info.current_h}",
+        flush=True,
+    )
     if offline:
         capture_stride = 1
         target_frames = int(offline_fps * duration_limit) if (duration_limit is not None and offline_fps is not None) else None
