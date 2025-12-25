@@ -2260,10 +2260,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         show_hit_overlays = False
                         sim_clock_start = time.monotonic()
                         log_state("key_t_trace_test")
-                    elif event.key == pygame.K_u:
-                        ui_overlay_visible = not ui_overlay_visible
+                    elif event.key == pygame.K_p:
+                        path_trail_visible = not path_trail_visible
                         caption_dirty = True
-                        log_state("key_u_ui_overlay")
+                        log_state("key_p_path_trail_toggle")
                     elif event.key == pygame.K_o:
                         orbit_ring_visible = not orbit_ring_visible
                         caption_dirty = True

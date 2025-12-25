@@ -2,7 +2,7 @@
   "directives": {
     "format_version": 1,
     "hz": 1000,
-    "field_speed": 10.0,
+    "field_speed": 5.0,
     "max_force": 25.0,
     "world_size": 4.0,
     "max_memory_bytes": 8589934592,
@@ -25,13 +25,12 @@
       "name": "p1",
       "polarity": "p",
       "start_pos": { "x": 1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": 90 },
-      "decay": 0.1,
+      "velocity": { "speed": 0.5, "heading_deg": -90 },
       "phases": [
         {
           "mode": "move",
           "mover": "analytic",
-          "path": "exp_inward_spiral"
+          "path": "unit_circle"
         }
       ]
     },
@@ -39,13 +38,12 @@
       "name": "e1",
       "polarity": "e",
       "start_pos": { "x": -1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": -90 },
-      "decay": 0.1,
+      "velocity": { "speed": 0.5, "heading_deg": 90 },
       "phases": [
         {
           "mode": "move",
           "mover": "analytic",
-          "path": "exp_inward_spiral"
+          "path": "unit_circle"
         }
       ]
     }
