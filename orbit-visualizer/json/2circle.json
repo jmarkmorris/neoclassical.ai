@@ -4,6 +4,7 @@
     "hz": 1000,
     "field_speed": 10.0,
     "max_force": 25.0,
+    "hi_dpi": true,
     "world_size": 4.0,
     "max_memory_bytes": 8589934592,
     "speed_multiplier": 1.0,
