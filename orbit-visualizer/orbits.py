@@ -812,7 +812,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     def format_title(paused_flag: bool, label: str | None = None, fps: float | None = None, max_vel: float | None = None) -> str:
         """Compact title line carrying former panel info."""
         skip_label = f"skip←→ {pad_int(frame_skip, 3)}"
-        freq_label = f"🅕 {pad_int(cfg.hz, 4)}Hz"
         fps_val = int(round(fps)) if fps is not None else 0
         fps_label = f"fps {pad_int(fps_val, 5)}"
         vel_label = ""
@@ -823,7 +822,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         prefix = f"{label}" if label else "Path Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
-        parts = [vel_label, skip_label, freq_label, field_label, status, fps_label]
+        parts = [vel_label, skip_label, field_label, status, fps_label]
         parts = [p for p in parts if p]
         return prefix + " | " + " | ".join(parts)
 
@@ -867,7 +866,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             format_title(paused_flag=paused_flag, label=run_label, fps=fps, max_vel=max_vel)
             + " | "
             + format_frame_and_time(frame_number, elapsed_s)
-            + " | ?"
+            + " | (f)ield (h)its"
+            " (p)aths (t)rail | (r)eset (q)uit | ?"
         )
 
     def maybe_update_caption(paused_flag: bool, frame_number: int, elapsed_s: float, fps: float | None = None, force: bool = False, max_vel: float | None = None) -> None:
@@ -973,15 +973,8 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         lines = [
             "Keys",
             "? help",
-            "q quit",
             "i info",
-            "esc reset",
             "space pause/resume",
-            "",
-            "h hits (paused)",
-            "p paths",
-            "t trail dots",
-            "v field on/off",
         ]
         pad = 8
         line_h = font.get_linesize()
@@ -2177,12 +2170,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     exit_reason = exit_reason or "user"
                     running = False
                 elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
+                    if event.key == pygame.K_r:
                         hit_overlay_enabled = False
                         show_hit_overlays = False
                         reset_state(keep_field_visible=True)
                         paused = True
-                        log_state("key_escape_reset")
+                        log_state("key_r_reset")
                     elif event.key == pygame.K_q:
                         exit_reason = exit_reason or "user"
                         running = False
@@ -2224,7 +2217,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     apply_window_size(event.w, event.h)
                     log_state("resize")
                 elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_v:
+                    if event.key == pygame.K_f:
                         if field_visible:
                             field_visible = False
                         else:
@@ -2240,7 +2233,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                                     update_last_radius=field_alg == "cpu_incr",
                                 )
                         caption_dirty = True
-                        log_state("key_v_field_visible")
+                        log_state("key_f_field_visible")
 
             show_hit_overlays = paused and hit_overlay_enabled
             if not paused:
