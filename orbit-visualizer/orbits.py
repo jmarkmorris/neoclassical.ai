@@ -97,7 +97,6 @@ class SimulationConfig:
     seed_static_field: bool = False
     grid_visible: bool = False
     canvas_shrink: float = 0.9
-    hi_dpi: bool = False
 
 
 @dataclass
@@ -310,7 +309,6 @@ def load_run_file(
         canvas_shrink=_coerce_float(directives.get("canvas_shrink", 0.9), "directives.canvas_shrink"),
         seed_static_field=bool(directives.get("seed_static_field", False)),
         grid_visible=bool(directives.get("grid_visible", False)),
-        hi_dpi=bool(directives.get("hi_dpi", False)),
     )
 
     paths_override = dict(paths)
@@ -479,8 +477,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     """
     os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "hide")
     os.environ.setdefault("SDL_VIDEO_CENTERED", "1")
-    if cfg.hi_dpi:
-        os.environ.setdefault("SDL_VIDEO_ALLOW_HIGHDPI", "1")
     try:
         import pygame
         from pygame import gfxdraw
@@ -509,8 +505,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         except ImportError:
             field_alg = "cpu_incr"
     display_flags = pygame.RESIZABLE
-    if cfg.hi_dpi:
-        display_flags |= getattr(pygame, "HIDPI", 0)
     if gpu_display:
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 3)
         pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 3)
@@ -566,19 +560,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         apply_window_size(panel_w + canvas_side, canvas_side)
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 12)
-    try:
-        window_size = pygame.display.get_window_size() if hasattr(pygame.display, "get_window_size") else None
-    except Exception:
-        window_size = None
-    try:
-        desktop_sizes = pygame.display.get_desktop_sizes() if hasattr(pygame.display, "get_desktop_sizes") else None
-    except Exception:
-        desktop_sizes = None
-    print(
-        f"[dpi] hi_dpi={cfg.hi_dpi} screen={screen.get_size() if screen else None} "
-        f"window={window_size} desktop={desktop_sizes} display={info.current_w}x{info.current_h}",
-        flush=True,
-    )
     if offline:
         capture_stride = 1
         target_frames = int(offline_fps * duration_limit) if (duration_limit is not None and offline_fps is not None) else None
