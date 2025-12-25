@@ -80,6 +80,7 @@ class Hit:
 class SimulationConfig:
     hz: int = 1000
     field_speed: float = 1.0  # v=1
+    max_force: float = 25.0  # clamp for physics impulse magnitude
     domain_half_extent: float = 2.0  # domain [-2,2] by default
     speed_multiplier: float = 0.5  # path speed scaling in [0, 100]; 0 => stationary
     position_snap: float | None = None  # optional spatial quantization step
@@ -265,6 +266,12 @@ def load_run_file(
     if field_alg not in {"cpu_full", "cpu_incr", "gpu"}:
         raise ValueError("directives.field_alg must be 'cpu_full', 'cpu_incr', or 'gpu'.")
 
+    max_force = directives.get("max_force", 25.0)
+    if max_force is not None:
+        max_force = _coerce_float(max_force, "directives.max_force")
+        if max_force <= 0:
+            raise ValueError("directives.max_force must be > 0.")
+
     world_size = directives.get("world_size", None)
     if world_size is not None:
         world_size = _coerce_float(world_size, "directives.world_size")
@@ -286,6 +293,7 @@ def load_run_file(
     cfg = SimulationConfig(
         hz=_coerce_int(directives.get("hz", 1000), "directives.hz"),
         field_speed=_coerce_float(directives.get("field_speed", 1.0), "directives.field_speed"),
+        max_force=max_force,
         domain_half_extent=domain_half_extent,
         speed_multiplier=_coerce_float(directives.get("speed_multiplier", 0.5), "directives.speed_multiplier"),
         position_snap=position_snap,
@@ -2093,6 +2101,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             emissions=emissions,
             allow_self=True,
             hit_tolerance=None,
+            max_force=cfg.max_force,
         )
         pos: Dict[str, Vec2] = {}
         frozen_now.clear()

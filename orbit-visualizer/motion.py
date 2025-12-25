@@ -89,6 +89,7 @@ class MoverEnv:
     emissions: List["Emission"]
     allow_self: bool = True
     hit_tolerance: float | None = None
+    max_force: float | None = None
 
 
 class Mover:
@@ -176,7 +177,7 @@ class PhysicsMover(Mover):
         tol = env.hit_tolerance
         if tol is None:
             tol = max(env.field_speed * dt_step * 0.6, 0.002)
-        max_force = 25.0  # simple clamp to avoid blow-ups
+        max_force = env.max_force if env.max_force is not None else 25.0
         for em in env.emissions:
             if not env.allow_self and em.emitter == state.name:
                 continue
@@ -200,13 +201,6 @@ class PhysicsMover(Mover):
         ay = fy / mass
         vx = state.vel[0] + ax * dt_step
         vy = state.vel[1] + ay * dt_step
-        # Clamp velocity to keep integration stable.
-        vmag = math.hypot(vx, vy)
-        vcap = 10.0
-        if vmag > vcap:
-            scale = vcap / vmag
-            vx *= scale
-            vy *= scale
         px = state.pos[0] + vx * dt_step
         py = state.pos[1] + vy * dt_step
         state.vel = (vx, vy)

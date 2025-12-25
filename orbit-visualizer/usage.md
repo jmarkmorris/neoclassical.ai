@@ -52,6 +52,7 @@ python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer
 - `format_version` (int): Version marker for future migrations.
 - `hz` (int): Simulation frequency in Hz.
 - `field_speed` (float): Field propagation speed.
+- `max_force` (float): Clamp for physics impulse magnitude (prevents blow-ups).
 - `world_size` (float): Full width/height of the square world domain in world units. (Preferred.)
 - `domain_half_extent` (float): Half extent of square domain, in world units. (Legacy; use `world_size` instead.)
 - `speed_multiplier` (float): Default path speed multiplier.

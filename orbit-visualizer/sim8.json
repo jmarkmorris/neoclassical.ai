@@ -1,7 +1,7 @@
 {
   "directives": {
     "format_version": 1,
-    "hz": 500,
+    "hz": 1000,
     "field_speed": 100.0,
     "max_force": 25.0,
     "world_size": 4.0,
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "name": "e1",
-      "polarity": "e",
+      "name": "p6",
+      "polarity": "p",
       "start_pos": {
         "x": -0.125448,
         "y": 0.121421
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "name": "e3",
+      "name": "e1",
       "polarity": "e",
       "start_pos": {
         "x": 0.199538,
@@ -157,42 +157,6 @@
       "velocity": {
         "speed": 0.1,
         "heading_deg": 163.209121
-      },
-      "phases": [
-        {
-          "mode": "move",
-          "mover": "physics"
-        }
-      ]
-    },
-    {
-      "name": "e4",
-      "polarity": "e",
-      "start_pos": {
-        "x": -0.118238,
-        "y": 0.157063
-      },
-      "velocity": {
-        "speed": 0.1,
-        "heading_deg": 17.708724
-      },
-      "phases": [
-        {
-          "mode": "move",
-          "mover": "physics"
-        }
-      ]
-    },
-    {
-      "name": "e5",
-      "polarity": "e",
-      "start_pos": {
-        "x": 0.137722,
-        "y": -0.174005
-      },
-      "velocity": {
-        "speed": 0.1,
-        "heading_deg": -122.188144
       },
       "phases": [
         {
