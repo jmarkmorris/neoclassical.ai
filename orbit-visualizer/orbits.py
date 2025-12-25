@@ -1770,7 +1770,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         ny = dir_x
                         tip_offset = -7.0
                         arrow_len = 6.0
-                        arrow_half = 2.5
+                        arrow_half = 2.0
                         tip_x = end[0] + dir_x * tip_offset
                         tip_y = end[1] + dir_y * tip_offset
                         base_x = tip_x - dir_x * arrow_len
@@ -1795,9 +1795,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     emitter_arch = state_lookup.get(h.emitter)
-                    marker_color = LIGHT_RED if emitter_arch and emitter_arch.polarity > 0 else LIGHT_BLUE
-                    gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
-                    gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
+                    marker_color = emitter_arch.color if emitter_arch else PURE_WHITE
+                    px = int(round(start[0]))
+                    py = int(round(start[1]))
+                    for dx, dy in ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)):
+                        particle_layer.set_at((px + dx, py + dy), marker_color)
 
             if ui_overlay_visible and architrinos_visible:
                 for name, pos in positions.items():
@@ -1911,7 +1913,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         ny = dir_x
                         tip_offset = -7.0
                         arrow_len = 6.0
-                        arrow_half = 2.5
+                        arrow_half = 2.0
                         tip_x = end[0] + dir_x * tip_offset
                         tip_y = end[1] + dir_y * tip_offset
                         base_x = tip_x - dir_x * arrow_len
@@ -1936,9 +1938,11 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     emitter_arch = state_lookup.get(h.emitter)
-                    marker_color = LIGHT_RED if emitter_arch and emitter_arch.polarity > 0 else LIGHT_BLUE
-                    gfxdraw.filled_circle(particle_layer, int(start[0]), int(start[1]), 4, marker_color)
-                    gfxdraw.aacircle(particle_layer, int(start[0]), int(start[1]), 5, PURE_WHITE)
+                    marker_color = emitter_arch.color if emitter_arch else PURE_WHITE
+                    px = int(round(start[0]))
+                    py = int(round(start[1]))
+                    for dx, dy in ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)):
+                        particle_layer.set_at((px + dx, py + dy), marker_color)
 
             if ui_overlay_visible and architrinos_visible:
                 for name, pos in positions.items():
@@ -2231,12 +2235,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     elif event.key == pygame.K_i:
                         log_state("key_i_info")
                     elif event.key == pygame.K_t:
-                        trace_test_frames_remaining = 3000
-                        paused = False
-                        hit_overlay_enabled = False
-                        show_hit_overlays = False
-                        sim_clock_start = time.monotonic()
-                        log_state("key_t_trace_test")
+                        path_trail_markers_visible = not path_trail_markers_visible
+                        caption_dirty = True
+                        log_state("key_t_trail_markers_toggle")
                     elif event.key == pygame.K_p:
                         path_trail_visible = not path_trail_visible
                         caption_dirty = True
