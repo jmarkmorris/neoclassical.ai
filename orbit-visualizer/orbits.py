@@ -1751,45 +1751,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     trace_layer_last_update = frame_idx
                 geometry_layer.blit(trace_layer, (0, 0))
 
-            def draw_hit_arc(hit: Hit) -> None:
-                recv_pos = positions.get(hit.receiver)
-                if recv_pos is None:
-                    return
-                cx, cy = world_to_canvas(hit.emit_pos)
-                tx, ty = world_to_canvas(recv_pos)
-                dx = tx - cx
-                dy = ty - cy
-                radius_px = int(math.hypot(dx, dy))
-                if radius_px < 2:
-                    return
-                ang = (math.degrees(math.atan2(dy, dx)) + 360.0) % 360.0
-                arc_half = 5.0
-                start = (ang - arc_half) % 360
-                end = (ang + arc_half) % 360
-                emitter_arch = state_lookup.get(hit.emitter)
-                color = emitter_arch.color if emitter_arch else PURE_WHITE
-
-                def draw_arc_span(s: float, e: float) -> None:
-                    for r_off in (0, 1):
-                        gfxdraw.arc(
-                            geometry_layer,
-                            int(cx),
-                            int(cy),
-                            radius_px + r_off,
-                            int(s),
-                            int(e),
-                            color,
-                        )
-
-                if start <= end:
-                    draw_arc_span(start, end)
-                else:
-                    draw_arc_span(start, 360)
-                    draw_arc_span(0, end)
-
             if show_hit_overlays:
-                for h in hits:
-                    draw_hit_arc(h)
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     end = world_to_canvas(positions[h.receiver])
@@ -1797,6 +1759,46 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     line_color = emitter_arch.color if emitter_arch else PURE_WHITE
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
+                    dx = end[0] - start[0]
+                    dy = end[1] - start[1]
+                    dist = math.hypot(dx, dy)
+                    if dist > 1e-6:
+                        inv = 1.0 / dist
+                        dir_x = dx * inv
+                        dir_y = dy * inv
+                        nx = -dir_y
+                        ny = dir_x
+                        tip_offset = -7.0
+                        arrow_len = 6.0
+                        arrow_half = 2.5
+                        tip_x = end[0] + dir_x * tip_offset
+                        tip_y = end[1] + dir_y * tip_offset
+                        base_x = tip_x - dir_x * arrow_len
+                        base_y = tip_y - dir_y * arrow_len
+                        left_x = base_x + nx * arrow_half
+                        left_y = base_y + ny * arrow_half
+                        right_x = base_x - nx * arrow_half
+                        right_y = base_y - ny * arrow_half
+                        gfxdraw.filled_trigon(
+                            geometry_layer,
+                            int(tip_x),
+                            int(tip_y),
+                            int(left_x),
+                            int(left_y),
+                            int(right_x),
+                            int(right_y),
+                            line_color,
+                        )
+                        gfxdraw.aatrigon(
+                            geometry_layer,
+                            int(tip_x),
+                            int(tip_y),
+                            int(left_x),
+                            int(left_y),
+                            int(right_x),
+                            int(right_y),
+                            line_color,
+                        )
 
             particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if show_hit_overlays:
@@ -1900,50 +1902,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     trace_layer_last_update = frame_idx
                 geometry_layer.blit(trace_layer, (0, 0))
 
-            # Draw a small arc on each incoming shell to indicate the arriving wavefront segment.
-            def draw_hit_arc(hit: Hit) -> None:
-                recv_pos = positions.get(hit.receiver)
-                if recv_pos is None:
-                    return
-                cx, cy = world_to_canvas(hit.emit_pos)
-                tx, ty = world_to_canvas(recv_pos)
-                dx = tx - cx
-                dy = ty - cy
-                radius_px = int(math.hypot(dx, dy))
-                if radius_px < 2:
-                    return
-                # Use screen-space angle directly (y down in screen coords).
-                ang = (math.degrees(math.atan2(dy, dx)) + 360.0) % 360.0
-                arc_half = 5.0
-                start = (ang - arc_half) % 360
-                end = (ang + arc_half) % 360
-                emitter_arch = state_lookup.get(hit.emitter)
-                color = emitter_arch.color if emitter_arch else PURE_WHITE
-
-                def draw_arc_span(s: float, e: float) -> None:
-                    # Thicker arc via small radial offsets
-                    for r_off in (0, 1):
-                        gfxdraw.arc(
-                            geometry_layer,
-                            int(cx),
-                            int(cy),
-                            radius_px + r_off,
-                            int(s),
-                            int(e),
-                            color,
-                        )
-
-                if start <= end:
-                    draw_arc_span(start, end)
-                else:
-                    # Wrap-around case: split into two arcs.
-                    draw_arc_span(start, 360)
-                    draw_arc_span(0, end)
-
             if show_hit_overlays:
-                for h in hits:
-                    draw_hit_arc(h)
-
                 for h in hits:
                     start = world_to_canvas(h.emit_pos)
                     end = world_to_canvas(positions[h.receiver])
@@ -1952,6 +1911,46 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     # Thicker line by drawing twice with slight offsets
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1]), int(end[0]), int(end[1]), line_color)
                     gfxdraw.line(geometry_layer, int(start[0]), int(start[1] + 1), int(end[0]), int(end[1] + 1), line_color)
+                    dx = end[0] - start[0]
+                    dy = end[1] - start[1]
+                    dist = math.hypot(dx, dy)
+                    if dist > 1e-6:
+                        inv = 1.0 / dist
+                        dir_x = dx * inv
+                        dir_y = dy * inv
+                        nx = -dir_y
+                        ny = dir_x
+                        tip_offset = -7.0
+                        arrow_len = 6.0
+                        arrow_half = 2.5
+                        tip_x = end[0] + dir_x * tip_offset
+                        tip_y = end[1] + dir_y * tip_offset
+                        base_x = tip_x - dir_x * arrow_len
+                        base_y = tip_y - dir_y * arrow_len
+                        left_x = base_x + nx * arrow_half
+                        left_y = base_y + ny * arrow_half
+                        right_x = base_x - nx * arrow_half
+                        right_y = base_y - ny * arrow_half
+                        gfxdraw.filled_trigon(
+                            geometry_layer,
+                            int(tip_x),
+                            int(tip_y),
+                            int(left_x),
+                            int(left_y),
+                            int(right_x),
+                            int(right_y),
+                            line_color,
+                        )
+                        gfxdraw.aatrigon(
+                            geometry_layer,
+                            int(tip_x),
+                            int(tip_y),
+                            int(left_x),
+                            int(left_y),
+                            int(right_x),
+                            int(right_y),
+                            line_color,
+                        )
 
             particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if show_hit_overlays:
