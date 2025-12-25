@@ -820,7 +820,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             vel_field = pad_float(max_vel, 6, 2)
             vel_label = f"v {vel_field}"
         field_label = ""
-        prefix = f"PATH VISUALIZER: {label}" if label else "Path Visualizer"
+        prefix = f"{label}" if label else "Path Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
         parts = [vel_label, skip_label, freq_label, field_label, status, fps_label]
@@ -972,16 +972,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     def draw_key_legend(target: "pygame.Surface") -> None:
         lines = [
             "Keys",
-            "space pause/resume",
-            "esc reset",
+            "? help",
             "q quit",
+            "i info",
+            "esc reset",
+            "space pause/resume",
             "",
             "h hits (paused)",
-            "p trails",
+            "p paths",
             "t trail dots",
             "v field on/off",
-            "i info",
-            "? help",
         ]
         pad = 8
         line_h = font.get_linesize()
