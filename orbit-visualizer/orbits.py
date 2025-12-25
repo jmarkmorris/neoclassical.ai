@@ -731,7 +731,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     field_v = max(cfg.field_speed, 1e-6)
     shell_thickness = 0.0
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))  # global speed scale
-    pending_speed_mult = speed_mult
     frame_skip = 0
 
     max_radius = 0.0
@@ -776,7 +775,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             ("flp", str(flip_stride), 3),
             ("trc", str(trace_draw_stride), 3),
             ("spd", f"{speed_mult:.2f}", 6),
-            ("pend", f"{pending_speed_mult:.2f}", 6),
             ("path", current_path_name, 24),
             ("field", field_alg, 15),
             ("fv", tf(field_visible), 1),
@@ -813,24 +811,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     def format_title(paused_flag: bool, label: str | None = None, fps: float | None = None, max_vel: float | None = None) -> str:
         """Compact title line carrying former panel info."""
-        speed_field = pad_float(speed_mult, 6, 2)
-        speed_label = f"velo↑↓ {speed_field}"
-        if paused_flag and pending_speed_mult != speed_mult:
-            pending_field = pad_float(pending_speed_mult, 6, 2)
-            speed_label = f"velo↑↓ {speed_field}->{pending_field}"
-
         skip_label = f"skip←→ {pad_int(frame_skip, 3)}"
         freq_label = f"🅕 {pad_int(cfg.hz, 4)}Hz"
         fps_val = int(round(fps)) if fps is not None else 0
         fps_label = f"fps {pad_int(fps_val, 5)}"
+        vel_label = ""
         if max_vel is not None:
             vel_field = pad_float(max_vel, 6, 2)
-            speed_label = f"velo↑↓ {vel_field}"
+            vel_label = f"v {vel_field}"
         field_label = f"field 🅥 {'on' if field_visible else 'off'}"
         prefix = f"ORBIT PATH VISUALIZER: {label}" if label else "Orbit Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
-        parts = [speed_label, skip_label, freq_label, field_label, status, fps_label]
+        parts = [vel_label, skip_label, freq_label, field_label, status, fps_label]
         parts = [p for p in parts if p]
         return prefix + " | " + " | ".join(parts)
 
@@ -1025,19 +1018,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     def clamp_speed(v: float) -> float:
         return max(0.0, min(v, 100.0))
-
-    def apply_speed_change(new_speed: float, auto_pause: bool = True) -> None:
-        nonlocal speed_mult, pending_speed_mult, paused
-        current_time = frame_idx * dt
-        nonlocal caption_dirty
-        prev_speed = speed_mult
-        speed_mult = clamp_speed(new_speed)
-        pending_speed_mult = speed_mult
-        # Analytic movers now integrate by param; no offset shift needed.
-        refresh_hits_for_current_time()
-        if auto_pause:
-            paused = True
-        caption_dirty = True
 
     def make_field_surface() -> "pygame.Surface":
         net = field_grid
@@ -1603,18 +1583,13 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 emissions.append(Emission(time=t_emit, pos=base_pos, emitter=state.name, polarity=state.polarity))
 
     def reset_state(
-        apply_pending_speed: bool = True,
         keep_trace: bool = False,
         keep_offset: bool = False,
         keep_field_visible: bool = False,
     ) -> None:
-        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, sim_clock_start, sim_clock_elapsed
+        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, sim_clock_start, sim_clock_elapsed
         nonlocal states, state_lookup, phase_indices, num_pos_arch, num_neg_arch
-        if apply_pending_speed:
-            speed_mult = clamp_speed(pending_speed_mult)
-        else:
-            speed_mult = clamp_speed(cfg.speed_multiplier)
-            pending_speed_mult = speed_mult
+        speed_mult = clamp_speed(cfg.speed_multiplier)
         if not keep_offset:
             states, path_traces = build_states_from_specs()
             state_lookup = {s.name: s for s in states}
@@ -2150,7 +2125,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             kept.append(em)
         emissions = kept
 
-    reset_state(apply_pending_speed=False)
+    reset_state()
     log_state("startup")
     render_frame(positions, list(recent_hits))
 
@@ -2166,7 +2141,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     if event.key == pygame.K_ESCAPE:
                         hit_overlay_enabled = False
                         show_hit_overlays = False
-                        reset_state(apply_pending_speed=True, keep_field_visible=True)
+                        reset_state(keep_field_visible=True)
                         paused = True
                         log_state("key_escape_reset")
                     elif event.key == pygame.K_q:
@@ -2193,12 +2168,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         frame_skip = max(0, frame_skip - 1)
                         caption_dirty = True
                         log_state("key_left_frame_skip")
-                    elif event.key == pygame.K_UP:
-                        apply_speed_change(speed_mult + 0.1, auto_pause=True)
-                        log_state("key_up_speed")
-                    elif event.key == pygame.K_DOWN:
-                        apply_speed_change(speed_mult - 0.1, auto_pause=True)
-                        log_state("key_down_speed")
                     elif event.key == pygame.K_f:
                         if cfg.hz == 250:
                             new_hz = 500
@@ -2207,7 +2176,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         else:
                             new_hz = 250
                         update_time_params(new_hz)
-                        reset_state(apply_pending_speed=True, keep_field_visible=True)
+                        reset_state(keep_field_visible=True)
                         paused = True
                         caption_dirty = True
                         log_state("key_f_hz_toggle")
