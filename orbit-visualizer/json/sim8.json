@@ -1,7 +1,7 @@
 {
   "directives": {
     "format_version": 1,
-    "hz": 1000,
+    "hz": 500,
     "field_speed": 100.0,
     "max_force": 25.0,
     "world_size": 4.0,

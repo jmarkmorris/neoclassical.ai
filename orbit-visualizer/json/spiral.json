@@ -14,7 +14,7 @@
     "field_alg": "gpu_instanced",
     "grid_visible": false,
     "ui": {
-      "field_visible": false,
+      "field_visible": true,
       "architrinos_visible": true,
       "path_trail_visible": true,
       "path_trail_markers_visible": false
@@ -25,7 +25,7 @@
       "name": "p1",
       "polarity": "p",
       "start_pos": { "x": 1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": 90 },
+      "velocity": { "speed": 0.5, "heading_deg": -90 },
       "decay": 0.1,
       "phases": [
         {
@@ -39,7 +39,7 @@
       "name": "e1",
       "polarity": "e",
       "start_pos": { "x": -1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": -90 },
+      "velocity": { "speed": 0.5, "heading_deg": 90 },
       "decay": 0.1,
       "phases": [
         {
