@@ -1789,16 +1789,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             int(right_y),
                             line_color,
                         )
-                        gfxdraw.aatrigon(
-                            geometry_layer,
-                            int(tip_x),
-                            int(tip_y),
-                            int(left_x),
-                            int(left_y),
-                            int(right_x),
-                            int(right_y),
-                            line_color,
-                        )
 
             particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if show_hit_overlays:
@@ -1822,7 +1812,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                     if abs(pos_canvas[0]) > 32760 or abs(pos_canvas[1]) > 32760:
                         continue
                     gfxdraw.filled_circle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 6, arch.color)
-                    gfxdraw.aacircle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 7, PURE_WHITE)
 
             gpu_draw_surface(geometry_layer, panel_w, 0, "overlay_geom")
             gpu_draw_surface(particle_layer, panel_w, 0, "overlay_particles")
@@ -1941,16 +1930,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             int(right_y),
                             line_color,
                         )
-                        gfxdraw.aatrigon(
-                            geometry_layer,
-                            int(tip_x),
-                            int(tip_y),
-                            int(left_x),
-                            int(left_y),
-                            int(right_x),
-                            int(right_y),
-                            line_color,
-                        )
 
             particle_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if show_hit_overlays:
@@ -1968,7 +1947,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         continue
                     pos_canvas = world_to_canvas(pos)
                     gfxdraw.filled_circle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 6, arch.color)
-                    gfxdraw.aacircle(particle_layer, int(pos_canvas[0]), int(pos_canvas[1]), 7, PURE_WHITE)
 
             screen.blit(geometry_layer, (panel_w, 0))
             screen.blit(particle_layer, (panel_w, 0))
