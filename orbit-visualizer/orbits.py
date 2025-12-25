@@ -1693,7 +1693,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 gpu_draw_surface(fs, panel_w, 0, "field_rgb")
 
         overlay_has_content = (
-            (ui_overlay_visible and (path_trail_visible or architrinos_visible))
+            (ui_overlay_visible and (path_trail_visible or path_trail_markers_visible or architrinos_visible))
             or show_hit_overlays
             or cfg.grid_visible
             or legend_visible
@@ -1705,7 +1705,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 draw_grid(geometry_layer)
             if legend_visible:
                 draw_key_legend(geometry_layer)
-            if ui_overlay_visible and path_trail_visible:
+            if ui_overlay_visible and (path_trail_visible or path_trail_markers_visible):
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
                 if need_redraw_traces:
                     trace_layer.fill((0, 0, 0, 0))
@@ -1729,14 +1729,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             """Fade newest strong, oldest quickly via 1/(1 + (age*strength)^3)."""
                             age_frac = (total - 1 - idx) / max(1, total - 1)  # oldest≈1, newest≈0
                             return 1.0 / (1.0 + (age_frac * strength) ** 3)
-                        for i in range(n - 1):
-                            w = inv_cube_weight(i, n)  # match marker fade profile
-                            alpha = int(255 * (0.1 + 0.8 * w))
-                            color = (*base_color, alpha)
-                            try:
-                                pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 4)
-                            except ValueError:
-                                pass
+                        if path_trail_visible:
+                            for i in range(n - 1):
+                                w = inv_cube_weight(i, n)  # match marker fade profile
+                                alpha = int(255 * (0.1 + 0.8 * w))
+                                color = (*base_color, alpha)
+                                try:
+                                    pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 4)
+                                except ValueError:
+                                    pass
                         if path_trail_markers_visible:
                             # Distinct, spaced markers with outline for visibility.
                             for i in range(0, n, marker_step):
@@ -1839,7 +1840,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             screen.blit(fs, (panel_w, 0))
 
         overlay_has_content = (
-            (ui_overlay_visible and (path_trail_visible or architrinos_visible))
+            (ui_overlay_visible and (path_trail_visible or path_trail_markers_visible or architrinos_visible))
             or show_hit_overlays
             or cfg.grid_visible
             or legend_visible
@@ -1851,7 +1852,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 draw_grid(geometry_layer)
             if legend_visible:
                 draw_key_legend(geometry_layer)
-            if ui_overlay_visible and path_trail_visible:
+            if ui_overlay_visible and (path_trail_visible or path_trail_markers_visible):
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
                 if need_redraw_traces:
                     trace_layer.fill((0, 0, 0, 0))
@@ -1873,14 +1874,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         def inv_cube_weight(idx: int, total: int, strength: float = 2.5) -> float:
                             age_frac = (total - 1 - idx) / max(1, total - 1)
                             return 1.0 / (1.0 + (age_frac * strength) ** 3)
-                        for i in range(n - 1):
-                            w = inv_cube_weight(i, n)
-                            alpha = int(255 * (0.1 + 0.8 * w))
-                            color = (*base_color, alpha)
-                            try:
-                                pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 4)
-                            except ValueError:
-                                pass
+                        if path_trail_visible:
+                            for i in range(n - 1):
+                                w = inv_cube_weight(i, n)
+                                alpha = int(255 * (0.1 + 0.8 * w))
+                                color = (*base_color, alpha)
+                                try:
+                                    pygame.draw.line(trace_layer, color, pts[i], pts[i + 1], 4)
+                                except ValueError:
+                                    pass
                         if path_trail_markers_visible:
                             for i in range(0, n, marker_step):
                                 w = inv_cube_weight(i, n)
