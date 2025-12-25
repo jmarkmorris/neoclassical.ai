@@ -13,7 +13,7 @@
     "field_alg": "gpu_instanced",
     "grid_visible": false,
     "ui": {
-      "field_visible": true,
+      "field_visible": false,
       "architrinos_visible": true,
       "path_trail_visible": true,
       "path_trail_markers_visible": false
@@ -24,11 +24,11 @@
       "name": "p1",
       "polarity": "p",
       "start_pos": {
-        "x": 0.257707,
-        "y": -0.299957
+        "x": 0.157707,
+        "y": -0.199957
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": -116.258902
       },
       "phases": [
@@ -42,11 +42,11 @@
       "name": "p2",
       "polarity": "p",
       "start_pos": {
-        "x": -0.299883,
+        "x": -0.199883,
         "y": -0.17157
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": -50.896241
       },
       "phases": [
@@ -60,11 +60,11 @@
       "name": "p3",
       "polarity": "p",
       "start_pos": {
-        "x": 0.245885,
-        "y": 0.206798
+        "x": 0.145885,
+        "y": 0.106798
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": 143.23164
       },
       "phases": [
@@ -78,11 +78,11 @@
       "name": "p4",
       "polarity": "p",
       "start_pos": {
-        "x": 0.28718,
-        "y": -0.22245
+        "x": 0.18718,
+        "y": -0.12245
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": -133.514532
       },
       "phases": [
@@ -96,11 +96,11 @@
       "name": "p5",
       "polarity": "p",
       "start_pos": {
-        "x": -0.212313,
-        "y": -0.20811
+        "x": -0.112313,
+        "y": -0.10811
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": -80.571939
       },
       "phases": [
@@ -114,11 +114,11 @@
       "name": "e1",
       "polarity": "e",
       "start_pos": {
-        "x": -0.225448,
+        "x": -0.125448,
         "y": 0.121421
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": 1.190404
       },
       "phases": [
@@ -136,7 +136,7 @@
         "y": -0.14649
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": -32.45974
       },
       "phases": [
@@ -150,11 +150,11 @@
       "name": "e3",
       "polarity": "e",
       "start_pos": {
-        "x": 0.299538,
-        "y": 0.279766
+        "x": 0.199538,
+        "y": 0.179766
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": 163.209121
       },
       "phases": [
@@ -168,11 +168,11 @@
       "name": "e4",
       "polarity": "e",
       "start_pos": {
-        "x": -0.218238,
-        "y": 0.257063
+        "x": -0.118238,
+        "y": 0.157063
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": 17.708724
       },
       "phases": [
@@ -186,11 +186,11 @@
       "name": "e5",
       "polarity": "e",
       "start_pos": {
-        "x": 0.237722,
+        "x": 0.137722,
         "y": -0.174005
       },
       "velocity": {
-        "speed": 0.2,
+        "speed": 0.1,
         "heading_deg": -122.188144
       },
       "phases": [

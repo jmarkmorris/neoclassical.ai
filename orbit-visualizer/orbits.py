@@ -598,12 +598,10 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
     # Build architrino instances with per-arch offsets and base speeds.
     current_path_name = "multi" if len(arch_specs) > 1 else arch_specs[0].path
-    states: List[ArchitrinoState] = []
     movers: Dict[str, Mover] = {
         "analytic": AnalyticMover(),
         "physics": PhysicsMover(),
     }
-    path_traces: Dict[str, List[Vec2]] = {}
 
     def tangent_sign_for_heading(path: PathSpec, param: float, heading_deg: float) -> float:
         """Choose +1/-1 so path tangent best aligns with requested heading.
@@ -628,80 +626,88 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         dot = tan_unit[0] * h_vec[0] + tan_unit[1] * h_vec[1]
         return 1.0 if dot >= 0 else -1.0
 
-    for spec in arch_specs:
-        # Derive initial mover/path/velocity from first phase if present; otherwise use top-level.
-        first_phase = (spec.phases or [])[0] if spec.phases else None
-        init_mover = (first_phase.get("mover") if first_phase else None) or spec.mover
-        init_path_name = (first_phase.get("path") if first_phase else None) or (spec.path if spec.mover == "analytic" else None)
-        base_path = None
-        if init_path_name in paths:
-            base_path = paths[init_path_name]
-        elif init_mover == "analytic":
-            raise ValueError(f"Unknown path '{init_path_name}'. Available: {list(paths.keys())}")
+    def build_states_from_specs() -> tuple[list[ArchitrinoState], dict[str, list[Vec2]]]:
+        new_states: list[ArchitrinoState] = []
+        new_traces: dict[str, list[Vec2]] = {}
+        nonlocal paths
+        for spec in arch_specs:
+            # Derive initial mover/path/velocity from first phase if present; otherwise use top-level.
+            first_phase = (spec.phases or [])[0] if spec.phases else None
+            init_mover = (first_phase.get("mover") if first_phase else None) or spec.mover
+            init_path_name = (first_phase.get("path") if first_phase else None) or (spec.path if spec.mover == "analytic" else None)
+            base_path = None
+            if init_path_name in paths:
+                base_path = paths[init_path_name]
+            elif init_mover == "analytic":
+                raise ValueError(f"Unknown path '{init_path_name}'. Available: {list(paths.keys())}")
 
-        decay = spec.decay if (spec.decay is not None and base_path is not None) else (base_path.decay if base_path else None)
-        if base_path is not None and decay is not None and base_path.decay != decay:
-            paths = dict(paths)
-            paths[spec.path] = PathSpec(
-                name=base_path.name,
-                sampler=base_path.sampler,
-                description=base_path.description,
-                decay=decay,
-            )
-            base_path = paths[spec.path]
+            decay = spec.decay if (spec.decay is not None and base_path is not None) else (base_path.decay if base_path else None)
+            if base_path is not None and decay is not None and base_path.decay != decay:
+                paths = dict(paths)
+                paths[spec.path] = PathSpec(
+                    name=base_path.name,
+                    sampler=base_path.sampler,
+                    description=base_path.description,
+                    decay=decay,
+                )
+                base_path = paths[spec.path]
 
-        if init_mover == "physics":
-            phase, offset = 0.0, 0.0
-            sign = 1.0
-            radial_scale = 1.0
-        else:
-            phase, offset = default_phase_and_offset(init_path_name, spec.start_pos, base_path.decay if base_path else None)
-            sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg) if base_path else 1.0
-            start_r = math.hypot(*spec.start_pos)
-            if init_path_name == "exp_inward_spiral" and base_path and base_path.decay is not None:
-                sample_r = math.exp(-base_path.decay * abs(offset))
-            elif base_path:
-                sample_x, sample_y = base_path.sampler(offset + phase)
-                sample_r = math.hypot(sample_x, sample_y)
+            if init_mover == "physics":
+                phase, offset = 0.0, 0.0
+                sign = 1.0
+                radial_scale = 1.0
             else:
-                sample_r = start_r
-            radial_scale = start_r / sample_r if sample_r > 1e-9 else 1.0
-        color = PURE_RED if spec.polarity == "p" else PURE_BLUE
-        polarity_sign = 1 if spec.polarity == "p" else -1
-        heading_rad = math.radians(spec.velocity_heading_deg)
-        vx = spec.velocity_speed * math.cos(heading_rad)
-        vy = -spec.velocity_speed * math.sin(heading_rad)  # screen-friendly (up is negative y)
-        if first_phase and first_phase.get("velocity") is not None:
-            v_override = first_phase["velocity"]
-            v_speed = _coerce_float(v_override.get("speed", spec.velocity_speed), "phase0.velocity.speed")
-            v_heading = _coerce_float(v_override.get("heading_deg", spec.velocity_heading_deg), "phase0.velocity.heading_deg")
-            v_rad = math.radians(v_heading)
-            vx = v_speed * math.cos(v_rad)
-            vy = -v_speed * math.sin(v_rad)
-        state = ArchitrinoState(
-            name=spec.name,
-            polarity=polarity_sign,
-            color=color,
-            mover_type=init_mover or "analytic",
-            path_name=init_path_name,
-            phase=phase,
-            path_offset=offset,
-            base_speed=spec.velocity_speed * sign,
-            heading_deg=spec.velocity_heading_deg,
-            radial_scale=radial_scale,
-            param=offset,
-            pos=spec.start_pos,
-            initial_vel=(vx, vy),
-            vel=(vx, vy),
-            trace=[],
-            speed_mult_override=None,
-            last_emit_time=0.0,
-            path_snap=cfg.path_snap,
-            position_snap=cfg.position_snap,
-            initial_path_offset=offset,
-        )
-        states.append(state)
-        path_traces[state.name] = state.trace if state.trace is not None else []
+                phase, offset = default_phase_and_offset(init_path_name, spec.start_pos, base_path.decay if base_path else None)
+                sign = tangent_sign_for_heading(base_path, offset + phase, spec.velocity_heading_deg) if base_path else 1.0
+                start_r = math.hypot(*spec.start_pos)
+                if init_path_name == "exp_inward_spiral" and base_path and base_path.decay is not None:
+                    sample_r = math.exp(-base_path.decay * abs(offset))
+                elif base_path:
+                    sample_x, sample_y = base_path.sampler(offset + phase)
+                    sample_r = math.hypot(sample_x, sample_y)
+                else:
+                    sample_r = start_r
+                radial_scale = start_r / sample_r if sample_r > 1e-9 else 1.0
+            color = PURE_RED if spec.polarity == "p" else PURE_BLUE
+            polarity_sign = 1 if spec.polarity == "p" else -1
+            heading_rad = math.radians(spec.velocity_heading_deg)
+            vx = spec.velocity_speed * math.cos(heading_rad)
+            vy = -spec.velocity_speed * math.sin(heading_rad)  # screen-friendly (up is negative y)
+            if first_phase and first_phase.get("velocity") is not None:
+                v_override = first_phase["velocity"]
+                v_speed = _coerce_float(v_override.get("speed", spec.velocity_speed), "phase0.velocity.speed")
+                v_heading = _coerce_float(v_override.get("heading_deg", spec.velocity_heading_deg), "phase0.velocity.heading_deg")
+                v_rad = math.radians(v_heading)
+                vx = v_speed * math.cos(v_rad)
+                vy = -v_speed * math.sin(v_rad)
+            state = ArchitrinoState(
+                name=spec.name,
+                polarity=polarity_sign,
+                color=color,
+                mover_type=init_mover or "analytic",
+                path_name=init_path_name,
+                phase=phase,
+                path_offset=offset,
+                base_speed=spec.velocity_speed * sign,
+                heading_deg=spec.velocity_heading_deg,
+                radial_scale=radial_scale,
+                param=offset,
+                pos=spec.start_pos,
+                initial_vel=(vx, vy),
+                vel=(vx, vy),
+                trace=[],
+                speed_mult_override=None,
+                last_emit_time=0.0,
+                path_snap=cfg.path_snap,
+                position_snap=cfg.position_snap,
+                initial_path_offset=offset,
+                last_time=0.0,
+            )
+            new_states.append(state)
+            new_traces[state.name] = state.trace if state.trace is not None else []
+        return new_states, new_traces
+
+    states, path_traces = build_states_from_specs()
 
     running = True
     exit_reason: str | None = None
@@ -1595,12 +1601,19 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         keep_field_visible: bool = False,
     ) -> None:
         nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, pending_speed_mult, sim_clock_start, sim_clock_elapsed
+        nonlocal states, state_lookup, phase_indices, num_pos_arch, num_neg_arch
         if apply_pending_speed:
             speed_mult = clamp_speed(pending_speed_mult)
         else:
             speed_mult = clamp_speed(cfg.speed_multiplier)
             pending_speed_mult = speed_mult
         if not keep_offset:
+            states, path_traces = build_states_from_specs()
+            state_lookup = {s.name: s for s in states}
+            phase_indices = {s.name: None for s in states}
+            num_pos_arch = sum(1 for s in states if s.polarity > 0)
+            num_neg_arch = sum(1 for s in states if s.polarity < 0)
+        else:
             for state in states:
                 state.path_offset = state.initial_path_offset
                 if state.mover_type == "analytic":
