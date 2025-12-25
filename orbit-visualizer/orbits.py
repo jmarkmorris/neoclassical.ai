@@ -748,12 +748,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     hit_overlay_enabled = False
     show_hit_overlays = False
     trace_test_frames_remaining: int | None = None
-    orbit_ring_visible = False
     display_info = (info.current_w, info.current_h)
     field_visible = ui.field_visible if ui is not None else cfg.field_visible
     architrinos_visible = ui.architrinos_visible if ui is not None else True
     path_trail_visible = ui.path_trail_visible if ui is not None else False
     path_trail_markers_visible = ui.path_trail_markers_visible if ui is not None else False
+    legend_visible = False
     caption_dirty = True
     positions: Dict[str, Vec2] = {}
     fps_window = 100
@@ -819,11 +819,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         if max_vel is not None:
             vel_field = pad_float(max_vel, 6, 2)
             vel_label = f"v {vel_field}"
-        field_label = f"field 🅥 {'on' if field_visible else 'off'}"
-        prefix = f"ORBIT PATH VISUALIZER: {label}" if label else "Orbit Visualizer"
+        field_label = ""
+        prefix = f"PATH VISUALIZER: {label}" if label else "Path Visualizer"
         # Width-stable status markers for macOS title bars.
         status = "⏸︎" if paused_flag else "▶︎"
-        parts = [vel_label, skip_label, freq_label, field_label, status, fps_label]
+        legend_hint = "?"
+        parts = [vel_label, skip_label, freq_label, field_label, status, fps_label, legend_hint]
         parts = [p for p in parts if p]
         return prefix + " | " + " | ".join(parts)
 
@@ -967,6 +968,32 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 flush=True,
             )
             grid_debug_printed = True
+
+    def draw_key_legend(target: "pygame.Surface") -> None:
+        lines = [
+            "Keys",
+            "space pause/resume",
+            "esc reset",
+            "q quit",
+            "",
+            "h hits (paused)",
+            "p trails",
+            "t trail dots",
+            "f hz",
+            "v field on/off",
+            "i info",
+            "? help",
+        ]
+        pad = 8
+        line_h = font.get_linesize()
+        widths = [font.size(text)[0] for text in lines]
+        box_w = max(widths) + pad * 2
+        box_h = line_h * len(lines) + pad * 2
+        legend = pygame.Surface((box_w, box_h), pygame.SRCALPHA).convert_alpha()
+        legend.fill((255, 255, 255, 220))
+        for idx, text in enumerate(lines):
+            draw_text(legend, text, pad, pad + idx * line_h, color=(40, 40, 40))
+        target.blit(legend, (12, 12))
 
     def update_time_params(new_hz: int) -> None:
         nonlocal dt, shell_thickness, max_radius, emission_retention
@@ -1587,7 +1614,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         keep_offset: bool = False,
         keep_field_visible: bool = False,
     ) -> None:
-        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, sim_clock_start, sim_clock_elapsed
+        nonlocal emissions, field_grid, frame_idx, speed_mult, field_surface, positions, field_visible, path_traces, sim_clock_start, sim_clock_elapsed, caption_dirty
         nonlocal states, state_lookup, phase_indices, num_pos_arch, num_neg_arch
         speed_mult = clamp_speed(cfg.speed_multiplier)
         if not keep_offset:
@@ -1617,6 +1644,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         recent_hits.clear()
         sim_clock_start = time.monotonic()
         sim_clock_elapsed = 0.0
+        caption_dirty = True
         if cfg.seed_static_field:
             seed_static_emissions()
             # Build a static field snapshot from current positions.
@@ -1663,22 +1691,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                 gpu_draw_surface(fs, panel_w, 0, "field_rgb")
 
         overlay_has_content = (
-            orbit_ring_visible
-            or (ui_overlay_visible and (path_trail_visible or architrinos_visible))
+            (ui_overlay_visible and (path_trail_visible or architrinos_visible))
             or show_hit_overlays
             or cfg.grid_visible
+            or legend_visible
         )
         overlay_visible = overlay_has_content
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if cfg.grid_visible:
                 draw_grid(geometry_layer)
-            if orbit_ring_visible:
-                center = (canvas_w // 2, canvas_w // 2)
-                ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords
-                ring_radius_px = max(1, ring_radius_px)
-                draw_ring(geometry_layer, center, ring_radius_px, 6, PURE_WHITE)
-
+            if legend_visible:
+                draw_key_legend(geometry_layer)
             if ui_overlay_visible and path_trail_visible:
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
                 if need_redraw_traces:
@@ -1808,22 +1832,18 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             screen.blit(fs, (panel_w, 0))
 
         overlay_has_content = (
-            orbit_ring_visible
-            or (ui_overlay_visible and (path_trail_visible or architrinos_visible))
+            (ui_overlay_visible and (path_trail_visible or architrinos_visible))
             or show_hit_overlays
             or cfg.grid_visible
+            or legend_visible
         )
         overlay_visible = overlay_has_content
         if overlay_visible:
             geometry_layer = pygame.Surface((canvas_w, height), pygame.SRCALPHA).convert_alpha()
             if cfg.grid_visible:
                 draw_grid(geometry_layer)
-            if orbit_ring_visible:
-                center = (canvas_w // 2, canvas_w // 2)
-                ring_radius_px = int((canvas_w / 2) * (1.0 / cfg.domain_half_extent))  # unit radius in world coords
-                ring_radius_px = max(1, ring_radius_px)
-                draw_ring(geometry_layer, center, ring_radius_px, 6, PURE_WHITE)
-
+            if legend_visible:
+                draw_key_legend(geometry_layer)
             if ui_overlay_visible and path_trail_visible:
                 need_redraw_traces = paused or (frame_idx - trace_layer_last_update >= trace_draw_stride)
                 if need_redraw_traces:
@@ -2180,27 +2200,6 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         paused = True
                         caption_dirty = True
                         log_state("key_f_hz_toggle")
-                    elif event.key == pygame.K_b:
-                        algs = ["cpu_incr", "cpu_full", "gpu"]
-                        try:
-                            idx = algs.index(field_alg)
-                        except ValueError:
-                            idx = 0
-                        field_alg = algs[(idx + 1) % len(algs)]
-                        if field_alg == "gpu":
-                            if not init_gpu_renderer(display=gpu_display):
-                                field_alg = "cpu_incr"
-                        if field_alg == "gpu":
-                            if gpu_display:
-                                gpu_update_field_texture(frame_idx * dt)
-                            else:
-                                gpu_rebuild_field_surface(frame_idx * dt)
-                        else:
-                            rebuild_field_surface(
-                                frame_idx * dt,
-                                update_last_radius=field_alg == "cpu_incr",
-                            )
-                        log_state("key_b_field_alg")
                     elif event.key == pygame.K_i:
                         log_state("key_i_info")
                     elif event.key == pygame.K_t:
@@ -2211,10 +2210,9 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         path_trail_visible = not path_trail_visible
                         caption_dirty = True
                         log_state("key_p_path_trail_toggle")
-                    elif event.key == pygame.K_o:
-                        orbit_ring_visible = not orbit_ring_visible
-                        caption_dirty = True
-                        log_state("key_o_orbit_ring_toggle")
+                    elif getattr(event, "unicode", "") == "?":
+                        legend_visible = not legend_visible
+                        log_state("key_question_legend_toggle")
                 elif event.type == pygame.VIDEORESIZE:
                     apply_window_size(event.w, event.h)
                     log_state("resize")
