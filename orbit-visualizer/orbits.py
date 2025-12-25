@@ -994,6 +994,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             draw_text(legend, text, pad, pad + idx * line_h, color=(40, 40, 40))
         target.blit(legend, (12, 12))
 
+    trail_marker_offsets = [
+        (-1, -3), (0, -3), (1, -3),
+        (-2, -2), (-1, -2), (0, -2), (1, -2), (2, -2),
+        (-3, -1), (-2, -1), (-1, -1), (0, -1), (1, -1), (2, -1), (3, -1),
+        (-3, 0), (-2, 0), (-1, 0), (0, 0), (1, 0), (2, 0), (3, 0),
+        (-3, 1), (-2, 1), (-1, 1), (0, 1), (1, 1), (2, 1), (3, 1),
+        (-2, 2), (-1, 2), (0, 2), (1, 2), (2, 2),
+        (-1, 3), (0, 3), (1, 3),
+    ]
+
     def update_time_params(new_hz: int) -> None:
         nonlocal dt, shell_thickness, max_radius, emission_retention
         cfg.hz = new_hz
@@ -1723,7 +1733,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             continue
                         max_segments = 24
                         marker_step = max(12, n // max_segments)
-                        def inv_cube_weight(idx: int, total: int, strength: float = 4.0) -> float:
+                        def inv_cube_weight(idx: int, total: int, strength: float = 2.5) -> float:
                             """Fade newest strong, oldest quickly via 1/(1 + (age*strength)^3)."""
                             age_frac = (total - 1 - idx) / max(1, total - 1)  # oldest≈1, newest≈0
                             return 1.0 / (1.0 + (age_frac * strength) ** 3)
@@ -1740,10 +1750,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             for i in range(0, n, marker_step):
                                 w = inv_cube_weight(i, n)
                                 alpha = int(255 * (0.1 + 0.8 * w))
-                                fill_color = (*base_color, alpha)
+                                marker_rgb = arch_obj.color if arch_obj is not None else base_color
+                                fill_color = (*marker_rgb, alpha)
+                                px = pts[i][0]
+                                py = pts[i][1]
                                 try:
-                                    gfxdraw.filled_circle(trace_layer, pts[i][0], pts[i][1], 5, fill_color)
-                                    gfxdraw.aacircle(trace_layer, pts[i][0], pts[i][1], 6, PURE_WHITE)
+                                    for dx, dy in trail_marker_offsets:
+                                        x = px + dx
+                                        y = py + dy
+                                        if 0 <= x < canvas_w and 0 <= y < height:
+                                            trace_layer.set_at((x, y), fill_color)
                                 except Exception:
                                     pass
                     trace_layer_last_update = frame_idx
@@ -1863,7 +1879,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             continue
                         max_segments = 24
                         marker_step = max(12, n // max_segments)
-                        def inv_cube_weight(idx: int, total: int, strength: float = 4.0) -> float:
+                        def inv_cube_weight(idx: int, total: int, strength: float = 2.5) -> float:
                             age_frac = (total - 1 - idx) / max(1, total - 1)
                             return 1.0 / (1.0 + (age_frac * strength) ** 3)
                         for i in range(n - 1):
@@ -1878,10 +1894,16 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                             for i in range(0, n, marker_step):
                                 w = inv_cube_weight(i, n)
                                 alpha = int(255 * (0.1 + 0.8 * w))
-                                fill_color = (*base_color, alpha)
+                                marker_rgb = arch_obj.color if arch_obj is not None else base_color
+                                fill_color = (*marker_rgb, alpha)
+                                px = pts[i][0]
+                                py = pts[i][1]
                                 try:
-                                    gfxdraw.filled_circle(trace_layer, pts[i][0], pts[i][1], 5, fill_color)
-                                    gfxdraw.aacircle(trace_layer, pts[i][0], pts[i][1], 6, PURE_WHITE)
+                                    for dx, dy in trail_marker_offsets:
+                                        x = px + dx
+                                        y = py + dy
+                                        if 0 <= x < canvas_w and 0 <= y < height:
+                                            trace_layer.set_at((x, y), fill_color)
                                 except Exception:
                                     pass
                     trace_layer_last_update = frame_idx
