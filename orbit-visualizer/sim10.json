@@ -13,7 +13,7 @@
     "field_alg": "gpu_instanced",
     "grid_visible": false,
     "ui": {
-      "field_visible": false,
+      "field_visible": true,
       "architrinos_visible": true,
       "path_trail_visible": true,
       "path_trail_markers_visible": false
@@ -43,7 +43,7 @@
       "polarity": "p",
       "start_pos": {
         "x": -0.299883,
-        "y": -0.07157
+        "y": -0.17157
       },
       "velocity": {
         "speed": 0.2,
@@ -115,11 +115,11 @@
       "polarity": "e",
       "start_pos": {
         "x": -0.225448,
-        "y": 0.021421
+        "y": 0.121421
       },
       "velocity": {
         "speed": 0.2,
-        "heading_deg": 1.090404
+        "heading_deg": 1.190404
       },
       "phases": [
         {
@@ -132,8 +132,8 @@
       "name": "e2",
       "polarity": "e",
       "start_pos": {
-        "x": -0.093856,
-        "y": -0.04649
+        "x": -0.193856,
+        "y": -0.14649
       },
       "velocity": {
         "speed": 0.2,
@@ -187,11 +187,11 @@
       "polarity": "e",
       "start_pos": {
         "x": 0.237722,
-        "y": -0.074005
+        "y": -0.174005
       },
       "velocity": {
         "speed": 0.2,
-        "heading_deg": -122.088144
+        "heading_deg": -122.188144
       },
       "phases": [
         {

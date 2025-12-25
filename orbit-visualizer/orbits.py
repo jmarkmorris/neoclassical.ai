@@ -609,11 +609,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         """Choose +1/-1 so path tangent best aligns with requested heading.
         Heading uses screen-friendly convention: 0=+x, 90=up (so y is inverted from math).
         """
+        def pos_at(p: float) -> Vec2:
+            if path.name == "exp_inward_spiral" and path.decay is not None:
+                radius = math.exp(-path.decay * abs(p))
+                return (radius * math.cos(p), radius * math.sin(p))
+            return path.sampler(p)
+
         heading_rad = math.radians(heading_deg)
         h_vec = (math.cos(heading_rad), -math.sin(heading_rad))  # invert y for screen coords
         eps = 1e-3
-        p_fwd = path.sampler(param + eps)
-        p_back = path.sampler(param - eps)
+        p_fwd = pos_at(param + eps)
+        p_back = pos_at(param - eps)
         tan = (p_fwd[0] - p_back[0], p_fwd[1] - p_back[1])
         tan_len = math.hypot(*tan)
         if tan_len < 1e-12:
@@ -2052,7 +2058,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
             state.path_offset = offset_val
             state.param = offset_val
             # Adjust radial scale to keep radius consistent.
-            sample_x, sample_y = target_path.sampler(offset_val + phase_val)
+            sample_x, sample_y = analytic_pos_at(state, target_path, offset_val, env)
             sample_r = math.hypot(sample_x, sample_y)
             current_r = math.hypot(*state.pos)
             state.radial_scale = current_r / sample_r if sample_r > 1e-9 else 1.0

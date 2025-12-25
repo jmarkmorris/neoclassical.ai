@@ -138,11 +138,11 @@ class AnalyticMover(Mover):
         denom = max(base_speed * state.radial_scale, 1e-9)
         dparam_dt = (state.base_speed * speed_mult) / denom
         path_param = path_param + dparam_dt * dt_step
-
+        snap_param = path_param
         if snap_step is not None and snap_step > 0:
-            path_param = round(path_param / snap_step) * snap_step
+            snap_param = round(path_param / snap_step) * snap_step
 
-        pos = pos_at(path_param)
+        pos = pos_at(snap_param)
 
         pos = (pos[0] * state.radial_scale, pos[1] * state.radial_scale)
         snap_dist = state.position_snap if state.position_snap is not None else env.position_snap
