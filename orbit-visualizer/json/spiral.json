@@ -17,7 +17,7 @@
       "field_visible": false,
       "architrinos_visible": true,
       "path_trail_visible": true,
-      "path_trail_markers_visible": true
+      "path_trail_markers_visible": false
     }
   },
   "architrinos": [
