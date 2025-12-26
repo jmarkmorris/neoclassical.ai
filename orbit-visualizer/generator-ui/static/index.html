@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orbit Visualizer Generator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="backdrop"></div>
+  <header class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Orbit Visualizer</p>
+      <h1>Scenario Generator</h1>
+      <p class="lede">
+        Craft initial conditions, preview the canvas, and export ready-to-run JSON.
+      </p>
+    </div>
+    <div class="hero-meta" id="baseMeta">
+      <div>
+        <span class="label">Base</span>
+        <span class="value" id="baseName">-</span>
+      </div>
+      <div>
+        <span class="label">World Size</span>
+        <span class="value" id="worldSize">-</span>
+      </div>
+      <div>
+        <span class="label">Extent</span>
+        <span class="value" id="worldExtent">-</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="panel controls">
+      <h2>Generator Spec</h2>
+      <div class="form-row">
+        <label for="baseSelect">Base run file</label>
+        <select id="baseSelect"></select>
+      </div>
+
+      <div class="split">
+        <div class="form-row">
+          <label for="seed">Seed</label>
+          <input id="seed" type="number" value="100" />
+        </div>
+        <div class="form-row">
+          <label for="outputName">Output name</label>
+          <input id="outputName" type="text" value="sim100.json" />
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="form-row">
+          <label for="countP">Positrinos</label>
+          <input id="countP" type="number" min="0" value="50" />
+        </div>
+        <div class="form-row">
+          <label for="countE">Electrinos</label>
+          <input id="countE" type="number" min="0" value="50" />
+        </div>
+      </div>
+
+      <div class="form-block">
+        <h3>Position</h3>
+        <div class="form-row">
+          <label for="posType">Distribution</label>
+          <select id="posType">
+            <option value="uniform_square">Uniform square</option>
+            <option value="ring">Ring</option>
+            <option value="annulus">Annulus</option>
+            <option value="gaussian">Gaussian</option>
+            <option value="clusters">Clusters</option>
+            <option value="spiral">Spiral</option>
+          </select>
+        </div>
+
+        <div class="option-group" data-pos="uniform_square">
+          <div class="form-row">
+            <label for="posMaxRadius">Max radius (optional)</label>
+            <input id="posMaxRadius" type="number" step="0.01" placeholder="auto" />
+          </div>
+        </div>
+
+        <div class="option-group" data-pos="ring">
+          <div class="split">
+            <div class="form-row">
+              <label for="ringRadius">Ring radius</label>
+              <input id="ringRadius" type="number" step="0.01" value="1.2" />
+            </div>
+            <div class="form-row">
+              <label for="ringThickness">Ring thickness</label>
+              <input id="ringThickness" type="number" step="0.01" value="0.2" />
+            </div>
+          </div>
+        </div>
+
+        <div class="option-group" data-pos="annulus">
+          <div class="split">
+            <div class="form-row">
+              <label for="annulusInner">Inner radius</label>
+              <input id="annulusInner" type="number" step="0.01" value="0.6" />
+            </div>
+            <div class="form-row">
+              <label for="annulusOuter">Outer radius</label>
+              <input id="annulusOuter" type="number" step="0.01" value="1.6" />
+            </div>
+          </div>
+        </div>
+
+        <div class="option-group" data-pos="gaussian">
+          <div class="form-row">
+            <label for="gaussianStd">Std dev</label>
+            <input id="gaussianStd" type="number" step="0.01" value="0.6" />
+          </div>
+        </div>
+
+        <div class="option-group" data-pos="clusters">
+          <div class="split">
+            <div class="form-row">
+              <label for="clusterCount">Clusters</label>
+              <input id="clusterCount" type="number" min="1" value="3" />
+            </div>
+            <div class="form-row">
+              <label for="clusterSpread">Cluster spread</label>
+              <input id="clusterSpread" type="number" step="0.01" value="0.2" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="clusterRadius">Cluster radius</label>
+            <input id="clusterRadius" type="number" step="0.01" value="1.4" />
+          </div>
+        </div>
+
+        <div class="option-group" data-pos="spiral">
+          <div class="split">
+            <div class="form-row">
+              <label for="spiralTurns">Turns</label>
+              <input id="spiralTurns" type="number" step="0.1" value="3" />
+            </div>
+            <div class="form-row">
+              <label for="spiralRadius">Spiral radius</label>
+              <input id="spiralRadius" type="number" step="0.01" value="1.6" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="spiralJitter">Spiral jitter</label>
+            <input id="spiralJitter" type="number" step="0.01" value="0.1" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <h3>Velocity</h3>
+        <div class="form-row">
+          <label for="velType">Distribution</label>
+          <select id="velType">
+            <option value="uniform">Uniform</option>
+            <option value="log_uniform">Log-uniform</option>
+            <option value="normal">Normal</option>
+          </select>
+        </div>
+        <div class="option-group" data-vel="uniform log_uniform">
+          <div class="split">
+            <div class="form-row">
+              <label for="velMin">Min speed</label>
+              <input id="velMin" type="number" step="0.01" value="0.01" />
+            </div>
+            <div class="form-row">
+              <label for="velMax">Max speed</label>
+              <input id="velMax" type="number" step="0.01" value="0.2" />
+            </div>
+          </div>
+        </div>
+        <div class="option-group" data-vel="normal">
+          <div class="split">
+            <div class="form-row">
+              <label for="velMean">Mean</label>
+              <input id="velMean" type="number" step="0.01" value="0.1" />
+            </div>
+            <div class="form-row">
+              <label for="velStd">Std dev</label>
+              <input id="velStd" type="number" step="0.01" value="0.03" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <h3>Heading</h3>
+        <div class="form-row">
+          <label for="headingMode">Direction</label>
+          <select id="headingMode">
+            <option value="toward_origin">Toward origin</option>
+            <option value="away_origin">Away from origin</option>
+            <option value="random">Random</option>
+            <option value="tangent_cw">Tangent CW</option>
+            <option value="tangent_ccw">Tangent CCW</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-block">
+        <h3>Constraints</h3>
+        <div class="split">
+          <div class="form-row">
+            <label for="minSep">Min separation</label>
+            <input id="minSep" type="number" step="0.01" value="0" />
+          </div>
+          <div class="form-row">
+            <label for="excludeRadius">Exclude radius</label>
+            <input id="excludeRadius" type="number" step="0.01" value="0" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="maxAttempts">Max attempts</label>
+          <input id="maxAttempts" type="number" value="20000" />
+        </div>
+      </div>
+
+      <div class="form-block">
+        <h3>Template</h3>
+        <div class="form-row">
+          <label for="moverType">Mover</label>
+          <select id="moverType">
+            <option value="physics">Physics</option>
+            <option value="analytic">Analytic</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="pathName">Path (analytic only)</label>
+          <input id="pathName" type="text" placeholder="unit_circle" />
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button id="generateBtn" class="primary">Generate Preview</button>
+        <button id="saveBtn">Save JSON</button>
+      </div>
+      <div class="action-row">
+        <button id="downloadBtn">Download JSON</button>
+        <button id="copySpecBtn">Copy Spec</button>
+        <button id="copyJsonBtn">Copy JSON</button>
+      </div>
+      <p class="status" id="status">Ready.</p>
+    </section>
+
+    <section class="panel preview">
+      <h2>Canvas Preview</h2>
+      <canvas id="previewCanvas" width="640" height="640"></canvas>
+      <div class="legend">
+        <span class="tag p">Positrino</span>
+        <span class="tag e">Electrino</span>
+      </div>
+    </section>
+
+    <section class="panel output">
+      <h2>Generated Output</h2>
+      <div class="form-row">
+        <label for="specOutput">Spec JSON</label>
+        <textarea id="specOutput" rows="10" readonly></textarea>
+      </div>
+      <div class="form-row">
+        <label for="jsonOutput">Run JSON</label>
+        <textarea id="jsonOutput" rows="14" readonly></textarea>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

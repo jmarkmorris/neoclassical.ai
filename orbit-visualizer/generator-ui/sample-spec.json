@@ -1,0 +1,43 @@
+{
+  "base": "sim10.json",
+  "seed": 100,
+  "counts": {
+    "p": 50,
+    "e": 50
+  },
+  "position": {
+    "type": "uniform_square",
+    "max_radius": null,
+    "ring_radius": 1.2,
+    "ring_thickness": 0.2,
+    "annulus_inner": 0.6,
+    "annulus_outer": 1.6,
+    "gaussian_std": 0.6,
+    "clusters": 3,
+    "cluster_spread": 0.2,
+    "cluster_radius": 1.4,
+    "spiral_turns": 3,
+    "spiral_radius": 1.6,
+    "spiral_jitter": 0.1
+  },
+  "velocity": {
+    "type": "uniform",
+    "min": 0.01,
+    "max": 0.2,
+    "mean": 0.1,
+    "std": 0.03
+  },
+  "heading": {
+    "mode": "toward_origin"
+  },
+  "constraints": {
+    "min_separation": 0.0,
+    "exclude_radius": 0.0,
+    "max_attempts": 20000
+  },
+  "template": {
+    "mover": "physics",
+    "path": "unit_circle"
+  },
+  "output_name": "sim100.json"
+}
