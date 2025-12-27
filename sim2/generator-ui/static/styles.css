@@ -43,9 +43,25 @@ body {
   padding: 32px 6vw 12px;
 }
 
-.hero-text h1 {
-  font-size: clamp(2.2rem, 4vw, 3.6rem);
-  margin: 0 0 8px;
+.hero-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.hero-title .eyebrow,
+.hero-title .eyebrow-title {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  color: var(--accent-2);
+  margin: 0;
+}
+
+.hero-title .eyebrow-title {
+  font-weight: 600;
 }
 
 .eyebrow {
@@ -53,7 +69,7 @@ body {
   letter-spacing: 0.2em;
   font-size: 0.75rem;
   color: var(--accent-2);
-  margin: 0 0 6px;
+  margin: 0;
 }
 
 .lede {
@@ -95,7 +111,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  padding: 20px;
+  padding: 12px;
   animation: rise 0.8s ease forwards;
   opacity: 0;
   transform: translateY(12px);
@@ -120,7 +136,7 @@ body {
 .preview h2,
 .output h2 {
   margin-top: 0;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 }
 
 .panel-head {
@@ -128,7 +144,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .panel-head h2 {
@@ -138,8 +154,8 @@ body {
 .form-row {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
+  gap: 2px;
+  margin-bottom: 4px;
   position: relative;
 }
 
@@ -186,7 +202,7 @@ body {
 }
 
 .form-row label {
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   color: var(--muted);
 }
 
@@ -195,8 +211,8 @@ body {
   grid-template-columns: minmax(140px, 1fr) minmax(160px, 1.2fr);
   align-items: center;
   column-gap: 12px;
-  row-gap: 6px;
-  margin-bottom: 8px;
+  row-gap: 2px;
+  margin-bottom: 2px;
 }
 
 .controls .form-row label {
@@ -220,8 +236,8 @@ select,
 textarea {
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 8px 10px;
-  font-size: 0.9rem;
+  padding: 3px 6px;
+  font-size: 0.7rem;
   font-family: inherit;
   background: #fff;
 }
@@ -233,30 +249,30 @@ textarea {
 .split {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 6px;
 }
 
 .form-block {
   border-top: 1px dashed var(--border);
-  padding-top: 12px;
-  margin-top: 12px;
+  padding-top: 4px;
+  margin-top: 4px;
 }
 
 .form-block h3 {
-  margin: 0 0 10px;
-  font-size: 1rem;
+  margin: 0 0 4px;
+  font-size: 0.8rem;
   color: var(--accent-2);
 }
 
 .option-group {
-  margin-bottom: 10px;
+  margin-bottom: 3px;
 }
 
 .action-row {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 10px 0 6px;
+  margin: 4px 0 2px;
 }
 
 button {
@@ -279,7 +295,7 @@ button:hover {
 }
 
 .status {
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   color: var(--muted);
   margin: 4px 0 0;
 }
@@ -301,7 +317,7 @@ button:hover {
 .tag {
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
   color: #fff;
 }

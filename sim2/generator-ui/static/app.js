@@ -131,6 +131,16 @@ function fetchBases() {
     .then((res) => res.json())
     .then((data) => {
       baseSelect.innerHTML = "";
+      if (!Array.isArray(data.bases) || data.bases.length === 0) {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "No base files found";
+        opt.disabled = true;
+        opt.selected = true;
+        baseSelect.appendChild(opt);
+        setStatus("No base run files found. Start the generator server and check sim2/json.", true);
+        return;
+      }
       data.bases.forEach((name) => {
         const opt = document.createElement("option");
         opt.value = name;
@@ -143,6 +153,13 @@ function fetchBases() {
       loadBase();
     })
     .catch((err) => {
+      baseSelect.innerHTML = "";
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "Base list unavailable";
+      opt.disabled = true;
+      opt.selected = true;
+      baseSelect.appendChild(opt);
       setStatus(`Failed to load base list: ${err}`, true);
     });
 }

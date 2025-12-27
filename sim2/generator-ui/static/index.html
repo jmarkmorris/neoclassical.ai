@@ -10,11 +10,10 @@
   <div class="backdrop"></div>
   <header class="hero">
     <div class="hero-text">
-      <p class="eyebrow">sim2</p>
-      <h1>Scenario Generator</h1>
-      <p class="lede">
-        Craft initial conditions, preview the canvas, and export JSON.
-      </p>
+      <div class="hero-title">
+        <p class="eyebrow">sim2</p>
+        <h1 class="eyebrow-title">Scenario Generator</h1>
+      </div>
     </div>
     <div class="hero-meta" id="baseMeta">
       <div>
@@ -243,13 +242,13 @@
       </div>
       <canvas id="previewCanvas" width="640" height="640"></canvas>
       <div class="action-row">
-        <button id="generateBtn" class="primary">Generate Preview</button>
-        <button id="saveBtn">Save JSON</button>
+        <button id="generateBtn" class="primary" type="button" onclick="generatePreview()">Generate Preview</button>
+        <button id="saveBtn" type="button">Save JSON</button>
       </div>
       <div class="action-row">
-        <button id="downloadBtn">Download JSON</button>
-        <button id="copySpecBtn">Copy Spec</button>
-        <button id="copyJsonBtn">Copy JSON</button>
+        <button id="downloadBtn" type="button">Download JSON</button>
+        <button id="copySpecBtn" type="button">Copy Spec</button>
+        <button id="copyJsonBtn" type="button">Copy JSON</button>
       </div>
     </section>
 
