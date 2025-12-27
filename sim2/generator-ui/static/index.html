@@ -13,7 +13,7 @@
       <p class="eyebrow">sim2</p>
       <h1>Scenario Generator</h1>
       <p class="lede">
-        Craft initial conditions, preview the canvas, and export ready-to-run JSON.
+        Craft initial conditions, preview the canvas, and export JSON.
       </p>
     </div>
     <div class="hero-meta" id="baseMeta">
@@ -35,28 +35,28 @@
   <main class="grid">
     <section class="panel controls">
       <h2>Generator Spec</h2>
-      <div class="form-row">
+      <div class="form-row" data-help="Choose the base run JSON that provides world size and directives.">
         <label for="baseSelect">Base run file</label>
-        <select id="baseSelect" title="Choose the base run JSON that provides world size, directives, and defaults."></select>
+        <select id="baseSelect"></select>
       </div>
 
       <div class="split">
-        <div class="form-row">
+        <div class="form-row" data-help="Random seed for the generator; same seed repeats the layout.">
           <label for="seed">Seed</label>
           <input id="seed" type="number" value="100" />
         </div>
-        <div class="form-row">
+        <div class="form-row" data-help="Filename used when saving the generated JSON.">
           <label for="outputName">Output name</label>
           <input id="outputName" type="text" value="sim100.json" />
         </div>
       </div>
 
       <div class="split">
-        <div class="form-row">
+        <div class="form-row" data-help="Number of positrinos to place.">
           <label for="countP">Positrinos</label>
           <input id="countP" type="number" min="0" value="50" />
         </div>
-        <div class="form-row">
+        <div class="form-row" data-help="Number of electrinos to place.">
           <label for="countE">Electrinos</label>
           <input id="countE" type="number" min="0" value="50" />
         </div>
@@ -64,9 +64,9 @@
 
       <div class="form-block">
         <h3>Position</h3>
-        <div class="form-row">
+        <div class="form-row" data-help="Pick how particle positions are distributed; extra controls appear below.">
           <label for="posType">Distribution</label>
-          <select id="posType" title="Pick how particle positions are distributed; extra controls appear below.">
+          <select id="posType">
             <option value="uniform_square">Uniform square</option>
             <option value="ring">Ring</option>
             <option value="annulus">Annulus</option>
@@ -77,19 +77,19 @@
         </div>
 
         <div class="option-group" data-pos="uniform_square">
-          <div class="form-row">
-            <label for="posMaxRadius">Max radius (optional)</label>
+          <div class="form-row" data-help="Clamp positions inside this radius; leave blank for auto.">
+            <label for="posMaxRadius">Max radius</label>
             <input id="posMaxRadius" type="number" step="0.01" placeholder="auto" />
           </div>
         </div>
 
         <div class="option-group" data-pos="ring">
           <div class="split">
-            <div class="form-row">
+            <div class="form-row" data-help="Center radius of the ring.">
               <label for="ringRadius">Ring radius</label>
               <input id="ringRadius" type="number" step="0.01" value="1.2" />
             </div>
-            <div class="form-row">
+            <div class="form-row" data-help="Thickness of the ring band.">
               <label for="ringThickness">Ring thickness</label>
               <input id="ringThickness" type="number" step="0.01" value="0.2" />
             </div>
@@ -98,11 +98,11 @@
 
         <div class="option-group" data-pos="annulus">
           <div class="split">
-            <div class="form-row">
+            <div class="form-row" data-help="Inner radius of the annulus.">
               <label for="annulusInner">Inner radius</label>
               <input id="annulusInner" type="number" step="0.01" value="0.6" />
             </div>
-            <div class="form-row">
+            <div class="form-row" data-help="Outer radius of the annulus.">
               <label for="annulusOuter">Outer radius</label>
               <input id="annulusOuter" type="number" step="0.01" value="1.6" />
             </div>
@@ -110,7 +110,7 @@
         </div>
 
         <div class="option-group" data-pos="gaussian">
-          <div class="form-row">
+          <div class="form-row" data-help="Standard deviation for the Gaussian position spread.">
             <label for="gaussianStd">Std dev</label>
             <input id="gaussianStd" type="number" step="0.01" value="0.6" />
           </div>
@@ -118,16 +118,16 @@
 
         <div class="option-group" data-pos="clusters">
           <div class="split">
-            <div class="form-row">
+            <div class="form-row" data-help="Number of clusters to generate.">
               <label for="clusterCount">Clusters</label>
               <input id="clusterCount" type="number" min="1" value="3" />
             </div>
-            <div class="form-row">
+            <div class="form-row" data-help="Spread of points inside each cluster.">
               <label for="clusterSpread">Cluster spread</label>
               <input id="clusterSpread" type="number" step="0.01" value="0.2" />
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row" data-help="How far clusters sit from the origin.">
             <label for="clusterRadius">Cluster radius</label>
             <input id="clusterRadius" type="number" step="0.01" value="1.4" />
           </div>
@@ -135,16 +135,16 @@
 
         <div class="option-group" data-pos="spiral">
           <div class="split">
-            <div class="form-row">
+            <div class="form-row" data-help="Number of spiral turns.">
               <label for="spiralTurns">Turns</label>
               <input id="spiralTurns" type="number" step="0.1" value="3" />
             </div>
-            <div class="form-row">
+            <div class="form-row" data-help="Overall spiral radius.">
               <label for="spiralRadius">Spiral radius</label>
               <input id="spiralRadius" type="number" step="0.01" value="1.6" />
             </div>
           </div>
-          <div class="form-row">
+          <div class="form-row" data-help="Random offset around the spiral path.">
             <label for="spiralJitter">Spiral jitter</label>
             <input id="spiralJitter" type="number" step="0.01" value="0.1" />
           </div>
@@ -153,9 +153,9 @@
 
       <div class="form-block">
         <h3>Velocity</h3>
-        <div class="form-row">
+        <div class="form-row" data-help="Pick how particle speeds are sampled; controls below adjust ranges.">
           <label for="velType">Distribution</label>
-          <select id="velType" title="Pick how particle speeds are sampled; options control min/max or mean/std.">
+          <select id="velType">
             <option value="uniform">Uniform</option>
             <option value="log_uniform">Log-uniform</option>
             <option value="normal">Normal</option>
@@ -163,11 +163,11 @@
         </div>
         <div class="option-group" data-vel="uniform log_uniform">
           <div class="split">
-            <div class="form-row">
+            <div class="form-row" data-help="Minimum speed for uniform or log-uniform.">
               <label for="velMin">Min speed</label>
               <input id="velMin" type="number" step="0.01" value="0.01" />
             </div>
-            <div class="form-row">
+            <div class="form-row" data-help="Maximum speed for uniform or log-uniform.">
               <label for="velMax">Max speed</label>
               <input id="velMax" type="number" step="0.01" value="0.2" />
             </div>
@@ -175,11 +175,11 @@
         </div>
         <div class="option-group" data-vel="normal">
           <div class="split">
-            <div class="form-row">
+            <div class="form-row" data-help="Mean speed for normal distribution.">
               <label for="velMean">Mean</label>
               <input id="velMean" type="number" step="0.01" value="0.1" />
             </div>
-            <div class="form-row">
+            <div class="form-row" data-help="Standard deviation for normal speeds.">
               <label for="velStd">Std dev</label>
               <input id="velStd" type="number" step="0.01" value="0.03" />
             </div>
@@ -189,9 +189,9 @@
 
       <div class="form-block">
         <h3>Heading</h3>
-        <div class="form-row">
+        <div class="form-row" data-help="Pick how headings are oriented relative to the origin.">
           <label for="headingMode">Direction</label>
-          <select id="headingMode" title="Pick how initial headings are oriented relative to the origin.">
+          <select id="headingMode">
             <option value="toward_origin">Toward origin</option>
             <option value="away_origin">Away from origin</option>
             <option value="random">Random</option>
@@ -204,36 +204,44 @@
       <div class="form-block">
         <h3>Constraints</h3>
         <div class="split">
-          <div class="form-row">
+          <div class="form-row" data-help="Reject placements closer than this distance.">
             <label for="minSep">Min separation</label>
             <input id="minSep" type="number" step="0.01" value="0" />
           </div>
-          <div class="form-row">
+          <div class="form-row" data-help="Keep particles outside this radius.">
             <label for="excludeRadius">Exclude radius</label>
             <input id="excludeRadius" type="number" step="0.01" value="0" />
           </div>
-        </div>
-        <div class="form-row">
-          <label for="maxAttempts">Max attempts</label>
-          <input id="maxAttempts" type="number" value="20000" />
         </div>
       </div>
 
       <div class="form-block">
         <h3>Template</h3>
-        <div class="form-row">
+        <div class="form-row" data-help="Pick the mover engine; analytic uses a named path instead of physics.">
           <label for="moverType">Mover</label>
-          <select id="moverType" title="Pick the mover engine; analytic uses a named path instead of physics.">
+          <select id="moverType">
             <option value="physics">Physics</option>
             <option value="analytic">Analytic</option>
           </select>
         </div>
-        <div class="form-row">
+        <div class="form-row" data-help="Name of the analytic path; required when mover is analytic.">
           <label for="pathName">Path (analytic only)</label>
           <input id="pathName" type="text" placeholder="unit_circle" />
         </div>
       </div>
 
+      <p class="status" id="status">Ready.</p>
+    </section>
+
+    <section class="panel preview">
+      <div class="panel-head">
+        <h2>Preview</h2>
+        <div class="legend">
+          <span class="tag p">Positrino</span>
+          <span class="tag e">Electrino</span>
+        </div>
+      </div>
+      <canvas id="previewCanvas" width="640" height="640"></canvas>
       <div class="action-row">
         <button id="generateBtn" class="primary">Generate Preview</button>
         <button id="saveBtn">Save JSON</button>
@@ -242,16 +250,6 @@
         <button id="downloadBtn">Download JSON</button>
         <button id="copySpecBtn">Copy Spec</button>
         <button id="copyJsonBtn">Copy JSON</button>
-      </div>
-      <p class="status" id="status">Ready.</p>
-    </section>
-
-    <section class="panel preview">
-      <h2>Canvas Preview</h2>
-      <canvas id="previewCanvas" width="640" height="640"></canvas>
-      <div class="legend">
-        <span class="tag p">Positrino</span>
-        <span class="tag e">Electrino</span>
       </div>
     </section>
 

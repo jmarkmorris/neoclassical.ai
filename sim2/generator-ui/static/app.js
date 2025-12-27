@@ -35,7 +35,6 @@ const velStd = $("#velStd");
 const headingMode = $("#headingMode");
 const minSep = $("#minSep");
 const excludeRadius = $("#excludeRadius");
-const maxAttempts = $("#maxAttempts");
 const moverType = $("#moverType");
 const pathName = $("#pathName");
 const generateBtn = $("#generateBtn");
@@ -97,7 +96,6 @@ function buildSpec() {
     constraints: {
       min_separation: toNumber(minSep.value),
       exclude_radius: toNumber(excludeRadius.value),
-      max_attempts: Math.max(100, parseInt(maxAttempts.value || "20000", 10)),
     },
     template: {
       mover: moverType.value,
@@ -343,7 +341,7 @@ velType.addEventListener("change", updateSpecOutput);
 
 [seedInput, outputNameInput, countPInput, countEInput, posMaxRadius, ringRadius, ringThickness, annulusInner,
   annulusOuter, gaussianStd, clusterCount, clusterSpread, clusterRadius, spiralTurns, spiralRadius, spiralJitter,
-  velMin, velMax, velMean, velStd, headingMode, minSep, excludeRadius, maxAttempts, moverType, pathName]
+  velMin, velMax, velMean, velStd, headingMode, minSep, excludeRadius, moverType, pathName]
   .forEach((el) => {
     el.addEventListener("input", updateSpecOutput);
   });

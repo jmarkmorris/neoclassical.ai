@@ -32,8 +32,7 @@
   },
   "constraints": {
     "min_separation": 0.0,
-    "exclude_radius": 0.0,
-    "max_attempts": 20000
+    "exclude_radius": 0.0
   },
   "template": {
     "mover": "physics",

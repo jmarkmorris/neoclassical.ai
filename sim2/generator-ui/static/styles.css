@@ -16,7 +16,7 @@
 
 body {
   margin: 0;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: var(--ink);
   background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
   min-height: 100vh;
@@ -44,7 +44,6 @@ body {
 }
 
 .hero-text h1 {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: clamp(2.2rem, 4vw, 3.6rem);
   margin: 0 0 8px;
 }
@@ -124,16 +123,96 @@ body {
   font-size: 1.2rem;
 }
 
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-head h2 {
+  margin: 0;
+}
+
 .form-row {
   display: flex;
   flex-direction: column;
   gap: 6px;
   margin-bottom: 12px;
+  position: relative;
+}
+
+.form-row[data-help]::after {
+  content: attr(data-help);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  max-width: 260px;
+  background: #1f1f1f;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.form-row[data-help]::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: calc(100% + 2px);
+  border: 6px solid transparent;
+  border-bottom-color: #1f1f1f;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.form-row[data-help]:hover::after,
+.form-row[data-help]:focus-within::after,
+.form-row[data-help]:hover::before,
+.form-row[data-help]:focus-within::before {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .form-row label {
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+.controls .form-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(160px, 1.2fr);
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 6px;
+  margin-bottom: 8px;
+}
+
+.controls .form-row label {
+  margin: 0;
+  text-align: left;
+  justify-self: start;
+}
+
+.controls .form-row input,
+.controls .form-row select,
+.controls .form-row textarea {
+  width: 100%;
+}
+
+.controls .split {
+  grid-template-columns: 1fr;
 }
 
 input,
@@ -216,7 +295,7 @@ button:hover {
 .legend {
   display: flex;
   gap: 10px;
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .tag {

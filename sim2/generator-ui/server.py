@@ -17,6 +17,7 @@ from urllib.parse import parse_qs, urlparse
 ROOT = Path(__file__).resolve().parent
 STATIC_DIR = ROOT / "static"
 JSON_DIR = ROOT.parent / "json"
+MAX_ATTEMPTS = 20000
 
 
 def safe_name(value: str) -> str:
@@ -212,7 +213,7 @@ def generate_architrinos(spec: dict, directives: dict) -> tuple[list[dict], list
 
     min_sep = float(constraints.get("min_separation", 0.0))
     exclude_radius = float(constraints.get("exclude_radius", 0.0))
-    max_attempts = int(constraints.get("max_attempts", 20000))
+    max_attempts = MAX_ATTEMPTS
 
     sampler = build_position_sampler(position, extent, rng)
 
