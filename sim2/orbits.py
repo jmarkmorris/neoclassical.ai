@@ -1,5 +1,5 @@
 """
-Orbit visualizer prototype (single-file).
+sim2 prototype (single-file).
 
 Implements core math and a non-graphical, testable pipeline:
 • Path sampling for predefined trajectories (unit circle, exponential inward spiral).
@@ -11,7 +11,7 @@ Usage:
     python orbits.py --run circle.json
     python orbits.py --run spiral.json
 
-Run files expect top-level "directives" and an "architrinos" array; see orbit-visualizer/circle.json.
+Run files expect top-level "directives" and an "architrinos" array; see sim2/json/circle.json.
 
 Per codex: You can push the field snapshot finer in a few ways; each trades directly against CPU time/memory:
 
@@ -2453,7 +2453,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         pygame.quit()
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Orbit visualizer prototype (live).")
+    parser = argparse.ArgumentParser(description="sim2 prototype (live).")
     parser.add_argument("--run", type=str, required=True, help="JSON run file with directives and architrino groups.")
     parser.add_argument("--render", action="store_true", help="Open a PyGame window and render the live simulation.")
     parser.add_argument("--offline", action="store_true", help="Render offline to an mp4 (no window, no vsync).")

@@ -4,14 +4,14 @@ This doc captures a design for a creative, deterministic JSON run-file generator
 
 ## Goals
 
-- Generate ready-to-run `json/*.json` files for the orbit visualizer.
+- Generate ready-to-run `json/*.json` files for sim2.
 - Keep outputs reproducible via a fixed seed.
 - Support creative spatial/velocity patterns without hand-editing large arrays.
 - Preserve existing directives by templating from a base run file.
 
 ## Core Design
 
-- A small generator script (example: `orbit-visualizer/scripts/gen_run.py`).
+- A small generator script (example: `sim2/scripts/gen_run.py`).
 - It loads a base run file (e.g., `json/sim10.json`) for directives, then replaces
   or extends the `architrinos` array.
 - Accept a seed for deterministic output.

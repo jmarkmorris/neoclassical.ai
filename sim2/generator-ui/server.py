@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Minimal generator UI backend for orbit-visualizer run files."""
+"""Minimal generator UI backend for sim2 run files."""
 
 from __future__ import annotations
 

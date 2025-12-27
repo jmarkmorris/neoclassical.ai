@@ -6,7 +6,7 @@ Also, I am having problems with the visualization so I want to build the frame u
 So this is an archive of v1 before I make those major changes.
 --------
 
-Orbit visualizer prototype (single-file).
+sim2 prototype (single-file).
 
 Implements core math and a non-graphical, testable pipeline:
 • Path sampling for predefined trajectories (unit circle, exponential inward spiral).
@@ -326,7 +326,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], path_name: st
     width, height = 1710, 1107
     canvas_w = width - panel_w
     screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption("Orbit Visualizer (prototype)")
+    pygame.display.set_caption("sim2 (prototype)")
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Arial", 16)
 
@@ -892,7 +892,7 @@ def summarize(frames: List[Frame], max_hits: int = 5, max_frames: int = 5) -> st
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Orbit visualizer prototype (pre-bake simulation).")
+    parser = argparse.ArgumentParser(description="sim2 prototype (pre-bake simulation).")
     parser.add_argument("--fps", type=int, default=60, help="Frames per second (default 60).")
     parser.add_argument("--duration", type=float, default=4.0, help="Minimum duration in seconds (coverage heuristic may increase this).")
     parser.add_argument("--path", type=str, default="unit_circle", choices=list(PATH_LIBRARY.keys()), help="Trajectory name.")

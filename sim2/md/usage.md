@@ -3,7 +3,7 @@
 This describes every supported setting for JSON run files. Settings map to `directives` and `groups` fields in `circle.json` / `spiral.json`.
 
 ## Examples
-From `orbit-visualizer`:
+From `sim2`:
 ```
 python orbits.py --run circle.json
 python orbits.py --run spiral.json
@@ -12,15 +12,15 @@ python orbits.py --render --path unit_circle
 
 From the repo root:
 ```
-python orbit-visualizer/orbits.py --run orbit-visualizer/circle.json
-python orbit-visualizer/orbits.py --run orbit-visualizer/spiral.json
-python orbit-visualizer/orbits.py --render --path unit_circle
+python sim2/orbits.py --run sim2/circle.json
+python sim2/orbits.py --run sim2/spiral.json
+python sim2/orbits.py --render --path unit_circle
 ```
 
 ## Profiling
 Built-in cProfile:
 ```
-python -m cProfile -o /tmp/orbits.prof orbit-visualizer/orbits.py --run orbit-visualizer/circle.json
+python -m cProfile -o /tmp/orbits.prof sim2/orbits.py --run sim2/circle.json
 python - <<'PY'
 import pstats
 p = pstats.Stats("/tmp/orbits.prof")
@@ -30,7 +30,7 @@ PY
 
 Optional pyinstrument (if installed):
 ```
-python -m pyinstrument -r text orbit-visualizer/orbits.py --run orbit-visualizer/circle.json
+python -m pyinstrument -r text sim2/orbits.py --run sim2/circle.json
 ```
 
 ## Top-level structure
