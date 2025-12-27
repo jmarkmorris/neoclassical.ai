@@ -39,9 +39,6 @@ const moverType = $("#moverType");
 const pathName = $("#pathName");
 const generateBtn = $("#generateBtn");
 const saveBtn = $("#saveBtn");
-const downloadBtn = $("#downloadBtn");
-const copySpecBtn = $("#copySpecBtn");
-const copyJsonBtn = $("#copyJsonBtn");
 const statusLine = $("#status");
 const specOutput = $("#specOutput");
 const jsonOutput = $("#jsonOutput");
@@ -308,42 +305,6 @@ function saveJson() {
     .catch((err) => setStatus(`Save failed: ${err}`, true));
 }
 
-function downloadJson() {
-  if (!state.generated) {
-    setStatus("Nothing to download yet.", true);
-    return;
-  }
-  const data = JSON.stringify(state.generated, null, 2);
-  const blob = new Blob([data], { type: "application/json" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = outputNameInput.value || "generated.json";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(a.href);
-  setStatus("Downloaded JSON.");
-}
-
-function copyText(text) {
-  if (!navigator.clipboard) {
-    setStatus("Clipboard API not available.", true);
-    return;
-  }
-  navigator.clipboard.writeText(text).then(
-    () => setStatus("Copied to clipboard."),
-    () => setStatus("Clipboard copy failed.", true),
-  );
-}
-
-function copySpec() {
-  copyText(specOutput.value || "");
-}
-
-function copyJson() {
-  copyText(jsonOutput.value || "");
-}
-
 window.addEventListener("resize", () => {
   if (state.preview.length) {
     drawPreview();
@@ -365,9 +326,6 @@ velType.addEventListener("change", updateSpecOutput);
 
 generateBtn.addEventListener("click", generatePreview);
 saveBtn.addEventListener("click", saveJson);
-downloadBtn.addEventListener("click", downloadJson);
-copySpecBtn.addEventListener("click", copySpec);
-copyJsonBtn.addEventListener("click", copyJson);
 
 updateOptionGroups();
 fetchBases();
