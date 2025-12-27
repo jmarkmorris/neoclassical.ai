@@ -1,0 +1,1825 @@
+{
+  "directives": {
+    "format_version": 1,
+    "hz": 500,
+    "field_speed": 100,
+    "max_force": 25,
+    "world_size": 4,
+    "max_memory_bytes": 8589934592,
+    "speed_multiplier": 1,
+    "path_snap": 0.002,
+    "render": true,
+    "start_paused": true,
+    "shell_weight": "raised_cosine",
+    "field_alg": "gpu_instanced",
+    "grid_visible": false,
+    "ui": {
+      "field_visible": false,
+      "architrinos_visible": true,
+      "path_trail_visible": true,
+      "path_trail_markers_visible": false
+    }
+  },
+  "architrinos": [
+    {
+      "name": "p1",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.161539,
+        "y": 0.074415
+      },
+      "velocity": {
+        "speed": 0.129677,
+        "heading_deg": -131.850419
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p2",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.038953,
+        "y": -0.308256
+      },
+      "velocity": {
+        "speed": 0.169132,
+        "heading_deg": -121.673268
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p3",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.237873,
+        "y": -0.262571
+      },
+      "velocity": {
+        "speed": 0.013781,
+        "heading_deg": -35.444759
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p4",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.260896,
+        "y": 0.143526
+      },
+      "velocity": {
+        "speed": 0.17817,
+        "heading_deg": 131.618877
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p5",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.35305,
+        "y": -0.176001
+      },
+      "velocity": {
+        "speed": 0.201431,
+        "heading_deg": 2.055451
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p6",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.01112,
+        "y": -0.139964
+      },
+      "velocity": {
+        "speed": 0.235158,
+        "heading_deg": -176.958806
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p7",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.362899,
+        "y": -0.050133
+      },
+      "velocity": {
+        "speed": 0.053649,
+        "heading_deg": 93.833237
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p8",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.252457,
+        "y": -0.291679
+      },
+      "velocity": {
+        "speed": 0.143726,
+        "heading_deg": 80.835693
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p9",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.002165,
+        "y": 0.13646
+      },
+      "velocity": {
+        "speed": 0.104994,
+        "heading_deg": 24.607353
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p10",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.141691,
+        "y": -0.100136
+      },
+      "velocity": {
+        "speed": 0.001736,
+        "heading_deg": 87.134029
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p11",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.04026,
+        "y": 0.01671
+      },
+      "velocity": {
+        "speed": 0.063782,
+        "heading_deg": -54.571827
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p12",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.229755,
+        "y": -0.166272
+      },
+      "velocity": {
+        "speed": 0.226821,
+        "heading_deg": -61.933257
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p13",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.14925,
+        "y": 0.182053
+      },
+      "velocity": {
+        "speed": 0.081153,
+        "heading_deg": 40.353733
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p14",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.052605,
+        "y": 0.02568
+      },
+      "velocity": {
+        "speed": 0.16478,
+        "heading_deg": 103.982723
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p15",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.14979,
+        "y": -0.113369
+      },
+      "velocity": {
+        "speed": 0.126394,
+        "heading_deg": -157.486875
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p16",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.130809,
+        "y": 0.053726
+      },
+      "velocity": {
+        "speed": 0.00947,
+        "heading_deg": -91.165033
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p17",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.211894,
+        "y": -0.254907
+      },
+      "velocity": {
+        "speed": 0.147597,
+        "heading_deg": -23.842762
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p18",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.143453,
+        "y": 0.340493
+      },
+      "velocity": {
+        "speed": 0.246714,
+        "heading_deg": -59.834206
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p19",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.286248,
+        "y": 0.150443
+      },
+      "velocity": {
+        "speed": 0.22532,
+        "heading_deg": 110.754334
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p20",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.276404,
+        "y": -0.194875
+      },
+      "velocity": {
+        "speed": 0.021789,
+        "heading_deg": 60.926789
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p21",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.211411,
+        "y": 0.088969
+      },
+      "velocity": {
+        "speed": 0.106541,
+        "heading_deg": -179.14199
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p22",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.091742,
+        "y": 0.08453
+      },
+      "velocity": {
+        "speed": 0.018631,
+        "heading_deg": -13.698844
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p23",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.295596,
+        "y": -0.025628
+      },
+      "velocity": {
+        "speed": 0.033135,
+        "heading_deg": 11.548638
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p24",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.182428,
+        "y": 0.233935
+      },
+      "velocity": {
+        "speed": 0.172882,
+        "heading_deg": -157.451379
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p25",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.071225,
+        "y": -0.154815
+      },
+      "velocity": {
+        "speed": 0.057653,
+        "heading_deg": -41.011621
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p26",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.39466,
+        "y": -0.020796
+      },
+      "velocity": {
+        "speed": 0.110032,
+        "heading_deg": 64.221526
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p27",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.282992,
+        "y": 0.119326
+      },
+      "velocity": {
+        "speed": 0.242291,
+        "heading_deg": 51.187837
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p28",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.205719,
+        "y": 0.073871
+      },
+      "velocity": {
+        "speed": 0.046975,
+        "heading_deg": -109.004979
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p29",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.023155,
+        "y": -0.309367
+      },
+      "velocity": {
+        "speed": 0.155961,
+        "heading_deg": -177.965316
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p30",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.314615,
+        "y": 0.034127
+      },
+      "velocity": {
+        "speed": 0.020788,
+        "heading_deg": 61.179982
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p31",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.382172,
+        "y": -0.06608
+      },
+      "velocity": {
+        "speed": 0.129506,
+        "heading_deg": 60.204807
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p32",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.13604,
+        "y": 0.108229
+      },
+      "velocity": {
+        "speed": 0.219387,
+        "heading_deg": -13.191685
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p33",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.387721,
+        "y": 0.050255
+      },
+      "velocity": {
+        "speed": 0.127434,
+        "heading_deg": -125.087554
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p34",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.00312,
+        "y": 0.105053
+      },
+      "velocity": {
+        "speed": 0.193603,
+        "heading_deg": 47.971825
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p35",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.13064,
+        "y": -0.121574
+      },
+      "velocity": {
+        "speed": 0.030279,
+        "heading_deg": -0.641486
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p36",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.101335,
+        "y": 0.010895
+      },
+      "velocity": {
+        "speed": 0.142086,
+        "heading_deg": -115.419447
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p37",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.011909,
+        "y": 0.250687
+      },
+      "velocity": {
+        "speed": 0.154291,
+        "heading_deg": 135.381231
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p38",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.023119,
+        "y": -0.33842
+      },
+      "velocity": {
+        "speed": 0.198339,
+        "heading_deg": 36.279341
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p39",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.050884,
+        "y": -0.217472
+      },
+      "velocity": {
+        "speed": 0.007145,
+        "heading_deg": 64.85707
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p40",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.193488,
+        "y": 0.206555
+      },
+      "velocity": {
+        "speed": 0.009812,
+        "heading_deg": 101.108157
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p41",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.12944,
+        "y": 0.325291
+      },
+      "velocity": {
+        "speed": 0.116473,
+        "heading_deg": -24.194834
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p42",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.351599,
+        "y": -0.09813
+      },
+      "velocity": {
+        "speed": 0.143703,
+        "heading_deg": -105.30014
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p43",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.225795,
+        "y": -0.061765
+      },
+      "velocity": {
+        "speed": 0.085882,
+        "heading_deg": 31.829311
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p44",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.27992,
+        "y": 0.035521
+      },
+      "velocity": {
+        "speed": 0.073057,
+        "heading_deg": 83.398783
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p45",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.222046,
+        "y": 0.285656
+      },
+      "velocity": {
+        "speed": 0.207813,
+        "heading_deg": -25.643375
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p46",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.149103,
+        "y": -0.100817
+      },
+      "velocity": {
+        "speed": 0.196968,
+        "heading_deg": -11.59939
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p47",
+      "polarity": "p",
+      "start_pos": {
+        "x": 0.191051,
+        "y": 0.299786
+      },
+      "velocity": {
+        "speed": 0.220708,
+        "heading_deg": -51.045998
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p48",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.352544,
+        "y": 0.174769
+      },
+      "velocity": {
+        "speed": 0.125439,
+        "heading_deg": -2.475597
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p49",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.116297,
+        "y": 0.088586
+      },
+      "velocity": {
+        "speed": 0.13763,
+        "heading_deg": -8.273985
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "p50",
+      "polarity": "p",
+      "start_pos": {
+        "x": -0.378813,
+        "y": 0.065231
+      },
+      "velocity": {
+        "speed": 0.221513,
+        "heading_deg": -78.533095
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e1",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.030817,
+        "y": -0.301803
+      },
+      "velocity": {
+        "speed": 0.01655,
+        "heading_deg": -28.952011
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e2",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.375439,
+        "y": 0.096521
+      },
+      "velocity": {
+        "speed": 0.139248,
+        "heading_deg": 56.542467
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e3",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.224004,
+        "y": 0.32971
+      },
+      "velocity": {
+        "speed": 0.12767,
+        "heading_deg": -141.083657
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e4",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.232296,
+        "y": -0.204045
+      },
+      "velocity": {
+        "speed": 0.17401,
+        "heading_deg": -19.385439
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e5",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.257269,
+        "y": 0.271248
+      },
+      "velocity": {
+        "speed": 0.136014,
+        "heading_deg": -51.579203
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e6",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.179339,
+        "y": 0.230383
+      },
+      "velocity": {
+        "speed": 0.104417,
+        "heading_deg": -76.939264
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e7",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.122265,
+        "y": -0.21171
+      },
+      "velocity": {
+        "speed": 0.062772,
+        "heading_deg": -74.362367
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e8",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.290239,
+        "y": -0.098143
+      },
+      "velocity": {
+        "speed": 0.19343,
+        "heading_deg": -100.389821
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e9",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.14425,
+        "y": -0.298297
+      },
+      "velocity": {
+        "speed": 0.071155,
+        "heading_deg": -126.76432
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e10",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.312455,
+        "y": 0.076747
+      },
+      "velocity": {
+        "speed": 0.175232,
+        "heading_deg": -145.63647
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e11",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.378592,
+        "y": 0.078879
+      },
+      "velocity": {
+        "speed": 0.169016,
+        "heading_deg": -134.908662
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e12",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.152321,
+        "y": 0.076154
+      },
+      "velocity": {
+        "speed": 0.073223,
+        "heading_deg": -44.429631
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e13",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.148192,
+        "y": 0.161811
+      },
+      "velocity": {
+        "speed": 0.125249,
+        "heading_deg": -39.339185
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e14",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.223886,
+        "y": 0.023998
+      },
+      "velocity": {
+        "speed": 0.246435,
+        "heading_deg": -58.535662
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e15",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.300047,
+        "y": 0.155893
+      },
+      "velocity": {
+        "speed": 0.119234,
+        "heading_deg": 38.344039
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e16",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.27034,
+        "y": -0.285863
+      },
+      "velocity": {
+        "speed": 0.183651,
+        "heading_deg": -123.801211
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e17",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.197102,
+        "y": 0.284484
+      },
+      "velocity": {
+        "speed": 0.216974,
+        "heading_deg": -58.420852
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e18",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.113598,
+        "y": -0.180951
+      },
+      "velocity": {
+        "speed": 0.211294,
+        "heading_deg": 102.660246
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e19",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.033431,
+        "y": 0.360054
+      },
+      "velocity": {
+        "speed": 0.198698,
+        "heading_deg": 101.020049
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e20",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.268184,
+        "y": -0.291587
+      },
+      "velocity": {
+        "speed": 0.054605,
+        "heading_deg": 99.761244
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e21",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.270691,
+        "y": -0.092531
+      },
+      "velocity": {
+        "speed": 0.069436,
+        "heading_deg": 11.33052
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e22",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.033873,
+        "y": 0.31313
+      },
+      "velocity": {
+        "speed": 0.039624,
+        "heading_deg": 59.625544
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e23",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.225663,
+        "y": -0.054259
+      },
+      "velocity": {
+        "speed": 0.043818,
+        "heading_deg": 122.711515
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e24",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.033374,
+        "y": -0.283177
+      },
+      "velocity": {
+        "speed": 0.120679,
+        "heading_deg": -60.192151
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e25",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.10009,
+        "y": 0.316217
+      },
+      "velocity": {
+        "speed": 0.127059,
+        "heading_deg": 2.067796
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e26",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.21848,
+        "y": -0.201901
+      },
+      "velocity": {
+        "speed": 0.097801,
+        "heading_deg": -82.988104
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e27",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.009245,
+        "y": -0.104084
+      },
+      "velocity": {
+        "speed": 0.206227,
+        "heading_deg": 12.008539
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e28",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.095478,
+        "y": -0.250934
+      },
+      "velocity": {
+        "speed": 0.088224,
+        "heading_deg": 108.797392
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e29",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.337154,
+        "y": 0.121471
+      },
+      "velocity": {
+        "speed": 0.134801,
+        "heading_deg": 152.677668
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e30",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.043813,
+        "y": 0.281577
+      },
+      "velocity": {
+        "speed": 0.157831,
+        "heading_deg": 164.932283
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e31",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.128974,
+        "y": -0.210798
+      },
+      "velocity": {
+        "speed": 0.243422,
+        "heading_deg": 154.631026
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e32",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.08233,
+        "y": -0.144712
+      },
+      "velocity": {
+        "speed": 0.132305,
+        "heading_deg": 135.201251
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e33",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.363627,
+        "y": 0.080231
+      },
+      "velocity": {
+        "speed": 0.045204,
+        "heading_deg": 75.212315
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e34",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.264679,
+        "y": 0.192149
+      },
+      "velocity": {
+        "speed": 0.073855,
+        "heading_deg": -154.544773
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e35",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.27204,
+        "y": -0.111039
+      },
+      "velocity": {
+        "speed": 0.147891,
+        "heading_deg": 111.551491
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e36",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.037823,
+        "y": -0.182831
+      },
+      "velocity": {
+        "speed": 0.134837,
+        "heading_deg": 151.414959
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e37",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.169468,
+        "y": 0.338518
+      },
+      "velocity": {
+        "speed": 0.033043,
+        "heading_deg": -98.761305
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e38",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.395555,
+        "y": -0.056312
+      },
+      "velocity": {
+        "speed": 0.048904,
+        "heading_deg": 179.121942
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e39",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.098907,
+        "y": -0.122002
+      },
+      "velocity": {
+        "speed": 0.067933,
+        "heading_deg": 111.129328
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e40",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.317935,
+        "y": 0.237825
+      },
+      "velocity": {
+        "speed": 0.238089,
+        "heading_deg": -113.784785
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e41",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.282998,
+        "y": -0.25131
+      },
+      "velocity": {
+        "speed": 0.221059,
+        "heading_deg": 42.529625
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e42",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.124128,
+        "y": -0.179219
+      },
+      "velocity": {
+        "speed": 0.214239,
+        "heading_deg": 165.865714
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e43",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.126009,
+        "y": -0.255736
+      },
+      "velocity": {
+        "speed": 0.077206,
+        "heading_deg": 89.929774
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e44",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.114072,
+        "y": 0.03448
+      },
+      "velocity": {
+        "speed": 0.00022,
+        "heading_deg": -147.859336
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e45",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.073353,
+        "y": -0.259817
+      },
+      "velocity": {
+        "speed": 0.190719,
+        "heading_deg": -158.316768
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e46",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.116834,
+        "y": 0.372314
+      },
+      "velocity": {
+        "speed": 0.150999,
+        "heading_deg": -51.538798
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e47",
+      "polarity": "e",
+      "start_pos": {
+        "x": -0.047861,
+        "y": -0.18613
+      },
+      "velocity": {
+        "speed": 0.236799,
+        "heading_deg": -165.691369
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e48",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.319769,
+        "y": -0.175384
+      },
+      "velocity": {
+        "speed": 0.080003,
+        "heading_deg": 138.651767
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e49",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.301562,
+        "y": -0.080616
+      },
+      "velocity": {
+        "speed": 0.126624,
+        "heading_deg": -127.288806
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    },
+    {
+      "name": "e50",
+      "polarity": "e",
+      "start_pos": {
+        "x": 0.001907,
+        "y": -0.213568
+      },
+      "velocity": {
+        "speed": 0.106635,
+        "heading_deg": 16.24393
+      },
+      "phases": [
+        {
+          "mode": "move",
+          "mover": "physics"
+        }
+      ]
+    }
+  ]
+}

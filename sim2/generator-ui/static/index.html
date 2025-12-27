@@ -37,7 +37,7 @@
       <h2>Generator Spec</h2>
       <div class="form-row">
         <label for="baseSelect">Base run file</label>
-        <select id="baseSelect"></select>
+        <select id="baseSelect" title="Choose the base run JSON that provides world size, directives, and defaults."></select>
       </div>
 
       <div class="split">
@@ -66,7 +66,7 @@
         <h3>Position</h3>
         <div class="form-row">
           <label for="posType">Distribution</label>
-          <select id="posType">
+          <select id="posType" title="Pick how particle positions are distributed; extra controls appear below.">
             <option value="uniform_square">Uniform square</option>
             <option value="ring">Ring</option>
             <option value="annulus">Annulus</option>
@@ -155,7 +155,7 @@
         <h3>Velocity</h3>
         <div class="form-row">
           <label for="velType">Distribution</label>
-          <select id="velType">
+          <select id="velType" title="Pick how particle speeds are sampled; options control min/max or mean/std.">
             <option value="uniform">Uniform</option>
             <option value="log_uniform">Log-uniform</option>
             <option value="normal">Normal</option>
@@ -191,7 +191,7 @@
         <h3>Heading</h3>
         <div class="form-row">
           <label for="headingMode">Direction</label>
-          <select id="headingMode">
+          <select id="headingMode" title="Pick how initial headings are oriented relative to the origin.">
             <option value="toward_origin">Toward origin</option>
             <option value="away_origin">Away from origin</option>
             <option value="random">Random</option>
@@ -223,7 +223,7 @@
         <h3>Template</h3>
         <div class="form-row">
           <label for="moverType">Mover</label>
-          <select id="moverType">
+          <select id="moverType" title="Pick the mover engine; analytic uses a named path instead of physics.">
             <option value="physics">Physics</option>
             <option value="analytic">Analytic</option>
           </select>
