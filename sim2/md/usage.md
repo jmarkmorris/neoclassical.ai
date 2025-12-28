@@ -1,6 +1,6 @@
 # Run File Template
 
-This describes every supported setting for JSON run files. Settings map to `directives` and `groups` fields in `circle.json` / `spiral.json`.
+This describes every supported setting for JSON run files. Settings map to `directives` and `groups` fields in the json files.
 
 ## Examples
 From `sim2`:
@@ -63,7 +63,7 @@ python -m pyinstrument -r text sim2/orbits.py --run sim2/circle.json
 - `start_paused` (bool): Start paused when rendering.
 - `field_grid_scale_with_canvas` (bool): Scale field grid resolution by `canvas_scale`.
 - `shell_thickness_scale_with_canvas` (bool): Multiply shell thickness by `1/canvas_scale`.
-- `field_color_falloff` (string): `"inverse_r2"` for log10 mapping, `"inverse_r"` for sqrt log10 mapping, `"linear"` for direct linear mapping with a fixed clamp based on the newest shell radius (`1 / (field_speed * dt)^2`, where `dt = 1 / hz`).
+- `field_color_falloff` (string): `"inverse_r2"` for log10 mapping, `"inverse_r"` for sqrt log10 mapping, `"linear"` for direct linear mapping with a fixed clamp based on the most recent emission shell (`1 / (field_speed * dt)^2`, where `dt = 1 / hz`).
 - `shell_weight` (string): `"raised_cosine"` for smooth annular weights, `"hard"` for a flat band.
 - `field_backend` (string): Preferred field update backend. Use one of:
   - `"gpu"`: GL instanced rings (requires `moderngl`).
