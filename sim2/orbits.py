@@ -89,7 +89,7 @@ class SimulationConfig:
     start_paused: bool = True  # render loop starts paused unless overridden
     field_grid_scale_with_canvas: bool = False  # scale field grid resolution by canvas scale
     shell_thickness_scale_with_canvas: bool = False  # scale shell thickness by 1/canvas_scale
-    field_color_falloff: str = "inverse_r2"  # "inverse_r2" (log10) or "inverse_r" (sqrt log10)
+    field_color_falloff: str = "inverse_r2"  # "inverse_r2" (log10), "inverse_r" (sqrt log10), or "linear" (fixed clamp)
     shell_weight: str = "raised_cosine"  # "raised_cosine" or "hard"
     field_alg: str = "gpu"  # "cpu_full", "cpu_incr", or "gpu"
     duration_seconds: float | None = None
@@ -245,8 +245,8 @@ def load_run_file(
     if not isinstance(field_color_falloff, str):
         raise ValueError("directives.field_color_falloff must be a string.")
     field_color_falloff = field_color_falloff.lower()
-    if field_color_falloff not in {"inverse_r2", "inverse_r"}:
-        raise ValueError("directives.field_color_falloff must be 'inverse_r2' or 'inverse_r'.")
+    if field_color_falloff not in {"inverse_r2", "inverse_r", "linear"}:
+        raise ValueError("directives.field_color_falloff must be 'inverse_r2', 'inverse_r', or 'linear'.")
     shell_weight = directives.get("shell_weight", "raised_cosine")
     if not isinstance(shell_weight, str):
         raise ValueError("directives.shell_weight must be a string.")
@@ -730,6 +730,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     dt = 1.0 / cfg.hz
     field_v = max(cfg.field_speed, 1e-6)
     shell_thickness = 0.0
+    linear_clamp = 1.0
     speed_mult = max(0.0, min(cfg.speed_multiplier, 100.0))  # global speed scale
     frame_skip = 0
 
@@ -996,13 +997,15 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     ]
 
     def update_time_params(new_hz: int) -> None:
-        nonlocal dt, shell_thickness, max_radius, emission_retention
+        nonlocal dt, shell_thickness, max_radius, emission_retention, linear_clamp
         cfg.hz = new_hz
         dt = 1.0 / cfg.hz
         base_shell = max(field_v * dt, 0.003)
         shell_thickness_local = max(base_shell, 0.75 * min(grid_dx, grid_dy))
         shell_thickness_local = max(shell_thickness_local, 0.003)
         shell_thickness = shell_thickness_local * shell_thickness_scale
+        min_radius = max(field_v * dt, 1e-6)
+        linear_clamp = 1.0 / (min_radius * min_radius)
         # Max corner distance from origin (for pruning); per-emission cutoff is computed with its own origin.
         band_half = max(shell_thickness * 1.5, shell_thickness)
         max_radius = math.hypot(cfg.domain_half_extent, cfg.domain_half_extent) + band_half
@@ -1049,23 +1052,29 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
     def make_field_surface() -> "pygame.Surface":
         net = field_grid
         abs_net = np.abs(net)
-        max_abs = np.percentile(abs_net, 99) if np.any(abs_net) else 1.0
-        if max_abs < 1e-9:
-            max_abs = 1.0
-        log_max = math.log10(1.0 + max_abs)
-        if log_max <= 0:
-            log_max = 1.0
-        mag = np.log10(1.0 + abs_net) / log_max
-        mag = np.clip(mag, 0.0, 1.0)
-        pos_norm_raw = np.where(net > 0.0, mag, 0.0)
-        neg_norm_raw = np.where(net < 0.0, mag, 0.0)
         pos_scale = max(1, num_pos_arch)
         neg_scale = max(1, num_neg_arch)
-        pos_norm = pos_norm_raw / (pos_scale * max_abs)
-        neg_norm = neg_norm_raw / (neg_scale * max_abs)
-        if cfg.field_color_falloff == "inverse_r":
-            pos_norm = np.sqrt(pos_norm)
-            neg_norm = np.sqrt(neg_norm)
+        if cfg.field_color_falloff == "linear":
+            scale = linear_clamp if linear_clamp > 0 else 1.0
+            mag = np.clip(abs_net / scale, 0.0, 1.0)
+            pos_norm = np.where(net > 0.0, mag, 0.0) / pos_scale
+            neg_norm = np.where(net < 0.0, mag, 0.0) / neg_scale
+        else:
+            max_abs = np.percentile(abs_net, 99) if np.any(abs_net) else 1.0
+            if max_abs < 1e-9:
+                max_abs = 1.0
+            log_max = math.log10(1.0 + max_abs)
+            if log_max <= 0:
+                log_max = 1.0
+            mag = np.log10(1.0 + abs_net) / log_max
+            mag = np.clip(mag, 0.0, 1.0)
+            pos_norm_raw = np.where(net > 0.0, mag, 0.0)
+            neg_norm_raw = np.where(net < 0.0, mag, 0.0)
+            pos_norm = pos_norm_raw / (pos_scale * max_abs)
+            neg_norm = neg_norm_raw / (neg_scale * max_abs)
+            if cfg.field_color_falloff == "inverse_r":
+                pos_norm = np.sqrt(pos_norm)
+                neg_norm = np.sqrt(neg_norm)
         red = (255 * (1 - neg_norm)).astype(np.uint8)
         blue = (255 * (1 - pos_norm)).astype(np.uint8)
         green = (255 * (1 - np.maximum(pos_norm, neg_norm))).astype(np.uint8)
@@ -1347,11 +1356,17 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
                         const float LOG10 = 2.30258509299;
                         float val = texture(field_tex, v_uv).r;
                         float abs_val = abs(val);
-                        float log_max = log(1.0 + field_scale) / LOG10;
-                        float mag = log(1.0 + abs_val) / max(log_max, 1e-6);
-                        mag = clamp(mag, 0.0, 1.0);
-                        if (falloff_mode == 1) {
-                            mag = sqrt(mag);
+                        float mag;
+                        if (falloff_mode == 2) {
+                            mag = abs_val / max(field_scale, 1e-6);
+                            mag = clamp(mag, 0.0, 1.0);
+                        } else {
+                            float log_max = log(1.0 + field_scale) / LOG10;
+                            mag = log(1.0 + abs_val) / max(log_max, 1e-6);
+                            mag = clamp(mag, 0.0, 1.0);
+                            if (falloff_mode == 1) {
+                                mag = sqrt(mag);
+                            }
                         }
                         float pos = val > 0.0 ? mag : 0.0;
                         float neg = val < 0.0 ? mag : 0.0;
@@ -1521,8 +1536,12 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
         ctx.screen.use()
         ctx.disable(gpu_state["moderngl"].BLEND)
         screen_prog = gpu_state["screen_prog"]
-        screen_prog["field_scale"].value = gpu_state["field_scale"]
-        screen_prog["falloff_mode"].value = 1 if cfg.field_color_falloff == "inverse_r" else 0
+        if cfg.field_color_falloff == "linear":
+            screen_prog["field_scale"].value = linear_clamp
+            screen_prog["falloff_mode"].value = 2
+        else:
+            screen_prog["field_scale"].value = gpu_state["field_scale"]
+            screen_prog["falloff_mode"].value = 1 if cfg.field_color_falloff == "inverse_r" else 0
         gpu_state["field_tex"].use(0)
         screen_prog["field_tex"].value = 0
         gpu_state["screen_vao"].render(mode=gpu_state["moderngl"].TRIANGLE_STRIP)

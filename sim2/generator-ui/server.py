@@ -334,7 +334,16 @@ class GeneratorHandler(SimpleHTTPRequestHandler):
             except Exception as exc:
                 return self._send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)
             try:
-                directives = base.get("directives", {})
+                directives = deepcopy(base.get("directives", {}))
+                falloff = data.get("field_color_falloff")
+                if isinstance(falloff, str) and falloff:
+                    falloff = falloff.lower()
+                    if falloff not in {"inverse_r2", "inverse_r", "linear"}:
+                        return self._send_json(
+                            {"error": "field_color_falloff must be inverse_r2, inverse_r, or linear."},
+                            HTTPStatus.BAD_REQUEST,
+                        )
+                    directives["field_color_falloff"] = falloff
                 arch, preview, extent = generate_architrinos(data, directives)
             except Exception as exc:
                 return self._send_json({"error": str(exc)}, HTTPStatus.BAD_REQUEST)

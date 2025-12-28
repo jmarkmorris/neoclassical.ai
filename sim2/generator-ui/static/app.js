@@ -37,6 +37,7 @@ const minSep = $("#minSep");
 const excludeRadius = $("#excludeRadius");
 const moverType = $("#moverType");
 const pathName = $("#pathName");
+const fieldFalloff = $("#fieldFalloff");
 const generateBtn = $("#generateBtn");
 const saveBtn = $("#saveBtn");
 const statusLine = $("#status");
@@ -97,6 +98,7 @@ function buildSpec() {
     template: {
       mover: moverType.value,
     },
+    field_color_falloff: fieldFalloff.value,
     output_name: outputNameInput.value,
   };
 
@@ -177,10 +179,15 @@ function loadBase() {
       const directives = (data.base || {}).directives || {};
       const world = directives.world_size || (directives.domain_half_extent ? directives.domain_half_extent * 2 : null);
       const extent = directives.domain_half_extent || (directives.world_size ? directives.world_size / 2 : 2);
+      const falloff = directives.field_color_falloff || "inverse_r2";
       state.extent = extent;
       baseName.textContent = baseSelect.value;
       worldSize.textContent = world ? world.toFixed(2) : "-";
       worldExtent.textContent = extent.toFixed(2);
+      fieldFalloff.value = falloff;
+      if (fieldFalloff.value !== falloff) {
+        fieldFalloff.value = "inverse_r2";
+      }
       updateSpecOutput();
     })
     .catch((err) => setStatus(`Failed to load base: ${err}`, true));
@@ -319,7 +326,7 @@ velType.addEventListener("change", updateSpecOutput);
 
 [seedInput, outputNameInput, countPInput, countEInput, posMaxRadius, ringRadius, ringThickness, annulusInner,
   annulusOuter, gaussianStd, clusterCount, clusterSpread, clusterRadius, spiralTurns, spiralRadius, spiralJitter,
-  velMin, velMax, velMean, velStd, headingMode, minSep, excludeRadius, moverType, pathName]
+  velMin, velMax, velMean, velStd, headingMode, minSep, excludeRadius, moverType, pathName, fieldFalloff]
   .forEach((el) => {
     el.addEventListener("input", updateSpecOutput);
   });

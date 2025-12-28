@@ -11,6 +11,7 @@
     "render": true,
     "start_paused": true,
     "shell_weight": "raised_cosine",
+    "field_color_falloff": "inverse_r2",
     "field_alg": "gpu_instanced",
     "grid_visible": false,
     "ui": {
@@ -24,8 +25,14 @@
     {
       "name": "p1",
       "polarity": "p",
-      "start_pos": { "x": 1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": -90 },
+      "start_pos": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "velocity": {
+        "speed": 0.5,
+        "heading_deg": -90
+      },
       "phases": [
         {
           "mode": "move",
@@ -37,8 +44,14 @@
     {
       "name": "e1",
       "polarity": "e",
-      "start_pos": { "x": -1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": 90 },
+      "start_pos": {
+        "x": -1.0,
+        "y": 0.0
+      },
+      "velocity": {
+        "speed": 0.5,
+        "heading_deg": 90
+      },
       "phases": [
         {
           "mode": "move",
@@ -50,8 +63,14 @@
     {
       "name": "p2",
       "polarity": "p",
-      "start_pos": { "x": 1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": 90 },
+      "start_pos": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "velocity": {
+        "speed": 0.5,
+        "heading_deg": 90
+      },
       "phases": [
         {
           "mode": "move",
@@ -63,8 +82,14 @@
     {
       "name": "e2",
       "polarity": "e",
-      "start_pos": { "x": -1.0, "y": 0.0 },
-      "velocity": { "speed": 0.5, "heading_deg": -90 },
+      "start_pos": {
+        "x": -1.0,
+        "y": 0.0
+      },
+      "velocity": {
+        "speed": 0.5,
+        "heading_deg": -90
+      },
       "phases": [
         {
           "mode": "move",

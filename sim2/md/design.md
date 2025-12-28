@@ -54,7 +54,7 @@ Each frame clears the field grid and re-applies every retained emission as an an
 - **Field update**: either rebuild the grid each frame or incrementally update emission rings (configurable backend).
 - **Shell contribution**: for each emission, an annular band is added where `|dist - r| <= band_half`; contribution is `sign / dist^2` with a raised-cosine or hard radial weight.
 - **Polarity**: positrino contributions are positive, electrino contributions negative.
-- **Color map**: the signed field is scaled by the 99th percentile magnitude on a log10 scale and mapped to RGB (red/blue superposition with green for near-neutral, white at zero).
+- **Color map**: default uses 99th percentile log10 scaling; optional `linear` uses a fixed clamp on the raw field before mapping to RGB (red/blue superposition with green for near-neutral, white at zero).
 
 ## Performance tiers
 - **CPU Tier**: NumPy + Numba for field and hit computation; PyGame/pyglet for rendering and UI; optional pre-bake for smooth playback.

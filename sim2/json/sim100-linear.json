@@ -2,16 +2,16 @@
   "directives": {
     "format_version": 1,
     "hz": 500,
-    "field_speed": 100,
-    "max_force": 25,
-    "world_size": 4,
+    "field_speed": 100.0,
+    "max_force": 25.0,
+    "world_size": 4.0,
     "max_memory_bytes": 8589934592,
-    "speed_multiplier": 1,
+    "speed_multiplier": 1.0,
     "path_snap": 0.002,
     "render": true,
     "start_paused": true,
     "shell_weight": "raised_cosine",
-    "field_color_falloff": "inverse_r2",
+    "field_color_falloff": "linear",
     "field_alg": "gpu_instanced",
     "grid_visible": false,
     "ui": {
@@ -26,12 +26,12 @@
       "name": "p1",
       "polarity": "p",
       "start_pos": {
-        "x": -0.161539,
-        "y": 0.074415
+        "x": -1.417323,
+        "y": -0.180292
       },
       "velocity": {
-        "speed": 0.129677,
-        "heading_deg": -131.850419
+        "speed": 0.156449,
+        "heading_deg": -7.249432
       },
       "phases": [
         {
@@ -44,12 +44,12 @@
       "name": "p2",
       "polarity": "p",
       "start_pos": {
-        "x": -0.038953,
-        "y": -0.308256
+        "x": 0.822053,
+        "y": 0.927836
       },
       "velocity": {
-        "speed": 0.169132,
-        "heading_deg": -121.673268
+        "speed": 0.092368,
+        "heading_deg": 131.540608
       },
       "phases": [
         {
@@ -62,12 +62,12 @@
       "name": "p3",
       "polarity": "p",
       "start_pos": {
-        "x": -0.237873,
-        "y": -0.262571
+        "x": 1.200082,
+        "y": 0.131606
       },
       "velocity": {
-        "speed": 0.013781,
-        "heading_deg": -35.444759
+        "speed": 0.025229,
+        "heading_deg": 173.741729
       },
       "phases": [
         {
@@ -80,12 +80,12 @@
       "name": "p4",
       "polarity": "p",
       "start_pos": {
-        "x": -0.260896,
-        "y": 0.143526
+        "x": -0.176216,
+        "y": -1.80845
       },
       "velocity": {
-        "speed": 0.17817,
-        "heading_deg": 131.618877
+        "speed": 0.187263,
+        "heading_deg": -84.434633
       },
       "phases": [
         {
@@ -98,12 +98,12 @@
       "name": "p5",
       "polarity": "p",
       "start_pos": {
-        "x": -0.35305,
-        "y": -0.176001
+        "x": 1.788312,
+        "y": -0.658597
       },
       "velocity": {
-        "speed": 0.201431,
-        "heading_deg": 2.055451
+        "speed": 0.068787,
+        "heading_deg": -159.782332
       },
       "phases": [
         {
@@ -116,12 +116,12 @@
       "name": "p6",
       "polarity": "p",
       "start_pos": {
-        "x": -0.01112,
-        "y": -0.139964
+        "x": 1.072073,
+        "y": -1.184522
       },
       "velocity": {
-        "speed": 0.235158,
-        "heading_deg": -176.958806
+        "speed": 0.043908,
+        "heading_deg": -132.14723
       },
       "phases": [
         {
@@ -134,12 +134,12 @@
       "name": "p7",
       "polarity": "p",
       "start_pos": {
-        "x": -0.362899,
-        "y": -0.050133
+        "x": -1.24562,
+        "y": -0.611982
       },
       "velocity": {
-        "speed": 0.053649,
-        "heading_deg": 93.833237
+        "speed": 0.129001,
+        "heading_deg": -26.165217
       },
       "phases": [
         {
@@ -152,12 +152,12 @@
       "name": "p8",
       "polarity": "p",
       "start_pos": {
-        "x": 0.252457,
-        "y": -0.291679
+        "x": 1.853263,
+        "y": -1.156664
       },
       "velocity": {
-        "speed": 0.143726,
-        "heading_deg": 80.835693
+        "speed": 0.191659,
+        "heading_deg": -148.030767
       },
       "phases": [
         {
@@ -170,12 +170,12 @@
       "name": "p9",
       "polarity": "p",
       "start_pos": {
-        "x": -0.002165,
-        "y": 0.13646
+        "x": 0.221599,
+        "y": 1.604608
       },
       "velocity": {
-        "speed": 0.104994,
-        "heading_deg": 24.607353
+        "speed": 0.165423,
+        "heading_deg": 97.862893
       },
       "phases": [
         {
@@ -188,12 +188,12 @@
       "name": "p10",
       "polarity": "p",
       "start_pos": {
-        "x": 0.141691,
-        "y": -0.100136
+        "x": -1.358313,
+        "y": 0.594172
       },
       "velocity": {
-        "speed": 0.001736,
-        "heading_deg": 87.134029
+        "speed": 0.033578,
+        "heading_deg": 23.626184
       },
       "phases": [
         {
@@ -206,12 +206,12 @@
       "name": "p11",
       "polarity": "p",
       "start_pos": {
-        "x": 0.04026,
-        "y": 0.01671
+        "x": -1.97742,
+        "y": -0.417935
       },
       "velocity": {
-        "speed": 0.063782,
-        "heading_deg": -54.571827
+        "speed": 0.156965,
+        "heading_deg": -11.934053
       },
       "phases": [
         {
@@ -224,12 +224,12 @@
       "name": "p12",
       "polarity": "p",
       "start_pos": {
-        "x": 0.229755,
-        "y": -0.166272
+        "x": 0.264631,
+        "y": -1.229437
       },
       "velocity": {
-        "speed": 0.226821,
-        "heading_deg": -61.933257
+        "speed": 0.169823,
+        "heading_deg": -102.147323
       },
       "phases": [
         {
@@ -242,12 +242,12 @@
       "name": "p13",
       "polarity": "p",
       "start_pos": {
-        "x": -0.14925,
-        "y": 0.182053
+        "x": 1.655107,
+        "y": -1.0511
       },
       "velocity": {
-        "speed": 0.081153,
-        "heading_deg": 40.353733
+        "speed": 0.095157,
+        "heading_deg": -147.581824
       },
       "phases": [
         {
@@ -260,12 +260,12 @@
       "name": "p14",
       "polarity": "p",
       "start_pos": {
-        "x": 0.052605,
-        "y": 0.02568
+        "x": 0.551199,
+        "y": 1.609372
       },
       "velocity": {
-        "speed": 0.16478,
-        "heading_deg": 103.982723
+        "speed": 0.034057,
+        "heading_deg": 108.905991
       },
       "phases": [
         {
@@ -278,12 +278,12 @@
       "name": "p15",
       "polarity": "p",
       "start_pos": {
-        "x": -0.14979,
-        "y": -0.113369
+        "x": 0.215806,
+        "y": 1.874096
       },
       "velocity": {
-        "speed": 0.126394,
-        "heading_deg": -157.486875
+        "speed": 0.125729,
+        "heading_deg": 96.568809
       },
       "phases": [
         {
@@ -296,12 +296,12 @@
       "name": "p16",
       "polarity": "p",
       "start_pos": {
-        "x": -0.130809,
-        "y": 0.053726
+        "x": 0.869216,
+        "y": 1.099822
       },
       "velocity": {
-        "speed": 0.00947,
-        "heading_deg": -91.165033
+        "speed": 0.106351,
+        "heading_deg": 128.320173
       },
       "phases": [
         {
@@ -314,12 +314,12 @@
       "name": "p17",
       "polarity": "p",
       "start_pos": {
-        "x": 0.211894,
-        "y": -0.254907
+        "x": -0.840579,
+        "y": 0.361498
       },
       "velocity": {
-        "speed": 0.147597,
-        "heading_deg": -23.842762
+        "speed": 0.110354,
+        "heading_deg": 23.270546
       },
       "phases": [
         {
@@ -332,12 +332,12 @@
       "name": "p18",
       "polarity": "p",
       "start_pos": {
-        "x": -0.143453,
-        "y": 0.340493
+        "x": -0.626927,
+        "y": 1.416687
       },
       "velocity": {
-        "speed": 0.246714,
-        "heading_deg": -59.834206
+        "speed": 0.07897,
+        "heading_deg": 66.129154
       },
       "phases": [
         {
@@ -350,12 +350,12 @@
       "name": "p19",
       "polarity": "p",
       "start_pos": {
-        "x": 0.286248,
-        "y": 0.150443
+        "x": -0.065744,
+        "y": 1.046006
       },
       "velocity": {
-        "speed": 0.22532,
-        "heading_deg": 110.754334
+        "speed": 0.164626,
+        "heading_deg": 86.40353
       },
       "phases": [
         {
@@ -368,12 +368,12 @@
       "name": "p20",
       "polarity": "p",
       "start_pos": {
-        "x": 0.276404,
-        "y": -0.194875
+        "x": 1.561828,
+        "y": 0.606027
       },
       "velocity": {
-        "speed": 0.021789,
-        "heading_deg": 60.926789
+        "speed": 0.057981,
+        "heading_deg": 158.792544
       },
       "phases": [
         {
@@ -386,12 +386,12 @@
       "name": "p21",
       "polarity": "p",
       "start_pos": {
-        "x": -0.211411,
-        "y": 0.088969
+        "x": 1.38949,
+        "y": 1.637187
       },
       "velocity": {
-        "speed": 0.106541,
-        "heading_deg": -179.14199
+        "speed": 0.145801,
+        "heading_deg": 130.321456
       },
       "phases": [
         {
@@ -404,12 +404,12 @@
       "name": "p22",
       "polarity": "p",
       "start_pos": {
-        "x": 0.091742,
-        "y": 0.08453
+        "x": 1.067832,
+        "y": 0.054316
       },
       "velocity": {
-        "speed": 0.018631,
-        "heading_deg": -13.698844
+        "speed": 0.103762,
+        "heading_deg": 177.088126
       },
       "phases": [
         {
@@ -422,12 +422,12 @@
       "name": "p23",
       "polarity": "p",
       "start_pos": {
-        "x": -0.295596,
-        "y": -0.025628
+        "x": 0.330738,
+        "y": -1.411245
       },
       "velocity": {
-        "speed": 0.033135,
-        "heading_deg": 11.548638
+        "speed": 0.138435,
+        "heading_deg": -103.189741
       },
       "phases": [
         {
@@ -440,12 +440,12 @@
       "name": "p24",
       "polarity": "p",
       "start_pos": {
-        "x": -0.182428,
-        "y": 0.233935
+        "x": 1.445364,
+        "y": -1.341182
       },
       "velocity": {
-        "speed": 0.172882,
-        "heading_deg": -157.451379
+        "speed": 0.153237,
+        "heading_deg": -137.141161
       },
       "phases": [
         {
@@ -458,12 +458,12 @@
       "name": "p25",
       "polarity": "p",
       "start_pos": {
-        "x": 0.071225,
-        "y": -0.154815
+        "x": 0.824728,
+        "y": -1.515987
       },
       "velocity": {
-        "speed": 0.057653,
-        "heading_deg": -41.011621
+        "speed": 0.019637,
+        "heading_deg": -118.5471
       },
       "phases": [
         {
@@ -476,12 +476,12 @@
       "name": "p26",
       "polarity": "p",
       "start_pos": {
-        "x": -0.39466,
-        "y": -0.020796
+        "x": 0.381454,
+        "y": -1.123413
       },
       "velocity": {
-        "speed": 0.110032,
-        "heading_deg": 64.221526
+        "speed": 0.068873,
+        "heading_deg": -108.754877
       },
       "phases": [
         {
@@ -494,12 +494,12 @@
       "name": "p27",
       "polarity": "p",
       "start_pos": {
-        "x": 0.282992,
-        "y": 0.119326
+        "x": 0.484694,
+        "y": 0.603322
       },
       "velocity": {
-        "speed": 0.242291,
-        "heading_deg": 51.187837
+        "speed": 0.152262,
+        "heading_deg": 128.777507
       },
       "phases": [
         {
@@ -512,12 +512,12 @@
       "name": "p28",
       "polarity": "p",
       "start_pos": {
-        "x": -0.205719,
-        "y": 0.073871
+        "x": 0.272854,
+        "y": -0.665037
       },
       "velocity": {
-        "speed": 0.046975,
-        "heading_deg": -109.004979
+        "speed": 0.01238,
+        "heading_deg": -112.307531
       },
       "phases": [
         {
@@ -530,12 +530,12 @@
       "name": "p29",
       "polarity": "p",
       "start_pos": {
-        "x": -0.023155,
-        "y": -0.309367
+        "x": -1.54388,
+        "y": -1.228687
       },
       "velocity": {
-        "speed": 0.155961,
-        "heading_deg": -177.965316
+        "speed": 0.109804,
+        "heading_deg": -38.514289
       },
       "phases": [
         {
@@ -548,12 +548,12 @@
       "name": "p30",
       "polarity": "p",
       "start_pos": {
-        "x": 0.314615,
-        "y": 0.034127
+        "x": 0.880425,
+        "y": -1.163417
       },
       "velocity": {
-        "speed": 0.020788,
-        "heading_deg": 61.179982
+        "speed": 0.084071,
+        "heading_deg": -127.116902
       },
       "phases": [
         {
@@ -566,12 +566,12 @@
       "name": "p31",
       "polarity": "p",
       "start_pos": {
-        "x": -0.382172,
-        "y": -0.06608
+        "x": 1.745667,
+        "y": -0.397562
       },
       "velocity": {
-        "speed": 0.129506,
-        "heading_deg": 60.204807
+        "speed": 0.14551,
+        "heading_deg": -167.170158
       },
       "phases": [
         {
@@ -584,12 +584,12 @@
       "name": "p32",
       "polarity": "p",
       "start_pos": {
-        "x": -0.13604,
-        "y": 0.108229
+        "x": 0.473938,
+        "y": 0.638937
       },
       "velocity": {
-        "speed": 0.219387,
-        "heading_deg": -13.191685
+        "speed": 0.100575,
+        "heading_deg": 126.56652
       },
       "phases": [
         {
@@ -602,12 +602,12 @@
       "name": "p33",
       "polarity": "p",
       "start_pos": {
-        "x": -0.387721,
-        "y": 0.050255
+        "x": 0.180351,
+        "y": 0.803337
       },
       "velocity": {
-        "speed": 0.127434,
-        "heading_deg": -125.087554
+        "speed": 0.040614,
+        "heading_deg": 102.653257
       },
       "phases": [
         {
@@ -620,12 +620,12 @@
       "name": "p34",
       "polarity": "p",
       "start_pos": {
-        "x": 0.00312,
-        "y": 0.105053
+        "x": 1.195015,
+        "y": 1.491505
       },
       "velocity": {
-        "speed": 0.193603,
-        "heading_deg": 47.971825
+        "speed": 0.018949,
+        "heading_deg": 128.702218
       },
       "phases": [
         {
@@ -638,12 +638,12 @@
       "name": "p35",
       "polarity": "p",
       "start_pos": {
-        "x": 0.13064,
-        "y": -0.121574
+        "x": -1.207512,
+        "y": -1.004822
       },
       "velocity": {
-        "speed": 0.030279,
-        "heading_deg": -0.641486
+        "speed": 0.027925,
+        "heading_deg": -39.765282
       },
       "phases": [
         {
@@ -656,12 +656,12 @@
       "name": "p36",
       "polarity": "p",
       "start_pos": {
-        "x": 0.101335,
-        "y": 0.010895
+        "x": -1.440083,
+        "y": 0.565739
       },
       "velocity": {
-        "speed": 0.142086,
-        "heading_deg": -115.419447
+        "speed": 0.033372,
+        "heading_deg": 21.44748
       },
       "phases": [
         {
@@ -674,12 +674,12 @@
       "name": "p37",
       "polarity": "p",
       "start_pos": {
-        "x": -0.011909,
-        "y": 0.250687
+        "x": -1.732798,
+        "y": 1.783327
       },
       "velocity": {
-        "speed": 0.154291,
-        "heading_deg": 135.381231
+        "speed": 0.086384,
+        "heading_deg": 45.823314
       },
       "phases": [
         {
@@ -692,12 +692,12 @@
       "name": "p38",
       "polarity": "p",
       "start_pos": {
-        "x": -0.023119,
-        "y": -0.33842
+        "x": 0.162116,
+        "y": -0.103498
       },
       "velocity": {
-        "speed": 0.198339,
-        "heading_deg": 36.279341
+        "speed": 0.075296,
+        "heading_deg": -147.444981
       },
       "phases": [
         {
@@ -710,12 +710,12 @@
       "name": "p39",
       "polarity": "p",
       "start_pos": {
-        "x": 0.050884,
-        "y": -0.217472
+        "x": -0.183128,
+        "y": -1.22319
       },
       "velocity": {
-        "speed": 0.007145,
-        "heading_deg": 64.85707
+        "speed": 0.12015,
+        "heading_deg": -81.48528
       },
       "phases": [
         {
@@ -728,12 +728,12 @@
       "name": "p40",
       "polarity": "p",
       "start_pos": {
-        "x": 0.193488,
-        "y": 0.206555
+        "x": -0.995127,
+        "y": -1.418677
       },
       "velocity": {
-        "speed": 0.009812,
-        "heading_deg": 101.108157
+        "speed": 0.049649,
+        "heading_deg": -54.95238
       },
       "phases": [
         {
@@ -746,12 +746,12 @@
       "name": "p41",
       "polarity": "p",
       "start_pos": {
-        "x": -0.12944,
-        "y": 0.325291
+        "x": -0.349117,
+        "y": 1.721403
       },
       "velocity": {
-        "speed": 0.116473,
-        "heading_deg": -24.194834
+        "speed": 0.123597,
+        "heading_deg": 78.535369
       },
       "phases": [
         {
@@ -764,12 +764,12 @@
       "name": "p42",
       "polarity": "p",
       "start_pos": {
-        "x": 0.351599,
-        "y": -0.09813
+        "x": 1.923065,
+        "y": -0.396858
       },
       "velocity": {
-        "speed": 0.143703,
-        "heading_deg": -105.30014
+        "speed": 0.05949,
+        "heading_deg": -168.339698
       },
       "phases": [
         {
@@ -782,12 +782,12 @@
       "name": "p43",
       "polarity": "p",
       "start_pos": {
-        "x": -0.225795,
-        "y": -0.061765
+        "x": 0.842692,
+        "y": -1.238083
       },
       "velocity": {
-        "speed": 0.085882,
-        "heading_deg": 31.829311
+        "speed": 0.199632,
+        "heading_deg": -124.240848
       },
       "phases": [
         {
@@ -800,12 +800,12 @@
       "name": "p44",
       "polarity": "p",
       "start_pos": {
-        "x": 0.27992,
-        "y": 0.035521
+        "x": -0.437831,
+        "y": -0.914371
       },
       "velocity": {
-        "speed": 0.073057,
-        "heading_deg": 83.398783
+        "speed": 0.061542,
+        "heading_deg": -64.413356
       },
       "phases": [
         {
@@ -818,12 +818,12 @@
       "name": "p45",
       "polarity": "p",
       "start_pos": {
-        "x": 0.222046,
-        "y": 0.285656
+        "x": -0.782135,
+        "y": 1.746835
       },
       "velocity": {
-        "speed": 0.207813,
-        "heading_deg": -25.643375
+        "speed": 0.198514,
+        "heading_deg": 65.879844
       },
       "phases": [
         {
@@ -836,12 +836,12 @@
       "name": "p46",
       "polarity": "p",
       "start_pos": {
-        "x": 0.149103,
-        "y": -0.100817
+        "x": 0.233667,
+        "y": -1.072089
       },
       "velocity": {
-        "speed": 0.196968,
-        "heading_deg": -11.59939
+        "speed": 0.011851,
+        "heading_deg": -102.295583
       },
       "phases": [
         {
@@ -854,12 +854,12 @@
       "name": "p47",
       "polarity": "p",
       "start_pos": {
-        "x": 0.191051,
-        "y": 0.299786
+        "x": -1.68001,
+        "y": -0.80808
       },
       "velocity": {
-        "speed": 0.220708,
-        "heading_deg": -51.045998
+        "speed": 0.132127,
+        "heading_deg": -25.687422
       },
       "phases": [
         {
@@ -872,12 +872,12 @@
       "name": "p48",
       "polarity": "p",
       "start_pos": {
-        "x": -0.352544,
-        "y": 0.174769
+        "x": 0.505445,
+        "y": 1.413325
       },
       "velocity": {
-        "speed": 0.125439,
-        "heading_deg": -2.475597
+        "speed": 0.166,
+        "heading_deg": 109.678486
       },
       "phases": [
         {
@@ -890,12 +890,12 @@
       "name": "p49",
       "polarity": "p",
       "start_pos": {
-        "x": -0.116297,
-        "y": 0.088586
+        "x": -0.589558,
+        "y": 0.695273
       },
       "velocity": {
-        "speed": 0.13763,
-        "heading_deg": -8.273985
+        "speed": 0.094423,
+        "heading_deg": 49.703676
       },
       "phases": [
         {
@@ -908,12 +908,12 @@
       "name": "p50",
       "polarity": "p",
       "start_pos": {
-        "x": -0.378813,
-        "y": 0.065231
+        "x": 0.912833,
+        "y": -1.262917
       },
       "velocity": {
-        "speed": 0.221513,
-        "heading_deg": -78.533095
+        "speed": 0.195538,
+        "heading_deg": -125.859284
       },
       "phases": [
         {
@@ -926,12 +926,12 @@
       "name": "e1",
       "polarity": "e",
       "start_pos": {
-        "x": -0.030817,
-        "y": -0.301803
+        "x": -1.90865,
+        "y": 0.470552
       },
       "velocity": {
-        "speed": 0.01655,
-        "heading_deg": -28.952011
+        "speed": 0.076968,
+        "heading_deg": 13.849317
       },
       "phases": [
         {
@@ -944,12 +944,12 @@
       "name": "e2",
       "polarity": "e",
       "start_pos": {
-        "x": -0.375439,
-        "y": 0.096521
+        "x": 1.202996,
+        "y": -1.425399
       },
       "velocity": {
-        "speed": 0.139248,
-        "heading_deg": 56.542467
+        "speed": 0.179274,
+        "heading_deg": -130.163412
       },
       "phases": [
         {
@@ -962,12 +962,12 @@
       "name": "e3",
       "polarity": "e",
       "start_pos": {
-        "x": -0.224004,
-        "y": 0.32971
+        "x": -1.987121,
+        "y": 0.940838
       },
       "velocity": {
-        "speed": 0.12767,
-        "heading_deg": -141.083657
+        "speed": 0.143658,
+        "heading_deg": 25.336057
       },
       "phases": [
         {
@@ -980,12 +980,12 @@
       "name": "e4",
       "polarity": "e",
       "start_pos": {
-        "x": -0.232296,
-        "y": -0.204045
+        "x": 0.02939,
+        "y": -1.302047
       },
       "velocity": {
-        "speed": 0.17401,
-        "heading_deg": -19.385439
+        "speed": 0.082609,
+        "heading_deg": -91.293076
       },
       "phases": [
         {
@@ -998,12 +998,12 @@
       "name": "e5",
       "polarity": "e",
       "start_pos": {
-        "x": 0.257269,
-        "y": 0.271248
+        "x": -0.213388,
+        "y": -1.149689
       },
       "velocity": {
-        "speed": 0.136014,
-        "heading_deg": -51.579203
+        "speed": 0.040587,
+        "heading_deg": -79.48526
       },
       "phases": [
         {
@@ -1016,12 +1016,12 @@
       "name": "e6",
       "polarity": "e",
       "start_pos": {
-        "x": -0.179339,
-        "y": 0.230383
+        "x": 1.369785,
+        "y": 0.198397
       },
       "velocity": {
-        "speed": 0.104417,
-        "heading_deg": -76.939264
+        "speed": 0.061451,
+        "heading_deg": 171.758715
       },
       "phases": [
         {
@@ -1034,12 +1034,12 @@
       "name": "e7",
       "polarity": "e",
       "start_pos": {
-        "x": -0.122265,
-        "y": -0.21171
+        "x": 0.501679,
+        "y": 0.531823
       },
       "velocity": {
-        "speed": 0.062772,
-        "heading_deg": -74.362367
+        "speed": 0.035852,
+        "heading_deg": 133.329338
       },
       "phases": [
         {
@@ -1052,12 +1052,12 @@
       "name": "e8",
       "polarity": "e",
       "start_pos": {
-        "x": -0.290239,
-        "y": -0.098143
+        "x": 0.338405,
+        "y": 0.337554
       },
       "velocity": {
-        "speed": 0.19343,
-        "heading_deg": -100.389821
+        "speed": 0.031099,
+        "heading_deg": 135.072116
       },
       "phases": [
         {
@@ -1070,12 +1070,12 @@
       "name": "e9",
       "polarity": "e",
       "start_pos": {
-        "x": -0.14425,
-        "y": -0.298297
+        "x": -0.796815,
+        "y": 1.452768
       },
       "velocity": {
-        "speed": 0.071155,
-        "heading_deg": -126.76432
+        "speed": 0.120018,
+        "heading_deg": 61.256107
       },
       "phases": [
         {
@@ -1088,12 +1088,12 @@
       "name": "e10",
       "polarity": "e",
       "start_pos": {
-        "x": -0.312455,
-        "y": 0.076747
+        "x": -1.107656,
+        "y": -0.425895
       },
       "velocity": {
-        "speed": 0.175232,
-        "heading_deg": -145.63647
+        "speed": 0.097095,
+        "heading_deg": -21.031808
       },
       "phases": [
         {
@@ -1106,12 +1106,12 @@
       "name": "e11",
       "polarity": "e",
       "start_pos": {
-        "x": 0.378592,
-        "y": 0.078879
+        "x": 0.833067,
+        "y": 1.442975
       },
       "velocity": {
-        "speed": 0.169016,
-        "heading_deg": -134.908662
+        "speed": 0.026614,
+        "heading_deg": 119.998965
       },
       "phases": [
         {
@@ -1124,12 +1124,12 @@
       "name": "e12",
       "polarity": "e",
       "start_pos": {
-        "x": -0.152321,
-        "y": 0.076154
+        "x": -1.813351,
+        "y": -0.233866
       },
       "velocity": {
-        "speed": 0.073223,
-        "heading_deg": -44.429631
+        "speed": 0.013798,
+        "heading_deg": -7.34881
       },
       "phases": [
         {
@@ -1142,12 +1142,12 @@
       "name": "e13",
       "polarity": "e",
       "start_pos": {
-        "x": -0.148192,
-        "y": 0.161811
+        "x": -1.38275,
+        "y": -1.575113
       },
       "velocity": {
-        "speed": 0.125249,
-        "heading_deg": -39.339185
+        "speed": 0.026817,
+        "heading_deg": -48.720963
       },
       "phases": [
         {
@@ -1160,12 +1160,12 @@
       "name": "e14",
       "polarity": "e",
       "start_pos": {
-        "x": -0.223886,
-        "y": 0.023998
+        "x": 0.501262,
+        "y": -1.618122
       },
       "velocity": {
-        "speed": 0.246435,
-        "heading_deg": -58.535662
+        "speed": 0.117665,
+        "heading_deg": -107.211952
       },
       "phases": [
         {
@@ -1178,12 +1178,12 @@
       "name": "e15",
       "polarity": "e",
       "start_pos": {
-        "x": -0.300047,
-        "y": 0.155893
+        "x": 1.864592,
+        "y": -1.438128
       },
       "velocity": {
-        "speed": 0.119234,
-        "heading_deg": 38.344039
+        "speed": 0.154206,
+        "heading_deg": -142.357597
       },
       "phases": [
         {
@@ -1196,12 +1196,12 @@
       "name": "e16",
       "polarity": "e",
       "start_pos": {
-        "x": -0.27034,
-        "y": -0.285863
+        "x": 0.33681,
+        "y": -1.319191
       },
       "velocity": {
-        "speed": 0.183651,
-        "heading_deg": -123.801211
+        "speed": 0.190471,
+        "heading_deg": -104.322522
       },
       "phases": [
         {
@@ -1214,12 +1214,12 @@
       "name": "e17",
       "polarity": "e",
       "start_pos": {
-        "x": -0.197102,
-        "y": 0.284484
+        "x": 0.946806,
+        "y": -0.48231
       },
       "velocity": {
-        "speed": 0.216974,
-        "heading_deg": -58.420852
+        "speed": 0.178796,
+        "heading_deg": -153.005372
       },
       "phases": [
         {
@@ -1232,12 +1232,12 @@
       "name": "e18",
       "polarity": "e",
       "start_pos": {
-        "x": -0.113598,
-        "y": -0.180951
+        "x": -1.583454,
+        "y": 1.334875
       },
       "velocity": {
-        "speed": 0.211294,
-        "heading_deg": 102.660246
+        "speed": 0.170066,
+        "heading_deg": 40.131376
       },
       "phases": [
         {
@@ -1250,12 +1250,12 @@
       "name": "e19",
       "polarity": "e",
       "start_pos": {
-        "x": -0.033431,
-        "y": 0.360054
+        "x": -1.535984,
+        "y": 1.66146
       },
       "velocity": {
-        "speed": 0.198698,
-        "heading_deg": 101.020049
+        "speed": 0.158965,
+        "heading_deg": 47.247273
       },
       "phases": [
         {
@@ -1268,12 +1268,12 @@
       "name": "e20",
       "polarity": "e",
       "start_pos": {
-        "x": -0.268184,
-        "y": -0.291587
+        "x": 1.658492,
+        "y": -0.873885
       },
       "velocity": {
-        "speed": 0.054605,
-        "heading_deg": 99.761244
+        "speed": 0.150296,
+        "heading_deg": -152.214553
       },
       "phases": [
         {
@@ -1286,12 +1286,12 @@
       "name": "e21",
       "polarity": "e",
       "start_pos": {
-        "x": 0.270691,
-        "y": -0.092531
+        "x": 1.118776,
+        "y": -0.606813
       },
       "velocity": {
-        "speed": 0.069436,
-        "heading_deg": 11.33052
+        "speed": 0.016655,
+        "heading_deg": -151.525051
       },
       "phases": [
         {
@@ -1304,12 +1304,12 @@
       "name": "e22",
       "polarity": "e",
       "start_pos": {
-        "x": -0.033873,
-        "y": 0.31313
+        "x": -1.943217,
+        "y": 0.026438
       },
       "velocity": {
-        "speed": 0.039624,
-        "heading_deg": 59.625544
+        "speed": 0.114122,
+        "heading_deg": 0.779487
       },
       "phases": [
         {
@@ -1322,12 +1322,12 @@
       "name": "e23",
       "polarity": "e",
       "start_pos": {
-        "x": 0.225663,
-        "y": -0.054259
+        "x": -1.499992,
+        "y": 0.523786
       },
       "velocity": {
-        "speed": 0.043818,
-        "heading_deg": 122.711515
+        "speed": 0.019901,
+        "heading_deg": 19.248815
       },
       "phases": [
         {
@@ -1340,12 +1340,12 @@
       "name": "e24",
       "polarity": "e",
       "start_pos": {
-        "x": -0.033374,
-        "y": -0.283177
+        "x": -0.087683,
+        "y": 0.042492
       },
       "velocity": {
-        "speed": 0.120679,
-        "heading_deg": -60.192151
+        "speed": 0.048672,
+        "heading_deg": 25.855477
       },
       "phases": [
         {
@@ -1358,12 +1358,12 @@
       "name": "e25",
       "polarity": "e",
       "start_pos": {
-        "x": 0.10009,
-        "y": 0.316217
+        "x": -1.809939,
+        "y": 1.612116
       },
       "velocity": {
-        "speed": 0.127059,
-        "heading_deg": 2.067796
+        "speed": 0.171964,
+        "heading_deg": 41.69151
       },
       "phases": [
         {
@@ -1376,12 +1376,12 @@
       "name": "e26",
       "polarity": "e",
       "start_pos": {
-        "x": 0.21848,
-        "y": -0.201901
+        "x": 0.352507,
+        "y": -1.882569
       },
       "velocity": {
-        "speed": 0.097801,
-        "heading_deg": -82.988104
+        "speed": 0.109813,
+        "heading_deg": -100.605694
       },
       "phases": [
         {
@@ -1394,12 +1394,12 @@
       "name": "e27",
       "polarity": "e",
       "start_pos": {
-        "x": -0.009245,
-        "y": -0.104084
+        "x": 1.85194,
+        "y": 1.068177
       },
       "velocity": {
-        "speed": 0.206227,
-        "heading_deg": 12.008539
+        "speed": 0.140819,
+        "heading_deg": 150.024167
       },
       "phases": [
         {
@@ -1412,12 +1412,12 @@
       "name": "e28",
       "polarity": "e",
       "start_pos": {
-        "x": 0.095478,
-        "y": -0.250934
+        "x": -1.84167,
+        "y": 0.313365
       },
       "velocity": {
-        "speed": 0.088224,
-        "heading_deg": 108.797392
+        "speed": 0.054208,
+        "heading_deg": 9.656548
       },
       "phases": [
         {
@@ -1430,12 +1430,12 @@
       "name": "e29",
       "polarity": "e",
       "start_pos": {
-        "x": 0.337154,
-        "y": 0.121471
+        "x": 1.946065,
+        "y": -1.956221
       },
       "velocity": {
-        "speed": 0.134801,
-        "heading_deg": 152.677668
+        "speed": 0.052322,
+        "heading_deg": -134.850879
       },
       "phases": [
         {
@@ -1448,12 +1448,12 @@
       "name": "e30",
       "polarity": "e",
       "start_pos": {
-        "x": -0.043813,
-        "y": 0.281577
+        "x": 1.519866,
+        "y": -1.519589
       },
       "velocity": {
-        "speed": 0.157831,
-        "heading_deg": 164.932283
+        "speed": 0.067011,
+        "heading_deg": -135.005208
       },
       "phases": [
         {
@@ -1466,12 +1466,12 @@
       "name": "e31",
       "polarity": "e",
       "start_pos": {
-        "x": -0.128974,
-        "y": -0.210798
+        "x": -0.774385,
+        "y": 1.526577
       },
       "velocity": {
-        "speed": 0.243422,
-        "heading_deg": 154.631026
+        "speed": 0.142283,
+        "heading_deg": 63.102756
       },
       "phases": [
         {
@@ -1484,12 +1484,12 @@
       "name": "e32",
       "polarity": "e",
       "start_pos": {
-        "x": 0.08233,
-        "y": -0.144712
+        "x": 1.735741,
+        "y": -1.232014
       },
       "velocity": {
-        "speed": 0.132305,
-        "heading_deg": 135.201251
+        "speed": 0.026771,
+        "heading_deg": -144.633193
       },
       "phases": [
         {
@@ -1502,12 +1502,12 @@
       "name": "e33",
       "polarity": "e",
       "start_pos": {
-        "x": -0.363627,
-        "y": 0.080231
+        "x": -0.626978,
+        "y": 1.064507
       },
       "velocity": {
-        "speed": 0.045204,
-        "heading_deg": 75.212315
+        "speed": 0.127629,
+        "heading_deg": 59.502579
       },
       "phases": [
         {
@@ -1520,12 +1520,12 @@
       "name": "e34",
       "polarity": "e",
       "start_pos": {
-        "x": 0.264679,
-        "y": 0.192149
+        "x": 1.740471,
+        "y": 0.851458
       },
       "velocity": {
-        "speed": 0.073855,
-        "heading_deg": -154.544773
+        "speed": 0.025561,
+        "heading_deg": 153.931608
       },
       "phases": [
         {
@@ -1538,12 +1538,12 @@
       "name": "e35",
       "polarity": "e",
       "start_pos": {
-        "x": 0.27204,
-        "y": -0.111039
+        "x": -0.739615,
+        "y": -1.185152
       },
       "velocity": {
-        "speed": 0.147891,
-        "heading_deg": 111.551491
+        "speed": 0.060865,
+        "heading_deg": -58.033037
       },
       "phases": [
         {
@@ -1556,12 +1556,12 @@
       "name": "e36",
       "polarity": "e",
       "start_pos": {
-        "x": -0.037823,
-        "y": -0.182831
+        "x": 0.666128,
+        "y": -0.225366
       },
       "velocity": {
-        "speed": 0.134837,
-        "heading_deg": 151.414959
+        "speed": 0.15375,
+        "heading_deg": -161.308162
       },
       "phases": [
         {
@@ -1574,12 +1574,12 @@
       "name": "e37",
       "polarity": "e",
       "start_pos": {
-        "x": 0.169468,
-        "y": 0.338518
+        "x": -1.936269,
+        "y": 1.63506
       },
       "velocity": {
-        "speed": 0.033043,
-        "heading_deg": -98.761305
+        "speed": 0.040832,
+        "heading_deg": 40.179035
       },
       "phases": [
         {
@@ -1592,12 +1592,12 @@
       "name": "e38",
       "polarity": "e",
       "start_pos": {
-        "x": -0.395555,
-        "y": -0.056312
+        "x": 0.97063,
+        "y": 1.377501
       },
       "velocity": {
-        "speed": 0.048904,
-        "heading_deg": 179.121942
+        "speed": 0.018012,
+        "heading_deg": 125.169706
       },
       "phases": [
         {
@@ -1610,12 +1610,12 @@
       "name": "e39",
       "polarity": "e",
       "start_pos": {
-        "x": -0.098907,
-        "y": -0.122002
+        "x": 0.169446,
+        "y": 1.900182
       },
       "velocity": {
-        "speed": 0.067933,
-        "heading_deg": 111.129328
+        "speed": 0.01139,
+        "heading_deg": 95.09579
       },
       "phases": [
         {
@@ -1628,12 +1628,12 @@
       "name": "e40",
       "polarity": "e",
       "start_pos": {
-        "x": 0.317935,
-        "y": 0.237825
+        "x": -0.011305,
+        "y": -0.298834
       },
       "velocity": {
-        "speed": 0.238089,
-        "heading_deg": -113.784785
+        "speed": 0.082486,
+        "heading_deg": -87.833589
       },
       "phases": [
         {
@@ -1646,12 +1646,12 @@
       "name": "e41",
       "polarity": "e",
       "start_pos": {
-        "x": -0.282998,
-        "y": -0.25131
+        "x": -1.222414,
+        "y": -1.278505
       },
       "velocity": {
-        "speed": 0.221059,
-        "heading_deg": 42.529625
+        "speed": 0.060532,
+        "heading_deg": -46.284827
       },
       "phases": [
         {
@@ -1664,12 +1664,12 @@
       "name": "e42",
       "polarity": "e",
       "start_pos": {
-        "x": 0.124128,
-        "y": -0.179219
+        "x": -1.129933,
+        "y": -0.824298
       },
       "velocity": {
-        "speed": 0.214239,
-        "heading_deg": 165.865714
+        "speed": 0.181348,
+        "heading_deg": -36.111145
       },
       "phases": [
         {
@@ -1682,12 +1682,12 @@
       "name": "e43",
       "polarity": "e",
       "start_pos": {
-        "x": -0.126009,
-        "y": -0.255736
+        "x": 1.796054,
+        "y": -0.960732
       },
       "velocity": {
-        "speed": 0.077206,
-        "heading_deg": 89.929774
+        "speed": 0.015229,
+        "heading_deg": -151.857117
       },
       "phases": [
         {
@@ -1700,12 +1700,12 @@
       "name": "e44",
       "polarity": "e",
       "start_pos": {
-        "x": 0.114072,
-        "y": 0.03448
+        "x": -0.935498,
+        "y": 1.426314
       },
       "velocity": {
-        "speed": 0.00022,
-        "heading_deg": -147.859336
+        "speed": 0.043447,
+        "heading_deg": 56.73972
       },
       "phases": [
         {
@@ -1718,12 +1718,12 @@
       "name": "e45",
       "polarity": "e",
       "start_pos": {
-        "x": -0.073353,
-        "y": -0.259817
+        "x": 0.647948,
+        "y": -1.628616
       },
       "velocity": {
-        "speed": 0.190719,
-        "heading_deg": -158.316768
+        "speed": 0.076959,
+        "heading_deg": -111.69522
       },
       "phases": [
         {
@@ -1736,12 +1736,12 @@
       "name": "e46",
       "polarity": "e",
       "start_pos": {
-        "x": -0.116834,
-        "y": 0.372314
+        "x": -1.321963,
+        "y": 0.465755
       },
       "velocity": {
-        "speed": 0.150999,
-        "heading_deg": -51.538798
+        "speed": 0.080349,
+        "heading_deg": 19.408404
       },
       "phases": [
         {
@@ -1754,12 +1754,12 @@
       "name": "e47",
       "polarity": "e",
       "start_pos": {
-        "x": -0.047861,
-        "y": -0.18613
+        "x": 1.095331,
+        "y": 0.072741
       },
       "velocity": {
-        "speed": 0.236799,
-        "heading_deg": -165.691369
+        "speed": 0.086716,
+        "heading_deg": 176.200574
       },
       "phases": [
         {
@@ -1772,12 +1772,12 @@
       "name": "e48",
       "polarity": "e",
       "start_pos": {
-        "x": 0.319769,
-        "y": -0.175384
+        "x": -1.914035,
+        "y": 1.354486
       },
       "velocity": {
-        "speed": 0.080003,
-        "heading_deg": 138.651767
+        "speed": 0.017422,
+        "heading_deg": 35.285507
       },
       "phases": [
         {
@@ -1790,12 +1790,12 @@
       "name": "e49",
       "polarity": "e",
       "start_pos": {
-        "x": 0.301562,
-        "y": -0.080616
+        "x": -0.00435,
+        "y": 1.951379
       },
       "velocity": {
-        "speed": 0.126624,
-        "heading_deg": -127.288806
+        "speed": 0.160213,
+        "heading_deg": 89.872281
       },
       "phases": [
         {
@@ -1808,12 +1808,12 @@
       "name": "e50",
       "polarity": "e",
       "start_pos": {
-        "x": 0.001907,
-        "y": -0.213568
+        "x": -0.577903,
+        "y": 1.719351
       },
       "velocity": {
-        "speed": 0.106635,
-        "heading_deg": 16.24393
+        "speed": 0.059064,
+        "heading_deg": 71.421645
       },
       "phases": [
         {

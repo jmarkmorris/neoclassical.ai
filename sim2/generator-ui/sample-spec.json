@@ -38,5 +38,6 @@
     "mover": "physics",
     "path": "unit_circle"
   },
+  "field_color_falloff": "inverse_r2",
   "output_name": "sim100.json"
 }
