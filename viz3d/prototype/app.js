@@ -148,7 +148,7 @@ const transitionState = {
   panTarget: new THREE.Vector3(),
   targetPosition: new THREE.Vector3(),
   startTime: 0,
-  duration: 1125,
+  duration: 2250,
 };
 
 const autoWarpThresholds = {
@@ -453,12 +453,35 @@ function setLevelOpacity(level, opacity) {
   });
 }
 
+function setLevelOpacityWithLabel(level, meshOpacity, labelOpacity) {
+  level.nodes.forEach((node) => {
+    node.mesh.material.opacity = node.baseOpacity.mesh * meshOpacity;
+    node.outline.material.opacity = node.baseOpacity.outline * meshOpacity;
+    node.labelObject.element.style.opacity = labelOpacity;
+  });
+}
+
 function setLevelOpacityWithFocus(level, focusName, focusOpacity, otherOpacity) {
   level.nodes.forEach((node) => {
     const opacity = node.data.name === focusName ? focusOpacity : otherOpacity;
     node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
     node.outline.material.opacity = node.baseOpacity.outline * opacity;
     node.labelObject.element.style.opacity = opacity;
+  });
+}
+
+function setLevelOpacityWithFocusAndLabel(
+  level,
+  focusName,
+  focusOpacity,
+  otherOpacity,
+  labelOpacity
+) {
+  level.nodes.forEach((node) => {
+    const opacity = node.data.name === focusName ? focusOpacity : otherOpacity;
+    node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
+    node.outline.material.opacity = node.baseOpacity.outline * opacity;
+    node.labelObject.element.style.opacity = opacity * labelOpacity;
   });
 }
 
@@ -634,14 +657,15 @@ function updateTransition(now) {
     );
 
     const focusFade = 1 - smoothstep(0.55, 1, scaleProgress);
-    const toFade = smoothstep(0.4, 1, scaleProgress);
+    const toFade = smoothstep(0.6, 1, scaleProgress);
+    const toLabelFade = smoothstep(0.75, 1, scaleProgress);
     setLevelOpacityWithFocus(
       fromLevel,
       transitionState.focusNodeName,
       focusFade,
       0
     );
-    setLevelOpacity(toLevel, toFade);
+    setLevelOpacityWithLabel(toLevel, toFade, toLabelFade);
   } else {
     const focusNode = toLevel.nodeByName.get(transitionState.focusNodeName);
     if (focusNode) {
@@ -659,11 +683,13 @@ function updateTransition(now) {
 
     const focusFade = 1 - smoothstep(0.6, 1, scaleProgress);
     const otherOpacity = smoothstep(0.6, 1, scaleProgress);
-    setLevelOpacityWithFocus(
+    const toLabelFade = smoothstep(0.75, 1, scaleProgress);
+    setLevelOpacityWithFocusAndLabel(
       toLevel,
       transitionState.focusNodeName,
       focusFade,
-      otherOpacity
+      otherOpacity,
+      toLabelFade
     );
     setLevelOpacity(fromLevel, 1 - smoothstep(0.3, 0.9, scaleProgress));
   }
