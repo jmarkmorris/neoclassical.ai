@@ -139,149 +139,22 @@
 
 ## Scenes
 
-Each short name is the label for the object shown as a sphere.
+Each short name is the label for the object shown as a sphere and is also the name of the associated json file.
 
-### Star (star.json)
+- Star (star.json)
+- Universe (universe.json)
+- Galaxy Cluster (galaxy_cluster.json)
+- Galaxy (galaxy.json)
+- Solar System (solar_system.json)
+- Planet (planet.json)
+- Moon (moon.json)
+- Molecule (molecule.json)
+- Atom (atom.json)
+- Proton (proton.json)
+- Neutron (neutron.json)
+- Up Quark (up_quark.json)
+- Down Quark (down_quark.json)
+- Electron (electron.json)
+- Neutrino (neutrino.json)
 
-Occurs on warp zoom from the solar system scene. 
 
-| Short name     | Category           | Reaction cycle / formula (schematic)                     |
-|----------------|--------------------|-----------------------------------------------------------|
-| pp chain       | Fusion             | 4p → ⁴He + 2e⁺ + 2νₑ + γ                                  |
-| CNO cycle      | Fusion             | 4p → ⁴He (C, N, O act as catalysts)                       |
-| Triple-α       | Fusion             | 3 × ⁴He → ¹²C + γ                                         |
-| C burning      | Burning            | ¹²C + ¹²C → ²⁰Ne + α / ²³Na + p / Mg isotopes             |
-| Ne burning     | Burning            | γ + ²⁰Ne → ¹⁶O + α → α-captures                           |
-| O burning      | Burning            | ¹⁶O + ¹⁶O → Si, S, P, Mg isotopes                         |
-| Si burning     | Burning            | NSE: γ-driven rearrangement → ⁵⁶Ni → ⁵⁶Fe                |
-| s-process      | Nucleosynthesis    | (n,γ) slow captures + β⁻ decay along stability valley    |
-| r-process      | Nucleosynthesis    | rapid (n,γ) far from stability + β⁻ decay back           |
-
-
-### Universe (universe.json)
-
-| Short name |
-|------------|
-| observable universe |
-| cosmic web |
-| voids |
-
-### Galaxy Cluster (galaxy_cluster.json)
-
-| Short name |
-|------------|
-| galaxy cluster |
-| galaxies |
-| intracluster medium |
-
-### Galaxy (galaxy.json)
-
-| Short name |
-|------------|
-| central black hole |
-| bulge |
-| disk |
-| spiral arms |
-| halo |
-| globular cluster |
-| nebula |
-| molecular cloud |
-
-### Solar System (solar_system.json)
-
-| Short name |
-|------------|
-| star |
-| planets |
-| moons |
-| asteroid belt |
-| Kuiper belt |
-| Oort cloud |
-| comets |
-
-### Planet (planet.json)
-
-| Short name |
-|------------|
-| core |
-| mantle |
-| crust |
-| atmosphere |
-| magnetosphere |
-| rings |
-
-### Moon (moon.json)
-
-| Short name |
-|------------|
-| core |
-| mantle |
-| crust |
-| regolith |
-
-### Molecule (molecule.json)
-
-| Short name |
-|------------|
-| DNA |
-| protein |
-| water |
-
-### Atom (atom.json)
-
-| Short name |
-|------------|
-| nucleus |
-| protons |
-| neutrons |
-| electrons |
-
-### Proton (proton.json)
-
-| Short name |
-|------------|
-| up quark |
-| down quark |
-
-### Neutron (neutron.json)
-
-| Short name |
-|------------|
-| up quark |
-| down quark |
-
-### Up Quark (up_quark.json)
-
-| Short name |
-|------------|
-| personality charge layer |
-| outer Noether core binary |
-| middle Noether core binary |
-| inner Noether core binary |
-
-### Down Quark (down_quark.json)
-
-| Short name |
-|------------|
-| personality charge layer |
-| outer Noether core binary |
-| middle Noether core binary |
-| inner Noether core binary |
-
-### Electron (electron.json)
-
-| Short name |
-|------------|
-| personality charge layer |
-| outer Noether core binary |
-| middle Noether core binary |
-| inner Noether core binary |
-
-### Neutrino (neutrino.json)
-
-| Short name |
-|------------|
-| personality charge layer |
-| outer Noether core binary |
-| middle Noether core binary |
-| inner Noether core binary |

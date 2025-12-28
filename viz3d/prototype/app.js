@@ -28,92 +28,11 @@ const baseViewHeight = 26;
 const worldGroup = new THREE.Group();
 scene.add(worldGroup);
 
-const levelConfigs = {
-  root: {
-    layout: "linear",
-    spacing: 7.5,
-    nodes: [
-      { name: "Galaxy", scale: 21, radius: 2.8, color: "#243d8f" },
-      {
-        name: "Solar System",
-        scale: 11,
-        radius: 2.1,
-        color: "#1f4f7a",
-        children: "solarSystem",
-      },
-      { name: "Planet", scale: 6, radius: 1.6, color: "#1f5f4a" },
-      { name: "Atom", scale: -10, radius: 1.2, color: "#6a4d1b" },
-      { name: "Quark", scale: -19, radius: 0.9, color: "#5a1f2e" },
-    ],
-  },
-  solarSystem: {
-    layout: "orbit",
-    nodes: [
-      {
-        name: "Star",
-        scale: 9,
-        radius: 2.2,
-        color: "#b07a2a",
-        childScene: "json/star.json",
-      },
-      {
-        name: "Planet A",
-        scale: 6,
-        radius: 1,
-        color: "#327a5e",
-        orbit: {
-          center: "Star",
-          radius: 4.8,
-          speed: 0.25,
-          phase: 0,
-          shape: "circular",
-        },
-      },
-      {
-        name: "Planet B",
-        scale: 6,
-        radius: 0.9,
-        color: "#2c6c7e",
-        orbit: {
-          center: "Star",
-          radius: 7.4,
-          speed: 0.18,
-          phase: 2.094,
-          shape: "circular",
-        },
-      },
-      {
-        name: "Planet C",
-        scale: 6,
-        radius: 1.15,
-        color: "#3f5f8a",
-        orbit: {
-          center: "Star",
-          radius: 12,
-          speed: 0.12,
-          phase: 4.189,
-          shape: "circular",
-        },
-      },
-      {
-        name: "Moon",
-        scale: 5,
-        radius: 0.5,
-        color: "#9ea6bf",
-        orbit: {
-          center: "Planet C",
-          radius: 2.4,
-          speed: 0.6,
-          phase: 0.6,
-          shape: "circular",
-        },
-      },
-    ],
-  },
-};
+const levelConfigs = {};
 
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
+let haloSeed = 0;
 
 const levels = new Map();
 const navigationStack = [];
@@ -156,6 +75,13 @@ const autoWarpThresholds = {
   outPx: 20,
   cooldownMs: 700,
   lastAt: 0,
+};
+
+const labelFadeState = {
+  active: false,
+  level: null,
+  startTime: 0,
+  duration: 700,
 };
 
 const zoomLimits = { min: 0.35, max: 6 };
@@ -209,7 +135,7 @@ async function loadSceneConfig(scenePath) {
       });
 
       const config = {
-        layout: "static",
+        layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
         nodes,
       };
       levelConfigs[scenePath] = config;
@@ -338,8 +264,6 @@ function createLabel(node) {
   const label = document.createElement("div");
   label.className = "label";
   label.innerHTML = `<div class="label-title">${node.name}</div><div class="label-scale">10^${node.scale}</div>`;
-  const maxWidth = Math.max(50, node.radius * 22);
-  label.style.maxWidth = `${maxWidth}px`;
   return new CSS2DObject(label);
 }
 
@@ -366,11 +290,30 @@ function createNode(nodeData) {
   const labelObject = createLabel(nodeData);
   group.add(labelObject);
 
+  let halo = null;
+  if (nodeData.childScene) {
+    const haloGeometry = new THREE.SphereGeometry(nodeData.radius * 1.18, 24, 16);
+    const haloMaterial = new THREE.MeshBasicMaterial({
+      color: "#d5dcff",
+      transparent: true,
+      opacity: 0.2,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    halo = new THREE.Mesh(haloGeometry, haloMaterial);
+    halo.renderOrder = -1;
+    group.add(halo);
+  }
+
   return {
     group,
     mesh,
     outline,
     labelObject,
+    halo,
+    haloBaseOpacity: halo ? halo.material.opacity : 0,
+    haloIntensity: 1,
+    haloPhase: haloSeed++ * 0.6,
     data: nodeData,
     baseOpacity: {
       mesh: material.opacity,
@@ -450,6 +393,7 @@ function setLevelOpacity(level, opacity) {
     node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
     node.outline.material.opacity = node.baseOpacity.outline * opacity;
     node.labelObject.element.style.opacity = opacity;
+    node.haloIntensity = opacity;
   });
 }
 
@@ -457,6 +401,13 @@ function setLevelOpacityWithLabel(level, meshOpacity, labelOpacity) {
   level.nodes.forEach((node) => {
     node.mesh.material.opacity = node.baseOpacity.mesh * meshOpacity;
     node.outline.material.opacity = node.baseOpacity.outline * meshOpacity;
+    node.labelObject.element.style.opacity = labelOpacity;
+    node.haloIntensity = meshOpacity;
+  });
+}
+
+function setLevelLabelOpacity(level, labelOpacity) {
+  level.nodes.forEach((node) => {
     node.labelObject.element.style.opacity = labelOpacity;
   });
 }
@@ -467,6 +418,7 @@ function setLevelOpacityWithFocus(level, focusName, focusOpacity, otherOpacity) 
     node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
     node.outline.material.opacity = node.baseOpacity.outline * opacity;
     node.labelObject.element.style.opacity = opacity;
+    node.haloIntensity = opacity;
   });
 }
 
@@ -482,6 +434,23 @@ function setLevelOpacityWithFocusAndLabel(
     node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
     node.outline.material.opacity = node.baseOpacity.outline * opacity;
     node.labelObject.element.style.opacity = opacity * labelOpacity;
+    node.haloIntensity = opacity;
+  });
+}
+
+function updateLevelHalo(level, timeSeconds) {
+  if (!level) {
+    return;
+  }
+  level.nodes.forEach((node) => {
+    if (!node.halo) {
+      return;
+    }
+    const pulse = 0.5 + 0.5 * Math.sin(timeSeconds * 1.5 + node.haloPhase);
+    const scale = 1.02 + 0.06 * pulse;
+    node.halo.scale.setScalar(scale);
+    node.halo.material.opacity =
+      node.haloBaseOpacity * node.haloIntensity * (0.35 + 0.65 * pulse);
   });
 }
 
@@ -518,6 +487,7 @@ function beginLevelTransition(targetNode, childLevelId) {
   toLevel.group.position.copy(targetPosition).sub(toLevelCenter);
   toLevel.group.scale.setScalar(1);
   setLevelOpacity(toLevel, 0);
+  setLevelLabelOpacity(toLevel, 0);
   setLevelOpacity(currentLevel, 1);
 
   navigationStack.push({
@@ -578,6 +548,7 @@ function startLevelTransitionOut() {
   parentLevel.group.position.copy(targetPosition).sub(parentCenter);
   parentLevel.group.scale.setScalar(1);
   setLevelOpacity(parentLevel, 0);
+  setLevelLabelOpacity(parentLevel, 0);
   setLevelOpacity(currentLevel, 1);
 }
 
@@ -604,13 +575,18 @@ function finalizeTransition() {
     toLevel.group.scale.setScalar(1);
     toLevel.group.position.set(0, 0, 0);
     setLevelOpacity(toLevel, 1);
+    setLevelLabelOpacity(toLevel, 0);
 
     currentLevel = toLevel;
     fitCameraToLevel(currentLevel);
+    labelFadeState.active = true;
+    labelFadeState.level = currentLevel;
+    labelFadeState.startTime = performance.now();
   } else {
     toLevel.group.position.set(0, 0, 0);
     toLevel.group.scale.setScalar(1);
     setLevelOpacity(toLevel, 1);
+    setLevelLabelOpacity(toLevel, 0);
 
     const toFocus = toLevel.nodeByName.get(transitionState.focusNodeName);
     if (toFocus) {
@@ -623,6 +599,9 @@ function finalizeTransition() {
     currentLevel = toLevel;
     navigationStack.pop();
     fitCameraToLevel(currentLevel);
+    labelFadeState.active = true;
+    labelFadeState.level = currentLevel;
+    labelFadeState.startTime = performance.now();
   }
 
   transitionState.active = false;
@@ -657,15 +636,14 @@ function updateTransition(now) {
     );
 
     const focusFade = 1 - smoothstep(0.55, 1, scaleProgress);
-    const toFade = smoothstep(0.6, 1, scaleProgress);
-    const toLabelFade = smoothstep(0.75, 1, scaleProgress);
+    const toFade = Math.pow(smoothstep(0.2, 1, scaleProgress), 1.6);
     setLevelOpacityWithFocus(
       fromLevel,
       transitionState.focusNodeName,
       focusFade,
       0
     );
-    setLevelOpacityWithLabel(toLevel, toFade, toLabelFade);
+    setLevelOpacityWithLabel(toLevel, toFade, 0);
   } else {
     const focusNode = toLevel.nodeByName.get(transitionState.focusNodeName);
     if (focusNode) {
@@ -682,16 +660,15 @@ function updateTransition(now) {
     );
 
     const focusFade = 1 - smoothstep(0.6, 1, scaleProgress);
-    const otherOpacity = smoothstep(0.6, 1, scaleProgress);
-    const toLabelFade = smoothstep(0.75, 1, scaleProgress);
+    const otherOpacity = Math.pow(smoothstep(0.3, 1, scaleProgress), 1.4);
     setLevelOpacityWithFocusAndLabel(
       toLevel,
       transitionState.focusNodeName,
       focusFade,
       otherOpacity,
-      toLabelFade
+      0
     );
-    setLevelOpacity(fromLevel, 1 - smoothstep(0.3, 0.9, scaleProgress));
+    setLevelOpacity(fromLevel, 1 - smoothstep(0.35, 0.95, scaleProgress));
   }
 
   if (t >= 1) {
@@ -968,7 +945,25 @@ function animate(now = 0) {
   }
 
   updateTransition(now);
+
+  if (labelFadeState.active && labelFadeState.level) {
+    const elapsed = now - labelFadeState.startTime;
+    const t = Math.min(1, elapsed / labelFadeState.duration);
+    const fade = smoothstep(0, 1, t);
+    setLevelLabelOpacity(labelFadeState.level, fade);
+    if (t >= 1) {
+      labelFadeState.active = false;
+    }
+  }
   maybeAutoWarp(now);
+
+  const timeSeconds = now / 1000;
+  if (transitionState.active) {
+    updateLevelHalo(transitionState.fromLevel, timeSeconds);
+    updateLevelHalo(transitionState.toLevel, timeSeconds);
+  } else {
+    updateLevelHalo(currentLevel, timeSeconds);
+  }
 
   if (currentLevel && currentLevel.layout === "orbit") {
     updateLevelOrbits(currentLevel, now / 1000);
@@ -984,8 +979,12 @@ function onResize() {
   labelRenderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function init() {
-  currentLevel = buildLevel("root");
+async function init() {
+  const universeConfig = await loadSceneConfig("json/universe.json");
+  if (!universeConfig) {
+    return;
+  }
+  currentLevel = buildLevel("json/universe.json");
   worldGroup.add(currentLevel.group);
   updateCamera();
   fitCameraToLevel(currentLevel);
