@@ -136,3 +136,25 @@
 - Scripted navigation paths (sequence of zoom and focus actions) for smooth MP4 output.
 - Export presets for desktop (16:9) and mobile (9:16).
 - Defer formal narrative/export spec until core interaction flow is stable.
+
+## Scenes
+
+### Star Interior 
+
+Occurs on warp zoom from solar system scene. Each of the following is shown as a sphere with only the short name as a label.
+
+| Short name     | Category           | Reaction cycle / formula (schematic)                     |
+|----------------|--------------------|-----------------------------------------------------------|
+| pp chain       | Fusion             | 4p → ⁴He + 2e⁺ + 2νₑ + γ                                  |
+| CNO cycle      | Fusion             | 4p → ⁴He (C, N, O act as catalysts)                       |
+| Triple-α       | Fusion             | 3 × ⁴He → ¹²C + γ                                         |
+| C burning      | Burning            | ¹²C + ¹²C → ²⁰Ne + α / ²³Na + p / Mg isotopes             |
+| Ne burning     | Burning            | γ + ²⁰Ne → ¹⁶O + α → α-captures                           |
+| O burning      | Burning            | ¹⁶O + ¹⁶O → Si, S, P, Mg isotopes                         |
+| Si burning     | Burning            | NSE: γ-driven rearrangement → ⁵⁶Ni → ⁵⁶Fe                |
+| s-process      | Nucleosynthesis    | (n,γ) slow captures + β⁻ decay along stability valley    |
+| r-process      | Nucleosynthesis    | rapid (n,γ) far from stability + β⁻ decay back           |
+
+
+### Solar System
+

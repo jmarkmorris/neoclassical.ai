@@ -13,6 +13,6 @@ python3 -m http.server 5173
 Then open `http://localhost:5173/`.
 
 ## Controls
-- Double tap a sphere to focus + zoom.
-- Pinch to zoom (trackpad pinch supported).
+- Double tap a sphere to descend into its contents.
+- Pinch to zoom (trackpad pinch supported, auto-warp near objects).
 - Drag to pan.
