@@ -71,7 +71,6 @@
 - `binary`: one positrino + one electrino with opposite phase offsets.
 - `fermion`: 12 architrinos arranged as multiple binaries in specified planes.
 - `photon`: 12 architrinos arranged as multiple binaries with phase offsets.
-- Expansion should be deterministic and parameterized.
 
 ## JSON schema sketch
 - `scene`: name, units, time step, scale bands.
@@ -117,6 +116,7 @@
 - Architrino glyphs scale with zoom; clamp to min/max pixels.
 - Labels are toggleable and decluttered; screen-space sizing.
 - Swipe-driven info panels show counts and metadata.
+- Mobile: swipe up/down/left/right to switch between info and control screens; keep zoom/pan gestures separate.
 
 ## Future enhancements (discussion)
 - Branching zoom paths and user-directed exploration.
