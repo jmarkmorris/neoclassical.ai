@@ -56,7 +56,10 @@
 | -19 and smaller | Quarks | Experimental upper bound on size ~1e-19 m; spherical in rendering |
 | -19 and smaller | Charged leptons | Electron/muon/tau; upper bound ~1e-19 m; spherical in rendering |
 | -19 and smaller | Neutrinos | Spherical in rendering; use same upper bound |
-| Below | Architrino assemblies | Conceptual substructure |
+| Below | Architrino assemblies | personality charge layer |
+| <-20 to >-36 | Architrino assemblies | outer Noether core binary |
+| ? to ~-36 | Architrino assemblies | middle Noether core binary |
+| scale of max curvature | Architrino assemblies | inner Noether core binary |
 
 ## Analytic path primitives
 - `orbit`: `center`, `radius`, `plane` (theta/phi or normal+up), `phase`, `speed`.
