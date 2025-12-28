@@ -36,19 +36,21 @@
 | Scale band (log10 meters) | Scene/anchor | Representative objects and structure |
 | --- | --- | --- |
 | 26 to 27 | Universe context | Observable universe context and background |
-| 24 to 26 | Cosmic web / superclusters | Filaments, voids, superclusters; focus path starts here |
-| 22 to 24 | Galaxy clusters | Global set of clusters; moving around each other; focused cluster selection |
+| 24 to 26 | Cosmic web / superclusters | Filaments, voids, superclusters; intergalactic medium |
+| 22 to 24 | Galaxy clusters | Cluster dynamics; intracluster medium; cluster mergers |
 | 20 to 22 | Galaxies | Spiral, elliptical, irregular; AGN/quasars as optional focal points |
-| 17 to 19 | Galactic substructures | Arms, halos, bulge, star clouds; globular and open clusters; nebulae; molecular clouds; supernova remnants; central SMBH context |
-| 13 to 15 | Solar systems | Stellar systems with planets; asteroid belts, Kuiper belt, Oort cloud; protoplanetary disks |
-| 9 to 10 | Stars | Main sequence, giants, supergiants, binaries, variable stars |
+| 17 to 19 | Galactic substructures | Arms, halos, bulge, star clouds; globular/open clusters; nebulae; molecular clouds; supernova remnants |
+| 13 to 15 | Solar systems | Planetary systems; asteroid belts, Kuiper belt, Oort cloud; protoplanetary disks |
+| 10 to 12 | Supermassive black holes | Event horizon scale; accretion disks; jets |
+| 8 to 9 | Stars | Main sequence, giants, supergiants, binaries, variable stars |
 | 6 to 7 | Planets and dwarf planets | Terrestrial and gas/ice giants; major moons as subfocus |
+| 5 to 6 | Moons | Major natural satellites; ring systems context |
 | 4 to 7 | Compact remnants | White dwarfs, neutron stars, pulsars, magnetars, stellar-mass black holes |
-| 3 to 6 | Small bodies | Moons, asteroids, comets, cometary nuclei |
+| 2 to 5 | Small bodies | Asteroids, comets, cometary nuclei, Kuiper belt objects |
 | -9 to -6 | Molecules | Molecular assemblies |
 | -10 to -9 | Atoms | Atomic structures |
-| -15 to -14 | Nucleons | Protons and neutrons |
-| -18 and smaller | Standard model particles | Pointlike representations |
+| -15 to -14 | Atomic nuclei and nucleons | Nuclei, protons, neutrons |
+| -18 and smaller | Standard model particles | Quarks, leptons, and bosons |
 | Below | Architrino assemblies | Conceptual substructure |
 
 ## Analytic path primitives
