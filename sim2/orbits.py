@@ -2502,6 +2502,14 @@ def main() -> None:
             offline_fps=args.fps,
             duration_seconds=args.duration_seconds if args.duration_seconds is not None else scenario.config.duration_seconds,
         )
+    except FileNotFoundError as exc:
+        print(f"[error] {exc}", flush=True)
+        json_dir = Path(__file__).resolve().parent / "json"
+        if json_dir.is_dir():
+            options = sorted(p.name for p in json_dir.glob("*.json"))
+            if options:
+                print(f"[hint] Available run files in sim2/json: {', '.join(options)}", flush=True)
+        raise SystemExit(2)
     except KeyboardInterrupt:
         # Graceful exit on Ctrl-C without traceback.
         try:
