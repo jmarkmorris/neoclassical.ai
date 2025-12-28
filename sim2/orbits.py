@@ -8,8 +8,8 @@ Implements core math and a non-graphical, testable pipeline:
 • Basic pre-bake loop that can run until domain coverage is achieved.
 
 Usage:
-    python orbits.py --run circle.json
-    python orbits.py --run spiral.json
+    python orbits.py --run json/circle.json
+    python orbits.py --run json/spiral-inv_r2.json
 
 Run files expect top-level "directives" and an "architrinos" array; see sim2/json/circle.json.
 
@@ -225,13 +225,13 @@ def load_run_file(
     if not arch_list:
         raise ValueError("Run file requires an 'architrinos' array with at least one entry.")
 
-    path_snap = directives.get("path_snap", directives.get("path_step"))
+    path_snap = directives.get("path_snap")
     if path_snap is not None:
         path_snap = _coerce_float(path_snap, "directives.path_snap")
         if path_snap <= 0:
             raise ValueError("directives.path_snap must be > 0.")
 
-    position_snap = directives.get("position_snap", directives.get("snap_distance"))
+    position_snap = directives.get("position_snap")
     if position_snap is not None:
         position_snap = _coerce_float(position_snap, "directives.position_snap")
         if position_snap <= 0:
@@ -257,12 +257,6 @@ def load_run_file(
     if not isinstance(field_alg, str):
         raise ValueError("directives.field_alg must be a string.")
     field_alg = field_alg.lower()
-    legacy_map = {
-        "gpu_instanced": "gpu",
-        "cpu_incremental": "cpu_incr",
-        "cpu_rebuild": "cpu_full",
-    }
-    field_alg = legacy_map.get(field_alg, field_alg)
     if field_alg not in {"cpu_full", "cpu_incr", "gpu"}:
         raise ValueError("directives.field_alg must be 'cpu_full', 'cpu_incr', or 'gpu'.")
 
@@ -329,15 +323,15 @@ def load_run_file(
             mover_type = mover_raw.lower()
             if mover_type not in {"analytic", "physics"}:
                 raise ValueError(f"architrinos[{idx}].mover must be 'analytic' or 'physics'.")
-        polarity = arch.get("type") or arch.get("polarity")
+        polarity = arch.get("polarity")
         if polarity not in {"p", "e"}:
-            raise ValueError(f"architrinos[{idx}] polarity/type must be 'p' or 'e'.")
+            raise ValueError(f"architrinos[{idx}].polarity must be 'p' or 'e'.")
         path_name_raw = arch.get("path")
         if path_name_raw is not None and not isinstance(path_name_raw, str):
             raise ValueError(f"architrinos[{idx}].path must be a string if provided.")
         path_name = path_name_raw if isinstance(path_name_raw, str) else None
         decay_override = arch.get("decay")
-        start_pos_raw = arch.get("start_pos") or arch.get("start")
+        start_pos_raw = arch.get("start_pos")
         if start_pos_raw is None:
             raise ValueError(f"architrinos[{idx}] requires start_pos.")
         start_pos_dict = _expect_dict(start_pos_raw, f"architrinos[{idx}].start_pos")
@@ -2473,7 +2467,7 @@ def render_live(cfg: SimulationConfig, paths: Dict[str, PathSpec], arch_specs: L
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="sim2 prototype (live).")
-    parser.add_argument("--run", type=str, required=True, help="JSON run file with directives and architrino groups.")
+    parser.add_argument("--run", type=str, required=True, help="JSON run file with directives and architrinos.")
     parser.add_argument("--render", action="store_true", help="Open a PyGame window and render the live simulation.")
     parser.add_argument("--offline", action="store_true", help="Render offline to an mp4 (no window, no vsync).")
     parser.add_argument("--output", type=str, default="output.mp4", help="Output video filename for offline render.")

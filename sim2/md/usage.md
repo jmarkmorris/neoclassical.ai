@@ -1,20 +1,18 @@
 # Run File Template
 
-This describes every supported setting for JSON run files. Settings map to `directives` and `groups` fields in the json files.
+This describes every supported setting for JSON run files. Settings map to `directives` and `architrinos` fields in the json files.
 
 ## Examples
 From `sim2`:
 ```
-python orbits.py --run circle.json
-python orbits.py --run spiral.json
-python orbits.py --render --path unit_circle
+python orbits.py --run json/circle.json
+python orbits.py --run json/spiral-inv_r2.json
 ```
 
 From the repo root:
 ```
-python sim2/orbits.py --run sim2/circle.json
-python sim2/orbits.py --run sim2/spiral.json
-python sim2/orbits.py --render --path unit_circle
+python sim2/orbits.py --run sim2/json/circle.json
+python sim2/orbits.py --run sim2/json/spiral-inv_r2.json
 ```
 
 ## Profiling
@@ -37,12 +35,15 @@ python -m pyinstrument -r text sim2/orbits.py --run sim2/circle.json
 ```
 {
   "directives": { ... },
-  "groups": [
+  "architrinos": [
     {
-      "name": "...",
-      "electrinos": 1,
-      "positrinos": 1,
-      "orbit": { ... }
+      "name": "p1",
+      "polarity": "p",
+      "start_pos": { "x": 1.0, "y": 0.0 },
+      "velocity": { "speed": 0.5, "heading_deg": 90 },
+      "phases": [
+        { "mode": "move", "mover": "analytic", "path": "unit_circle" }
+      ]
     }
   ]
 }
@@ -54,7 +55,7 @@ python -m pyinstrument -r text sim2/orbits.py --run sim2/circle.json
 - `field_speed` (float): Field propagation speed.
 - `max_force` (float): Clamp for physics impulse magnitude (prevents blow-ups).
 - `world_size` (float): Full width/height of the square world domain in world units. (Preferred.)
-- `domain_half_extent` (float): Half extent of square domain, in world units. (Legacy; use `world_size` instead.)
+- `domain_half_extent` (float): Half extent of square domain, in world units (use instead of `world_size` if you want half-size directly).
 - `speed_multiplier` (float): Default path speed multiplier.
 - `position_snap` (float): Optional XY snap grid size; ignored if `path_snap` is set.
 - `path_snap` (float): Snap step in path parameter space (keeps positions on the path).
@@ -70,46 +71,29 @@ python -m pyinstrument -r text sim2/orbits.py --run sim2/circle.json
 - `shell_weight` (string): 
   - `"raised_cosine"` for smooth annular weights. 
   - `"hard"` for a flat band.
-- `field_backend` (string): Preferred field update backend. Use one of:
+- `field_alg` (string): Preferred field update backend. Use one of:
   - `"gpu"`: GL instanced rings (requires `moderngl`).
   - `"cpu_incr"`: CPU incremental ring updates.
   - `"cpu_full"`: CPU full rebuild each frame.
-  Legacy values are mapped automatically: `"gpu_instanced"` → `"gpu"`, `"cpu_incremental"` → `"cpu_incr"`, `"cpu_rebuild"` → `"cpu_full"`.
 - `canvas_shrink` (float): Optional factor (default `0.9`) to reduce requested canvas size to avoid OS downscaling; set to `1.0` to request full size.
 - `seed_static_field` (bool): Pre-fill the field with stationary emissions for each architrino at startup. Defaults to `false`; enable only when you want a pre-baked field snapshot.
 - `grid_visible` (bool): Show the 0.25x0.25 domain grid overlay. Defaults to `false`.
 
-Aliases (optional):
-- `field_on` → `field_visible`
-- `snap_distance` → `position_snap`
-- `path_step` → `path_snap`
+## `architrinos` settings
+Each entry describes one architrino.
 
-## `groups` settings
-Each group describes architrino counts and a motion block.
-
-- `name` (string): Group label.
-- `electrinos` (int): Number of electrinos (currently only `1` is supported).
-- `positrinos` (int): Number of positrinos (currently only `1` is supported).
-- `orbit` (object): Use a predefined path.
-  - `path` (string): Path name (`unit_circle`, `exp_inward_spiral`).
-  - `speed_multiplier` (float): Path speed multiplier override for the group.
-  - `decay` (float): Spiral decay override (only for `exp_inward_spiral`).
-- `simulation` (object): Reserved for future simulation rules (do not include with `orbit`).
-  - `mover` (string, optional): Motion backend per architrino. Use `"analytic"` (default) for predefined paths, or `"physics"` (stubbed for future force-based motion).
-
-### Per-arch settings (when you bypass `groups` and list `architrinos`)
 - `name` (string): Architrino label.
 - `polarity` (string): `"p"` or `"e"`.
-- `mover` (string, optional): `"analytic"` or `"physics"`; required in `phases[0]` when phases are used.
-- `path` (string, optional): Path name for analytic movers; required in `phases[0]` for analytic phases.
 - `start_pos` (object): `{ "x": float, "y": float }`.
 - `velocity` (object): `{ "speed": float, "heading_deg": float }` (heading is screen-friendly: 0=+x, 90=up).
-- `phases` (array, required): Time-ordered behavior phases. The first phase must include `mover` (and `path` if analytic).
+- `path` (string, optional): Default path for analytic phases (`unit_circle`, `exp_inward_spiral`).
+- `decay` (float, optional): Spiral decay override (only for `exp_inward_spiral`).
+- `phases` (array, required): Time-ordered behavior phases. `phases[0].mover` is required; analytic movers need a path in `phases[0]` or `path` above.
   - Each phase supports:
     - `mode` (string): `"frozen"` (hold position) or `"move"` (normal motion). Default `"move"`.
     - `duration_seconds` (float, optional): Length of this phase; if omitted, phase runs until the end of the list.
     - `speed_multiplier` (float, optional): Per-phase speed override (for both analytic and physics movers).
-    - `mover` (string, optional): `"analytic"` or `"physics"` to switch mover in this phase.
+    - `mover` (string, required in `phases[0]`): `"analytic"` or `"physics"`.
     - `path` (string, optional): Target path for analytic phases (`unit_circle`, `exp_inward_spiral`).
     - `velocity` (object, optional): `{ "speed": float, "heading_deg": float }` override for physics movers during this phase.
 
@@ -118,12 +102,24 @@ Example architrino with a 10s warm-up, then motion:
 {
   "name": "p1",
   "polarity": "p",
-  "mover": "physics",
-  "start_pos": { "x": 1, "y": 1 },
-  "velocity": { "speed": 0.5, "heading_deg": 90 },
+  "start_pos": {
+    "x": 1.0,
+    "y": 1.0
+  },
+  "velocity": {
+    "speed": 0.5,
+    "heading_deg": 90
+  },
   "phases": [
-    { "mode": "frozen", "duration_seconds": 10 },
-    { "mode": "move" }
+    {
+      "mode": "frozen",
+      "duration_seconds": 10,
+      "mover": "physics"
+    },
+    {
+      "mode": "move",
+      "mover": "physics"
+    }
   ]
 }
 ```

@@ -1,10 +1,10 @@
 # High-Level Design
 
 ## Overview
-Render a 2-D timespace slice with predefined architrino trajectories, delayed circular emissions, and per-pixel superposition coloring. Scenarios are driven by JSON run files (`circle.json`, `spiral.json`) that declare directives and architrino groups. Live mode recomputes the field every frame from the retained emission history.
+Render a 2-D timespace slice with predefined architrino trajectories, delayed circular emissions, and per-pixel superposition coloring. Scenarios are driven by JSON run files (`circle.json`, `spiral-inv_r2.json`) that declare directives and architrinos. Live mode recomputes the field every frame from the retained emission history.
 
 ## Core components
-- **Scenario Loader**: Reads JSON run files with top-level `directives` and `groups`, producing the active simulation config and group orbits.
+- **Scenario Loader**: Reads JSON run files with top-level `directives` and `architrinos`, producing the active simulation config and architrino specs.
 - **Trajectory Library**: Parameterized, piecewise-smooth paths in $(x,y,t)$; supplies architrino positions per time step or snapped path parameters.
 - **Field Engine**: Computes per-pixel scalar potential from delayed shells (radius $r = v\,\tau$, magnitude $1/r^2$) for each emission event; field is rebuilt each frame from the retained emission list.
 - **Renderer**: Maps field values to RGB (red/blue superposition, purple at neutrality) and draws overlays (architrino markers, emitter markers, causal shells, retarded lines, hit connectors).
@@ -18,10 +18,9 @@ Render a 2-D timespace slice with predefined architrino trajectories, delayed ci
 3) Renderer composites field + overlays; UI events adjust speed/pause/field toggle in real time.  
 
 ## Run file structure
-Run files define `directives` and `groups`.
+Run files define `directives` and `architrinos`.
 - `directives`: global settings (hz, field speed, snaps, render flags).
-- `groups`: array of architrino groups; each group declares counts and either `orbit` or `simulation`.
-- Current limit: one group with 1 electrino + 1 positrino; simulation rules are reserved for future scenarios.
+- `architrinos`: array of architrino entries with paths, phases, and motion settings.
 
 ## Path history granularity
 - **Temporal cadence**: one emission per architrino per frame (`dt = 1 / hz`).
