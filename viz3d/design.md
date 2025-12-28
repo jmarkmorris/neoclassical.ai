@@ -17,18 +17,18 @@
 ## Scale model and navigation
 - Use a log-scale parameter `s` to drive zoom, with total exponent range `-60..60`.
 - Continuous zoom across macro scales; non-selected regions drift toward edges as focus shifts.
-- Scale indicator shows a range (for example `10^15-10^18` or `15-18` if space is tight).
-- Scale indicator updates continuously during zoom; 
+- Scale indicator is embedded in each sphere label (use range or single value when space allows).
 - Per-node size encoding uses author-specified exponent ranges mapped to a compressed screen-scale curve (sqrt or smoothstep).
 
 ## Zoom mechanics (discussion)
-- Define transition timing model: zoom effect without being tediously slow
+- Define transition timing model: S-curve timing (slow start, fast middle, slow end), Star Trek-like warp feel.
 - Allow per-transition overrides for duration, easing, and optional pauses.
 - Specify blending rules for glyphs and labels during handoff between scales.
 - Decide whether zoom in/out symmetry is required or can be asymmetric.
 
 ## Scene composition (discussion)
 - Define rules for single focus object vs multiple objects at the same scale.
+- For each sphere, choose which other spheres appear in the same scene (e.g., solar system shows star, planets, moons).
 - Specify layout strategies for multiple objects inside a parent volume (radial, clustered, grid).
 - Clarify label anchoring: pinned to glyphs vs screen-space offsets.
 
@@ -60,6 +60,7 @@
 | -20? to -36? | assembly architecture | outer Noether core binary |
 | circa Planck -36 | assembly architecture | middle Noether core binary |
 | scale of max curvature | assembly architecture | inner Noether core binary |
+| Note | assembly scales | Vague/relative until constraints are known; keep flexible |
 
 ## Analytic path primitives
 - `orbit`: `center`, `radius`, `plane` (theta/phi or normal+up), `phase`, `speed`.
@@ -115,8 +116,10 @@
 ## Glyphs, labels, and overlays
 - Architrino glyphs scale with zoom; clamp to min/max pixels.
 - Labels are toggleable and decluttered; screen-space sizing.
+- Label text includes the scale indicator inside each sphere.
+- Labels are rendered inside spheres; reduce font size if needed.
 - Swipe-driven info panels show counts and metadata.
-- Mobile: swipe up/down/left/right to switch between info and control screens; keep zoom/pan gestures separate.
+- Mobile gesture screens are deferred; web/desktop first.
 
 ## Future enhancements (discussion)
 - Branching zoom paths and user-directed exploration.
@@ -126,3 +129,4 @@
 ## Narrative export
 - Scripted navigation paths (sequence of zoom and focus actions) for smooth MP4 output.
 - Export presets for desktop (16:9) and mobile (9:16).
+- Defer formal narrative/export spec until core interaction flow is stable.
