@@ -12,7 +12,8 @@
 ## Scope and technology
 - Separate app from sim2; no retarded-field shading.
 - Default rendering: orthographic camera.
-- Candidate stacks: WebGL (three.js) or Godot.
+- Primary stack: WebGL (three.js) for web-first delivery, fast prototyping, and direct gesture/UI integration. (also considered Godot)
+- Rationale includes higher SWE proficiency in three.js for development, debugging, and iteration speed.
 
 ## Scale model and navigation
 - Use a log-scale parameter `s` to drive zoom, with total exponent range `-60..60`.
