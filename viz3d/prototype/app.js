@@ -140,12 +140,15 @@ const transitionState = {
   fromLevel: null,
   toLevel: null,
   direction: "in",
+  focusNodeName: null,
+  targetZoom: null,
+  toFitScale: 1,
   warpScale: 1,
   panStart: new THREE.Vector3(),
   panTarget: new THREE.Vector3(),
   targetPosition: new THREE.Vector3(),
   startTime: 0,
-  duration: 900,
+  duration: 1125,
 };
 
 const autoWarpThresholds = {
@@ -257,6 +260,45 @@ function applyZoom(value) {
   camera.updateProjectionMatrix();
 }
 
+function computeWarpScale(objectRadius) {
+  const aspect = window.innerWidth / window.innerHeight;
+  const viewHeight = baseViewHeight / camera.zoom;
+  const viewWidth = (baseViewHeight * aspect) / camera.zoom;
+  const halfDiagonal = 0.5 * Math.hypot(viewWidth, viewHeight);
+  const targetRadius = halfDiagonal * 1.05;
+  return Math.max(1.2, targetRadius / Math.max(objectRadius, 0.01));
+}
+
+function getLevelBoundsLocal(level) {
+  worldGroup.updateMatrixWorld(true);
+  const bounds = new THREE.Box3().setFromObject(level.group);
+  const worldToLocal = new THREE.Matrix4()
+    .copy(level.group.matrixWorld)
+    .invert();
+  bounds.applyMatrix4(worldToLocal);
+
+  const size = new THREE.Vector3();
+  const center = new THREE.Vector3();
+  bounds.getSize(size);
+  bounds.getCenter(center);
+  return { size, center };
+}
+
+function computeFitZoomForLevel(level) {
+  const { size } = getLevelBoundsLocal(level);
+  if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
+    return camera.zoom;
+  }
+
+  const aspect = window.innerWidth / window.innerHeight;
+  const viewHeight = baseViewHeight;
+  const viewWidth = baseViewHeight * aspect;
+  const marginFactor = 0.8;
+  const zoomX = (viewWidth * marginFactor) / Math.max(size.x, 0.01);
+  const zoomY = (viewHeight * marginFactor) / Math.max(size.y, 0.01);
+  return clampZoom(Math.min(zoomX, zoomY));
+}
+
 function fitCameraToLevel(level) {
   worldGroup.updateMatrixWorld(true);
   const bounds = new THREE.Box3().setFromObject(level.group);
@@ -273,12 +315,7 @@ function fitCameraToLevel(level) {
   const center = new THREE.Vector3();
   bounds.getCenter(center);
 
-  const viewHeight = baseViewHeight;
-  const viewWidth = baseViewHeight * (window.innerWidth / window.innerHeight);
-  const marginFactor = 0.8;
-  const zoomX = (viewWidth * marginFactor) / Math.max(size.x, 0.01);
-  const zoomY = (viewHeight * marginFactor) / Math.max(size.y, 0.01);
-  const nextZoom = clampZoom(Math.min(zoomX, zoomY));
+  const nextZoom = computeFitZoomForLevel(level);
 
   zoomState.active = false;
   panTween.active = false;
@@ -416,6 +453,15 @@ function setLevelOpacity(level, opacity) {
   });
 }
 
+function setLevelOpacityWithFocus(level, focusName, focusOpacity, otherOpacity) {
+  level.nodes.forEach((node) => {
+    const opacity = node.data.name === focusName ? focusOpacity : otherOpacity;
+    node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
+    node.outline.material.opacity = node.baseOpacity.outline * opacity;
+    node.labelObject.element.style.opacity = opacity;
+  });
+}
+
 function beginLevelTransition(targetNode, childLevelId) {
   if (transitionState.active) {
     return;
@@ -430,21 +476,24 @@ function beginLevelTransition(targetNode, childLevelId) {
   }
 
   const targetPosition = targetNode.group.position.clone();
-  const desiredRadius = baseViewHeight * 0.42;
-  const warpScale = Math.max(2.4, desiredRadius / targetNode.data.radius);
+  const { center: toLevelCenter } = getLevelBoundsLocal(toLevel);
+  const warpScale = computeWarpScale(targetNode.data.radius);
 
   transitionState.active = true;
   transitionState.fromLevel = currentLevel;
   transitionState.toLevel = toLevel;
   transitionState.direction = "in";
+  transitionState.focusNodeName = targetNode.data.name;
+  transitionState.targetZoom = computeFitZoomForLevel(toLevel);
+  transitionState.toFitScale = transitionState.targetZoom / camera.zoom;
   transitionState.warpScale = warpScale;
   transitionState.panStart.copy(worldGroup.position);
   transitionState.panTarget.set(-targetPosition.x, -targetPosition.y, 0);
   transitionState.targetPosition.copy(targetPosition);
   transitionState.startTime = performance.now();
 
-  toLevel.group.position.copy(targetPosition);
-  toLevel.group.scale.setScalar(1 / warpScale);
+  toLevel.group.position.copy(targetPosition).sub(toLevelCenter);
+  toLevel.group.scale.setScalar(1);
   setLevelOpacity(toLevel, 0);
   setLevelOpacity(currentLevel, 1);
 
@@ -487,21 +536,24 @@ function startLevelTransitionOut() {
   }
 
   const targetPosition = parentNode.group.position.clone();
-  const desiredRadius = baseViewHeight * 0.42;
-  const warpScale = Math.max(2.4, desiredRadius / parentNode.data.radius);
+  const { center: parentCenter } = getLevelBoundsLocal(parentLevel);
+  const warpScale = computeWarpScale(parentNode.data.radius);
 
   transitionState.active = true;
   transitionState.fromLevel = currentLevel;
   transitionState.toLevel = parentLevel;
   transitionState.direction = "out";
+  transitionState.focusNodeName = parentInfo.focusNodeName;
+  transitionState.targetZoom = computeFitZoomForLevel(parentLevel);
+  transitionState.toFitScale = transitionState.targetZoom / camera.zoom;
   transitionState.warpScale = warpScale;
   transitionState.panStart.copy(worldGroup.position);
-  transitionState.panTarget.set(0, 0, 0);
+  transitionState.panTarget.set(-targetPosition.x, -targetPosition.y, 0);
   transitionState.targetPosition.copy(targetPosition);
   transitionState.startTime = performance.now();
 
-  parentLevel.group.position.copy(targetPosition).multiplyScalar(-1);
-  parentLevel.group.scale.setScalar(warpScale);
+  parentLevel.group.position.copy(targetPosition).sub(parentCenter);
+  parentLevel.group.scale.setScalar(1);
   setLevelOpacity(parentLevel, 0);
   setLevelOpacity(currentLevel, 1);
 }
@@ -518,6 +570,10 @@ function finalizeTransition() {
     toLevel.group.position.add(rebaseOffset);
     worldGroup.position.set(0, 0, 0);
 
+    const fromFocus = fromLevel.nodeByName.get(transitionState.focusNodeName);
+    if (fromFocus) {
+      fromFocus.group.scale.setScalar(1);
+    }
     fromLevel.group.scale.setScalar(1);
     setLevelOpacity(fromLevel, 0);
     worldGroup.remove(fromLevel.group);
@@ -533,6 +589,10 @@ function finalizeTransition() {
     toLevel.group.scale.setScalar(1);
     setLevelOpacity(toLevel, 1);
 
+    const toFocus = toLevel.nodeByName.get(transitionState.focusNodeName);
+    if (toFocus) {
+      toFocus.group.scale.setScalar(1);
+    }
     fromLevel.group.scale.setScalar(1);
     setLevelOpacity(fromLevel, 0);
     worldGroup.remove(fromLevel.group);
@@ -553,44 +613,59 @@ function updateTransition(now) {
   const elapsed = now - transitionState.startTime;
   const t = Math.min(1, elapsed / transitionState.duration);
   const eased = easeInOutCubic(t);
-  const fade = smoothstep(0.2, 0.85, t);
+  const panProgress = smoothstep(0, 0.35, t);
+  const scaleProgress = smoothstep(0.35, 1, t);
 
   const fromLevel = transitionState.fromLevel;
   const toLevel = transitionState.toLevel;
 
   if (transitionState.direction === "in") {
-    fromLevel.group.scale.setScalar(
-      1 + (transitionState.warpScale - 1) * eased
+    const focusNode = fromLevel.nodeByName.get(transitionState.focusNodeName);
+    if (focusNode) {
+      focusNode.group.scale.setScalar(
+        1 + (transitionState.warpScale - 1) * scaleProgress
+      );
+    }
+    toLevel.group.scale.setScalar(transitionState.toFitScale);
+    worldGroup.position.lerpVectors(
+      transitionState.panStart,
+      transitionState.panTarget,
+      panProgress
     );
-    toLevel.group.scale.setScalar(
-      1 / transitionState.warpScale +
-        (1 - 1 / transitionState.warpScale) * eased
+
+    const focusFade = 1 - smoothstep(0.55, 1, scaleProgress);
+    const toFade = smoothstep(0.4, 1, scaleProgress);
+    setLevelOpacityWithFocus(
+      fromLevel,
+      transitionState.focusNodeName,
+      focusFade,
+      0
     );
+    setLevelOpacity(toLevel, toFade);
+  } else {
+    const focusNode = toLevel.nodeByName.get(transitionState.focusNodeName);
+    if (focusNode) {
+      focusNode.group.scale.setScalar(
+        1 + (transitionState.warpScale - 1) * scaleProgress
+      );
+    }
+    toLevel.group.scale.setScalar(transitionState.toFitScale);
 
     worldGroup.position.lerpVectors(
       transitionState.panStart,
       transitionState.panTarget,
-      eased
+      panProgress
     );
 
-    setLevelOpacity(fromLevel, 1 - fade);
-    setLevelOpacity(toLevel, fade);
-  } else {
-    const childScale =
-      1 + (1 / transitionState.warpScale - 1) * eased;
-    fromLevel.group.scale.setScalar(childScale);
-    toLevel.group.scale.setScalar(
-      transitionState.warpScale + (1 - transitionState.warpScale) * eased
+    const focusFade = 1 - smoothstep(0.6, 1, scaleProgress);
+    const otherOpacity = smoothstep(0.6, 1, scaleProgress);
+    setLevelOpacityWithFocus(
+      toLevel,
+      transitionState.focusNodeName,
+      focusFade,
+      otherOpacity
     );
-
-    const parentPosition = transitionState.targetPosition
-      .clone()
-      .multiplyScalar(-1)
-      .lerp(new THREE.Vector3(0, 0, 0), eased);
-    toLevel.group.position.copy(parentPosition);
-
-    setLevelOpacity(fromLevel, 1 - fade);
-    setLevelOpacity(toLevel, fade);
+    setLevelOpacity(fromLevel, 1 - smoothstep(0.3, 0.9, scaleProgress));
   }
 
   if (t >= 1) {
