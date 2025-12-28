@@ -26,6 +26,11 @@
 - Specify blending rules for glyphs and labels during handoff between scales.
 - Decide whether zoom in/out symmetry is required or can be asymmetric.
 
+## Input gestures
+- Zoom in via double tap or pinch out.
+- Zoom out via pinch out.
+- Pan via touch/click-hold and drag (Google Maps metaphor).
+
 ## Scene composition (discussion)
 - Define rules for single focus object vs multiple objects at the same scale.
 - For each sphere, choose which other spheres appear in the same scene (e.g., solar system shows star, planets, moons).
