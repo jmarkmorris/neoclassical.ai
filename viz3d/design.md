@@ -1,7 +1,7 @@
 # viz3d Design Notes
 
 ## Goals
-- Multi-scale 3D visualization from cosmic structures down to architrino assemblies.
+- Multi-scale 3D visualization from cosmic structures down to assembly architecture.
 - Drill-down navigation with log-scale zoom and focus on selected parts.
 - Analytic path specification for orbits and assemblies.
 - Cross-platform rendering with MP4 export (desktop/mobile).
@@ -56,10 +56,10 @@
 | -19 and smaller | Quarks | Experimental upper bound on size ~1e-19 m; spherical in rendering |
 | -19 and smaller | Charged leptons | Electron/muon/tau; upper bound ~1e-19 m; spherical in rendering |
 | -19 and smaller | Neutrinos | Spherical in rendering; use same upper bound |
-| Below | Architrino assemblies | personality charge layer |
-| <-20 to >-36 | Architrino assemblies | outer Noether core binary |
-| ? to ~-36 | Architrino assemblies | middle Noether core binary |
-| scale of max curvature | Architrino assemblies | inner Noether core binary |
+| -20? to ? | assembly architecture | personality charge layer |
+| -20? to -36? | assembly architecture | outer Noether core binary |
+| circa Planck -36 | assembly architecture | middle Noether core binary |
+| scale of max curvature | assembly architecture | inner Noether core binary |
 
 ## Analytic path primitives
 - `orbit`: `center`, `radius`, `plane` (theta/phi or normal+up), `phase`, `speed`.
