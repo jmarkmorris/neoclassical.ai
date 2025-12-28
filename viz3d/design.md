@@ -50,7 +50,12 @@
 | -9 to -6 | Molecules | Molecular assemblies |
 | -10 to -9 | Atoms | Atomic structures |
 | -15 to -14 | Atomic nuclei and nucleons | Nuclei, protons, neutrons |
-| -18 and smaller | Standard model particles | Quarks, leptons, and bosons |
+| -18 to -17 | Weak bosons | W/Z; weak interaction range ~1e-18 m |
+| -18 to -17 | Higgs boson | Effective electroweak scale ~1e-18 m |
+| -18 and smaller | Photons and gluons | Massless; render as spherical or wavelength-dependent |
+| -19 and smaller | Quarks | Experimental upper bound on size ~1e-19 m; spherical in rendering |
+| -19 and smaller | Charged leptons | Electron/muon/tau; upper bound ~1e-19 m; spherical in rendering |
+| -19 and smaller | Neutrinos | Spherical in rendering; use same upper bound |
 | Below | Architrino assemblies | Conceptual substructure |
 
 ## Analytic path primitives
