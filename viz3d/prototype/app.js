@@ -49,7 +49,13 @@ const levelConfigs = {
   solarSystem: {
     layout: "orbit",
     nodes: [
-      { name: "Star", scale: 9, radius: 2.2, color: "#b07a2a" },
+      {
+        name: "Star",
+        scale: 9,
+        radius: 2.2,
+        color: "#b07a2a",
+        childScene: "json/star.json",
+      },
       {
         name: "Planet A",
         scale: 6,
@@ -106,6 +112,9 @@ const levelConfigs = {
   },
 };
 
+const sceneConfigCache = new Map();
+const sceneLoadPromises = new Map();
+
 const levels = new Map();
 const navigationStack = [];
 let currentLevel = null;
@@ -150,6 +159,69 @@ const zoomLimits = { min: 0.35, max: 6 };
 const raycaster = new THREE.Raycaster();
 const pointerNdc = new THREE.Vector2();
 let lastZoomGestureTime = 0;
+
+async function loadSceneConfig(scenePath) {
+  if (sceneConfigCache.has(scenePath)) {
+    return sceneConfigCache.get(scenePath);
+  }
+  if (sceneLoadPromises.has(scenePath)) {
+    return sceneLoadPromises.get(scenePath);
+  }
+
+  const promise = fetch(scenePath)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to load scene ${scenePath}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const idMap = new Map(
+        data.objects.map((obj) => [obj.id, obj.label || obj.id])
+      );
+      const nodes = data.objects.map((obj) => {
+        const node = {
+          name: obj.label || obj.id,
+          scale: obj.scaleExponent ?? 0,
+          radius: obj.radius ?? 1,
+          color: obj.color ?? "#3a5a8a",
+          position: obj.position ?? [0, 0, 0],
+        };
+        if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
+          node.childScene = obj.subScenes[0];
+        }
+        if (obj.motion && obj.motion.type === "orbit") {
+          const orbit = obj.motion.orbit || obj.motion;
+          const centerLabel = idMap.get(orbit.center) ?? orbit.center;
+          node.orbit = {
+            center: centerLabel,
+            radius: orbit.radius ?? 1,
+            speed: orbit.speed ?? 0,
+            phase: orbit.phase ?? 0,
+            shape: orbit.shape ?? "circular",
+            yScale: orbit.yScale,
+          };
+        }
+        return node;
+      });
+
+      const config = {
+        layout: "static",
+        nodes,
+      };
+      levelConfigs[scenePath] = config;
+      sceneConfigCache.set(scenePath, config);
+      return config;
+    })
+    .catch((error) => {
+      console.error(error);
+      sceneLoadPromises.delete(scenePath);
+      return null;
+    });
+
+  sceneLoadPromises.set(scenePath, promise);
+  return promise;
+}
 
 function clampZoom(value) {
   return Math.min(zoomLimits.max, Math.max(zoomLimits.min, value));
@@ -289,6 +361,12 @@ function buildLevel(levelId) {
     const node = createNode(nodeData);
     if (config.layout === "linear") {
       node.group.position.x = (index - centerOffset) * spacing;
+    } else if (config.layout === "static" && nodeData.position) {
+      node.group.position.set(
+        nodeData.position[0] ?? 0,
+        nodeData.position[1] ?? 0,
+        nodeData.position[2] ?? 0
+      );
     }
     group.add(node.group);
     nodes.push(node);
@@ -338,11 +416,10 @@ function setLevelOpacity(level, opacity) {
   });
 }
 
-function startLevelTransition(targetNode) {
+function beginLevelTransition(targetNode, childLevelId) {
   if (transitionState.active) {
     return;
   }
-  const childLevelId = targetNode.data.children;
   if (!childLevelId) {
     return;
   }
@@ -375,6 +452,22 @@ function startLevelTransition(targetNode) {
     levelId: currentLevel.id,
     focusNodeName: targetNode.data.name,
   });
+}
+
+async function startLevelTransitionFromNode(targetNode) {
+  const childLevelId = targetNode.data.children || targetNode.data.childScene;
+  if (!childLevelId) {
+    return;
+  }
+
+  if (!levelConfigs[childLevelId]) {
+    const config = await loadSceneConfig(childLevelId);
+    if (!config) {
+      return;
+    }
+  }
+
+  beginLevelTransition(targetNode, childLevelId);
 }
 
 function startLevelTransitionOut() {
@@ -567,14 +660,14 @@ function maybeAutoWarp(now) {
     return;
   }
 
-  if (
-    candidate.radiusPx >= autoWarpThresholds.inPx &&
-    candidate.node.data.children &&
-    candidate.isInside
-  ) {
-    autoWarpThresholds.lastAt = now;
-    startLevelTransition(candidate.node);
-    return;
+  if (candidate.radiusPx >= autoWarpThresholds.inPx && candidate.isInside) {
+    const childLevelId =
+      candidate.node.data.children || candidate.node.data.childScene;
+    if (childLevelId) {
+      autoWarpThresholds.lastAt = now;
+      startLevelTransitionFromNode(candidate.node);
+      return;
+    }
   }
 
   if (
@@ -607,8 +700,8 @@ function focusOnPointer(clientX, clientY) {
     return false;
   }
 
-  if (targetNode.data.children) {
-    startLevelTransition(targetNode);
+  if (targetNode.data.children || targetNode.data.childScene) {
+    startLevelTransitionFromNode(targetNode);
   } else {
     const panTarget = new THREE.Vector3(
       -targetNode.group.position.x,

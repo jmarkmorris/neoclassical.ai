@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "moon",
+    "name": "Moon",
+    "units": "relative",
+    "scaleBandLog10m": [5, 6]
+  },
+  "objects": [
+    {
+      "id": "core",
+      "label": "core",
+      "scaleExponent": 5,
+      "radius": 1.1,
+      "color": "#6a4d1b",
+      "position": [3.5, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "mantle",
+      "label": "mantle",
+      "scaleExponent": 5,
+      "radius": 1.0,
+      "color": "#7a4a1f",
+      "position": [0.0, 3.5, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "crust",
+      "label": "crust",
+      "scaleExponent": 5,
+      "radius": 0.95,
+      "color": "#8a6a3a",
+      "position": [-3.5, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "regolith",
+      "label": "regolith",
+      "scaleExponent": 5,
+      "radius": 0.95,
+      "color": "#9ea6bf",
+      "position": [0.0, -3.5, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

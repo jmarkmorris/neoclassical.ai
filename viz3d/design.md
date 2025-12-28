@@ -139,9 +139,11 @@
 
 ## Scenes
 
-### Star Interior 
+Each short name is the label for the object shown as a sphere.
 
-Occurs on warp zoom from solar system scene. Each of the following is shown as a sphere with only the short name as a label.
+### Star (star.json)
+
+Occurs on warp zoom from the solar system scene. 
 
 | Short name     | Category           | Reaction cycle / formula (schematic)                     |
 |----------------|--------------------|-----------------------------------------------------------|
@@ -156,5 +158,130 @@ Occurs on warp zoom from solar system scene. Each of the following is shown as a
 | r-process      | Nucleosynthesis    | rapid (n,γ) far from stability + β⁻ decay back           |
 
 
-### Solar System
+### Universe (universe.json)
 
+| Short name |
+|------------|
+| observable universe |
+| cosmic web |
+| voids |
+
+### Galaxy Cluster (galaxy_cluster.json)
+
+| Short name |
+|------------|
+| galaxy cluster |
+| galaxies |
+| intracluster medium |
+
+### Galaxy (galaxy.json)
+
+| Short name |
+|------------|
+| central black hole |
+| bulge |
+| disk |
+| spiral arms |
+| halo |
+| globular cluster |
+| nebula |
+| molecular cloud |
+
+### Solar System (solar_system.json)
+
+| Short name |
+|------------|
+| star |
+| planets |
+| moons |
+| asteroid belt |
+| Kuiper belt |
+| Oort cloud |
+| comets |
+
+### Planet (planet.json)
+
+| Short name |
+|------------|
+| core |
+| mantle |
+| crust |
+| atmosphere |
+| magnetosphere |
+| rings |
+
+### Moon (moon.json)
+
+| Short name |
+|------------|
+| core |
+| mantle |
+| crust |
+| regolith |
+
+### Molecule (molecule.json)
+
+| Short name |
+|------------|
+| DNA |
+| protein |
+| water |
+
+### Atom (atom.json)
+
+| Short name |
+|------------|
+| nucleus |
+| protons |
+| neutrons |
+| electrons |
+
+### Proton (proton.json)
+
+| Short name |
+|------------|
+| up quark |
+| down quark |
+
+### Neutron (neutron.json)
+
+| Short name |
+|------------|
+| up quark |
+| down quark |
+
+### Up Quark (up_quark.json)
+
+| Short name |
+|------------|
+| personality charge layer |
+| outer Noether core binary |
+| middle Noether core binary |
+| inner Noether core binary |
+
+### Down Quark (down_quark.json)
+
+| Short name |
+|------------|
+| personality charge layer |
+| outer Noether core binary |
+| middle Noether core binary |
+| inner Noether core binary |
+
+### Electron (electron.json)
+
+| Short name |
+|------------|
+| personality charge layer |
+| outer Noether core binary |
+| middle Noether core binary |
+| inner Noether core binary |
+
+### Neutrino (neutrino.json)
+
+| Short name |
+|------------|
+| personality charge layer |
+| outer Noether core binary |
+| middle Noether core binary |
+| inner Noether core binary |

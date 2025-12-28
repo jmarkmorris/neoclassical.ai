@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "galaxy",
+    "name": "Galaxy",
+    "units": "relative",
+    "scaleBandLog10m": [20, 22]
+  },
+  "objects": [
+    {
+      "id": "central_black_hole",
+      "label": "central black hole",
+      "scaleExponent": 11,
+      "radius": 1.3,
+      "color": "#2c2f45",
+      "position": [7.0, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "bulge",
+      "label": "bulge",
+      "scaleExponent": 20,
+      "radius": 1.2,
+      "color": "#3f5f8a",
+      "position": [4.95, 4.95, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "disk",
+      "label": "disk",
+      "scaleExponent": 20,
+      "radius": 1.2,
+      "color": "#2c6c7e",
+      "position": [0.0, 7.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "spiral_arms",
+      "label": "spiral arms",
+      "scaleExponent": 20,
+      "radius": 1.2,
+      "color": "#2f6b6f",
+      "position": [-4.95, 4.95, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "halo",
+      "label": "halo",
+      "scaleExponent": 20,
+      "radius": 1.2,
+      "color": "#2a3b5a",
+      "position": [-7.0, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "globular_cluster",
+      "label": "globular cluster",
+      "scaleExponent": 17,
+      "radius": 1.1,
+      "color": "#4a4f7f",
+      "position": [-4.95, -4.95, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "nebula",
+      "label": "nebula",
+      "scaleExponent": 17,
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "position": [0.0, -7.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "molecular_cloud",
+      "label": "molecular cloud",
+      "scaleExponent": 17,
+      "radius": 1.1,
+      "color": "#6a4d1b",
+      "position": [4.95, -4.95, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

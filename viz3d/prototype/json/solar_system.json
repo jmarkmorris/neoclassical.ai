@@ -14,7 +14,7 @@
       "radius": 2.2,
       "color": "#b07a2a",
       "position": [0, 0, 0],
-      "subScenes": ["star.json"]
+      "subScenes": ["json/star.json"]
     },
     {
       "id": "planet_a",
@@ -22,7 +22,7 @@
       "scaleExponent": 6,
       "radius": 1.0,
       "color": "#327a5e",
-      "subScenes": ["planet.json"],
+      "subScenes": ["json/planet.json"],
       "motion": {
         "type": "orbit",
         "orbit": {
@@ -40,7 +40,7 @@
       "scaleExponent": 6,
       "radius": 0.9,
       "color": "#2c6c7e",
-      "subScenes": ["planet.json"],
+      "subScenes": ["json/planet.json"],
       "motion": {
         "type": "orbit",
         "orbit": {
@@ -58,7 +58,7 @@
       "scaleExponent": 6,
       "radius": 1.15,
       "color": "#3f5f8a",
-      "subScenes": ["planet.json"],
+      "subScenes": ["json/planet.json"],
       "motion": {
         "type": "orbit",
         "orbit": {
@@ -76,7 +76,7 @@
       "scaleExponent": 5,
       "radius": 0.5,
       "color": "#9ea6bf",
-      "subScenes": [],
+      "subScenes": ["json/moon.json"],
       "motion": {
         "type": "orbit",
         "orbit": {
