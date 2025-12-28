@@ -32,50 +32,24 @@
 - Specify layout strategies for multiple objects inside a parent volume (radial, clustered, grid).
 - Clarify label anchoring: pinned to glyphs vs screen-space offsets.
 
-## Scenes (approx scale anchors)
-| Anchor | Scale (log10 meters) | Notes |
+## Scale ladder (scenes and objects)
+| Scale band (log10 meters) | Scene/anchor | Representative objects and structure |
 | --- | --- | --- |
-| Universe context | 26 to 27 | Full scene context and background |
-| Cosmic web / superclusters | 24 to 26 | Regional structure |
-| Galaxy clusters | 22 to 24 | Cluster scale |
-| Galaxies | 20 to 22 | Focused galaxy |
-| Galactic substructures | 17 to 19 | Arms, halos, star clouds |
-| Solar systems | 13 to 15 | Planetary systems |
-| Stars | 9 to 10 | Individual stars |
-| Planets | 6 to 7 | Planet scale |
-| Small bodies | 3 to 6 | Moons, asteroids, comets |
-| Molecules | -9 to -6 | Molecular scale |
-| Atoms | -10 to -9 | Atomic scale |
-| Nucleons | -15 to -14 | Proton/neutron scale |
-| Standard model particles | -18 and smaller | Pointlike representation |
-| Architrino assemblies | below | Conceptual substructure |
-
-## Object ladder (spherical glyphs)
-- Universe context.
-- Global set of galaxy clusters.
-- Superclusters.
-- Galaxy clusters (moving around each other).
-- Focused supercluster -> focused cluster -> galaxy.
-- Galaxy internals: central black hole, stellar populations, star clusters, nebulae, solar systems, neutron stars, black holes.
-- Solar system: star, planets, moons, comets, asteroids.
-- Molecules -> atoms -> nucleons (protons, neutrons) -> standard model particles -> architrino assemblies.
-
-## Top-level objects by distance scale (log10 meters)
-- 26 to 27: observable universe (context).
-- 24 to 26: cosmic web and superclusters.
-- 22 to 24: galaxy clusters.
-- 20 to 22: galaxies.
-- 17 to 19: galactic substructures (arms, halos, star clouds).
-- 13 to 15: solar systems and planetary systems.
-- 9 to 10: stars.
-- 6 to 7: planets.
-- 3 to 6: moons, asteroids, comets.
-- -9 to -6: molecules.
-- -10 to -9: atoms.
-- -15 to -14: nucleons (protons, neutrons).
-- -18 and smaller: standard model particles (pointlike).
-- Below this: architrino assemblies (conceptual substructure).
-- Ranges are approximate and should be configurable per scene.
+| 26 to 27 | Universe context | Observable universe context and background |
+| 24 to 26 | Cosmic web / superclusters | Filaments, voids, superclusters; focus path starts here |
+| 22 to 24 | Galaxy clusters | Global set of clusters; moving around each other; focused cluster selection |
+| 20 to 22 | Galaxies | Spiral, elliptical, irregular; AGN/quasars as optional focal points |
+| 17 to 19 | Galactic substructures | Arms, halos, bulge, star clouds; globular and open clusters; nebulae; molecular clouds; supernova remnants; central SMBH context |
+| 13 to 15 | Solar systems | Stellar systems with planets; asteroid belts, Kuiper belt, Oort cloud; protoplanetary disks |
+| 9 to 10 | Stars | Main sequence, giants, supergiants, binaries, variable stars |
+| 6 to 7 | Planets and dwarf planets | Terrestrial and gas/ice giants; major moons as subfocus |
+| 4 to 7 | Compact remnants | White dwarfs, neutron stars, pulsars, magnetars, stellar-mass black holes |
+| 3 to 6 | Small bodies | Moons, asteroids, comets, cometary nuclei |
+| -9 to -6 | Molecules | Molecular assemblies |
+| -10 to -9 | Atoms | Atomic structures |
+| -15 to -14 | Nucleons | Protons and neutrons |
+| -18 and smaller | Standard model particles | Pointlike representations |
+| Below | Architrino assemblies | Conceptual substructure |
 
 ## Analytic path primitives
 - `orbit`: `center`, `radius`, `plane` (theta/phi or normal+up), `phase`, `speed`.
