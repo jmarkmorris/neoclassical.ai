@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "solar_system",
+    "name": "Solar System",
+    "units": "relative",
+    "scaleBandLog10m": [13, 15]
+  },
+  "objects": [
+    {
+      "id": "star",
+      "label": "Star",
+      "scaleExponent": 9,
+      "radius": 2.2,
+      "color": "#b07a2a",
+      "position": [0, 0, 0],
+      "subScenes": ["star.json"]
+    },
+    {
+      "id": "planet_a",
+      "label": "Planet A",
+      "scaleExponent": 6,
+      "radius": 1.0,
+      "color": "#327a5e",
+      "subScenes": ["planet.json"],
+      "motion": {
+        "type": "orbit",
+        "orbit": {
+          "shape": "circular",
+          "center": "star",
+          "radius": 4.8,
+          "speed": 0.25,
+          "phase": 0.0
+        }
+      }
+    },
+    {
+      "id": "planet_b",
+      "label": "Planet B",
+      "scaleExponent": 6,
+      "radius": 0.9,
+      "color": "#2c6c7e",
+      "subScenes": ["planet.json"],
+      "motion": {
+        "type": "orbit",
+        "orbit": {
+          "shape": "circular",
+          "center": "star",
+          "radius": 7.4,
+          "speed": 0.18,
+          "phase": 2.094
+        }
+      }
+    },
+    {
+      "id": "planet_c",
+      "label": "Planet C",
+      "scaleExponent": 6,
+      "radius": 1.15,
+      "color": "#3f5f8a",
+      "subScenes": ["planet.json"],
+      "motion": {
+        "type": "orbit",
+        "orbit": {
+          "shape": "circular",
+          "center": "star",
+          "radius": 12.0,
+          "speed": 0.12,
+          "phase": 4.189
+        }
+      }
+    },
+    {
+      "id": "moon",
+      "label": "Moon",
+      "scaleExponent": 5,
+      "radius": 0.5,
+      "color": "#9ea6bf",
+      "subScenes": [],
+      "motion": {
+        "type": "orbit",
+        "orbit": {
+          "shape": "circular",
+          "center": "planet_c",
+          "radius": 2.4,
+          "speed": 0.6,
+          "phase": 0.6
+        }
+      }
+    }
+  ]
+}

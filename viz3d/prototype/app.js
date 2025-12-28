@@ -57,36 +57,36 @@ const levelConfigs = {
         color: "#327a5e",
         orbit: {
           center: "Star",
-          radius: 6.4,
+          radius: 4.8,
           speed: 0.25,
           phase: 0,
-          yScale: 0.9,
+          shape: "circular",
         },
       },
       {
         name: "Planet B",
         scale: 6,
-        radius: 1.15,
+        radius: 0.9,
         color: "#2c6c7e",
         orbit: {
           center: "Star",
-          radius: 9.2,
+          radius: 7.4,
           speed: 0.18,
           phase: 2.094,
-          yScale: 0.9,
+          shape: "circular",
         },
       },
       {
         name: "Planet C",
         scale: 6,
-        radius: 0.9,
+        radius: 1.15,
         color: "#3f5f8a",
         orbit: {
           center: "Star",
           radius: 12,
           speed: 0.12,
           phase: 4.189,
-          yScale: 0.9,
+          shape: "circular",
         },
       },
       {
@@ -99,7 +99,7 @@ const levelConfigs = {
           radius: 2.4,
           speed: 0.6,
           phase: 0.6,
-          yScale: 1,
+          shape: "circular",
         },
       },
     ],
@@ -186,7 +186,12 @@ function applyZoom(value) {
 }
 
 function fitCameraToLevel(level) {
+  worldGroup.updateMatrixWorld(true);
   const bounds = new THREE.Box3().setFromObject(level.group);
+  const worldToLocal = new THREE.Matrix4()
+    .copy(worldGroup.matrixWorld)
+    .invert();
+  bounds.applyMatrix4(worldToLocal);
   const size = new THREE.Vector3();
   bounds.getSize(size);
   if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
@@ -315,7 +320,8 @@ function updateLevelOrbits(level, timeSeconds) {
     if (!centerNode) {
       return;
     }
-    const yScale = orbit.yScale ?? 1;
+    const yScale =
+      orbit.shape === "ellipsoid" ? orbit.yScale ?? 0.85 : 1;
     const angle = timeSeconds * orbit.speed + (orbit.phase ?? 0);
     const x = centerNode.group.position.x + Math.cos(angle) * orbit.radius;
     const y =
