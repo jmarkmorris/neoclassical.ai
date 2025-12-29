@@ -42,6 +42,26 @@ body {
   pointer-events: none;
 }
 
+#nav-up {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(8, 10, 18, 0.75);
+  color: #f5f7ff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+#nav-up:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 .hud-title {
   font-weight: 600;
   font-size: 12px;

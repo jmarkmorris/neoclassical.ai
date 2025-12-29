@@ -14,7 +14,7 @@
       "radius": 1.5,
       "color": "#2c567a",
       "position": [5.0, 0.0, 0.0],
-      "subScenes": [],
+      "subScenes": ["json/galaxy.json"],
       "motion": { "type": "fixed" }
     },
     {

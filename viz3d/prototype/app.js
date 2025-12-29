@@ -3,6 +3,7 @@ import { CSS2DRenderer, CSS2DObject } from "./vendor/three/CSS2DRenderer.js";
 
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
+const navUpButton = document.getElementById("nav-up");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -33,6 +34,7 @@ const levelConfigs = {};
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 let haloSeed = 0;
+const rootScenePath = "json/universe.json";
 
 const levels = new Map();
 const navigationStack = [];
@@ -72,7 +74,8 @@ const transitionState = {
 
 const autoWarpThresholds = {
   inPx: 80,
-  outPx: 20,
+  outPx: 0,
+  outFraction: 0.4,
   cooldownMs: 700,
   lastAt: 0,
 };
@@ -88,6 +91,7 @@ const zoomLimits = { min: 0.35, max: 6 };
 const raycaster = new THREE.Raycaster();
 const pointerNdc = new THREE.Vector2();
 let lastZoomGestureTime = 0;
+let pendingWarpOut = false;
 
 async function loadSceneConfig(scenePath) {
   if (sceneConfigCache.has(scenePath)) {
@@ -150,6 +154,30 @@ async function loadSceneConfig(scenePath) {
 
   sceneLoadPromises.set(scenePath, promise);
   return promise;
+}
+
+async function resetToRootScene() {
+  if (transitionState.active) {
+    return;
+  }
+  const config = await loadSceneConfig(rootScenePath);
+  if (!config) {
+    return;
+  }
+  const rootLevel = buildLevel(rootScenePath);
+  worldGroup.clear();
+  worldGroup.position.set(0, 0, 0);
+  rootLevel.group.position.set(0, 0, 0);
+  rootLevel.group.scale.setScalar(1);
+  setLevelOpacity(rootLevel, 1);
+  setLevelLabelOpacity(rootLevel, 0);
+  currentLevel = rootLevel;
+  navigationStack.length = 0;
+  labelFadeState.active = true;
+  labelFadeState.level = currentLevel;
+  labelFadeState.startTime = performance.now();
+  updateCamera();
+  fitCameraToLevel(currentLevel);
 }
 
 function clampZoom(value) {
@@ -528,7 +556,6 @@ function startLevelTransitionOut() {
     worldGroup.add(parentLevel.group);
   }
 
-  const targetPosition = parentNode.group.position.clone();
   const { center: parentCenter } = getLevelBoundsLocal(parentLevel);
   const warpScale = computeWarpScale(parentNode.data.radius);
 
@@ -541,11 +568,14 @@ function startLevelTransitionOut() {
   transitionState.toFitScale = transitionState.targetZoom / camera.zoom;
   transitionState.warpScale = warpScale;
   transitionState.panStart.copy(worldGroup.position);
-  transitionState.panTarget.set(-targetPosition.x, -targetPosition.y, 0);
-  transitionState.targetPosition.copy(targetPosition);
+  transitionState.panTarget.copy(worldGroup.position);
+  transitionState.targetPosition.set(0, 0, 0);
   transitionState.startTime = performance.now();
 
-  parentLevel.group.position.copy(targetPosition).sub(parentCenter);
+  parentLevel.group.position
+    .copy(parentCenter)
+    .multiplyScalar(-1)
+    .sub(worldGroup.position);
   parentLevel.group.scale.setScalar(1);
   setLevelOpacity(parentLevel, 0);
   setLevelLabelOpacity(parentLevel, 0);
@@ -645,30 +675,16 @@ function updateTransition(now) {
     );
     setLevelOpacityWithLabel(toLevel, toFade, 0);
   } else {
-    const focusNode = toLevel.nodeByName.get(transitionState.focusNodeName);
-    if (focusNode) {
-      focusNode.group.scale.setScalar(
-        1 + (transitionState.warpScale - 1) * scaleProgress
-      );
-    }
     toLevel.group.scale.setScalar(transitionState.toFitScale);
+    worldGroup.position.copy(transitionState.panStart);
 
-    worldGroup.position.lerpVectors(
-      transitionState.panStart,
-      transitionState.panTarget,
-      panProgress
-    );
+    const fromScale = 1 - 0.08 * scaleProgress;
+    fromLevel.group.scale.setScalar(fromScale);
 
-    const focusFade = 1 - smoothstep(0.6, 1, scaleProgress);
-    const otherOpacity = Math.pow(smoothstep(0.3, 1, scaleProgress), 1.4);
-    setLevelOpacityWithFocusAndLabel(
-      toLevel,
-      transitionState.focusNodeName,
-      focusFade,
-      otherOpacity,
-      0
-    );
-    setLevelOpacity(fromLevel, 1 - smoothstep(0.35, 0.95, scaleProgress));
+    const fromFade = 1 - smoothstep(0, 0.7, t);
+    const toFade = smoothstep(0.4, 1, t);
+    setLevelOpacity(fromLevel, fromFade);
+    setLevelOpacityWithLabel(toLevel, toFade, 0);
   }
 
   if (t >= 1) {
@@ -726,10 +742,10 @@ function maybeAutoWarp(now) {
   if (transitionState.active) {
     return;
   }
-  if (now - lastZoomGestureTime > 200) {
+  if (now - autoWarpThresholds.lastAt < autoWarpThresholds.cooldownMs) {
     return;
   }
-  if (now - autoWarpThresholds.lastAt < autoWarpThresholds.cooldownMs) {
+  if (now - lastZoomGestureTime > 320) {
     return;
   }
 
@@ -744,17 +760,15 @@ function maybeAutoWarp(now) {
     if (childLevelId) {
       autoWarpThresholds.lastAt = now;
       startLevelTransitionFromNode(candidate.node);
-      return;
     }
   }
+}
 
-  if (
-    candidate.radiusPx <= autoWarpThresholds.outPx &&
-    navigationStack.length > 0
-  ) {
-    autoWarpThresholds.lastAt = now;
-    startLevelTransitionOut();
+function updateNavButton() {
+  if (!navUpButton) {
+    return;
   }
+  navUpButton.disabled = transitionState.active || navigationStack.length === 0;
 }
 
 function focusOnPointer(clientX, clientY) {
@@ -872,6 +886,16 @@ function onPointerMove(event) {
       const zoom = pinchStartZoom * (distance / pinchStartDistance);
       applyZoom(zoom);
       lastZoomGestureTime = performance.now();
+      const candidate = findClosestNodeToCenter();
+      if (candidate && candidate.isInside) {
+        const diameter = candidate.radiusPx * 2;
+        const minTarget =
+          Math.min(canvas.clientWidth, canvas.clientHeight) *
+          autoWarpThresholds.outFraction;
+        pendingWarpOut = diameter <= minTarget;
+      } else {
+        pendingWarpOut = false;
+      }
     }
   }
 }
@@ -894,7 +918,11 @@ function onPointerUp(event) {
       const distance = Math.hypot(dx, dy);
       if (now - lastTapTime < 320 && distance < 24) {
         if (!focusOnPointer(event.clientX, event.clientY)) {
-          setTargetZoom(camera.zoom * 1.2, 360);
+          if (currentLevel && currentLevel.id !== rootScenePath) {
+            resetToRootScene();
+          } else {
+            setTargetZoom(camera.zoom * 1.2, 360);
+          }
         }
         lastTapTime = 0;
       } else {
@@ -902,6 +930,11 @@ function onPointerUp(event) {
         lastTapX = event.clientX;
         lastTapY = event.clientY;
       }
+    }
+    if (pendingWarpOut && navigationStack.length > 0) {
+      pendingWarpOut = false;
+      autoWarpThresholds.lastAt = performance.now();
+      startLevelTransitionOut();
     }
   }
 }
@@ -916,6 +949,7 @@ function onWheel(event) {
   const zoomFactor = Math.exp(-event.deltaY * 0.0025);
   applyZoom(camera.zoom * zoomFactor);
   lastZoomGestureTime = performance.now();
+  pendingWarpOut = false;
 }
 
 function animate(now = 0) {
@@ -956,6 +990,7 @@ function animate(now = 0) {
     }
   }
   maybeAutoWarp(now);
+  updateNavButton();
 
   const timeSeconds = now / 1000;
   if (transitionState.active) {
@@ -980,11 +1015,11 @@ function onResize() {
 }
 
 async function init() {
-  const universeConfig = await loadSceneConfig("json/universe.json");
+  const universeConfig = await loadSceneConfig(rootScenePath);
   if (!universeConfig) {
     return;
   }
-  currentLevel = buildLevel("json/universe.json");
+  currentLevel = buildLevel(rootScenePath);
   worldGroup.add(currentLevel.group);
   updateCamera();
   fitCameraToLevel(currentLevel);
@@ -999,3 +1034,9 @@ canvas.addEventListener("pointermove", onPointerMove);
 canvas.addEventListener("pointerup", onPointerUp);
 canvas.addEventListener("pointercancel", onPointerUp);
 canvas.addEventListener("wheel", onWheel, { passive: false });
+
+if (navUpButton) {
+  navUpButton.addEventListener("click", () => {
+    startLevelTransitionOut();
+  });
+}
