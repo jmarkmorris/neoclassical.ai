@@ -30,6 +30,21 @@ const worldGroup = new THREE.Group();
 scene.add(worldGroup);
 
 const levelConfigs = {};
+const linkColors = {
+  reactant: "#9fb0e1",
+  product: "#d5dcff",
+  emission: "#f0d39a",
+  default: "#c5cee8",
+};
+const linkStyle = {
+  minLength: 0.7,
+  tipClearance: 0.12,
+  headLengthMin: 0.14,
+  headLengthMax: 0.24,
+  headWidthFactor: 0.4,
+  lineOpacity: 0.6,
+  headOpacity: 0.85,
+};
 
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
@@ -74,8 +89,6 @@ const transitionState = {
 
 const autoWarpThresholds = {
   inPx: 80,
-  outPx: 0,
-  outFraction: 0.4,
   cooldownMs: 700,
   lastAt: 0,
 };
@@ -91,7 +104,6 @@ const zoomLimits = { min: 0.35, max: 6 };
 const raycaster = new THREE.Raycaster();
 const pointerNdc = new THREE.Vector2();
 let lastZoomGestureTime = 0;
-let pendingWarpOut = false;
 
 async function loadSceneConfig(scenePath) {
   if (sceneConfigCache.has(scenePath)) {
@@ -109,16 +121,24 @@ async function loadSceneConfig(scenePath) {
       return response.json();
     })
     .then((data) => {
+      const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
       const idMap = new Map(
         data.objects.map((obj) => [obj.id, obj.label || obj.id])
       );
       const nodes = data.objects.map((obj) => {
+        const hasScale =
+          obj.scaleExponent !== undefined && obj.scaleExponent !== null;
         const node = {
+          id: obj.id,
           name: obj.label || obj.id,
-          scale: obj.scaleExponent ?? 0,
+          scale: hasScale ? obj.scaleExponent : null,
+          hasScale,
           radius: obj.radius ?? 1,
           color: obj.color ?? "#3a5a8a",
           position: obj.position ?? [0, 0, 0],
+          category: obj.category,
+          reaction: obj.reaction,
+          hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
         };
         if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
           node.childScene = obj.subScenes[0];
@@ -141,6 +161,7 @@ async function loadSceneConfig(scenePath) {
       const config = {
         layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
         nodes,
+        links: Array.isArray(data.links) ? data.links : [],
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
@@ -193,6 +214,10 @@ function smoothstep(edge0, edge1, x) {
   return t * t * (3 - 2 * t);
 }
 
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
 function setTargetZoom(nextZoom, duration = 420) {
   zoomState.active = true;
   zoomState.startZoom = camera.zoom;
@@ -224,22 +249,11 @@ function computeWarpScale(objectRadius) {
 }
 
 function getLevelBoundsLocal(level) {
-  worldGroup.updateMatrixWorld(true);
-  const bounds = new THREE.Box3().setFromObject(level.group);
-  const worldToLocal = new THREE.Matrix4()
-    .copy(level.group.matrixWorld)
-    .invert();
-  bounds.applyMatrix4(worldToLocal);
-
-  const size = new THREE.Vector3();
-  const center = new THREE.Vector3();
-  bounds.getSize(size);
-  bounds.getCenter(center);
-  return { size, center };
+  return getLevelBoundsFromNodes(level);
 }
 
 function computeFitZoomForLevel(level) {
-  const { size } = getLevelBoundsLocal(level);
+  const { size } = getLevelBoundsFromNodes(level);
   if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
     return camera.zoom;
   }
@@ -254,20 +268,10 @@ function computeFitZoomForLevel(level) {
 }
 
 function fitCameraToLevel(level) {
-  worldGroup.updateMatrixWorld(true);
-  const bounds = new THREE.Box3().setFromObject(level.group);
-  const worldToLocal = new THREE.Matrix4()
-    .copy(worldGroup.matrixWorld)
-    .invert();
-  bounds.applyMatrix4(worldToLocal);
-  const size = new THREE.Vector3();
-  bounds.getSize(size);
+  const { size, center } = getLevelBoundsFromNodes(level);
   if (!isFinite(size.x) || !isFinite(size.y) || size.lengthSq() === 0) {
     return;
   }
-
-  const center = new THREE.Vector3();
-  bounds.getCenter(center);
 
   const nextZoom = computeFitZoomForLevel(level);
 
@@ -291,27 +295,35 @@ function updateCamera() {
 function createLabel(node) {
   const label = document.createElement("div");
   label.className = "label";
-  label.innerHTML = `<div class="label-title">${node.name}</div><div class="label-scale">10^${node.scale}</div>`;
+  const scaleHtml = node.hideScaleLabel || !node.hasScale
+    ? ""
+    : `<div class="label-scale">10^${node.scale}</div>`;
+  const tagHtml =
+    node.category === "Reaction" ? `<div class="label-tag">RXN</div>` : "";
+  label.innerHTML = `<div class="label-title">${node.name}</div>${scaleHtml}${tagHtml}`;
   return new CSS2DObject(label);
 }
 
 function createNode(nodeData) {
   const group = new THREE.Group();
   const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
+  const isReaction = nodeData.category === "Reaction";
   const material = new THREE.MeshBasicMaterial({
     color: nodeData.color,
     transparent: true,
-    opacity: 0.86,
+    opacity: isReaction ? 0.92 : 0.86,
   });
+  material.depthWrite = false;
   const mesh = new THREE.Mesh(geometry, material);
   group.add(mesh);
 
   const outlineGeometry = new THREE.EdgesGeometry(geometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#d5dcff",
+    color: isReaction ? "#f6dd9c" : "#d5dcff",
     transparent: true,
-    opacity: 0.3,
+    opacity: isReaction ? 0.55 : 0.3,
   });
+  outlineMaterial.depthWrite = false;
   const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
   group.add(outline);
 
@@ -360,6 +372,7 @@ function buildLevel(levelId) {
   const group = new THREE.Group();
   const nodes = [];
   const nodeByName = new Map();
+  const nodeById = new Map();
   const orbiters = [];
 
   const spacing = config.spacing ?? 7;
@@ -379,6 +392,9 @@ function buildLevel(levelId) {
     group.add(node.group);
     nodes.push(node);
     nodeByName.set(nodeData.name, node);
+    if (nodeData.id) {
+      nodeById.set(nodeData.id, node);
+    }
 
     if (nodeData.orbit) {
       orbiters.push(node);
@@ -390,11 +406,14 @@ function buildLevel(levelId) {
     group,
     nodes,
     nodeByName,
+    nodeById,
     orbiters,
     layout: config.layout,
+    links: [],
   };
 
   levels.set(levelId, level);
+  buildLevelLinks(level, config);
   updateLevelOrbits(level, 0);
   return level;
 }
@@ -413,6 +432,163 @@ function updateLevelOrbits(level, timeSeconds) {
     const y =
       centerNode.group.position.y + Math.sin(angle) * orbit.radius * yScale;
     node.group.position.set(x, y, 0);
+  });
+}
+
+function getLevelBoundsFromNodes(level) {
+  const min = new THREE.Vector3(Infinity, Infinity, Infinity);
+  const max = new THREE.Vector3(-Infinity, -Infinity, -Infinity);
+  let hasNode = false;
+
+  level.nodes.forEach((node) => {
+    const radius = node.data.radius ?? 0;
+    const pos = node.group.position;
+    min.x = Math.min(min.x, pos.x - radius);
+    min.y = Math.min(min.y, pos.y - radius);
+    min.z = Math.min(min.z, pos.z - radius);
+    max.x = Math.max(max.x, pos.x + radius);
+    max.y = Math.max(max.y, pos.y + radius);
+    max.z = Math.max(max.z, pos.z + radius);
+    hasNode = true;
+  });
+
+  if (!hasNode) {
+    return { size: new THREE.Vector3(), center: new THREE.Vector3() };
+  }
+
+  const size = new THREE.Vector3(
+    max.x - min.x,
+    max.y - min.y,
+    max.z - min.z
+  );
+  const center = new THREE.Vector3(
+    (min.x + max.x) / 2,
+    (min.y + max.y) / 2,
+    (min.z + max.z) / 2
+  );
+  return { size, center };
+}
+
+function buildLevelLinks(level, config) {
+  if (!config.links.length) {
+    return;
+  }
+  config.links.forEach((link) => {
+    const linkColor = link.color ?? linkColors[link.kind] ?? linkColors.default;
+    const arrow = new THREE.ArrowHelper(
+      new THREE.Vector3(1, 0, 0),
+      new THREE.Vector3(),
+      1,
+      linkColor,
+      linkStyle.headLengthMax,
+      linkStyle.headLengthMax * linkStyle.headWidthFactor
+    );
+    arrow.line.material.transparent = true;
+    arrow.line.material.opacity = linkStyle.lineOpacity;
+    arrow.line.material.depthWrite = false;
+    arrow.cone.material.transparent = true;
+    arrow.cone.material.opacity = linkStyle.headOpacity;
+    arrow.cone.material.depthWrite = false;
+    level.group.add(arrow);
+    level.links.push({
+      arrow,
+      from: link.from,
+      to: link.to,
+      direction: link.direction,
+      length: link.length,
+      kind: link.kind,
+      opacity: 1,
+      baseOpacity: {
+        line: linkStyle.lineOpacity,
+        cone: linkStyle.headOpacity,
+      },
+    });
+  });
+}
+
+function getNodeForLink(level, linkId) {
+  if (!linkId) {
+    return null;
+  }
+  return level.nodeById.get(linkId) || level.nodeByName.get(linkId) || null;
+}
+
+function updateLevelLinks(level) {
+  if (!level || !level.links.length) {
+    return;
+  }
+  level.links.forEach((link) => {
+    const fromNode = getNodeForLink(level, link.from);
+    if (!fromNode) {
+      return;
+    }
+    const fromPos = fromNode.group.position.clone();
+    const fromRadius = fromNode.data.radius ?? 0;
+
+    if (link.to) {
+      const toNode = getNodeForLink(level, link.to);
+      if (!toNode) {
+        return;
+      }
+      const toPos = toNode.group.position.clone();
+      const toRadius = toNode.data.radius ?? 0;
+      const dir = toPos.clone().sub(fromPos);
+      const distance = dir.length();
+      if (distance <= 0.0001) {
+        return;
+      }
+      dir.normalize();
+      const length = Math.max(
+        linkStyle.minLength,
+        distance - fromRadius - toRadius - linkStyle.tipClearance
+      );
+      const origin = fromPos
+        .clone()
+        .add(dir.clone().multiplyScalar(fromRadius + linkStyle.tipClearance));
+      const headLength = clamp(
+        length * 0.3,
+        linkStyle.headLengthMin,
+        linkStyle.headLengthMax
+      );
+      const headWidth = headLength * linkStyle.headWidthFactor;
+      link.arrow.position.copy(origin);
+      link.arrow.setDirection(dir);
+      link.arrow.setLength(length, headLength, headWidth);
+    } else if (Array.isArray(link.direction)) {
+      const dir = new THREE.Vector3(
+        link.direction[0] ?? 0,
+        link.direction[1] ?? 0,
+        link.direction[2] ?? 0
+      );
+      if (dir.lengthSq() < 0.0001) {
+        return;
+      }
+      dir.normalize();
+      const length = Math.max(linkStyle.minLength, link.length ?? 2);
+      const origin = fromPos
+        .clone()
+        .add(dir.clone().multiplyScalar(fromRadius + linkStyle.tipClearance));
+      const headLength = clamp(
+        length * 0.3,
+        linkStyle.headLengthMin,
+        linkStyle.headLengthMax
+      );
+      const headWidth = headLength * linkStyle.headWidthFactor;
+      link.arrow.position.copy(origin);
+      link.arrow.setDirection(dir);
+      link.arrow.setLength(length, headLength, headWidth);
+    }
+  });
+}
+
+function setLevelLinkOpacity(level, opacity) {
+  if (!level || !level.links.length) {
+    return;
+  }
+  level.links.forEach((link) => {
+    link.opacity = opacity;
+    link.arrow.line.material.opacity = link.baseOpacity.line * opacity;
+    link.arrow.cone.material.opacity = link.baseOpacity.cone * opacity;
   });
 }
 
@@ -496,7 +672,7 @@ function beginLevelTransition(targetNode, childLevelId) {
   }
 
   const targetPosition = targetNode.group.position.clone();
-  const { center: toLevelCenter } = getLevelBoundsLocal(toLevel);
+  const { center: toLevelCenter } = getLevelBoundsFromNodes(toLevel);
   const warpScale = computeWarpScale(targetNode.data.radius);
 
   transitionState.active = true;
@@ -556,7 +732,7 @@ function startLevelTransitionOut() {
     worldGroup.add(parentLevel.group);
   }
 
-  const { center: parentCenter } = getLevelBoundsLocal(parentLevel);
+  const { center: parentCenter } = getLevelBoundsFromNodes(parentLevel);
   const warpScale = computeWarpScale(parentNode.data.radius);
 
   transitionState.active = true;
@@ -613,10 +789,13 @@ function finalizeTransition() {
     labelFadeState.level = currentLevel;
     labelFadeState.startTime = performance.now();
   } else {
-    toLevel.group.position.set(0, 0, 0);
+    const rebaseOffset = worldGroup.position.clone();
+    toLevel.group.position.add(rebaseOffset);
+    worldGroup.position.set(0, 0, 0);
     toLevel.group.scale.setScalar(1);
     setLevelOpacity(toLevel, 1);
     setLevelLabelOpacity(toLevel, 0);
+    setLevelLinkOpacity(toLevel, 1);
 
     const toFocus = toLevel.nodeByName.get(transitionState.focusNodeName);
     if (toFocus) {
@@ -624,11 +803,14 @@ function finalizeTransition() {
     }
     fromLevel.group.scale.setScalar(1);
     setLevelOpacity(fromLevel, 0);
+    setLevelLinkOpacity(fromLevel, 0);
     worldGroup.remove(fromLevel.group);
 
     currentLevel = toLevel;
     navigationStack.pop();
-    fitCameraToLevel(currentLevel);
+    zoomState.active = false;
+    panTween.active = false;
+    applyZoom(transitionState.targetZoom ?? camera.zoom);
     labelFadeState.active = true;
     labelFadeState.level = currentLevel;
     labelFadeState.startTime = performance.now();
@@ -673,7 +855,9 @@ function updateTransition(now) {
       focusFade,
       0
     );
+    setLevelLinkOpacity(fromLevel, focusFade);
     setLevelOpacityWithLabel(toLevel, toFade, 0);
+    setLevelLinkOpacity(toLevel, toFade);
   } else {
     toLevel.group.scale.setScalar(transitionState.toFitScale);
     worldGroup.position.copy(transitionState.panStart);
@@ -684,7 +868,9 @@ function updateTransition(now) {
     const fromFade = 1 - smoothstep(0, 0.7, t);
     const toFade = smoothstep(0.4, 1, t);
     setLevelOpacity(fromLevel, fromFade);
+    setLevelLinkOpacity(fromLevel, fromFade);
     setLevelOpacityWithLabel(toLevel, toFade, 0);
+    setLevelLinkOpacity(toLevel, toFade);
   }
 
   if (t >= 1) {
@@ -886,16 +1072,6 @@ function onPointerMove(event) {
       const zoom = pinchStartZoom * (distance / pinchStartDistance);
       applyZoom(zoom);
       lastZoomGestureTime = performance.now();
-      const candidate = findClosestNodeToCenter();
-      if (candidate && candidate.isInside) {
-        const diameter = candidate.radiusPx * 2;
-        const minTarget =
-          Math.min(canvas.clientWidth, canvas.clientHeight) *
-          autoWarpThresholds.outFraction;
-        pendingWarpOut = diameter <= minTarget;
-      } else {
-        pendingWarpOut = false;
-      }
     }
   }
 }
@@ -931,11 +1107,6 @@ function onPointerUp(event) {
         lastTapY = event.clientY;
       }
     }
-    if (pendingWarpOut && navigationStack.length > 0) {
-      pendingWarpOut = false;
-      autoWarpThresholds.lastAt = performance.now();
-      startLevelTransitionOut();
-    }
   }
 }
 
@@ -949,7 +1120,6 @@ function onWheel(event) {
   const zoomFactor = Math.exp(-event.deltaY * 0.0025);
   applyZoom(camera.zoom * zoomFactor);
   lastZoomGestureTime = performance.now();
-  pendingWarpOut = false;
 }
 
 function animate(now = 0) {
@@ -1002,6 +1172,12 @@ function animate(now = 0) {
 
   if (currentLevel && currentLevel.layout === "orbit") {
     updateLevelOrbits(currentLevel, now / 1000);
+  }
+  if (transitionState.active) {
+    updateLevelLinks(transitionState.fromLevel);
+    updateLevelLinks(transitionState.toLevel);
+  } else {
+    updateLevelLinks(currentLevel);
   }
 
   renderer.render(scene, camera);

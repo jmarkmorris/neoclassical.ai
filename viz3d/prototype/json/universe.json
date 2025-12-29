@@ -8,9 +8,9 @@
   },
   "objects": [
     {
-      "id": "observable_universe",
-      "label": "observable universe",
-      "scaleExponent": 26,
+      "id": "galaxy_cluster",
+      "label": "galaxy cluster",
+      "scaleExponent": 23,
       "radius": 1.6,
       "color": "#243d8f",
       "position": [6.0, 0.0, 0.0],

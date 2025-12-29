@@ -4,8 +4,134 @@
     "id": "cno_cycle_detail",
     "name": "CNO Cycle Detail",
     "units": "relative",
-    "scaleBandLog10m": [0, 1]
+    "scaleBandLog10m": [
+      0,
+      1
+    ],
+    "hideScaleLabels": true
   },
+  "links": [
+    {
+      "from": "c12",
+      "to": "r1_c12_p_n13",
+      "kind": "reactant"
+    },
+    {
+      "from": "p1",
+      "to": "r1_c12_p_n13",
+      "kind": "reactant"
+    },
+    {
+      "from": "r1_c12_p_n13",
+      "to": "n13",
+      "kind": "product"
+    },
+    {
+      "from": "r1_c12_p_n13",
+      "to": "gamma1",
+      "kind": "emission"
+    },
+    {
+      "from": "n13",
+      "to": "r2_n13_decay",
+      "kind": "reactant"
+    },
+    {
+      "from": "r2_n13_decay",
+      "to": "c13",
+      "kind": "product"
+    },
+    {
+      "from": "r2_n13_decay",
+      "to": "eplus2",
+      "kind": "emission"
+    },
+    {
+      "from": "r2_n13_decay",
+      "to": "nu2",
+      "kind": "emission"
+    },
+    {
+      "from": "c13",
+      "to": "r3_c13_p_n14",
+      "kind": "reactant"
+    },
+    {
+      "from": "p3",
+      "to": "r3_c13_p_n14",
+      "kind": "reactant"
+    },
+    {
+      "from": "r3_c13_p_n14",
+      "to": "n14",
+      "kind": "product"
+    },
+    {
+      "from": "r3_c13_p_n14",
+      "to": "gamma3",
+      "kind": "emission"
+    },
+    {
+      "from": "n14",
+      "to": "r4_n14_p_o15",
+      "kind": "reactant"
+    },
+    {
+      "from": "p4",
+      "to": "r4_n14_p_o15",
+      "kind": "reactant"
+    },
+    {
+      "from": "r4_n14_p_o15",
+      "to": "o15",
+      "kind": "product"
+    },
+    {
+      "from": "r4_n14_p_o15",
+      "to": "gamma4",
+      "kind": "emission"
+    },
+    {
+      "from": "o15",
+      "to": "r5_o15_decay",
+      "kind": "reactant"
+    },
+    {
+      "from": "r5_o15_decay",
+      "to": "n15",
+      "kind": "product"
+    },
+    {
+      "from": "r5_o15_decay",
+      "to": "eplus5",
+      "kind": "emission"
+    },
+    {
+      "from": "r5_o15_decay",
+      "to": "nu5",
+      "kind": "emission"
+    },
+    {
+      "from": "n15",
+      "to": "r6_n15_p_c12_he4",
+      "kind": "reactant"
+    },
+    {
+      "from": "p6",
+      "to": "r6_n15_p_c12_he4",
+      "kind": "reactant"
+    },
+    {
+      "from": "r6_n15_p_c12_he4",
+      "to": "c12",
+      "kind": "product"
+    },
+    {
+      "from": "r6_n15_p_c12_he4",
+      "to": "he4",
+      "kind": "product"
+    }
+  ],
   "objects": [
     {
       "id": "c12",
@@ -14,9 +140,15 @@
       "category": "Nucleus",
       "radius": 1.3,
       "color": "#3a5f9f",
-      "position": [0.0, 6.5, 0.0],
+      "position": [
+        0.0,
+        8.12,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "n13",
@@ -25,9 +157,15 @@
       "category": "Nucleus",
       "radius": 1.3,
       "color": "#3a5f9f",
-      "position": [5.63, 3.25, 0.0],
+      "position": [
+        7.04,
+        4.06,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "c13",
@@ -36,9 +174,15 @@
       "category": "Nucleus",
       "radius": 1.3,
       "color": "#3a5f9f",
-      "position": [5.63, -3.25, 0.0],
+      "position": [
+        7.04,
+        -4.06,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "n14",
@@ -47,9 +191,15 @@
       "category": "Nucleus",
       "radius": 1.3,
       "color": "#3a5f9f",
-      "position": [0.0, -6.5, 0.0],
+      "position": [
+        0.0,
+        -8.12,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "o15",
@@ -58,9 +208,15 @@
       "category": "Nucleus",
       "radius": 1.3,
       "color": "#3a5f9f",
-      "position": [-5.63, -3.25, 0.0],
+      "position": [
+        -7.04,
+        -4.06,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "n15",
@@ -69,9 +225,15 @@
       "category": "Nucleus",
       "radius": 1.3,
       "color": "#3a5f9f",
-      "position": [-5.63, 3.25, 0.0],
+      "position": [
+        -7.04,
+        4.06,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "r1_c12_p_n13",
@@ -81,9 +243,15 @@
       "reaction": "C-12 + p -> N-13 + gamma",
       "radius": 0.9,
       "color": "#7a4a1f",
-      "position": [2.55, 4.42, 0.0],
+      "position": [
+        3.19,
+        5.53,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "r2_n13_decay",
@@ -93,9 +261,15 @@
       "reaction": "N-13 -> C-13 + e+ + nu_e",
       "radius": 0.9,
       "color": "#7a4a1f",
-      "position": [5.1, 0.0, 0.0],
+      "position": [
+        6.38,
+        0.0,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "r3_c13_p_n14",
@@ -105,9 +279,15 @@
       "reaction": "C-13 + p -> N-14 + gamma",
       "radius": 0.9,
       "color": "#7a4a1f",
-      "position": [2.55, -4.42, 0.0],
+      "position": [
+        3.19,
+        -5.53,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "r4_n14_p_o15",
@@ -117,9 +297,15 @@
       "reaction": "N-14 + p -> O-15 + gamma",
       "radius": 0.9,
       "color": "#7a4a1f",
-      "position": [-2.55, -4.42, 0.0],
+      "position": [
+        -3.19,
+        -5.53,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "r5_o15_decay",
@@ -129,9 +315,15 @@
       "reaction": "O-15 -> N-15 + e+ + nu_e",
       "radius": 0.9,
       "color": "#7a4a1f",
-      "position": [-5.1, 0.0, 0.0],
+      "position": [
+        -6.38,
+        0.0,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "r6_n15_p_c12_he4",
@@ -141,9 +333,15 @@
       "reaction": "N-15 + p -> C-12 + He-4",
       "radius": 0.9,
       "color": "#7a4a1f",
-      "position": [-2.55, 4.42, 0.0],
+      "position": [
+        -3.19,
+        5.53,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "p1",
@@ -153,9 +351,15 @@
       "role": "input",
       "radius": 0.5,
       "color": "#b24b3c",
-      "position": [2.55, 6.0, 0.0],
+      "position": [
+        3.66,
+        8.6,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "gamma1",
@@ -165,9 +369,15 @@
       "role": "output",
       "radius": 0.5,
       "color": "#d9b86c",
-      "position": [4.15, 5.35, 0.0],
+      "position": [
+        5.93,
+        7.64,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "eplus2",
@@ -177,9 +387,15 @@
       "role": "output",
       "radius": 0.45,
       "color": "#dcdcdc",
-      "position": [6.6, 0.9, 0.0],
+      "position": [
+        9.44,
+        1.28,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "nu2",
@@ -189,9 +405,15 @@
       "role": "output",
       "radius": 0.45,
       "color": "#89c8ff",
-      "position": [6.6, -0.9, 0.0],
+      "position": [
+        9.44,
+        -1.28,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "p3",
@@ -201,9 +423,15 @@
       "role": "input",
       "radius": 0.5,
       "color": "#b24b3c",
-      "position": [2.55, -6.0, 0.0],
+      "position": [
+        3.66,
+        -8.6,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "gamma3",
@@ -213,9 +441,15 @@
       "role": "output",
       "radius": 0.5,
       "color": "#d9b86c",
-      "position": [4.15, -5.35, 0.0],
+      "position": [
+        5.93,
+        -7.64,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "p4",
@@ -225,9 +459,15 @@
       "role": "input",
       "radius": 0.5,
       "color": "#b24b3c",
-      "position": [-2.55, -6.0, 0.0],
+      "position": [
+        -3.66,
+        -8.6,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "gamma4",
@@ -237,9 +477,15 @@
       "role": "output",
       "radius": 0.5,
       "color": "#d9b86c",
-      "position": [-4.15, -5.35, 0.0],
+      "position": [
+        -5.93,
+        -7.64,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "eplus5",
@@ -249,9 +495,15 @@
       "role": "output",
       "radius": 0.45,
       "color": "#dcdcdc",
-      "position": [-6.6, 0.9, 0.0],
+      "position": [
+        -9.44,
+        1.28,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "nu5",
@@ -261,9 +513,15 @@
       "role": "output",
       "radius": 0.45,
       "color": "#89c8ff",
-      "position": [-6.6, -0.9, 0.0],
+      "position": [
+        -9.44,
+        -1.28,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "p6",
@@ -273,9 +531,15 @@
       "role": "input",
       "radius": 0.5,
       "color": "#b24b3c",
-      "position": [-2.55, 6.0, 0.0],
+      "position": [
+        -3.66,
+        8.6,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "he4",
@@ -285,9 +549,15 @@
       "role": "output",
       "radius": 0.6,
       "color": "#c48a4b",
-      "position": [-4.15, 5.35, 0.0],
+      "position": [
+        -5.93,
+        7.64,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

@@ -104,3 +104,13 @@ body {
   margin-top: 2px;
   white-space: nowrap;
 }
+
+.label-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+  color: #f6dd9c;
+  white-space: nowrap;
+}
