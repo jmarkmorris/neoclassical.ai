@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "standard_model",
+    "name": "Standard Model",
+    "units": "relative",
+    "scaleBandLog10m": [
+      -19,
+      -17
+    ]
+  },
+  "objects": [
+    {
+      "id": "up_quark",
+      "label": "up quark",
+      "radius": 1.1,
+      "color": "#3f5f8a",
+      "position": [
+        -9.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/up_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "down_quark",
+      "label": "down quark",
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "position": [
+        -9.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/down_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "electron",
+      "label": "electron",
+      "radius": 1.1,
+      "color": "#dcdcdc",
+      "position": [
+        -9.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "electron_neutrino",
+      "label": "electron neutrino",
+      "radius": 1.1,
+      "color": "#89c8ff",
+      "position": [
+        -9.0,
+        -4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "charm_quark",
+      "label": "charm quark",
+      "radius": 1.1,
+      "color": "#3f5f8a",
+      "position": [
+        -3.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "strange_quark",
+      "label": "strange quark",
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "position": [
+        -3.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "muon",
+      "label": "muon",
+      "radius": 1.1,
+      "color": "#dcdcdc",
+      "position": [
+        -3.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "muon_neutrino",
+      "label": "muon neutrino",
+      "radius": 1.1,
+      "color": "#89c8ff",
+      "position": [
+        -3.0,
+        -4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "top_quark",
+      "label": "top quark",
+      "radius": 1.1,
+      "color": "#3f5f8a",
+      "position": [
+        3.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "bottom_quark",
+      "label": "bottom quark",
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "position": [
+        3.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "tau",
+      "label": "tau",
+      "radius": 1.1,
+      "color": "#dcdcdc",
+      "position": [
+        3.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "tau_neutrino",
+      "label": "tau neutrino",
+      "radius": 1.1,
+      "color": "#89c8ff",
+      "position": [
+        3.0,
+        -4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion"
+    },
+    {
+      "id": "photon",
+      "label": "photon",
+      "radius": 1.1,
+      "color": "#d9b86c",
+      "position": [
+        9.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson"
+    },
+    {
+      "id": "gluon",
+      "label": "gluon",
+      "radius": 1.1,
+      "color": "#b24b3c",
+      "position": [
+        9.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson"
+    },
+    {
+      "id": "z_boson",
+      "label": "Z boson",
+      "radius": 1.1,
+      "color": "#7a4a1f",
+      "position": [
+        9.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson"
+    },
+    {
+      "id": "w_boson",
+      "label": "W bosons",
+      "radius": 1.1,
+      "color": "#6a4d1b",
+      "position": [
+        9.0,
+        -4.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson"
+    },
+    {
+      "id": "higgs_boson",
+      "label": "Higgs boson",
+      "radius": 1.1,
+      "color": "#2f6b6f",
+      "position": [
+        9.0,
+        -8.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson"
+    }
+  ]
+}

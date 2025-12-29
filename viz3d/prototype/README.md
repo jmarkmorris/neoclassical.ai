@@ -1,4 +1,4 @@
-# viz3d three.js prototype
+# neoclassical.ai three.js prototype
 
 Minimal labeled-sphere prototype with S-curve zoom and drag pan.
 
@@ -13,6 +13,6 @@ python3 -m http.server 5173
 Then open `http://localhost:5173/`.
 
 ## Controls
-- Double tap a sphere to descend into its contents.
-- Pinch to zoom (trackpad pinch supported, auto-warp near objects).
+- Click/tap a sphere to descend into its contents.
+- Pinch in/out to zoom (trackpad pinch supported).
 - Drag to pan.

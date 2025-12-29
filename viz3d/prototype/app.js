@@ -4,6 +4,7 @@ import { CSS2DRenderer, CSS2DObject } from "./vendor/three/CSS2DRenderer.js";
 const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
+const sceneLabel = document.getElementById("scene-label");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -49,7 +50,7 @@ const linkStyle = {
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 let haloSeed = 0;
-const rootScenePath = "json/universe.json";
+const rootScenePath = "json/physics_frontiers.json";
 
 const levels = new Map();
 const navigationStack = [];
@@ -122,6 +123,7 @@ async function loadSceneConfig(scenePath) {
     })
     .then((data) => {
       const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
+      const wrapLabels = data.scene?.wrapLabels ?? true;
       const idMap = new Map(
         data.objects.map((obj) => [obj.id, obj.label || obj.id])
       );
@@ -139,6 +141,7 @@ async function loadSceneConfig(scenePath) {
           category: obj.category,
           reaction: obj.reaction,
           hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
+          wrapLabel: obj.wrapLabel ?? wrapLabels,
         };
         if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
           node.childScene = obj.subScenes[0];
@@ -158,10 +161,13 @@ async function loadSceneConfig(scenePath) {
         return node;
       });
 
+      const sceneName =
+        data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
       const config = {
         layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
         nodes,
         links: Array.isArray(data.links) ? data.links : [],
+        sceneName,
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
@@ -199,6 +205,7 @@ async function resetToRootScene() {
   labelFadeState.startTime = performance.now();
   updateCamera();
   fitCameraToLevel(currentLevel);
+  updateSceneLabel();
 }
 
 function clampZoom(value) {
@@ -295,6 +302,11 @@ function updateCamera() {
 function createLabel(node) {
   const label = document.createElement("div");
   label.className = "label";
+  if (node.wrapLabel) {
+    label.classList.add("label-wrap");
+    const maxWidth = Math.max(120, Math.round(node.radius * 90));
+    label.style.maxWidth = `${maxWidth}px`;
+  }
   const scaleHtml = node.hideScaleLabel || !node.hasScale
     ? ""
     : `<div class="label-scale">10^${node.scale}</div>`;
@@ -403,6 +415,7 @@ function buildLevel(levelId) {
 
   const level = {
     id: levelId,
+    name: config.sceneName ?? levelId,
     group,
     nodes,
     nodeByName,
@@ -788,6 +801,7 @@ function finalizeTransition() {
     labelFadeState.active = true;
     labelFadeState.level = currentLevel;
     labelFadeState.startTime = performance.now();
+    updateSceneLabel();
   } else {
     const rebaseOffset = worldGroup.position.clone();
     toLevel.group.position.add(rebaseOffset);
@@ -814,6 +828,7 @@ function finalizeTransition() {
     labelFadeState.active = true;
     labelFadeState.level = currentLevel;
     labelFadeState.startTime = performance.now();
+    updateSceneLabel();
   }
 
   transitionState.active = false;
@@ -957,6 +972,13 @@ function updateNavButton() {
   navUpButton.disabled = transitionState.active || navigationStack.length === 0;
 }
 
+function updateSceneLabel() {
+  if (!sceneLabel) {
+    return;
+  }
+  sceneLabel.textContent = currentLevel?.name ?? "";
+}
+
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return false;
@@ -1088,23 +1110,23 @@ function onPointerUp(event) {
   if (activePointers.size === 0) {
     panState.active = false;
     if (!panState.moved && !transitionState.active) {
-      const now = performance.now();
-      const dx = event.clientX - lastTapX;
-      const dy = event.clientY - lastTapY;
-      const distance = Math.hypot(dx, dy);
-      if (now - lastTapTime < 320 && distance < 24) {
-        if (!focusOnPointer(event.clientX, event.clientY)) {
+      if (!focusOnPointer(event.clientX, event.clientY)) {
+        const now = performance.now();
+        const dx = event.clientX - lastTapX;
+        const dy = event.clientY - lastTapY;
+        const distance = Math.hypot(dx, dy);
+        if (now - lastTapTime < 320 && distance < 24) {
           if (currentLevel && currentLevel.id !== rootScenePath) {
             resetToRootScene();
-          } else {
-            setTargetZoom(camera.zoom * 1.2, 360);
           }
+          lastTapTime = 0;
+        } else {
+          lastTapTime = now;
+          lastTapX = event.clientX;
+          lastTapY = event.clientY;
         }
-        lastTapTime = 0;
       } else {
-        lastTapTime = now;
-        lastTapX = event.clientX;
-        lastTapY = event.clientY;
+        lastTapTime = 0;
       }
     }
   }
@@ -1199,6 +1221,7 @@ async function init() {
   worldGroup.add(currentLevel.group);
   updateCamera();
   fitCameraToLevel(currentLevel);
+  updateSceneLabel();
   animate();
 }
 

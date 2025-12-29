@@ -30,8 +30,8 @@ body {
 
 #hud {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  right: 16px;
+  bottom: 16px;
   padding: 10px 12px;
   background: rgba(8, 10, 18, 0.6);
   border: 1px solid rgba(160, 170, 220, 0.25);
@@ -39,6 +39,23 @@ body {
   backdrop-filter: blur(6px);
   font-size: 12px;
   letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+#scene-label {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 8px 12px;
+  background: rgba(8, 10, 18, 0.6);
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #f5f7ff;
   pointer-events: none;
 }
 
@@ -96,6 +113,11 @@ body {
   font-weight: 600;
   letter-spacing: 0.02em;
   white-space: nowrap;
+}
+
+.label-wrap .label-title {
+  white-space: normal;
+  line-height: 1.15;
 }
 
 .label-scale {
