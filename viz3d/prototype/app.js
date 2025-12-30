@@ -57,6 +57,7 @@ let haloSeed = 0;
 const rootScenePath = "json/physics_frontiers.json";
 let sceneIndex = [];
 let sceneIndexReady = false;
+const searchBackStack = [];
 
 const levels = new Map();
 const navigationStack = [];
@@ -208,6 +209,7 @@ async function resetToRootScene() {
   setLevelLinkOpacity(rootLevel, 1);
   currentLevel = rootLevel;
   navigationStack.length = 0;
+  searchBackStack.length = 0;
   labelFadeState.active = true;
   labelFadeState.level = currentLevel;
   labelFadeState.startTime = performance.now();
@@ -216,7 +218,7 @@ async function resetToRootScene() {
   updateSceneLabel();
 }
 
-async function jumpToScene(scenePath) {
+async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
   }
@@ -235,6 +237,16 @@ async function jumpToScene(scenePath) {
   setLevelLinkOpacity(level, 1);
   currentLevel = level;
   navigationStack.length = 0;
+  if (Array.isArray(options.restoreNavStack)) {
+    options.restoreNavStack.forEach((item) => {
+      if (item && item.levelId && item.focusNodeName) {
+        navigationStack.push({
+          levelId: item.levelId,
+          focusNodeName: item.focusNodeName,
+        });
+      }
+    });
+  }
   labelFadeState.active = true;
   labelFadeState.level = currentLevel;
   labelFadeState.startTime = performance.now();
@@ -1022,7 +1034,12 @@ function updateNavButton() {
   if (!navUpButton) {
     return;
   }
-  navUpButton.disabled = transitionState.active || navigationStack.length === 0;
+  if (transitionState.active) {
+    navUpButton.disabled = true;
+    return;
+  }
+  navUpButton.disabled =
+    navigationStack.length === 0 && searchBackStack.length === 0;
 }
 
 function updateSceneLabel() {
@@ -1096,6 +1113,15 @@ function updateSearchResults(query) {
     item.className = "scene-search-item";
     item.textContent = scene.name ?? scene.id ?? scene.path;
     item.addEventListener("click", () => {
+      if (currentLevel) {
+        searchBackStack.push({
+          levelId: currentLevel.id,
+          navigationStack: navigationStack.map((entry) => ({
+            levelId: entry.levelId,
+            focusNodeName: entry.focusNodeName,
+          })),
+        });
+      }
       setSearchOpen(false);
       jumpToScene(scene.path);
     });
@@ -1363,7 +1389,21 @@ canvas.addEventListener("wheel", onWheel, { passive: false });
 
 if (navUpButton) {
   navUpButton.addEventListener("click", () => {
-    startLevelTransitionOut();
+    if (transitionState.active) {
+      return;
+    }
+    if (navigationStack.length > 0) {
+      startLevelTransitionOut();
+      return;
+    }
+    if (searchBackStack.length > 0) {
+      const backState = searchBackStack.pop();
+      if (backState?.levelId) {
+        jumpToScene(backState.levelId, {
+          restoreNavStack: backState.navigationStack,
+        });
+      }
+    }
   });
 }
 
