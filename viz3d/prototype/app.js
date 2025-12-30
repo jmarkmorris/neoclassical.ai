@@ -5,6 +5,10 @@ const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
 const sceneLabel = document.getElementById("scene-label");
+const sceneSearchToggle = document.getElementById("scene-search-toggle");
+const sceneSearchPanel = document.getElementById("scene-search-panel");
+const sceneSearchInput = document.getElementById("scene-search-input");
+const sceneSearchResults = document.getElementById("scene-search-results");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -51,6 +55,8 @@ const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 let haloSeed = 0;
 const rootScenePath = "json/physics_frontiers.json";
+let sceneIndex = [];
+let sceneIndexReady = false;
 
 const levels = new Map();
 const navigationStack = [];
@@ -194,11 +200,40 @@ async function resetToRootScene() {
   const rootLevel = buildLevel(rootScenePath);
   worldGroup.clear();
   worldGroup.position.set(0, 0, 0);
+  worldGroup.add(rootLevel.group);
   rootLevel.group.position.set(0, 0, 0);
   rootLevel.group.scale.setScalar(1);
   setLevelOpacity(rootLevel, 1);
   setLevelLabelOpacity(rootLevel, 0);
+  setLevelLinkOpacity(rootLevel, 1);
   currentLevel = rootLevel;
+  navigationStack.length = 0;
+  labelFadeState.active = true;
+  labelFadeState.level = currentLevel;
+  labelFadeState.startTime = performance.now();
+  updateCamera();
+  fitCameraToLevel(currentLevel);
+  updateSceneLabel();
+}
+
+async function jumpToScene(scenePath) {
+  if (transitionState.active) {
+    return;
+  }
+  const config = await loadSceneConfig(scenePath);
+  if (!config) {
+    return;
+  }
+  const level = buildLevel(scenePath);
+  worldGroup.clear();
+  worldGroup.position.set(0, 0, 0);
+  worldGroup.add(level.group);
+  level.group.position.set(0, 0, 0);
+  level.group.scale.setScalar(1);
+  setLevelOpacity(level, 1);
+  setLevelLabelOpacity(level, 0);
+  setLevelLinkOpacity(level, 1);
+  currentLevel = level;
   navigationStack.length = 0;
   labelFadeState.active = true;
   labelFadeState.level = currentLevel;
@@ -304,8 +339,7 @@ function createLabel(node) {
   label.className = "label";
   if (node.wrapLabel) {
     label.classList.add("label-wrap");
-    const maxWidth = Math.max(120, Math.round(node.radius * 90));
-    label.style.maxWidth = `${maxWidth}px`;
+    label.style.maxWidth = "120px";
   }
   const scaleHtml = node.hideScaleLabel || !node.hasScale
     ? ""
@@ -362,6 +396,7 @@ function createNode(nodeData) {
     mesh,
     outline,
     labelObject,
+    labelMaxWidth: null,
     halo,
     haloBaseOpacity: halo ? halo.material.opacity : 0,
     haloIntensity: 1,
@@ -602,6 +637,24 @@ function setLevelLinkOpacity(level, opacity) {
     link.opacity = opacity;
     link.arrow.line.material.opacity = link.baseOpacity.line * opacity;
     link.arrow.cone.material.opacity = link.baseOpacity.cone * opacity;
+  });
+}
+
+function updateLevelLabelWrap(level) {
+  if (!level) {
+    return;
+  }
+  level.nodes.forEach((node) => {
+    if (!node.data.wrapLabel) {
+      return;
+    }
+    const metrics = getNodeScreenMetrics(node);
+    const diameter = metrics.radiusPx * 2;
+    const maxWidth = Math.max(70, Math.round(diameter * 0.85));
+    if (node.labelMaxWidth !== maxWidth) {
+      node.labelMaxWidth = maxWidth;
+      node.labelObject.element.style.maxWidth = `${maxWidth}px`;
+    }
   });
 }
 
@@ -979,6 +1032,77 @@ function updateSceneLabel() {
   sceneLabel.textContent = currentLevel?.name ?? "";
 }
 
+async function ensureSceneIndex() {
+  if (sceneIndexReady) {
+    return;
+  }
+  try {
+    const response = await fetch("json/scenes_index.json");
+    if (!response.ok) {
+      throw new Error("Failed to load scene index");
+    }
+    const data = await response.json();
+    sceneIndex = Array.isArray(data.scenes) ? data.scenes : [];
+    sceneIndexReady = true;
+  } catch (error) {
+    console.error(error);
+    sceneIndex = [];
+  }
+}
+
+function setSearchOpen(isOpen) {
+  if (!sceneSearchPanel) {
+    return;
+  }
+  if (!isOpen && sceneSearchPanel.contains(document.activeElement)) {
+    sceneSearchToggle?.focus();
+  }
+  sceneSearchPanel.classList.toggle("is-open", isOpen);
+  sceneSearchPanel.setAttribute("aria-hidden", String(!isOpen));
+  sceneSearchPanel.inert = !isOpen;
+  if (isOpen && sceneSearchInput) {
+    sceneSearchInput.value = "";
+    updateSearchResults("");
+    sceneSearchInput.focus();
+  }
+}
+
+function isSearchOpen() {
+  return sceneSearchPanel?.classList.contains("is-open");
+}
+
+function normalizeSearch(text) {
+  return text.trim().toLowerCase();
+}
+
+function updateSearchResults(query) {
+  if (!sceneSearchResults) {
+    return;
+  }
+  const normalized = normalizeSearch(query);
+  const matches = sceneIndex.filter((scene) => {
+    if (!normalized) {
+      return true;
+    }
+    const name = (scene.name || "").toLowerCase();
+    const id = (scene.id || "").toLowerCase();
+    return name.includes(normalized) || id.includes(normalized);
+  });
+
+  sceneSearchResults.innerHTML = "";
+  matches.slice(0, 10).forEach((scene) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "scene-search-item";
+    item.textContent = scene.name ?? scene.id ?? scene.path;
+    item.addEventListener("click", () => {
+      setSearchOpen(false);
+      jumpToScene(scene.path);
+    });
+    sceneSearchResults.appendChild(item);
+  });
+}
+
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return false;
@@ -1198,8 +1322,11 @@ function animate(now = 0) {
   if (transitionState.active) {
     updateLevelLinks(transitionState.fromLevel);
     updateLevelLinks(transitionState.toLevel);
+    updateLevelLabelWrap(transitionState.fromLevel);
+    updateLevelLabelWrap(transitionState.toLevel);
   } else {
     updateLevelLinks(currentLevel);
+    updateLevelLabelWrap(currentLevel);
   }
 
   renderer.render(scene, camera);
@@ -1239,3 +1366,46 @@ if (navUpButton) {
     startLevelTransitionOut();
   });
 }
+
+if (sceneSearchToggle) {
+  sceneSearchToggle.addEventListener("click", async () => {
+    if (!isSearchOpen()) {
+      await ensureSceneIndex();
+    }
+    setSearchOpen(!isSearchOpen());
+  });
+}
+
+if (sceneSearchInput) {
+  sceneSearchInput.addEventListener("input", (event) => {
+    updateSearchResults(event.target.value);
+  });
+  sceneSearchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setSearchOpen(false);
+      return;
+    }
+    if (event.key === "Enter") {
+      const firstItem = sceneSearchResults?.querySelector(
+        ".scene-search-item"
+      );
+      if (firstItem) {
+        firstItem.click();
+      }
+    }
+  });
+}
+
+window.addEventListener("keydown", async (event) => {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    if (!isSearchOpen()) {
+      await ensureSceneIndex();
+      setSearchOpen(true);
+    } else {
+      setSearchOpen(false);
+    }
+  } else if (event.key === "Escape" && isSearchOpen()) {
+    setSearchOpen(false);
+  }
+});

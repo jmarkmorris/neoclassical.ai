@@ -1,0 +1,104 @@
+{
+  "scenes": [
+    {
+      "id": "atom",
+      "name": "Atom",
+      "path": "json/atom.json"
+    },
+    {
+      "id": "cno_cycle_detail",
+      "name": "CNO Cycle Detail",
+      "path": "json/cno_cycle_detail.json"
+    },
+    {
+      "id": "down_quark",
+      "name": "Down Quark",
+      "path": "json/down_quark.json"
+    },
+    {
+      "id": "electron",
+      "name": "Electron",
+      "path": "json/electron.json"
+    },
+    {
+      "id": "galaxy",
+      "name": "Galaxy",
+      "path": "json/galaxy.json"
+    },
+    {
+      "id": "galaxy_cluster",
+      "name": "Galaxy Cluster",
+      "path": "json/galaxy_cluster.json"
+    },
+    {
+      "id": "galaxy_disk",
+      "name": "Galaxy Disk",
+      "path": "json/disk.json"
+    },
+    {
+      "id": "higgs_boson",
+      "name": "Higgs Boson",
+      "path": "json/higgs_boson.json"
+    },
+    {
+      "id": "molecule",
+      "name": "Molecule",
+      "path": "json/molecule.json"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "path": "json/moon.json"
+    },
+    {
+      "id": "neutrino",
+      "name": "Neutrino",
+      "path": "json/neutrino.json"
+    },
+    {
+      "id": "neutron",
+      "name": "Neutron",
+      "path": "json/neutron.json"
+    },
+    {
+      "id": "physics_frontiers",
+      "name": "Physics Frontiers",
+      "path": "json/physics_frontiers.json"
+    },
+    {
+      "id": "planet",
+      "name": "Planet",
+      "path": "json/planet.json"
+    },
+    {
+      "id": "proton",
+      "name": "Proton",
+      "path": "json/proton.json"
+    },
+    {
+      "id": "solar_system",
+      "name": "Solar System",
+      "path": "json/solar_system.json"
+    },
+    {
+      "id": "standard_model",
+      "name": "Standard Model",
+      "path": "json/standard_model.json"
+    },
+    {
+      "id": "star_interior",
+      "name": "Star Interior",
+      "path": "json/star.json"
+    },
+    {
+      "id": "universe",
+      "name": "Universe",
+      "path": "json/universe.json"
+    },
+    {
+      "id": "up_quark",
+      "name": "Up Quark",
+      "path": "json/up_quark.json"
+    }
+  ]
+}

@@ -18,7 +18,7 @@
       "color": "#243d8f",
       "position": [
         -12.0,
-        6.0,
+        9.0,
         0.0
       ],
       "subScenes": [
@@ -36,7 +36,7 @@
       "color": "#2f6b6f",
       "position": [
         -6.0,
-        6.0,
+        9.0,
         0.0
       ],
       "subScenes": [
@@ -54,7 +54,7 @@
       "color": "#5a1f2e",
       "position": [
         0.0,
-        6.0,
+        9.0,
         0.0
       ],
       "subScenes": [],
@@ -69,7 +69,7 @@
       "color": "#4a4f7f",
       "position": [
         6.0,
-        6.0,
+        9.0,
         0.0
       ],
       "subScenes": [],
@@ -84,7 +84,7 @@
       "color": "#3f5f8a",
       "position": [
         12.0,
-        6.0,
+        9.0,
         0.0
       ],
       "subScenes": [],
@@ -99,7 +99,7 @@
       "color": "#6a4d1b",
       "position": [
         -12.0,
-        0.0,
+        3.0,
         0.0
       ],
       "subScenes": [],
@@ -114,7 +114,7 @@
       "color": "#7a4a1f",
       "position": [
         -6.0,
-        0.0,
+        3.0,
         0.0
       ],
       "subScenes": [],
@@ -129,7 +129,7 @@
       "color": "#2c567a",
       "position": [
         0.0,
-        0.0,
+        3.0,
         0.0
       ],
       "subScenes": [],
@@ -144,7 +144,7 @@
       "color": "#2c2f45",
       "position": [
         6.0,
-        0.0,
+        3.0,
         0.0
       ],
       "subScenes": [],
@@ -159,7 +159,7 @@
       "color": "#2a3b5a",
       "position": [
         12.0,
-        0.0,
+        3.0,
         0.0
       ],
       "subScenes": [],
@@ -174,7 +174,7 @@
       "color": "#1c2a4f",
       "position": [
         -12.0,
-        -6.0,
+        -3.0,
         0.0
       ],
       "subScenes": [],
@@ -189,7 +189,7 @@
       "color": "#4f315f",
       "position": [
         -6.0,
-        -6.0,
+        -3.0,
         0.0
       ],
       "subScenes": [],
@@ -204,7 +204,7 @@
       "color": "#3a5f9f",
       "position": [
         0.0,
-        -6.0,
+        -3.0,
         0.0
       ],
       "subScenes": [],
@@ -219,7 +219,7 @@
       "color": "#2f4f7a",
       "position": [
         6.0,
-        -6.0,
+        -3.0,
         0.0
       ],
       "subScenes": [],
@@ -234,7 +234,22 @@
       "color": "#2c6c7e",
       "position": [
         12.0,
-        -6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "symmetry",
+      "label": "Symmetry",
+      "radius": 1.68,
+      "color": "#3a5f9f",
+      "position": [
+        -12.0,
+        -9.0,
         0.0
       ],
       "subScenes": [],

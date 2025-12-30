@@ -13,6 +13,27 @@
     <div id="app">
       <canvas id="viz"></canvas>
       <div id="scene-label"></div>
+      <div id="scene-search">
+        <button
+          id="scene-search-toggle"
+          type="button"
+          aria-label="Search scenes"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+          </svg>
+        </button>
+        <div id="scene-search-panel" aria-hidden="true">
+          <input
+            id="scene-search-input"
+            type="text"
+            placeholder="Search scenes"
+            autocomplete="off"
+          />
+          <div id="scene-search-results"></div>
+        </div>
+      </div>
       <div id="hud">
         <div class="hud-title">neoclassical.ai</div>
         <div class="hud-line">Click/tap a sphere to descend</div>
