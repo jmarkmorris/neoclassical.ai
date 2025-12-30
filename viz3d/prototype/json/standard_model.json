@@ -92,7 +92,9 @@
         8.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/charm.json"
+      ],
       "motion": {
         "type": "fixed"
       },
@@ -108,7 +110,9 @@
         4.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/strange.json"
+      ],
       "motion": {
         "type": "fixed"
       },
@@ -124,7 +128,9 @@
         0.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/muon.json"
+      ],
       "motion": {
         "type": "fixed"
       },
@@ -141,7 +147,7 @@
         0.0
       ],
       "subScenes": [
-        "json/neutrino.json"
+        "json/muon_neutrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -158,7 +164,9 @@
         8.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/top.json"
+      ],
       "motion": {
         "type": "fixed"
       },
@@ -174,7 +182,9 @@
         4.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/bottom.json"
+      ],
       "motion": {
         "type": "fixed"
       },
@@ -190,7 +200,9 @@
         0.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/tau.json"
+      ],
       "motion": {
         "type": "fixed"
       },
@@ -207,7 +219,7 @@
         0.0
       ],
       "subScenes": [
-        "json/neutrino.json"
+        "json/tau_neutrino.json"
       ],
       "motion": {
         "type": "fixed"

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "tau_neutrino",
+    "name": "Tau Neutrino",
+    "units": "relative",
+    "scaleBandLog10m": [-20, -18]
+  },
+  "objects": [
+    {
+      "id": "personality_charge_layer",
+      "label": "personality charge layer",
+      "scaleExponent": -20,
+      "radius": 0.9,
+      "color": "#4a4f7f",
+      "position": [2.8, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "inner_noether_core",
+      "label": "inner Noether core binary",
+      "scaleExponent": -26,
+      "radius": 0.8,
+      "color": "#4a4f7f",
+      "position": [0.0, -2.8, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}
