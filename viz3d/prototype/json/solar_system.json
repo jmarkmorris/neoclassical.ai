@@ -30,7 +30,7 @@
       "id": "planet_a",
       "label": "Planet A",
       "scaleExponent": 6,
-      "radius": 1.0,
+      "radius": 1.25,
       "color": "#327a5e",
       "subScenes": [
         "json/planet.json"
@@ -40,7 +40,7 @@
         "orbit": {
           "shape": "circular",
           "center": "star",
-          "radius": 5.4,
+          "radius": 4.9,
           "speed": 0.25,
           "phase": 0.0
         }
@@ -50,7 +50,7 @@
       "id": "planet_b",
       "label": "Planet B",
       "scaleExponent": 6,
-      "radius": 0.9,
+      "radius": 1.1,
       "color": "#2c6c7e",
       "subScenes": [
         "json/planet.json"
@@ -60,7 +60,7 @@
         "orbit": {
           "shape": "circular",
           "center": "star",
-          "radius": 8.6,
+          "radius": 7.4,
           "speed": 0.18,
           "phase": 2.094
         }
@@ -90,7 +90,7 @@
       "id": "moon",
       "label": "Moon",
       "scaleExponent": 5,
-      "radius": 0.6,
+      "radius": 0.9,
       "color": "#9ea6bf",
       "subScenes": [
         "json/moon.json"
