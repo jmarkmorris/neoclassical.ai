@@ -88,6 +88,7 @@ const transitionState = {
   targetZoom: null,
   zoomStart: 1,
   zoomTarget: 1,
+  toStartScale: 1,
   toFitScale: 1,
   warpScale: 1,
   panStart: new THREE.Vector3(),
@@ -315,6 +316,13 @@ function computeWarpScale(objectRadius) {
   const halfDiagonal = 0.5 * Math.hypot(viewWidth, viewHeight);
   const targetRadius = halfDiagonal * 1.05;
   return Math.max(1.2, targetRadius / Math.max(objectRadius, 0.01));
+}
+
+function computeWarpScaleForLevel(level, overshoot = 1.25) {
+  const { size } = getLevelBoundsFromNodes(level);
+  const radius = Math.max(size.x, size.y) * 0.5;
+  const base = computeWarpScale(Math.max(radius, 0.01));
+  return Math.max(1.4, base * overshoot);
 }
 
 function getLevelBoundsLocal(level) {
@@ -791,6 +799,7 @@ function beginLevelTransition(targetNode, childLevelId) {
   transitionState.targetZoom = computeFitZoomForLevel(toLevel);
   transitionState.zoomStart = camera.zoom;
   transitionState.zoomTarget = transitionState.targetZoom;
+  transitionState.toStartScale = 1;
   transitionState.warpScale = warpScale;
   transitionState.panStart.copy(worldGroup.position);
   transitionState.panTarget.set(-targetPosition.x, -targetPosition.y, 0);
@@ -858,6 +867,7 @@ function startLevelTransitionOut() {
   transitionState.targetZoom = computeFitZoomForLevel(parentLevel);
   transitionState.zoomStart = camera.zoom;
   transitionState.zoomTarget = transitionState.targetZoom;
+  transitionState.toStartScale = computeWarpScaleForLevel(parentLevel);
   transitionState.warpScale = warpScale;
   transitionState.panStart.copy(worldGroup.position);
   transitionState.panTarget.copy(worldGroup.position);
@@ -868,7 +878,7 @@ function startLevelTransitionOut() {
     .copy(parentCenter)
     .multiplyScalar(-1)
     .sub(worldGroup.position);
-  parentLevel.group.scale.setScalar(1);
+  parentLevel.group.scale.setScalar(transitionState.toStartScale);
   setLevelOpacity(parentLevel, 0);
   setLevelLabelOpacity(parentLevel, 0);
   setLevelOpacity(currentLevel, 1);
@@ -983,14 +993,17 @@ function updateTransition(now) {
     setLevelOpacityWithLabel(toLevel, toFade, 0);
     setLevelLinkOpacity(toLevel, toFade);
   } else {
-    toLevel.group.scale.setScalar(1);
+    const toScale =
+      transitionState.toStartScale +
+      (1 - transitionState.toStartScale) * scaleProgress;
+    toLevel.group.scale.setScalar(toScale);
     worldGroup.position.copy(transitionState.panStart);
 
-    const fromScale = 1 - 0.08 * scaleProgress;
+    const fromScale = Math.max(0.05, 1 - 0.95 * scaleProgress);
     fromLevel.group.scale.setScalar(fromScale);
 
-    const fromFade = 1 - smoothstep(0, 0.7, t);
-    const toFade = smoothstep(0.4, 1, t);
+    const fromFade = 1 - smoothstep(0, 0.6, t);
+    const toFade = smoothstep(0.3, 1, t);
     setLevelOpacity(fromLevel, fromFade);
     setLevelLinkOpacity(fromLevel, fromFade);
     setLevelOpacityWithLabel(toLevel, toFade, 0);
