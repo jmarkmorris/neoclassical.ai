@@ -5,6 +5,7 @@ const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
 const sceneLabel = document.getElementById("scene-label");
+const sceneSearch = document.getElementById("scene-search");
 const sceneSearchToggle = document.getElementById("scene-search-toggle");
 const sceneSearchPanel = document.getElementById("scene-search-panel");
 const sceneSearchInput = document.getElementById("scene-search-input");
@@ -21,6 +22,7 @@ labelRenderer.domElement.style.position = "absolute";
 labelRenderer.domElement.style.top = "0";
 labelRenderer.domElement.style.left = "0";
 labelRenderer.domElement.style.pointerEvents = "none";
+labelRenderer.domElement.style.zIndex = "2";
 app.appendChild(labelRenderer.domElement);
 
 const scene = new THREE.Scene();
@@ -1330,6 +1332,7 @@ function setSearchOpen(isOpen) {
   if (!isOpen && sceneSearchPanel.contains(document.activeElement)) {
     sceneSearchToggle?.focus();
   }
+  sceneSearch?.classList.toggle("is-open", isOpen);
   sceneSearchPanel.classList.toggle("is-open", isOpen);
   sceneSearchPanel.setAttribute("aria-hidden", String(!isOpen));
   sceneSearchPanel.inert = !isOpen;
