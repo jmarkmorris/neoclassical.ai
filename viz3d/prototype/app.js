@@ -56,6 +56,15 @@ const linkStyle = {
   lineOpacity: 0.6,
   headOpacity: 0.85,
 };
+const binaryStyle = {
+  shellOpacity: 0.5,
+  shellOutlineOpacity: 0.28,
+  ringOpacity: 0.35,
+  ringTubeFactor: 0.04,
+  particleRadiusFactor: 0.08,
+  positrinoColor: "#e0646f",
+  electrinoColor: "#4da6ff",
+};
 
 const motionHandlers = {
   orbit: (node, level, timeSeconds) => {
@@ -74,6 +83,18 @@ const motionHandlers = {
     const y =
       centerNode.group.position.y + Math.sin(angle) * orbit.radius * yScale;
     node.group.position.set(x, y, 0);
+  },
+  binaryOrbit: (node, level, timeSeconds) => {
+    if (!node.binaryBandData || !node.binaryBandData.length) {
+      return;
+    }
+    node.binaryBandData.forEach((band) => {
+      const angle = timeSeconds * band.speed + band.phase;
+      const x = Math.cos(angle) * band.radius;
+      const y = Math.sin(angle) * band.radius;
+      band.positrino.position.set(x, y, 0);
+      band.electrino.position.set(-x, -y, 0);
+    });
   },
 };
 
@@ -250,20 +271,25 @@ async function loadSceneConfig(scenePath) {
       const nodes = data.objects.map((obj) => {
         const hasScale =
           obj.scaleExponent !== undefined && obj.scaleExponent !== null;
-      const node = {
-        id: obj.id,
-        name: obj.label || obj.id,
-        scale: hasScale ? obj.scaleExponent : null,
+        const binaryBands = Array.isArray(obj.binaryBands)
+          ? obj.binaryBands
+          : null;
+        const node = {
+          id: obj.id,
+          name: obj.label || obj.id,
+          scale: hasScale ? obj.scaleExponent : null,
         hasScale,
         radius: obj.radius ?? 1,
         color: obj.color ?? "#3a5a8a",
-        position: obj.position ?? [0, 0, 0],
-        category: obj.category,
-        reaction: obj.reaction,
-        details: obj.details ?? null,
-        hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
-        wrapLabel: obj.wrapLabel ?? wrapLabels,
-      };
+          position: obj.position ?? [0, 0, 0],
+          category: obj.category,
+          reaction: obj.reaction,
+          details: obj.details ?? null,
+          renderStyle: obj.renderStyle ?? null,
+          binaryBands,
+          hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
+          wrapLabel: obj.wrapLabel ?? wrapLabels,
+        };
         if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
           node.childScene = obj.subScenes[0];
         }
@@ -279,6 +305,9 @@ async function loadSceneConfig(scenePath) {
             yScale: orbit.yScale,
           };
           node.motionType = "orbit";
+        }
+        if (binaryBands && binaryBands.length > 0) {
+          node.motionType = "binaryOrbit";
         }
         return node;
       });
@@ -536,7 +565,144 @@ function createLabel(node) {
   return new CSS2DObject(label);
 }
 
+function getBinaryBandRadii(shellRadius, bands) {
+  if (!Array.isArray(bands) || bands.length === 0) {
+    return [];
+  }
+  const radiiByBand = {
+    outer: 0.75,
+    middle: 0.52,
+    inner: 0.32,
+  };
+  return bands.map((band) => {
+    const factor = radiiByBand[band] ?? 0.5;
+    return shellRadius * factor;
+  });
+}
+
+function createBinaryShellNode(nodeData) {
+  const group = new THREE.Group();
+  const shellRadius = nodeData.radius;
+  const phiStart = Math.PI * 0.15;
+  const phiLength = Math.PI * 1.7;
+  const shellGeometry = new THREE.SphereGeometry(
+    shellRadius,
+    36,
+    22,
+    phiStart,
+    phiLength,
+    0,
+    Math.PI
+  );
+  const shellMaterial = new THREE.MeshBasicMaterial({
+    color: nodeData.color,
+    transparent: true,
+    opacity: binaryStyle.shellOpacity,
+    side: THREE.DoubleSide,
+  });
+  shellMaterial.depthWrite = false;
+  const mesh = new THREE.Mesh(shellGeometry, shellMaterial);
+  group.add(mesh);
+
+  const outlineGeometry = new THREE.EdgesGeometry(shellGeometry);
+  const outlineMaterial = new THREE.LineBasicMaterial({
+    color: "#d5dcff",
+    transparent: true,
+    opacity: binaryStyle.shellOutlineOpacity,
+  });
+  outlineMaterial.depthWrite = false;
+  const outline = new THREE.LineSegments(outlineGeometry, outlineMaterial);
+  group.add(outline);
+
+  const extraMeshes = [];
+  const binaryBandData = [];
+  const bandRadii = getBinaryBandRadii(
+    shellRadius,
+    nodeData.binaryBands
+  );
+  const particleRadius = shellRadius * binaryStyle.particleRadiusFactor;
+
+  bandRadii.forEach((bandRadius, index) => {
+    const ringGeometry = new THREE.TorusGeometry(
+      bandRadius,
+      shellRadius * binaryStyle.ringTubeFactor,
+      16,
+      64
+    );
+    const ringMaterial = new THREE.MeshBasicMaterial({
+      color: nodeData.color,
+      transparent: true,
+      opacity: binaryStyle.ringOpacity,
+      side: THREE.DoubleSide,
+    });
+    ringMaterial.depthWrite = false;
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    group.add(ring);
+    extraMeshes.push({ mesh: ring, baseOpacity: binaryStyle.ringOpacity });
+
+    const positrinoMaterial = new THREE.MeshBasicMaterial({
+      color: binaryStyle.positrinoColor,
+      transparent: true,
+      opacity: 0.9,
+    });
+    positrinoMaterial.depthWrite = false;
+    const electrinoMaterial = new THREE.MeshBasicMaterial({
+      color: binaryStyle.electrinoColor,
+      transparent: true,
+      opacity: 0.9,
+    });
+    electrinoMaterial.depthWrite = false;
+
+    const positrino = new THREE.Mesh(
+      new THREE.SphereGeometry(particleRadius, 16, 12),
+      positrinoMaterial
+    );
+    const electrino = new THREE.Mesh(
+      new THREE.SphereGeometry(particleRadius, 16, 12),
+      electrinoMaterial
+    );
+    group.add(positrino);
+    group.add(electrino);
+    extraMeshes.push({ mesh: positrino, baseOpacity: 0.9 });
+    extraMeshes.push({ mesh: electrino, baseOpacity: 0.9 });
+
+    binaryBandData.push({
+      radius: bandRadius,
+      speed: 0.22 + index * 0.06,
+      phase: index * 0.7,
+      positrino,
+      electrino,
+    });
+  });
+
+  const labelObject = createLabel(nodeData);
+  group.add(labelObject);
+
+  return {
+    group,
+    mesh,
+    outline,
+    labelObject,
+    labelMaxWidth: null,
+    halo: null,
+    haloBaseOpacity: 0,
+    haloIntensity: 1,
+    haloPhase: haloSeed++ * 0.6,
+    data: nodeData,
+    baseOpacity: {
+      mesh: shellMaterial.opacity,
+      outline: outlineMaterial.opacity,
+      label: 1,
+    },
+    extraMeshes,
+    binaryBandData,
+  };
+}
+
 function createNode(nodeData) {
+  if (nodeData.renderStyle === "binaryShell") {
+    return createBinaryShellNode(nodeData);
+  }
   const group = new THREE.Group();
   const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
   const isReaction = nodeData.category === "Reaction";
@@ -873,12 +1039,22 @@ function updateLevelLabelWrap(level) {
   });
 }
 
+function setNodeExtraOpacity(node, opacity) {
+  if (!node.extraMeshes || !node.extraMeshes.length) {
+    return;
+  }
+  node.extraMeshes.forEach((entry) => {
+    entry.mesh.material.opacity = entry.baseOpacity * opacity;
+  });
+}
+
 function setLevelOpacity(level, opacity) {
   level.nodes.forEach((node) => {
     node.mesh.material.opacity = node.baseOpacity.mesh * opacity;
     node.outline.material.opacity = node.baseOpacity.outline * opacity;
     node.labelObject.element.style.opacity = opacity;
     node.haloIntensity = opacity;
+    setNodeExtraOpacity(node, opacity);
   });
 }
 
@@ -888,6 +1064,7 @@ function setLevelOpacityWithLabel(level, meshOpacity, labelOpacity) {
     node.outline.material.opacity = node.baseOpacity.outline * meshOpacity;
     node.labelObject.element.style.opacity = labelOpacity;
     node.haloIntensity = meshOpacity;
+    setNodeExtraOpacity(node, meshOpacity);
   });
 }
 
@@ -907,6 +1084,7 @@ function setLevelOpacityWithFocus(level, focusId, focusOpacity, otherOpacity) {
     node.outline.material.opacity = node.baseOpacity.outline * opacity;
     node.labelObject.element.style.opacity = opacity;
     node.haloIntensity = opacity;
+    setNodeExtraOpacity(node, opacity);
   });
 }
 
@@ -926,6 +1104,7 @@ function setLevelOpacityWithFocusAndLabel(
     node.outline.material.opacity = node.baseOpacity.outline * opacity;
     node.labelObject.element.style.opacity = opacity * labelOpacity;
     node.haloIntensity = opacity;
+    setNodeExtraOpacity(node, opacity);
   });
 }
 

@@ -4,28 +4,28 @@
     "id": "bottom",
     "name": "Bottom",
     "units": "relative",
-    "scaleBandLog10m": [-20, -18]
+    "scaleBandLog10m": [
+      -20,
+      -18
+    ]
   },
   "objects": [
     {
-      "id": "personality_charge_layer",
-      "label": "personality charge layer",
+      "id": "fermion_shell",
+      "label": "Bottom",
       "scaleExponent": -20,
-      "radius": 0.9,
+      "radius": 2.4,
       "color": "#5a1f2e",
-      "position": [2.8, 0.0, 0.0],
-      "subScenes": [],
-      "motion": { "type": "fixed" }
-    },
-    {
-      "id": "inner_noether_core",
-      "label": "inner Noether core binary",
-      "scaleExponent": -26,
-      "radius": 0.8,
-      "color": "#5a1f2e",
-      "position": [0.0, -2.8, 0.0],
-      "subScenes": [],
-      "motion": { "type": "fixed" }
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "binaryBands": [
+        "inner"
+      ],
+      "renderStyle": "binaryShell",
+      "subScenes": []
     }
   ]
 }
