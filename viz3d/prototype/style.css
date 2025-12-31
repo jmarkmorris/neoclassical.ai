@@ -115,6 +115,75 @@ body {
   display: block;
 }
 
+#detail-panel {
+  position: absolute;
+  top: 64px;
+  right: 16px;
+  width: 320px;
+  max-height: calc(100% - 96px);
+  display: none;
+  z-index: 6;
+  padding: 12px 14px;
+  background: rgba(8, 10, 18, 0.75);
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  color: #f5f7ff;
+  overflow: auto;
+}
+
+#detail-panel.is-open {
+  display: block;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+#detail-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+#detail-close {
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  border-radius: 6px;
+  background: rgba(15, 18, 32, 0.8);
+  color: #f5f7ff;
+  font-size: 10px;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.detail-row {
+  display: flex;
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid rgba(160, 170, 220, 0.12);
+}
+
+.detail-row:first-child {
+  border-top: none;
+}
+
+.detail-key {
+  flex: 1;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.detail-value {
+  flex: 1.2;
+  font-size: 12px;
+  text-align: right;
+}
+
 #scene-search-input {
   width: 100%;
   border: none;

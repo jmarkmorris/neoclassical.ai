@@ -10,6 +10,10 @@ const sceneSearchToggle = document.getElementById("scene-search-toggle");
 const sceneSearchPanel = document.getElementById("scene-search-panel");
 const sceneSearchInput = document.getElementById("scene-search-input");
 const sceneSearchResults = document.getElementById("scene-search-results");
+const detailPanel = document.getElementById("detail-panel");
+const detailTitle = document.getElementById("detail-title");
+const detailBody = document.getElementById("detail-body");
+const detailClose = document.getElementById("detail-close");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -128,6 +132,81 @@ const zoomLimits = { min: 0.35, max: 6 };
 const raycaster = new THREE.Raycaster();
 const pointerNdc = new THREE.Vector2();
 let lastZoomGestureTime = 0;
+const detailFieldOrder = [
+  { key: "temperature", label: "Typical temperature/energy" },
+  { key: "numberDensity", label: "Number density (km^-3)" },
+  { key: "classification", label: "Classification" },
+];
+
+function formatSuperscripts(text) {
+  return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
+}
+
+function closeDetailPanel() {
+  if (!detailPanel) {
+    return;
+  }
+  detailPanel.classList.remove("is-open");
+  detailPanel.setAttribute("aria-hidden", "true");
+  detailPanel.inert = true;
+  if (detailTitle) {
+    detailTitle.textContent = "";
+  }
+  if (detailBody) {
+    detailBody.innerHTML = "";
+  }
+}
+
+function setDetailPanel(node) {
+  if (!detailPanel || !detailTitle || !detailBody) {
+    return;
+  }
+  const details = node?.data?.details;
+  if (!details) {
+    closeDetailPanel();
+    return;
+  }
+  detailPanel.classList.add("is-open");
+  detailPanel.setAttribute("aria-hidden", "false");
+  detailPanel.inert = false;
+  detailTitle.textContent = node.data.name ?? node.data.id ?? "Details";
+  detailBody.innerHTML = "";
+
+  const usedKeys = new Set();
+  detailFieldOrder.forEach((field) => {
+    if (details[field.key] === undefined || details[field.key] === null) {
+      return;
+    }
+    usedKeys.add(field.key);
+    const row = document.createElement("div");
+    row.className = "detail-row";
+    const key = document.createElement("div");
+    key.className = "detail-key";
+    key.innerHTML = formatSuperscripts(field.label);
+    const value = document.createElement("div");
+    value.className = "detail-value";
+    value.innerHTML = formatSuperscripts(details[field.key]);
+    row.appendChild(key);
+    row.appendChild(value);
+    detailBody.appendChild(row);
+  });
+
+  Object.keys(details)
+    .filter((key) => !usedKeys.has(key))
+    .forEach((key) => {
+      const row = document.createElement("div");
+      row.className = "detail-row";
+      const keyCell = document.createElement("div");
+      keyCell.className = "detail-key";
+      keyCell.innerHTML = formatSuperscripts(key);
+      const valueCell = document.createElement("div");
+      valueCell.className = "detail-value";
+      valueCell.innerHTML = formatSuperscripts(details[key]);
+      row.appendChild(keyCell);
+      row.appendChild(valueCell);
+      detailBody.appendChild(row);
+    });
+}
 
 function purgeWorldState() {
   transitionState.active = false;
@@ -135,6 +214,7 @@ function purgeWorldState() {
   transitionState.fromLevel = null;
   transitionState.toLevel = null;
   transitionState.payload = null;
+  closeDetailPanel();
   zoomState.active = false;
   panTween.active = false;
   labelFadeState.active = false;
@@ -170,19 +250,20 @@ async function loadSceneConfig(scenePath) {
       const nodes = data.objects.map((obj) => {
         const hasScale =
           obj.scaleExponent !== undefined && obj.scaleExponent !== null;
-        const node = {
-          id: obj.id,
-          name: obj.label || obj.id,
-          scale: hasScale ? obj.scaleExponent : null,
-          hasScale,
-          radius: obj.radius ?? 1,
-          color: obj.color ?? "#3a5a8a",
-          position: obj.position ?? [0, 0, 0],
-          category: obj.category,
-          reaction: obj.reaction,
-          hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
-          wrapLabel: obj.wrapLabel ?? wrapLabels,
-        };
+      const node = {
+        id: obj.id,
+        name: obj.label || obj.id,
+        scale: hasScale ? obj.scaleExponent : null,
+        hasScale,
+        radius: obj.radius ?? 1,
+        color: obj.color ?? "#3a5a8a",
+        position: obj.position ?? [0, 0, 0],
+        category: obj.category,
+        reaction: obj.reaction,
+        details: obj.details ?? null,
+        hideScaleLabel: obj.hideScaleLabel ?? hideScaleLabels,
+        wrapLabel: obj.wrapLabel ?? wrapLabels,
+      };
         if (Array.isArray(obj.subScenes) && obj.subScenes.length > 0) {
           node.childScene = obj.subScenes[0];
         }
@@ -872,6 +953,7 @@ function beginLevelTransition(targetNode, childLevelId) {
     return;
   }
 
+  closeDetailPanel();
   const toLevel = buildLevel(childLevelId);
   if (!worldGroup.children.includes(toLevel.group)) {
     worldGroup.add(toLevel.group);
@@ -941,6 +1023,7 @@ function startLevelTransitionOut() {
     return;
   }
 
+  closeDetailPanel();
   const parentInfo = navigationStack[navigationStack.length - 1];
   const parentLevel = buildLevel(parentInfo.levelId);
   const parentNode =
@@ -1422,13 +1505,14 @@ function focusOnPointer(clientX, clientY) {
   }
 
   if (targetNode.data.children || targetNode.data.childScene) {
+    closeDetailPanel();
     startLevelTransitionFromNode(targetNode);
   } else {
     const targetWorld = new THREE.Vector3();
     targetNode.group.getWorldPosition(targetWorld);
     const panTarget = worldGroup.position.clone().sub(targetWorld);
     setTargetPan(panTarget, 420);
-    setTargetZoom(camera.zoom * 1.35, 420);
+    setDetailPanel(targetNode);
   }
   return true;
 }
@@ -1635,6 +1719,7 @@ function onResize() {
 }
 
 async function init() {
+  closeDetailPanel();
   const universeConfig = await loadSceneConfig(rootScenePath);
   if (!universeConfig) {
     return;
@@ -1673,6 +1758,12 @@ if (navUpButton) {
         });
       }
     }
+  });
+}
+
+if (detailClose) {
+  detailClose.addEventListener("click", () => {
+    closeDetailPanel();
   });
 }
 

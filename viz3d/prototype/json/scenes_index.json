@@ -41,6 +41,11 @@
       "path": "json/higgs_boson.json"
     },
     {
+      "id": "intracluster_medium",
+      "name": "Intracluster Medium",
+      "path": "json/intracluster_medium.json"
+    },
+    {
       "id": "molecule",
       "name": "Molecule",
       "path": "json/molecule.json"

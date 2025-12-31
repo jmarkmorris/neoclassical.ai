@@ -24,7 +24,7 @@
       "radius": 1.2,
       "color": "#2a3b5a",
       "position": [-2.5, -4.33, 0.0],
-      "subScenes": [],
+      "subScenes": ["json/intracluster_medium.json"],
       "motion": { "type": "fixed" }
     }
   ]
