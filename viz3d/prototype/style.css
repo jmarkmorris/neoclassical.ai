@@ -200,6 +200,7 @@ body {
 .label-wrap .label-title {
   white-space: normal;
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .label-scale {

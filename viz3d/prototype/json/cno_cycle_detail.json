@@ -345,26 +345,28 @@
     },
     {
       "id": "p1",
-      "label": "p",
-      "shortName": "p",
+      "label": "H+ (proton)",
+      "shortName": "H+ (proton)",
       "category": "Particle",
       "role": "input",
-      "radius": 0.5,
+      "radius": 0.68,
       "color": "#b24b3c",
       "position": [
         3.66,
         8.6,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/proton.json"
+      ],
       "motion": {
         "type": "fixed"
       }
     },
     {
       "id": "gamma1",
-      "label": "gamma",
-      "shortName": "gamma",
+      "label": "\u03b3",
+      "shortName": "\u03b3",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -399,8 +401,8 @@
     },
     {
       "id": "nu2",
-      "label": "nu",
-      "shortName": "nu",
+      "label": "\u03bd",
+      "shortName": "\u03bd",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -410,33 +412,37 @@
         -1.28,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/neutrino.json"
+      ],
       "motion": {
         "type": "fixed"
       }
     },
     {
       "id": "p3",
-      "label": "p",
-      "shortName": "p",
+      "label": "H+ (proton)",
+      "shortName": "H+ (proton)",
       "category": "Particle",
       "role": "input",
-      "radius": 0.5,
+      "radius": 0.68,
       "color": "#b24b3c",
       "position": [
         3.66,
         -8.6,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/proton.json"
+      ],
       "motion": {
         "type": "fixed"
       }
     },
     {
       "id": "gamma3",
-      "label": "gamma",
-      "shortName": "gamma",
+      "label": "\u03b3",
+      "shortName": "\u03b3",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -453,26 +459,28 @@
     },
     {
       "id": "p4",
-      "label": "p",
-      "shortName": "p",
+      "label": "H+ (proton)",
+      "shortName": "H+ (proton)",
       "category": "Particle",
       "role": "input",
-      "radius": 0.5,
+      "radius": 0.68,
       "color": "#b24b3c",
       "position": [
         -3.66,
         -8.6,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/proton.json"
+      ],
       "motion": {
         "type": "fixed"
       }
     },
     {
       "id": "gamma4",
-      "label": "gamma",
-      "shortName": "gamma",
+      "label": "\u03b3",
+      "shortName": "\u03b3",
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
@@ -507,8 +515,8 @@
     },
     {
       "id": "nu5",
-      "label": "nu",
-      "shortName": "nu",
+      "label": "\u03bd",
+      "shortName": "\u03bd",
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
@@ -518,25 +526,29 @@
         -1.28,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/neutrino.json"
+      ],
       "motion": {
         "type": "fixed"
       }
     },
     {
       "id": "p6",
-      "label": "p",
-      "shortName": "p",
+      "label": "H+ (proton)",
+      "shortName": "H+ (proton)",
       "category": "Particle",
       "role": "input",
-      "radius": 0.5,
+      "radius": 0.68,
       "color": "#b24b3c",
       "position": [
         -3.66,
         8.6,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/proton.json"
+      ],
       "motion": {
         "type": "fixed"
       }

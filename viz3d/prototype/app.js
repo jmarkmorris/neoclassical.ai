@@ -113,6 +113,21 @@ const raycaster = new THREE.Raycaster();
 const pointerNdc = new THREE.Vector2();
 let lastZoomGestureTime = 0;
 
+function purgeWorldState() {
+  transitionState.active = false;
+  transitionState.fromLevel = null;
+  transitionState.toLevel = null;
+  zoomState.active = false;
+  panTween.active = false;
+  labelFadeState.active = false;
+  worldGroup.clear();
+  worldGroup.position.set(0, 0, 0);
+  levels.clear();
+  if (labelRenderer?.domElement) {
+    labelRenderer.domElement.innerHTML = "";
+  }
+}
+
 async function loadSceneConfig(scenePath) {
   if (sceneConfigCache.has(scenePath)) {
     return sceneConfigCache.get(scenePath);
@@ -198,9 +213,8 @@ async function resetToRootScene() {
   if (!config) {
     return;
   }
+  purgeWorldState();
   const rootLevel = buildLevel(rootScenePath);
-  worldGroup.clear();
-  worldGroup.position.set(0, 0, 0);
   worldGroup.add(rootLevel.group);
   rootLevel.group.position.set(0, 0, 0);
   rootLevel.group.scale.setScalar(1);
@@ -226,9 +240,8 @@ async function jumpToScene(scenePath, options = {}) {
   if (!config) {
     return;
   }
+  purgeWorldState();
   const level = buildLevel(scenePath);
-  worldGroup.clear();
-  worldGroup.position.set(0, 0, 0);
   worldGroup.add(level.group);
   level.group.position.set(0, 0, 0);
   level.group.scale.setScalar(1);
@@ -662,10 +675,14 @@ function updateLevelLabelWrap(level) {
     }
     const metrics = getNodeScreenMetrics(node);
     const diameter = metrics.radiusPx * 2;
-    const maxWidth = Math.max(70, Math.round(diameter * 0.85));
+    const targetWidth = Math.round(diameter * 0.8);
+    const minWidth = 36;
+    const maxAllowed = Math.round(diameter * 0.95);
+    const maxWidth = Math.max(minWidth, Math.min(targetWidth, maxAllowed));
     if (node.labelMaxWidth !== maxWidth) {
       node.labelMaxWidth = maxWidth;
       node.labelObject.element.style.maxWidth = `${maxWidth}px`;
+      node.labelObject.element.style.width = `${maxWidth}px`;
     }
   });
 }
