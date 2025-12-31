@@ -882,6 +882,7 @@ function beginLevelTransition(targetNode, childLevelId) {
   const targetPosition = targetWorld.sub(worldGroup.position);
   const toLevelCenter = getLevelCenter(toLevel);
   const warpScale = computeWarpScale(targetNode.data.radius);
+  const toStartScale = 0.5;
   const focusNodeId = targetNode.data.id ?? targetNode.data.name;
   const zoomTarget = computeFitZoomForLevel(toLevel);
   const panStart = worldGroup.position.clone();
@@ -899,6 +900,7 @@ function beginLevelTransition(targetNode, childLevelId) {
     zoomStart: camera.zoom,
     zoomTarget,
     warpScale,
+    toStartScale,
     panStart,
     panTarget,
   };
@@ -906,7 +908,7 @@ function beginLevelTransition(targetNode, childLevelId) {
   transitionState.duration = 2250;
 
   toLevel.group.position.copy(targetPosition).sub(toLevelCenter);
-  toLevel.group.scale.setScalar(1);
+  toLevel.group.scale.setScalar(toStartScale);
   setLevelOpacity(toLevel, 0);
   setLevelLabelOpacity(toLevel, 0);
   setLevelOpacityWithFocus(currentLevel, focusNodeId, 1, 0);
@@ -1051,6 +1053,10 @@ const transitionHandlers = {
           1 + (payload.warpScale - 1) * scaleProgress
         );
       }
+      const toScale =
+        payload.toStartScale +
+        (1 - payload.toStartScale) * scaleProgress;
+      toLevel.group.scale.setScalar(toScale);
       worldGroup.position.lerpVectors(
         payload.panStart,
         payload.panTarget,
@@ -1418,11 +1424,9 @@ function focusOnPointer(clientX, clientY) {
   if (targetNode.data.children || targetNode.data.childScene) {
     startLevelTransitionFromNode(targetNode);
   } else {
-    const panTarget = new THREE.Vector3(
-      -targetNode.group.position.x,
-      -targetNode.group.position.y,
-      worldGroup.position.z
-    );
+    const targetWorld = new THREE.Vector3();
+    targetNode.group.getWorldPosition(targetWorld);
+    const panTarget = worldGroup.position.clone().sub(targetWorld);
     setTargetPan(panTarget, 420);
     setTargetZoom(camera.zoom * 1.35, 420);
   }
