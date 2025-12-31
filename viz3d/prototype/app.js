@@ -51,6 +51,26 @@ const linkStyle = {
   headOpacity: 0.85,
 };
 
+const motionHandlers = {
+  orbit: (node, level, timeSeconds) => {
+    const orbit = node.data.orbit;
+    if (!orbit) {
+      return;
+    }
+    const centerNode = level.nodeByName.get(orbit.center);
+    if (!centerNode) {
+      return;
+    }
+    const yScale =
+      orbit.shape === "ellipsoid" ? orbit.yScale ?? 0.85 : 1;
+    const angle = timeSeconds * orbit.speed + (orbit.phase ?? 0);
+    const x = centerNode.group.position.x + Math.cos(angle) * orbit.radius;
+    const y =
+      centerNode.group.position.y + Math.sin(angle) * orbit.radius * yScale;
+    node.group.position.set(x, y, 0);
+  },
+};
+
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 let haloSeed = 0;
@@ -185,6 +205,7 @@ async function loadSceneConfig(scenePath) {
             shape: orbit.shape ?? "circular",
             yScale: orbit.yScale,
           };
+          node.motionType = "orbit";
         }
         return node;
       });
@@ -506,7 +527,7 @@ function buildLevel(levelId) {
   const nodes = [];
   const nodeByName = new Map();
   const nodeById = new Map();
-  const orbiters = [];
+  const motionNodes = [];
 
   const spacing = config.spacing ?? 7;
   const centerOffset = (config.nodes.length - 1) / 2;
@@ -529,8 +550,8 @@ function buildLevel(levelId) {
       nodeById.set(nodeData.id, node);
     }
 
-    if (nodeData.orbit) {
-      orbiters.push(node);
+    if (nodeData.motionType) {
+      motionNodes.push(node);
     }
   });
 
@@ -542,31 +563,23 @@ function buildLevel(levelId) {
     nodes,
     nodeByName,
     nodeById,
-    orbiters,
+    motionNodes,
     layout: config.layout,
     links: [],
   };
 
   levels.set(levelId, level);
   buildLevelLinks(level, config);
-  updateLevelOrbits(level, 0);
+  updateLevelMotions(level, 0);
   return level;
 }
 
-function updateLevelOrbits(level, timeSeconds) {
-  level.orbiters.forEach((node) => {
-    const orbit = node.data.orbit;
-    const centerNode = level.nodeByName.get(orbit.center);
-    if (!centerNode) {
-      return;
+function updateLevelMotions(level, timeSeconds) {
+  level.motionNodes.forEach((node) => {
+    const handler = motionHandlers[node.data.motionType];
+    if (handler) {
+      handler(node, level, timeSeconds);
     }
-    const yScale =
-      orbit.shape === "ellipsoid" ? orbit.yScale ?? 0.85 : 1;
-    const angle = timeSeconds * orbit.speed + (orbit.phase ?? 0);
-    const x = centerNode.group.position.x + Math.cos(angle) * orbit.radius;
-    const y =
-      centerNode.group.position.y + Math.sin(angle) * orbit.radius * yScale;
-    node.group.position.set(x, y, 0);
   });
 }
 
@@ -1592,8 +1605,8 @@ function animate(now = 0) {
     updateLevelHalo(currentLevel, timeSeconds);
   }
 
-  if (currentLevel && currentLevel.layout === "orbit") {
-    updateLevelOrbits(currentLevel, now / 1000);
+  if (currentLevel) {
+    updateLevelMotions(currentLevel, now / 1000);
   }
   if (transitionState.active) {
     updateLevelLinks(transitionState.fromLevel);
