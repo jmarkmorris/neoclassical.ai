@@ -12,10 +12,10 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Tau",
+      "label": "Uni-binary Noether core",
       "scaleExponent": -20,
-      "radius": 2.4,
-      "color": "#2f6b6f",
+      "radius": 1.08,
+      "color": "#4b0082",
       "position": [
         0.0,
         0.0,

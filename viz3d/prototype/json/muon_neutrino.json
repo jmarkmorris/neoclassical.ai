@@ -12,10 +12,10 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Muon Neutrino",
+      "label": "Bi-binary Noether core",
       "scaleExponent": -20,
-      "radius": 2.4,
-      "color": "#4a4f7f",
+      "radius": 1.68,
+      "color": "#4b0082",
       "position": [
         0.0,
         0.0,

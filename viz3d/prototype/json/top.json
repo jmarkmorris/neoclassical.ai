@@ -12,10 +12,10 @@
   "objects": [
     {
       "id": "quark_core",
-      "label": "Top",
+      "label": "Uni-binary Noether core",
       "scaleExponent": -20,
-      "radius": 1.68,
-      "color": "#3b4d6b",
+      "radius": 0.756,
+      "color": "#4b0082",
       "position": [
         0.0,
         0.0,

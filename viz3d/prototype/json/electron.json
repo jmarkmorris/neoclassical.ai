@@ -12,10 +12,10 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Electron",
+      "label": "Tri-binary Noether core",
       "scaleExponent": -20,
       "radius": 2.4,
-      "color": "#4da6ff",
+      "color": "#4b0082",
       "position": [
         0.0,
         0.0,
