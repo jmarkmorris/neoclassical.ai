@@ -10,6 +10,7 @@ const sceneSearchToggle = document.getElementById("scene-search-toggle");
 const sceneSearchPanel = document.getElementById("scene-search-panel");
 const sceneSearchInput = document.getElementById("scene-search-input");
 const sceneSearchResults = document.getElementById("scene-search-results");
+const hoverTooltip = document.getElementById("hover-tooltip");
 const detailPanel = document.getElementById("detail-panel");
 const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
@@ -65,6 +66,22 @@ const binaryStyle = {
   positrinoColor: "#e0646f",
   electrinoColor: "#4da6ff",
   baseOrbitSpeed: 0.18,
+};
+const generationTransitions = {
+  electron: { nextScene: "json/muon.json", nextLabel: "Muon" },
+  muon: { nextScene: "json/tau.json", nextLabel: "Tau" },
+  neutrino: {
+    nextScene: "json/muon_neutrino.json",
+    nextLabel: "Muon Neutrino",
+  },
+  muon_neutrino: {
+    nextScene: "json/tau_neutrino.json",
+    nextLabel: "Tau Neutrino",
+  },
+  up_quark: { nextScene: "json/charm.json", nextLabel: "Charm" },
+  charm: { nextScene: "json/top.json", nextLabel: "Top" },
+  down_quark: { nextScene: "json/strange.json", nextLabel: "Strange" },
+  strange: { nextScene: "json/bottom.json", nextLabel: "Bottom" },
 };
 
 const motionHandlers = {
@@ -161,6 +178,7 @@ const detailFieldOrder = [
 ];
 let activeDetailNodeId = null;
 let hoveredDetailNodeId = null;
+let hoverTooltipVisible = false;
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
@@ -181,6 +199,79 @@ function closeDetailPanel() {
   if (detailBody) {
     detailBody.innerHTML = "";
   }
+}
+
+function showHoverTooltip(text, x, y) {
+  if (!hoverTooltip) {
+    return;
+  }
+  hoverTooltip.textContent = text;
+  hoverTooltip.classList.add("is-visible");
+  hoverTooltip.setAttribute("aria-hidden", "false");
+
+  const padding = 12;
+  const rect = hoverTooltip.getBoundingClientRect();
+  let left = x + padding;
+  let top = y + padding;
+  if (left + rect.width > window.innerWidth - padding) {
+    left = x - rect.width - padding;
+  }
+  if (top + rect.height > window.innerHeight - padding) {
+    top = y - rect.height - padding;
+  }
+  hoverTooltip.style.left = `${left}px`;
+  hoverTooltip.style.top = `${top}px`;
+  hoverTooltipVisible = true;
+}
+
+function hideHoverTooltip() {
+  if (!hoverTooltip || !hoverTooltipVisible) {
+    return;
+  }
+  hoverTooltip.classList.remove("is-visible");
+  hoverTooltip.setAttribute("aria-hidden", "true");
+  hoverTooltipVisible = false;
+}
+
+function getNodeGeneration(node) {
+  const count = node?.data?.binaryBands?.length ?? 0;
+  if (count >= 3) {
+    return "I";
+  }
+  if (count === 2) {
+    return "II";
+  }
+  if (count === 1) {
+    return "III";
+  }
+  return null;
+}
+
+function getPulsingBandName(node) {
+  const count = node?.data?.binaryBands?.length ?? 0;
+  if (count >= 3) {
+    return "outer";
+  }
+  if (count === 2) {
+    return "middle";
+  }
+  return null;
+}
+
+function getNextGenerationInfo(level) {
+  if (!level || !level.sceneId) {
+    return null;
+  }
+  const currentGen = getNodeGeneration(level.primaryBinaryNode);
+  if (!currentGen || currentGen === "III") {
+    return null;
+  }
+  const mapping = generationTransitions[level.sceneId];
+  if (!mapping) {
+    return null;
+  }
+  const nextGen = currentGen === "I" ? "II" : "III";
+  return { ...mapping, nextGen };
 }
 
 function setDetailPanel(node) {
@@ -243,6 +334,7 @@ function purgeWorldState() {
   transitionState.toLevel = null;
   transitionState.payload = null;
   closeDetailPanel();
+  hideHoverTooltip();
   zoomState.active = false;
   panTween.active = false;
   labelFadeState.active = false;
@@ -321,11 +413,13 @@ async function loadSceneConfig(scenePath) {
 
       const sceneName =
         data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
+      const sceneId = data.scene?.id ?? null;
       const config = {
         layout: nodes.some((node) => node.orbit) ? "orbit" : "static",
         nodes,
         links: Array.isArray(data.links) ? data.links : [],
         sceneName,
+        sceneId,
         centerOn: data.scene?.centerOn ?? null,
       };
       levelConfigs[scenePath] = config;
@@ -679,10 +773,14 @@ function createBinaryCoreNode(nodeData, useCutaway) {
     extraMeshes.push({ mesh: electrino, baseOpacity: 0.9 });
 
     const bandName = nodeData.binaryBands?.[index];
+    ring.userData.bandName = bandName;
     binaryBandData.push({
       radius: bandRadius,
       speed: binaryStyle.baseOrbitSpeed * (bandSpeedFactor[bandName] ?? 1),
       phase: index * 0.7,
+      bandName,
+      ring,
+      ringBaseOpacity: binaryStyle.ringOpacity,
       positrino,
       electrino,
     });
@@ -789,6 +887,9 @@ function buildLevel(levelId) {
   const nodeByName = new Map();
   const nodeById = new Map();
   const motionNodes = [];
+  const ringTargets = [];
+  const ringTargetByMesh = new Map();
+  let primaryBinaryNode = null;
 
   const spacing = config.spacing ?? 7;
   const centerOffset = (config.nodes.length - 1) / 2;
@@ -814,17 +915,33 @@ function buildLevel(levelId) {
     if (nodeData.motionType) {
       motionNodes.push(node);
     }
+    if (node.binaryBandData && node.binaryBandData.length) {
+      node.binaryBandData.forEach((band) => {
+        if (!band.ring) {
+          return;
+        }
+        ringTargets.push({ mesh: band.ring, node, bandName: band.bandName });
+        ringTargetByMesh.set(band.ring, { node, bandName: band.bandName });
+      });
+      if (!primaryBinaryNode) {
+        primaryBinaryNode = node;
+      }
+    }
   });
 
   const level = {
     id: levelId,
     name: config.sceneName ?? levelId,
+    sceneId: config.sceneId ?? null,
     centerOn: config.centerOn,
     group,
     nodes,
     nodeByName,
     nodeById,
     motionNodes,
+    ringTargets,
+    ringTargetByMesh,
+    primaryBinaryNode,
     layout: config.layout,
     links: [],
   };
@@ -1140,6 +1257,29 @@ function updateLevelHalo(level, timeSeconds) {
   });
 }
 
+function updateBinaryRingPulse(level, timeSeconds) {
+  if (!level) {
+    return;
+  }
+  level.nodes.forEach((node) => {
+    if (!node.binaryBandData || !node.binaryBandData.length) {
+      return;
+    }
+    const pulsingBand = getPulsingBandName(node);
+    node.binaryBandData.forEach((band) => {
+      if (!band.ring) {
+        return;
+      }
+      const base = band.ringBaseOpacity ?? binaryStyle.ringOpacity;
+      const pulse =
+        pulsingBand && band.bandName === pulsingBand
+          ? 0.65 + 0.35 * Math.sin(timeSeconds * 2.2 + node.haloPhase)
+          : 1;
+      band.ring.material.opacity = base * (node.haloIntensity ?? 1) * pulse;
+    });
+  });
+}
+
 function beginLevelTransition(targetNode, childLevelId) {
   if (transitionState.active) {
     return;
@@ -1149,6 +1289,7 @@ function beginLevelTransition(targetNode, childLevelId) {
   }
 
   closeDetailPanel();
+  hideHoverTooltip();
   const toLevel = buildLevel(childLevelId);
   if (!worldGroup.children.includes(toLevel.group)) {
     worldGroup.add(toLevel.group);
@@ -1219,6 +1360,7 @@ function startLevelTransitionOut() {
   }
 
   closeDetailPanel();
+  hideHoverTooltip();
   const parentInfo = navigationStack[navigationStack.length - 1];
   const parentLevel = buildLevel(parentInfo.levelId);
   const parentNode =
@@ -1682,6 +1824,28 @@ function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return false;
   }
+  const nextGenInfo = getNextGenerationInfo(currentLevel);
+  if (nextGenInfo && currentLevel.ringTargets?.length) {
+    const rect = canvas.getBoundingClientRect();
+    pointerNdc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    pointerNdc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(pointerNdc, camera);
+    const pulsingTargets = currentLevel.ringTargets.filter(
+      (target) => target.bandName === getPulsingBandName(target.node)
+    );
+    if (pulsingTargets.length) {
+      const intersections = raycaster.intersectObjects(
+        pulsingTargets.map((target) => target.mesh),
+        false
+      );
+      if (intersections.length) {
+        closeDetailPanel();
+        hideHoverTooltip();
+        jumpToScene(nextGenInfo.nextScene, { mode: "jump" });
+        return true;
+      }
+    }
+  }
   const rect = canvas.getBoundingClientRect();
   pointerNdc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
   pointerNdc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
@@ -1701,6 +1865,7 @@ function focusOnPointer(clientX, clientY) {
 
   if (targetNode.data.children || targetNode.data.childScene) {
     closeDetailPanel();
+    hideHoverTooltip();
     startLevelTransitionFromNode(targetNode);
   } else {
     const targetWorld = new THREE.Vector3();
@@ -1740,6 +1905,43 @@ function updateDetailHover(clientX, clientY) {
     return;
   }
   setDetailPanel(targetNode);
+}
+
+function updateDecayHover(clientX, clientY) {
+  if (!currentLevel || transitionState.active) {
+    return;
+  }
+  const nextGenInfo = getNextGenerationInfo(currentLevel);
+  if (!nextGenInfo) {
+    hideHoverTooltip();
+    return;
+  }
+  const pulsingBandName = getPulsingBandName(currentLevel.primaryBinaryNode);
+  if (!pulsingBandName || !currentLevel.ringTargets?.length) {
+    hideHoverTooltip();
+    return;
+  }
+  const rect = canvas.getBoundingClientRect();
+  pointerNdc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+  pointerNdc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(pointerNdc, camera);
+  const pulsingTargets = currentLevel.ringTargets.filter(
+    (target) => target.bandName === pulsingBandName
+  );
+  if (!pulsingTargets.length) {
+    hideHoverTooltip();
+    return;
+  }
+  const intersections = raycaster.intersectObjects(
+    pulsingTargets.map((target) => target.mesh),
+    false
+  );
+  if (!intersections.length) {
+    hideHoverTooltip();
+    return;
+  }
+  const label = `Decay to Gen ${nextGenInfo.nextGen} ${nextGenInfo.nextLabel}`;
+  showHoverTooltip(label, clientX, clientY);
 }
 
 const activePointers = new Map();
@@ -1829,6 +2031,7 @@ function onPointerMove(event) {
 
   if (event.buttons === 0 && activePointers.size === 0 && !panState.active) {
     updateDetailHover(event.clientX, event.clientY);
+    updateDecayHover(event.clientX, event.clientY);
   }
 }
 
@@ -1922,8 +2125,11 @@ function animate(now = 0) {
   if (transitionState.active) {
     updateLevelHalo(transitionState.fromLevel, timeSeconds);
     updateLevelHalo(transitionState.toLevel, timeSeconds);
+    updateBinaryRingPulse(transitionState.fromLevel, timeSeconds);
+    updateBinaryRingPulse(transitionState.toLevel, timeSeconds);
   } else {
     updateLevelHalo(currentLevel, timeSeconds);
+    updateBinaryRingPulse(currentLevel, timeSeconds);
   }
 
   if (currentLevel) {
@@ -1970,6 +2176,9 @@ canvas.addEventListener("pointerdown", onPointerDown);
 canvas.addEventListener("pointermove", onPointerMove);
 canvas.addEventListener("pointerup", onPointerUp);
 canvas.addEventListener("pointercancel", onPointerUp);
+canvas.addEventListener("pointerleave", () => {
+  hideHoverTooltip();
+});
 canvas.addEventListener("wheel", onWheel, { passive: false });
 
 if (navUpButton) {
