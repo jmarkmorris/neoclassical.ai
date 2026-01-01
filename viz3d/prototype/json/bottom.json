@@ -14,7 +14,7 @@
       "id": "quark_core",
       "label": "Uni-binary Noether core",
       "scaleExponent": -20,
-      "radius": 0.756,
+      "radius": 1.08,
       "color": "#4b0082",
       "position": [
         0.0,
@@ -39,6 +39,23 @@
       ],
       "subScenes": [
         "json/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "positrino_1",
+      "label": "Positrino",
+      "radius": 0.45,
+      "color": "#e0646f",
+      "position": [
+        -2.0,
+        -3.464,
+        0.0
+      ],
+      "subScenes": [
+        "json/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -90,23 +107,6 @@
       ],
       "subScenes": [
         "json/electrino.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "positrino_1",
-      "label": "Positrino",
-      "radius": 0.45,
-      "color": "#e0646f",
-      "position": [
-        -2.0,
-        -3.464,
-        0.0
-      ],
-      "subScenes": [
-        "json/positrino.json"
       ],
       "motion": {
         "type": "fixed"

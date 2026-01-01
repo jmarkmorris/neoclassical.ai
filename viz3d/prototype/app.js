@@ -160,6 +160,7 @@ const detailFieldOrder = [
   { key: "classification", label: "Classification" },
 ];
 let activeDetailNodeId = null;
+let hoveredDetailNodeId = null;
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
@@ -173,6 +174,7 @@ function closeDetailPanel() {
   detailPanel.setAttribute("aria-hidden", "true");
   detailPanel.inert = true;
   activeDetailNodeId = null;
+  hoveredDetailNodeId = null;
   if (detailTitle) {
     detailTitle.textContent = "";
   }
@@ -194,6 +196,7 @@ function setDetailPanel(node) {
   detailPanel.setAttribute("aria-hidden", "false");
   detailPanel.inert = false;
   activeDetailNodeId = node.data.id ?? node.data.name ?? null;
+  hoveredDetailNodeId = activeDetailNodeId;
   detailTitle.textContent = node.data.name ?? node.data.id ?? "Details";
   detailBody.innerHTML = "";
 
@@ -1696,23 +1699,6 @@ function focusOnPointer(clientX, clientY) {
     return false;
   }
 
-  if (targetNode.data.details) {
-    const hasChild = targetNode.data.children || targetNode.data.childScene;
-    if (
-      hasChild &&
-      detailPanel?.classList.contains("is-open") &&
-      activeDetailNodeId &&
-      (activeDetailNodeId === targetNode.data.id ||
-        activeDetailNodeId === targetNode.data.name)
-    ) {
-      closeDetailPanel();
-      startLevelTransitionFromNode(targetNode);
-      return true;
-    }
-    setDetailPanel(targetNode);
-    return true;
-  }
-
   if (targetNode.data.children || targetNode.data.childScene) {
     closeDetailPanel();
     startLevelTransitionFromNode(targetNode);
@@ -1724,6 +1710,36 @@ function focusOnPointer(clientX, clientY) {
     setDetailPanel(targetNode);
   }
   return true;
+}
+
+function updateDetailHover(clientX, clientY) {
+  if (!currentLevel || transitionState.active) {
+    return;
+  }
+  if (!detailPanel) {
+    return;
+  }
+  const rect = canvas.getBoundingClientRect();
+  pointerNdc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+  pointerNdc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+  raycaster.setFromCamera(pointerNdc, camera);
+  const intersections = raycaster.intersectObjects(
+    currentLevel.nodes.map((node) => node.mesh),
+    false
+  );
+  if (!intersections.length) {
+    return;
+  }
+  const hit = intersections[0].object;
+  const targetNode = currentLevel.nodes.find((node) => node.mesh === hit);
+  if (!targetNode || !targetNode.data.details) {
+    return;
+  }
+  const nextId = targetNode.data.id ?? targetNode.data.name;
+  if (nextId && nextId === hoveredDetailNodeId) {
+    return;
+  }
+  setDetailPanel(targetNode);
 }
 
 const activePointers = new Map();
@@ -1783,11 +1799,13 @@ function onPointerDown(event) {
 }
 
 function onPointerMove(event) {
-  if (!activePointers.has(event.pointerId) || transitionState.active) {
+  if (transitionState.active) {
     return;
   }
 
-  activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+  if (activePointers.has(event.pointerId)) {
+    activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+  }
 
   if (activePointers.size === 1 && panState.active) {
     const dx = event.clientX - panState.startX;
@@ -1807,6 +1825,10 @@ function onPointerMove(event) {
       applyZoom(zoom);
       lastZoomGestureTime = performance.now();
     }
+  }
+
+  if (event.buttons === 0 && activePointers.size === 0 && !panState.active) {
+    updateDetailHover(event.clientX, event.clientY);
   }
 }
 
