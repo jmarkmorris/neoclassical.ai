@@ -12,7 +12,11 @@
       "label": "Hydrogen (H+)",
       "radius": 0.9,
       "color": "#3c5b8b",
-      "position": [-6.0, 4.6, 0.0],
+      "position": [
+        -6.0,
+        4.6,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^11-10^13 km^-3",
@@ -27,7 +31,11 @@
       "label": "Helium (He2+)",
       "radius": 0.9,
       "color": "#365e75",
-      "position": [-2.0, 4.6, 0.0],
+      "position": [
+        -2.0,
+        4.6,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^10-10^12 km^-3",
@@ -39,8 +47,12 @@
       "id": "thermal_electron",
       "label": "Electron (thermal)",
       "radius": 0.9,
-      "color": "#315a6b",
-      "position": [2.0, 4.6, 0.0],
+      "color": "#4da6ff",
+      "position": [
+        2.0,
+        4.6,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^11-10^13 km^-3",
@@ -55,7 +67,11 @@
       "label": "Oxygen (O7+/O8+)",
       "radius": 0.9,
       "color": "#7b5a2c",
-      "position": [6.0, 4.6, 0.0],
+      "position": [
+        6.0,
+        4.6,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^7-10^9 km^-3",
@@ -68,7 +84,11 @@
       "label": "Neon (Ne9+/Ne10+)",
       "radius": 0.9,
       "color": "#7b5a2c",
-      "position": [-6.0, 1.5, 0.0],
+      "position": [
+        -6.0,
+        1.5,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^6-10^8 km^-3",
@@ -81,7 +101,11 @@
       "label": "Magnesium (Mg11+/Mg12+)",
       "radius": 0.9,
       "color": "#7b5a2c",
-      "position": [-2.0, 1.5, 0.0],
+      "position": [
+        -2.0,
+        1.5,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^6-10^8 km^-3",
@@ -94,7 +118,11 @@
       "label": "Silicon (Si13+/Si14+)",
       "radius": 0.9,
       "color": "#7b5a2c",
-      "position": [2.0, 1.5, 0.0],
+      "position": [
+        2.0,
+        1.5,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^6-10^8 km^-3",
@@ -107,7 +135,11 @@
       "label": "Sulfur (S15+/S16+)",
       "radius": 0.9,
       "color": "#7b5a2c",
-      "position": [6.0, 1.5, 0.0],
+      "position": [
+        6.0,
+        1.5,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^5-10^7 km^-3",
@@ -120,7 +152,11 @@
       "label": "Iron (Fe23+-Fe26+)",
       "radius": 0.9,
       "color": "#7b5a2c",
-      "position": [-6.0, -1.5, 0.0],
+      "position": [
+        -6.0,
+        -1.5,
+        0.0
+      ],
       "details": {
         "temperature": "(1-10)x10^7-10^8 K",
         "numberDensity": "~10^5-10^7 km^-3",
@@ -133,7 +169,11 @@
       "label": "Cosmic-ray proton",
       "radius": 0.9,
       "color": "#6a3f7e",
-      "position": [-2.0, -1.5, 0.0],
+      "position": [
+        -2.0,
+        -1.5,
+        0.0
+      ],
       "details": {
         "temperature": "~GeV-TeV",
         "numberDensity": "~10^6-10^8 km^-3",
@@ -147,8 +187,12 @@
       "id": "cosmic_ray_electron",
       "label": "Cosmic-ray electron",
       "radius": 0.9,
-      "color": "#6a3f7e",
-      "position": [2.0, -1.5, 0.0],
+      "color": "#4da6ff",
+      "position": [
+        2.0,
+        -1.5,
+        0.0
+      ],
       "details": {
         "temperature": "~GeV",
         "numberDensity": "~10^4-10^6 km^-3",
@@ -163,7 +207,11 @@
       "label": "Neutrino (CnuB)",
       "radius": 0.9,
       "color": "#2f6b7a",
-      "position": [6.0, -1.5, 0.0],
+      "position": [
+        6.0,
+        -1.5,
+        0.0
+      ],
       "details": {
         "temperature": "1.95 K",
         "numberDensity": "~3x10^17 km^-3",
@@ -178,7 +226,11 @@
       "label": "Neutrino (astrophysical)",
       "radius": 0.9,
       "color": "#2f6b7a",
-      "position": [-6.0, -4.6, 0.0],
+      "position": [
+        -6.0,
+        -4.6,
+        0.0
+      ],
       "details": {
         "temperature": "MeV-PeV",
         "numberDensity": "<<10^9 km^-3",
@@ -193,7 +245,11 @@
       "label": "CMB photons",
       "radius": 0.9,
       "color": "#b08a3a",
-      "position": [-2.0, -4.6, 0.0],
+      "position": [
+        -2.0,
+        -4.6,
+        0.0
+      ],
       "details": {
         "temperature": "2.725 K",
         "numberDensity": "~4x10^17 km^-3",
@@ -206,7 +262,11 @@
       "label": "Optical/IR background",
       "radius": 0.9,
       "color": "#b08a3a",
-      "position": [2.0, -4.6, 0.0],
+      "position": [
+        2.0,
+        -4.6,
+        0.0
+      ],
       "details": {
         "temperature": "~10^3-10^4 K (eff.)",
         "numberDensity": "~10^14-10^16 km^-3",
@@ -219,7 +279,11 @@
       "label": "X-ray photons (ICM)",
       "radius": 0.9,
       "color": "#b08a3a",
-      "position": [6.0, -4.6, 0.0],
+      "position": [
+        6.0,
+        -4.6,
+        0.0
+      ],
       "details": {
         "temperature": "keV",
         "numberDensity": "<<10^9 km^-3",

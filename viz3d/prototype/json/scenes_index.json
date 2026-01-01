@@ -104,6 +104,16 @@
       "id": "up_quark",
       "name": "Up Quark",
       "path": "json/up_quark.json"
+    },
+    {
+      "id": "electrino",
+      "name": "Electrino",
+      "path": "json/electrino.json"
+    },
+    {
+      "id": "positrino",
+      "name": "Positrino",
+      "path": "json/positrino.json"
     }
   ]
 }

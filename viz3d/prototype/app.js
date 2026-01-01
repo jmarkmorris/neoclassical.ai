@@ -64,6 +64,7 @@ const binaryStyle = {
   particleRadiusFactor: 0.08,
   positrinoColor: "#e0646f",
   electrinoColor: "#4da6ff",
+  baseOrbitSpeed: 0.18,
 };
 
 const motionHandlers = {
@@ -158,6 +159,7 @@ const detailFieldOrder = [
   { key: "numberDensity", label: "Number density (km^-3)" },
   { key: "classification", label: "Classification" },
 ];
+let activeDetailNodeId = null;
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
@@ -170,6 +172,7 @@ function closeDetailPanel() {
   detailPanel.classList.remove("is-open");
   detailPanel.setAttribute("aria-hidden", "true");
   detailPanel.inert = true;
+  activeDetailNodeId = null;
   if (detailTitle) {
     detailTitle.textContent = "";
   }
@@ -190,6 +193,7 @@ function setDetailPanel(node) {
   detailPanel.classList.add("is-open");
   detailPanel.setAttribute("aria-hidden", "false");
   detailPanel.inert = false;
+  activeDetailNodeId = node.data.id ?? node.data.name ?? null;
   detailTitle.textContent = node.data.name ?? node.data.id ?? "Details";
   detailBody.innerHTML = "";
 
@@ -580,20 +584,20 @@ function getBinaryBandRadii(shellRadius, bands) {
   });
 }
 
-function createBinaryShellNode(nodeData) {
+function createBinaryCoreNode(nodeData, useCutaway) {
   const group = new THREE.Group();
   const shellRadius = nodeData.radius;
-  const phiStart = Math.PI * 0.15;
-  const phiLength = Math.PI * 1.7;
-  const shellGeometry = new THREE.SphereGeometry(
-    shellRadius,
-    36,
-    22,
-    phiStart,
-    phiLength,
-    0,
-    Math.PI
-  );
+  const shellGeometry = useCutaway
+    ? new THREE.SphereGeometry(
+        shellRadius,
+        36,
+        22,
+        Math.PI * 0.15,
+        Math.PI * 1.7,
+        0,
+        Math.PI
+      )
+    : new THREE.SphereGeometry(shellRadius, 36, 22);
   const shellMaterial = new THREE.MeshBasicMaterial({
     color: nodeData.color,
     transparent: true,
@@ -622,6 +626,11 @@ function createBinaryShellNode(nodeData) {
   );
   const particleRadius = shellRadius * binaryStyle.particleRadiusFactor;
 
+  const bandSpeedFactor = {
+    outer: 1,
+    middle: 2,
+    inner: 4,
+  };
   bandRadii.forEach((bandRadius, index) => {
     const ringGeometry = new THREE.TorusGeometry(
       bandRadius,
@@ -666,9 +675,10 @@ function createBinaryShellNode(nodeData) {
     extraMeshes.push({ mesh: positrino, baseOpacity: 0.9 });
     extraMeshes.push({ mesh: electrino, baseOpacity: 0.9 });
 
+    const bandName = nodeData.binaryBands?.[index];
     binaryBandData.push({
       radius: bandRadius,
-      speed: 0.22 + index * 0.06,
+      speed: binaryStyle.baseOrbitSpeed * (bandSpeedFactor[bandName] ?? 1),
       phase: index * 0.7,
       positrino,
       electrino,
@@ -701,7 +711,10 @@ function createBinaryShellNode(nodeData) {
 
 function createNode(nodeData) {
   if (nodeData.renderStyle === "binaryShell") {
-    return createBinaryShellNode(nodeData);
+    return createBinaryCoreNode(nodeData, true);
+  }
+  if (nodeData.renderStyle === "binarySphere") {
+    return createBinaryCoreNode(nodeData, false);
   }
   const group = new THREE.Group();
   const geometry = new THREE.SphereGeometry(nodeData.radius, 32, 20);
@@ -1681,6 +1694,23 @@ function focusOnPointer(clientX, clientY) {
   const targetNode = currentLevel.nodes.find((node) => node.mesh === hit);
   if (!targetNode) {
     return false;
+  }
+
+  if (targetNode.data.details) {
+    const hasChild = targetNode.data.children || targetNode.data.childScene;
+    if (
+      hasChild &&
+      detailPanel?.classList.contains("is-open") &&
+      activeDetailNodeId &&
+      (activeDetailNodeId === targetNode.data.id ||
+        activeDetailNodeId === targetNode.data.name)
+    ) {
+      closeDetailPanel();
+      startLevelTransitionFromNode(targetNode);
+      return true;
+    }
+    setDetailPanel(targetNode);
+    return true;
   }
 
   if (targetNode.data.children || targetNode.data.childScene) {

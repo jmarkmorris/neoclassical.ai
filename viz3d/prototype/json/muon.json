@@ -11,7 +11,7 @@
   },
   "objects": [
     {
-      "id": "fermion_shell",
+      "id": "fermion_core",
       "label": "Muon",
       "scaleExponent": -20,
       "radius": 2.4,
@@ -25,8 +25,110 @@
         "middle",
         "inner"
       ],
-      "renderStyle": "binaryShell",
+      "renderStyle": "binarySphere",
       "subScenes": []
+    },
+    {
+      "id": "electrino_1",
+      "label": "Electrino",
+      "radius": 0.45,
+      "color": "#4da6ff",
+      "position": [
+        4.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electrino_2",
+      "label": "Electrino",
+      "radius": 0.45,
+      "color": "#4da6ff",
+      "position": [
+        2.0,
+        3.464,
+        0.0
+      ],
+      "subScenes": [
+        "json/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electrino_3",
+      "label": "Electrino",
+      "radius": 0.45,
+      "color": "#4da6ff",
+      "position": [
+        -2.0,
+        3.464,
+        0.0
+      ],
+      "subScenes": [
+        "json/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electrino_4",
+      "label": "Electrino",
+      "radius": 0.45,
+      "color": "#4da6ff",
+      "position": [
+        -4.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electrino_5",
+      "label": "Electrino",
+      "radius": 0.45,
+      "color": "#4da6ff",
+      "position": [
+        -2.0,
+        -3.464,
+        0.0
+      ],
+      "subScenes": [
+        "json/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electrino_6",
+      "label": "Electrino",
+      "radius": 0.45,
+      "color": "#4da6ff",
+      "position": [
+        2.0,
+        -3.464,
+        0.0
+      ],
+      "subScenes": [
+        "json/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

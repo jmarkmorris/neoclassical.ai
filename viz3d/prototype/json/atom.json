@@ -4,7 +4,10 @@
     "id": "atom",
     "name": "Atom",
     "units": "relative",
-    "scaleBandLog10m": [-10, -9]
+    "scaleBandLog10m": [
+      -10,
+      -9
+    ]
   },
   "objects": [
     {
@@ -13,9 +16,15 @@
       "scaleExponent": -10,
       "radius": 1.2,
       "color": "#6a4d1b",
-      "position": [4.5, 0.0, 0.0],
+      "position": [
+        4.5,
+        0.0,
+        0.0
+      ],
       "subScenes": [],
-      "motion": { "type": "fixed" }
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "protons",
@@ -23,9 +32,17 @@
       "scaleExponent": -15,
       "radius": 1.0,
       "color": "#5a1f2e",
-      "position": [0.0, 4.5, 0.0],
-      "subScenes": ["json/proton.json"],
-      "motion": { "type": "fixed" }
+      "position": [
+        0.0,
+        4.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "neutrons",
@@ -33,19 +50,35 @@
       "scaleExponent": -15,
       "radius": 1.0,
       "color": "#4a4f7f",
-      "position": [-4.5, 0.0, 0.0],
-      "subScenes": ["json/neutron.json"],
-      "motion": { "type": "fixed" }
+      "position": [
+        -4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "electrons",
       "label": "electrons",
       "scaleExponent": -19,
       "radius": 1.0,
-      "color": "#2f6b6f",
-      "position": [0.0, -4.5, 0.0],
-      "subScenes": ["json/electron.json"],
-      "motion": { "type": "fixed" }
+      "color": "#4da6ff",
+      "position": [
+        0.0,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }
