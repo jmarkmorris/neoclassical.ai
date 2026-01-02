@@ -14,7 +14,7 @@
       "id": "up_quark",
       "label": "up quark",
       "radius": 1.1,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -9.0,
         8.0,
@@ -32,7 +32,7 @@
       "id": "down_quark",
       "label": "down quark",
       "radius": 1.1,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         -9.0,
         4.0,
@@ -50,7 +50,7 @@
       "id": "electron",
       "label": "electron",
       "radius": 1.1,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         -9.0,
         0.0,
@@ -68,7 +68,7 @@
       "id": "electron_neutrino",
       "label": "electron neutrino",
       "radius": 1.1,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -9.0,
         -4.0,
@@ -86,7 +86,7 @@
       "id": "charm_quark",
       "label": "charm quark",
       "radius": 1.1,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -3.0,
         8.0,
@@ -104,7 +104,7 @@
       "id": "strange_quark",
       "label": "strange quark",
       "radius": 1.1,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         -3.0,
         4.0,
@@ -122,7 +122,7 @@
       "id": "muon",
       "label": "muon",
       "radius": 1.1,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         -3.0,
         0.0,
@@ -140,7 +140,7 @@
       "id": "muon_neutrino",
       "label": "muon neutrino",
       "radius": 1.1,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -3.0,
         -4.0,
@@ -158,7 +158,7 @@
       "id": "top_quark",
       "label": "top quark",
       "radius": 1.1,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         3.0,
         8.0,
@@ -176,7 +176,7 @@
       "id": "bottom_quark",
       "label": "bottom quark",
       "radius": 1.1,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         3.0,
         4.0,
@@ -194,7 +194,7 @@
       "id": "tau",
       "label": "tau",
       "radius": 1.1,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         3.0,
         0.0,
@@ -212,7 +212,7 @@
       "id": "tau_neutrino",
       "label": "tau neutrino",
       "radius": 1.1,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         3.0,
         -4.0,
@@ -230,7 +230,7 @@
       "id": "photon",
       "label": "photon",
       "radius": 1.1,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         9.0,
         8.0,
@@ -246,7 +246,7 @@
       "id": "gluon",
       "label": "gluon",
       "radius": 1.1,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         9.0,
         4.0,
@@ -262,7 +262,7 @@
       "id": "z_boson",
       "label": "Z boson",
       "radius": 1.1,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         9.0,
         0.0,
@@ -278,7 +278,7 @@
       "id": "w_plus",
       "label": "W+",
       "radius": 1.1,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         9.0,
         -2.8,
@@ -294,7 +294,7 @@
       "id": "w_minus",
       "label": "W-",
       "radius": 1.1,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         9.0,
         -5.2,
@@ -310,7 +310,7 @@
       "id": "higgs_boson",
       "label": "Higgs boson",
       "radius": 1.1,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         9.0,
         -8.0,

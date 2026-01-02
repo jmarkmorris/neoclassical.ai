@@ -15,7 +15,7 @@
       "label": "up quark",
       "scaleExponent": -19,
       "radius": 0.9,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         2.0,
         0.0,
@@ -33,7 +33,7 @@
       "label": "up quark",
       "scaleExponent": -19,
       "radius": 0.9,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -1.0,
         1.7,
@@ -51,7 +51,7 @@
       "label": "down quark",
       "scaleExponent": -19,
       "radius": 0.9,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         -1.0,
         -1.7,

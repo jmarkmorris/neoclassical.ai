@@ -11,7 +11,7 @@
       "id": "hydrogen_ion",
       "label": "Hydrogen (H+)",
       "radius": 0.9,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -6.0,
         4.6,
@@ -47,7 +47,7 @@
       "id": "thermal_electron",
       "label": "Electron (thermal)",
       "radius": 0.9,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         2.0,
         4.6,
@@ -168,7 +168,7 @@
       "id": "cosmic_ray_proton",
       "label": "Cosmic-ray proton",
       "radius": 0.9,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -2.0,
         -1.5,
@@ -187,7 +187,7 @@
       "id": "cosmic_ray_electron",
       "label": "Cosmic-ray electron",
       "radius": 0.9,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         2.0,
         -1.5,

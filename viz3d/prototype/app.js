@@ -48,6 +48,11 @@ const linkColors = {
   emission: "#f0d39a",
   default: "#c5cee8",
 };
+const colorTokens = {
+  RED: "#ff0000",
+  BLUE: "#0000ff",
+  PURPLE: "#4b0082",
+};
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -373,20 +378,31 @@ async function loadSceneConfig(scenePath) {
         const binaryBands = Array.isArray(obj.binaryBands)
           ? obj.binaryBands
           : null;
+        let color = obj.color ?? "#3a5a8a";
+        if (typeof color === "string" && colorTokens[color]) {
+          color = colorTokens[color];
+        }
+        const stripeColors = Array.isArray(obj.stripeColors)
+          ? obj.stripeColors.map((stripeColor) =>
+              typeof stripeColor === "string" && colorTokens[stripeColor]
+                ? colorTokens[stripeColor]
+                : stripeColor
+            )
+          : null;
         const node = {
           id: obj.id,
           name: obj.label || obj.id,
           scale: hasScale ? obj.scaleExponent : null,
           hasScale,
           radius: obj.radius ?? 1,
-          color: obj.color ?? "#3a5a8a",
+          color,
           position: obj.position ?? [0, 0, 0],
           category: obj.category,
           reaction: obj.reaction,
           details: obj.details ?? null,
           renderStyle: obj.renderStyle ?? null,
           binaryBands,
-          stripeColors: Array.isArray(obj.stripeColors) ? obj.stripeColors : null,
+          stripeColors,
           stripeCount: obj.stripeCount ?? null,
           stripeThickness: obj.stripeThickness ?? null,
           stripeOpacity: obj.stripeOpacity ?? null,

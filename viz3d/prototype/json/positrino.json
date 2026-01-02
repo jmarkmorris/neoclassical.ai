@@ -15,7 +15,7 @@
       "label": "Positrino",
       "scaleExponent": -20,
       "radius": 1.2,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         0.0,
         0.0,

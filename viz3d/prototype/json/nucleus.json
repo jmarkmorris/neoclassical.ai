@@ -15,7 +15,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         0.0,
         0.0,
@@ -33,7 +33,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         0.72,
         0.0,
@@ -51,7 +51,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         0.36,
         0.624,
@@ -69,7 +69,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -0.36,
         0.624,
@@ -87,7 +87,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -0.72,
         0.0,
@@ -105,7 +105,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -0.36,
         -0.624,
@@ -123,7 +123,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         0.36,
         -0.624,
@@ -141,7 +141,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         1.44,
         0.0,
@@ -159,7 +159,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         1.247,
         0.72,
@@ -177,7 +177,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         0.72,
         1.247,
@@ -195,7 +195,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         0.0,
         1.44,
@@ -213,7 +213,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -0.72,
         1.247,
@@ -231,7 +231,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -1.247,
         0.72,
@@ -249,7 +249,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -1.44,
         0.0,
@@ -267,7 +267,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -1.247,
         -0.72,
@@ -285,7 +285,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -0.72,
         -1.247,
@@ -303,7 +303,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -0.0,
         -1.44,
@@ -321,7 +321,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         0.72,
         -1.247,
@@ -339,7 +339,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         1.247,
         -0.72,
@@ -357,7 +357,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         2.16,
         0.0,
@@ -375,7 +375,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         2.03,
         0.739,
@@ -393,7 +393,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         1.655,
         1.388,
@@ -411,7 +411,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         1.08,
         1.871,
@@ -429,7 +429,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         0.375,
         2.127,
@@ -447,7 +447,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -0.375,
         2.127,
@@ -465,7 +465,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -1.08,
         1.871,
@@ -483,7 +483,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -1.655,
         1.388,
@@ -501,7 +501,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -2.03,
         0.739,
@@ -519,7 +519,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -2.16,
         0.0,
@@ -537,7 +537,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -2.03,
         -0.739,
@@ -555,7 +555,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -1.655,
         -1.388,
@@ -573,7 +573,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         -1.08,
         -1.871,
@@ -591,7 +591,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -0.375,
         -2.127,
@@ -609,7 +609,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         0.375,
         -2.127,
@@ -627,7 +627,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         1.08,
         -1.871,
@@ -645,7 +645,7 @@
       "label": "neutron",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         1.655,
         -1.388,
@@ -663,7 +663,7 @@
       "label": "proton",
       "scaleExponent": -15,
       "radius": 0.32,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         2.03,
         -0.739,

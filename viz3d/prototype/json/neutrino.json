@@ -15,7 +15,7 @@
       "label": "Tri-binary Noether core",
       "scaleExponent": -20,
       "radius": 2.4,
-      "color": "#4b0082",
+      "color": "PURPLE",
       "position": [
         0.0,
         0.0,
@@ -33,7 +33,7 @@
       "id": "positrino_1",
       "label": "Positrino",
       "radius": 0.45,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         4.0,
         0.0,
@@ -50,7 +50,7 @@
       "id": "electrino_1",
       "label": "Electrino",
       "radius": 0.45,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         2.0,
         3.464,
@@ -67,7 +67,7 @@
       "id": "positrino_2",
       "label": "Positrino",
       "radius": 0.45,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -2.0,
         3.464,
@@ -84,7 +84,7 @@
       "id": "electrino_2",
       "label": "Electrino",
       "radius": 0.45,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         -4.0,
         0.0,
@@ -101,7 +101,7 @@
       "id": "positrino_3",
       "label": "Positrino",
       "radius": 0.45,
-      "color": "#ff0000",
+      "color": "RED",
       "position": [
         -2.0,
         -3.464,
@@ -118,7 +118,7 @@
       "id": "electrino_3",
       "label": "Electrino",
       "radius": 0.45,
-      "color": "#0000ff",
+      "color": "BLUE",
       "position": [
         2.0,
         -3.464,
