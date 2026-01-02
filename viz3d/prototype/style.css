@@ -65,7 +65,7 @@ body {
 #home-button {
   position: absolute;
   top: 16px;
-  left: 160px;
+  right: 16px;
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -209,6 +209,11 @@ body {
   margin-bottom: 12px;
 }
 
+#markdown-content {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 #markdown-title {
   font-size: 13px;
   font-weight: 600;
@@ -250,15 +255,12 @@ body {
 
 #markdown-content p {
   margin: 8px 0;
-  line-height: 1.5;
-  font-size: 12px;
 }
 
 #markdown-content ul,
 #markdown-content ol {
   margin: 8px 0 8px 18px;
   padding: 0;
-  font-size: 12px;
 }
 
 #markdown-content li {
@@ -302,7 +304,7 @@ body {
 }
 
 .math-inline {
-  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-family: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
   color: #d4c1ff;
 }
 
@@ -311,9 +313,20 @@ body {
   padding: 8px 10px;
   background: rgba(20, 18, 40, 0.6);
   border-radius: 8px;
-  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-family: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
   color: #d4c1ff;
   white-space: pre-wrap;
+}
+
+.math-cal {
+  font-family: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.math-bb {
+  font-family: "Cambria Math", "Times New Roman", serif;
+  font-weight: 600;
 }
 
 .detail-header {
@@ -402,7 +415,7 @@ body {
 #nav-up {
   position: absolute;
   top: 16px;
-  right: 16px;
+  right: 60px;
   z-index: 5;
   padding: 8px 12px;
   border-radius: 8px;

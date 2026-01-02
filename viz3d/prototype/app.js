@@ -268,10 +268,100 @@ function escapeHtml(text) {
     .replace(/>/g, "&gt;");
 }
 
+function renderMathHtml(latex) {
+  let output = escapeHtml(latex);
+  output = output.replace(/\\text\{([^}]*)\}/g, "$1");
+  output = output.replace(/\\mathrm\{([^}]*)\}/g, "$1");
+  output = output.replace(/\\mathcal\{([^}]*)\}/g, '<span class="math-cal">$1</span>');
+  output = output.replace(/\\mathbb\{([^}]*)\}/g, '<span class="math-bb">$1</span>');
+  output = output.replace(/\\mathbf\{([^}]*)\}/g, "<strong>$1</strong>");
+  output = output.replace(/\\left/g, "");
+  output = output.replace(/\\right/g, "");
+  output = output.replace(/\\!/g, "");
+  output = output.replace(/\\,/g, " ");
+  output = output.replace(/\\;/g, " ");
+  output = output.replace(/\\:/g, " ");
+
+  const greekMap = {
+    alpha: "α",
+    beta: "β",
+    gamma: "γ",
+    delta: "δ",
+    epsilon: "ε",
+    zeta: "ζ",
+    eta: "η",
+    theta: "θ",
+    iota: "ι",
+    kappa: "κ",
+    lambda: "λ",
+    mu: "μ",
+    nu: "ν",
+    xi: "ξ",
+    pi: "π",
+    rho: "ρ",
+    sigma: "σ",
+    tau: "τ",
+    phi: "φ",
+    chi: "χ",
+    psi: "ψ",
+    omega: "ω",
+    Gamma: "Γ",
+    Delta: "Δ",
+    Theta: "Θ",
+    Lambda: "Λ",
+    Xi: "Ξ",
+    Pi: "Π",
+    Sigma: "Σ",
+    Phi: "Φ",
+    Psi: "Ψ",
+    Omega: "Ω",
+  };
+  output = output.replace(/\\([A-Za-z]+)\b/g, (match, key) => {
+    if (greekMap[key]) {
+      return greekMap[key];
+    }
+    const symbolMap = {
+      to: "→",
+      rightarrow: "→",
+      leftarrow: "←",
+      leftrightarrow: "↔",
+      approx: "≈",
+      congr: "≅",
+      congg: "≅",
+      cong: "≅",
+      neq: "≠",
+      ge: "≥",
+      le: "≤",
+      times: "×",
+      cdot: "·",
+      pm: "±",
+      infty: "∞",
+      sim: "∼",
+      forall: "∀",
+      exists: "∃",
+    };
+    if (symbolMap[key]) {
+      return symbolMap[key];
+    }
+    return match;
+  });
+
+  output = output.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>");
+  output = output.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>");
+  output = output.replace(/_([A-Za-z0-9+-]+)/g, "<sub>$1</sub>");
+  output = output.replace(/\^([A-Za-z0-9+-]+)/g, "<sup>$1</sup>");
+  return output;
+}
+
 function parseInlineMarkdown(text) {
   let output = escapeHtml(text);
   output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
-  output = output.replace(/\\\((.+?)\\\)/g, '<span class="math-inline">$1</span>');
+  output = output.replace(/\\\((.+?)\\\)/g, (match, math) => {
+    return `<span class="math-inline">${renderMathHtml(math)}</span>`;
+  });
+  output = output.replace(/\$([^$]+)\$/g, (match, math) => {
+    return `<span class="math-inline">${renderMathHtml(math)}</span>`;
+  });
   output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   output = output.replace(/\*([^*]+)\*/g, "<em>$1</em>");
@@ -285,6 +375,7 @@ function renderMarkdown(markdown) {
   let inUl = false;
   let inOl = false;
   let inMathBlock = false;
+  let inDollarMathBlock = false;
   let mathLines = [];
 
   const closeLists = () => {
@@ -327,13 +418,28 @@ function renderMarkdown(markdown) {
 
     if (trimmed === "\\]" && inMathBlock) {
       html.push(
-        `<div class="math-block">${escapeHtml(mathLines.join("\n"))}</div>`
+        `<div class="math-block">${renderMathHtml(mathLines.join("\n"))}</div>`
       );
       inMathBlock = false;
       return;
     }
 
-    if (inMathBlock) {
+    if (trimmed === "$$") {
+      closeLists();
+      if (inDollarMathBlock) {
+        html.push(
+          `<div class="math-block">${renderMathHtml(mathLines.join("\n"))}</div>`
+        );
+        inDollarMathBlock = false;
+        mathLines = [];
+      } else {
+        inDollarMathBlock = true;
+        mathLines = [];
+      }
+      return;
+    }
+
+    if (inMathBlock || inDollarMathBlock) {
       mathLines.push(line);
       return;
     }
@@ -388,8 +494,8 @@ function renderMarkdown(markdown) {
   if (inCodeBlock) {
     html.push("</code></pre>");
   }
-  if (inMathBlock) {
-    html.push(`<div class="math-block">${escapeHtml(mathLines.join("\n"))}</div>`);
+  if (inMathBlock || inDollarMathBlock) {
+    html.push(`<div class="math-block">${renderMathHtml(mathLines.join("\n"))}</div>`);
   }
   if (inUl) {
     html.push("</ul>");
@@ -502,39 +608,37 @@ function setDetailPanel(node) {
   detailTitle.textContent = node.data.name ?? node.data.id ?? "Details";
   detailBody.innerHTML = "";
 
+  const appendDetailRow = (label, value) => {
+    const row = document.createElement("div");
+    row.className = "detail-row";
+    const keyCell = document.createElement("div");
+    keyCell.className = "detail-key";
+    keyCell.innerHTML = formatSuperscripts(label);
+    const valueCell = document.createElement("div");
+    valueCell.className = "detail-value";
+    valueCell.innerHTML = formatSuperscripts(value);
+    row.appendChild(keyCell);
+    row.appendChild(valueCell);
+    detailBody.appendChild(row);
+  };
+
+  if (currentLevel?.sceneId === "standard_model" && node.data.category) {
+    appendDetailRow("Class", node.data.category);
+  }
+
   const usedKeys = new Set();
   detailFieldOrder.forEach((field) => {
     if (details[field.key] === undefined || details[field.key] === null) {
       return;
     }
     usedKeys.add(field.key);
-    const row = document.createElement("div");
-    row.className = "detail-row";
-    const key = document.createElement("div");
-    key.className = "detail-key";
-    key.innerHTML = formatSuperscripts(field.label);
-    const value = document.createElement("div");
-    value.className = "detail-value";
-    value.innerHTML = formatSuperscripts(details[field.key]);
-    row.appendChild(key);
-    row.appendChild(value);
-    detailBody.appendChild(row);
+    appendDetailRow(field.label, details[field.key]);
   });
 
   Object.keys(details)
     .filter((key) => !usedKeys.has(key))
     .forEach((key) => {
-      const row = document.createElement("div");
-      row.className = "detail-row";
-      const keyCell = document.createElement("div");
-      keyCell.className = "detail-key";
-      keyCell.innerHTML = formatSuperscripts(key);
-      const valueCell = document.createElement("div");
-      valueCell.className = "detail-value";
-      valueCell.innerHTML = formatSuperscripts(details[key]);
-      row.appendChild(keyCell);
-      row.appendChild(valueCell);
-      detailBody.appendChild(row);
+      appendDetailRow(key, details[key]);
     });
 }
 
