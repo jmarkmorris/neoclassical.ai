@@ -64,15 +64,17 @@
     },
     {
       "id": "fermion_generations",
-      "label": "Fermion Generations",
+      "label": "Fermion Generation and Color",
       "radius": 1.68,
-      "color": "#4a4f7f",
+      "color": "PURPLE",
       "position": [
         6.0,
         9.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/fermion_generation_color.json"
+      ],
       "motion": {
         "type": "fixed"
       }

@@ -119,6 +119,11 @@
       "id": "nucleus",
       "name": "Nucleus",
       "path": "json/nucleus.json"
+    },
+    {
+      "id": "fermion_generation_color",
+      "name": "Fermion Generation and Color",
+      "path": "json/fermion_generation_color.json"
     }
   ]
 }

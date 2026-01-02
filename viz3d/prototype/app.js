@@ -15,6 +15,11 @@ const detailPanel = document.getElementById("detail-panel");
 const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
+const homeButton = document.getElementById("home-button");
+const markdownPanel = document.getElementById("markdown-panel");
+const markdownTitle = document.getElementById("markdown-title");
+const markdownContent = document.getElementById("markdown-content");
+const markdownClose = document.getElementById("markdown-close");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -123,6 +128,8 @@ const motionHandlers = {
 
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
+const markdownCache = new Map();
+let activeMarkdownPath = null;
 let haloSeed = 0;
 const rootScenePath = "json/physics_frontiers.json";
 let sceneIndex = [];
@@ -238,6 +245,205 @@ function hideHoverTooltip() {
   hoverTooltipVisible = false;
 }
 
+function hideMarkdownPanel() {
+  if (!markdownPanel) {
+    return;
+  }
+  markdownPanel.classList.remove("is-open");
+  markdownPanel.setAttribute("aria-hidden", "true");
+  markdownPanel.inert = true;
+  if (markdownTitle) {
+    markdownTitle.textContent = "";
+  }
+  if (markdownContent) {
+    markdownContent.innerHTML = "";
+  }
+  activeMarkdownPath = null;
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function parseInlineMarkdown(text) {
+  let output = escapeHtml(text);
+  output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
+  output = output.replace(/\\\((.+?)\\\)/g, '<span class="math-inline">$1</span>');
+  output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  output = output.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  return output;
+}
+
+function renderMarkdown(markdown) {
+  const lines = String(markdown).replace(/\r\n/g, "\n").split("\n");
+  const html = [];
+  let inCodeBlock = false;
+  let inUl = false;
+  let inOl = false;
+  let inMathBlock = false;
+  let mathLines = [];
+
+  const closeLists = () => {
+    if (inUl) {
+      html.push("</ul>");
+      inUl = false;
+    }
+    if (inOl) {
+      html.push("</ol>");
+      inOl = false;
+    }
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith("```")) {
+      if (inCodeBlock) {
+        html.push("</code></pre>");
+        inCodeBlock = false;
+      } else {
+        closeLists();
+        html.push("<pre><code>");
+        inCodeBlock = true;
+      }
+      return;
+    }
+
+    if (inCodeBlock) {
+      html.push(escapeHtml(line));
+      return;
+    }
+
+    if (trimmed === "\\[") {
+      closeLists();
+      inMathBlock = true;
+      mathLines = [];
+      return;
+    }
+
+    if (trimmed === "\\]" && inMathBlock) {
+      html.push(
+        `<div class="math-block">${escapeHtml(mathLines.join("\n"))}</div>`
+      );
+      inMathBlock = false;
+      return;
+    }
+
+    if (inMathBlock) {
+      mathLines.push(line);
+      return;
+    }
+
+    if (trimmed === "---" || trimmed === "***") {
+      closeLists();
+      html.push("<hr>");
+      return;
+    }
+
+    const headingMatch = line.match(/^(#{1,6})\s+(.*)$/);
+    if (headingMatch) {
+      closeLists();
+      const level = headingMatch[1].length;
+      html.push(
+        `<h${level}>${parseInlineMarkdown(headingMatch[2])}</h${level}>`
+      );
+      return;
+    }
+
+    const ulMatch = line.match(/^\s*[-*+]\s+(.*)$/);
+    if (ulMatch) {
+      if (!inUl) {
+        closeLists();
+        html.push("<ul>");
+        inUl = true;
+      }
+      html.push(`<li>${parseInlineMarkdown(ulMatch[1])}</li>`);
+      return;
+    }
+
+    const olMatch = line.match(/^\s*\d+\.\s+(.*)$/);
+    if (olMatch) {
+      if (!inOl) {
+        closeLists();
+        html.push("<ol>");
+        inOl = true;
+      }
+      html.push(`<li>${parseInlineMarkdown(olMatch[1])}</li>`);
+      return;
+    }
+
+    if (trimmed === "") {
+      closeLists();
+      return;
+    }
+
+    closeLists();
+    html.push(`<p>${parseInlineMarkdown(line)}</p>`);
+  });
+
+  if (inCodeBlock) {
+    html.push("</code></pre>");
+  }
+  if (inMathBlock) {
+    html.push(`<div class="math-block">${escapeHtml(mathLines.join("\n"))}</div>`);
+  }
+  if (inUl) {
+    html.push("</ul>");
+  }
+  if (inOl) {
+    html.push("</ol>");
+  }
+  return html.join("\n");
+}
+
+async function showMarkdownPanel(level) {
+  if (!markdownPanel || !level?.markdownPath) {
+    hideMarkdownPanel();
+    return;
+  }
+  const markdownPath = level.markdownPath;
+  if (activeMarkdownPath === markdownPath && markdownPanel.classList.contains("is-open")) {
+    return;
+  }
+  let html = markdownCache.get(markdownPath);
+  if (!html) {
+    try {
+      const response = await fetch(markdownPath);
+      if (!response.ok) {
+        throw new Error(`Failed to load markdown: ${markdownPath}`);
+      }
+      const text = await response.text();
+      html = renderMarkdown(text);
+      markdownCache.set(markdownPath, html);
+    } catch (error) {
+      console.error(error);
+      html = `<p>Unable to load markdown.</p>`;
+    }
+  }
+  if (markdownTitle) {
+    markdownTitle.textContent = level.name ?? "Notes";
+  }
+  if (markdownContent) {
+    markdownContent.innerHTML = html;
+  }
+  markdownPanel.classList.add("is-open");
+  markdownPanel.setAttribute("aria-hidden", "false");
+  markdownPanel.inert = false;
+  activeMarkdownPath = markdownPath;
+}
+
+function updateSceneMarkdown() {
+  if (!currentLevel || !currentLevel.markdownPath) {
+    hideMarkdownPanel();
+    return;
+  }
+  showMarkdownPanel(currentLevel);
+}
+
 function getNodeGeneration(node) {
   const count = node?.data?.binaryBands?.length ?? 0;
   if (count >= 3) {
@@ -340,6 +546,7 @@ function purgeWorldState() {
   transitionState.payload = null;
   closeDetailPanel();
   hideHoverTooltip();
+  hideMarkdownPanel();
   zoomState.active = false;
   panTween.active = false;
   labelFadeState.active = false;
@@ -441,6 +648,7 @@ async function loadSceneConfig(scenePath) {
         links: Array.isArray(data.links) ? data.links : [],
         sceneName,
         sceneId,
+        markdownPath: data.scene?.markdownPath ?? null,
         centerOn: data.scene?.centerOn ?? null,
       };
       levelConfigs[scenePath] = config;
@@ -482,6 +690,7 @@ async function resetToRootScene() {
   updateCamera();
   fitCameraToLevel(currentLevel);
   updateSceneLabel();
+  updateSceneMarkdown();
 }
 
 async function jumpToScene(scenePath, options = {}) {
@@ -519,10 +728,12 @@ async function jumpToScene(scenePath, options = {}) {
     updateCamera();
     fitCameraToLevel(currentLevel);
     updateSceneLabel();
+    updateSceneMarkdown();
     return;
   }
 
   const nextLevel = buildLevel(scenePath);
+  hideMarkdownPanel();
   purgeWorldState();
   if (currentLevel && !worldGroup.children.includes(currentLevel.group)) {
     worldGroup.add(currentLevel.group);
@@ -1039,6 +1250,7 @@ function buildLevel(levelId) {
     id: levelId,
     name: config.sceneName ?? levelId,
     sceneId: config.sceneId ?? null,
+    markdownPath: config.markdownPath ?? null,
     centerOn: config.centerOn,
     group,
     nodes,
@@ -1396,6 +1608,7 @@ function beginLevelTransition(targetNode, childLevelId) {
 
   closeDetailPanel();
   hideHoverTooltip();
+  hideMarkdownPanel();
   const toLevel = buildLevel(childLevelId);
   if (!worldGroup.children.includes(toLevel.group)) {
     worldGroup.add(toLevel.group);
@@ -1467,6 +1680,7 @@ function startLevelTransitionOut() {
 
   closeDetailPanel();
   hideHoverTooltip();
+  hideMarkdownPanel();
   const parentInfo = navigationStack[navigationStack.length - 1];
   const parentLevel = buildLevel(parentInfo.levelId);
   const parentNode =
@@ -1629,6 +1843,7 @@ const transitionHandlers = {
       labelFadeState.level = currentLevel;
       labelFadeState.startTime = performance.now();
       updateSceneLabel();
+      updateSceneMarkdown();
     },
   },
   warpOut: {
@@ -1702,6 +1917,7 @@ const transitionHandlers = {
       labelFadeState.level = currentLevel;
       labelFadeState.startTime = performance.now();
       updateSceneLabel();
+      updateSceneMarkdown();
     },
   },
   jump: {
@@ -1744,6 +1960,7 @@ const transitionHandlers = {
       labelFadeState.level = currentLevel;
       labelFadeState.startTime = performance.now();
       updateSceneLabel();
+      updateSceneMarkdown();
     },
   },
 };
@@ -2272,6 +2489,7 @@ async function init() {
   updateCamera();
   fitCameraToLevel(currentLevel);
   updateSceneLabel();
+  updateSceneMarkdown();
   animate();
 }
 
@@ -2307,9 +2525,24 @@ if (navUpButton) {
   });
 }
 
+if (homeButton) {
+  homeButton.addEventListener("click", () => {
+    if (transitionState.active) {
+      return;
+    }
+    resetToRootScene();
+  });
+}
+
 if (detailClose) {
   detailClose.addEventListener("click", () => {
     closeDetailPanel();
+  });
+}
+
+if (markdownClose) {
+  markdownClose.addEventListener("click", () => {
+    hideMarkdownPanel();
   });
 }
 

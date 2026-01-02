@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "fermion_generation_color",
+    "name": "Fermion Generation and Color",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ],
+    "markdownPath": "Geometrical-Model-of-Nature/10-ImplementationLayer/10.0-Assemblies/10.0.4-PersonalityArchitrinosandFermions.md"
+  },
+  "objects": []
+}
