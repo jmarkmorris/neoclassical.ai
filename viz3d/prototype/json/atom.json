@@ -14,63 +14,155 @@
       "id": "nucleus",
       "label": "nucleus",
       "scaleExponent": -10,
-      "radius": 1.2,
-      "color": "#6a4d1b",
-      "position": [
-        4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "protons",
-      "label": "protons",
-      "scaleExponent": -15,
-      "radius": 1.0,
-      "color": "#5a1f2e",
+      "radius": 1.4,
+      "color": "#a50041",
       "position": [
         0.0,
-        4.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/proton.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "neutrons",
-      "label": "neutrons",
-      "scaleExponent": -15,
-      "radius": 1.0,
-      "color": "#4a4f7f",
-      "position": [
-        -4.5,
         0.0,
         0.0
       ],
       "subScenes": [
-        "json/neutron.json"
+        "json/nucleus.json"
       ],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "electrons",
-      "label": "electrons",
+      "id": "electron_1",
+      "label": "electron",
       "scaleExponent": -19,
-      "radius": 1.0,
-      "color": "#4da6ff",
+      "radius": 0.9,
+      "color": "#0000ff",
+      "position": [
+        5.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electron_2",
+      "label": "electron",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "#0000ff",
+      "position": [
+        3.536,
+        3.536,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electron_3",
+      "label": "electron",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "#0000ff",
       "position": [
         0.0,
-        -4.5,
+        5.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electron_4",
+      "label": "electron",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "#0000ff",
+      "position": [
+        -3.536,
+        3.536,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electron_5",
+      "label": "electron",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "#0000ff",
+      "position": [
+        -5.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electron_6",
+      "label": "electron",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "#0000ff",
+      "position": [
+        -3.536,
+        -3.536,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electron_7",
+      "label": "electron",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "#0000ff",
+      "position": [
+        -0.0,
+        -5.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "electron_8",
+      "label": "electron",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "#0000ff",
+      "position": [
+        3.536,
+        -3.536,
         0.0
       ],
       "subScenes": [

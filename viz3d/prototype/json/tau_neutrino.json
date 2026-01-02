@@ -31,7 +31,7 @@
       "id": "positrino_1",
       "label": "Positrino",
       "radius": 0.45,
-      "color": "#e0646f",
+      "color": "#ff0000",
       "position": [
         4.0,
         0.0,
@@ -48,7 +48,7 @@
       "id": "electrino_1",
       "label": "Electrino",
       "radius": 0.45,
-      "color": "#4da6ff",
+      "color": "#0000ff",
       "position": [
         2.0,
         3.464,
@@ -65,7 +65,7 @@
       "id": "positrino_2",
       "label": "Positrino",
       "radius": 0.45,
-      "color": "#e0646f",
+      "color": "#ff0000",
       "position": [
         -2.0,
         3.464,
@@ -82,7 +82,7 @@
       "id": "electrino_2",
       "label": "Electrino",
       "radius": 0.45,
-      "color": "#4da6ff",
+      "color": "#0000ff",
       "position": [
         -4.0,
         0.0,
@@ -99,7 +99,7 @@
       "id": "positrino_3",
       "label": "Positrino",
       "radius": 0.45,
-      "color": "#e0646f",
+      "color": "#ff0000",
       "position": [
         -2.0,
         -3.464,
@@ -116,7 +116,7 @@
       "id": "electrino_3",
       "label": "Electrino",
       "radius": 0.45,
-      "color": "#4da6ff",
+      "color": "#0000ff",
       "position": [
         2.0,
         -3.464,

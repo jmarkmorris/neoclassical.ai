@@ -350,7 +350,7 @@
       "category": "Particle",
       "role": "input",
       "radius": 0.68,
-      "color": "#b24b3c",
+      "color": "#ff0000",
       "position": [
         3.66,
         8.6,
@@ -370,7 +370,7 @@
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
-      "color": "#d9b86c",
+      "color": "#4b0082",
       "position": [
         5.93,
         7.64,
@@ -388,7 +388,7 @@
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
-      "color": "#dcdcdc",
+      "color": "#ff0000",
       "position": [
         9.44,
         1.28,
@@ -406,7 +406,7 @@
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
-      "color": "#89c8ff",
+      "color": "#4b0082",
       "position": [
         9.44,
         -1.28,
@@ -426,7 +426,7 @@
       "category": "Particle",
       "role": "input",
       "radius": 0.68,
-      "color": "#b24b3c",
+      "color": "#ff0000",
       "position": [
         3.66,
         -8.6,
@@ -446,7 +446,7 @@
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
-      "color": "#d9b86c",
+      "color": "#4b0082",
       "position": [
         5.93,
         -7.64,
@@ -464,7 +464,7 @@
       "category": "Particle",
       "role": "input",
       "radius": 0.68,
-      "color": "#b24b3c",
+      "color": "#ff0000",
       "position": [
         -3.66,
         -8.6,
@@ -484,7 +484,7 @@
       "category": "Particle",
       "role": "output",
       "radius": 0.5,
-      "color": "#d9b86c",
+      "color": "#4b0082",
       "position": [
         -5.93,
         -7.64,
@@ -502,7 +502,7 @@
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
-      "color": "#dcdcdc",
+      "color": "#ff0000",
       "position": [
         -9.44,
         1.28,
@@ -520,7 +520,7 @@
       "category": "Particle",
       "role": "output",
       "radius": 0.45,
-      "color": "#89c8ff",
+      "color": "#4b0082",
       "position": [
         -9.44,
         -1.28,
@@ -540,7 +540,7 @@
       "category": "Particle",
       "role": "input",
       "radius": 0.68,
-      "color": "#b24b3c",
+      "color": "#ff0000",
       "position": [
         -3.66,
         8.6,

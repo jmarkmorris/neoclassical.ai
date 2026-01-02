@@ -4,7 +4,10 @@
     "id": "neutron",
     "name": "Neutron",
     "units": "relative",
-    "scaleBandLog10m": [-15, -14]
+    "scaleBandLog10m": [
+      -15,
+      -14
+    ]
   },
   "objects": [
     {
@@ -12,30 +15,54 @@
       "label": "down quark",
       "scaleExponent": -19,
       "radius": 0.9,
-      "color": "#5a1f2e",
-      "position": [2.0, 0.0, 0.0],
-      "subScenes": ["json/down_quark.json"],
-      "motion": { "type": "fixed" }
+      "color": "#0000ff",
+      "position": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/down_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "down_quark_2",
       "label": "down quark",
       "scaleExponent": -19,
       "radius": 0.9,
-      "color": "#5a1f2e",
-      "position": [-1.0, 1.7, 0.0],
-      "subScenes": ["json/down_quark.json"],
-      "motion": { "type": "fixed" }
+      "color": "#0000ff",
+      "position": [
+        -1.0,
+        1.7,
+        0.0
+      ],
+      "subScenes": [
+        "json/down_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     },
     {
       "id": "up_quark",
       "label": "up quark",
       "scaleExponent": -19,
       "radius": 0.9,
-      "color": "#3f5f8a",
-      "position": [-1.0, -1.7, 0.0],
-      "subScenes": ["json/up_quark.json"],
-      "motion": { "type": "fixed" }
+      "color": "#ff0000",
+      "position": [
+        -1.0,
+        -1.7,
+        0.0
+      ],
+      "subScenes": [
+        "json/up_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }
