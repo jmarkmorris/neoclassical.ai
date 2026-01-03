@@ -2080,7 +2080,7 @@ function buildPeriodicGrid(data) {
     btn.style.gridRow = el.ypos;
     const color = getPeriodicColor(el.category);
     btn.style.background = `${color}22`;
-    btn.style.borderColor = `${color}44`;
+    btn.style.borderColor = color;
     btn.dataset.symbol = el.symbol;
     btn.dataset.number = el.number;
     btn.innerHTML = `
