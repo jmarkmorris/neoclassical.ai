@@ -16,10 +16,12 @@ const detailTitle = document.getElementById("detail-title");
 const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
 const homeButton = document.getElementById("home-button");
+const docButton = document.getElementById("doc-button");
 const markdownPanel = document.getElementById("markdown-panel");
 const markdownTitle = document.getElementById("markdown-title");
 const markdownContent = document.getElementById("markdown-content");
 const markdownClose = document.getElementById("markdown-close");
+const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const mathJaxScript = document.getElementById("mathjax-script");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -130,9 +132,17 @@ const motionHandlers = {
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 const markdownCache = new Map();
+const markdownRenderer =
+  typeof window !== "undefined" && window.markdownit
+    ? window.markdownit({ html: false, linkify: true, breaks: false })
+    : null;
+if (markdownRenderer) {
+  markdownRenderer.disable("escape");
+}
 let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPromise;
 let pendingMathTypeset = false;
 let activeMarkdownPath = null;
+let markdownTwoColumns = true;
 let haloSeed = 0;
 const rootScenePath = "json/physics_frontiers.json";
 let sceneIndex = [];
@@ -273,173 +283,22 @@ function hideMarkdownPanel() {
   activeMarkdownPath = null;
 }
 
+function applyMarkdownLayout() {
+  if (!markdownPanel || !markdownLayoutToggle) {
+    return;
+  }
+  markdownPanel.classList.toggle("two-columns", markdownTwoColumns);
+  markdownLayoutToggle.setAttribute(
+    "aria-label",
+    markdownTwoColumns ? "Switch to single column" : "Switch to two columns"
+  );
+}
+
 function escapeHtml(text) {
   return String(text)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
-}
-
-function parseInlineMarkdown(text) {
-  const mathSegments = [];
-  let output = text.replace(/\\\((.+?)\\\)/g, (match) => {
-    const token = `@@MATH${mathSegments.length}@@`;
-    const safeMatch = match.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    mathSegments.push(safeMatch);
-    return token;
-  });
-  output = escapeHtml(output);
-  output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
-  output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-  output = output.replace(/\*([^*]+)\*/g, "<em>$1</em>");
-  output = output.replace(/@@MATH(\d+)@@/g, (match, idx) => {
-    return mathSegments[Number(idx)] ?? match;
-  });
-  return output;
-}
-
-function renderMarkdown(markdown) {
-  const lines = String(markdown).replace(/\r\n/g, "\n").split("\n");
-  const html = [];
-  let inCodeBlock = false;
-  let inMathBlock = false;
-  let inDollarMathBlock = false;
-  let mathLines = [];
-  const listStack = [];
-
-  const closeLists = (depth = 0) => {
-    while (listStack.length > depth) {
-      const last = listStack.pop();
-      html.push(`</${last.type}>`);
-    }
-  };
-
-  const openList = (type) => {
-    html.push(`<${type}>`);
-    listStack.push({ type });
-  };
-
-  lines.forEach((line) => {
-    const trimmed = line.trim();
-
-    if (trimmed.startsWith("```")) {
-      if (inCodeBlock) {
-        html.push("</code></pre>");
-        inCodeBlock = false;
-      } else {
-        closeLists();
-        html.push("<pre><code>");
-        inCodeBlock = true;
-      }
-      return;
-    }
-
-    if (inCodeBlock) {
-      html.push(escapeHtml(line));
-      return;
-    }
-
-    if (trimmed === "\\[") {
-      closeLists();
-      inMathBlock = true;
-      mathLines = [];
-      return;
-    }
-
-    if (trimmed === "\\]" && inMathBlock) {
-      const safeLines = mathLines.map((line) =>
-        line.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      );
-      html.push(
-        `<div class="math-block">\\[\n${safeLines.join("\n")}\n\\]</div>`
-      );
-      inMathBlock = false;
-      return;
-    }
-
-    if (trimmed === "$$") {
-      closeLists();
-      if (inDollarMathBlock) {
-        const safeLines = mathLines.map((line) =>
-          line.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        );
-        html.push(`<div class="math-block">$$\n${safeLines.join("\n")}\n$$</div>`);
-        inDollarMathBlock = false;
-        mathLines = [];
-      } else {
-        inDollarMathBlock = true;
-        mathLines = [];
-      }
-      return;
-    }
-
-    if (inMathBlock || inDollarMathBlock) {
-      mathLines.push(line);
-      return;
-    }
-
-    if (trimmed === "---" || trimmed === "***") {
-      closeLists();
-      html.push("<hr>");
-      return;
-    }
-
-    const headingMatch = line.match(/^(#{1,6})\s+(.*)$/);
-    if (headingMatch) {
-      closeLists();
-      const level = headingMatch[1].length;
-      html.push(
-        `<h${level}>${parseInlineMarkdown(headingMatch[2])}</h${level}>`
-      );
-      return;
-    }
-
-    const ulMatch = line.match(/^(\s*)[-*+]\s+(.*)$/);
-    const olMatch = line.match(/^(\s*)\d+\.\s+(.*)$/);
-    if (ulMatch || olMatch) {
-      const indent = (ulMatch ? ulMatch[1] : olMatch[1]) ?? "";
-      const text = ulMatch ? ulMatch[2] : olMatch[2];
-      const type = ulMatch ? "ul" : "ol";
-      const indentSize = indent.replace(/\t/g, "  ").length;
-      const depth = Math.floor(indentSize / 2) + 1;
-
-      while (listStack.length > depth) {
-        closeLists(listStack.length - 1);
-      }
-
-      if (listStack.length === depth && listStack[depth - 1]?.type !== type) {
-        closeLists(depth - 1);
-      }
-
-      while (listStack.length < depth) {
-        openList(type);
-      }
-
-      html.push(`<li>${parseInlineMarkdown(text)}</li>`);
-      return;
-    }
-
-    if (trimmed === "") {
-      closeLists();
-      return;
-    }
-
-    closeLists();
-    html.push(`<p>${parseInlineMarkdown(line)}</p>`);
-  });
-
-  if (inCodeBlock) {
-    html.push("</code></pre>");
-  }
-  if (inMathBlock || inDollarMathBlock) {
-    const safeLines = mathLines.map((line) =>
-      line.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    );
-    html.push(`<div class="math-block">\\[\n${safeLines.join("\n")}\n\\]</div>`);
-  }
-  closeLists();
-  return html.join("\n");
 }
 
 function typesetMarkdown() {
@@ -478,7 +337,11 @@ async function showMarkdownPanel(level) {
         throw new Error(`Failed to load markdown: ${markdownPath}`);
       }
       const text = await response.text();
-      html = renderMarkdown(text);
+      if (markdownRenderer) {
+        html = markdownRenderer.render(text);
+      } else {
+        html = `<pre>${escapeHtml(text)}</pre>`;
+      }
       markdownCache.set(markdownPath, html);
     } catch (error) {
       console.error(error);
@@ -495,6 +358,7 @@ async function showMarkdownPanel(level) {
   markdownPanel.setAttribute("aria-hidden", "false");
   markdownPanel.inert = false;
   activeMarkdownPath = markdownPath;
+  applyMarkdownLayout();
   typesetMarkdown();
 }
 
@@ -2103,10 +1967,21 @@ function updateNavButton() {
   }
   if (transitionState.active) {
     navUpButton.disabled = true;
+    updateDocButton();
     return;
   }
   navUpButton.disabled =
     navigationStack.length === 0 && searchBackStack.length === 0;
+  updateDocButton();
+}
+
+function updateDocButton() {
+  if (!docButton) {
+    return;
+  }
+  const hasDoc = !!currentLevel?.markdownPath;
+  docButton.classList.toggle("is-hidden", !hasDoc);
+  docButton.disabled = transitionState.active || !hasDoc;
 }
 
 function updateSceneLabel() {
@@ -2114,6 +1989,7 @@ function updateSceneLabel() {
     return;
   }
   sceneLabel.textContent = currentLevel?.name ?? "";
+  updateDocButton();
 }
 
 async function ensureSceneIndex() {
@@ -2594,6 +2470,17 @@ if (homeButton) {
   });
 }
 
+if (docButton) {
+  docButton.addEventListener("click", () => {
+    if (transitionState.active) {
+      return;
+    }
+    if (currentLevel?.markdownPath) {
+      showMarkdownPanel(currentLevel);
+    }
+  });
+}
+
 if (detailClose) {
   detailClose.addEventListener("click", () => {
     closeDetailPanel();
@@ -2603,6 +2490,13 @@ if (detailClose) {
 if (markdownClose) {
   markdownClose.addEventListener("click", () => {
     hideMarkdownPanel();
+  });
+}
+
+if (markdownLayoutToggle) {
+  markdownLayoutToggle.addEventListener("click", () => {
+    markdownTwoColumns = !markdownTwoColumns;
+    applyMarkdownLayout();
   });
 }
 
