@@ -320,9 +320,6 @@ body {
   padding: 10px 16px 18px;
   font-size: 16px;
   line-height: 1.8;
-  column-count: 1;
-  column-gap: 36px;
-  column-fill: auto;
 }
 
 #markdown-body {
@@ -396,6 +393,7 @@ body {
 
 #markdown-panel.two-columns #markdown-content {
   column-count: 2;
+  column-gap: 36px;
   column-fill: balance;
 }
 
@@ -415,6 +413,7 @@ body {
 @media (max-width: 980px) {
   #markdown-panel.two-columns #markdown-content {
     column-count: 1;
+    column-gap: normal;
   }
 }
 
