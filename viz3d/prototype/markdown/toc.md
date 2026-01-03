@@ -1,5 +1,7 @@
-# Proposed Academic Textbook Outline
+# Revised Academic Textbook Outline (Draft 2)
 ## *The Architrino Theory: A Geometrical Foundation for Physics*
+
+**Incorporating Alfa's recommendations on Atomic, Nuclear, and Condensed Matter**
 
 ---
 
@@ -113,21 +115,64 @@
 
 ---
 
-## PART V: QUANTUM THEORY INTERPRETATION
+## PART V: ATOMIC, NUCLEAR, AND CONDENSED MATTER ARCHITECTURE
 
-### Chapter 16: Quantum Mechanics as Emergent Determinism
+### Chapter 16: From Quarks to Nucleons
+- Assembly of Protons and Neutrons from Quark Tri-Binaries
+- The Nucleon as a Bound State: Internal Geometry and Dynamics
+- Nucleon-Nucleon Potential V_NN(r) from Neutral-Axis Coupling
+- Comparison to Yukawa, One-Pion-Exchange, and Chiral EFT Potentials
+
+### Chapter 17: Nuclear Binding and the Chart of Nuclides
+- Deuteron: The Simplest Nucleus as Test Case
+- Alpha Particle (Helium-4) Stability and Binding Energy
+- Magic Numbers and Shell Structure: Geometric Origin
+- Neutron/Proton Ratio Stability and Isotope Selection
+- Beta Decay and Nuclear Transmutation from Assembly Reconfiguration
+
+### Chapter 18: Atomic Structure and Electronic Orbitals
+- The Hydrogen Atom: Electron Tri-Binary Bound to Proton
+- Multi-Electron Atoms: Assembly Sea Effects and Screening
+- Periodic Table Trends: Ionization Energies, Radii, Electronegativity
+- Fine and Hyperfine Structure from Assembly Geometry
+
+### Chapter 19: Spectroscopy and Precision Atomic Physics
+- Atomic Spectral Lines: Predicted vs. Observed
+- Lamb Shift and QED Corrections: Assembly Interpretation
+- Atomic Clocks and Frequency Standards
+- Rydberg Atoms and Highly Excited States
+
+### Chapter 20: Molecular Geometry and Chemical Bonding
+- Covalent Bonds: Shared Electron Tri-Binary Configurations
+- VSEPR Theory from Assembly Polar Decoration Geometry
+- Water Molecule (H₂O): Predicted 104.5° Angle from Assembly Orientation
+- Organic Chemistry: Carbon's Tetrahedral Geometry
+- Hydrogen Bonding and Its Geometric Origin
+
+### Chapter 21: Condensed Matter and Phase Transitions
+- Solid, Liquid, Gas: Assembly Sea Density and Interaction Regimes
+- Crystal Structure: Lattice Geometry from Assembly Packing
+- Metallic Bonding and Conductivity: Assembly Sea Mobility
+- Superconductivity and Superfluidity: Collective Assembly Phenomena
+- Phase Diagrams: Predicted Critical Points and Triple Points
+
+---
+
+## PART VI: QUANTUM THEORY INTERPRETATION
+
+### Chapter 22: Quantum Mechanics as Emergent Determinism
 - Pilot-Wave Character and Guidance Mechanisms
 - Ontological Status of the Wavefunction
 - Superposition, Interference, and Self-Hit Dynamics
 - Entanglement: Nonlocal Correlations from Shared Potentials
 
-### Chapter 17: Measurement and the Collapse Problem
+### Chapter 23: Measurement and the Collapse Problem
 - What is Measurement in the Architrino Framework?
 - Definite Outcomes from Complex Assembly Interactions
 - No Observer Postulate: Emergence of Classicality
 - Addressing the Measurement Paradoxes
 
-### Chapter 18: Confronting No-Go Theorems
+### Chapter 24: Confronting No-Go Theorems
 - Bell's Theorem and Nonlocality in Absolute Time
 - Kochen-Specker Contextuality
 - PBR and the Reality of Quantum States
@@ -135,27 +180,35 @@
 
 ---
 
-## PART VI: GRAVITY AND SPACETIME EMERGENCE
+## PART VII: GRAVITY AND SPACETIME EMERGENCE
 
-### Chapter 19: Spacetime as Aether
+### Chapter 25: Spacetime as Aether
 - Graviton-Higgs-Binary Assemblies as Spacetime Substrate
 - Production and Decay of Spacetime Aether
 - Energy Shielding and Superposition Effects
 - There is No Vacuum Catastrophe
 
-### Chapter 20: Emergent General Relativity
+### Chapter 26: Emergent General Relativity
 - From Euclidean Substrate to Curved Effective Geometry
 - The Newtonian Limit and Poisson Equation
 - Light Bending, Shapiro Delay, and Gravitational Redshift
 - Perihelion Precession and Frame Dragging
 
-### Chapter 21: Post-Newtonian and Strong-Field Predictions
+### Chapter 27: Post-Newtonian and Strong-Field Predictions
 - PPN Parameters and Current Constraints
 - Gravitational Wave Speed and Polarization
 - Black Holes and Planck Cores: Reinterpretation
 - Information Preservation and Singularity Resolution
 
-### Chapter 22: The Hierarchy Problem and Asymptotic Safety
+### Chapter 28: Dense Matter and Degeneracy Pressure
+- White Dwarf Equation of State: Electron Degeneracy from Assembly Exclusion
+- Chandrasekhar Limit: Predicted Mass Cutoff from Tri-Binary Hard Core
+- Neutron Star EoS: Neutron Degeneracy and Assembly Incompressibility
+- Maximum Neutron Star Mass: TOV Equation Solutions
+- Comparison to Observational Constraints (NICER, GW170817 Tidal Deformability)
+- Exotic Matter Phases: Quark Matter and Color Superconductivity
+
+### Chapter 29: The Hierarchy Problem and Asymptotic Safety
 - Why Gravity is Weak: Energy Shielding and Scale
 - Point Charges Implement Asymptotic Safety
 - Renormalization and Effective Field Theory Emergence
@@ -163,34 +216,34 @@
 
 ---
 
-## PART VII: COSMOLOGY AND THE UNIVERSE
+## PART VIII: COSMOLOGY AND THE UNIVERSE
 
-### Chapter 23: Cosmological Ontology
+### Chapter 30: Cosmological Ontology
 - Steady State vs. Big Bang: Rethinking Cosmology
 - Did the Universe Begin, or Is It Eternal?
 - The Dynamical Steady State and Distributed Inflation
 - Positive Infinity Meets Negative Infinity
 
-### Chapter 24: The Chronology of Nature (Reinterpreted)
+### Chapter 31: The Chronology of Nature (Reinterpreted)
 - Planck Epoch: Peak Density Plasma
 - Grand Unification and Inflationary Epochs
 - ElectroWeak, Quark, Hadron, Lepton Epochs
 - Big Bang Nucleosynthesis and Recombination
 - Photon Epoch, Dark Ages, and Galaxy Formation
 
-### Chapter 25: Black Holes, Jets, and Recycling
+### Chapter 32: Black Holes, Jets, and Recycling
 - Supermassive Black Hole Dynamics
 - Planck Core Jetting and Plasma Emissions
 - Galaxy Rotation and Dark Matter Alternatives
 - Black Holes as Recycling Engines
 
-### Chapter 26: The Cosmic Microwave Background Reinterpreted
+### Chapter 33: The Cosmic Microwave Background Reinterpreted
 - What Really Causes the CMB?
 - Counter-Rotating Coaxial Assembly Launches
 - Planck Satellite Data and NPQG Predictions
 - CMB as Evidence for Spacetime Aether Emission
 
-### Chapter 27: Expansion, Inflation, and Redshift
+### Chapter 34: Expansion, Inflation, and Redshift
 - The Universe Expands In Place
 - Cosmic Inflation is Wrong—Long Live Inflation!
 - Mapping Hubble Tension and Cosmological Metrics
@@ -198,21 +251,21 @@
 
 ---
 
-## PART VIII: COMPARATIVE FOUNDATIONS AND INTERPRETATION
+## PART IX: COMPARATIVE FOUNDATIONS AND INTERPRETATION
 
-### Chapter 28: Mapping to Existing Theories
+### Chapter 35: Mapping to Existing Theories
 - Effective Field Theory Correspondence
 - From Architrinos to Lagrangians
 - Mapping to Quantum Field Theory: Fields, Virtual Particles, Renormalization
 - Mapping to Lattice QCD and Numerical QCD
 
-### Chapter 29: Historical Context and Alternative Approaches
+### Chapter 36: Historical Context and Alternative Approaches
 - Lorentz Ether Theory and Neo-Lorentzian Relativity
 - Bohmian Mechanics and Pilot-Wave Theory
 - Loop Quantum Gravity, Spin Networks, and Foams
 - String Theory, Supersymmetry, and E8
 
-### Chapter 30: Philosophy of the Architrino Framework
+### Chapter 37: Philosophy of the Architrino Framework
 - Ontological Commitments and Conceptual Clarity
 - Determinism, Causality, and the Self-Hit Regime
 - Explanatory Power and Theoretical Virtues
@@ -220,27 +273,27 @@
 
 ---
 
-## PART IX: SIMULATION, COMPUTATION, AND TECHNOLOGY
+## PART X: SIMULATION, COMPUTATION, AND TECHNOLOGY
 
-### Chapter 31: Computational Implementation
+### Chapter 38: Computational Implementation
 - Numerical Methods for Architrino Dynamics
 - Delay Differential Equations and Causal Set Algorithms
 - Convergence, Stability, and Artifact Detection
 - From Architrino Simulations to Emergent Phenomenology
 
-### Chapter 32: Provenance Tracking and Visualization
+### Chapter 39: Provenance Tracking and Visualization
 - Depicting Assemblies and Reactions as Paths
 - Animation and Simulation of Fermion Architecture
 - Point Charge Provenance and Reaction Networks
 - Limits of Memory and Computation
 
-### Chapter 33: Predictions and Experimental Roadmap
+### Chapter 40: Predictions and Experimental Roadmap
 - Falsifiable Predictions Across Scales
 - Collider Physics: Nines of C and Reaction Dynamics
 - Precision Tests: g-2, Flavor Universality, Neutrino Masses
 - Astrophysical Signatures: SMBH Jets, CMB Anomalies, Redshift
 
-### Chapter 34: Toward New Technologies
+### Chapter 41: Toward New Technologies
 - Nanosheet and Assembly Engineering
 - Energy Shielding and Gravitational Manipulation
 - Implications for Energy, Computation, and Materials
@@ -248,9 +301,9 @@
 
 ---
 
-## PART X: SYNTHESIS AND FUTURE DIRECTIONS
+## PART XI: SYNTHESIS AND FUTURE DIRECTIONS
 
-### Chapter 35: Solving the Unsolved Problems in Physics
+### Chapter 42: Solving the Unsolved Problems in Physics
 - The Measurement Problem
 - Dark Matter and Dark Energy
 - The Hierarchy Problem
@@ -258,19 +311,19 @@
 - Matter-Antimatter Asymmetry
 - Quantum Gravity Unification
 
-### Chapter 36: Challenges, Criticisms, and Open Questions
+### Chapter 43: Challenges, Criticisms, and Open Questions
 - Where the Theory May Fail
 - Known Tensions and Parameter Tuning Risks
 - Alternative Interpretations and Competitor Models
 - The Role of the Adversary and Red Team
 
-### Chapter 37: Reconstructing Physics and Cosmology
+### Chapter 44: Reconstructing Physics and Cosmology
 - Implications for Academia and Research Funding
 - Reinterpreting Historical Experiments (Michelson-Morley, etc.)
 - Revisiting Nobel Prize Research
 - A Call to the Physics Community
 
-### Chapter 38: Vision for the Future
+### Chapter 45: Vision for the Future
 - The NPQG Research Institute
 - Interdisciplinary Collaboration: Physics, Chemistry, Biology, AI
 - Long-Term Research Questions
@@ -311,8 +364,6 @@
 ## BIBLIOGRAPHY
 
 ## INDEX
-
----
 
 **Notes on Structure:**
 - **Three-level hierarchy** as requested: Parts (Roman numerals), Chapters (Arabic numerals), Sections (subsection titles).

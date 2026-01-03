@@ -1215,11 +1215,13 @@ function buildLevel(levelId) {
         nucleons.reduce((s, n) => s + (n.data.radius ?? 0.3), 0) /
         nucleons.length;
       const golden = Math.PI * (3 - Math.sqrt(5));
-      const packRadius =
-        Math.max(avgRadius * 3.2, Math.sqrt(nucleons.length) * avgRadius * 2.0);
+      let packRadius = Math.max(
+        avgRadius * 2.6,
+        Math.sqrt(nucleons.length) * avgRadius * 1.6
+      );
       const positions = [];
       for (let i = 0; i < nucleons.length; i++) {
-        const r = packRadius * Math.sqrt((i + 0.5) / nucleons.length);
+        const r = packRadius * Math.sqrt((i + 0.35) / nucleons.length);
         const theta = i * golden;
         positions.push(
           new THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0)
@@ -1238,7 +1240,7 @@ function buildLevel(levelId) {
         }
       });
 
-      const nucleusRadius = packRadius + avgRadius * 1.1;
+      const nucleusRadius = packRadius + avgRadius * 0.7;
       const ringGeo = new THREE.RingGeometry(
         Math.max(0.01, nucleusRadius - 0.04),
         nucleusRadius + 0.04,
