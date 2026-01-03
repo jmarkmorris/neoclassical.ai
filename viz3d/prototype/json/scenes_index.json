@@ -129,6 +129,601 @@
       "id": "periodic_table",
       "name": "Periodic Table",
       "path": "json/periodic_table_scene.json"
+    },
+    {
+      "id": "h",
+      "name": "Hydrogen (H)",
+      "path": "json/elements/h.json"
+    },
+    {
+      "id": "he",
+      "name": "Helium (HE)",
+      "path": "json/elements/he.json"
+    },
+    {
+      "id": "li",
+      "name": "Lithium (LI)",
+      "path": "json/elements/li.json"
+    },
+    {
+      "id": "be",
+      "name": "Beryllium (BE)",
+      "path": "json/elements/be.json"
+    },
+    {
+      "id": "b",
+      "name": "Boron (B)",
+      "path": "json/elements/b.json"
+    },
+    {
+      "id": "c",
+      "name": "Carbon (C)",
+      "path": "json/elements/c.json"
+    },
+    {
+      "id": "n",
+      "name": "Nitrogen (N)",
+      "path": "json/elements/n.json"
+    },
+    {
+      "id": "o",
+      "name": "Oxygen (O)",
+      "path": "json/elements/o.json"
+    },
+    {
+      "id": "f",
+      "name": "Fluorine (F)",
+      "path": "json/elements/f.json"
+    },
+    {
+      "id": "ne",
+      "name": "Neon (NE)",
+      "path": "json/elements/ne.json"
+    },
+    {
+      "id": "na",
+      "name": "Sodium (NA)",
+      "path": "json/elements/na.json"
+    },
+    {
+      "id": "mg",
+      "name": "Magnesium (MG)",
+      "path": "json/elements/mg.json"
+    },
+    {
+      "id": "al",
+      "name": "Aluminium (AL)",
+      "path": "json/elements/al.json"
+    },
+    {
+      "id": "si",
+      "name": "Silicon (SI)",
+      "path": "json/elements/si.json"
+    },
+    {
+      "id": "p",
+      "name": "Phosphorus (P)",
+      "path": "json/elements/p.json"
+    },
+    {
+      "id": "s",
+      "name": "Sulfur (S)",
+      "path": "json/elements/s.json"
+    },
+    {
+      "id": "cl",
+      "name": "Chlorine (CL)",
+      "path": "json/elements/cl.json"
+    },
+    {
+      "id": "ar",
+      "name": "Argon (AR)",
+      "path": "json/elements/ar.json"
+    },
+    {
+      "id": "k",
+      "name": "Potassium (K)",
+      "path": "json/elements/k.json"
+    },
+    {
+      "id": "ca",
+      "name": "Calcium (CA)",
+      "path": "json/elements/ca.json"
+    },
+    {
+      "id": "sc",
+      "name": "Scandium (SC)",
+      "path": "json/elements/sc.json"
+    },
+    {
+      "id": "ti",
+      "name": "Titanium (TI)",
+      "path": "json/elements/ti.json"
+    },
+    {
+      "id": "v",
+      "name": "Vanadium (V)",
+      "path": "json/elements/v.json"
+    },
+    {
+      "id": "cr",
+      "name": "Chromium (CR)",
+      "path": "json/elements/cr.json"
+    },
+    {
+      "id": "mn",
+      "name": "Manganese (MN)",
+      "path": "json/elements/mn.json"
+    },
+    {
+      "id": "fe",
+      "name": "Iron (FE)",
+      "path": "json/elements/fe.json"
+    },
+    {
+      "id": "co",
+      "name": "Cobalt (CO)",
+      "path": "json/elements/co.json"
+    },
+    {
+      "id": "ni",
+      "name": "Nickel (NI)",
+      "path": "json/elements/ni.json"
+    },
+    {
+      "id": "cu",
+      "name": "Copper (CU)",
+      "path": "json/elements/cu.json"
+    },
+    {
+      "id": "zn",
+      "name": "Zinc (ZN)",
+      "path": "json/elements/zn.json"
+    },
+    {
+      "id": "ga",
+      "name": "Gallium (GA)",
+      "path": "json/elements/ga.json"
+    },
+    {
+      "id": "ge",
+      "name": "Germanium (GE)",
+      "path": "json/elements/ge.json"
+    },
+    {
+      "id": "as",
+      "name": "Arsenic (AS)",
+      "path": "json/elements/as.json"
+    },
+    {
+      "id": "se",
+      "name": "Selenium (SE)",
+      "path": "json/elements/se.json"
+    },
+    {
+      "id": "br",
+      "name": "Bromine (BR)",
+      "path": "json/elements/br.json"
+    },
+    {
+      "id": "kr",
+      "name": "Krypton (KR)",
+      "path": "json/elements/kr.json"
+    },
+    {
+      "id": "rb",
+      "name": "Rubidium (RB)",
+      "path": "json/elements/rb.json"
+    },
+    {
+      "id": "sr",
+      "name": "Strontium (SR)",
+      "path": "json/elements/sr.json"
+    },
+    {
+      "id": "y",
+      "name": "Yttrium (Y)",
+      "path": "json/elements/y.json"
+    },
+    {
+      "id": "zr",
+      "name": "Zirconium (ZR)",
+      "path": "json/elements/zr.json"
+    },
+    {
+      "id": "nb",
+      "name": "Niobium (NB)",
+      "path": "json/elements/nb.json"
+    },
+    {
+      "id": "mo",
+      "name": "Molybdenum (MO)",
+      "path": "json/elements/mo.json"
+    },
+    {
+      "id": "tc",
+      "name": "Technetium (TC)",
+      "path": "json/elements/tc.json"
+    },
+    {
+      "id": "ru",
+      "name": "Ruthenium (RU)",
+      "path": "json/elements/ru.json"
+    },
+    {
+      "id": "rh",
+      "name": "Rhodium (RH)",
+      "path": "json/elements/rh.json"
+    },
+    {
+      "id": "pd",
+      "name": "Palladium (PD)",
+      "path": "json/elements/pd.json"
+    },
+    {
+      "id": "ag",
+      "name": "Silver (AG)",
+      "path": "json/elements/ag.json"
+    },
+    {
+      "id": "cd",
+      "name": "Cadmium (CD)",
+      "path": "json/elements/cd.json"
+    },
+    {
+      "id": "in",
+      "name": "Indium (IN)",
+      "path": "json/elements/in.json"
+    },
+    {
+      "id": "sn",
+      "name": "Tin (SN)",
+      "path": "json/elements/sn.json"
+    },
+    {
+      "id": "sb",
+      "name": "Antimony (SB)",
+      "path": "json/elements/sb.json"
+    },
+    {
+      "id": "te",
+      "name": "Tellurium (TE)",
+      "path": "json/elements/te.json"
+    },
+    {
+      "id": "i",
+      "name": "Iodine (I)",
+      "path": "json/elements/i.json"
+    },
+    {
+      "id": "xe",
+      "name": "Xenon (XE)",
+      "path": "json/elements/xe.json"
+    },
+    {
+      "id": "cs",
+      "name": "Cesium (CS)",
+      "path": "json/elements/cs.json"
+    },
+    {
+      "id": "ba",
+      "name": "Barium (BA)",
+      "path": "json/elements/ba.json"
+    },
+    {
+      "id": "la",
+      "name": "Lanthanum (LA)",
+      "path": "json/elements/la.json"
+    },
+    {
+      "id": "ce",
+      "name": "Cerium (CE)",
+      "path": "json/elements/ce.json"
+    },
+    {
+      "id": "pr",
+      "name": "Praseodymium (PR)",
+      "path": "json/elements/pr.json"
+    },
+    {
+      "id": "nd",
+      "name": "Neodymium (ND)",
+      "path": "json/elements/nd.json"
+    },
+    {
+      "id": "pm",
+      "name": "Promethium (PM)",
+      "path": "json/elements/pm.json"
+    },
+    {
+      "id": "sm",
+      "name": "Samarium (SM)",
+      "path": "json/elements/sm.json"
+    },
+    {
+      "id": "eu",
+      "name": "Europium (EU)",
+      "path": "json/elements/eu.json"
+    },
+    {
+      "id": "gd",
+      "name": "Gadolinium (GD)",
+      "path": "json/elements/gd.json"
+    },
+    {
+      "id": "tb",
+      "name": "Terbium (TB)",
+      "path": "json/elements/tb.json"
+    },
+    {
+      "id": "dy",
+      "name": "Dysprosium (DY)",
+      "path": "json/elements/dy.json"
+    },
+    {
+      "id": "ho",
+      "name": "Holmium (HO)",
+      "path": "json/elements/ho.json"
+    },
+    {
+      "id": "er",
+      "name": "Erbium (ER)",
+      "path": "json/elements/er.json"
+    },
+    {
+      "id": "tm",
+      "name": "Thulium (TM)",
+      "path": "json/elements/tm.json"
+    },
+    {
+      "id": "yb",
+      "name": "Ytterbium (YB)",
+      "path": "json/elements/yb.json"
+    },
+    {
+      "id": "lu",
+      "name": "Lutetium (LU)",
+      "path": "json/elements/lu.json"
+    },
+    {
+      "id": "hf",
+      "name": "Hafnium (HF)",
+      "path": "json/elements/hf.json"
+    },
+    {
+      "id": "ta",
+      "name": "Tantalum (TA)",
+      "path": "json/elements/ta.json"
+    },
+    {
+      "id": "w",
+      "name": "Tungsten (W)",
+      "path": "json/elements/w.json"
+    },
+    {
+      "id": "re",
+      "name": "Rhenium (RE)",
+      "path": "json/elements/re.json"
+    },
+    {
+      "id": "os",
+      "name": "Osmium (OS)",
+      "path": "json/elements/os.json"
+    },
+    {
+      "id": "ir",
+      "name": "Iridium (IR)",
+      "path": "json/elements/ir.json"
+    },
+    {
+      "id": "pt",
+      "name": "Platinum (PT)",
+      "path": "json/elements/pt.json"
+    },
+    {
+      "id": "au",
+      "name": "Gold (AU)",
+      "path": "json/elements/au.json"
+    },
+    {
+      "id": "hg",
+      "name": "Mercury (HG)",
+      "path": "json/elements/hg.json"
+    },
+    {
+      "id": "tl",
+      "name": "Thallium (TL)",
+      "path": "json/elements/tl.json"
+    },
+    {
+      "id": "pb",
+      "name": "Lead (PB)",
+      "path": "json/elements/pb.json"
+    },
+    {
+      "id": "bi",
+      "name": "Bismuth (BI)",
+      "path": "json/elements/bi.json"
+    },
+    {
+      "id": "po",
+      "name": "Polonium (PO)",
+      "path": "json/elements/po.json"
+    },
+    {
+      "id": "at",
+      "name": "Astatine (AT)",
+      "path": "json/elements/at.json"
+    },
+    {
+      "id": "rn",
+      "name": "Radon (RN)",
+      "path": "json/elements/rn.json"
+    },
+    {
+      "id": "fr",
+      "name": "Francium (FR)",
+      "path": "json/elements/fr.json"
+    },
+    {
+      "id": "ra",
+      "name": "Radium (RA)",
+      "path": "json/elements/ra.json"
+    },
+    {
+      "id": "ac",
+      "name": "Actinium (AC)",
+      "path": "json/elements/ac.json"
+    },
+    {
+      "id": "th",
+      "name": "Thorium (TH)",
+      "path": "json/elements/th.json"
+    },
+    {
+      "id": "pa",
+      "name": "Protactinium (PA)",
+      "path": "json/elements/pa.json"
+    },
+    {
+      "id": "u",
+      "name": "Uranium (U)",
+      "path": "json/elements/u.json"
+    },
+    {
+      "id": "np",
+      "name": "Neptunium (NP)",
+      "path": "json/elements/np.json"
+    },
+    {
+      "id": "pu",
+      "name": "Plutonium (PU)",
+      "path": "json/elements/pu.json"
+    },
+    {
+      "id": "am",
+      "name": "Americium (AM)",
+      "path": "json/elements/am.json"
+    },
+    {
+      "id": "cm",
+      "name": "Curium (CM)",
+      "path": "json/elements/cm.json"
+    },
+    {
+      "id": "bk",
+      "name": "Berkelium (BK)",
+      "path": "json/elements/bk.json"
+    },
+    {
+      "id": "cf",
+      "name": "Californium (CF)",
+      "path": "json/elements/cf.json"
+    },
+    {
+      "id": "es",
+      "name": "Einsteinium (ES)",
+      "path": "json/elements/es.json"
+    },
+    {
+      "id": "fm",
+      "name": "Fermium (FM)",
+      "path": "json/elements/fm.json"
+    },
+    {
+      "id": "md",
+      "name": "Mendelevium (MD)",
+      "path": "json/elements/md.json"
+    },
+    {
+      "id": "no",
+      "name": "Nobelium (NO)",
+      "path": "json/elements/no.json"
+    },
+    {
+      "id": "lr",
+      "name": "Lawrencium (LR)",
+      "path": "json/elements/lr.json"
+    },
+    {
+      "id": "rf",
+      "name": "Rutherfordium (RF)",
+      "path": "json/elements/rf.json"
+    },
+    {
+      "id": "db",
+      "name": "Dubnium (DB)",
+      "path": "json/elements/db.json"
+    },
+    {
+      "id": "sg",
+      "name": "Seaborgium (SG)",
+      "path": "json/elements/sg.json"
+    },
+    {
+      "id": "bh",
+      "name": "Bohrium (BH)",
+      "path": "json/elements/bh.json"
+    },
+    {
+      "id": "hs",
+      "name": "Hassium (HS)",
+      "path": "json/elements/hs.json"
+    },
+    {
+      "id": "mt",
+      "name": "Meitnerium (MT)",
+      "path": "json/elements/mt.json"
+    },
+    {
+      "id": "ds",
+      "name": "Darmstadtium (DS)",
+      "path": "json/elements/ds.json"
+    },
+    {
+      "id": "rg",
+      "name": "Roentgenium (RG)",
+      "path": "json/elements/rg.json"
+    },
+    {
+      "id": "cn",
+      "name": "Copernicium (CN)",
+      "path": "json/elements/cn.json"
+    },
+    {
+      "id": "nh",
+      "name": "Nihonium (NH)",
+      "path": "json/elements/nh.json"
+    },
+    {
+      "id": "fl",
+      "name": "Flerovium (FL)",
+      "path": "json/elements/fl.json"
+    },
+    {
+      "id": "mc",
+      "name": "Moscovium (MC)",
+      "path": "json/elements/mc.json"
+    },
+    {
+      "id": "lv",
+      "name": "Livermorium (LV)",
+      "path": "json/elements/lv.json"
+    },
+    {
+      "id": "ts",
+      "name": "Tennessine (TS)",
+      "path": "json/elements/ts.json"
+    },
+    {
+      "id": "og",
+      "name": "Oganesson (OG)",
+      "path": "json/elements/og.json"
+    },
+    {
+      "id": "uue",
+      "name": "Ununennium (UUE)",
+      "path": "json/elements/uue.json"
     }
   ]
 }
