@@ -635,6 +635,23 @@ body {
   text-align: right;
 }
 
+.detail-row.summary-row {
+  display: block;
+  border-top: 1px solid rgba(160, 170, 220, 0.12);
+}
+
+.summary-row .detail-key,
+.summary-row .detail-value {
+  text-align: left;
+  width: 100%;
+  display: block;
+}
+
+.summary-row .detail-value {
+  margin-top: 6px;
+  line-height: 1.4;
+  word-break: normal;
+}
 #scene-search-input {
   width: 100%;
   border: none;

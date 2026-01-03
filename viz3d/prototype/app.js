@@ -2051,8 +2051,9 @@ function showPeriodicElementDetail(el) {
     if (value === undefined || value === null || value === "") {
       return;
     }
+    const isSummary = label === "Summary";
     const row = document.createElement("div");
-    row.className = "detail-row";
+    row.className = "detail-row" + (isSummary ? " summary-row" : "");
     const key = document.createElement("div");
     key.className = "detail-key";
     key.textContent = label;
@@ -2089,6 +2090,7 @@ function buildPeriodicGrid(data) {
       <div class="ptable-name">${el.name}</div>
     `;
     btn.addEventListener("click", () => showPeriodicElementDetail(el));
+    btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
     frag.appendChild(btn);
     const legendKey = el.category || "Unknown";
     if (!legendSet.has(legendKey)) {
