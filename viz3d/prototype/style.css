@@ -210,8 +210,8 @@ body {
 }
 
 #markdown-content {
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 #markdown-title {
@@ -259,13 +259,19 @@ body {
 
 #markdown-content ul,
 #markdown-content ol {
-  margin: 8px 0 8px 18px;
+  margin: 12px 0 12px 32px;
   padding: 0;
 }
 
+#markdown-content ul ul,
+#markdown-content ol ol,
+#markdown-content ul ol,
+#markdown-content ol ul {
+  margin-left: 26px;
+}
+
 #markdown-content li {
-  margin: 4px 0;
-  line-height: 1.4;
+  margin: 6px 0;
 }
 
 #markdown-content hr {

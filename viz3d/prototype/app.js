@@ -303,21 +303,21 @@ function renderMarkdown(markdown) {
   const lines = String(markdown).replace(/\r\n/g, "\n").split("\n");
   const html = [];
   let inCodeBlock = false;
-  let inUl = false;
-  let inOl = false;
   let inMathBlock = false;
   let inDollarMathBlock = false;
   let mathLines = [];
+  const listStack = [];
 
-  const closeLists = () => {
-    if (inUl) {
-      html.push("</ul>");
-      inUl = false;
+  const closeLists = (depth = 0) => {
+    while (listStack.length > depth) {
+      const last = listStack.pop();
+      html.push(`</${last.type}>`);
     }
-    if (inOl) {
-      html.push("</ol>");
-      inOl = false;
-    }
+  };
+
+  const openList = (type) => {
+    html.push(`<${type}>`);
+    listStack.push({ type });
   };
 
   lines.forEach((line) => {
@@ -395,25 +395,28 @@ function renderMarkdown(markdown) {
       return;
     }
 
-    const ulMatch = line.match(/^\s*[-*+]\s+(.*)$/);
-    if (ulMatch) {
-      if (!inUl) {
-        closeLists();
-        html.push("<ul>");
-        inUl = true;
-      }
-      html.push(`<li>${parseInlineMarkdown(ulMatch[1])}</li>`);
-      return;
-    }
+    const ulMatch = line.match(/^(\s*)[-*+]\s+(.*)$/);
+    const olMatch = line.match(/^(\s*)\d+\.\s+(.*)$/);
+    if (ulMatch || olMatch) {
+      const indent = (ulMatch ? ulMatch[1] : olMatch[1]) ?? "";
+      const text = ulMatch ? ulMatch[2] : olMatch[2];
+      const type = ulMatch ? "ul" : "ol";
+      const indentSize = indent.replace(/\t/g, "  ").length;
+      const depth = Math.floor(indentSize / 2) + 1;
 
-    const olMatch = line.match(/^\s*\d+\.\s+(.*)$/);
-    if (olMatch) {
-      if (!inOl) {
-        closeLists();
-        html.push("<ol>");
-        inOl = true;
+      while (listStack.length > depth) {
+        closeLists(listStack.length - 1);
       }
-      html.push(`<li>${parseInlineMarkdown(olMatch[1])}</li>`);
+
+      if (listStack.length === depth && listStack[depth - 1]?.type !== type) {
+        closeLists(depth - 1);
+      }
+
+      while (listStack.length < depth) {
+        openList(type);
+      }
+
+      html.push(`<li>${parseInlineMarkdown(text)}</li>`);
       return;
     }
 
@@ -435,12 +438,7 @@ function renderMarkdown(markdown) {
     );
     html.push(`<div class="math-block">\\[\n${safeLines.join("\n")}\n\\]</div>`);
   }
-  if (inUl) {
-    html.push("</ul>");
-  }
-  if (inOl) {
-    html.push("</ol>");
-  }
+  closeLists();
   return html.join("\n");
 }
 
