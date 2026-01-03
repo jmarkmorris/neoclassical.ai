@@ -1,10 +1,6 @@
-# Revised Academic Textbook Outline (Draft 5)
+# Revised Academic Textbook Outline (Draft 6)
 ## *The Architrino Theory: A Geometrical Foundation for Physics*
 
-**Incorporating Alfa's recommendations on Atomic, Nuclear, and Condensed Matter**  
-**Incorporating Sol's recommendations on Simulation Methods and Validation**  
-**Incorporating Dyna's recommendations on Master Dynamics, Assembly Atlas, and Emergent Metric**  
-**Incorporating Phe's recommendations on Lagrangian Bridge, Gauge Symmetries, and Parity Violation**
 
 ---
 
@@ -214,6 +210,7 @@
 - Ontological Status of the Wavefunction
 - Superposition, Interference, and Self-Hit Dynamics
 - Entanglement: Nonlocal Correlations from Shared Potentials
+- **Time in Quantum Mechanics vs. Absolute Time** (Cross-Reference to Ch. 31)
 
 ### Chapter 28: Measurement and the Collapse Problem
 - What is Measurement in the Architrino Framework?
@@ -241,13 +238,16 @@
 ### Chapter 31: Emergent Metric and the Bridge to General Relativity
 - Construction of Coarse-Grained Fields from Architrino/Assembly Distributions
 - Definition of Effective Metric g_μν(x) from Assembly Dynamics
+- **Proper Time from Assembly Clocks: Operational Definition**
+  - Explicit Formula: dτ/dt = f(v, ρ_aether, Φ)
+  - Worked Examples: GPS, Gravitational Redshift, Muon Decay
 - Relation Between Architrino Trajectories and Geodesics
 - Limits: When GR Is Recovered, When Deviations Are Expected
-- Proper Time Emergence from Assembly Clocks
+- **This Chapter Is the Foundation for All Subsequent Gravity and Cosmology**
 
 ### Chapter 32: General Relativity Phenomenology and Tests
 - The Newtonian Limit and Poisson Equation
-- Light Bending, Shapiro Delay, and Gravitational Redshift
+- Light Bending, Shapiro Delay, and Gravitational Redshift (Reference to Ch. 31 Clock Physics)
 - Perihelion Precession and Frame Dragging
 - **Primary Constraints & Failure Conditions**: Equivalence Principle Tests, PPN Parameters
 
@@ -308,26 +308,35 @@
 - The Universe Expands In Place
 - Cosmic Inflation is Wrong—Long Live Inflation!
 - Mapping Hubble Tension and Cosmological Metrics
-- Redshift Mechanisms Beyond Doppler
+- Redshift as Clock Comparison in Expanding Aether (Cross-Reference to Ch. 31)
 - **Primary Constraints & Failure Conditions**: H(z) Data, BAO Scale, Supernova Distances
+
+### Chapter 41: Structure Formation and Large-Scale Structure
+- **Metric Input and Regime**: Perturbed FRW metric from inhomogeneous aether
+- Linear Growth of Perturbations in the Architrino-Derived Metric
+- Matter Power Spectrum P(k): Predictions and Comparison
+- Baryon Acoustic Oscillations in Clustering
+- Weak Gravitational Lensing and Cosmic Shear
+- Effective Dark Matter vs. Modified Gravity vs. Hybrid Models
+- **Primary Constraints & Failure Conditions**: σ₈, S₈, LSS Survey Data
 
 ---
 
 ## PART IX: COMPARATIVE FOUNDATIONS AND INTERPRETATION
 
-### Chapter 41: Mapping to Existing Theories
+### Chapter 42: Mapping to Existing Theories
 - Effective Field Theory Correspondence (Extended Discussion)
 - From Architrinos to Lagrangians (Cross-Reference to Chapter 15)
 - Mapping to Quantum Field Theory: Fields, Virtual Particles, Renormalization
 - Mapping to Lattice QCD and Numerical QCD
 
-### Chapter 42: Historical Context and Alternative Approaches
+### Chapter 43: Historical Context and Alternative Approaches
 - Lorentz Ether Theory and Neo-Lorentzian Relativity
 - Bohmian Mechanics and Pilot-Wave Theory
 - Loop Quantum Gravity, Spin Networks, and Foams
 - String Theory, Supersymmetry, and E8
 
-### Chapter 43: Philosophy of the Architrino Framework
+### Chapter 44: Philosophy of the Architrino Framework
 - Ontological Commitments and Conceptual Clarity
 - Determinism, Causality, and the Self-Hit Regime
 - Explanatory Power and Theoretical Virtues
@@ -337,25 +346,25 @@
 
 ## PART X: SIMULATION, COMPUTATION, AND TECHNOLOGY
 
-### Chapter 44: Computational Implementation
+### Chapter 45: Computational Implementation
 - Numerical Methods for Architrino Dynamics
 - Delay Differential Equations and Causal Set Algorithms
 - Convergence, Stability, and Artifact Detection
 - From Architrino Simulations to Emergent Phenomenology
 
-### Chapter 45: Provenance Tracking and Visualization
+### Chapter 46: Provenance Tracking and Visualization
 - Depicting Assemblies and Reactions as Paths
 - Animation and Simulation of Fermion Architecture
 - Point Charge Provenance and Reaction Networks
 - Limits of Memory and Computation
 
-### Chapter 46: Predictions and Experimental Roadmap
+### Chapter 47: Predictions and Experimental Roadmap
 - Falsifiable Predictions Across Scales
 - Collider Physics: Nines of C and Reaction Dynamics
 - Precision Tests: g-2, Flavor Universality, Neutrino Masses
 - Astrophysical Signatures: SMBH Jets, CMB Anomalies, Redshift
 
-### Chapter 47: Toward New Technologies
+### Chapter 48: Toward New Technologies
 - Nanosheet and Assembly Engineering
 - Energy Shielding and Gravitational Manipulation
 - Implications for Energy, Computation, and Materials
@@ -365,7 +374,7 @@
 
 ## PART XI: SYNTHESIS AND FUTURE DIRECTIONS
 
-### Chapter 48: Solving the Unsolved Problems in Physics
+### Chapter 49: Solving the Unsolved Problems in Physics
 - The Measurement Problem
 - Dark Matter and Dark Energy
 - The Hierarchy Problem
@@ -373,19 +382,19 @@
 - Matter-Antimatter Asymmetry
 - Quantum Gravity Unification
 
-### Chapter 49: Challenges, Criticisms, and Open Questions
+### Chapter 50: Challenges, Criticisms, and Open Questions
 - Where the Theory May Fail
 - Known Tensions and Parameter Tuning Risks
 - Alternative Interpretations and Competitor Models
 - The Role of the Adversary and Red Team
 
-### Chapter 50: Reconstructing Physics and Cosmology
+### Chapter 51: Reconstructing Physics and Cosmology
 - Implications for Academia and Research Funding
 - Reinterpreting Historical Experiments (Michelson-Morley, etc.)
 - Revisiting Nobel Prize Research
 - A Call to the Physics Community
 
-### Chapter 51: Vision for the Future
+### Chapter 52: Vision for the Future
 - The NPQG Research Institute
 - Interdisciplinary Collaboration: Physics, Chemistry, Biology, AI
 - Long-Term Research Questions
