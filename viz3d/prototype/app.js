@@ -1253,21 +1253,7 @@ function buildLevel(levelId) {
       });
 
       nucleusRadius = packRadius + avgRadius * 0.5;
-      const ringGeo = new THREE.RingGeometry(
-        Math.max(0.01, nucleusRadius - 0.04),
-        nucleusRadius + 0.04,
-        80
-      );
-      const ringMat = new THREE.MeshBasicMaterial({
-        color: "#d5dcff",
-        transparent: true,
-        opacity: 0.08,
-        side: THREE.DoubleSide,
-        depthWrite: false,
-      });
-      const nucleusRing = new THREE.Mesh(ringGeo, ringMat);
-      nucleusRing.userData.excludeFromBounds = true;
-      group.add(nucleusRing);
+      // Nucleus boundary retained via radius for layout, but no visible ring drawn.
     }
 
     // Orbit guides (thin rings) for each populated shell.
