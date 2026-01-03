@@ -1216,8 +1216,8 @@ function buildLevel(levelId) {
         nucleons.length;
       const golden = Math.PI * (3 - Math.sqrt(5));
       let packRadius = Math.max(
-        avgRadius * 2.6,
-        Math.sqrt(nucleons.length) * avgRadius * 1.6
+        avgRadius * 2.2,
+        Math.sqrt(nucleons.length) * avgRadius * 1.25
       );
       const positions = [];
       for (let i = 0; i < nucleons.length; i++) {
@@ -1240,7 +1240,7 @@ function buildLevel(levelId) {
         }
       });
 
-      const nucleusRadius = packRadius + avgRadius * 0.7;
+      const nucleusRadius = packRadius + avgRadius * 0.5;
       const ringGeo = new THREE.RingGeometry(
         Math.max(0.01, nucleusRadius - 0.04),
         nucleusRadius + 0.04,
@@ -1259,6 +1259,65 @@ function buildLevel(levelId) {
     }
 
     // Orbit guides (thin rings) for each populated shell.
+    const electrons = nodes.filter((n) => n.data.category === "electron");
+    const uniqueRadii = Array.from(
+      new Set(
+        electrons
+          .map((e) => e.data.orbit?.radius)
+          .filter((r) => typeof r === "number")
+      )
+    ).sort((a, b) => a - b);
+
+    if (uniqueRadii.length) {
+      const minShellRadius = nucleusRadius + 0.6;
+      const shellGap = 0.9;
+      const radiusMap = new Map();
+      uniqueRadii.forEach((r, idx) => {
+        radiusMap.set(r, minShellRadius + idx * shellGap);
+      });
+
+      electrons.forEach((e) => {
+        const currentRadius = e.data.orbit?.radius;
+        if (typeof currentRadius !== "number") {
+          return;
+        }
+        const newRadius = radiusMap.get(currentRadius) ?? currentRadius;
+        const pos = e.group.position;
+        const angle = Math.atan2(pos.y, pos.x) || 0;
+        if (!e.data.orbit) {
+          e.data.orbit = { center: "origin", radius: newRadius, speed: 0, phase: angle };
+        } else {
+          e.data.orbit.radius = newRadius;
+          e.data.orbit.phase = angle;
+        }
+        e.group.position.set(
+          Math.cos(angle) * newRadius,
+          Math.sin(angle) * newRadius,
+          0
+        );
+      });
+
+      const remappedRadii = uniqueRadii.map((r) => radiusMap.get(r) ?? r);
+      remappedRadii.forEach((r) => {
+        const guideGeo = new THREE.RingGeometry(
+          Math.max(0.01, r - 0.06),
+          r + 0.06,
+          96
+        );
+        const guideMat = new THREE.MeshBasicMaterial({
+          color: "#8fa7ff",
+          transparent: true,
+          opacity: 0.28,
+          side: THREE.DoubleSide,
+          depthWrite: false,
+        });
+        const guide = new THREE.Mesh(guideGeo, guideMat);
+        guide.userData.excludeFromBounds = true;
+        group.add(guide);
+      });
+    }
+  } else {
+    // Non-element scenes: still render orbit guides if present.
     const electrons = nodes.filter((n) => n.data.category === "electron");
     const shellRadii = Array.from(
       new Set(
