@@ -124,6 +124,11 @@
       "id": "fermion_generation_color",
       "name": "Fermion Generation and Color",
       "path": "json/fermion_generation_color.json"
+    },
+    {
+      "id": "periodic_table",
+      "name": "Periodic Table",
+      "path": "json/periodic_table_scene.json"
     }
   ]
 }

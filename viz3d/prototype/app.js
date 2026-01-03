@@ -24,6 +24,9 @@ const markdownBody = document.getElementById("markdown-body");
 const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const mathJaxScript = document.getElementById("mathjax-script");
+const periodicOverlay = document.getElementById("periodic-overlay");
+const periodicGrid = document.getElementById("periodic-grid");
+const periodicLegend = document.getElementById("periodic-legend");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -149,6 +152,8 @@ const rootScenePath = "json/physics_frontiers.json";
 let sceneIndex = [];
 let sceneIndexReady = false;
 const searchBackStack = [];
+const periodicTableCache = { data: null, ready: false };
+let periodicGridBuilt = false;
 
 const levels = new Map();
 const navigationStack = [];
@@ -205,6 +210,19 @@ const detailFieldOrder = [
 let activeDetailNodeId = null;
 let hoveredDetailNodeId = null;
 let hoverTooltipVisible = false;
+const periodicCategoryColors = {
+  "alkali metal": "#d24d57",
+  "alkaline earth metal": "#e67e22",
+  "transition metal": "#f39c12",
+  "post-transition metal": "#9b59b6",
+  metalloid: "#8e44ad",
+  "diatomic nonmetal": "#3498db",
+  "polyatomic nonmetal": "#2980b9",
+  "noble gas": "#1abc9c",
+  "lanthanide": "#95a5a6",
+  "actinide": "#7f8c8d",
+  "unknown": "#556277",
+};
 
 if (mathJaxScript) {
   mathJaxScript.addEventListener("load", () => {
@@ -1976,6 +1994,138 @@ function updateNavButton() {
   updateDocButton();
 }
 
+async function ensurePeriodicTable() {
+  if (periodicTableCache.ready) {
+    return periodicTableCache.data;
+  }
+  try {
+    const resp = await fetch("json/periodic_table.json");
+    if (!resp.ok) {
+      throw new Error("Failed to load periodic table");
+    }
+    const data = await resp.json();
+    periodicTableCache.data = data;
+    periodicTableCache.ready = true;
+    return data;
+  } catch (err) {
+    console.error(err);
+    periodicTableCache.data = null;
+    periodicTableCache.ready = false;
+    return null;
+  }
+}
+
+function getPeriodicColor(category) {
+  if (!category) {
+    return periodicCategoryColors.unknown;
+  }
+  const key = category.toLowerCase();
+  return periodicCategoryColors[key] || periodicCategoryColors.unknown;
+}
+
+function showPeriodicElementDetail(el) {
+  if (!detailPanel || !detailTitle || !detailBody) {
+    return;
+  }
+  detailPanel.classList.add("is-open");
+  detailPanel.setAttribute("aria-hidden", "false");
+  detailPanel.inert = false;
+  detailTitle.textContent = `${el.symbol} — ${el.name}`;
+  const fields = [
+    ["Atomic #", el.number],
+    ["Category", el.category],
+    ["Phase", el.phase],
+    ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
+    ["Electron config", el.electron_configuration_semantic],
+    ["Electronegativity", el.electronegativity_pauling],
+    ["Electron affinity", el.electron_affinity],
+    ["Melting point", el.melt],
+    ["Boiling point", el.boil],
+    ["Density", el.density],
+    ["Block", el.block],
+    ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
+    ["Summary", el.summary],
+  ];
+  detailBody.innerHTML = "";
+  fields.forEach(([label, value]) => {
+    if (value === undefined || value === null || value === "") {
+      return;
+    }
+    const row = document.createElement("div");
+    row.className = "detail-row";
+    const key = document.createElement("div");
+    key.className = "detail-key";
+    key.textContent = label;
+    const val = document.createElement("div");
+    val.className = "detail-value";
+    val.textContent = String(value);
+    row.appendChild(key);
+    row.appendChild(val);
+    detailBody.appendChild(row);
+  });
+}
+
+function buildPeriodicGrid(data) {
+  if (!periodicGrid || !periodicLegend || !data?.elements) {
+    return;
+  }
+  periodicGrid.innerHTML = "";
+  periodicLegend.innerHTML = "";
+  const frag = document.createDocumentFragment();
+  const legendSet = new Map();
+  data.elements.forEach((el) => {
+    const btn = document.createElement("button");
+    btn.className = "ptable-cell";
+    btn.style.gridColumn = el.xpos;
+    btn.style.gridRow = el.ypos;
+    const color = getPeriodicColor(el.category);
+    btn.style.background = `${color}22`;
+    btn.style.borderColor = `${color}44`;
+    btn.dataset.symbol = el.symbol;
+    btn.dataset.number = el.number;
+    btn.innerHTML = `
+      <div class="ptable-number">${el.number}</div>
+      <div class="ptable-symbol">${el.symbol}</div>
+      <div class="ptable-name">${el.name}</div>
+    `;
+    btn.addEventListener("click", () => showPeriodicElementDetail(el));
+    frag.appendChild(btn);
+    const legendKey = el.category || "Unknown";
+    if (!legendSet.has(legendKey)) {
+      legendSet.set(legendKey, color);
+    }
+  });
+  periodicGrid.appendChild(frag);
+  const legendFrag = document.createDocumentFragment();
+  Array.from(legendSet.entries())
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .forEach(([label, color]) => {
+      const item = document.createElement("div");
+      item.className = "ptable-legend-item";
+      item.innerHTML = `<span class="ptable-legend-swatch" style="background:${color}"></span>${label}`;
+      legendFrag.appendChild(item);
+    });
+  periodicLegend.appendChild(legendFrag);
+  periodicGridBuilt = true;
+}
+
+async function updatePeriodicOverlay() {
+  if (!periodicOverlay) {
+    return;
+  }
+  const isPeriodic = currentLevel?.sceneId === "periodic_table";
+  periodicOverlay.classList.toggle("is-open", !!isPeriodic);
+  periodicOverlay.setAttribute("aria-hidden", isPeriodic ? "false" : "true");
+  if (!isPeriodic) {
+    return;
+  }
+  const data = await ensurePeriodicTable();
+  if (data && !periodicGridBuilt) {
+    buildPeriodicGrid(data);
+  }
+}
+
+
 function updateDocButton() {
   if (!docButton) {
     return;
@@ -1991,6 +2141,7 @@ function updateSceneLabel() {
   }
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
+  updatePeriodicOverlay();
 }
 
 async function ensureSceneIndex() {
