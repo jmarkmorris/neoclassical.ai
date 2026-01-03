@@ -21,6 +21,7 @@ const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll("[data-scene]"))
   : [];
+let elementInfoPinned = false;
 const markdownPanel = document.getElementById("markdown-panel");
 const markdownTitle = document.getElementById("markdown-title");
 const markdownContent = document.getElementById("markdown-content");
@@ -2340,6 +2341,126 @@ function updateElementLegend() {
   elementLegend.inert = !isElement;
 }
 
+function getElementBySymbol(symbol) {
+  if (!symbol) {
+    return null;
+  }
+  const upper = symbol.toUpperCase();
+  if (!periodicTableCache.data?.elements) {
+    return null;
+  }
+  return periodicTableCache.data.elements.find(
+    (el) => el.symbol.toUpperCase() === upper
+  );
+}
+
+async function updateElementInfoPanel() {
+  if (!detailPanel || !detailTitle || !detailBody) {
+    return;
+  }
+  const scenePath = currentLevel?.id ?? "";
+  const sceneId = currentLevel?.sceneId ?? "";
+  const symbolFromPath = scenePath.includes("/elements/")
+    ? scenePath.split("/").pop()?.replace(".json", "")
+    : null;
+  const symbol = (sceneId || symbolFromPath || "").trim();
+  const isElement =
+    scenePath.includes("/elements/") || /^[a-z]{1,3}$/i.test(symbol);
+
+  if (!isElement) {
+    if (elementInfoPinned) {
+      detailPanel.classList.remove("is-open");
+      detailPanel.setAttribute("aria-hidden", "true");
+      detailPanel.inert = true;
+      elementInfoPinned = false;
+    }
+    return;
+  }
+
+  const data = await ensurePeriodicTable();
+  if (!data?.elements) {
+    return;
+  }
+  const el = getElementBySymbol(symbol);
+  if (!el) {
+    return;
+  }
+
+  detailPanel.classList.add("is-open");
+  detailPanel.setAttribute("aria-hidden", "false");
+  detailPanel.inert = false;
+  elementInfoPinned = true;
+
+  detailTitle.textContent = `${el.name} (${el.symbol})`;
+  const protons = el.number ?? 0;
+  const neutrons = Math.max(0, Math.round(el.atomic_mass ?? 0) - protons);
+  const electrons = protons;
+  const orbitals =
+    typeof el.electron_configuration_semantic === "string"
+      ? el.electron_configuration_semantic.split(/\s+/).filter(Boolean)
+      : [];
+
+  const fields = [
+    ["Atomic #", el.number],
+    ["Category", el.category],
+    ["Phase", el.phase],
+    ["Atomic mass", el.atomic_mass ? `${el.atomic_mass}` : null],
+    ["Electron config", el.electron_configuration_semantic],
+    ["Melting point", el.melt],
+    ["Boiling point", el.boil],
+    ["Density", el.density],
+    ["Shells", Array.isArray(el.shells) ? el.shells.join(", ") : el.shells],
+    ["Protons", protons],
+    ["Neutrons", neutrons],
+    ["Electrons", electrons],
+  ];
+
+  detailBody.innerHTML = "";
+  fields.forEach(([label, value]) => {
+    if (value === undefined || value === null || value === "") {
+      return;
+    }
+    const row = document.createElement("div");
+    row.className = "detail-row";
+    const key = document.createElement("div");
+    key.className = "detail-key";
+    key.textContent = label;
+    const val = document.createElement("div");
+    val.className = "detail-value";
+    val.textContent = String(value);
+    row.appendChild(key);
+    row.appendChild(val);
+    detailBody.appendChild(row);
+  });
+
+  if (orbitals.length) {
+    const row = document.createElement("div");
+    row.className = "detail-row";
+    const key = document.createElement("div");
+    key.className = "detail-key";
+    key.textContent = "Orbitals (inner \u2192 outer)";
+    const val = document.createElement("div");
+    val.className = "detail-value";
+    const list = document.createElement("div");
+    list.style.display = "flex";
+    list.style.flexWrap = "wrap";
+    list.style.gap = "6px";
+    list.style.marginTop = "6px";
+    orbitals.forEach((orb) => {
+      const chip = document.createElement("span");
+      chip.textContent = orb;
+      chip.style.padding = "2px 6px";
+      chip.style.borderRadius = "8px";
+      chip.style.background = "rgba(255,255,255,0.08)";
+      chip.style.border = "1px solid rgba(160, 170, 220, 0.25)";
+      list.appendChild(chip);
+    });
+    val.appendChild(list);
+    row.appendChild(key);
+    row.appendChild(val);
+    detailBody.appendChild(row);
+  }
+}
 function wireElementLegend() {
   if (!elementLegendItems.length) {
     return;
@@ -2386,6 +2507,7 @@ function updateSceneLabel() {
   updateDocButton();
   updatePeriodicOverlay();
   updateElementLegend();
+  updateElementInfoPanel();
 }
 
 async function ensureSceneIndex() {
@@ -2867,6 +2989,7 @@ if (homeButton) {
 }
 
 wireElementLegend();
+updateElementInfoPanel();
 
 if (docButton) {
   docButton.addEventListener("click", () => {
