@@ -559,7 +559,7 @@ body {
   color: #f5f7ff;
   overflow: hidden;
   opacity: 1;
-  transition: opacity 180ms ease;
+  transition: opacity 1000ms ease;
 }
 
 #periodic-overlay.is-open {

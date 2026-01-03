@@ -2287,7 +2287,7 @@ function buildPeriodicGrid(data) {
       if (periodicOverlay) {
         periodicOverlay.classList.add("is-fading");
       }
-      jumpToScene(path, { mode: "jump", startScale: 0.35, duration: 950 });
+      jumpToScene(path, { mode: "jump", startScale: 0.35, duration: 2000 });
     });
     btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
     frag.appendChild(btn);
