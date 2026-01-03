@@ -693,7 +693,7 @@ async function jumpToScene(scenePath, options = {}) {
   }
   worldGroup.add(nextLevel.group);
   nextLevel.group.position.set(0, 0, 0);
-  nextLevel.group.scale.setScalar(1);
+  nextLevel.group.scale.setScalar(options.startScale ?? 1);
   setLevelOpacity(nextLevel, 0);
   setLevelLabelOpacity(nextLevel, 0);
   setLevelLinkOpacity(nextLevel, 0);
@@ -706,6 +706,7 @@ async function jumpToScene(scenePath, options = {}) {
   transitionState.payload = {
     zoomStart: camera.zoom,
     zoomTarget,
+    startScale: options.startScale ?? 1,
   };
   transitionState.startTime = performance.now();
   transitionState.duration = options.duration ?? 700;
@@ -2055,6 +2056,9 @@ const transitionHandlers = {
       }
       setLevelOpacity(toLevel, fade);
       setLevelLinkOpacity(toLevel, fade);
+      const startScale = payload.startScale ?? 1;
+      const scale = startScale + (1 - startScale) * fade;
+      toLevel.group.scale.setScalar(scale);
       const nextZoom =
         payload.zoomStart + (payload.zoomTarget - payload.zoomStart) * fade;
       applyZoom(nextZoom);
@@ -2280,7 +2284,11 @@ function buildPeriodicGrid(data) {
       }
       const sceneId = el.symbol.toLowerCase();
       const path = `json/elements/${sceneId}.json`;
-      jumpToScene(path, { mode: "jump" });
+      if (periodicOverlay) {
+        periodicOverlay.classList.add("is-fading");
+        setTimeout(() => periodicOverlay.classList.remove("is-fading"), 220);
+      }
+      jumpToScene(path, { mode: "jump", startScale: 0.35 });
     });
     btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
     frag.appendChild(btn);

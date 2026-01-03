@@ -558,10 +558,16 @@ body {
   backdrop-filter: blur(6px);
   color: #f5f7ff;
   overflow: hidden;
+  opacity: 1;
+  transition: opacity 180ms ease;
 }
 
 #periodic-overlay.is-open {
   display: flex;
+}
+
+#periodic-overlay.is-fading {
+  opacity: 0;
 }
 
 .periodic-header {
