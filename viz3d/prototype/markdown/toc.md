@@ -1,7 +1,5 @@
-# Revised Academic Textbook Outline (Draft 8)
+# Revised Academic Textbook Outline (Draft 9)
 ## *The Architrino Theory: A Geometrical Foundation for Physics*
-
-**Incorporating Sig's recommendations on Front-Loading Constraints, Empirical Scorecards, and Anomaly Resolution**
 
 ---
 
@@ -30,7 +28,7 @@
 - Simple Action: Background and First Principles
 - Units, Constants, and Dimensional Analysis
 - The Causal Set and Delay Geometry
-- **Master Equation of Motion: Complete Formulation**
+- Master Equation of Motion: Complete Formulation
 - Receiver Velocity and Work
 
 ### Chapter 5: Well-Posedness, Self-Hit Dynamics, and Regularization
@@ -46,21 +44,21 @@
 - Convergence Testing: Resolution, Time Step, and Integrator Validation
 - Artifact Detection and Numerical Integrity
 - Reproducibility and Metadata Requirements
-- **Standards for All Subsequent Numerical Claims**
+- Standards for All Subsequent Numerical Claims
 
 ### Chapter 7: The Experimental Landscape and Master Constraint Ledger
-- **Tier-1 "Hard Wall" Constraints**
+- Tier-1 "Hard Wall" Constraints
   - Charge Quantization: No Stable Fractional Charges Beyond |e/6|
   - Proton Stability: τ_p > 10³⁴ years
   - Gravitational Wave Speed: |v_GW - c|/c < 10⁻¹⁵
   - Equivalence Principle: η < 10⁻¹⁴
   - Lorentz Invariance Violations: Stringent Bounds from SME Tests
-- **Parameter Ledger Framework**
+- Parameter Ledger Framework
   - Postulated (Input) Parameters
   - Derived Parameters (Must Be Calculated)
   - Fitted Parameters (Minimized and Justified)
-- **Success Criteria for the Theory**
-- **Living Document: Updated with Each Major Experimental Result**
+- Success Criteria for the Theory
+- Living Document: Updated with Each Major Experimental Result
 
 ---
 
@@ -71,21 +69,21 @@
 - Opposite Charges from Rest at Large Separation
 - Equal-Charge Symmetric Repulsion
 - The Maximum Curvature Orbit and Planck-Scale Limit
-- **Recap: Dominant Terms of the Master Equation in Two-Body Regimes**
+- Recap: Dominant Terms of the Master Equation in Two-Body Regimes
 
 ### Chapter 9: The Orbiting Binary
 - Dynamics of a Two-Architrino Bound System
 - Polar Vortices of Potential
 - Stability, Attractors, and Selection Rules
 - Binary Capture and Energy Exchange
-- **Recap: Self-Hit vs. Retardation Balance in Binary Orbits**
+- Recap: Self-Hit vs. Retardation Balance in Binary Orbits
 
 ### Chapter 10: Emergence and the Concept of Assembly
 - What Does "Emergence" Mean in This Framework?
 - From Architrinos to Assemblies: Hierarchical Structure
 - Identity, Persistence, and Composite Objects
 - Standing Waves, Resonance, and Stability
-- **Recap: Which Assembly Features Are Direct Consequences of the Master Equation?**
+- Recap: Which Assembly Features Are Direct Consequences of the Master Equation?
 
 ---
 
@@ -114,7 +112,7 @@
 - Topological Invariants: Winding Numbers, Linking, Phase Twisting
 - Stability and Bifurcation Maps
 - Selection Rules and Basin of Attraction Analysis
-- **Reference Hub for All Subsequent Particle, Nuclear, and Spacetime Mappings**
+- Reference Hub for All Subsequent Particle, Nuclear, and Spacetime Mappings
 
 ### Chapter 15: Validation Ladder and Synthetic Observables
 - Tier 0: Two-Body and Three-Body Baseline Validation
@@ -124,39 +122,48 @@
 - Synthetic Data Generation: Mock Collider Events, Spectra, Lensing, GW Time Series
 - Parameter Discipline and Constraint Ledger Maintenance
 
+### Chapter 16: Confronting No-Go Theorems and Fundamental Constraints
+- Bell's Theorem: Explicit Loophole Analysis and Nonlocality in Absolute Time
+- Coleman-Mandula Theorem: Applicability to Emergent (Not Fundamental) Lorentz Symmetry
+- Weinberg-Witten Theorem: Why It Does Not Bind Emergent Gravity
+- Spin-Statistics Connection: Must Be Derived, Not Assumed
+- CPT Symmetry: Status in the Absolute-Time Framework
+- Kochen-Specker Contextuality
+- PBR and the Reality of Quantum States
+
 ---
 
 ## PART IV: MAPPING TO THE STANDARD MODEL
 
-### Chapter 16: From Geometry to Fields: The Effective Lagrangian
+### Chapter 17: From Geometry to Fields: The Effective Lagrangian
 - Path Dynamics to Continuum Field Description
 - Derivation of Effective Lagrangian Density from Tri-Binary Interactions
 - Propagators: Green's Functions from Assembly Dynamics
 - Vertices and Coupling Constants: Geometric Origin
 - Renormalization and Scale Dependence
-- **This Chapter Legitimizes All Subsequent Particle Mappings**
+- This Chapter Legitimizes All Subsequent Particle Mappings
 
-### Chapter 17: Fermions: Leptons and Quarks
+### Chapter 18: Fermions: Leptons and Quarks
 - Personality Architrinos and the |e/6| Charge Unit
 - Electron Structure and Dynamics
 - Neutrino Assembly and Oscillation
 - Up/Down, Charm/Strange, Top/Bottom Quark Assemblies
-- **Reference to Assembly Atlas: Topological Classification**
-- **Empirical Scorecard: Pull Analysis for Particle Masses and Charges**
+- Reference to Assembly Atlas: Topological Classification
+- Empirical Scorecard: Pull Analysis for Particle Masses and Charges
   - Electron: m_e (CODATA), Charge (15 ppt precision)
   - Muon, Tau: Mass Pull Analysis
   - Quark Mass Running and PDG Comparison
 
-### Chapter 18: Bosons: Force Carriers and the Higgs
+### Chapter 19: Bosons: Force Carriers and the Higgs
 - Photons: Planar Assemblies on the Photon Train
 - Gluons: Color Charge and Confinement
 - W and Z Bosons: Weak Force Implementation
-- **The Geometric Origin of Chirality and Parity Violation**
+- The Geometric Origin of Chirality and Parity Violation
 - The Higgs Boson and Spacetime Aether Generation
-- **Reference to Assembly Atlas: Planar vs. Ellipsoidal Geometry**
-- **Empirical Scorecard: Gauge Boson Masses (W, Z, γ, g)**
+- Reference to Assembly Atlas: Planar vs. Ellipsoidal Geometry
+- Empirical Scorecard: Gauge Boson Masses (W, Z, γ, g)
 
-### Chapter 19: Emergence of Gauge Symmetries: SU(3) × SU(2) × U(1)
+### Chapter 20: Emergence of Gauge Symmetries: SU(3) × SU(2) × U(1)
 - From Tri-Binary Geometry to Lie Groups
 - Color Charge and SU(3): Geometric Derivation
 - Weak Isospin and SU(2): Ellipsoidal Tri-Binary Degrees of Freedom
@@ -164,19 +171,19 @@
 - Lie Algebra Structure from Assembly Transformations
 - Why These Groups and Not Others (SU(5), E8, etc.)
 
-### Chapter 20: Assembly Theory and Quantum Number Mapping
+### Chapter 21: Assembly Theory and Quantum Number Mapping
 - Spin, Isospin, and Flavor from Assembly Geometry
 - Particle Multiplets and Representation Theory
 - Reactions: Disassembly and Reassembly Pathways
 - Radiation, Radioactivity, and Decay Channels
 
-### Chapter 21: Precision Tests and Deviations
+### Chapter 22: Precision Tests and Deviations
 - Lepton Flavor Universality
 - Fine Structure and Hyperfine Corrections
 - Anomalous Magnetic Moments (g-2)
 - CKM and PMNS Matrix Structure
 - Predicted Deviations and Experimental Signatures
-- **Empirical Scorecard: Pull Analysis for Precision Observables**
+- Empirical Scorecard: Pull Analysis for Precision Observables
   - Fine Structure Constant α
   - Muon g-2: Theory vs. Experiment (Fermilab 2023)
   - CKM Unitarity Tests
@@ -185,44 +192,44 @@
 
 ## PART V: ATOMIC, NUCLEAR, AND CONDENSED MATTER ARCHITECTURE
 
-### Chapter 22: From Quarks to Nucleons
+### Chapter 23: From Quarks to Nucleons
 - Assembly of Protons and Neutrons from Quark Tri-Binaries
 - The Nucleon as a Bound State: Internal Geometry and Dynamics
 - Nucleon-Nucleon Potential V_NN(r) from Neutral-Axis Coupling
 - Comparison to Yukawa, One-Pion-Exchange, and Chiral EFT Potentials
-- **Reference to Assembly Atlas: Nucleon Stability Domain**
-- **Empirical Scorecard: Proton and Neutron Mass, Magnetic Moments**
+- Reference to Assembly Atlas: Nucleon Stability Domain
+- Empirical Scorecard: Proton and Neutron Mass, Magnetic Moments
 
-### Chapter 23: Nuclear Binding and the Chart of Nuclides
+### Chapter 24: Nuclear Binding and the Chart of Nuclides
 - Deuteron: The Simplest Nucleus as Test Case
 - Alpha Particle (Helium-4) Stability and Binding Energy
 - Magic Numbers and Shell Structure: Geometric Origin
 - Neutron/Proton Ratio Stability and Isotope Selection
 - Beta Decay and Nuclear Transmutation from Assembly Reconfiguration
-- **Empirical Scorecard: Binding Energies per Nucleon, Half-Lives**
+- Empirical Scorecard: Binding Energies per Nucleon, Half-Lives
 
-### Chapter 24: Atomic Structure and Electronic Orbitals
+### Chapter 25: Atomic Structure and Electronic Orbitals
 - The Hydrogen Atom: Electron Tri-Binary Bound to Proton
 - Multi-Electron Atoms: Assembly Sea Effects and Screening
 - Periodic Table Trends: Ionization Energies, Radii, Electronegativity
 - Fine and Hyperfine Structure from Assembly Geometry
-- **Empirical Scorecard: Ionization Energies, Atomic Radii (NIST Data)**
+- Empirical Scorecard: Ionization Energies, Atomic Radii (NIST Data)
 
-### Chapter 25: Spectroscopy and Precision Atomic Physics
+### Chapter 26: Spectroscopy and Precision Atomic Physics
 - Atomic Spectral Lines: Predicted vs. Observed
 - Lamb Shift and QED Corrections: Assembly Interpretation
 - Atomic Clocks and Frequency Standards
 - Rydberg Atoms and Highly Excited States
-- **Empirical Scorecard: Spectral Line Frequencies, Lamb Shift Pull**
+- Empirical Scorecard: Spectral Line Frequencies, Lamb Shift Pull
 
-### Chapter 26: Molecular Geometry and Chemical Bonding
+### Chapter 27: Molecular Geometry and Chemical Bonding
 - Covalent Bonds: Shared Electron Tri-Binary Configurations
 - VSEPR Theory from Assembly Polar Decoration Geometry
 - Water Molecule (H₂O): Predicted 104.5° Angle from Assembly Orientation
 - Organic Chemistry: Carbon's Tetrahedral Geometry
 - Hydrogen Bonding and Its Geometric Origin
 
-### Chapter 27: Condensed Matter and Phase Transitions
+### Chapter 28: Condensed Matter and Phase Transitions
 - Solid, Liquid, Gas: Assembly Sea Density and Interaction Regimes
 - Crystal Structure: Lattice Geometry from Assembly Packing
 - Metallic Bonding and Conductivity: Assembly Sea Mobility
@@ -233,24 +240,18 @@
 
 ## PART VI: QUANTUM THEORY INTERPRETATION
 
-### Chapter 28: Quantum Mechanics as Emergent Determinism
+### Chapter 29: Quantum Mechanics as Emergent Determinism
 - Pilot-Wave Character and Guidance Mechanisms
 - Ontological Status of the Wavefunction
 - Superposition, Interference, and Self-Hit Dynamics
 - Entanglement: Nonlocal Correlations from Shared Potentials
-- **Time in Quantum Mechanics vs. Absolute Time** (Cross-Reference to Ch. 32)
+- Time in Quantum Mechanics vs. Absolute Time (Cross-Reference to Ch. 33)
 
-### Chapter 29: Measurement and the Collapse Problem
+### Chapter 30: Measurement and the Collapse Problem
 - What is Measurement in the Architrino Framework?
 - Definite Outcomes from Complex Assembly Interactions
 - No Observer Postulate: Emergence of Classicality
 - Addressing the Measurement Paradoxes
-
-### Chapter 30: Confronting No-Go Theorems
-- Bell's Theorem and Nonlocality in Absolute Time
-- Kochen-Specker Contextuality
-- PBR and the Reality of Quantum States
-- Loopholes, Resolutions, and Interpretive Stance
 
 ---
 
@@ -261,23 +262,23 @@
 - Production and Decay of Spacetime Aether
 - Energy Shielding and Superposition Effects
 - There is No Vacuum Catastrophe
-- **Reference to Assembly Atlas: Aether Assembly Classification**
+- Reference to Assembly Atlas: Aether Assembly Classification
 
 ### Chapter 32: Emergent Metric and the Bridge to General Relativity
 - Construction of Coarse-Grained Fields from Architrino/Assembly Distributions
 - Definition of Effective Metric g_μν(x) from Assembly Dynamics
-- **Proper Time from Assembly Clocks: Operational Definition**
+- Proper Time from Assembly Clocks: Operational Definition
   - Explicit Formula: dτ/dt = f(v, ρ_aether, Φ)
   - Worked Examples: GPS, Gravitational Redshift, Muon Decay
 - Relation Between Architrino Trajectories and Geodesics
 - Limits: When GR Is Recovered, When Deviations Are Expected
-- **This Chapter Is the Foundation for All Subsequent Gravity and Cosmology**
+- This Chapter Is the Foundation for All Subsequent Gravity and Cosmology
 
 ### Chapter 33: General Relativity Phenomenology and Tests
 - The Newtonian Limit and Poisson Equation
 - Light Bending, Shapiro Delay, and Gravitational Redshift (Reference to Ch. 32 Clock Physics)
 - Perihelion Precession and Frame Dragging
-- **Empirical Scorecard: Pull Analysis for GR Tests**
+- Empirical Scorecard: Pull Analysis for GR Tests
   - PPN Parameters γ, β
   - Cassini Tracking, Lunar Laser Ranging
   - Gravity Probe B Frame Dragging
@@ -287,7 +288,7 @@
 - Gravitational Wave Speed and Polarization
 - Black Holes and Planck Cores: Reinterpretation
 - Information Preservation and Singularity Resolution
-- **Empirical Scorecard: GW Speed, Polarization, Dispersion**
+- Empirical Scorecard: GW Speed, Polarization, Dispersion
   - GW170817 Constraint: |v_GW - c|/c < 10⁻¹⁵
   - LIGO/Virgo Polarization Tests
 
@@ -298,7 +299,7 @@
 - Maximum Neutron Star Mass: TOV Equation Solutions
 - Comparison to Observational Constraints (NICER, GW170817 Tidal Deformability)
 - Exotic Matter Phases: Quark Matter and Color Superconductivity
-- **Empirical Scorecard: Mass-Radius Relations, Tidal Deformability**
+- Empirical Scorecard: Mass-Radius Relations, Tidal Deformability
   - PSR J0740+6620, PSR J0030+0451
   - GW170817 Λ̃ Constraint
 
@@ -324,7 +325,7 @@
 - ElectroWeak, Quark, Hadron, Lepton Epochs
 - Big Bang Nucleosynthesis and Recombination
 - Photon Epoch, Dark Ages, and Galaxy Formation
-- **Empirical Scorecard: BBN Light Element Abundances**
+- Empirical Scorecard: BBN Light Element Abundances
   - Helium-4 Fraction Y_p
   - Deuterium/Hydrogen Ratio
   - Effective Neutrino Species N_eff
@@ -340,7 +341,7 @@
 - Counter-Rotating Coaxial Assembly Launches
 - Planck Satellite Data and NPQG Predictions
 - CMB as Evidence for Spacetime Aether Emission
-- **Empirical Scorecard: CMB Power Spectrum and Polarization**
+- Empirical Scorecard: CMB Power Spectrum and Polarization
   - Acoustic Peak Positions (ℓ_1, ℓ_2, ℓ_3)
   - TT, TE, EE Spectra
   - Lensing Potential φφ
@@ -350,7 +351,7 @@
 - Cosmic Inflation is Wrong—Long Live Inflation!
 - Mapping Hubble Tension and Cosmological Metrics
 - Redshift as Clock Comparison in Expanding Aether (Cross-Reference to Ch. 32)
-- **Empirical Scorecard: Distance Ladder and H(z)**
+- Empirical Scorecard: Distance Ladder and H(z)
   - Supernova Ia Standardization
   - BAO Scale r_d
   - H_0 Local vs. Global Measurements
@@ -361,40 +362,47 @@
 - Baryon Acoustic Oscillations in Clustering
 - Weak Gravitational Lensing and Cosmic Shear
 - Effective Dark Matter vs. Modified Gravity vs. Hybrid Models
-- **Empirical Scorecard: σ₈, S₈, and LSS Constraints**
+- Empirical Scorecard: σ₈, S₈, and LSS Constraints
   - Planck 2018 vs. KiDS+VIKING+DES
   - Cluster Abundances
   - Redshift-Space Distortions f σ₈
 
 ### Chapter 43: Resolution of Critical Empirical Tensions
-- **The Hubble Tension (5σ Discrepancy)**
+- The Hubble Tension (5σ Discrepancy)
   - SH0ES vs. Planck: Predicted Resolution Pathway
   - Architrino Framework Prediction for H_0
-- **The Muon g-2 Anomaly (4.2σ Discrepancy)**
+- The Muon g-2 Anomaly (4.2σ Discrepancy)
   - Fermilab 2023 vs. SM Prediction
   - Assembly Contribution to a_μ
-- **The σ₈/S₈ Large-Scale Structure Tension**
+- The σ₈/S₈ Large-Scale Structure Tension
   - Weak Lensing vs. CMB
   - Modified Growth from Aether Dynamics
-- **Unified Resolution Strategy**
+- Unified Resolution Strategy
+
+### Chapter 44: Failure Modes and Stop Conditions
+- Tier-1 Falsification Criteria (Reference to Ch. 7): Quantitative Thresholds
+- Tier-2 Serious Challenges: Multiple 3σ Tensions, Parameter Explosion
+- Stop Conditions: When to Pivot or Halt the Program
+- Theory Health Dashboard: Current Status (Green/Yellow/Red) by Domain
+- Intellectual Honesty and the Scientific Method
 
 ---
 
 ## PART IX: COMPARATIVE FOUNDATIONS AND INTERPRETATION
 
-### Chapter 44: Mapping to Existing Theories
+### Chapter 45: Mapping to Existing Theories
 - Effective Field Theory Correspondence (Extended Discussion)
-- From Architrinos to Lagrangians (Cross-Reference to Chapter 16)
+- From Architrinos to Lagrangians (Cross-Reference to Chapter 17)
 - Mapping to Quantum Field Theory: Fields, Virtual Particles, Renormalization
 - Mapping to Lattice QCD and Numerical QCD
 
-### Chapter 45: Historical Context and Alternative Approaches
+### Chapter 46: Historical Context and Alternative Approaches
 - Lorentz Ether Theory and Neo-Lorentzian Relativity
 - Bohmian Mechanics and Pilot-Wave Theory
 - Loop Quantum Gravity, Spin Networks, and Foams
 - String Theory, Supersymmetry, and E8
 
-### Chapter 46: Philosophy of the Architrino Framework
+### Chapter 47: Philosophy of the Architrino Framework
 - Ontological Commitments and Conceptual Clarity
 - Determinism, Causality, and the Self-Hit Regime
 - Explanatory Power and Theoretical Virtues
@@ -404,25 +412,25 @@
 
 ## PART X: SIMULATION, COMPUTATION, AND TECHNOLOGY
 
-### Chapter 47: Computational Implementation
+### Chapter 48: Computational Implementation
 - Numerical Methods for Architrino Dynamics
 - Delay Differential Equations and Causal Set Algorithms
 - Convergence, Stability, and Artifact Detection
 - From Architrino Simulations to Emergent Phenomenology
 
-### Chapter 48: Provenance Tracking and Visualization
+### Chapter 49: Provenance Tracking and Visualization
 - Depicting Assemblies and Reactions as Paths
 - Animation and Simulation of Fermion Architecture
 - Point Charge Provenance and Reaction Networks
 - Limits of Memory and Computation
 
-### Chapter 49: Predictions and Experimental Roadmap
+### Chapter 50: Predictions and Experimental Roadmap
 - Falsifiable Predictions Across Scales
 - Collider Physics: Nines of C and Reaction Dynamics
 - Precision Tests: g-2, Flavor Universality, Neutrino Masses
 - Astrophysical Signatures: SMBH Jets, CMB Anomalies, Redshift
 
-### Chapter 50: Toward New Technologies
+### Chapter 51: Toward New Technologies
 - Nanosheet and Assembly Engineering
 - Energy Shielding and Gravitational Manipulation
 - Implications for Energy, Computation, and Materials
@@ -432,7 +440,7 @@
 
 ## PART XI: SYNTHESIS AND FUTURE DIRECTIONS
 
-### Chapter 51: Solving the Unsolved Problems in Physics
+### Chapter 52: Solving the Unsolved Problems in Physics
 - The Measurement Problem
 - Dark Matter and Dark Energy
 - The Hierarchy Problem
@@ -440,19 +448,26 @@
 - Matter-Antimatter Asymmetry
 - Quantum Gravity Unification
 
-### Chapter 52: Challenges, Criticisms, and Open Questions
+### Chapter 53: Challenges, Criticisms, and Open Questions
 - Where the Theory May Fail
 - Known Tensions and Parameter Tuning Risks
 - Alternative Interpretations and Competitor Models
 - The Role of the Adversary and Red Team
 
-### Chapter 53: Reconstructing Physics and Cosmology
+### Chapter 54: Parameter Accountability and Naturalness Assessment
+- Complete Ledger: Postulated vs. Derived vs. Fitted Parameters
+- Fine-Tuning Quotient (FTQ) Calculation
+- Comparison to SM+GR Parameter Count and Predictiveness Ratio
+- Assessment: Are We Explaining More with Less, or Bloating?
+- Honest Disclosure of Any Unresolved Tuning
+
+### Chapter 55: Reconstructing Physics and Cosmology
 - Implications for Academia and Research Funding
 - Reinterpreting Historical Experiments (Michelson-Morley, etc.)
 - Revisiting Nobel Prize Research
 - A Call to the Physics Community
 
-### Chapter 54: Vision for the Future
+### Chapter 56: Vision for the Future
 - The NPQG Research Institute
 - Interdisciplinary Collaboration: Physics, Chemistry, Biology, AI
 - Long-Term Research Questions
