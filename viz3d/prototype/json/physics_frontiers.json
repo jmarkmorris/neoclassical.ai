@@ -17,8 +17,8 @@
       "radius": 2.1,
       "color": "#243d8f",
       "position": [
-        -12.0,
-        9.0,
+        -15.0,
+        12.0,
         0.0
       ],
       "subScenes": [
@@ -35,8 +35,8 @@
       "radius": 1.96,
       "color": "#2f6b6f",
       "position": [
-        -6.0,
-        9.0,
+        -9.0,
+        12.0,
         0.0
       ],
       "subScenes": [
@@ -48,13 +48,13 @@
       "scaleExponent": -18
     },
     {
-      "id": "measurement_problem",
-      "label": "Measurement Problem",
-      "radius": 1.68,
+      "id": "periodic_table",
+      "label": "Periodic Table",
+      "radius": 2.1,
       "color": "#5a1f2e",
       "position": [
-        0.0,
-        9.0,
+        -3.0,
+        12.0,
         0.0
       ],
       "subScenes": [],
@@ -68,8 +68,8 @@
       "radius": 1.68,
       "color": "PURPLE",
       "position": [
-        6.0,
-        9.0,
+        3.0,
+        12.0,
         0.0
       ],
       "subScenes": [
@@ -80,88 +80,13 @@
       }
     },
     {
-      "id": "nonlocality_vs_causality",
-      "label": "Nonlocality vs Relativistic Causality",
+      "id": "arrow_of_time",
+      "label": "Arrow of Time",
       "radius": 1.68,
-      "color": "#3f5f8a",
+      "color": "#6a3c3c",
       "position": [
-        12.0,
         9.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "time",
-      "label": "Time",
-      "radius": 1.68,
-      "color": "#6a4d1b",
-      "position": [
-        -12.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "uv_divergence",
-      "label": "UV Divergence",
-      "radius": 1.68,
-      "color": "#7a4a1f",
-      "position": [
-        -6.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "renormalization",
-      "label": "Renormalization",
-      "radius": 1.93,
-      "color": "#2c567a",
-      "position": [
-        0.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "hierarchy_problem",
-      "label": "Hierarchy Problem",
-      "radius": 1.68,
-      "color": "#2c2f45",
-      "position": [
-        6.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "gravity",
-      "label": "Gravity",
-      "radius": 1.68,
-      "color": "#2a3b5a",
-      "position": [
         12.0,
-        3.0,
         0.0
       ],
       "subScenes": [],
@@ -170,13 +95,13 @@
       }
     },
     {
-      "id": "singularity",
-      "label": "Singularity",
+      "id": "baryon_asymmetry",
+      "label": "Baryon Asymmetry",
       "radius": 1.68,
-      "color": "#1c2a4f",
+      "color": "#7a3f4a",
       "position": [
-        -12.0,
-        -3.0,
+        15.0,
+        12.0,
         0.0
       ],
       "subScenes": [],
@@ -186,27 +111,12 @@
     },
     {
       "id": "information_loss_paradox",
-      "label": "Information Loss Paradox",
+      "label": "Black Hole Information Loss Paradox",
       "radius": 1.68,
       "color": "#4f315f",
       "position": [
-        -6.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "quantum_statistics",
-      "label": "Fermi-Dirac & Bose-Einstein Statistics",
-      "radius": 1.68,
-      "color": "#3a5f9f",
-      "position": [
-        0.0,
-        -3.0,
+        -15.0,
+        6.0,
         0.0
       ],
       "subScenes": [],
@@ -220,8 +130,218 @@
       "radius": 1.68,
       "color": "#2f4f7a",
       "position": [
+        -9.0,
         6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmological_constant_problem",
+      "label": "Cosmological Constant Problem",
+      "radius": 1.68,
+      "color": "#5a3c7a",
+      "position": [
         -3.0,
+        6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "dark_sector",
+      "label": "Dark Matter & Dark Energy",
+      "radius": 1.68,
+      "color": "#2c2c60",
+      "position": [
+        3.0,
+        6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "fermi_paradox",
+      "label": "Fermi Paradox",
+      "radius": 1.68,
+      "color": "#3f6a5a",
+      "position": [
+        9.0,
+        6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "quantum_statistics",
+      "label": "Fermi-Dirac & Bose-Einstein Statistics",
+      "radius": 1.68,
+      "color": "#3a5f9f",
+      "position": [
+        15.0,
+        6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "gravity",
+      "label": "Gravity",
+      "radius": 1.68,
+      "color": "#2a3b5a",
+      "position": [
+        -15.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "hierarchy_problem",
+      "label": "Hierarchy Problem",
+      "radius": 1.68,
+      "color": "#2c2f45",
+      "position": [
+        -9.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "history",
+      "label": "History",
+      "radius": 1.68,
+      "color": "#5f5f7a",
+      "position": [
+        -3.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "horizon_problem",
+      "label": "Horizon Problem",
+      "radius": 1.68,
+      "color": "#3c6a7a",
+      "position": [
+        3.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "hubble_tension",
+      "label": "Hubble Tension",
+      "radius": 1.68,
+      "color": "#5a4a7a",
+      "position": [
+        9.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "measurement_problem",
+      "label": "Measurement Problem",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        15.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosophy",
+      "label": "Philosophy",
+      "radius": 1.68,
+      "color": "#4b678f",
+      "position": [
+        -15.0,
+        -6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "nonlocality_vs_causality",
+      "label": "Relativistic Causality (EPR/locality) vs. Entanglement (non-locality)",
+      "radius": 1.68,
+      "color": "#3f5f8a",
+      "position": [
+        -9.0,
+        -6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "renormalization",
+      "label": "Renormalization",
+      "radius": 1.93,
+      "color": "#2c567a",
+      "position": [
+        -3.0,
+        -6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "singularity",
+      "label": "Singularity",
+      "radius": 1.68,
+      "color": "#1c2a4f",
+      "position": [
+        3.0,
+        -6.0,
         0.0
       ],
       "subScenes": [],
@@ -235,8 +355,8 @@
       "radius": 1.68,
       "color": "#2c6c7e",
       "position": [
-        12.0,
-        -3.0,
+        9.0,
+        -6.0,
         0.0
       ],
       "subScenes": [],
@@ -250,8 +370,53 @@
       "radius": 1.68,
       "color": "#3a5f9f",
       "position": [
+        15.0,
+        -6.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "time",
+      "label": "Time",
+      "radius": 1.68,
+      "color": "#6a4d1b",
+      "position": [
+        -15.0,
         -12.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "uv_divergence",
+      "label": "UV Divergence",
+      "radius": 1.68,
+      "color": "#7a4a1f",
+      "position": [
         -9.0,
+        -12.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "vacuum_stability",
+      "label": "Vacuum Stability (Metastable Higgs)",
+      "radius": 1.68,
+      "color": "#7a2f5a",
+      "position": [
+        -3.0,
+        -12.0,
         0.0
       ],
       "subScenes": [],
