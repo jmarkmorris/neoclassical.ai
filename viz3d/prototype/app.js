@@ -2089,7 +2089,12 @@ function buildPeriodicGrid(data) {
       <div class="ptable-symbol">${el.symbol}</div>
       <div class="ptable-name">${el.name}</div>
     `;
-    btn.addEventListener("click", () => showPeriodicElementDetail(el));
+    btn.addEventListener("click", () => {
+      showPeriodicElementDetail(el);
+      const sceneId = el.symbol.toLowerCase();
+      const path = `json/elements/${sceneId}.json`;
+      jumpToScene(path, { mode: "instant" });
+    });
     btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
     frag.appendChild(btn);
     const legendKey = el.category || "Unknown";
@@ -2118,6 +2123,9 @@ async function updatePeriodicOverlay() {
   const isPeriodic = currentLevel?.sceneId === "periodic_table";
   periodicOverlay.classList.toggle("is-open", !!isPeriodic);
   periodicOverlay.setAttribute("aria-hidden", isPeriodic ? "false" : "true");
+  if (sceneSearch) {
+    sceneSearch.style.display = isPeriodic ? "none" : "flex";
+  }
   if (!isPeriodic) {
     return;
   }

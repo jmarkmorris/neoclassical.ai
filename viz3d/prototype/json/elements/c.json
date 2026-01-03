@@ -13,7 +13,7 @@
     {
       "id": "p1",
       "label": "P",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "RED",
       "position": [
         -1.125,
@@ -28,7 +28,7 @@
     {
       "id": "p2",
       "label": "P",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "RED",
       "position": [
         -0.375,
@@ -43,7 +43,7 @@
     {
       "id": "p3",
       "label": "P",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "RED",
       "position": [
         0.375,
@@ -58,7 +58,7 @@
     {
       "id": "p4",
       "label": "P",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "RED",
       "position": [
         1.125,
@@ -73,7 +73,7 @@
     {
       "id": "p5",
       "label": "P",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "RED",
       "position": [
         -1.125,
@@ -88,7 +88,7 @@
     {
       "id": "p6",
       "label": "P",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "RED",
       "position": [
         -0.375,
@@ -103,7 +103,7 @@
     {
       "id": "n1",
       "label": "N",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "PURPLE",
       "position": [
         0.375,
@@ -118,7 +118,7 @@
     {
       "id": "n2",
       "label": "N",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "PURPLE",
       "position": [
         1.125,
@@ -133,7 +133,7 @@
     {
       "id": "n3",
       "label": "N",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "PURPLE",
       "position": [
         -1.125,
@@ -148,7 +148,7 @@
     {
       "id": "n4",
       "label": "N",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "PURPLE",
       "position": [
         -0.375,
@@ -163,7 +163,7 @@
     {
       "id": "n5",
       "label": "N",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "PURPLE",
       "position": [
         0.375,
@@ -178,7 +178,7 @@
     {
       "id": "n6",
       "label": "N",
-      "radius": 0.34099999999999997,
+      "radius": 0.341,
       "color": "PURPLE",
       "position": [
         1.125,
@@ -337,11 +337,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.2728,
+      "radius": 0.3069,
       "color": "RED",
       "position": [
-        8.3,
-        8.3,
+        -7.3,
+        7.3,
         0.0
       ],
       "motion": {
@@ -352,11 +352,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.2728,
+      "radius": 0.3069,
       "color": "PURPLE",
       "position": [
-        8.3,
-        7.4816,
+        -7.3,
+        6.379,
         0.0
       ],
       "motion": {
@@ -367,11 +367,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.2728,
+      "radius": 0.3069,
       "color": "BLUE",
       "position": [
-        8.3,
-        6.663200000000001,
+        -7.3,
+        5.459,
         0.0
       ],
       "motion": {

@@ -13,7 +13,7 @@
     {
       "id": "p1",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         -1.481,
@@ -28,7 +28,7 @@
     {
       "id": "p2",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         -0.74,
@@ -43,7 +43,7 @@
     {
       "id": "p3",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         0.0,
@@ -58,7 +58,7 @@
     {
       "id": "p4",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         0.74,
@@ -73,7 +73,7 @@
     {
       "id": "p5",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         1.481,
@@ -88,7 +88,7 @@
     {
       "id": "p6",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         -1.481,
@@ -103,7 +103,7 @@
     {
       "id": "p7",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         -0.74,
@@ -118,7 +118,7 @@
     {
       "id": "p8",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         0.0,
@@ -133,7 +133,7 @@
     {
       "id": "p9",
       "label": "P",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "RED",
       "position": [
         0.74,
@@ -148,7 +148,7 @@
     {
       "id": "n1",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         1.481,
@@ -163,7 +163,7 @@
     {
       "id": "n2",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         -1.481,
@@ -178,7 +178,7 @@
     {
       "id": "n3",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         -0.74,
@@ -193,7 +193,7 @@
     {
       "id": "n4",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         0.0,
@@ -208,7 +208,7 @@
     {
       "id": "n5",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         0.74,
@@ -223,7 +223,7 @@
     {
       "id": "n6",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         1.481,
@@ -238,7 +238,7 @@
     {
       "id": "n7",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         -1.481,
@@ -253,7 +253,7 @@
     {
       "id": "n8",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         -0.74,
@@ -268,7 +268,7 @@
     {
       "id": "n9",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         0.0,
@@ -283,7 +283,7 @@
     {
       "id": "n10",
       "label": "N",
-      "radius": 0.33649999999999997,
+      "radius": 0.3365,
       "color": "PURPLE",
       "position": [
         0.74,
@@ -298,7 +298,7 @@
     {
       "id": "e1_1",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         2.65,
@@ -322,7 +322,7 @@
     {
       "id": "e1_2",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         -2.65,
@@ -346,7 +346,7 @@
     {
       "id": "e2_1",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         5.3,
@@ -370,7 +370,7 @@
     {
       "id": "e2_2",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         3.304,
@@ -394,7 +394,7 @@
     {
       "id": "e2_3",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         -1.179,
@@ -418,7 +418,7 @@
     {
       "id": "e2_4",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         -4.775,
@@ -442,7 +442,7 @@
     {
       "id": "e2_5",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         -4.775,
@@ -466,7 +466,7 @@
     {
       "id": "e2_6",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         -1.179,
@@ -490,7 +490,7 @@
     {
       "id": "e2_7",
       "label": "e",
-      "radius": 0.23199999999999998,
+      "radius": 0.232,
       "color": "BLUE",
       "position": [
         3.304,
@@ -514,11 +514,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.2692,
+      "radius": 0.3028,
       "color": "RED",
       "position": [
-        8.3,
-        8.3,
+        -7.3,
+        7.3,
         0.0
       ],
       "motion": {
@@ -529,11 +529,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.2692,
+      "radius": 0.3028,
       "color": "PURPLE",
       "position": [
-        8.3,
-        7.492400000000001,
+        -7.3,
+        6.391,
         0.0
       ],
       "motion": {
@@ -544,11 +544,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.2692,
+      "radius": 0.3028,
       "color": "BLUE",
       "position": [
-        8.3,
-        6.684800000000001,
+        -7.3,
+        5.483,
         0.0
       ],
       "motion": {

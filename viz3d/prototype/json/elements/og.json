@@ -4423,7 +4423,7 @@
     {
       "id": "e1_1",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         1.757,
@@ -4447,7 +4447,7 @@
     {
       "id": "e1_2",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -1.757,
@@ -4471,7 +4471,7 @@
     {
       "id": "e2_1",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         3.514,
@@ -4495,7 +4495,7 @@
     {
       "id": "e2_2",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         2.485,
@@ -4519,7 +4519,7 @@
     {
       "id": "e2_3",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         0.0,
@@ -4543,7 +4543,7 @@
     {
       "id": "e2_4",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -2.485,
@@ -4567,7 +4567,7 @@
     {
       "id": "e2_5",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -3.514,
@@ -4591,7 +4591,7 @@
     {
       "id": "e2_6",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -2.485,
@@ -4615,7 +4615,7 @@
     {
       "id": "e2_7",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -0.0,
@@ -4639,7 +4639,7 @@
     {
       "id": "e2_8",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         2.485,
@@ -4663,7 +4663,7 @@
     {
       "id": "e3_1",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         5.271,
@@ -4687,7 +4687,7 @@
     {
       "id": "e3_2",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.954,
@@ -4711,7 +4711,7 @@
     {
       "id": "e3_3",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.038,
@@ -4735,7 +4735,7 @@
     {
       "id": "e3_4",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         2.636,
@@ -4759,7 +4759,7 @@
     {
       "id": "e3_5",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         0.915,
@@ -4783,7 +4783,7 @@
     {
       "id": "e3_6",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -0.915,
@@ -4807,7 +4807,7 @@
     {
       "id": "e3_7",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -2.636,
@@ -4831,7 +4831,7 @@
     {
       "id": "e3_8",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.038,
@@ -4855,7 +4855,7 @@
     {
       "id": "e3_9",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.954,
@@ -4879,7 +4879,7 @@
     {
       "id": "e3_10",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -5.271,
@@ -4903,7 +4903,7 @@
     {
       "id": "e3_11",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.954,
@@ -4927,7 +4927,7 @@
     {
       "id": "e3_12",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.038,
@@ -4951,7 +4951,7 @@
     {
       "id": "e3_13",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -2.636,
@@ -4975,7 +4975,7 @@
     {
       "id": "e3_14",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -0.915,
@@ -4999,7 +4999,7 @@
     {
       "id": "e3_15",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         0.915,
@@ -5023,7 +5023,7 @@
     {
       "id": "e3_16",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         2.636,
@@ -5047,7 +5047,7 @@
     {
       "id": "e3_17",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.038,
@@ -5071,7 +5071,7 @@
     {
       "id": "e3_18",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.954,
@@ -5095,7 +5095,7 @@
     {
       "id": "e4_1",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         7.029,
@@ -5119,7 +5119,7 @@
     {
       "id": "e4_2",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         6.894,
@@ -5143,7 +5143,7 @@
     {
       "id": "e4_3",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         6.494,
@@ -5167,7 +5167,7 @@
     {
       "id": "e4_4",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         5.844,
@@ -5191,7 +5191,7 @@
     {
       "id": "e4_5",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.97,
@@ -5215,7 +5215,7 @@
     {
       "id": "e4_6",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         3.905,
@@ -5239,7 +5239,7 @@
     {
       "id": "e4_7",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         2.69,
@@ -5263,7 +5263,7 @@
     {
       "id": "e4_8",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         1.371,
@@ -5287,7 +5287,7 @@
     {
       "id": "e4_9",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         0.0,
@@ -5311,7 +5311,7 @@
     {
       "id": "e4_10",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -1.371,
@@ -5335,7 +5335,7 @@
     {
       "id": "e4_11",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -2.69,
@@ -5359,7 +5359,7 @@
     {
       "id": "e4_12",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -3.905,
@@ -5383,7 +5383,7 @@
     {
       "id": "e4_13",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.97,
@@ -5407,7 +5407,7 @@
     {
       "id": "e4_14",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -5.844,
@@ -5431,7 +5431,7 @@
     {
       "id": "e4_15",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -6.494,
@@ -5455,7 +5455,7 @@
     {
       "id": "e4_16",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -6.894,
@@ -5479,7 +5479,7 @@
     {
       "id": "e4_17",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -7.029,
@@ -5503,7 +5503,7 @@
     {
       "id": "e4_18",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -6.894,
@@ -5527,7 +5527,7 @@
     {
       "id": "e4_19",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -6.494,
@@ -5551,7 +5551,7 @@
     {
       "id": "e4_20",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -5.844,
@@ -5575,7 +5575,7 @@
     {
       "id": "e4_21",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.97,
@@ -5599,7 +5599,7 @@
     {
       "id": "e4_22",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -3.905,
@@ -5623,7 +5623,7 @@
     {
       "id": "e4_23",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -2.69,
@@ -5647,7 +5647,7 @@
     {
       "id": "e4_24",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -1.371,
@@ -5671,7 +5671,7 @@
     {
       "id": "e4_25",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -0.0,
@@ -5695,7 +5695,7 @@
     {
       "id": "e4_26",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         1.371,
@@ -5719,7 +5719,7 @@
     {
       "id": "e4_27",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         2.69,
@@ -5743,7 +5743,7 @@
     {
       "id": "e4_28",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         3.905,
@@ -5767,7 +5767,7 @@
     {
       "id": "e4_29",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.97,
@@ -5791,7 +5791,7 @@
     {
       "id": "e4_30",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         5.844,
@@ -5815,7 +5815,7 @@
     {
       "id": "e4_31",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         6.494,
@@ -5839,7 +5839,7 @@
     {
       "id": "e4_32",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         6.894,
@@ -5863,7 +5863,7 @@
     {
       "id": "e5_1",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.786,
@@ -5887,7 +5887,7 @@
     {
       "id": "e5_2",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.617,
@@ -5911,7 +5911,7 @@
     {
       "id": "e5_3",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.117,
@@ -5935,7 +5935,7 @@
     {
       "id": "e5_4",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         7.305,
@@ -5959,7 +5959,7 @@
     {
       "id": "e5_5",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         6.212,
@@ -5983,7 +5983,7 @@
     {
       "id": "e5_6",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.881,
@@ -6007,7 +6007,7 @@
     {
       "id": "e5_7",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         3.362,
@@ -6031,7 +6031,7 @@
     {
       "id": "e5_8",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         1.714,
@@ -6055,7 +6055,7 @@
     {
       "id": "e5_9",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         0.0,
@@ -6079,7 +6079,7 @@
     {
       "id": "e5_10",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -1.714,
@@ -6103,7 +6103,7 @@
     {
       "id": "e5_11",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -3.362,
@@ -6127,7 +6127,7 @@
     {
       "id": "e5_12",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.881,
@@ -6151,7 +6151,7 @@
     {
       "id": "e5_13",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -6.212,
@@ -6175,7 +6175,7 @@
     {
       "id": "e5_14",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -7.305,
@@ -6199,7 +6199,7 @@
     {
       "id": "e5_15",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.117,
@@ -6223,7 +6223,7 @@
     {
       "id": "e5_16",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.617,
@@ -6247,7 +6247,7 @@
     {
       "id": "e5_17",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.786,
@@ -6271,7 +6271,7 @@
     {
       "id": "e5_18",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.617,
@@ -6295,7 +6295,7 @@
     {
       "id": "e5_19",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.117,
@@ -6319,7 +6319,7 @@
     {
       "id": "e5_20",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -7.305,
@@ -6343,7 +6343,7 @@
     {
       "id": "e5_21",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -6.212,
@@ -6367,7 +6367,7 @@
     {
       "id": "e5_22",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -4.881,
@@ -6391,7 +6391,7 @@
     {
       "id": "e5_23",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -3.362,
@@ -6415,7 +6415,7 @@
     {
       "id": "e5_24",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -1.714,
@@ -6439,7 +6439,7 @@
     {
       "id": "e5_25",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -0.0,
@@ -6463,7 +6463,7 @@
     {
       "id": "e5_26",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         1.714,
@@ -6487,7 +6487,7 @@
     {
       "id": "e5_27",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         3.362,
@@ -6511,7 +6511,7 @@
     {
       "id": "e5_28",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         4.881,
@@ -6535,7 +6535,7 @@
     {
       "id": "e5_29",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         6.212,
@@ -6559,7 +6559,7 @@
     {
       "id": "e5_30",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         7.305,
@@ -6583,7 +6583,7 @@
     {
       "id": "e5_31",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.117,
@@ -6607,7 +6607,7 @@
     {
       "id": "e5_32",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.617,
@@ -6631,7 +6631,7 @@
     {
       "id": "e6_1",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         10.543,
@@ -6655,7 +6655,7 @@
     {
       "id": "e6_2",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         9.907,
@@ -6679,7 +6679,7 @@
     {
       "id": "e6_3",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.076,
@@ -6703,7 +6703,7 @@
     {
       "id": "e6_4",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         5.271,
@@ -6727,7 +6727,7 @@
     {
       "id": "e6_5",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         1.831,
@@ -6751,7 +6751,7 @@
     {
       "id": "e6_6",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -1.831,
@@ -6775,7 +6775,7 @@
     {
       "id": "e6_7",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -5.271,
@@ -6799,7 +6799,7 @@
     {
       "id": "e6_8",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.076,
@@ -6823,7 +6823,7 @@
     {
       "id": "e6_9",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -9.907,
@@ -6847,7 +6847,7 @@
     {
       "id": "e6_10",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -10.543,
@@ -6871,7 +6871,7 @@
     {
       "id": "e6_11",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -9.907,
@@ -6895,7 +6895,7 @@
     {
       "id": "e6_12",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.076,
@@ -6919,7 +6919,7 @@
     {
       "id": "e6_13",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -5.271,
@@ -6943,7 +6943,7 @@
     {
       "id": "e6_14",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -1.831,
@@ -6967,7 +6967,7 @@
     {
       "id": "e6_15",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         1.831,
@@ -6991,7 +6991,7 @@
     {
       "id": "e6_16",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         5.271,
@@ -7015,7 +7015,7 @@
     {
       "id": "e6_17",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.076,
@@ -7039,7 +7039,7 @@
     {
       "id": "e6_18",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         9.907,
@@ -7063,7 +7063,7 @@
     {
       "id": "e7_1",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         12.3,
@@ -7087,7 +7087,7 @@
     {
       "id": "e7_2",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.697,
@@ -7111,7 +7111,7 @@
     {
       "id": "e7_3",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         0.0,
@@ -7135,7 +7135,7 @@
     {
       "id": "e7_4",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.697,
@@ -7159,7 +7159,7 @@
     {
       "id": "e7_5",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -12.3,
@@ -7183,7 +7183,7 @@
     {
       "id": "e7_6",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -8.697,
@@ -7207,7 +7207,7 @@
     {
       "id": "e7_7",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         -0.0,
@@ -7231,7 +7231,7 @@
     {
       "id": "e7_8",
       "label": "e",
-      "radius": 0.05,
+      "radius": 0.06,
       "color": "BLUE",
       "position": [
         8.697,
@@ -7255,11 +7255,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.1384,
+      "radius": 0.1557,
       "color": "RED",
       "position": [
-        15.299999999999999,
-        15.299999999999999,
+        -14.3,
+        14.3,
         0.0
       ],
       "motion": {
@@ -7270,11 +7270,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.1384,
+      "radius": 0.1557,
       "color": "PURPLE",
       "position": [
-        15.299999999999999,
-        14.884799999999998,
+        -14.3,
+        13.833,
         0.0
       ],
       "motion": {
@@ -7285,11 +7285,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.1384,
+      "radius": 0.1557,
       "color": "BLUE",
       "position": [
-        15.299999999999999,
-        14.4696,
+        -14.3,
+        13.366,
         0.0
       ],
       "motion": {

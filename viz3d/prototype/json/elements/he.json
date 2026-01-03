@@ -121,11 +121,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.2776,
+      "radius": 0.3123,
       "color": "RED",
       "position": [
-        6.9,
-        6.9,
+        -5.9,
+        5.9,
         0.0
       ],
       "motion": {
@@ -136,11 +136,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.2776,
+      "radius": 0.3123,
       "color": "PURPLE",
       "position": [
-        6.9,
-        6.067200000000001,
+        -5.9,
+        4.963,
         0.0
       ],
       "motion": {
@@ -151,11 +151,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.2776,
+      "radius": 0.3123,
       "color": "BLUE",
       "position": [
-        6.9,
-        5.234400000000001,
+        -5.9,
+        4.026,
         0.0
       ],
       "motion": {

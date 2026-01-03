@@ -778,7 +778,7 @@
     {
       "id": "e1_1",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         2.025,
@@ -802,7 +802,7 @@
     {
       "id": "e1_2",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -2.025,
@@ -826,7 +826,7 @@
     {
       "id": "e2_1",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         4.05,
@@ -850,7 +850,7 @@
     {
       "id": "e2_2",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         2.864,
@@ -874,7 +874,7 @@
     {
       "id": "e2_3",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         0.0,
@@ -898,7 +898,7 @@
     {
       "id": "e2_4",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -2.864,
@@ -922,7 +922,7 @@
     {
       "id": "e2_5",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -4.05,
@@ -946,7 +946,7 @@
     {
       "id": "e2_6",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -2.864,
@@ -970,7 +970,7 @@
     {
       "id": "e2_7",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -0.0,
@@ -994,7 +994,7 @@
     {
       "id": "e2_8",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         2.864,
@@ -1018,7 +1018,7 @@
     {
       "id": "e3_1",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         6.075,
@@ -1042,7 +1042,7 @@
     {
       "id": "e3_2",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         5.111,
@@ -1066,7 +1066,7 @@
     {
       "id": "e3_3",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         2.524,
@@ -1090,7 +1090,7 @@
     {
       "id": "e3_4",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -0.865,
@@ -1114,7 +1114,7 @@
     {
       "id": "e3_5",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -3.978,
@@ -1138,7 +1138,7 @@
     {
       "id": "e3_6",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -5.829,
@@ -1162,7 +1162,7 @@
     {
       "id": "e3_7",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -5.829,
@@ -1186,7 +1186,7 @@
     {
       "id": "e3_8",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -3.978,
@@ -1210,7 +1210,7 @@
     {
       "id": "e3_9",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -0.865,
@@ -1234,7 +1234,7 @@
     {
       "id": "e3_10",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         2.524,
@@ -1258,7 +1258,7 @@
     {
       "id": "e3_11",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         5.111,
@@ -1282,7 +1282,7 @@
     {
       "id": "e4_1",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         8.1,
@@ -1306,7 +1306,7 @@
     {
       "id": "e4_2",
       "label": "e",
-      "radius": 0.20400000000000001,
+      "radius": 0.204,
       "color": "BLUE",
       "position": [
         -8.1,
@@ -1330,11 +1330,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.2524,
+      "radius": 0.284,
       "color": "RED",
       "position": [
-        11.1,
-        11.1,
+        -10.1,
+        10.1,
         0.0
       ],
       "motion": {
@@ -1345,11 +1345,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.2524,
+      "radius": 0.284,
       "color": "PURPLE",
       "position": [
-        11.1,
-        10.3428,
+        -10.1,
+        9.248,
         0.0
       ],
       "motion": {
@@ -1360,11 +1360,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.2524,
+      "radius": 0.284,
       "color": "BLUE",
       "position": [
-        11.1,
-        9.5856,
+        -10.1,
+        8.396,
         0.0
       ],
       "motion": {

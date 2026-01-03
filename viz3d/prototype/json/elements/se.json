@@ -2014,11 +2014,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.2392,
+      "radius": 0.2691,
       "color": "RED",
       "position": [
-        11.1,
-        11.1,
+        -10.1,
+        10.1,
         0.0
       ],
       "motion": {
@@ -2029,11 +2029,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.2392,
+      "radius": 0.2691,
       "color": "PURPLE",
       "position": [
-        11.1,
-        10.3824,
+        -10.1,
+        9.293,
         0.0
       ],
       "motion": {
@@ -2044,11 +2044,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.2392,
+      "radius": 0.2691,
       "color": "BLUE",
       "position": [
-        11.1,
-        9.6648,
+        -10.1,
+        8.485,
         0.0
       ],
       "motion": {

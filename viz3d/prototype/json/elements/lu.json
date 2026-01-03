@@ -2638,7 +2638,7 @@
     {
       "id": "e1_1",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         1.817,
@@ -2662,7 +2662,7 @@
     {
       "id": "e1_2",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -1.817,
@@ -2686,7 +2686,7 @@
     {
       "id": "e2_1",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         3.633,
@@ -2710,7 +2710,7 @@
     {
       "id": "e2_2",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         2.569,
@@ -2734,7 +2734,7 @@
     {
       "id": "e2_3",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         0.0,
@@ -2758,7 +2758,7 @@
     {
       "id": "e2_4",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -2.569,
@@ -2782,7 +2782,7 @@
     {
       "id": "e2_5",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -3.633,
@@ -2806,7 +2806,7 @@
     {
       "id": "e2_6",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -2.569,
@@ -2830,7 +2830,7 @@
     {
       "id": "e2_7",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -0.0,
@@ -2854,7 +2854,7 @@
     {
       "id": "e2_8",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         2.569,
@@ -2878,7 +2878,7 @@
     {
       "id": "e3_1",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         5.45,
@@ -2902,7 +2902,7 @@
     {
       "id": "e3_2",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         5.121,
@@ -2926,7 +2926,7 @@
     {
       "id": "e3_3",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         4.175,
@@ -2950,7 +2950,7 @@
     {
       "id": "e3_4",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         2.725,
@@ -2974,7 +2974,7 @@
     {
       "id": "e3_5",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         0.946,
@@ -2998,7 +2998,7 @@
     {
       "id": "e3_6",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -0.946,
@@ -3022,7 +3022,7 @@
     {
       "id": "e3_7",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -2.725,
@@ -3046,7 +3046,7 @@
     {
       "id": "e3_8",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -4.175,
@@ -3070,7 +3070,7 @@
     {
       "id": "e3_9",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -5.121,
@@ -3094,7 +3094,7 @@
     {
       "id": "e3_10",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -5.45,
@@ -3118,7 +3118,7 @@
     {
       "id": "e3_11",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -5.121,
@@ -3142,7 +3142,7 @@
     {
       "id": "e3_12",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -4.175,
@@ -3166,7 +3166,7 @@
     {
       "id": "e3_13",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -2.725,
@@ -3190,7 +3190,7 @@
     {
       "id": "e3_14",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -0.946,
@@ -3214,7 +3214,7 @@
     {
       "id": "e3_15",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         0.946,
@@ -3238,7 +3238,7 @@
     {
       "id": "e3_16",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         2.725,
@@ -3262,7 +3262,7 @@
     {
       "id": "e3_17",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         4.175,
@@ -3286,7 +3286,7 @@
     {
       "id": "e3_18",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         5.121,
@@ -3310,7 +3310,7 @@
     {
       "id": "e4_1",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         7.267,
@@ -3334,7 +3334,7 @@
     {
       "id": "e4_2",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         7.127,
@@ -3358,7 +3358,7 @@
     {
       "id": "e4_3",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         6.714,
@@ -3382,7 +3382,7 @@
     {
       "id": "e4_4",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         6.042,
@@ -3406,7 +3406,7 @@
     {
       "id": "e4_5",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         5.138,
@@ -3430,7 +3430,7 @@
     {
       "id": "e4_6",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         4.037,
@@ -3454,7 +3454,7 @@
     {
       "id": "e4_7",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         2.781,
@@ -3478,7 +3478,7 @@
     {
       "id": "e4_8",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         1.418,
@@ -3502,7 +3502,7 @@
     {
       "id": "e4_9",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         0.0,
@@ -3526,7 +3526,7 @@
     {
       "id": "e4_10",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -1.418,
@@ -3550,7 +3550,7 @@
     {
       "id": "e4_11",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -2.781,
@@ -3574,7 +3574,7 @@
     {
       "id": "e4_12",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -4.037,
@@ -3598,7 +3598,7 @@
     {
       "id": "e4_13",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -5.138,
@@ -3622,7 +3622,7 @@
     {
       "id": "e4_14",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -6.042,
@@ -3646,7 +3646,7 @@
     {
       "id": "e4_15",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -6.714,
@@ -3670,7 +3670,7 @@
     {
       "id": "e4_16",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -7.127,
@@ -3694,7 +3694,7 @@
     {
       "id": "e4_17",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -7.267,
@@ -3718,7 +3718,7 @@
     {
       "id": "e4_18",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -7.127,
@@ -3742,7 +3742,7 @@
     {
       "id": "e4_19",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -6.714,
@@ -3766,7 +3766,7 @@
     {
       "id": "e4_20",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -6.042,
@@ -3790,7 +3790,7 @@
     {
       "id": "e4_21",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -5.138,
@@ -3814,7 +3814,7 @@
     {
       "id": "e4_22",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -4.037,
@@ -3838,7 +3838,7 @@
     {
       "id": "e4_23",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -2.781,
@@ -3862,7 +3862,7 @@
     {
       "id": "e4_24",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -1.418,
@@ -3886,7 +3886,7 @@
     {
       "id": "e4_25",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -0.0,
@@ -3910,7 +3910,7 @@
     {
       "id": "e4_26",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         1.418,
@@ -3934,7 +3934,7 @@
     {
       "id": "e4_27",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         2.781,
@@ -3958,7 +3958,7 @@
     {
       "id": "e4_28",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         4.037,
@@ -3982,7 +3982,7 @@
     {
       "id": "e4_29",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         5.138,
@@ -4006,7 +4006,7 @@
     {
       "id": "e4_30",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         6.042,
@@ -4030,7 +4030,7 @@
     {
       "id": "e4_31",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         6.714,
@@ -4054,7 +4054,7 @@
     {
       "id": "e4_32",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         7.127,
@@ -4078,7 +4078,7 @@
     {
       "id": "e5_1",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         9.083,
@@ -4102,7 +4102,7 @@
     {
       "id": "e5_2",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         6.958,
@@ -4126,7 +4126,7 @@
     {
       "id": "e5_3",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         1.577,
@@ -4150,7 +4150,7 @@
     {
       "id": "e5_4",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -4.542,
@@ -4174,7 +4174,7 @@
     {
       "id": "e5_5",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -8.536,
@@ -4198,7 +4198,7 @@
     {
       "id": "e5_6",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -8.536,
@@ -4222,7 +4222,7 @@
     {
       "id": "e5_7",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -4.542,
@@ -4246,7 +4246,7 @@
     {
       "id": "e5_8",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         1.577,
@@ -4270,7 +4270,7 @@
     {
       "id": "e5_9",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         6.958,
@@ -4294,7 +4294,7 @@
     {
       "id": "e6_1",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         10.9,
@@ -4318,7 +4318,7 @@
     {
       "id": "e6_2",
       "label": "e",
-      "radius": 0.10799999999999998,
+      "radius": 0.108,
       "color": "BLUE",
       "position": [
         -10.9,
@@ -4342,11 +4342,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.1948,
+      "radius": 0.2192,
       "color": "RED",
       "position": [
-        13.899999999999999,
-        13.899999999999999,
+        -12.9,
+        12.9,
         0.0
       ],
       "motion": {
@@ -4357,11 +4357,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.1948,
+      "radius": 0.2192,
       "color": "PURPLE",
       "position": [
-        13.899999999999999,
-        13.315599999999998,
+        -12.9,
+        12.243,
         0.0
       ],
       "motion": {
@@ -4372,11 +4372,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.1948,
+      "radius": 0.2192,
       "color": "BLUE",
       "position": [
-        13.899999999999999,
-        12.731199999999998,
+        -12.9,
+        11.585,
         0.0
       ],
       "motion": {

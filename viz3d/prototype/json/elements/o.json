@@ -13,7 +13,7 @@
     {
       "id": "p1",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         -1.115,
@@ -28,7 +28,7 @@
     {
       "id": "p2",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         -0.372,
@@ -43,7 +43,7 @@
     {
       "id": "p3",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         0.372,
@@ -58,7 +58,7 @@
     {
       "id": "p4",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         1.115,
@@ -73,7 +73,7 @@
     {
       "id": "p5",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         -1.115,
@@ -88,7 +88,7 @@
     {
       "id": "p6",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         -0.372,
@@ -103,7 +103,7 @@
     {
       "id": "p7",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         0.372,
@@ -118,7 +118,7 @@
     {
       "id": "p8",
       "label": "P",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "RED",
       "position": [
         1.115,
@@ -133,7 +133,7 @@
     {
       "id": "n1",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         -1.115,
@@ -148,7 +148,7 @@
     {
       "id": "n2",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         -0.372,
@@ -163,7 +163,7 @@
     {
       "id": "n3",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         0.372,
@@ -178,7 +178,7 @@
     {
       "id": "n4",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         1.115,
@@ -193,7 +193,7 @@
     {
       "id": "n5",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         -1.115,
@@ -208,7 +208,7 @@
     {
       "id": "n6",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         -0.372,
@@ -223,7 +223,7 @@
     {
       "id": "n7",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         0.372,
@@ -238,7 +238,7 @@
     {
       "id": "n8",
       "label": "N",
-      "radius": 0.33799999999999997,
+      "radius": 0.338,
       "color": "PURPLE",
       "position": [
         1.115,
@@ -253,7 +253,7 @@
     {
       "id": "e1_1",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         2.65,
@@ -277,7 +277,7 @@
     {
       "id": "e1_2",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         -2.65,
@@ -301,7 +301,7 @@
     {
       "id": "e2_1",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         5.3,
@@ -325,7 +325,7 @@
     {
       "id": "e2_2",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         2.65,
@@ -349,7 +349,7 @@
     {
       "id": "e2_3",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         -2.65,
@@ -373,7 +373,7 @@
     {
       "id": "e2_4",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         -5.3,
@@ -397,7 +397,7 @@
     {
       "id": "e2_5",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         -2.65,
@@ -421,7 +421,7 @@
     {
       "id": "e2_6",
       "label": "e",
-      "radius": 0.23399999999999999,
+      "radius": 0.234,
       "color": "BLUE",
       "position": [
         2.65,
@@ -445,11 +445,11 @@
     {
       "id": "legend_p",
       "label": "P",
-      "radius": 0.2704,
+      "radius": 0.3042,
       "color": "RED",
       "position": [
-        8.3,
-        8.3,
+        -7.3,
+        7.3,
         0.0
       ],
       "motion": {
@@ -460,11 +460,11 @@
     {
       "id": "legend_n",
       "label": "N",
-      "radius": 0.2704,
+      "radius": 0.3042,
       "color": "PURPLE",
       "position": [
-        8.3,
-        7.488800000000001,
+        -7.3,
+        6.387,
         0.0
       ],
       "motion": {
@@ -475,11 +475,11 @@
     {
       "id": "legend_e",
       "label": "e",
-      "radius": 0.2704,
+      "radius": 0.3042,
       "color": "BLUE",
       "position": [
-        8.3,
-        6.677600000000001,
+        -7.3,
+        5.475,
         0.0
       ],
       "motion": {
