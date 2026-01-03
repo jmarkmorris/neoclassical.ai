@@ -14,7 +14,7 @@
     {
       "id": "universe",
       "label": "Universe",
-      "radius": 2.1,
+      "radius": 1.68,
       "color": "#243d8f",
       "position": [
         -18.0,
@@ -32,7 +32,7 @@
     {
       "id": "standard_model",
       "label": "Standard Model",
-      "radius": 1.96,
+      "radius": 1.68,
       "color": "#2f6b6f",
       "position": [
         -12.0,
@@ -50,7 +50,7 @@
     {
       "id": "periodic_table",
       "label": "Periodic Table",
-      "radius": 2.1,
+      "radius": 1.68,
       "color": "#5a1f2e",
       "position": [
         -6.0,
