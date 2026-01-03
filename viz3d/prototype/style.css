@@ -303,30 +303,20 @@ body {
   text-decoration: underline;
 }
 
-.math-inline {
-  font-family: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
-  color: #d4c1ff;
-}
-
 .math-block {
   margin: 10px 0;
   padding: 8px 10px;
   background: rgba(20, 18, 40, 0.6);
   border-radius: 8px;
-  font-family: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
-  color: #d4c1ff;
   white-space: pre-wrap;
 }
 
-.math-cal {
-  font-family: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
-  font-style: italic;
-  letter-spacing: 0.02em;
+#markdown-content mjx-container {
+  font-size: 1em;
 }
 
-.math-bb {
-  font-family: "Cambria Math", "Times New Roman", serif;
-  font-weight: 600;
+#markdown-content mjx-container[display="true"] {
+  margin: 8px 0;
 }
 
 .detail-header {

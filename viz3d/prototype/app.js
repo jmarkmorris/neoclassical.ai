@@ -20,6 +20,7 @@ const markdownPanel = document.getElementById("markdown-panel");
 const markdownTitle = document.getElementById("markdown-title");
 const markdownContent = document.getElementById("markdown-content");
 const markdownClose = document.getElementById("markdown-close");
+const mathJaxScript = document.getElementById("mathjax-script");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -129,6 +130,8 @@ const motionHandlers = {
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 const markdownCache = new Map();
+let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPromise;
+let pendingMathTypeset = false;
 let activeMarkdownPath = null;
 let haloSeed = 0;
 const rootScenePath = "json/physics_frontiers.json";
@@ -191,6 +194,15 @@ const detailFieldOrder = [
 let activeDetailNodeId = null;
 let hoveredDetailNodeId = null;
 let hoverTooltipVisible = false;
+
+if (mathJaxScript) {
+  mathJaxScript.addEventListener("load", () => {
+    mathJaxReady = true;
+    if (pendingMathTypeset) {
+      typesetMarkdown();
+    }
+  });
+}
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
@@ -268,103 +280,22 @@ function escapeHtml(text) {
     .replace(/>/g, "&gt;");
 }
 
-function renderMathHtml(latex) {
-  let output = escapeHtml(latex);
-  output = output.replace(/\\text\{([^}]*)\}/g, "$1");
-  output = output.replace(/\\mathrm\{([^}]*)\}/g, "$1");
-  output = output.replace(/\\mathcal\{([^}]*)\}/g, '<span class="math-cal">$1</span>');
-  output = output.replace(/\\mathbb\{([^}]*)\}/g, '<span class="math-bb">$1</span>');
-  output = output.replace(/\\mathbf\{([^}]*)\}/g, "<strong>$1</strong>");
-  output = output.replace(/\\left/g, "");
-  output = output.replace(/\\right/g, "");
-  output = output.replace(/\\!/g, "");
-  output = output.replace(/\\,/g, " ");
-  output = output.replace(/\\;/g, " ");
-  output = output.replace(/\\:/g, " ");
-
-  const greekMap = {
-    alpha: "α",
-    beta: "β",
-    gamma: "γ",
-    delta: "δ",
-    epsilon: "ε",
-    zeta: "ζ",
-    eta: "η",
-    theta: "θ",
-    iota: "ι",
-    kappa: "κ",
-    lambda: "λ",
-    mu: "μ",
-    nu: "ν",
-    xi: "ξ",
-    pi: "π",
-    rho: "ρ",
-    sigma: "σ",
-    tau: "τ",
-    phi: "φ",
-    chi: "χ",
-    psi: "ψ",
-    omega: "ω",
-    Gamma: "Γ",
-    Delta: "Δ",
-    Theta: "Θ",
-    Lambda: "Λ",
-    Xi: "Ξ",
-    Pi: "Π",
-    Sigma: "Σ",
-    Phi: "Φ",
-    Psi: "Ψ",
-    Omega: "Ω",
-  };
-  output = output.replace(/\\([A-Za-z]+)\b/g, (match, key) => {
-    if (greekMap[key]) {
-      return greekMap[key];
-    }
-    const symbolMap = {
-      to: "→",
-      rightarrow: "→",
-      leftarrow: "←",
-      leftrightarrow: "↔",
-      approx: "≈",
-      congr: "≅",
-      congg: "≅",
-      cong: "≅",
-      neq: "≠",
-      ge: "≥",
-      le: "≤",
-      times: "×",
-      cdot: "·",
-      pm: "±",
-      infty: "∞",
-      sim: "∼",
-      forall: "∀",
-      exists: "∃",
-    };
-    if (symbolMap[key]) {
-      return symbolMap[key];
-    }
-    return match;
-  });
-
-  output = output.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>");
-  output = output.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>");
-  output = output.replace(/_([A-Za-z0-9+-]+)/g, "<sub>$1</sub>");
-  output = output.replace(/\^([A-Za-z0-9+-]+)/g, "<sup>$1</sup>");
-  return output;
-}
-
 function parseInlineMarkdown(text) {
-  let output = escapeHtml(text);
+  const mathSegments = [];
+  let output = text.replace(/\\\((.+?)\\\)/g, (match) => {
+    const token = `@@MATH${mathSegments.length}@@`;
+    const safeMatch = match.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    mathSegments.push(safeMatch);
+    return token;
+  });
+  output = escapeHtml(output);
   output = output.replace(/`([^`]+)`/g, "<code>$1</code>");
-  output = output.replace(/\\\((.+?)\\\)/g, (match, math) => {
-    return `<span class="math-inline">${renderMathHtml(math)}</span>`;
-  });
-  output = output.replace(/\$([^$]+)\$/g, (match, math) => {
-    return `<span class="math-inline">${renderMathHtml(math)}</span>`;
-  });
   output = output.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
   output = output.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   output = output.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  output = output.replace(/@@MATH(\d+)@@/g, (match, idx) => {
+    return mathSegments[Number(idx)] ?? match;
+  });
   return output;
 }
 
@@ -417,8 +348,11 @@ function renderMarkdown(markdown) {
     }
 
     if (trimmed === "\\]" && inMathBlock) {
+      const safeLines = mathLines.map((line) =>
+        line.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      );
       html.push(
-        `<div class="math-block">${renderMathHtml(mathLines.join("\n"))}</div>`
+        `<div class="math-block">\\[\n${safeLines.join("\n")}\n\\]</div>`
       );
       inMathBlock = false;
       return;
@@ -427,9 +361,10 @@ function renderMarkdown(markdown) {
     if (trimmed === "$$") {
       closeLists();
       if (inDollarMathBlock) {
-        html.push(
-          `<div class="math-block">${renderMathHtml(mathLines.join("\n"))}</div>`
+        const safeLines = mathLines.map((line) =>
+          line.replace(/</g, "&lt;").replace(/>/g, "&gt;")
         );
+        html.push(`<div class="math-block">$$\n${safeLines.join("\n")}\n$$</div>`);
         inDollarMathBlock = false;
         mathLines = [];
       } else {
@@ -495,7 +430,10 @@ function renderMarkdown(markdown) {
     html.push("</code></pre>");
   }
   if (inMathBlock || inDollarMathBlock) {
-    html.push(`<div class="math-block">${renderMathHtml(mathLines.join("\n"))}</div>`);
+    const safeLines = mathLines.map((line) =>
+      line.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    );
+    html.push(`<div class="math-block">\\[\n${safeLines.join("\n")}\n\\]</div>`);
   }
   if (inUl) {
     html.push("</ul>");
@@ -504,6 +442,25 @@ function renderMarkdown(markdown) {
     html.push("</ol>");
   }
   return html.join("\n");
+}
+
+function typesetMarkdown() {
+  if (!markdownContent) {
+    return;
+  }
+  const mathJax = window.MathJax;
+  if (!mathJax?.typesetPromise) {
+    pendingMathTypeset = true;
+    return;
+  }
+  mathJaxReady = true;
+  pendingMathTypeset = false;
+  if (mathJax.typesetClear) {
+    mathJax.typesetClear([markdownContent]);
+  }
+  mathJax.typesetPromise([markdownContent]).catch((error) => {
+    console.error(error);
+  });
 }
 
 async function showMarkdownPanel(level) {
@@ -540,6 +497,7 @@ async function showMarkdownPanel(level) {
   markdownPanel.setAttribute("aria-hidden", "false");
   markdownPanel.inert = false;
   activeMarkdownPath = markdownPath;
+  typesetMarkdown();
 }
 
 function updateSceneMarkdown() {

@@ -8,6 +8,26 @@
     />
     <title>neoclassical.ai</title>
     <link rel="stylesheet" href="./style.css" />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+          processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        },
+        startup: {
+          typeset: false
+        }
+      };
+    </script>
+    <script
+      id="mathjax-script"
+      defer
+      src="./vendor/mathjax/tex-chtml.js"
+    ></script>
   </head>
   <body>
     <div id="app">
