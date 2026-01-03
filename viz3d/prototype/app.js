@@ -2435,17 +2435,19 @@ async function updateElementInfoPanel() {
 
   if (orbitals.length) {
     const row = document.createElement("div");
-    row.className = "detail-row";
+    row.className = "detail-row detail-row-full";
     const key = document.createElement("div");
     key.className = "detail-key";
     key.textContent = "Orbitals (inner \u2192 outer)";
     const val = document.createElement("div");
     val.className = "detail-value";
+    val.style.width = "100%";
     const list = document.createElement("div");
     list.style.display = "flex";
     list.style.flexWrap = "wrap";
     list.style.gap = "6px";
-    list.style.marginTop = "6px";
+    list.style.marginTop = "8px";
+    list.style.justifyContent = "flex-start";
     orbitals.forEach((orb) => {
       const chip = document.createElement("span");
       chip.textContent = orb;

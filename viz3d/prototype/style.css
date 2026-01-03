@@ -686,7 +686,9 @@ body {
 }
 
 .detail-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
   gap: 8px;
   padding: 6px 0;
   border-top: 1px solid rgba(160, 170, 220, 0.12);
@@ -696,14 +698,16 @@ body {
   border-top: none;
 }
 
+.detail-row-full {
+  grid-template-columns: 1fr;
+}
+
 .detail-key {
-  flex: 1;
   font-size: 12px;
   opacity: 0.7;
 }
 
 .detail-value {
-  flex: 1.2;
   font-size: 12px;
   text-align: right;
 }
