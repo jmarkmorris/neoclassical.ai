@@ -20,6 +20,7 @@ const docButton = document.getElementById("doc-button");
 const markdownPanel = document.getElementById("markdown-panel");
 const markdownTitle = document.getElementById("markdown-title");
 const markdownContent = document.getElementById("markdown-content");
+const markdownBody = document.getElementById("markdown-body");
 const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const mathJaxScript = document.getElementById("mathjax-script");
@@ -277,8 +278,8 @@ function hideMarkdownPanel() {
   if (markdownTitle) {
     markdownTitle.textContent = "";
   }
-  if (markdownContent) {
-    markdownContent.innerHTML = "";
+  if (markdownBody) {
+    markdownBody.innerHTML = "";
   }
   activeMarkdownPath = null;
 }
@@ -302,7 +303,7 @@ function escapeHtml(text) {
 }
 
 function typesetMarkdown() {
-  if (!markdownContent) {
+  if (!markdownBody) {
     return;
   }
   const mathJax = window.MathJax;
@@ -313,9 +314,9 @@ function typesetMarkdown() {
   mathJaxReady = true;
   pendingMathTypeset = false;
   if (mathJax.typesetClear) {
-    mathJax.typesetClear([markdownContent]);
+    mathJax.typesetClear([markdownBody]);
   }
-  mathJax.typesetPromise([markdownContent]).catch((error) => {
+  mathJax.typesetPromise([markdownBody]).catch((error) => {
     console.error(error);
   });
 }
@@ -351,8 +352,8 @@ async function showMarkdownPanel(level) {
   if (markdownTitle) {
     markdownTitle.textContent = level.name ?? "Notes";
   }
-  if (markdownContent) {
-    markdownContent.innerHTML = html;
+  if (markdownBody) {
+    markdownBody.innerHTML = html;
   }
   markdownPanel.classList.add("is-open");
   markdownPanel.setAttribute("aria-hidden", "false");

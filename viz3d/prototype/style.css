@@ -243,21 +243,23 @@ body {
   top: 72px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(920px, 92vw);
+  width: min(1100px, 92vw);
+  height: calc(100% - 120px);
   max-height: calc(100% - 120px);
   display: none;
   z-index: 7;
-  padding: 14px 16px;
+  padding: 0;
   background: rgba(8, 10, 18, 0.88);
   border: 1px solid rgba(160, 170, 220, 0.25);
   border-radius: 14px;
   backdrop-filter: blur(6px);
   color: #f5f7ff;
-  overflow: auto;
+  overflow: hidden;
 }
 
 #markdown-panel.is-open {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .markdown-header {
@@ -265,7 +267,9 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 12px;
+  padding: 18px 16px 14px;
+  background: #0b0e1a;
+  border-bottom: 1px solid rgba(160, 170, 220, 0.12);
 }
 
 .markdown-actions {
@@ -310,9 +314,19 @@ body {
 }
 
 #markdown-content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px 16px 18px;
   font-size: 16px;
   line-height: 1.8;
   column-count: 1;
+  column-gap: 36px;
+  column-fill: auto;
+}
+
+#markdown-body {
+  display: contents;
 }
 
 #markdown-title {
@@ -343,15 +357,20 @@ body {
 }
 
 #markdown-content h1 {
-  font-size: 20px;
+  font-size: 22px;
+}
+
+#markdown-content h1:first-of-type {
+  text-align: center;
+  margin-top: 6px;
 }
 
 #markdown-content h2 {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 #markdown-content h3 {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 #markdown-content p {
@@ -377,24 +396,14 @@ body {
 
 #markdown-panel.two-columns #markdown-content {
   column-count: 2;
-  column-gap: 36px;
   column-fill: balance;
 }
 
 #markdown-panel.two-columns #markdown-content h1,
-#markdown-panel.two-columns #markdown-content h2,
-#markdown-panel.two-columns #markdown-content h3,
-#markdown-panel.two-columns #markdown-content h4,
-#markdown-panel.two-columns #markdown-content h5,
-#markdown-panel.two-columns #markdown-content h6,
-#markdown-panel.two-columns #markdown-content hr {
+#markdown-panel.two-columns #markdown-content hr:first-of-type {
   column-span: all;
 }
 
-#markdown-panel.two-columns #markdown-content p,
-#markdown-panel.two-columns #markdown-content ul,
-#markdown-panel.two-columns #markdown-content ol,
-#markdown-panel.two-columns #markdown-content li,
 #markdown-panel.two-columns #markdown-content pre,
 #markdown-panel.two-columns #markdown-content blockquote,
 #markdown-panel.two-columns #markdown-content table,
@@ -410,9 +419,15 @@ body {
 }
 
 #markdown-content hr {
+  display: none;
+}
+
+#markdown-content hr:first-of-type {
+  display: block;
+  width: 140px;
+  margin: 10px auto 18px;
   border: none;
-  border-top: 1px solid rgba(160, 170, 220, 0.2);
-  margin: 14px 0;
+  border-top: 1px solid rgba(245, 247, 255, 0.35);
 }
 
 #markdown-content code {
