@@ -107,16 +107,22 @@ const motionHandlers = {
     if (!orbit) {
       return;
     }
-    const centerNode = level.nodeByName.get(orbit.center);
-    if (!centerNode) {
-      return;
-    }
+    const centerNode =
+      level.nodeByName.get(orbit.center) ?? level.nodeById.get(orbit.center);
+    const centerPos = centerNode
+      ? centerNode.group.position
+      : Array.isArray(orbit.center)
+        ? new THREE.Vector3(
+            orbit.center[0] ?? 0,
+            orbit.center[1] ?? 0,
+            orbit.center[2] ?? 0
+          )
+        : new THREE.Vector3(0, 0, 0);
     const yScale =
       orbit.shape === "ellipsoid" ? orbit.yScale ?? 0.85 : 1;
     const angle = timeSeconds * orbit.speed + (orbit.phase ?? 0);
-    const x = centerNode.group.position.x + Math.cos(angle) * orbit.radius;
-    const y =
-      centerNode.group.position.y + Math.sin(angle) * orbit.radius * yScale;
+    const x = centerPos.x + Math.cos(angle) * orbit.radius;
+    const y = centerPos.y + Math.sin(angle) * orbit.radius * yScale;
     node.group.position.set(x, y, 0);
   },
   binaryOrbit: (node, level, timeSeconds) => {
@@ -1156,14 +1162,16 @@ function buildLevel(levelId) {
 
   config.nodes.forEach((nodeData, index) => {
     const node = createNode(nodeData);
-    if (config.layout === "linear") {
-      node.group.position.x = (index - centerOffset) * spacing;
-    } else if (config.layout === "static" && nodeData.position) {
+    const hasPosition =
+      Array.isArray(nodeData.position) && nodeData.position.length >= 2;
+    if (hasPosition) {
       node.group.position.set(
         nodeData.position[0] ?? 0,
         nodeData.position[1] ?? 0,
         nodeData.position[2] ?? 0
       );
+    } else if (config.layout === "linear") {
+      node.group.position.x = (index - centerOffset) * spacing;
     }
     group.add(node.group);
     nodes.push(node);
@@ -1188,6 +1196,38 @@ function buildLevel(levelId) {
       }
     }
   });
+
+  // Keep legend stack visible on element scenes by anchoring it just outside
+  // the main content bounds (computed without the legend nodes).
+  const legendNodes = nodes.filter((n) => n.data.category === "legend");
+  if (legendNodes.length) {
+    const min = new THREE.Vector3(Infinity, Infinity, Infinity);
+    const max = new THREE.Vector3(-Infinity, -Infinity, -Infinity);
+    nodes.forEach((node) => {
+      if (node.data.category === "legend") {
+        return;
+      }
+      const r = node.data.radius ?? 0;
+      const pos = node.group.position;
+      min.x = Math.min(min.x, pos.x - r);
+      min.y = Math.min(min.y, pos.y - r);
+      max.x = Math.max(max.x, pos.x + r);
+      max.y = Math.max(max.y, pos.y + r);
+    });
+    if (isFinite(min.x) && isFinite(max.x)) {
+      const legendGap = 0.6;
+      const legendRadius = Math.max(
+        ...legendNodes.map((n) => n.data.radius ?? 0.35),
+        0.35
+      );
+      let lx = min.x - legendRadius * 2.6 - legendGap;
+      let ly = max.y + legendRadius + legendGap;
+      const vStep = legendRadius * 2.4;
+      legendNodes.forEach((node, idx) => {
+        node.group.position.set(lx, ly - idx * vStep, 0);
+      });
+    }
+  }
 
   const level = {
     id: levelId,
@@ -1231,8 +1271,17 @@ function getLevelBoundsFromNodes(level) {
     const radius = node.data.radius ?? 0;
     if (node.data.orbit) {
       const orbit = node.data.orbit;
-      const centerNode = level.nodeByName.get(orbit.center);
-      const centerPos = centerNode ? centerNode.group.position : node.group.position;
+      const centerNode =
+        level.nodeByName.get(orbit.center) ?? level.nodeById.get(orbit.center);
+      const centerPos = centerNode
+        ? centerNode.group.position
+        : Array.isArray(orbit.center)
+          ? new THREE.Vector3(
+              orbit.center[0] ?? 0,
+              orbit.center[1] ?? 0,
+              orbit.center[2] ?? 0
+            )
+          : node.group.position;
       const orbitRadius = orbit.radius ?? 0;
       const yScale = orbit.shape === "ellipsoid" ? orbit.yScale ?? 0.85 : 1;
       min.x = Math.min(min.x, centerPos.x - orbitRadius - radius);
@@ -2091,9 +2140,19 @@ function buildPeriodicGrid(data) {
     `;
     btn.addEventListener("click", () => {
       showPeriodicElementDetail(el);
+      if (currentLevel) {
+        searchBackStack.push({
+          levelId: currentLevel.id,
+          navigationStack: navigationStack.map((entry) => ({
+            levelId: entry.levelId,
+            focusNodeId: entry.focusNodeId,
+          })),
+        });
+        updateNavButton();
+      }
       const sceneId = el.symbol.toLowerCase();
       const path = `json/elements/${sceneId}.json`;
-      jumpToScene(path, { mode: "instant" });
+      jumpToScene(path, { mode: "jump" });
     });
     btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
     frag.appendChild(btn);
