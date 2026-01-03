@@ -1,4 +1,4 @@
-# Revised Academic Textbook Outline (Draft 9)
+# Academic Textbook Outline
 ## *The Architrino Theory: A Geometrical Foundation for Physics*
 
 ---
