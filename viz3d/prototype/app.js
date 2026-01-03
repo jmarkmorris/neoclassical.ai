@@ -17,6 +17,10 @@ const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
 const homeButton = document.getElementById("home-button");
 const docButton = document.getElementById("doc-button");
+const elementLegend = document.getElementById("element-legend");
+const elementLegendItems = elementLegend
+  ? Array.from(elementLegend.querySelectorAll("[data-scene]"))
+  : [];
 const markdownPanel = document.getElementById("markdown-panel");
 const markdownTitle = document.getElementById("markdown-title");
 const markdownContent = document.getElementById("markdown-content");
@@ -1149,7 +1153,7 @@ function buildLevel(levelId) {
 
   const config = levelConfigs[levelId];
   const group = new THREE.Group();
-  const nodes = [];
+  let nodes = [];
   const nodeByName = new Map();
   const nodeById = new Map();
   const motionNodes = [];
@@ -1159,8 +1163,12 @@ function buildLevel(levelId) {
 
   const spacing = config.spacing ?? 7;
   const centerOffset = (config.nodes.length - 1) / 2;
+  const isElementScene = typeof levelId === "string" && levelId.startsWith("json/elements/");
 
   config.nodes.forEach((nodeData, index) => {
+    if (nodeData.category === "legend") {
+      return;
+    }
     const node = createNode(nodeData);
     const hasPosition =
       Array.isArray(nodeData.position) && nodeData.position.length >= 2;
@@ -1197,36 +1205,83 @@ function buildLevel(levelId) {
     }
   });
 
-  // Keep legend stack visible on element scenes by anchoring it just outside
-  // the main content bounds (computed without the legend nodes).
-  const legendNodes = nodes.filter((n) => n.data.category === "legend");
-  if (legendNodes.length) {
-    const min = new THREE.Vector3(Infinity, Infinity, Infinity);
-    const max = new THREE.Vector3(-Infinity, -Infinity, -Infinity);
-    nodes.forEach((node) => {
-      if (node.data.category === "legend") {
-        return;
+  // Re-pack nucleus for element scenes: alternate P/N inside a faint circle.
+  if (isElementScene) {
+    const nucleons = nodes.filter(
+      (n) => n.data.category === "proton" || n.data.category === "neutron"
+    );
+    if (nucleons.length) {
+      const avgRadius =
+        nucleons.reduce((s, n) => s + (n.data.radius ?? 0.3), 0) /
+        nucleons.length;
+      const golden = Math.PI * (3 - Math.sqrt(5));
+      const packRadius =
+        Math.max(avgRadius * 3.2, Math.sqrt(nucleons.length) * avgRadius * 2.0);
+      const positions = [];
+      for (let i = 0; i < nucleons.length; i++) {
+        const r = packRadius * Math.sqrt((i + 0.5) / nucleons.length);
+        const theta = i * golden;
+        positions.push(
+          new THREE.Vector3(Math.cos(theta) * r, Math.sin(theta) * r, 0)
+        );
       }
-      const r = node.data.radius ?? 0;
-      const pos = node.group.position;
-      min.x = Math.min(min.x, pos.x - r);
-      min.y = Math.min(min.y, pos.y - r);
-      max.x = Math.max(max.x, pos.x + r);
-      max.y = Math.max(max.y, pos.y + r);
-    });
-    if (isFinite(min.x) && isFinite(max.x)) {
-      const legendGap = 0.6;
-      const legendRadius = Math.max(
-        ...legendNodes.map((n) => n.data.radius ?? 0.35),
-        0.35
-      );
-      let lx = min.x - legendRadius * 2.6 - legendGap;
-      let ly = max.y + legendRadius + legendGap;
-      const vStep = legendRadius * 2.4;
-      legendNodes.forEach((node, idx) => {
-        node.group.position.set(lx, ly - idx * vStep, 0);
+      const protons = nucleons.filter((n) => n.data.category === "proton");
+      const neutrons = nucleons.filter((n) => n.data.category === "neutron");
+      const ordered = [];
+      while (protons.length || neutrons.length) {
+        if (protons.length) ordered.push(protons.shift());
+        if (neutrons.length) ordered.push(neutrons.shift());
+      }
+      ordered.forEach((node, idx) => {
+        if (positions[idx]) {
+          node.group.position.copy(positions[idx]);
+        }
       });
+
+      const nucleusRadius = packRadius + avgRadius * 1.1;
+      const ringGeo = new THREE.RingGeometry(
+        Math.max(0.01, nucleusRadius - 0.04),
+        nucleusRadius + 0.04,
+        80
+      );
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: "#d5dcff",
+        transparent: true,
+        opacity: 0.08,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+      });
+      const nucleusRing = new THREE.Mesh(ringGeo, ringMat);
+      nucleusRing.userData.excludeFromBounds = true;
+      group.add(nucleusRing);
     }
+
+    // Orbit guides (thin rings) for each populated shell.
+    const electrons = nodes.filter((n) => n.data.category === "electron");
+    const shellRadii = Array.from(
+      new Set(
+        electrons
+          .map((e) => e.data.orbit?.radius)
+          .filter((r) => typeof r === "number")
+      )
+    ).sort((a, b) => a - b);
+    shellRadii.forEach((r) => {
+      const guideGeo = new THREE.RingGeometry(
+        Math.max(0.01, r - 0.08),
+        r + 0.08,
+        96
+      );
+      const guideMat = new THREE.MeshBasicMaterial({
+        color: "#8fa7ff",
+        transparent: true,
+        opacity: 0.28,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+      });
+      const guide = new THREE.Mesh(guideGeo, guideMat);
+      guide.userData.excludeFromBounds = true;
+      group.add(guide);
+    });
   }
 
   const level = {
@@ -1268,6 +1323,9 @@ function getLevelBoundsFromNodes(level) {
   let hasNode = false;
 
   level.nodes.forEach((node) => {
+    if (node.data?.excludeFromBounds) {
+      return;
+    }
     const radius = node.data.radius ?? 0;
     if (node.data.orbit) {
       const orbit = node.data.orbit;
@@ -2194,6 +2252,47 @@ async function updatePeriodicOverlay() {
   }
 }
 
+function updateElementLegend() {
+  if (!elementLegend) {
+    return;
+  }
+  const isElement =
+    currentLevel && typeof currentLevel.id === "string"
+      ? currentLevel.id.startsWith("json/elements/")
+      : false;
+  elementLegend.classList.toggle("is-open", isElement);
+  elementLegend.setAttribute("aria-hidden", isElement ? "false" : "true");
+  elementLegend.inert = !isElement;
+}
+
+function wireElementLegend() {
+  if (!elementLegendItems.length) {
+    return;
+  }
+  elementLegendItems.forEach((btn) => {
+    const scenePath = btn.getAttribute("data-scene");
+    if (!scenePath) {
+      return;
+    }
+    btn.addEventListener("click", () => {
+      if (transitionState.active) {
+        return;
+      }
+      if (currentLevel) {
+        searchBackStack.push({
+          levelId: currentLevel.id,
+          navigationStack: navigationStack.map((entry) => ({
+            levelId: entry.levelId,
+            focusNodeId: entry.focusNodeId,
+          })),
+        });
+        updateNavButton();
+      }
+      jumpToScene(scenePath, { mode: "jump" });
+    });
+  });
+}
+
 
 function updateDocButton() {
   if (!docButton) {
@@ -2211,6 +2310,7 @@ function updateSceneLabel() {
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
   updatePeriodicOverlay();
+  updateElementLegend();
 }
 
 async function ensureSceneIndex() {
@@ -2690,6 +2790,8 @@ if (homeButton) {
     resetToRootScene();
   });
 }
+
+wireElementLegend();
 
 if (docButton) {
   docButton.addEventListener("click", () => {

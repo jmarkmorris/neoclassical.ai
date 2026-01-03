@@ -1,405 +1,324 @@
-current technical documentation TOC:
+# Proposed Academic Textbook Outline
+## *The Architrino Theory: A Geometrical Foundation for Physics*
 
-./90-Assets/90.0NeoclassicalFont/neo.md
-./90-Assets/90.0NeoclassicalFont/index.html
-./90-Assets/90.0NeoclassicalFont/glyphs.json
-./90-Assets/90.0NeoclassicalFont/generate_fonts.py
-./90-Assets/90.0NeoclassicalFont/neoclassical.ttf
-./0-GeometricalModelofNature(index).md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.9-WalkthroughStep9—Informationalambiguity.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.8-WalkthroughStep8—Self-interactionswitch.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.2-Equal-ChargeSymmetricRepulsion.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.6-WalkthroughStep6—Well-posednessandregularization.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.2-RevisitingourActionModel.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.3-MaximumCurvatureOrbit.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.7-WalkthroughStep7—Superpositionandlocality.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.1-WalkthroughStep1—BackgroundandSimpleAction.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.2-WalkthroughStep2—UnitsandConstants.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.4-WalkthroughStep4—Masterequationofmotion.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3-AnalyticBaselines.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.3-WalkthroughStep3—Causalsetanddelaygeometry.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.10-WalkthroughStep10—Numericalrecipeandstability.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.A-Self-energyandregularizationnotes.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.0-OppositeChargesFromRestatLargeSeparation.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.5-WalkthroughStep5—Receivervelocityandwork.md
-./00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.1-RadialFalltoFixedCenter(TestParticle).md
-./00-FoundationElements/00.0-AbsoluteTimeandSpace/00.0.3-AbsoluteTimespace.md
-./00-FoundationElements/00.0-AbsoluteTimeandSpace/00.0.1-AbsoluteTime.md
-./00-FoundationElements/00.0-AbsoluteTimeandSpace/00.0.2-AbsoluteSpace.md
-./00-FoundationElements/00.1-Architrino/00.1.1-Path.md
-./00-FoundationElements/00.1-Architrino/00.1.3-Positrino.md
-./00-FoundationElements/00.1-Architrino/00.1.5-KineticandPotentialEnergy.md
-./00-FoundationElements/00.1-Architrino/00.1.2-Electrino.md
-./00-FoundationElements/00.1-Architrino/00.1.4-Action.md
-./00-FoundationElements/00.1-Architrino/00.1.0-Architrino.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.0-Emergence.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.5-PhotonsandNeutrinos.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.4-PersonalityArchitrinosandFermions.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.9-Perspective.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.1-OrbitingBinary.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.6-Gluons.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.7-WandZBosons.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.3-MeasurementofTimeandDistance.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.2-NestedBinariesandtheNoetherCore.md
-./10-ImplementationLayer/10.0-Assemblies/10.0.8-HiggsBoson.md
-./20-InformationalLayer/20.5-MappingtoGeneralRelativity/20.5.0-TheNoetherCoreisanOblateSpheroid.md
-./20-InformationalLayer/20.1-SemanticInterfaces/20.1.1-Schemas-Conventions/20.1.1.0-MathematicalStyleGuide.md
-./20-InformationalLayer/20.1-SemanticInterfaces/20.1.1-Schemas-Conventions/20.1.1.1-MathematicalTerminology.md
-./20-InformationalLayer/20.7-MappingtoChemistry/20.7.0Displacement.md
+---
 
-Current blog TOC:
+## PART I: FOUNDATIONAL ONTOLOGY
 
-Nature is a Trickster
-You Can Solve Nature
-Ontological Errors Occluded Nature’s Solution
-Introduction
-New Physics in Pictures
-Introduction to NPQG
-What Would Nature Do?
-The Point Potential Model
-Geometry of Nature
-Glossary
-NPQG Corporation
-People
-The Foundation of Nature
-Euclidean Time and Space
-The Geometry of Time, Space, and Matter
-Frames of Reference
-A Tale of Two Geometries
-Planck Scale
-Unit Point Potentials
-Electrinos and Positrinos
-The Dynamical Geometry of Point Potential Paths
-Absolute Relativity
-Vector Potential
-Dirac Sphere Potentials
-Point Potential Action and Self Action
-Nature is Continuous and Discrete
-Deep in the Point Potential Sea
-The Universe has a Floating Ground
-The Equation of Nature and the Universe
-Lagrangian
-Modeling a Dynamical Geometry
-The Dynamical Geometry of Nature
-A Vulnerability in the Mathematics of Physics
-Dynamical Systems Theory, Delay Differential Equations, or Control Theory?
-NPQG Math
-Dynamical Eight Ball
-A Bit of Math for the New Era
-Is Potential a Dimension?
-Collider Collisions : Nines of C
-Orbits of Moving Orbs
-Orbital Dualities
-The Closest Approach
-Mapping Fine Structure
-The Maps and the Territory
-Walking the Planck
-Causal Contact and Information
-Information Theory
-Mapping between Models
-Revisiting Classical Physics
-Mapping Magnetic Monopoles
-Scalar and Vector Potential
-Dirac Strings Debunked
-Jefimenko Liénard Wiechert
-Mapping the Right Hand Rule
-Emergent Assembly
-Emergent Assembly
-The Primal Assembly
-It’s the Standing Waves! Doh!
-The Point Potential Binary
-The Orbiting Point Charge Binary I
-The Orbiting Point Charge Binary II
-The Orbiting Point Charge Binary III
-The Orbiting Point Charge Binary IV
-The Orbiting Point Charge Binary V
-The Binary Curvature Limit Matches the Planck Scale
-Point Charges Implement Asymptotic Safety
-The Polar Vortices of Potential of a Binary
-Accounting for h-bar
-The Noether Core
-Turning Physics and Cosmology Inside Out
-Zooming in on a Noether Core
-Do Nested Binaries Synchronize?
-The Noether Core is Self-Tuning
-Noether Cores and Quantum Spin
-Wave Function Collapse
-Noether Core Superposition
-Tilting Tensorsial Tri-Binaries
-Noether Cores and Polar Personality Charges
-Spin and Noether Core Geometry
-Are Orbiting Point Charges the Perfect Blackbody?
-Binary Capture, Nested Binaries, and Stability
-Pro and Anti Noether Cores
-Fermi-Dirac and Bose-Einstein Transformation
-Assembly Theory
-Assembling a Theory
-Assembly Redux
-Superposition and Survival
-Noether Core Factory
-Symmetry: C, P, T?
-Energy
-Energy and Potential
-Apparent Energy (aka Mass) vs. Total Energy
-Conjecture on Planck’s Law and Wien’s Peaks
-The Mystery Islands of Shielded Energy
-Energy Shielding via Superposition
-Energy Shielding and Selection
-Forces
-Unifying the Four Forces
-Implementation of the Weak Nuclear Force
-Mass
-Mass
-Aether, Mass, and Time
-Time
-How Does Nature Implement Time?
-The Curled Up Dimension of Time
-Time-ish
-Fermions
-How are Fermions Assembled?
-Implementation of the Weak Nuclear Force
-Lepton Flavor Universality
-Gluon Color Charge Assembly
-Mapping to Spinors
-Anti-Matter
-Mapping Anti-Matter
-Electrons
-Visualising the Dynamics of the Electron Structure
-Quarks
-Up/Charm/Top Quark Assembly
-Down/Strange/Bottom Quark Assembly
-Neutrinos
-Neutrino Oscillation Musings
-Neutrino Structure
-Neutrino Assembly
-Bosons
-W and Z Bosons
-W and Z Boson Reaction Provenance
-Photons
-Imagine a Photon
-Planar Bosons on the Photon Train
-Absolute Distance and the Path of a Photon
-A Photon is Both Particles AND Waves!
-Evidence for Classical Photons
-Photons React with Spacetime Æther
-Malus’s Law
-Brainstorming the Speeds of Light
-Creating Matter from Pure Light
-Gluons
-Mapping Gluons
-Mapping “Spinning Gluons in the Proton”
-Graviton, Higgs, Binary — Spacetime Aether Generations
-Spacetime vs. Time and Space
-Spacetime Aether vs. “The Vacuum”
-Is There a Physical Æther?
-Spacetime IS an Æther
-The Higgs Implementation
-How is Spacetime Aether Produced?
-How Does Spacetime Aether Decay?
-There is No Vacuum Catastrophe
-Reactions with Spacetime
-Spacetime Assembly Emission
-Deep Space Contents
-Graviton, Higgs, Binary
-What is Mass in the Point Potential Universe?
-Action, SuperDeterminism,
-What is the Ontology of Potential Speed
-Mapping between Models
-Mapping Higgs
-Mapping to Axions?
-Redshift
-Mapping Redshift
-Quasar Distribution and Redshift
-Standard Model Assemblies
-The Periodic Table of the Standard Model
-Radiation and Radioactivity
-Reactions : Disassembly and Reassembly
-Decoding the Standard Model
-Mapping between Models
-Mapping Quantum Numbers
-Mapping to Supersymmetry
-Mapping to String Theory
-Mapping from Lattice QCD
-Interpreting Quantum Mechanics Neoclassically
-Mapping Observation Precision
-Lissajou Mapping?
-Bohmian Mechanics and NPQG I
-Bohmian Mechanics and NPQG II
-Bohmian Mechanics and NPQG III
-Dr. Paul Sutter : Quantum Mechanics
-Physics Nobel 2022
-E8 is a Red Herring
-Quantum Theory
-Mapping Uncertainty and Entanglement
-Cosmology
-How Nature and the Universe Operate
-Cosmology
-Steady State Cosmological Models
-Big Bang vs. Steady State
-The Apparent Darkness of Cosmology
-Mapping between Models
-Mapping the Friedmann Equations
-Tensions in Cosmology
-Rearranging Cosmology
-Did the Universe Begin?
-Mapping the Big Bang
-Mapping the Cosmic Web
-Debate : Alan Guth vs. Roger Penrose
-Sir Roger Penrose : CCC
-Subir Sarkar on Dark Energy
-The Chronology of Nature
-Planck Epoch : Peak Density of Energetic Point Charges
-Grand Unification Epoch : Binaries Dominate
-Inflationary Epoch : Noether Cores Form
-ElectroWeak Epoch : Personality Charges Bond to Noether Cores
-Quark Epoch : Emerging/Surviving Quarks Couple Vortices
-Hadron Epoch : Assemblies with Coupled Quarks Emerge
-Neutrino Decoupling : Noether Cores with Neutral Personalities
-Lepton Epoch : Noether Cores with 6*|e/6| Personalities Form
-Big Bang Nucleosynthesis : Protons (15:21) and Neutrons (18:18) Bind
-Photon Epoch : Nuclear Assembly Plasma
-Recombination : Counter-Rotating Coaxial Assemblies Launch
-Dark Ages : CMBR Counter-Rotating Coaxial Assemblies Launch
-Remapping the Big Bang to SMBH Jet and/or Surface Emissions
-Point Charge Plasma Outpacing Field Speed
-Higgs Spacetime Emissions
-Assembly Formation Dynamics
-Mapping Binary Assembly and CMB
-Gravity
-How Nature Implements Gravity!
-Implementing Gravity
-Gravity and the Energy of Spacetime Æther
-Nature of a Gravitational Theory
-Forces, Mass, and Gravity
-Gravity is Both Quantum and Continuous
-The Hierarchy Problem in Particle Physics
-Mapping between Models
-The Equivalence Principle
-Dr. Justin Khoury on Dark Matter Superfluidity
-Superfluid Vacuum Theory
-TheMessenger and Dr. Donald C. Chang
-Mapping Loop Quantum Gravity
-General Relativity is Wrong
-Mapping General Relativity
-Mapping Mach’s Principle
-Spin Networks and Foams
-Freeman Dyson: Is a Graviton Detectable?
-Inflation, Expansion, Deflation
-The Expansion of Spacetime
-Cosmic Inflation is Wrong. Long Live Inflation!
-Transforming Guth to Truth
-Ontological Transformation of the Big Bang
-Particle Rain
-Point Charge Cosmology RuleZ!
-The Universe Expands In Place
-Positive Infinity Meets Negative Infinity
-The Dynamical Steady State
-Distributed Bangs and the Potential Curve 1/r.
-Mapping between Models
-CMB
-What Really Causes the CMB?
-Reinterpreting the Cosmic Microwave Background
-The Planck Satellite CMB Data
-What is the Cosmic Microwave Background?
-Globular Clusters
-Mapping between Models
-The Anthropic Principle
-Falsifying the Hubble Constant
-Cosmological Metrics
-The αβγ Paper
-Black Holes
-Black Holes
-Black Holes and Planck Cores
-Planck Core Energy
-Planck Cores and Asymptotic Safety
-Can Planck Cores Spin?
-Black Holes are Not Opaque
-Rethink Supermassive Black Hole Dynamics!
-New Ideas on Galaxy Dynamics
-Mapping Galaxy Rotation Dynamics
-Black Hole Jets : Planck and Arp
-Does a Black Hole Shrink While Jetting Planck Plasma?
-NPQG Prediction of SMBH Jet Inflation Validated
-Do Black Holes Emit Spacetime Aether?
-Reasoning on the Universe’s Shape
-Does Nature Destroy Information?
-How I Envision Black Holes
-Black Hole Recycling
-Mapping between Models
-The Joy of X : Priya Natarajan
-Philosophy of Science
-Ontological Illusions: Missing the Architecture of Nature
-Dear Keepers of the Scientific Method
-Nature Fooled Physicists
-Jefimenko Liénard Wiechert
-Michelson-Morley Experiment
-Revisiting Nobel Prize Research
-Missed Opportunities to Discover Nature
-Modern Physics is Wrong!
-The False Narratives of Physics and Cosmology
-Fresh Thinking on Entropy
-Philosophy
-Life Begins with Point Potentials
-Is the Universe a Simulation?
-Religion, Meet NPQG
-Nature of a Gravitational Theory
-Determinism
-Long Live Philosophy
-GR and QM Are Not Connected to Nature
-Ontological Errors Occluded Nature’s Solution
-Waxing Philosophical on Nature
-Consciousness at Scale
-What is Reality?
-What Is Matter?
-Will Earth’s Intelligent Life Survive?
-Bohr and Heisenberg : Plasma-Ten
-Comparing Models of Nature
-Complexity and Simplicity : Murray Gell-Mann
-Is Fundamental Knowledge of Nature Risky?
-Radioactivity and the Drake Equation
-Quantum Ontology and Metaphysics
-Paradoxes Are Errors in Thinking
-Big Picture of Point Charge Theory
-Simulation and Ai
-Ai Needs a Symmetry Breaking Point.
-NPQG LangChain
-In the Midst of Experiment 1 Phase 1
-Fermion Architecture Animation
-Is the Universe a Simulation?
-Are We AI?
-Dear PDG, Let’s Talk!
-Dear Particle Data Group
-Point Charge Provenance Simulation and Technology
-Depicting Assemblies and Reactions as Paths
-The Point Potential Era
-What is Next for NPQG?
-The NPQG Research Institute
-Limits of Memory and Computation
-Predictions of NPQG
-Innovation Contest
-T-3, T-2, T-1, NPQG Liftoff!?
-Let’s Get On With It!
-Mapping towards new Technologies
-Nanosheet Technology
-Sara Walker : Life : Lex Fridman
-Reconstructing Physics & Cosmology
-Physicists : cd ~/career rm -rf *
-Dear MIT : Physics Needs an Intervention
-Commenter I : Poor MIT
-Physicist, Heal Thyself
-Fraud and Funding in Physics and Cosmology
-Is Chemistry the Best Description of Nature?
-It’s Time to Cancel GR, QM, & ΛCDM
-Physicists, Take the L
-A Wish for Senior Physicists
-The Quandary in Physics and Cosmology
-How to Solve Nature
-Solving the Unsolved Problems in Physics
-Paul Dirac’s 1963 Scientific American Article
-Organization of Academia
-Particle Colliders are Primitive Technology
+### Chapter 1: The Crisis in Fundamental Physics
+- The Conceptual Disconnection Between General Relativity and Quantum Mechanics
+- Ontological Confusion in Modern Physics
+- Why a Return to First Principles is Necessary
+- Scope and Ambitions of This Work
 
-Conversations with Ai TOC:
-Graviton, Higgs, Binary
-What is an Effective Theory by GPT 4.5
-On GR and QM by Gemini 2.0 Flash Ai
+### Chapter 2: Absolute Time and Euclidean Space
+- The Case for Absolute Time
+- Euclidean Three-Dimensional Space as Fundamental Substrate
+- Philosophical Defense Against Relativity Objections
+- Simultaneity, Causality, and the Structure of Events
+
+### Chapter 3: The Architrino: Nature's Fundamental Entity
+- Definition: Point Transmitters/Receivers of Potential
+- Electrinos and Positrinos: The Two Polarities
+- Path Dynamics in Absolute Time and Space
+- Action, Potential Energy, and Kinetic Energy
+- Why Point Potentials Rather Than Fields or Strings
+
+### Chapter 4: The Point Potential Action Framework
+- Simple Action: Background and First Principles
+- Units, Constants, and Dimensional Analysis
+- The Causal Set and Delay Geometry
+- Master Equation of Motion
+- Receiver Velocity and Work
+
+### Chapter 5: Technical Foundations of Architrino Dynamics
+- Superposition and Locality in Potential Propagation
+- Well-Posedness and Regularization of Point Interactions
+- The Self-Interaction Switch and Self-Hit Regime
+- Informational Ambiguity and Non-Markovian Memory
+- Numerical Recipes and Stability Considerations
+
+---
+
+## PART II: ANALYTIC BASELINES AND IDEALIZED SYSTEMS
+
+### Chapter 6: Two-Body Systems: Analytic Solutions
+- Radial Fall to a Fixed Center (Test Particle Limit)
+- Opposite Charges from Rest at Large Separation
+- Equal-Charge Symmetric Repulsion
+- The Maximum Curvature Orbit and Planck-Scale Limit
+
+### Chapter 7: The Orbiting Binary
+- Dynamics of a Two-Architrino Bound System
+- Polar Vortices of Potential
+- Stability, Attractors, and Selection Rules
+- Binary Capture and Energy Exchange
+
+### Chapter 8: Emergence and the Concept of Assembly
+- What Does "Emergence" Mean in This Framework?
+- From Architrinos to Assemblies: Hierarchical Structure
+- Identity, Persistence, and Composite Objects
+- Standing Waves, Resonance, and Stability
+
+---
+
+## PART III: THE NOETHER CORE AND NESTED BINARIES
+
+### Chapter 9: The Noether Core: Central Architecture
+- Nested Binaries and the Tri-Binary Structure
+- The Self-Tuning Noether Core
+- Oblate Spheroid Geometry and Spin
+- Superposition, Decoherence, and Wave Function Collapse
+
+### Chapter 10: Velocity Regimes and Symmetry Breaking
+- Sub-Field-Speed Dynamics (v < c_f)
+- At-Field-Speed Threshold (v = c_f): Lorentz Symmetry Emergence
+- Super-Field-Speed and the Self-Hit Regime (v > c_f)
+- Inflationary and Deflationary Forces
+
+### Chapter 11: Noether Core Variants and Transformations
+- Pro and Anti Noether Cores
+- Fermi-Dirac (Ellipsoidal) vs. Bose-Einstein (Planar) Geometry
+- Tilting Tensorial Tri-Binaries
+- Assembly Factory: Formation and Decay Pathways
+
+---
+
+## PART IV: MAPPING TO THE STANDARD MODEL
+
+### Chapter 12: Fermions: Leptons and Quarks
+- Personality Architrinos and the |e/6| Charge Unit
+- Electron Structure and Dynamics
+- Neutrino Assembly and Oscillation
+- Up/Down, Charm/Strange, Top/Bottom Quark Assemblies
+
+### Chapter 13: Bosons: Force Carriers and the Higgs
+- Photons: Planar Assemblies on the Photon Train
+- Gluons: Color Charge and Confinement
+- W and Z Bosons: Weak Force Implementation
+- The Higgs Boson and Spacetime Aether Generation
+
+### Chapter 14: Assembly Theory and the Periodic Table of the Standard Model
+- Decoding Quantum Numbers from Assembly Geometry
+- Mapping Spin, Isospin, and Flavor
+- Reactions: Disassembly and Reassembly Pathways
+- Radiation, Radioactivity, and Decay Channels
+
+### Chapter 15: Precision Tests and Deviations
+- Lepton Flavor Universality
+- Fine Structure and Hyperfine Corrections
+- Anomalous Magnetic Moments (g-2)
+- CKM and PMNS Matrix Structure
+- Predicted Deviations and Experimental Signatures
+
+---
+
+## PART V: QUANTUM THEORY INTERPRETATION
+
+### Chapter 16: Quantum Mechanics as Emergent Determinism
+- Pilot-Wave Character and Guidance Mechanisms
+- Ontological Status of the Wavefunction
+- Superposition, Interference, and Self-Hit Dynamics
+- Entanglement: Nonlocal Correlations from Shared Potentials
+
+### Chapter 17: Measurement and the Collapse Problem
+- What is Measurement in the Architrino Framework?
+- Definite Outcomes from Complex Assembly Interactions
+- No Observer Postulate: Emergence of Classicality
+- Addressing the Measurement Paradoxes
+
+### Chapter 18: Confronting No-Go Theorems
+- Bell's Theorem and Nonlocality in Absolute Time
+- Kochen-Specker Contextuality
+- PBR and the Reality of Quantum States
+- Loopholes, Resolutions, and Interpretive Stance
+
+---
+
+## PART VI: GRAVITY AND SPACETIME EMERGENCE
+
+### Chapter 19: Spacetime as Aether
+- Graviton-Higgs-Binary Assemblies as Spacetime Substrate
+- Production and Decay of Spacetime Aether
+- Energy Shielding and Superposition Effects
+- There is No Vacuum Catastrophe
+
+### Chapter 20: Emergent General Relativity
+- From Euclidean Substrate to Curved Effective Geometry
+- The Newtonian Limit and Poisson Equation
+- Light Bending, Shapiro Delay, and Gravitational Redshift
+- Perihelion Precession and Frame Dragging
+
+### Chapter 21: Post-Newtonian and Strong-Field Predictions
+- PPN Parameters and Current Constraints
+- Gravitational Wave Speed and Polarization
+- Black Holes and Planck Cores: Reinterpretation
+- Information Preservation and Singularity Resolution
+
+### Chapter 22: The Hierarchy Problem and Asymptotic Safety
+- Why Gravity is Weak: Energy Shielding and Scale
+- Point Charges Implement Asymptotic Safety
+- Renormalization and Effective Field Theory Emergence
+- Unifying Forces Through Geometry
+
+---
+
+## PART VII: COSMOLOGY AND THE UNIVERSE
+
+### Chapter 23: Cosmological Ontology
+- Steady State vs. Big Bang: Rethinking Cosmology
+- Did the Universe Begin, or Is It Eternal?
+- The Dynamical Steady State and Distributed Inflation
+- Positive Infinity Meets Negative Infinity
+
+### Chapter 24: The Chronology of Nature (Reinterpreted)
+- Planck Epoch: Peak Density Plasma
+- Grand Unification and Inflationary Epochs
+- ElectroWeak, Quark, Hadron, Lepton Epochs
+- Big Bang Nucleosynthesis and Recombination
+- Photon Epoch, Dark Ages, and Galaxy Formation
+
+### Chapter 25: Black Holes, Jets, and Recycling
+- Supermassive Black Hole Dynamics
+- Planck Core Jetting and Plasma Emissions
+- Galaxy Rotation and Dark Matter Alternatives
+- Black Holes as Recycling Engines
+
+### Chapter 26: The Cosmic Microwave Background Reinterpreted
+- What Really Causes the CMB?
+- Counter-Rotating Coaxial Assembly Launches
+- Planck Satellite Data and NPQG Predictions
+- CMB as Evidence for Spacetime Aether Emission
+
+### Chapter 27: Expansion, Inflation, and Redshift
+- The Universe Expands In Place
+- Cosmic Inflation is Wrong—Long Live Inflation!
+- Mapping Hubble Tension and Cosmological Metrics
+- Redshift Mechanisms Beyond Doppler
+
+---
+
+## PART VIII: COMPARATIVE FOUNDATIONS AND INTERPRETATION
+
+### Chapter 28: Mapping to Existing Theories
+- Effective Field Theory Correspondence
+- From Architrinos to Lagrangians
+- Mapping to Quantum Field Theory: Fields, Virtual Particles, Renormalization
+- Mapping to Lattice QCD and Numerical QCD
+
+### Chapter 29: Historical Context and Alternative Approaches
+- Lorentz Ether Theory and Neo-Lorentzian Relativity
+- Bohmian Mechanics and Pilot-Wave Theory
+- Loop Quantum Gravity, Spin Networks, and Foams
+- String Theory, Supersymmetry, and E8
+
+### Chapter 30: Philosophy of the Architrino Framework
+- Ontological Commitments and Conceptual Clarity
+- Determinism, Causality, and the Self-Hit Regime
+- Explanatory Power and Theoretical Virtues
+- Parsimony, Unification, and Falsifiability
+
+---
+
+## PART IX: SIMULATION, COMPUTATION, AND TECHNOLOGY
+
+### Chapter 31: Computational Implementation
+- Numerical Methods for Architrino Dynamics
+- Delay Differential Equations and Causal Set Algorithms
+- Convergence, Stability, and Artifact Detection
+- From Architrino Simulations to Emergent Phenomenology
+
+### Chapter 32: Provenance Tracking and Visualization
+- Depicting Assemblies and Reactions as Paths
+- Animation and Simulation of Fermion Architecture
+- Point Charge Provenance and Reaction Networks
+- Limits of Memory and Computation
+
+### Chapter 33: Predictions and Experimental Roadmap
+- Falsifiable Predictions Across Scales
+- Collider Physics: Nines of C and Reaction Dynamics
+- Precision Tests: g-2, Flavor Universality, Neutrino Masses
+- Astrophysical Signatures: SMBH Jets, CMB Anomalies, Redshift
+
+### Chapter 34: Toward New Technologies
+- Nanosheet and Assembly Engineering
+- Energy Shielding and Gravitational Manipulation
+- Implications for Energy, Computation, and Materials
+- The Point Potential Era
+
+---
+
+## PART X: SYNTHESIS AND FUTURE DIRECTIONS
+
+### Chapter 35: Solving the Unsolved Problems in Physics
+- The Measurement Problem
+- Dark Matter and Dark Energy
+- The Hierarchy Problem
+- The Cosmological Constant Problem
+- Matter-Antimatter Asymmetry
+- Quantum Gravity Unification
+
+### Chapter 36: Challenges, Criticisms, and Open Questions
+- Where the Theory May Fail
+- Known Tensions and Parameter Tuning Risks
+- Alternative Interpretations and Competitor Models
+- The Role of the Adversary and Red Team
+
+### Chapter 37: Reconstructing Physics and Cosmology
+- Implications for Academia and Research Funding
+- Reinterpreting Historical Experiments (Michelson-Morley, etc.)
+- Revisiting Nobel Prize Research
+- A Call to the Physics Community
+
+### Chapter 38: Vision for the Future
+- The NPQG Research Institute
+- Interdisciplinary Collaboration: Physics, Chemistry, Biology, AI
+- Long-Term Research Questions
+- Consciousness, Life, and the Drake Equation
+
+---
+
+## APPENDICES
+
+### Appendix A: Mathematical Style Guide and Conventions
+- Notation, Symbols, and Terminology
+- Schemas and Diagrammatic Conventions
+- The Neoclassical Font and Glyph System
+
+### Appendix B: Self-Energy and Regularization Notes
+- Detailed Technical Treatment
+- Cutoff Schemes and Physical Justification
+- Renormalization Group Connections
+
+### Appendix C: Glossary of Terms
+- Architrino, Electrino, Positrino
+- Noether Core, Tri-Binary, Personality Charge
+- Self-Hit, Field Speed, Absolute Time
+- Full Indexed Glossary
+
+### Appendix D: Constraint Ledger
+- Experimental Bounds and Limits
+- Postulates vs. Derived vs. Fitted Parameters
+- Living Document: Updated with New Data
+
+### Appendix E: Historical Readings and Commentary
+- Paul Dirac's 1963 Scientific American Article
+- Jefimenko, Liénard-Wiechert, and Classical Electrodynamics
+- Mach's Principle and the Equivalence Principle
+
+---
+
+## BIBLIOGRAPHY
+
+## INDEX
+
+---
+
+**Notes on Structure:**
+- **Three-level hierarchy** as requested: Parts (Roman numerals), Chapters (Arabic numerals), Sections (subsection titles).
+- **Flow:** Foundations → Idealized systems → Assembly architecture → Mapping to known physics → Interpretation → Cosmology → Technology/computation → Synthesis.
+- **Pedagogical:** Begins with ontology and simple systems, builds complexity, confronts existing theory, addresses objections, and ends with vision and open questions.
+- **Comprehensive:** Covers all major assets you listed, organized thematically rather than by file structure.
+- **Textbook-ready:** Can be expanded with examples, problem sets, figures, and appendices for a full academic treatment.
+
+This is a **first draft**—we can refine ordering, merge or split chapters, adjust emphasis, or reorganize as needed. Let me know where you'd like to go deeper or restructure.
