@@ -2286,9 +2286,8 @@ function buildPeriodicGrid(data) {
       const path = `json/elements/${sceneId}.json`;
       if (periodicOverlay) {
         periodicOverlay.classList.add("is-fading");
-        setTimeout(() => periodicOverlay.classList.remove("is-fading"), 220);
       }
-      jumpToScene(path, { mode: "jump", startScale: 0.35 });
+      jumpToScene(path, { mode: "jump", startScale: 0.35, duration: 950 });
     });
     btn.addEventListener("mouseenter", () => showPeriodicElementDetail(el));
     frag.appendChild(btn);
@@ -2319,6 +2318,7 @@ async function updatePeriodicOverlay() {
   periodicOverlay.classList.toggle("is-open", !!isPeriodic);
   periodicOverlay.setAttribute("aria-hidden", isPeriodic ? "false" : "true");
   if (!isPeriodic) {
+    periodicOverlay.classList.remove("is-fading");
     return;
   }
   const data = await ensurePeriodicTable();
