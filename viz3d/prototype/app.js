@@ -1207,13 +1207,23 @@ function buildLevel(levelId) {
 
   // Re-pack nucleus for element scenes: alternate P/N inside a faint circle.
   if (isElementScene) {
+    let nucleusRadius = 0;
     const nucleons = nodes.filter(
       (n) => n.data.category === "proton" || n.data.category === "neutron"
     );
+    const electrons = nodes.filter((n) => n.data.category === "electron");
     if (nucleons.length) {
       const avgRadius =
         nucleons.reduce((s, n) => s + (n.data.radius ?? 0.3), 0) /
         nucleons.length;
+      // Make electrons match nucleon size for visual consistency.
+      electrons.forEach((e) => {
+        e.data.radius = avgRadius;
+        e.mesh.geometry.dispose();
+        e.mesh.geometry = new THREE.SphereGeometry(avgRadius, 32, 20);
+        e.outline.geometry.dispose();
+        e.outline.geometry = new THREE.EdgesGeometry(e.mesh.geometry);
+      });
       const golden = Math.PI * (3 - Math.sqrt(5));
       let packRadius = Math.max(
         avgRadius * 2.2,
@@ -1240,7 +1250,7 @@ function buildLevel(levelId) {
         }
       });
 
-      const nucleusRadius = packRadius + avgRadius * 0.5;
+      nucleusRadius = packRadius + avgRadius * 0.5;
       const ringGeo = new THREE.RingGeometry(
         Math.max(0.01, nucleusRadius - 0.04),
         nucleusRadius + 0.04,
@@ -1259,7 +1269,6 @@ function buildLevel(levelId) {
     }
 
     // Orbit guides (thin rings) for each populated shell.
-    const electrons = nodes.filter((n) => n.data.category === "electron");
     const uniqueRadii = Array.from(
       new Set(
         electrons
