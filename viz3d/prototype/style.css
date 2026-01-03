@@ -527,7 +527,7 @@ body {
   border: 3px solid rgba(255, 255, 255, 0.32);
   background: rgba(255, 255, 255, 0.18);
   color: #f5f7ff;
-  padding: 8px 8px 8px 8px;
+  padding: 4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -544,7 +544,7 @@ body {
 .ptable-number {
   position: absolute;
   top: 6px;
-  left: 8px;
+  left: 4px;
   font-size: 11px;
   opacity: 0.9;
 }
