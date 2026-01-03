@@ -2310,9 +2310,6 @@ async function updatePeriodicOverlay() {
   const isPeriodic = currentLevel?.sceneId === "periodic_table";
   periodicOverlay.classList.toggle("is-open", !!isPeriodic);
   periodicOverlay.setAttribute("aria-hidden", isPeriodic ? "false" : "true");
-  if (sceneSearch) {
-    sceneSearch.style.display = isPeriodic ? "none" : "flex";
-  }
   if (!isPeriodic) {
     return;
   }
