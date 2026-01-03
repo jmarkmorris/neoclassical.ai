@@ -156,7 +156,7 @@
     },
     {
       "id": "dark_sector",
-      "label": "Dark Matter & Dark Energy",
+      "label": "Dark Sector (DM/DE)",
       "radius": 1.68,
       "color": "#2c2c60",
       "position": [
@@ -306,7 +306,7 @@
     },
     {
       "id": "nonlocality_vs_causality",
-      "label": "Relativistic Causality (EPR/locality) vs. Entanglement (non-locality)",
+      "label": "Relativistic Causality vs. Entanglement",
       "radius": 1.68,
       "color": "#3f5f8a",
       "position": [
@@ -381,7 +381,7 @@
     },
     {
       "id": "time",
-      "label": "Time",
+      "label": "Nature of Time",
       "radius": 1.68,
       "color": "#6a4d1b",
       "position": [
