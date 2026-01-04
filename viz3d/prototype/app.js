@@ -35,6 +35,9 @@ const periodicLegend = document.getElementById("periodic-legend");
 const hud = document.getElementById("hud");
 const infoDrawer = document.getElementById("info-drawer");
 const infoBody = document.getElementById("info-body");
+const rootSceneId = "physics_frontiers";
+const rootLayoutMarginPx = { x: 160, y: 140 };
+const rootGapFactor = 0.785; // half of prior gap vs radius
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -683,6 +686,7 @@ async function resetToRootScene() {
   worldGroup.add(rootLevel.group);
   rootLevel.group.position.set(0, 0, 0);
   rootLevel.group.scale.setScalar(1);
+  layoutRootLevel(rootLevel);
   setLevelOpacity(rootLevel, 1);
   setLevelLabelOpacity(rootLevel, 0);
   setLevelLinkOpacity(rootLevel, 1);
@@ -828,6 +832,69 @@ function computeWarpScaleForLevel(level, overshoot = 1.25) {
   const radius = Math.max(size.x, size.y) * 0.5;
   const base = computeWarpScale(Math.max(radius, 0.01));
   return Math.max(1.4, base * overshoot);
+}
+
+function getSafeViewportWorld() {
+  const aspect = window.innerWidth / window.innerHeight;
+  const viewWidth = baseViewHeight * aspect;
+  const worldPerPixel = viewWidth / Math.max(window.innerWidth, 1);
+  const safeWidth = Math.max(
+    2,
+    viewWidth - 2 * (rootLayoutMarginPx.x * worldPerPixel)
+  );
+  const safeHeight = Math.max(
+    2,
+    baseViewHeight - 2 * (rootLayoutMarginPx.y * worldPerPixel)
+  );
+  return { safeWidth, safeHeight };
+}
+
+function layoutRootLevel(level) {
+  if (!level || level.sceneId !== rootSceneId) {
+    return;
+  }
+  const nodes = level.nodes;
+  if (!nodes?.length) {
+    return;
+  }
+  const radius = Math.max(...nodes.map((node) => node.data?.radius ?? 0));
+  const baseSpacing = radius * (2 + rootGapFactor);
+  const { safeWidth, safeHeight } = getSafeViewportWorld();
+  let columns = Math.max(
+    1,
+    Math.min(
+      nodes.length,
+      Math.floor((safeWidth - 2 * radius) / Math.max(baseSpacing, 0.01)) + 1
+    )
+  );
+  const rowsNeeded = (cols) => Math.ceil(nodes.length / Math.max(cols, 1));
+  const totalHeight = (cols) =>
+    (rowsNeeded(cols) - 1) * baseSpacing + 2 * radius;
+  while (columns > 1 && totalHeight(columns) > safeHeight) {
+    columns -= 1;
+  }
+  const rows = rowsNeeded(columns);
+  const spacingX =
+    columns > 1
+      ? Math.max(
+          baseSpacing,
+          Math.min(
+            baseSpacing * 1.4,
+            (safeWidth - 2 * radius) / Math.max(columns - 1, 1)
+          )
+        )
+      : 0;
+  const spacingY = baseSpacing;
+  const startX = -((columns - 1) * spacingX) / 2;
+  const startY = ((rows - 1) * spacingY) / 2;
+
+  nodes.forEach((node, index) => {
+    const row = Math.floor(index / columns);
+    const col = index % columns;
+    const x = startX + col * spacingX;
+    const y = startY - row * spacingY;
+    node.group.position.set(x, y, node.group.position.z);
+  });
 }
 
 function getTransitionFocusNode(level) {
@@ -1410,6 +1477,10 @@ function buildLevel(levelId) {
     layout: config.layout,
     links: [],
   };
+
+  if (level.sceneId === rootSceneId) {
+    layoutRootLevel(level);
+  }
 
   levels.set(levelId, level);
   buildLevelLinks(level, config);
@@ -2969,6 +3040,10 @@ function onResize() {
   updateCamera();
   renderer.setSize(window.innerWidth, window.innerHeight, false);
   labelRenderer.setSize(window.innerWidth, window.innerHeight);
+  if (currentLevel?.sceneId === rootSceneId) {
+    layoutRootLevel(currentLevel);
+    fitCameraToLevel(currentLevel);
+  }
 }
 
 async function init() {
@@ -2979,6 +3054,7 @@ async function init() {
   }
   currentLevel = buildLevel(rootScenePath);
   worldGroup.add(currentLevel.group);
+  layoutRootLevel(currentLevel);
   updateCamera();
   fitCameraToLevel(currentLevel);
   updateSceneLabel();
