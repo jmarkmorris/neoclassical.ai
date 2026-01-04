@@ -51,3 +51,22 @@ We will require that in the appropriate regimes:
 Physical observers experience relativity of simultaneity and time dilation as **emergent properties** of assembly dynamics in the medium. The virtual observer always uses absolute time \(t\); proper time \(\tau\) is derived.
 
 Any observable signal of absolute time (e.g. orientation‑dependent tick rates absent medium gradients) would falsify the model.
+
+## Addenda (Phil)
+
+### Absolute Time and Unique Global Foliation
+
+Absolute time $t$ provides a **unique foliation** of the universe into “instants.” The Absolute Observer has access to the full microstate on each slice.
+
+* **AO vs. PO Time**: Absolute time $t$ is the evolution parameter. Proper time $\tau$ (measured by assembly clocks) is a derived functional: $d\tau = F(\text{local medium}, v) dt$.
+* **Causal Realism**: The AO sees causation as explicit lawlike mapping from one architrino configuration at time $t$ to one at time $t+\Delta t$.
+* **Refutation of Timelessness**: We reject the "Block Universe" where time is a dimension. Time is a process parameter.
+
+## Addenda (Phil - supplemental)
+
+### Absolute Time and Unique Global Foliation
+
+* **AO Perspective:** The Absolute Observer at any $(x,y,z)$ sees the exact same absolute time $t$. This creates a unique foliation $\Sigma_t$.
+* **Proper Time Distinction:** Absolute time $t$ is the evolution parameter. Proper time $\tau$ is a derived functional measured by assembly clocks: $d\tau = F(\text{medium}, v) dt$.
+* **Refuting Kant:** Space/Time are not mental forms; they are the rigid stage of the AO.
+* **Refuting Relationalism (Leibniz):** Space is a container (void), not just relations between objects.

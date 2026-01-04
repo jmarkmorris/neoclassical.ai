@@ -66,8 +66,27 @@ In simulations:
   - \((t_\text{hit}, \mathbf{x}(t_\text{hit}))\),
   - Impact parameters and force contributions.
 - Check convergence of self‑hit statistics under:
-  - Time step refinement,
-  - History resolution refinement,
-  - Different integrators.
+- Time step refinement,
+- History resolution refinement,
+- Different integrators.
 
 If self‑hit signatures are numerically unstable under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
+
+## Addenda (Dyna - Alternate formalism)
+
+### Formalizing Self-Hit Geometry in Absolute Coordinates
+
+The use of an Absolute Observer allows for a non-ambiguous definition of the self-hit condition.
+
+1. **Coordinate Identification**: Because $(x,y,z)$ labels in the void are permanent, the "Self-Hit" occurs when a potential shell emitted at $(\mathbf{x}_{em}, t_{em})$ intersects the source architrino at $(\mathbf{x}_{rec}, t_{rec})$ such that:
+   $$|\mathbf{x}_{rec}(t_{rec}) - \mathbf{x}_{em}(t_{em})| = c_f (t_{rec} - t_{em})$$
+2. **Path History**: The path is a straight Euclidean vector. Curvature is not in the path, but in the **deformation of the source's trajectory** due to the self-interaction force.
+3. **Non-Markovian Memory**: The feedback loop at $t$ is determined by the position of the architrino at $t_{history}$. This prevents binary singularities; as $r \to 0$ and $v$ increases, the self-hit force provides a non-linear "push-back."
+
+## Addenda (Dyna - supplemental)
+
+### Self-Hit in Absolute Coordinates
+
+* **Definition:** A self-hit occurs when an architrino trajectory intersects its own past potential shell in the fixed frame.
+* **Geometry:** The feedback loop is strictly non-Markovian. The "memory" is stored in the field at specific absolute coordinates.
+* **Stability:** Self-hit provides the bounding force for the Noether core.

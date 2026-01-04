@@ -43,3 +43,21 @@ No major physical claim is accepted without:
 - Δt convergence
 - history-resolution convergence
 - cross-integrator comparison (for critical results)
+
+## Addenda (Sol)
+
+### Virtual Observer Implementation & Grid Protocols
+
+1. **Grid Initialization**: All simulations run on a rigid Cartesian grid representing the **Euclidean Void**. The grid is pre-loaded with a lattice of coupled Noether cores to simulate the "Vacuum."
+2. **Fiducial Observer Array**: Instantiate a grid of "Virtual Sensors" at fixed $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
+3. **Retarded Time Lookup**: When a sphere intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
+4. **Logging Standard**: All runs must log VO channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
+
+## Addenda (Sol - supplemental)
+
+### Absolute Observer Grid
+
+* **Grid:** Initialize rigid Cartesian `Grid[x][y][z]` for the Void.
+* **Sea Initialization:** Pre-load the grid with coupled Noether cores for "Vacuum" runs.
+* **Logging:** Record $\Phi$ and $\nabla\Phi$ at fixed nodes (Virtual Observers).
+* **Time:** Global step $\Delta t$ (Absolute Time).

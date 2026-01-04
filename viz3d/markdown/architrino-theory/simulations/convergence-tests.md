@@ -26,3 +26,11 @@ For a fixed receiver point and time window, compare distributions of solved t_em
 Intentionally use a wrong history kernel / wrong c_f / wrong emission-time solver:
 - Expected invariants (e.g., binary stability window, energy-flow signature) must fail
 - Confirms the code is sensitive to the correct physics and not producing “numerical conspiracy”
+
+## Addenda (Sol - supplemental)
+
+### Non-Markovian Convergence
+
+* **History Refinement:** Refine history sampling interval; verify Virtual Observer observables converge.
+* **Provenance Stability:** Distribution of $t_{emit}$ solutions must be stable.
+* **Null Test:** Use wrong kernel to ensure stability breaks as expected.

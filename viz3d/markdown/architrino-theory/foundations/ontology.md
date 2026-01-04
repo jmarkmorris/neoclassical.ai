@@ -43,3 +43,34 @@ We distinguish three layers:
 **Key distinction:**  
 - **Ontic level** (absolute observer): architrinos in the Euclidean void evolving in absolute time.  
 - **Epistemic/operational level** (physical observers): tri‑binary assemblies with clocks and detectors moving through, and interacting with, the spacetime medium, constrained by finite field speed \(c_f\) and emergent Lorentz symmetry.
+
+## Addenda (Phil)
+
+### The Absolute Observer and the Ontic/Epistemic Divide
+
+1. **The Absolute Observer (AO)**: Defined as a conceptual probe (not a physical device) capable of indexing the position $\mathbf{x}$, velocity $\mathbf{v}$, and charge $q$ of every architrino relative to the fixed Euclidean 3D void and absolute time $t$. The AO witnesses the "History" (retarded potential) exactly as it was emitted.
+2. **The Physical Observer (PO)**: Any observer composed of architrino assemblies (e.g., humans, tri-binary-based clocks). The PO is subject to the dynamics of the medium; their rulers contract and their clocks dilate relative to the AO’s grid.
+3. **Ontic vs. Epistemic**: The AO represents the **Ontic** state (what exists). The PO represents the **Epistemic** state (what is measurable).
+4. **Simultaneity**: The Absolute Observer witnesses a unique global "Now," defined by the universal parameter $t$. Relativity of simultaneity is an epistemic artifact for physical observers.
+
+### Void vs. Vacuum (The Substrate)
+
+1. **The Euclidean Void**: The fundamental, continuous 3D container $\mathbb{R}^3$. It is rigid, unmoving, and carries no energy. Coordinates $(x,y,z)$ are permanent addresses.
+2. **The Vacuum (Noether Core Sea)**: The physical medium filling the void. It is composed of a dense lattice of coupled pro- and anti-architrino Noether cores (tri-binary assemblies). It is dynamic, carries energy, and has a density $\rho_{vac}$.
+3. **Occupancy**: Most points in the Euclidean Void are unoccupied by architrinos. The "Vacuum" is a sparse network of points compared to the continuum of the Void.
+
+## Addenda (Phil - supplemental)
+
+### The Absolute Observer and the Ontic/Epistemic Divide
+
+* **Absolute Observer (AO):** A conceptual, non-physical probe capable of indexing the exact state (position, velocity, charge) of every architrino relative to the fixed Euclidean 3D void and absolute time $t$. The AO provides the "God's-eye view" or "Laplace's Demon" perspective.
+* **Physical Observer (PO):** Any observer composed of architrino assemblies. The PO is subject to the dynamics of the medium; rulers contract and clocks dilate.
+* **Void vs. Vacuum:**
+  * **Euclidean Void:** The continuous, unmoving 3D container ($\mathbb{R}^3$).
+  * **Vacuum (Spacetime Medium):** The physical sea of coupled pro/anti Noether cores filling the void.
+* **Simultaneity:** The AO witnesses a unique global "Now" ($t$). Relativity of simultaneity is an epistemic artifact experienced by POs.
+
+### Substrate Definition
+
+* **Metric Rigidity:** The void has a fixed metric $\delta_{ij}$. It does not curve.
+* **Occupancy:** Most points in the void are unoccupied. The "Vacuum" is defined by the density of the Noether core lattice.

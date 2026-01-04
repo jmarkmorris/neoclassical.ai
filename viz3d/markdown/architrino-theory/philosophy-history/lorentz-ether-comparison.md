@@ -29,3 +29,22 @@ Key differences from historical ether models:
 - Simulations and derivations are always performed in this preferred frame (virtual observer’s vantage point).
 
 This places the theory as a **neo‑Lorentzian** competitor to Einstein’s spacetime ontology: empirically equivalent where tested, but conceptually rooted in a fixed substrate with explicit microphysics.
+
+## Addenda (Phil)
+
+### Absolute Observer as Neo-Lorentz Ether Frame
+
+* **Lorentz vs. Einstein**: We adopt a **Neo-Lorentzian** ontology. The "Ether" is the Noether Core Sea. The "Ether Frame" is the frame of the Absolute Observer.
+* **Emergence**: Lorentz symmetry is **emergent**. Assemblies moving through the medium experience dynamical deformations (length contraction) and clock-rate changes (time dilation) that make the preferred frame undetectable in standard experiments.
+* **Distinction**: Unlike the 19th-century Aether (a fluid), our medium consists of discrete, coupled assemblies obeying $c_f$ propagation limits.
+
+## Addenda (Phil - supplemental)
+
+### Neo-Lorentzian Interpretation
+
+* **Mapping:** 
+  * Lorentz Ether $\leftrightarrow$ Sea of Coupled Noether Cores.
+  * Ether Rest Frame $\leftrightarrow$ The Absolute Observer's Coordinate System.
+  * Lorentz Invariance $\leftrightarrow$ Emergent dynamical compensation of moving assemblies.
+* **Distinction:** Unlike the classical aether, our "medium" is composed of the same fundamental entities (architrinos) as the matter moving through it.
+* **Invisibility:** The AO frame is physically undetectable in the $v \le c_f$ regime due to assembly contraction.
