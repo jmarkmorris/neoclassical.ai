@@ -8,3 +8,50 @@
    - This density change reduces the effective propagation speed ($c_{eff} < c_f$).
    - The resulting path is "refracted," appearing as a geodesic in a curved manifold to the Physical Observer.
 4. **Coordinate Identity**: $(x,y,z)$ labels are permanent. GR’s diffeomorphism invariance is an approximate symmetry valid only in the low-energy continuum limit of the assembly medium.
+
+## Addenda (Dyna)
+
+### Effective Metric: Virtual vs Physical Observers
+
+**Virtual observer view (substrate level):**
+
+- Underlying geometry is fixed Euclidean:
+  - Spatial metric: \(\delta_{ij}\),
+  - Time parameter: absolute \(t\).
+- Spacetime medium = Noether‑core sea with state variables:
+  - Density \(\rho_\text{core}(x,t)\),
+  - Orientation/strain,
+  - Local stress/energy content,
+  - Potential field \(\Phi(x,t)\) from all assemblies.
+
+From this view, all motion occurs on a flat background; “curvature” is encoded in how the medium affects signal propagation and assembly dynamics.
+
+**Physical observer view (effective level):**
+
+- A physical observer (assembly) infers geometry by:
+  - How its own clock rate \(\tau\) depends on position and motion,
+  - How light‑like signals (tri‑binary photons) propagate between events,
+  - How free‑fall trajectories of test assemblies behave.
+- These inferences can be encapsulated in an effective metric \(g_{\mu\nu}(x)\) such that:
+  - Light follows null geodesics of \(g_{\mu\nu}\),
+  - Free‑fall follows timelike geodesics of \(g_{\mu\nu}\),
+  - Proper time increments satisfy:
+    \[
+    d\tau^2 = -g_{\mu\nu} dx^\mu dx^\nu
+    \]
+    along assembly worldlines.
+
+**Mapping problem:**
+
+We must derive a functional:
+
+\[
+(\delta_{ij}, \Phi, \rho_\text{core}, \text{medium state}) \;\;\longrightarrow\;\; g^{\text{eff}}_{\mu\nu}(x)
+\]
+
+such that:
+
+- In weak‑field, slow‑motion limits, \(g^{\text{eff}}_{\mu\nu}\) matches GR’s metric solutions (Schwarzschild, FRW, etc.) to observational accuracy.
+- Deviations from GR appear only in regimes where the Noether‑core microstructure becomes dynamically important (Planck‑scale cores, extreme densities, self‑hit dominated dynamics).
+
+The effective metric is thus a *derived, observer‑dependent construct* summarizing how the medium and potentials shape assembly‑based measurements, not a fundamental property of the void itself.

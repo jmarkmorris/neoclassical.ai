@@ -7,3 +7,36 @@ The Absolute Observer reveals that what we perceive as "Empty Space" is actually
 1. **Occupancy Density**: Define $\rho_{nc}$ as the number of Noether cores per unit volume of Euclidean void.
 2. **Aether Composition**: The "Vacuum" consists of Helium-like couplings (2 pro-architrino tri-binaries + 2 anti-architrino tri-binaries).
 3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of this aether. An AO sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the density of the aether sea. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box.
+
+## Addenda (Dyna)
+
+### Void vs. Vacuum / Medium
+
+We must keep three notions distinct:
+
+1. **Euclidean Void**  
+   - The continuous 3D geometric substrate \(\mathbb{R}^3\) equipped with the fixed Euclidean metric \(\delta_{ij}\).  
+   - Coordinate points \((x,y,z)\) are permanent labels; they do not move or curve.  
+   - From the virtual observer’s standpoint, the void is an unmoving “stage” on which all architrinos and assemblies play out their dynamics.
+
+2. **Spacetime Medium (“Vacuum”)**  
+   - A physical network of coupled pro/anti Noether cores (tri‑binary assemblies) occupying some subset of the void.  
+   - This medium has:
+     - A local **density** \(\rho_\text{core}(x,t)\),
+     - Local **orientation/strain** (how assemblies are arranged and stressed),
+     - Local **response properties** (effective permittivity, permeability, etc.).  
+   - It is not “nothing”: it is the physical substrate whose collective behavior appears, to physical observers, as spacetime geometry and fields.
+
+3. **Architrino Occupancy**  
+   - At any given \(t\), most points of the continuous void are *unoccupied* by architrinos. Architrinos are sparse point entities; the “vacuum” medium is made of structured assemblies, not a continuum of charge.
+
+**Fixed event identity:**  
+Because the underlying coordinates are fixed, the event \((x_0,y_0,z_0,t_1)\) and \((x_0,y_0,z_0,t_2)\) are the same spatial location at different times, even if \(\rho_\text{core}\) and the local medium state have changed. This allows:
+
+- Precise definition of self‑hit (emitter re‑encountering its own past field at the same spatial point or along its worldline).
+- Tracking of how local medium properties evolve at fixed points in the void.
+
+We avoid using “vacuum” alone without qualification; we prefer:
+- **Void** for the geometric container,  
+- **Medium** or **spacetime fabric** for the Noether‑core sea,  
+- **Occupancy** for local architrino/assembly content.
