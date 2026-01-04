@@ -221,3 +221,14 @@ I don’t just output internal state. I output mock datasets:
 ---
 
 If you want one more tightening pass: I can align this role explicitly to **TOC Chapters 6, 15, 48, 49, and 50**, listing the exact artifacts (figures/tables/benchmarks) I’m responsible for producing in each chapter.
+
+Addenda
+
+## Non-negotiable responsibilities (Logging + Numerical Honesty)
+
+- Maintain the Virtual Observer (VO) logging standard across all simulation tiers, including provenance-resolved field decomposition (emitter_id + emission time t_emit).
+- No major result is accepted without:
+  - VO-based convergence tests (Δt + history-resolution)
+  - cross-integrator checks for critical claims
+  - negative-control runs that fail as expected
+- Ensure reproducibility: every run ships with full metadata (parameters, integrator, tolerances, seeds, commit hash).
