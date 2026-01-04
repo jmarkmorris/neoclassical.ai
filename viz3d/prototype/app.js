@@ -429,6 +429,11 @@ async function showMarkdownPanel(level) {
   if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
     return;
   }
+  if (level.markdownColumns === 1) {
+    markdownTwoColumns = false;
+  } else if (level.markdownColumns === 2) {
+    markdownTwoColumns = true;
+  }
   const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
   let html = sectionCache.get(cacheKey);
   if (!html) {
@@ -734,6 +739,7 @@ async function loadSceneConfig(scenePath) {
         sceneId,
         markdownPath: data.scene?.markdownPath ?? null,
         markdownSection: data.scene?.markdownSection ?? null,
+        markdownColumns: data.scene?.markdownColumns ?? null,
         centerOn: data.scene?.centerOn ?? null,
       };
       levelConfigs[scenePath] = config;
@@ -1078,7 +1084,7 @@ function createStripedSphereNode(nodeData) {
 
   const outlineGeometry = new THREE.EdgesGeometry(sphereGeometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#b5bcc4",
+    color: "#6f6f6f",
     transparent: true,
     opacity: 0.3,
   });
@@ -1171,7 +1177,7 @@ function createBinaryCoreNode(nodeData, useCutaway) {
 
   const outlineGeometry = new THREE.EdgesGeometry(shellGeometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#b5bcc4",
+    color: "#6f6f6f",
     transparent: true,
     opacity: binaryStyle.shellOutlineOpacity,
   });
@@ -1298,7 +1304,7 @@ function createNode(nodeData) {
 
   const outlineGeometry = new THREE.EdgesGeometry(geometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: isReaction ? "#f6dd9c" : "#b5bcc4",
+    color: isReaction ? "#f6dd9c" : "#6f6f6f",
     transparent: true,
     opacity: isReaction ? 0.55 : 0.3,
   });
@@ -1571,6 +1577,7 @@ function buildLevel(levelId) {
     sceneId: config.sceneId ?? null,
     markdownPath: config.markdownPath ?? null,
     markdownSection: config.markdownSection ?? null,
+    markdownColumns: config.markdownColumns ?? null,
     centerOn: config.centerOn,
     group,
     nodes,

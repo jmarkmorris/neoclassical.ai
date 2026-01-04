@@ -4,25 +4,9 @@
     "id": "philosopher_detail_05",
     "name": "Albert Einstein",
     "units": "relative",
-    "markdownPath": "../markdown/architrino-theory/philosophy-history/major-thinkers.md",
-    "markdownSection": "albert einstein general relativity"
+    "markdownPath": "markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownSection": "albert einstein general relativity",
+    "markdownColumns": 1
   },
-  "objects": [
-    {
-      "id": "philosopher",
-      "label": "Albert Einstein",
-      "radius": 2.2,
-      "color": "PURPLE",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "glowRing": true,
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    }
-  ]
+  "objects": []
 }

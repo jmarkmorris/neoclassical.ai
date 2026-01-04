@@ -4,25 +4,9 @@
     "id": "philosopher_detail_33",
     "name": "Leucippus",
     "units": "relative",
-    "markdownPath": "../markdown/architrino-theory/philosophy-history/major-thinkers.md",
-    "markdownSection": "democritus c 460 370 bce leucippus"
+    "markdownPath": "markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownSection": "democritus c 460 370 bce leucippus",
+    "markdownColumns": 1
   },
-  "objects": [
-    {
-      "id": "philosopher",
-      "label": "Leucippus",
-      "radius": 2.2,
-      "color": "#5a1f2e",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "glowRing": true,
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    }
-  ]
+  "objects": []
 }

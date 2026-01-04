@@ -4,25 +4,9 @@
     "id": "philosopher_detail_11",
     "name": "Carlo Rovelli",
     "units": "relative",
-    "markdownPath": "../markdown/architrino-theory/philosophy-history/major-thinkers.md",
-    "markdownSection": "loop quantum gravity rovelli smolin ashtekar"
+    "markdownPath": "markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownSection": "loop quantum gravity rovelli smolin ashtekar",
+    "markdownColumns": 1
   },
-  "objects": [
-    {
-      "id": "philosopher",
-      "label": "Carlo Rovelli",
-      "radius": 2.2,
-      "color": "#243d8f",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "glowRing": true,
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    }
-  ]
+  "objects": []
 }

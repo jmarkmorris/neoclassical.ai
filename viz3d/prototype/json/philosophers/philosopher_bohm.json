@@ -4,25 +4,9 @@
     "id": "philosopher_detail_12",
     "name": "David Bohm",
     "units": "relative",
-    "markdownPath": "../markdown/architrino-theory/philosophy-history/major-thinkers.md",
-    "markdownSection": "david bohm 1917 1992"
+    "markdownPath": "markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownSection": "david bohm 1917 1992",
+    "markdownColumns": 1
   },
-  "objects": [
-    {
-      "id": "philosopher",
-      "label": "David Bohm",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "glowRing": true,
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    }
-  ]
+  "objects": []
 }
