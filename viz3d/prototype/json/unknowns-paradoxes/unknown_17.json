@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknown_17",
+    "name": "The Lithium Problem",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-theory/philosophy-history/unknowns-paradoxes.md",
+    "markdownSection": "The Lithium Problem",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

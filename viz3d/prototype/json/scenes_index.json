@@ -729,6 +729,11 @@
       "id": "uue",
       "name": "Ununennium (UUE)",
       "path": "json/elements/uue.json"
+    },
+    {
+      "id": "unknowns_paradoxes",
+      "name": "Unknowns & Paradoxes",
+      "path": "json/unknowns_paradoxes.json"
     }
   ]
 }

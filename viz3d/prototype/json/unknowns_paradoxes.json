@@ -1,0 +1,351 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknowns_paradoxes",
+    "name": "Unknowns & Paradoxes",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "unknown_1",
+      "label": "The Nature of Dark Energy",
+      "radius": 1.6,
+      "color": "#243d8f",
+      "position": [
+        -12.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_01.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_2",
+      "label": "The Identity of Dark Matter",
+      "radius": 1.6,
+      "color": "#2f6b6f",
+      "position": [
+        -6.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_02.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_3",
+      "label": "The Cosmological Constant Problem",
+      "radius": 1.6,
+      "color": "#5a1f2e",
+      "position": [
+        0.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_03.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_4",
+      "label": "The Hierarchy Problem (Naturalness)",
+      "radius": 1.6,
+      "color": "PURPLE",
+      "position": [
+        6.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_04.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_5",
+      "label": "The Hubble Tension",
+      "radius": 1.6,
+      "color": "#6a3c3c",
+      "position": [
+        12.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_05.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_6",
+      "label": "Baryon Asymmetry",
+      "radius": 1.6,
+      "color": "#7a3f4a",
+      "position": [
+        -12.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_06.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_7",
+      "label": "Neutrino Mass and Nature",
+      "radius": 1.6,
+      "color": "#4f315f",
+      "position": [
+        -6.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_07.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_8",
+      "label": "The Strong CP Problem",
+      "radius": 1.6,
+      "color": "#556277",
+      "position": [
+        0.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_08.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_9",
+      "label": "Quantum Gravity and Renormalizability",
+      "radius": 1.6,
+      "color": "#2f4f7a",
+      "position": [
+        6.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_09.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_10",
+      "label": "The Black Hole Information Paradox",
+      "radius": 1.6,
+      "color": "#5a3c7a",
+      "position": [
+        12.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_10.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_11",
+      "label": "The Mechanism of Inflation",
+      "radius": 1.6,
+      "color": "#2c2c60",
+      "position": [
+        -12.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_11.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_12",
+      "label": "The Flavor Problem",
+      "radius": 1.6,
+      "color": "#3f6a5a",
+      "position": [
+        -6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_12.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_13",
+      "label": "The $S_8$ (Structure Growth) Tension",
+      "radius": 1.6,
+      "color": "#3a5f9f",
+      "position": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_13.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_14",
+      "label": "Proton Stability",
+      "radius": 1.6,
+      "color": "#2a3b5a",
+      "position": [
+        6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_14.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_15",
+      "label": "Vacuum Instability",
+      "radius": 1.6,
+      "color": "#2c2f45",
+      "position": [
+        12.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_15.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_16",
+      "label": "The Muon $g-2$ and Lepton Universality Anomalies",
+      "radius": 1.6,
+      "color": "#5f5f7a",
+      "position": [
+        -12.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_16.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_17",
+      "label": "The Lithium Problem",
+      "radius": 1.6,
+      "color": "#3c6a7a",
+      "position": [
+        -6.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_17.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_18",
+      "label": "Confinement and the Mass Gap",
+      "radius": 1.6,
+      "color": "#5a4a7a",
+      "position": [
+        0.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_18.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_19",
+      "label": "The Arrow of Time",
+      "radius": 1.6,
+      "color": "#4b678f",
+      "position": [
+        6.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_19.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "unknown_20",
+      "label": "The Trans-Planckian Censorship and the Swampland",
+      "radius": 1.6,
+      "color": "#2c567a",
+      "position": [
+        12.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_20.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

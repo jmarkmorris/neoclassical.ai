@@ -547,6 +547,23 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "unknowns_paradoxes",
+      "label": "Unknowns & Paradoxes",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        0.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns_paradoxes.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

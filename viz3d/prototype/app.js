@@ -352,7 +352,11 @@ function normalizeMarkdownKey(text) {
 function parseMarkdownHeading(line) {
   const match = line.match(/^(#{2,3})\s+(.*)$/);
   if (!match) {
-    return null;
+    const numbered = line.match(/^\*\*(\d+)\.\s+(.+?)\*\*/);
+    if (!numbered) {
+      return null;
+    }
+    return { level: 3, title: numbered[2].trim() };
   }
   const level = match[1].length;
   let title = match[2].trim();
