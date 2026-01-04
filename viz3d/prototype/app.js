@@ -1084,7 +1084,7 @@ function createStripedSphereNode(nodeData) {
 
   const outlineGeometry = new THREE.EdgesGeometry(sphereGeometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#6f6f6f",
+    color: "#7a7a7a",
     transparent: true,
     opacity: 0.3,
   });
@@ -1177,7 +1177,7 @@ function createBinaryCoreNode(nodeData, useCutaway) {
 
   const outlineGeometry = new THREE.EdgesGeometry(shellGeometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#6f6f6f",
+    color: "#7a7a7a",
     transparent: true,
     opacity: binaryStyle.shellOutlineOpacity,
   });
@@ -1304,7 +1304,7 @@ function createNode(nodeData) {
 
   const outlineGeometry = new THREE.EdgesGeometry(geometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: isReaction ? "#f6dd9c" : "#6f6f6f",
+    color: isReaction ? "#f6dd9c" : "#7a7a7a",
     transparent: true,
     opacity: isReaction ? 0.55 : 0.3,
   });

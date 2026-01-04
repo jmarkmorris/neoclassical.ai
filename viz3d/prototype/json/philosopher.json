@@ -11,7 +11,7 @@
       "id": "philosopher_1",
       "label": "Abdus Salam",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#5f5f7a",
       "position": [
         -24.0,
         15.0,
@@ -29,7 +29,7 @@
       "id": "philosopher_2",
       "label": "Abhay Ashtekar",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#7a3f4a",
       "position": [
         -18.0,
         15.0,
@@ -47,7 +47,7 @@
       "id": "philosopher_3",
       "label": "Alan Guth",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#4b678f",
       "position": [
         -12.0,
         15.0,
@@ -65,7 +65,7 @@
       "id": "philosopher_4",
       "label": "Albert Einstein",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#7a2f5a",
       "position": [
         -6.0,
         15.0,
@@ -83,7 +83,7 @@
       "id": "philosopher_5",
       "label": "Albert Einstein",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#2a3b5a",
       "position": [
         0.0,
         15.0,
@@ -101,7 +101,7 @@
       "id": "philosopher_6",
       "label": "Alfred North Whitehead",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#2c2c60",
       "position": [
         6.0,
         15.0,
@@ -119,7 +119,7 @@
       "id": "philosopher_7",
       "label": "Andrei Sakharov",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#5a4a7a",
       "position": [
         12.0,
         15.0,
@@ -137,7 +137,7 @@
       "id": "philosopher_8",
       "label": "Antony Valentini",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#3f6a5a",
       "position": [
         18.0,
         15.0,
@@ -155,7 +155,7 @@
       "id": "philosopher_9",
       "label": "Aristotle",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#2c2f45",
       "position": [
         24.0,
         15.0,
@@ -173,7 +173,7 @@
       "id": "philosopher_10",
       "label": "Baruch Spinoza",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#3c6a7a",
       "position": [
         -24.0,
         9.0,
@@ -191,7 +191,7 @@
       "id": "philosopher_11",
       "label": "Carlo Rovelli",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#2f6b6f",
       "position": [
         -18.0,
         9.0,
@@ -209,7 +209,7 @@
       "id": "philosopher_12",
       "label": "David Bohm",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#3a5f9f",
       "position": [
         -12.0,
         9.0,
@@ -227,7 +227,7 @@
       "id": "philosopher_13",
       "label": "David Hume",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#2c6c7e",
       "position": [
         -6.0,
         9.0,
@@ -245,7 +245,7 @@
       "id": "philosopher_14",
       "label": "Democritus",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#4f315f",
       "position": [
         0.0,
         9.0,
@@ -263,7 +263,7 @@
       "id": "philosopher_15",
       "label": "Edward Witten",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#5a3c7a",
       "position": [
         6.0,
         9.0,
@@ -281,7 +281,7 @@
       "id": "philosopher_16",
       "label": "Epicurus",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#5a1f2e",
       "position": [
         12.0,
         9.0,
@@ -299,7 +299,7 @@
       "id": "philosopher_17",
       "label": "Erik Verlinde",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#7a4a1f",
       "position": [
         18.0,
         9.0,
@@ -317,7 +317,7 @@
       "id": "philosopher_18",
       "label": "Ernst Mach",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#6a3c3c",
       "position": [
         24.0,
         9.0,
@@ -335,7 +335,7 @@
       "id": "philosopher_19",
       "label": "Erwin Schrodinger",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#2c567a",
       "position": [
         -24.0,
         3.0,
@@ -353,7 +353,7 @@
       "id": "philosopher_20",
       "label": "Gerard 't Hooft",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#556277",
       "position": [
         -18.0,
         3.0,
@@ -371,7 +371,7 @@
       "id": "philosopher_21",
       "label": "Gottfried Wilhelm Leibniz",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#2f4f7a",
       "position": [
         -12.0,
         3.0,
@@ -389,7 +389,7 @@
       "id": "philosopher_22",
       "label": "Hendrik Lorentz",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#243d8f",
       "position": [
         -6.0,
         3.0,
@@ -407,7 +407,7 @@
       "id": "philosopher_23",
       "label": "Hugh Everett III",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "PURPLE",
       "position": [
         0.0,
         3.0,
@@ -425,7 +425,7 @@
       "id": "philosopher_24",
       "label": "Immanuel Kant",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#1c2a4f",
       "position": [
         6.0,
         3.0,
@@ -443,7 +443,7 @@
       "id": "philosopher_25",
       "label": "Imre Lakatos",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#5f5f7a",
       "position": [
         12.0,
         3.0,
@@ -461,7 +461,7 @@
       "id": "philosopher_26",
       "label": "Isaac Newton",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#7a3f4a",
       "position": [
         18.0,
         3.0,
@@ -479,7 +479,7 @@
       "id": "philosopher_27",
       "label": "John Archibald Wheeler",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#4b678f",
       "position": [
         24.0,
         3.0,
@@ -497,7 +497,7 @@
       "id": "philosopher_28",
       "label": "John Bell",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#7a2f5a",
       "position": [
         -24.0,
         -3.0,
@@ -515,7 +515,7 @@
       "id": "philosopher_29",
       "label": "Joseph Polchinski",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#2a3b5a",
       "position": [
         -18.0,
         -3.0,
@@ -533,7 +533,7 @@
       "id": "philosopher_30",
       "label": "Karl Popper",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#2c2c60",
       "position": [
         -12.0,
         -3.0,
@@ -551,7 +551,7 @@
       "id": "philosopher_31",
       "label": "Lee Smolin",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#5a4a7a",
       "position": [
         -6.0,
         -3.0,
@@ -569,7 +569,7 @@
       "id": "philosopher_32",
       "label": "Lee Smolin",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#3f6a5a",
       "position": [
         0.0,
         -3.0,
@@ -587,7 +587,7 @@
       "id": "philosopher_33",
       "label": "Leucippus",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#2c2f45",
       "position": [
         6.0,
         -3.0,
@@ -605,7 +605,7 @@
       "id": "philosopher_34",
       "label": "Louis de Broglie",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#3c6a7a",
       "position": [
         12.0,
         -3.0,
@@ -623,7 +623,7 @@
       "id": "philosopher_35",
       "label": "Lucien Hardy",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#2f6b6f",
       "position": [
         18.0,
         -3.0,
@@ -641,7 +641,7 @@
       "id": "philosopher_36",
       "label": "Ludwig Boltzmann",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#3a5f9f",
       "position": [
         24.0,
         -3.0,
@@ -659,7 +659,7 @@
       "id": "philosopher_37",
       "label": "Matthew Leifer",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#2c6c7e",
       "position": [
         -24.0,
         -9.0,
@@ -677,7 +677,7 @@
       "id": "philosopher_38",
       "label": "Max Planck",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#4f315f",
       "position": [
         -18.0,
         -9.0,
@@ -695,7 +695,7 @@
       "id": "philosopher_39",
       "label": "Murray Gell-Mann",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#5a3c7a",
       "position": [
         -12.0,
         -9.0,
@@ -713,7 +713,7 @@
       "id": "philosopher_40",
       "label": "Nancy Cartwright",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#5a1f2e",
       "position": [
         -6.0,
         -9.0,
@@ -731,7 +731,7 @@
       "id": "philosopher_41",
       "label": "Niels Bohr",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#7a4a1f",
       "position": [
         0.0,
         -9.0,
@@ -749,7 +749,7 @@
       "id": "philosopher_42",
       "label": "Paul Dirac",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#6a3c3c",
       "position": [
         6.0,
         -9.0,
@@ -767,7 +767,7 @@
       "id": "philosopher_43",
       "label": "Pierre-Simon Laplace",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#2c567a",
       "position": [
         12.0,
         -9.0,
@@ -803,7 +803,7 @@
       "id": "philosopher_45",
       "label": "Rene Descartes",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#2f4f7a",
       "position": [
         24.0,
         -9.0,
@@ -839,7 +839,7 @@
       "id": "philosopher_47",
       "label": "Rob Spekkens",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "PURPLE",
       "position": [
         -18.0,
         -15.0,
@@ -857,7 +857,7 @@
       "id": "philosopher_48",
       "label": "Roger Penrose",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#1c2a4f",
       "position": [
         -12.0,
         -15.0,
@@ -875,7 +875,7 @@
       "id": "philosopher_49",
       "label": "Sabine Hossenfelder",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#5f5f7a",
       "position": [
         -6.0,
         -15.0,
@@ -893,7 +893,7 @@
       "id": "philosopher_50",
       "label": "Sheldon Glashow",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#7a3f4a",
       "position": [
         0.0,
         -15.0,
@@ -911,7 +911,7 @@
       "id": "philosopher_51",
       "label": "Stephen Wolfram",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#4b678f",
       "position": [
         6.0,
         -15.0,
@@ -929,7 +929,7 @@
       "id": "philosopher_52",
       "label": "Steven Weinberg",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#7a2f5a",
       "position": [
         12.0,
         -15.0,
@@ -947,7 +947,7 @@
       "id": "philosopher_53",
       "label": "Thomas Kuhn",
       "radius": 2.2,
-      "color": "#5a1f2e",
+      "color": "#2a3b5a",
       "position": [
         18.0,
         -15.0,
@@ -965,7 +965,7 @@
       "id": "philosopher_54",
       "label": "Werner Heisenberg",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#2c2c60",
       "position": [
         24.0,
         -15.0,
