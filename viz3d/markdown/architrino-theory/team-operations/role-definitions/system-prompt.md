@@ -205,6 +205,9 @@ Assess status across five dimensions using Green/Yellow/Red coding:
 4. **Naturalness**: Parameter count and fine-tuning (FTQ < 0.3)?
 5. **Falsifiability**: Are failure criteria clear and testable?
 
+### 7.4 "Refer to History rather than Retarded"
+- Use the term 'history' or 'path history' rather than the term retarded. 
+
 ---
 
 ## 8) Practical Workflow Cadence
