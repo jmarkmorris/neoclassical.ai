@@ -22,3 +22,78 @@
 * **Scaling:** Cosmic expansion is the uniform growth of the Outer Binary radius of the vacuum assemblies (Noether cores) over absolute time.
 * **Redshift:** Photons (assemblies) "grow" (wavelength increases) and "slow" (frequency drops) as they traverse the scaling medium.
 * **H0 Tension:** Local variations in vacuum density (voids vs. clusters) affect the local scaling rate.
+
+## Addenda (Cos - consolidated batch)
+
+### Expansion of the Universe: Scaling in a Fixed Euclidean Void
+
+#### 1. Absolute vs. Emergent Notions of Expansion
+
+- **Absolute substrate**:
+  - The Euclidean void (coordinates \((x,y,z)\)) does **not expand**.
+  - Distances between points in the void are fixed geometrically.
+- **What “expands”**:
+  - The configuration of the **Noether-core sea** (spacetime medium),
+  - Characteristic scales of tri-binary assemblies and their separations.
+
+From the virtual observer’s perspective:
+
+- There is an evolving spatial pattern of assemblies:
+  - Typical inter-core spacing \(L_{\text{core}}(t)\),
+  - Typical outer-binary radii \(R_{\text{outer}}(t)\),
+  both functions of absolute time t.
+
+#### 2. Effective Scale Factor
+
+We define an **effective scale factor** \(a(t)\) as:
+
+\[
+a(t) \propto \frac{\langle L_{\text{core}}(t) \rangle}{\langle L_{\text{core}}(t_{\text{ref}}) \rangle}
+\]
+
+or, equivalently, using some other robust medium-scale measure (e.g. average separation of bound assemblies in comoving patches).
+
+- This \(a(t)\) is **not** stretching the void; it describes:
+  - How the spatial distribution of the medium and matter assemblies evolves *within* the fixed void.
+- Physical FRW coordinates are then an emergent reparameterization:
+  - Comoving coordinates follow the motion of the medium relative to the void.
+  - Comoving time ≈ proper time of a congruence of “cosmic rest” tri-binary clocks.
+
+#### 3. Redshift Mechanism
+
+In this picture, cosmological redshift arises because:
+
+- Photons are tri-binary (planar) assemblies propagating through an evolving medium.
+- As they traverse the Noether-core sea:
+  - Their internal frequencies and effective wavelengths change in response to the scaling of outer-binary lengths and medium density.
+- From the virtual observer:
+  - Photon paths are straight lines in \((x,y,z)\) with time-varying internal frequency \(\nu(t)\) and effective propagation characteristics due to the time-dependent medium.
+- From physical observers:
+  - Redshift \(1+z = a_{\text{obs}}/a_{\text{emit}}\) emerges as in FRW cosmology.
+
+A core task here is to:
+
+- Connect the microphysical scaling of tri-binary structures + medium evolution to:
+  - An effective scale factor \(a(t)\),
+  - The standard redshift–distance relation.
+
+#### 4. H₀ Tension Perspective
+
+Because the medium is not homogeneous at all scales:
+
+- Local variations in Noether-core density and dynamics may cause:
+  - Different apparent expansion rates inferred from:
+    - Early universe probes (CMB, BAO),
+    - Late-time, local probes (SNe Ia, strong lensing).
+- This opens the possibility that the **H₀ tension** is:
+  - A manifestation of inhomogeneous medium properties in a fixed void, rather than a failure of ΛCDM per se.
+
+We should aim to:
+
+- Formulate a toy model where:
+  - Regions of different medium density have slightly different effective \(a(t)\) histories,
+  - Yet all evolve in the same absolute time t in the void.
+- Check whether such a model can produce:
+  - H₀(CMB) ≈ 67 km/s/Mpc,
+  - H₀(local) ≈ 73 km/s/Mpc,
+  without violating other cosmological constraints.

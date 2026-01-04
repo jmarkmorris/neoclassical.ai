@@ -15,3 +15,11 @@ While the Absolute Observer is a powerful tool, it introduces a "Hard Wall" for 
 1. **The Hard Wall**: If the Absolute Frame is detectable by any physical experiment (e.g., Michelson-Morley) at $\Delta c/c > 10^{-17}$, the theory fails.
 2. **Required Conspiracy**: We must derive that assembly forces naturally contract dimensions by $\sqrt{1-v^2/c^2}$ relative to the Absolute Grid.
 3. **Vacuum Drag**: If the "Sea of Cores" induces drag that slows cosmological bodies without a counter-mechanism, the theory is falsified.
+
+## Addenda (Red - supplemental)
+
+### Critical Stop Conditions
+
+* **$c_f$ Variance:** If field speed varies in the true void, theory fails.
+* **Vacuum Drag:** If "Sea of Cores" causes orbital decay (drag) on planets without a counter-mechanism, theory fails.
+* **Lorentz Leakage:** If absolute motion affects atomic spectra > $10^{-17}$, theory fails.
