@@ -438,7 +438,7 @@ The architrino project is positioned as:
 
 ---
 
-## 10. Process Philosophy & Organicism (Continued)
+## 10. Process Philosophy & Organicism
 
 ### **Alfred North Whitehead (1861–1947)**
 **Core belief**: 

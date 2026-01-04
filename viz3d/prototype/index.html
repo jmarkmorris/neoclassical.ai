@@ -145,10 +145,15 @@
         <div id="periodic-grid"></div>
         <div id="periodic-legend"></div>
       </div>
-      <div id="hud">
-        <div class="hud-title">neoclassical.ai</div>
-        <div class="hud-line">Click/tap a sphere to descend</div>
-        <div class="hud-line">Pinch in/out to zoom, drag to pan</div>
+      <div id="hud" role="button" aria-expanded="false" aria-controls="info-drawer" tabindex="0">
+        <div class="hud-header">
+          <div class="hud-title">neoclassical.ai</div>
+          <div class="hud-info-icon" aria-hidden="true">i</div>
+        </div>
+        <div class="hud-line">Click/tap a glowing sphere to descend</div>
+      </div>
+      <div id="info-drawer" aria-hidden="true">
+        <div id="info-body"></div>
       </div>
     </div>
     <script type="module" src="./app.js"></script>

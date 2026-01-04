@@ -32,6 +32,9 @@ const mathJaxScript = document.getElementById("mathjax-script");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
+const hud = document.getElementById("hud");
+const infoDrawer = document.getElementById("info-drawer");
+const infoBody = document.getElementById("info-body");
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -159,6 +162,8 @@ let pendingMathTypeset = false;
 let activeMarkdownPath = null;
 let markdownTwoColumns = true;
 let haloSeed = 0;
+let infoDrawerOpen = false;
+const infoMarkdownPath = "info.md";
 const rootScenePath = "json/physics_frontiers.json";
 let sceneIndex = [];
 let sceneIndexReady = false;
@@ -390,6 +395,52 @@ async function showMarkdownPanel(level) {
   activeMarkdownPath = markdownPath;
   applyMarkdownLayout();
   typesetMarkdown();
+}
+
+async function renderInfoDrawer() {
+  if (!infoBody) {
+    return;
+  }
+  let html = markdownCache.get(infoMarkdownPath);
+  if (!html) {
+    try {
+      const response = await fetch(infoMarkdownPath);
+      if (!response.ok) {
+        throw new Error(`Failed to load info markdown: ${infoMarkdownPath}`);
+      }
+      const text = await response.text();
+      html = markdownRenderer ? markdownRenderer.render(text) : `<pre>${escapeHtml(text)}</pre>`;
+      markdownCache.set(infoMarkdownPath, html);
+    } catch (error) {
+      console.error(error);
+      html = `<p>Unable to load info.</p>`;
+    }
+  }
+  infoBody.innerHTML = html;
+}
+
+async function toggleInfoDrawer() {
+  if (!hud || !infoDrawer) {
+    return;
+  }
+  await setInfoDrawer(!infoDrawerOpen);
+}
+
+async function setInfoDrawer(open) {
+  if (!hud || !infoDrawer) {
+    return;
+  }
+  if (infoDrawerOpen === open) {
+    return;
+  }
+  infoDrawerOpen = open;
+  hud.classList.toggle("is-open", infoDrawerOpen);
+  hud.setAttribute("aria-expanded", infoDrawerOpen ? "true" : "false");
+  infoDrawer.classList.toggle("is-open", infoDrawerOpen);
+  infoDrawer.setAttribute("aria-hidden", infoDrawerOpen ? "false" : "true");
+  if (infoDrawerOpen) {
+    await renderInfoDrawer();
+  }
 }
 
 function updateSceneMarkdown() {
@@ -2986,6 +3037,20 @@ if (docButton) {
     }
     if (currentLevel?.markdownPath) {
       showMarkdownPanel(currentLevel);
+    }
+  });
+}
+
+if (hud) {
+  hud.addEventListener("click", () => {
+    toggleInfoDrawer();
+  });
+  hud.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleInfoDrawer();
+    } else if (event.key === "Escape" && infoDrawerOpen) {
+      setInfoDrawer(false);
     }
   });
 }
