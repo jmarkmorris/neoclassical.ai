@@ -11,122 +11,17 @@
   },
   "objects": [
     {
-      "id": "fermion_core",
+      "id": "electrino",
       "label": "Electrino",
       "scaleExponent": -20,
-      "radius": 2.4,
-      "color": "#4da6ff",
+      "radius": 1.2,
+      "color": "BLUE",
       "position": [
         0.0,
         0.0,
         0.0
       ],
-      "binaryBands": [
-        "outer",
-        "middle",
-        "inner"
-      ],
-      "renderStyle": "binarySphere",
-      "subScenes": []
-    },
-    {
-      "id": "electrino_1",
-      "label": "Electrino",
-      "radius": 0.45,
-      "color": "BLUE",
-      "position": [
-        4.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/electrino.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "electrino_2",
-      "label": "Electrino",
-      "radius": 0.45,
-      "color": "BLUE",
-      "position": [
-        2.0,
-        3.464,
-        0.0
-      ],
-      "subScenes": [
-        "json/electrino.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "electrino_3",
-      "label": "Electrino",
-      "radius": 0.45,
-      "color": "BLUE",
-      "position": [
-        -2.0,
-        3.464,
-        0.0
-      ],
-      "subScenes": [
-        "json/electrino.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "electrino_4",
-      "label": "Electrino",
-      "radius": 0.45,
-      "color": "BLUE",
-      "position": [
-        -4.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/electrino.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "electrino_5",
-      "label": "Electrino",
-      "radius": 0.45,
-      "color": "BLUE",
-      "position": [
-        -2.0,
-        -3.464,
-        0.0
-      ],
-      "subScenes": [
-        "json/electrino.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "electrino_6",
-      "label": "Electrino",
-      "radius": 0.45,
-      "color": "BLUE",
-      "position": [
-        2.0,
-        -3.464,
-        0.0
-      ],
-      "subScenes": [
-        "json/electrino.json"
-      ],
+      "subScenes": [],
       "motion": {
         "type": "fixed"
       }

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosopher_detail_19",
+    "name": "Erwin Schrodinger",
+    "units": "relative",
+    "markdownPath": "../markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownSection": "erwin schrodinger 1887 1961"
+  },
+  "objects": [
+    {
+      "id": "philosopher",
+      "label": "Erwin Schrodinger",
+      "radius": 2.2,
+      "color": "#556277",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "glowRing": true,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

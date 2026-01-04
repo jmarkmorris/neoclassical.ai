@@ -153,6 +153,7 @@ const motionHandlers = {
 const sceneConfigCache = new Map();
 const sceneLoadPromises = new Map();
 const markdownCache = new Map();
+const markdownSectionCache = new Map();
 const markdownRenderer =
   typeof window !== "undefined" && window.markdownit
     ? window.markdownit({ html: false, linkify: true, breaks: false })
@@ -339,6 +340,65 @@ function escapeHtml(text) {
     .replace(/>/g, "&gt;");
 }
 
+function normalizeMarkdownKey(text) {
+  return String(text)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function parseMarkdownHeading(line) {
+  const match = line.match(/^(#{2,3})\s+(.*)$/);
+  if (!match) {
+    return null;
+  }
+  const level = match[1].length;
+  let title = match[2].trim();
+  const boldMatch = title.match(/^\*\*(.+?)\*\*/);
+  if (boldMatch) {
+    title = boldMatch[1].trim();
+  }
+  return { level, title };
+}
+
+function extractMarkdownSection(markdown, sectionKey) {
+  const target = normalizeMarkdownKey(sectionKey);
+  if (!target) {
+    return null;
+  }
+  const lines = markdown.split(/\r?\n/);
+  let sectionTitle = null;
+  let start = -1;
+  let end = lines.length;
+  let startLevel = null;
+  for (let i = 0; i < lines.length; i += 1) {
+    const heading = parseMarkdownHeading(lines[i]);
+    if (!heading) {
+      continue;
+    }
+    const headingKey = normalizeMarkdownKey(heading.title);
+    if (start === -1) {
+      if (headingKey === target) {
+        sectionTitle = heading.title;
+        start = i + 1;
+        startLevel = heading.level;
+      }
+      continue;
+    }
+    if (heading.level <= (startLevel ?? heading.level)) {
+      end = i;
+      break;
+    }
+  }
+  if (start === -1) {
+    return null;
+  }
+  const body = lines.slice(start, end).join("\n").trim();
+  return { title: sectionTitle, body };
+}
+
 function typesetMarkdown() {
   if (!markdownBody) {
     return;
@@ -364,10 +424,13 @@ async function showMarkdownPanel(level) {
     return;
   }
   const markdownPath = level.markdownPath;
-  if (activeMarkdownPath === markdownPath && markdownPanel.classList.contains("is-open")) {
+  const sectionKey = level.markdownSection ?? null;
+  const cacheKey = sectionKey ? `${markdownPath}::${sectionKey}` : markdownPath;
+  if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
     return;
   }
-  let html = markdownCache.get(markdownPath);
+  const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
+  let html = sectionCache.get(cacheKey);
   if (!html) {
     try {
       const response = await fetch(markdownPath);
@@ -375,12 +438,20 @@ async function showMarkdownPanel(level) {
         throw new Error(`Failed to load markdown: ${markdownPath}`);
       }
       const text = await response.text();
-      if (markdownRenderer) {
-        html = markdownRenderer.render(text);
-      } else {
-        html = `<pre>${escapeHtml(text)}</pre>`;
+      let markdownSource = text;
+      if (sectionKey) {
+        const section = extractMarkdownSection(text, sectionKey);
+        if (section) {
+          const heading = section.title ?? level.name ?? "Notes";
+          markdownSource = `## ${heading}\n\n${section.body}`;
+        }
       }
-      markdownCache.set(markdownPath, html);
+      if (markdownRenderer) {
+        html = markdownRenderer.render(markdownSource);
+      } else {
+        html = `<pre>${escapeHtml(markdownSource)}</pre>`;
+      }
+      sectionCache.set(cacheKey, html);
     } catch (error) {
       console.error(error);
       html = `<p>Unable to load markdown.</p>`;
@@ -395,7 +466,7 @@ async function showMarkdownPanel(level) {
   markdownPanel.classList.add("is-open");
   markdownPanel.setAttribute("aria-hidden", "false");
   markdownPanel.inert = false;
-  activeMarkdownPath = markdownPath;
+  activeMarkdownPath = cacheKey;
   applyMarkdownLayout();
   typesetMarkdown();
 }
@@ -617,6 +688,11 @@ async function loadSceneConfig(scenePath) {
           details: obj.details ?? null,
           renderStyle: obj.renderStyle ?? null,
           binaryBands,
+          glowRing: obj.glowRing ?? false,
+          glowRingColor: obj.glowRingColor ?? null,
+          glowRingOpacity: obj.glowRingOpacity ?? null,
+          glowRingThickness: obj.glowRingThickness ?? null,
+          glowRingScale: obj.glowRingScale ?? null,
           stripeColors,
           stripeCount: obj.stripeCount ?? null,
           stripeThickness: obj.stripeThickness ?? null,
@@ -657,6 +733,7 @@ async function loadSceneConfig(scenePath) {
         sceneName,
         sceneId,
         markdownPath: data.scene?.markdownPath ?? null,
+        markdownSection: data.scene?.markdownSection ?? null,
         centerOn: data.scene?.centerOn ?? null,
       };
       levelConfigs[scenePath] = config;
@@ -1001,7 +1078,7 @@ function createStripedSphereNode(nodeData) {
 
   const outlineGeometry = new THREE.EdgesGeometry(sphereGeometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#d5dcff",
+    color: "#b5bcc4",
     transparent: true,
     opacity: 0.3,
   });
@@ -1094,7 +1171,7 @@ function createBinaryCoreNode(nodeData, useCutaway) {
 
   const outlineGeometry = new THREE.EdgesGeometry(shellGeometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: "#d5dcff",
+    color: "#b5bcc4",
     transparent: true,
     opacity: binaryStyle.shellOutlineOpacity,
   });
@@ -1221,7 +1298,7 @@ function createNode(nodeData) {
 
   const outlineGeometry = new THREE.EdgesGeometry(geometry);
   const outlineMaterial = new THREE.LineBasicMaterial({
-    color: isReaction ? "#f6dd9c" : "#d5dcff",
+    color: isReaction ? "#f6dd9c" : "#b5bcc4",
     transparent: true,
     opacity: isReaction ? 0.55 : 0.3,
   });
@@ -1231,6 +1308,33 @@ function createNode(nodeData) {
 
   const labelObject = createLabel(nodeData);
   group.add(labelObject);
+
+  const extraMeshes = [];
+  if (nodeData.glowRing) {
+    const ringRadius = nodeData.radius * (nodeData.glowRingScale ?? 1.06);
+    const ringThickness =
+      nodeData.glowRingThickness ?? Math.max(0.02, nodeData.radius * 0.045);
+    const ringMaterial = new THREE.MeshBasicMaterial({
+      color: nodeData.glowRingColor ?? nodeData.color,
+      transparent: true,
+      opacity: nodeData.glowRingOpacity ?? 0.35,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    const ringGeometry = new THREE.TorusGeometry(
+      ringRadius,
+      ringThickness,
+      12,
+      64
+    );
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    ring.rotation.x = Math.PI / 2;
+    ring.renderOrder = -1;
+    ring.userData.isGlowRing = true;
+    group.add(ring);
+    extraMeshes.push({ mesh: ring, baseOpacity: ringMaterial.opacity });
+  }
 
   let halo = null;
   if (nodeData.childScene) {
@@ -1263,6 +1367,7 @@ function createNode(nodeData) {
       outline: outlineMaterial.opacity,
       label: 1,
     },
+    extraMeshes,
   };
 }
 
@@ -1465,6 +1570,7 @@ function buildLevel(levelId) {
     name: config.sceneName ?? levelId,
     sceneId: config.sceneId ?? null,
     markdownPath: config.markdownPath ?? null,
+    markdownSection: config.markdownSection ?? null,
     centerOn: config.centerOn,
     group,
     nodes,
@@ -1717,6 +1823,24 @@ function updateLevelLabelWrap(level) {
       node.labelObject.element.style.maxWidth = `${maxWidth}px`;
       node.labelObject.element.style.width = `${maxWidth}px`;
     }
+  });
+}
+
+function updateGlowRingOrientation(level) {
+  if (!level?.nodes?.length) {
+    return;
+  }
+  level.nodes.forEach((node) => {
+    if (!node.extraMeshes || !node.extraMeshes.length) {
+      return;
+    }
+    node.extraMeshes.forEach((entry) => {
+      const mesh = entry.mesh;
+      if (!mesh?.userData?.isGlowRing) {
+        return;
+      }
+      mesh.quaternion.copy(camera.quaternion);
+    });
   });
 }
 
@@ -3027,9 +3151,12 @@ function animate(now = 0) {
     updateLevelLinks(transitionState.toLevel);
     updateLevelLabelWrap(transitionState.fromLevel);
     updateLevelLabelWrap(transitionState.toLevel);
+    updateGlowRingOrientation(transitionState.fromLevel);
+    updateGlowRingOrientation(transitionState.toLevel);
   } else {
     updateLevelLinks(currentLevel);
     updateLevelLabelWrap(currentLevel);
+    updateGlowRingOrientation(currentLevel);
   }
 
   renderer.render(scene, camera);

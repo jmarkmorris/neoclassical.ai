@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosopher_detail_18",
+    "name": "Ernst Mach",
+    "units": "relative",
+    "markdownPath": "../markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownSection": "ernst mach 1838 1916"
+  },
+  "objects": [
+    {
+      "id": "philosopher",
+      "label": "Ernst Mach",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "glowRing": true,
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}
