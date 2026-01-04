@@ -6,7 +6,7 @@
 from manim import *
 
 '''
-The idea is to animate the 3D path of point charges in a Noether core as the orbitals precess.
+The idea is to animate the 3D path of architrinos in a Noether core as the orbitals precess.
 
 What we are animating here doesn't seem to match the definition of Lissajous figure which are 2D, and which trace the coordinate
 given by two oscillations in different spatial dimensions.

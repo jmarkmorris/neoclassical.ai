@@ -108,13 +108,13 @@ Emergent Assembly
 The Primal Assembly
 It’s the Standing Waves! Doh!
 The Point Potential Binary
-The Orbiting Point Charge Binary I
-The Orbiting Point Charge Binary II
-The Orbiting Point Charge Binary III
-The Orbiting Point Charge Binary IV
-The Orbiting Point Charge Binary V
+The Orbiting Architrino Binary I
+The Orbiting Architrino Binary II
+The Orbiting Architrino Binary III
+The Orbiting Architrino Binary IV
+The Orbiting Architrino Binary V
 The Binary Curvature Limit Matches the Planck Scale
-Point Charges Implement Asymptotic Safety
+Architrinos Implement Asymptotic Safety
 The Polar Vortices of Potential of a Binary
 Accounting for h-bar
 The Noether Core
@@ -128,7 +128,7 @@ Noether Core Superposition
 Tilting Tensorsial Tri-Binaries
 Noether Cores and Polar Personality Charges
 Spin and Noether Core Geometry
-Are Orbiting Point Charges the Perfect Blackbody?
+Are Orbiting Architrinos the Perfect Blackbody?
 Binary Capture, Nested Binaries, and Stability
 Pro and Anti Noether Cores
 Fermi-Dirac and Bose-Einstein Transformation
@@ -248,7 +248,7 @@ Debate : Alan Guth vs. Roger Penrose
 Sir Roger Penrose : CCC
 Subir Sarkar on Dark Energy
 The Chronology of Nature
-Planck Epoch : Peak Density of Energetic Point Charges
+Planck Epoch : Peak Density of Energetic Architrinos
 Grand Unification Epoch : Binaries Dominate
 Inflationary Epoch : Noether Cores Form
 ElectroWeak Epoch : Personality Charges Bond to Noether Cores
@@ -261,7 +261,7 @@ Photon Epoch : Nuclear Assembly Plasma
 Recombination : Counter-Rotating Coaxial Assemblies Launch
 Dark Ages : CMBR Counter-Rotating Coaxial Assemblies Launch
 Remapping the Big Bang to SMBH Jet and/or Surface Emissions
-Point Charge Plasma Outpacing Field Speed
+Architrino Plasma Outpacing Field Speed
 Higgs Spacetime Emissions
 Assembly Formation Dynamics
 Mapping Binary Assembly and CMB
@@ -290,7 +290,7 @@ Cosmic Inflation is Wrong. Long Live Inflation!
 Transforming Guth to Truth
 Ontological Transformation of the Big Bang
 Particle Rain
-Point Charge Cosmology RuleZ!
+Architrino Cosmology RuleZ!
 The Universe Expands In Place
 Positive Infinity Meets Negative Infinity
 The Dynamical Steady State
@@ -359,7 +359,7 @@ Is Fundamental Knowledge of Nature Risky?
 Radioactivity and the Drake Equation
 Quantum Ontology and Metaphysics
 Paradoxes Are Errors in Thinking
-Big Picture of Point Charge Theory
+Big Picture of Architrino Theory
 Simulation and Ai
 Ai Needs a Symmetry Breaking Point.
 NPQG LangChain
@@ -369,7 +369,7 @@ Is the Universe a Simulation?
 Are We AI?
 Dear PDG, Let’s Talk!
 Dear Particle Data Group
-Point Charge Provenance Simulation and Technology
+Architrino Provenance Simulation and Technology
 Depicting Assemblies and Reactions as Paths
 The Point Potential Era
 What is Next for NPQG?

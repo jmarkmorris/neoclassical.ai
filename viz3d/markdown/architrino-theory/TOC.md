@@ -305,7 +305,7 @@
 
 ### Chapter 36: The Hierarchy Problem and Asymptotic Safety
 - Why Gravity is Weak: Energy Shielding and Scale
-- Point Charges Implement Asymptotic Safety
+- Architrinos Implement Asymptotic Safety
 - Renormalization and Effective Field Theory Emergence
 - Unifying Forces Through Geometry
 
@@ -422,7 +422,7 @@
 ### Chapter 49: Provenance Tracking and Visualization
 - Depicting Assemblies and Reactions as Paths
 - Animation and Simulation of Fermion Architecture
-- Point Charge Provenance and Reaction Networks
+- Architrino Provenance and Reaction Networks
 - Limits of Memory and Computation
 
 ### Chapter 50: Predictions and Experimental Roadmap

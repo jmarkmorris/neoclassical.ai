@@ -8,7 +8,7 @@
 # that's it, there is no other divergence in the universe. This is it.
 # so that is another characteristic of the unit potentials.
 # Show the divergence relative to the eight-ball (t, x, y, z, vx, vy, vz, q)
-# and the charge divergence for each point charge is what? 
+# and the charge divergence for each architrino is what? 
 # We have potential flow rate = q  dA/dt . Interesting, is it really a flow rate in terms of area of a sphere? Hmmm.  
 # We treat the potential as if it releasing spherical surfaces with a scalar potential at the origin
 # The potential comes down the 1/r curve.
@@ -25,8 +25,8 @@
 # It would make sense to at least have a trace of how all the dimensional analysis arises.
 # oh also we need to talk about the permittivity of free space.  
 # We need permittivity of spacetime to understand photon assemblies and the speed of light through spacetime assemblies.
-# But permittivity of free space doesn't make sense at the level of point charges. It comes later at a higher assembly order.
-# So that is our first adaptation of Maxwell's equations for point charges.
+# But permittivity of free space doesn't make sense at the level of architrinos. It comes later at a higher assembly order.
+# So that is our first adaptation of Maxwell's equations for architrinos.
 # Brunton relates positive divergence to a fluid that is decompressing.  A negative divergence is a fluid compressing.  Interesting.
 
 # if the charge is moving, what is the effective starting charge of each sphere stream?
@@ -36,8 +36,8 @@
 # I'm still unhappy with how this blows up when velocity is < 1. Arghhhh.
 
 
-# Instead, I am looking for the simpler behaviour at the point charge level that then maps directly to the higher level theory and math.
-# which all begs the question it all comes down to which is understanding the specific equations for all cases of two point charges.
+# Instead, I am looking for the simpler behaviour at the architrino level that then maps directly to the higher level theory and math.
+# which all begs the question it all comes down to which is understanding the specific equations for all cases of two architrinos.
 # That comes down to the dirac sphere stream from the emitting charge to the receiving charge.
 # I think I understand much of the influence of the path of the emitter. (the eight ball : t, x, y, z, dx/dt, dy/dt, dz/dt, q)
 # Assuming the sensible idea of constant rate emission of potential.
@@ -45,7 +45,7 @@
 # And once we have that, then we have superposition of action from every possible charge within the designated scope of the
 # simulation, and someday with an AI generated background adding some shaped variation as desired.
 
-# Ok, if we think in terms of each pair of point charges, then each point charge is always intersecting somewhere on the Dirac
+# Ok, if we think in terms of each pair of architrinos, then each architrino is always intersecting somewhere on the Dirac
 # sphere stream of the other. Think of it like a giant ski slope.  
 # If the partner is a like charge the force tends to push you down the ski slope.
 # An electrino, being a negative potential is at the negative pole of potential. A positrino sphere stream exerts action up the slope.
@@ -69,12 +69,12 @@
 # And then see what happens in simulation. 
 # Will this be a simple formula where q1 and q2 resolve the direction of the force?  Prolly. We'll see.
 # Another cool think about this approach is that it is velocity agnostic in a way. 
-# It doesn't care when the point charge velocity blasts through c or @.  
-# We have assigned no a priori fundamental speed limit to the point charge. 
+# It doesn't care when the architrino velocity blasts through c or @.  
+# We have assigned no a priori fundamental speed limit to the architrino. 
 # It's pretty cool (and fortunate) that a natural speed limit emerges in an electrino:positrino binary.
 
-# In a simulation we need to store the path history of all relevant point charges, which could be a few or a lot depending on the objective.
-# The task at every t is to find all the Dirac sphere crossings for each pair of point charges.
+# In a simulation we need to store the path history of all relevant architrinos, which could be a few or a lot depending on the objective.
+# The task at every t is to find all the Dirac sphere crossings for each pair of architrinos.
 # Usually there will only be one crossing, but if v has exceeded @ there may be more than one.
 # We will need efficient algorithms to deterine those crossings. Some algorithms may be simulation objective dependent.
 # There is no doubt many mathematical and computational techniques that will be developed.
@@ -83,7 +83,7 @@
 # That way we could computationally store path extents (A to B) very inexpensively. 
 # This would be the level to do the first pass intersections. 
 # Perfect, you can use this data structure to reduce both the amount of computation and the memory for computing intersections.
-# Most of the cubes for each point charge pair will not have an intersection with time t-now. So those are quickly eliminated.
+# Most of the cubes for each architrino pair will not have an intersection with time t-now. So those are quickly eliminated.
 # You probably want to tune the granularity of the first level cubes.
 #
 # It may makes sense to cache 4D cubes? This is a tradeoff. 

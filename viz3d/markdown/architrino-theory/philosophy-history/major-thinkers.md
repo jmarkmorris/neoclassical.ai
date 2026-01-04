@@ -5,7 +5,7 @@
 This document maps key historical and contemporary figures who have shaped foundational thinking about nature, reality, and the structure of physics. For each, I identify their core commitments and assess how the **architrino/tri-binary framework** (a truly reductionist, Euclidean + absolute-time ontology) **supports, challenges, or transcends** their work.
 
 The architrino project is positioned as:
-- **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite point charges) and their interaction rules.
+- **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite architrinos) and their interaction rules.
 - **Deterministic substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness at the architrino level.
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry and GR emergent.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
@@ -676,7 +676,7 @@ The architrino project is positioned as:
 - ⚠️ **Con**: Wolfram's approach is often **graph-first, geometry-emergent**; we have **geometry-first** (Euclidean 3D), **entities-emergent** (architrino dynamics produce assemblies).
 - ✅ **Pro**: Computational complexity and emergence from simple rules is **shared** (we agree on methodological parsimony).
 
-**Legacy shift**: Computational ideas are **incorporated** (simulations), but ontology is **physical** (point charges in space), not purely computational (abstract graph nodes). Wolfram's hypergraphs may be **useful models**, not fundamental reality.
+**Legacy shift**: Computational ideas are **incorporated** (simulations), but ontology is **physical** (architrinos in space), not purely computational (abstract graph nodes). Wolfram's hypergraphs may be **useful models**, not fundamental reality.
 
 ---
 
@@ -817,7 +817,7 @@ If the architrino/tri-binary framework succeeds empirically, it will not merely 
 
 1.  **Teleology is dead**: No purposes, no final causes, no cosmic goals. The Absolute Observer sees only initial conditions + necessary laws → outcomes. Aristotle, Aquinas, Hegel—all refuted.
 2.  **Idealism is dead**: Reality is not mind-dependent. No Platonic Forms, no Kantian categories structuring experience, no Hegelian Spirit. Architrinos exist at precise (x,y,z,t) coordinates whether or not anyone thinks about them.
-3.  **Transcendentalism is dead**: No realm "beyond" the physical. No noumena, no higher dimensions, no separate mental substance. Only this: point charges in Euclidean void, with linear time.
+3.  **Transcendentalism is dead**: No realm "beyond" the physical. No noumena, no higher dimensions, no separate mental substance. Only this: architrinos in Euclidean void, with linear time.
 4.  **Fundamental Indeterminacy is dead**: Quantum randomness is revealed as the coarse-graining of deterministic architrino dynamics. The Copenhagen interpretation and Heisenberg's ontological uncertainty are rejected.
 5.  **Diffeomorphism Invariance as Ontology is dead**: While coordinate invariance is a powerful mathematical tool for effective theories (GR), the Absolute Observer reveals that **fixed Euclidean coordinates** are the deeper reality. "Returning to the same point" is unambiguous in the void.
 
@@ -842,7 +842,7 @@ Philosophy does not disappear. It matures into **Conceptual Hygiene**:
 
 **This is not the end of philosophy. It is philosophy's graduation from metaphysical speculation to the rigorous auditing of a fully physicalized universe.**
 
-The architrino framework invites us to look directly at the foundations of nature—eternal point charges in a quiet, Euclidean void—and accept the austere beauty of a world governed by absolute necessity.
+The architrino framework invites us to look directly at the foundations of nature—eternal architrinos in a quiet, Euclidean void—and accept the austere beauty of a world governed by absolute necessity.
 
 ---
 
