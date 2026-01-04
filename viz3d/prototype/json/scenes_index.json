@@ -71,6 +71,11 @@
       "path": "json/physics_frontiers.json"
     },
     {
+      "id": "philosopher",
+      "name": "Philosopher Grid",
+      "path": "json/philosopher.json"
+    },
+    {
       "id": "planet",
       "name": "Planet",
       "path": "json/planet.json"

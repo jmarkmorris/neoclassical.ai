@@ -1,0 +1,821 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosopher",
+    "name": "Philosopher Grid",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "philosopher_1",
+      "label": "1",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        -24.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_2",
+      "label": "2",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        -18.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_3",
+      "label": "3",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        -12.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_4",
+      "label": "4",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -6.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_5",
+      "label": "5",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_6",
+      "label": "6",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        6.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_7",
+      "label": "7",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        12.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_8",
+      "label": "8",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        18.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_9",
+      "label": "9",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        24.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_10",
+      "label": "10",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        -24.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_11",
+      "label": "11",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        -18.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_12",
+      "label": "12",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        -12.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_13",
+      "label": "13",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        -6.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_14",
+      "label": "14",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        0.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_15",
+      "label": "15",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        6.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_16",
+      "label": "16",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        12.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_17",
+      "label": "17",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        18.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_18",
+      "label": "18",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        24.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_19",
+      "label": "19",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -24.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_20",
+      "label": "20",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        -18.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_21",
+      "label": "21",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        -12.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_22",
+      "label": "22",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        -6.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_23",
+      "label": "23",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        0.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_24",
+      "label": "24",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        6.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_25",
+      "label": "25",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        12.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_26",
+      "label": "26",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        18.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_27",
+      "label": "27",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        24.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_28",
+      "label": "28",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        -24.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_29",
+      "label": "29",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -18.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_30",
+      "label": "30",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        -12.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_31",
+      "label": "31",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        -6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_32",
+      "label": "32",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_33",
+      "label": "33",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_34",
+      "label": "34",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        12.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_35",
+      "label": "35",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        18.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_36",
+      "label": "36",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        24.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_37",
+      "label": "37",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        -24.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_38",
+      "label": "38",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        -18.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_39",
+      "label": "39",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -12.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_40",
+      "label": "40",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        -6.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_41",
+      "label": "41",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        0.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_42",
+      "label": "42",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        6.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_43",
+      "label": "43",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        12.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_44",
+      "label": "44",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        18.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_45",
+      "label": "45",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        24.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_46",
+      "label": "46",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        -24.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_47",
+      "label": "47",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        -18.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_48",
+      "label": "48",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        -12.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_49",
+      "label": "49",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -6.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_50",
+      "label": "50",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_51",
+      "label": "51",
+      "radius": 1.68,
+      "color": "#243d8f",
+      "position": [
+        6.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_52",
+      "label": "52",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        12.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_53",
+      "label": "53",
+      "radius": 1.68,
+      "color": "#5a1f2e",
+      "position": [
+        18.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosopher_54",
+      "label": "54",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        24.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

@@ -421,7 +421,9 @@
         -6.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/philosopher.json"
+      ],
       "motion": {
         "type": "fixed"
       }
