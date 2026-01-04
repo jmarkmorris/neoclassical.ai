@@ -271,7 +271,7 @@ body {
   display: none;
   z-index: 7;
   padding: 0;
-  background: rgba(8, 10, 18, 0.88);
+  background: rgba(75, 0, 130, 0.88);
   border: 1px solid rgba(160, 170, 220, 0.25);
   border-radius: 14px;
   backdrop-filter: blur(6px);
@@ -290,7 +290,7 @@ body {
   justify-content: space-between;
   gap: 8px;
   padding: 18px 16px 14px;
-  background: #0b0e1a;
+  background: rgba(61, 0, 105, 0.95);
   border-bottom: 1px solid rgba(160, 170, 220, 0.12);
 }
 
