@@ -9,7 +9,7 @@
   "objects": [
     {
       "id": "unknown_1",
-      "label": "The Nature of Dark Energy",
+      "label": "Nature of Dark Energy",
       "radius": 1.6,
       "color": "#243d8f",
       "position": [
@@ -26,7 +26,7 @@
     },
     {
       "id": "unknown_2",
-      "label": "The Identity of Dark Matter",
+      "label": "Identity of Dark Matter",
       "radius": 1.6,
       "color": "#2f6b6f",
       "position": [
@@ -43,7 +43,7 @@
     },
     {
       "id": "unknown_3",
-      "label": "The Cosmological Constant Problem",
+      "label": "Cosmological Constant Problem",
       "radius": 1.6,
       "color": "#5a1f2e",
       "position": [
@@ -60,7 +60,7 @@
     },
     {
       "id": "unknown_4",
-      "label": "The Hierarchy Problem (Naturalness)",
+      "label": "Hierarchy Problem (Naturalness)",
       "radius": 1.6,
       "color": "PURPLE",
       "position": [
@@ -77,7 +77,7 @@
     },
     {
       "id": "unknown_5",
-      "label": "The Hubble Tension",
+      "label": "Hubble Tension",
       "radius": 1.6,
       "color": "#6a3c3c",
       "position": [
@@ -128,7 +128,7 @@
     },
     {
       "id": "unknown_8",
-      "label": "The Strong CP Problem",
+      "label": "Strong CP Problem",
       "radius": 1.6,
       "color": "#556277",
       "position": [
@@ -162,7 +162,7 @@
     },
     {
       "id": "unknown_10",
-      "label": "The Black Hole Information Paradox",
+      "label": "Black Hole Information Paradox",
       "radius": 1.6,
       "color": "#5a3c7a",
       "position": [
@@ -179,7 +179,7 @@
     },
     {
       "id": "unknown_11",
-      "label": "The Mechanism of Inflation",
+      "label": "Mechanism of Inflation",
       "radius": 1.6,
       "color": "#2c2c60",
       "position": [
@@ -196,7 +196,7 @@
     },
     {
       "id": "unknown_12",
-      "label": "The Flavor Problem",
+      "label": "Flavor Problem",
       "radius": 1.6,
       "color": "#3f6a5a",
       "position": [
@@ -213,7 +213,7 @@
     },
     {
       "id": "unknown_13",
-      "label": "The $S_8$ (Structure Growth) Tension",
+      "label": "$S_8$ (Structure Growth) Tension",
       "radius": 1.6,
       "color": "#3a5f9f",
       "position": [
@@ -264,7 +264,7 @@
     },
     {
       "id": "unknown_16",
-      "label": "The Muon $g-2$ and Lepton Universality Anomalies",
+      "label": "Muon $g-2$ and Lepton Universality Anomalies",
       "radius": 1.6,
       "color": "#5f5f7a",
       "position": [
@@ -281,7 +281,7 @@
     },
     {
       "id": "unknown_17",
-      "label": "The Lithium Problem",
+      "label": "Lithium Problem",
       "radius": 1.6,
       "color": "#3c6a7a",
       "position": [
@@ -315,7 +315,7 @@
     },
     {
       "id": "unknown_19",
-      "label": "The Arrow of Time",
+      "label": "Arrow of Time",
       "radius": 1.6,
       "color": "#4b678f",
       "position": [
@@ -332,7 +332,7 @@
     },
     {
       "id": "unknown_20",
-      "label": "The Trans-Planckian Censorship and the Swampland",
+      "label": "Trans-Planckian Censorship and the Swampland",
       "radius": 1.6,
       "color": "#2c567a",
       "position": [
