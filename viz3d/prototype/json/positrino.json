@@ -14,6 +14,7 @@
       "id": "positrino",
       "label": "Positrino",
       "scaleExponent": -20,
+      "hideScaleLabel": true,
       "radius": 1.2,
       "color": "RED",
       "position": [
