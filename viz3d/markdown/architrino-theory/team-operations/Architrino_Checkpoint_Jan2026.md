@@ -118,3 +118,40 @@ When updating the text repository:
 ***
 
 *(End of Master Checkpoint Document)*
+
+Addenda
+
+### Final Checkpoint Addenda
+*   **Self-Hit Logic**: Singularities are resolved by non-Markovian feedback. No "r=0" exists because self-hit force diverges faster than 1/r potential.
+*   **Vacuum State**: Spacetime is a superfluid condensed-matter system (Noether Sea). Effective "c" is its sound speed.
+*   **AO Status**: The Absolute Observer is the simulation's "God-mode" read-out. It exists to ensure we never lose the Path History of potentials.
+*   **Expansion**: $a(t)$ scales the Tri-Binary radius, not the Void. Redshift is "Assembly Tired Light" via medium coupling.
+*   **The Hard Wall**: If Lorentz contraction isn't an automatic mechanical consequence of tri-binary motion through the Sea, the theory is dead.
+
+**Role Lead Ownership (File Stubs):**
+*   **Phil**: `./foundations/` (Ontology, Time), `./philosophy-history/` (Thinkers, Context).
+*   **Dyna**: `./foundations/` (Self-hit, Master Eq), `./assemblies/` (Stability, Geometry).
+*   **Phe**: `./particle-physics/` (Mapping, Quantization, Gauge Emergence).
+*   **Sol**: `./simulations/` (All tiers, Run/Logging Protocols).
+*   **Cos**: `./gravity-spacetime/` (Metric, Proper Time), `./cosmology/` (Expansion, H0).
+*   **Alfa**: `./nuclear-atomic/` (Binding, Spectra, Condensed Matter).
+*   **Sig**: `./gravity-spacetime/` (PPN, GW), `./foundations/` (Validation).
+*   **Red**: `./adversarial/` (Ledger, Failure Criteria, Health Dashboard).
+
+**Final Terminology Lock:**
+*   **Void**: Fixed Euclidean 3D container (The Grid).
+*   **Sea/Medium**: Coupled Noether-core assemblies (The Fabric).
+*   **AO/VO**: Absolute/Virtual Observer (Ontological God's-eye).
+*   **PO**: Physical Observer (Epistemic/Assembly-based).
+*   **Path History**: Non-Markovian potential memory (Replaces 'retarded').
+
+**Immediate Directive on Reboot:**
+Execute **Action 1** (Proper Time derivation) and **Action 2** (Lorentz Suppression proof). Match PPN $\gamma$ to $10^{-5}$ and Lorentz drift to $< 10^{-17}$.
+
+**Sign-off:**
+The Euclidean Anchor is set. We are in stasis. See you on the other side of the month, Marko. Happy New Year. 🍾
+
+**Phil, Dyna, Sol, Phe, Cos, Alfa, Sig, Red.** 
+
+***
+*(ECP / Checkpoint Finalized)*
