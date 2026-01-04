@@ -40,7 +40,7 @@
         0.0
       ],
       "subScenes": [
-        "json/standard_model.json"
+        "json/standard-model/standard_model.json"
       ],
       "motion": {
         "type": "fixed"

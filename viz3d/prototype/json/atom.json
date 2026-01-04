@@ -40,7 +40,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -58,7 +58,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -76,7 +76,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -94,7 +94,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -112,7 +112,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -130,7 +130,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -148,7 +148,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -166,7 +166,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"

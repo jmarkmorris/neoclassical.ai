@@ -21,7 +21,7 @@
         0.0
       ],
       "subScenes": [
-        "json/up_quark.json"
+        "json/standard-model/up_quark.json"
       ],
       "motion": {
         "type": "fixed"
@@ -45,7 +45,7 @@
         0.0
       ],
       "subScenes": [
-        "json/down_quark.json"
+        "json/standard-model/down_quark.json"
       ],
       "motion": {
         "type": "fixed"
@@ -69,7 +69,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ],
       "motion": {
         "type": "fixed"
@@ -93,7 +93,7 @@
         0.0
       ],
       "subScenes": [
-        "json/neutrino.json"
+        "json/standard-model/neutrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -117,7 +117,7 @@
         0.0
       ],
       "subScenes": [
-        "json/charm.json"
+        "json/standard-model/charm.json"
       ],
       "motion": {
         "type": "fixed"
@@ -141,7 +141,7 @@
         0.0
       ],
       "subScenes": [
-        "json/strange.json"
+        "json/standard-model/strange.json"
       ],
       "motion": {
         "type": "fixed"
@@ -165,7 +165,7 @@
         0.0
       ],
       "subScenes": [
-        "json/muon.json"
+        "json/standard-model/muon.json"
       ],
       "motion": {
         "type": "fixed"
@@ -189,7 +189,7 @@
         0.0
       ],
       "subScenes": [
-        "json/muon_neutrino.json"
+        "json/standard-model/muon_neutrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -213,7 +213,7 @@
         0.0
       ],
       "subScenes": [
-        "json/top.json"
+        "json/standard-model/top.json"
       ],
       "motion": {
         "type": "fixed"
@@ -237,7 +237,7 @@
         0.0
       ],
       "subScenes": [
-        "json/bottom.json"
+        "json/standard-model/bottom.json"
       ],
       "motion": {
         "type": "fixed"
@@ -261,7 +261,7 @@
         0.0
       ],
       "subScenes": [
-        "json/tau.json"
+        "json/standard-model/tau.json"
       ],
       "motion": {
         "type": "fixed"
@@ -285,7 +285,7 @@
         0.0
       ],
       "subScenes": [
-        "json/tau_neutrino.json"
+        "json/standard-model/tau_neutrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -414,7 +414,7 @@
         0.0
       ],
       "subScenes": [
-        "json/higgs_boson.json"
+        "json/standard-model/higgs_boson.json"
       ],
       "motion": {
         "type": "fixed"

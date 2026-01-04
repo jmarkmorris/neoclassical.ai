@@ -96,20 +96,20 @@ const binaryStyle = {
   baseOrbitSpeed: 0.18,
 };
 const generationTransitions = {
-  electron: { nextScene: "json/muon.json", nextLabel: "Muon" },
-  muon: { nextScene: "json/tau.json", nextLabel: "Tau" },
+  electron: { nextScene: "json/standard-model/muon.json", nextLabel: "Muon" },
+  muon: { nextScene: "json/standard-model/tau.json", nextLabel: "Tau" },
   neutrino: {
-    nextScene: "json/muon_neutrino.json",
+    nextScene: "json/standard-model/muon_neutrino.json",
     nextLabel: "Muon Neutrino",
   },
   muon_neutrino: {
-    nextScene: "json/tau_neutrino.json",
+    nextScene: "json/standard-model/tau_neutrino.json",
     nextLabel: "Tau Neutrino",
   },
-  up_quark: { nextScene: "json/charm.json", nextLabel: "Charm" },
-  charm: { nextScene: "json/top.json", nextLabel: "Top" },
-  down_quark: { nextScene: "json/strange.json", nextLabel: "Strange" },
-  strange: { nextScene: "json/bottom.json", nextLabel: "Bottom" },
+  up_quark: { nextScene: "json/standard-model/charm.json", nextLabel: "Charm" },
+  charm: { nextScene: "json/standard-model/top.json", nextLabel: "Top" },
+  down_quark: { nextScene: "json/standard-model/strange.json", nextLabel: "Strange" },
+  strange: { nextScene: "json/standard-model/bottom.json", nextLabel: "Bottom" },
 };
 
 const motionHandlers = {

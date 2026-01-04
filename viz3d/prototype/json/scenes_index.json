@@ -13,12 +13,12 @@
     {
       "id": "down_quark",
       "name": "Down Quark",
-      "path": "json/down_quark.json"
+      "path": "json/standard-model/down_quark.json"
     },
     {
       "id": "electron",
       "name": "Electron",
-      "path": "json/electron.json"
+      "path": "json/standard-model/electron.json"
     },
     {
       "id": "galaxy",
@@ -38,7 +38,7 @@
     {
       "id": "higgs_boson",
       "name": "Higgs Boson",
-      "path": "json/higgs_boson.json"
+      "path": "json/standard-model/higgs_boson.json"
     },
     {
       "id": "intracluster_medium",
@@ -58,7 +58,7 @@
     {
       "id": "neutrino",
       "name": "Neutrino",
-      "path": "json/neutrino.json"
+      "path": "json/standard-model/neutrino.json"
     },
     {
       "id": "neutron",
@@ -93,7 +93,7 @@
     {
       "id": "standard_model",
       "name": "Standard Model",
-      "path": "json/standard_model.json"
+      "path": "json/standard-model/standard_model.json"
     },
     {
       "id": "star_interior",
@@ -108,7 +108,7 @@
     {
       "id": "up_quark",
       "name": "Up Quark",
-      "path": "json/up_quark.json"
+      "path": "json/standard-model/up_quark.json"
     },
     {
       "id": "electrino",

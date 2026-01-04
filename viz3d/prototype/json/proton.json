@@ -22,7 +22,7 @@
         0.0
       ],
       "subScenes": [
-        "json/up_quark.json"
+        "json/standard-model/up_quark.json"
       ],
       "motion": {
         "type": "fixed"
@@ -40,7 +40,7 @@
         0.0
       ],
       "subScenes": [
-        "json/up_quark.json"
+        "json/standard-model/up_quark.json"
       ],
       "motion": {
         "type": "fixed"
@@ -58,7 +58,7 @@
         0.0
       ],
       "subScenes": [
-        "json/down_quark.json"
+        "json/standard-model/down_quark.json"
       ],
       "motion": {
         "type": "fixed"

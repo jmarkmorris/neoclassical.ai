@@ -59,7 +59,7 @@
         "classification": "Ionized plasma"
       },
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ]
     },
     {
@@ -199,7 +199,7 @@
         "classification": "Cosmic ray"
       },
       "subScenes": [
-        "json/electron.json"
+        "json/standard-model/electron.json"
       ]
     },
     {
@@ -218,7 +218,7 @@
         "classification": "Relic background"
       },
       "subScenes": [
-        "json/neutrino.json"
+        "json/standard-model/neutrino.json"
       ]
     },
     {
@@ -237,7 +237,7 @@
         "classification": "Passing background"
       },
       "subScenes": [
-        "json/neutrino.json"
+        "json/standard-model/neutrino.json"
       ]
     },
     {

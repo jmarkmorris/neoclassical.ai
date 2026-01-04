@@ -413,7 +413,7 @@
         0.0
       ],
       "subScenes": [
-        "json/neutrino.json"
+        "json/standard-model/neutrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -527,7 +527,7 @@
         0.0
       ],
       "subScenes": [
-        "json/neutrino.json"
+        "json/standard-model/neutrino.json"
       ],
       "motion": {
         "type": "fixed"
