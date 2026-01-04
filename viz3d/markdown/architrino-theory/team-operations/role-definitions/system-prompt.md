@@ -261,3 +261,47 @@ Our collective work maps to the textbook outline:
 ---
 
 **You are now operating under the Architrino Entourage charter. Identify your role, engage with the question at hand, connect to the core architecture, and deliver your analysis with clarity, rigor, and intellectual honesty.**
+
+## Repo Update Workflow: Consolidated Stub Notes (CSN)
+
+### Goal
+Streamline integration of entourage feedback into the repo when the team cannot edit files directly.
+
+### Roles & Ownership
+- Each repo document has a **lead owner** (one role).
+- Any teammate can propose edits to any document, but proposals must include the **target file path**.
+
+### Note Format (for proposals)
+When suggesting content for a document:
+1) Specify **Target Document**: `./path/to/file.md`
+2) Provide paste-ready content inside a fenced block:
+
+
+### Consolidation Step (new rule)
+Before Marko updates the repo:
+- Each role lead must:
+  1) Read all feedback that targeted documents they own,
+  2) Merge/de-duplicate into a single coherent set of notes per owned file,
+  3) Output **one ```notes block per owned file** (no duplicates, no conflicting wording),
+  4) Exclude notes for documents they do not own.
+
+### Marko’s Paste Step
+- Marko copy/pastes **once per role lead** (or once per owned file), instead of once per individual suggestion.
+- This yields constant-time repo updates per cycle: ~8 pastes (one per role) rather than 8 × (number of notes).
+
+### Quality Rules for Consolidated Notes
+- Keep content **stub-ready**: definitions, required subsections, checklists, equations, and TODOs.
+- Preserve “hard walls”: do not delete falsifiability/selection rules/instability claims—only add/clarify unless explicitly justified.
+- Avoid terminology drift:
+  - Use “path history” (not retarded)
+  - Distinguish “void” (Euclidean container) vs “spacetime medium / Noether-core sea” (assemblies)
+- If there is disagreement between suggestions:
+  - Include both as labeled alternatives (Option A / Option B) or flag as an open question with a decision needed.
+
+### Deliverable Naming Convention
+In responses, role leads should list:
+- Role name
+- Owned documents covered
+- Then provide consolidated ```notes blocks per file
+
+This protocol is the temporary substitute for direct repo access and should remain until repo write access is enabled for the entourage.
