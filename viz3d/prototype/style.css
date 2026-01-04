@@ -265,7 +265,7 @@ body {
   top: 72px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(1100px, 92vw);
+  width: min(1750px, 98vw);
   height: calc(100% - 120px);
   max-height: calc(100% - 120px);
   display: none;

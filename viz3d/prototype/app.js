@@ -531,6 +531,10 @@ function updateSceneMarkdown() {
     hideMarkdownPanel();
     return;
   }
+  if (currentLevel.markdownAutoOpen === false) {
+    hideMarkdownPanel();
+    return;
+  }
   showMarkdownPanel(currentLevel);
 }
 
@@ -744,6 +748,7 @@ async function loadSceneConfig(scenePath) {
         markdownPath: data.scene?.markdownPath ?? null,
         markdownSection: data.scene?.markdownSection ?? null,
         markdownColumns: data.scene?.markdownColumns ?? null,
+        markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
         centerOn: data.scene?.centerOn ?? null,
       };
       levelConfigs[scenePath] = config;
@@ -1582,6 +1587,7 @@ function buildLevel(levelId) {
     markdownPath: config.markdownPath ?? null,
     markdownSection: config.markdownSection ?? null,
     markdownColumns: config.markdownColumns ?? null,
+    markdownAutoOpen: config.markdownAutoOpen ?? true,
     centerOn: config.centerOn,
     group,
     nodes,
