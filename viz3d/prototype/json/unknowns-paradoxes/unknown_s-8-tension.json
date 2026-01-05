@@ -2,10 +2,10 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "unknown_13",
-    "name": "$S_8$ (Structure Growth) Tension",
+    "name": "S_8 (Structure Growth) Tension",
     "units": "relative",
     "markdownPath": "markdown/architrino-theory/philosophy-history/unknowns-paradoxes.md",
-    "markdownSection": "The $S_8$ (Structure Growth) Tension",
+    "markdownSection": "The S_8 (Structure Growth) Tension",
     "markdownColumns": 1
   },
   "objects": []
