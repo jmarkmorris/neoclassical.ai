@@ -11,16 +11,16 @@
   "objects": [
     {
       "id": "philosopher_1",
-      "label": "Abdus Salam",
+      "label": "Leucippus",
       "radius": 2.2,
-      "color": "#5f5f7a",
+      "color": "#2c2f45",
       "position": [
         -24.0,
         15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_salam.json"
+        "json/philosophers/philosopher_leucippus.json"
       ],
       "motion": {
         "type": "fixed"
@@ -29,16 +29,16 @@
     },
     {
       "id": "philosopher_2",
-      "label": "Abhay Ashtekar",
+      "label": "Democritus",
       "radius": 2.2,
-      "color": "#7a3f4a",
+      "color": "#4f315f",
       "position": [
         -18.0,
         15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_ashtekar.json"
+        "json/philosophers/philosopher_democritus.json"
       ],
       "motion": {
         "type": "fixed"
@@ -47,16 +47,16 @@
     },
     {
       "id": "philosopher_3",
-      "label": "Alan Guth",
+      "label": "Plato",
       "radius": 2.2,
-      "color": "#4b678f",
+      "color": "#556277",
       "position": [
         -12.0,
         15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_guth.json"
+        "json/philosophers/philosopher_plato.json"
       ],
       "motion": {
         "type": "fixed"
@@ -65,101 +65,11 @@
     },
     {
       "id": "philosopher_4",
-      "label": "Albert Einstein",
-      "radius": 2.2,
-      "color": "#7a2f5a",
-      "position": [
-        -6.0,
-        15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_einstein.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_5",
-      "label": "Albert Einstein",
-      "radius": 2.2,
-      "color": "#2a3b5a",
-      "position": [
-        0.0,
-        15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_einstein-2.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_6",
-      "label": "Alfred North Whitehead",
-      "radius": 2.2,
-      "color": "#2c2c60",
-      "position": [
-        6.0,
-        15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_whitehead.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_7",
-      "label": "Andrei Sakharov",
-      "radius": 2.2,
-      "color": "#5a4a7a",
-      "position": [
-        12.0,
-        15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_sakharov.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_8",
-      "label": "Antony Valentini",
-      "radius": 2.2,
-      "color": "#3f6a5a",
-      "position": [
-        18.0,
-        15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_valentini.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_9",
       "label": "Aristotle",
       "radius": 2.2,
       "color": "#2c2f45",
       "position": [
-        24.0,
+        -6.0,
         15.0,
         0.0
       ],
@@ -172,13 +82,49 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_10",
+      "id": "philosopher_5",
+      "label": "Epicurus",
+      "radius": 2.2,
+      "color": "#5a1f2e",
+      "position": [
+        0.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_epicurus.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_6",
+      "label": "Rene Descartes",
+      "radius": 2.2,
+      "color": "#2f4f7a",
+      "position": [
+        6.0,
+        15.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_descartes.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_7",
       "label": "Baruch Spinoza",
       "radius": 2.2,
       "color": "#3c6a7a",
       "position": [
-        -24.0,
-        9.0,
+        12.0,
+        15.0,
         0.0
       ],
       "subScenes": [
@@ -190,17 +136,17 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_11",
-      "label": "Carlo Rovelli",
+      "id": "philosopher_8",
+      "label": "Isaac Newton",
       "radius": 2.2,
-      "color": "#2f6b6f",
+      "color": "#7a3f4a",
       "position": [
-        -18.0,
-        9.0,
+        18.0,
+        15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_rovelli.json"
+        "json/philosophers/philosopher_newton.json"
       ],
       "motion": {
         "type": "fixed"
@@ -208,17 +154,17 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_12",
-      "label": "David Bohm",
+      "id": "philosopher_9",
+      "label": "Gottfried Wilhelm Leibniz",
       "radius": 2.2,
-      "color": "#3a5f9f",
+      "color": "#2f4f7a",
       "position": [
-        -12.0,
-        9.0,
+        24.0,
+        15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_bohm.json"
+        "json/philosophers/philosopher_leibniz.json"
       ],
       "motion": {
         "type": "fixed"
@@ -226,12 +172,12 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_13",
+      "id": "philosopher_10",
       "label": "David Hume",
       "radius": 2.2,
       "color": "#2c6c7e",
       "position": [
-        -6.0,
+        -24.0,
         9.0,
         0.0
       ],
@@ -244,17 +190,17 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_14",
-      "label": "Democritus",
+      "id": "philosopher_11",
+      "label": "Immanuel Kant",
       "radius": 2.2,
-      "color": "#4f315f",
+      "color": "#1c2a4f",
       "position": [
-        0.0,
+        -18.0,
         9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_democritus.json"
+        "json/philosophers/philosopher_kant.json"
       ],
       "motion": {
         "type": "fixed"
@@ -262,17 +208,17 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_15",
-      "label": "Edward Witten",
+      "id": "philosopher_12",
+      "label": "Pierre-Simon Laplace",
       "radius": 2.2,
-      "color": "#5a3c7a",
+      "color": "#2c567a",
       "position": [
-        6.0,
+        -12.0,
         9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_witten.json"
+        "json/philosophers/philosopher_laplace.json"
       ],
       "motion": {
         "type": "fixed"
@@ -280,48 +226,12 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_16",
-      "label": "Epicurus",
-      "radius": 2.2,
-      "color": "#5a1f2e",
-      "position": [
-        12.0,
-        9.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_epicurus.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_17",
-      "label": "Erik Verlinde",
-      "radius": 2.2,
-      "color": "#7a4a1f",
-      "position": [
-        18.0,
-        9.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_verlinde.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_18",
+      "id": "philosopher_13",
       "label": "Ernst Mach",
       "radius": 2.2,
       "color": "#6a3c3c",
       "position": [
-        24.0,
+        -6.0,
         9.0,
         0.0
       ],
@@ -334,12 +244,138 @@
       "glowRing": true
     },
     {
+      "id": "philosopher_14",
+      "label": "Ludwig Boltzmann",
+      "radius": 2.2,
+      "color": "#3a5f9f",
+      "position": [
+        0.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_boltzmann.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_15",
+      "label": "Hendrik Lorentz",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "position": [
+        6.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_lorentz.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_16",
+      "label": "Max Planck",
+      "radius": 2.2,
+      "color": "#4f315f",
+      "position": [
+        12.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_planck.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_17",
+      "label": "Alfred North Whitehead",
+      "radius": 2.2,
+      "color": "#2c2c60",
+      "position": [
+        18.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_whitehead.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_18",
+      "label": "Albert Einstein",
+      "radius": 2.2,
+      "color": "#7a2f5a",
+      "position": [
+        24.0,
+        9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_einstein.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
       "id": "philosopher_19",
+      "label": "Albert Einstein",
+      "radius": 2.2,
+      "color": "#2a3b5a",
+      "position": [
+        -24.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_einstein-2.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_20",
+      "label": "Niels Bohr",
+      "radius": 2.2,
+      "color": "#7a4a1f",
+      "position": [
+        -18.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_bohr.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_21",
       "label": "Erwin Schrodinger",
       "radius": 2.2,
       "color": "#2c567a",
       "position": [
-        -24.0,
+        -12.0,
         3.0,
         0.0
       ],
@@ -352,53 +388,17 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_20",
-      "label": "Gerard 't Hooft",
-      "radius": 2.2,
-      "color": "#556277",
-      "position": [
-        -18.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_hooft.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_21",
-      "label": "Gottfried Wilhelm Leibniz",
-      "radius": 2.2,
-      "color": "#2f4f7a",
-      "position": [
-        -12.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_leibniz.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
       "id": "philosopher_22",
-      "label": "Hendrik Lorentz",
+      "label": "Louis de Broglie",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#3c6a7a",
       "position": [
         -6.0,
         3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_lorentz.json"
+        "json/philosophers/philosopher_broglie.json"
       ],
       "motion": {
         "type": "fixed"
@@ -407,16 +407,16 @@
     },
     {
       "id": "philosopher_23",
-      "label": "Hugh Everett III",
+      "label": "Werner Heisenberg",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#2c2c60",
       "position": [
         0.0,
         3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_everett.json"
+        "json/philosophers/philosopher_heisenberg.json"
       ],
       "motion": {
         "type": "fixed"
@@ -425,16 +425,16 @@
     },
     {
       "id": "philosopher_24",
-      "label": "Immanuel Kant",
+      "label": "Karl Popper",
       "radius": 2.2,
-      "color": "#1c2a4f",
+      "color": "#2c2c60",
       "position": [
         6.0,
         3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_kant.json"
+        "json/philosophers/philosopher_popper.json"
       ],
       "motion": {
         "type": "fixed"
@@ -443,16 +443,16 @@
     },
     {
       "id": "philosopher_25",
-      "label": "Imre Lakatos",
+      "label": "Paul Dirac",
       "radius": 2.2,
-      "color": "#5f5f7a",
+      "color": "#6a3c3c",
       "position": [
         12.0,
         3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_lakatos.json"
+        "json/philosophers/philosopher_dirac.json"
       ],
       "motion": {
         "type": "fixed"
@@ -461,29 +461,11 @@
     },
     {
       "id": "philosopher_26",
-      "label": "Isaac Newton",
-      "radius": 2.2,
-      "color": "#7a3f4a",
-      "position": [
-        18.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_newton.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_27",
       "label": "John Archibald Wheeler",
       "radius": 2.2,
       "color": "#4b678f",
       "position": [
-        24.0,
+        18.0,
         3.0,
         0.0
       ],
@@ -496,12 +478,120 @@
       "glowRing": true
     },
     {
+      "id": "philosopher_27",
+      "label": "David Bohm",
+      "radius": 2.2,
+      "color": "#3a5f9f",
+      "position": [
+        24.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_bohm.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
       "id": "philosopher_28",
+      "label": "Richard Feynman",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "position": [
+        -24.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_feynman.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_29",
+      "label": "Andrei Sakharov",
+      "radius": 2.2,
+      "color": "#5a4a7a",
+      "position": [
+        -18.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_sakharov.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_30",
+      "label": "Thomas Kuhn",
+      "radius": 2.2,
+      "color": "#2a3b5a",
+      "position": [
+        -12.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_kuhn.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_31",
+      "label": "Imre Lakatos",
+      "radius": 2.2,
+      "color": "#5f5f7a",
+      "position": [
+        -6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_lakatos.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_32",
+      "label": "Abdus Salam",
+      "radius": 2.2,
+      "color": "#5f5f7a",
+      "position": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_salam.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_33",
       "label": "John Bell",
       "radius": 2.2,
       "color": "#7a2f5a",
       "position": [
-        -24.0,
+        6.0,
         -3.0,
         0.0
       ],
@@ -514,193 +604,13 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_29",
-      "label": "Joseph Polchinski",
-      "radius": 2.2,
-      "color": "#2a3b5a",
-      "position": [
-        -18.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_polchinski.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_30",
-      "label": "Karl Popper",
-      "radius": 2.2,
-      "color": "#2c2c60",
-      "position": [
-        -12.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_popper.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_31",
-      "label": "Lee Smolin",
-      "radius": 2.2,
-      "color": "#5a4a7a",
-      "position": [
-        -6.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_smolin.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_32",
-      "label": "Lee Smolin",
-      "radius": 2.2,
-      "color": "#3f6a5a",
-      "position": [
-        0.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_smolin-2.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_33",
-      "label": "Leucippus",
-      "radius": 2.2,
-      "color": "#2c2f45",
-      "position": [
-        6.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_leucippus.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
       "id": "philosopher_34",
-      "label": "Louis de Broglie",
-      "radius": 2.2,
-      "color": "#3c6a7a",
-      "position": [
-        12.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_broglie.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_35",
-      "label": "Lucien Hardy",
-      "radius": 2.2,
-      "color": "#2f6b6f",
-      "position": [
-        18.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_hardy.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_36",
-      "label": "Ludwig Boltzmann",
-      "radius": 2.2,
-      "color": "#3a5f9f",
-      "position": [
-        24.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_boltzmann.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_37",
-      "label": "Matthew Leifer",
-      "radius": 2.2,
-      "color": "#2c6c7e",
-      "position": [
-        -24.0,
-        -9.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_leifer.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_38",
-      "label": "Max Planck",
-      "radius": 2.2,
-      "color": "#4f315f",
-      "position": [
-        -18.0,
-        -9.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_planck.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_39",
       "label": "Murray Gell-Mann",
       "radius": 2.2,
       "color": "#5a3c7a",
       "position": [
-        -12.0,
-        -9.0,
+        12.0,
+        -3.0,
         0.0
       ],
       "subScenes": [
@@ -712,12 +622,84 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_40",
+      "id": "philosopher_35",
+      "label": "Hugh Everett III",
+      "radius": 2.2,
+      "color": "PURPLE",
+      "position": [
+        18.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_everett.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_36",
+      "label": "Roger Penrose",
+      "radius": 2.2,
+      "color": "#1c2a4f",
+      "position": [
+        24.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_penrose.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_37",
+      "label": "Sheldon Glashow",
+      "radius": 2.2,
+      "color": "#7a3f4a",
+      "position": [
+        -24.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_glashow.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_38",
+      "label": "Steven Weinberg",
+      "radius": 2.2,
+      "color": "#7a2f5a",
+      "position": [
+        -18.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_weinberg.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_39",
       "label": "Nancy Cartwright",
       "radius": 2.2,
       "color": "#5a1f2e",
       "position": [
-        -6.0,
+        -12.0,
         -9.0,
         0.0
       ],
@@ -730,17 +712,35 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_41",
-      "label": "Niels Bohr",
+      "id": "philosopher_40",
+      "label": "Gerard 't Hooft",
       "radius": 2.2,
-      "color": "#7a4a1f",
+      "color": "#556277",
+      "position": [
+        -6.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_hooft.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_41",
+      "label": "Alan Guth",
+      "radius": 2.2,
+      "color": "#4b678f",
       "position": [
         0.0,
         -9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_bohr.json"
+        "json/philosophers/philosopher_guth.json"
       ],
       "motion": {
         "type": "fixed"
@@ -749,16 +749,16 @@
     },
     {
       "id": "philosopher_42",
-      "label": "Paul Dirac",
+      "label": "Abhay Ashtekar",
       "radius": 2.2,
-      "color": "#6a3c3c",
+      "color": "#7a3f4a",
       "position": [
         6.0,
         -9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_dirac.json"
+        "json/philosophers/philosopher_ashtekar.json"
       ],
       "motion": {
         "type": "fixed"
@@ -767,16 +767,16 @@
     },
     {
       "id": "philosopher_43",
-      "label": "Pierre-Simon Laplace",
+      "label": "Edward Witten",
       "radius": 2.2,
-      "color": "#2c567a",
+      "color": "#5a3c7a",
       "position": [
         12.0,
         -9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_laplace.json"
+        "json/philosophers/philosopher_witten.json"
       ],
       "motion": {
         "type": "fixed"
@@ -785,16 +785,16 @@
     },
     {
       "id": "philosopher_44",
-      "label": "Plato",
+      "label": "Joseph Polchinski",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#2a3b5a",
       "position": [
         18.0,
         -9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_plato.json"
+        "json/philosophers/philosopher_polchinski.json"
       ],
       "motion": {
         "type": "fixed"
@@ -803,16 +803,16 @@
     },
     {
       "id": "philosopher_45",
-      "label": "Rene Descartes",
+      "label": "Lee Smolin",
       "radius": 2.2,
-      "color": "#2f4f7a",
+      "color": "#5a4a7a",
       "position": [
         24.0,
         -9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_descartes.json"
+        "json/philosophers/philosopher_smolin.json"
       ],
       "motion": {
         "type": "fixed"
@@ -821,16 +821,16 @@
     },
     {
       "id": "philosopher_46",
-      "label": "Richard Feynman",
+      "label": "Lee Smolin",
       "radius": 2.2,
-      "color": "#243d8f",
+      "color": "#3f6a5a",
       "position": [
         -24.0,
         -15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_feynman.json"
+        "json/philosophers/philosopher_smolin-2.json"
       ],
       "motion": {
         "type": "fixed"
@@ -839,16 +839,16 @@
     },
     {
       "id": "philosopher_47",
-      "label": "Rob Spekkens",
+      "label": "Carlo Rovelli",
       "radius": 2.2,
-      "color": "PURPLE",
+      "color": "#2f6b6f",
       "position": [
         -18.0,
         -15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_spekkens.json"
+        "json/philosophers/philosopher_rovelli.json"
       ],
       "motion": {
         "type": "fixed"
@@ -857,65 +857,11 @@
     },
     {
       "id": "philosopher_48",
-      "label": "Roger Penrose",
-      "radius": 2.2,
-      "color": "#1c2a4f",
-      "position": [
-        -12.0,
-        -15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_penrose.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_49",
-      "label": "Sabine Hossenfelder",
-      "radius": 2.2,
-      "color": "#5f5f7a",
-      "position": [
-        -6.0,
-        -15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_hossenfelder.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_50",
-      "label": "Sheldon Glashow",
-      "radius": 2.2,
-      "color": "#7a3f4a",
-      "position": [
-        0.0,
-        -15.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophers/philosopher_glashow.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "glowRing": true
-    },
-    {
-      "id": "philosopher_51",
       "label": "Stephen Wolfram",
       "radius": 2.2,
       "color": "#4b678f",
       "position": [
-        6.0,
+        -12.0,
         -15.0,
         0.0
       ],
@@ -928,17 +874,71 @@
       "glowRing": true
     },
     {
-      "id": "philosopher_52",
-      "label": "Steven Weinberg",
+      "id": "philosopher_49",
+      "label": "Erik Verlinde",
       "radius": 2.2,
-      "color": "#7a2f5a",
+      "color": "#7a4a1f",
+      "position": [
+        -6.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_verlinde.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_50",
+      "label": "Antony Valentini",
+      "radius": 2.2,
+      "color": "#3f6a5a",
+      "position": [
+        0.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_valentini.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_51",
+      "label": "Lucien Hardy",
+      "radius": 2.2,
+      "color": "#2f6b6f",
+      "position": [
+        6.0,
+        -15.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophers/philosopher_hardy.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "glowRing": true
+    },
+    {
+      "id": "philosopher_52",
+      "label": "Rob Spekkens",
+      "radius": 2.2,
+      "color": "PURPLE",
       "position": [
         12.0,
         -15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_weinberg.json"
+        "json/philosophers/philosopher_spekkens.json"
       ],
       "motion": {
         "type": "fixed"
@@ -947,16 +947,16 @@
     },
     {
       "id": "philosopher_53",
-      "label": "Thomas Kuhn",
+      "label": "Matthew Leifer",
       "radius": 2.2,
-      "color": "#2a3b5a",
+      "color": "#2c6c7e",
       "position": [
         18.0,
         -15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_kuhn.json"
+        "json/philosophers/philosopher_leifer.json"
       ],
       "motion": {
         "type": "fixed"
@@ -965,16 +965,16 @@
     },
     {
       "id": "philosopher_54",
-      "label": "Werner Heisenberg",
+      "label": "Sabine Hossenfelder",
       "radius": 2.2,
-      "color": "#2c2c60",
+      "color": "#5f5f7a",
       "position": [
         24.0,
         -15.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophers/philosopher_heisenberg.json"
+        "json/philosophers/philosopher_hossenfelder.json"
       ],
       "motion": {
         "type": "fixed"

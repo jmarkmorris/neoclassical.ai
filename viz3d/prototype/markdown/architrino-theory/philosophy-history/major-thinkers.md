@@ -758,56 +758,62 @@ The architrino project is positioned as:
 
 ## 18. Summary Table: Vindicated, Challenged, Transcended (Complete)
 
-| **Thinker**               | **Vindicated ✅**                      | **Challenged ❌**                         | **Transcended ⚠️**                  |
-|---------------------------|---------------------------------------|------------------------------------------|-------------------------------------|
-| **Democritus**            | Atomism, void, relational qualities   | —                                        | Intrinsic atomic properties         |
-| **Epicurus**              | Eternality, no teleology              | The swerve (free will)                   | —                                   |
-| **Plato**                 | —                                     | **Theory of Forms**                      | —                                   |
-| **Aristotle**             | Emergent continuity                   | **Teleology, hylomorphism, no void**     | —                                   |
-| **Spinoza**               | **One substance, necessity, no teleology, God's-eye view** | Mental attribute (thought)              | Attributes → charge configurations  |
-| **Leibniz**               | Relationalism, pre-established harmony | **Monads, no interaction, rejection of absolute space** | Idealism → physicalism             |
-| **Hume**                  | Empiricism (in spirit)                | **No necessary connections**             | Physical necessity restored         |
-| **Kant**                  | —                                     | **A priori space/time, thing-in-itself, transcendental idealism** | —                                   |
-| **Descartes**             | Mechanism, vortices                   | **Substance dualism, matter as extension** | —                                   |
-| **Newton**                | **Absolute time, absolute space, ideal observer** | Action-at-distance gravity               | Absolute space (structure, not substance) |
-| **Laplace**               | **Determinism, Laplace's Demon**      | —                                        | —                                   |
-| **Boltzmann**             | **Statistical emergence, atomism**    | —                                        | —                                   |
-| **Mach**                  | Relational inertia (emergent), economy of thought | **Positivist anti-realism, rejection of absolute frame** | Absolute time persists              |
-| **Lorentz**               | **Ether, dynamical Lorentz symmetry, preferred frame** | —                                        | —                                   |
-| **Einstein (SR)**         | Empirical SR predictions              | **Fundamental Lorentz invariance, no preferred frame, spacetime as fundamental** | Kinematic → dynamical emergence    |
-| **Einstein (GR)**         | Empirical GR predictions              | **Spacetime as fundamental, diffeomorphism invariance** | GR as emergent hydrodynamics        |
-| **Planck**                | *h* as emergent                       | —                                        | —                                   |
-| **Bohr/Copenhagen**       | —                                     | **Completeness, collapse, anti-realism** | Complementarity explained           |
-| **Heisenberg**            | Uncertainty (emergent)                | **Reality "behind" formalism**           | —                                   |
-| **Schrödinger**           | Realism, desire for ontology          | —                                        | ψ as emergent                       |
-| **Dirac**                 | **Antimatter, relativistic QM**       | —                                        | QFT as emergent                     |
-| **de Broglie**            | **Pilot-wave intuition**              | —                                        | Wave on config space → real fields  |
-| **Bohm**                  | **Hidden variables, determinism, nonlocality** | —                              | Quantum potential → architrino potentials |
-| **Bell**                  | **Nonlocality + realism framework**   | —                                        | Constraints, not obstacles          |
-| **Feynman**               | Calculational methods                 | **Virtual particles as real, sum-over-histories as fundamental** | Effective statistical mechanics    |
-| **Gell-Mann**             | Quark classification                  | **Quarks as fundamental**                | Quarks as emergent assemblies       |
-| **Weinberg/Salam/Glashow**| Electroweak phenomenology             | **Gauge fields and Higgs as fundamental** | Gauge symmetry and Higgs as emergent |
-| **Whitehead**             | Relationalism                         | **Process > substance priority, panpsychism** | Becoming → secondary to being      |
-| **Everett (Many-Worlds)** | No collapse, no observer role         | **Branching worlds**                     | —                                   |
-| **Spekkens et al.**       | ψ-epistemic + ontic states            | —                                        | Operational QM as effective theory  |
-| **Sakharov**              | **Induced gravity**                   | —                                        | —                                   |
-| **Verlinde**              | Gravity as emergent                   | **Holographic screens, info primacy**    | Entropic aspects as special cases   |
-| **Loop Quantum Gravity**  | Discrete structure intuition          | **Quantized geometry**                   | Background independence (different route) |
-| **String Theory**         | —                                     | **Strings, extra dimensions, SUSY as fundamental** | —                                   |
-| **Guth**                  | Inflation phenomenology               | **Inflaton as fundamental field**        | Inflation from self-hit regime      |
-| **Penrose**               | Realism about geometry                | **CCC, twistors as fundamental**         | Mathematical tools, not ontology    |
-| **'t Hooft**              | **Deterministic QM**                  | —                                        | Cellular automata → architrino network |
-| **Valentini**             | **Quantum nonequilibrium framework**  | —                                        | Born rule violations as predictions |
-| **Smolin**                | **Time as fundamental, critique of timeless QG** | Evolving laws                    | Laws are eternal                    |
-| **Hossenfelder**          | **Empirical discipline, falsifiability** | —                                     | —                                   |
-| **Wheeler**               | Information as useful                 | **"It from bit" (information primacy)**  | "Bit from it"                       |
-| **Wolfram**               | Emergence from simple rules           | **Hypergraphs as fundamental, computation primacy** | Physical ontology > computation    |
-| **Popper**                | **Falsificationism**                  | —                                        | —                                   |
-| **Kuhn**                  | Paradigm shift structure              | —                                        | Incommensurability softened         |
-| **Lakatos**               | **Research programme methodology**    | —                                        | —                                   |
-| **Cartwright**            | —                                     | **Anti-reductionism, dappled world**     | —                                   |
-
----
+| **Thinker** | **Years** | **Vindicated ✅** | **Challenged ❌** | **Transcended ⚠️** |
+|---|---|---|---|---|
+| **Leucippus** | c. 490–430 BCE | Atomism, void, relational qualities | — | Intrinsic atomic properties |
+| **Democritus** | c. 460–370 BCE | Atomism, void, relational qualities | — | Intrinsic atomic properties |
+| **Plato** | 428–348 BCE | — | **Theory of Forms** | — |
+| **Aristotle** | 384–322 BCE | Emergent continuity | **Teleology, hylomorphism, no void** | — |
+| **Epicurus** | 341–270 BCE | Eternality, no teleology | The swerve (free will) | — |
+| **René Descartes** | 1596–1650 | Mechanism, vortices | **Substance dualism, matter as extension** | — |
+| **Baruch Spinoza** | 1632–1677 | **One substance, necessity, no teleology, God's-eye view** | Mental attribute (thought) | Attributes → charge configurations |
+| **Isaac Newton** | 1643–1727 | **Absolute time, absolute space, ideal observer** | Action-at-distance gravity | Absolute space (structure, not substance) |
+| **Gottfried Wilhelm Leibniz** | 1646–1716 | Relationalism, pre-established harmony | **Monads, no interaction, rejection of absolute space** | Idealism → physicalism |
+| **David Hume** | 1711–1776 | Empiricism (in spirit) | **No necessary connections** | Physical necessity restored |
+| **Immanuel Kant** | 1724–1804 | — | **A priori space/time, thing-in-itself, transcendental idealism** | — |
+| **Pierre-Simon Laplace** | 1749–1827 | **Determinism, Laplace's Demon** | — | — |
+| **Ernst Mach** | 1838–1916 | Relational inertia (emergent), economy of thought | **Positivist anti-realism, rejection of absolute frame** | Absolute time persists |
+| **Ludwig Boltzmann** | 1844–1906 | **Statistical emergence, atomism** | — | — |
+| **Hendrik Lorentz** | 1853–1928 | **Ether, dynamical Lorentz symmetry, preferred frame** | — | — |
+| **Max Planck** | 1858–1947 | *h* as emergent | — | — |
+| **Alfred North Whitehead** | 1861–1947 | Relationalism | **Process > substance priority, panpsychism** | Becoming → secondary to being |
+| **Albert Einstein (SR)** | 1879–1955 | Empirical SR predictions | **Fundamental Lorentz invariance, no preferred frame, spacetime as fundamental** | Kinematic → dynamical emergence |
+| **Albert Einstein (GR)** | 1879–1955 | Empirical GR predictions | **Spacetime as fundamental, diffeomorphism invariance** | GR as emergent hydrodynamics |
+| **Niels Bohr** | 1885–1962 | — | **Completeness, collapse, anti-realism** | Complementarity explained |
+| **Erwin Schrödinger** | 1887–1961 | Realism, desire for ontology | — | ψ as emergent |
+| **Louis de Broglie** | 1892–1987 | **Pilot-wave intuition** | — | Wave on config space → real fields |
+| **Werner Heisenberg** | 1901–1976 | Uncertainty (emergent) | **Reality "behind" formalism** | — |
+| **Karl Popper** | 1902–1994 | **Falsificationism** | — | — |
+| **Paul Dirac** | 1902–1984 | **Antimatter, relativistic QM** | — | QFT as emergent |
+| **John Archibald Wheeler** | 1911–2008 | Information as useful | **"It from bit" (information primacy)** | "Bit from it" |
+| **David Bohm** | 1917–1992 | **Hidden variables, determinism, nonlocality** | — | Quantum potential → architrino potentials |
+| **Richard Feynman** | 1918–1988 | Calculational methods | **Virtual particles as real, sum-over-histories as fundamental** | Effective statistical mechanics |
+| **Andrei Sakharov** | 1921–1989 | **Induced gravity** | — | — |
+| **Thomas Kuhn** | 1922–1996 | Paradigm shift structure | — | Incommensurability softened |
+| **Imre Lakatos** | 1922–1974 | **Research programme methodology** | — | — |
+| **Abdus Salam** | 1926–1996 | Electroweak phenomenology | **Gauge fields and Higgs as fundamental** | Gauge symmetry and Higgs as emergent |
+| **John Bell** | 1928–1990 | **Nonlocality + realism framework** | — | Constraints, not obstacles |
+| **Murray Gell-Mann** | 1929–2019 | Quark classification | **Quarks as fundamental** | Quarks as emergent assemblies |
+| **Hugh Everett III** | 1930–1982 | No collapse, no observer role | **Branching worlds** | — |
+| **Roger Penrose** | 1931– | Realism about geometry | **CCC, twistors as fundamental** | Mathematical tools, not ontology |
+| **Sheldon Glashow** | 1932– | Electroweak phenomenology | **Gauge fields and Higgs as fundamental** | Gauge symmetry and Higgs as emergent |
+| **Steven Weinberg** | 1933–2021 | Electroweak phenomenology | **Gauge fields and Higgs as fundamental** | Gauge symmetry and Higgs as emergent |
+| **Nancy Cartwright** | 1944– | — | **Anti-reductionism, dappled world** | — |
+| **Gerard 't Hooft** | 1946– | **Deterministic QM** | — | Cellular automata → architrino network |
+| **Alan Guth** | 1947– | Inflation phenomenology | **Inflaton as fundamental field** | Inflation from self-hit regime |
+| **Abhay Ashtekar** | 1949– | Discrete structure intuition | **Quantized geometry** | Background independence (different route) |
+| **Edward Witten** | 1951– | — | **Strings, extra dimensions, SUSY as fundamental** | — |
+| **Joseph Polchinski** | 1954–2018 | — | **Strings, extra dimensions, SUSY as fundamental** | — |
+| **Lee Smolin (Temporal Naturalism)** | 1955– | **Time as fundamental, critique of timeless QG** | Evolving laws | Laws are eternal |
+| **Lee Smolin (LQG)** | 1955– | Discrete structure intuition | **Quantized geometry** | Background independence (different route) |
+| **Carlo Rovelli** | 1956– | Discrete structure intuition | **Quantized geometry** | Background independence (different route) |
+| **Stephen Wolfram** | 1959– | Emergence from simple rules | **Hypergraphs as fundamental, computation primacy** | Physical ontology > computation |
+| **Erik Verlinde** | 1962– | Gravity as emergent | **Holographic screens, info primacy** | Entropic aspects as special cases |
+| **Antony Valentini** | 1965– | **Quantum nonequilibrium framework** | — | Born rule violations as predictions |
+| **Lucien Hardy** | 1966– | ψ-epistemic + ontic states | — | Operational QM as effective theory |
+| **Rob Spekkens** | 1970– | ψ-epistemic + ontic states | — | Operational QM as effective theory |
+| **Matthew Leifer** | 1975– | ψ-epistemic + ontic states | — | Operational QM as effective theory |
+| **Sabine Hossenfelder** | 1976– | **Empirical discipline, falsifiability** | — | — |
 
 ## 19. Conclusion: The Architrino Weltanschauung
 
