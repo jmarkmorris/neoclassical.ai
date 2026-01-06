@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "planet",
+    "name": "Planet",
+    "units": "relative",
+    "scaleBandLog10m": [6, 7]
+  },
+  "objects": [
+    {
+      "id": "core",
+      "label": "core",
+      "scaleExponent": 6,
+      "radius": 1.2,
+      "color": "#6a4d1b",
+      "position": [4.5, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "mantle",
+      "label": "mantle",
+      "scaleExponent": 6,
+      "radius": 1.1,
+      "color": "#7a4a1f",
+      "position": [2.25, 3.9, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "crust",
+      "label": "crust",
+      "scaleExponent": 6,
+      "radius": 1.0,
+      "color": "#8a6a3a",
+      "position": [-2.25, 3.9, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "atmosphere",
+      "label": "atmosphere",
+      "scaleExponent": 6,
+      "radius": 1.0,
+      "color": "#2c6c7e",
+      "position": [-4.5, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "magnetosphere",
+      "label": "magnetosphere",
+      "scaleExponent": 6,
+      "radius": 1.0,
+      "color": "#3f5f8a",
+      "position": [-2.25, -3.9, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "rings",
+      "label": "rings",
+      "scaleExponent": 6,
+      "radius": 1.0,
+      "color": "#9ea6bf",
+      "position": [2.25, -3.9, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

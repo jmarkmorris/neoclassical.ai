@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "periodic_table",
+    "name": "Periodic Table",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ]
+  },
+  "objects": []
+}

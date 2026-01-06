@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "molecule",
+    "name": "Molecule",
+    "units": "relative",
+    "scaleBandLog10m": [-9, -6]
+  },
+  "objects": [
+    {
+      "id": "dna",
+      "label": "DNA",
+      "scaleExponent": -8,
+      "radius": 1.2,
+      "color": "#3f5f8a",
+      "position": [4.5, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "protein",
+      "label": "protein",
+      "scaleExponent": -8,
+      "radius": 1.1,
+      "color": "#327a5e",
+      "position": [-2.25, 3.9, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "water",
+      "label": "water",
+      "scaleExponent": -9,
+      "radius": 1.0,
+      "color": "#2c6c7e",
+      "position": [-2.25, -3.9, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

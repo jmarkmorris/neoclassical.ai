@@ -1,6 +1,6 @@
 
 # this animation will start with the void, which is a separate animation
-# and seamlessly merge into an explanation of the unit potential aka point charge and it's characteristics
+# and seamlessly merge into an explanation of the unit potential aka architrino and it's characteristics
 # it has a [q, t, x, y, z, dx/dt, dy/dt, dz/dt] at all times t.
 # it emits Dirac sphere streams. q/v at radius 0. q/rv at radius r>0.
 # show the variety of ways to illustrate each of these concepts. 

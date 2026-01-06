@@ -185,7 +185,7 @@ class noether(ThreeDScene):
         #         self.add(personality_orbital_path)
 
         # if (print_text):
-        #     text = Text('Fermion Architecture Hypothesis        by J Mark Morris\nMoving point charges cause changing electromagnetic fields.\nOrbiting charges form strong electromagnetic fields in each axial vortex.\nAxial potential fields map to the strong force.\nThe orbital axes precess with spin 1/2 (not shown).\nEach orbiting dipole has an angular momentum vector.\nThe angular momentum vectors have magnitudes S,M,L.\nThere are two distinct orderings: SML and SLM, which map to pro and anti.\nEither ordering can spin left or right.\nThe central nest of three orbiting dipoles is a Noether core.', font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        #     text = Text('Fermion Architecture Hypothesis        by J Mark Morris\nMoving architrinos cause changing electromagnetic fields.\nOrbiting charges form strong electromagnetic fields in each axial vortex.\nAxial potential fields map to the strong force.\nThe orbital axes precess with spin 1/2 (not shown).\nEach orbiting dipole has an angular momentum vector.\nThe angular momentum vectors have magnitudes S,M,L.\nThere are two distinct orderings: SML and SLM, which map to pro and anti.\nEither ordering can spin left or right.\nThe central nest of three orbiting dipoles is a Noether core.', font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
         #     text.to_corner(UL)
         #     text.shift(LEFT*0.25 + UP*0.25)
         #     self.add_fixed_in_frame_mobjects(text)
@@ -195,12 +195,12 @@ class noether(ThreeDScene):
         #     text.shift(LEFT*0.25 + DOWN*0.25)
         #     self.add_fixed_in_frame_mobjects(text)
 
-        #     text = Text('The Noether core sub-assembly is reused in all bosons.\nPhotons are contra-rotating planar Noether cores.\nHiggs are Noether cores with near perfect shielding by superposition.\nW and Z bosons are ephemeral transitionary configurations.\nPoint charges are indestructable. No beginning. No end.\nPoint charges have provenance and may be tracked in reactions.\nIn this animation, the camera rotates around the fermion assembly.', font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        #     text = Text('The Noether core sub-assembly is reused in all bosons.\nPhotons are contra-rotating planar Noether cores.\nHiggs are Noether cores with near perfect shielding by superposition.\nW and Z bosons are ephemeral transitionary configurations.\narchitrinos are indestructable. No beginning. No end.\narchitrinos have provenance and may be tracked in reactions.\nIn this animation, the camera rotates around the fermion assembly.', font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
         #     text.to_corner(UR)
         #     text.shift(RIGHT*0.25 + UP*0.25)
         #     self.add_fixed_in_frame_mobjects(text)
 
-        #     text = Text("Point charges have no fundamental speed limit.\nAssemblies may impose an emergent speed limit.\nOrbiting charges with v = field speed are the symmetry breaking point.\nThe smallest orbital radius and maximum curvature maps to Planck scale.\nThe orbital radii are at vastly different scales.\nDipoles broker energy in quanta of angular momentum.\nNoether cores are stretchy rulers and variable clocks. (ala Einstein's GR)", font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        #     text = Text("architrinos have no fundamental speed limit.\nAssemblies may impose an emergent speed limit.\nOrbiting charges with v = field speed are the symmetry breaking point.\nThe smallest orbital radius and maximum curvature maps to Planck scale.\nThe orbital radii are at vastly different scales.\nDipoles broker energy in quanta of angular momentum.\nNoether cores are stretchy rulers and variable clocks. (ala Einstein's GR)", font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
         #     text.to_corner(DR)
         #     text.shift(RIGHT*0.25 + DOWN*0.25)
         #     self.add_fixed_in_frame_mobjects(text)

@@ -1,0 +1,4004 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "tb",
+    "name": "Terbium (Tb)",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "id": "p1",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -3.333,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p2",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.777,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p3",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.222,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p4",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.666,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p5",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.111,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p6",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -0.555,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p7",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.0,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p8",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.555,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p9",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.111,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p10",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.666,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p11",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.222,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p12",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.777,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p13",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        3.333,
+        -3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p14",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -3.333,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p15",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.777,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p16",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.222,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p17",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.666,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p18",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.111,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p19",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -0.555,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p20",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.0,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p21",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.555,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p22",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.111,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p23",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.666,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p24",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.222,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p25",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.777,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p26",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        3.333,
+        -2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p27",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -3.333,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p28",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.777,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p29",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.222,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p30",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.666,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p31",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.111,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p32",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -0.555,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p33",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.0,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p34",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.555,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p35",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.111,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p36",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.666,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p37",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.222,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p38",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.777,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p39",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        3.333,
+        -2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p40",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -3.333,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p41",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.777,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p42",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.222,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p43",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.666,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p44",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.111,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p45",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -0.555,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p46",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.0,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p47",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.555,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p48",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.111,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p49",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.666,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p50",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.222,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p51",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.777,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p52",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        3.333,
+        -1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p53",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -3.333,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p54",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.777,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p55",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -2.222,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p56",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.666,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p57",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -1.111,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p58",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        -0.555,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p59",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.0,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p60",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        0.555,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p61",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.111,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p62",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        1.666,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p63",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.222,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p64",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        2.777,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p65",
+      "label": "P",
+      "radius": 0.2525,
+      "color": "RED",
+      "position": [
+        3.333,
+        -1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "n1",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n2",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n3",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n4",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.666,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n5",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.111,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n6",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -0.555,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n7",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n8",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.555,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n9",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.111,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n10",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.666,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n11",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.222,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n12",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.777,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n13",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        3.333,
+        -0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n14",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n15",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n16",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n17",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.666,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n18",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.111,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n19",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -0.555,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n20",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n21",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.555,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n22",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.111,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n23",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.666,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n24",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.222,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n25",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.777,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n26",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        3.333,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n27",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n28",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n29",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n30",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.666,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n31",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.111,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n32",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -0.555,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n33",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n34",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.555,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n35",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.111,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n36",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.666,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n37",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.222,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n38",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.777,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n39",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        3.333,
+        0.555,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n40",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n41",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n42",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n43",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.666,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n44",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.111,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n45",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -0.555,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n46",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n47",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.555,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n48",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.111,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n49",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.666,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n50",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.222,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n51",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.777,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n52",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        3.333,
+        1.111,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n53",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n54",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n55",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n56",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.666,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n57",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.111,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n58",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -0.555,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n59",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n60",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.555,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n61",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.111,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n62",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.666,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n63",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.222,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n64",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.777,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n65",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        3.333,
+        1.666,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n66",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n67",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n68",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n69",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.666,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n70",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.111,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n71",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -0.555,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n72",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n73",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.555,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n74",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.111,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n75",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.666,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n76",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.222,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n77",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.777,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n78",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        3.333,
+        2.222,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n79",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n80",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n81",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n82",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.666,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n83",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -1.111,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n84",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -0.555,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n85",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n86",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        0.555,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n87",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.111,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n88",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        1.666,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n89",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.222,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n90",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        2.777,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n91",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        3.333,
+        2.777,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n92",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -3.333,
+        3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n93",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.777,
+        3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n94",
+      "label": "N",
+      "radius": 0.2525,
+      "color": "PURPLE",
+      "position": [
+        -2.222,
+        3.333,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "e1_1",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        1.817,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 1.817,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 1
+    },
+    {
+      "id": "e1_2",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -1.817,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 1.817,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 1
+    },
+    {
+      "id": "e2_1",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        3.633,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e2_2",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        2.569,
+        2.569,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 0.785
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e2_3",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        0.0,
+        3.633,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 1.571
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e2_4",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -2.569,
+        2.569,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 2.356
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e2_5",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -3.633,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e2_6",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -2.569,
+        -2.569,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 3.927
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e2_7",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -0.0,
+        -3.633,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 4.712
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e2_8",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        2.569,
+        -2.569,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.633,
+        "speed": 0,
+        "phase": 5.498
+      },
+      "category": "electron",
+      "shell": 2
+    },
+    {
+      "id": "e3_1",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        5.45,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_2",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        5.121,
+        1.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 0.349
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_3",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        4.175,
+        3.503,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 0.698
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_4",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        2.725,
+        4.72,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 1.047
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_5",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        0.946,
+        5.367,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 1.396
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_6",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -0.946,
+        5.367,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 1.745
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_7",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -2.725,
+        4.72,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 2.094
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_8",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -4.175,
+        3.503,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 2.443
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_9",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -5.121,
+        1.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 2.793
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_10",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -5.45,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_11",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -5.121,
+        -1.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 3.491
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_12",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -4.175,
+        -3.503,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 3.84
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_13",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -2.725,
+        -4.72,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 4.189
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_14",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -0.946,
+        -5.367,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 4.538
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_15",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        0.946,
+        -5.367,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 4.887
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_16",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        2.725,
+        -4.72,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 5.236
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_17",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        4.175,
+        -3.503,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 5.585
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e3_18",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        5.121,
+        -1.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 5.45,
+        "speed": 0,
+        "phase": 5.934
+      },
+      "category": "electron",
+      "shell": 3
+    },
+    {
+      "id": "e4_1",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        7.267,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_2",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        7.071,
+        1.676,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 0.233
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_3",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        6.494,
+        3.261,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 0.465
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_4",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        5.567,
+        4.671,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 0.698
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_5",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        4.339,
+        5.829,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 0.931
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_6",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        2.878,
+        6.672,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 1.164
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_7",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        1.262,
+        7.156,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 1.396
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_8",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -0.423,
+        7.254,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 1.629
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_9",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -2.084,
+        6.961,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 1.862
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_10",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -3.633,
+        6.293,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 2.094
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_11",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -4.987,
+        5.286,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 2.327
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_12",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -6.071,
+        3.993,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 2.56
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_13",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -6.828,
+        2.485,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 2.793
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_14",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -7.218,
+        0.844,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 3.025
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_15",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -7.218,
+        -0.844,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 3.258
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_16",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -6.828,
+        -2.485,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 3.491
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_17",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -6.071,
+        -3.993,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 3.723
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_18",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -4.987,
+        -5.286,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 3.956
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_19",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -3.633,
+        -6.293,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 4.189
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_20",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -2.084,
+        -6.961,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 4.422
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_21",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -0.423,
+        -7.254,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 4.654
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_22",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        1.262,
+        -7.156,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 4.887
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_23",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        2.878,
+        -6.672,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 5.12
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_24",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        4.339,
+        -5.829,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 5.352
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_25",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        5.567,
+        -4.671,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 5.585
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_26",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        6.494,
+        -3.261,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 5.818
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e4_27",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        7.071,
+        -1.676,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 7.267,
+        "speed": 0,
+        "phase": 6.05
+      },
+      "category": "electron",
+      "shell": 4
+    },
+    {
+      "id": "e5_1",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        9.083,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e5_2",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        6.423,
+        6.423,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 0.785
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e5_3",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        0.0,
+        9.083,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 1.571
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e5_4",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -6.423,
+        6.423,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 2.356
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e5_5",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -9.083,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e5_6",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -6.423,
+        -6.423,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 3.927
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e5_7",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -0.0,
+        -9.083,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 4.712
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e5_8",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        6.423,
+        -6.423,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 9.083,
+        "speed": 0,
+        "phase": 5.498
+      },
+      "category": "electron",
+      "shell": 5
+    },
+    {
+      "id": "e6_1",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        10.9,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 10.9,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 6
+    },
+    {
+      "id": "e6_2",
+      "label": "e",
+      "radius": 0.12,
+      "color": "BLUE",
+      "position": [
+        -10.9,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 10.9,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 6
+    },
+    {
+      "id": "legend_p",
+      "label": "P",
+      "radius": 0.2272,
+      "color": "RED",
+      "position": [
+        -12.9,
+        12.9,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    },
+    {
+      "id": "legend_n",
+      "label": "N",
+      "radius": 0.2272,
+      "color": "PURPLE",
+      "position": [
+        -12.9,
+        12.218,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    },
+    {
+      "id": "legend_e",
+      "label": "e",
+      "radius": 0.2272,
+      "color": "BLUE",
+      "position": [
+        -12.9,
+        11.536,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    }
+  ]
+}

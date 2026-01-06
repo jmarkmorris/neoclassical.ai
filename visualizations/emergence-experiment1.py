@@ -146,4 +146,4 @@ class emergence(Scene):
         self.wait(59)
 
 
-        # add a way to keep the history of per frame location for each point charge so they can be drawn as well
+        # add a way to keep the history of per frame location for each architrino so they can be drawn as well

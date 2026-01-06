@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknown_14",
+    "name": "Proton Stability",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-theory/philosophy-history/unknowns-paradoxes.md",
+    "markdownSection": "Proton Stability",
+    "markdownColumns": 1
+  },
+  "objects": []
+}
