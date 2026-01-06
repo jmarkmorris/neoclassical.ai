@@ -357,7 +357,7 @@
         0.0
       ],
       "subScenes": [
-        "json/proton.json"
+        "json/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
@@ -413,7 +413,7 @@
         0.0
       ],
       "subScenes": [
-        "json/standard-model/neutrino.json"
+        "json/standard-model-particles/neutrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -433,7 +433,7 @@
         0.0
       ],
       "subScenes": [
-        "json/proton.json"
+        "json/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
@@ -471,7 +471,7 @@
         0.0
       ],
       "subScenes": [
-        "json/proton.json"
+        "json/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"
@@ -527,7 +527,7 @@
         0.0
       ],
       "subScenes": [
-        "json/standard-model/neutrino.json"
+        "json/standard-model-particles/neutrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -547,7 +547,7 @@
         0.0
       ],
       "subScenes": [
-        "json/proton.json"
+        "json/nuclear/proton.json"
       ],
       "motion": {
         "type": "fixed"

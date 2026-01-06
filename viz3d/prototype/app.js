@@ -96,20 +96,20 @@ const binaryStyle = {
   baseOrbitSpeed: 0.18,
 };
 const generationTransitions = {
-  electron: { nextScene: "json/standard-model/muon.json", nextLabel: "Muon" },
-  muon: { nextScene: "json/standard-model/tau.json", nextLabel: "Tau" },
+  electron: { nextScene: "json/standard-model-particles/muon.json", nextLabel: "Muon" },
+  muon: { nextScene: "json/standard-model-particles/tau.json", nextLabel: "Tau" },
   neutrino: {
-    nextScene: "json/standard-model/muon_neutrino.json",
+    nextScene: "json/standard-model-particles/muon_neutrino.json",
     nextLabel: "Muon Neutrino",
   },
   muon_neutrino: {
-    nextScene: "json/standard-model/tau_neutrino.json",
+    nextScene: "json/standard-model-particles/tau_neutrino.json",
     nextLabel: "Tau Neutrino",
   },
-  up_quark: { nextScene: "json/standard-model/charm.json", nextLabel: "Charm" },
-  charm: { nextScene: "json/standard-model/top.json", nextLabel: "Top" },
-  down_quark: { nextScene: "json/standard-model/strange.json", nextLabel: "Strange" },
-  strange: { nextScene: "json/standard-model/bottom.json", nextLabel: "Bottom" },
+  up_quark: { nextScene: "json/standard-model-particles/charm.json", nextLabel: "Charm" },
+  charm: { nextScene: "json/standard-model-particles/top.json", nextLabel: "Top" },
+  down_quark: { nextScene: "json/standard-model-particles/strange.json", nextLabel: "Strange" },
+  strange: { nextScene: "json/standard-model-particles/bottom.json", nextLabel: "Bottom" },
 };
 
 const motionHandlers = {
@@ -2430,7 +2430,7 @@ async function ensurePeriodicTable() {
     return periodicTableCache.data;
   }
   try {
-    const resp = await fetch("json/periodic_table.json");
+    const resp = await fetch("json/chemistry/periodic_table.json");
     if (!resp.ok) {
       throw new Error("Failed to load periodic table");
     }

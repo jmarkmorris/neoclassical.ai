@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "tau",
-    "name": "Tau",
+    "id": "bottom",
+    "name": "Bottom Quark",
     "units": "relative",
     "scaleBandLog10m": [
       -20,
@@ -11,7 +11,7 @@
   },
   "objects": [
     {
-      "id": "fermion_core",
+      "id": "quark_core",
       "label": "Uni-binary Noether core",
       "scaleExponent": -20,
       "radius": 1.08,
@@ -38,7 +38,24 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "positrino_1",
+      "label": "Positrino",
+      "radius": 0.45,
+      "color": "RED",
+      "position": [
+        -2.0,
+        -3.464,
+        0.0
+      ],
+      "subScenes": [
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -55,7 +72,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -72,7 +89,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -89,41 +106,24 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "electrino_5",
-      "label": "Electrino",
+      "id": "positrino_2",
+      "label": "Positrino",
       "radius": 0.45,
-      "color": "BLUE",
-      "position": [
-        -2.0,
-        -3.464,
-        0.0
-      ],
-      "subScenes": [
-        "json/electrino.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "electrino_6",
-      "label": "Electrino",
-      "radius": 0.45,
-      "color": "BLUE",
+      "color": "RED",
       "position": [
         2.0,
         -3.464,
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"

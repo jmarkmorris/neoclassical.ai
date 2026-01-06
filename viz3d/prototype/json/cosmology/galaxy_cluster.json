@@ -14,7 +14,7 @@
       "radius": 1.3,
       "color": "#3f5f8a",
       "position": [-2.5, 4.33, 0.0],
-      "subScenes": ["json/galaxy.json"],
+      "subScenes": ["json/cosmology/galaxy.json"],
       "motion": { "type": "fixed" }
     },
     {
@@ -24,7 +24,7 @@
       "radius": 1.2,
       "color": "#2a3b5a",
       "position": [-2.5, -4.33, 0.0],
-      "subScenes": ["json/intracluster_medium.json"],
+      "subScenes": ["json/cosmology/intracluster_medium.json"],
       "motion": { "type": "fixed" }
     }
   ]

@@ -34,7 +34,7 @@
       "radius": 1.2,
       "color": "#2c6c7e",
       "position": [0.0, 7.0, 0.0],
-      "subScenes": ["json/disk.json"],
+      "subScenes": ["json/cosmology/disk.json"],
       "motion": { "type": "fixed" }
     },
     {

@@ -23,7 +23,7 @@
         "classification": "Ionized gas"
       },
       "subScenes": [
-        "json/proton.json"
+        "json/nuclear/proton.json"
       ]
     },
     {
@@ -59,7 +59,7 @@
         "classification": "Ionized plasma"
       },
       "subScenes": [
-        "json/standard-model/electron.json"
+        "json/standard-model-particles/electron.json"
       ]
     },
     {
@@ -180,7 +180,7 @@
         "classification": "Cosmic ray"
       },
       "subScenes": [
-        "json/proton.json"
+        "json/nuclear/proton.json"
       ]
     },
     {
@@ -199,7 +199,7 @@
         "classification": "Cosmic ray"
       },
       "subScenes": [
-        "json/standard-model/electron.json"
+        "json/standard-model-particles/electron.json"
       ]
     },
     {
@@ -218,7 +218,7 @@
         "classification": "Relic background"
       },
       "subScenes": [
-        "json/standard-model/neutrino.json"
+        "json/standard-model-particles/neutrino.json"
       ]
     },
     {
@@ -237,7 +237,7 @@
         "classification": "Passing background"
       },
       "subScenes": [
-        "json/standard-model/neutrino.json"
+        "json/standard-model-particles/neutrino.json"
       ]
     },
     {

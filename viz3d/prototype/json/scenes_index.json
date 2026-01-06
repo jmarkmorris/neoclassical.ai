@@ -3,67 +3,67 @@
     {
       "id": "atom",
       "name": "Atom",
-      "path": "json/atom.json"
+      "path": "json/nuclear/atom.json"
     },
     {
       "id": "cno_cycle_detail",
       "name": "CNO Cycle Detail",
-      "path": "json/cno_cycle_detail.json"
+      "path": "json/nuclear/cno_cycle_detail.json"
     },
     {
       "id": "down_quark",
       "name": "Down Quark",
-      "path": "json/standard-model/down_quark.json"
+      "path": "json/standard-model-particles/down_quark.json"
     },
     {
       "id": "electron",
       "name": "Electron",
-      "path": "json/standard-model/electron.json"
+      "path": "json/standard-model-particles/electron.json"
     },
     {
       "id": "galaxy",
       "name": "Galaxy",
-      "path": "json/galaxy.json"
+      "path": "json/cosmology/galaxy.json"
     },
     {
       "id": "galaxy_cluster",
       "name": "Galaxy Cluster",
-      "path": "json/galaxy_cluster.json"
+      "path": "json/cosmology/galaxy_cluster.json"
     },
     {
       "id": "galaxy_disk",
       "name": "Galaxy Disk",
-      "path": "json/disk.json"
+      "path": "json/cosmology/disk.json"
     },
     {
       "id": "higgs_boson",
       "name": "Higgs Boson",
-      "path": "json/standard-model/higgs_boson.json"
+      "path": "json/standard-model-particles/higgs_boson.json"
     },
     {
       "id": "intracluster_medium",
       "name": "Intracluster Medium",
-      "path": "json/intracluster_medium.json"
+      "path": "json/cosmology/intracluster_medium.json"
     },
     {
       "id": "molecule",
       "name": "Molecule",
-      "path": "json/molecule.json"
+      "path": "json/chemistry/molecule.json"
     },
     {
       "id": "moon",
       "name": "Moon",
-      "path": "json/moon.json"
+      "path": "json/cosmology/moon.json"
     },
     {
       "id": "neutrino",
       "name": "Neutrino",
-      "path": "json/standard-model/neutrino.json"
+      "path": "json/standard-model-particles/neutrino.json"
     },
     {
       "id": "neutron",
       "name": "Neutron",
-      "path": "json/neutron.json"
+      "path": "json/nuclear/neutron.json"
     },
     {
       "id": "physics_frontiers",
@@ -73,67 +73,67 @@
     {
       "id": "philosopher",
       "name": "Philosopher Grid",
-      "path": "json/philosopher.json"
+      "path": "json/philosophy/philosopher.json"
     },
     {
       "id": "planet",
       "name": "Planet",
-      "path": "json/planet.json"
+      "path": "json/cosmology/planet.json"
     },
     {
       "id": "proton",
       "name": "Proton",
-      "path": "json/proton.json"
+      "path": "json/nuclear/proton.json"
     },
     {
       "id": "solar_system",
       "name": "Solar System",
-      "path": "json/solar_system.json"
+      "path": "json/cosmology/solar_system.json"
     },
     {
       "id": "standard_model",
       "name": "Standard Model",
-      "path": "json/standard-model/standard_model.json"
+      "path": "json/standard-model-particles/standard_model.json"
     },
     {
       "id": "star_interior",
       "name": "Star Interior",
-      "path": "json/star.json"
+      "path": "json/cosmology/star.json"
     },
     {
       "id": "universe",
       "name": "Universe",
-      "path": "json/universe.json"
+      "path": "json/cosmology/universe.json"
     },
     {
       "id": "up_quark",
       "name": "Up Quark",
-      "path": "json/standard-model/up_quark.json"
+      "path": "json/standard-model-particles/up_quark.json"
     },
     {
       "id": "electrino",
       "name": "Electrino",
-      "path": "json/electrino.json"
+      "path": "json/architrino-theory/electrino.json"
     },
     {
       "id": "positrino",
       "name": "Positrino",
-      "path": "json/positrino.json"
+      "path": "json/architrino-theory/positrino.json"
     },
     {
       "id": "nucleus",
       "name": "Nucleus",
-      "path": "json/nucleus.json"
+      "path": "json/nuclear/nucleus.json"
     },
     {
       "id": "fermion_generation_color",
       "name": "Fermion Generation and Color",
-      "path": "json/fermion_generation_color.json"
+      "path": "json/standard-model-theory/fermion_generation_color.json"
     },
     {
       "id": "periodic_table",
       "name": "Periodic Table",
-      "path": "json/periodic_table_scene.json"
+      "path": "json/chemistry/periodic_table_scene.json"
     },
     {
       "id": "h",
@@ -733,7 +733,7 @@
     {
       "id": "unknowns_paradoxes",
       "name": "Unknowns & Paradoxes",
-      "path": "json/unknowns_paradoxes.json"
+      "path": "json/unknowns-paradoxes/unknowns_paradoxes.json"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "muon_neutrino",
-    "name": "Muon Neutrino",
+    "id": "neutrino",
+    "name": "Neutrino",
     "units": "relative",
     "scaleBandLog10m": [
       -20,
@@ -12,9 +12,9 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Bi-binary Noether core",
+      "label": "Tri-binary Noether core",
       "scaleExponent": -20,
-      "radius": 1.68,
+      "radius": 2.4,
       "color": "PURPLE",
       "position": [
         0.0,
@@ -22,6 +22,7 @@
         0.0
       ],
       "binaryBands": [
+        "outer",
         "middle",
         "inner"
       ],
@@ -39,7 +40,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -56,7 +57,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -73,7 +74,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -90,7 +91,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -107,7 +108,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -124,7 +125,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"

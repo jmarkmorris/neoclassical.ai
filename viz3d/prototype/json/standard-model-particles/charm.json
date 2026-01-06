@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "charm",
-    "name": "Charm",
+    "name": "Charm Quark",
     "units": "relative",
     "scaleBandLog10m": [
       -20,
@@ -39,7 +39,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -56,7 +56,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -73,7 +73,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -90,7 +90,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -107,7 +107,7 @@
         0.0
       ],
       "subScenes": [
-        "json/positrino.json"
+        "json/architrino-theory/positrino.json"
       ],
       "motion": {
         "type": "fixed"
@@ -124,7 +124,7 @@
         0.0
       ],
       "subScenes": [
-        "json/electrino.json"
+        "json/architrino-theory/electrino.json"
       ],
       "motion": {
         "type": "fixed"
