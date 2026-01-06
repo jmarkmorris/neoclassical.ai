@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "h",
+    "name": "Hydrogen (H)",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "id": "p1",
+      "label": "P",
+      "radius": 0.3485,
+      "color": "RED",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "e1_1",
+      "label": "e",
+      "radius": 0.248,
+      "color": "BLUE",
+      "position": [
+        3.9,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.9,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 1
+    },
+    {
+      "id": "legend_p",
+      "label": "P",
+      "radius": 0.3136,
+      "color": "RED",
+      "position": [
+        -5.9,
+        5.9,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    },
+    {
+      "id": "legend_n",
+      "label": "N",
+      "radius": 0.3136,
+      "color": "PURPLE",
+      "position": [
+        -5.9,
+        4.959,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    },
+    {
+      "id": "legend_e",
+      "label": "e",
+      "radius": 0.3136,
+      "color": "BLUE",
+      "position": [
+        -5.9,
+        4.018,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    }
+  ]
+}

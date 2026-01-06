@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "galaxy_disk",
+    "name": "Galaxy Disk",
+    "units": "relative",
+    "scaleBandLog10m": [19, 21]
+  },
+  "objects": [
+    {
+      "id": "solar_system",
+      "label": "solar system",
+      "scaleExponent": 11,
+      "radius": 1.3,
+      "color": "#2f7a6e",
+      "position": [6.5, 0.0, 0.0],
+      "subScenes": ["json/solar_system.json"],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "stellar_black_hole",
+      "label": "stellar black hole",
+      "scaleExponent": 4,
+      "radius": 1.1,
+      "color": "#2c2f45",
+      "position": [3.25, 5.63, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "open_cluster",
+      "label": "open cluster",
+      "scaleExponent": 17,
+      "radius": 1.1,
+      "color": "#4a4f7f",
+      "position": [-3.25, 5.63, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "star_forming_region",
+      "label": "star-forming region",
+      "scaleExponent": 18,
+      "radius": 1.1,
+      "color": "#5a1f2e",
+      "position": [-6.5, 0.0, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "giant_molecular_cloud",
+      "label": "giant molecular cloud",
+      "scaleExponent": 19,
+      "radius": 1.1,
+      "color": "#6a4d1b",
+      "position": [-3.25, -5.63, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "spiral_arm_segment",
+      "label": "spiral arm segment",
+      "scaleExponent": 20,
+      "radius": 1.1,
+      "color": "#2f6b6f",
+      "position": [3.25, -5.63, 0.0],
+      "subScenes": [],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

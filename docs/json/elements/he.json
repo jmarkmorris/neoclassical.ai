@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "he",
+    "name": "Helium (He)",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "id": "p1",
+      "label": "P",
+      "radius": 0.347,
+      "color": "RED",
+      "position": [
+        -0.382,
+        -0.382,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "p2",
+      "label": "P",
+      "radius": 0.347,
+      "color": "RED",
+      "position": [
+        0.382,
+        -0.382,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton"
+    },
+    {
+      "id": "n1",
+      "label": "N",
+      "radius": 0.347,
+      "color": "PURPLE",
+      "position": [
+        -0.382,
+        0.382,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "n2",
+      "label": "N",
+      "radius": 0.347,
+      "color": "PURPLE",
+      "position": [
+        0.382,
+        0.382,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron"
+    },
+    {
+      "id": "e1_1",
+      "label": "e",
+      "radius": 0.246,
+      "color": "BLUE",
+      "position": [
+        3.9,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.9,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 1
+    },
+    {
+      "id": "e1_2",
+      "label": "e",
+      "radius": 0.246,
+      "color": "BLUE",
+      "position": [
+        -3.9,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 3.9,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 1
+    },
+    {
+      "id": "legend_p",
+      "label": "P",
+      "radius": 0.3123,
+      "color": "RED",
+      "position": [
+        -5.9,
+        5.9,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    },
+    {
+      "id": "legend_n",
+      "label": "N",
+      "radius": 0.3123,
+      "color": "PURPLE",
+      "position": [
+        -5.9,
+        4.963,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    },
+    {
+      "id": "legend_e",
+      "label": "e",
+      "radius": 0.3123,
+      "color": "BLUE",
+      "position": [
+        -5.9,
+        4.026,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend"
+    }
+  ]
+}

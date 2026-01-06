@@ -1,0 +1,680 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "nucleus",
+    "name": "Nucleus",
+    "units": "relative",
+    "scaleBandLog10m": [
+      -15,
+      -14
+    ]
+  },
+  "objects": [
+    {
+      "id": "proton_1",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_2",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        0.72,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_3",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        0.36,
+        0.624,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_4",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -0.36,
+        0.624,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_5",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -0.72,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_6",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -0.36,
+        -0.624,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_7",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        0.36,
+        -0.624,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_8",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        1.44,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_9",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        1.247,
+        0.72,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_10",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        0.72,
+        1.247,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_11",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        0.0,
+        1.44,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_12",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -0.72,
+        1.247,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_13",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -1.247,
+        0.72,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_14",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -1.44,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_15",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -1.247,
+        -0.72,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_16",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -0.72,
+        -1.247,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_17",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -0.0,
+        -1.44,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_18",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        0.72,
+        -1.247,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_19",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        1.247,
+        -0.72,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_20",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        2.16,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_21",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        2.03,
+        0.739,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_22",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        1.655,
+        1.388,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_23",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        1.08,
+        1.871,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_24",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        0.375,
+        2.127,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_25",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -0.375,
+        2.127,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_26",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -1.08,
+        1.871,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_27",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -1.655,
+        1.388,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_28",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -2.03,
+        0.739,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_29",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -2.16,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_30",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -2.03,
+        -0.739,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_31",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -1.655,
+        -1.388,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_32",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        -1.08,
+        -1.871,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_33",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        -0.375,
+        -2.127,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_34",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        0.375,
+        -2.127,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_35",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        1.08,
+        -1.871,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutron_36",
+      "label": "neutron",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "PURPLE",
+      "position": [
+        1.655,
+        -1.388,
+        0.0
+      ],
+      "subScenes": [
+        "json/neutron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_37",
+      "label": "proton",
+      "scaleExponent": -15,
+      "radius": 0.32,
+      "color": "RED",
+      "position": [
+        2.03,
+        -0.739,
+        0.0
+      ],
+      "subScenes": [
+        "json/proton.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

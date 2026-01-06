@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "higgs_boson",
+    "name": "Higgs Boson",
+    "units": "relative",
+    "scaleBandLog10m": [
+      -19,
+      -18
+    ]
+  },
+  "objects": [
+    {
+      "id": "decay_1",
+      "label": "b b\u0304 \u2248 58%",
+      "radius": 1.2,
+      "color": "#2f6b6f",
+      "position": [
+        0.0,
+        7.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "decay_2",
+      "label": "W\u207aW\u207b* \u2248 21% (one W off-shell)",
+      "radius": 1.2,
+      "color": "#7a4a1f",
+      "position": [
+        5.3,
+        5.3,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "decay_3",
+      "label": "gg \u2248 8% (via top loop)",
+      "radius": 1.2,
+      "color": "#3f5f8a",
+      "position": [
+        7.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "decay_4",
+      "label": "\u03c4\u207a\u03c4\u207b \u2248 6%",
+      "radius": 1.2,
+      "color": "#5a1f2e",
+      "position": [
+        5.3,
+        -5.3,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "decay_5",
+      "label": "c c\u0304 \u2248 3%",
+      "radius": 1.2,
+      "color": "#4a4f7f",
+      "position": [
+        0.0,
+        -7.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "decay_6",
+      "label": "Z Z* \u2248 2.6%",
+      "radius": 1.2,
+      "color": "#2c567a",
+      "position": [
+        -5.3,
+        -5.3,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "decay_7",
+      "label": "\u03b3\u03b3 \u2248 0.23% (loop-induced, rare but clean)",
+      "radius": 1.2,
+      "color": "#d9b86c",
+      "position": [
+        -7.5,
+        -0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "decay_8",
+      "label": "Z\u03b3 \u2248 0.15%",
+      "radius": 1.2,
+      "color": "#6a4d1b",
+      "position": [
+        -5.3,
+        5.3,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

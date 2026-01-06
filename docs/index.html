@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>neoclassical.ai</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+          processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        },
+        startup: {
+          typeset: false
+        }
+      };
+    </script>
+    <script
+      id="mathjax-script"
+      defer
+      src="./vendor/mathjax/tex-chtml.js"
+    ></script>
+    <script src="./vendor/markdown-it/markdown-it.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="viz"></canvas>
+      <div id="scene-label"></div>
+      <div id="nav-controls">
+        <button id="doc-button" type="button" aria-label="Open scene notes" data-tooltip="Notes">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M7 4h7l4 4v12H7V4zm7 0v4h4"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
+        <button id="nav-up" type="button" aria-label="Go back">Back</button>
+        <button id="home-button" type="button" aria-label="Go to home">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div id="scene-search">
+        <button
+          id="scene-search-toggle"
+          type="button"
+          aria-label="Search scenes"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+          </svg>
+        </button>
+        <div id="scene-search-panel" aria-hidden="true">
+          <input
+            id="scene-search-input"
+            type="text"
+            placeholder="Search scenes"
+            autocomplete="off"
+          />
+          <div id="scene-search-results"></div>
+        </div>
+      </div>
+      <div id="detail-panel" aria-hidden="true">
+        <div class="detail-header">
+          <div id="detail-title"></div>
+          <button id="detail-close" type="button" aria-label="Close details">
+            Close
+          </button>
+        </div>
+        <div id="detail-body"></div>
+      </div>
+      <div id="hover-tooltip" aria-hidden="true"></div>
+      <div id="markdown-panel" aria-hidden="true" class="two-columns">
+        <div class="markdown-header">
+          <div id="markdown-title"></div>
+          <div class="markdown-actions">
+            <button
+              id="markdown-layout-toggle"
+              type="button"
+              aria-label="Switch to single column"
+            >
+              <svg class="layout-icon-single" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="6" width="16" height="2" rx="1"></rect>
+                <rect x="4" y="11" width="16" height="2" rx="1"></rect>
+                <rect x="4" y="16" width="16" height="2" rx="1"></rect>
+              </svg>
+              <svg class="layout-icon-double" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="6" width="8" height="2" rx="1"></rect>
+                <rect x="3" y="11" width="8" height="2" rx="1"></rect>
+                <rect x="3" y="16" width="8" height="2" rx="1"></rect>
+                <rect x="13" y="6" width="8" height="2" rx="1"></rect>
+                <rect x="13" y="11" width="8" height="2" rx="1"></rect>
+                <rect x="13" y="16" width="8" height="2" rx="1"></rect>
+              </svg>
+            </button>
+            <button id="markdown-close" type="button" aria-label="Close notes">
+              Close
+            </button>
+          </div>
+        </div>
+      <div id="markdown-content">
+        <div id="markdown-body"></div>
+      </div>
+    </div>
+      <div id="element-legend" aria-hidden="true">
+        <button class="legend-pill" type="button" data-scene="json/proton.json">
+          <span class="legend-dot legend-dot-p"></span>
+          <span class="legend-label">P (proton)</span>
+        </button>
+        <button class="legend-pill" type="button" data-scene="json/neutron.json">
+          <span class="legend-dot legend-dot-n"></span>
+          <span class="legend-label">N (neutron)</span>
+        </button>
+        <button class="legend-pill" type="button" data-scene="json/standard-model/electron.json">
+          <span class="legend-dot legend-dot-e"></span>
+          <span class="legend-label">e (electron)</span>
+        </button>
+      </div>
+      <div id="periodic-overlay" aria-hidden="true">
+        <div class="periodic-header">
+          <div class="periodic-title">Periodic Table</div>
+        </div>
+        <div id="periodic-grid"></div>
+        <div id="periodic-legend"></div>
+      </div>
+      <div id="hud" role="button" aria-expanded="false" aria-controls="info-drawer" tabindex="0">
+        <div class="hud-header">
+          <div class="hud-title">neoclassical.ai</div>
+          <div class="hud-info-icon" aria-hidden="true">i</div>
+        </div>
+        <div class="hud-line">Click/tap a glowing sphere to descend</div>
+      </div>
+      <div id="info-drawer" aria-hidden="true">
+        <div id="info-body"></div>
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

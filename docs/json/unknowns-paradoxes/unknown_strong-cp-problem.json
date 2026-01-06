@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknown_08",
+    "name": "Strong CP Problem",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-theory/philosophy-history/unknowns-paradoxes.md",
+    "markdownSection": "The Strong CP Problem",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

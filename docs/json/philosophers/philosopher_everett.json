@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosopher_detail_23",
+    "name": "Hugh Everett III",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownSection": "hugh everett iii 1930 1982 many worlds interpretation",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

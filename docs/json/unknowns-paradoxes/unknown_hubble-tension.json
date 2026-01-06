@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknown_05",
+    "name": "Hubble Tension",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-theory/philosophy-history/unknowns-paradoxes.md",
+    "markdownSection": "The Hubble Tension",
+    "markdownColumns": 1
+  },
+  "objects": []
+}
