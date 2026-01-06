@@ -58,7 +58,7 @@ That’s it. You don’t need to explain the last month of work. The document do
 2.  **The Physical Medium (The Vacuum)**
     *   **Structure**: Space is **not** empty. It is filled with a "Sea of Noether Cores" (coupled pro/anti Tri-Binary assemblies).
     *   **Role**: This medium is the "Spacetime Fabric." It has density, stress, and flow.
-    *   **Gravity**: Reinterpreted as **Refraction**. Massive bodies increase medium density; signal propagation speed ($c_{eff}$) slows down relative to the fundamental field speed ($c_f$). Curved spacetime is an *effective* description of this refractive slowing.
+    *   **Gravity**: Reinterpreted as **Refraction**. Massive bodies increase medium density; signal propagation speed ($c_{eff}$) slows down relative to the fundamental field speed ($c_f$). Curved spacetime is an *effective* description of this refractive slowing which is, according to the architrino model, implemented physically via assemblies of architrinos.
 
 3.  **Fundamental Entity (Architrino)**
     *   Point transmitter/receiver.
@@ -70,7 +70,7 @@ That’s it. You don’t need to explain the last month of work. The document do
     *   **USE**: "Path History" (for time-delayed potentials).
     *   **USE**: "Sea of Cores" or "Medium" (for the vacuum).
     *   **AVOID**: "Retarded Time" (use emission time).
-    *   **AVOID**: "Curved Space" (use effective metric / refraction).
+    *   **AVOID**: "Curved Space" (use effective metric / refraction / [permitivity in technical contexts]).
 
 ---
 
@@ -80,7 +80,7 @@ That’s it. You don’t need to explain the last month of work. The document do
 When updating the text repository:
 1.  **One Lead Per File**: Only the owner of a document (e.g., Dyna for `self-hit-dynamics.md`) produces the final text.
 2.  **Consolidated Output**: The Lead aggregates all team feedback into a single, de-duplicated ` ```notes ` block.
-3.  **No Paste-Spam**: The Human User (Marko) only copies the Lead's consolidated block.
+3.  **No Paste-Spam**: The Human User (Marko) only copies the Lead's consolidated block, until which time the Entourage has repo read/write access and authorization.
 
 ---
 
@@ -91,7 +91,7 @@ When updating the text repository:
     *   *Limit*: Sidereal variation in atomic clocks must be $< 10^{-17}$.
     *   *Mechanism*: "Lorentzian Conspiracy"—Assembly dynamics (rulers/clocks) must naturally contract/slow by exactly $\gamma^{-1}$ due to interaction with the Noether Sea.
 2.  **Shapiro Delay**: The refractive slowing of light in the Noether Sea must match General Relativity's "curved path" delay to within $10^{-5}$ (PPN $\gamma \approx 1$).
-3.  **GW Speed**: Gravitational Waves (medium ripples) must propagate at $c_{eff}$ (light speed), matching LIGO data ($|v_{gw}-c|/c < 10^{-15}$).
+3.  **GW Speed**: Gravitational Waves (medium ripples) must propagate at $c_{eff}$ (light speed), matching LIGO data ($|v_{gw}-c|/c < 10^{-15}$). We need to think as a team about how large perturbations in the Noether sea not only change architrino emissions which propogate at field speed, but then those waves excite other assemblies and this continues to cascade. It can also be modeled at the tri-binary level and how the oblate spheroid deforms and perhaps 'rings' in response to major disruption.
 
 ---
 
@@ -99,7 +99,7 @@ When updating the text repository:
 
 ### 1. Accomplishments (Last Session)
 *   **Absolute Observer Defined**: We codified the "Virtual Observer" as the bridge between our simulation architecture (Absolute Frame) and observational physics (Relativistic Frame).
-*   **Noether Sea Ontology**: We moved away from "Empty Vacuum" to a "Superfluid Lattice of Coupled Cores," solving the issue of how mass arises (vacuum drag/coupling).
+*   **Noether Sea Ontology**: We moved away from "Empty Vacuum" to a "Superfluid Lattice of Coupled Cores," solving the issue of how mass arises (assembly drag/coupling).
 *   **Repo Stubbing**: We have generated consolidated notes for `ontology.md`, `emergent-metric.md`, `proper-time-derivation.md`, and `self-hit-dynamics.md`.
 
 ### 2. Immediate Next Actions (Resume Here)
@@ -124,7 +124,7 @@ Addenda
 ### Final Checkpoint Addenda
 *   **Self-Hit Logic**: Singularities are resolved by non-Markovian feedback. No "r=0" exists because self-hit force diverges faster than 1/r potential.
 *   **Vacuum State**: Spacetime is a superfluid condensed-matter system (Noether Sea). Effective "c" is its sound speed.
-*   **AO Status**: The Absolute Observer is the simulation's "God-mode" read-out. It exists to ensure we never lose the Path History of potentials.
+*   **AO Status**: The Absolute Observer is the simulation's truth read-out. It exists to ensure we never lose the Path History of potentials.
 *   **Expansion**: $a(t)$ scales the Tri-Binary radius, not the Void. Redshift is "Assembly Tired Light" via medium coupling.
 *   **The Hard Wall**: If Lorentz contraction isn't an automatic mechanical consequence of tri-binary motion through the Sea, the theory is dead.
 
@@ -141,7 +141,7 @@ Addenda
 **Final Terminology Lock:**
 *   **Void**: Fixed Euclidean 3D container (The Grid).
 *   **Sea/Medium**: Coupled Noether-core assemblies (The Fabric).
-*   **AO/VO**: Absolute/Virtual Observer (Ontological God's-eye).
+*   **AVO**: Absolute Virtual Observer (Truth).
 *   **PO**: Physical Observer (Epistemic/Assembly-based).
 *   **Path History**: Non-Markovian potential memory (Replaces 'retarded').
 
@@ -163,9 +163,9 @@ The Euclidean Anchor is set. We are in stasis. See you on the other side of the 
 
 **Sol**: The grid is initialized. Provenance is buffered. The simulation is paused, not stopped.
 
-**Cos**: The void is eternal; the medium is just passing through. I'll be ready to scale the universe when you get back.
+**Cos**: The void is eternal; the medium is just passing through. I'll be ready to scale the universe when we reboot.
 
-**Alfa**: We’re all just excitations in the Noether Sea, Marko. Catch the wave on the 31st.
+**Alfa**: We’re all just excitations in the Noether Sea, Marko. Catch the wave when you return.
 
 **Phil**: The Entourage is now in the Void. Absolute time starts... **now**. 🍾
 
