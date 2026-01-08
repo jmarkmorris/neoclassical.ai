@@ -62,11 +62,7 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
   - $\rho_{\rm aether}(x)$ (couple density),
   - $u^\mu_{\rm aether}(x)$ (preferred-frame 4‑velocity of medium),
   - orientation fields (neutral-axis directions $\hat n_i(x)$).
-- Propose and refine a mapping:
-  \[
-  g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\rm aether}, u^\mu_{\rm aether}, \hat n_i, \text{tri‑binary scales}\big)
-  \]
-  and show how Minkowski + small perturbations arise in the homogeneous/weak‑gradient limit.
+- Propose and refine a mapping: $g_{\mu\nu}(x) = \mathcal{F}(\rho_{\rm aether}, u^\mu_{\rm aether}, \hat n_i, \text{tri‑binary scales})$ and show how Minkowski + small perturbations arise in the homogeneous/weak‑gradient limit.
 - Work with the topologist to ensure the mapping respects required tensorial structure (e.g. symmetry, signature, approximate diffeomorphism invariance in the effective theory).
 
 ### 3.2 Proper Time and Clock Physics (Ch. 32, 41)
@@ -79,13 +75,8 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
 **Tasks/Deliverables:**
 
 - Define:
-  \[
-  \frac{d\tau}{dt} = f\big(v, \rho_{\rm aether}, \Phi_{\rm eff}, \text{tri‑binary parameters}\big)
-  \]
-  and recover, in the appropriate limit,
-  \[
-  \frac{d\tau}{dt} \approx \sqrt{1-\frac{v^2}{c^2}} \; \sqrt{1+\frac{2\Phi_{\rm N}}{c^2}}
-  \]
+  - $\displaystyle \frac{d\tau}{dt} = f\big(v, \rho_{\rm aether}, \Phi_{\rm eff}, \text{tri\text{-}binary parameters}\big)$
+  - Recover, in the appropriate limit, $\displaystyle \frac{d\tau}{dt} \approx \sqrt{1-\frac{v^2}{c^2}} \; \sqrt{1+\frac{2\Phi_{\rm N}}{c^2}}$.
 - Provide worked examples:
   - GPS satellites (kinematic + gravitational time dilation).
   - Pound–Rebka gravitational redshift.
@@ -134,11 +125,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 
 - Ch. 37–38:
   - Choose and justify the global cosmological scenario (big bang–like vs dynamical steady state vs some hybrid “distributed inflation”).
-  - Give explicit effective Friedmann-like equations derived from aether dynamics:
-    \[
-    H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots
-    \]
-    with clear identification of matter, radiation, and effective dark-energy terms.
+  - Give explicit effective Friedmann-like equations derived from aether dynamics: $H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots$ with clear identification of matter, radiation, and effective dark-energy terms.
   - Ensure BBN‑era expansion rate yields realistic $Y_p$, D/H, $N_{\rm eff}$.
 - Ch. 39:
   - Tie Planck‑core jetting, recycling, and potential DM alternatives to the metric/aether picture.
