@@ -28,7 +28,7 @@ I categorize all validation work into three tiers. Failure at Tier 1 is a termin
 *The model must match these within stated experimental and theoretical uncertainties.*
 - **Particle Masses**: PDG values for all SM fermions and bosons.
 - **Anomalous Moments**: Electron $g-2$ (13 sig figs), Muon $g-2$ (4.2$\sigma$ tension focus).
-- **Nuclear Binding**: AME precision (keV) for Deuteron, He-4, and light nuclei.
+- **Nuclear Binding**: AME precision (keV) for deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$), and light nuclei.
 - **Cosmological Parameters**: $H_0, \Omega_m, n_s, Y_p$ (primordial Helium).
 
 ### Tier 3: The "Smoking Guns" (Architrino vs. The World)

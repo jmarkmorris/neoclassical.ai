@@ -132,7 +132,7 @@ Maintain **running comparison table** (updated quarterly):
 
 | Consistency Check | Roles Involved | Test | Threshold | Status | Last Check | Next Review |
 |-------------------|---------------|------|-----------|--------|------------|-------------|
-| Particle mass → nuclear binding | SM Phenom + Nuclear | Do p/n masses yield correct deuteron BE (2.225 MeV)? | Within 10% | TBD | — | [Date] |
+| Particle mass → nuclear binding | SM Phenom + Nuclear | Do p/n masses yield correct deuteron ($^{2}\text{H}$) BE (2.225 MeV)? | Within 10% | TBD | — | [Date] |
 | Vacuum energy match | SM Phenom + GR/Cosmo | Higgs VEV energy = spacetime assembly ρ_vac? | Within factor 10 | TBD | — | [Date] |
 | Newton's G consistency | GR/Cosmo + Nuclear | G from metric = G from nuclear force scale? | Within 20% | TBD | — | [Date] |
 | Clock rate formula | GR/Cosmo + Atomic | Proper time τ formula matches atomic transitions (GPS precision)? | ns level | TBD | — | [Date] |
@@ -216,10 +216,10 @@ These are **non-negotiable**. Any violation at stated confidence level = **theor
 Violations don't immediately kill the framework but require **major revision**:
 
 - **Particle masses:** Off by >50% for multiple SM particles without clear mechanism.
-- **Nuclear binding energies:** Wrong by >20% (e.g., deuteron, alpha, Helium-4).
+- **Nuclear binding energies:** Wrong by >20% (e.g., deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$)).
 - **PPN parameters:** \(|\gamma - 1|\) or \(|\beta - 1| > 10^{-4}\).
 - **CMB acoustic peaks:** Shifted by >5% from observed positions.
-- **BBN:** Predicted \(Y_p\) (Helium-4 fraction) differs from observed 0.24 by >3σ.
+- **BBN:** Predicted \(Y_p\) (alpha particle ($^{4}\text{He}$) fraction) differs from observed 0.24 by >3σ.
 - **Effective neutrino species:** \(|N_{\text{eff}} - 3| > 0.5\) at BBN.
 
 **Protocol:** If 2+ Tier 2 constraints fail simultaneously, escalate to **Theory Health Review** (see Section I).

@@ -119,7 +119,7 @@ Must address, at minimum:
 - Clear ontological story for "fields," "virtual particles," and measurement as emergent/effective
 
 ### Atomic, Nuclear & Condensed Matter
-- Nuclear binding energies: Deuteron (2.225 MeV), He-4 (28.3 MeV) within 5–10%
+- Nuclear binding energies: deuteron ($^{2}\text{H}$) (2.225 MeV), alpha particle ($^{4}\text{He}$) (28.3 MeV) within 5–10%
 - Atomic spectra: Rydberg constant, Hydrogen transitions (fine/hyperfine structure)
 - Chemical periodicity: explain 8/18/32 shell structure, bond angles
 - Condensed phases: solid/liquid/gas transitions, superconductivity, superfluidity

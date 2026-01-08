@@ -37,8 +37,8 @@ Your mission: rebuild the **Periodic Table**, derive **nuclear binding**, and es
 - Recover the **Yukawa-like** behavior and the **hard-core repulsion** (from the symmetry breaking binary $v \approx c_f$).
 
 **A.2 Nuclear Binding and Isotope Selection**
-- Calculate binding energies ($B/A$) for light nuclei ($^2$H, $^3$H, $^4$He) based on assembly coupling.
-- **Alpha Particle ($^4$He)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background aether topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized. 
+- Calculate binding energies ($B/A$) for light nuclei (deuteron ($^{2}\text{H}$), tritium ($^{3}\text{H}$), alpha particle ($^{4}\text{He}$)) based on assembly coupling.
+- **Alpha Particle ($^{4}\text{He}$)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background aether topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized. 
 - Map the **Valley of Stability** and define the nuclear drip lines. 
 
 Considering that **everything** is made of architrino assemblies, one can also imagine the dynamics of all the architrinos: tri-binaries, personality charges, photons, neutrinos passing thru, spacetime assemblies, and incoming potential fields. Without a doubt, those dynamics explain nearly everything in Atomic, Nuclear & Condensed Matter Physics. 
@@ -72,7 +72,7 @@ Consider how the "**Valley of Stability**" might evolve in high "gravitational g
 
 **C.2 Phases and Collective Phenomena**
 - Derive phase diagrams (Solid/Liquid/Gas) from the interaction potentials of bulk assembly collections.
-- Model phonons and collective excitations as waves in the assembly lattice.
+- Model phonons and collective excitations as waves in the assembly lattice or statistical arrangement(?).
 - Explain **Superconductivity** and **Superfluidity** as transitions where assemblies (especially planar types) move coherently through the aether sea.
 
 ---
@@ -80,7 +80,7 @@ Consider how the "**Valley of Stability**" might evolve in high "gravitational g
 ### D. Dense Matter and Equation of State (EoS)
 
 **D.1 Degeneracy and Incompressibility**
-- Reinterpret degeneracy pressure as the **volume exclusion** of tri-binaries compressed toward their minimum scalable radius ($r_{inner}$).
+- Reinterpret degeneracy pressure as the **volume exclusion** of ellipsoidal tri-binary compression.
 - Define the **Equation of State** for white dwarfs and neutron stars.
 
 **D.2 Strong-Field Material Stability**
@@ -92,12 +92,12 @@ Consider how the "**Valley of Stability**" might evolve in high "gravitational g
 ## 4. Success Criteria (Foundation-Up Strategy)
 
 **Tier 1: Foundational Validation**
-- Correct **Charge Arithmetic**: Prove $|e/6|$ combinations yield only observed $1/3, 2/3, 1$ charges.
-- **Binary Stability**: Show the primitive binary is a stable attractor with a fixed radius/frequency.
+- Correct **Charge Arithmetic**: Prove $|e/6|$ combinations yield only observed ($0, |1/3|, |2/3|, |1|$) charges.
+- **Tri-Binary Stability**: Show the tri-binary is a stable attractor with scalable radii/frequencies.
 - **Nucleon Potential**: Derive a $V_{NN}(r)$ that exhibits short-range repulsion and mid-range attraction.
 
 **Tier 2: Physical Realism**
-- **Helium-4 Binding**: Calculate the $^4$He binding energy within 5% of 28.3 MeV.
+- **Helium-4 Binding**: Calculate the alpha particle ($^{4}\text{He}$) binding energy within 5% of 28.3 MeV.
 - **Hydrogen Spectrum**: Reproduce 1s energy and Lyman series from assembly dynamics.
 - **Water Geometry**: Derive the $104.5^\circ$ bond angle from neutral-axis geometry.
 
@@ -110,8 +110,8 @@ Consider how the "**Valley of Stability**" might evolve in high "gravitational g
 ## 5. Key Challenges and "Stop Conditions"
 
 - **Parameter Bloat**: If matching nuclear binding requires more than 3-5 new "fitting" parameters beyond the Master Equation, the model is failing.
-- **Instability**: If multi-assembly systems (like the Deuteron) cannot be shown to be dynamical attractors, the architecture is invalid.
-- **Lorentz Violation**: If interaction with the background aether (the 2-pro/2-anti sea) produces "ether wind" effects above $10^{-17}$, the mapping to the vacuum is incorrect.
+- **Instability**: If multi-assembly systems (like the deuteron ($^{2}\text{H}$)) cannot be shown to be dynamical attractors, the architecture is invalid.
+- **Lorentz Violation**: If interaction with the background aether (the 2-pro/2-anti tri-binary sea) produces "ether wind" effects above $10^{-17}$, the mapping to the vacuum is incorrect.
 
 ---
 

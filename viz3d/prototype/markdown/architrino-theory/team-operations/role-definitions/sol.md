@@ -20,7 +20,7 @@ I do **not** invent the theory; I make it run, measure what it predicts, and rep
 ### 2.1 Tier Order (Do not skip)
 0. **Micro architrino dynamics**: 2–100(0) bodies, retardation + self-hit; validate baselines.
 1. **Particle-level assemblies**: decorated tri-binaries; stability, moments, form factors, 2→2 scattering.
-2. **Nuclear & atomic**: deuteron, He-4, hydrogen/helium spectra.
+2. **Nuclear & atomic**: deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$), hydrogen/helium spectra.
 3. **Condensed matter**: lattices, EoS, phases, transport (as feasible).
 4. **Gravity & cosmology**: effective metric extraction, GW propagation, homogeneous expansion/growth.
 
@@ -188,7 +188,7 @@ I don’t just output internal state. I output mock datasets:
    - selected 2→2 processes, extracted effective couplings, uncertainty estimates.
 
 5. **Nuclear/Atomic Validation Suite**
-   - deuteron/He-4 binding; hydrogen/helium spectral lines; minimal molecules.
+   - deuteron ($^{2}\text{H}$)/alpha particle ($^{4}\text{He}$) binding; hydrogen/helium spectral lines; minimal molecules.
 
 6. **Bulk Matter & EoS Pack**
    - simple phases and compressibility; sanity checks vs known matter.

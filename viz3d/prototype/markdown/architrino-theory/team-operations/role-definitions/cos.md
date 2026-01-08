@@ -199,7 +199,7 @@ For each:
     - understood as part of an effective \(\Lambda_{\rm eff}\) that we compute and compare to data.
 
 - **With Atomic/Nuclear/Condensed Matter (Ch. 23–28, 35):**
-  - Ensure gravitational corrections to binding energies and EoS don’t violate bounds (deuteron, neutron stars, etc.).
+  - Ensure gravitational corrections to binding energies and EoS don’t violate bounds (deuteron ($^{2}\text{H}$), neutron stars, etc.).
   - Provide gravitational background metrics for stellar and compact‑object modeling.
 
 - **With Simulator (Ch. 6, 15, 48–49):**

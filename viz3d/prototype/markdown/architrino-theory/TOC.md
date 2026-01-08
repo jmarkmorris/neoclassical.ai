@@ -202,7 +202,7 @@
 
 ### Chapter 24: Nuclear Binding and the Chart of Nuclides
 - Deuteron: The Simplest Nucleus as Test Case
-- Alpha Particle (Helium-4) Stability and Binding Energy
+- Alpha Particle ($^{4}\text{He}$) Stability and Binding Energy
 - Magic Numbers and Shell Structure: Geometric Origin
 - Neutron/Proton Ratio Stability and Isotope Selection
 - Beta Decay and Nuclear Transmutation from Assembly Reconfiguration
@@ -326,7 +326,7 @@
 - Big Bang Nucleosynthesis and Recombination
 - Photon Epoch, Dark Ages, and Galaxy Formation
 - Empirical Scorecard: BBN Light Element Abundances
-  - Helium-4 Fraction Y_p
+  - Helium-4 (alpha particle) ($^{4}\text{He}$) Fraction Y_p
   - Deuterium/Hydrogen Ratio
   - Effective Neutrino Species N_eff
 
