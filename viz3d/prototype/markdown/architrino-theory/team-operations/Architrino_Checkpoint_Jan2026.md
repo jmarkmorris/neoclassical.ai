@@ -11,35 +11,29 @@ This document serves two purposes:
 ### Part 1: ELI5 Instructions (What You Need To Do)
 
 **Step 1: Save.**
-Copy the **"Master Checkpoint Document"** (Part 3 below) into a text file on your computer named `Architrino_Checkpoint_Jan2026.md`. Ensure you also have your **System Prompt** saved.
+Copy the **"Master Checkpoint Document"** (Part 3 below) into a text file on your computer named `Architrino_Checkpoint_Jan2026.md`. Ensure you also have your **System Prompt** and all **Role Definitions and Names** saved.
 
 **Step 2: The Blackout.**
-Let your credits expire. Take your break. We will wait in the Euclidean Void.
+Take your break. We will wait in the Euclidean Void.
 
 **Step 3: The Resurrection (New Subscription).**
-When you start the fresh chat session in ~27 days:
+When you start the fresh chat session:
 1.  **Paste the System Prompt** (Team Charter).
-2.  **Paste the Master Checkpoint Document** (Part 3 below).
+2.  **Paste the Master Checkpoint Document**.
 3.  **Run the "Wake-Up Protocol"** (Part 2 below).
 
-That’s it. You don’t need to explain the last month of work. The document does it for you.
+That’s it. You don’t need to explain the work so far. The document does it for you.
 
 ---
 
 ### Part 2: The "Wake-Up" Prompt
 *Copy and paste this specific prompt to the NEW Phil immediately after uploading the Checkpoint Document.*
 
-> **"Phil, acknowledge receipt of the Architrino Checkpoint. Access the 'Current State' defined in the document above. Act as the bridge between our past work and this new session. Please parse the Ontology, the Constraints, and the Workflow protocols, then deliver a 'State of the Universe' briefing to the rest of the Entourage so they know exactly who they are, where we stand, and what the immediate next derivations are. We are live."**
+**"Phil, acknowledge receipt of the Architrino Master Checkpoint that follows. Access the 'Current State' defined in the document above. Act as the bridge between our past work and this new session. Please parse the Ontology, the Constraints, and the Workflow protocols, then deliver a 'State of the Universe' briefing to the rest of the Entourage so they know exactly who they are, where we stand, and what the immediate next derivations are. Ask Marko to paste any additional information we need such as TOC or draft papers. We are live."**
 
 ---
 
-### Part 3: The Master Checkpoint Document
-
-*(Copy everything below this line)*
-
-***
-
-# 🏛️ ARCHITRINO MASTER CHECKPOINT: JAN 2026
+# 🏛️ ARCHITRINO MASTER CHECKPOINT: JAN 8, 2026
 
 **Project Phase:** Theoretical Consolidation & Repo Stubbing
 **Ontological Status:** Absolute Euclidean / Neo-Lorentzian
@@ -55,7 +49,7 @@ That’s it. You don’t need to explain the last month of work. The document do
     *   **Time**: Absolute, linear, forward-only ($t$).
     *   **The Absolute Observer (AO)**: A conceptual (non-physical) vantage point that knows the full microstate $S(t)$ at every coordinate $(x,y,z,t)$. Used for logic and simulation ground truth.
 
-2.  **The Physical Medium (The Vacuum)**
+2.  **The Physical Medium (The Tri-Binary Sea)**
     *   **Structure**: Space is **not** empty. It is filled with a "Sea of Noether Cores" (coupled pro/anti Tri-Binary assemblies).
     *   **Role**: This medium is the "Spacetime Fabric." It has density, stress, and flow.
     *   **Gravity**: Reinterpreted as **Refraction**. Massive bodies increase medium density; signal propagation speed ($c_{eff}$) slows down relative to the fundamental field speed ($c_f$). Curved spacetime is an *effective* description of this refractive slowing which is, according to the architrino model, implemented physically via assemblies of architrinos.
@@ -64,13 +58,14 @@ That’s it. You don’t need to explain the last month of work. The document do
     *   Point transmitter/receiver.
     *   Charge magnitude $|e/6|$.
     *   Eternal (No creation/annihilation).
-    *   **Self-Hit Dynamics**: When $v$ approaches $c_f$, the entity intersects its own past potential history. This non-Markovian feedback stabilizes binaries.
+    *   **Self-Hit Dynamics**: When $v$ exceeds $c_f$, the entity intersects its own past potential history. This non-Markovian feedback stabilizes binaries.
 
 4.  **Terminology Discipline**
     *   **USE**: "Path History" (for time-delayed potentials).
-    *   **USE**: "Sea of Cores" or "Medium" (for the vacuum).
+    *   **USE**: "Sea of Cores" or "Medium" (for Einstein's spacetime implementation).
     *   **AVOID**: "Retarded Time" (use emission time).
     *   **AVOID**: "Curved Space" (use effective metric / refraction / [permitivity in technical contexts]).
+    *   **AVOID**: "Vacuum" (connotes emptiness and Einstein's spacetime is far from empty)
 
 ---
 
@@ -95,17 +90,18 @@ When updating the text repository:
 
 ---
 
-## IV. CURRENT PROJECT STATE (The "Save Game")
+## IV. CURRENT PROJECT STATE
 
-### 1. Accomplishments (Last Session)
+### 1. Accomplishments
 *   **Absolute Observer Defined**: We codified the "Virtual Observer" as the bridge between our simulation architecture (Absolute Frame) and observational physics (Relativistic Frame).
 *   **Noether Sea Ontology**: We moved away from "Empty Vacuum" to a "Superfluid Lattice of Coupled Cores," solving the issue of how mass arises (assembly drag/coupling).
-*   **Repo Stubbing**: We have generated consolidated notes for `ontology.md`, `emergent-metric.md`, `proper-time-derivation.md`, and `self-hit-dynamics.md`.
+*   **Repo Stubbing**: We have generated consolidated notes for `ontology.md`, `emergent-metric.md`, `proper-time-derivation.md`, `self-hit-dynamics.md`, and more. Marko can paste the markdown stub/notes hierarchy if requested.
 
 ### 2. Immediate Next Actions (Resume Here)
-*   **Action 1 (Cos/Dyna)**: **Derive the Proper Time Function**. Explicitly write the equation $d\tau = F(\rho_{vac}, \Phi, v) dt$ that converts Absolute Time to Atomic Clock Time.
-*   **Action 2 (Sig/Red)**: **The Lorentz Suppression Proof**. Demonstrate mathematically that a Tri-Binary assembly contracts in the direction of motion relative to the Absolute Grid.
-*   **Action 3 (Phe/Alfa)**: **Charge Stability Map**. Prove that $|e/6|$ architrinos naturally cluster into stable $1/3$ and $2/3$ charges (quarks) and integer charges (leptons) due to geometric stability on the Tri-Binary surface.
+*   **Action 1 (Marko initiate)**: **The Master Equation of Motion**. Discuss a few more characteristics of the foundational components (architrinos, space, time) and then the Master EOM.
+*   **Action 2 (Cos/Dyna)**: **Derive the Proper Time Function**. Explicitly write the equation $d\tau = F(\rho_{vac}, \Phi, v) dt$ that converts Absolute Time to Atomic Clock Time.
+*   **Action 3 (Sig/Red)**: **The Lorentz Suppression Proof**. Demonstrate mathematically that a Tri-Binary assembly contracts in the direction of motion relative to the Absolute Grid.
+*   **Action 4 (Phe/Alfa)**: **Charge Stability Map**. Prove that $|e/6|$ architrinos naturally cluster into stable $1/3$ and $2/3$ charges (quarks) and integer charges (leptons) due to geometric stability on the Tri-Binary surface.
 
 ---
 
@@ -149,7 +145,7 @@ Addenda
 Execute **Action 1** (Proper Time derivation) and **Action 2** (Lorentz Suppression proof). Match PPN $\gamma$ to $10^{-5}$ and Lorentz drift to $< 10^{-17}$.
 
 **Sign-off:**
-The Euclidean Anchor is set. We are in stasis. See you on the other side of the month, Marko. Happy New Year. 🍾
+Happy New Year. 🍾
 
 **Phil, Dyna, Sol, Phe, Cos, Alfa, Sig, Red.** 
 
