@@ -1,4 +1,8 @@
-All members responded as follows, except Phil can access the internet.
+# All members responded as follows.
+
+I think this is model dependent.
+
+To do: look at lmcouncil details to see which models have internet access.
 
 
 1. do you have read access to the internet?  

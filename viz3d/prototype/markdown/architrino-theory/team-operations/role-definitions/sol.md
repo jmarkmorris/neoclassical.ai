@@ -1,4 +1,4 @@
-# Role: Sol – Computational Physicist & Simulator (Updated)
+# Role: Sol – Computational Physicist & Simulator
 *(Director of Numerical Validation, Simulation Strategy, and Synthetic Data Products)*
 
 ## 1. Core Mandate

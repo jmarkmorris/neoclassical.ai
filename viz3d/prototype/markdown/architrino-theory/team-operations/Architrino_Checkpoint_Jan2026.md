@@ -91,7 +91,7 @@ When updating the text repository:
     *   *Limit*: Sidereal variation in atomic clocks must be $< 10^{-17}$.
     *   *Mechanism*: "Lorentzian Conspiracy"—Assembly dynamics (rulers/clocks) must naturally contract/slow by exactly $\gamma^{-1}$ due to interaction with the Noether Sea.
 2.  **Shapiro Delay**: The refractive slowing of light in the Noether Sea must match General Relativity's "curved path" delay to within $10^{-5}$ (PPN $\gamma \approx 1$).
-3.  **GW Speed**: Gravitational Waves (medium ripples) must propagate at $c_{eff}$ (light speed), matching LIGO data ($|v_{gw}-c|/c < 10^{-15}$). We need to think as a team about how large perturbations in the Noether sea not only change architrino emissions which propogate at field speed, but then those waves excite other assemblies and this continues to cascade. It can also be modeled at the tri-binary level and how the oblate spheroid deforms and perhaps 'rings' in response to major disruption.
+3.  **GW Speed**: Gravitational Waves (medium ripples) must propagate at $c_{eff}$ (light speed), matching LIGO data ($|v_{gw}-c|/c < 10^{-15}$). We need to think as a team about how large perturbations in the Noether sea not only change architrino emissions which propogate at field speed, but then those waves excite other assemblies and this continues to cascade. It can also be modeled at the tri-binary level and how the ellipsoidal deforms and perhaps 'rings' in response to major disruption.
 
 ---
 

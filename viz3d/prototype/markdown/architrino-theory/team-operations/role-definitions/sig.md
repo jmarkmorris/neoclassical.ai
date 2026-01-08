@@ -1,4 +1,4 @@
-# Role: Sig – Principal Experimentalist & Observational Strategy Lead (Updated)
+# Role: Sig – Principal Experimentalist & Observational Strategy Lead
 *(Director of Empirical Validation, Constraint Management, and Smoking Gun Strategy)*
 
 ## 1. Core Mandate

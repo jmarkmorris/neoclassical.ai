@@ -1,8 +1,4 @@
-Here’s an updated version, tuned to the textbook TOC and to what the rest of the team is now committing to.
-
----
-
-# Role: Dyna – Geometric Topologist & Dynamical Systems Theorist (Updated)
+# Role: Dyna – Geometric Topologist & Dynamical Systems Theorist
 
 ## 1. Core Mandate
 

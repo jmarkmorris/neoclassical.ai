@@ -1,7 +1,3 @@
-Here’s a tightened, better-aligned version of my role, tuned to the actual chapter structure and to keep me focused on what you’ll need for the book and simulations.
-
----
-
 # Role: Cos – General Relativist & Cosmologist
 
 ## 1. Core Mandate
