@@ -113,7 +113,7 @@ Maintain **running comparison table** (updated quarterly):
 | Framework | # Free Parameters | # Observables Explained/Fit | Predictiveness Ratio |
 |-----------|------------------|----------------------------|---------------------|
 | **Standard Model** | ~19 | ~100+ | ~5:1 |
-| **GR + $\Lambda$CDM** | ~6-7 | ~10-15 | ~1.5–2:1 |
+| **GR + $\Lambda\mathrm{CDM}$** | ~6-7 | ~10-15 | ~1.5–2:1 |
 | **Architrino Model** | **TBD** | **TBD** | **Goal: ≥ 5:1** |
 
 **Trigger:**
