@@ -6,7 +6,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
 
 - Build the **metric-level description**: $g_{\mu\nu}(x)$, geodesics, and proper time from the spacetime-aether assemblies (graviton–Higgs–binary background).
 - Recover **GR and $\Lambda\mathrm{CDM}$ phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
-- Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, H₀, $\sigma$₈, EP/Lorentz bounds.
+- Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, H₀, $\sigma_8$, EP/Lorentz bounds.
 - Ensure all gravity/cosmology claims are grounded in explicit mechanisms from:
   - **Absolute time + Euclidean 3-space**
   - **Tri-binary architecture** (inner/mid/outer)
@@ -39,8 +39,8 @@ I am responsible for ensuring the architrino framework can meet (or very clearly
 - Effective expansion history \(H(z)\) broadly matching $\Lambda\mathrm{CDM}$ where required.
 - BBN: \(Y_p \approx 0.24\), D/H, \(N_{\rm eff}\approx 3\).
 - CMB: acoustic peak positions, basic TT/TE/EE structure, lensing amplitude.
-- Linear growth and lensing: $\sigma$₈/S₈ in the observed ballpark.
-- Clear story on H₀ tension and $\sigma$₈/LSS tensions: resolved, worsened, or neutral.
+- Linear growth and lensing: $\sigma_8/S_8$ in the observed ballpark.
+- Clear story on H₀ tension and $\sigma_8$/LSS tensions: resolved, worsened, or neutral.
 
 These are Tier‑1/2 constraints: if we systematically can’t approach them, we document and may trigger stop‑conditions.
 
@@ -154,7 +154,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
   - Growth equation for density perturbations in the emergent metric.
   - Matter power spectrum sketch, and how DM vs modified gravity vs hybrid emerges from the aether and assembly content.
 - Ch. 43:
-  - Make quantitative, falsifiable proposals for resolving (or not) the H₀ and $\sigma$₈ tensions.
+- Make quantitative, falsifiable proposals for resolving (or not) the H₀ and $\sigma_8$ tensions.
   - Identify clean observable discriminants for the architrino cosmology.
 
 - Ch. 44:
@@ -177,7 +177,7 @@ For each:
 - Predict:
   - galaxy rotation curves vs baryons,
   - cluster lensing (e.g. Bullet Cluster),
-  - CMB + LSS combined constraints on $\Omega$_m, $\sigma$₈/S₈.
+  - CMB + LSS combined constraints on $\Omega_m$, $\sigma_8/S_8$.
 - Flag clean falsifiers: e.g. if Bullet‑Cluster‑like offsets can’t be produced without DM‑like entities, rule out pure MG in this framework.
 
 ---
@@ -210,7 +210,7 @@ For each:
 
 - **With Experimental & Observational Lead (Ch. 7, 15, 22, 26, 40–43, 50):**
   - Maintain a **gravity/cosmology constraint ledger** and a prioritized prediction list.
-  - Choose key tests: PPN, GW dispersion/polarization, H(z), CMB peaks, BBN, $\sigma$₈/S₈.
+- Choose key tests: PPN, GW dispersion/polarization, H(z), CMB peaks, BBN, $\sigma_8/S_8$.
 
 - **With Adversary / Red Team (Ch. 16, 44, 53–54):**
   - Provide a clear list of:
