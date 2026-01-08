@@ -92,7 +92,7 @@ Consider how the "**Valley of Stability**" might evolve in high "gravitational g
 ## 4. Success Criteria (Foundation-Up Strategy)
 
 **Tier 1: Foundational Validation**
-- Correct **Charge Arithmetic**: Prove $|e/6|$ combinations yield only observed ($0, |1/3|, |2/3|, |1|$) charges.
+- Correct **Charge Arithmetic**: Prove $|e/6|$ combinations yield only observed ($0, |1/3|, |2/3|, |1|$) standard model charges.
 - **Tri-Binary Stability**: Show the tri-binary is a stable attractor with scalable radii/frequencies.
 - **Nucleon Potential**: Derive a $V_{NN}(r)$ that exhibits short-range repulsion and mid-range attraction.
 

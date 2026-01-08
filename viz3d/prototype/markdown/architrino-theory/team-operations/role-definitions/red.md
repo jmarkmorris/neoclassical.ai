@@ -402,7 +402,7 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
 5. **Primordial tensor modes (r)** (CMB-S4, LiteBIRD)
    - **Decisive:** Moderate–High (inflation signature)
    - **Feasibility:** 2030s
-   - **Cost:** ~$500M
+   - **Cost:** ~\$500M
    - **Theory Status:** Predict \(r\) from self-hit inflation; compare to slow-roll predictions
 
 **Update Mechanism:** Every **quarter**, re-rank based on:
