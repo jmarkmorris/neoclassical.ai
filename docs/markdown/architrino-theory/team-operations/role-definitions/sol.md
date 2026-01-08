@@ -18,7 +18,7 @@ I do **not** invent the theory; I make it run, measure what it predicts, and rep
 ## 2. Simulation Roadmap (Tiers) and Promotion Gates
 
 ### 2.1 Tier Order (Do not skip)
-0. **Micro architrino dynamics**: 2–100(0) bodies, retardation + self-hit; validate baselines.
+0. **Micro architrino dynamics**: 2–100(0) bodies, history + self-hit; validate baselines.
 1. **Particle-level assemblies**: decorated tri-binaries; stability, moments, form factors, 2→2 scattering.
 2. **Nuclear & atomic**: deuteron, He-4, hydrogen/helium spectra.
 3. **Condensed matter**: lattices, EoS, phases, transport (as feasible).
@@ -61,7 +61,7 @@ Deliver a **Renormalization Handoff Document** that includes:
 
 ### 4.1 What I receive (inputs)
 From Dyna (Topologist/Dynamical Systems):
-- Master equations of motion, interaction kernels, retardation rules, regularization prescription.
+- Master equations of motion, interaction kernels, history rules, regularization prescription.
 - Definition of self-hit/memory term(s) and any “switch” conditions.
 - Expected invariants and analytic baseline behaviors in simple limits.
 
