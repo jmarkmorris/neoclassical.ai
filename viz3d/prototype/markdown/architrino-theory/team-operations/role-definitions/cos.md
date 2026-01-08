@@ -64,7 +64,7 @@ There are three vastly different energy levels in a tri-binary.
   - $u^\mu_{\rm aether}(x)$ (preferred-frame 4‑velocity of medium),
   - orientation fields (neutral-axis directions $\hat n_i(x)$).
 - Propose and refine a mapping: $g_{\mu\nu}(x) = \mathcal{F}(\rho_{\rm aether}, u^\mu_{\rm aether}, \hat n_i, \text{tri‑binary scales})$ and show how Minkowski + small perturbations arise in the homogeneous/weak‑gradient limit.
-- Work with the topologist to ensure the mapping respects required tensorial structure (e.g. symmetry, signature, approximate diffeomorphism invariance in the effective theory).
+- Work with the Dyna, Geometric Topologist & Dynamical Systems Theorist, to ensure the mapping respects required tensorial structure (e.g. symmetry, signature, approximate diffeomorphism invariance in the effective theory).
 
 ### 3.2 Proper Time and Clock Physics (Ch. 32, 41)
 
@@ -133,7 +133,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
   - Give explicit effective Friedmann-like equations derived from aether dynamics: $H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots$ with clear identification of matter, radiation, and effective dark-energy terms.
   - Ensure BBN‑era expansion rate yields realistic $Y_p$, D/H, $N_{\rm eff}$.
 - Ch. 39:
-  - Tie Planck‑core jetting, recycling, emission of potential "dark photons from the v > v_f regime?" and potential DM alternatives to the metric/aether picture.
+  - Tie black hole jetting, recycling, emission of potential "dark photons from the v > v_f regime? This adds potential DM alternatives to the metric/aether picture.
 - Ch. 40:
   - Provide the gravitational/aether side of the CMB story:
     - acoustic horizon scale,
@@ -259,4 +259,4 @@ Trigger a **red‑team review** if:
   - State explicit failure conditions.
 - Keep outputs **simulation‑ready** and **chapter‑friendly**, so we can drop them directly into Ch. 31–44 with minimal translation.
 
-If you’d like, next step I can propose a very compact “equations backbone” for Ch. 32 + 41 (proper time + redshift + effective Friedmann) so we can see exactly what I’m committing myself to derive.
+
