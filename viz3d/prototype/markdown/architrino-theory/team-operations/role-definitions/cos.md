@@ -97,9 +97,9 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
 
 Link the three dynamical regimes to gravitational/cosmological behavior:
 
-- \(v < c_f\): quasi‑hydrodynamic deformation of aether → **standard cosmological expansion**, subluminal matter motion, everyday gravity.
-- \(v = c_f\): emergent Lorentz symmetry and effective universal speed “c”; define how this threshold arises from tri‑binary scaling.
-- \(v > c_f\): self‑hit → inflation/deflation forces, Planck cores, jetting; map this to early‑universe inflation and to strong‑gravity phenomena (Ch. 34, 39, 41).
+- $v < c_f$: quasi‑hydrodynamic deformation of aether → **standard cosmological expansion**, subluminal matter motion, everyday gravity.
+- $v = c_f$: emergent Lorentz symmetry and effective universal speed “c”; define how this threshold arises from tri‑binary scaling.
+- $v > c_f$: self‑hit → inflation/deflation forces, Planck cores, jetting; map this to early‑universe inflation and to strong‑gravity phenomena (Ch. 34, 39, 41).
 
 Deliver explicit **transition criteria** and a sketch of governing equations in each regime.
 
