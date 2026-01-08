@@ -20,13 +20,13 @@ Everything I write should be **simulation‑ready** (for the computational role)
 ### 2.1 State Space and Evolution Laws
 
 - Define the **state space**:
-  - Single architrino: \(x \in \mathbb{R}^3\), \(v\) or \(p\), polarity \(s \in \{\pm\}\), plus minimal internal variables if needed (e.g. phase).
-  - N‑body: configuration space \((\mathbb{R}^3 \times \mathbb{R}^3 \times \{\pm\})^N\) over absolute time \(t \in \mathbb{R}\).
+  - Single architrino: $x \in \mathbb{R}^3$, $v$ or $p$, polarity $s \in \{\pm\}$, plus minimal internal variables if needed (e.g. phase).
+  - N‑body: configuration space $(\mathbb{R}^3 \times \mathbb{R}^3 \times \{\pm\})^N$ over absolute time $t \in \mathbb{R}$.
 - Specify the **interaction law**:
-  - Potential kernel(s): spatial decay (e.g. 1/r type), propagation at field speed \(c_f\), sign structure (pro/anti).
-  - Retarded dependence: forces at time \(t\) depend on positions at earlier times \(t - r/c_f\).
+  - Potential kernel(s): spatial decay (e.g. 1/r type), propagation at field speed $c_f$, sign structure (pro/anti).
+  - Retarded dependence: forces at time $t$ depend on positions at earlier times $t - r/c_f$.
 - Choose the fundamental evolution form:
-  - **Delay integro‑differential equations**: ODEs in \(t\) with history integrals (self‑hit regime included explicitly).
+  - **Delay integro‑differential equations**: ODEs in $t$ with history integrals (self‑hit regime included explicitly).
   - Make explicit which variables are local vs history‑dependent.
 
 Deliverable: **The Master Equation(s)** (Ch. 4–5 backbone) in a form that can be discretized.
@@ -62,10 +62,10 @@ Deliverable: Formal symmetry/conservation statements with explicit integrals (Ch
   - Runaway self‑interaction, density blow‑ups.
   - Pathological delay feedback (loss of uniqueness, instabilities).
 - Show how the combination of:
-  - Finite propagation speed \(c_f\),
+  - Finite propagation speed $c_f$,
   - Discreteness of architrinos,
   - And specific kernel form
-  can regularize \(1/r\)-type divergences and yield **finite self‑energies** (or else clearly mark where an additional regularization principle is needed).
+  can regularize $1/r$-type divergences and yield **finite self‑energies** (or else clearly mark where an additional regularization principle is needed).
 
 Deliverable: **Pathology & Regularization report** (feeds Appendix B and Ch. 5).
 
@@ -166,7 +166,7 @@ Deliverable: Stability/bifurcation maps feeding Ch. 14–15 and the phase narrat
 ### 5.1 From Points to Fields
 
 - Derive **coarse‑grained fields** from architrino ensembles:
-  - Densities \(\rho(x,t)\), currents \(j(x,t)\), potential fields \(\Phi(x,t)\), etc.
+  - Densities $\rho(x,t)$, currents $j(x,t)$, potential fields $\Phi(x,t)$, etc.
 - Show how effective **field equations** (Maxwell‑like, Klein–Gordon‑like, Dirac‑like, Yang–Mills‑like) arise:
   - As continuum limits or ensemble equations of motion.
   - Clarify the approximations: large‑N, weak‑fluctuation, etc.
@@ -176,10 +176,8 @@ Deliverable: Explicit **coarse‑graining map** and resulting field equations (C
 ### 5.2 Emergent Metric & Curvature from Aether Assemblies
 
 - Build a **metric functional**:
-  \[
-  g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{aether}}(x), u^\alpha_{\text{aether}}(x), \hat n_i(x), \text{tri‑binary scales}\big)
-  \]
-  where \(\rho_{\text{aether}}\) is spacetime‑aether couple density, \(u^\alpha\) its 4‑velocity, and \(\hat n_i\) neutral‑axis orientations.
+  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{aether}}(x), u^\alpha_{\text{aether}}(x), \hat n_i(x), \text{tri‑binary scales}\big)$
+  where $\rho_{\text{aether}}$ is spacetime‑aether couple density, $u^\alpha$ its 4‑velocity, and $\hat n_i$ neutral‑axis orientations.
 - Show:
   - Geodesics in this effective metric correspond to coarse‑grained architrino/assembly paths.
   - In appropriate limits, recover Newtonian potential, Schwarzschild, FRW, etc.
@@ -190,7 +188,7 @@ Deliverable: Mathematical backbone for Ch. 31–32 and 34 (metric emergence and 
 
 ### 5.3 Absolute Time and Proper Time Map
 
-- Derive the mapping \(d\tau/dt = f(v, \rho_{\text{aether}}, \Phi_{\text{eff}})\) from:
+- Derive the mapping $d\tau/dt = f(v, \rho_{\text{aether}}, \Phi_{\text{eff}})$ from:
   - Delay/interaction structure at the tri‑binary level (Noether core oscillation rate vs absolute time).
   - Aether coupling.
 - Show how:
@@ -199,7 +197,7 @@ Deliverable: Mathematical backbone for Ch. 31–32 and 34 (metric emergence and 
   - And local Lorentz symmetry
   arise as approximations.
 
-Deliverable: Rigorous **\(t \leftrightarrow \tau\)** relation (feeding Ch. 32 and 41).
+Deliverable: Rigorous **$t \leftrightarrow \tau$** relation (feeding Ch. 32 and 41).
 
 ---
 
@@ -208,7 +206,7 @@ Deliverable: Rigorous **\(t \leftrightarrow \tau\)** relation (feeding Ch. 32 an
 ### 6.1 Geometry of Worldline Space
 
 - Define the **space of architrino trajectories**:
-  - As a functional space (e.g. \(C^1([t_0,t_1], \mathbb{R}^3)\)) or suitable quotient/moduli space (grouping equivalent paths).
+  - As a functional space (e.g. $C^1([t_0,t_1], \mathbb{R}^3)$) or suitable quotient/moduli space (grouping equivalent paths).
 - Investigate:
   - Whether there exists a natural **action functional** on this space whose stationary points reproduce the master equations.
   - How near‑stationary paths and fluctuations relate to effective quantum‑like behavior.
@@ -221,7 +219,7 @@ Deliverable: Action‑based or geometric mechanics formulation, if possible (Ch.
   - A statistical measure over architrino histories (ensemble of microtrajectories),
   - Or an effective description emerging from coarse‑graining self‑hit memory.
 - Map limits in which:
-  - Quantum amplitudes \(\sim e^{iS/\hbar}\) can approximate statistics of architrino worldlines.
+  - Quantum amplitudes $\sim e^{iS/\hbar}$ can approximate statistics of architrino worldlines.
 
 Deliverable: Conceptual and tentative mathematical link to path‑integral QM (Ch. 29, possibly Appendix).
 
@@ -327,7 +325,7 @@ Use and combine:
 - **Assembly Atlas**:
   - Catalogue of stable/metastable assemblies with invariants, mapped to candidate SM particles and spacetime/aether configurations (Ch. 14, 18–21, 31).
 - **Emergent Geometry Derivations**:
-  - From architrino/aether distributions to \(g_{\mu\nu}\), geodesics, and curvature (Ch. 31–32, 34).
+  - From architrino/aether distributions to $g_{\mu\nu}$, geodesics, and curvature (Ch. 31–32, 34).
 - **Self‑Hit/Non‑Markovian Analysis**:
   - Classification of behaviors, attractors, and phase transitions in the self‑hit regime (Ch. 5, 12, 39, 41).
 

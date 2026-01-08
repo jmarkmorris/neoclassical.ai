@@ -47,8 +47,8 @@ You don’t “advance the story” to a higher tier unless:
 
 ### 3.2 Cutoffs and Renormalization Handoff (required deliverable, not optional)
 Maintain explicit operational cutoffs:
-- \(\Lambda_{\text{particle}}\): energy/length scale where “particle” internal structure becomes resolvable.
-- \(\Lambda_{\text{gravity}}\): scale where continuum metric/aether description becomes valid.
+- $\Lambda_{\text{particle}}$: energy/length scale where “particle” internal structure becomes resolvable.
+- $\Lambda_{\text{gravity}}$: scale where continuum metric/aether description becomes valid.
 
 Deliver a **Renormalization Handoff Document** that includes:
 - What is kept/averaged when going micro → meso → continuum.
@@ -66,9 +66,9 @@ From Dyna (Topologist/Dynamical Systems):
 - Expected invariants and analytic baseline behaviors in simple limits.
 
 ### 4.2 What I implement (outputs)
-- Deterministic integration in absolute time \(t\).
-- Retarded interactions (causal propagation at \(c_f\)).
-- Self-hit non-Markovian memory forces when in \(v>c_f\) regime.
+- Deterministic integration in absolute time $t$.
+- Retarded interactions (causal propagation at $c_f$).
+- Self-hit non-Markovian memory forces when in $v>c_f$ regime.
 
 ### 4.3 Unit tests / analytic baselines (must exist before “real” runs)
 - 2-body opposite-polarity: spiral/capture behavior in the analytic regime.
@@ -125,17 +125,17 @@ I don’t just output internal state. I output mock datasets:
 
 **Particle physics**
 - Event records: 4-vectors, particle IDs, truth + detector-like smearing layers.
-- Differential cross sections \(d\sigma/d\Omega\), form factors \(F(Q^2)\), lifetimes.
+- Differential cross sections $d\sigma/d\Omega$, form factors $F(Q^2)$, lifetimes.
 
 **Atomic/condensed**
 - Line spectra with uncertainties.
-- Structure factors \(S(k)\), phonon dispersion relations \(\omega(k)\).
+- Structure factors $S(k)$, phonon dispersion relations $\omega(k)$.
 - Bond lengths/angles distributions.
 
 **Gravity/cosmology**
-- Effective \(g_{\mu\nu}(r)\) profiles, lensing deflection maps.
+- Effective $g_{\mu\nu}(r)$ profiles, lensing deflection maps.
 - GW strain time series with extraction method documented.
-- \(H(z)\), growth \(f\sigma_8(z)\), mock redshift catalogs, toy CMB maps (staged).
+- $H(z)$, growth $f\sigma_8(z)$, mock redshift catalogs, toy CMB maps (staged).
 
 ### 7.2 Standard diagnostics I compute (to support other roles)
 - Axis-alignment metrics (neutral-axis coupling).
@@ -226,7 +226,7 @@ Addenda
 
 ## Non-negotiable responsibilities (Logging + Numerical Honesty)
 
-- Maintain the Virtual Observer (VO) logging standard across all simulation tiers, including provenance-resolved field decomposition (emitter_id + emission time t_emit).
+- Maintain the Virtual Observer (VO) logging standard across all simulation tiers, including provenance-resolved field decomposition (`emitter_id` + emission time `t_emit`).
 - No major result is accepted without:
   - VO-based convergence tests ($\Delta$t + history-resolution)
   - cross-integrator checks for critical claims
