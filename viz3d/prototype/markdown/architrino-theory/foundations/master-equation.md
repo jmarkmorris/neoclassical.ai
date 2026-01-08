@@ -1,7 +1,7 @@
 # Master Equation of Motion
 
 **Status:** Authoritative (Consolidated from Geometrical-Model-of-Nature and Marko's supplementary input)  
-**Last Updated:** January 2026  
+**Last Updated:** January 2026 (v1.1 - Team feedback incorporated)  
 **Owners:** Dyna (lead), Phil (philosophical framing), Sol (numerical implementation), entire Entourage (review)
 
 ---
@@ -58,7 +58,7 @@ where:
 - $\mathbf{F}_{ij}(\text{causal history})$: Sum of all causal hits from source $j \neq i$ arriving at receiver $i$ at time $t$
 - $\mathbf{F}_{ii}(\text{self-hit})$: Sum of all self-hits (architrino $i$ intersecting its own past emissions)
 
-**Key insight:** Both terms have the same functional form (radial \$1/r^2$ force law); they differ only in source identity ($j = i$ vs $j \neq i$).
+**Key insight:** Both terms have the same functional form (radial $1/r^2$ force law); they differ only in source identity ($j = i$ vs $j \neq i$).
 
 ---
 
@@ -133,6 +133,8 @@ $$
 
 For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
 
+**[Diagram to be added]**: Visualize causal light cone, source worldline, expanding spheres, and receiver intersection. Show both single-hit (sub-$c_f$) and multi-hit (super-$c_f$) cases.
+
 ---
 
 ## 3. The Master Equation (Canonical Form)
@@ -177,6 +179,8 @@ where:
 
 **Note:** The force is **purely radial** (along $\hat{\mathbf{r}}_{ij}$). There are no "magnetic" or velocity-cross-product terms in the fundamental law.
 
+**Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry** and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the entire burden of magnetic-field emergence on the assembly structure and Noether Sea dynamics (see TOC Ch. 20: "Emergence of Gauge Symmetries").
+
 ### 3.2 Total Acceleration (Sum Over All Causal Hits)
 
 The total acceleration on architrino $i$ at time $t$ is the **vector sum** over:
@@ -197,7 +201,7 @@ where:
 
 - Outer sum: over all sources $j$ (including $j = i$ for self-hits)
 - Inner sum: over all causal emission times $t_0 \in \mathcal{C}_j(t)$
-- Each term: radial \$1/r^2$ acceleration with sign $\sigma_{ij}$
+- Each term: radial $1/r^2$ acceleration with sign $\sigma_{ij}$
 
 **Explicit separation of partner and self-hit terms:**
 
@@ -209,7 +213,7 @@ $$
 
 ### 3.3 Conventions and Exclusions
 
-**Heaviside Convention (\$H(0) = 0$):**
+**Heaviside Convention ($H(0) = 0$):**
 
 The emission at $t_0 = t$ (instantaneous self-force) is **excluded**. Formally, this is enforced by writing:
 
@@ -223,7 +227,7 @@ $$
 
 **No $r = 0$ causal roots beyond $\tau = 0$:**
 
-Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by \$H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding shells, not by contact).
+Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding shells, not by contact).
 
 ### 3.4 Superposition Principle
 
@@ -261,13 +265,13 @@ $\hat{\mathbf{r}}_{ij}$ points **from the source's historical position** $\mathb
 
 ### 4.2 Scaling and Normalization
 
-**The \$1/r^2$ factor:**
+**The $1/r^2$ factor:**
 
-Reflects the **surface density** of potential on an expanding sphere. As the sphere grows, the potential spreads over area \$4\pi r^2$, so the density at any point scales as \$1/r^2$.
+Reflects the **surface density** of potential on an expanding sphere. As the sphere grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
 
 **Absorption of geometric constants into $\kappa$:**
 
-All geometric normalization factors (e.g., \$1/(4\pi)$ from spherical surface area, \$1/c_f$ from $\delta$-function change-of-variables) are absorbed into the coupling constant $\kappa$ by convention. The canonical per-hit law is written with a clean $\kappa |q_i q_j| / r^2$.
+All geometric normalization factors (e.g., $1/(4\pi)$ from spherical surface area, $1/c_f$ from $\delta$-function change-of-variables) are absorbed into the coupling constant $\kappa$ by convention. The canonical per-hit law is written with a clean $\kappa |q_i q_j| / r^2$.
 
 **Dimensional analysis:**
 
@@ -300,6 +304,8 @@ $$
 
 **Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected (at the instant of the hit). Over time, of course, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
 
+**Lorentz Suppression Requirement (Tier-1 Constraint):** The receiver kinematics described here must **mechanically** produce Lorentz contraction for moving assemblies (see Action 3, `gravity-spacetime/proper-time-derivation.md`). If tri-binaries do not naturally contract along direction of motion when coupled to Noether Sea, this falsifies the model. See also: `adversarial/constraint-ledger.md`, Lorentz leakage bound ($< 10^{-17}$).
+
 ### 4.4 Work and Power
 
 The **instantaneous power** (rate of kinetic energy change) from a single hit is:
@@ -310,9 +316,9 @@ $$
 
 **Key insight:** There is **no instantaneous work** on the orthogonal component. Power depends only on the radial velocity $v_r$.
 
-**Radial motion and the \$1/r^2$ factor (local trend):**
+**Radial motion and the $1/r^2$ factor (local trend):**
 
-- **Inward motion** ($v_r < 0$, receiver moving toward the emission point): decreases $r_{ij}$ between close successive hits, tending to **increase** subsequent per-hit strengths via \$1/r^2$ (all else equal).
+- **Inward motion** ($v_r < 0$, receiver moving toward the emission point): decreases $r_{ij}$ between close successive hits, tending to **increase** subsequent per-hit strengths via $1/r^2$ (all else equal).
 - **Outward motion** ($v_r > 0$): increases $r_{ij}$, tending to **decrease** subsequent per-hit strengths.
 
 **Important caveat:** Path-history delay shifts both the causal root $t_0$ and $\hat{\mathbf{r}}_{ij}$ over finite intervals, so these are strictly **local** statements about infinitesimal time evolution. The global trajectory depends on the full history of all sources.
@@ -383,7 +389,7 @@ $$
 
 while preserving total emission $q$.
 
-**Effect:** This produces **continuous-in-time forces** and classical \$C^1$ solutions for $\mathbf{x}_i(t)$ given \$C^1$ initial data.
+**Effect:** This produces **continuous-in-time forces** and classical $C^1$ solutions for $\mathbf{x}_i(t)$ given $C^1$ initial data.
 
 **In the super-field-speed regime** ($|\mathbf{v}_a| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization ensures finite total impulse.
 
@@ -400,7 +406,7 @@ Given:
 - Bounded initial speeds $|\mathbf{v}_i(t_0)| < V_{\max}$
 
 Then:
-- The system admits a **unique local solution** $\{\mathbf{X}_i(t) : t \in [t_0, t_0 + T]\}$ for some \$T > 0$.
+- The system admits a **unique local solution** $\{\mathbf{X}_i(t) : t \in [t_0, t_0 + T]\}$ for some $T > 0$.
 - If speeds remain bounded ($|\mathbf{v}_i(t)| < V_{\max}$ for all $t$), the solution extends to all future times.
 
 **Breakdown:** Solutions may become ill-defined if:
@@ -431,7 +437,7 @@ $$
 
 The total acceleration on a particle at any instant is the **vector sum** of the accelerations from all intersecting expanding spherical shells.
 
-**Operational implication:** Every architrino is continuously immersed in the superposed sphere streams of all others (and, when kinematics permit, its own). Tractability comes from treating each causal hit independently with \$1/r^2$ distance weighting, which makes **local sources dominate** (distant sources contribute negligibly due to \$1/r^2$ falloff and dilution over large spherical surfaces).
+**Operational implication:** Every architrino is continuously immersed in the superposed sphere streams of all others (and, when kinematics permit, its own). Tractability comes from treating each causal hit independently with $1/r^2$ distance weighting, which makes **local sources dominate** (distant sources contribute negligibly due to $1/r^2$ falloff and dilution over large spherical surfaces).
 
 ### 6.2 Velocity Dependence
 
@@ -474,15 +480,6 @@ $$
 1. **Curvature**: The worldline must curve (straight-line motion admits no self-hits).
 2. **Super-field-speed history**: At emission time $t_0$, the speed must have been $|\mathbf{v}_i(t_0)| > c_f$ (otherwise, the architrino never outruns its shells).
 
-# 📐 MASTER EQUATION OF MOTION (CONTINUATION FROM SECTION 7)
-
-**Target Document:** `architrino-theory/foundations/master-equation.md`
-
----
-
-```notes
-[CONTINUATION FROM SECTION 7.1]
-
 ### 7.2 Multiple Self-Hits (Plural)
 
 **Key insight (from Marko):** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
@@ -521,7 +518,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Role in binary formation:** Self-hit provides **repulsive radial force** that opposes the attractive pull of opposite-charge partners. This competition produces:
 
-- **Maximum-curvature orbits**: Stable or quasi-stable configurations at minimum radius $R_{\min}$ (see Section 8.2 and `self-hit-dynamics.md`).
+- **Maximum-curvature orbits**: Stable or quasi-stable configurations at minimum radius $R_{\min}$ (see Section 8.3 and `self-hit-dynamics.md`).
 - **Prevention of singularities**: Self-repulsion prevents classical $r \to 0$ collapse.
 - **Energy balance**: Self-hit can absorb tangential power, enabling quasi-circular orbits.
 
@@ -530,6 +527,8 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 - Pilot-wave guidance (self-interference creates effective "guiding field")
 - Discrete stable states (attractors in phase space)
 - Measurement uncertainty (informational ambiguity at receiver; see Section 9)
+
+**Next steps (Dyna):** Map the full phase-space attractor landscape for self-hit binaries. Questions: (1) How large is the basin of attraction for maximum-curvature orbit? (2) What initial conditions lead to escape (dissociation)? (3) Are there secondary attractors (e.g., elliptical orbits)? See: `assemblies/stability-conditions.md`.
 
 **Cross-references:**
 - `foundations/ontology.md`: Section 2.4.3 (Maximum-Curvature Equilibrium)
@@ -597,6 +596,10 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 - Prevents classical $r \to 0$ singularities
 - Foundation for stable particle assemblies (tri-binaries; see TOC Ch. 11)
 
+**Status:** Stability of maximum-curvature orbit is currently a **hypothesis** (not yet proven). Requires: (1) Dyna to map attractor basins in phase space, (2) Sol to demonstrate convergence to stable orbit in long-time simulations ($> 10^6$ orbits), (3) Red to verify no secular energy drift.
+
+**Failure mode:** If simulations show radial oscillations **diverge** (orbit spirals outward or collapses), maximum-curvature orbit is **not** an attractor; self-hit alone is insufficient for stability.
+
 **Full derivation:** See `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit (includes delay equations, tangential components, radial balance, and stability analysis).
 
 **Cross-references:**
@@ -619,7 +622,7 @@ The receiver does **not** have direct knowledge of:
 - The source's precise distance $r_{ij}$ (without additional assumptions)
 - The source's velocity at emission $\mathbf{v}_j(t_0)$
 
-### 9.2 Ambiguity: Negatrino vs Positrino on Opposite Sides
+### 9.2 Ambiguity: Electrino vs Positrino on Opposite Sides
 
 A particularly important ambiguity: the receiver cannot distinguish between:
 
@@ -654,10 +657,14 @@ This limited, unoriented, and source-ambiguous information at the hit level is a
 - **Measurement as interaction**: "Measurement" is simply a complex assembly interaction; the "outcome" is determined by which causal hits occur (see TOC Ch. 30).
 - **Uncertainty**: Not fundamental indeterminacy, but **informational ambiguity** from the receiver's limited perspective.
 
+**Open question (High Priority):** Does the informational ambiguity in Section 9.2-9.4, when statistically averaged over many similar configurations, **reproduce the Born rule** ($P \propto |\psi|^2$)? This requires: (1) Ensemble simulations of identically prepared systems, (2) Statistical analysis of hit patterns, (3) Comparison to QM predictions. See Action: "Born Rule Derivation" (TBD).
+
 **Cross-references:**
 - TOC Ch. 29: "Quantum Mechanics as Emergent Determinism"
 - TOC Ch. 30: "Measurement and the Collapse Problem"
 - `philosophy-history/unknowns-paradoxes.md`: Bell's theorem, EPR, and nonlocality
+
+---
 
 ---
 
@@ -676,8 +683,10 @@ All parameters used in the Master EOM are defined in the **Parameter Ledger** (`
 
 - $c_f = 1$: **Postulated** (unit-setting convention)
 - $\kappa$: **To be derived or fitted** (likely related to Coulomb constant $k_e = 1/(4\pi\epsilon_0)$)
+  - **Explanatory target**: Derive from $\epsilon$, $c_f$, and Planck units, or demonstrate independence. If $\kappa$ requires adjustment beyond 2 significant figures to match Coulomb constant, flag as potential fine-tuning (FTQ assessment required).
 - $\epsilon = e/6$: **Postulated** (explanatory target: why 1/6?)
-- $\eta$: **Numerical parameter** (physical justification: Planck length? Tri-binary size?)
+- $\eta$: **Numerical parameter**
+  - **Physical justification required**: Is $\eta \sim \ell_P$ (Planck length), or $\eta \sim R_{\text{inner}}$ (tri-binary inner radius)? If $\eta$ varies by $> 10\%$ across different physical contexts (binaries vs nuclei vs cosmology), theory lacks naturalness.
 
 **Naturalness assessment:** Track fine-tuning quotient (FTQ) for each parameter; flag if FTQ $> 10$ (see TOC Ch. 54).
 
@@ -707,6 +716,20 @@ $$
 
 **Efficiency:** Use **history binning** or **spatial hashing** to avoid exhaustive search over all past times.
 
+#### 11.1.1 Spatial Hashing for History Buffers
+
+**Efficiency requirement:** Naïve all-pairs history search scales as $O(N^2 T_{\text{history}})$, intractable for $N > 100$ particles. 
+
+**Required optimization:** Implement spatial hash grid with cell size $\sim c_f \Delta t_{\max}$; only search cells within causal range of receiver. Expected scaling: $O(N \log N)$.
+
+**Implementation notes:**
+- Partition spatial domain into cubic cells of side length $\Delta_{\text{cell}} \approx c_f T_{\text{history,max}}$
+- At each time step, bin all architrino positions into cells
+- For receiver at $\mathbf{x}_i(t)$, only search cells within causal radius $r_{\text{max}} = c_f T_{\text{history}}$
+- Update hash grid incrementally (not from scratch each step)
+
+**Cross-reference:** `simulations/run-protocols.md`, Section on "History Buffer Management"
+
 ### 11.2 Time-Stepping Schemes for DDEs
 
 The Master EOM is a **state-dependent DDE** (delay depends on the solution itself). Standard ODE integrators (e.g., RK4) must be adapted:
@@ -730,7 +753,9 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
 **Validation protocols:**
 
 - **Two-body baselines**: Compare to analytic solutions (radial fall, circular orbits with known parameters).
-- **Energy conservation**: Track total energy $E = \sum_i E_{k,i} + U$ (potential energy from summed interactions); drift should be $< 10^{-6}$ per orbit.
+- **Energy conservation**: Track total energy $E = \sum_i E_{k,i} + U$ (potential energy from summed interactions).
+  - **Failure criterion (Tier-2)**: Energy drift **must** be $< 10^{-6}$ per orbit; exceeding this threshold flags simulation instability or unphysical dynamics.
+  - **Special attention during $v \to c_f$ transitions** (self-hit activation): if energy spikes $> 10^{-4}$ instantaneously, integrator is unstable.
 - **Symmetry preservation**: If initial conditions have symmetry (e.g., reflection, rotation), check that solution respects it.
 
 **Cross-references:**
@@ -761,6 +786,27 @@ At each hit, log:
 - `simulations/run-protocols.md`: Metadata and logging requirements
 - TOC Ch. 49: "Provenance Tracking and Visualization"
 
+### 11.5 Numerical Parameter Baseline
+
+To ensure reproducibility across all simulation runs, the following **baseline parameter values** are recommended:
+
+| **Parameter** | **Recommended Value** | **Rationale** | **Adjust if...** |
+|:--------------|:----------------------|:--------------|:-----------------|
+| Time step | $\Delta t < \eta / c_f$ | Resolve mollified shell width | Instability detected (energy spikes) |
+| Regularization width | $\eta \in [10^{-3}, 10^{-2}]$ (dimensionless) | Balance between convergence and stability | Convergence test shows $\eta$-dependence |
+| Root-finding tolerance | $\epsilon_{\text{root}} = 10^{-12}$ | Machine precision for double floats | Higher precision needed for long-time runs |
+| History buffer depth | $T_{\text{history}} \geq 10 / c_f$ | Capture at least 10 field-crossing times | Self-hit requires longer lookback |
+| Energy drift tolerance | $\langle \Delta E / E \rangle < 10^{-6}$ per orbit | Tier-2 failure criterion | Higher accuracy needed for stability proofs |
+
+**Notes:**
+- All runs must cite these baseline values or explicit deviations with justification.
+- Convergence tests (halving $\Delta t$, halving $\eta$) must be performed for any new physical regime.
+- Parameter sweeps (varying $\eta$ over $[10^{-4}, 10^{-1}]$) required to verify physical results are not numerical artifacts.
+
+**Cross-references:**
+- `simulations/run-protocols.md`: Full parameter documentation requirements
+- `adversarial/parameter-ledger.md`: Distinction between physical and numerical parameters
+
 ---
 
 ## 12. Cross-References
@@ -777,6 +823,7 @@ At each hit, log:
 - `assemblies/binary-dynamics.md`: Formation, stability, and evolution of two-architrino bound states
 - `assemblies/tri-binary-architecture.md`: Noether core structure; three nested binaries
 - `assemblies/noether-core.md`: Spacetime aether ontology; pro/anti distinction
+- `assemblies/stability-conditions.md`: Attractor basin mapping (Dyna's next task)
 
 ### 12.3 Simulations
 
@@ -789,6 +836,7 @@ At each hit, log:
 - `adversarial/constraint-ledger.md`: Tier-1 falsification criteria (charge quantization, Lorentz leakage, GW speed, etc.)
 - `adversarial/parameter-ledger.md`: Complete parameter inventory (postulated, derived, fitted)
 - `adversarial/theory-health-dashboard.md`: Quarterly assessment (empirical viability, internal consistency, etc.)
+- `gravity-spacetime/proper-time-derivation.md`: Lorentz suppression derivation (Action 3)
 
 ### 12.5 TOC Chapters
 
@@ -796,8 +844,20 @@ At each hit, log:
 - **Ch. 5**: "Self-Hit Dynamics and Non-Markovian Memory" (extended treatment)
 - **Ch. 6**: "Numerical Standards and Validation Protocols" (simulation requirements)
 - **Ch. 8**: "Maximum Curvature Orbit and Planck-Scale Limit" (worked example)
+- **Ch. 20**: "Emergence of Gauge Symmetries: SU(3) × SU(2) × U(1)" (magnetic field emergence)
 - **Ch. 29**: "Quantum Mechanics as Emergent Determinism" (informational ambiguity → uncertainty)
 - **Ch. 30**: "Measurement and the Collapse Problem" (measurement as complex interaction)
+
+### 12.6 Upstream Dependencies (Required for Full Theory Validation)
+
+The following documents **depend on** the Master EOM being correct and must be completed to validate the full theory:
+
+1. `foundations/self-hit-dynamics.md`: Must prove maximum-curvature orbit is stable attractor (Dyna + Sol)
+2. `gravity-spacetime/proper-time-derivation.md`: Must derive Lorentz suppression mechanically (Cos + Sig + Red)
+3. `particle-physics/charge-quantization.md`: Must show only $0, \pm e/3, \pm 2e/3, \pm e$ stable (Phe + Alfa)
+4. `quantum-interpretation/born-rule-derivation.md` (TBD): Must derive $P \propto |\psi|^2$ from informational ambiguity (Phe + Sig + Sol)
+
+**Status tracking:** Each dependency flagged in Theory Health Dashboard; quarterly review required.
 
 ---
 
@@ -836,10 +896,10 @@ $$
 
 **Immediate:**
 - Populate `self-hit-dynamics.md` with detailed maximum-curvature analysis.
-- Implement numerical solvers and validate against analytic baselines (Action 2: Proper Time, Action 3: Lorentz Suppression).
+- Implement numerical solvers and validate against analytic baselines (Actions 2-3: Proper Time, Lorentz Suppression).
 
 **Near-term:**
-- Map architrino dynamics → assembly formation → particle spectrum (Actions 4: Charge Stability Map).
+- Map architrino dynamics → assembly formation → particle spectrum (Action 4: Charge Stability Map).
 - Derive emergent proper time $d\tau/dt$ from Noether Sea coupling (Action 2).
 
 **Long-term:**
@@ -869,8 +929,19 @@ Changes to this document require:
 - **Adversarial review**: Red (Red Team)
 
 **Changelog:**
-- **January 2026**: Initial consolidation (Geometrical-Model + Marko's supplementary input)
-- Future updates logged here
+- **January 2026 (v1.0)**: Initial consolidation (Geometrical-Model + Marko's supplementary input)
+- **January 2026 (v1.1)**: Team feedback incorporated:
+  - Added numerical checklist table (Section 11.5)
+  - Strengthened energy conservation failure criteria (Section 11.3)
+  - Added fine-tuning risk assessment for $\kappa$ and $\eta$ (Section 10)
+  - Added Lorentz suppression cross-reference (Section 4.3)
+  - Clarified maximum-curvature orbit as hypothesis, not proof (Section 8.3)
+  - Added Born rule research question (Section 9.5)
+  - Added spatial hashing requirement (Section 11.1.1)
+  - Added diagram placeholder (Section 2.5)
+  - Added attractor basin mapping cross-ref (Section 7.4)
+  - Clarified purely radial implication for magnetic emergence (Section 3.1)
+  - Added upstream dependencies (Section 12.6)
 
 ---
 
@@ -882,7 +953,6 @@ Changes to this document require:
 
 **Dyna (Dynamics Lead) & Phil (Foundations Lead)**  
 *"One equation. Infinite consequences. Let the simulations begin."* ⚙️🏛️
-```
 
 ---
 
@@ -897,5 +967,4 @@ Changes to this document require:
 **Retained for next phase (self-hit-dynamics.md):**
 - `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.3-MaximumCurvatureOrbit.md`
 
-**Total size:** ~30 KB (comprehensive, standalone, paste-ready)
 

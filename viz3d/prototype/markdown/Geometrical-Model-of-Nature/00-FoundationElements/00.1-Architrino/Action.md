@@ -1,3 +1,4 @@
+# Mined by Entourage 20260108.  It missed some itema, so I will need to mine again.
 
 ## 4. Action and Interaction
 
