@@ -16,21 +16,19 @@
 We distinguish three layers:
 
 1. **Substrate**  
-   - Euclidean 3D void: a fixed geometric container \(\mathbb{R}^3\) with a rigid metric \(\delta_{ij}\).  
-   - Absolute time \(t\): a single global parameter inducing a unique foliation \(\Sigma_t = \{(x,y,z,t)\}\).
+   - Euclidean 3D void: a fixed geometric container $\mathbb{R}^3$ with a rigid metric $\delta_{ij}$.  
+   - Absolute time $t$: a single global parameter inducing a unique foliation $\Sigma_t = \{(x,y,z,t)\}$.
 
 2. **Physical Content**  
-   - Architrinos: point transmitter/receivers of polarized potential, with charge magnitude \(|e/6|\), pro/anti personality, position \(\mathbf{x}_i(t)\), velocity \(\mathbf{v}_i(t)\), and internal state.  
+   - Architrinos: point transmitter/receivers of polarized potential, with charge magnitude $|e/6|$, pro/anti personality, position $\mathbf{x}_i(t)$, velocity $\mathbf{v}_i(t)$, and internal state.  
    - Spacetime medium / “vacuum”: a sea of coupled pro/anti Noether cores (tri-binary assemblies) embedded sparsely in the void. The medium state (density, orientation, stress) determines effective propagation, inertia, and gravity‑like behavior.
 
 3. **Virtual (Absolute) Observer**  
    - A *conceptual* (non‑physical) probe that:
      - Has access to the complete microstate  
-       \[
-       S(t) = \{(\mathbf{x}_i(t), \mathbf{v}_i(t), q_i, \sigma_i, \ldots)\}_{i=1}^N
-       \]
-       at any absolute time \(t\).
-     - For any potential shell passing \((x,y,z,t)\), knows the emission event \((\mathbf{x}_\text{src}, t_\text{emit})\) and the emitter identity, i.e. full path history.
+       $S(t) = \{(\mathbf{x}_i(t), \mathbf{v}_i(t), q_i, \sigma_i, \ldots)\}_{i=1}^N$
+       at any absolute time $t$.
+     - For any potential shell passing $(x,y,z,t)$, knows the emission event $(\mathbf{x}_\text{src}, t_\text{emit})$ and the emitter identity, i.e. full path history.
    - **Role**:
      - Logical: defines “the state of the universe” independently of any physical measurement process.
      - Mathematical: anchor for the master equation and determinism (Laplace‑like demon).
@@ -42,7 +40,7 @@ We distinguish three layers:
 
 **Key distinction:**  
 - **Ontic level** (absolute observer): architrinos in the Euclidean void evolving in absolute time.  
-- **Epistemic/operational level** (physical observers): tri‑binary assemblies with clocks and detectors moving through, and interacting with, the spacetime medium, constrained by finite field speed \(c_f\) and emergent Lorentz symmetry.
+- **Epistemic/operational level** (physical observers): tri‑binary assemblies with clocks and detectors moving through, and interacting with, the spacetime medium, constrained by finite field speed $c_f$ and emergent Lorentz symmetry.
 
 ## Addenda (Phil)
 

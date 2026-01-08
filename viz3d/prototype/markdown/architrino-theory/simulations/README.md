@@ -16,13 +16,13 @@ Checklist per tier:
 
 All simulation tiers are implemented in the absolute frame:
 
-- **Spatial frame:** fixed Cartesian grid in the Euclidean void, \((x,y,z)\) constant in time.
-- **Temporal frame:** global absolute time \(t\), advanced in discrete steps \(\Delta t\).
-- **Microdynamics:** architrino positions and velocities updated according to the master equation; potentials propagated at speed \(c_f\).
+- **Spatial frame:** fixed Cartesian grid in the Euclidean void, $(x,y,z)$ constant in time.
+- **Temporal frame:** global absolute time $t$, advanced in discrete steps $\Delta t$.
+- **Microdynamics:** architrino positions and velocities updated according to the master equation; potentials propagated at speed $c_f$.
 
 From the code’s perspective, we are always the **virtual observer**:
 
-- We know \(S(t)\) (all architrinos, all assemblies) at each time step.
+- We know $S(t)$ (all architrinos, all assemblies) at each time step.
 - We can compute fields and medium state anywhere in the domain.
 
 To connect to experiment:
@@ -32,7 +32,7 @@ To connect to experiment:
   - What fields they experience along their paths,
   - How their internal clocks tick ($\tau$ vs t),
   - What signals they register (arrival times, redshifts, intensity patterns).
-- Synthetic observables are derived from these detector responses, not from raw \(S(t)\) directly.
+- Synthetic observables are derived from these detector responses, not from raw $S(t)$ directly.
 
 This enforces a clean separation between:
 

@@ -16,7 +16,7 @@ Frame self-hit as a path-history intersection problem:
 
 Simulation requirement:
 - Use VO provenance tables to detect/count self-hit events:
-  (emitter_id, t_hit, t_emit, impact_parameter, contribution_strength)
+  (emitter\_id, t\_hit, t\_emit, impact\_parameter, contribution\_strength)
 
 Acceptance criteria:
 - Self-hit event rates and distributions must converge under:
@@ -33,23 +33,21 @@ Self‑hit is the key non‑Markovian feature of architrino dynamics. It occurs 
 
 **Geometric condition (absolute coordinates):**
 
-For a given architrino with trajectory \(\mathbf{x}(t)\), a self‑hit event is a pair of times \((t_\text{emit}, t_\text{hit})\) with \(t_\text{hit} > t_\text{emit}\) such that:
+For a given architrino with trajectory $\mathbf{x}(t)$, a self‑hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that:
 
-\[
-|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
-\]
+$|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),$
 
-and the architrino is the source of the potential shell emitted at \(t_\text{emit}\).
+and the architrino is the source of the potential shell emitted at $t_\text{emit}$.
 
 Because the underlying coordinates and time are absolute, this condition is unambiguous:
 
-- The virtual observer knows \(\mathbf{x}(t)\) for all \(t\) and can solve for all such pairs \((t_\text{emit}, t_\text{hit})\) along the worldline.
+- The virtual observer knows $\mathbf{x}(t)$ for all $t$ and can solve for all such pairs $(t_\text{emit}, t_\text{hit})$ along the worldline.
 - No coordinate‑gauge ambiguity enters the definition.
 
 **Dynamical role:**
 
-- At low velocities (\(v < c_f\)), self‑hit is rare or absent; dynamics are approximately Markovian.
-- As velocities approach and exceed \(c_f\), emission spheres catch up with the emitter’s future positions, generating:
+- At low velocities ($v < c_f$), self‑hit is rare or absent; dynamics are approximately Markovian.
+- As velocities approach and exceed $c_f$, emission spheres catch up with the emitter’s future positions, generating:
   - Nonlocal feedback on its motion.
   - Effective restoring or destabilizing forces depending on configuration.
 - For binary and tri‑binary assemblies, repeated self‑hit events can:
@@ -62,8 +60,8 @@ Because the underlying coordinates and time are absolute, this condition is unam
 In simulations:
 
 - Use virtual‑observer provenance tables to record, for each self‑hit:
-  - \((t_\text{emit}, \mathbf{x}(t_\text{emit}))\),
-  - \((t_\text{hit}, \mathbf{x}(t_\text{hit}))\),
+  - $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$,
+  - $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$,
   - Impact parameters and force contributions.
 - Check convergence of self‑hit statistics under:
 - Time step refinement,

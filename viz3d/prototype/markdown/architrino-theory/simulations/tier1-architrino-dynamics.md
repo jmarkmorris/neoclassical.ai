@@ -2,10 +2,10 @@
 
 ### Provenance-resolved propagation test
 Implement 1-architrino and 2-architrino setups with VO sensors arranged on a sphere/ring:
-- Verify spherical wavefront propagation at c_f
+- Verify spherical wavefront propagation at c\_f
 - Verify correct arrival ordering and phase behavior (per kernel)
-- Verify numerical stability of t_emit inversion as $\Delta$t → $\Delta$t/2
-- Produce provenance tables showing correct emitter_id and emission times
+- Verify numerical stability of t\_emit inversion as $\Delta$t → $\Delta$t/2
+- Produce provenance tables showing correct emitter\_id and emission times
 
 ### Baseline diagnostics
 - Energy/momentum bookkeeping (as defined by the model) must be stable under refinement
