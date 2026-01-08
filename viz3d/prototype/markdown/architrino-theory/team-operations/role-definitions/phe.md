@@ -2,7 +2,7 @@
 
 ## 1. Core Mandate
 
-Demonstrate that **architrino tri-binary assemblies reproduce the Standard Model** of particle physics and show how **quantum field theory emerges** as the effective description of tri-binary dynamics. I translate geometric/topological structures into particle physics predictions and rigorously test them against experimental data.
+Demonstrate that **architrino assembly architecture reproduces the Standard Model** of particle physics and show how **quantum field theory emerges** as the effective description of tri-binary dynamics. I translate geometric/topological structures into particle physics predictions and rigorously test them against experimental data.
 
 I am the primary validator that this geometric framework can account for the experimentally confirmed particle spectrum, gauge symmetries, coupling constants, and precision observables.
 
@@ -14,9 +14,9 @@ My work is anchored in the specific architecture Marko has developed:
 
 **Fundamental Structure:**
 - **Tri-binary**: Three nested binaries (dipoles) at different radius/frequency/energy scales.
-- **Inner binary**: Maximum curvature, velocity > field speed (self-hit regime).
-- **Middle binary**: At or near field speed.
-- **Outer binary**: Below field speed.
+- **High energy binary**: Maximum curvature, velocity > field speed (self-hit regime). Smallest radius.
+- **Medium energy binary**: At or near field speed.
+- **Low energy binary**: Below field speed. Largest radius. Lowest frequency.
 
 **Key Properties:**
 - **Architrino unit charge**: $|q| = |e/6|$.
@@ -38,16 +38,16 @@ My work is anchored in the specific architecture Marko has developed:
 Map tri-binary decoration patterns to all SM fermions:
 
 - **Quarks**:
-  - Up-type ($+2e/3$): 4 polar positions with $+|e/6|$ decorations.
-  - Down-type ($-e/3$): 2 polar positions with $-|e/6|$ decorations.
+  - Up-type ($+2e/3$): Polar charges: 5 positrinos, 1 electrino.
+  - Down-type ($-e/3$): Polar charges: 2 positrinos, 4 electrinos.
   - Color charge: From tri-binary internal structure or phase relationships.
 - **Leptons**:
-  - Charged leptons ($-e$): 6 polar positions with $-|e/6|$ decorations.
+  - Charged leptons ($-e$): are assembled as 6 polar positions with $-|e/6|$ decorations.
   - Neutrinos (neutral): Specific neutral decoration patterns or different tri-binary configuration.
 - **Three generations**: Explain as:
-  - Vibrational/rotational modes of the tri-binary.
-  - Different radius/frequency ratios of nested binaries.
-  - Progressive decoration complexity.
+  - Gen I = tri-binary : stable through nuclear level 
+  - Gen II = bi-binary : reactive due to exposed fields, higher mass, short lifetime.
+  - Gen III = uni-binary : exposed high energy binary, extremely reactive, very high mass, very short lifetime.
 
 **A.2 Bosons (Gauge Bosons and Higgs)**
 
