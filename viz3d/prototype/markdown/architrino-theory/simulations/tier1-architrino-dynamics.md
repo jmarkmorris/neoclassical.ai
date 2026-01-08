@@ -25,5 +25,5 @@ Implement 1-architrino and 2-architrino setups with VO sensors arranged on a sph
 ### Grid-Based History
 
 * **Memory Strategy:** Use the fixed grid to store potential history.
-* **Lookup:** Query grid nodes for retarded potential values (O(1) lookup) rather than querying particle history (O(N)).
+* **Lookup:** Query grid nodes for history potential values (O(1) lookup) rather than querying particle history (O(N)).
 * **Validation:** Verify spherical wavefront propagation and phase ordering on the grid.

@@ -26,7 +26,7 @@ Everything I write should be **simulation‑ready** (for the computational role)
   - Potential kernel(s): spatial decay (e.g. 1/r type), propagation at field speed \(c_f\), sign structure (pro/anti).
   - Retarded dependence: forces at time \(t\) depend on positions at earlier times \(t - r/c_f\).
 - Choose the fundamental evolution form:
-  - **Delay integro‑differential equations**: ODEs in \(t\) with retarded integrals (self‑hit regime included explicitly).
+  - **Delay integro‑differential equations**: ODEs in \(t\) with history integrals (self‑hit regime included explicitly).
   - Make explicit which variables are local vs history‑dependent.
 
 Deliverable: **The Master Equation(s)** (Ch. 4–5 backbone) in a form that can be discretized.
@@ -76,7 +76,7 @@ Deliverable: **Pathology & Regularization report** (feeds Appendix B and Ch. 5).
 ### 3.1 Geometry of Self‑Hit
 
 - Define precisely the **self‑hit condition**:
-  - Kinematic criteria (e.g. segments of an architrino trajectory re‑intersect its own retarded potential sphere).
+  - Kinematic criteria (e.g. segments of an architrino trajectory re‑intersect its own history potential sphere).
   - Geometric construction: worldline vs past light (field) cones in absolute time.
 - Express the self‑interaction force as a **history‑dependent functional**:
   - Either as an explicit delay term or as a convolution over past trajectory segments.

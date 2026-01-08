@@ -10,7 +10,7 @@
 - Convey architrino assembly architecture clearly without distorting scale relationships.
 
 ## Scope and technology
-- Separate app from sim2; no retarded-field shading.
+- Separate app from sim2; no history-field shading.
 - Default rendering: orthographic camera.
 - Primary stack: WebGL (three.js) for web-first delivery, fast prototyping, and direct gesture/UI integration. (also considered Godot)
 - Rationale includes higher SWE proficiency in three.js for development, debugging, and iteration speed.

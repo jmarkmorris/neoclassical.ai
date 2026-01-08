@@ -160,7 +160,7 @@ class AnalyticMover(Mover):
 
 class PhysicsMover(Mover):
     """
-    Placeholder for Coulomb-style physics movers that operate on retarded hits.
+    Placeholder for Coulomb-style physics movers that operate on history hits.
     The integration loop will supply neighbor context via MoverEnv extensions.
     """
 

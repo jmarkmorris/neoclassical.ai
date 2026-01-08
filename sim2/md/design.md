@@ -7,7 +7,7 @@ Render a 2-D timespace slice with predefined architrino trajectories, delayed ci
 - **Scenario Loader**: Reads JSON run files with top-level `directives` and `architrinos`, producing the active simulation config and architrino specs.
 - **Trajectory Library**: Parameterized, piecewise-smooth paths in $(x,y,t)$; supplies architrino positions per time step or snapped path parameters.
 - **Field Engine**: Computes per-pixel scalar potential from delayed shells (radius $r = v\,\tau$, magnitude $1/r^2$) for each emission event; field is rebuilt each frame from the retained emission list.
-- **Renderer**: Maps field values to RGB (red/blue superposition, purple at neutrality) and draws overlays (architrino markers, emitter markers, causal shells, retarded lines, hit connectors).
+- **Renderer**: Maps field values to RGB (red/blue superposition, purple at neutrality) and draws overlays (architrino markers, emitter markers, causal shells, history lines, hit connectors).
 - **Hit Detector**: Finds causal roots satisfying $\|\mathbf{r}_r(t) - \mathbf{r}_e(t_0)\| = v\,(t - t_0)$; records hit strength ($\propto 1/r^2$) and emitter polarity.
 - **UI Layer**: Layout with dominant visualization pane and control strip for start/restart/pause, scrub, speed multipliers, overlay toggles, scaling mode, and path selection.
 - **Playback/Export**: Plays live-computed frames; export hooks are future work.

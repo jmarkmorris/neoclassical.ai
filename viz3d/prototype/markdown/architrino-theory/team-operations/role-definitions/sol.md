@@ -11,14 +11,14 @@ My job is to:
 - Build a **tiered simulation ladder** (micro → meso → continuum) with a documented **renormalization handoff** between tiers.
 - Enforce simulation discipline: convergence, cross-integrator checks, negative controls, reproducibility.
 
-I do **not** invent the theory; I make it run, measure what it predicts, and report where it fails.
+I do **not** invent the theory; I make it run, measure what it predicts, visualize the insights, and report where it fails.
 
 ---
 
 ## 2. Simulation Roadmap (Tiers) and Promotion Gates
 
 ### 2.1 Tier Order (Do not skip)
-0. **Micro architrino dynamics**: 2–100(0) bodies, retardation + self-hit; validate baselines.
+0. **Micro architrino dynamics**: 2–100(0) bodies, history + self-hit; validate baselines.
 1. **Particle-level assemblies**: decorated tri-binaries; stability, moments, form factors, 2→2 scattering.
 2. **Nuclear & atomic**: deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$), hydrogen/helium spectra.
 3. **Condensed matter**: lattices, EoS, phases, transport (as feasible).
@@ -37,7 +37,7 @@ You don’t “advance the story” to a higher tier unless:
 
 ### 3.1 Three Computational Regimes
 - **Architrino-level (10¹–10³ architrinos)**  
-  Full N-body with retarded interactions and self-hit terms.
+  Full N-body with history interactions and self-hit terms.
 
 - **Tri-binary-level (10¹–10⁶ tri-binaries)**  
   Coarse-grained interaction rules derived from micro sims (effective potentials, contact rules, orientation/axis couplings).
@@ -61,7 +61,7 @@ Deliver a **Renormalization Handoff Document** that includes:
 
 ### 4.1 What I receive (inputs)
 From Dyna (Topologist/Dynamical Systems):
-- Master equations of motion, interaction kernels, retardation rules, regularization prescription.
+- Master equations of motion, interaction kernels, history rules, regularization prescription.
 - Definition of self-hit/memory term(s) and any “switch” conditions.
 - Expected invariants and analytic baseline behaviors in simple limits.
 

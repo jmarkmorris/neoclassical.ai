@@ -33,12 +33,12 @@ The virtual observer:
 
 - Uses the fixed Euclidean chart to:
   - Integrate the equations of motion for all architrinos,
-  - Apply retarded interactions by solving the emission‑time condition,
+  - Apply history interactions by solving the emission‑time condition,
   - Track self‑hit events where an architrino’s current position lies on a sphere emitted from its past trajectory.
 
 All emergent fields, metrics, and proper times are functionals of \(S(t)\) and its history, as seen in this absolute frame.
 
-(Note: when describing nonlocal time dependence, we use “path history” rather than “retarded” to avoid confusion with unrelated terminology.)
+(Note: when describing nonlocal time dependence, we use “path history” rather than “history” to avoid confusion with unrelated terminology.)
 
 ## Addenda (Dyna)
 
@@ -47,7 +47,7 @@ All emergent fields, metrics, and proper times are functionals of \(S(t)\) and i
 All dynamical laws are written with respect to the fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$.
 
 1. **State Definition**: The state $S(t)$ is a list of all architrino positions, velocities, and charges at time $t$.
-2. **The Equation**: The Master Equation is a deterministic map $S(t+\Delta t) = \mathcal{F}[S(t); \Delta t]$, incorporating finite propagation speed $c_f$ and retarded interactions.
+2. **The Equation**: The Master Equation is a deterministic map $S(t+\Delta t) = \mathcal{F}[S(t); \Delta t]$, incorporating finite propagation speed $c_f$ and history interactions.
 3. **Background Coupling**: An isolated binary is an idealization. The real equation must include the "Sea of Cores" interaction:
    $$ \\vec{a}_i = \\sum_{j \\in \\text{System}} \\vec{F}_{ji} + \\sum_{k \\in \\text{Vacuum}} \\vec{F}_{ki} $$
    The second term represents the drag/inertia from the Noether Core lattice.

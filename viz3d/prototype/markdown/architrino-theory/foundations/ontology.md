@@ -2,7 +2,7 @@
 
 1. **The Euclidean Void (Ontic Ground)**: The fundamental container is a continuous, rigid 3D Euclidean space ($\mathbb{R}^3$) and a linear, absolute time ($t$). Most coordinate points in the void are unoccupied by architrinos.
 2. **The Vacuum (Physical Medium)**: What is traditionally called "vacuum" is actually a dense sea of coupled pro- and anti-architrino tri-binary assemblies (Noether Cores). This "Noether Sea" endows the void with effective properties like permittivity, permeability, and refractive index.
-3. **The Absolute Observer (AO)**: A conceptual (non-physical) vantage point that tracks the full microstate—position, velocity, and charge of every architrino at any $(x,y,z,t)$. The AO witnesses the "Path History" (retarded potential) exactly as it was emitted.
+3. **The Absolute Observer (AO)**: A conceptual (non-physical) vantage point that tracks the full microstate—position, velocity, and charge of every architrino at any $(x,y,z,t)$. The AO witnesses the "Path History" (history potential) exactly as it was emitted.
 4. **The Physical Observer (PO)**: Any observer or detector composed of architrino assemblies. The PO is subject to the dynamics of the medium; their rulers contract and their clocks dilate relative to the AO’s grid.
 5. **Simultaneity**: The Absolute Observer witnesses a unique global "Now." Relativity of simultaneity is an epistemic artifact for Physical Observers whose internal signal processing is limited by $c_f$ and modulated by the medium.
 6. **Key Distinction**: 
@@ -48,7 +48,7 @@ We distinguish three layers:
 
 ### The Absolute Observer and the Ontic/Epistemic Divide
 
-1. **The Absolute Observer (AO)**: Defined as a conceptual probe (not a physical device) capable of indexing the position $\mathbf{x}$, velocity $\mathbf{v}$, and charge $q$ of every architrino relative to the fixed Euclidean 3D void and absolute time $t$. The AO witnesses the "History" (retarded potential) exactly as it was emitted.
+1. **The Absolute Observer (AO)**: Defined as a conceptual probe (not a physical device) capable of indexing the position $\mathbf{x}$, velocity $\mathbf{v}$, and charge $q$ of every architrino relative to the fixed Euclidean 3D void and absolute time $t$. The AO witnesses the "History" (history potential) exactly as it was emitted.
 2. **The Physical Observer (PO)**: Any observer composed of architrino assemblies (e.g., humans, tri-binary-based clocks). The PO is subject to the dynamics of the medium; their rulers contract and their clocks dilate relative to the AO’s grid.
 3. **Ontic vs. Epistemic**: The AO represents the **Ontic** state (what exists). The PO represents the **Epistemic** state (what is measurable).
 4. **Simultaneity**: The Absolute Observer witnesses a unique global "Now," defined by the universal parameter $t$. Relativity of simultaneity is an epistemic artifact for physical observers.
@@ -81,7 +81,7 @@ We distinguish three layers:
 
 The Architrino framework maintains a strict distinction between the **Absolute Observer** (Ontological Ground Truth) and the **Physical Observer** (Emergent/Epistemic Perspective).
 
-1. **The Absolute Observer (AO)**: A conceptual probe capable of indexing the position $\mathbf{x}$, velocity $\mathbf{v}$, and charge $q$ of every architrino relative to the Euclidean 3D void and absolute time $t$. The AO witnesses the "History" (retarded potential) exactly as it was emitted.
+1. **The Absolute Observer (AO)**: A conceptual probe capable of indexing the position $\mathbf{x}$, velocity $\mathbf{v}$, and charge $q$ of every architrino relative to the Euclidean 3D void and absolute time $t$. The AO witnesses the "History" (history potential) exactly as it was emitted.
 2. **The Physical Observer (PO)**: Any observer composed of architrino assemblies (e.g., humans, tri-binary-based clocks). The PO is subject to the dynamics of the medium; their rulers contract and their clocks dilate relative to the AO's grid.
 3. **The Vacuum vs. The Void**:
    - **The Void**: The fundamental, continuous Euclidean 3D container. It is mostly unoccupied.

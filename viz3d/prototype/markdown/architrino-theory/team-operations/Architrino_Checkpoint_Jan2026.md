@@ -143,7 +143,7 @@ Addenda
 *   **Sea/Medium**: Coupled Noether-core assemblies (The Fabric).
 *   **AVO**: Absolute Virtual Observer (Truth).
 *   **PO**: Physical Observer (Epistemic/Assembly-based).
-*   **Path History**: Non-Markovian potential memory (Replaces 'retarded').
+*   **Path History**: Non-Markovian potential memory (Replaces 'history').
 
 **Immediate Directive on Reboot:**
 Execute **Action 1** (Proper Time derivation) and **Action 2** (Lorentz Suppression proof). Match PPN $\gamma$ to $10^{-5}$ and Lorentz drift to $< 10^{-17}$.

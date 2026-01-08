@@ -1,5 +1,5 @@
 # Project
-Build a continuously animated 2-D dynamical geometry visualizer for orbiting partner charges, showing per-pixel field computations plus geometric overlays (orbits, retarded-position lines, causal shells) with interactive playback and exportable frames.
+Build a continuously animated 2-D dynamical geometry visualizer for orbiting partner charges, showing per-pixel field computations plus geometric overlays (orbits, history-position lines, causal shells) with interactive playback and exportable frames.
 
 # Requirements
 ## Layout and UI
@@ -24,7 +24,7 @@ Build a continuously animated 2-D dynamical geometry visualizer for orbiting par
 - Architrino markers: electrino as a small pure-blue circle (RGB 0,0,255), positrino as a small pure-red circle (RGB 255,0,0); emitter markers are visually distinct (e.g., baby blue for electrino emitters, pink for positrino emitters).
 - Field color equals the per-pixel superposition of red and blue contributions; neutral potential ($0$) renders as pure purple.
 - Non-neutral pixels shade proportionally to net superposition with linear scaling initially; logarithmic scaling is deferred (future toggle).
-- Draw orbits, rays/retarded lines, causal shells, and thin white hit connectors (RGB 255,255,255) from emitter to receiver.
+- Draw orbits, rays/history lines, causal shells, and thin white hit connectors (RGB 255,255,255) from emitter to receiver.
 
 ## Controls and kinematics
 - Architrino speed is user-settable from near zero up to and beyond field speed.
@@ -44,12 +44,12 @@ Build a continuously animated 2-D dynamical geometry visualizer for orbiting par
 
 # Design
 Three-layer architecture:
-- Numerical engine computes orbit paths, retarded times, causal shells.
+- Numerical engine computes orbit paths, history times, causal shells.
 - Field engine computes per-frame field grids (CPU with Numba or GPU shaders).
 - Rendering engine displays the field texture and overlays geometry; UI layer handles keyboard/mouse controls for speed multipliers, pause, and mode toggles.
 
 Recommended flow:
-- Physics engine (Python + NumPy + Numba) computes trajectories and retarded-time effects.
+- Physics engine (Python + NumPy + Numba) computes trajectories and history-time effects.
 - Field engine maps field values to RGB textures each frame (Numba or GLSL).
 - Rendering engine (PyGame or ModernGL) composites the field texture with geometric primitives and exports frames when requested.
 
