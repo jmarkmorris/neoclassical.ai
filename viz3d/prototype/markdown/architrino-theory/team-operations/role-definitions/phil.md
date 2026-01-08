@@ -74,12 +74,12 @@ Clarify the **hierarchy of structure** and the nature of emergence:
 Clarify the **ontological status of spacetime**:
 
 **In the Fundamental Theory:**
-- **No curved spacetime**, only architrino configurations in Euclidean void + absolute time.
+- **No curved spacetime**, only architrino assemblies in Euclidean void + absolute time.
 
 **In the Effective Theory:**
 - **Emergent metric** $g_{\mu\nu}(x)$ from spacetime-aether assemblies (graviton–Higgs–binary couples).
 - **Curvature**: Is it:
-  - A real physical feature of aether density gradients,
+  - A real physical feature of tri-binary spacetime assembly density gradients,
   - A convenient mathematical description,
   - Or an operational artifact of how assembly-clocks measure intervals?
 
@@ -181,11 +181,11 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 **Superposition:**
 - **Standard QM**: $\psi = \alpha\psi_1 + \beta\psi_2$ (state in two "places" at once).
 - **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time $t$, but the **outgoing potential field it generates** has structure reflecting multiple possible paths (due to overlapping potentials from past trajectories or from an ensemble).
-- The "superposition" is in the **potential field structure**, not in the particle's location.
+- The "superposition" is in the **potential field structure** based on architrino path history, not in the architrino's t=now location.
 - Measurement/interaction: Disruption of the potential structure → definite outcome selected by deterministic dynamics.
 
 **Interference:**
-- **Double-slit**: Individual architrinos (or small assemblies) pass through one slit, but the **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
+- **Double-slit**: Tri-binary spacetime is present everywhere and particle movement creates a pilot wave because v < v_f.  The **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
 - **Self-hit memory**: If assembly speed approaches $c_f$, outgoing potential "catches up" to the assembly → enhanced self-interaction → interference effects amplified.
 
 **Entanglement:**
@@ -203,7 +203,7 @@ Define **measurement** in architrino ontology:
 
 **What Is Measurement?**
 - No observer postulate. Measurement is simply a **complex assembly interaction** (e.g., particle + detector + environment).
-- All components (system, apparatus, environment) are assemblies of architrinos evolving deterministically.
+- All components (system, apparatus, environment) are assemblies of architrinos evolving deterministically based upon intersecting potential spheres.
 
 **How Do Definite Outcomes Arise?**
 - From:
@@ -216,6 +216,7 @@ Define **measurement** in architrino ontology:
 - It is:
   - **Effective/Coarse-grained**: the wavefunction is our (incomplete) description; after measurement, we update it to reflect new information.
   - Or **Operational**: observer updates $\psi$ based on measurement outcome; the underlying architrino configuration was always definite.
+  - Marko: It is the change in configuration caused by a transition of energy in whole frequencies, i.e., h. By necessity the wave equation reconfigures since binary frequency changes.
 
 **Deliverable**: Full treatment in **Ch. 30** with worked examples (Stern-Gerlach, photon detection, Schrödinger's cat reinterpreted).
 
@@ -230,6 +231,7 @@ Articulate the **causal picture**:
 **Is Evolution Deterministic?**
 - **In principle**: Yes (given all architrino positions/velocities at $t_0$, the future is determined by the master equation).
 - **In practice**: Computational intractability + potential sensitivity to initial conditions (chaos) may make long-term prediction infeasible.
+- **Note from Marko**: The analog architrinos operate in R4 which is continuous and real in all dimensions. Likewise, architrinos move continuously in response to received potential spheres.  Yet assemblies form which exhibit quantum behaviours, or states. These states produce potential fields. Physicist require photons to observe behqviour.The absorbtion or emission of a photon changes the wave equation.
 
 **Is There Irreducible Randomness?**
 - **To be determined** (in collaboration with topologist and simulator):
