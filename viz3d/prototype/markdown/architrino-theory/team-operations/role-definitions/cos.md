@@ -50,11 +50,12 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
 
 ### 3.1 Spacetime Aether and Metric Emergence (Ch. 31–32)
 
-**Claim:** The “vacuum” is a dense medium of pro/anti tri‑binary couples (graviton–Higgs–binary assemblies). Their density, coupling, and orientation define the **effective metric** seen by assemblies.
+**Claim:** There is no true “vacuum” except as the background Euclidiean void. Absolute space and time are filled with particles based on tri‑binary assemblies that emulate Einstein's spacetime. The universe and nature as we know it are based upon the arhcitrino assembly architecture.  The density, deformation, coupling, and orientation of tri-binary spacetime assemblies define the **effective metric** seen by assemblies.
 
-- **Inner binary**: inertia + local gravitational charge carrier (max curvature/self‑hit regime).
-- **Middle binary** ($v=c_f$): defines effective causal cones and emergent Lorentz symmetry.
-- **Outer binary** ($v<c_f$): expansion/contraction and cosmological dynamics.
+There are three vastly different energy levels in a tri-binary.
+- **High energy binary**: inertia + local gravitational charge carrier (max curvature/self‑hit regime).
+- **Medium energy binary** ($v=c_f$): defines effective causal cones and emergent Lorentz symmetry.
+- **Low energy binary** ($v<c_f$): expansion/contraction and cosmological dynamics.
 
 **Tasks/Deliverables:**
 
@@ -67,10 +68,11 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
 
 ### 3.2 Proper Time and Clock Physics (Ch. 32, 41)
 
-**Claim:** Proper time for an assembly is the rate of its Noether core oscillations relative to absolute time, slowed by:
+**Claim:** Proper time for an assembly is related to the ellipsoidal deformation of its Noether core volume. These may be influenced by:
 
 - finite field-speed interactions ($v$ w.r.t. aether),
 - local aether density/curvature.
+- **Marko notes**: there may be a relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = v_f. Velocity equals the field speed of potential.
 
 **Tasks/Deliverables:**
 
@@ -81,14 +83,17 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
   - GPS satellites (kinematic + gravitational time dilation).
   - Pound–Rebka gravitational redshift.
   - Muon lifetime dilation in accelerators/atmosphere.
-- Make this the backbone for redshift / “expanding aether” interpretation in Ch. 41:
-  redshift = clock‑comparison in evolving aether, not mystical metric stretch with no mechanism.
+- Make this the backbone for redshift “expanding spacetime" misconception in Ch. 41:
+  - Spacetime assemblies dissipate energy and expand as a consequence. - Standard matter fermions would seem to be largely destined for the reycling furnace, aka the SMBH.
+  - Photons and neutrinos may presumably escape the galaxy in significant numbers.
+  - At some point we will be able to analyze architrino flows in all processes.
+  - Redshift = clock‑comparison in evolving aether, not mystical metric stretch with no mechanism.
 
 ### 3.3 Velocity Regimes and Symmetry Breaking (Ch. 12, 32, 41)
 
 Link the three dynamical regimes to gravitational/cosmological behavior:
 
-- $v < c_f$: quasi‑hydrodynamic deformation of aether → **standard cosmological expansion**, subluminal matter motion, everyday gravity.
+- $v < c_f$: quasi‑hydrodynamic deformation of aether → **standard (but misconceived) cosmological expansion**, subluminal matter motion, everyday gravity.
 - $v = c_f$: emergent Lorentz symmetry and effective universal speed “c”; define how this threshold arises from tri‑binary scaling.
 - $v > c_f$: self‑hit → inflation/deflation forces, Planck cores, jetting; map this to early‑universe inflation and to strong‑gravity phenomena (Ch. 34, 39, 41).
 
@@ -128,7 +133,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
   - Give explicit effective Friedmann-like equations derived from aether dynamics: $H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots$ with clear identification of matter, radiation, and effective dark-energy terms.
   - Ensure BBN‑era expansion rate yields realistic $Y_p$, D/H, $N_{\rm eff}$.
 - Ch. 39:
-  - Tie Planck‑core jetting, recycling, and potential DM alternatives to the metric/aether picture.
+  - Tie Planck‑core jetting, recycling, emission of potential "dark photons from the v > v_f regime?" and potential DM alternatives to the metric/aether picture.
 - Ch. 40:
   - Provide the gravitational/aether side of the CMB story:
     - acoustic horizon scale,
