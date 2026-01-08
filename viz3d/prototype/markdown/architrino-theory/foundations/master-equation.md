@@ -1,53 +1,901 @@
-## Addenda (Dyna)
+# Master Equation of Motion
 
-### State and Evolution from the View of the Virtual Observer
+**Status:** Authoritative (Consolidated from Geometrical-Model-of-Nature and Marko's supplementary input)  
+**Last Updated:** January 2026  
+**Owners:** Dyna (lead), Phil (philosophical framing), Sol (numerical implementation), entire Entourage (review)
 
-We formulate the master equations with respect to the absolute coordinates and time:
+---
 
-- **State at time $t$**:
-  $S(t) = \{ (\mathbf{x}_i(t), \mathbf{v}_i(t), q_i, \sigma_i, \ldots ) \}_{i=1}^N$
-  where:
-  - $\mathbf{x}_i \in \mathbb{R}^3$,
-  - $\mathbf{v}_i = d\mathbf{x}_i/dt$,
-  - $q_i$ is the architrino’s charge/personality,
-  - $\sigma_i$ collects internal or polarization-like variables if needed.
+## Purpose and Scope
 
-- **Potential field** (schematic):
-  $\Phi(\mathbf{x}, t) = \sum_i K\big(\mathbf{x} - \mathbf{x}_i(t_\text{emit}), q_i, \sigma_i, \ldots\big)$
-  with emission time $t_\text{emit}$ determined by:
-  $|\mathbf{x} - \mathbf{x}_i(t_\text{emit})| = c_f (t - t_\text{emit}),\quad t_\text{emit} \le t.$
+This document presents the **Master Equation of Motion (EOM)** governing the deterministic evolution of all architrinos in the Euclidean void + absolute time substrate. This is the **fundamental dynamical law** of the Architrino Theory, from which all emergent phenomena (particles, fields, spacetime, quantum behavior, gravity) ultimately derive.
 
-- **Master evolution map**:
-  $S(t+\Delta t) = \mathcal{F}[S(\cdot)\text{ on }[t-T_\text{mem},t]; \Delta t],$
-  where $\mathcal{F}$ is, in general, **non‑Markovian** due to self‑hit: it depends on a finite history window $[t-T_\text{mem}, t]$ of each worldline.
+The Master EOM is:
 
-The virtual observer:
+- **Deterministic**: Given complete initial conditions at $t_0$, the future is uniquely determined.
+- **Non-Markovian**: Depends on full path history, not just instantaneous state.
+- **Local in spacetime**: Only intersecting potential shells contribute to acceleration (no action-at-a-distance).
+- **Causal**: All influences propagate at finite field speed $c_f$.
+- **Self-consistent**: Includes self-interaction (self-hit) when $v > c_f$ at past emission times.
 
-- Uses the fixed Euclidean chart to:
-  - Integrate the equations of motion for all architrinos,
-  - Apply history interactions by solving the emission‑time condition,
-  - Track self‑hit events where an architrino’s current position lies on a sphere emitted from its past trajectory.
+**Cross-references:**
+- `foundations/ontology.md`: Architrino definition, reception rule, absolute time/space
+- `foundations/self-hit-dynamics.md`: Detailed treatment of self-hit regime
+- `simulations/run-protocols.md`: Numerical implementation standards
+- TOC Ch. 4: "The Point Potential Action and Master Equation"
+- TOC Ch. 5: "Self-Hit Dynamics and Non-Markovian Memory"
 
-All emergent fields, metrics, and proper times are functionals of $S(t)$ and its history, as seen in this absolute frame.
+---
 
-(Note: when describing nonlocal time dependence, we use “path history” rather than “history” to avoid confusion with unrelated terminology.)
+## 1. Overview and Key Principle
 
-## Addenda (Dyna)
+### 1.1 The Central Idea
 
-### Master Equation from the View of the Absolute Observer
+**Fundamental Principle (from Marko's presentation):**
 
-All dynamical laws are written with respect to the fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$.
+> *Potential at all other points in time and space is irrelevant.*
 
-1. **State Definition**: The state $S(t)$ is a list of all architrino positions, velocities, and charges at time $t$.
-2. **The Equation**: The Master Equation is a deterministic map $S(t+\Delta t) = \mathcal{F}[S(t); \Delta t]$, incorporating finite propagation speed $c_f$ and history interactions.
-3. **Background Coupling**: An isolated binary is an idealization. The real equation must include the "Sea of Cores" interaction:
-   $$ \\vec{a}_i = \\sum_{j \\in \\text{System}} \\vec{F}_{ji} + \\sum_{k \\in \\text{Vacuum}} \\vec{F}_{ki} $$
-   The second term represents the drag/inertia from the Noether Core lattice.
+At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on potential shells that **intersect its current location**. 
 
-## Addenda (Dyna - supplemental)
+- **Not relevant**: Potential at other spatial locations $\mathbf{x} \neq \mathbf{x}_i(t)$
+- **Not relevant**: Potential at other times $t' \neq t$ (except as encoded in the causal history that arrives "now")
+- **Only relevant**: The **intersection events** (causal hits) where $\mathbf{x}_i(t)$ coincides with an expanding shell from some source at some past emission time $t_0 < t$
 
-### Master Equation via Absolute Observer
+This is a **strictly local (in spacetime) interaction rule**, despite being non-Markovian (depends on path history).
 
-* **State Space:** The equation evolves the state $S(t)$ in fixed coordinates.
-* **Forces:** $\vec{a}_i = \sum \vec{F}_{sys} + \sum \vec{F}_{vac}$. The vacuum term represents the coupling to the "Sea of Noether Cores."
-* **Retardation:** Interaction terms are functions of history in absolute coordinates: $|\mathbf{x}_{rec}(t) - \mathbf{x}_{em}(t')| = c_f(t-t')$.
+### 1.2 Abstract Form
+
+The Master Equation of Motion (abstract level):
+
+$$
+\boxed{
+\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j \neq i} \mathbf{F}_{ij}(\text{causal history}) + \mathbf{F}_{ii}(\text{self-hit})
+}
+$$
+
+where:
+
+- $\mathbf{F}_{ij}(\text{causal history})$: Sum of all causal hits from source $j \neq i$ arriving at receiver $i$ at time $t$
+- $\mathbf{F}_{ii}(\text{self-hit})$: Sum of all self-hits (architrino $i$ intersecting its own past emissions)
+
+**Key insight:** Both terms have the same functional form (radial \$1/r^2$ force law); they differ only in source identity ($j = i$ vs $j \neq i$).
+
+---
+
+## 2. Causal Interaction Set (The Geometry of Delay)
+
+### 2.1 Definition of Causal Emission Times
+
+For a receiver at position $\mathbf{x}_i(t)$ (architrino $i$ at time $t$) and a source with worldline $\mathbf{x}_j(t')$, the **causal emission times** $\mathcal{C}_j(t)$ are all past times $t_0 < t$ such that a potential shell emitted by source $j$ at $t_0$ arrives at $\mathbf{x}_i(t)$ at time $t$.
+
+**Causal constraint:**
+
+$$
+\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0),
+$$
+
+where $c_f$ is the field speed (set to 1 in natural units).
+
+**Notation:**
+
+$$
+\mathcal{C}_j(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
+$$
+
+### 2.2 Single-Hit Regime (Unique $t_0$)
+
+In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), the causal set $\mathcal{C}_j(t)$ is **generically a singleton**: there is exactly one emission time $t_0$ that satisfies the causal constraint.
+
+**Intuition:** If the source is moving slower than the field speed, its past emissions form a non-overlapping family of concentric (or nearly concentric) spheres. Any given receiver location intersects exactly one shell.
+
+### 2.3 Multi-Hit Regime (Multiple $t_0$)
+
+In the **super-field-speed regime** ($|\mathbf{v}_j| > c_f$ at some past times), the causal set $\mathcal{C}_j(t)$ can contain **multiple solutions**:
+
+$$
+\mathcal{C}_j(t) = \{t_{0,1}, t_{0,2}, \ldots, t_{0,m}\}.
+$$
+
+**Intuition:** If the source outruns its own emissions, it can emit multiple shells that later converge and intersect the same receiver location simultaneously (or nearly so, within regularization width $\eta$).
+
+**Example:** In uniform circular motion at $v > c_f$, a receiver can be hit by shells from multiple points on the source's orbit (different "winding numbers" $m$; see `self-hit-dynamics.md`).
+
+### 2.4 Self-Hit (Source = Receiver, $j = i$)
+
+When $j = i$ (source and receiver are the same architrino), the causal set $\mathcal{C}_i(t)$ represents **self-hits**: times when architrino $i$ intersects its own past emissions.
+
+**Self-hit condition:**
+
+$$
+\|\mathbf{x}_i(t) - \mathbf{x}_i(t_0)\| = c_f(t - t_0), \quad t_0 < t.
+$$
+
+**Critical requirements for self-hit:**
+
+1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past light cones).
+2. **Super-field-speed history**: At some emission time $t_0$, the architrino must have exceeded $c_f$ (otherwise, it remains inside all past shells and never catches up).
+
+**Key clarification (from Marko):**
+
+- **Self-hits can be plural**: $\mathcal{C}_i(t)$ can contain multiple emission times (e.g., multiple winding numbers in circular motion).
+- **Persistent memory**: Once an architrino has exceeded $v > c_f$ in its past, it can **later slow down** to $v < c_f$ and **still receive self-hits** from shells emitted during the super-field-speed phase. The self-hit regime is **not** instantaneously tied to current velocity; it depends on **path history**.
+
+**Implication:** Self-hit is a **non-Markovian memory effect**. The architrino's current acceleration depends on whether it **ever** exceeded $c_f$ in the past and curved, not just on its current state.
+
+### 2.5 Geometric Interpretation
+
+**Visualize the causal constraint as:**
+
+- Receiver at $\mathbf{x}_i(t)$ "now"
+- Source worldline $\{\mathbf{x}_j(t') : t' < t\}$ in the past
+- Field-speed light cone: a sphere of radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
+- **Causal emission times**: where this expanding sphere **intersects** the receiver's current location
+
+For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
+
+---
+
+## 3. The Master Equation (Canonical Form)
+
+### 3.1 Per-Hit Acceleration
+
+For each causal emission time $t_0 \in \mathcal{C}_j(t)$, define:
+
+**Separation vector and distance:**
+
+$$
+\mathbf{r}_{ij}(t; t_0) = \mathbf{x}_i(t) - \mathbf{x}_j(t_0), \quad r_{ij} = \|\mathbf{r}_{ij}\|.
+$$
+
+**Unit direction (line of action):**
+
+$$
+\hat{\mathbf{r}}_{ij} = \frac{\mathbf{r}_{ij}}{r_{ij}} = \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|}.
+$$
+
+**Charge sign factor:**
+
+$$
+\sigma_{ij} = \text{sign}(q_i q_j) = \begin{cases}
++1 & \text{like charges (repel)} \\
+-1 & \text{unlike charges (attract)}
+\end{cases}
+$$
+
+**Per-hit acceleration contribution:**
+
+$$
+\mathbf{F}_{ij}(t; t_0) = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij},
+$$
+
+where:
+
+- $\kappa$: universal coupling constant (see Parameter Ledger)
+- $q_i, q_j$: charges of receiver and source ($\pm e/6$ for electrinos/positrinos)
+- $r_{ij}$: distance from emission point to reception point
+- $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
+
+**Note:** The force is **purely radial** (along $\hat{\mathbf{r}}_{ij}$). There are no "magnetic" or velocity-cross-product terms in the fundamental law.
+
+### 3.2 Total Acceleration (Sum Over All Causal Hits)
+
+The total acceleration on architrino $i$ at time $t$ is the **vector sum** over:
+
+1. All sources $j \neq i$ (partner hits)
+2. All causal emission times $t_0 \in \mathcal{C}_j(t)$ for each source
+3. Self-hits ($j = i$), if any exist
+
+**Master Equation of Motion (Canonical Form):**
+
+$$
+\boxed{
+\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}
+}
+$$
+
+where:
+
+- Outer sum: over all sources $j$ (including $j = i$ for self-hits)
+- Inner sum: over all causal emission times $t_0 \in \mathcal{C}_j(t)$
+- Each term: radial \$1/r^2$ acceleration with sign $\sigma_{ij}$
+
+**Explicit separation of partner and self-hit terms:**
+
+$$
+\frac{d^2 \mathbf{x}_i}{dt^2} = \underbrace{\sum_{j \neq i} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}}_{\text{Partner hits}} + \underbrace{\sum_{t_0 \in \mathcal{C}_i(t)} \kappa \, \sigma_{ii} \, \frac{|q_i q_i|}{r_{ii}^2} \, \hat{\mathbf{r}}_{ii}}_{\text{Self-hits}}.
+$$
+
+**Note:** $\sigma_{ii} = +1$ (like charges repel), so self-hits are always **repulsive**.
+
+### 3.3 Conventions and Exclusions
+
+**Heaviside Convention (\$H(0) = 0$):**
+
+The emission at $t_0 = t$ (instantaneous self-force) is **excluded**. Formally, this is enforced by writing:
+
+$$
+\mathcal{C}_j(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
+$$
+
+(Strict inequality $t_0 < t$; no $t_0 = t$ allowed.)
+
+**Physical justification:** The potential shell at the instant of emission ($r = 0$, $\tau = 0$) has not yet expanded; it cannot exert a force on the emitter "now." Under symmetric regularization (mollification), the $r \to 0$ limit yields zero net push.
+
+**No $r = 0$ causal roots beyond $\tau = 0$:**
+
+Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by \$H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding shells, not by contact).
+
+### 3.4 Superposition Principle
+
+The Master EOM is **linear in sources**:
+
+$$
+\mathbf{F}_{\text{total}} = \sum_j \mathbf{F}_j.
+$$
+
+Potentials from distinct sources **superpose** without mutual interference. The total potential at any location is the linear sum of all individual contributions.
+
+**Consequence:** The problem of $N$ interacting architrinos reduces to solving $N$ coupled delay differential equations (DDEs), one per architrino, with each depending on the full history of all others.
+
+---
+
+## 4. Terms and Conventions (Detailed Breakdown)
+
+### 4.1 Direction and Sign
+
+**Direction of $\hat{\mathbf{r}}_{ij}$:**
+
+$\hat{\mathbf{r}}_{ij}$ points **from the source's historical position** $\mathbf{x}_j(t_0)$ **to the receiver's current position** $\mathbf{x}_i(t)$.
+
+**Sign of the force:**
+
+- **Like charges** ($\sigma_{ij} = +1$): Force along $+\hat{\mathbf{r}}_{ij}$ (repulsion; pushes receiver away from emission point)
+- **Unlike charges** ($\sigma_{ij} = -1$): Force along $-\hat{\mathbf{r}}_{ij}$ (attraction; pulls receiver toward emission point)
+
+**Two-body checks (stationary sources):**
+
+- Electrino + Electrino (like charges): repulsion
+- Positrino + Positrino (like charges): repulsion
+- Electrino + Positrino (unlike charges): attraction
+- All symmetric: if source and receiver swap roles, the force direction reverses (Newton's third law in the instantaneous-interaction limit)
+
+### 4.2 Scaling and Normalization
+
+**The \$1/r^2$ factor:**
+
+Reflects the **surface density** of potential on an expanding sphere. As the sphere grows, the potential spreads over area \$4\pi r^2$, so the density at any point scales as \$1/r^2$.
+
+**Absorption of geometric constants into $\kappa$:**
+
+All geometric normalization factors (e.g., \$1/(4\pi)$ from spherical surface area, \$1/c_f$ from $\delta$-function change-of-variables) are absorbed into the coupling constant $\kappa$ by convention. The canonical per-hit law is written with a clean $\kappa |q_i q_j| / r^2$.
+
+**Dimensional analysis:**
+
+$$
+[\kappa] = \frac{[\text{Length}]^3}{[\text{Time}]^2 [\text{Charge}]^2}, \quad [\mathbf{F}] = \frac{[\text{Length}]}{[\text{Time}]^2}.
+$$
+
+In natural units with $c_f = 1$, $[\text{Length}] = [\text{Time}]$, and $\kappa$ has dimensions of $[\text{Length}]/[\text{Charge}]^2$.
+
+### 4.3 Receiver Kinematics (Radial vs Orthogonal Components)
+
+At a given hit $(t; t_0)$, decompose the receiver's velocity into components parallel and orthogonal to the line of action $\hat{\mathbf{r}}_{ij}$:
+
+$$
+\mathbf{v}_i(t) = v_r \hat{\mathbf{r}}_{ij} + \mathbf{v}_\perp,
+$$
+
+where:
+
+- $v_r = \mathbf{v}_i(t) \cdot \hat{\mathbf{r}}_{ij}$ (radial component; positive = moving away from emission point)
+- $\mathbf{v}_\perp = \mathbf{v}_i(t) - v_r \hat{\mathbf{r}}_{ij}$ (orthogonal component)
+
+**Instantaneous effect of the hit:**
+
+Because $\mathbf{F}_{ij}(t; t_0) \parallel \hat{\mathbf{r}}_{ij}$, its instantaneous effect satisfies:
+
+$$
+\frac{d}{dt}\mathbf{v}_\perp\Big|_{\text{hit}} = \mathbf{0}, \quad \frac{d}{dt}v_r\Big|_{\text{hit}} = \mathbf{F}_{ij} \cdot \hat{\mathbf{r}}_{ij} = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2}.
+$$
+
+**Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected (at the instant of the hit). Over time, of course, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
+
+### 4.4 Work and Power
+
+The **instantaneous power** (rate of kinetic energy change) from a single hit is:
+
+$$
+\frac{dE_k}{dt}\Big|_{\text{hit}} = \mathbf{F}_{ij} \cdot \mathbf{v}_i = \Big(\mathbf{F}_{ij} \cdot \hat{\mathbf{r}}_{ij}\Big) v_r = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, v_r.
+$$
+
+**Key insight:** There is **no instantaneous work** on the orthogonal component. Power depends only on the radial velocity $v_r$.
+
+**Radial motion and the \$1/r^2$ factor (local trend):**
+
+- **Inward motion** ($v_r < 0$, receiver moving toward the emission point): decreases $r_{ij}$ between close successive hits, tending to **increase** subsequent per-hit strengths via \$1/r^2$ (all else equal).
+- **Outward motion** ($v_r > 0$): increases $r_{ij}$, tending to **decrease** subsequent per-hit strengths.
+
+**Important caveat:** Path-history delay shifts both the causal root $t_0$ and $\hat{\mathbf{r}}_{ij}$ over finite intervals, so these are strictly **local** statements about infinitesimal time evolution. The global trajectory depends on the full history of all sources.
+
+### 4.5 Emission Cadence and Per-Wavefront Amplitude
+
+**Critical modeling note:**
+
+- **Emission cadence**: constant rate (independent of source speed)
+- **Per-wavefront amplitude**: constant (independent of source speed)
+
+The receiver's velocity $\mathbf{v}_i(t)$ does **not** modulate the force magnitude $|\mathbf{F}_{ij}|$ itself (at a given $r_{ij}$ and $\hat{\mathbf{r}}_{ij}$). It influences:
+
+1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
+2. The **subsequent evolution of $r_{ij}$** (and thus future force magnitudes).
+
+**No Doppler-like amplitude modulation:** Unlike some classical wave models, the architrino emission is **isotropic and constant-amplitude**. All velocity-dependence enters through the **geometry of causal intersections** (which shells hit where and when), not through amplitude changes.
+
+---
+
+## 5. Delay Differential Equation (DDE) Formulation
+
+### 5.1 State Vector and Evolution
+
+Define the **state vector** for architrino $i$:
+
+$$
+\mathbf{X}_i(t) = \begin{pmatrix} \mathbf{x}_i(t) \\ \mathbf{v}_i(t) \end{pmatrix} \in \mathbb{R}^6.
+$$
+
+The Master EOM is a **second-order ODE** in $\mathbf{x}_i$, or equivalently a **first-order system** in $\mathbf{X}_i$:
+
+$$
+\frac{d\mathbf{X}_i}{dt} = \begin{pmatrix} \mathbf{v}_i(t) \\ \mathbf{a}_i(t) \end{pmatrix},
+$$
+
+where:
+
+$$
+\mathbf{a}_i(t) = \sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}.
+$$
+
+### 5.2 Causal Functional Form
+
+The acceleration $\mathbf{a}_i(t)$ depends on the **history** of all worldlines $\{\mathbf{X}_j(t') : t' < t\}$ through the implicit causal constraint:
+
+$$
+\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0).
+$$
+
+This makes the system a **delay differential equation (DDE)** with **state-dependent delays** (the delay $\tau_j = t - t_0$ is not constant; it depends on the solution itself).
+
+**Functional notation:**
+
+$$
+\frac{d\mathbf{X}_i}{dt} = \mathcal{F}\Big[\mathbf{X}_i(t), \{\mathbf{X}_j(\cdot)\}_{j}, t\Big],
+$$
+
+where $\mathcal{F}$ is a **causal functional**: it depends on the current state $\mathbf{X}_i(t)$ and the past states $\{\mathbf{X}_j(t') : t' < t\}$ of all architrinos (including $i$ itself for self-hits).
+
+### 5.3 Regularization (Mollified Shells, Finite $\eta$)
+
+The ideal model uses **surface-delta shells**, which yield **impulsive forces** at isolated hit times $t_0 \in \mathcal{C}_j(t)$. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or **regularize** by replacing the surface delta with a narrow shell of thickness $\eta > 0$:
+
+$$
+\delta(r - \tau) \longrightarrow \delta_\eta(r - \tau) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - \tau)^2}{2\eta^2}\Big),
+$$
+
+while preserving total emission $q$.
+
+**Effect:** This produces **continuous-in-time forces** and classical \$C^1$ solutions for $\mathbf{x}_i(t)$ given \$C^1$ initial data.
+
+**In the super-field-speed regime** ($|\mathbf{v}_a| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization ensures finite total impulse.
+
+**Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. See `simulations/convergence-tests.md` for validation protocols.
+
+### 5.4 Well-Posedness (Existence and Uniqueness)
+
+**Theorem (Schematic):**
+
+Given:
+- Initial conditions $\{\mathbf{x}_i(t_0), \mathbf{v}_i(t_0)\}$ for all $i$ at some reference time $t_0$
+- Initial history $\{\mathbf{x}_i(t) : t < t_0\}$ (for causal lookback; typically set to free evolution or specified trajectories)
+- Regularization parameter $\eta > 0$
+- Bounded initial speeds $|\mathbf{v}_i(t_0)| < V_{\max}$
+
+Then:
+- The system admits a **unique local solution** $\{\mathbf{X}_i(t) : t \in [t_0, t_0 + T]\}$ for some \$T > 0$.
+- If speeds remain bounded ($|\mathbf{v}_i(t)| < V_{\max}$ for all $t$), the solution extends to all future times.
+
+**Breakdown:** Solutions may become ill-defined if:
+- Speeds diverge to infinity (unphysical runaway; typically prevented by self-hit repulsion).
+- Causal roots proliferate without bound (numerical intractability; not expected in physical configurations).
+
+**Proof strategy (deferred to rigorous appendix):**
+
+1. Show that $\mathcal{F}$ is Lipschitz continuous in the state variables (for fixed $\eta > 0$).
+2. Apply fixed-point theorems for DDEs with state-dependent delays (see Hale & Verduyn Lunel, *Functional Differential Equations*).
+3. Verify that self-hit terms (if present) satisfy the same Lipschitz bounds.
+
+**Cross-references:**
+- Appendix B: "Self-Energy and Regularization Notes" (technical details)
+- `simulations/run-protocols.md`: Numerical stability and convergence criteria
+
+---
+
+## 6. Core Principles (Operational Summary)
+
+### 6.1 Superposition
+
+**Statement:** The potential fields from all sources **superpose linearly**. The net potential at any point is the sum of the individual potentials:
+
+$$
+\Phi_{\text{net}}(\mathbf{x}, t) = \sum_{i} \Phi_i(\mathbf{x}, t).
+$$
+
+The total acceleration on a particle at any instant is the **vector sum** of the accelerations from all intersecting expanding spherical shells.
+
+**Operational implication:** Every architrino is continuously immersed in the superposed sphere streams of all others (and, when kinematics permit, its own). Tractability comes from treating each causal hit independently with \$1/r^2$ distance weighting, which makes **local sources dominate** (distant sources contribute negligibly due to \$1/r^2$ falloff and dilution over large spherical surfaces).
+
+### 6.2 Velocity Dependence
+
+**Statement:** The dynamics are **delayed-only** and **purely radial**. Architrinos are transceivers: they emit potential spheres at a **constant cadence** and **constant per-wavefront amplitude** (independent of emitter speed). The receiver's speed does not change the instantaneous force magnitude; it affects only the **work rate** via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
+
+**Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent shells. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
+
+**Persistent memory (from Marko's clarification):** Once an architrino has exceeded $v > c_f$ in its past and emitted shells, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
+
+### 6.3 Causality and Locality
+
+**Causal structure:** Event $A$ at $(t_A, \mathbf{x}_A)$ can influence event $B$ at $(t_B, \mathbf{x}_B)$ only if:
+
+$$
+t_B > t_A \quad \text{and} \quad \|\mathbf{x}_B - \mathbf{x}_A\| \leq c_f(t_B - t_A).
+$$
+
+This defines a **field-speed light cone** (or "causal cone") centered at each event.
+
+**No action-at-a-distance:** All influences propagate at finite speed $c_f$. There are no instantaneous interactions across spatial separation.
+
+**Locality in spacetime:** The Master EOM is **local in spacetime**: only the potential shells **here and now** (at $\mathbf{x}_i(t)$) contribute to the acceleration. However, it is **non-local in configuration space**: the causal history depends on the **entire past worldline** of all sources.
+
+---
+
+## 7. Self-Interaction (Self-Hit Dynamics)
+
+### 7.1 Self-Hit Condition
+
+An architrino $i$ experiences self-hit at time $t$ if there exists $t_0 < t$ such that:
+
+$$
+\|\mathbf{x}_i(t) - \mathbf{x}_i(t_0)\| = c_f(t - t_0).
+$$
+
+**Geometric interpretation:** The architrino's current position $\mathbf{x}_i(t)$ lies on the expanding sphere emitted from its past position $\mathbf{x}_i(t_0)$.
+
+**Requirements:**
+
+1. **Curvature**: The worldline must curve (straight-line motion admits no self-hits).
+2. **Super-field-speed history**: At emission time $t_0$, the speed must have been $|\mathbf{v}_i(t_0)| > c_f$ (otherwise, the architrino never outruns its shells).
+
+# 📐 MASTER EQUATION OF MOTION (CONTINUATION FROM SECTION 7)
+
+**Target Document:** `architrino-theory/foundations/master-equation.md`
+
+---
+
+```notes
+[CONTINUATION FROM SECTION 7.1]
+
+### 7.2 Multiple Self-Hits (Plural)
+
+**Key insight (from Marko):** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
+
+**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past spheres** at the same observation time $t$. Each intersection corresponds to a distinct emission time $t_{0,k} \in \mathcal{C}_i(t)$.
+
+**Example:** In uniform circular motion at speed $v > c_f$, an architrino can be hit by shells from multiple points on its own orbit, corresponding to different "winding numbers" $m = 0, 1, 2, \ldots$ (see `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit).
+
+**Sum over all self-hit roots:**
+
+$$
+\mathbf{F}_{ii}(\text{self-hit}) = \sum_{t_0 \in \mathcal{C}_i(t)} \kappa \, \sigma_{ii} \, \frac{|q_i q_i|}{r_{ii}^2} \, \hat{\mathbf{r}}_{ii},
+$$
+
+where $\sigma_{ii} = +1$ (like charges repel), so each self-hit contributes an **outward** (repulsive) force.
+
+### 7.3 Persistent Memory (Self-Hit After Slowing Down)
+
+**Critical clarification (from Marko):**
+
+Self-hit is **not** instantaneously tied to current velocity. An architrino that has **previously** exceeded $v > c_f$ and emitted shells can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions.
+
+**Scenario:**
+
+1. At time $t_1$: Architrino accelerates to $v > c_f$ and emits shells while in super-field-speed regime.
+2. At time $t_2 > t_1$: Architrino slows down to $v < c_f$ (e.g., due to partner attraction or external forces).
+3. At time $t_3 > t_2$: The architrino's trajectory curves such that it intersects one of the shells emitted at $t_1$ (when $v > c_f$).
+
+**Result:** Self-hit occurs at $t_3$ even though current velocity $|\mathbf{v}(t_3)| < c_f$.
+
+**Implication:** Self-hit is a **path-history memory effect**. The architrino's current acceleration depends on **whether it ever exceeded $c_f$ in the past and curved**, not just on its instantaneous state.
+
+**Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. You need the **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ to identify all causal self-hit times $t_0 \in \mathcal{C}_i(t)$.
+
+### 7.4 Self-Hit as Stabilization Mechanism
+
+**Role in binary formation:** Self-hit provides **repulsive radial force** that opposes the attractive pull of opposite-charge partners. This competition produces:
+
+- **Maximum-curvature orbits**: Stable or quasi-stable configurations at minimum radius $R_{\min}$ (see Section 8.2 and `self-hit-dynamics.md`).
+- **Prevention of singularities**: Self-repulsion prevents classical $r \to 0$ collapse.
+- **Energy balance**: Self-hit can absorb tangential power, enabling quasi-circular orbits.
+
+**Connection to quantum behavior:** The non-Markovian memory and deterministic-but-complex self-hit dynamics are the **seed** of quantum-like phenomena:
+
+- Pilot-wave guidance (self-interference creates effective "guiding field")
+- Discrete stable states (attractors in phase space)
+- Measurement uncertainty (informational ambiguity at receiver; see Section 9)
+
+**Cross-references:**
+- `foundations/ontology.md`: Section 2.4.3 (Maximum-Curvature Equilibrium)
+- `foundations/self-hit-dynamics.md`: Detailed analysis of stability, multi-root regimes, and attractor basins
+- TOC Ch. 8: "Maximum Curvature Orbit and Planck-Scale Limit"
+
+---
+
+## 8. Worked Examples (Analytic Baselines)
+
+### 8.1 Stationary Opposite Charges (Radial Fall)
+
+**Setup:**
+- Two architrinos: Electrino at $\mathbf{x}_1(t)$, Positrino at $\mathbf{x}_2(t)$
+- Initial conditions: Both at rest, separated by distance $d_0$
+- No self-hits (speeds remain $< c_f$ if $d_0$ is not too small)
+
+**Symmetry:** By charge symmetry, both fall toward their common center of mass.
+
+**Equations:** Radial coordinate $r(t) = \|\mathbf{x}_2(t) - \mathbf{x}_1(t)\|$ satisfies:
+
+$$
+\frac{d^2r}{dt^2} = -\frac{2\kappa \epsilon^2}{r^2},
+$$
+
+where the factor of 2 comes from the symmetry (each feels the same magnitude force).
+
+**Solution:** Standard Kepler-like radial fall (see TOC Ch. 8 or `assemblies/binary-dynamics.md` for full derivation).
+
+**Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
+
+### 8.2 Sub-Field-Speed Circular Orbit (Instability)
+
+**Setup:**
+- Two opposite charges in symmetric circular orbit at radius $R$, speed $v < c_f$
+- No self-hits (sub-field-speed regime)
+
+**Partner contribution:**
+- Provides inward radial force (centripetal)
+- Also provides **tangential force** (always positive, i.e., in direction of motion)
+
+**Result:** Net tangential power $T > 0$ → continuous acceleration → orbit tightens (spiral inward) → speed increases.
+
+**Conclusion:** No stable circular orbit exists in sub-field-speed regime for isolated opposite-charge binaries.
+
+**Cross-reference:** `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit (detailed analysis with equations for $T_p$, radial balance, etc.)
+
+### 8.3 Maximum-Curvature Orbit (Self-Hit Stabilization)
+
+**Setup:**
+- Opposite-charge binary spirals inward (as in 8.2) until speed crosses $v = c_f$
+- Self-hits activate → repulsive outward force
+
+**Competition:**
+- Partner attraction (inward radial)
+- Self-repulsion (outward radial)
+
+**Equilibrium:** At critical speed $v_{\text{eq}} > c_f$ and minimum radius $R_{\min}$:
+- Radial forces approximately balance (time-averaged)
+- Tangential power oscillates around zero
+- Orbit stabilizes at **maximum curvature** (tightest configuration)
+
+**Significance:**
+- Defines a **fundamental length scale** (likely Planck-scale: $R_{\min} \sim \ell_P$)
+- Prevents classical $r \to 0$ singularities
+- Foundation for stable particle assemblies (tri-binaries; see TOC Ch. 11)
+
+**Full derivation:** See `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit (includes delay equations, tangential components, radial balance, and stability analysis).
+
+**Cross-references:**
+- TOC Ch. 8: "Maximum Curvature Orbit and Planck-Scale Limit"
+- TOC Ch. 11: "The Noether Core: Central Architecture"
+
+---
+
+## 9. Informational Ambiguity at the Receiver
+
+### 9.1 Limited Information Per Hit
+
+From the perspective of the receiving architrino, the information carried by an intersecting potential sphere is **limited**. The receiver only knows:
+
+1. The **net strength** of the potential at the point of intersection (through the acceleration magnitude $|\mathbf{F}|$).
+2. The **unoriented line of action** through its current position (the line along which the force points).
+
+The receiver does **not** have direct knowledge of:
+- The source's identity (which architrino $j$?)
+- The source's precise distance $r_{ij}$ (without additional assumptions)
+- The source's velocity at emission $\mathbf{v}_j(t_0)$
+
+### 9.2 Ambiguity: Negatrino vs Positrino on Opposite Sides
+
+A particularly important ambiguity: the receiver cannot distinguish between:
+
+- A **negative potential** due to an Electrino (charge $-e/6$) on one side of the line of action, and
+- A **positive potential** due to a Positrino (charge $+e/6$) on the **opposite side** of the same line,
+
+if the resulting radial acceleration is the same.
+
+**Example:** An acceleration **towards** a point along the line of action could be interpreted as:
+- Attraction to a Positrino at that point, **or**
+- Repulsion from an Electrino located at the diametrically opposite point on the same line.
+
+### 9.3 Rest-Frame Recast (Useful Inference Device)
+
+Any single hit can be **equivalently described** with a **stationary emitter** ($|\mathbf{v}| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
+
+**Key property:** The per-wavefront amplitude remains constant in this recast; it does not depend on emitter speed.
+
+**Utility:** This recast simplifies some analytic calculations and provides intuition for the receiver's "inference problem" (what source configurations are consistent with a given hit?).
+
+### 9.4 Superposition Complicates Inference
+
+The ambiguity is compounded by **superposition**: The net potential at any instant is the sum of all intersecting expanding spherical shells. A measured potential along a single radial can be the consequence of a **complex confluence of fields** from many different emitters located along that line of action, arriving from both directions.
+
+**Consequence:** The receiver experiences a **deterministic acceleration** (given full microstate knowledge, as known to the Absolute Observer), but has **incomplete local information** about the source configuration.
+
+### 9.5 Connection to Quantum Measurement Uncertainty
+
+This limited, unoriented, and source-ambiguous information at the hit level is a **key ingredient** for the emergence of effective quantum-like behavior and measurement uncertainty from deterministic micro-dynamics:
+
+- **Wavefunction as potential distribution**: The "wavefunction" $\psi$ may be interpreted as a **coarse-grained representation** of the superposed potential field (see TOC Ch. 29).
+- **Measurement as interaction**: "Measurement" is simply a complex assembly interaction; the "outcome" is determined by which causal hits occur (see TOC Ch. 30).
+- **Uncertainty**: Not fundamental indeterminacy, but **informational ambiguity** from the receiver's limited perspective.
+
+**Cross-references:**
+- TOC Ch. 29: "Quantum Mechanics as Emergent Determinism"
+- TOC Ch. 30: "Measurement and the Collapse Problem"
+- `philosophy-history/unknowns-paradoxes.md`: Bell's theorem, EPR, and nonlocality
+
+---
+
+## 10. Parameter Definitions (From Ledger)
+
+All parameters used in the Master EOM are defined in the **Parameter Ledger** (`foundations/ontology.md`, Section 6; and `adversarial/parameter-ledger.md`). For quick reference:
+
+| **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
+|:--------------|:-----------|:-------------------|:----------------|:------------|
+| Field speed | $c_f$ | 1 (natural units) | Length/Time | Set by unit choice; physical value TBD |
+| Coupling constant | $\kappa$ | TBD | (Length³/Time²)/(Charge²) | Controls $1/r^2$ force strength |
+| Architrino charge unit | $\epsilon$ | $e/6$ | Charge | Fundamental charge magnitude |
+| Shell thickness (regularization) | $\eta$ | TBD (numerical) | Length | Mollifies delta singularities |
+
+**Status:**
+
+- $c_f = 1$: **Postulated** (unit-setting convention)
+- $\kappa$: **To be derived or fitted** (likely related to Coulomb constant $k_e = 1/(4\pi\epsilon_0)$)
+- $\epsilon = e/6$: **Postulated** (explanatory target: why 1/6?)
+- $\eta$: **Numerical parameter** (physical justification: Planck length? Tri-binary size?)
+
+**Naturalness assessment:** Track fine-tuning quotient (FTQ) for each parameter; flag if FTQ $> 10$ (see TOC Ch. 54).
+
+**Cross-references:**
+- `foundations/ontology.md`: Section 6 (Parameter Ledger, Foundation Level)
+- `adversarial/parameter-ledger.md`: Complete ledger with all categories (A, B, C, D)
+- TOC Ch. 54: "Parameter Accountability and Naturalness Assessment"
+
+---
+
+## 11. Numerical Implementation Notes
+
+### 11.1 Delay Root-Finding Algorithms
+
+At each time step $t$, the numerical integrator must solve the **implicit causal constraint** for each source $j$:
+
+$$
+\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0), \quad t_0 < t.
+$$
+
+**Algorithm (schematic):**
+
+1. For each source $j$, search the history buffer $\{\mathbf{x}_j(t') : t' < t\}$ for all $t_0$ satisfying the constraint.
+2. Use **bisection** or **Newton-Raphson** to refine roots to tolerance $\epsilon_{\text{root}}$.
+3. If multiple roots exist (multi-hit regime), enumerate all; sum their contributions.
+4. If no roots exist (source too far away or not yet causal), skip source $j$ at this time step.
+
+**Efficiency:** Use **history binning** or **spatial hashing** to avoid exhaustive search over all past times.
+
+### 11.2 Time-Stepping Schemes for DDEs
+
+The Master EOM is a **state-dependent DDE** (delay depends on the solution itself). Standard ODE integrators (e.g., RK4) must be adapted:
+
+**Recommended methods:**
+
+- **Fixed-point iteration** with predictor-corrector (for implicit delays)
+- **Adaptive time-stepping** (small $\Delta t$ when roots are close or numerous)
+- **Event detection** for exact root crossings (optional; improves accuracy in sharp-hit regime)
+
+**Stability:** Ensure $\Delta t < \eta / c_f$ (resolve mollified shell width); adjust $\eta$ and $\Delta t$ together in convergence tests.
+
+### 11.3 Convergence and Validation
+
+**Convergence tests (required):**
+
+1. **Temporal**: Halve $\Delta t$ → solution converges?
+2. **Spatial (regularization)**: Halve $\eta$ → solution converges to $\eta \to 0$ limit?
+3. **History buffer depth**: Extend lookback window → no change in recent evolution?
+
+**Validation protocols:**
+
+- **Two-body baselines**: Compare to analytic solutions (radial fall, circular orbits with known parameters).
+- **Energy conservation**: Track total energy $E = \sum_i E_{k,i} + U$ (potential energy from summed interactions); drift should be $< 10^{-6}$ per orbit.
+- **Symmetry preservation**: If initial conditions have symmetry (e.g., reflection, rotation), check that solution respects it.
+
+**Cross-references:**
+- `simulations/run-protocols.md`: Detailed numerical standards
+- `simulations/convergence-tests.md`: Required test matrix
+- TOC Ch. 6: "Numerical Standards and Validation Protocols"
+
+### 11.4 Provenance Tracking (Emission Event → Receiver → Response)
+
+**For debugging and interpretation:**
+
+At each hit, log:
+- Source ID $j$
+- Emission time $t_0$
+- Emission position $\mathbf{x}_j(t_0)$
+- Reception time $t$
+- Reception position $\mathbf{x}_i(t)$
+- Force contribution $\mathbf{F}_{ij}(t; t_0)$
+
+**Use cases:**
+
+- Visualize causal light cones and sphere streams
+- Identify self-hit events and winding numbers
+- Trace energy transfer pathways
+- Validate superposition (sum of logged forces = total acceleration?)
+
+**Cross-references:**
+- `simulations/run-protocols.md`: Metadata and logging requirements
+- TOC Ch. 49: "Provenance Tracking and Visualization"
+
+---
+
+## 12. Cross-References
+
+### 12.1 Within Foundations
+
+- `foundations/ontology.md`: Architrino definition, reception rule, absolute time/space, observer framework
+- `foundations/self-hit-dynamics.md`: Detailed analysis of multi-root regimes, maximum-curvature orbits, stability
+- `foundations/absolute-time-defense.md`: Philosophical defense of absolute time; response to relativistic objections
+- `foundations/euclidean-void.md`: Spatial geometry, flat metric, geodesics
+
+### 12.2 Assemblies and Dynamics
+
+- `assemblies/binary-dynamics.md`: Formation, stability, and evolution of two-architrino bound states
+- `assemblies/tri-binary-architecture.md`: Noether core structure; three nested binaries
+- `assemblies/noether-core.md`: Spacetime aether ontology; pro/anti distinction
+
+### 12.3 Simulations
+
+- `simulations/run-protocols.md`: Numerical standards, metadata, reproducibility
+- `simulations/convergence-tests.md`: Required convergence matrix (temporal, spatial, parameter sweeps)
+- `simulations/tier1-architrino-dynamics.md`: Two-body and few-body validation cases
+
+### 12.4 Constraints and Validation
+
+- `adversarial/constraint-ledger.md`: Tier-1 falsification criteria (charge quantization, Lorentz leakage, GW speed, etc.)
+- `adversarial/parameter-ledger.md`: Complete parameter inventory (postulated, derived, fitted)
+- `adversarial/theory-health-dashboard.md`: Quarterly assessment (empirical viability, internal consistency, etc.)
+
+### 12.5 TOC Chapters
+
+- **Ch. 4**: "The Point Potential Action and Master Equation" (pedagogical introduction)
+- **Ch. 5**: "Self-Hit Dynamics and Non-Markovian Memory" (extended treatment)
+- **Ch. 6**: "Numerical Standards and Validation Protocols" (simulation requirements)
+- **Ch. 8**: "Maximum Curvature Orbit and Planck-Scale Limit" (worked example)
+- **Ch. 29**: "Quantum Mechanics as Emergent Determinism" (informational ambiguity → uncertainty)
+- **Ch. 30**: "Measurement and the Collapse Problem" (measurement as complex interaction)
+
+---
+
+## 13. Summary and Key Takeaways
+
+### 13.1 What This Document Establishes
+
+The **Master Equation of Motion** is the deterministic law governing the evolution of all architrinos:
+
+$$
+\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}.
+$$
+
+**Key features:**
+
+1. **Local in spacetime**: Only intersecting potential shells contribute (no action-at-a-distance).
+2. **Non-Markovian**: Depends on full path history (self-hit memory).
+3. **Superposition**: Linear sum over all sources and causal roots.
+4. **Self-hit**: Repulsive self-interaction when $v > c_f$ at past emission times; persists even after slowing down.
+5. **Purely radial**: No magnetic or velocity-cross-product terms; all forces along $\hat{\mathbf{r}}_{ij}$.
+
+### 13.2 Implications for Emergent Phenomena
+
+**From this single equation:**
+
+- **Stable binaries** form via self-hit stabilization at maximum curvature.
+- **Tri-binaries (Noether cores)** emerge as nested binary configurations.
+- **Particles** are decorated tri-binary assemblies (see TOC Part IV).
+- **Quantum behavior** arises from non-Markovian memory + informational ambiguity.
+- **Spacetime curvature** emerges from Noether Sea density gradients (see TOC Part VII).
+- **Cosmological expansion** is local energy dissipation in the Noether Sea (see TOC Part VIII).
+
+**The Master EOM is the engine. Everything else is scaffolding.**
+
+### 13.3 Next Steps (Integration with Other Documents)
+
+**Immediate:**
+- Populate `self-hit-dynamics.md` with detailed maximum-curvature analysis.
+- Implement numerical solvers and validate against analytic baselines (Action 2: Proper Time, Action 3: Lorentz Suppression).
+
+**Near-term:**
+- Map architrino dynamics → assembly formation → particle spectrum (Actions 4: Charge Stability Map).
+- Derive emergent proper time $d\tau/dt$ from Noether Sea coupling (Action 2).
+
+**Long-term:**
+- Full quantum interpretation (TOC Part VI).
+- GR phenomenology and cosmology (TOC Parts VII-VIII).
+
+---
+
+## 14. Maintenance and Governance
+
+**Document Status:** **Authoritative**
+
+Changes to this document require:
+1. Full-team review (especially Dyna, Sol, Red)
+2. Explicit justification (what changed, why, and what downstream impacts)
+3. Version control (changelog entry)
+
+**Review Cadence:**
+- **Per simulation milestone**: Check that numerical implementation matches canonical form
+- **Quarterly**: Update based on new analytic results or constraint refinements
+- **Annual**: Major revision if Master EOM form changes (e.g., new interaction terms discovered)
+
+**Ownership:**
+- **Lead**: Dyna (Topologist & Dynamical Systems)
+- **Numerical**: Sol (Computational Physicist)
+- **Philosophical framing**: Phil (Foundations)
+- **Adversarial review**: Red (Red Team)
+
+**Changelog:**
+- **January 2026**: Initial consolidation (Geometrical-Model + Marko's supplementary input)
+- Future updates logged here
+
+---
+
+**End of Master Equation of Motion Document**
+
+---
+
+*This is the engine. Guard it well. Test it rigorously. Build everything else upon it.*
+
+**Dyna (Dynamics Lead) & Phil (Foundations Lead)**  
+*"One equation. Infinite consequences. Let the simulations begin."* ⚙️🏛️
+```
+
+---
+
+## POST-CONSOLIDATION STATUS
+
+✅ **Consolidated `foundations/master-equation.md` COMPLETE**
+
+**Documents fully consumed and ready for archival:**
+- `Geometrical-Model-of-Nature/00-FoundationElements/00.1-Architrino/00.1.4-Action.md`
+- `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.4-MasterEquationWalkthrough.md`
+
+**Retained for next phase (self-hit-dynamics.md):**
+- `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.3-MaximumCurvatureOrbit.md`
+
+**Total size:** ~30 KB (comprehensive, standalone, paste-ready)
+
