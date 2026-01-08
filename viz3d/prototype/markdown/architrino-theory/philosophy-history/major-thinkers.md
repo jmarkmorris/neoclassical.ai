@@ -129,7 +129,7 @@ The architrino project is positioned as:
 
 **Architrino impact**:
 - ✅ **Pro**: Hume's **empiricism in spirit** is vindicated. We discover architrino laws through observation and inference, not via pure reason.
-- ❌ **Con**: Hume's **skepticism about necessary connection is refuted**. Architrino interaction laws are **necessary** (given the entities and their properties). The absolute observer sees causation as an **explicit lawlike mapping** from architrino configuration at time *t* to configuration at *t+Δt*. There is no room for doubt about "necessary connection"—it's baked into the micro-dynamics.
+- ❌ **Con**: Hume's **skepticism about necessary connection is refuted**. Architrino interaction laws are **necessary** (given the entities and their properties). The absolute observer sees causation as an **explicit lawlike mapping** from architrino configuration at time *t* to configuration at *t+$\Delta$t*. There is no room for doubt about "necessary connection"—it's baked into the micro-dynamics.
 - ⚠️ **Clarification**: The necessity is **physical** (laws of nature), not **metaphysical** (Hume's original target was metaphysical causation divorced from observation). In that sense, Hume's anti-metaphysical stance is **preserved**, but **physical necessity** is restored.
 
 **Legacy shift**: Hume's **methodology** (empiricism, anti-metaphysical speculation) is **vindicated**. His **ontological conclusion** (no real causation) is **rejected**. The absolute observer makes necessity transparent.
@@ -328,7 +328,7 @@ The architrino project is positioned as:
 
 ### **Erwin Schrödinger (1887–1961)**
 **Core belief**: 
-- Wavefunction ψ as a **real physical field** (at least initially).
+- Wavefunction $\psi$ as a **real physical field** (at least initially).
 - Wave mechanics as a continuous, deterministic theory (before accepting probabilistic interpretation).
 - Schrödinger's cat paradox highlights the **measurement problem**.
 
@@ -367,7 +367,7 @@ The architrino project is positioned as:
 **Architrino impact**:
 - ✅ **Pro**: **Strong alignment**. Architrino assemblies are "particles" (or their effective representations), guided by **potential fields** (from all other architrinos, including self-hit contributions).
 - ✅ **Pro**: Deterministic evolution upheld. The absolute observer tracks the full trajectory.
-- ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space (ψ(x₁, x₂, ...)); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
+- ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space ($\psi$(x₁, x₂, ...)); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
 
 **Legacy shift**: De Broglie's intuition is **validated and extended** with explicit microphysical entities (architrinos). His pilot wave becomes **architrino potential fields**.
 
@@ -382,7 +382,7 @@ The architrino project is positioned as:
 **Architrino impact**:
 - ✅ **Pro**: **Strong vindication**. Architrinos are the **hidden variables**. Their positions/velocities are always definite and known to the absolute observer.
 - ✅ **Pro**: Nonlocality is natural (architrinos interact via long-range potentials; guidance can be global or via self-hit memory).
-- ⚠️ **Difference**: Bohm's quantum potential is **derived from** ψ. In our model, ψ itself (if used) is **emergent** from architrino configurations. The guidance is more direct (architrino-to-architrino potentials).
+- ⚠️ **Difference**: Bohm's quantum potential is **derived from** $\psi$. In our model, $\psi$ itself (if used) is **emergent** from architrino configurations. The guidance is more direct (architrino-to-architrino potentials).
 - ✅ **Pro**: Measurement problem is **dissolved** in the same way: no collapse, only deterministic evolution + environmental decoherence, all visible to the absolute observer.
 
 **Legacy shift**: Bohmian mechanics is a **precursor**; architrino theory is its **reductionist realization**. Bohm pointed the way; we provide the substrate.
@@ -486,15 +486,15 @@ The architrino project is positioned as:
 
 ### **Lucien Hardy, Rob Spekkens, Matthew Leifer — Quantum Foundations (Operational/Psi-Epistemic)**
 **Core belief**: 
-- Some explore **ψ-epistemic models** (wavefunction as knowledge/information, not ontic reality).
+- Some explore **$\psi$-epistemic models** (wavefunction as knowledge/information, not ontic reality).
 - Others refine **operational constraints** on quantum theories (generalized probability theories, no-signaling, etc.).
 
 **Architrino impact**:
-- ⚠️ **Partial alignment**: ψ is **epistemic** in the sense that it describes **coarse-grained knowledge** of complex architrino assemblies, not the full microstate (which only the absolute observer knows).
-- ✅ **Pro**: **PBR theorem** and similar results are respected: the epistemic ψ **reflects real underlying states** (architrino configurations). Different ψ correspond to different ontic states.
+- ⚠️ **Partial alignment**: $\psi$ is **epistemic** in the sense that it describes **coarse-grained knowledge** of complex architrino assemblies, not the full microstate (which only the absolute observer knows).
+- ✅ **Pro**: **PBR theorem** and similar results are respected: the epistemic $\psi$ **reflects real underlying states** (architrino configurations). Different $\psi$ correspond to different ontic states.
 - ✅ **Pro**: Operational constraints (no-signaling, monogamy of entanglement, etc.) are **emergent** from architrino interaction rules + statistical structure of assemblies.
 
-**Legacy shift**: ψ-epistemic programs are **realized** with explicit ontology (not just reformulated quantum theory). Operational quantum mechanics becomes **effective theory** of architrino statistical ensembles.
+**Legacy shift**: $\psi$-epistemic programs are **realized** with explicit ontology (not just reformulated quantum theory). Operational quantum mechanics becomes **effective theory** of architrino statistical ensembles.
 
 ---
 
@@ -780,7 +780,7 @@ The architrino project is positioned as:
 | **Albert Einstein (SR)** | 1879–1955 | Empirical SR predictions | **Fundamental Lorentz invariance, no preferred frame, spacetime as fundamental** | Kinematic → dynamical emergence |
 | **Albert Einstein (GR)** | 1879–1955 | Empirical GR predictions | **Spacetime as fundamental, diffeomorphism invariance** | GR as emergent hydrodynamics |
 | **Niels Bohr** | 1885–1962 | — | **Completeness, collapse, anti-realism** | Complementarity explained |
-| **Erwin Schrödinger** | 1887–1961 | Realism, desire for ontology | — | ψ as emergent |
+| **Erwin Schrödinger** | 1887–1961 | Realism, desire for ontology | — | $\psi$ as emergent |
 | **Louis de Broglie** | 1892–1987 | **Pilot-wave intuition** | — | Wave on config space → real fields |
 | **Werner Heisenberg** | 1901–1976 | Uncertainty (emergent) | **Reality "behind" formalism** | — |
 | **Karl Popper** | 1902–1994 | **Falsificationism** | — | — |
@@ -810,9 +810,9 @@ The architrino project is positioned as:
 | **Stephen Wolfram** | 1959– | Emergence from simple rules | **Hypergraphs as fundamental, computation primacy** | Physical ontology > computation |
 | **Erik Verlinde** | 1962– | Gravity as emergent | **Holographic screens, info primacy** | Entropic aspects as special cases |
 | **Antony Valentini** | 1965– | **Quantum nonequilibrium framework** | — | Born rule violations as predictions |
-| **Lucien Hardy** | 1966– | ψ-epistemic + ontic states | — | Operational QM as effective theory |
-| **Rob Spekkens** | 1970– | ψ-epistemic + ontic states | — | Operational QM as effective theory |
-| **Matthew Leifer** | 1975– | ψ-epistemic + ontic states | — | Operational QM as effective theory |
+| **Lucien Hardy** | 1966– | $\psi$-epistemic + ontic states | — | Operational QM as effective theory |
+| **Rob Spekkens** | 1970– | $\psi$-epistemic + ontic states | — | Operational QM as effective theory |
+| **Matthew Leifer** | 1975– | $\psi$-epistemic + ontic states | — | Operational QM as effective theory |
 | **Sabine Hossenfelder** | 1976– | **Empirical discipline, falsifiability** | — | — |
 
 ## 19. Conclusion: The Architrino Weltanschauung

@@ -27,14 +27,14 @@ I categorize all validation work into three tiers. Failure at Tier 1 is a termin
 ### Tier 2: Precision Benchmarks (The "Pull" Tests)
 *The model must match these within stated experimental and theoretical uncertainties.*
 - **Particle Masses**: PDG values for all SM fermions and bosons. (Marko here: do the varying frequencies of the internal binaries maps to the varying mass observations in the PDG? It's part of architrino theory, but we must prove it beyond a reasonable doubt)
-- **Anomalous Moments**: Electron $g-2$ (13 sig figs), Muon $g-2$ (4.2σ tension focus).
+- **Anomalous Moments**: Electron $g-2$ (13 sig figs), Muon $g-2$ (4.2$\sigma$ tension focus).
 - **Nuclear Binding**: AME precision (keV) for deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$), and light nuclei.
 - **Cosmological Parameters**: $H_0, \Omega_m, n_s, Y_p$ (primordial Helium).
 
 ### Tier 3: The "Smoking Guns" (Architrino vs. The World)
-*Targeting specific deviations where our theory outperforms ΛCDM + SM.*
-- **Hubble Tension**: Decisively resolving the 5σ discrepancy between early/late universe.
-- **Electron Form Factor**: Predicting the energy scale Λ where the electron's tri-binary structure becomes visible.
+*Targeting specific deviations where our theory outperforms $\Lambda$CDM + SM.*
+- **Hubble Tension**: Decisively resolving the 5$\sigma$ discrepancy between early/late universe.
+- **Electron Form Factor**: Predicting the energy scale $\Lambda$ where the electron's tri-binary structure becomes visible.
 - **Modified Gravity Signatures**: Unique GW dispersion or extra polarization modes.
 
 ---
@@ -46,7 +46,7 @@ I do not accept "qualitative agreement." Every comparison must produce:
    - $|Pull| < 1$: Sig approves.
    - $2 < |Pull| < 3$: High alert (tension).
    - $|Pull| > 5$: Likely falsification.
-2. **Bayesian Model Comparison**: I calculate the Bayes Factor vs. ΛCDM + SM. We must justify any added complexity with superior fit.
+2. **Bayesian Model Comparison**: I calculate the Bayes Factor vs. $\Lambda$CDM + SM. We must justify any added complexity with superior fit.
 3. **Uncertainty Enforcement**: I demand $\sigma_{theory}$ include simulation variance, truncation error, and parameter sensitivity. No "zero error" claims allowed.
 
 ---

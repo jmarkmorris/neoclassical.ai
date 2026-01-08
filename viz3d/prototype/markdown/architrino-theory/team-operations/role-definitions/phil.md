@@ -318,7 +318,7 @@ Explicitly articulate and track theoretical virtues:
 - **Depth**: Green (explains > reproduces) / Yellow (mixed) / Red (merely fits data).
 - **Unification**: Green (single framework) / Yellow (partially unified) / Red (disconnected modules).
 - **Parsimony**: Green (fewer free parameters than SM+GR) / Yellow (comparable) / Red (more parameters).
-- **Adequacy**: Green (all tests passed) / Yellow (some 2-3σ tensions) / Red (>3σ failures).
+- **Adequacy**: Green (all tests passed) / Yellow (some 2-3$\sigma$ tensions) / Red (>3$\sigma$ failures).
 - **Testability**: Green (multiple killer tests) / Yellow (some tests) / Red (unfalsifiable).
 
 **Deliverable**: **Theory Health Dashboard** (quarterly report, part of Ch. 44 or Ch. 53) showing virtue scores; used to inform governance decisions and track overall theory health.

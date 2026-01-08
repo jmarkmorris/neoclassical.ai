@@ -86,7 +86,7 @@ Because the medium is not homogeneous at all scales:
     - Early universe probes (CMB, BAO),
     - Late-time, local probes (SNe Ia, strong lensing).
 - This opens the possibility that the **H₀ tension** is:
-  - A manifestation of inhomogeneous medium properties in a fixed void, rather than a failure of ΛCDM per se.
+  - A manifestation of inhomogeneous medium properties in a fixed void, rather than a failure of $\Lambda$CDM per se.
 
 We should aim to:
 

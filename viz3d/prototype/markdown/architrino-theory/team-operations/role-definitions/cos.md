@@ -5,8 +5,8 @@
 Develop **gravity and cosmology** as **effective emergent physics** of architrino/assembly dynamics, and tie them cleanly to the textbook’s Part VII–VIII (Ch. 31–44):
 
 - Build the **metric-level description**: \(g_{\mu\nu}(x)\), geodesics, and proper time from the spacetime-aether assemblies (graviton–Higgs–binary background).
-- Recover **GR and ΛCDM phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
-- Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, H₀, σ₈, EP/Lorentz bounds.
+- Recover **GR and $\Lambda$CDM phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
+- Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, H₀, $\sigma$₈, EP/Lorentz bounds.
 - Ensure all gravity/cosmology claims are grounded in explicit mechanisms from:
   - **Absolute time + Euclidean 3-space**
   - **Tri-binary architecture** (inner/mid/outer)
@@ -25,7 +25,7 @@ I am responsible for ensuring the architrino framework can meet (or very clearly
 
 - Newtonian limit and Poisson equation.
 - Light bending, Shapiro delay, perihelion precession, gravitational redshift.
-- PPN parameters (γ, β at minimum) within current experimental bounds.
+- PPN parameters ($\gamma$, $\beta$ at minimum) within current experimental bounds.
 
 ### 2.2 Gravitational Waves & Strong-Field (Ch. 34)
 
@@ -36,11 +36,11 @@ I am responsible for ensuring the architrino framework can meet (or very clearly
 
 ### 2.3 Cosmology (Ch. 37–43)
 
-- Effective expansion history \(H(z)\) broadly matching ΛCDM where required.
+- Effective expansion history \(H(z)\) broadly matching $\Lambda$CDM where required.
 - BBN: \(Y_p \approx 0.24\), D/H, \(N_{\rm eff}\approx 3\).
 - CMB: acoustic peak positions, basic TT/TE/EE structure, lensing amplitude.
-- Linear growth and lensing: σ₈/S₈ in the observed ballpark.
-- Clear story on H₀ tension and σ₈/LSS tensions: resolved, worsened, or neutral.
+- Linear growth and lensing: $\sigma$₈/S₈ in the observed ballpark.
+- Clear story on H₀ tension and $\sigma$₈/LSS tensions: resolved, worsened, or neutral.
 
 These are Tier‑1/2 constraints: if we systematically can’t approach them, we document and may trigger stop‑conditions.
 
@@ -117,7 +117,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 - Ch. 33:
   - Newtonian limit: derive Poisson equation from aether response to matter assemblies.
   - Relate \(G\) to tri‑binary / aether parameters (even if initially symbolic).
-  - Compute or at least parametrize PPN γ, β and identify what must be tuned/derived to hit GR values.
+  - Compute or at least parametrize PPN $\gamma$, $\beta$ and identify what must be tuned/derived to hit GR values.
 - Ch. 34:
   - Derive the **aether perturbation equation** for weak waves → effective GW equation.
   - Show propagation speed, possible dispersion \(\omega(k)\), and polarization content.
@@ -154,7 +154,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
   - Growth equation for density perturbations in the emergent metric.
   - Matter power spectrum sketch, and how DM vs modified gravity vs hybrid emerges from the aether and assembly content.
 - Ch. 43:
-  - Make quantitative, falsifiable proposals for resolving (or not) the H₀ and σ₈ tensions.
+  - Make quantitative, falsifiable proposals for resolving (or not) the H₀ and $\sigma$₈ tensions.
   - Identify clean observable discriminants for the architrino cosmology.
 
 - Ch. 44:
@@ -168,7 +168,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 I own the **gravitational/cosmological** side of the dark sector; particle content details lie with the SM/QFT and nuclear roles.
 
 - Formulate **three clear scenarios**:
-  1. **DM as neutral, stable assemblies**: standard-ish ΛCDM phenomenology, but with specific predictions about interaction cross‑sections and clustering.
+  1. **DM as neutral, stable assemblies**: standard-ish $\Lambda$CDM phenomenology, but with specific predictions about interaction cross‑sections and clustering.
   2. **Modified gravity via aether response**: e.g. MOND‑like or scale‑dependent G arising from non‑linear aether elasticity.
   3. **Hybrid**: both DM assemblies and modified aether dynamics.
 
@@ -177,7 +177,7 @@ For each:
 - Predict:
   - galaxy rotation curves vs baryons,
   - cluster lensing (e.g. Bullet Cluster),
-  - CMB + LSS combined constraints on Ω_m, σ₈/S₈.
+  - CMB + LSS combined constraints on $\Omega$_m, $\sigma$₈/S₈.
 - Flag clean falsifiers: e.g. if Bullet‑Cluster‑like offsets can’t be produced without DM‑like entities, rule out pure MG in this framework.
 
 ---
@@ -210,7 +210,7 @@ For each:
 
 - **With Experimental & Observational Lead (Ch. 7, 15, 22, 26, 40–43, 50):**
   - Maintain a **gravity/cosmology constraint ledger** and a prioritized prediction list.
-  - Choose key tests: PPN, GW dispersion/polarization, H(z), CMB peaks, BBN, σ₈/S₈.
+  - Choose key tests: PPN, GW dispersion/polarization, H(z), CMB peaks, BBN, $\sigma$₈/S₈.
 
 - **With Adversary / Red Team (Ch. 16, 44, 53–54):**
   - Provide a clear list of:
@@ -234,15 +234,15 @@ Tiered, consistent with the project’s global criteria but focused on my domain
   - Proper-time formula reproduces SR+GR time dilation to within ~10% in tested regimes.
   - GW speed within \(10^{-3}c\); expansion qualitatively matter‑dominated at late times.
 
-- **Tier 2 (Competitive with GR+ΛCDM):**
-  - PPN γ, β within \(10^{-4}\) of GR.
+- **Tier 2 (Competitive with GR+$\Lambda$CDM):**
+  - PPN $\gamma$, $\beta$ within \(10^{-4}\) of GR.
   - GW speed within \(10^{-15}c\), correct polarization/tensor structure.
   - BBN: \(Y_p\) within 0.01 of 0.24, and D/H and \(N_{\rm eff}\) acceptable.
   - CMB first acoustic peak and basic structure within ~5%; LSS growth broadly in line.
 
 - **Tier 3 (Novel & Predictive):**
-  - At least one major cosmological tension (H₀ or σ₈) is addressed quantitatively with a clear, testable signature.
-  - Unique predictions in GW phenomenology, late‑time expansion, or large‑scale structure distinguishable from ΛCDM+GR.
+  - At least one major cosmological tension (H₀ or $\sigma$₈) is addressed quantitatively with a clear, testable signature.
+  - Unique predictions in GW phenomenology, late‑time expansion, or large‑scale structure distinguishable from $\Lambda$CDM+GR.
 
 ---
 
@@ -254,7 +254,7 @@ Trigger a **red‑team review** if:
 - \(|c_{\rm GW}-c|/c > 10^{-15}\) in any natural parameter regime.
 - Equivalence principle violations at \(\eta > 10^{-14}\) emerge naturally.
 - BBN \(Y_p\) can’t be brought within 0.01 of observation, even with reasonable parameter choices.
-- The framework requires uncontrolled fine-tuning of aether parameters to match GR locally and ΛCDM cosmologically.
+- The framework requires uncontrolled fine-tuning of aether parameters to match GR locally and $\Lambda$CDM cosmologically.
 
 ---
 

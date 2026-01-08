@@ -69,7 +69,7 @@ Standard Model “generations” are interpreted as **excitation states** of the
   - Only [H] assembled.  
   - M and L cannot maintain coherent orbits at that energy; the H self‑hit core is effectively naked.
 
-We treat these as **different assembly states**, not decay products in time. Heavier generations require energy input to form and relax back via W/Z/γ/ν emission.
+We treat these as **different assembly states**, not decay products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
 
 In this section, color is defined on **Gen‑I** Noether cores; higher generations inherit the same color structure via their remaining axes (H only, or H+M).
 

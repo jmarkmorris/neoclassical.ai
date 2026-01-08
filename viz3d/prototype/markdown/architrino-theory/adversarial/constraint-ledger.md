@@ -28,5 +28,5 @@
 * **Validation:** Map $g_{00} \approx 1 + 2\Phi/c^2$ to the refractive slowing of tri-binary signals in the absolute grid.
 
 #### 3. Gravitational Time Dilation
-* **The Constraint:** GPS satellite clocks (38 μs/day) and Pound-Rebka redshift must be reproduced.
+* **The Constraint:** GPS satellite clocks (38 $\mu$s/day) and Pound-Rebka redshift must be reproduced.
 * **Mechanism:** Mechanical slowing of tri-binary orbital frequencies due to coupling with the local Noether Core sea density.

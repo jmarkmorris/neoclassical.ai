@@ -306,7 +306,7 @@ Mapping between Models
 The Anthropic Principle
 Falsifying the Hubble Constant
 Cosmological Metrics
-The αβγ Paper
+The $\alpha$$\beta$$\gamma$ Paper
 Black Holes
 Black Holes
 Black Holes and Planck Cores
@@ -389,7 +389,7 @@ Commenter I : Poor MIT
 Physicist, Heal Thyself
 Fraud and Funding in Physics and Cosmology
 Is Chemistry the Best Description of Nature?
-It’s Time to Cancel GR, QM, & ΛCDM
+It’s Time to Cancel GR, QM, & $\Lambda$CDM
 Physicists, Take the L
 A Wish for Senior Physicists
 The Quandary in Physics and Cosmology

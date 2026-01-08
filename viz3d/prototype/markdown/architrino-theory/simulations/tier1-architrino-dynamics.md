@@ -4,7 +4,7 @@
 Implement 1-architrino and 2-architrino setups with VO sensors arranged on a sphere/ring:
 - Verify spherical wavefront propagation at c_f
 - Verify correct arrival ordering and phase behavior (per kernel)
-- Verify numerical stability of t_emit inversion as Δt → Δt/2
+- Verify numerical stability of t_emit inversion as $\Delta$t → $\Delta$t/2
 - Produce provenance tables showing correct emitter_id and emission times
 
 ### Baseline diagnostics

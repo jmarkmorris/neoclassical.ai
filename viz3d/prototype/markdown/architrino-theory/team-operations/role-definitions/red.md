@@ -20,7 +20,7 @@ Maintain an **active, living matrix** (not a passive list) tracking the applicab
 
 | Theorem | Key Hypotheses | Applicability to Architrino | Current Status | Required Proof/Resolution | Deadline |
 |---------|---------------|----------------------------|----------------|---------------------------|----------|
-| **Bell's Theorem** | Locality, realism, free choice | Locality violated (self-hit, absolute time) | **Loophole Claimed** | Derive Bell correlations C(a,b,λ) with history-dependent λ; show violation matches experiment; prove no FTL signaling | 3 months |
+| **Bell's Theorem** | Locality, realism, free choice | Locality violated (self-hit, absolute time) | **Loophole Claimed** | Derive Bell correlations C(a,b,$\lambda$) with history-dependent $\lambda$; show violation matches experiment; prove no FTL signaling | 3 months |
 | **Coleman-Mandula** | Exact Lorentz invariance, local QFT | Emergent Lorentz only; substrate has absolute time | **May Not Apply** | Show where emergent Lorentz breaks down; demonstrate substrate violates hypotheses | 6 months |
 | **Weinberg-Witten** | Lorentz-covariant massless spin-2 | Emergent gravity, not fundamental particle | **May Not Apply** | Clarify: does emergent metric correspond to a Lorentz-covariant particle? If not, theorem doesn't bind | 6 months |
 | **CPT Theorem** | Local relativistic QFT | Absolute time substrate | **Unclear** | Derive CPT or its violation from architrino dynamics; check neutral meson bounds | 9 months |
@@ -44,7 +44,7 @@ Theorem: Bell's Theorem
 Claim: "Self-hit memory provides non-local correlations, evading Bell's locality assumption."
 
 Required Proof:
-1. Derive correlation function C(a,b,λ) where λ includes self-hit history variables.
+1. Derive correlation function C(a,b,$\lambda$) where $\lambda$ includes self-hit history variables.
 2. Show |C(a,b)| > |C(a)C(b)| (violation of factorization).
 3. Calculate violation amplitude; verify it matches observed ~2.8 for CHSH.
 4. Prove that despite nonlocality, no superluminal signaling is possible (causality preserved).
@@ -74,9 +74,9 @@ Maintain **strict categorization and counting** of all parameters:
 - Euclidean void + absolute time (ontological framework)
 
 **Category B (Scale Setters / Emergent Structures):**
-- Overall coupling strength λ (sets energy/distance scales)
+- Overall coupling strength $\lambda$ (sets energy/distance scales)
 - Tri-binary radius ratios (r_inner : r_mid : r_outer)
-- Vacuum/spacetime-aether assembly density ρ_vac
+- Vacuum/spacetime-aether assembly density $\rho$_vac
 - Self-hit memory depth or decay timescale (if computational approximation)
 
 **Category C (Derived from Micro-Dynamics / Simulations):**
@@ -117,7 +117,7 @@ Maintain **running comparison table** (updated quarterly):
 | Framework | # Free Parameters | # Observables Explained/Fit | Predictiveness Ratio |
 |-----------|------------------|----------------------------|---------------------|
 | **Standard Model** | ~19 | ~100+ | ~5:1 |
-| **GR + ΛCDM** | ~6-7 | ~10-15 | ~1.5–2:1 |
+| **GR + $\Lambda$CDM** | ~6-7 | ~10-15 | ~1.5–2:1 |
 | **Architrino Model** | **TBD** | **TBD** | **Goal: ≥ 5:1** |
 
 **Trigger:**
@@ -133,9 +133,9 @@ Maintain **running comparison table** (updated quarterly):
 | Consistency Check | Roles Involved | Test | Threshold | Status | Last Check | Next Review |
 |-------------------|---------------|------|-----------|--------|------------|-------------|
 | Particle mass → nuclear binding | SM Phenom + Nuclear | Do p/n masses yield correct deuteron ($^{2}\text{H}$) BE (2.225 MeV)? | Within 10% | TBD | — | [Date] |
-| Vacuum energy match | SM Phenom + GR/Cosmo | Higgs VEV energy = spacetime assembly ρ_vac? | Within factor 10 | TBD | — | [Date] |
+| Vacuum energy match | SM Phenom + GR/Cosmo | Higgs VEV energy = spacetime assembly $\rho$_vac? | Within factor 10 | TBD | — | [Date] |
 | Newton's G consistency | GR/Cosmo + Nuclear | G from metric = G from nuclear force scale? | Within 20% | TBD | — | [Date] |
-| Clock rate formula | GR/Cosmo + Atomic | Proper time τ formula matches atomic transitions (GPS precision)? | ns level | TBD | — | [Date] |
+| Clock rate formula | GR/Cosmo + Atomic | Proper time $\tau$ formula matches atomic transitions (GPS precision)? | ns level | TBD | — | [Date] |
 | Inertial = gravitational mass | SM Phenom + GR/Cosmo | m_inertial (assembly dynamics) = m_grav (metric coupling)? | EP: < 10⁻¹⁴ | TBD | — | [Date] |
 | Volume exclusion = Pauli | Nuclear + Topologist | Hard-core radius → correct Fermi pressure (WD/NS)? | Chandrasekhar limit within 10% | TBD | — | [Date] |
 
@@ -203,8 +203,8 @@ These are **non-negotiable**. Any violation at stated confidence level = **theor
 | **Charge quantization** | Stable isolated charges | Only 0, ±e/3, ±2e/3, ±e observed | Millikan descendants, quark searches | Observation of stable ±e/6 particle |
 | **Lorentz: light speed isotropy** | \(\Delta c/c\) | < 10⁻¹⁷ | Optical resonator experiments | \(\Delta c/c > 10⁻¹⁵\) |
 | **Lorentz: clock isotropy** | Sidereal variation | < 10⁻¹⁶ | Optical atomic clocks | Sidereal variation > 10⁻¹⁴ |
-| **Equivalence Principle** | η (composition-dependence of freefall) | < 10⁻¹⁴ | MICROSCOPE satellite | η > 10⁻¹² |
-| **Proton stability** | \(\tau_p\) | > 10³⁴ years (p → e⁺π⁰) | Super-Kamiokande | Observation of proton decay |
+| **Equivalence Principle** | $\eta$ (composition-dependence of freefall) | < 10⁻¹⁴ | MICROSCOPE satellite | $\eta$ > 10⁻¹² |
+| **Proton stability** | \(\tau_p\) | > 10³⁴ years (p → e⁺$\pi$⁰) | Super-Kamiokande | Observation of proton decay |
 | **GW speed** | \(|v_{\text{GW}} - c|/c\) | < 10⁻¹⁵ | GW170817 + EM counterpart | \(|v_{\text{GW}} - c|/c > 10⁻¹³\) |
 | **CPT invariance** | \(m_{\text{particle}} = m_{\text{antiparticle}}\) | < 10⁻¹⁹ (neutral kaons) | PDG, neutral meson systems | Violation at 10⁻¹⁶ level |
 | **Photon mass** | \(m_\gamma\) | < 10⁻¹⁸ eV | Coulomb's law tests, dispersion | \(m_\gamma > 10⁻¹⁵\) eV |
@@ -219,7 +219,7 @@ Violations don't immediately kill the framework but require **major revision**:
 - **Nuclear binding energies:** Wrong by >20% (e.g., deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$)).
 - **PPN parameters:** \(|\gamma - 1|\) or \(|\beta - 1| > 10^{-4}\).
 - **CMB acoustic peaks:** Shifted by >5% from observed positions.
-- **BBN:** Predicted \(Y_p\) (alpha particle ($^{4}\text{He}$) fraction) differs from observed 0.24 by >3σ.
+- **BBN:** Predicted \(Y_p\) (alpha particle ($^{4}\text{He}$) fraction) differs from observed 0.24 by >3$\sigma$.
 - **Effective neutrino species:** \(|N_{\text{eff}} - 3| > 0.5\) at BBN.
 
 **Protocol:** If 2+ Tier 2 constraints fail simultaneously, escalate to **Theory Health Review** (see Section I).
@@ -261,7 +261,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 **1. Convergence Certification:**
 - **Temporal:** Halve time step \(\Delta t\) → observables change <2%
 - **Spatial:** Double spatial resolution → observables change <2%
-- **Parameter sweep:** Vary interaction strength λ by ±20% → qualitative behavior (e.g., tri-binary formation) persists
+- **Parameter sweep:** Vary interaction strength $\lambda$ by ±20% → qualitative behavior (e.g., tri-binary formation) persists
 
 **2. Cross-Integrator Validation:**
 - Run with **at least two fundamentally different integrators**:
@@ -328,26 +328,26 @@ I **demand** from the Computational Physicist:
 
 **F.1 Hierarchical Falsification Procedure**
 
-**Level 1: Tension Detection (2σ)**
-- Single observable deviates from prediction at 2–2.5σ
+**Level 1: Tension Detection (2$\sigma$)**
+- Single observable deviates from prediction at 2–2.5$\sigma$
 - **Action:** Flag as "tension"; recompute with higher precision; check experimental systematics and data quality
 - **No immediate conclusion**; continue monitoring
 
-**Level 2: Serious Concern (3σ or Multiple 2σ)**
-- Single observable at **3σ**, **or** three+ independent observables at **2σ+**
+**Level 2: Serious Concern (3$\sigma$ or Multiple 2$\sigma$)**
+- Single observable at **3$\sigma$**, **or** three+ independent observables at **2$\sigma$+**
 - **Action:** Joint meeting (affected roles + me + Experimentalist) within **14 days**
 - **Investigate:** Is this a theory problem, numerical artifact, or experimental systematic?
 - **Deadline:** 60 days to resolve or escalate
 
-**Level 3: Likely Falsification (5σ)**
-- Single well-established measurement at **5σ**
+**Level 3: Likely Falsification (5$\sigma$)**
+- Single well-established measurement at **5$\sigma$**
 - **Action:** Immediate review by **full team** (all roles + Marko) within **7 days**
 - If confirmed independent and robust → **declare theory falsified on that specific claim**
 - **Determine:** Can theory be salvaged by modifying specific assumptions, or is framework fundamentally incompatible?
 
 **Level 4: Definitive Falsification**
 - **Tier 1 constraint violated** (see Section D.1)
-- **Or:** Multiple independent **5σ failures** across **different domains**
+- **Or:** Multiple independent **5$\sigma$ failures** across **different domains**
 - **Action:** **Recommend fundamental re-evaluation or program termination**
 
 **F.2 Statistical Decision Framework**
@@ -382,7 +382,7 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
    - **Theory Status:** Must derive \(\tau_p > 10^{35}\) years; identify dominant decay mode (if any)
 
 2. **Muon g-2 final result** (Fermilab + J-PARC)
-   - **Decisive:** Moderate–High (current 4.2σ anomaly)
+   - **Decisive:** Moderate–High (current 4.2$\sigma$ anomaly)
    - **Feasibility:** Data complete ~2025
    - **Cost:** Sunk
    - **Theory Status:** Must predict \(a_\mu\) from tri-binary structure; match or explain deviation from SM
@@ -455,7 +455,7 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
   - Identify **energy/density scale** where suppression breaks down
 
 - **"Vacuum energy catastrophe: solve it."**
-  - Calculate **energy density** of spacetime assemblies (ρ_vac)
+  - Calculate **energy density** of spacetime assemblies ($\rho$_vac)
   - Show why it **doesn't gravitate** as \(\rho_\Lambda \sim (100 \text{ GeV})^4\)
   - **Quantify:** If fine-tuned, how much? If structural mechanism, what is it?
 

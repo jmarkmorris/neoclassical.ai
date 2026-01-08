@@ -84,17 +84,17 @@ We must:
 We must demonstrate consistency with:
 
 - **GPS satellites**:
-  - Combined kinematic + gravitational shift: ~38 μs/day at orbital altitude.
+  - Combined kinematic + gravitational shift: ~38 $\mu$s/day at orbital altitude.
 - **Pound–Rebka**:
   - Gravitational redshift: \(\Delta\nu/\nu = gh/c^2\).
 - **Gravity Probe A, modern optical clocks**:
   - Height-dependent time dilation at the 10⁻¹⁶–10⁻¹⁸ level.
 - **Muon lifetime dilation**:
-  - Time dilation ∝ γ in accelerator experiments.
+  - Time dilation ∝ $\gamma$ in accelerator experiments.
 
 #### 5. Failure Conditions
 
 - If the tri-binary clock model cannot reproduce the Lorentz factor dependence for v, or the correct sign and magnitude of gravitational time dilation, the emergent metric program fails.
-- If dτ/dt depends on absolute orientation (e.g. anisotropy in the void frame), we will conflict with clock isotropy bounds (<10⁻¹⁶ sidereal modulation).
+- If d$\tau$/dt depends on absolute orientation (e.g. anisotropy in the void frame), we will conflict with clock isotropy bounds (<10⁻¹⁶ sidereal modulation).
 
 This file’s core deliverable is a concrete candidate for F(…) and explicit comparison to these benchmarks.

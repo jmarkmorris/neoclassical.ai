@@ -182,7 +182,7 @@ architrino-theory/
 
 **Example**:
 - **File name**: `proper-time-from-absolute-time.md`
-- **Document heading**: `# Deriving Proper Time from Absolute Time: The τ ↔ t Map in Emergent Spacetime`
+- **Document heading**: `# Deriving Proper Time from Absolute Time: The $\tau$ ↔ t Map in Emergent Spacetime`
 
 **Why**: 
 - Keeps file names manageable (easier to tab-complete, less clutter in file browsers).
