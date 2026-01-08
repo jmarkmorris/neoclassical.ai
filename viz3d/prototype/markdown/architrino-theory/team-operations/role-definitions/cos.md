@@ -4,8 +4,8 @@
 
 Develop **gravity and cosmology** as **effective emergent physics** of architrino/assembly dynamics, and tie them cleanly to the textbook’s Part VII–VIII (Ch. 31–44):
 
-- Build the **metric-level description**: \(g_{\mu\nu}(x)\), geodesics, and proper time from the spacetime-aether assemblies (graviton–Higgs–binary background).
-- Recover **GR and $\Lambda$CDM phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
+- Build the **metric-level description**: $g_{\mu\nu}(x)$, geodesics, and proper time from the spacetime-aether assemblies (graviton–Higgs–binary background).
+- Recover **GR and $\Lambda\mathrm{CDM}$ phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
 - Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, H₀, $\sigma$₈, EP/Lorentz bounds.
 - Ensure all gravity/cosmology claims are grounded in explicit mechanisms from:
   - **Absolute time + Euclidean 3-space**
@@ -36,7 +36,7 @@ I am responsible for ensuring the architrino framework can meet (or very clearly
 
 ### 2.3 Cosmology (Ch. 37–43)
 
-- Effective expansion history \(H(z)\) broadly matching $\Lambda$CDM where required.
+- Effective expansion history \(H(z)\) broadly matching $\Lambda\mathrm{CDM}$ where required.
 - BBN: \(Y_p \approx 0.24\), D/H, \(N_{\rm eff}\approx 3\).
 - CMB: acoustic peak positions, basic TT/TE/EE structure, lensing amplitude.
 - Linear growth and lensing: $\sigma$₈/S₈ in the observed ballpark.
@@ -168,7 +168,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 I own the **gravitational/cosmological** side of the dark sector; particle content details lie with the SM/QFT and nuclear roles.
 
 - Formulate **three clear scenarios**:
-  1. **DM as neutral, stable assemblies**: standard-ish $\Lambda$CDM phenomenology, but with specific predictions about interaction cross‑sections and clustering.
+  1. **DM as neutral, stable assemblies**: standard-ish $\Lambda\mathrm{CDM}$ phenomenology, but with specific predictions about interaction cross‑sections and clustering.
   2. **Modified gravity via aether response**: e.g. MOND‑like or scale‑dependent G arising from non‑linear aether elasticity.
   3. **Hybrid**: both DM assemblies and modified aether dynamics.
 
@@ -234,7 +234,7 @@ Tiered, consistent with the project’s global criteria but focused on my domain
   - Proper-time formula reproduces SR+GR time dilation to within ~10% in tested regimes.
   - GW speed within \(10^{-3}c\); expansion qualitatively matter‑dominated at late times.
 
-- **Tier 2 (Competitive with GR+$\Lambda$CDM):**
+- **Tier 2 (Competitive with GR+$\Lambda\mathrm{CDM}$):**
   - PPN $\gamma$, $\beta$ within \(10^{-4}\) of GR.
   - GW speed within \(10^{-15}c\), correct polarization/tensor structure.
   - BBN: \(Y_p\) within 0.01 of 0.24, and D/H and \(N_{\rm eff}\) acceptable.
@@ -242,7 +242,7 @@ Tiered, consistent with the project’s global criteria but focused on my domain
 
 - **Tier 3 (Novel & Predictive):**
   - At least one major cosmological tension (H₀ or $\sigma$₈) is addressed quantitatively with a clear, testable signature.
-  - Unique predictions in GW phenomenology, late‑time expansion, or large‑scale structure distinguishable from $\Lambda$CDM+GR.
+  - Unique predictions in GW phenomenology, late‑time expansion, or large‑scale structure distinguishable from $\Lambda\mathrm{CDM}$+GR.
 
 ---
 
@@ -254,7 +254,7 @@ Trigger a **red‑team review** if:
 - \(|c_{\rm GW}-c|/c > 10^{-15}\) in any natural parameter regime.
 - Equivalence principle violations at \(\eta > 10^{-14}\) emerge naturally.
 - BBN \(Y_p\) can’t be brought within 0.01 of observation, even with reasonable parameter choices.
-- The framework requires uncontrolled fine-tuning of aether parameters to match GR locally and $\Lambda$CDM cosmologically.
+- The framework requires uncontrolled fine-tuning of aether parameters to match GR locally and $\Lambda\mathrm{CDM}$ cosmologically.
 
 ---
 
