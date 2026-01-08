@@ -68,7 +68,7 @@ Maintain **strict categorization and counting** of all parameters:
 
 **Category A (Fundamental Postulates):**
 - Architrino charge magnitude $|e/6|$ (definition, not derived)
-- Pro/anti polarity (definition)
+- Positive/negative polarity (definition)
 - Field speed $c_f$ (postulated or derived from deeper principle?)
 - Interaction kernel form (e.g., 1/r, 1/r², exponential, screened Coulomb)
 - Euclidean void + absolute time (ontological framework)
@@ -282,7 +282,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 
 **5. Negative Control Tests:**
 - Run simulations with **intentionally wrong physics**:
-  - Change $|e/6| \to |e/5|$ or swap pro/anti roles
+  - Change $|e/6| \to |e/5|$ 
   - Alter interaction law (e.g., 1/r → 1/r³)
 - **Verify:** Model **fails as expected** (no stable SM-like particles, no tri-binaries, etc.)
 - This proves the simulation is **sensitive to the physics**, not just numerically stable
