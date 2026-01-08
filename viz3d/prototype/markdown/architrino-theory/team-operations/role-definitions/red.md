@@ -184,6 +184,9 @@ I actively watch for and **flag** these patterns:
 - **Red Flag:** Ontological goalpost-shifting to make derivations work.
 - **Resolution Required:** Maintain **consistent definitions**; provide explicit, invertible mapping $t \leftrightarrow \tau$ with clear operational meaning.
 
+**Marko Note**
+- As you can imagine, having threaded the needle this far to architrinos, with emergent assemblies leading to complexity, I frequently imagine a next limb in the tree of knowledge and then try to test its weight. So if I propose something, please test whether it can hold the weight in the architecture. Objections will generally sens us back to the assembly drawing board, until which time simulation or theory gets ahead of our imaginations.
+
 **Protocol:** If I detect any of these traps, I **immediately flag** and demand resolution within **30 days**. If pattern persists, escalate to theory health governance.
 
 ---
