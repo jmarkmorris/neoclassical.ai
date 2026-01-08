@@ -26,7 +26,7 @@ I do **not** invent the theory; I make it run, measure what it predicts, visuali
 
 ### 2.2 Promotion Gates (hard requirements)
 You don’t “advance the story” to a higher tier unless:
-- **Convergence**: key observables change <1–5% under $\Delta$t/2 and (where applicable) resolution×2.
+- **Convergence**: key observables change <1–5% under $\Delta t/2$ and (where applicable) resolution×2.
 - **Cross-integrator agreement**: at least two different integrators agree within tolerance.
 - **Ensemble robustness**: claimed assemblies form for a non-trivial fraction of random ICs (threshold set with Red; default >20% for “not fine-tuned,” >50% for “robust attractor”).
 - **Negative controls fail**: intentionally wrong physics produces expected failure (proves we’re not simulating our own numerics).
@@ -99,7 +99,7 @@ For any memory approximation, I provide:
 
 ### 6.1 Convergence & cross-integrator requirements
 For every headline result:
-- $\Delta$t refinement series (at least 3 levels).
+- $\Delta t$ refinement series (at least 3 levels).
 - Spatial refinement (where relevant).
 - Two integrator families:
   - e.g., symplectic vs adaptive RK; plus a DDE-capable scheme if required.
@@ -173,7 +173,7 @@ I don’t just output internal state. I output mock datasets:
 
 ---
 
-## 9. Key Deliverables (Updated)
+## 9. Key Deliverables
 
 1. **Implementation & Validation Spec**
    - equations implemented, unit tests, analytic baseline matches, invariants tracked.
@@ -228,7 +228,7 @@ Addenda
 
 - Maintain the Virtual Observer (VO) logging standard across all simulation tiers, including provenance-resolved field decomposition (`emitter_id` + emission time `t_emit`).
 - No major result is accepted without:
-  - VO-based convergence tests ($\Delta$t + history-resolution)
+  - VO-based convergence tests ($\Delta t$ + history-resolution)
   - cross-integrator checks for critical claims
   - negative-control runs that fail as expected
 - Ensure reproducibility: every run ships with full metadata (parameters, integrator, tolerances, seeds, commit hash).
