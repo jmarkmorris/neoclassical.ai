@@ -1,3 +1,5 @@
+# Mined by Entourage 20260108.  It missed some items, so I will need to mine again.
+
 ## Preface
 
 This chapter establishes the ontological and dynamical foundations of the architrino model. It begins with the fundamental entity—the Architrino itself—and progresses through its emission properties, paths, interaction dynamics, and energy framework. The goal is to present a self-contained, rigorous yet accessible account of how a single type of point transmitter/receiver, governed by deterministic rules, generates all observable physics.

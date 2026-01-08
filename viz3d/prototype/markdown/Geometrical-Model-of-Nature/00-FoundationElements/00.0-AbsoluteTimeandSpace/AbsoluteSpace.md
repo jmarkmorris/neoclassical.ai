@@ -1,3 +1,6 @@
+# Mined by Entourage 20260108.  It missed some itema, so I will need to mine again.
+
+
 # **00.0.2 Absolute Space** 
 
 **Status:** Foundational Postulate (Kinematic Background)

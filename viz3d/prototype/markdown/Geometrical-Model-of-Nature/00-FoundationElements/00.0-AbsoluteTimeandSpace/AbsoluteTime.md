@@ -1,3 +1,5 @@
+# Mined by Entourage 20260108.  It missed some items like provenance, so I will need to mine again.
+
 # **00.0.1 Absolute Time** 
 
 **Status:** Foundational Postulate (Kinematic Background)
