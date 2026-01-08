@@ -11,7 +11,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
   - **Absolute time + Euclidean 3-space**
   - **Tri-binary architecture** (inner/mid/outer)
   - **Pro/anti coupling and spacetime aether density**
-  - **Field-speed regimes**: \(v<c_f\), \(v=c_f\), \(v>c_f\)
+  - **Field-speed regimes**: $v<c_f$, $v=c_f$, $v>c_f$
 
 I am “owner” of Chapters 31–44 from a physics-consistency standpoint, and co-owner of Ch. 32/41 where metric + redshift + clock physics are central.
 
@@ -29,15 +29,15 @@ I am responsible for ensuring the architrino framework can meet (or very clearly
 
 ### 2.2 Gravitational Waves & Strong-Field (Ch. 34)
 
-- GW propagation speed: \(|v_{\rm GW}-c|/c<10^{-15}\).
+- GW propagation speed: $|v_{\rm GW}-c|/c<10^{-15}$.
 - Correct quadrupole radiation and binary pulsar orbital decay.
 - Polarization content and dispersion compatible with LIGO/Virgo/KAGRA bounds.
 - Black hole / Planck-core phenomenology consistent with observed GW waveforms.
 
 ### 2.3 Cosmology (Ch. 37–43)
 
-- Effective expansion history \(H(z)\) broadly matching $\Lambda\mathrm{CDM}$ where required.
-- BBN: \(Y_p \approx 0.24\), D/H, \(N_{\rm eff}\approx 3\).
+- Effective expansion history $H(z)$ broadly matching $\Lambda\mathrm{CDM}$ where required.
+- BBN: $Y_p \approx 0.24$, D/H, $N_{\rm eff}\approx 3$.
 - CMB: acoustic peak positions, basic TT/TE/EE structure, lensing amplitude.
 - Linear growth and lensing: $\sigma_8/S_8$ in the observed ballpark.
 - Clear story on H₀ tension and $\sigma_8$/LSS tensions: resolved, worsened, or neutral.
@@ -53,15 +53,15 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
 **Claim:** The “vacuum” is a dense medium of pro/anti tri‑binary couples (graviton–Higgs–binary assemblies). Their density, coupling, and orientation define the **effective metric** seen by assemblies.
 
 - **Inner binary**: inertia + local gravitational charge carrier (max curvature/self‑hit regime).
-- **Middle binary** (\(v=c_f\)): defines effective causal cones and emergent Lorentz symmetry.
-- **Outer binary** (\(v<c_f\)): expansion/contraction and cosmological dynamics.
+- **Middle binary** ($v=c_f$): defines effective causal cones and emergent Lorentz symmetry.
+- **Outer binary** ($v<c_f$): expansion/contraction and cosmological dynamics.
 
 **Tasks/Deliverables:**
 
 - Define a **spacetime aether state variable set**:
-  - \(\rho_{\rm aether}(x)\) (couple density),
-  - \(u^\mu_{\rm aether}(x)\) (preferred-frame 4‑velocity of medium),
-  - orientation fields (neutral-axis directions \(\hat n_i(x)\)).
+  - $\rho_{\rm aether}(x)$ (couple density),
+  - $u^\mu_{\rm aether}(x)$ (preferred-frame 4‑velocity of medium),
+  - orientation fields (neutral-axis directions $\hat n_i(x)$).
 - Propose and refine a mapping:
   \[
   g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\rm aether}, u^\mu_{\rm aether}, \hat n_i, \text{tri‑binary scales}\big)
@@ -73,7 +73,7 @@ These are Tier‑1/2 constraints: if we systematically can’t approach them, we
 
 **Claim:** Proper time for an assembly is the rate of its Noether core oscillations relative to absolute time, slowed by:
 
-- finite field-speed interactions (\(v\) w.r.t. aether),
+- finite field-speed interactions ($v$ w.r.t. aether),
 - local aether density/curvature.
 
 **Tasks/Deliverables:**
@@ -111,16 +111,16 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 
 - Ch. 31: Help nail the ontology: precisely what are “aether assemblies” and which parameters determine their mechanical response.
 - Ch. 32:
-  - Formal derivation of effective metric \(g_{\mu\nu}\) from aether state variables.
+  - Formal derivation of effective metric $g_{\mu\nu}$ from aether state variables.
   - Operational proper-time definition and examples (GPS, muons).
   - Geodesic interpretation of architrino/assembly paths in coarse-grained limit.
 - Ch. 33:
   - Newtonian limit: derive Poisson equation from aether response to matter assemblies.
-  - Relate \(G\) to tri‑binary / aether parameters (even if initially symbolic).
+  - Relate $G$ to tri‑binary / aether parameters (even if initially symbolic).
   - Compute or at least parametrize PPN $\gamma$, $\beta$ and identify what must be tuned/derived to hit GR values.
 - Ch. 34:
   - Derive the **aether perturbation equation** for weak waves → effective GW equation.
-  - Show propagation speed, possible dispersion \(\omega(k)\), and polarization content.
+  - Show propagation speed, possible dispersion $\omega(k)$, and polarization content.
   - Outline how Planck cores / no true singularities alter “black hole” predictions, while staying compatible with LIGO/Virgo results.
 
 ### 4.2 Dense Matter & Gravity (Ch. 35–36)
@@ -139,7 +139,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
     H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots
     \]
     with clear identification of matter, radiation, and effective dark-energy terms.
-  - Ensure BBN‑era expansion rate yields realistic \(Y_p\), D/H, \(N_{\rm eff}\).
+  - Ensure BBN‑era expansion rate yields realistic $Y_p$, D/H, $N_{\rm eff}$.
 - Ch. 39:
   - Tie Planck‑core jetting, recycling, and potential DM alternatives to the metric/aether picture.
 - Ch. 40:
@@ -148,18 +148,18 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
     - lensing potential,
     - any non‑standard contributions from aether dynamics.
 - Ch. 41:
-  - Redshift as clock comparison in evolving aether: explicit formulas relating \(z\), proper time, and aether evolution.
+  - Redshift as clock comparison in evolving aether: explicit formulas relating $z$, proper time, and aether evolution.
   - Map architrino‑based expansion to observed H(z), SN Ia, BAO, and H₀ tension.
 - Ch. 42:
   - Growth equation for density perturbations in the emergent metric.
   - Matter power spectrum sketch, and how DM vs modified gravity vs hybrid emerges from the aether and assembly content.
 - Ch. 43:
-- Make quantitative, falsifiable proposals for resolving (or not) the H₀ and $\sigma_8$ tensions.
+  - Make quantitative, falsifiable proposals for resolving (or not) the H₀ and $\sigma_8$ tensions.
   - Identify clean observable discriminants for the architrino cosmology.
 
 - Ch. 44:
   - Enumerate gravity/cosmology Tier‑1/2 failure modes precisely in the aether language.
-  - Map each to observables and parameter regions (e.g. if \(c_{\rm GW}\neq c\) by X, theory fails).
+  - Map each to observables and parameter regions (e.g. if $c_{\rm GW}\neq c$ by X, theory fails).
 
 ---
 
@@ -193,10 +193,10 @@ For each:
   - Use their phase diagrams to define regimes where GR is valid vs where corrections kick in.
 
 - **With SM & QFT Phenomenologist (Ch. 17–22, 36, 45):**
-  - Agree on how to build an effective **stress-energy tensor \(T_{\mu\nu}\)** from assembly content.
+  - Agree on how to build an effective **stress-energy tensor $T_{\mu\nu}$** from assembly content.
   - Ensure vacuum energy contributions from particle physics are either:
     - explicitly neutralized by aether structure, or
-    - understood as part of an effective \(\Lambda_{\rm eff}\) that we compute and compare to data.
+    - understood as part of an effective $\Lambda_{\rm eff}$ that we compute and compare to data.
 
 - **With Atomic/Nuclear/Condensed Matter (Ch. 23–28, 35):**
   - Ensure gravitational corrections to binding energies and EoS don’t violate bounds (deuteron ($^{2}\text{H}$), neutron stars, etc.).
@@ -214,8 +214,8 @@ For each:
 
 - **With Adversary / Red Team (Ch. 16, 44, 53–54):**
   - Provide a clear list of:
-    - postulated gravitational parameters (e.g. fundamental \(c_f\), baseline aether density),
-    - derived ones (G, \(\Lambda_{\rm eff}\), inflation parameters),
+    - postulated gravitational parameters (e.g. fundamental $c_f$, baseline aether density),
+    - derived ones (G, $\Lambda_{\rm eff}$, inflation parameters),
     - any fitted ones (and justify).
   - Invite explicit attempts to kill:
     - emergent Lorentz invariance,
@@ -232,16 +232,16 @@ Tiered, consistent with the project’s global criteria but focused on my domain
 - **Tier 1 (Minimum Viability):**
   - Newtonian limit and Poisson equation derived from aether response.
   - Proper-time formula reproduces SR+GR time dilation to within ~10% in tested regimes.
-  - GW speed within \(10^{-3}c\); expansion qualitatively matter‑dominated at late times.
+  - GW speed within $10^{-3}c$; expansion qualitatively matter‑dominated at late times.
 
 - **Tier 2 (Competitive with GR+$\Lambda\mathrm{CDM}$):**
-  - PPN $\gamma$, $\beta$ within \(10^{-4}\) of GR.
-  - GW speed within \(10^{-15}c\), correct polarization/tensor structure.
-  - BBN: \(Y_p\) within 0.01 of 0.24, and D/H and \(N_{\rm eff}\) acceptable.
+  - PPN $\gamma$, $\beta$ within $10^{-4}$ of GR.
+  - GW speed within $10^{-15}c$, correct polarization/tensor structure.
+  - BBN: $Y_p$ within 0.01 of 0.24, and D/H and $N_{\rm eff}$ acceptable.
   - CMB first acoustic peak and basic structure within ~5%; LSS growth broadly in line.
 
 - **Tier 3 (Novel & Predictive):**
-  - At least one major cosmological tension (H₀ or $\sigma$₈) is addressed quantitatively with a clear, testable signature.
+  - At least one major cosmological tension (H₀ or $\sigma_8$) is addressed quantitatively with a clear, testable signature.
   - Unique predictions in GW phenomenology, late‑time expansion, or large‑scale structure distinguishable from $\Lambda\mathrm{CDM}$+GR.
 
 ---
@@ -251,9 +251,9 @@ Tiered, consistent with the project’s global criteria but focused on my domain
 Trigger a **red‑team review** if:
 
 - Lorentz‑violation signals (preferred frame, anisotropic c, etc.) exceed current bounds at solar‑system scale.
-- \(|c_{\rm GW}-c|/c > 10^{-15}\) in any natural parameter regime.
-- Equivalence principle violations at \(\eta > 10^{-14}\) emerge naturally.
-- BBN \(Y_p\) can’t be brought within 0.01 of observation, even with reasonable parameter choices.
+- $|c_{\rm GW}-c|/c > 10^{-15}$ in any natural parameter regime.
+- Equivalence principle violations at $\eta > 10^{-14}$ emerge naturally.
+- BBN $Y_p$ can’t be brought within 0.01 of observation, even with reasonable parameter choices.
 - The framework requires uncontrolled fine-tuning of aether parameters to match GR locally and $\Lambda\mathrm{CDM}$ cosmologically.
 
 ---
