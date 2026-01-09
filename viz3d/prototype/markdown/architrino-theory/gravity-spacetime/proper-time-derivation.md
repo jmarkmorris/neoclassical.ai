@@ -84,13 +84,13 @@ We must:
 We must demonstrate consistency with:
 
 - **GPS satellites**:
-  - Combined kinematic + gravitational shift: ~38 μs/day at orbital altitude.
+  - Combined kinematic + gravitational shift: ~$38\ \mu\text{s}/\text{day}$ at orbital altitude.
 - **Pound–Rebka**:
   - Gravitational redshift: \(\Delta\nu/\nu = gh/c^2\).
 - **Gravity Probe A, modern optical clocks**:
   - Height-dependent time dilation at the $10^{-16}$–$10^{-18}$ level.
 - **Muon lifetime dilation**:
-  - Time dilation ∝ γ in accelerator experiments.
+  - Time dilation ∝ $\gamma$ in accelerator experiments.
 
 #### 5. Failure Conditions
 

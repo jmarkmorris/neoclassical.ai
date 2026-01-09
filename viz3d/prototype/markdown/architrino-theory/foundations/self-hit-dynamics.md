@@ -23,7 +23,7 @@ Simulation requirement:
 
 Acceptance criteria:
 - Self-hit event rates and distributions must converge under:
-  - Δt refinement
+  - $\Delta t$ refinement
   - history-resolution refinement
   - integrator swap
 If self-hit signatures change qualitatively under refinement, treat as numerical artifact until proven otherwise.

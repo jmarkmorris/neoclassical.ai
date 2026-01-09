@@ -161,7 +161,7 @@
 - The Geometric Origin of Chirality and Parity Violation
 - The Higgs Boson and Spacetime Aether Generation
 - Reference to Assembly Atlas: Planar vs. Ellipsoidal Geometry
-- Empirical Scorecard: Gauge Boson Masses (W, Z, γ, g)
+- Empirical Scorecard: Gauge Boson Masses (W, Z, $\gamma$, g)
 
 ### Chapter 20: Emergence of Gauge Symmetries: SU(3) × SU(2) × U(1)
 - From Tri-Binary Geometry to Lie Groups
@@ -184,7 +184,7 @@
 - CKM and PMNS Matrix Structure
 - Predicted Deviations and Experimental Signatures
 - Empirical Scorecard: Pull Analysis for Precision Observables
-  - Fine Structure Constant α
+  - Fine Structure Constant $\alpha$
   - Muon g-2: Theory vs. Experiment (Fermilab 2023)
   - CKM Unitarity Tests
 
@@ -266,9 +266,9 @@
 
 ### Chapter 32: Emergent Metric and the Bridge to General Relativity
 - Construction of Coarse-Grained Fields from Architrino/Assembly Distributions
-- Definition of Effective Metric g_μν(x) from Assembly Dynamics
+- Definition of Effective Metric $g_{\mu\nu}(x)$ from Assembly Dynamics
 - Proper Time from Assembly Clocks: Operational Definition
-  - Explicit Formula: dτ/dt = f(v, ρ_aether, Φ)
+  - Explicit Formula: $d\tau/dt = f(v, \rho_{\text{aether}}, \Phi)$
   - Worked Examples: GPS, Gravitational Redshift, Muon Decay
 - Relation Between Architrino Trajectories and Geodesics
 - Limits: When GR Is Recovered, When Deviations Are Expected
@@ -279,7 +279,7 @@
 - Light Bending, Shapiro Delay, and Gravitational Redshift (Reference to Ch. 32 Clock Physics)
 - Perihelion Precession and Frame Dragging
 - Empirical Scorecard: Pull Analysis for GR Tests
-  - PPN Parameters γ, β
+  - PPN Parameters $\gamma$, $\beta$
   - Cassini Tracking, Lunar Laser Ranging
   - Gravity Probe B Frame Dragging
 
@@ -301,7 +301,7 @@
 - Exotic Matter Phases: Quark Matter and Color Superconductivity
 - Empirical Scorecard: Mass-Radius Relations, Tidal Deformability
   - PSR J0740+6620, PSR J0030+0451
-  - GW170817 Λ̃ Constraint
+  - GW170817 $\tilde{\Lambda}$ Constraint
 
 ### Chapter 36: The Hierarchy Problem and Asymptotic Safety
 - Why Gravity is Weak: Energy Shielding and Scale
@@ -344,7 +344,7 @@
 - Empirical Scorecard: CMB Power Spectrum and Polarization
   - Acoustic Peak Positions (ℓ_1, ℓ_2, ℓ_3)
   - TT, TE, EE Spectra
-  - Lensing Potential φφ
+  - Lensing Potential $\phi\phi$
 
 ### Chapter 41: Expansion, Inflation, and Redshift
 - The Universe Expands In Place
@@ -368,12 +368,12 @@
   - Redshift-Space Distortions $f \sigma_8$
 
 ### Chapter 43: Resolution of Critical Empirical Tensions
-- The Hubble Tension (5σ Discrepancy)
+- The Hubble Tension ($5\sigma$ Discrepancy)
   - SH0ES vs. Planck: Predicted Resolution Pathway
   - Architrino Framework Prediction for H_0
-- The Muon g-2 Anomaly (4.2σ Discrepancy)
+- The Muon g-2 Anomaly ($4.2\sigma$ Discrepancy)
   - Fermilab 2023 vs. SM Prediction
-  - Assembly Contribution to a_μ
+  - Assembly Contribution to $a_\mu$
 - The $\sigma_8/S_8$ Large-Scale Structure Tension
   - Weak Lensing vs. CMB
   - Modified Growth from Aether Dynamics
@@ -381,7 +381,7 @@
 
 ### Chapter 44: Failure Modes and Stop Conditions
 - Tier-1 Falsification Criteria (Reference to Ch. 7): Quantitative Thresholds
-- Tier-2 Serious Challenges: Multiple 3σ Tensions, Parameter Explosion
+- Tier-2 Serious Challenges: Multiple $3\sigma$ Tensions, Parameter Explosion
 - Stop Conditions: When to Pivot or Halt the Program
 - Theory Health Dashboard: Current Status (Green/Yellow/Red) by Domain
 - Intellectual Honesty and the Scientific Method
