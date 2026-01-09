@@ -72,7 +72,7 @@ Maintain **strict categorization and counting** of all parameters:
 - Architrino charge magnitude \(|e/6|\) (definition, not derived)
 - Pro/anti polarity (definition)
 - Field speed \(c_f\) (postulated or derived from deeper principle?)
-- Interaction kernel form (e.g., 1/r, 1/r², exponential, screened Coulomb)
+- Interaction kernel form (e.g., $1/r$, $1/r^2$, exponential, screened Coulomb)
 - Euclidean void + absolute time (ontological framework)
 
 **Category B (Scale Setters / Emergent Structures):**
@@ -138,7 +138,7 @@ Maintain **running comparison table** (updated quarterly):
 | Vacuum energy match | SM Phenom + GR/Cosmo | Higgs VEV energy = spacetime assembly ρ_vac? | Within factor 10 | TBD | — | [Date] |
 | Newton's G consistency | GR/Cosmo + Nuclear | G from metric = G from nuclear force scale? | Within 20% | TBD | — | [Date] |
 | Clock rate formula | GR/Cosmo + Atomic | Proper time τ formula matches atomic transitions (GPS precision)? | ns level | TBD | — | [Date] |
-| Inertial = gravitational mass | SM Phenom + GR/Cosmo | m_inertial (assembly dynamics) = m_grav (metric coupling)? | EP: < 10⁻¹⁴ | TBD | — | [Date] |
+| Inertial = gravitational mass | SM Phenom + GR/Cosmo | m_inertial (assembly dynamics) = m_grav (metric coupling)? | EP: < $10^{-14}$ | TBD | — | [Date] |
 | Volume exclusion = Pauli | Nuclear + Topologist | Hard-core radius → correct Fermi pressure (WD/NS)? | Chandrasekhar limit within 10% | TBD | — | [Date] |
 
 **Protocol:**
@@ -203,13 +203,13 @@ These are **non-negotiable**. Any violation at stated confidence level = **theor
 | Constraint | Observable | Current Experimental Bound | Source | Falsification Threshold |
 |-----------|-----------|---------------------------|--------|------------------------|
 | **Charge quantization** | Stable isolated charges | Only 0, ±e/3, ±2e/3, ±e observed | Millikan descendants, quark searches | Observation of stable ±e/6 particle |
-| **Lorentz: light speed isotropy** | \(\Delta c/c\) | < 10⁻¹⁷ | Optical resonator experiments | \(\Delta c/c > 10⁻¹⁵\) |
-| **Lorentz: clock isotropy** | Sidereal variation | < 10⁻¹⁶ | Optical atomic clocks | Sidereal variation > 10⁻¹⁴ |
-| **Equivalence Principle** | η (composition-dependence of freefall) | < 10⁻¹⁴ | MICROSCOPE satellite | η > 10⁻¹² |
-| **Proton stability** | \(\tau_p\) | > 10³⁴ years (p → e⁺π⁰) | Super-Kamiokande | Observation of proton decay |
-| **GW speed** | \(|v_{\text{GW}} - c|/c\) | < 10⁻¹⁵ | GW170817 + EM counterpart | \(|v_{\text{GW}} - c|/c > 10⁻¹³\) |
-| **CPT invariance** | \(m_{\text{particle}} = m_{\text{antiparticle}}\) | < 10⁻¹⁹ (neutral kaons) | PDG, neutral meson systems | Violation at 10⁻¹⁶ level |
-| **Photon mass** | \(m_\gamma\) | < 10⁻¹⁸ eV | Coulomb's law tests, dispersion | \(m_\gamma > 10⁻¹⁵\) eV |
+| **Lorentz: light speed isotropy** | $\Delta c/c$ | < $10^{-17}$ | Optical resonator experiments | $\Delta c/c > 10^{-15}$ |
+| **Lorentz: clock isotropy** | Sidereal variation | < $10^{-16}$ | Optical atomic clocks | Sidereal variation > $10^{-14}$ |
+| **Equivalence Principle** | $\eta$ (composition-dependence of freefall) | < $10^{-14}$ | MICROSCOPE satellite | $\eta > 10^{-12}$ |
+| **Proton stability** | $\tau_p$ | > $10^{34}$ years ($p \to e^+ \pi^0$) | Super-Kamiokande | Observation of proton decay |
+| **GW speed** | $|v_{\text{GW}} - c|/c$ | < $10^{-15}$ | GW170817 + EM counterpart | $|v_{\text{GW}} - c|/c > 10^{-13}$ |
+| **CPT invariance** | $m_{\text{particle}} = m_{\text{antiparticle}}$ | < $10^{-19}$ (neutral kaons) | PDG, neutral meson systems | Violation at $10^{-16}$ level |
+| **Photon mass** | $m_\gamma$ | < $10^{-18}$ eV | Coulomb's law tests, dispersion | $m_\gamma > 10^{-15}$ eV |
 
 **Protocol:** Monitor these constraints continuously. If **any** are threatened, **immediately halt** upstream theoretical work and conduct full Red Team audit.
 
@@ -241,14 +241,14 @@ Violations don't immediately kill the framework but require **major revision**:
 - **Gravitational redshift:** Pound-Rebka to modern fountain clocks (ppm to sub-ppm). Proper time formula must match.
 
 **From Cosmology:**
-- **Horizon problem:** If absolute time allows causal contact, why do causally disconnected CMB regions have same temperature to 1 part in 10⁵? (Self-hit inflation must address this.)
+- **Horizon problem:** If absolute time allows causal contact, why do causally disconnected CMB regions have same temperature to 1 part in $10^5$? (Self-hit inflation must address this.)
 - **Flatness problem:** Why is \(\Omega_{\text{total}} = 1.000 \pm 0.001\)? (Inflation must drive toward flatness.)
 - **\(N_{\text{eff}}\) at BBN:** Effective # relativistic species = \(2.99 \pm 0.17\). Any deviation flags new light degrees of freedom.
 
 **From Condensed Matter / Precision:**
 - **Magnetic flux quantization:** In superconductors, \(\Phi = n(h/2e)\) **exactly**. Must emerge from assembly geometry.
 - **Quantized Hall resistance:** \(R_H = h/(\nu e^2)\) with \(\nu\) integer or simple fraction. Does tri-binary geometry allow this?
-- **NMR precision:** Nuclear magnetic moments stable to ~10⁻¹² level. Spacetime "sea" must not disrupt these.
+- **NMR precision:** Nuclear magnetic moments stable to ~$10^{-12}$ level. Spacetime "sea" must not disrupt these.
 
 **Protocol:** Maintain this catalog as a **living checklist**. Each quarter, verify: which have we addressed, which remain open, which are threatened by new data?
 
@@ -289,7 +289,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 **5. Negative Control Tests:**
 - Run simulations with **intentionally wrong physics**:
   - Change \(|e/6| \to |e/5|\) or swap pro/anti roles
-  - Alter interaction law (e.g., 1/r → 1/r³)
+  - Alter interaction law (e.g., $1/r \to 1/r^3$)
 - **Verify:** Model **fails as expected** (no stable SM-like particles, no tri-binaries, etc.)
 - This proves the simulation is **sensitive to the physics**, not just numerically stable
 
@@ -399,7 +399,7 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
    - **Decisive:** High (tests spacetime medium)
    - **Feasibility:** 2035+
    - **Cost:** ~€2B (ET)
-   - **Theory Status:** Predict \(v_{\text{GW}}(f)\); must be indistinguishable from \(c\) to <10⁻¹⁷ or identify detectable dispersion
+   - **Theory Status:** Predict \(v_{\text{GW}}(f)\); must be indistinguishable from \(c\) to <$10^{-17}$ or identify detectable dispersion
 
 5. **Primordial tensor modes (r)** (CMB-S4, LiteBIRD)
    - **Decisive:** Moderate–High (inflation signature)
@@ -453,7 +453,7 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
 
 - **"Absolute time + observed Lorentz: show the suppression."**
   - Calculate **expected ether wind** at Earth's velocity (~370 km/s in CMB frame)
-  - Show **suppression mechanism** (aether density, shielding, etc.) reduces it **below 10⁻¹⁷** bounds
+  - Show **suppression mechanism** (aether density, shielding, etc.) reduces it **below $10^{-17}$** bounds
   - Identify **energy/density scale** where suppression breaks down
 
 - **"Vacuum energy catastrophe: solve it."**

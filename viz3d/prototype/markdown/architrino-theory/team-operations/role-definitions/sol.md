@@ -36,13 +36,13 @@ You don’t “advance the story” to a higher tier unless:
 ## 3. Regimes and Model Reduction (Micro → Meso → Continuum)
 
 ### 3.1 Three Computational Regimes
-- **Architrino-level (10¹–10³ architrinos)**  
+- **Architrino-level ($10^{1}$–$10^{3}$ architrinos)**  
   Full N-body with retarded interactions and self-hit terms.
 
-- **Tri-binary-level (10¹–10⁶ tri-binaries)**  
+- **Tri-binary-level ($10^{1}$–$10^{6}$ tri-binaries)**  
   Coarse-grained interaction rules derived from micro sims (effective potentials, contact rules, orientation/axis couplings).
 
-- **Continuum/EFT-level (10⁶–10²⁴ cells/effective quanta)**  
+- **Continuum/EFT-level ($10^{6}$–$10^{24}$ cells/effective quanta)**  
   Hydrodynamic / field-like PDEs with coefficients measured from meso sims (effective elastic moduli, viscosities, wave speeds, metric-response coefficients).
 
 ### 3.2 Cutoffs and Renormalization Handoff (required deliverable, not optional)

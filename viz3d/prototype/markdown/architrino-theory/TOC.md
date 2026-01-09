@@ -49,9 +49,9 @@
 ### Chapter 7: The Experimental Landscape and Master Constraint Ledger
 - Tier-1 "Hard Wall" Constraints
   - Charge Quantization: No Stable Fractional Charges Beyond |e/6|
-  - Proton Stability: τ_p > 10³⁴ years
-  - Gravitational Wave Speed: |v_GW - c|/c < 10⁻¹⁵
-  - Equivalence Principle: η < 10⁻¹⁴
+  - Proton Stability: $\tau_p > 10^{34}$ years
+  - Gravitational Wave Speed: $|v_{\text{GW}} - c|/c < 10^{-15}$
+  - Equivalence Principle: $\eta < 10^{-14}$
   - Lorentz Invariance Violations: Stringent Bounds from SME Tests
 - Parameter Ledger Framework
   - Postulated (Input) Parameters
@@ -289,7 +289,7 @@
 - Black Holes and Planck Cores: Reinterpretation
 - Information Preservation and Singularity Resolution
 - Empirical Scorecard: GW Speed, Polarization, Dispersion
-  - GW170817 Constraint: |v_GW - c|/c < 10⁻¹⁵
+  - GW170817 Constraint: $|v_{\text{GW}} - c|/c < 10^{-15}$
   - LIGO/Virgo Polarization Tests
 
 ### Chapter 35: Dense Matter and Degeneracy Pressure

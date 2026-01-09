@@ -251,7 +251,7 @@ The architrino project is positioned as:
 - ❌ **Con**: We **reject** spacetime as fundamental. Lorentz symmetry is **emergent** and **approximate** (effective at macroscopic scales, below field speed *c_f*).
 - ⚠️ **Con**: Relativity of simultaneity is **perspectival/emergent**, not ontological. Absolute time provides a **global foliation** (preferred simultaneity slicing). The absolute observer has access to a **unique global "now"**.
 - ❌ **Con**: Einstein's framework denies any physical meaning to an absolute observer; in the architrino ontology, such an observer is **mathematically well-defined** (even if no real observer can align with it operationally).
-- ✅ **Pro**: All **empirical predictions** of SR (time dilation, length contraction, mass-energy equivalence *E=mc²*, relativistic momentum) are **reproduced** as emergent phenomena from assembly dynamics.
+- ✅ **Pro**: All **empirical predictions** of SR (time dilation, length contraction, mass-energy equivalence *$E=mc^2$*, relativistic momentum) are **reproduced** as emergent phenomena from assembly dynamics.
 - ⚠️ **Clarification**: This does **not** violate empirical SR, because actual observers (assemblies with clocks/rulers) still measure SR effects exactly as predicted. The absolute observer is **not accessible** to physical measurements—it is a theoretical construct for tracking objective reality.
 - ⚠️ **Tension**: Deviations from exact Lorentz invariance may appear in extreme regimes (self-hit, Planck scale, early cosmology).
 
@@ -853,4 +853,3 @@ The architrino framework invites us to look directly at the foundations of natur
 ---
 
 **End of Document**
-

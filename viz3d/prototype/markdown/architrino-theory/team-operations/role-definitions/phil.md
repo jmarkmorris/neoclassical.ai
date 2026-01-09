@@ -290,7 +290,7 @@ Maintain a **living explanatory scoreboard** tracking what the architrino framew
 | Phenomenon | SM+GR Status | Architrino Ambition | Current Progress | Deliverable Chapter(s) |
 |------------|--------------|---------------------|------------------|------------------------|
 | Particle masses | 19 input parameters | Derive from tri-binary geometry | In progress | Ch. 18 |
-| Charge quantization | Postulated (e = 1.602...×10⁻¹⁹ C) | Explained (\|e/6\| from architrino) | Conceptual | Ch. 18 |
+| Charge quantization | Postulated ($e = 1.602\ldots \times 10^{-19}\ \mathrm{C}$) | Explained ($|e/6|$ from architrino) | Conceptual | Ch. 18 |
 | Spin-statistics | Postulated | Derive from ellipsoidal/planar geometry | Conceptual | Ch. 13, 21 |
 | Three generations | Unexplained | Vibrational modes? | Speculative | Ch. 18 |
 | Hierarchy problem | Fine-tuning (~16 orders) | Energy shielding | Qualitative | Ch. 36 |

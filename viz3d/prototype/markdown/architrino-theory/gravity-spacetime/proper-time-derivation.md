@@ -88,13 +88,13 @@ We must demonstrate consistency with:
 - **Pound–Rebka**:
   - Gravitational redshift: \(\Delta\nu/\nu = gh/c^2\).
 - **Gravity Probe A, modern optical clocks**:
-  - Height-dependent time dilation at the 10⁻¹⁶–10⁻¹⁸ level.
+  - Height-dependent time dilation at the $10^{-16}$–$10^{-18}$ level.
 - **Muon lifetime dilation**:
   - Time dilation ∝ γ in accelerator experiments.
 
 #### 5. Failure Conditions
 
 - If the tri-binary clock model cannot reproduce the Lorentz factor dependence for v, or the correct sign and magnitude of gravitational time dilation, the emergent metric program fails.
-- If dτ/dt depends on absolute orientation (e.g. anisotropy in the void frame), we will conflict with clock isotropy bounds (<10⁻¹⁶ sidereal modulation).
+- If $d\tau/dt$ depends on absolute orientation (e.g. anisotropy in the void frame), we will conflict with clock isotropy bounds (<$10^{-16}$ sidereal modulation).
 
 This file’s core deliverable is a concrete candidate for F(…) and explicit comparison to these benchmarks.

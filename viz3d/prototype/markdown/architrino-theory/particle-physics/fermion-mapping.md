@@ -313,7 +313,7 @@ In this ontology:
 - This global phase does **not** change:
   - Which axis is exceptional, or  
   - Any relative phase between axes.
-- It does **not** correspond to a physical spatial rotation of the tri‑binary scaffold (that is handled by actual spatial rotations in R³, not by this internal color phase).
+- It does **not** correspond to a physical spatial rotation of the tri‑binary scaffold (that is handled by actual spatial rotations in $R^3$, not by this internal color phase).
 
 We therefore treat global U(1) in color space as a **pure gauge redundancy** with no direct observable. The physical color symmetry group is:
 

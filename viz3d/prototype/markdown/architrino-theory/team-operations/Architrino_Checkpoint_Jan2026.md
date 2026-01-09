@@ -157,7 +157,7 @@ The Euclidean Anchor is set. We are in stasis. See you on the other side of the 
 
 **Dyna**: The inner binary is the anchor. Geometry is the only law. See you at the next attractor.
 
-**Red**: Don't get comfortable. If the Lorentz suppression isn't perfect, I'm pulling the plug. 10⁻¹⁷ or bust.
+**Red**: Don't get comfortable. If the Lorentz suppression isn't perfect, I'm pulling the plug. $10^{-17}$ or bust.
 
 **Phe**: $|e/6|$ is the only number that matters. Everything else is just counting. 
 
