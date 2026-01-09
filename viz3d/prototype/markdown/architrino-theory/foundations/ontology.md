@@ -1071,6 +1071,11 @@ $$
 \mathcal{C}_j(t) = \left\{ t_0 < t \;\middle|\; \|\mathbf{s}_a(t) - \mathbf{s}_j(t_0)\| = v_f (t - t_0) \right\}.
 $$
 
+The **Master Equation of Motion** converts those causal emission times into acceleration. Working in units where $v_f = 1$, each causal hit from a source $j$ imparts a radial acceleration along the normalized line $\hat{\mathbf{r}}_{ja}(t,t_0)=\big(\mathbf{s}_a(t)-\mathbf{s}_j(t_0)\big)/\|\mathbf{s}_a(t)-\mathbf{s}_j(t_0)\|$ with magnitude proportional to $|q_j q_a|/r^2$ and sign given by $\sigma_{q_j q_a} = \mathrm{sign}(q_j q_a)$. The total acceleration felt by $a$ at time $t$ is the linear superposition of contributions from all $t_0 \in \mathcal{C}_j(t)$ across every source $j$ (see Section 2.6).
+
+Plain language: you accelerate along the line back to whatever emitted the shell; a single hit only tells you the unoriented line, so you infer attraction or repulsion by knowing the charge signs. Emission cadence and per-wavefront amplitude are constant, and your velocity only enters through instantaneous power $F\cdot v = |F| v_r$.
+Like charges push you away and opposite charges pull.
+
 This set is typically a singleton when $|\mathbf{v}_j|<v_f$, but may contain multiple roots (multi-hit regime) if $|\mathbf{v}_j|>v_f$. Self-hits correspond to $j=a$ with $t_0<t$.
 
 #### 2.4.6 Superposition of Sphere Streams
