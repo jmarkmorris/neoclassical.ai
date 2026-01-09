@@ -543,84 +543,373 @@ Any observed "curvature," such as the bending of light or the precession of orbi
 
 ### 1.3 Absolute Timespace (The Product Structure)
 
-**Definition:**
 
-The fundamental kinematic background is the **product manifold**:
+#### 1.3.1 Core Concept
+
+Absolute timespace is the combined, non-dynamical background arena for all physical phenomena. It is the direct product of absolute time and absolute space, forming a **foliated structure** where each "leaf" is a complete, instantaneous 3D snapshot of Euclidean space, indexed by the universal time parameter. We deliberately use the term "timespace" (time first) to distinguish this fixed arena from the dynamic, unified "spacetime" of General Relativity.
+
+In this model:
+- Time and space are **logically and mathematically separate** at the kinematic level.
+- There is **absolute simultaneity**: all observers agree on which events occur at the same time.
+- There is **no mixing** of temporal and spatial dimensions into a single 4D metric.
+- The background is **non-dynamical**: it does not respond to matter or energy; all curvature, expansion, and relativistic phenomena are emergent from the dynamics of assemblies within this fixed framework.
+
+Notably, any metric expansion of the universe (à la FLRW) must be recovered as an **effective** description of tri-binary medium dynamics, not as literal stretching of $\mathbb{R}^3$ itself. Similarly, all gravitational phenomena—including lensing and cosmological expansion—will be derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
+
+---
+
+#### 1.3.2 Mathematical Description
+
+##### 1.3.2.1 Product Manifold Structure
+
+The timespace arena is the Cartesian product of absolute time and absolute space:
 $$
 \mathcal{M} = \mathbb{R} \times \mathbb{R}^3,
 $$
-equipped with coordinates $(t, x, y, z)$ or $(t, \mathbf{x})$.
+with coordinates $(t, \mathbf{x}) = (t, x, y, z)$.
 
-This is a **Newton-Cartan structure**: time and space are separate, with no mixing under the fundamental symmetries.
+Each point in timespace represents a **spacetime event**: a location $\mathbf{x}$ at a definite instant $t$.
 
-**Foliation into Simultaneity Surfaces:**
+**Foliations:**
 
-At each instant $t$, we have a **simultaneity surface** (or **Cauchy surface**):
+- **Time slicing (Simultaneity):** Each instant $t = t_0$ defines a **simultaneity slice** or **spatial hypersurface**:
 $$
-\Sigma_t = \{(t, \mathbf{x}) : \mathbf{x} \in \mathbb{R}^3\}.
+\Sigma_{t_0} = \{t_0\} \times \mathbb{R}^3 \cong \mathbb{R}^3.
 $$
+Every point in timespace $(t, \mathbf{x})$ belongs to exactly one slice. This foliation is **absolute and frame-independent**.
 
-These surfaces are:
-- **Spacelike** (purely spatial),
-- **Disjoint** (no two surfaces overlap: $\Sigma_{t_1} \cap \Sigma_{t_2} = \emptyset$ for $t_1 \neq t_2$),
-- **Exhaustive** (every event lies on exactly one surface),
-- **Globally defined** (the foliation is complete and consistent everywhere).
-
-**Simultaneity is absolute and global:** Two events $(t_1, \mathbf{x}_1)$ and $(t_2, \mathbf{x}_2)$ are simultaneous if and only if $t_1 = t_2$.
-
-**Worldlines and Causal Structure:**
-
-A **worldline** is a curve in $\mathcal{M}$:
+- **Worldlines:** A particle or extended object traces out a curve:
 $$
 \gamma: I \subset \mathbb{R} \to \mathcal{M}, \quad s \mapsto (t(s), \mathbf{x}(s)),
 $$
-where $I$ is an interval and $dt/ds > 0$ (respecting time orientation).
+where $I$ is an interval and $t(s)$ is **strictly increasing** (time orientation). At each moment $t$, the object occupies a point $\mathbf{x}(t)$ in the spatial slice $\Sigma_t$.
 
-**Causal ordering:** Event $A = (t_A, \mathbf{x}_A)$ can causally influence event $B = (t_B, \mathbf{x}_B)$ if and only if:
-$$
-t_B > t_A \quad \text{and} \quad \|\mathbf{x}_B - \mathbf{x}_A\| \leq c_f (t_B - t_A).
-$$
-
-This defines a **causal light cone** (or "field cone") centered at each event, with slope $c_f$ (field speed).
-
-**Coordinate Charts:**
-
-A **Cartesian coordinate chart** on $\mathcal{M}$ is a map:
-$$
-(t, x, y, z): \mathcal{M} \to \mathbb{R}^4.
-$$
-
-All physical laws are written in these coordinates. Coordinate transformations are restricted to:
-- **Time translations**: $t \mapsto t + t_0$
-- **Spatial translations**: $\mathbf{x} \mapsto \mathbf{x} + \mathbf{a}$
-- **Spatial rotations**: $\mathbf{x} \mapsto R\mathbf{x}$ with $R \in SO(3)$
-
-**Forbidden transformations:**
-- **Galilean boosts** (mixing $t$ and $\mathbf{x}$) are **not** fundamental symmetries; they are approximate at low speeds but break in the self-hit regime.
-- **Lorentz boosts** are **emergent effective symmetries**, valid only for assemblies in specific regimes (see TOC Ch. 12).
-
-**Comparison to Minkowski Spacetime:**
-
-| **Feature** | **Absolute Timespace (This Model)** | **Minkowski Spacetime (SR)** |
-|:---|:---|:---|
-| **Structure** | Product $\mathbb{R} \times \mathbb{R}^3$ (separate time/space) | 4D manifold with Lorentzian metric |
-| **Metric** | Euclidean spatial metric $h_{ij}$, separate time | Minkowski metric $\eta_{\mu\nu} = \text{diag}(-1,1,1,1)$ |
-| **Simultaneity** | Absolute (global $t$-surfaces) | Relative (observer-dependent) |
-| **Causal Structure** | Defined by $c_f$ and absolute $t$ | Encoded in lightcone structure of metric |
-| **Symmetry Group** | $\mathbb{R} \times E(3)$ (time translations × Euclidean) | Poincaré group (Lorentz + translations) |
-| **Mixing of $t$ and $\mathbf{x}$** | No; strictly separated | Yes; Lorentz boosts mix temporal and spatial coordinates |
-
-**Summary Postulate (Absolute Timespace):**
-
-> **Postulate 3 (Absolute Timespace):**  
-> The fundamental kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with coordinates $(t, \mathbf{x})$. Time and space are **strictly separate**: there is no fundamental mixing of temporal and spatial coordinates. Simultaneity surfaces $\Sigma_t$ are global and absolute. Causal structure is determined by the field speed $c_f$ and the absolute time ordering. All worldlines are monotone in $t$ (no closed timelike curves). Lorentz symmetry is **not fundamental**; it is an emergent, approximate symmetry valid in specific assembly regimes (see TOC Ch. 12, 32).
-
-**Cross-references:**
-- TOC Ch. 2: "Absolute Time and Euclidean Space"
-- TOC Ch. 46: "Lorentz Ether Theory and Neo-Lorentzian Relativity"
-- `philosophy-history/lorentz-ether-comparison.md`: Comparison to neo-Lorentzian interpretations
+> **Plain Language:** Imagine a stack of 3D Euclidean spaces, one for each instant $t$, ordered along a timeline. Each physical object's trajectory passes through this stack, piercing one slice at each moment. The pages of a flipbook, indexed by time, where each page is a complete 3D universe.
 
 ---
+
+##### 1.3.2.2 Kinematic Structure: Newton–Cartan Data
+
+The background geometry is encoded in a pair of differential structures:
+
+**Absolute clock 1-form:**
+$$
+\tau = dt.
+$$
+
+This is a **closed, exact 1-form** that is **nowhere-vanishing** on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t = \{\tau = \text{const}\}$. The metric on the kernel of $\tau$ (i.e., within each slice) is the spatial metric $h$.
+
+**Spatial metric:**
+
+On each slice $\Sigma_t$, the Euclidean metric is:
+$$
+h = dx^2 + dy^2 + dz^2,
+$$
+with components $h_{ij} = \delta_{ij}$ in Cartesian coordinates.
+
+Each slice $(\Sigma_t, h)$ inherits the geometry of absolute space (Postulate 2):
+- Flat, zero curvature ($R = 0$).
+- Homogeneous and isotropic.
+- Symmetry group $E(3)$ (translations and rotations within the slice).
+
+**The Newton–Cartan connection:**
+
+A flat, torsion-free connection $\nabla$ on $\mathcal{M}$ satisfies:
+$$
+\nabla \tau = 0, \qquad \nabla h = 0.
+$$
+
+In global inertial (Cartesian) coordinates, the connection coefficients vanish: $\Gamma^{i}{}_{jk} = 0$ (and similarly for all mixed components with a time index). Covariant derivatives reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. The connection is **flat also in the time direction**: there is no coupling between time and spatial geometry at the fundamental level.
+
+**Crucial: No 4D metric.**
+
+We do **not** define a single non-degenerate 4D metric $g_{\mu\nu}$ on $\mathcal{M}$. The pair $(\tau, h)$ suffices to encode all kinematic information. This avoids any mixing of time and space into a single relativistic metric and maintains the fundamental separation of kinematics from dynamics.
+
+---
+
+##### 1.3.2.3 Measurement and Geometry
+
+**Spatial distance** (within a slice at fixed $t$):
+$$
+d_{\text{spatial}}(\mathbf{x}_1, \mathbf{x}_2) = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2}.
+$$
+This is the Euclidean distance.
+
+**Temporal duration** (between two events with any spatial separation):
+$$
+\Delta t = |t_2 - t_1|.
+$$
+This is absolute and universal.
+
+**Spatial arc length** (along a path $\mathbf{x}(t)$ from $t_1$ to $t_2$):
+$$
+L[\mathbf{x}; t_1, t_2] = \int_{t_1}^{t_2} \|\mathbf{v}(t)\| \, dt = \int_{t_1}^{t_2} \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2} \, dt.
+$$
+
+**4D "arc length" (does not apply):**
+
+In a relativistic metric, we would compute:
+$$
+s = \int \sqrt{g_{\mu\nu} \, dx^\mu dx^\nu} = \int \sqrt{-c^2 dt^2 + dx^2 + dy^2 + dz^2}.
+$$
+
+We do **not** use this in the neoclassical model. Time and space are measured separately, and there is no "4D interval" mixing them. This is the key distinction from special relativity.
+
+---
+
+#### 1.3.3 Velocity, Acceleration, and Momentum
+
+##### 1.3.3.1 Spatial Velocity and Speed
+
+**Spatial velocity** (3-vector):
+$$
+\mathbf{v}(t) = \frac{d\mathbf{x}}{dt}.
+$$
+
+This is a 3-vector with dimensions of length per time. Speed is $v = \|\mathbf{v}\| = |d\mathbf{x}/dt|$.
+
+**Acceleration:**
+$$
+\mathbf{a}(t) = \frac{d\mathbf{v}}{dt} = \frac{d^2\mathbf{x}}{dt^2}.
+$$
+
+##### 1.3.3.2 Momentum and Kinetic Energy
+
+**Momentum** (3-vector):
+$$
+\mathbf{p} = m \mathbf{v},
+$$
+where $m$ is mass (an invariant scalar under Galilean transformations).
+
+**Kinetic energy:**
+$$
+T = \frac{1}{2} m v^2 = \frac{1}{2} m \mathbf{v} \cdot \mathbf{v}.
+$$
+
+**Newton's second law:**
+$$
+\mathbf{F} = m \mathbf{a} = m \frac{d^2\mathbf{x}}{dt^2}.
+$$
+
+> **Plain Language:** Forces cause accelerations in space; time marches on uniformly and does not participate in the equation. A 4-vector formalism is not needed; all dynamics are naturally expressed in terms of spatial 3-vectors and the universal time parameter.
+
+---
+
+#### 1.3.4 Kinematics: Galilean Transformations
+
+##### 1.3.4.1 The Galilean Group
+
+The kinematic symmetry group is the **Galilean group** $\text{Gal}(3)$, which preserves the foliation by constant-$t$ slices and the spatial metric $h_{ij}$ on each slice:
+
+**Time translation:**
+$$
+t' = t + t_0, \quad \mathbf{x}' = \mathbf{x}.
+$$
+Events that are simultaneous remain simultaneous; absolute time is unaffected.
+
+**Spatial translation:**
+$$
+t' = t, \quad \mathbf{x}' = \mathbf{x} + \mathbf{a}.
+$$
+All points shift uniformly; distances and intervals are preserved.
+
+**Rotation:**
+$$
+t' = t, \quad \mathbf{x}' = R \mathbf{x}, \quad R \in SO(3).
+$$
+Spatial geometry is preserved; the metric $h$ is invariant.
+
+**Galilean boost** (uniform velocity addition):
+$$
+t' = t, \quad \mathbf{x}' = \mathbf{x} + \mathbf{v}_0 t,
+$$
+where $\mathbf{v}_0$ is a constant velocity. A particle at rest in frame $S$ moves with velocity $\mathbf{v}_0$ in frame $S'$. Accelerations are invariant: $\mathbf{a}' = \mathbf{a}$.
+
+**Composition:** The Galilean group is a semidirect product:
+$$
+\text{Gal}(3) \cong \mathbb{R} \ltimes (E(3) \times \mathbb{R}^3),
+$$
+combining time translations, spatial translations/rotations, and boosts in the standard structure.
+
+##### 1.3.4.2 Dynamical Symmetry Breaking and the Preferred Rest Frame
+
+**Important note:** While the **background kinematics** are invariant under all Galilean transformations, the **interaction law** (defining forces and accelerations) selects a **preferred frame**: the **absolute rest frame** in which the maximum signal speed $c_f$ (field speed) is isotropic. This breaks the boost symmetry at the dynamical level, recovering a preferred frame for non-relativistic dynamics.
+
+This symmetry breaking is precisely what allows for a preferred "aether" frame for the dynamics—a concept forbidden in relativity but essential for our model's propagation of potentials and the self-hit mechanisms. The field speed $c_f$, measured in this preferred rest frame, is isotropic and fundamental to the theory. In this sense, the absolute rest frame is not a kinematic postulate but a **dynamical necessity**.
+
+---
+
+#### 1.3.5 Causality and Light Cone Structure
+
+##### 1.3.5.1 Absolute Causal Order
+
+Event $A = (t_A, \mathbf{x}_A)$ **causally precedes** event $B = (t_B, \mathbf{x}_B)$ iff $t_A < t_B$ (regardless of spatial separation).
+
+##### 1.3.5.2 Retarded Propagation (Finite Signal Speed)
+
+A source at $(t_0, \mathbf{x}_0)$ can influence a receiver at $(t, \mathbf{x})$ only if:
+$$
+t > t_0 \quad \text{and} \quad \|\mathbf{x} - \mathbf{x}_0\| = c_f \, (t - t_0),
+$$
+where $c_f$ is the field speed (maximum signal speed, defined in dynamics). An influence propagates along an expanding **spherical shell** of radius $c_f (t - t_0)$ centered at $\mathbf{x}_0$.
+
+**No closed causal loops:** Worldlines are strictly monotone in $t$; no backward-in-time propagation is allowed.
+
+##### 1.3.5.3 Comparison to Relativistic Light Cones
+
+In special relativity, causality is encoded in a **light cone** set by the Lorentzian metric. Here, causality is encoded in:
+1. The **absolute time ordering** ($t_A < t_B$ implies A can influence B),
+2. The **finite propagation speed** $c_f$ (influences spread at a maximum rate determined by the interaction law, not by background geometry).
+
+An event $(t_0, \mathbf{x}_0)$ can influence events in the region:
+$$
+\{(t, \mathbf{x}) : t \geq t_0, \, \|\mathbf{x} - \mathbf{x}_0\| \leq c_f(t - t_0)\}.
+$$
+
+This is an **expanding sphere** in space, not a cone in spacetime. The boundary is a sphere of radius $c_f(t - t_0)$ at time $t$.
+
+**Critical difference from relativity:** Our "expanding sphere" causal structure, unlike a rigid metric light cone, does **not forbid superluminal** ($v > c_f$) **particle velocities**. This is not a violation of causality (which is defined by the absolute time ordering), but a feature that enables the **self-hit regime**, where an architrino overtakes its own emitted potential. This self-hit mechanism is foundational to our theory of mass quantization and inflation/deflation dynamics.
+
+Additionally, the "effective light cones" seen by assemblies at $v \leq c_f$ can approximate Minkowski light cones, setting up the **emergent Lorentz structure** experienced by low-energy observers and systems.
+
+> **Key Difference:** The "light cone" in relativity is a geometric feature of spacetime; here, it is a dynamical consequence of finite propagation speed in an absolute temporal ordering.
+
+---
+
+#### 1.3.6 Coordinates and Transformations
+
+##### 1.3.6.1 Cartesian Coordinates (Inertial Frames)
+
+$(t, x, y, z)$ with:
+- $t$ global and universal,
+- $x, y, z$ orthogonal with spacing $\Delta s = \sqrt{\Delta x^2 + \Delta y^2 + \Delta z^2}$.
+
+Any two Cartesian systems are related by a Galilean transformation. Tensorial laws are preserved under such transformations.
+
+##### 1.3.6.2 Curvilinear Spatial Coordinates
+
+At fixed $t$, one may use spherical $(r, \theta, \phi)$, cylindrical $(\rho, \phi, z)$, or other coordinates on $\Sigma_t$. The metric $h_{ij}$ transforms accordingly, but the underlying geometry remains flat. All differential equations and conservation laws are **coordinate-invariant**.
+
+##### 1.3.6.3 Forbidden Transformations
+
+We do **not** allow:
+- **Lorentz boosts** (mixing $t$ and $\mathbf{x}$ non-linearly),
+- **Coordinate transformations that tilt or rotate time axes** (e.g., $t' = t + f(\mathbf{x})$ with $f \neq \text{const}$),
+- **Any operation that violates the foliation** into constant-$t$ slices.
+
+These are forbidden because they would destroy the absolute nature of time and simultaneity.
+
+---
+
+#### 1.3.7 Measures and Operators
+
+##### 1.3.7.1 Time and Spatial Measures
+
+**Time measure:**
+$$
+\tau = dt \quad (\text{dimension: time}).
+$$
+
+**Spatial volume element** (within a slice):
+$$
+dV = dx \, dy \, dz \quad (\text{dimension: length}^3).
+$$
+
+**Timespace volume element:**
+$$
+d\mathcal{V} = dt \, dx \, dy \, dz = dt \, dV \quad (\text{dimension: time} \cdot \text{length}^3).
+$$
+
+##### 1.3.7.2 Differential Operators
+
+**Laplacian** (spatial, on each slice):
+$$
+\Delta f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} = \delta^{ij} \partial_i \partial_j f.
+$$
+
+**Spatial gradient:**
+$$
+\nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right).
+$$
+
+**Temporal derivative:**
+$$
+\frac{\partial}{\partial t}.
+$$
+
+---
+
+#### 1.3.8 Regularity and Boundary Conditions
+
+For well-posed dynamics:
+
+- **Worldlines** are absolutely continuous with piecewise continuous velocities (velocity of bounded variation under impulsive forces); reparametrizations $t(s)$ are strictly increasing.
+
+- **Source configurations** are locally finite (or integrable measures) so that superpositions converge; fields are tempered distributions or $\varepsilon$-mollified to $C^\infty$ with the same total charge.
+
+- **Solutions decay suitably** at spatial infinity; unless otherwise specified, no incoming radiation is assumed from infinity.
+
+> **Plain Language:** Paths are "nice enough to have speeds," sources don't pile up infinitely in any bounded region, and fields thin out far away so sums and integrals make sense.
+
+---
+
+#### 1.3.9 Relation to Relativistic Spacetime
+
+For comparison and clarity:
+
+| **Feature** | **Neoclassical Timespace** | **Einsteinian Spacetime** |
+|:---|:---|:---|
+| **Manifold** | $\mathbb{R} \times \mathbb{R}^3$ (Product) | $\mathcal{M}^4$ (Pseudo-Riemannian) |
+| **Time** | Absolute / Universal Parameter | Relative / Coordinate Dimension |
+| **Metric** | Degenerate ($\tau, h$) | Non-degenerate ($g_{\mu\nu}$) |
+| **Simultaneity** | Absolute / Global | Relative / Frame-dependent |
+| **Curvature** | Always Flat ($R=0$) | Dynamical (Gravity) |
+| **Speed of Light** | Emergent from assemblies | Universal kinematic constant |
+| **Boosts** | Kinematically allowed; dynamically broken | Fundamental symmetry (Lorentz invariance) |
+| **4D Interval** | Undefined (time and space separate) | $ds^2 = -c^2 dt^2 + dx^2 + dy^2 + dz^2$ |
+| **Gravity** | Emergent from tri-binary medium | Fundamental: curvature of spacetime |
+
+---
+
+#### 1.3.10 Role of Timespace in the Architrino Model
+
+Absolute timespace is the fundamental arena in which all architrino dynamics unfold:
+
+- **Architrino worldlines** are curves $(t, \mathbf{x}(t))$ in $\mathcal{M}$, parametrized by universal time $t$.
+
+- **Potential fields** $\Phi(t, \mathbf{x})$ are functions defined on timespace, evolving according to the interaction law.
+
+- **Causality** is enforced by the history propagation rule: potentials emitted at earlier times intersect receivers at later times.
+
+- **Path history** is encoded naturally: at time $t$, an architrino's state depends on all intersections of its worldline with past-emitted potential shells.
+
+- **Proper time** for an observer is defined as a **functional of its internal dynamics** on this background, not as a 4D interval. The internal oscillation frequency of tri-binary assemblies determines how an observer's clock ticks relative to the universal time $t$.
+
+- **No spacetime curvature** at the fundamental level: all phenomena—including gravitation, lensing, and cosmological expansion—must be explained by the dynamics of assemblies within this fixed background.
+
+---
+
+#### 1.3.11 Summary of Postulate (Absolute Timespace)
+
+> **Postulate 3 (Absolute Timespace):**  
+> The background arena for all physics is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$, equipped with absolute time $\tau = dt$ and absolute space metric $h_{ij} = \delta_{ij}$. This defines a foliation into global, simultaneous 3D Euclidean slices indexed by universal time. The background is non-dynamical and non-curved ($R = 0$ everywhere). Causality is defined by absolute temporal ordering and finite propagation speed $c_f$. The background preserves Galilean kinematic symmetries, but the interaction law selects a preferred rest frame, breaking boost invariance dynamically. This preferred frame is essential for the propagation of potentials and the self-hit mechanisms that underpin the theory. All relativistic phenomena—including effective Lorentz invariance at certain scales—are emergent from the dynamics of assemblies. All gravitational phenomena, including lensing and cosmological expansion, are derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
+
+---
+
+#### 1.3.12 Key Connections and References
+
+- **Section 00.0.1 (Absolute Time):** Defines the temporal component of the background; $\tau = dt$.
+- **Section 00.0.2 (Absolute Space):** Defines the spatial component of the background; $h_{ij} = \delta_{ij}$.
+- **Section 1.2 (Architrino Interaction Law):** Defines how forces and potentials propagate through timespace.
+- **Part 2 (Particle Mapping):** Shows how stable assemblies form and move through timespace.
+- **Part 4 (Emergent Spacetime and Gravity):** Explains how an effective curved spacetime geometry emerges from the tri-binary medium, while the fundamental background remains eternally flat and non-dynamical.
+
+---
+
+**End of Section 00.0.3: Absolute Timespace**
+
+---
+
 
 ## 2. The Fundamental Entity (Architrino)
 
