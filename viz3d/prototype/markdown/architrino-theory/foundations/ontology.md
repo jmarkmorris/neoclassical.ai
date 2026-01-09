@@ -945,7 +945,7 @@ An Architrino is a transceiver: it continuously emits potential wavefronts and a
 - **Point of emission:** The potential emerges at the Architrino's current location (radius = 0) at time $t=\text{now}$ as a spatial Dirac delta. This is a **formal boundary condition** (not a physical singularity) encoding the rule "the shell is born here, with total charge $q$."
 - **Spherical expansion:** From its point of emission, the potential expands as a perfectly spherical shell.
 - **Field speed:** The radius of this shell grows at a constant rate, the field speed $v_f$. In our chosen units, $v_f = 1$ (dimensionless).
-- **Surface density:** The magnitude of the potential is concentrated on the surface of the shell and decreases as \$1/r^2$, where $r$ is the shell's radius.
+- **Surface density:** The magnitude of the potential is concentrated on the surface of the shell and decreases as $1/r^2$, where $r$ is the shell's radius.
 
 **Geometric Characterization:**
 
