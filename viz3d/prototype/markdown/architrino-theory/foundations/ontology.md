@@ -187,12 +187,16 @@ At time $t$, an architrino at position $\mathbf{x}(t)$ experiences forces from a
 
 Because $t$ is universal and absolute, we can unambiguously define "the past" (all $t' < t$) and integrate over it. This allows for a mechanistic, deterministic model of interaction without invoking quantum indeterminacy or action-at-a-distance.
 
+**Provenance and Identity Through Time:**
+
+Each Architrino carries a unique **provenance** label tied to its worldline history. That provenance is strictly monotone in $t$: exchanging labels is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level.
+
 **Geodesics and the Absence of Temporal Dynamics:**
 
 In this model, time itself has no internal structure or dynamics. It does not encode forces, curvature, or acceleration of any kind.
 
-- **Geodesics of time** are trivial: they are simply the flow $t \mapsto t$ at constant rate.
-- All **forces and accelerations** arise from:
+-- **Geodesics of time** are trivial: they are simply the flow $t \mapsto t$ at constant rate.
+-- All **forces and accelerations** arise from:
   - **Fields and potentials** acting within the fixed Euclidean space,
   - **Self-interaction** of extended assemblies (e.g., self-hit regime of binaries),
 
