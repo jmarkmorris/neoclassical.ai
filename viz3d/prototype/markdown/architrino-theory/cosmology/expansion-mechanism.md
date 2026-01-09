@@ -57,7 +57,7 @@ or, equivalently, using some other robust medium-scale measure (e.g. average sep
   - How the spatial distribution of the medium and matter assemblies evolves *within* the fixed void.
 - Physical FRW coordinates are then an emergent reparameterization:
   - Comoving coordinates follow the motion of the medium relative to the void.
-  - Comoving time ≈ proper time of a congruence of “cosmic rest” tri-binary clocks.
+  - Comoving time $\approx$ proper time of a congruence of “cosmic rest” tri-binary clocks.
 
 #### 3. Redshift Mechanism
 
@@ -94,6 +94,6 @@ We should aim to:
   - Regions of different medium density have slightly different effective $a(t)$ histories,
   - Yet all evolve in the same absolute time t in the void.
 - Check whether such a model can produce:
-  - $H_0$(CMB) ≈ 67 km/s/Mpc,
-  - $H_0$(local) ≈ 73 km/s/Mpc,
+  - $H_0$(CMB) $\approx 67$ km/s/Mpc,
+  - $H_0$(local) $\approx 73$ km/s/Mpc,
   without violating other cosmological constraints.

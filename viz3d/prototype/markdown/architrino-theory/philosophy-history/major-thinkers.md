@@ -94,7 +94,7 @@ The architrino project is positioned as:
 - ✅ **Pro**: Spinoza's **strict determinism** and **rejection of teleology** are fully upheld. The absolute observer embodies Spinoza's "infinite intellect"—the perspective that sees the necessity of all events flowing from architrino laws.
 - ✅ **Pro**: "God" (Spinoza's term) becomes the **totality of architrino configurations and their laws**—Nature, not a personal deity. The absolute observer sees Nature *sub specie aeternitatis*.
 - ⚠️ **Difference**: Spinoza's "infinite attributes" (thought, extension, etc.) **collapse** into **one physical attribute**: architrino dynamics. Mind is **emergent** from complex assemblies, not a parallel fundamental attribute.
-- ✅ **Pro**: Geometric method is **realized**: architrino laws + initial conditions → all phenomena, with mathematical necessity.
+- ✅ **Pro**: Geometric method is **realized**: architrino laws + initial conditions $\to$ all phenomena, with mathematical necessity.
 
 **Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = deterministic laws. His system is the closest **historical precursor** to the architrino worldview. The absolute observer is Spinoza's God knowing itself.
 
@@ -217,7 +217,7 @@ The architrino project is positioned as:
 
 **Architrino impact**:
 - ✅ **Pro**: Mach's **relational ideas partially realized**: Effective spacetime geometry is determined by architrino assembly configurations (matter distribution at the deepest level).
-- ✅ **Pro**: **Economy of thought**: One entity type (architrinos) + one set of rules → all phenomena. Maximum parsimony.
+- ✅ **Pro**: **Economy of thought**: One entity type (architrinos) + one set of rules $\to$ all phenomena. Maximum parsimony.
 - ❌ **Con**: Absolute time is **retained** (non-Machian in that sense). The absolute observer framework is the **anti-Machian** construct par excellence.
 - ❌ **Con**: Mach's **positivist anti-realism** about atoms is **refuted**. Architrinos are **real entities**, not convenient fictions. They are (in principle) observable via their effects, and the absolute observer tracks them completely.
 - ⚠️ **Nuance**: Mach's program to eliminate absolute space is **definitively rejected** by the absolute observer framework. But his insight—that inertia involves the distribution of matter—survives as an **emergent effect** within the absolute frame (resistance to acceleration through the assembly network).
@@ -437,7 +437,7 @@ The architrino project is positioned as:
 
 ### **Steven Weinberg, Abdus Salam, Sheldon Glashow — Electroweak Unification**
 **Core belief**: 
-- SU(2) × U(1) gauge theory.
+- SU(2) $\times$ U(1) gauge theory.
 - **Higgs mechanism** for mass generation via spontaneous symmetry breaking.
 
 **Architrino impact**:
@@ -734,7 +734,7 @@ The architrino project is positioned as:
 - **Anti-reductionism**: macroscopic regularities don't reduce to fundamental laws.
 
 **Architrino impact**:
-- ❌ **Con**: We aim for **radical unification** (one ontology, one set of rules → all phenomena).
+- ❌ **Con**: We aim for **radical unification** (one ontology, one set of rules $\to$ all phenomena).
 - ❌ **Con**: Cartwright's **anti-reductionism is rejected**. We claim macroscopic laws (thermodynamics, GR, QM, biology) **do reduce** to architrino dynamics.
 
 **Legacy shift**: If successful, architrino theory is a **counter-example** to Cartwright's dappled-world thesis. Unification is **possible** after all.
@@ -766,9 +766,9 @@ The architrino project is positioned as:
 | **Aristotle** | 384–322 BCE | Emergent continuity | **Teleology, hylomorphism, no void** | — |
 | **Epicurus** | 341–270 BCE | Eternality, no teleology | The swerve (free will) | — |
 | **René Descartes** | 1596–1650 | Mechanism, vortices | **Substance dualism, matter as extension** | — |
-| **Baruch Spinoza** | 1632–1677 | **One substance, necessity, no teleology, God's-eye view** | Mental attribute (thought) | Attributes → charge configurations |
+| **Baruch Spinoza** | 1632–1677 | **One substance, necessity, no teleology, God's-eye view** | Mental attribute (thought) | Attributes $\to$ charge configurations |
 | **Isaac Newton** | 1643–1727 | **Absolute time, absolute space, ideal observer** | Action-at-distance gravity | Absolute space (structure, not substance) |
-| **Gottfried Wilhelm Leibniz** | 1646–1716 | Relationalism, pre-established harmony | **Monads, no interaction, rejection of absolute space** | Idealism → physicalism |
+| **Gottfried Wilhelm Leibniz** | 1646–1716 | Relationalism, pre-established harmony | **Monads, no interaction, rejection of absolute space** | Idealism $\to$ physicalism |
 | **David Hume** | 1711–1776 | Empiricism (in spirit) | **No necessary connections** | Physical necessity restored |
 | **Immanuel Kant** | 1724–1804 | — | **A priori space/time, thing-in-itself, transcendental idealism** | — |
 | **Pierre-Simon Laplace** | 1749–1827 | **Determinism, Laplace's Demon** | — | — |
@@ -776,17 +776,17 @@ The architrino project is positioned as:
 | **Ludwig Boltzmann** | 1844–1906 | **Statistical emergence, atomism** | — | — |
 | **Hendrik Lorentz** | 1853–1928 | **Ether, dynamical Lorentz symmetry, preferred frame** | — | — |
 | **Max Planck** | 1858–1947 | *h* as emergent | — | — |
-| **Alfred North Whitehead** | 1861–1947 | Relationalism | **Process > substance priority, panpsychism** | Becoming → secondary to being |
-| **Albert Einstein (SR)** | 1879–1955 | Empirical SR predictions | **Fundamental Lorentz invariance, no preferred frame, spacetime as fundamental** | Kinematic → dynamical emergence |
+| **Alfred North Whitehead** | 1861–1947 | Relationalism | **Process > substance priority, panpsychism** | Becoming $\to$ secondary to being |
+| **Albert Einstein (SR)** | 1879–1955 | Empirical SR predictions | **Fundamental Lorentz invariance, no preferred frame, spacetime as fundamental** | Kinematic $\to$ dynamical emergence |
 | **Albert Einstein (GR)** | 1879–1955 | Empirical GR predictions | **Spacetime as fundamental, diffeomorphism invariance** | GR as emergent hydrodynamics |
 | **Niels Bohr** | 1885–1962 | — | **Completeness, collapse, anti-realism** | Complementarity explained |
 | **Erwin Schrödinger** | 1887–1961 | Realism, desire for ontology | — | $\psi$ as emergent |
-| **Louis de Broglie** | 1892–1987 | **Pilot-wave intuition** | — | Wave on config space → real fields |
+| **Louis de Broglie** | 1892–1987 | **Pilot-wave intuition** | — | Wave on config space $\to$ real fields |
 | **Werner Heisenberg** | 1901–1976 | Uncertainty (emergent) | **Reality "behind" formalism** | — |
 | **Karl Popper** | 1902–1994 | **Falsificationism** | — | — |
 | **Paul Dirac** | 1902–1984 | **Antimatter, relativistic QM** | — | QFT as emergent |
 | **John Archibald Wheeler** | 1911–2008 | Information as useful | **"It from bit" (information primacy)** | "Bit from it" |
-| **David Bohm** | 1917–1992 | **Hidden variables, determinism, nonlocality** | — | Quantum potential → architrino potentials |
+| **David Bohm** | 1917–1992 | **Hidden variables, determinism, nonlocality** | — | Quantum potential $\to$ architrino potentials |
 | **Richard Feynman** | 1918–1988 | Calculational methods | **Virtual particles as real, sum-over-histories as fundamental** | Effective statistical mechanics |
 | **Andrei Sakharov** | 1921–1989 | **Induced gravity** | — | — |
 | **Thomas Kuhn** | 1922–1996 | Paradigm shift structure | — | Incommensurability softened |
@@ -799,7 +799,7 @@ The architrino project is positioned as:
 | **Sheldon Glashow** | 1932– | Electroweak phenomenology | **Gauge fields and Higgs as fundamental** | Gauge symmetry and Higgs as emergent |
 | **Steven Weinberg** | 1933–2021 | Electroweak phenomenology | **Gauge fields and Higgs as fundamental** | Gauge symmetry and Higgs as emergent |
 | **Nancy Cartwright** | 1944– | — | **Anti-reductionism, dappled world** | — |
-| **Gerard 't Hooft** | 1946– | **Deterministic QM** | — | Cellular automata → architrino network |
+| **Gerard 't Hooft** | 1946– | **Deterministic QM** | — | Cellular automata $\to$ architrino network |
 | **Alan Guth** | 1947– | Inflation phenomenology | **Inflaton as fundamental field** | Inflation from self-hit regime |
 | **Abhay Ashtekar** | 1949– | Discrete structure intuition | **Quantized geometry** | Background independence (different route) |
 | **Edward Witten** | 1951– | — | **Strings, extra dimensions, SUSY as fundamental** | — |
@@ -821,7 +821,7 @@ If the architrino/tri-binary framework succeeds empirically, it will not merely 
 
 ### **What Dies**
 
-1.  **Teleology is dead**: No purposes, no final causes, no cosmic goals. The Absolute Observer sees only initial conditions + necessary laws → outcomes. Aristotle, Aquinas, Hegel—all refuted.
+1.  **Teleology is dead**: No purposes, no final causes, no cosmic goals. The Absolute Observer sees only initial conditions + necessary laws $\to$ outcomes. Aristotle, Aquinas, Hegel—all refuted.
 2.  **Idealism is dead**: Reality is not mind-dependent. No Platonic Forms, no Kantian categories structuring experience, no Hegelian Spirit. Architrinos exist at precise (x,y,z,t) coordinates whether or not anyone thinks about them.
 3.  **Transcendentalism is dead**: No realm "beyond" the physical. No noumena, no higher dimensions, no separate mental substance. Only this: architrinos in Euclidean void, with linear time.
 4.  **Fundamental Indeterminacy is dead**: Quantum randomness is revealed as the coarse-graining of deterministic architrino dynamics. The Copenhagen interpretation and Heisenberg's ontological uncertainty are rejected.

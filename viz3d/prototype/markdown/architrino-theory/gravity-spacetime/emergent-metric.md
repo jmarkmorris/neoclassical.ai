@@ -152,5 +152,5 @@ The core task of this document will be to:
 
 Our mapping must ensure:
 
-- Physical observers, in the v ≤ \(c_f\) regime and for typical densities, cannot detect the underlying absolute frame within current experimental bounds.
+- Physical observers, in the $v \le c_f$ regime and for typical densities, cannot detect the underlying absolute frame within current experimental bounds.
 - All standard GR tests (light bending, Shapiro delay, perihelion precession, gravitational redshift) are reproduced as consequences of medium structure, not of fundamental spacetime curvature.

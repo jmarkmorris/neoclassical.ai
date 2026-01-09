@@ -90,7 +90,7 @@ We must demonstrate consistency with:
 - **Gravity Probe A, modern optical clocks**:
   - Height-dependent time dilation at the $10^{-16}$–$10^{-18}$ level.
 - **Muon lifetime dilation**:
-  - Time dilation ∝ $\gamma$ in accelerator experiments.
+  - Time dilation $\propto \gamma$ in accelerator experiments.
 
 #### 5. Failure Conditions
 

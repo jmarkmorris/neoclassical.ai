@@ -27,7 +27,7 @@ Every run must instantiate VO sensors:
 
 ### Retarded-time bookkeeping requirement
 When a potential shell intersects a VO sensor or contributes to $\Phi(x,t)$, the code must:
-- Solve for emission time t_emit using |x − x_emitter(t_emit)| = c_f (t − t_emit)
+- Solve for emission time $t_{\text{emit}}$ using $|x - x_{\text{emitter}}(t_{\text{emit}})| = c_f (t - t_{\text{emit}})$
 - Record emitter identity + t_emit (provenance logging)
 
 ### Metadata (required)

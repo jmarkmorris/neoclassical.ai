@@ -26,9 +26,9 @@ Maintain an **active, living matrix** (not a passive list) tracking the applicab
 | **Coleman-Mandula** | Exact Lorentz invariance, local QFT | Emergent Lorentz only; substrate has absolute time | **May Not Apply** | Show where emergent Lorentz breaks down; demonstrate substrate violates hypotheses | 6 months |
 | **Weinberg-Witten** | Lorentz-covariant massless spin-2 | Emergent gravity, not fundamental particle | **May Not Apply** | Clarify: does emergent metric correspond to a Lorentz-covariant particle? If not, theorem doesn't bind | 6 months |
 | **CPT Theorem** | Local relativistic QFT | Absolute time substrate | **Unclear** | Derive CPT or its violation from architrino dynamics; check neutral meson bounds | 9 months |
-| **Spin-Statistics** | Relativistic QFT in flat spacetime | Emergent from ellipsoidal/planar geometry | **Must Derive** | Geometric proof: ellipsoidal → Fermi-Dirac, planar → Bose-Einstein | 6 months |
+| **Spin-Statistics** | Relativistic QFT in flat spacetime | Emergent from ellipsoidal/planar geometry | **Must Derive** | Geometric proof: ellipsoidal $\to$ Fermi-Dirac, planar $\to$ Bose-Einstein | 6 months |
 | **Haag's Theorem** | QFT interaction picture well-defined | Emergent QFT | **May Not Apply** | Identify effective theory regime; show interaction picture is approximate | 12 months |
-| **Goldstone's Theorem** | Continuous symmetry breaking | Higgs mechanism (SU(2)×U(1) → U(1)_EM) | **Must Apply** | Show three Goldstone modes eaten by W±, Z or identify them as physical states | 6 months |
+| **Goldstone's Theorem** | Continuous symmetry breaking | Higgs mechanism (SU(2) $\times$ U(1) $\to$ U(1)_EM) | **Must Apply** | Show three Goldstone modes eaten by $W^\pm$, Z or identify them as physical states | 6 months |
 | **Positive Energy Conditions** | GR weak/null/dominant energy | Emergent metric from aether | **Must Check** | Verify stress-energy tensor satisfies WEC/NEC/DEC in all regimes | 9 months |
 
 **Protocol:**
@@ -88,9 +88,9 @@ Maintain **strict categorization and counting** of all parameters:
 - Particle masses (if truly derived, not fitted)
 
 **Category D (Fitted to Experimental Data):**
-- **Any** particle mass input rather than derived → **FLAG and DOCUMENT**
-- **Any** coupling constant fitted to match data → **FLAG and DOCUMENT**
-- **Any** mixing angle tuned → **FLAG and DOCUMENT**
+- **Any** particle mass input rather than derived $\to$ **FLAG and DOCUMENT**
+- **Any** coupling constant fitted to match data $\to$ **FLAG and DOCUMENT**
+- **Any** mixing angle tuned $\to$ **FLAG and DOCUMENT**
 
 **Fine-Tuning Metrics:**
 
@@ -109,8 +109,8 @@ For each free parameter \(p\):
 
 **Thresholds:**
 - **FTQ < 0.1:** Green (natural)
-- **0.1 ≤ FTQ < 0.3:** Yellow (some tuning; monitor and justify)
-- **FTQ ≥ 0.3:** Red (severe fine-tuning; model loses naturalness argument)
+- **$0.1 \le \text{FTQ} < 0.3$:** Yellow (some tuning; monitor and justify)
+- **$\text{FTQ} \ge 0.3$:** Red (severe fine-tuning; model loses naturalness argument)
 
 **B.2 Comparison to Standard Model + GR**
 
@@ -120,10 +120,10 @@ Maintain **running comparison table** (updated quarterly):
 |-----------|------------------|----------------------------|---------------------|
 | **Standard Model** | ~19 | ~100+ | ~5:1 |
 | **GR + $\Lambda$ CDM** | ~6-7 | ~10-15 | ~1.5–2:1 |
-| **Architrino Model** | **TBD** | **TBD** | **Goal: ≥ 5:1** |
+| **Architrino Model** | **TBD** | **TBD** | **Goal: $\ge 5:1$** |
 
 **Trigger:**
-- If architrino requires **≥25 parameters** to match the same observables as SM+GR, **flag as parameter explosion** and escalate.
+- If architrino requires **$\ge 25$ parameters** to match the same observables as SM+GR, **flag as parameter explosion** and escalate.
 - If predictiveness ratio falls below **3:1**, question whether the theory is genuinely more explanatory or just more complex.
 
 ---
@@ -134,15 +134,15 @@ Maintain **running comparison table** (updated quarterly):
 
 | Consistency Check | Roles Involved | Test | Threshold | Status | Last Check | Next Review |
 |-------------------|---------------|------|-----------|--------|------------|-------------|
-| Particle mass → nuclear binding | SM Phenom + Nuclear | Do p/n masses yield correct deuteron BE (2.225 MeV)? | Within 10% | TBD | — | [Date] |
+| Particle mass $\to$ nuclear binding | SM Phenom + Nuclear | Do p/n masses yield correct deuteron BE (2.225 MeV)? | Within 10% | TBD | — | [Date] |
 | Vacuum energy match | SM Phenom + GR/Cosmo | Higgs VEV energy = spacetime assembly $\rho_{\text{vac}}$? | Within factor 10 | TBD | — | [Date] |
 | Newton's G consistency | GR/Cosmo + Nuclear | G from metric = G from nuclear force scale? | Within 20% | TBD | — | [Date] |
 | Clock rate formula | GR/Cosmo + Atomic | Proper time $\tau$ formula matches atomic transitions (GPS precision)? | ns level | TBD | — | [Date] |
 | Inertial = gravitational mass | SM Phenom + GR/Cosmo | m_inertial (assembly dynamics) = m_grav (metric coupling)? | EP: < $10^{-14}$ | TBD | — | [Date] |
-| Volume exclusion = Pauli | Nuclear + Topologist | Hard-core radius → correct Fermi pressure (WD/NS)? | Chandrasekhar limit within 10% | TBD | — | [Date] |
+| Volume exclusion = Pauli | Nuclear + Topologist | Hard-core radius $\to$ correct Fermi pressure (WD/NS)? | Chandrasekhar limit within 10% | TBD | — | [Date] |
 
 **Protocol:**
-- **Any Red status** → immediate joint meeting of affected roles + me within 7 days.
+- **Any Red status** $\to$ immediate joint meeting of affected roles + me within 7 days.
 - **Deadline:** 30 days to resolve or escalate to full team.
 - **If unresolved >60 days:** treat as internal consistency failure; potential stop condition.
 
@@ -173,7 +173,7 @@ I actively watch for and **flag** these patterns:
 **The "Effective Freedom" Trap:**
 - **Claim:** "Emergent symmetries arise naturally."
 - **Red Flag:** Interaction rules were subtly adjusted to force the symmetry.
-- **Resolution Required:** Show symmetry persists under ±20% variation of interaction law; identify symmetry-breaking threshold.
+- **Resolution Required:** Show symmetry persists under $\pm 20\%$ variation of interaction law; identify symmetry-breaking threshold.
 
 **The "Datum Fitting" Trap:**
 - **Claim:** "We predicted the electron mass."
@@ -202,7 +202,7 @@ These are **non-negotiable**. Any violation at stated confidence level = **theor
 
 | Constraint | Observable | Current Experimental Bound | Source | Falsification Threshold |
 |-----------|-----------|---------------------------|--------|------------------------|
-| **Charge quantization** | Stable isolated charges | Only 0, ±e/3, ±2e/3, ±e observed | Millikan descendants, quark searches | Observation of stable ±e/6 particle |
+| **Charge quantization** | Stable isolated charges | Only 0, $\pm e/3$, $\pm 2e/3$, $\pm e$ observed | Millikan descendants, quark searches | Observation of stable $\pm e/6$ particle |
 | **Lorentz: light speed isotropy** | $\Delta c/c$ | < $10^{-17}$ | Optical resonator experiments | $\Delta c/c > 10^{-15}$ |
 | **Lorentz: clock isotropy** | Sidereal variation | < $10^{-16}$ | Optical atomic clocks | Sidereal variation > $10^{-14}$ |
 | **Equivalence Principle** | $\eta$ (composition-dependence of freefall) | < $10^{-14}$ | MICROSCOPE satellite | $\eta > 10^{-12}$ |
@@ -261,9 +261,9 @@ Violations don't immediately kill the framework but require **major revision**:
 For **any** computational claim of "emergent structure," "stable assembly," or "derived observable," I demand:
 
 **1. Convergence Certification:**
-- **Temporal:** Halve time step \(\Delta t\) → observables change <2%
-- **Spatial:** Double spatial resolution → observables change <2%
-- **Parameter sweep:** Vary interaction strength $\lambda$ by ±20% → qualitative behavior (e.g., tri-binary formation) persists
+- **Temporal:** Halve time step $\Delta t$ $\to$ observables change <2%
+- **Spatial:** Double spatial resolution $\to$ observables change <2%
+- **Parameter sweep:** Vary interaction strength $\lambda$ by $\pm 20\%$ $\to$ qualitative behavior (e.g., tri-binary formation) persists
 
 **2. Cross-Integrator Validation:**
 - Run with **at least two fundamentally different integrators**:
@@ -274,9 +274,9 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 
 **3. Analytical Benchmark Comparison:**
 - Every regime touching a **known solvable limit** must match analytic solution:
-  - Two-body spiral → compare to Sommerfeld formula or classical radiation damping
-  - Scattering → compare to Born approximation or classical Rutherford (in appropriate limit)
-  - Weak-field metric → compare to Schwarzschild linearization
+  - Two-body spiral $\to$ compare to Sommerfeld formula or classical radiation damping
+  - Scattering $\to$ compare to Born approximation or classical Rutherford (in appropriate limit)
+  - Weak-field metric $\to$ compare to Schwarzschild linearization
 - If simulation deviates from benchmark by **>10%**, investigate as **potential artifact**
 
 **4. Ensemble Statistics (Robustness vs Fine-Tuning):**
@@ -297,10 +297,10 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 
 **Grid locking:**
 - Does claimed structure depend on simulation mesh geometry (grid orientation, symmetry)?
-- Vary boundary conditions (periodic vs open vs reflecting) → structure persists?
+- Vary boundary conditions (periodic vs open vs reflecting) $\to$ structure persists?
 
 **Integrator bias:**
-- Symplectic integrators can artificially conserve energy → spurious stability
+- Symplectic integrators can artificially conserve energy $\to$ spurious stability
 - Check: Do decay rates match when using **non-symplectic** method?
 
 **Self-hit memory truncation:**
@@ -309,7 +309,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 
 **Backward integration test:**
 - Run simulation **forward** to establish "stable" assembly at time \(T\)
-- **Reverse velocities** and time → run **backward** from \(T\) to \(0\)
+- **Reverse velocities** and time $\to$ run **backward** from $T$ to $0$
 - Does it return to initial state (within numerical precision)? Tests time-reversibility and accuracy.
 
 **E.2 Reproducibility Contract**
@@ -344,7 +344,7 @@ I **demand** from the Computational Physicist:
 **Level 3: Likely Falsification ($5\sigma$)**
 - Single well-established measurement at **$5\sigma$**
 - **Action:** Immediate review by **full team** (all roles + Marko) within **7 days**
-- If confirmed independent and robust → **declare theory falsified on that specific claim**
+- If confirmed independent and robust $\to$ **declare theory falsified on that specific claim**
 - **Determine:** Can theory be salvaged by modifying specific assumptions, or is framework fundamentally incompatible?
 
 **Level 4: Definitive Falsification**
@@ -363,7 +363,7 @@ Not every deviation = falsification. Use **rigorous statistical tools**:
     \[
     B = \frac{P(\text{Data}|\text{Architrino})}{P(\text{Data}|\text{SM+GR})}
     \]
-    accounting for **parameter volume** (Occam penalty: more parameters → larger prior volume → penalized likelihood)
+    accounting for **parameter volume** (Occam penalty: more parameters $\to$ larger prior volume $\to$ penalized likelihood)
 
 **Interpretation:**
 - \(B > 100\): Strong evidence **for** architrino
@@ -438,11 +438,11 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
   - If electron mass is "derived," show **explicit calculation with zero free parameters adjusted to electron mass**
   - If it requires fitting one tri-binary parameter, **that parameter is now "fitted to electron mass"** (goes in Category D of ledger)
 
-- **"Why these gauge groups (SU(3) × SU(2) × U(1))?"**
+- **"Why these gauge groups (SU(3) $\times$ SU(2) $\times$ U(1))?"**
   - Prove this is the **only** consistent emergent structure, or explain why alternatives (SU(5), SO(10), E8) are suppressed/unstable
 
 - **"Where are the Goldstone bosons?"**
-  - If Higgs mechanism breaks SU(2) × U(1) → U(1)_EM, **three Goldstone modes must be eaten by W±, Z**
+  - If Higgs mechanism breaks SU(2) $\times$ U(1) $\to$ U(1)_EM, **three Goldstone modes must be eaten by $W^\pm$, Z**
   - Show this **explicitly** in tri-binary dynamics (not just "it emerges")
 
 - **"Generational hierarchy: mechanism?"**

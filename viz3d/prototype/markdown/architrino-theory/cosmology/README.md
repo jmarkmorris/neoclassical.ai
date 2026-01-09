@@ -29,7 +29,7 @@ The main goals in this directory:
 
 - **expansion-mechanism.md**: Show how tri-binary scaling and Noether-core medium dynamics give rise to an effective FRW expansion history.
 - **inflation-model.md**: Connect the self-hit regime ($v > c_f$) in the early universe to a period of rapid effective expansion.
-- **bbn-constraints.md**: Check whether our emergent H(t) during early times yields standard light-element abundances (Y_p ≈ 0.24, D/H ratio).
+- **bbn-constraints.md**: Check whether our emergent H(t) during early times yields standard light-element abundances ($Y_p \approx 0.24$, D/H ratio).
 - **cmb-predictions.md**: Derive qualitative/quantitative predictions for the CMB power spectrum from our microscopic model.
 - **structure-formation.md**: Show how inhomogeneities in the Noether-core sea and matter assemblies grow over time in the fixed Euclidean background.
 

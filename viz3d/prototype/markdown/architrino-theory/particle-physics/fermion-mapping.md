@@ -27,19 +27,19 @@ We label the three binaries by their dynamical regime:
 
 Each binary defines one **axis** with two polar **personality slots**, each occupied by either:
 
-- Electrino (−e/6), or  
-- Positrino (+e/6).
+- Electrino ($-e/6$), or  
+- Positrino ($+e/6$).
 
-So each Noether core has 3 axes (H, M, L) × 2 poles = **6 personality slots**.
+So each Noether core has 3 axes (H, M, L) $\times$ 2 poles = **6 personality slots**.
 
 We distinguish:
 
-- **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary → 6 per quark).  
-- **Personality architrinos**: the 6 ±e/6 decorations on the poles.
+- **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary $\to$ 6 per quark).  
+- **Personality architrinos**: the 6 $\pm e/6$ decorations on the poles.
 
 For a Gen‑I quark:
 
-- 6 scaffold architrinos (3 binaries × 2)  
+- 6 scaffold architrinos (3 binaries $\times$ 2)  
 - 6 personality architrinos  
 - Total per quark: 12.
 
@@ -89,7 +89,7 @@ This **braid chirality** will underpin our distinction between particles and ant
 ## 1. Colorless Fermions: Axis Uniformity
 
 **Core rule:**  
-Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same personality pattern, there is no “which axis is special?” degree of freedom → **no color**.
+Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same personality pattern, there is no “which axis is special?” degree of freedom $\to$ **no color**.
 
 ### 1.1 Electron and positron
 
@@ -97,9 +97,9 @@ Color charge appears only when the tri‑binary axes are **not equivalent**. If 
   \[
   (\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)
   \]
-  - Each axis: net −2e/6.  
-  - Total: −6e/6 = −e.  
-  - All axes identical → SU(3)\(_c\) singlet.
+  - Each axis: net $-2e/6$.  
+  - Total: $-6e/6 = -e$.  
+  - All axes identical $\to$ SU(3)\(_c\) singlet.
 
 - **Positron**:
   \[
@@ -107,7 +107,7 @@ Color charge appears only when the tri‑binary axes are **not equivalent**. If 
   \]
   - Each axis: net +2e/6.  
   - Total: +e.  
-  - All axes identical → singlet.
+  - All axes identical $\to$ singlet.
 
 ### 1.2 Neutrinos: multiple neutral, colorless cores
 
@@ -115,21 +115,21 @@ One canonical neutrino configuration:
 \[
 (-/+,\ -/+,\ -/+)
 \]
-- Each axis: one e and one p → net 0 per axis.  
-- All axes identical → colorless.
+- Each axis: one e and one p $\to$ net 0 per axis.  
+- All axes identical $\to$ colorless.
 
 Other neutral patterns exist, e.g.:
 \[
 (+/+,\ -/+,\ -/-)
 \]
 and permutations. Charge check:
-- (H: +/+, M: −/+, L: −/−): 3e + 3p → net 0 again.
+- (H: +/+, M: -/+, L: -/-): 3e + 3p $\to$ net 0 again.
 
 These patterns differ by **axis‑level personality contrast** and thus by internal energy/coupling; they are natural candidates for **neutrino mass eigenstates**. All remain colorless because H, M, and L are either identical or do not participate in the quark‑like axis‑exceptionality mechanism.
 
 Working picture (to be detailed in the neutrino section):
 
-- Different allowed neutral patterns → distinct Noether‑core configurations.  
+- Different allowed neutral patterns $\to$ distinct Noether‑core configurations.  
 - Neutrino oscillation arises from **slow precession / wobble** that cycles which internal neutral pattern is “aligned” with the weak‑interaction channel, without ever introducing axis‑exceptionality.
 
 We do **not** claim a PMNS‑level derivation yet; that is a targeted future calculation.
@@ -144,22 +144,22 @@ Quarks are color‑charged because **one axis is in a different personality clas
 
 Let each axis pattern be coarse‑classified as:
 
-- **P−**: pure electrino \((-\!/-)\)  
+- **P-**: pure electrino \((-\!/-)\)  
 - **P+**: pure positrino \((+\!/+)\)  
 - **Pm**: mixed \((-\!/+)\) (net neutral, dipolar)
 
 The key structural rule for **admissible, stable quark‑like Noether cores** is:
 
-> Exactly **two axes share the same personality class**, and the third is **different in kind** (P− vs P+ vs Pm).  
+> Exactly **two axes share the same personality class**, and the third is **different in kind** (P- vs P+ vs Pm).  
 
-We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three‑different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the spacetime assembly medium and quickly relax or disintegrate.
+We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P-, L: Pm). Those “three‑different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the spacetime assembly medium and quickly relax or disintegrate.
 
 Therefore:
 
-- **Colorless**: H,M,L all same class (e.g., all P− or all Pm).  
+- **Colorless**: H,M,L all same class (e.g., all P- or all Pm).  
 - **Colored quark**: H,M,L pattern is one of:
   - P_bkg, P_bkg, P_exc  
-  where P_exc ≠ P_bkg.
+  where $P_{\text{exc}} \ne P_{\text{bkg}}$.
 
 Color degree of freedom is then:  
 **which axis carries P_exc?**

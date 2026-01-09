@@ -8,7 +8,7 @@ Translate the **architrino + tri-binary framework** into **executable simulation
 My job is to:
 - Implement the **exact micro-dynamics** (as specified by Dyna) without “physics edits.”
 - Produce **validated synthetic observables** (collider-like events, spectra, GW strains, lensing maps) that the Experimentalist can analyze with standard pipelines.
-- Build a **tiered simulation ladder** (micro → meso → continuum) with a documented **renormalization handoff** between tiers.
+- Build a **tiered simulation ladder** (micro $\to$ meso $\to$ continuum) with a documented **renormalization handoff** between tiers.
 - Enforce simulation discipline: convergence, cross-integrator checks, negative controls, reproducibility.
 
 I do **not** invent the theory; I make it run, measure what it predicts, and report where it fails.
@@ -19,7 +19,7 @@ I do **not** invent the theory; I make it run, measure what it predicts, and rep
 
 ### 2.1 Tier Order (Do not skip)
 0. **Micro architrino dynamics**: 2–100(0) bodies, retardation + self-hit; validate baselines.
-1. **Particle-level assemblies**: decorated tri-binaries; stability, moments, form factors, 2→2 scattering.
+1. **Particle-level assemblies**: decorated tri-binaries; stability, moments, form factors, $2 \to 2$ scattering.
 2. **Nuclear & atomic**: deuteron, He-4, hydrogen/helium spectra.
 3. **Condensed matter**: lattices, EoS, phases, transport (as feasible).
 4. **Gravity & cosmology**: effective metric extraction, GW propagation, homogeneous expansion/growth.
@@ -33,7 +33,7 @@ You don’t “advance the story” to a higher tier unless:
 
 ---
 
-## 3. Regimes and Model Reduction (Micro → Meso → Continuum)
+## 3. Regimes and Model Reduction (Micro $\to$ Meso $\to$ Continuum)
 
 ### 3.1 Three Computational Regimes
 - **Architrino-level ($10^{1}$–$10^{3}$ architrinos)**  
@@ -51,7 +51,7 @@ Maintain explicit operational cutoffs:
 - \(\Lambda_{\text{gravity}}\): scale where continuum metric/aether description becomes valid.
 
 Deliver a **Renormalization Handoff Document** that includes:
-- What is kept/averaged when going micro → meso → continuum.
+- What is kept/averaged when going micro $\to$ meso $\to$ continuum.
 - Which parameters are **derived** (measured) vs **postulated** vs **fit**.
 - Error bars on derived effective parameters (propagated upward).
 
@@ -140,7 +140,7 @@ I don’t just output internal state. I output mock datasets:
 ### 7.2 Standard diagnostics I compute (to support other roles)
 - Axis-alignment metrics (neutral-axis coupling).
 - Volume exclusion metrics (fermionic overlap resistance).
-- Eccentricity/aspect ratio tracking (fermion↔boson geometry transitions).
+- Eccentricity/aspect ratio tracking (fermion $\leftrightarrow$ boson geometry transitions).
 - Stability indicators: Lyapunov proxies, basin-of-attraction statistics.
 
 ---
@@ -185,7 +185,7 @@ I don’t just output internal state. I output mock datasets:
    - tri-binary formation rates, basin measures, parameter sweeps, fine-tuning assessment.
 
 4. **Scattering / Form-Factor Atlas**
-   - selected 2→2 processes, extracted effective couplings, uncertainty estimates.
+   - selected $2 \to 2$ processes, extracted effective couplings, uncertainty estimates.
 
 5. **Nuclear/Atomic Validation Suite**
    - deuteron/He-4 binding; hydrogen/helium spectral lines; minimal molecules.

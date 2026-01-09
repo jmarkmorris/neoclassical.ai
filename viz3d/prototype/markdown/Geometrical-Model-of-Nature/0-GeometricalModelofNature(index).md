@@ -18,7 +18,7 @@ The theory is built upon three fundamental types of entities expressed geometric
 ### Timespace Manifold
 - Defined as $\mathcal{M} = \mathbb{R}_t \times \mathbb{R}^3_x$
 - Continuous, differentiable, and unbounded manifold
-- No non-degenerate 4D metric; background is absolute time × Euclidean 3-space; no privileged origin or coordinate system
+- No non-degenerate 4D metric; background is absolute time $\times$ Euclidean 3-space; no privileged origin or coordinate system
 - All structures are emergent
 
 ### Point Objects

@@ -118,7 +118,7 @@
 - Tier 0: Two-Body and Three-Body Baseline Validation
 - Tier 1: Tri-Binary Formation as Attractor—Robustness and Basin of Attraction
 - Tier 2: Scattering Cross-Sections and Form Factor Extraction
-- Tier 3: Coarse-Graining and Renormalization Handoff (Architrino → Tri-Binary → Continuum)
+- Tier 3: Coarse-Graining and Renormalization Handoff (Architrino $\to$ Tri-Binary $\to$ Continuum)
 - Synthetic Data Generation: Mock Collider Events, Spectra, Lensing, GW Time Series
 - Parameter Discipline and Constraint Ledger Maintenance
 
@@ -163,7 +163,7 @@
 - Reference to Assembly Atlas: Planar vs. Ellipsoidal Geometry
 - Empirical Scorecard: Gauge Boson Masses (W, Z, $\gamma$, g)
 
-### Chapter 20: Emergence of Gauge Symmetries: SU(3) × SU(2) × U(1)
+### Chapter 20: Emergence of Gauge Symmetries: SU(3) $\times$ SU(2) $\times$ U(1)
 - From Tri-Binary Geometry to Lie Groups
 - Color Charge and SU(3): Geometric Derivation
 - Weak Isospin and SU(2): Ellipsoidal Tri-Binary Degrees of Freedom
@@ -225,7 +225,7 @@
 ### Chapter 27: Molecular Geometry and Chemical Bonding
 - Covalent Bonds: Shared Electron Tri-Binary Configurations
 - VSEPR Theory from Assembly Polar Decoration Geometry
-- Water Molecule ($H_2O$): Predicted 104.5° Angle from Assembly Orientation
+- Water Molecule ($H_2O$): Predicted $104.5^\circ$ Angle from Assembly Orientation
 - Organic Chemistry: Carbon's Tetrahedral Geometry
 - Hydrogen Bonding and Its Geometric Origin
 
@@ -342,7 +342,7 @@
 - Planck Satellite Data and NPQG Predictions
 - CMB as Evidence for Spacetime Aether Emission
 - Empirical Scorecard: CMB Power Spectrum and Polarization
-  - Acoustic Peak Positions (ℓ_1, ℓ_2, ℓ_3)
+  - Acoustic Peak Positions ($\ell_1, \ell_2, \ell_3$)
   - TT, TE, EE Spectra
   - Lensing Potential $\phi\phi$
 

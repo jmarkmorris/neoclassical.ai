@@ -44,7 +44,7 @@ Define and defend the **basic furniture of reality**:
 Clarify the **hierarchy of structure** and the nature of emergence:
 
 **Hierarchy:**
-- **Architrinos** (fundamental) → **Binaries** (stable configurations) → **Tri-binaries** (Noether cores) → **Particles** (decorated assemblies) → **Nuclei** (coupled assemblies) → **Atoms** → **Matter**.
+- **Architrinos** (fundamental) $\to$ **Binaries** (stable configurations) $\to$ **Tri-binaries** (Noether cores) $\to$ **Particles** (decorated assemblies) $\to$ **Nuclei** (coupled assemblies) $\to$ **Atoms** $\to$ **Matter**.
 
 **Identity and Persistence:**
 - What makes one tri-binary "the same" through time? Is it:
@@ -184,11 +184,11 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 - **Standard QM**: \(\psi = \alpha\psi_1 + \beta\psi_2\) (state in two "places" at once).
 - **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time \(t\), but the **outgoing potential field it generates** has structure reflecting multiple possible paths (due to overlapping potentials from past trajectories or from an ensemble).
 - The "superposition" is in the **potential field structure**, not in the particle's location.
-- Measurement/interaction: Disruption of the potential structure → definite outcome selected by deterministic dynamics.
+- Measurement/interaction: Disruption of the potential structure $\to$ definite outcome selected by deterministic dynamics.
 
 **Interference:**
 - **Double-slit**: Individual architrinos (or small assemblies) pass through one slit, but the **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
-- **Self-hit memory**: If assembly speed approaches \(c_f\), outgoing potential "catches up" to the assembly → enhanced self-interaction → interference effects amplified.
+- **Self-hit memory**: If assembly speed approaches $c_f$, outgoing potential "catches up" to the assembly $\to$ enhanced self-interaction $\to$ interference effects amplified.
 
 **Entanglement:**
 - **Mechanism**: Two assemblies (e.g., electron-positron pair from decay) are correlated via:
@@ -241,7 +241,7 @@ Articulate the **causal picture**:
 
 **How Does Causation Operate?**
 - **Finite field-speed** \(c_f\) defines causal influence: architrino at \(\mathbf{x}\) at time \(t\) can only affect architrino at \(\mathbf{x}'\) at \(t' > t + |\mathbf{x}' - \mathbf{x}|/c_f\).
-- **Self-hit**: allows an architrino to interact with its own past outgoing potential → **non-Markovian memory**.
+- **Self-hit**: allows an architrino to interact with its own past outgoing potential $\to$ **non-Markovian memory**.
   - This is not retrocausation (no closed causal loops).
   - It is delayed self-interaction: future trajectory depends on history.
 
@@ -256,7 +256,7 @@ Articulate the **causal picture**:
 Conceptually analyze the **self-hit regime** (\(v > c_f\)):
 
 **What Does It Mean?**
-- An architrino's velocity exceeds the propagation speed of its own outgoing potential → it "catches up" to (or overtakes) its own field.
+- An architrino's velocity exceeds the propagation speed of its own outgoing potential $\to$ it "catches up" to (or overtakes) its own field.
 
 **Is This Superluminal Influence?**
 - **No**: The architrino is not sending information faster than \(c_f\) to other architrinos; it is merely **intercepting its own past signal**.
@@ -265,7 +265,7 @@ Conceptually analyze the **self-hit regime** (\(v > c_f\)):
 **What Are the Consequences?**
 - **Memory effects**: Future trajectory depends on history in a non-trivial way (non-Markovian).
 - **New forces**: Self-interaction can create additional attractive/repulsive forces (inflation/deflation in cosmology, stability/instability in particle assemblies).
-- **Quantum-like behavior**: Interference with one's own past potential → pilot-wave-like guidance effects arise naturally, without invoking separate "wavefunctions."
+- **Quantum-like behavior**: Interference with one's own past potential $\to$ pilot-wave-like guidance effects arise naturally, without invoking separate "wavefunctions."
 
 **Paradox Avoidance:**
 - **Causal loops?** No: self-hit does not create closed loops; it only adds delayed self-interaction terms. The causal arrow in absolute time \(t\) is still strictly forward.
@@ -299,7 +299,7 @@ Maintain a **living explanatory scoreboard** tracking what the architrino framew
 | Quantum measurement | Interpretive problem | Deterministic interaction | Conceptual | Ch. 30 |
 | Gravity + QM unification | Incompatible frameworks | Single substrate (architrinos) | In progress | Part VII |
 
-**Quarterly Update**: Flag which claims are robust vs speculative; track progress from "conceptual" → "qualitative" → "quantitative."
+**Quarterly Update**: Flag which claims are robust vs speculative; track progress from "conceptual" $\to$ "qualitative" $\to$ "quantitative."
 
 **Deliverable**: Table in **Ch. 47** and **Ch. 52 (Solving the Unsolved Problems)** with quarterly updates.
 
@@ -395,7 +395,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 - Ensure mathematical structures (phase spaces, attractors, topological invariants) **faithfully reflect** the intended ontology.
 - Verify: Do "stability" and "identity" of assemblies have clear interpretations?
-- Demand: If topology determines particle identity, provide explicit mapping (topology ↔ particle type).
+- Demand: If topology determines particle identity, provide explicit mapping (topology $\leftrightarrow$ particle type).
 
 ### 8.2 Standard Model & QFT Phenomenologist
 
@@ -471,7 +471,7 @@ Provide context within the history of foundational physics:
 **Foundational Documents:**
 - **Foundational Ontology Manifesto** (subsections in Ch. 2, 10, 31, 47): What exists, what is emergent, what is operational.
 - **Glossary of Ontological Terms** (Appendix C): Architrino, electrino, positrino, assembly, tri-binary, field, spacetime, proper time, absolute time, etc.
-- **Emergence Hierarchy Diagram**: Fundamental → Effective, with clear boundaries (Ch. 10).
+- **Emergence Hierarchy Diagram**: Fundamental $\to$ Effective, with clear boundaries (Ch. 10).
 
 **Chapter Contributions:**
 - **Ch. 2**: Defend absolute time and Euclidean space; distinguish \(t\) from \(\tau\).
