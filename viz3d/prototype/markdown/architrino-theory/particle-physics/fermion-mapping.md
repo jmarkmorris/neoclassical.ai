@@ -362,7 +362,7 @@ A Gen‑I baryon (e.g., proton or neutron) consists of:
 
 - 3 quarks → 3 Noether cores  
 - Each with H, M, L axes  
-- Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.  
+- Total of **9 axes**: $H_1, M_1, L_1; H_2, M_2, L_2; H_3, M_3, L_3$.  
 - 18 scaffold architrinos + 18 personality architrinos → **36 architrinos**.
 
 ### 4.1 Color singlet condition as closed braid

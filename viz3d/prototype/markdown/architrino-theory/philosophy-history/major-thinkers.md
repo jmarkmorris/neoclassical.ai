@@ -270,7 +270,7 @@ The architrino project is positioned as:
 - ❌ **Con**: Spacetime is **not fundamental**. It is an **emergent assembly structure** (network of tri-binaries forming the "vacuum"—coupled Noether cores).
 - ❌ **Con**: **Coordinate ontology inverted**: In GR, diffeomorphism invariance means coordinates have no physical meaning; only invariants matter. In architrino theory, **Euclidean coordinates have physical meaning** (absolute spatial location + absolute time). The (x,y,z) labels are **permanent**; physical states (assembly configurations, effective metrics) are **functions on this fixed substrate**.
 - ✅ **Pro**: GR's **empirical successes** (light bending, perihelion precession, gravitational redshift, gravitational waves, black hole shadows) must be reproduced as the **effective field limit** of architrino dynamics.
-- ✅ **Advantage over GR**: In GR, "returning to the same point in spacetime" requires choosing coordinates, and the metric changes, making physical identification ambiguous. In architrino theory, the **coordinate labels (x,y,z) are permanent**. The absolute observer at (*x₀, y₀, z₀*) at *t₁* and later at *t₂* is looking at **the same location** in the Euclidean substrate, even if the local assembly network has deformed. This restores **coordinate realism** without sacrificing the empirical successes of GR.
+- ✅ **Advantage over GR**: In GR, "returning to the same point in spacetime" requires choosing coordinates, and the metric changes, making physical identification ambiguous. In architrino theory, the **coordinate labels (x,y,z) are permanent**. The absolute observer at ($x_0, y_0, z_0$) at $t_1$ and later at $t_2$ is looking at **the same location** in the Euclidean substrate, even if the local assembly network has deformed. This restores **coordinate realism** without sacrificing the empirical successes of GR.
 - ⚠️ **Tension**: Singularities, event horizons, and cosmological solutions (inflation, dark energy) may be **artifacts** of the effective description, not fundamental features.
 - ✅ **Pro**: Potential resolution of **quantum gravity problem**: No need to quantize geometry. Gravity emerges from quantum-like (deterministic, pilot-wave) architrino assemblies.
 
@@ -367,7 +367,7 @@ The architrino project is positioned as:
 **Architrino impact**:
 - ✅ **Pro**: **Strong alignment**. Architrino assemblies are "particles" (or their effective representations), guided by **potential fields** (from all other architrinos, including self-hit contributions).
 - ✅ **Pro**: Deterministic evolution upheld. The absolute observer tracks the full trajectory.
-- ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space (ψ(x₁, x₂, ...)); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
+- ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space ($\psi(x_1, x_2, \ldots)$); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
 
 **Legacy shift**: De Broglie's intuition is **validated and extended** with explicit microphysical entities (architrinos). His pilot wave becomes **architrino potential fields**.
 

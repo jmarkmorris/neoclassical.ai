@@ -225,7 +225,7 @@
 ### Chapter 27: Molecular Geometry and Chemical Bonding
 - Covalent Bonds: Shared Electron Tri-Binary Configurations
 - VSEPR Theory from Assembly Polar Decoration Geometry
-- Water Molecule (H₂O): Predicted 104.5° Angle from Assembly Orientation
+- Water Molecule ($H_2O$): Predicted 104.5° Angle from Assembly Orientation
 - Organic Chemistry: Carbon's Tetrahedral Geometry
 - Hydrogen Bonding and Its Geometric Origin
 
@@ -362,10 +362,10 @@
 - Baryon Acoustic Oscillations in Clustering
 - Weak Gravitational Lensing and Cosmic Shear
 - Effective Dark Matter vs. Modified Gravity vs. Hybrid Models
-- Empirical Scorecard: σ₈, S₈, and LSS Constraints
+- Empirical Scorecard: $\sigma_8$, $S_8$, and LSS Constraints
   - Planck 2018 vs. KiDS+VIKING+DES
   - Cluster Abundances
-  - Redshift-Space Distortions f σ₈
+  - Redshift-Space Distortions $f \sigma_8$
 
 ### Chapter 43: Resolution of Critical Empirical Tensions
 - The Hubble Tension (5σ Discrepancy)
@@ -374,7 +374,7 @@
 - The Muon g-2 Anomaly (4.2σ Discrepancy)
   - Fermilab 2023 vs. SM Prediction
   - Assembly Contribution to a_μ
-- The σ₈/S₈ Large-Scale Structure Tension
+- The $\sigma_8/S_8$ Large-Scale Structure Tension
   - Weak Lensing vs. CMB
   - Modified Growth from Aether Dynamics
 - Unified Resolution Strategy
