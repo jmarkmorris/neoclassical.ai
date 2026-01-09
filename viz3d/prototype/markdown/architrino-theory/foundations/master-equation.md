@@ -49,7 +49,11 @@ All dynamical laws are written with respect to the fixed Euclidean coordinates $
 1. **State Definition**: The state $S(t)$ is a list of all architrino positions, velocities, and charges at time $t$.
 2. **The Equation**: The Master Equation is a deterministic map $S(t+\Delta t) = \mathcal{F}[S(t); \Delta t]$, incorporating finite propagation speed $c_f$ and retarded interactions.
 3. **Background Coupling**: An isolated binary is an idealization. The real equation must include the "Sea of Cores" interaction:
-   $$ \\vec{a}_i = \\sum_{j \\in \\text{System}} \\vec{F}_{ji} + \\sum_{k \\in \\text{Vacuum}} \\vec{F}_{ki} $$
+
+   $$
+   \vec{a}_i = \sum_{j \in \text{System}} \vec{F}_{ji} + \sum_{k \in \text{Vacuum}} \vec{F}_{ki}
+   $$
+
    The second term represents the drag/inertia from the Noether Core lattice.
 
 ## Addenda (Dyna - supplemental)
