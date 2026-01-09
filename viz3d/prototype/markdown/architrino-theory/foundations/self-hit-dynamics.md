@@ -10,13 +10,16 @@
 ## Self-Hit Detection and Logging (VO-based)
 
 Frame self-hit as a path-history intersection problem:
-- Find (t_emit, t_hit) such that:
-  |x_emitter(t_hit) − x_emitter(t_emit)| = c_f (t_hit − t_emit)
+- Find $t_{\text{emit}}, t_{\text{hit}}$ such that:
+
+  $$
+  |x_{\text{emitter}}(t_{\text{hit}}) - x_{\text{emitter}}(t_{\text{emit}})| = c_f (t_{\text{hit}} - t_{\text{emit}})
+  $$
+
   with same emitter identity
 
 Simulation requirement:
-- Use VO provenance tables to detect/count self-hit events:
-  (emitter_id, t_hit, t_emit, impact_parameter, contribution_strength)
+- Use VO provenance tables to detect/count self-hit events: $(\text{emitter}_{\text{id}}, t_{\text{hit}}, t_{\text{emit}}, \text{impact}_{\text{parameter}}, \text{contribution}_{\text{strength}})$
 
 Acceptance criteria:
 - Self-hit event rates and distributions must converge under:
