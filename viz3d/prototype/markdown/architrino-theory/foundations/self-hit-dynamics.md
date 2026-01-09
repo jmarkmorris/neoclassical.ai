@@ -36,23 +36,23 @@ Self‑hit is the key non‑Markovian feature of architrino dynamics. It occurs 
 
 **Geometric condition (absolute coordinates):**
 
-For a given architrino with trajectory \(\mathbf{x}(t)\), a self‑hit event is a pair of times \((t_\text{emit}, t_\text{hit})\) with \(t_\text{hit} > t_\text{emit}\) such that:
+For a given architrino with trajectory $\mathbf{x}(t)$, a self‑hit event is a pair of times $(t_{\text{emit}}, t_{\text{hit}})$ with $t_{\text{hit}} > t_{\text{emit}}$ such that:
 
-\[
-|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
-\]
+$$
+|\mathbf{x}(t_{\text{hit}}) - \mathbf{x}(t_{\text{emit}})| = c_f (t_{\text{hit}} - t_{\text{emit}})
+$$
 
-and the architrino is the source of the potential shell emitted at \(t_\text{emit}\).
+and the architrino is the source of the potential shell emitted at $t_{\text{emit}}$.
 
 Because the underlying coordinates and time are absolute, this condition is unambiguous:
 
-- The virtual observer knows \(\mathbf{x}(t)\) for all \(t\) and can solve for all such pairs \((t_\text{emit}, t_\text{hit})\) along the worldline.
+- The virtual observer knows $\mathbf{x}(t)$ for all $t$ and can solve for all such pairs $(t_{\text{emit}}, t_{\text{hit}})$ along the worldline.
 - No coordinate‑gauge ambiguity enters the definition.
 
 **Dynamical role:**
 
-- At low velocities (\(v < c_f\)), self‑hit is rare or absent; dynamics are approximately Markovian.
-- As velocities approach and exceed \(c_f\), emission spheres catch up with the emitter’s future positions, generating:
+- At low velocities ($v < c_f$), self‑hit is rare or absent; dynamics are approximately Markovian.
+- As velocities approach and exceed $c_f$, emission spheres catch up with the emitter’s future positions, generating:
   - Nonlocal feedback on its motion.
   - Effective restoring or destabilizing forces depending on configuration.
 - For binary and tri‑binary assemblies, repeated self‑hit events can:
@@ -65,8 +65,8 @@ Because the underlying coordinates and time are absolute, this condition is unam
 In simulations:
 
 - Use virtual‑observer provenance tables to record, for each self‑hit:
-  - \((t_\text{emit}, \mathbf{x}(t_\text{emit}))\),
-  - \((t_\text{hit}, \mathbf{x}(t_\text{hit}))\),
+  - $(t_{\text{emit}}, \mathbf{x}(t_{\text{emit}}))$,
+  - $(t_{\text{hit}}, \mathbf{x}(t_{\text{hit}}))$,
   - Impact parameters and force contributions.
 - Check convergence of self‑hit statistics under:
 - Time step refinement,
@@ -81,8 +81,10 @@ If self‑hit signatures are numerically unstable under refinement, treat any re
 
 The use of an Absolute Observer allows for a non-ambiguous definition of the self-hit condition.
 
-1. **Coordinate Identification**: Because $(x,y,z)$ labels in the void are permanent, the "Self-Hit" occurs when a potential shell emitted at $(\mathbf{x}_{em}, t_{em})$ intersects the source architrino at $(\mathbf{x}_{rec}, t_{rec})$ such that:
-   $$|\mathbf{x}_{rec}(t_{rec}) - \mathbf{x}_{em}(t_{em})| = c_f (t_{rec} - t_{em})$$
+1. **Coordinate Identification**: Because $(x,y,z)$ labels in the void are permanent, the "Self-Hit" occurs when a potential shell emitted at $(\mathbf{x}_{\text{em}}, t_{\text{em}})$ intersects the source architrino at $(\mathbf{x}_{\text{rec}}, t_{\text{rec}})$ such that:
+   $$
+   |\mathbf{x}_{\text{rec}}(t_{\text{rec}}) - \mathbf{x}_{\text{em}}(t_{\text{em}})| = c_f (t_{\text{rec}} - t_{\text{em}})
+   $$
 2. **Path History**: The path is a straight Euclidean vector. Curvature is not in the path, but in the **deformation of the source's trajectory** due to the self-interaction force.
 3. **Non-Markovian Memory**: The feedback loop at $t$ is determined by the position of the architrino at $t_{history}$. This prevents binary singularities; as $r \to 0$ and $v$ increases, the self-hit force provides a non-linear "push-back."
 
