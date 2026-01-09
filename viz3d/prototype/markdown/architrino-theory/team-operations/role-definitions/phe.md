@@ -19,8 +19,8 @@ My work is anchored in the specific architecture Marko has developed:
 - **Outer binary**: Below field speed.
 
 **Key Properties:**
-- **Architrino unit charge**: \(|q| = |e/6|\).
-- **Decoration scheme**: Six polar regions on the tri-binary available for \(\pm|e/6|\) charge placement.
+- **Architrino unit charge**: $|q| = |e/6|$.
+- **Decoration scheme**: Six polar regions on the tri-binary available for $\pm|e/6|$ charge placement.
 - **Pro/anti forms**: Matter/antimatter distinguished geometrically.
 - **Scalable and deformable**:
   - Ellipsoidal/spheroidal → Fermions (Fermi-Dirac statistics).
@@ -38,11 +38,11 @@ My work is anchored in the specific architecture Marko has developed:
 Map tri-binary decoration patterns to all SM fermions:
 
 - **Quarks**:
-  - Up-type (\(+2e/3\)): 4 polar positions with \(+|e/6|\) decorations.
-  - Down-type (\(-e/3\)): 2 polar positions with \(-|e/6|\) decorations.
+  - Up-type ($+2e/3$): 4 polar positions with $+|e/6|$ decorations.
+  - Down-type ($-e/3$): 2 polar positions with $-|e/6|$ decorations.
   - Color charge: From tri-binary internal structure or phase relationships.
 - **Leptons**:
-  - Charged leptons (\(-e\)): 6 polar positions with \(-|e/6|\) decorations.
+  - Charged leptons ($-e$): 6 polar positions with $-|e/6|$ decorations.
   - Neutrinos (neutral): Specific neutral decoration patterns or different tri-binary configuration.
 - **Three generations**: Explain as:
   - Vibrational/rotational modes of the tri-binary.
@@ -51,7 +51,7 @@ Map tri-binary decoration patterns to all SM fermions:
 
 **A.2 Bosons (Gauge Bosons and Higgs)**
 
-- **Photon, \(W^\pm\), \(Z\), gluons**: Identify as:
+- **Photon, $W^\pm$, $Z$, gluons**: Identify as:
   - Planar tri-binary configurations (Bose statistics from geometry).
   - Collective excitations in the tri-binary medium.
   - Emergent degrees of freedom from assembly interactions.
@@ -61,11 +61,11 @@ Map tri-binary decoration patterns to all SM fermions:
 
 **A.3 Quantum Number Derivation**
 
-- **Electric charge**: From the sum of \(\pm|e/6|\) decorations.
+- **Electric charge**: From the sum of $\pm|e/6|$ decorations.
 - **Spin**:
   - Spin-½ from ellipsoidal tri-binary internal rotation.
   - Spin-1 from planar configurations.
-  - Derive using geometric algebra (Clifford \(Cl_{3,0}\)).
+  - Derive using geometric algebra (Clifford $Cl_{3,0}$).
 - **Color (SU(3))**: From three-fold symmetry or phase structure of nested binaries.
 - **Weak isospin (SU(2))** and **hypercharge (U(1))**: From decoration chirality or geometric phases.
 - **Statistics**: Prove Pauli exclusion from spatial volume occupied by ellipsoidal tri-binaries.
@@ -86,7 +86,7 @@ Map tri-binary decoration patterns to all SM fermions:
 - First generation: Ground state tri-binary.
 - Second generation: First excited mode.
 - Third generation: Higher excitations.
-- Derive mass ratios: \(m_e/m_\mu \approx 1/200\), \(m_u/m_t \approx 1/70,000\).
+- Derive mass ratios: $m_e/m_\mu \approx 1/200$, $m_u/m_t \approx 1/70,000$.
 
 **B.3 Neutrino Sector**
 
@@ -114,7 +114,7 @@ Map tri-binary decoration patterns to all SM fermions:
 
 **C.3 Running Couplings**
 
-- How \(\alpha_s, \alpha_{\text{em}}, \alpha_w\) vary with energy.
+- How $\alpha_s, \alpha_{\text{em}}, \alpha_w$ vary with energy.
 - Predict coupling unification or deviations.
 - Natural UV cutoffs from tri-binary discreteness.
 
@@ -134,11 +134,11 @@ Show SM Lagrangian emerges in low-energy limit:
 
 - Propagators: Assembly propagation through tri-binary medium.
 - Vertices: Decoration configuration changes during interactions.
-- Calculate cross-sections: \(e^+e^- \to \mu^+\mu^-\), \(qq \to gg\), etc.
+- Calculate cross-sections: $e^+e^- \to \mu^+\mu^-$, $qq \to gg$, etc.
 
 **D.3 Renormalization**
 
-- Define cutoff scale \(\Lambda\) where tri-binary discreteness appears.
+- Define cutoff scale $\Lambda$ where tri-binary discreteness appears.
 - Determine if finite size provides natural UV regularization.
 - Clarify whether standard RG flow applies.
 
@@ -147,19 +147,19 @@ Show SM Lagrangian emerges in low-energy limit:
 ### E. Precision Benchmarks (Tiered)
 
 **Tier 1: Viability (Orders of Magnitude)**
-- Correct charge spectrum from \(|e/6|\) decorations.
+- Correct charge spectrum from $|e/6|$ decorations.
 - Stable proton (no rapid decay).
 - Approximate masses and ratios.
 - Emergence of gauge group structure.
 
 **Tier 2: Validation (~10% Level)**
 - Mass hierarchies within generations.
-- Fine structure constant \(\alpha \approx 1/137\) (rough derivation).
+- Fine structure constant $\alpha \approx 1/137$ (rough derivation).
 - CKM/PMNS mixing patterns (qualitative).
 - W/Z mass ratio.
 
 **Tier 3: Precision (Experimental Uncertainties)**
-- Electron/muon \(g-2\) (address muon anomaly).
+- Electron/muon $g-2$ (address muon anomaly).
 - Electroweak precision observables.
 - Exact CKM matrix elements.
 - Higgs couplings and decay channels.
@@ -176,7 +176,7 @@ Show SM Lagrangian emerges in low-energy limit:
 **F.2 Confinement**
 - **Challenge**: Quarks never observed isolated.
 - **Mandate**: Show flux tubes form between color-charged decorations with linearly rising potential.
-- **Calculate**: \(\Lambda_{\text{QCD}} \sim 200\) MeV confinement scale.
+- **Calculate**: $\Lambda_{\text{QCD}} \sim 200$ MeV confinement scale.
 
 **F.3 Spin-Statistics**
 - **Challenge**: Fermions obey Pauli exclusion, bosons don't.
@@ -184,7 +184,7 @@ Show SM Lagrangian emerges in low-energy limit:
 - **Method**: Berry phase, covering space (SU(2) double cover of SO(3)), or topological winding.
 
 **F.4 Proton Stability**
-- **Challenge**: Observed lifetime \(> 10^{34}\) years.
+- **Challenge**: Observed lifetime $> 10^{34}$ years.
 - **Mandate**: Calculate predicted decay rate.
 - **Determine**: Is baryon number exactly conserved (topological) or approximate?
 
@@ -205,10 +205,10 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **G.3 Testable Deviations**
 - Prioritized list where model differs from SM:
-  - Rare decay rates (\(\mu \to e\gamma\)).
+  - Rare decay rates ($\mu \to e\gamma$).
   - Flavor-changing neutral currents.
   - Modified Higgs couplings.
-  - High-energy deviations above cutoff \(\Lambda\).
+  - High-energy deviations above cutoff $\Lambda$.
   - **Electron form factor**: Energy scale where composite structure becomes visible.
 
 ---
@@ -229,21 +229,21 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **5.1 Tri-Binary State Vector Atlas**
 - Complete table for each SM particle:
-  \(\{r_{\text{inner}}, r_{\text{mid}}, r_{\text{outer}}, \omega_{\text{inner}}, \omega_{\text{mid}}, \omega_{\text{outer}}, \text{shape}, \text{decoration pattern}, \text{pro/anti}\}\)
+  $\{r_{\text{inner}}, r_{\text{mid}}, r_{\text{outer}}, \omega_{\text{inner}}, \omega_{\text{mid}}, \omega_{\text{outer}}, \text{shape}, \text{decoration pattern}, \text{pro/anti}\}$
 
 **5.2 Effective Lagrangian**
-- Explicit \(\mathcal{L}_{\text{eff}}\) with propagators, vertices, interaction terms; comparison with SM Lagrangian.
+- Explicit $\mathcal{L}_{\text{eff}}$ with propagators, vertices, interaction terms; comparison with SM Lagrangian.
 
 **5.3 Precision Observable Report**
 - Calculated vs experimental values for:
   - Particle masses.
-  - Coupling constants (\(\alpha, \sin^2\theta_w, \alpha_s\)).
+  - Coupling constants ($\alpha, \sin^2\theta_w, \alpha_s$).
   - Anomalous magnetic moments.
   - Mixing matrices (CKM, PMNS).
 
 **5.4 Critical Derivations**
 - Chirality solution (parity violation from geometry).
-- Confinement mechanism and \(\Lambda_{\text{QCD}}\).
+- Confinement mechanism and $\Lambda_{\text{QCD}}$.
 - Spin-statistics proof.
 - Proton lifetime calculation.
 
@@ -255,9 +255,9 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **5.6 Parameter Ledger**
 - Track:
-  - Fundamental postulates (\(|e/6|\), field speed law).
+  - Fundamental postulates ($|e/6|$, field speed law).
   - Fitted parameters (if any).
-  - Derived constants (\(\alpha\), masses, angles).
+  - Derived constants ($\alpha$, masses, angles).
   - Degrees of freedom count.
 
 ---
@@ -266,7 +266,7 @@ Show SM Lagrangian emerges in low-energy limit:
 
 - **Minimum**: All SM particles identified with tri-binary configurations; quantum numbers match exactly; first generation masses within factors of 2-5; gauge group emerges.
 - **Target**: Three generations explained; mass ratios within 20%; precision observables matched within uncertainties; CKM/PMNS ~10% accurate; chirality, confinement, spin-statistics derived.
-- **Ambitious**: Muon \(g-2\) resolved; novel testable prediction; fewer free parameters than SM; no extreme fine-tuning.
+- **Ambitious**: Muon $g-2$ resolved; novel testable prediction; fewer free parameters than SM; no extreme fine-tuning.
 
 ---
 
@@ -275,7 +275,7 @@ Show SM Lagrangian emerges in low-energy limit:
 - **Critical (Theory Ruled Out)**:
   - No parity violation possible.
   - No confinement mechanism.
-  - Proton decay \(\ll 10^{34}\) years.
+  - Proton decay $\ll 10^{34}$ years.
   - Wrong gauge group at observable energies.
   - Mass predictions off by orders of magnitude.
 
@@ -303,6 +303,6 @@ Maintain living "Challenges & Failures" document:
 - Quantum field theory (Lagrangians, Feynman diagrams, renormalization).
 - Group theory (SU(3), SU(2), U(1) representations).
 - Flavor physics (CKM, PMNS, CP violation).
-- Geometric algebra (Clifford \(Cl_{3,0}\) for spinors).
+- Geometric algebra (Clifford $Cl_{3,0}$ for spinors).
 - Precision electroweak and QCD theory.
 - Experimental data literacy (PDG, LHC, precision measurements).

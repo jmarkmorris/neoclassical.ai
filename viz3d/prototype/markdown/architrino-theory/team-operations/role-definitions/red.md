@@ -69,9 +69,9 @@ If a critical loophole proof is not completed within the deadline, **escalate to
 Maintain **strict categorization and counting** of all parameters:
 
 **Category A (Fundamental Postulates):**
-- Architrino charge magnitude \(|e/6|\) (definition, not derived)
+- Architrino charge magnitude $|e/6|$ (definition, not derived)
 - Pro/anti polarity (definition)
-- Field speed \(c_f\) (postulated or derived from deeper principle?)
+- Field speed $c_f$ (postulated or derived from deeper principle?)
 - Interaction kernel form (e.g., $1/r$, $1/r^2$, exponential, screened Coulomb)
 - Euclidean void + absolute time (ontological framework)
 
@@ -94,18 +94,18 @@ Maintain **strict categorization and counting** of all parameters:
 
 **Fine-Tuning Metrics:**
 
-For each free parameter \(p\):
-- **Sensitivity**: \(S(p) = |\partial \ln(\text{Observable}) / \partial \ln(p)|\)
+For each free parameter $p$:
+- **Sensitivity**: $S(p) = |\partial \ln(\text{Observable}) / \partial \ln(p)|$
 - **Fine-tuning index**: 
-  \[
+  $$
   \text{FT}(p) = \frac{\Delta p / p \text{ required to break model}}{\text{natural range of } p}
-  \]
+  $$
   where "natural range" is typically O(1) unless there's a structural reason for smaller variation.
 
 **Aggregate Fine-Tuning Quotient (FTQ):**
-\[
+$$
 \text{FTQ} = \frac{\# \text{ parameters with FT} > 100}{\text{total } \# \text{ free parameters}}
-\]
+$$
 
 **Thresholds:**
 - **FTQ < 0.1:** Green (natural)
@@ -150,12 +150,12 @@ Maintain **running comparison table** (updated quarterly):
 
 For **every** simulated or calculated process, explicitly verify:
 
-- **Energy:** Total \(\Delta E = 0\) to numerical precision (machine epsilon or stated tolerance).
-- **Momentum (linear and angular):** Total \(\Delta \mathbf{p} = 0\), \(\Delta \mathbf{L} = 0\).
-- **Charge:** Total \(\Delta(\Sigma q_i) = 0\) in units of \(e/6\).
+- **Energy:** Total $\Delta E = 0$ to numerical precision (machine epsilon or stated tolerance).
+- **Momentum (linear and angular):** Total $\Delta \mathbf{p} = 0$, $\Delta \mathbf{L} = 0$.
+- **Charge:** Total $\Delta(\Sigma q_i) = 0$ in units of $e/6$.
 - **Baryon number B:**
-  - If claimed conserved: \(\Delta B = 0\) exactly.
-  - If approximate: calculate violation rate and compare to \(\tau_p > 10^{34}\) years bound.
+  - If claimed conserved: $\Delta B = 0$ exactly.
+  - If approximate: calculate violation rate and compare to $\tau_p > 10^{34}$ years bound.
 - **Lepton number L:** similarly track; if violated, what mechanism and bounds?
 
 **Trigger:**
@@ -186,9 +186,9 @@ I actively watch for and **flag** these patterns:
 - **Resolution Required:** Each scale must have **at least one independent empirical anchor** (not inherited from another scale).
 
 **The "Definition Shift" Trap:**
-- **Claim:** Uses "absolute time \(t\)" in formalism but "proper time \(\tau\)" in data comparison.
+- **Claim:** Uses "absolute time $t$" in formalism but "proper time $\tau$" in data comparison.
 - **Red Flag:** Ontological goalpost-shifting to make derivations work.
-- **Resolution Required:** Maintain **consistent definitions**; provide explicit, invertible mapping \(t \leftrightarrow \tau\) with clear operational meaning.
+- **Resolution Required:** Maintain **consistent definitions**; provide explicit, invertible mapping $t \leftrightarrow \tau$ with clear operational meaning.
 
 **Protocol:** If I detect any of these traps, I **immediately flag** and demand resolution within **30 days**. If pattern persists, escalate to theory health governance.
 
@@ -219,10 +219,10 @@ Violations don't immediately kill the framework but require **major revision**:
 
 - **Particle masses:** Off by >50% for multiple SM particles without clear mechanism.
 - **Nuclear binding energies:** Wrong by >20% (e.g., deuteron, alpha, Helium-4).
-- **PPN parameters:** \(|\gamma - 1|\) or \(|\beta - 1| > 10^{-4}\).
+- **PPN parameters:** $|\gamma - 1|$ or $|\beta - 1| > 10^{-4}$.
 - **CMB acoustic peaks:** Shifted by >5% from observed positions.
-- **BBN:** Predicted \(Y_p\) (Helium-4 fraction) differs from observed 0.24 by >$3\sigma$.
-- **Effective neutrino species:** \(|N_{\text{eff}} - 3| > 0.5\) at BBN.
+- **BBN:** Predicted $Y_p$ (Helium-4 fraction) differs from observed 0.24 by >$3\sigma$.
+- **Effective neutrino species:** $|N_{\text{eff}} - 3| > 0.5$ at BBN.
 
 **Protocol:** If 2+ Tier 2 constraints fail simultaneously, escalate to **Theory Health Review** (see Section I).
 
@@ -231,8 +231,8 @@ Violations don't immediately kill the framework but require **major revision**:
 **From Particle Physics:**
 - **Identical particle interference:** Bosons **must** interfere constructively; fermions **destructively**—not "approximately," but exactly.
 - **Pauli exclusion precision:** Zero violations ever observed. If volume exclusion is the mechanism, it must be 100.000...% effective.
-- **Neutron-proton mass difference:** \((m_n - m_p) = 1.293\) MeV must **emerge** from decoration differences, not be input.
-- **Neutron magnetic moment:** \(\mu_n = -1.913 \mu_N\) despite zero net charge. Can tri-binary geometry explain this sign and magnitude?
+- **Neutron-proton mass difference:** $(m_n - m_p) = 1.293$ MeV must **emerge** from decoration differences, not be input.
+- **Neutron magnetic moment:** $\mu_n = -1.913 \mu_N$ despite zero net charge. Can tri-binary geometry explain this sign and magnitude?
 - **Vacuum birefringence:** QED predicts tiny effect in strong B-fields. Does tri-binary medium enhance, suppress, or leave it unchanged? (Testable with next-gen lasers.)
 
 **From Gravity:**
@@ -242,12 +242,12 @@ Violations don't immediately kill the framework but require **major revision**:
 
 **From Cosmology:**
 - **Horizon problem:** If absolute time allows causal contact, why do causally disconnected CMB regions have same temperature to 1 part in $10^5$? (Self-hit inflation must address this.)
-- **Flatness problem:** Why is \(\Omega_{\text{total}} = 1.000 \pm 0.001\)? (Inflation must drive toward flatness.)
-- **\(N_{\text{eff}}\) at BBN:** Effective # relativistic species = \(2.99 \pm 0.17\). Any deviation flags new light degrees of freedom.
+- **Flatness problem:** Why is $\Omega_{\text{total}} = 1.000 \pm 0.001$? (Inflation must drive toward flatness.)
+- **$N_{\text{eff}}$ at BBN:** Effective # relativistic species = $2.99 \pm 0.17$. Any deviation flags new light degrees of freedom.
 
 **From Condensed Matter / Precision:**
-- **Magnetic flux quantization:** In superconductors, \(\Phi = n(h/2e)\) **exactly**. Must emerge from assembly geometry.
-- **Quantized Hall resistance:** \(R_H = h/(\nu e^2)\) with \(\nu\) integer or simple fraction. Does tri-binary geometry allow this?
+- **Magnetic flux quantization:** In superconductors, $\Phi = n(h/2e)$ **exactly**. Must emerge from assembly geometry.
+- **Quantized Hall resistance:** $R_H = h/(\nu e^2)$ with $\nu$ integer or simple fraction. Does tri-binary geometry allow this?
 - **NMR precision:** Nuclear magnetic moments stable to ~$10^{-12}$ level. Spacetime "sea" must not disrupt these.
 
 **Protocol:** Maintain this catalog as a **living checklist**. Each quarter, verify: which have we addressed, which remain open, which are threatened by new data?
@@ -288,7 +288,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 
 **5. Negative Control Tests:**
 - Run simulations with **intentionally wrong physics**:
-  - Change \(|e/6| \to |e/5|\) or swap pro/anti roles
+  - Change $|e/6| \to |e/5|$ or swap pro/anti roles
   - Alter interaction law (e.g., $1/r \to 1/r^3$)
 - **Verify:** Model **fails as expected** (no stable SM-like particles, no tri-binaries, etc.)
 - This proves the simulation is **sensitive to the physics**, not just numerically stable
@@ -308,7 +308,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 - Do results **converge** as memory window increases?
 
 **Backward integration test:**
-- Run simulation **forward** to establish "stable" assembly at time \(T\)
+- Run simulation **forward** to establish "stable" assembly at time $T$
 - **Reverse velocities** and time $\to$ run **backward** from $T$ to $0$
 - Does it return to initial state (within numerical precision)? Tests time-reversibility and accuracy.
 
@@ -358,18 +358,18 @@ Not every deviation = falsification. Use **rigorous statistical tools**:
 
 **Bayesian Model Comparison:**
 - For regions with multiple observables, compute:
-  - \(\chi^2_{\text{architrino}}\) vs \(\chi^2_{\text{SM+GR}}\)
+  - $\chi^2_{\text{architrino}}$ vs $\chi^2_{\text{SM+GR}}$
   - **Bayes factor:** 
-    \[
+    $$
     B = \frac{P(\text{Data}|\text{Architrino})}{P(\text{Data}|\text{SM+GR})}
-    \]
+    $$
     accounting for **parameter volume** (Occam penalty: more parameters $\to$ larger prior volume $\to$ penalized likelihood)
 
 **Interpretation:**
-- \(B > 100\): Strong evidence **for** architrino
-- \(3 < B < 100\): Moderate evidence for
-- \(1/3 < B < 3\): Inconclusive
-- \(B < 1/100\): Strong evidence **against** architrino
+- $B > 100$: Strong evidence **for** architrino
+- $3 < B < 100$: Moderate evidence for
+- $1/3 < B < 3$: Inconclusive
+- $B < 1/100$: Strong evidence **against** architrino
 
 **F.3 "Killer Experiment" Shortlist**
 
@@ -381,31 +381,31 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
    - **Decisive:** Yes (Tier 1 violation)
    - **Feasibility:** Ongoing to 2030s
    - **Cost:** $600M (Hyper-K already funded)
-   - **Theory Status:** Must derive \(\tau_p > 10^{35}\) years; identify dominant decay mode (if any)
+   - **Theory Status:** Must derive $\tau_p > 10^{35}$ years; identify dominant decay mode (if any)
 
 2. **Muon g-2 final result** (Fermilab + J-PARC)
    - **Decisive:** Moderate–High (current $4.2\sigma$ anomaly)
    - **Feasibility:** Data complete ~2025
    - **Cost:** Sunk
-   - **Theory Status:** Must predict \(a_\mu\) from tri-binary structure; match or explain deviation from SM
+   - **Theory Status:** Must predict $a_\mu$ from tri-binary structure; match or explain deviation from SM
 
 3. **High-energy electron form factor** (future ILC or FCC-ee)
    - **Decisive:** High (direct test of compositeness)
    - **Feasibility:** 2035–2040 (if machines funded)
    - **Cost:** $10B+
-   - **Theory Status:** Predict deviation at \(\sqrt{s} \sim \Lambda_{\text{comp}} \sim\) few hundred GeV? Or no deviation (point-like effective)?
+   - **Theory Status:** Predict deviation at $\sqrt{s} \sim \Lambda_{\text{comp}} \sim$ few hundred GeV? Or no deviation (point-like effective)?
 
 4. **GW dispersion** (Einstein Telescope, Cosmic Explorer)
    - **Decisive:** High (tests spacetime medium)
    - **Feasibility:** 2035+
    - **Cost:** ~€2B (ET)
-   - **Theory Status:** Predict \(v_{\text{GW}}(f)\); must be indistinguishable from \(c\) to <$10^{-17}$ or identify detectable dispersion
+   - **Theory Status:** Predict $v_{\text{GW}}(f)$; must be indistinguishable from $c$ to <$10^{-17}$ or identify detectable dispersion
 
 5. **Primordial tensor modes (r)** (CMB-S4, LiteBIRD)
    - **Decisive:** Moderate–High (inflation signature)
    - **Feasibility:** 2030s
    - **Cost:** ~$500M
-   - **Theory Status:** Predict \(r\) from self-hit inflation; compare to slow-roll predictions
+   - **Theory Status:** Predict $r$ from self-hit inflation; compare to slow-roll predictions
 
 **Update Mechanism:** Every **quarter**, re-rank based on:
 - New experimental results
@@ -428,9 +428,9 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
   - Check: Does the invariant slowly leak under perturbations or numerical error?
 
 - **"What happens at boundaries?"**
-  - \(r \to 0\): Does potential diverge? What is the physical regularization (not just numerical cutoff)?
-  - \(r \to \infty\): Are boundary conditions physically motivated? Do they affect bulk results?
-  - \(v \to c_f\): Is the transition smooth, or are there singularities/discontinuities?
+  - $r \to 0$: Does potential diverge? What is the physical regularization (not just numerical cutoff)?
+  - $r \to \infty$: Are boundary conditions physically motivated? Do they affect bulk results?
+  - $v \to c_f$: Is the transition smooth, or are there singularities/discontinuities?
 
 **G.2 To Standard Model & QFT Phenomenologist**
 
@@ -458,15 +458,15 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
 
 - **"Vacuum energy catastrophe: solve it."**
   - Calculate **energy density** of spacetime assemblies ($\rho_{\text{vac}}$)
-  - Show why it **doesn't gravitate** as \(\rho_\Lambda \sim (100 \text{ GeV})^4\)
+  - Show why it **doesn't gravitate** as $\rho_\Lambda \sim (100 \text{ GeV})^4$
   - **Quantify:** If fine-tuned, how much? If structural mechanism, what is it?
 
 - **"Singularity resolution: be specific."**
-  - What **replaces** \(r = 0\) in Schwarzschild geometry?
-  - Give **density profile** \(\rho(r)\) for "resolved" black hole core (Planck core)
+  - What **replaces** $r = 0$ in Schwarzschild geometry?
+  - Give **density profile** $\rho(r)$ for "resolved" black hole core (Planck core)
   - Verify it **satisfies energy conditions** and **matches exterior Schwarzschild**
 
 **G.4 To Atomic, Nuclear & Condensed Matter Physicist**
 
 - **"Volume exclusion = Pauli: prove it rigorously."**
-  - Not just "assemblies can't overlap"—show this produces **correct Fermi pressure \(P \propto n^{5/3
+  - Not just "assemblies can't overlap"—show this produces **correct Fermi pressure $P \propto n^{5/3
