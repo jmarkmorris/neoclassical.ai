@@ -334,6 +334,105 @@ The complicated-looking metric components are entirely a feature of the coordina
 
 > **Key Insight:** Curvature is coordinate-invariant. While the metric components may look complicated in spherical or cylindrical coordinates, the space is still truly flat. Geodesics in spherical coordinates follow the familiar helical and straight paths, and the Riemann curvature identically vanishes in every coordinate frame.
 
+---
+
+### 1.2.1 Index Notation and Tensor Operations
+
+We adopt Cartesian core indices $i,j,k \in \{1,2,3\}$ for spatial components. The Euclidean metric and its inverse are:
+
+$$
+h_{ij} = \delta_{ij}, \quad h^{ij} = \delta^{ij}.
+$$
+
+Raising and lowering indices is trivial:
+
+$$
+v_i = h_{ij} v^j = \delta_{ij} v^j = v^i, \quad v^i = h^{ij} v_j = \delta^{ij} v_j = v_i.
+$$
+
+The dot product and norm follow directly:
+
+$$
+\mathbf{u} \cdot \mathbf{v} = h_{ij} u^i v^j = u^1 v^1 + u^2 v^2 + u^3 v^3, \qquad \|\mathbf{v}\|^2 = h_{ij} v^i v^j = (v^1)^2 + (v^2)^2 + (v^3)^2.
+$$
+
+The Laplacian of a scalar function is the coordinate-invariant contraction
+
+$$
+\Delta f = h^{ij} \partial_i \partial_j f = \partial_x^2 f + \partial_y^2 f + \partial_z^2 f.
+$$
+
+The spatial volume element in Cartesian coordinates is
+
+$$
+dV = \sqrt{\det h} \, d^3x = 1 \cdot dx\,dy\,dz = dx\,dy\,dz,
+$$
+
+and surface elements inherit the usual Jacobian factors when parametrized (e.g., $dA = r^2 \sin\theta \, d\theta \, d\phi$ on constant-$r$ spheres).
+
+---
+
+### 1.2.2 Spatial Differential Operators
+
+Vector calculus with the Euclidean metric specializes to:
+
+- **Gradient** of a scalar field:
+
+  $$
+  \nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right) = h^{ij} \partial_i f \, \mathbf{e}_j.
+  $$
+- **Divergence** of a vector field:
+
+  $$
+  \nabla \cdot \mathbf{v} = \partial_i v^i = \frac{1}{\sqrt{\det h}} \partial_i \left( \sqrt{\det h} \, v^i \right).
+  $$
+
+  In Cartesian coordinates this reduces to $\partial_x v^x + \partial_y v^y + \partial_z v^z$.
+- **Laplacian** (scalar and vector components) is the divergence of the gradient:
+
+  $$
+  \Delta f = \nabla^2 f = \partial_i \partial^i f.
+  $$
+- **Volume integrals** use the Cartesian measure:
+
+  $$
+  \int_V f \, dV = \int \!\!\int \!\!\int f(x,y,z) \, dx \, dy \, dz.
+  $$
+
+All these operators remain coordinate-invariant when expressed via tensor indices.
+
+---
+
+### 1.2.3 Homogeneity and Isotropy: Physical Implications
+
+Because space is homogeneous and isotropic, we immediately obtain:
+
+- **Translation symmetry**: Laws of physics are identical at any two points, underpinning global energy conservation and the absence of a special “center” of space.
+- **Rotation symmetry**: Physical processes behave the same in every direction, guaranteeing isotropic propagation for massless modes and conservation of angular momentum via Noether’s theorem.
+- **Universality**: Any experiment repeated at different locations or orientations yields the same result; cosmological observations hence exhibit large-scale uniformity.
+- **Constraint on preferred frames**: Any emergent anisotropy from assemblies, clocks, or measurement devices must stay below the experimental isotropy bounds discussed in the constraint ledger.
+
+---
+
+### 1.2.4 Coordinates, Cartesian Frames, and Forbidden Transformations
+
+We fix a rigid Cartesian chart $(x,y,z)$ covering the Euclidean void. Cartesian frames are related by elements of the Euclidean group $E(3)$ (a rotation plus a translation), and all geometric statements are tensorial and coordinate-invariant.
+
+Allowed substrate transformations:
+
+- **Spatial translations**: $\mathbf{x} \mapsto \mathbf{x} + \mathbf{a}$ (homogeneity).
+- **Spatial rotations**: $\mathbf{x} \mapsto R\mathbf{x}$, $R \in SO(3)$ (isotropy).
+
+Forbidden transformations:
+
+- **Non-isometric scalings/shears** that change distances or angles.
+- **Mixing spatial coordinates with time**; Galilean and Lorentz boosts are not fundamental symmetries of the substrate but may emerge effectively.
+- **Introducing preferred directions** or anisotropies at the substrate level—any such structure must arise from assembly dynamics, not the background.
+
+These restrictions keep the ontology faithful to the Euclidean substrate while allowing assemblies to realize effective symmetries in their own kinematics.
+
+---
+
 **Symmetry Group: The Euclidean Group:**
 
 The kinematic symmetry group of absolute space is the **Euclidean group**:
@@ -1517,4 +1616,3 @@ Changes to this document require:
 
 **Retained for self-hit-dynamics.md:**
 - `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.3-MaximumCurvatureOrbit.md`
-
