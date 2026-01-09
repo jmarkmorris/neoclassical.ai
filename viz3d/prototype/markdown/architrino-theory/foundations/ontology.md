@@ -166,7 +166,7 @@ for any parametrization $s$ of the worldline.
 
 **Causal Ordering:** Event A can influence event B **only if** $t_B > t_A$.
 
-**Finite Propagation Speed:** All physical interactions are mediated by fields (potentials) that propagate at a **finite speed** $c_f$ (the "field speed"), defined in the context of the Interaction Law (Section 2.5).
+**Finite Propagation Speed:** All physical interactions are mediated by fields (potentials) that propagate at a **finite speed** $c_f$ (the "field speed"), defined in the context of the Interaction Law (Section 2.6).
 
 **Path History Interactions:** If a source is located at $(\hat{t}_0, \mathbf{x}_0)$, its influence reaches a receiver at $(\hat{t}, \mathbf{x})$ at the **emission time**:
 $$
@@ -904,12 +904,9 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 - **Part 2 (Particle Mapping):** Shows how stable assemblies form and move through timespace.
 - **Part 4 (Emergent Spacetime and Gravity):** Explains how an effective curved spacetime geometry emerges from the tri-binary medium, while the fundamental background remains eternally flat and non-dynamical.
 
----
 
-**End of Section 00.0.3: Absolute Timespace**
 
 ---
-
 
 ## 2. The Fundamental Entity (Architrino)
 
@@ -1038,11 +1035,65 @@ See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Ma
 
 ---
 
-### 2.4 Velocity Regimes and Self-Hit Dynamics
+### 2.4 Architrino Paths
+
+The Architrino path ontology describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
+
+#### 2.4.1 Definition and Persistence
+
+Each Architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Eternality** is a foundational postulate: Architrinos are neither created nor destroyed, so every Architrino has a complete past and future history.
+
+The worldline is **unique** (no two distinct Architrinos share the same path) and at least absolutely continuous so that $\mathbf{v}_a(t)=d\mathbf{s}_a/dt$ exists almost everywhere and is piecewise continuous.
+
+#### 2.4.2 Energy Carriers
+
+Architrinos are the **sole carriers of kinetic and potential energy**. There is no vacuum energy independent of Architrino motion; all conserved energy resides in their positions, velocities, and interactions.
+
+#### 2.4.3 Coincidence and Regularization
+
+Architrinos have no volume, so multiple particles may coincide in space at the same $t$. Regularization of the singular $1/r^2$ hits is handled by a shell-thickness parameter $\eta>0$: for separations $r<\eta$ the force transitions to a bounded profile, preventing divergences while preserving total charge and energy in the $\eta\to 0$ limit.
+
+#### 2.4.4 Sphere Stream: The Field Landscape
+
+As an Architrino moves, it leaves behind a **sphere stream**—the collection of all expanding spherical shells it has emitted up to the observation time $t_{obs}$:
+
+$$
+\mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
+$$
+
+Each sphere in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$.
+
+#### 2.4.5 Causal Intersection Times
+
+For a receiver $a$ at time $t$ and source $j$, the set of emission times whose spheres reach $a$ at $t$ is:
+
+$$
+\mathcal{C}_j(t) = \left\{ t_0 < t \;\middle|\; \|\mathbf{s}_a(t) - \mathbf{s}_j(t_0)\| = v_f (t - t_0) \right\}.
+$$
+
+This set is typically a singleton when $|\mathbf{v}_j|<v_f$, but may contain multiple roots (multi-hit regime) if $|\mathbf{v}_j|>v_f$. Self-hits correspond to $j=a$ with $t_0<t$.
+
+#### 2.4.6 Superposition of Sphere Streams
+
+Sphere streams from distinct Architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a purely radial push scaling as $1/r^2$, so nearby sphere hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
+
+#### 2.4.7 Future Path and Deterministic Evolution
+
+The Architrino's future path is determined by its current state and the superposed hits from all sources. The acceleration at time $t$ is:
+
+$$
+\mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{a,j}(t; t_0),
+$$
+
+where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted by source $j$'s shell emitted at $t_0$. This is the deterministic, history-dependent evolution law.
+
+---
+
+### 2.5 Velocity Regimes and Self-Hit Dynamics
 
 There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. The velocity of an Architrino relative to the field speed $v_f$ defines three distinct dynamic regimes and opens the possibility of self-interaction.
 
-#### **2.4.1 Immediate Regimes (Relative to Most Recent Shell)**
+#### **2.5.1 Immediate Regimes (Relative to Most Recent Shell)**
 
 Consider a particle at position $\mathbf{s}_a(t_{\text{now}})$ moving with velocity $\mathbf{v}_a$. At an infinitesimal time $\Delta t$ later, the spherical shell it emitted at $t_{\text{now}}$ has expanded to a radius of $r = v_f \Delta t$.
 
@@ -1052,7 +1103,7 @@ Consider a particle at position $\mathbf{s}_a(t_{\text{now}})$ moving with veloc
 
 - **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The particle travels a distance greater than the shell's radius. It is located *outside* the sphere of its most recent emission, moving ahead of it. In this regime, the particle can outrun recently emitted wavefronts.
 
-#### **2.4.2 Self-Hit Regime (Historical Path Intersections)**
+#### **2.5.2 Self-Hit Regime (Historical Path Intersections)**
 
 Distinct from the immediate relationship above is the possibility of an Architrino intersecting one of its own spherical shells emitted earlier in its path history. Consider a particle that emits a shell at time $t_0$ from position $\mathbf{s}_a(t_0)$. If the particle subsequently accelerates or curves, it may later—at some time $t_s > t_0$—find itself on the expanding wavefront of that earlier-emitted shell. This occurs when:
 
@@ -1109,7 +1160,7 @@ This maximum-curvature orbit:
 
 ---
 
-### 2.5 Reception Rule and Acceleration
+### 2.6 Reception Rule and Acceleration
 
 Each Architrino possesses a **reception rule**: a deterministic law that converts incoming potential into acceleration. The rule is **universal** (all Architrinos follow the same law).
 
@@ -1148,7 +1199,7 @@ The total acceleration is summed over all sources and all causal emission times 
 
 ---
 
-### 2.6 Determinism and Causal Structure
+### 2.7 Determinism and Causal Structure
 
 The architrino model is **deterministic in principle**: given initial conditions (all Architrino positions and velocities at $t=t_0$), the future evolution is uniquely determined by the reception rule and the dynamics of self-hit.
 
@@ -1173,7 +1224,7 @@ When $|\mathbf{v}_a| > v_f$, individual Architrinos can outrun their own fields.
 
 ---
 
-### 2.7 Absolute Rest and Stationary Frame
+### 2.8 Absolute Rest and Stationary Frame
 
 A special and fundamental case arises when an Architrino is stationary with respect to absolute space, i.e., its velocity $\mathbf{v}_a = \mathbf{0}$.
 
