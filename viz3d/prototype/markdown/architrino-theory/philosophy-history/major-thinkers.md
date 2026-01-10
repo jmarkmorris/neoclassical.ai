@@ -348,7 +348,7 @@ The architrino project is positioned as:
 - Quantum field theory framework (creation/annihilation operators).
 
 **Architrino impact**:
-- ✅ **Pro**: Dirac's antimatter prediction is **naturally explained**: **pro/anti architrinos** form binaries; "particles and antiparticles" are **ellipsoidal tri-binaries** with opposite orientations/charges.
+- ✅ **Pro**: Dirac's antimatter prediction is **naturally explained**: **opposite architrinos** form binaries; "particles and antiparticles" are **ellipsoidal tri-binaries** with opposite orientations/charges.
 - ✅ **Pro**: Dirac equation as **effective description** of fermionic tri-binary assemblies (ellipsoidal/3D configurations obeying Fermi-Dirac statistics).
 - ⚠️ **Tension**: QFT formalism (fields, creation/annihilation operators, virtual particles, vacuum fluctuations) is **emergent**, not fundamental. These are **bookkeeping devices** for complex assembly interactions, visible in full detail only to the absolute observer.
 
