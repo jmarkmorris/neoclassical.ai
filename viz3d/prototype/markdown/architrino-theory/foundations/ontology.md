@@ -952,7 +952,7 @@ $$
 \mathcal{C}=\{(t,\mathbf{s}) : t\ge t_0,\; r = v_f(t-t_0)\},\quad r=\|\mathbf{s}-\mathbf{s}_0\|.
 $$
 
-At $t=t_0$ the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. For $t>t_0$ it is a surface delta on the sphere of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
+At $t=t_0$ the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. For $t>t_0$ it is a surface delta on the causal wake surface of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
 
 This contribution has two notable features:
 
@@ -1053,7 +1053,7 @@ $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
 $$
 
-Each sphere in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$.
+Each causal wake surface in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$.
 
 #### 2.4.5 Causal Intersection Times and the Master Equation
 

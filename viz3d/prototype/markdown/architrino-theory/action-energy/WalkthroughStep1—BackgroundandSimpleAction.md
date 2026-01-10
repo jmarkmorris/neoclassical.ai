@@ -11,9 +11,9 @@ Detailed explanation (dynamical geometry):
   - The arena is absolute time × Euclidean space, $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, with simultaneity slices $\Sigma_t=\{t\}\times\mathbb{R}^3$ carrying the flat spatial metric $h_{ij}=\delta_{ij}$.
   - “Geodesics are straight” means: in the absence of any interaction, a worldline $\mathbf{s}(t)$ satisfies $\mathbf{a}(t)=d^2\mathbf{s}/dt^2=\mathbf{0}$; motion is uniform and rectilinear in each slice $\Sigma_t$. The background is fixed; there is no curvature to encode forces.
 
-- Field geometry as a continuous causal flux:
-  - Each Architrino streams potential continuously. At any observation time $t$, the contribution emitted at past time $t_0$ sits on the spherical isochron $r=v(t-t_0)$ centered on $\mathbf{s}(t_0)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
-  - “Potential field” refers to the superposition of all such causal isochrons (wake surfaces) from past emissions. The flux never shuts off; the surfaces are bookkeeping devices that isolate portions of the path history whose intersection with a receiver delivers acceleration.
+-- Field geometry as a continuous causal flux:
+  - Each Architrino streams potential continuously. At any observation time $t$, the contribution emitted at past time $t_0$ sits on the **causal wake surface** (spherical isochron) $r=v(t-t_0)$ centered on $\mathbf{s}(t_0)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
+  - “Potential field” refers to the superposition of all such causal isochrons from past emissions. The flux never shuts off; the surfaces are bookkeeping devices isolating portions of the path history whose intersection with a receiver delivers acceleration.
 
 - Intersection as the driver of acceleration:
   - The receiver’s worldline is $\mathbf{s}_{o'}(t)$. An intersection at time $t$ means some earlier emission time $t_0 < t$ satisfies the causal-distance condition
