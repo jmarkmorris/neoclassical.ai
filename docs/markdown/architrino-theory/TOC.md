@@ -49,9 +49,9 @@
 ### Chapter 7: The Experimental Landscape and Master Constraint Ledger
 - Tier-1 "Hard Wall" Constraints
   - Charge Quantization: No Stable Fractional Charges Beyond |e/6|
-  - Proton Stability: τ_p > 10³⁴ years
-  - Gravitational Wave Speed: |v_GW - c|/c < 10⁻¹⁵
-  - Equivalence Principle: η < 10⁻¹⁴
+  - Proton Stability: $\tau$\_p > 10³⁴ years
+  - Gravitational Wave Speed: |v\_GW - c|/c < 10⁻¹⁵
+  - Equivalence Principle: $\eta$ < 10⁻¹⁴
   - Lorentz Invariance Violations: Stringent Bounds from SME Tests
 - Parameter Ledger Framework
   - Postulated (Input) Parameters
@@ -150,7 +150,7 @@
 - Up/Down, Charm/Strange, Top/Bottom Quark Assemblies
 - Reference to Assembly Atlas: Topological Classification
 - Empirical Scorecard: Pull Analysis for Particle Masses and Charges
-  - Electron: m_e (CODATA), Charge (15 ppt precision)
+  - Electron: m\_e (CODATA), Charge (15 ppt precision)
   - Muon, Tau: Mass Pull Analysis
   - Quark Mass Running and PDG Comparison
 
@@ -161,7 +161,7 @@
 - The Geometric Origin of Chirality and Parity Violation
 - The Higgs Boson and Spacetime Aether Generation
 - Reference to Assembly Atlas: Planar vs. Ellipsoidal Geometry
-- Empirical Scorecard: Gauge Boson Masses (W, Z, γ, g)
+- Empirical Scorecard: Gauge Boson Masses (W, Z, $\gamma$, g)
 
 ### Chapter 20: Emergence of Gauge Symmetries: SU(3) × SU(2) × U(1)
 - From Tri-Binary Geometry to Lie Groups
@@ -184,7 +184,7 @@
 - CKM and PMNS Matrix Structure
 - Predicted Deviations and Experimental Signatures
 - Empirical Scorecard: Pull Analysis for Precision Observables
-  - Fine Structure Constant α
+  - Fine Structure Constant $\alpha$
   - Muon g-2: Theory vs. Experiment (Fermilab 2023)
   - CKM Unitarity Tests
 
@@ -195,14 +195,14 @@
 ### Chapter 23: From Quarks to Nucleons
 - Assembly of Protons and Neutrons from Quark Tri-Binaries
 - The Nucleon as a Bound State: Internal Geometry and Dynamics
-- Nucleon-Nucleon Potential V_NN(r) from Neutral-Axis Coupling
+- Nucleon-Nucleon Potential V\_NN(r) from Neutral-Axis Coupling
 - Comparison to Yukawa, One-Pion-Exchange, and Chiral EFT Potentials
 - Reference to Assembly Atlas: Nucleon Stability Domain
 - Empirical Scorecard: Proton and Neutron Mass, Magnetic Moments
 
 ### Chapter 24: Nuclear Binding and the Chart of Nuclides
 - Deuteron: The Simplest Nucleus as Test Case
-- Alpha Particle (Helium-4) Stability and Binding Energy
+- Alpha Particle ($^{4}\text{He}$) Stability and Binding Energy
 - Magic Numbers and Shell Structure: Geometric Origin
 - Neutron/Proton Ratio Stability and Isotope Selection
 - Beta Decay and Nuclear Transmutation from Assembly Reconfiguration
@@ -266,9 +266,9 @@
 
 ### Chapter 32: Emergent Metric and the Bridge to General Relativity
 - Construction of Coarse-Grained Fields from Architrino/Assembly Distributions
-- Definition of Effective Metric g_μν(x) from Assembly Dynamics
+- Definition of Effective Metric g_$\mu$$\nu$(x) from Assembly Dynamics
 - Proper Time from Assembly Clocks: Operational Definition
-  - Explicit Formula: dτ/dt = f(v, ρ_aether, Φ)
+  - Explicit Formula: d$\tau$/dt = f(v, $\rho$\_aether, $\Phi$)
   - Worked Examples: GPS, Gravitational Redshift, Muon Decay
 - Relation Between Architrino Trajectories and Geodesics
 - Limits: When GR Is Recovered, When Deviations Are Expected
@@ -279,7 +279,7 @@
 - Light Bending, Shapiro Delay, and Gravitational Redshift (Reference to Ch. 32 Clock Physics)
 - Perihelion Precession and Frame Dragging
 - Empirical Scorecard: Pull Analysis for GR Tests
-  - PPN Parameters γ, β
+  - PPN Parameters $\gamma$, $\beta$
   - Cassini Tracking, Lunar Laser Ranging
   - Gravity Probe B Frame Dragging
 
@@ -289,7 +289,7 @@
 - Black Holes and Planck Cores: Reinterpretation
 - Information Preservation and Singularity Resolution
 - Empirical Scorecard: GW Speed, Polarization, Dispersion
-  - GW170817 Constraint: |v_GW - c|/c < 10⁻¹⁵
+  - GW170817 Constraint: |v\_GW - c|/c < 10⁻¹⁵
   - LIGO/Virgo Polarization Tests
 
 ### Chapter 35: Dense Matter and Degeneracy Pressure
@@ -301,7 +301,7 @@
 - Exotic Matter Phases: Quark Matter and Color Superconductivity
 - Empirical Scorecard: Mass-Radius Relations, Tidal Deformability
   - PSR J0740+6620, PSR J0030+0451
-  - GW170817 Λ̃ Constraint
+  - GW170817 $\Lambda$̃ Constraint
 
 ### Chapter 36: The Hierarchy Problem and Asymptotic Safety
 - Why Gravity is Weak: Energy Shielding and Scale
@@ -326,7 +326,7 @@
 - Big Bang Nucleosynthesis and Recombination
 - Photon Epoch, Dark Ages, and Galaxy Formation
 - Empirical Scorecard: BBN Light Element Abundances
-  - Helium-4 Fraction Y_p
+  - Helium-4 (alpha particle) ($^{4}\text{He}$) Fraction Y\_p
   - Deuterium/Hydrogen Ratio
   - Effective Neutrino Species N_eff
 
@@ -342,9 +342,9 @@
 - Planck Satellite Data and NPQG Predictions
 - CMB as Evidence for Spacetime Aether Emission
 - Empirical Scorecard: CMB Power Spectrum and Polarization
-  - Acoustic Peak Positions (ℓ_1, ℓ_2, ℓ_3)
+  - Acoustic Peak Positions (ℓ\_1, ℓ\_2, ℓ\_3)
   - TT, TE, EE Spectra
-  - Lensing Potential φφ
+  - Lensing Potential $\phi$$\phi$
 
 ### Chapter 41: Expansion, Inflation, and Redshift
 - The Universe Expands In Place
@@ -353,8 +353,8 @@
 - Redshift as Clock Comparison in Expanding Aether (Cross-Reference to Ch. 32)
 - Empirical Scorecard: Distance Ladder and H(z)
   - Supernova Ia Standardization
-  - BAO Scale r_d
-  - H_0 Local vs. Global Measurements
+  - BAO Scale r\_d
+  - H\_0 Local vs. Global Measurements
 
 ### Chapter 42: Structure Formation and Large-Scale Structure
 - Linear Growth of Perturbations in the Architrino-Derived Metric
@@ -362,26 +362,26 @@
 - Baryon Acoustic Oscillations in Clustering
 - Weak Gravitational Lensing and Cosmic Shear
 - Effective Dark Matter vs. Modified Gravity vs. Hybrid Models
-- Empirical Scorecard: σ₈, S₈, and LSS Constraints
+- Empirical Scorecard: $\sigma$₈, S₈, and LSS Constraints
   - Planck 2018 vs. KiDS+VIKING+DES
   - Cluster Abundances
-  - Redshift-Space Distortions f σ₈
+  - Redshift-Space Distortions f $\sigma$₈
 
 ### Chapter 43: Resolution of Critical Empirical Tensions
-- The Hubble Tension (5σ Discrepancy)
+- The Hubble Tension (5$\sigma$ Discrepancy)
   - SH0ES vs. Planck: Predicted Resolution Pathway
-  - Architrino Framework Prediction for H_0
-- The Muon g-2 Anomaly (4.2σ Discrepancy)
+  - Architrino Framework Prediction for H\_0
+- The Muon g-2 Anomaly (4.2$\sigma$ Discrepancy)
   - Fermilab 2023 vs. SM Prediction
-  - Assembly Contribution to a_μ
-- The σ₈/S₈ Large-Scale Structure Tension
+  - Assembly Contribution to a_$\mu$
+- The $\sigma$₈/S₈ Large-Scale Structure Tension
   - Weak Lensing vs. CMB
   - Modified Growth from Aether Dynamics
 - Unified Resolution Strategy
 
 ### Chapter 44: Failure Modes and Stop Conditions
 - Tier-1 Falsification Criteria (Reference to Ch. 7): Quantitative Thresholds
-- Tier-2 Serious Challenges: Multiple 3σ Tensions, Parameter Explosion
+- Tier-2 Serious Challenges: Multiple 3$\sigma$ Tensions, Parameter Explosion
 - Stop Conditions: When to Pivot or Halt the Program
 - Theory Health Dashboard: Current Status (Green/Yellow/Red) by Domain
 - Intellectual Honesty and the Scientific Method

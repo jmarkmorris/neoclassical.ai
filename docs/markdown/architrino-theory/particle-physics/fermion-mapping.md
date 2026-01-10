@@ -12,17 +12,17 @@ We label the three binaries by their dynamical regime:
 
 - **H‑binary (High / inner)**  
   - Smallest radius  
-  - Velocity \(v_H > V_f\)  
+  - Velocity $v_H > V_f$  
   - Self‑hit regime (strong path memory, highest curvature/energy)
 
 - **M‑binary (Medium / middle)**  
   - Intermediate radius  
-  - Velocity \(v_M = V_f\)  
+  - Velocity $v_M = V_f$  
   - Symmetry‑breaking “pivot” scale
 
 - **L‑binary (Low / outer)**  
   - Largest radius  
-  - Velocity \(v_L < V_f\)  
+  - Velocity $v_L < V_f$  
   - Lowest curvature; outer envelope, expansion/contraction behavior
 
 Each binary defines one **axis** with two polar **personality slots**, each occupied by either:
@@ -69,7 +69,7 @@ Standard Model “generations” are interpreted as **excitation states** of the
   - Only [H] assembled.  
   - M and L cannot maintain coherent orbits at that energy; the H self‑hit core is effectively naked.
 
-We treat these as **different assembly states**, not decay products in time. Heavier generations require energy input to form and relax back via W/Z/γ/ν emission.
+We treat these as **different assembly states**, not decay products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission.
 
 In this section, color is defined on **Gen‑I** Noether cores; higher generations inherit the same color structure via their remaining axes (H only, or H+M).
 
@@ -79,8 +79,8 @@ In this section, color is defined on **Gen‑I** Noether cores; higher generatio
 
 Beyond which binaries are present, their **precession order** defines a braid orientation:
 
-- **Matter** tri‑binaries: precession order \(H \to M \to L\) in time (one chirality).  
-- **Antimatter** tri‑binaries: precession order \(H \to L \to M\) (opposite chirality).
+- **Matter** tri‑binaries: precession order $H \to M \to L$ in time (one chirality).  
+- **Antimatter** tri‑binaries: precession order $H \to L \to M$ (opposite chirality).
 
 This **braid chirality** will underpin our distinction between particles and antiparticles across all sectors and will later feed into CP‑related questions. Here, we keep **color** as a vector‑like degree of freedom: it does **not** depend on braid chirality.
 
@@ -94,17 +94,13 @@ Color charge appears only when the tri‑binary axes are **not equivalent**. If 
 ### 1.1 Electron and positron
 
 - **Electron**:
-  \[
-  (\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)
-  \]
+  $(\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)$
   - Each axis: net −2e/6.  
   - Total: −6e/6 = −e.  
-  - All axes identical → SU(3)\(_c\) singlet.
+  - All axes identical → SU(3)$_c$ singlet.
 
 - **Positron**:
-  \[
-  (+/+,\ +/+,\ +/+)
-  \]
+  $(+/+,\ +/+,\ +/+)$
   - Each axis: net +2e/6.  
   - Total: +e.  
   - All axes identical → singlet.
@@ -112,16 +108,12 @@ Color charge appears only when the tri‑binary axes are **not equivalent**. If 
 ### 1.2 Neutrinos: multiple neutral, colorless cores
 
 One canonical neutrino configuration:
-\[
-(-/+,\ -/+,\ -/+)
-\]
+$(-/+,\ -/+,\ -/+)$
 - Each axis: one e and one p → net 0 per axis.  
 - All axes identical → colorless.
 
 Other neutral patterns exist, e.g.:
-\[
-(+/+,\ -/+,\ -/-)
-\]
+$(+/+,\ -/+,\ -/-)$
 and permutations. Charge check:
 - (H: +/+, M: −/+, L: −/−): 3e + 3p → net 0 again.
 
@@ -144,9 +136,9 @@ Quarks are color‑charged because **one axis is in a different personality clas
 
 Let each axis pattern be coarse‑classified as:
 
-- **P−**: pure electrino \((-\!/-)\)  
-- **P+**: pure positrino \((+\!/+)\)  
-- **Pm**: mixed \((-\!/+)\) (net neutral, dipolar)
+- **P−**: pure electrino $(-\!/-)$  
+- **P+**: pure positrino $(+\!/+)$  
+- **Pm**: mixed $(-\!/+)$ (net neutral, dipolar)
 
 The key structural rule for **admissible, stable quark‑like Noether cores** is:
 
@@ -158,11 +150,11 @@ Therefore:
 
 - **Colorless**: H,M,L all same class (e.g., all P− or all Pm).  
 - **Colored quark**: H,M,L pattern is one of:
-  - P_bkg, P_bkg, P_exc  
-  where P_exc ≠ P_bkg.
+  - P\_bkg, P\_bkg, P\_exc  
+  where P\_exc ≠ P\_bkg.
 
 Color degree of freedom is then:  
-**which axis carries P_exc?**
+**which axis carries P\_exc?**
 
 
 
@@ -174,8 +166,8 @@ Up‑type (u,c,t) Gen‑I quarks have:
 
 At axis‑class level:
 
-- **Two axes**: P+ (\(+/+)\)  
-- **One axis**: Pm (contains the single electrino; local pattern e.g. \(-/+\))
+- **Two axes**: P+ ($+/+)$  
+- **One axis**: Pm (contains the single electrino; local pattern e.g. $-/+$)
 
 Thus:
 
@@ -184,20 +176,16 @@ Thus:
 
 Define color basis:
 
-- \(|u_H\rangle\): H axis is Pm (exceptional), M and L = P+.  
-- \(|u_M\rangle\): M exceptional.  
-- \(|u_L\rangle\): L exceptional.
+- $|u_H\rangle$: H axis is Pm (exceptional), M and L = P+.  
+- $|u_M\rangle$: M exceptional.  
+- $|u_L\rangle$: L exceptional.
 
 These span the color space:
-\[
-\mathcal{H}^{\text{color}}_u 
-= \mathrm{span}\{|u_H\rangle,|u_M\rangle,|u_L\rangle\}
-\cong \mathbb{C}^3.
-\]
+$\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_H\rangle,|u_M\rangle,|u_L\rangle\} \cong \mathbb{C}^3.$
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
-Anti‑up quarks use an anti‑tri‑binary with 5 electrinos, 1 positrino (and reversed braid), forming the conjugate triplet **3̄** with basis \(|\bar u_H\rangle,|\bar u_M\rangle,|\bar u_L\rangle\).
+Anti‑up quarks use an anti‑tri‑binary with 5 electrinos, 1 positrino (and reversed braid), forming the conjugate triplet **3̄** with basis $|\bar u_H\rangle,|\bar u_M\rangle,|\bar u_L\rangle$.
 
 
 
@@ -213,9 +201,9 @@ All admissible axis‑class patterns consistent with 4e,2p and the “two‑same
 
 Written as (H,M,L):
 
-- (A) \((P-, P-, P+)\) → \((-\!/-,-/- ,+\!/+)\)  
-- (B) \((P-, P+, P-)\)  
-- (C) \((P+, P-, P-)\)
+- (A) $(P-, P-, P+)$ → $(-\!/-,-/- ,+\!/+)$  
+- (B) $(P-, P+, P-)$  
+- (C) $(P+, P-, P-)$
 
 Here:
 
@@ -224,9 +212,9 @@ Here:
 
 #### Family II — “one P− axis, two Pm axes”
 
-- (D) \((Pm, Pm, P-)\) → \((-\!/+,-/+,-/-)\)  
-- (E) \((Pm, P-, Pm)\)  
-- (F) \((P-, Pm, Pm)\)
+- (D) $(Pm, Pm, P-)$ → $(-\!/+,-/+,-/-)$  
+- (E) $(Pm, P-, Pm)$  
+- (F) $(P-, Pm, Pm)$
 
 Here:
 
@@ -237,18 +225,14 @@ In both families, the same structural pattern appears:
 
 > Two axes share one class; one axis in the other class.
 
-Thus for down‑type \(d\) we again define:
+Thus for down‑type $d$ we again define:
 
-- \(|d_H\rangle\): H axis is exceptional (either P+ among P−, or P− among Pm).  
-- \(|d_M\rangle\): M exceptional.  
-- \(|d_L\rangle\): L exceptional.
+- $|d_H\rangle$: H axis is exceptional (either P+ among P−, or P− among Pm).  
+- $|d_M\rangle$: M exceptional.  
+- $|d_L\rangle$: L exceptional.
 
 and:
-\[
-\mathcal{H}^{\text{color}}_d 
-= \mathrm{span}\{|d_H\rangle,|d_M\rangle,|d_L\rangle\}
-\cong \mathbb{C}^3.
-\]
+$\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_H\rangle,|d_M\rangle,|d_L\rangle\} \cong \mathbb{C}^3.$
 
 #### Family selection: dynamic, not arbitrary
 
@@ -263,7 +247,7 @@ We must not over‑predict.
 
 **Working hypothesis** (to be checked via energy minimization in the 9‑axis network):
 
-- Ground‑state down quark \(d\) in nucleons prefers one family (likely the “hybrid” Family II with two Pm axes → better screening).  
+- Ground‑state down quark $d$ in nucleons prefers one family (likely the “hybrid” Family II with two Pm axes → better screening).  
 - Strange/bottom quarks may correspond to other family choices or higher‑energy configurations.
 
 **Failure condition:** if a detailed stability analysis shows both families are equally and generically stable in the low‑energy vacuum, the model over‑predicts down‑type species and must be revised.
@@ -272,19 +256,15 @@ We must not over‑predict.
 
 ## 3. Color Hilbert Space and SU(3) Structure
 
-For any quark flavor \(q\), the color state is a vector in:
+For any quark flavor $q$, the color state is a vector in:
 
-\[
-\mathcal{H}^{\text{color}}_q \cong \mathbb{C}^3
-\]
+$\mathcal{H}^{\text{color}}_q \cong \mathbb{C}^3$
 
 with basis:
 
-\[
-|q_H\rangle,\quad |q_M\rangle,\quad |q_L\rangle
-\]
+$|q_H\rangle,\quad |q_M\rangle,\quad |q_L\rangle$
 
-(“axis exceptional on H/M/L”). Identifying this basis with the usual SU(3) triplet basis \(|q_1\rangle,|q_2\rangle,|q_3\rangle\) is straightforward.
+(“axis exceptional on H/M/L”). Identifying this basis with the usual SU(3) triplet basis $|q_1\rangle,|q_2\rangle,|q_3\rangle$ is straightforward.
 
 ### 3.1 Allowed transformations
 
@@ -298,15 +278,13 @@ We consider internal deformations of the Noether core that:
   - Which axis is exceptional,  
   - Relative phases associated with each axis’ personality state.
 
-Linearity and probability conservation in color imply these transformations act as **unitary** operators on \(\mathbb{C}^3\). Removing an overall unobservable phase (see below) leaves **SU(3)**.
+Linearity and probability conservation in color imply these transformations act as **unitary** operators on $\mathbb{C}^3$. Removing an overall unobservable phase (see below) leaves **SU(3)**.
 
 ### 3.2 U(3) vs SU(3): overall phase as gauge
 
 In general, 3×3 unitary matrices form U(3) = SU(3) × U(1). The U(1) factor multiplies the entire color state by a common phase:
 
-\[
-|q\rangle \to e^{i\theta} |q\rangle.
-\]
+$|q\rangle \to e^{i\theta} |q\rangle.$
 
 In this ontology:
 
@@ -317,42 +295,24 @@ In this ontology:
 
 We therefore treat global U(1) in color space as a **pure gauge redundancy** with no direct observable. The physical color symmetry group is:
 
-\[
-G_{\text{color}} \cong SU(3).
-\]
+$G_{\text{color}} \cong SU(3).$
 
 ### 3.3 Example generator as axis‑swap
 
 Identify:
-\[
-|q_H\rangle \equiv |q_1\rangle,\ |q_M\rangle \equiv |q_2\rangle,\ |q_L\rangle \equiv |q_3\rangle.
-\]
+$|q_H\rangle \equiv |q_1\rangle,\ |q_M\rangle \equiv |q_2\rangle,\ |q_L\rangle \equiv |q_3\rangle.$
 
 Consider the generator that exchanges H and M exceptional roles (leaving L untouched):
 
-\[
-T_{HM} \propto
-\begin{pmatrix}
-0 & 1 & 0\\
-1 & 0 & 0\\
-0 & 0 & 0
-\end{pmatrix}.
-\]
+$T_{HM} \propto \begin{pmatrix} 0 & 1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 0 \end{pmatrix}.$
 
-Infinitesimally, this mixes \(|q_H\rangle\) and \(|q_M\rangle\) while preserving total norm. In conventional QCD this is proportional to Gell‑Mann matrix \(\lambda_1\):
+Infinitesimally, this mixes $|q_H\rangle$ and $|q_M\rangle$ while preserving total norm. In conventional QCD this is proportional to Gell‑Mann matrix $\lambda_1$:
 
-\[
-\lambda_1 =
-\begin{pmatrix}
-0 & 1 & 0\\
-1 & 0 & 0\\
-0 & 0 & 0
-\end{pmatrix}.
-\]
+$\lambda_1 = \begin{pmatrix} 0 & 1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 0 \end{pmatrix}.$
 
 Geometric meaning: a small deformation that moves “axis exceptionality” continuously between H and M axes.
 
-Together with other off‑diagonal generators (H↔L, M↔L) and diagonal generators (relative phase shifts between axes), these span su(3) with the usual commutation relations \([T^a,T^b]=if^{abc}T^c\). We will explicitly map more generators to concrete axis operations in a separate mathematical appendix.
+Together with other off‑diagonal generators (H↔L, M↔L) and diagonal generators (relative phase shifts between axes), these span su(3) with the usual commutation relations $[T^a,T^b]=if^{abc}T^c$. We will explicitly map more generators to concrete axis operations in a separate mathematical appendix.
 
 
 
@@ -369,16 +329,16 @@ A Gen‑I baryon (e.g., proton or neutron) consists of:
 
 In SU(3):
 
-- Baryon color state: \(3 \otimes 3 \otimes 3 \supset 1\) (fully antisymmetric singlet).
+- Baryon color state: $3 \otimes 3 \otimes 3 \supset 1$ (fully antisymmetric singlet).
 
 In tri‑binary geometry:
 
 - A color singlet baryon is a configuration where each of H, M, L is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
 
-  - Quark 1 (u): exceptional on H → \(|u_H\rangle\)  
-  - Quark 2 (u): exceptional on M → \(|u_M\rangle\)  
-  - Quark 3 (d): exceptional on L → \(|d_L\rangle\)
+  - Quark 1 (u): exceptional on H → $|u_H\rangle$  
+  - Quark 2 (u): exceptional on M → $|u_M\rangle$  
+  - Quark 3 (d): exceptional on L → $|d_L\rangle$
 
 At large distances, axis‑dependent multipoles from each regime cancel:
 
@@ -411,8 +371,8 @@ Geometrically:
 
 - This bridge is a **braid segment** that locally enforces a non‑singlet H/M axis configuration in the vacuum line.  
 - The net effect on the quarks’ color states is:
-  - \(|q_H\rangle \to |q_M\rangle\) on one quark,  
-  - \(|q_M\rangle \to |q_H\rangle\) (or another compensating reconfiguration) on the other, so that the **total hadron** remains in the overall color singlet.
+  - $|q_H\rangle \to |q_M\rangle$ on one quark,  
+  - $|q_M\rangle \to |q_H\rangle$ (or another compensating reconfiguration) on the other, so that the **total hadron** remains in the overall color singlet.
 
 Different gluon modes correspond to different choices of:
 
@@ -447,20 +407,16 @@ In this model:
 
 Energy density per unit length:
 
-- Each distorted vacuum tri‑binary along the line costs an energy ~ \(E_{\text{vac}}\) (set by its H‑scale curvature and self‑hit dynamics).  
-- Spacing between such cores is ~ \(L_{\text{vac}}\) (the characteristic vacuum lattice scale, plausibly ~1 fm).
+- Each distorted vacuum tri‑binary along the line costs an energy ~ $E_{\text{vac}}$ (set by its H‑scale curvature and self‑hit dynamics).  
+- Spacing between such cores is ~ $L_{\text{vac}}$ (the characteristic vacuum lattice scale, plausibly ~1 fm).
 
 Thus we expect an effective string tension:
 
-\[
-\sigma \sim \frac{E_{\text{vac}}}{L_{\text{vac}}}.
-\]
+$\sigma \sim \frac{E_{\text{vac}}}{L_{\text{vac}}}.$
 
-If \(E_{\text{vac}} \sim 1\ \mathrm{GeV}\) and \(L_{\text{vac}} \sim 1\ \mathrm{fm}\), then:
+If $E_{\text{vac}} \sim 1\ \mathrm{GeV}$ and $L_{\text{vac}} \sim 1\ \mathrm{fm}$, then:
 
-\[
-\sigma \sim 1\ \mathrm{GeV/fm},
-\]
+$\sigma \sim 1\ \mathrm{GeV/fm},$
 
 which matches the empirical QCD string tension scale to order‑of‑magnitude.
 
@@ -468,8 +424,8 @@ which matches the empirical QCD string tension scale to order‑of‑magnitude.
 
 Confinement is **not** free here:
 
-- If a detailed computation of E(r) between static color sources in this model does **not** yield an approximately linear regime with the right scale for \(\sigma\), the braid/flux‑tube mechanism is wrong or incomplete.
-- If energy grew like \(1/r\) or saturated with distance, our confinement picture would conflict with lattice QCD and experiment.
+- If a detailed computation of E(r) between static color sources in this model does **not** yield an approximately linear regime with the right scale for $\sigma$, the braid/flux‑tube mechanism is wrong or incomplete.
+- If energy grew like $1/r$ or saturated with distance, our confinement picture would conflict with lattice QCD and experiment.
 
 This is a key check for future simulations of many‑Noether‑core dynamics.
 
@@ -500,11 +456,11 @@ to derive nucleon–nucleon potentials and binding energies in the nuclear secti
 ## 8. Summary and Next Steps
 
 - A **Noether core / tri‑binary** is a three‑axis (H,M,L), six‑slot personality structure: the minimal unit that carries conserved charges via its internal symmetries.
-- **Colorless** fermions (leptons, neutrinos) have identical personality patterns on all three axes → no axis exceptionality → SU(3)\(_c\) singlets.
+- **Colorless** fermions (leptons, neutrinos) have identical personality patterns on all three axes → no axis exceptionality → SU(3)$_c$ singlets.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two P+ axes, one Pm axis.  
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
-- Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space \(\mathbb{C}^3\) on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
+- Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
 - **Gluons** are localized braids in the vacuum tri‑binary sea implementing these SU(3) generators between quarks; their self‑interaction arises from braid‑braid interactions, supporting glueballs and non‑Abelian dynamics.
 - **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the vacuum with linear energy cost per unit length → confinement.
 - Down‑quark pattern families, H/M/L regime differences, and braid orientation will feed into:

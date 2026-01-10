@@ -9,13 +9,11 @@
 
 ### Absolute Time, Global Foliation, and Proper Time
 
-**Absolute time \(t\)**  
+**Absolute time $t$**  
 - A single, global, monotonically increasing parameter.
 - Defines a unique foliation of the universe into constant‑time hypersurfaces:
-  \[
-  \Sigma_t = \{(x,y,z,t) \mid (x,y,z) \in \mathbb{R}^3\}.
-  \]
-- The virtual observer indexes the microstate \(S(t)\) on each \(\Sigma_t\).
+  $\Sigma_t = \{(x,y,z,t) \mid (x,y,z) \in \mathbb{R}^3\}.$
+- The virtual observer indexes the microstate $S(t)$ on each $\Sigma_t$.
 
 This contrasts with:
 
@@ -27,28 +25,26 @@ In our ontology:
 - Absolute time is a **real structure** of the substrate, not a coordinate convention.
 - There is one global “now” in which all architrino positions/velocities are defined.
 
-**Proper time \(\tau\) for physical observers**  
+**Proper time $\tau$ for physical observers**  
 
-Physical clocks are tri‑binary assemblies. Their “ticks” are internal dynamical cycles (e.g. orbital frequencies of inner binaries). For a clock following a worldline \(\mathbf{X}(t)\), the relation between its proper time \(\tau\) and absolute time \(t\) is:
+Physical clocks are tri‑binary assemblies. Their “ticks” are internal dynamical cycles (e.g. orbital frequencies of inner binaries). For a clock following a worldline $\mathbf{X}(t)$, the relation between its proper time $\tau$ and absolute time $t$ is:
 
-\[
-d\tau = F(\text{local medium state at } \mathbf{X}(t), \Phi(\mathbf{X}(t),t), \nabla\Phi(\mathbf{X}(t),t), \mathbf{v}(t))\,dt
-\]
+$d\tau = F(\text{local medium state at } \mathbf{X}(t), \Phi(\mathbf{X}(t),t), \nabla\Phi(\mathbf{X}(t),t), \mathbf{v}(t))\,dt$
 
 where:
-- \(\mathbf{v}(t) = d\mathbf{X}/dt\) is velocity in the void frame,
-- \(\Phi\) and \(\nabla\Phi\) encode local potentials/forces,
+- $\mathbf{v}(t) = d\mathbf{X}/dt$ is velocity in the void frame,
+- $\Phi$ and $\nabla\Phi$ encode local potentials/forces,
 - the medium state encodes Noether‑core density and stress.
 
 We will require that in the appropriate regimes:
 
 - Homogeneous medium, low velocities:  
-  \(d\tau/dt \approx \sqrt{1 - v^2/c^2}\) (kinematic time dilation).
+  $d\tau/dt \approx \sqrt{1 - v^2/c^2}$ (kinematic time dilation).
 - Weak field, low velocities:  
-  \(d\tau/dt \approx \sqrt{1 + 2\Phi_\text{eff}/c^2 - v^2/c^2}\) (GR‑like redshift).
+  $d\tau/dt \approx \sqrt{1 + 2\Phi_\text{eff}/c^2 - v^2/c^2}$ (GR‑like redshift).
 
 **Key point:**  
-Physical observers experience relativity of simultaneity and time dilation as **emergent properties** of assembly dynamics in the medium. The virtual observer always uses absolute time \(t\); proper time \(\tau\) is derived.
+Physical observers experience relativity of simultaneity and time dilation as **emergent properties** of assembly dynamics in the medium. The virtual observer always uses absolute time $t$; proper time $\tau$ is derived.
 
 Any observable signal of absolute time (e.g. orientation‑dependent tick rates absent medium gradients) would falsify the model.
 

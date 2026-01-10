@@ -10,7 +10,7 @@ Add to the “Explanatory Scoreboard”:
 
 - **Background Independence**
   - *GR*: Spacetime metric dynamical; coordinates gauge; strong notion of background independence.
-  - *Architrino*: Fixed Euclidean background and absolute time; metric is emergent from Noether‑core medium; background independence appears only in the effective description (g_{μν}) used by physical observers; underlying micro‑equations are background‑dependent by design.
+  - *Architrino*: Fixed Euclidean background and absolute time; metric is emergent from Noether‑core medium; background independence appears only in the effective description (g_{$\mu$$\nu$}) used by physical observers; underlying micro‑equations are background‑dependent by design.
 
 - **Relativity of Simultaneity**
   - *SR/GR*: Simultaneity is frame- or foliation-dependent; no global 'now'.

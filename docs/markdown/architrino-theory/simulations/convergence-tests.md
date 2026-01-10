@@ -1,8 +1,8 @@
 ## Convergence in Non-Markovian (Self-Hit) Dynamics
 
-### Required refinements (beyond standard Δt)
+### Required refinements (beyond standard $\Delta$t)
 1) Temporal refinement:
-- Run with Δt and Δt/2; compare VO observables (Φ, ∇Φ, self-hit event rates)
+- Run with $\Delta$t and $\Delta$t/2; compare VO observables ($\Phi$, ∇$\Phi$, self-hit event rates)
 
 2) History-resolution refinement:
 - Halve history sampling interval OR increase interpolation order for emission-time inversion (t_emit)
@@ -19,7 +19,7 @@
 
 ### Provenance stability metric (mandatory)
 For a fixed receiver point and time window, compare distributions of solved t_emit:
-- Must be stable under Δt and history-resolution refinement
+- Must be stable under $\Delta$t and history-resolution refinement
 - Instability indicates numerical artifact in delayed interaction evaluation
 
 ### Negative control (null test)
