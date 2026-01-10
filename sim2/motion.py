@@ -6,6 +6,8 @@ from typing import Callable, Dict, List, Tuple
 
 Vec2 = Tuple[float, float]
 
+KAPPA = 1.0
+
 
 def unit_circle_sampler(t: float) -> Vec2:
     """Unit circle at unit angular speed; default phase 0 (counterclockwise in math coords)."""
@@ -88,8 +90,6 @@ class MoverEnv:
     position_snap: float | None
     emissions: List["Emission"]
     allow_self: bool = True
-    hit_tolerance: float | None = None
-    max_force: float | None = None
 
 
 class Mover:
@@ -172,33 +172,21 @@ class PhysicsMover(Mover):
         if dt_step <= 0:
             return state.pos
         q = float(state.polarity)
-        mass = max(abs(q), 1e-6)
-        fx = fy = 0.0
-        tol = env.hit_tolerance
-        if tol is None:
-            tol = max(env.field_speed * dt_step * 0.6, 0.002)
-        max_force = env.max_force if env.max_force is not None else 25.0
+        ax = ay = 0.0
         for em in env.emissions:
             if not env.allow_self and em.emitter == state.name:
                 continue
             tau = env.time - em.time
             if tau <= 0:
                 continue
-            radius = env.field_speed * tau
             dx = state.pos[0] - em.pos[0]
             dy = state.pos[1] - em.pos[1]
             dist = math.hypot(dx, dy)
             if dist < 1e-9:
                 continue
-            diff = abs(dist - radius)
-            if diff > tol:
-                continue
-            force_mag = (q * em.polarity) / (dist * dist)
-            force_mag = max(-max_force, min(max_force, force_mag))
-            fx += force_mag * (dx / dist)
-            fy += force_mag * (dy / dist)
-        ax = fx / mass
-        ay = fy / mass
+            factor = KAPPA * q * em.polarity / (dist * dist * dist)
+            ax += factor * dx
+            ay += factor * dy
         vx = state.vel[0] + ax * dt_step
         vy = state.vel[1] + ay * dt_step
         px = state.pos[0] + vx * dt_step
