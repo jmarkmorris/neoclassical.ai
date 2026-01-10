@@ -1468,7 +1468,7 @@ At a critical speed $v_{\text{eq}} > c_f$ and minimum radius $R_{\text{min}}$, t
 
 This wake-stabilized orbit:
 
-- Defines a **fundamental length scale** (likely Planck-scale: $R_{\text{min}} \sim \ell_P$)
+- Defines a **fundamental length scale** $R_{\text{min}}$ that sets the tightest stable orbit radius
 - Prevents classical $r \to 0$ singularities (see TOC Ch. 34: "Black Holes and Planck Cores")
 - Underpins stable particle assemblies (see TOC Ch. 11: "Noether Core")
 - Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
@@ -2918,7 +2918,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 - Orbit stabilizes at **maximum curvature** (tightest configuration)
 
 **Significance:**
-- Defines a **fundamental length scale** (likely Planck-scale: $R_{\min} \sim \ell_P$)
+- Defines a **fundamental length scale** $R_{\min}$ that sets the tightest stable orbit radius
 - Prevents classical $r \to 0$ singularities
 - Foundation for stable particle assemblies (tri-binaries; see TOC Ch. 11)
 

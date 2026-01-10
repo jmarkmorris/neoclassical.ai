@@ -619,7 +619,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 - Orbit stabilizes at **maximum curvature** (tightest configuration)
 
 **Significance:**
-- Defines a **fundamental length scale** (likely Planck-scale: $R_{\min} \sim \ell_P$)
+- Defines a **fundamental length scale** $R_{\min}$ that sets the tightest stable orbit radius
 - Prevents classical $r \to 0$ singularities
 - Foundation for stable particle assemblies (tri-binaries; see TOC Ch. 11)
 
