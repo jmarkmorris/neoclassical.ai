@@ -939,13 +939,13 @@ All observable entities (particles, atoms, fields, spacetime curvature) are **em
 
 ### 2.2 Core Emission Properties
 
-An Architrino is a transceiver: it continuously emits potential wavefronts and also receives and responds to incoming wavefronts from other sources. The fundamental transmit operation has the following key properties:
+An Architrino is a transceiver: it continuously emits potential flux and receives/responds to incoming flux from other sources. The fundamental transmit operation has the following key features:
 
-- **Constant rate of shell emission:** Each Architrino emits expanding spherical shells (wavefronts) at a constant rate and constant per-shell amplitude, independent of speed.
-- **Point of emission:** The potential emerges at the Architrino's current location (radius = 0) at time $t=\text{now}$ as a spatial Dirac delta. This is a **formal boundary condition** (not a physical singularity) encoding the rule "the shell is born here, with total charge $q$."
-- **Spherical expansion:** From its point of emission, the potential expands as a perfectly spherical shell.
-- **Field speed:** The radius of this shell grows at a constant rate, the field speed $v_f$. In our chosen units, $v_f = 1$ (dimensionless).
-- **Surface density:** The magnitude of the potential is concentrated on the surface of the shell and decreases as $1/r^2$, where $r$ is the shell's radius.
+- **Continuous flux:** At every instant the Architrino injects potential into the surrounding void. The “spherical shell” is nothing more than an **isochron of causality**—the surface that connects all spatial points currently receiving the contribution emitted at a specific past time. The shell is therefore a *calculation tool* for isolating retarded interactions, not a discrete “pulse” that turns on and off.
+- **Point of origin:** The potential effectively originates at the Architrino’s current location. We encode this as a spatial Dirac delta for bookkeeping (the boundary condition “the flux begins here with total charge $q$”), but the underlying reality is a steady flux of potential rather than intermittent pulses.
+- **Spherical expansion:** Once emitted, the contribution propagates outward in a radially symmetric fashion; the relevant locus for a given emission time is the expanding sphere defined by the retarded-time constraint.
+- **Field speed:** The propagation occurs at the field speed $v_f$, so the isochron surface satisfies $r = v_f(t-t_0)$ for emission time $t_0$. In natural units we set $v_f = 1$.
+- **Surface density:** On that isochron surface the potential’s intensity decreases as $1/r^2$, preserving the total “charge” $q$ as the flux spreads over ever larger areas.
 
 **Geometric Characterization:**
 
@@ -1094,73 +1094,54 @@ where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted b
 
 ---
 
-### 2.5 Velocity Regimes and Self-Hit Dynamics
+### 2.5 Velocity Regimes and Wake Dynamics
 
-There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. The velocity of an Architrino relative to the field speed $v_f$ defines three distinct dynamic regimes and opens the possibility of self-interaction.
+There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. Because each Architrino continuously pours potential into the void, its past emissions expand spherically from their emission points and collectively form a persistent **wake**—a region of enhanced potential intensity centered on those spheres. Every Architrino “rides the wake” of all other sources at all times, but it only re-enters the high-intensity portion of its own wake when earlier portions of its worldline catch up (which requires having exceeded $v_f$ at some point). The relative motion through that region determines whether it merely feels the smooth gradient (sub-$v_f$) or passes through the intense shock/Cherenkov-like cone left by its earlier history.
 
-#### **2.5.1 Immediate Regimes (Relative to Most Recent Shell)**
+#### 2.5.1 Wake Coherence and Relative Motion
 
-Consider a particle at position $\mathbf{s}_a(t_{\text{now}})$ moving with velocity $\mathbf{v}_a$. At an infinitesimal time $\Delta t$ later, the spherical shell it emitted at $t_{\text{now}}$ has expanded to a radius of $r = v_f \Delta t$.
+The local gradient of the wake defines three regimes:
 
-- **Sub-field-speed regime** ($|\mathbf{v}_a| < v_f$): The particle travels a distance less than the shell's radius. It is located *inside* the sphere of its most recent emission, lagging behind it. In this regime, the particle cannot overtake its own field.
+- **Sub-field-speed regime** ($|\mathbf{v}_a| < v_f$): The Architrino remains well inside the diffuse, low-intensity part of its own wake. Its immediate neighborhood is dominated by very recent emissions, so the potential landscape is smooth and the gradient is gentle. There is no opportunity to interact with any far-ahead structure, because the field front advances faster than the particle.
+- **Symmetry point** ($|\mathbf{v}_a| = v_f$): The Architrino coasts along the crest of its own wake. The region of highest intensity—the “shock” or Cherenkov-like cone formed by the wake—lies tangent to the particle’s path. Small deviations now determine whether it stays behind the crest or pushes into the stronger field ahead.
+- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The Architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters a **shockwave/Cherenkov cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
 
-- **Symmetry point** ($|\mathbf{v}_a| = v_f$): The particle travels exactly on the edge of its own expanding spherical shell. This represents a **critical symmetry-breaking point** in its dynamics—the threshold above which super-field-speed effects activate.
+The key point is that the Architrino is not “catching up to a discrete shell”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
 
-- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The particle travels a distance greater than the shell's radius. It is located *outside* the sphere of its most recent emission, moving ahead of it. In this regime, the particle can outrun recently emitted wavefronts.
+#### 2.5.2 Traversing One's Own Wake (Self-Interaction)
 
-#### **2.5.2 Self-Hit Regime (Historical Path Intersections)**
+When the Architrino enters the shockwave/Cherenkov cone left by its past motion, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
 
-Distinct from the immediate relationship above is the possibility of an Architrino intersecting one of its own spherical shells emitted earlier in its path history. Consider a particle that emits a shell at time $t_0$ from position $\mathbf{s}_a(t_0)$. If the particle subsequently accelerates or curves, it may later—at some time $t_s > t_0$—find itself on the expanding wavefront of that earlier-emitted shell. This occurs when:
+This occurs whenever the particle has exceeded $v_f$ in its history and subsequently curvatures or slows such that it re-enters the high-intensity region. Traversing the wake is therefore a **non-Markovian** event: the acceleration depends on where the wake is situated relative to the current position, which in turn depends on **the full past trajectory**.
 
-$$
-\|\mathbf{s}_a(t_s) - \mathbf{s}_a(t_0)\| = v_f(t_s - t_0).
-$$
+**Wake interactions have several operational consequences:**
 
-**Self-Hit and Memory:**
+- **Repulsion from like charges:** The wake carries the same sign as the source, so entering it produces a repulsive push analogous to the self-hit repulsion in the older language.
+- **Memory:** Once the particle has generated a dense wake by briefly exceeding $v_f$, it continues to feel that wake even after it slows back below $v_f$, because the wake persists geometrically.
+- **Shockfront geometry:** The high-intensity locus resembles a perfect shockwave or Cherenkov cone; traversing that cone is what produces the strong self-interaction effects that stabilize assemblies.
 
-When an Architrino's speed has exceeded the field speed ($|\mathbf{v}_a| > v_f$) at some emission times in its past, it can outrun the shells it emitted. If its trajectory curves or slows, older shells may eventually catch up and re-intersect it. This **self-hit** event is a form of *delayed self-interaction*, analogous to a speedboat passing its own wake and later curving such that the wake catches up and passes again.
+#### 2.5.3 Maximum-Curvature Orbit (Wake-Stabilized Binaries)
 
-Self-hit is entirely **deterministic but non-Markovian**: the Architrino's current acceleration depends on whether (and where) its past shells intersect its current location. This regime opens rich dynamical possibilities:
+Opposite-charge binaries that remain in the sub-field-speed regime experience net positive tangential power from delayed partner interactions, which drives them into tighter spirals. As their speed climbs toward $c_f$, the wake crest straightens along their path, and the shockwave/Cherenkov cone becomes sharply defined.
 
-- **Stability mechanisms**: Self-hit produces repulsive forces (like charges repel), which can stabilize otherwise runaway configurations.
-- **Emergent quantum-like behavior**: Non-Markovian memory and deterministic-but-complex dynamics may produce effective probabilistic and wave-like behavior at the scale of assemblies.
-- **Complex path history dependence**: An Architrino with $|\mathbf{v}_a|>v_f$ in the past is not "free," even if no external sources are present; its motion depends on its full trajectory history.
+Once the binary crosses $v \approx c_f$, each architrino begins to **traverse its own wake** in earnest. The wake now contributes a repulsive component that competes with the partner’s attraction, creating a delicate balance:
 
-#### **2.4.3 Maximum-Curvature Orbit (Stable Binary Formation via Self-Hit)**
+- Partner attraction → inward pull
+- Wake repulsion → outward push
 
-**Sub-field-speed instability** ($v < c_f$):
+At a critical speed $v_{\text{eq}} > c_f$ and minimum radius $R_{\text{min}}$, these effects time-average to a quasi-stable configuration: tangential work oscillates near zero, and the orbit settles at **maximum curvature**.
 
-Isolated opposite-charge binaries in the sub-field-speed regime experience net positive tangential power from delayed partner interactions. This drives continuous acceleration and orbital tightening, resulting in an **inward spiral**. No stable circular orbit exists in this regime.
+This wake-stabilized orbit:
 
-**Self-hit threshold crossing** ($v \to c_f^+$):
-
-As the binary accelerates past the field speed $c_f$, **self-interaction** activates. Each architrino begins to intersect its own previously emitted potential shells.
-
-**Self-hit stabilization** ($v > c_f$):
-
-Self-interaction introduces a **repulsive radial force** (like charges repel) that opposes the partner's attractive pull. This creates a dynamic competition:
-- Partner attraction → inward radial force
-- Self-repulsion → outward radial force
-
-**Maximum-curvature equilibrium:**
-
-At a critical speed $v_{\text{eq}} > c_f$ and minimum radius \$R_{\text{min}}$, the system reaches a **quasi-stable equilibrium**:
-- Radial forces approximately balance (time-averaged)
-- Tangential power oscillates around zero (or remains small)
-- The orbit stabilizes at **maximum curvature** (tightest configuration)
-
-**Dynamical Interpretation (Dyna):** This maximum-curvature orbit is the **fundamental attractor** of the binary system. It represents a **limit cycle** in phase space, topologically distinct from scattering states. This topological distinction (characterized by linking numbers and winding numbers in the trajectory geometry) defines the boundary between "matter" (bound assemblies) and "radiation" (free propagation). Proving that this orbit is a robust attractor—with a measurable basin of attraction—is a primary near-term goal.
-
-This maximum-curvature orbit:
-- Defines a **fundamental length scale** (likely Planck-scale: \$R_{\text{min}} \sim \ell_P$)
+- Defines a **fundamental length scale** (likely Planck-scale: $R_{\text{min}} \sim \ell_P$)
 - Prevents classical $r \to 0$ singularities (see TOC Ch. 34: "Black Holes and Planck Cores")
-- Is the foundation for **stable particle assemblies** (see TOC Ch. 11: "Noether Core")
-- Demonstrates the essential role of **non-Markovian self-hit dynamics** in producing stable structures
+- Underpins stable particle assemblies (see TOC Ch. 11: "Noether Core")
+- Demonstrates the essential role of **continuous wake dynamics** (rather than discrete shell hits) in producing stable structures
 
 **Cross-references:**
 - TOC Ch. 8: "Maximum Curvature Orbit and Planck-Scale Limit"
 - TOC Ch. 12: "Velocity Regimes and Symmetry Breaking"
-- `foundations/self-hit-dynamics.md`: Detailed analysis of self-interaction regimes
+- `foundations/self-hit-dynamics.md`: Detailed analysis of wake-triggered interactions
 - `assemblies/binary-dynamics.md`: Formation and stability of binaries
 
 ---
@@ -1750,12 +1731,10 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
 | Coupling constant | $\kappa$ | TBD | (Length$^3$/Time$^2$)/(Charge$^2$) | Controls $1/r^2$ force strength |
-| Shell thickness (regularization) | $\eta$ | TBD (numerical) | Length | Mollifies delta singularities |
 
 **Status:**
 
 - $\kappa$: **To be derived or fitted** (likely related to Coulomb constant $k_e = 1/(4\pi\epsilon_0)$)
-- $\eta$: **Numerical parameter** (physical justification: Planck length? Tri-binary size?)
 
 **Explanatory target:** Can $\kappa$ be derived from $\epsilon$, $c_f$, and Planck units, or must it be independently postulated?
 
@@ -1799,6 +1778,18 @@ where:
 **Cross-references:**
 - TOC Ch. 54: "Parameter Accountability and Naturalness Assessment"
 - `adversarial/parameter-count-audit.md`: Full ledger with FTQ calculations
+
+---
+
+### 6.5 Simulation Parameters (Computational Necessities)
+
+These parameters arise from the discretization and regularization that Sol applies when approximating the continuous retarded potential integral. They are **implementation choices**, not fundamental postulates of the ontology.
+
+| **Parameter** | **Symbol** | **Purpose** | **Comment** |
+|:--------------|:-----------|:-----------|:------------|
+| Shell thickness | $\eta$ | Numerical regularization | Smooths each retarded impulse into a narrow shell of width $\eta$ so the integral can be sampled with finite time steps and no singularities |
+
+$\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous retarded flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
 
 ---
 

@@ -60,6 +60,31 @@ where:
 
 **Key insight:** Both terms have the same functional form (radial $1/r^2$ force law); they differ only in source identity ($j = i$ vs $j \neq i$).
 
+### 1.3 Path History Potential Integral Form
+
+The Master Equation is most naturally understood as a **path history potential law** akin to the Liénard–Wiechert representation in electromagnetism, though strictly Euclidean/Galilean in character. All of the physical content resides in the past worldlines of the sources, and the path history constraint selects the points on those worldlines whose influence reaches the receiver “now.”
+
+Formally,
+
+$$
+\frac{d^2 \mathbf{x}_i}{dt^2}
+= \sum_j \kappa\,\sigma_{ij}\,|q_i q_j|
+\int_{-\infty}^t \mathrm{d}t_0 \;
+\frac{\hat{\mathbf{r}}_{ij}(t; t_0)}{r_{ij}^2(t; t_0)}
+\delta\!\Big(r_{ij}(t; t_0) - c_f(t - t_0)\Big),
+$$
+
+where
+
+- $r_{ij}(t; t_0) = \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|$,
+- $\hat{\mathbf{r}}_{ij} = (\mathbf{x}_i(t) - \mathbf{x}_j(t_0))/r_{ij}$,
+- $\delta(\cdot)$ enforces the retarded condition $r_{ij} = c_f(t - t_0)$, and
+- $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ encodes attraction/repulsion.
+
+Because the delta collapses the time integral to the set $\mathcal{C}_j(t)$ of causal emission times (see Section 2), the result is equivalent to evaluating the $1/r^2$ kernel at those retarded emission points. The Euclidean analog of the Liénard–Wiechert potential is thus recovered as a retarded integral whose kernel is purely radial.
+
+Numerical implementations (Sol) discretize the integral by sampling discrete emission times, producing the familiar picture of summing over “spherical shells.” That discrete shell sum is therefore **a numerical approximation** of the continuous retarded integral, not a separate physical mechanism. The underlying physics remains the continuous retarded flux of potential.
+
 ---
 
 ## 2. Causal Interaction Set (The Geometry of Delay)
@@ -966,5 +991,4 @@ Changes to this document require:
 
 **Retained for next phase (self-hit-dynamics.md):**
 - `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.3-MaximumCurvatureOrbit.md`
-
 
