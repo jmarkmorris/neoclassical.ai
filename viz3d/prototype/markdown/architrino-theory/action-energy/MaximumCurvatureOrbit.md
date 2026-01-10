@@ -453,5 +453,3 @@ Further analysis (Ch. 11–13) will address tri-binary stability and the emergen
 4. **The bridge from dynamics to measurement**: MCB provides the **first physically realized scale**, linking abstract architrino interactions to operational observables (rulers, clocks, atomic spectra).
 
 ---
-
-**Phil out.** Ready to update Ch. 2, Ch. 5, Glossary, and Assembly Atlas with these clarifications. 🏛️
