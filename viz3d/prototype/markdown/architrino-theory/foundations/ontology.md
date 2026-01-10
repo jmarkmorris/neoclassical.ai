@@ -1096,21 +1096,21 @@ where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted b
 
 ### 2.5 Velocity Regimes and Wake Dynamics
 
-There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. Because each Architrino continuously pours potential into the void, its past emissions expand spherically from their emission points and collectively form a persistent **wake**—a region of enhanced potential intensity centered on those spheres. Every Architrino “rides the wake” of all other sources at all times, but it only re-enters the high-intensity portion of its own wake when earlier portions of its worldline catch up (which requires having exceeded $v_f$ at some point). The relative motion through that region determines whether it merely feels the smooth gradient (sub-$v_f$) or passes through the intense shock/Cherenkov-like cone left by its earlier history.
+There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. Because each Architrino continuously pours potential into the void, its past emissions expand spherically from their emission points and collectively form a persistent **wake**—a region of enhanced potential intensity centered on those spheres. Every Architrino “rides the wake” of all other sources at all times, but it only re-enters the high-intensity portion of its own wake when earlier portions of its worldline catch up (which requires having exceeded $v_f$ at some point). The relative motion through that region determines whether it merely feels the smooth gradient (sub-$v_f$) or passes through the intense shock cone left by its earlier history.
 
 #### 2.5.1 Wake Coherence and Relative Motion
 
 The local gradient of the wake defines three regimes:
 
 - **Sub-field-speed regime** ($|\mathbf{v}_a| < v_f$): The Architrino remains well inside the diffuse, low-intensity part of its own wake. Its immediate neighborhood is dominated by very recent emissions, so the potential landscape is smooth and the gradient is gentle. There is no opportunity to interact with any far-ahead structure, because the field front advances faster than the particle.
-- **Symmetry point** ($|\mathbf{v}_a| = v_f$): The Architrino coasts along the crest of its own wake. The region of highest intensity—the “shock” or Cherenkov-like cone formed by the wake—lies tangent to the particle’s path. Small deviations now determine whether it stays behind the crest or pushes into the stronger field ahead.
-- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The Architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters a **shockwave/Cherenkov cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
+- **Symmetry point** ($|\mathbf{v}_a| = v_f$): The Architrino coasts along the crest of its own wake. The region of highest intensity—the “shock” cone formed by the wake—lies tangent to the particle’s path. Small deviations now determine whether it stays behind the crest or pushes into the stronger field ahead.
+- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The Architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters the **shock cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
 
 The key point is that the Architrino is not “catching up to a discrete shell”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
 
 #### 2.5.2 Traversing One's Own Wake (Self-Interaction)
 
-When the Architrino enters the shockwave/Cherenkov cone left by its past motion, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
+When the Architrino enters that cone left by its past motion, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
 
 This occurs whenever the particle has exceeded $v_f$ in its history and subsequently curvatures or slows such that it re-enters the high-intensity region. Traversing the wake is therefore a **non-Markovian** event: the acceleration depends on where the wake is situated relative to the current position, which in turn depends on **the full past trajectory**.
 
@@ -1118,18 +1118,16 @@ This occurs whenever the particle has exceeded $v_f$ in its history and subseque
 
 - **Repulsion from like charges:** The wake carries the same sign as the source, so entering it produces a repulsive push analogous to the self-hit repulsion in the older language.
 - **Memory:** Once the particle has generated a dense wake by briefly exceeding $v_f$, it continues to feel that wake even after it slows back below $v_f$, because the wake persists geometrically.
-- **Shockfront geometry:** The high-intensity locus resembles a perfect shockwave or Cherenkov cone; traversing that cone is what produces the strong self-interaction effects that stabilize assemblies.
+- **Shockfront geometry:** The high-intensity locus resembles a sharp cone; traversing that cone is what produces the strong self-interaction effects that stabilize assemblies.
 
 #### 2.5.3 Maximum-Curvature Orbit (Wake-Stabilized Binaries)
 
-Opposite-charge binaries that remain in the sub-field-speed regime experience net positive tangential power from delayed partner interactions, which drives them into tighter spirals. As their speed climbs toward $c_f$, the wake crest straightens along their path, and the shockwave/Cherenkov cone becomes sharply defined.
+Opposite-charge binaries that remain in the sub-field-speed regime experience net positive tangential power from delayed partner interactions, which drives them into tighter spirals. As their speed climbs toward $c_f$, the wake crest straightens along their path, and the shock cone becomes sharply defined.
 
 Once the binary crosses $v \approx c_f$, each architrino begins to **traverse its own wake** in earnest. The wake now contributes a repulsive component that competes with the partner’s attraction, creating a delicate balance:
 
-- Partner attraction → inward pull
-- Wake repulsion → outward push
 
-At a critical speed $v_{\text{eq}} > c_f$ and minimum radius $R_{\text{min}}$, these effects time-average to a quasi-stable configuration: tangential work oscillates near zero, and the orbit settles at **maximum curvature**.
+At a critical speed $v_{\text{eq}} > c_f$ and minimum radius $R_{\text{min}}$, these effects time-average to a quasi-stable configuration: tangential work oscillates near zero, and the orbit settles at **maximum curvature**. ։
 
 This wake-stabilized orbit:
 
