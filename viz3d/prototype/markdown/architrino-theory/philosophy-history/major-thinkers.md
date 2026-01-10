@@ -10,7 +10,7 @@ The architrino project is positioned as:
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry and GR emergent.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
-- **Absolute observer**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and charge of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This observer knows where and when each potential shell was emitted as it passes any point.
+- **Absolute observer**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and charge of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This observer knows where and when each causal wake surface was emitted as it passes any point.
 - **Spacetime as assembly network**: "Vacuum" is not empty void but a sea of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime fabric). Most of the continuous Euclidean 3D void remains unoccupied by architrinos.
 
 **Central philosophical claim**: This framework, if empirically successful, will **annihilate teleology, idealism, and transcendentalism**, and **resurrect a severe, mathematically disciplined materialism**. Philosophy does not disappear—it becomes **boundary analysis**: clarifying which concepts (causation, identity, emergence) remain coherent once everything, including spacetime, is bookkeeping over point-charge assemblies.
@@ -853,4 +853,3 @@ The architrino framework invites us to look directly at the foundations of natur
 ---
 
 **End of Document**
-

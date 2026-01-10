@@ -183,7 +183,7 @@ There are **no instantaneous actions-at-a-distance** and **no advanced potential
 
 A critical feature of the architrino model is that **all interactions are mediated by path history**: the cumulative effect of an architrino's exposure to all past sources.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ experiences forces from all other architrinos based on the **intersection of its worldline with spherical shells** emitted at all past times $t' < t$. This is naturally encoded in the path history interaction law and gives rise to **non-Markovian memory effects** (e.g., the self-hit regime, where an architrino interacts with its own past emissions).
+At time $t$, an architrino at position $\mathbf{x}(t)$ experiences forces from all other architrinos based on the **intersection of its worldline with causal wake surfaces** emitted at all past times $t' < t$. This is naturally encoded in the path history interaction law and gives rise to **non-Markovian memory effects** (e.g., the self-hit regime, where an architrino interacts with its own past emissions).
 
 Because $t$ is universal and absolute, we can unambiguously define "the past" (all $t' < t$) and integrate over it. This allows for a mechanistic, deterministic model of interaction without invoking quantum indeterminacy or action-at-a-distance.
 
@@ -751,7 +751,7 @@ A source at $(t_0, \mathbf{x}_0)$ can influence a receiver at $(t, \mathbf{x})$ 
 $$
 t > t_0 \quad \text{and} \quad \|\mathbf{x} - \mathbf{x}_0\| = c_f \, (t - t_0),
 $$
-where $c_f$ is the field speed (maximum signal speed, defined in dynamics). An influence propagates along an expanding **spherical shell** of radius $c_f (t - t_0)$ centered at $\mathbf{x}_0$.
+where $c_f$ is the field speed (maximum signal speed, defined in dynamics). An influence propagates along an expanding **causal wake surface** of radius $c_f (t - t_0)$ centered at $\mathbf{x}_0$.
 
 **No closed causal loops:** Worldlines are strictly monotone in $t$; no backward-in-time propagation is allowed.
 
@@ -881,7 +881,7 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 - **Causality** is enforced by the history propagation rule: potentials emitted at earlier times intersect receivers at later times.
 
-- **Path history** is encoded naturally: at time $t$, an architrino's state depends on all intersections of its worldline with past-emitted potential shells.
+- **Path history** is encoded naturally: at time $t$, an architrino's state depends on all intersections of its worldline with past-emitted causal wake surfaces.
 
 - **Proper time** for an observer is defined as a **functional of its internal dynamics** on this background, not as a 4D interval. The internal oscillation frequency of tri-binary assemblies determines how an observer's clock ticks relative to the universal time $t$.
 
@@ -915,7 +915,7 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 An **Architrino** is the sole fundamental entity in this theory. It is:
 
 - A **point-like transmitter/receiver** located at a position $\mathbf{s}_a(t)$ in the flat Euclidean 3D space.
-- **Always active**: it continuously emits spherically expanding potential wavefronts and continuously receives potential from all other Architrinos.
+- **Always active**: it continuously emits a flux of causal wake surfaces and continuously receives potential from all other Architrinos.
 - **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is uniquely determined.
 - **Charged**: each Architrino carries a fundamental charge magnitude $|e/6|$ (see Section 2.3).
 
@@ -941,7 +941,7 @@ All observable entities (particles, atoms, fields, spacetime curvature) are **em
 
 An Architrino is a transceiver: it continuously emits potential flux and simultaneously receives the combined flux of all other Architrinos. The emission rule has the following key features:
 
-- **Continuous flux:** At every instant the Architrino streams potential into the void. The “spherical shell” is the **isochron of causality** that connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, the shell is merely a computational surface that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
+- **Continuous flux:** At every instant the Architrino streams potential into the void. The **causal wake surface** (the isochron of causality) connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, that surface is merely a computational tool that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
 - **Local origin:** The flux originates at the Architrino’s instantaneous position. We encode the start of each emission as a spatial Dirac delta carrying total charge $q$ to fix the boundary condition, but nothing in the physics requires the emission to switch on and off—it is constantly present and extends infinitely into the future.
 - **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines a sphere in the spatial slice at time $t$.
 - **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the surface remains $q$ as the sphere grows.
@@ -983,7 +983,7 @@ $$
 
 whose delayed solution is $\rho(t,\mathbf{s})=\frac{q}{4\pi r^2}\delta(r-v_f\tau)H(\tau)$.
 
-> **Plain language:** Nothing is created or destroyed as the causal surface expands—the flux streaming through each shell equals the original injection at the center.
+> **Plain language:** Nothing is created or destroyed as the causal surface expands—the flux streaming through each causal wake surface equals the original injection at the center.
 
 ---
 
@@ -1043,11 +1043,11 @@ Architrinos are the **sole carriers of kinetic and potential energy**. There is 
 
 #### 2.4.3 Coincidence and Regularization
 
-Architrinos have no volume, so multiple particles may coincide in space at the same $t$. Regularization of the singular $1/r^2$ hits is handled by a shell-thickness parameter $\eta>0$: for separations $r<\eta$ the force transitions to a bounded profile, preventing divergences while preserving total charge and energy in the $\eta\to 0$ limit.
+Architrinos have no volume, so multiple particles may coincide in space at the same $t$. Regularization of the singular $1/r^2$ hits is handled by a causal-surface width parameter $\eta>0$: for separations $r<\eta$ the force transitions to a bounded profile, preventing divergences while preserving total charge and energy in the $\eta\to 0$ limit.
 
 #### 2.4.4 Sphere Stream: The Field Landscape
 
-As an Architrino moves, it leaves behind a **sphere stream**—the collection of all expanding spherical shells it has emitted up to the observation time $t_{obs}$:
+As an Architrino moves, it leaves behind a **sphere stream**—the collection of all expanding causal wake surfaces it has emitted up to the observation time $t_{obs}$:
 
 $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
@@ -1083,7 +1083,7 @@ The causal set is typically a singleton when $|\mathbf{v}_j| < v_f$ but may cont
 
 #### 2.4.6 Superposition of Sphere Streams
 
-Sphere streams from distinct Architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a purely radial push scaling as $1/r^2$, so nearby sphere hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
+Sphere streams from distinct Architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a purely radial push scaling as $1/r^2$, so nearby wake hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
 
 #### 2.4.7 Future Path and Deterministic Evolution
 
@@ -1093,7 +1093,7 @@ $$
 \mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{a,j}(t; t_0),
 $$
 
-where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted by source $j$'s shell emitted at $t_0$. This is the deterministic, history-dependent evolution law.
+where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted by source $j$'s causal wake surface emitted at $t_0$. This is the deterministic, history-dependent evolution law.
 
 ---
 
@@ -1109,7 +1109,7 @@ The local gradient of the wake defines three regimes:
 - **Symmetry point** ($|\mathbf{v}_a| = v_f$): The Architrino coasts along the crest of its own wake. The region of highest intensity—the “shock” cone formed by the wake—lies tangent to the particle’s path. Small deviations now determine whether it stays behind the crest or pushes into the stronger field ahead.
 - **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The Architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters the **Cherenkov-like shock cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
 
-The key point is that the Architrino is not “catching up to a discrete shell”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
+The key point is that the Architrino is not “catching up to a discrete causal surface”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
 
 #### 2.5.2 Traversing One's Own Wake (Self-Interaction)
 
@@ -1139,7 +1139,7 @@ This wake-stabilized orbit:
 - Defines a **fundamental length scale** (likely Planck-scale: $R_{\text{min}} \sim \ell_P$)
 - Prevents classical $r \to 0$ singularities (see TOC Ch. 34: "Black Holes and Planck Cores")
 - Underpins stable particle assemblies (see TOC Ch. 11: "Noether Core")
-- Demonstrates the essential role of **continuous wake dynamics** (rather than discrete shell hits) in producing stable structures
+- Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
 
 **Cross-references:**
 - TOC Ch. 8: "Maximum Curvature Orbit and Planck-Scale Limit"
@@ -1219,7 +1219,7 @@ A special and fundamental case arises when an Architrino is stationary with resp
 
 **Static sphere stream geometry:**
 
-For a stationary Architrino at a fixed position $\mathbf{s}_{\text{fixed}}$, its sphere stream consists of a continuous family of perfectly concentric spherical shells. While each individual shell expands, the overall geometric form of the stream is static and time-invariant.
+For a stationary Architrino at a fixed position $\mathbf{s}_{\text{fixed}}$, its sphere stream consists of a continuous family of perfectly concentric causal wake surfaces. While each individual wake surface expands, the overall geometric form of the stream is static and time-invariant.
 
 **Bridge to absolute space:**
 
@@ -1437,9 +1437,9 @@ The **Absolute Observer** is a conceptual (non-physical) probe that represents c
 
 - **Position and velocity** of every architrino: $\{(\mathbf{x}_i(t), \mathbf{v}_i(t))\}_{i=1}^N$
 - **Charge state** (electrino, positrino, magnitude $|e/6|$): $\{q_i, \sigma_i\}$
-- **Full potential field configuration**: All outgoing spheres from all sources at all past times
-- **Path history**: For any potential shell passing a point, the AO knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
-- **Self-hit histories**: Which potential shells have returned to intersect their sources
+- **Full potential field configuration**: All outgoing causal wake surfaces from all sources at all past times
+- **Path history**: For any causal wake surface passing a point, the AO knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
+- **Self-hit histories**: Which causal wake surfaces have returned to intersect their sources
 
 **What the Absolute Observer is NOT:**
 
@@ -1655,8 +1655,8 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 | **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly | Sec. 1.1, absolute-time-defense.md |
 | **Absolute Virtual Observer (AVO)** / **Absolute Observer (AO)** | Conceptual probe with complete microstate knowledge | Sec. 4.1 |
 | **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics | Sec. 4.2 |
-| **Emission Time** | Time $t_0$ when a potential shell was emitted (we label this simply an emission time) | Sec. 2.5 |
-| **Self-Hit** | Intersection of an architrino with its own past emissions | Sec. 2.4, self-hit-dynamics.md |
+| **Emission Time** | Time $t_0$ when a causal wake surface was emitted (we label this simply an emission time) | Sec. 2.5 |
+| **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces | Sec. 2.4, self-hit-dynamics.md |
 | **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) | Sec. 2.2 |
 | **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly | assemblies/tri-binary-architecture.md |
 | **Electrino / Positrino** | Negative / positive fundamental charge unit $\mp e/6$ | Sec. 2.3 |
@@ -1692,7 +1692,7 @@ When using the word "emerges," always specify:
 
 **"Field":**
 
-- **Fundamental level**: No continuous fields; only discrete architrinos emitting potential shells.
+- **Fundamental level**: No continuous fields; only discrete architrinos emitting potential causal wake surfaces.
 - **Effective level**: Coarse-grained potential distributions $\Phi(\mathbf{x}, t)$ (see TOC Ch. 17).
 
 Always clarify which level you're working at.
@@ -1790,11 +1790,11 @@ These parameters arise from the discretization and regularization that Sol appli
 
 | **Parameter** | **Symbol** | **Purpose** | **Comment** |
 |:--------------|:-----------|:-----------|:------------|
-| Shell thickness | $\eta$ | Numerical regularization | Smooths each causal impulse into a narrow shell of width $\eta$ so the integral can be sampled with finite time steps and no singularities |
+| Wake surface width | $\eta$ | Numerical regularization | Smooths each causal impulse into a narrow wake surface of width $\eta$ so the integral can be sampled with finite time steps and no singularities |
 
 $\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous causal flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
 
-Sol approximates the **path-history integral** described in Section 2.4.5 by sampling discrete time steps. Each time step produces an effective spherical shell (or wake surface) of width $\eta$ whose $1/r^2$ contribution is summed; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing shells” is the numerical recipe for approximating the causal path-history potential law, not a claim that the underlying ontology emits pulses.
+Sol approximates the **path-history integral** described in Section 2.4.5 by sampling discrete time steps. Each time step produces an effective causal wake surface of width $\eta$ whose $1/r^2$ contribution is summed; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing wake surfaces” is the numerical recipe for approximating the causal path-history potential law, not a claim that the underlying ontology emits pulses.
 
 ---
 

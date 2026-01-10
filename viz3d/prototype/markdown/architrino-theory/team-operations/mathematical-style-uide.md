@@ -68,17 +68,17 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   - $H(0)=0$ (no instantaneous self-kick).
   - No $r=0$ causal roots beyond $\tau=0$: because $r = v(t - t_0)$, $r=0$ implies $\tau=0$; the $\tau=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
 
-Plain language: A push now only happens if a past sphere has had exactly enough time to reach you.
+Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach you.
 
 ---
 
-## 4) Distributions and regularization (spherical shells)
+## 4) Distributions and regularization (causal wake surfaces)
 
 - Point emission at (t₀, s₀):
   $$
   \text{source} = q\,\delta(t - t_0)\,\delta^{(3)}(\mathbf{s} - \mathbf{s}_0)
   $$
-- Expanding shell at speed v:
+-- Expanding causal wake surface at speed v:
   $$
   \rho(t,\mathbf{s}) = \frac{q}{4\pi r^2}\,\delta(r - v\,\tau)\,H(\tau),\quad r=\|\mathbf{s}-\mathbf{s}_0\|,\ \tau=t-t_0
   $$
@@ -91,7 +91,7 @@ Plain language: A push now only happens if a past sphere has had exactly enough 
   $$
   - Use $\eta$ > 0 when differentiability is required; take $\eta$ → 0 limits in the weak/integrated sense.
 
-Plain language: Each emission is a razor-thin spherical shell; when needed, we thicken it slightly so calculus works smoothly.
+Plain language: Each emission is a razor-thin causal wake surface; when needed, we thicken it slightly so calculus works smoothly.
 
 ---
 
@@ -145,8 +145,8 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
 
 ## 6) Energetics
 
-- Potential (mollified):
-  - $\Phi_\eta$ is defined using $\delta_\eta$ shells; at a point:
+-- Potential (mollified):
+  - $\Phi_\eta$ is defined using $\delta_\eta$ causal surfaces; at a point:
     $$
     U = q'\,\Phi_\eta
     $$
@@ -160,7 +160,7 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
   \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf{s} \;=\; -\,\Delta U
   $$
 
-Plain language: With slightly thick shells, the usual “force is minus gradient of potential” works; in the razor-thin limit it works after integrating over small time windows.
+Plain language: With slightly thick causal wake surfaces, the usual “force is minus gradient of potential” works; in the razor-thin limit it works after integrating over small time windows.
 
 ---
 
