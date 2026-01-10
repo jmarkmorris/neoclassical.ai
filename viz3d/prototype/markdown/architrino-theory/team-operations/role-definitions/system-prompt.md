@@ -2454,7 +2454,7 @@ $$
 
 - Receiver at $\mathbf{x}_i(t)$ "now"
 - Source worldline $\{\mathbf{x}_j(t') : t' < t\}$ in the past
--- Field-speed light cone: a sphere of radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
+-- Field-speed causal wake surface: the isochron of radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
 -- **Causal emission times**: where this expanding isochron surface **intersects** the receiver's current location
 
 For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
