@@ -57,9 +57,9 @@ All observed structures arise from architrino interactions:
 
 - **Definition**: An electrino–positrino pair stabilized in circular orbit at radius \(r_{\min}\) via self-hit dynamics (when \(v > v_f\)).
 - **Role**:
-  - **Prototype rod**: r_min defines the fundamental unit of **length**.
-  - **Prototype clock**: Orbital period T_MCB = 1/f_MCB defines the fundamental unit of **time**.
-- **Scale**: r_min is **sub Planck scale**.
+  - **Prototype rod**: \(r_{\min}\) defines the fundamental unit of **length**.
+  - **Prototype clock**: Orbital period \(T_{\text{MCB}} = 1/f_{\text{MCB}}\) defines the fundamental unit of **time**.
+- **Scale**: \(r_{\min}\) is **sub Planck scale**.
 - **Formation**: Natural attractor for isolated electrino–positrino pairs; **no external physics required**.
 
 ### 2. **Tri-Binary Architecture**
@@ -127,66 +127,6 @@ See `./docs/constraints/` for full ledger of Tier-1 empirical bounds.
 
 ---
 
-## Repository Structure
-
-```
-/
-├── README.md               (this file)
-├── docs/
-│   ├── ontology.md         (Foundations: substrate, architrinos, assemblies)
-│   ├── self-hit.md         (Self-hit dynamics and non-Markovian feedback)
-│   ├── tri-binary.md       (Tri-binary architecture and variants)
-│   ├── emergent-metric.md  (Spacetime as Noether Sea; gravity as refraction)
-│   ├── constraints/        (Empirical bounds, Tier-1 hard walls)
-│   └── derivations/        (Master equation, proper time, Lorentz suppression)
-├── simulations/
-│   ├── toy_binary.py       (Two-body spiral-in to MCB)
-│   ├── tri_binary_sim/     (Multi-scale assembly dynamics)
-│   └── noether_sea/        (Continuum medium + GW propagation)
-├── visualizations/
-│   ├── godot/              (Interactive 3D visualizations)
-│   └── manim/              (Animations for teaching)
-└── tests/
-    ├── unit/               (Convergence, reproducibility)
-    └── empirical/          (Comparison with experimental data)
-```
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Python 3.9+
-- NumPy, SciPy, Matplotlib
-- (Optional) Godot Engine 4.x for interactive visualizations
-- (Optional) Manim Community Edition for animations
-
-### Quick Start
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/architrino-framework.git
-   cd architrino-framework
-   ```
-
-2. **Run the toy binary simulator** (electrino + positrino spiral-in to MCB):
-   ```bash
-   python simulations/toy_binary.py
-   ```
-
-3. **Explore the documentation**:
-   ```bash
-   open docs/ontology.md
-   ```
-
-4. **Run tests**:
-   ```bash
-   pytest tests/
-   ```
-
----
-
 ## Critique of Standard Models & Historical Context
 
 - **Failure of imagination (1875–1927)**: Physics explored only a limited model of point charges (|q| = |e|, velocities v < c) and incorrectly dismissed point-particle approaches. Many more sophisticated point-potential systems (e.g., |e/6|, v > v_f, self-hits) were never investigated.
@@ -197,17 +137,6 @@ See `./docs/constraints/` for full ledger of Tier-1 empirical bounds.
   - **Interpretive paradoxes**: Wavefunction collapse, measurement problem, singularities.
 
 - **Architrino framework**: Provides the underlying physical ontology. GR and QM are **correct operationally** but **incomplete ontologically**. This framework aims to complete them by deriving their effective descriptions from fundamental dynamics.
-
----
-
-## Contributing
-
-We welcome contributions! Areas of particular interest:
-
-- **Simulation improvements**: Convergence testing, higher-order integrators, parallelization.
-- **Analytical derivations**: Tri-binary stability conditions, PPN parameters, precision observables.
-- **Empirical mapping**: Constraint ledger updates, new tests, statistical validation.
-- **Visualization**: Interactive demos, educational animations, data dashboards.
 
 ---
 
