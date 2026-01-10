@@ -27,8 +27,8 @@ Detailed explanation (dynamical geometry):
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
-  - $\eta$ is the thickness of the spherical shell used to mollify the surface delta $\delta(r-\tau)$. It converts impulsive hits into brief, smooth pushes so that standard ODE integration applies and pointwise quantities (like gradients) are well-defined.
-  - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver’s instantaneous curvature radius along its path and the local inter-source separation) so the regularized dynamics approximate the ideal event-driven picture while remaining numerically stable.
+  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\tau)$. It converts impulsive hits into brief, smooth pushes so that standard ODE integration applies and pointwise quantities (like gradients) are well-defined.
+  - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver’s instantaneous curvature radius along its path and the local inter-source separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
 - Unit charge magnitude ($\epsilon>0$):
   - $\epsilon$ is the fundamental charge scale of an Architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making quark charges integer multiples of $\epsilon$.
@@ -41,6 +41,6 @@ Detailed explanation (dynamical geometry):
   - $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$ is the separation between the receiver “now” and the source at its causal emission time. $\hat{\mathbf{r}}$ is the corresponding unit vector. All per-hit actions are purely radial along this line; no transverse/right-hand-rule terms appear.
 
 - Combined role in assembly scales:
-  - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and thinner shells (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
+  - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
 
 Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of charge. The push is always straight along the line back to where the isochron was emitted; like charges push out, unlike pull in.

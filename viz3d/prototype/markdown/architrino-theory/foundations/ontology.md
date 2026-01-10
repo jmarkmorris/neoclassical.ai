@@ -1794,7 +1794,7 @@ These parameters arise from the discretization and regularization that Sol appli
 
 $\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous causal flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
 
-Sol approximates the **path-history integral** described in Section 2.4.5 by sampling discrete time steps. Each time step produces an effective spherical shell (or wake surface) of width $\eta$ whose $1/r^2$ contribution is summed; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing shells” is the numerical recipe for approximating the retarded potential law, not a claim that the underlying ontology emits pulses.
+Sol approximates the **path-history integral** described in Section 2.4.5 by sampling discrete time steps. Each time step produces an effective spherical shell (or wake surface) of width $\eta$ whose $1/r^2$ contribution is summed; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing shells” is the numerical recipe for approximating the causal path-history potential law, not a claim that the underlying ontology emits pulses.
 
 ---
 

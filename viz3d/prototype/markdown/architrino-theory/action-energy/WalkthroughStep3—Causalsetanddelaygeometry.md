@@ -17,10 +17,10 @@ Detailed explanation (geometry of delay and roots):
 
 - Local uniqueness (sub-field-speed, transverse crossing):
   - If the source speed is locally sub-field-speed ($\|\mathbf{v}_o(t_0)\|<1$) and the derivative $\partial_{t_0}F(t_0;t) = -\hat{\mathbf{r}}\!\cdot\!\mathbf{v}_o(t_0) + 1$ is nonzero at the root, then the implicit function theorem guarantees a unique, smooth root branch near $t$.
-  - Intuition: the expanding spherical shell intersects the moving source path transversely.
+  - Intuition: the expanding causal isochron intersects the moving source path transversely.
 
 - Multiple roots (require super-field-speed):
-  - When $\|\mathbf{v}_o\|> 1$ at some emission times, the source can outpace recent shells, allowing several distinct historical points to satisfy the same distance–time constraint (multi-hit regime). If $\|\mathbf{v}_o\|<1$ everywhere, $F(t_0;t)$ is strictly increasing in $t_0$, so at most one causal root exists.
+  - When $\|\mathbf{v}_o\|> 1$ at some emission times, the source can outpace its recent wake surfaces, allowing several distinct historical points to satisfy the same distance–time constraint (multi-hit regime). If $\|\mathbf{v}_o\|<1$ everywhere, $F(t_0;t)$ is strictly increasing in $t_0$, so at most one causal root exists.
 
 - Conventions at singular cases:
   - We adopt $H(0)=0$ so the instantaneous emission at $t_0=t$ does not produce an immediate self-kick.

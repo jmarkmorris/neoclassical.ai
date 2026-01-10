@@ -12,8 +12,8 @@ Detailed explanation (impulses vs smooth pushes):
 - Measure-driven dynamics:
   - With exact surface deltas, dynamics are impulsive: velocities are functions of bounded variation with jump discontinuities at hit times.
 
-- Mollified shells:
-  - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta>0$ spreads each impulse into a short, smooth push, yielding classical $C^1$ trajectories for standard ODE solvers.
+- Mollified isochron surfaces:
+  - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta>0$ spreads each causal surface’s intersection into a short, smooth push, yielding classical $C^1$ trajectories for standard ODE solvers.
 
 - Choosing $\eta$:
   - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) to approximate the event-driven picture while maintaining numerical stability.

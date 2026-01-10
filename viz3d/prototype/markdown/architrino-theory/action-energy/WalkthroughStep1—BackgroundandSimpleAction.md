@@ -3,7 +3,7 @@
 Existing text excerpt:
 > The dynamics of an Architrino are governed by a simple action: an acceleration caused by the intersection of its path with a potential field.
 >
-> Geodesics and dynamics: The background is fixed (absolute time × Euclidean space); free paths are straight. Accelerations come only from delayed, purely radial hits from emitted shells—never from background curvature.
+> Geodesics and dynamics: The background is fixed (absolute time × Euclidean space); free paths are straight. Accelerations come only from delayed, purely radial hits from emitted causal isochrons—never from background curvature.
 
 Detailed explanation (dynamical geometry):
 
@@ -11,9 +11,9 @@ Detailed explanation (dynamical geometry):
   - The arena is absolute time × Euclidean space, $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, with simultaneity slices $\Sigma_t=\{t\}\times\mathbb{R}^3$ carrying the flat spatial metric $h_{ij}=\delta_{ij}$.
   - “Geodesics are straight” means: in the absence of any interaction, a worldline $\mathbf{s}(t)$ satisfies $\mathbf{a}(t)=d^2\mathbf{s}/dt^2=\mathbf{0}$; motion is uniform and rectilinear in each slice $\Sigma_t$. The background is fixed; there is no curvature to encode forces.
 
-- Field geometry as expanding spherical shells:
-  - Each Architrino emits potential on razor-thin spherical shells that expand at field speed $v$ (non-dimensionalized to $v=1$ elsewhere). The field is distribution-valued, supported on $r=v(t-t_0)$ around the historical emission point $\mathbf{s}(t_0)$, with surface density $\propto 1/r^2$.
-  - “Potential field” here is not a static scalar on space; it is the collection of expanding spherical wavefronts from all sources at earlier times, summed at the receiver’s location and now.
+- Field geometry as a continuous causal flux:
+  - Each Architrino streams potential continuously. At any observation time $t$, the contribution emitted at past time $t_0$ sits on the spherical isochron $r=v(t-t_0)$ centered on $\mathbf{s}(t_0)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
+  - “Potential field” refers to the superposition of all such causal isochrons (wake surfaces) from past emissions. The flux never shuts off; the surfaces are bookkeeping devices that isolate portions of the path history whose intersection with a receiver delivers acceleration.
 
 - Intersection as the driver of acceleration:
   - The receiver’s worldline is $\mathbf{s}_{o'}(t)$. An intersection at time $t$ means some earlier emission time $t_0 < t$ satisfies the causal-distance condition
@@ -32,6 +32,6 @@ Detailed explanation (dynamical geometry):
   - The background adds no force; departures from straight motion arise only from these intersections with emitted fields (including self-hits when kinematics allow).
 
 - Physical picture:
-  - Picture many expanding spherical “skins.” A push occurs only when a skin arrives, directed straight along the radius back to its emission point, with strength falling as $1/r^2$.
+  - Picture many continuously expanding wake surfaces (causal isochrons). A push occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with strength falling as $1/r^2$.
 
 If you’d like to continue, next up are “Units and constants” (the $v=1$ convention, coupling $\kappa$, regularization width $\eta$) and the formal definition of the causal interaction set $\mathcal{C}_o(t)$.

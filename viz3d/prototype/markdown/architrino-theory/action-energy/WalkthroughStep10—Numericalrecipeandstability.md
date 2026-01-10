@@ -19,10 +19,10 @@ Event-aware integration (practical algorithm):
 
 4. Stability tips:
    - Use event bracketing or root trackers for continuity of $t'(t)$ across steps.
-   - Limit step size so that at most one (or a controlled number of) mollified shells overlap significantly per step.
+   - Limit step size so that at most one (or a controlled number of) mollified wake surfaces overlap significantly per step.
    - Monitor invariants over resolved windows (work–energy balance with $\Phi_\eta$) to validate settings.
 
 5. Units:
    - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed influences only power via $v_r$.
 
-Plain language: At each time, find which past emissions can reach you now, sum their radial pushes with 1/r² falloff, and step forward—either with sharp kicks at exact hit times or with tiny-thick shells for smooth integration.
+Plain language: At each time, find which past emissions can reach you now, sum their radial pushes with 1/r² falloff, and step forward—either with sharp kicks at exact hit times or with tiny-thick wake surfaces for smooth integration.

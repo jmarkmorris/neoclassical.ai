@@ -7,7 +7,7 @@ Existing text excerpt:
 Detailed explanation (conditions and effects):
 
 - Root multiplicity and self-roots:
-  - When $|\mathbf{v}_a|>1$ (in $v=1$ units), the worldline can outrun recent shells, so $\mathcal{C}_a(t)$ includes emission times from the same particle (self-hits).
+  - When $|\mathbf{v}_a|>1$ (in $v=1$ units), the worldline can outrun recent wake surfaces, so $\mathcal{C}_a(t)$ includes emission times from the same particle (self-hits).
 
 - Repulsive character:
   - For like-on-like (self) interaction, $\sigma_{q_a q_a}=+1$ ensures the self-contribution points outward along $+\hat{\mathbf{r}}$, opposing further collapse.

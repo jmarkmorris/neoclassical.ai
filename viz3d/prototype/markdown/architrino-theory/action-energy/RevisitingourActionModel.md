@@ -9,20 +9,20 @@ We synthesize Steps 1–10 and the canonical Action to compare—side by side—
 **Setup / assumptions**
 
 * The emitter is at position $\mathbf{x}_s(t)$ in 3-D space (it can move).
-* The emitter emits **thin spherical shells**. Each shell is created at a single instant $\tau$ and then expands outward **spherically** from the creation point.
-* The shell radius after emission time $\tau$ is
+* The emitter emits **thin causal wake surfaces**. Each wake surface is created at a single instant $\tau$ and then expands outward **spherically** from the creation point.
+* The wake surface radius after emission time $\tau$ is
 
   $$
   r(t,\tau) = c\,(t-\tau) \quad \text{for } t\ge\tau,
   $$
 
   where $c$ is the constant **field speed** (you wrote $dr/dt=$ field speed; I call that $c$).
-* Each emitted shell carries a **strength** $Q$ (I’ll call that “shell amplitude” — the physical meaning depends on your application: charge, potential impulse, energy, etc.).
-* Continuous source (preferred): model the emitter as a moving point injection with time-density $q(t)$ (amplitude per unit time) at its instantaneous position, i.e., $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$. Each instant $t_0$ contributes a spherical shell; we do not count “shells per second” (pulse trains are merely numerical surrogates).
+* Each emitted wake surface carries a **strength** $Q$ (I’ll call that “wake surface amplitude” — the physical meaning depends on your application: charge, potential impulse, energy, etc.).
+* Continuous source (preferred): model the emitter as a moving point injection with time-density $q(t)$ (amplitude per unit time) at its instantaneous position, i.e., $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$. Each instant $t_0$ contributes a causal wake surface; we do not count “wake surfaces per second” (pulse trains are merely numerical surrogates).
 * We want to know the field $\phi(\mathbf{x},t)$ (I’ll call the scalar field “potential” or simply $\phi$) produced at any point $\mathbf{x}$ and time $t$.
 * Global neutrality (working hypothesis): on large scales the total Architrino charge inventory sums to zero (equal counts of $\pm\epsilon$); use this as the default boundary condition in PDE/Green’s-function comparisons.
 
-We compare three frameworks: (1) a time-domain PDE/source, (2) an integral/Green’s-function (path history) solution, and (3) an event-driven radial-transport plus per-hit EOM. For each, we define symbols, show how the expanding shells appear, discuss how slowing or stopping the emitter is handled, and weigh trade-offs to inform a recommendation.
+We compare three frameworks: (1) a time-domain PDE/source, (2) an integral/Green’s-function (path history) solution, and (3) an event-driven radial-transport plus per-hit EOM. For each, we define symbols, show how the expanding causal wake surfaces appear, discuss how slowing or stopping the emitter is handled, and weigh trade-offs to inform a recommendation.
 
 ---
 
@@ -43,7 +43,7 @@ $$
 * $\phi(\mathbf{x},t)$: scalar field (potential) at position $\mathbf{x}\in\mathbb{R}^3$ and time $t$.
 * $c$: field propagation speed (units length/time).
 * $\nabla^2$: Laplacian operator in space (sums second spatial derivatives).
-* $S(\mathbf{x},t)$: source term (right-hand side) — this is how the emitter injects shells into the field.
+* $S(\mathbf{x},t)$: source term (right-hand side) — this is how the emitter injects wake surfaces into the field.
 
 ### Point (moving) source form
 
@@ -53,12 +53,12 @@ $$
 S(\mathbf{x},t) \;=\; q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big).
 $$
 
-Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave operator then generates outgoing spherical wavefronts automatically; no discrete shell count is assumed.
+Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave operator then generates outgoing spherical wavefronts automatically; no discrete wake surface count is assumed.
 
-**How expanding shells appear**
+**How expanding causal wake surfaces appear**
 
 * You did **not** put a “radius” into the right-hand side. Instead, the PDE and the finite speed $c$ cause any instantaneous injection at the point $\mathbf{x}_s(\tau)$ to produce an *outgoing spherical wave* whose wavefront moves outward at speed $c$. That is the built-in behavior of the wave equation.
-* The Green’s function ensures that, at $(\mathbf{x},t)$, only the path history emission $q(\tau)$ with $\tau = t - r/c$ contributes, producing an outgoing spherical wave with amplitude $q(\tau)/(4\pi r)$ supported on $r=c(t-\tau)$. Thus Method 1 with $S(\mathbf{x},t)=q(t)\delta(\mathbf{x}-\mathbf{x}_s(t))$ naturally yields expanding shells at speed $c$.
+* The Green’s function ensures that, at $(\mathbf{x},t)$, only the path history emission $q(\tau)$ with $\tau = t - r/c$ contributes, producing an outgoing spherical wave with amplitude $q(\tau)/(4\pi r)$ supported on $r=c(t-\tau)$. Thus Method 1 with $S(\mathbf{x},t)=q(t)\delta(\mathbf{x}-\mathbf{x}_s(t))$ naturally yields expanding causal wake surfaces at speed $c$.
 
 **Why $v$ (emitter speed) doesn’t cause blow-ups**
 
@@ -69,20 +69,20 @@ Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave opera
 
 * Choose spatial grid $\mathbf{x}_i$ and time step $\Delta t$ satisfying CFL stability (roughly $c\Delta t/\Delta x \le \text{const}$).
 * Use a standard finite-difference time stepping for the wave equation (centered difference in time and space).
-* At each time step $t_n$ add the source contribution $S(\cdot,t_n)$ to the RHS at the grid cells nearest $\mathbf{x}_s(t_n)$. If the emitter stops, it remains injecting at that grid location — the solver propagates outgoing shells.
-* To avoid a numerical spike, spread the delta over a few cells (mollifier) so you physically model a thin shell of finite thickness.
+* At each time step $t_n$ add the source contribution $S(\cdot,t_n)$ to the RHS at the grid cells nearest $\mathbf{x}_s(t_n)$. If the emitter stops, it remains injecting at that grid location — the solver propagates outgoing wake surfaces.
+* To avoid a numerical spike, spread the delta over a few cells (mollifier) so you physically model a thin wake surface of finite thickness.
 
 **Summary for Method 1**
 
 * Model is explicit, straightforward, numerically robust.
-* Emission is naturally time-based; shells expand automatically at speed $c$.
+* Emission is naturally time-based; wake surfaces expand automatically at speed $c$.
 * No division by the emitter speed appears; stopping the emitter is handled simply by keeping the source at the same location.
 
 ---
 
 # 2) Integral (Green’s function / path-history potential) approach
 
-**Physical idea:** instead of evolving a PDE in time, write the solution as the sum of contributions from every past emission. For the wave equation the contribution from an impulse emitted at time $\tau$ and place $\mathbf{x}_s(\tau)$ arrives at a field point $\mathbf{x}$ only at the **path-history time** when the spherical shell reaches $\mathbf{x}$. The Green’s function neatly encodes the expanding shell.
+**Physical idea:** instead of evolving a PDE in time, write the solution as the sum of contributions from every past emission. For the wave equation the contribution from an impulse emitted at time $\tau$ and place $\mathbf{x}_s(\tau)$ arrives at a field point $\mathbf{x}$ only at the **path-history time** when the causal wake surface reaches $\mathbf{x}$. The Green’s function neatly encodes the expanding causal wake surface.
 
 ### Fundamental formula (general)
 
@@ -104,7 +104,7 @@ $$
 
 ### The 3-D free-space wave Green’s function
 
-For three spatial dimensions (the usual case for spherical shells), the causal Green’s function is
+For three spatial dimensions (the usual case for causal wake surfaces), the causal Green’s function is
 
 $$
 G(\mathbf{x},t;\mathbf{y},\tau)
@@ -137,7 +137,7 @@ $$
 t - \tau = \frac{r(\tau)}{c}, \qquad r(\tau)\equiv |\mathbf{x}-\mathbf{x}_s(\tau)|.
 $$
 
-So the contribution to $\phi(\mathbf{x},t)$ comes only from times $\tau$ such that the expanding spherical shell emitted at $\tau$ has just reached $\mathbf{x}$ at time $t$.
+So the contribution to $\phi(\mathbf{x},t)$ comes only from times $\tau$ such that the expanding causal wake surface emitted at $\tau$ has just reached $\mathbf{x}$ at time $t$.
 
 Mathematically, use the identity $\delta(g(\tau))=\sum_i \delta(\tau-\tau_i)/|g'(\tau_i)|$ where $\tau_i$ are simple roots of $g$. With $g(\tau)=t-\tau - r(\tau)/c$ we find (after algebra) the standard path-history solution:
 
@@ -162,20 +162,20 @@ In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!
 
 ### Special simple case — stationary emitter
 
-If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau-\tau_0)$ (single shell at $\tau_0$), then the formula reduces to the intuitive result:
+If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau-\tau_0)$ (single wake surface at $\tau_0$), then the formula reduces to the intuitive result:
 
-* The field at $\mathbf{x},t$ is nonzero only when $t-\tau_0 = |\mathbf{x}-\mathbf{x}_0|/c$, i.e., when the spherical shell of radius $r=c(t-\tau_0)$ reaches $\mathbf{x}$.
+* The field at $\mathbf{x},t$ is nonzero only when $t-\tau_0 = |\mathbf{x}-\mathbf{x}_0|/c$, i.e., when the causal wake surface of radius $r=c(t-\tau_0)$ reaches $\mathbf{x}$.
 * The amplitude is $\displaystyle \phi(\mathbf{x},t) = \frac{Q}{4\pi\,r}$ (no extra Jacobian factor because $v_s=0$).
 
-### How shells show up here
+### How wake surfaces show up here
 
-* Each emitted shell corresponds to one emission time $\tau$. The delta in the Green’s function selects the observation times $t$ at which the shell reaches $\mathbf{x}$.
-* The shape of the contribution is the $1/(4\pi r)$ geometric factor (for wave amplitude); the shell is “thin” in time if $q(\tau)$ is a delta in $\tau$, so you get a short impulse when the wavefront passes.
+* Each emitted wake surface corresponds to one emission time $\tau$. The delta in the Green’s function selects the observation times $t$ at which the wake surface reaches $\mathbf{x}$.
+* The shape of the contribution is the $1/(4\pi r)$ geometric factor (for wave amplitude); the wake surface is “thin” in time if $q(\tau)$ is a delta in $\tau$, so you get a short impulse when the wavefront passes.
 
 ### Handling an emitter that stops / $|\mathbf v_s|\to 0$
 
-* If the emitter slows or stops, the Jacobian factor $1 - \mathbf{n}\cdot\mathbf{v}_s/c$ tends to 1 and nothing singular happens. The path-history equation still has a solution and each shell arrives at the predicted time.
-* If the emitter sits still and emits many shells (continuous $q(\tau)$), the field is the time integral (or sum) of all shell contributions evaluated at their respective causal times. No $1/|\mathbf{v}_s|$ blowup occurs.
+* If the emitter slows or stops, the Jacobian factor $1 - \mathbf{n}\cdot\mathbf{v}_s/c$ tends to 1 and nothing singular happens. The path-history equation still has a solution and each wake surface arrives at the predicted time.
+* If the emitter sits still and emits many wake surfaces (continuous $q(\tau)$), the field is the time integral (or sum) of all wake surface contributions evaluated at their respective causal times. No $1/|\mathbf{v}_s|$ blowup occurs.
 
 ---
 
@@ -185,10 +185,10 @@ If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau
 
 # 3) Event-driven radial-transport + per-hit EOM (current canonical method)
 
-Physical idea: represent emission as a conserved, razor-thin spherical shell (a measure on the sphere), then drive particle motion by summing purely radial per-hit accelerations at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
+Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the sphere), then drive particle motion by summing purely radial per-hit accelerations at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
 
 Field representation (transport/continuity form)
-- Source impulse at $(t_0,\mathbf{s}_0)$ creates a shell supported on $r = v(t-t_0)$ with surface density that conserves a constant per-shell amplitude $q$:
+- Source impulse at $(t_0,\mathbf{s}_0)$ creates a wake surface supported on $r = v(t-t_0)$ with surface density that conserves a constant per-wake surface amplitude $q$:
   $$
   \rho(t,\mathbf{s}) \;=\; \frac{q}{4\pi r^2}\,\delta\!\big(r - v(t-t_0)\big)\,H(t-t_0),\quad r=\|\mathbf{s}-\mathbf{s}_0\|.
   $$
@@ -217,14 +217,14 @@ Implementation checklist
 - Root finding: solve $F(t_0;t)=\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|-v(t-t_0)=0$ for all $j$ (including $j=o'$ for self-hits when kinematics permit).
 - Accumulation: compute $r,\hat{\mathbf{r}}$, apply $1/r^2$, then superpose.
 - Time stepping: impulsive mode (events) or mollified mode ($\eta>0$) with standard ODE integrators.
-- Self-interaction: appears when the worldline outruns recent shells ($\|\mathbf{v}\|>v$ for some emissions); self-hits are repulsive (like-on-like).
+- Self-interaction: appears when the worldline outruns recent wake surfaces ($\|\mathbf{v}\|>v$ for some emissions); self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
-- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on moving spheres); it is compatible with conserving total emission per shell. In Method 2 the $1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
+- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on moving spheres); it is compatible with conserving total emission per wake surface. In Method 2 the $1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
 - The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ from Method 2 is not explicit here; geometric normalizations are absorbed into $\kappa$ by convention. We do not include any per-hit weighting by this Jacobian in the canonical law; geometry and timing alone encode speed effects.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
-Plain language: Treat the field as razor-thin “paint” spread over a growing sphere so the total amount stays the same. Every time a shell reaches you, you get a straight-line shove that falls off like one over distance squared; we either treat it as a sharp kick or a short, smooth nudge.
+Plain language: Treat the field as razor-thin “paint” spread over a growing sphere so the total amount stays the same. Every time a wake surface reaches you, you get a straight-line shove that falls off like one over distance squared; we either treat it as a sharp kick or a short, smooth nudge.
 
 ## Cross-method guidance: when to use which method, a unifying example, and practical tips
 
@@ -242,7 +242,7 @@ Short worked example — stationary emitter, continuous source (consistent acros
 Practical implementation notes (concise)
 - PDE: smear $\delta(\mathbf{x}-\mathbf{x}_s)$ to grid scale; enforce CFL ($c\,\Delta t/\Delta x$ within the scheme’s bound).
 - Path-history: robust root-finding for $\tau$ from $t-\tau=r(\tau)/c$; take care near grazing geometries where $1-\mathbf{n}\cdot\mathbf{v}_s/c$ is small.
-- Event-driven: bracket causal roots for continuity, optionally use $\delta_\eta$ for smooth pushes, and limit step sizes so only a controlled number of mollified shells overlap.
+- Event-driven: bracket causal roots for continuity, optionally use $\delta_\eta$ for smooth pushes, and limit step sizes so only a controlled number of mollified wake surfaces overlap.
 
 Bottom line (3 lines)
 - Model sources as $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$ (time-based emission density).
@@ -316,7 +316,7 @@ Method 2 — Green’s function (path-history integral)
   - Makes causality explicit via path-history times; captures Doppler/Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ automatically.
   - Efficient when you need the field at a few observation points; excellent for analysis and cross-checks.
 - Cons
-  - Requires root-finding for each (observer, time) pair; multiple roots possible when sources outrun shells.
+  - Requires root-finding for each (observer, time) pair; multiple roots possible when sources outrun wake surfaces.
   - Costly when many receivers/sources are present; bookkeeping grows quickly.
   - Needs careful handling near tangencies (small Jacobians) and in multi-hit/self-hit regimes.
 
@@ -343,13 +343,13 @@ Method 3 — Event-driven radial-transport + per-hit EOM (current canonical)
   - Always smear $\delta(\mathbf{x}-\mathbf{x}_s)$ to a normalized kernel of width $\sigma$ comparable to the grid spacing in PDE runs to avoid grid-scale artifacts.
   - Enforce CFL: choose $\Delta t$ so that $c\,\Delta t/\Delta x$ meets the stability bound for the chosen stencil to prevent instability.
   - Path history solving: solve $t-\tau=r(\tau)/c$ carefully; near $|\mathbf{v}_s|\approx c$, root finding and the factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ require extra care.
-  - Finite temporal thickness: if shells have duration, replace $\delta(t-\tau)$ with a smooth profile to model finite-width wavefronts.
+  - Finite temporal thickness: if wake surfaces have duration, replace $\delta(t-\tau)$ with a smooth profile to model finite-width wavefronts.
 
 Plain language: Keep using the event-driven, radial-only method for dynamics, check it against the path-history integral to set the knobs, and bring out the PDE only when you need whole-field pictures or complex media.
 
 Recap (in three lines)
 - Model sources as $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$ (time-based emission density).
-- Method 1: easiest for grid-based whole-field runs; shells emerge at speed $c$.
+- Method 1: easiest for grid-based whole-field runs; wake surfaces emerge at speed $c$.
 - Method 2: exact path-history formula; contributions occur only when $t-\tau = |\mathbf{x}-\mathbf{x}_s(\tau)|/c$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf{v}_s/c$ factor in evaluation.
 
 ---
@@ -362,7 +362,7 @@ Legend: [+] passes, [~] depends (energy/frequency/geometry), [x] mostly blocked/
 
 | Layer | Photons | Neutrinos | Charged ±$\epsilon$ | Dark-matter-like neutral |
 | --- | --- | --- | --- | --- |
-| L4: Bulk molecular shell (solids/liquids; many-body opacity) | [~] material window; optical opaque, IR/UV/X/$\gamma$ vary | [+] nearly transparent | [x] bind/deflect; do not traverse as free particles | [+] very weak coupling |
+| L4: Bulk molecular wake surface (solids/liquids; many-body opacity) | [~] material window; optical opaque, IR/UV/X/$\gamma$ vary | [+] nearly transparent | [x] bind/deflect; do not traverse as free particles | [+] very weak coupling |
 | L3: Atomic electron cloud (bound electrons) | [~] photoelectric/Compton; X/$\gamma$ penetrate better | [+] | [x] Coulomb-coupled; captured/scattered | [+] |
 | L2: Nuclear layer (nucleons; femtoscopic scale) | [~] $\gamma$ can interact; strong attenuation in bulk | [+] weak interaction; mostly pass | [x] excluded as free traversers | [+] |
 | L1: Noether Core shielding (triply nested binaries; shielded) | [x] far-field cancels; no corridor capture | [~] tiny axial coupling only | [x] self/partner couplings dominate; no transit | [+] by hypothesis: minimal coupling |
