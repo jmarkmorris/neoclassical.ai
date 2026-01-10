@@ -30,22 +30,22 @@ The core idea: Classical point-charge models (circa 1900) were abandoned too qui
   - **Positrino**: Positive charge personality, magnitude |q| = |e/6|.
 - **Immutable**: No creation or annihilation. They are eternal.
 - **Dynamics**:
-- Continuously **emit** spherically expanding potential (propagating at finite **field speed** \(v_f\)).
+- Continuously **emit** spherically expanding potential (propagating at finite **field speed** v<sub>f</sub>).
   - Continuously **receive** potential from all others (and sometimes themselves).
   - Respond deterministically to the **vector sum** of all received potentials.
 
 ### 3. **Self-Hit Dynamics (Critical Innovation)**
 
-When an architrino's velocity \(v\) exceeds field speed \(v_f\), it **intercepts its own past outgoing potential**. This creates:
+When an architrino's velocity v exceeds field speed v<sub>f</sub>, it **intercepts its own past outgoing potential**. This creates:
 
 - **Non-Markovian feedback**: Future trajectory depends on detailed history, not just current state.
 - **Singularity resolution**: Self-hit prevents collapse to r → 0; stabilizes binaries at finite radius.
 - **Quantum-like effects**: Interference with own past potential → pilot-wave-like guidance without separate wavefunction.
 
 **Three velocity regimes**:
-1. \(v < v_f\) (sub-field-speed): Standard Coulomb-like interaction; no self-hits.
-2. \(v = v_f\) (field-speed threshold): Symmetry breaking.
-3. \(v > v_f\) (super-field-speed): Self-hit regime; maximal curvature binaries form; source of inflation/deflation dynamics.
+1. v < v<sub>f</sub> (sub-field-speed): Standard Coulomb-like interaction; no self-hits.
+2. v = v<sub>f</sub> (field-speed threshold): Symmetry breaking.
+3. v > v<sub>f</sub> (super-field-speed): Self-hit regime; maximal curvature binaries form; source of inflation/deflation dynamics.
 
 ---
 
@@ -55,20 +55,20 @@ All observed structures arise from architrino interactions:
 
 ### 1. **Maximal Curvature Binary (MCB)**
 
-- **Definition**: An electrino–positrino pair stabilized in circular orbit at radius \(r_{\min}\) via self-hit dynamics (when \(v > v_f\)).
+- **Definition**: An electrino–positrino pair stabilized in circular orbit at radius r<sub>min</sub> via self-hit dynamics (when v > v<sub>f</sub>).
 - **Role**:
-  - **Prototype rod**: \(r_{\min}\) defines the fundamental unit of **length**.
-  - **Prototype clock**: Orbital period \(T_{\text{MCB}} = 1/f_{\text{MCB}}\) defines the fundamental unit of **time**.
-- **Scale**: \(r_{\min}\) is **sub Planck scale**.
+-   - **Prototype rod**: r<sub>min</sub> defines the emergent unit of **length**.
+-   - **Prototype clock**: Orbital period T<sub>MCB</sub> = 1/f<sub>MCB</sub> defines the emergent unit of **time**.
+- **Scale**: r<sub>min</sub> is **sub Planck scale**.
 - **Formation**: Natural attractor for isolated electrino–positrino pairs; **no external physics required**.
 
 ### 2. **Tri-Binary Architecture**
 
 Three nested binaries at distinct scales (radius / frequency / energy):
 
-1. **Inner binary** (MCB): \(v > v_f\); self-hit stabilized; defines fundamental units.
-2. **Middle binary**: \(v = v_f\); symmetry-breaking threshold; defines effective "c" for the assembly.
-3. **Outer binary**: \(v < v_f\); expansion/contraction modes; couples to spacetime medium.
+1. **Inner binary** (limit MCB): v > v<sub>f</sub>; self-hit stabilized; defines fundamental units.
+2. **Middle binary**: v = v<sub>f</sub>; symmetry-breaking threshold; defines effective "c" for the assembly.
+3. **Outer binary**: v < v<sub>f</sub>; expansion/contraction modes; couples to spacetime medium.
 
 **Scalability**:
 - **Ellipsoidal / 3D** → Fermionic behavior (Fermi–Dirac statistics; half-integer spin).
@@ -83,10 +83,10 @@ Three nested binaries at distinct scales (radius / frequency / energy):
 - **Spacetime medium ("Noether Sea")**: Dense lattice of Noether cores filling space.
   - Analogous to: Superfluid or Bose–Einstein condensate.
   - **Role**: Implements what General Relativity calls "spacetime fabric."
-  - Properties: Density (ρ_vac), stress, flow, refractive index.
+  - Properties: Density (ρ<sub>vac</sub>), stress, flow, refractive index.
 
 **Gravity as Refraction**:
-- Massive bodies → increased medium density → slowed signal propagation (\(c_{\text{eff}} < v_f\)).
+- Massive bodies → increased medium density → slowed signal propagation (c<sub>eff</sub> < v<sub>f</sub>).
 - **Einstein's curved spacetime** is an effective description of this refractive index field.
 
 ### 4. **Standard Model Particles**
@@ -118,9 +118,9 @@ Three nested binaries at distinct scales (radius / frequency / energy):
 ### Testable Predictions:
 
 - **Lorentz violation searches**: Preferred-frame effects suppressed below 10⁻¹⁷ (sidereal atomic clock variations).
-- **Charge searches**: No stable fractional charges beyond e/3, 2e/3, e (null results for e/137, free quarks).
+- **Charge searches**: No stable fractional charges beyond |e/3|, |2e/3|.
 - **Proton decay**: Lifetime > 10³⁴ years (baryon number conserved by topology?).
-- **Gravitational wave speed**: |v_GW - c|/c < 10⁻¹⁵ (medium ripple speed = effective light speed).
+- **Gravitational wave speed**: |v<sub>GW</sub> - c|/c < 10⁻¹⁵ (medium ripple speed = effective light speed).
 - **Precision tests**: g-2 anomalies, fine-structure constant, CKM/PMNS matrices derived from assembly geometry.
 
 See `./docs/constraints/` for full ledger of Tier-1 empirical bounds.
@@ -129,7 +129,7 @@ See `./docs/constraints/` for full ledger of Tier-1 empirical bounds.
 
 ## Critique of Standard Models & Historical Context
 
-- **Failure of imagination (1875–1927)**: Physics explored only a limited model of point charges (|q| = |e|, velocities v < c) and incorrectly dismissed point-particle approaches. Many more sophisticated point-potential systems (e.g., |e/6|, v > v_f, self-hits) were never investigated.
+- **Failure of imagination (1875–1927)**: Physics explored only a limited model of point charges (|q| = |e|, velocities v < c) and incorrectly dismissed point-particle approaches. Many more sophisticated point-potential systems (e.g., |e/6|, v > v<sub>f</sub>, self-hits) were never investigated.
 
 - **Effective theories**: General Relativity, Quantum Mechanics, and ΛCDM are highly successful *effective theories* that match observations but lack fundamental grounding. They contain:
   - **Ontological errors**: Curved spacetime as fundamental (it's emergent from medium).
