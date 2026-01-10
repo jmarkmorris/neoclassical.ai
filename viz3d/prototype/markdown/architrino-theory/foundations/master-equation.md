@@ -81,9 +81,9 @@ where
 - $\delta(\cdot)$ enforces the causal constraint $r_{ij} = c_f(t - t_0)$, and
 - $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ encodes attraction/repulsion.
 
-Because the delta collapses the time integral to the set $\mathcal{C}_j(t)$ of causal emission times (see Section 2), the result is equivalent to evaluating the $1/r^2$ kernel at those historical emission points. The Euclidean analog of the Liénard–Wiechert potential is thus recovered as a path-history integral whose kernel is purely radial.
+The delta collapses the time integral to the causal set $\mathcal{C}_j(t)$ (see Section 2), so the integrand is evaluated at the **retarded time** $t_{\text{ret}} = t - r_{ij}(t; t_0)/c_f$. This is the retarded potential law: acceleration at $t$ depends on $1/r^2$ information from each emission retarded by the travel time. The Euclidean analog of the Liénard–Wiechert potential thus emerges as a **path-history integral** whose kernel is purely radial.
 
-Numerical implementations (Sol) discretize the integral by sampling discrete emission times, producing the familiar picture of summing over “spherical shells.” That discrete shell sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
+Numerical implementations (Sol) discretize this integral by sampling discrete emission times, producing the familiar picture of summing over “spherical shells.” That discrete shell sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
 
 ---
 

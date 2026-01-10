@@ -939,59 +939,51 @@ All observable entities (particles, atoms, fields, spacetime curvature) are **em
 
 ### 2.2 Core Emission Properties
 
-An Architrino is a transceiver: it continuously emits potential flux and receives/responds to incoming flux from other sources. The fundamental transmit operation has the following key features:
+An Architrino is a transceiver: it continuously emits potential flux and simultaneously receives the combined flux of all other Architrinos. The emission rule has the following key features:
 
-- **Continuous flux:** At every instant the Architrino injects potential into the surrounding void. The “spherical shell” is nothing more than an **isochron of causality**—the surface that connects all spatial points currently receiving the contribution emitted at a specific past time. The shell is therefore a *calculation tool* for isolating path-history interactions, not a discrete “pulse” that turns on and off.
-- **Point of origin:** The potential effectively originates at the Architrino’s current location. We encode this as a spatial Dirac delta for bookkeeping (the boundary condition “the flux begins here with total charge $q$”), but the underlying reality is a steady flux of potential rather than intermittent pulses.
-- **Surface expansion:** Once emitted, the contribution propagates outward in a radially symmetric fashion; the relevant locus for a given emission time is the expanding causal surface defined by the same constraint.
-- **Field speed:** The propagation occurs at the field speed $v_f$, so the isochron surface satisfies $r = v_f(t-t_0)$ for emission time $t_0$. In natural units we set $v_f = 1$.
-- **Surface density:** On that isochron surface the potential’s intensity decreases as $1/r^2$, preserving the total “charge” $q$ as the flux spreads over ever larger areas.
+- **Continuous flux:** At every instant the Architrino streams potential into the void. The “spherical shell” is the **isochron of causality** that connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, the shell is merely a computational surface that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
+- **Local origin:** The flux originates at the Architrino’s instantaneous position. We encode the start of each emission as a spatial Dirac delta carrying total charge $q$ to fix the boundary condition, but nothing in the physics requires the emission to switch on and off—it is constantly present and extends infinitely into the future.
+- **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines a sphere in the spatial slice at time $t$.
+- **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the surface remains $q$ as the sphere grows.
 
-**Geometric Characterization:**
-
-Consider timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$ with coordinates $(t,\mathbf{s})$ and Euclidean spatial metric. An emission event at $(t_0,\mathbf{s}_0)$ generates a radially symmetric, measure-valued field supported on the expanding causal surface:
+**Geometric characterization:** In timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, an emission event at $(t_0, \mathbf{s}_0)$ generates a radially symmetric, measure-valued contribution supported on the expanding causal surface
 
 $$
 \mathcal{C}=\{(t,\mathbf{s}) : t\ge t_0,\; r = v_f(t-t_0)\},\quad r=\|\mathbf{s}-\mathbf{s}_0\|.
 $$
 
-At the emission time $t=t_0$, the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. At each fixed time $t>t_0$, the field is a surface delta measure on the causal surface $S_{r}$ of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
+At $t=t_0$ the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. For $t>t_0$ it is a surface delta on the sphere of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
 
-This expanding wavefront has two key properties:
+This contribution has two notable features:
 
-- **Indefinite expansion:** The shell expands indefinitely as $t \to \infty$. The radius grows without bound, and the surface density approaches zero but never reaches it.
-- **Superposition and linearity:** The field from one Architrino propagates unimpeded through others; fields from distinct sources superpose without mutual interference. The total field at any location is the linear sum of all individual expanding shells.
+- **Indefinite expansion:** The causal surface expands without bound as $t\to\infty$. Its radius diverges and the surface density vanishes, yet the total flux remains constant.
+- **Linear superposition:** Contributions from distinct Architrinos propagate through one another without interaction; the total field at any location is the linear sum of all individual causal surfaces.
 
-**Analytic Form:**
-
-Let $\tau=t-t_0$ and $r=\|\mathbf{s}-\mathbf{s}_0\|$. The measure-valued density (per unit volume) is:
+**Analytic form:** Let $\tau=t-t_0$ and $r=\|\mathbf{s}-\mathbf{s}_0\|$. The measure-valued density (per unit volume) is
 
 $$
-\rho(t,\mathbf{s})
-=\frac{q}{4\pi r^2}\,\delta\!\big(r - v_f\,\tau\big)\,H(\tau),
+\rho(t,\mathbf{s})=\frac{q}{4\pi r^2}\,\delta\!\big(r - v_f\,\tau\big)\,H(\tau),
 $$
 
-where $H$ is the Heaviside step function with $H(0)=0$ (no instantaneous self-force).
+with $H$ the Heaviside step function ($H(0)=0$ to avoid instantaneous self-force).
 
-**Normalization and Conservation:**
+**Normalization and conservation:**
 
 $$
 \int_{\mathbb{R}^3}\rho(t,\mathbf{s})\,\mathrm{d}^3s = q \quad \text{for all } t>t_0.
 $$
 
-> **Plain language:** The bigger the shell gets, the thinner the "potential paint" on it becomes—spread over a larger area—in just the right way to keep the total amount constant.
+> **Plain language:** As the causal surface grows, the flux spreads thinner over the sphere but always carries the same total amount of potential.
 
-**Governing Conservation Law:**
-
-This field is the delayed, spherically symmetric, measure-valued solution of the radial continuity equation with a point-source impulse:
+**Governing continuity law:** The density solves the radial continuity equation with a point-source impulse,
 
 $$
-\partial_t \rho + \nabla\cdot\big(v_f\,\hat{\mathbf{r}}\,\rho\big) = q\,\delta(t-t_0)\,\delta^{(3)}(\mathbf{s}-\mathbf{s}_0),\quad \hat{\mathbf{r}}=\frac{\mathbf{s}-\mathbf{s}_0}{\|\mathbf{s}-\mathbf{s}_0\|}.
+\partial_t \rho + \nabla\cdot\big(v_f\,\hat{\mathbf{r}}\,\rho\big) = q\,\delta(t-t_0)\,\delta^{(3)}(\mathbf{s}-\mathbf{s}_0),\qquad \hat{\mathbf{r}}=\frac{\mathbf{s}-\mathbf{s}_0}{\|\mathbf{s}-\mathbf{s}_0\|},
 $$
 
 whose delayed solution is $\rho(t,\mathbf{s})=\frac{q}{4\pi r^2}\delta(r-v_f\tau)H(\tau)$.
 
-> **Plain language:** The conservation law says nothing is lost or gained as the ripple expands; what flows through each spherical shell in time is exactly what was injected at the center.
+> **Plain language:** Nothing is created or destroyed as the causal surface expands—the flux streaming through each shell equals the original injection at the center.
 
 ---
 
@@ -1063,20 +1055,31 @@ $$
 
 Each sphere in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$.
 
-#### 2.4.5 Causal Intersection Times
+#### 2.4.5 Causal Intersection Times and the Master Equation
 
-For a receiver $a$ at time $t$ and source $j$, the set of emission times whose spheres reach $a$ at $t$ is:
+For a receiver $a$ at time $t$ and source $j$, define the **causal set** of emission times whose current wake surfaces intersect the receiver:
 
 $$
 \mathcal{C}_j(t) = \left\{ t_0 < t \;\middle|\; \|\mathbf{s}_a(t) - \mathbf{s}_j(t_0)\| = v_f (t - t_0) \right\}.
 $$
 
-The **Master Equation of Motion** converts those causal emission times into acceleration. Working in units where $v_f = 1$, each causal hit from a source $j$ imparts a radial acceleration along the normalized line $\hat{\mathbf{r}}_{ja}(t,t_0)=\big(\mathbf{s}_a(t)-\mathbf{s}_j(t_0)\big)/\|\mathbf{s}_a(t)-\mathbf{s}_j(t_0)\|$ with magnitude proportional to $|q_j q_a|/r^2$ and sign given by $\sigma_{q_j q_a} = \mathrm{sign}(q_j q_a)$. The total acceleration felt by $a$ at time $t$ is the linear superposition of contributions from all $t_0 \in \mathcal{C}_j(t)$ across every source $j$ (see Section 2.6).
+In units where $v_f = 1$, each element of $\mathcal{C}_j(t)$ supplies a radial acceleration along the normalized vector
 
-Plain language: you accelerate along the line back to whatever emitted the shell; a single hit only tells you the unoriented line, so you infer attraction or repulsion by knowing the charge signs. Emission cadence and per-wavefront amplitude are constant, and your velocity only enters through instantaneous power $F\cdot v = |F| v_r$.
-Like charges push you away and opposite charges pull.
+$$
+\hat{\mathbf{r}}_{ja}(t,t_0) = \frac{\mathbf{s}_a(t) - \mathbf{s}_j(t_0)}{\|\mathbf{s}_a(t) - \mathbf{s}_j(t_0)\|},
+$$
 
-This set is typically a singleton when $|\mathbf{v}_j|<v_f$, but may contain multiple roots (multi-hit regime) if $|\mathbf{v}_j|>v_f$. Self-hits correspond to $j=a$ with $t_0<t$.
+with magnitude proportional to $|q_j q_a|/r^2$ (where $r=\|\mathbf{s}_a(t)-\mathbf{s}_j(t_0)\|$) and sign given by $\sigma_{q_j q_a} = \text{sign}(q_j q_a)$. The total acceleration is the vector sum over all causal contributions:
+
+$$
+\mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{a,j}(t; t_0),
+$$
+
+where each $\mathbf{a}_{a,j}(t; t_0)$ is computed by evaluating the $1/r^2$ kernel at the emission point. This statement is the **canonical Master Equation of Motion** written as a path-history integral: the continuous potential field is reconstructed by isolating each causal emission, applying the radial $1/r^2$ factor at that emission, and summing. Because nearby sources contribute larger $1/r^2$ terms, they tend to dominate and long-range contributions cancel more completely.
+
+Plain language: the acceleration at any instant is the vector sum of all $1/r^2$ pushes from the intersecting wake surfaces. Each hit tells you the line back to some emission, and attraction versus repulsion follows from the signs of the charges. Emission cadence and per-surface amplitude are fixed, so the receiver’s velocity only affects the instantaneous power $F\cdot v = |F| v_r$.
+
+The causal set is typically a singleton when $|\mathbf{v}_j| < v_f$ but may contain multiple roots in the multi-hit regime whenever $|\mathbf{v}_j| > v_f$. Self-hits correspond to $j=a$ with $t_0 < t$ and encode the particle’s own path history.
 
 #### 2.4.6 Superposition of Sphere Streams
 
@@ -1096,7 +1099,7 @@ where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted b
 
 ### 2.5 Velocity Regimes and Wake Dynamics
 
-There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. Because each Architrino continuously pours potential into the void, its past emissions expand spherically from their emission points and collectively form a persistent **wake**—a region of enhanced potential intensity centered on those spheres. Every Architrino “rides the wake” of all other sources at all times, but it only re-enters the high-intensity portion of its own wake when earlier portions of its worldline catch up (which requires having exceeded $v_f$ at some point). The relative motion through that region determines whether it merely feels the smooth gradient (sub-$v_f$) or passes through the intense shock cone left by its earlier history.
+There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. Each Architrino continuously pours potential into the void, and its past emissions expand spherically from their emission points—never corkscrewing—collectively forming a persistent **wake** (the union of all causal surfaces it has emitted). Every Architrino is always immersed in the superposed wakes of all other sources, but it only re-enters the high-intensity portion of its own wake after having once exceeded $v_f$. When $|\mathbf{v}_a| \le v_f$, it simply rides the smooth gradient of its most recent emissions and does not intersect the strong-field region behind it; when $|\mathbf{v}_a| > v_f$, it traverses the **shockwave** or **Cherenkov cone** formed by its earlier emission history. The relative motion through that region determines whether it brushes the gradient of other wakes, glances past the high-intensity locus, or plunges back through the dense wake it created earlier.
 
 #### 2.5.1 Wake Coherence and Relative Motion
 
@@ -1104,13 +1107,15 @@ The local gradient of the wake defines three regimes:
 
 - **Sub-field-speed regime** ($|\mathbf{v}_a| < v_f$): The Architrino remains well inside the diffuse, low-intensity part of its own wake. Its immediate neighborhood is dominated by very recent emissions, so the potential landscape is smooth and the gradient is gentle. There is no opportunity to interact with any far-ahead structure, because the field front advances faster than the particle.
 - **Symmetry point** ($|\mathbf{v}_a| = v_f$): The Architrino coasts along the crest of its own wake. The region of highest intensity—the “shock” cone formed by the wake—lies tangent to the particle’s path. Small deviations now determine whether it stays behind the crest or pushes into the stronger field ahead.
-- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The Architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters the **shock cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
+- **Super-field-speed regime** ($|\mathbf{v}_a| > v_f$): The Architrino outruns the most recent parts of its wake and begins to traverse the **high-intensity trail** laid down at earlier times. In this regime, the particle enters the **Cherenkov-like shock cone** of strong potential that it generated in the past. This region becomes the locus of self-interaction, with the gradient sharply increasing as the particle plunges through the dense wake.
 
 The key point is that the Architrino is not “catching up to a discrete shell”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
 
 #### 2.5.2 Traversing One's Own Wake (Self-Interaction)
 
 When the Architrino enters that cone left by its past motion, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
+
+When $|\mathbf{v}_a| \le v_f$, the Architrino never penetrates the Cherenkov cone it leaves behind, so it only feels the smoother gradient of its most recent wake and does not self-interact strongly. Only after having exceeded $v_f$ and then curving back can it re-enter the dense region it created, triggering the non-Markovian self-hit regime.
 
 This occurs whenever the particle has exceeded $v_f$ in its history and subsequently curvatures or slows such that it re-enters the high-intensity region. Traversing the wake is therefore a **non-Markovian** event: the acceleration depends on where the wake is situated relative to the current position, which in turn depends on **the full past trajectory**.
 
@@ -1154,7 +1159,7 @@ When potential from another Architrino (or from one's own past emissions, in the
 
 - **Radial acceleration**: The acceleration is directed along the line from the emission point to the receiver's current location.
 - **Charge-dependent sign**: Like charges repel ($\sigma_{qq'} = +1$); opposite charges attract ($\sigma_{qq'} = -1$).
-- **\$1/r^2$ magnitude scaling**: The strength of each individual hit scales as the inverse square of the distance from emission to receiver.
+- **$1/r^2$ magnitude scaling**: The strength of each individual hit scales as the inverse square of the distance from emission to receiver.
 - **Superposition**: The total acceleration is the vector sum of all individual hits from all sources (including self-hits, if present).
 
 This rule is **deterministic and universal**, making the evolution of any system of Architrinos completely determined by initial conditions (positions and velocities at some reference time $t_0$).
@@ -1788,6 +1793,8 @@ These parameters arise from the discretization and regularization that Sol appli
 | Shell thickness | $\eta$ | Numerical regularization | Smooths each causal impulse into a narrow shell of width $\eta$ so the integral can be sampled with finite time steps and no singularities |
 
 $\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous causal flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
+
+Sol approximates the **path-history integral** described in Section 2.4.5 by sampling discrete time steps. Each time step produces an effective spherical shell (or wake surface) of width $\eta$ whose $1/r^2$ contribution is summed; as $\eta\to 0$ the sum approaches the continuous integral over causal emissions. Thus, “summing shells” is the numerical recipe for approximating the retarded potential law, not a claim that the underlying ontology emits pulses.
 
 ---
 
