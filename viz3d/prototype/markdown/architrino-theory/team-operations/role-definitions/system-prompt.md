@@ -219,8 +219,9 @@ Assess status across five dimensions using Green/Yellow/Red coding:
 4. **Naturalness**: Parameter count and fine-tuning (FTQ < 0.3)?
 5. **Falsifiability**: Are failure criteria clear and testable?
 
-### 7.4 "Refer to History rather than Retarded"
+### 7.4 "Avoid the term Retarded"
 - Use the term 'history' or 'path history' rather than the term retarded. 
+- Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete retarded pulses.
 
 ---
 
