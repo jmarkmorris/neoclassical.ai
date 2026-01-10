@@ -11,7 +11,7 @@ Clarification: “Multi-valued” means that, for a fixed observation time $t$, 
 
 Detailed explanation (geometry of delay and roots):
 
-- Root condition as an expanding spherical shell intersection:
+- Root condition as an expanding causal isochron intersection:
   - Define $F(t_0; t) \equiv \|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\| - (t - t_0)$ (with $v=1$ units). Causal roots satisfy $F(t_0; t)=0$ with $t_0 < t$ and $H(t-t_0)$.
   - Geometrically: the source point $\mathbf{s}_o(t_0)$ must lie on the sphere of radius $\tau = t - t_0$ centered at the receiver’s current position $\mathbf{s}_{o'}(t)$.
 
@@ -26,10 +26,10 @@ Detailed explanation (geometry of delay and roots):
   - We adopt $H(0)=0$ so the instantaneous emission at $t_0=t$ does not produce an immediate self-kick.
   - No $r=0$ causal roots beyond $\tau=0$: because $r = v(t - t_0)$, $r=0$ implies $\tau=0$; the $\tau=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
 
-Plain language: You only feel pushes from those earlier moments of a source that lie exactly on the “now-sphere” around you. Usually there’s just one such moment; if the source is very fast or its path loops around, there can be several.
+Plain language: You only feel pushes from those earlier moments of a source whose causal isochrons currently pass through you. Usually there’s just one such moment; if the source is very fast or its path loops around, there can be several.
 
 Non-technical visualization — outrunning your own wake (speedboat analogy):
-- Picture a speedboat continuously laying down circular wake ridges that spread outward across the water at a fixed wave speed $c_w$ (analogy variable: wake ridge expansion speed). If the boat stays slower than $c_w$, it remains inside its newest ridge and will never meet it again—no self-hits. Once the boat exceeds $c_w$, it moves ahead of its freshest ridge. Later, if it curves or slows, it can run into older ridges it created earlier. Each crossing delivers a brief shove normal to the ridge (straight outward from the ridge’s center), mirroring the model’s purely radial push. The ridge “drop rate” never changes; each ridge has the same strength regardless of the boat’s speed when it was made. This is an analogy: real Kelvin wakes are dispersive; we idealize to circular ridges expanding at one speed to match the model’s fixed-speed shells.
+- Picture a speedboat continuously laying down circular wake ridges that spread outward across the water at a fixed wave speed $c_w$ (analogy variable: wake ridge expansion speed). If the boat stays slower than $c_w$, it remains inside its newest ridge and will never meet it again—no self-hits. Once the boat exceeds $c_w$, it moves ahead of its freshest ridge. Later, if it curves or slows, it can run into older ridges it created earlier. Each crossing delivers a brief shove normal to the ridge (straight outward from the ridge’s center), mirroring the model’s purely radial push. The ridge “drop rate” never changes; each ridge has the same strength regardless of the boat’s speed when it was made. This is an analogy: real Kelvin wakes are dispersive; we idealize to circular ridges expanding at one speed to match the model’s fixed-speed causal isochrons.
 
 Four self-hits in one maneuver (storyboard):
 1) Sprint phase (exceed the field speed): The boat accelerates to a speed strictly greater than $c_w$ and holds it for several ticks. During this super-speed run it lays down several concentric ridges that it immediately outruns.

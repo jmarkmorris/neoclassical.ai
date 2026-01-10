@@ -2,7 +2,7 @@
 
 Existing text excerpt:
 > ### **Self-Interaction**
-> An Architrino can intersect an expanding spherical shell that it emitted itself at an earlier point in its history. Self-interaction can occur when an Architrino’s speed has exceeded field speed ($|\mathbf{v}_a| > v$). In this regime, the particle moves ahead of previously emitted wavefronts, allowing it to interact with its own field. This self-interaction is always repulsive and plays a key role in the stability of emergent structures.
+> An Architrino can intersect an expanding causal isochron that it emitted itself at an earlier point in its history. Self-interaction can occur when an Architrino’s speed has exceeded field speed ($|\mathbf{v}_a| > v$). In this regime, the particle moves ahead of previously emitted wavefronts, allowing it to interact with its own field. This self-interaction is always repulsive and plays a key role in the stability of emergent structures.
 
 Detailed explanation (conditions and effects):
 
@@ -15,4 +15,4 @@ Detailed explanation (conditions and effects):
 - Stabilization and scale selection:
   - In binaries and nested assemblies, delayed attraction competes with self-repulsion. Their balance sets a minimal sustainable radius $d_0$ and a fastest natural frequency $2\pi/t_0$.
 
-Plain language: If you move fast enough, you can run into your own earlier spheres; those hits always push you away and help set the smallest sizes and fastest rhythms of stable structures.
+Plain language: If you move fast enough, you can run into your own earlier causal isochrons; those hits always push you away and help set the smallest sizes and fastest rhythms of stable structures.
