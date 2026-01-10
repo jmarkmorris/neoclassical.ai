@@ -78,12 +78,12 @@ where
 
 - $r_{ij}(t; t_0) = \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|$,
 - $\hat{\mathbf{r}}_{ij} = (\mathbf{x}_i(t) - \mathbf{x}_j(t_0))/r_{ij}$,
-- $\delta(\cdot)$ enforces the retarded condition $r_{ij} = c_f(t - t_0)$, and
+- $\delta(\cdot)$ enforces the causal constraint $r_{ij} = c_f(t - t_0)$, and
 - $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ encodes attraction/repulsion.
 
-Because the delta collapses the time integral to the set $\mathcal{C}_j(t)$ of causal emission times (see Section 2), the result is equivalent to evaluating the $1/r^2$ kernel at those retarded emission points. The Euclidean analog of the Liénard–Wiechert potential is thus recovered as a retarded integral whose kernel is purely radial.
+Because the delta collapses the time integral to the set $\mathcal{C}_j(t)$ of causal emission times (see Section 2), the result is equivalent to evaluating the $1/r^2$ kernel at those historical emission points. The Euclidean analog of the Liénard–Wiechert potential is thus recovered as a path-history integral whose kernel is purely radial.
 
-Numerical implementations (Sol) discretize the integral by sampling discrete emission times, producing the familiar picture of summing over “spherical shells.” That discrete shell sum is therefore **a numerical approximation** of the continuous retarded integral, not a separate physical mechanism. The underlying physics remains the continuous retarded flux of potential.
+Numerical implementations (Sol) discretize the integral by sampling discrete emission times, producing the familiar picture of summing over “spherical shells.” That discrete shell sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
 
 ---
 
@@ -111,7 +111,7 @@ $$
 
 In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), the causal set $\mathcal{C}_j(t)$ is **generically a singleton**: there is exactly one emission time $t_0$ that satisfies the causal constraint.
 
-**Intuition:** If the source is moving slower than the field speed, its past emissions form a non-overlapping family of concentric (or nearly concentric) spheres. Any given receiver location intersects exactly one shell.
+**Intuition:** If the source is moving slower than the field speed, its past emissions form a non-overlapping family of concentric (or nearly concentric) isochrons. Any given receiver location lies on exactly one of those causal surfaces.
 
 ### 2.3 Multi-Hit Regime (Multiple $t_0$)
 
@@ -153,12 +153,12 @@ $$
 
 - Receiver at $\mathbf{x}_i(t)$ "now"
 - Source worldline $\{\mathbf{x}_j(t') : t' < t\}$ in the past
-- Field-speed light cone: a sphere of radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
-- **Causal emission times**: where this expanding sphere **intersects** the receiver's current location
+-- Field-speed light cone: a sphere of radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
+-- **Causal emission times**: where this expanding isochron surface **intersects** the receiver's current location
 
 For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
 
-**[Diagram to be added]**: Visualize causal light cone, source worldline, expanding spheres, and receiver intersection. Show both single-hit (sub-$c_f$) and multi-hit (super-$c_f$) cases.
+**[Diagram to be added]**: Visualize causal light cone, source worldline, expanding isochrons, and receiver intersection. Show both single-hit (sub-$c_f$) and multi-hit (super-$c_f$) cases.
 
 ---
 
@@ -292,7 +292,7 @@ $\hat{\mathbf{r}}_{ij}$ points **from the source's historical position** $\mathb
 
 **The $1/r^2$ factor:**
 
-Reflects the **surface density** of potential on an expanding sphere. As the sphere grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
+Reflects the **surface density** of potential on the causal isochron. As that surface grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
 
 **Absorption of geometric constants into $\kappa$:**
 
@@ -460,13 +460,13 @@ $$
 \Phi_{\text{net}}(\mathbf{x}, t) = \sum_{i} \Phi_i(\mathbf{x}, t).
 $$
 
-The total acceleration on a particle at any instant is the **vector sum** of the accelerations from all intersecting expanding spherical shells.
+The total acceleration on a particle at any instant is the **vector sum** of the contributions from every causal entry in its path history.
 
-**Operational implication:** Every architrino is continuously immersed in the superposed sphere streams of all others (and, when kinematics permit, its own). Tractability comes from treating each causal hit independently with $1/r^2$ distance weighting, which makes **local sources dominate** (distant sources contribute negligibly due to $1/r^2$ falloff and dilution over large spherical surfaces).
+**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when kinematics permit, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting, which makes **local sources dominate** (distant contributions dilute over large causal surfaces and largely cancel).
 
 ### 6.2 Velocity Dependence
 
-**Statement:** The dynamics are **delayed-only** and **purely radial**. Architrinos are transceivers: they emit potential spheres at a **constant cadence** and **constant per-wavefront amplitude** (independent of emitter speed). The receiver's speed does not change the instantaneous force magnitude; it affects only the **work rate** via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
+**Statement:** The dynamics are **delayed-only** and **purely radial**. Architrinos are transceivers: they emit causal isochrons at a **constant cadence** and **constant per-wavefront amplitude** (independent of emitter speed). The receiver's speed does not change the instantaneous force magnitude; it affects only the **work rate** via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 
 **Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent shells. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
 
@@ -498,7 +498,7 @@ $$
 \|\mathbf{x}_i(t) - \mathbf{x}_i(t_0)\| = c_f(t - t_0).
 $$
 
-**Geometric interpretation:** The architrino's current position $\mathbf{x}_i(t)$ lies on the expanding sphere emitted from its past position $\mathbf{x}_i(t_0)$.
+**Geometric interpretation:** The architrino's current position $\mathbf{x}_i(t)$ lies on the causal isochron emitted from its past position $\mathbf{x}_i(t_0)$.
 
 **Requirements:**
 
@@ -509,7 +509,7 @@ $$
 
 **Key insight (from Marko):** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
 
-**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past spheres** at the same observation time $t$. Each intersection corresponds to a distinct emission time $t_{0,k} \in \mathcal{C}_i(t)$.
+**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past isochrons** at the same observation time $t$. Each intersection corresponds to a distinct emission time $t_{0,k} \in \mathcal{C}_i(t)$.
 
 **Example:** In uniform circular motion at speed $v > c_f$, an architrino can be hit by shells from multiple points on its own orbit, corresponding to different "winding numbers" $m = 0, 1, 2, \ldots$ (see `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit).
 
@@ -637,7 +637,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 
 ### 9.1 Limited Information Per Hit
 
-From the perspective of the receiving architrino, the information carried by an intersecting potential sphere is **limited**. The receiver only knows:
+From the perspective of the receiving architrino, the information carried by an intersecting causal isochron is **limited**. The receiver only knows:
 
 1. The **net strength** of the potential at the point of intersection (through the acceleration magnitude $|\mathbf{F}|$).
 2. The **unoriented line of action** through its current position (the line along which the force points).
@@ -802,7 +802,7 @@ At each hit, log:
 
 **Use cases:**
 
-- Visualize causal light cones and sphere streams
+- Visualize causal light cones and causal isochrons
 - Identify self-hit events and winding numbers
 - Trace energy transfer pathways
 - Validate superposition (sum of logged forces = total acceleration?)
@@ -991,4 +991,3 @@ Changes to this document require:
 
 **Retained for next phase (self-hit-dynamics.md):**
 - `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.3-MaximumCurvatureOrbit.md`
-
