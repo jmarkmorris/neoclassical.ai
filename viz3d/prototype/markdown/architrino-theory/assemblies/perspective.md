@@ -8,10 +8,10 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 
 ---
 
-## 1) Delayed spherical emission on $1/r^2$ shells (no magnetism needed)
+## 1) Delayed causal emission on $1/r^2$ isochrons (no magnetism needed)
 
 - What we assume:
-  - Sources emit potential on expanding spherical shells with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.
+- Sources emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.
   - Each causal hit is strictly radial: the acceleration contribution lies along $\hat{\mathbf{r}}$ from the source history point to the receiver.
 
 - Why it matters:
@@ -37,7 +37,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 ## 3) Self-interaction switch at $\lvert \mathbf{v}\rvert = v$: the engine of stabilization and scales
 
 - What we assume:
-  - When a worldline outruns its own recently emitted shells ($\lvert \mathbf{v}\rvert>1$ in our units), the causal roots include self-hits.
+- When a worldline outruns its own recently emitted isochrons ($\lvert \mathbf{v}\rvert>1$ in our units), the causal roots include self-hits.
   - Self-hits are always repulsive (like-on-like).
 
 - Why it matters:
@@ -46,11 +46,11 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 
 ---
 
-## 4) Superposition with measure-valued shells and $\eta$-regularization
+## 4) Superposition with measure-valued isochrons and $\eta$-regularization
 
 - What we assume:
-  - All fields superpose linearly at the level of distributions (shells add).
-  - We use a narrow Gaussian shell $\delta_\eta$ when continuous-time derivatives are needed.
+- All fields superpose linearly at the level of distributions (isochrons add).
+- We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
   - Locality: $1/r^2$ weighting ensures near sources dominate; far sources cancel via multipole suppression.
@@ -97,7 +97,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 
 - No Lorentzian spacetime metric at the fundamental level (background is absolute time + Euclidean space; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf{v}\times\mathbf{B}$ forces; every per-hit action is along $\hat{\mathbf{r}}$.
-- No gauge field inventory beyond the Architrino fields; interaction carriers are the geometry of delayed shells and their couplings.
+- No gauge field inventory beyond the Architrino fields; interaction carriers are the geometry of delayed isochrons and their couplings.
 
 ---
 
@@ -134,7 +134,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 
 - Exact analytic forms for d0 and t0 in the symmetric binary with the canonical modulation.
 - Rigorous conditions for uniqueness/multiplicity of causal roots in accelerated motion and their contribution to stability.
-- Statistical mechanics of many-body sphere streams: when and how do coherent, Lorentz-like effective cones emerge, and with what characteristic speed relative to v?
+- Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-like effective cones emerge, and with what characteristic speed relative to v?
 
 Plain language summary: Keep the hits radial, delay them in time, keep per-wavefront amplitude constant, and let fast movers run into their own wakes. From those four ideas, you get stable orbits, natural rulers and clocks, shielding that looks like inertia, and “magnetic-like” structures—all without any right-hand-rule magnetism.
 
@@ -184,7 +184,7 @@ Consequence: even the absolute observer must reason statistically over ledger cl
 
 Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_j(t)$ on that same source. When $\lVert \mathbf{v}_j \rVert > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all Architrinos in the universe whose shells intersect the receiver “now.” While $1/r^2$ weighting makes nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all Architrinos in the universe whose causal isochrons intersect the receiver “now.” While $1/r^2$ weighting makes nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 
@@ -200,7 +200,7 @@ Plain language: changing what you do now changes which shoves you’ll see later
 
 ## Interference and amplitude-squared from corridor overlap
 
-Linear superposition at the shell level plus coherent geometry yields interference-like patterns in aggregates:
+Linear superposition at the isochron level plus coherent geometry yields interference-like patterns in aggregates:
 - Corridor fields from multiple sources add linearly; a detector that integrates over a small time window and area effectively accumulates a complex amplitude A_corr from coherent sub-bundles.
 - Intensity emerges as an overlap norm ∝ |A_corr|² under time/ensemble averaging of phase-like structure encoded by path histories.
 - Polarization example (already used): Malus’s law arises as a geometric projection of a corridor’s transverse pattern onto an analyzer axis, giving cos²$\theta$ transmission without right-hand-rule magnetism.

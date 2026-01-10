@@ -41,7 +41,7 @@ $$
 During this phase, the system is purely contractile, with the particles accelerating and spiraling towards each other.
 
 #### **Deflationary Phase ($|\mathbf{v}| > v$)**
-Once the particles' speeds exceed the field speed $v$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive sphere streams. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the Electrino:
+Once the particles' speeds exceed the field speed $v$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive wakes. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the Electrino:
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$

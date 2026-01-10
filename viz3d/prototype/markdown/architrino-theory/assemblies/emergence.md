@@ -17,11 +17,11 @@ The Game of Life demonstrates how complexity can arise from simplicity in a disc
 
 The Architrino universe operates on a similar principle of emergence, but within a continuous framework rather than a discrete one.
 
--   **Continuous System:** Unlike the Game of Life's grid and time steps, Architrinos exist in continuous space and time. Their interactions are not clocked but occur whenever a particle intersects a potential sphere.
+-   **Continuous System:** Unlike the Game of Life's grid and time steps, Architrinos exist in continuous space and time. Their interactions are not clocked but occur whenever a particle intersects a causal isochron.
 -   **Simple Rules:** The "rules" of this universe are the fundamental interaction dynamics: attraction and repulsion based on the charge of the interacting particles.
 -   **Emergent Assemblies:** Through these continuous interactions, Architrinos can self-organize into complex, stable, or quasi-stable configurations called **assemblies**. These assemblies are the continuous-physics analog to the patterns in the Game of Life.
 
-The stability of an assembly is not static but dynamic. It depends on a delicate, ongoing balance of forces from the superposition of all intersecting potential sphere streams. An assembly might persist for a very long time if it finds a stable equilibrium, or it might be a transient structure that quickly dissolves, all depending on its internal configuration and the external fields it encounters.
+- The stability of an assembly is not static but dynamic. It depends on a delicate, ongoing balance of forces from the superposition of all intersecting wakes. An assembly might persist for a very long time if it finds a stable equilibrium, or it might be a transient structure that quickly dissolves, all depending on its internal configuration and the external fields it encounters.
 
 ### Assembly Theory and Recursion
 
@@ -34,7 +34,7 @@ This recursive structure implies that all emergent forms, no matter how complex,
 
 ### The Dynamics of Structure and Asymmetry
 
-All structure in this universe is based on a **dynamical geometry**. Every Architrino is, at all times, interacting with the sphere streams of every other Architrino in the universe, and potentially with its own past emissions. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
+All structure in this universe is based on a **dynamical geometry**. Every Architrino is, at all times, interacting with the wakes of every other Architrino in the universe, and potentially with its own past isochrons. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
 
 However, because the potential density on a sphere's surface falls off as $1/r^2$, the influence of distant particles is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
 
@@ -42,7 +42,7 @@ A crucial factor in the evolution of these assemblies is the **velocity symmetry
 -   When $|\mathbf{v}_a| < v$, it is only influenced by external fields.
 -   When $|\mathbf{v}_a| > v$, it begins to interact with its own recently emitted field, which is always repulsive (an Electrino repels itself, a Positrino repels itself).
 
-This introduces a profound asymmetry into the system. A small acceleration caused by intersecting a sphere stream (even one with a distant origin) could push a particle's speed across the symmetry point, activating a new, strong, internal repulsive force that fundamentally alters its trajectory and the stability of the assembly. This is analogous to a **transistor**, where a small signal to the gate can switch the device from a non-conducting to a conducting state, enabling amplification and complex logic. This inherent, non-linear asymmetry is essential for the formation and evolution of complex structures.
+This introduces a profound asymmetry into the system. A small acceleration caused by intersecting a wake (even one with a distant origin) could push a particle's speed across the symmetry point, activating a new, strong, internal repulsive force that fundamentally alters its trajectory and the stability of the assembly. This is analogous to a **transistor**, where a small signal to the gate can switch the device from a non-conducting to a conducting state, enabling amplification and complex logic. This inherent, non-linear asymmetry is essential for the formation and evolution of complex structures.
 
 ### Provenance within Emergence
 

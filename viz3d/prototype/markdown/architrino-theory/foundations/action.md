@@ -2,7 +2,7 @@
 
 ## 4. Action and Interaction
 
-The dynamics of an Architrino are governed by a simple principle: an **acceleration caused by the intersection of its path with a potential field**. The background is **fixed and non-dynamical** (absolute time × Euclidean space); free paths are straight lines at constant velocity. Accelerations come **only from delayed, purely radial hits from emitted shells**—never from background curvature.
+The dynamics of an Architrino are governed by a simple principle: an **acceleration caused by the intersection of its path with a potential field**. The background is **fixed and non-dynamical** (absolute time × Euclidean space); free paths are straight lines at constant velocity. Accelerations come **only from delayed, purely radial intersections with causal isochrons**—never from background curvature.
 
 For detailed derivations and worked explanations, see 00.2.1 — Exposition (walkthroughs index).
 
@@ -20,13 +20,11 @@ We choose units with field speed $v_f=1$ (select $L_0,T_0$ so $v_f=L_0/T_0=1$); 
 | Elementary charge | $e$ | Postulate | Charge | Electron charge magnitude |
 | Architrino charge unit | $\epsilon = e/6$ | Postulate | Charge | Fundamental Architrino charge |
 | Coupling constant | $\kappa>0$ | Postulate | (Length$^3$/Time$^2$)/(Charge$^2$) | Controls interaction strength |
-| Shell thickness (regularization) | $\eta>0$ | Numerical/Physical | Length | Regularization parameter |
-
 **Symbols (local use in this section):**
 
 - $v_f = 1$ (field speed by units),
 - $\kappa>0$ (universal coupling),
-- $\eta>0$ (shell thickness),
+- $\eta>0$ (computational shell thickness, regularization parameter),
 - $\epsilon>0$ (unit charge magnitude); Negatrino $q=-\epsilon$, Positrino $q=+\epsilon$,
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$,
 - $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$,  $\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$.
@@ -47,7 +45,7 @@ The receiver $o'$ at time $t$ interacts with a source $o$ through the (possibly 
 - For $|\mathbf{v}_o(t_0)| < v_f$ locally, $\mathcal{C}_o(t)$ is generically a singleton (“unique causal time”).
 - For $|\mathbf{v}_o|> v_f$ it may contain multiple solutions (**multi-hit regime**), including self-hits when $o'=o$.
 
-Plain language: this set collects all earlier moments of the source that can send a sphere to arrive exactly “now” at the receiver’s current location.
+Plain language: this set collects all earlier moments of the source whose causal isochrons currently pass through the receiver’s location; only those emissions can push now.
 
 ---
 
@@ -159,11 +157,11 @@ Plain English: the ideal model gives instantaneous “kicks”; the $\eta$-thick
   \[
   \Phi_{\text{net}} = \sum_{i} \Phi_i.
   \]
-  The total acceleration on a particle at any instant is the vector sum of the accelerations from all intersecting expanding spherical shells. Operationally, every Architrino is continuously immersed in the superposed sphere streams of all others (and, when kinematics permit, its own); tractability comes from treating each causal hit independently with $1/r^2$ distance weighting, which makes local sources dominate.
+  The total acceleration on a particle at any instant is the vector sum of the accelerations from all intersecting causal isochrons. Operationally, every Architrino is continuously immersed in the superposed wakes of all others (and, when kinematics permit, its own); tractability comes from treating each causal hit independently with $1/r^2$ distance weighting, which makes local sources dominate.
 
 - **Velocity dependence:**  
-  The dynamics are delayed-only and purely radial. Architrinos are transceivers: they emit potential spheres at a constant cadence and constant per-wavefront amplitude. The receiver’s speed does not change the instantaneous force magnitude; it affects only the work rate via $\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.  
-  Self-interaction (self-hit) requires $|\mathbf{v}_a| > v_f$ at some emission times (super-field-speed), so the worldline outruns its recent shells; curvature alone is insufficient if $|\mathbf{v}_a|<v_f$ everywhere.
+  The dynamics are delayed-only and purely radial. Architrinos are transceivers: they emit causal isochrons at a constant cadence and constant per-wavefront amplitude. The receiver’s speed does not change the instantaneous force magnitude; it affects only the work rate via $\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.  
+  Self-interaction (self-hit) requires $|\mathbf{v}_a| > v_f$ at some emission times (super-field-speed), so the worldline outruns its recent isochrons; curvature alone is insufficient if $|\mathbf{v}_a|<v_f$ everywhere.
 
 ---
 
@@ -171,17 +169,17 @@ Plain English: the ideal model gives instantaneous “kicks”; the $\eta$-thick
 
 A crucial dynamic arises from the possibility of **self-interaction**. An Architrino can intersect an expanding spherical shell that it emitted itself at an earlier point in its history.
 
-Self-interaction can occur when an Architrino’s speed has exceeded the field speed ($|\mathbf{v}_a| > v_f$) at some emission times. In this regime, the particle moves ahead of previously emitted wavefronts, allowing it to interact with its own field. The self-hit terms are included in the same Master Equation, via $o'=o$ and $t_0\in \mathcal{C}_o(t)$ with $t_0<t$.
+Self-interaction can occur when an Architrino’s speed has exceeded the field speed ($|\mathbf{v}_a| > v_f$) at some emission times. In this regime, the particle moves ahead of its own past isochrons, allowing it to interact with its own field. The self-hit terms are included in the same Master Equation, via $o'=o$ and $t_0\in \mathcal{C}_o(t)$ with $t_0<t$.
 
 This self-interaction is always **repulsive** for like charge configurations (the Architrino feels its own field as like-on-like) and plays a key role in the stability of emergent structures.
 
-Plain English: like a fast boat catching its own wake after turning, an Architrino can run into its earlier spheres and get a push away from its past positions.
+Plain English: like a fast boat catching its own wake after turning, an Architrino can run into its earlier causal isochrons and get a push away from its past positions.
 
 ---
 
 ### 4.8 Informational Ambiguity at the Receiver
 
-From the perspective of the receiving Architrino, the information carried by an intersecting potential sphere is limited. The receiver only knows:
+From the perspective of the receiving Architrino, the information carried by an intersecting causal isochron is limited. The receiver only knows:
 
 1. The **net strength** of the potential at the point of intersection (through the acceleration magnitude).
 2. The **unoriented line of action** through its current position (i.e. the line along which the force points); it does not know the orientation along that line from a single hit.
@@ -204,4 +202,3 @@ if the resulting radial acceleration is the same. An acceleration *towards* a po
 This ambiguity is compounded by **superposition**: the net potential at any instant is the sum of all intersecting expanding spherical shells. A measured potential along a single radial can be the consequence of a complex confluence of fields from many different emitters located along that line of action, arriving from both directions.
 
 This limited, unoriented, and source-ambiguous information at the hit level is a key ingredient in later chapters for the emergence of effective quantum-like behavior and measurement uncertainty from deterministic micro-dynamics.
-

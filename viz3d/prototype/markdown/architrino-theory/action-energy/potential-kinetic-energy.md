@@ -2,7 +2,7 @@
 
 In this model, all energy is fundamentally tied to Architrinos and the potential fields they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone "field substance" or vacuum energy independent of Architrinos and their assemblies.
 
-All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed, purely radial hits from emitted shells** on this fixed background. We work in units with field speed $v_f=1$.
+All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed, purely radial hits from causal isochrons** on this fixed background. We work in units with field speed $v_f=1$.
 
 Crucially, what we call "spacetime" at the effective level is not the bare Euclidean background, but a **dense sea of high-energy tri-binary assemblies**. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the medium in which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea controls how energy, inertia, and effective geometry appear at larger scales.
 
@@ -75,7 +75,7 @@ At a point $\mathbf{s}$ and time $t$, the net potential is the **superposition**
 
 $$\Phi_{\text{net}}(\mathbf{s},t) = \sum_o \Phi_o(\mathbf{s},t).$$
 
-Each $\Phi_o$ is built from the expanding shells emitted by source $o$, using the measure-valued or mollified emission density described in the Architrino section. In the mollified representation with shell thickness $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes measure-valued ("paint on shells").
+Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the Architrino section. In the mollified representation with shell thickness $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes measure-valued ("paint on isochrons").
 
 ### 5.3.2 Potential Energy
 
@@ -86,7 +86,7 @@ $$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}(\mathbf{s}_{o'}(t),t).$$
 This mirrors $U = q\Phi$ in classical electrostatics, but with two key differences:
 
 - $\Phi_{\text{net}}$ is fully **time-dependent and history-dependent** (history interaction).
-- In the idealized picture, $\Phi$ is a distribution supported on expanding shells, not a smooth field.
+- In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth field.
 
 When we work with the mollified field $\Phi_\eta$, we can also write:
 
@@ -98,7 +98,7 @@ and this is equivalent to the Master Equation in the quasi-static, resolved-in-t
 
 ## 5.4 Energy Conservation and Exchange
 
-The model enforces energy conservation via the continuous exchange of energy between kinetic and potential forms, plus energy stored in propagating shells.
+The model enforces energy conservation via the continuous exchange of energy between kinetic and potential forms, plus energy stored in propagating wakes.
 
 For a single Architrino:
 
@@ -111,7 +111,7 @@ $$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{field}},$$
 and is constant in time (in the limit of perfect regularization and no open boundaries).
 
 - $U_{\text{int}}$ collects all pairwise interaction energies.
-- $E_{\text{field}}$ accounts for energy carried in the sphere streams of the tri-binary sea and any "radiation" from assemblies.
+- $E_{\text{field}}$ accounts for energy carried in the wake structures of the tri-binary sea and any "radiation" from assemblies.
 
 In practice, for finite systems or simulation domains, we verify conservation by monitoring $E_{\text{total}}(t)$ and checking convergence as $\eta$ and $\Delta t$ are reduced.
 
@@ -218,12 +218,12 @@ The details of this emergent relativistic law arise from the combined dynamics o
 
 ## 5.8 Energy and Self-Hit in the Tri-Binary Sea
 
-In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times), Architrinos and assemblies can intersect their own past shells (self-hit). In the presence of the tri-binary sea:
+In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times), Architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the tri-binary sea:
 
 - Self-hit repulsion acts as an internal **stiffening mechanism** for tri-binaries and more complex assemblies, contributing to their stability.
 - Energy that an Architrino (or assembly) emitted into its local medium (tri-binary sea) can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and "field/medium energy" associated with the local tri-binary configuration.
 
-Globally, energy is conserved: self-hit just routes energy along more complex paths (Architrino → shell → tri-binary medium → back to Architrino/assembly).
+Globally, energy is conserved: self-hit just routes energy along more complex paths (Architrino → causal isochron → tri-binary medium → back to Architrino/assembly).
 
 ---
 
