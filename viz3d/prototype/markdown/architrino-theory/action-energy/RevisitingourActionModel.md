@@ -185,7 +185,7 @@ If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau
 
 # 3) Event-driven radial-transport + per-hit EOM (current canonical method)
 
-Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the sphere), then drive particle motion by summing purely radial per-hit accelerations at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
+Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing purely radial per-hit accelerations at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
 
 Field representation (transport/continuity form)
 - Source impulse at $(t_0,\mathbf{s}_0)$ creates a wake surface supported on $r = v(t-t_0)$ with surface density that conserves a constant per-wake surface amplitude $q$:
@@ -220,11 +220,11 @@ Implementation checklist
 - Self-interaction: appears when the worldline outruns recent wake surfaces ($\|\mathbf{v}\|>v$ for some emissions); self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
-- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on moving spheres); it is compatible with conserving total emission per wake surface. In Method 2 the $1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
+- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
 - The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ from Method 2 is not explicit here; geometric normalizations are absorbed into $\kappa$ by convention. We do not include any per-hit weighting by this Jacobian in the canonical law; geometry and timing alone encode speed effects.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
-Plain language: Treat the field as razor-thin “paint” spread over a growing sphere so the total amount stays the same. Every time a wake surface reaches you, you get a straight-line shove that falls off like one over distance squared; we either treat it as a sharp kick or a short, smooth nudge.
+Plain language: Treat the field as razor-thin “paint” spread over a growing causal wake surface so the total amount stays the same. Every time a wake surface reaches you, you get a straight-line shove that falls off like one over distance squared; we either treat it as a sharp kick or a short, smooth nudge.
 
 ## Cross-method guidance: when to use which method, a unifying example, and practical tips
 
@@ -302,7 +302,7 @@ Operational guidance — when to use which method
 
 Method 1 — Time-based PDE (wave equation)
 - Pros
-  - Physically standard propagation at fixed speed $c$; expanding spheres emerge automatically.
+- Physically standard propagation at fixed speed $c$; expanding causal wake surfaces emerge automatically.
   - Robust on grids; handles inhomogeneous media, damping, and boundaries.
   - Good for full-field visualization and energy bookkeeping in continuum form.
 - Cons
@@ -373,6 +373,5 @@ Notes (interpretation):
 - “Dark-matter-like neutral” denotes very weakly coupled, neutral meta-assemblies consistent with this framework; included here as a hypothesis for qualitative comparison.
 - Entries marked [~] depend on spectrum, thickness, coherence, and alignment (e.g., $\gamma$ vs optical photons; corridor alignment for neutrinos).
 - The diagram is about penetration (transit). Local interactions, capture, or re-binding are separate processes governed by geometry and delay.
-
 
 

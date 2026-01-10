@@ -13,7 +13,7 @@ Detailed explanation (geometry of delay and roots):
 
 - Root condition as an expanding causal isochron intersection:
   - Define $F(t_0; t) \equiv \|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\| - (t - t_0)$ (with $v=1$ units). Causal roots satisfy $F(t_0; t)=0$ with $t_0 < t$ and $H(t-t_0)$.
-  - Geometrically: the source point $\mathbf{s}_o(t_0)$ must lie on the sphere of radius $\tau = t - t_0$ centered at the receiver’s current position $\mathbf{s}_{o'}(t)$.
+- Geometrically: the source point $\mathbf{s}_o(t_0)$ must lie on the causal wake surface (isochron) of radius $\tau = t - t_0$ centered at the receiver’s current position $\mathbf{s}_{o'}(t)$.
 
 - Local uniqueness (sub-field-speed, transverse crossing):
   - If the source speed is locally sub-field-speed ($\|\mathbf{v}_o(t_0)\|<1$) and the derivative $\partial_{t_0}F(t_0;t) = -\hat{\mathbf{r}}\!\cdot\!\mathbf{v}_o(t_0) + 1$ is nonzero at the root, then the implicit function theorem guarantees a unique, smooth root branch near $t$.

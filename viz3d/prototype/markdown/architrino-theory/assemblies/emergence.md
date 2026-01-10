@@ -36,7 +36,7 @@ This recursive structure implies that all emergent forms, no matter how complex,
 
 All structure in this universe is based on a **dynamical geometry**. Every Architrino is, at all times, interacting with the wakes of every other Architrino in the universe, and potentially with its own past isochrons. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
 
-However, because the potential density on a sphere's surface falls off as $1/r^2$, the influence of distant particles is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
+However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant particles is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
 
 A crucial factor in the evolution of these assemblies is the **velocity symmetry point** ($|\mathbf{v}_a| = v$). The behavior of an Architrino changes drastically depending on whether its speed is above or below the field speed.
 -   When $|\mathbf{v}_a| < v$, it is only influenced by external fields.

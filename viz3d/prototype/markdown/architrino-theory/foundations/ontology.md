@@ -943,8 +943,8 @@ An Architrino is a transceiver: it continuously emits potential flux and simulta
 
 - **Continuous flux:** At every instant the Architrino streams potential into the void. The **causal wake surface** (the isochron of causality) connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, that surface is merely a computational tool that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
 - **Local origin:** The flux originates at the Architrino’s instantaneous position. We encode the start of each emission as a spatial Dirac delta carrying total charge $q$ to fix the boundary condition, but nothing in the physics requires the emission to switch on and off—it is constantly present and extends infinitely into the future.
-- **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines a sphere in the spatial slice at time $t$.
-- **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the surface remains $q$ as the sphere grows.
+- **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines a causal wake surface (isochron) in the spatial slice at time $t$.
+- **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the causal wake surface remains $q$ as the surface expands.
 
 **Geometric characterization:** In timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, an emission event at $(t_0, \mathbf{s}_0)$ generates a radially symmetric, measure-valued contribution supported on the expanding causal surface
 
@@ -973,7 +973,7 @@ $$
 \int_{\mathbb{R}^3}\rho(t,\mathbf{s})\,\mathrm{d}^3s = q \quad \text{for all } t>t_0.
 $$
 
-> **Plain language:** As the causal surface grows, the flux spreads thinner over the sphere but always carries the same total amount of potential.
+> **Plain language:** As the causal surface grows, the flux spreads thinner over the causal wake surface but always carries the same total amount of potential.
 
 **Governing continuity law:** The density solves the radial continuity equation with a point-source impulse,
 
