@@ -68,7 +68,7 @@ Sub-field-speed simplification (s ≤ 1; no self-hits):
   T(s<1) = \frac{\kappa\,\epsilon^2\,s^2}{R^2}\,\frac{\sin(\delta_p/2)}{\delta_p^2} \;>\; 0.
   $$
 
-Uniform circular motion requires, in a time‑averaged sense over a small window that resolves mollified shells ($\eta$>0):
+Uniform circular motion requires, in a time‑averaged sense over a small window that resolves mollified wake surfaces ($\eta$>0):
 - Centripetal balance: $A_{\text{rad}} = s^2/R$.
 - Zero power / constant speed: $T = 0$.
 

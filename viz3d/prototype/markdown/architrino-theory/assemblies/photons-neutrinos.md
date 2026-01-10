@@ -12,7 +12,7 @@ Definition (geometric): A photon is a coherent, charge-neutral, propagating bund
   - Net charge is zero at all times; far fields are dominated by transverse oscillations set by path-history geometry. In coherent regimes, photons exhibit classical-beam behavior (“evidence for classical photons”) while retaining packet-like coupling to discrete normal modes.
 
 - Axial corridor geometry:
-  - A quasi-cylindrical corridor aligned with propagation axis $\hat{\mathbf{e}}$ carries the superposed $1/r^2$ shells in a phase structure that self-guides the bundle. The corridor supports a train of phase-aligned planar slices that advance at group speed ~ $v$.
+  - A quasi-cylindrical corridor aligned with propagation axis $\hat{\mathbf{e}}$ carries the superposed $1/r^2$ wake surfaces in a phase structure that self-guides the bundle. The corridor supports a train of phase-aligned planar slices that advance at group speed ~ $v$.
 
 - Polarization, helicity, and Malus:
   - Linear polarization = fixed orientation of the principal transverse oscillation ellipse relative to $\hat{\mathbf{e}}$.

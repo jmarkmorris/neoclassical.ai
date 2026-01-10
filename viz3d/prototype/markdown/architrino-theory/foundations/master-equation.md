@@ -14,7 +14,7 @@ The Master EOM is:
 
 - **Deterministic**: Given complete initial conditions at $t_0$, the future is uniquely determined.
 - **Non-Markovian**: Depends on full path history, not just instantaneous state.
-- **Local in spacetime**: Only intersecting potential shells contribute to acceleration (no action-at-a-distance).
+- **Local in spacetime**: Only intersecting causal wake surfaces contribute to acceleration (no action-at-a-distance).
 - **Causal**: All influences propagate at finite field speed $c_f$.
 - **Self-consistent**: Includes self-interaction (self-hit) when $v > c_f$ at past emission times.
 
@@ -35,11 +35,11 @@ The Master EOM is:
 
 > *Potential at all other points in time and space is irrelevant.*
 
-At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on potential shells that **intersect its current location**. 
+At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends **only** on causal wake surfaces that **intersect its current location**. 
 
 - **Not relevant**: Potential at other spatial locations $\mathbf{x} \neq \mathbf{x}_i(t)$
 - **Not relevant**: Potential at other times $t' \neq t$ (except as encoded in the causal history that arrives "now")
-- **Only relevant**: The **intersection events** (causal hits) where $\mathbf{x}_i(t)$ coincides with an expanding shell from some source at some past emission time $t_0 < t$
+- **Only relevant**: The **intersection events** (causal hits) where $\mathbf{x}_i(t)$ coincides with an expanding wake surface from some source at some past emission time $t_0 < t$
 
 This is a **strictly local (in spacetime) interaction rule**, despite being non-Markovian (depends on path history).
 
@@ -83,7 +83,7 @@ where
 
 The delta collapses the time integral to the causal set $\mathcal{C}_j(t)$ (see Section 2), so the integrand is evaluated at the **path-history time** $t_0$ determined by the causal constraint $r_{ij}(t; t_0) = c_f(t - t_0)$. This is the causal path-history potential law: acceleration at $t$ depends on the $1/r^2$ contributions from each emission selected by the causal history (rather than any future or instantaneous value). The Euclidean analog of the Liénard–Wiechert potential thus emerges as a **path-history integral** whose kernel is purely radial.
 
-Numerical implementations (Sol) discretize this integral by sampling discrete emission times, producing the familiar picture of summing over “spherical shells.” That discrete shell sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
+Numerical implementations (Sol) discretize this integral by sampling discrete emission times, producing the familiar picture of summing over “spherical wake surfaces.” That discrete wake surface sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
 
 ---
 
@@ -91,7 +91,7 @@ Numerical implementations (Sol) discretize this integral by sampling discrete em
 
 ### 2.1 Definition of Causal Emission Times
 
-For a receiver at position $\mathbf{x}_i(t)$ (architrino $i$ at time $t$) and a source with worldline $\mathbf{x}_j(t')$, the **causal emission times** $\mathcal{C}_j(t)$ are all past times $t_0 < t$ such that a potential shell emitted by source $j$ at $t_0$ arrives at $\mathbf{x}_i(t)$ at time $t$.
+For a receiver at position $\mathbf{x}_i(t)$ (architrino $i$ at time $t$) and a source with worldline $\mathbf{x}_j(t')$, the **causal emission times** $\mathcal{C}_j(t)$ are all past times $t_0 < t$ such that a causal wake surface emitted by source $j$ at $t_0$ arrives at $\mathbf{x}_i(t)$ at time $t$.
 
 **Causal constraint:**
 
@@ -121,9 +121,9 @@ $$
 \mathcal{C}_j(t) = \{t_{0,1}, t_{0,2}, \ldots, t_{0,m}\}.
 $$
 
-**Intuition:** If the source outruns its own emissions, it can emit multiple shells that later converge and intersect the same receiver location simultaneously (or nearly so, within regularization width $\eta$).
+**Intuition:** If the source outruns its own emissions, it can emit multiple wake surfaces that later converge and intersect the same receiver location simultaneously (or nearly so, within regularization width $\eta$).
 
-**Example:** In uniform circular motion at $v > c_f$, a receiver can be hit by shells from multiple points on the source's orbit (different "winding numbers" $m$; see `self-hit-dynamics.md`).
+**Example:** In uniform circular motion at $v > c_f$, a receiver can be hit by wake surfaces from multiple points on the source's orbit (different "winding numbers" $m$; see `self-hit-dynamics.md`).
 
 ### 2.4 Self-Hit (Source = Receiver, $j = i$)
 
@@ -138,12 +138,12 @@ $$
 **Critical requirements for self-hit:**
 
 1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past light cones).
-2. **Super-field-speed history**: At some emission time $t_0$, the architrino must have exceeded $c_f$ (otherwise, it remains inside all past shells and never catches up).
+2. **Super-field-speed history**: At some emission time $t_0$, the architrino must have exceeded $c_f$ (otherwise, it remains inside all past wake surfaces and never catches up).
 
 **Key clarification (from Marko):**
 
 - **Self-hits can be plural**: $\mathcal{C}_i(t)$ can contain multiple emission times (e.g., multiple winding numbers in circular motion).
-- **Persistent memory**: Once an architrino has exceeded $v > c_f$ in its past, it can **later slow down** to $v < c_f$ and **still receive self-hits** from shells emitted during the super-field-speed phase. The self-hit regime is **not** instantaneously tied to current velocity; it depends on **path history**.
+- **Persistent memory**: Once an architrino has exceeded $v > c_f$ in its past, it can **later slow down** to $v < c_f$ and **still receive self-hits** from wake surfaces emitted during the super-field-speed phase. The self-hit regime is **not** instantaneously tied to current velocity; it depends on **path history**.
 
 **Implication:** Self-hit is a **non-Markovian memory effect**. The architrino's current acceleration depends on whether it **ever** exceeded $c_f$ in the past and curved, not just on its current state.
 
@@ -248,11 +248,11 @@ $$
 
 (Strict inequality $t_0 < t$; no $t_0 = t$ allowed.)
 
-**Physical justification:** The potential shell at the instant of emission ($r = 0$, $\tau = 0$) has not yet expanded; it cannot exert a force on the emitter "now." Under symmetric regularization (mollification), the $r \to 0$ limit yields zero net push.
+**Physical justification:** The causal wake surface at the instant of emission ($r = 0$, $\tau = 0$) has not yet expanded; it cannot exert a force on the emitter "now." Under symmetric regularization (mollification), the $r \to 0$ limit yields zero net push.
 
 **No $r = 0$ causal roots beyond $\tau = 0$:**
 
-Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding shells, not by contact).
+Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
 ### 3.4 Superposition Principle
 
@@ -360,7 +360,7 @@ The receiver's velocity $\mathbf{v}_i(t)$ does **not** modulate the force magnit
 1. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 2. The **subsequent evolution of $r_{ij}$** (and thus future force magnitudes).
 
-**No Doppler-like amplitude modulation:** Unlike some classical wave models, the architrino emission is **isotropic and constant-amplitude**. All velocity-dependence enters through the **geometry of causal intersections** (which shells hit where and when), not through amplitude changes.
+**No Doppler-like amplitude modulation:** Unlike some classical wave models, the architrino emission is **isotropic and constant-amplitude**. All velocity-dependence enters through the **geometry of causal intersections** (which wake surfaces hit where and when), not through amplitude changes.
 
 ---
 
@@ -406,7 +406,7 @@ where $\mathcal{F}$ is a **causal functional**: it depends on the current state 
 
 ### 5.3 Regularization (Mollified Shells, Finite $\eta$)
 
-The ideal model uses **surface-delta shells**, which yield **impulsive forces** at isolated hit times $t_0 \in \mathcal{C}_j(t)$. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or **regularize** by replacing the surface delta with a narrow shell of thickness $\eta > 0$:
+The ideal model uses **surface-delta causal isochrons**, which yield **impulsive forces** at isolated hit times $t_0 \in \mathcal{C}_j(t)$. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or **regularize** by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
 $$
 \delta(r - \tau) \longrightarrow \delta_\eta(r - \tau) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - \tau)^2}{2\eta^2}\Big),
@@ -468,9 +468,9 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 **Statement:** The dynamics are **delayed-only** and **purely radial**. Architrinos are transceivers: they emit causal isochrons at a **constant cadence** and **constant per-wavefront amplitude** (independent of emitter speed). The receiver's speed does not change the instantaneous force magnitude; it affects only the **work rate** via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 
-**Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent shells. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
+**Self-interaction requirement:** Self-hit requires $|\mathbf{v}_a| > c_f$ at some emission times (super-field-speed), so the worldline outruns its recent wake surfaces. Curvature alone is insufficient if $|\mathbf{v}_a| < c_f$ everywhere (a curved sub-field-speed trajectory never intersects its own past light cones).
 
-**Persistent memory (from Marko's clarification):** Once an architrino has exceeded $v > c_f$ in its past and emitted shells, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
+**Persistent memory (from Marko's clarification):** Once an architrino has exceeded $v > c_f$ in its past and emitted wake surfaces, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
 
 ### 6.3 Causality and Locality
 
@@ -484,7 +484,7 @@ This defines a **field-speed light cone** (or "causal cone") centered at each ev
 
 **No action-at-a-distance:** All influences propagate at finite speed $c_f$. There are no instantaneous interactions across spatial separation.
 
-**Locality in spacetime:** The Master EOM is **local in spacetime**: only the potential shells **here and now** (at $\mathbf{x}_i(t)$) contribute to the acceleration. However, it is **non-local in configuration space**: the causal history depends on the **entire past worldline** of all sources.
+**Locality in spacetime:** The Master EOM is **local in spacetime**: only the causal wake surfaces **here and now** (at $\mathbf{x}_i(t)$) contribute to the acceleration. However, it is **non-local in configuration space**: the causal history depends on the **entire past worldline** of all sources.
 
 ---
 
@@ -503,7 +503,7 @@ $$
 **Requirements:**
 
 1. **Curvature**: The worldline must curve (straight-line motion admits no self-hits).
-2. **Super-field-speed history**: At emission time $t_0$, the speed must have been $|\mathbf{v}_i(t_0)| > c_f$ (otherwise, the architrino never outruns its shells).
+2. **Super-field-speed history**: At emission time $t_0$, the speed must have been $|\mathbf{v}_i(t_0)| > c_f$ (otherwise, the architrino never outruns its wake surfaces).
 
 ### 7.2 Multiple Self-Hits (Plural)
 
@@ -511,7 +511,7 @@ $$
 
 **Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past isochrons** at the same observation time $t$. Each intersection corresponds to a distinct emission time $t_{0,k} \in \mathcal{C}_i(t)$.
 
-**Example:** In uniform circular motion at speed $v > c_f$, an architrino can be hit by shells from multiple points on its own orbit, corresponding to different "winding numbers" $m = 0, 1, 2, \ldots$ (see `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit).
+**Example:** In uniform circular motion at speed $v > c_f$, an architrino can be hit by wake surfaces from multiple points on its own orbit, corresponding to different "winding numbers" $m = 0, 1, 2, \ldots$ (see `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit).
 
 **Sum over all self-hit roots:**
 
@@ -525,13 +525,13 @@ where $\sigma_{ii} = +1$ (like charges repel), so each self-hit contributes an *
 
 **Critical clarification (from Marko):**
 
-Self-hit is **not** instantaneously tied to current velocity. An architrino that has **previously** exceeded $v > c_f$ and emitted shells can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions.
+Self-hit is **not** instantaneously tied to current velocity. An architrino that has **previously** exceeded $v > c_f$ and emitted wake surfaces can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions.
 
 **Scenario:**
 
-1. At time $t_1$: Architrino accelerates to $v > c_f$ and emits shells while in super-field-speed regime.
+1. At time $t_1$: Architrino accelerates to $v > c_f$ and emits wake surfaces while in super-field-speed regime.
 2. At time $t_2 > t_1$: Architrino slows down to $v < c_f$ (e.g., due to partner attraction or external forces).
-3. At time $t_3 > t_2$: The architrino's trajectory curves such that it intersects one of the shells emitted at $t_1$ (when $v > c_f$).
+3. At time $t_3 > t_2$: The architrino's trajectory curves such that it intersects one of the wake surfaces emitted at $t_1$ (when $v > c_f$).
 
 **Result:** Self-hit occurs at $t_3$ even though current velocity $|\mathbf{v}(t_3)| < c_f$.
 
@@ -670,7 +670,7 @@ Any single hit can be **equivalently described** with a **stationary emitter** (
 
 ### 9.4 Superposition Complicates Inference
 
-The ambiguity is compounded by **superposition**: The net potential at any instant is the sum of all intersecting expanding spherical shells. A measured potential along a single radial can be the consequence of a **complex confluence of fields** from many different emitters located along that line of action, arriving from both directions.
+The ambiguity is compounded by **superposition**: The net potential at any instant is the sum of all intersecting expanding causal wake surfaces. A measured potential along a single radial can be the consequence of a **complex confluence of fields** from many different emitters located along that line of action, arriving from both directions.
 
 **Consequence:** The receiver experiences a **deterministic acceleration** (given full microstate knowledge, as known to the Absolute Observer), but has **incomplete local information** about the source configuration.
 
@@ -765,7 +765,7 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
 - **Adaptive time-stepping** (small $\Delta t$ when roots are close or numerous)
 - **Event detection** for exact root crossings (optional; improves accuracy in sharp-hit regime)
 
-**Stability:** Ensure $\Delta t < \eta / c_f$ (resolve mollified shell width); adjust $\eta$ and $\Delta t$ together in convergence tests.
+**Stability:** Ensure $\Delta t < \eta / c_f$ (resolve mollified wake surface width); adjust $\eta$ and $\Delta t$ together in convergence tests.
 
 ### 11.3 Convergence and Validation
 
@@ -817,7 +817,7 @@ To ensure reproducibility across all simulation runs, the following **baseline p
 
 | **Parameter** | **Recommended Value** | **Rationale** | **Adjust if...** |
 |:--------------|:----------------------|:--------------|:-----------------|
-| Time step | $\Delta t < \eta / c_f$ | Resolve mollified shell width | Instability detected (energy spikes) |
+| Time step | $\Delta t < \eta / c_f$ | Resolve mollified wake surface width | Instability detected (energy spikes) |
 | Regularization width | $\eta \in [10^{-3}, 10^{-2}]$ (dimensionless) | Balance between convergence and stability | Convergence test shows $\eta$-dependence |
 | Root-finding tolerance | $\epsilon_{\text{root}} = 10^{-12}$ | Machine precision for double floats | Higher precision needed for long-time runs |
 | History buffer depth | $T_{\text{history}} \geq 10 / c_f$ | Capture at least 10 field-crossing times | Self-hit requires longer lookback |
@@ -898,7 +898,7 @@ $$
 
 **Key features:**
 
-1. **Local in spacetime**: Only intersecting potential shells contribute (no action-at-a-distance).
+1. **Local in spacetime**: Only intersecting causal wake surfaces contribute (no action-at-a-distance).
 2. **Non-Markovian**: Depends on full path history (self-hit memory).
 3. **Superposition**: Linear sum over all sources and causal roots.
 4. **Self-hit**: Repulsive self-interaction when $v > c_f$ at past emission times; persists even after slowing down.

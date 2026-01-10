@@ -24,7 +24,7 @@ We choose units with field speed $v_f=1$ (select $L_0,T_0$ so $v_f=L_0/T_0=1$); 
 
 - $v_f = 1$ (field speed by units),
 - $\kappa>0$ (universal coupling),
-- $\eta>0$ (computational shell thickness, regularization parameter),
+- $\eta>0$ (computational causal-surface width, regularization parameter),
 - $\epsilon>0$ (unit charge magnitude); Negatrino $q=-\epsilon$, Positrino $q=+\epsilon$,
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$,
 - $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$,  $\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$.
@@ -136,7 +136,7 @@ Plain language: split your velocity into along-the-line and sideways. A hit only
 
 ### 4.5 Well-posedness and Regularization
 
-The ideal local model uses surface–delta shells, which yield impulsive forces at isolated hit times. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or regularize by replacing the surface delta with a narrow shell of thickness $\eta$:
+The ideal local model uses surface–delta causal isochrons, which yield impulsive forces at isolated hit times. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or regularize by replacing the surface delta with a narrow causal surface of width $\eta$:
 \[
 \delta(r - \tau)\ \longrightarrow\ \delta_\eta(r - \tau)
 =\frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(-\frac{(r - \tau)^2}{2\eta^2}\Big),
@@ -167,13 +167,13 @@ Plain English: the ideal model gives instantaneous “kicks”; the $\eta$-thick
 
 ### 4.7 Self-Interaction (Self-Hit)
 
-A crucial dynamic arises from the possibility of **self-interaction**. An Architrino can intersect an expanding spherical shell that it emitted itself at an earlier point in its history.
+A crucial dynamic arises from the possibility of **self-interaction**. An Architrino can intersect an expanding causal wake surface that it emitted itself at an earlier point in its history.
 
 Self-interaction can occur when an Architrino’s speed has exceeded the field speed ($|\mathbf{v}_a| > v_f$) at some emission times. In this regime, the particle moves ahead of its own past isochrons, allowing it to interact with its own field. The self-hit terms are included in the same Master Equation, via $o'=o$ and $t_0\in \mathcal{C}_o(t)$ with $t_0<t$.
 
 This self-interaction is always **repulsive** for like charge configurations (the Architrino feels its own field as like-on-like) and plays a key role in the stability of emergent structures.
 
-Plain English: like a fast boat catching its own wake after turning, an Architrino can run into its earlier causal isochrons and get a push away from its past positions.
+Plain English: when it has outrun its wake and later turns back, an Architrino can re-enter the spherical causal surfaces it emitted earlier and get a push away from its past positions.
 
 ---
 
@@ -199,6 +199,6 @@ if the resulting radial acceleration is the same. An acceleration *towards* a po
 
 **Rest-frame recast (useful inference device):** Any single hit can be equivalently described with a stationary emitter ($|\mathbf{v}|=0$) placed somewhere along the same unoriented line of action, with the emitter’s actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line. The per-wavefront amplitude remains constant in this recast; it does not depend on emitter speed.
 
-This ambiguity is compounded by **superposition**: the net potential at any instant is the sum of all intersecting expanding spherical shells. A measured potential along a single radial can be the consequence of a complex confluence of fields from many different emitters located along that line of action, arriving from both directions.
+This ambiguity is compounded by **superposition**: the net potential at any instant is the sum of all intersecting expanding causal wake surfaces. A measured potential along a single radial can be the consequence of a complex confluence of fields from many different emitters located along that line of action, arriving from both directions.
 
 This limited, unoriented, and source-ambiguous information at the hit level is a key ingredient in later chapters for the emergence of effective quantum-like behavior and measurement uncertainty from deterministic micro-dynamics.

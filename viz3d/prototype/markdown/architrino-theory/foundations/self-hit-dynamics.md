@@ -5,7 +5,7 @@
 2. **Intersection Logic**: In absolute Euclidean coordinates, find $t_{hist}$ such that:
    $$|\mathbf{x}(t) - \mathbf{x}(t_{hist})| = c_f (t - t_{hist})$$
 3. **The Stability Mechanism**: Self-hit provides the non-linear "push-back" force required to prevent binary collapse. It replaces the "singularities" of 1/r potential with a high-curvature constraint derived from re-entering causal isochrons.
-4. **Virtual Observer Diagnostics**: Simulation logs must record self-hit frequency and "provenance" (the age of the shell being hit) to distinguish stable Tri-Binary attractors from chaotic or decaying states.
+4. **Virtual Observer Diagnostics**: Simulation logs must record self-hit frequency and "provenance" (the age of the wake surface being hit) to distinguish stable Tri-Binary attractors from chaotic or decaying states.
 
 ## Self-Hit Detection and Logging (VO-based)
 
@@ -37,7 +37,7 @@ For a given architrino with trajectory $\mathbf{x}(t)$, a self‑hit event is a 
 
 $|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),$
 
-and the architrino is the source of the potential shell emitted at $t_\text{emit}$.
+ and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
 
 Because the underlying coordinates and time are absolute, this condition is unambiguous:
 
@@ -85,6 +85,6 @@ The use of an Absolute Observer allows for a non-ambiguous definition of the sel
 
 ### Self-Hit in Absolute Coordinates
 
-* **Definition:** A self-hit occurs when an architrino trajectory intersects its own past potential shell in the fixed frame.
+* **Definition:** A self-hit occurs when an architrino trajectory intersects its own past causal wake surface in the fixed frame.
 * **Geometry:** The feedback loop is strictly non-Markovian. The "memory" is stored in the field at specific absolute coordinates.
 * **Stability:** Self-hit provides the bounding force for the Noether core.

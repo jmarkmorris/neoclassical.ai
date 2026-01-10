@@ -75,7 +75,7 @@ At a point $\mathbf{s}$ and time $t$, the net potential is the **superposition**
 
 $$\Phi_{\text{net}}(\mathbf{s},t) = \sum_o \Phi_o(\mathbf{s},t).$$
 
-Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the Architrino section. In the mollified representation with shell thickness $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes measure-valued ("paint on isochrons").
+Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the Architrino section. In the mollified representation with causal-surface width $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes measure-valued ("paint on isochrons").
 
 ### 5.3.2 Potential Energy
 
