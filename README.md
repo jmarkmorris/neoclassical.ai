@@ -1,72 +1,239 @@
-# Neoclassical.ai - The Point Potential Universe
+# Architrino Framework – Emergent Physics from Point Transmitter/Receivers
 
-**Nature and the universe emerge from a dynamical geometry of equal and opposite point potentials in Euclidean time and 3D space.**
+**Nature and the universe emerge from the dynamics of fundamental point entities—architrinos—interacting in Euclidean space and absolute time.**
 
-This repository serves as a reference implementation and exploration hub for **Neoclassical Physics and Quantum Gravity (NPQG)**, also referred to as the **Point Potential Universe**. This framework presents a novel and elegant approach to understanding the emergent assembly that results in nature and the universe.
+This repository is the reference implementation and exploration hub for the **Architrino / Tri-Binary Hypothesis**, a framework that reimagines the foundations of physics by starting from a single type of fundamental object: **point transmitter/receivers** of polarized potential.
 
-The core idea is that the classical model of geometrical point charges (circa 1900) was too restrictive. By redefining these as immutable, energetic **point potentials** – the electrino (-) and positrino (+) – moving within a fixed Euclidean background of 3D space and 1D time, we uncover a parsimonious neoclassical assembly architecture.
+The core idea: Classical point-charge models (circa 1900) were abandoned too quickly. By redefining them as **immutable, energetic architrinos**—the **electrino** (–) and **positrino** (+)—moving in a fixed **Euclidean 3D void** with **absolute time**, and allowing interactions via **delayed, radial potentials** (including **self-interaction** when speed exceeds field speed), we uncover a parsimonious architecture from which all observed physics emerges.
 
-**Project Goal:** To provide a reference implementation of this fundamental ontology of nature based upon the emergence of assemblies from these simple ingredients.
+**Project Goal:** To provide a rigorous, falsifiable model of nature grounded in a minimal ontology: architrinos + Euclidean substrate + delayed interaction dynamics.
 
-**Aims:** To create an integrated design for learning, teaching, simulation, and understanding the Point Potential Universe.
+**Aims:** To create an integrated platform for simulation, visualization, teaching, and empirical testing of the architrino hypothesis.
 
-**Languages:** Python, Godot Engine, Manim (Community Edition)
-
-**Main Website:** For detailed posts, glossary, pictures, and the full body of work, please visit [**https://neoclassical.ai/**](https://neoclassical.ai/)
+**Languages:** Python
 
 ---
 
-## Core Principles of the Point Potential Universe
+## Core Principles
 
-*   **Foundation:** Nature emerges from fundamental, immutable point potentials: the **electrino** (negative potential) and the **positrino** (positive potential). These exist and move within a fixed, flat **Euclidean R4** background (3D space and 1D linear time). This is distinct from Einstein's dynamic spacetime, but NPQG explains how an *effective* spacetime emerges.
-*   **Energy Carriers:** Point potentials are the *only* fundamental carriers of energy, in both electromagnetic potential and kinetic forms.
-*   **Mechanics:** Governed by **Neoclassical Mechanics**. This extends classical mechanics by removing any speed limit for point potentials. Point potentials behave classically below the potential emission speed but reveal an unexplored dynamical geometry when traveling at or above this speed.
-*   **Action:** The action (force) experienced by a receiving point potential depends on the state (position, velocity) of an emitting point potential at a specific point in the emitter's **path history**, determined by the finite speed of potential propagation. This incorporates history potentials fundamentally.
-*   **Potential Emission:** Point potentials emit spherically expanding potential waves. At radius = 0, their emission can be modeled as a Dirac delta function. We often visualize them as blue (-) and red (+) spheres, though they are truly geometric points with zero radius.
-*   **Immutability:** Point potentials cannot be created or destroyed. They are fundamental. (See Open Questions below).
+### 1. **The Substrate: Euclidean Void + Absolute Time**
 
-## Emergence and Key Concepts
+- **Space**: A fixed, continuous **Euclidean 3D container** (ℝ³). Not curved at the fundamental level; curvature is **emergent** from architrino assembly properties.
+- **Time**: **Absolute time** (t): A universal, linear, forward-only parameter. All architrinos evolve synchronously.
+- **Ontological Status**: These are **real** (not merely coordinate choices). Curved spacetime and relativistic proper time are **emergent, operational** descriptions arising from assembly dynamics.
 
-NPQG posits that all observed structures and phenomena emerge from the interactions of these point potentials:
+### 2. **Fundamental Entities: Architrinos**
 
-*   **Emergent Assemblies:** Complex structures arise dynamically from the interactions of simple point potentials. Key emergent structures include:
-    *   **Point Potential Binaries:** Orbiting pairs of electrinos and positrinos form the basis for many stable structures.
-    *   **Noether Cores:** Triply nested hierarchies of point potential binaries form stable, self-tuning cores that are the foundation for standard model particles and spacetime itself.
-    *   **Spacetime Aether:** Noether cores form a dynamic background medium (aether) whose properties give rise to the effects described by General Relativity (like gravity and spacetime curvature) and the Higgs mechanism. Spacetime is not fundamental but an emergent structure. Generations include the Graviton, Higgs, and Binary structures.
-    *   **Standard Model Particles:** Fermions (quarks, electrons, neutrinos) and Bosons (photons, W/Z, gluons) are specific stable assemblies of point potentials built upon Noether cores.
-*   **Unification:** NPQG provides a physical basis for both General Relativity (GR) and Quantum Mechanics (QM), bridging these theories and explaining their observations from a single, underlying reality. It aims to transform the Lambda-CDM model of cosmology (ΛCDM).
-*   **Energy Shielding & Superposition:** The superposition of potentials within nested Noether cores leads to significant shielding of the total energy contained within. This shielded energy is proposed as the physical reality behind the concepts of **dark matter** and **dark energy**.
-*   **Grand Cycle:** The universe operates in cycles. Point potentials aggregate, form structures, eventually fall into black holes, are processed into high-energy Planck cores, and are re-emitted (e.g., via jets) as high-energy point potentials or spacetime assemblies, restarting the cycle. This reinterprets Big Bang events as possibly localized phenomena related to black hole emissions.
+- **Definition**: Point transmitter/receivers of **polarized potential**.
+- **Two types** (opposite polarities):
+  - **Electrino**: Negative charge personality, magnitude |q| = |e/6|.
+  - **Positrino**: Positive charge personality, magnitude |q| = |e/6|.
+- **Immutable**: No creation or annihilation. They are eternal.
+- **Dynamics**:
+- Continuously **emit** spherically expanding potential (propagating at finite **field speed** \(v_f\)).
+  - Continuously **receive** potential from all others (and sometimes themselves).
+  - Respond deterministically to the **vector sum** of all received potentials.
+
+### 3. **Self-Hit Dynamics (Critical Innovation)**
+
+When an architrino's velocity \(v\) exceeds field speed \(v_f\), it **intercepts its own past outgoing potential**. This creates:
+
+- **Non-Markovian feedback**: Future trajectory depends on detailed history, not just current state.
+- **Singularity resolution**: Self-hit prevents collapse to r → 0; stabilizes binaries at finite radius.
+- **Quantum-like effects**: Interference with own past potential → pilot-wave-like guidance without separate wavefunction.
+
+**Three velocity regimes**:
+1. \(v < v_f\) (sub-field-speed): Standard Coulomb-like interaction; no self-hits.
+2. \(v = v_f\) (field-speed threshold): Symmetry breaking.
+3. \(v > v_f\) (super-field-speed): Self-hit regime; maximal curvature binaries form; source of inflation/deflation dynamics.
+
+---
+
+## Emergent Structures
+
+All observed structures arise from architrino interactions:
+
+### 1. **Maximal Curvature Binary (MCB)**
+
+- **Definition**: An electrino–positrino pair stabilized in circular orbit at radius \(r_{\min}\) via self-hit dynamics (when \(v > v_f\)).
+- **Role**:
+  - **Prototype rod**: r_min defines the fundamental unit of **length**.
+  - **Prototype clock**: Orbital period T_MCB = 1/f_MCB defines the fundamental unit of **time**.
+- **Scale**: r_min is **sub Planck scale**.
+- **Formation**: Natural attractor for isolated electrino–positrino pairs; **no external physics required**.
+
+### 2. **Tri-Binary Architecture**
+
+Three nested binaries at distinct scales (radius / frequency / energy):
+
+1. **Inner binary** (MCB): \(v > v_f\); self-hit stabilized; defines fundamental units.
+2. **Middle binary**: \(v = v_f\); symmetry-breaking threshold; defines effective "c" for the assembly.
+3. **Outer binary**: \(v < v_f\); expansion/contraction modes; couples to spacetime medium.
+
+**Scalability**:
+- **Ellipsoidal / 3D** → Fermionic behavior (Fermi–Dirac statistics; half-integer spin).
+- **Planar / 2D** → Bosonic behavior (Bose–Einstein statistics; integer spin).
+
+**Charge quantization**: Six "decoration sites" on tri-binary surface; each hosts one architrino (|e/6|).
+- Result: Stable charges are **0, ±e/3, ±2e/3, ±e** only.
+
+### 3. **Noether Core & Spacetime Medium**
+
+- **Noether Core**: Coupled pro + anti tri-binaries (2 pro + 2 anti) → neutral, stable, low-"mass" assembly.
+- **Spacetime medium ("Noether Sea")**: Dense lattice of Noether cores filling space.
+  - Analogous to: Superfluid or Bose–Einstein condensate.
+  - **Role**: Implements what General Relativity calls "spacetime fabric."
+  - Properties: Density (ρ_vac), stress, flow, refractive index.
+
+**Gravity as Refraction**:
+- Massive bodies → increased medium density → slowed signal propagation (\(c_{\text{eff}} < v_f\)).
+- **Einstein's curved spacetime** is an effective description of this refractive index field.
+
+### 4. **Standard Model Particles**
+
+- **Fermions** (quarks, leptons): Ellipsoidal tri-binaries with specific decoration patterns.
+- **Bosons** (photons, W/Z, gluons): Planar tri-binaries or field excitations.
+- **Gauge structure**: Emergent from tri-binary symmetries and decoration rules.
+
+### 5. **Cosmology & Large-Scale Structure**
+
+- **Expansion**: Tri-binary outer orbits scale with energy dissipation; "tired light" from medium coupling (not stretching of fundamental space).
+- **Dark matter**: Energy shielded within nested assemblies (superposition suppresses external manifestation).
+- **Dark energy**: Zero-point energy of Noether Sea or expansion mode of tri-binaries.
+- **Black holes**: Planck cores where middle-binary parameters approach Planck scale due to extreme compression; no fundamental singularities (MCB prevents r → 0).
+
+---
+
+## Key Claims & Testable Predictions
+
+### Claims (vs Standard Model + GR + ΛCDM):
+
+1. **Unification**: Matter, fields, and spacetime arise from a single substrate (architrinos).
+2. **Charge quantization explained**: Tri-binary geometry + |e/6| building block → only integer multiples of e/3 stable.
+3. **Spin-statistics derived**: Ellipsoidal/planar geometry determines Fermi–Dirac vs Bose–Einstein behavior.
+4. **No fundamental Planck scale**: Planck scale emerges contextually (black hole horizons), not fundamentally.
+5. **Gravity is emergent**: Effective curved geometry from Noether Sea density gradients.
+6. **Quantum mechanics is pilot-wave-like**: Deterministic architrino dynamics + self-hit memory → wave-like guidance without separate wavefunction ontology.
+
+### Testable Predictions:
+
+- **Lorentz violation searches**: Preferred-frame effects suppressed below 10⁻¹⁷ (sidereal atomic clock variations).
+- **Charge searches**: No stable fractional charges beyond e/3, 2e/3, e (null results for e/137, free quarks).
+- **Proton decay**: Lifetime > 10³⁴ years (baryon number conserved by topology?).
+- **Gravitational wave speed**: |v_GW - c|/c < 10⁻¹⁵ (medium ripple speed = effective light speed).
+- **Precision tests**: g-2 anomalies, fine-structure constant, CKM/PMNS matrices derived from assembly geometry.
+
+See `./docs/constraints/` for full ledger of Tier-1 empirical bounds.
+
+---
+
+## Repository Structure
+
+```
+/
+├── README.md               (this file)
+├── docs/
+│   ├── ontology.md         (Foundations: substrate, architrinos, assemblies)
+│   ├── self-hit.md         (Self-hit dynamics and non-Markovian feedback)
+│   ├── tri-binary.md       (Tri-binary architecture and variants)
+│   ├── emergent-metric.md  (Spacetime as Noether Sea; gravity as refraction)
+│   ├── constraints/        (Empirical bounds, Tier-1 hard walls)
+│   └── derivations/        (Master equation, proper time, Lorentz suppression)
+├── simulations/
+│   ├── toy_binary.py       (Two-body spiral-in to MCB)
+│   ├── tri_binary_sim/     (Multi-scale assembly dynamics)
+│   └── noether_sea/        (Continuum medium + GW propagation)
+├── visualizations/
+│   ├── godot/              (Interactive 3D visualizations)
+│   └── manim/              (Animations for teaching)
+└── tests/
+    ├── unit/               (Convergence, reproducibility)
+    └── empirical/          (Comparison with experimental data)
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.9+
+- NumPy, SciPy, Matplotlib
+- (Optional) Godot Engine 4.x for interactive visualizations
+- (Optional) Manim Community Edition for animations
+
+### Quick Start
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/architrino-framework.git
+   cd architrino-framework
+   ```
+
+2. **Run the toy binary simulator** (electrino + positrino spiral-in to MCB):
+   ```bash
+   python simulations/toy_binary.py
+   ```
+
+3. **Explore the documentation**:
+   ```bash
+   open docs/ontology.md
+   ```
+
+4. **Run tests**:
+   ```bash
+   pytest tests/
+   ```
+
+---
 
 ## Critique of Standard Models & Historical Context
 
-*   **Failure of Imagination:** Physics between 1875-1927 explored only a limited model of point charges (mapping |q| = |e|) and incorrectly dismissed point particle approaches. Many more sophisticated point potential systems are possible.
-*   **Effective Theories:** GR, QM, and ΛCDM are highly successful *effective theories* that match observations well but lack a fundamental grounding in physical reality. They contain ontological errors and paradoxes arising from incorrect assumptions about the fundamental nature of space, time, and matter. NPQG provides the underlying physical ontology.
+- **Failure of imagination (1875–1927)**: Physics explored only a limited model of point charges (|q| = |e|, velocities v < c) and incorrectly dismissed point-particle approaches. Many more sophisticated point-potential systems (e.g., |e/6|, v > v_f, self-hits) were never investigated.
 
-## This Repository
+- **Effective theories**: General Relativity, Quantum Mechanics, and ΛCDM are highly successful *effective theories* that match observations but lack fundamental grounding. They contain:
+  - **Ontological errors**: Curved spacetime as fundamental (it's emergent from medium).
+  - **Fine-tuning problems**: Cosmological constant (~120 orders), hierarchy problem (~16 orders).
+  - **Interpretive paradoxes**: Wavefunction collapse, measurement problem, singularities.
 
-This repository contains code, simulations, and visualizations related to NPQG. It aims to:
+- **Architrino framework**: Provides the underlying physical ontology. GR and QM are **correct operationally** but **incomplete ontologically**. This framework aims to complete them by deriving their effective descriptions from fundamental dynamics.
 
-*   Provide concrete implementations of NPQG concepts.
-*   Serve as a tool for learning and teaching the Point Potential Universe.
-*   Facilitate simulation and exploration of emergent phenomena.
-*   Foster understanding of the underlying physics.
+---
 
-## Further Information
+## Contributing
 
-The neoclassical.ai blog provides extensive detail on all aspects of NPQG:
+We welcome contributions! Areas of particular interest:
 
-*   **Main Site:** [https://neoclassical.ai/](https://neoclassical.ai/)
-*   **Key Introductions:**
-    *   [New Physics in Pictures](https://johnmarkmorris.com/2021/06/15/new-physics-in-pictures/)
-    *   [The Point Potential Model](https://johnmarkmorris.com/2019/06/24/idealized-neoclassical-model/)
-    *   [Glossary](https://johnmarkmorris.com/2019/06/12/glossary-of-neoclassical-physics-and-quantum-gravity/)
+- **Simulation improvements**: Convergence testing, higher-order integrators, parallelization.
+- **Analytical derivations**: Tri-binary stability conditions, PPN parameters, precision observables.
+- **Empirical mapping**: Constraint ledger updates, new tests, statistical validation.
+- **Visualization**: Interactive demos, educational animations, data dashboards.
 
-This model requires only a few free large-scale empirical parameters for cosmology:
-1.  The demographics of point potential polarity (presumed 50/50 electrinos/positrinos).
-2.  The average volumetric density of point potentials.
-3.  The average volumetric density of the energy carried by those point potentials.
+---
 
-NPQG offers a parsimonious recipe for nature, mapping readily to GR, QM, and ΛCDM while resolving their paradoxes and offering superior explanatory power. All existing physics and cosmology models may require enhancements based on this new ontology.
+## License
 
-**Contact:** For inquiries regarding the point potential universe, contact J Mark Morris at `inquiries@neoclassical.ai`.
+MIT
+
+---
+
+## Contact & Further Information
+
+- **Theory Development Blog**: [https://neoclassical.ai/](https://neoclassical.ai/)
+- **GitHub Issues**: For bug reports, feature requests, or theoretical questions.
+
+---
+
+## Acknowledgments
+
+This framework builds on 8+ years of foundational work by Marko and the collaborative efforts of the **Architrino Entourage**: Phil (Foundations), Dyna (Topology), Phe (Phenomenology), Alfa (Nuclear/Atomic), Cos (GR/Cosmology), Sol (Simulation), Sig (Experiment), and Red (Adversary).
+
+We stand on the shoulders of giants: Maxwell, Lorentz, de Broglie, Bohm, Sakharov, and all who dared to question the foundations of physics.
+
+---
+
+**Welcome to the Architrino Framework. Let's build nature from the ground up.** 🏛️
+
+---
+
+**Contact:** For inquiries regarding the architrino assembly theory, contact J Mark Morris at `inquiries@neoclassical.ai`.
