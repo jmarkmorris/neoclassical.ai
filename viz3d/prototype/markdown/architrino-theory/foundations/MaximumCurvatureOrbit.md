@@ -1,6 +1,6 @@
 
 
-# 00.2.3.3 — Maximum-Curvature Circular Orbit (Opposite Charges)
+# Maximum-Curvature Circular Orbit (Opposite Charges)
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed, purely radial per-hit law.
 
