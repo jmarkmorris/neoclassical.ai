@@ -1474,7 +1474,7 @@ This wake-stabilized orbit:
 - Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
 
 **Cross-references:**
-- TOC Ch. 8: "Maximum Curvature Orbit"
+- TOC Ch. 8: "Maximum Curvature Orbit and the Emergence of Units of Length and Time"
 - TOC Ch. 12: "Velocity Regimes and Symmetry Breaking"
 - `foundations/self-hit-dynamics.md`: Detailed analysis of wake-triggered interactions
 - `assemblies/binary-dynamics.md`: Formation and stability of binaries
@@ -2859,7 +2859,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 **Cross-references:**
 - `foundations/ontology.md`: Section 2.4.3 (Maximum-Curvature Equilibrium)
 - `foundations/self-hit-dynamics.md`: Detailed analysis of stability, multi-root regimes, and attractor basins
-- TOC Ch. 8: "Maximum Curvature Orbit"
+- TOC Ch. 8: "Maximum Curvature Orbit and the Emergence of Units of Length and Time"
 
 ---
 
@@ -2929,7 +2929,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 **Full derivation:** See `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit (includes delay equations, tangential components, radial balance, and stability analysis).
 
 **Cross-references:**
-- TOC Ch. 8: "Maximum Curvature Orbit"
+- TOC Ch. 8: "Maximum Curvature Orbit and the Emergence of Units of Length and Time"
 - TOC Ch. 11: "The Noether Core: Central Architecture"
 
 ---
@@ -3169,7 +3169,7 @@ To ensure reproducibility across all simulation runs, the following **baseline p
 - **Ch. 4**: "The Point Potential Action and Master Equation" (pedagogical introduction)
 - **Ch. 5**: "Self-Hit Dynamics and Non-Markovian Memory" (extended treatment)
 - **Ch. 6**: "Numerical Standards and Validation Protocols" (simulation requirements)
-- **Ch. 8**: "Maximum Curvature Orbit" (worked example)
+- **Ch. 8**: "Maximum Curvature Orbit and the Emergence of Units of Length and Time" (worked example)
 - **Ch. 20**: "Emergence of Gauge Symmetries: SU(3) × SU(2) × U(1)" (magnetic field emergence)
 - **Ch. 29**: "Quantum Mechanics as Emergent Determinism" (informational ambiguity → uncertainty)
 - **Ch. 30**: "Measurement and the Collapse Problem" (measurement as complex interaction)

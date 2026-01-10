@@ -68,7 +68,7 @@
 - Radial Fall to a Fixed Center (Test Particle Limit)
 - Opposite Charges from Rest at Large Separation
 - Equal-Charge Symmetric Repulsion
-- The Maximum Curvature Orbit
+- The Maximum Curvature Orbit and the Emergence of Units of Length and Time
 - Recap: Dominant Terms of the Master Equation in Two-Body Regimes
 
 ### Chapter 9: The Orbiting Binary

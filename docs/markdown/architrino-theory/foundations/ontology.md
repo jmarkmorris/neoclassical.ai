@@ -1142,7 +1142,7 @@ This wake-stabilized orbit:
 - Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
 
 **Cross-references:**
-- TOC Ch. 8: "Maximum Curvature Orbit"
+- TOC Ch. 8: "Maximum Curvature Orbit and the Emergence of Units of Length and Time"
 - TOC Ch. 12: "Velocity Regimes and Symmetry Breaking"
 - `foundations/self-hit-dynamics.md`: Detailed analysis of wake-triggered interactions
 - `assemblies/binary-dynamics.md`: Formation and stability of binaries
