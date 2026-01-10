@@ -75,6 +75,17 @@ Maintain and update a ledger separating:
 - **Category C (Derived from Simulations/Theory)**: binary formation rates, tri-binary stability thresholds, self-hit regime parameters.
 - **Category D (Fitted to Experimental Data)**: explicitly marked, minimized, and justified with full documentation.
 
+For concrete reference, the canonical `foundations/parameter-ledger.md` table enumerates:
+  * **A1 (Field Speed)**: $c_f \equiv 1$, the fundamental causal propagation speed that defines the path-history cone.
+  * **A2 (Charge Magnitude)**: $\epsilon = e/6$, the unit source strength entering every wake emission and reception.
+  * **A3 (Interaction Law)**: the continuous-force rule $\mathbf{a}(t)=\kappa\sum_j \sigma_{ij} \epsilon^2/r_{ij}(t_{\text{ret}})^2 \hat{\mathbf{u}}_{ij}$ evaluated at each causal emission.
+  * **A4 (Polarity Balance)**: global neutrality $\sum q = 0$ on the initial slice (Sec 3.2).
+  * **A5 (Particle Geometry)**: point-like $r=0$ architrinos as transceivers of continuous flux.
+  * **A6 (Coupling Constant)**: $\kappa$ (pending derivation, likely tied to Coulomb constant) that scales every per-hit acceleration.
+  * **B1 (Architrino Density)**: volumetric density $\rho_{\text{arch}}$ setting the Noether Sea’s background properties.
+  * **B2 (Max-Curvature Radius)**: derived radius $R_{\text{minlimit}}$ controlling the minimal stable binary scale (Sec 2.5.3, 6.3).
+If you introduce or adjust any ledger entry, update both this list and the dedicated `foundations/parameter-ledger.md` table so the system prompt and the canonical reference stay in sync.
+
 ### 3.3 Convergence & reproducibility (especially simulations)
 - Any simulation claim must include convergence tests (temporal: $\Delta$t/2; spatial: resolution×2; parameter sweeps) and reproducible run metadata.
 - Cross-integrator validation required for critical results.
