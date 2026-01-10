@@ -9,13 +9,13 @@ Existing text excerpt:
 
 Detailed explanation (why near fields dominate):
 
-- Linear addition at the causal-surface level:
-  - Because each source contributes a distribution supported on its causal wake surfaces, the total field is a sum of these measures; the acceleration law is linear in the summed contributions.
+  - Linear addition at the causal-surface level:
+    - Because each source contributes a distribution supported on its causal wake surfaces, the total field is a sum of these measures; the acceleration law is linear in the summed contributions.
 
-- Locality from $1/r^2$:
-  - The surface density on a sphere scales as $1/r^2$, so nearby hits contribute disproportionately compared to distant ones. Random phases and geometries of distant sources enhance cancellation.
+  - Locality from $1/r^2$:
+    - The surface density on each causal wake surface scales as $1/r^2$, so nearby hits contribute disproportionately compared to distant ones. Random phases and geometries of distant sources enhance cancellation.
 
 - Practical consequence:
   - Simulations can prioritize nearby sources and recent roots, using multipole or sampling approximations for far-field backgrounds.
 
-Plain language: Add all the pushes; the closest ones matter most because each hit falls off like one over distance squared, and distant pushes mostly cancel out.
+Plain language: Add the pushes from all causal wake surfaces; the closest ones matter most because each hit falls off like one over distance squared, and distant pushes mostly cancel out.

@@ -45,6 +45,7 @@ The receiver $o'$ at time $t$ interacts with a source $o$ through the (possibly 
 - For $|\mathbf{v}_o(t_0)| < v_f$ locally, $\mathcal{C}_o(t)$ is generically a singleton (“unique causal time”).
 - For $|\mathbf{v}_o|> v_f$ it may contain multiple solutions (**multi-hit regime**), including self-hits when $o'=o$.
 
+> **Causal wake surfaces:** Each $t_0\in\mathcal{C}_o(t)$ corresponds to the receiver intersecting the causal wake surface emitted at that time; the delta constraint in the density selects precisely those isochrons. Treating the emitting Architrino as a continuous flux, the full field arises by letting $t_0$ vary over the entire path history while keeping the per-isochron amplitude fixed. Mollification (replacing $\delta$ by $\delta_\eta$) is purely a numerical device to thicken the wake surface for smoother integration and does not turn the emission into a sequence of discrete pulses.
 Plain language: this set collects all earlier moments of the source whose causal isochrons currently pass through the receiver’s location; only those emissions can push now.
 
 ---

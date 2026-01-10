@@ -1275,8 +1275,8 @@ An Architrino is a transceiver: it continuously emits potential flux and simulta
 
 - **Continuous flux:** At every instant the Architrino streams potential into the void. The **causal wake surface** (the isochron of causality) connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, that surface is merely a computational tool that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
 - **Local origin:** The flux originates at the Architrino’s instantaneous position. We encode the start of each emission as a spatial Dirac delta carrying total charge $q$ to fix the boundary condition, but nothing in the physics requires the emission to switch on and off—it is constantly present and extends infinitely into the future.
-- **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines a sphere in the spatial slice at time $t$.
-- **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the surface remains $q$ as the sphere grows.
+- **Radial propagation:** Each causal surface expands outward at the field speed $v_f$ (we set $v_f=1$ in natural units). The geometric locus of points receiving the contribution emitted at time $t_0$ satisfies $\|\mathbf{s}-\mathbf{s}_0\| = v_f(t - t_0)$ and defines the causal wake surface (isochron) in the spatial slice at time $t$.
+- **Conserved intensity:** The surface density on each isochron falls as $1/r^2$ so that the total flux through the surface remains $q$ as the causal wake surface expands.
 
 **Geometric characterization:** In timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, an emission event at $(t_0, \mathbf{s}_0)$ generates a radially symmetric, measure-valued contribution supported on the expanding causal surface
 
@@ -1284,7 +1284,7 @@ $$
 \mathcal{C}=\{(t,\mathbf{s}) : t\ge t_0,\; r = v_f(t-t_0)\},\quad r=\|\mathbf{s}-\mathbf{s}_0\|.
 $$
 
-At $t=t_0$ the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. For $t>t_0$ it is a surface delta on the sphere of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
+At $t=t_0$ the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. For $t>t_0$ it is a surface delta on the causal wake surface of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
 
 This contribution has two notable features:
 
@@ -1305,7 +1305,7 @@ $$
 \int_{\mathbb{R}^3}\rho(t,\mathbf{s})\,\mathrm{d}^3s = q \quad \text{for all } t>t_0.
 $$
 
-> **Plain language:** As the causal surface grows, the flux spreads thinner over the sphere but always carries the same total amount of potential.
+> **Plain language:** As the causal surface grows, the flux spreads thinner over the causal wake surface but always carries the same total amount of potential.
 
 **Governing continuity law:** The density solves the radial continuity equation with a point-source impulse,
 
@@ -1377,15 +1377,15 @@ Architrinos are the **sole carriers of kinetic and potential energy**. There is 
 
 Architrinos have no volume, so multiple particles may coincide in space at the same $t$. Regularization of the singular $1/r^2$ hits is handled by a causal-surface width parameter $\eta>0$: for separations $r<\eta$ the force transitions to a bounded profile, preventing divergences while preserving total charge and energy in the $\eta\to 0$ limit.
 
-#### 2.4.4 Sphere Stream: The Field Landscape
+#### 2.4.4 Causal Wake Stream: The Field Landscape
 
-As an Architrino moves, it leaves behind a **wake stream**—the collection of all expanding causal wake surfaces it has emitted up to the observation time $t_{obs}$:
+As an Architrino moves, it leaves behind a **causal wake stream**—the union of every expanding causal wake surface (isochron) it has emitted up to the observation time $t_{obs}$:
 
 $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
 $$
 
-Each sphere in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$.
+Each causal wake surface (isochron) in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$.
 
 #### 2.4.5 Causal Intersection Times and the Master Equation
 

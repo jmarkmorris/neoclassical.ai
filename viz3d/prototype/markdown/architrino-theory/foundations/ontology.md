@@ -959,13 +959,13 @@ This contribution has two notable features:
 - **Indefinite expansion:** The causal surface expands without bound as $t\to\infty$. Its radius diverges and the surface density vanishes, yet the total flux remains constant.
 - **Linear superposition:** Contributions from distinct Architrinos propagate through one another without interaction; the total field at any location is the linear sum of all individual causal surfaces.
 
-**Analytic form:** Let $\tau=t-t_0$ and $r=\|\mathbf{s}-\mathbf{s}_0\|$. The measure-valued density (per unit volume) is
+**Analytic form:** Let $\tau=t-t_0$ and $r=\|\mathbf{s}-\mathbf{s}_0\|$. The measure-valued density (per unit volume) lives precisely on the causal wake surface defined by $r=v_f\tau$:
 
 $$
 \rho(t,\mathbf{s})=\frac{q}{4\pi r^2}\,\delta\!\big(r - v_f\,\tau\big)\,H(\tau),
 $$
 
-with $H$ the Heaviside step function ($H(0)=0$ to avoid instantaneous self-force).
+the delta constraining spatial distance to the elapsed time selects each causal wake surface (isochron) as the support, while $H(0)=0$ prevents the instantaneous self-force contribution.
 
 **Normalization and conservation:**
 
@@ -1045,15 +1045,15 @@ Architrinos are the **sole carriers of kinetic and potential energy**. There is 
 
 Architrinos have no volume, so multiple particles may coincide in space at the same $t$. Regularization of the singular $1/r^2$ hits is handled by a causal-surface width parameter $\eta>0$: for separations $r<\eta$ the force transitions to a bounded profile, preventing divergences while preserving total charge and energy in the $\eta\to 0$ limit.
 
-#### 2.4.4 Sphere Stream: The Field Landscape
+#### 2.4.4 Causal Wake Stream: The Field Landscape
 
-As an Architrino moves, it leaves behind a **wake stream**—the collection of all expanding causal wake surfaces (isochrons) it has emitted up to the observation time $t_{obs}$:
+As an Architrino moves, it leaves behind a **causal wake stream**—the union of every expanding causal wake surface (isochron) it emitted prior to the observation time $t_{obs}$:
 
 $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
 $$
 
-Each wake surface in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$; the union simply tracks which causal wake surfaces intersect the receiver now, not a sequence of discrete pulses.
+Each causal wake surface in the stream carries surface density $q/(4\pi r^2)$ so the union describes the complete locus of active potential at time $t_{obs}$; it is a geometric record of which wake surfaces currently intersect the receiver, not a train of discrete pulses.
 
 #### 2.4.5 Causal Intersection Times and the Master Equation
 

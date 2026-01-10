@@ -153,8 +153,8 @@ $$
 
 - Receiver at $\mathbf{x}_i(t)$ "now"
 - Source worldline $\{\mathbf{x}_j(t') : t' < t\}$ in the past
--- Field-speed light cone: a sphere of radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
--- **Causal emission times**: where this expanding isochron surface **intersects** the receiver's current location
+  - Field-speed causal wake surface: the expanding isochron at radius $c_f(t - t_0)$ centered at $\mathbf{x}_j(t_0)$
+  - **Causal emission times**: where this wake surface **intersects** the receiver's current location
 
 For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\mathbf{x}_i(t)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the force.
 
@@ -235,6 +235,8 @@ $$
 $$
 
 **Note:** $\sigma_{ii} = +1$ (like charges repel), so self-hits are always **repulsive**.
+
+This sum can be viewed as a **path-history integral**: each emission time in $\mathcal{C}_j(t)$ marks where the receiver's worldline crosses the causal wake surface emitted at $t_0$. The delta constraint in the Green's-function representation ensures we only collect those wake surfaces that currently intersect the receiver, so the integral directly reconstructs the continuous causal potential field.
 
 ### 3.3 Conventions and Exclusions
 
