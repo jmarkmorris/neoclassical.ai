@@ -941,9 +941,9 @@ All observable entities (particles, atoms, fields, spacetime curvature) are **em
 
 An Architrino is a transceiver: it continuously emits potential flux and receives/responds to incoming flux from other sources. The fundamental transmit operation has the following key features:
 
-- **Continuous flux:** At every instant the Architrino injects potential into the surrounding void. The “spherical shell” is nothing more than an **isochron of causality**—the surface that connects all spatial points currently receiving the contribution emitted at a specific past time. The shell is therefore a *calculation tool* for isolating retarded interactions, not a discrete “pulse” that turns on and off.
+- **Continuous flux:** At every instant the Architrino injects potential into the surrounding void. The “spherical shell” is nothing more than an **isochron of causality**—the surface that connects all spatial points currently receiving the contribution emitted at a specific past time. The shell is therefore a *calculation tool* for isolating path-history interactions, not a discrete “pulse” that turns on and off.
 - **Point of origin:** The potential effectively originates at the Architrino’s current location. We encode this as a spatial Dirac delta for bookkeeping (the boundary condition “the flux begins here with total charge $q$”), but the underlying reality is a steady flux of potential rather than intermittent pulses.
-- **Spherical expansion:** Once emitted, the contribution propagates outward in a radially symmetric fashion; the relevant locus for a given emission time is the expanding sphere defined by the retarded-time constraint.
+- **Spherical expansion:** Once emitted, the contribution propagates outward in a radially symmetric fashion; the relevant locus for a given emission time is the expanding sphere defined by the causal constraint.
 - **Field speed:** The propagation occurs at the field speed $v_f$, so the isochron surface satisfies $r = v_f(t-t_0)$ for emission time $t_0$. In natural units we set $v_f = 1$.
 - **Surface density:** On that isochron surface the potential’s intensity decreases as $1/r^2$, preserving the total “charge” $q$ as the flux spreads over ever larger areas.
 
@@ -1644,13 +1644,13 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 
 | **Term** | **Definition** | **Cross-Reference** |
 |:---------|:---------------|:--------------------|
-| **Path History** | Time-delayed potential from past emissions (never "retarded") | Sec. 2.5, master-equation.md |
+| **Path History** | Time-delayed potential from past emissions (avoid outdated terminology) | Sec. 2.5, master-equation.md |
 | **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores | Sec. 3.1, assemblies/noether-core.md |
 | **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ | Sec. 1.2, euclidean-void.md |
 | **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly | Sec. 1.1, absolute-time-defense.md |
 | **Absolute Virtual Observer (AVO)** / **Absolute Observer (AO)** | Conceptual probe with complete microstate knowledge | Sec. 4.1 |
 | **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics | Sec. 4.2 |
-| **Emission Time** | Time $t_0$ when a potential shell was emitted (not "retarded time") | Sec. 2.5 |
+| **Emission Time** | Time $t_0$ when a potential shell was emitted (we label this simply an emission time) | Sec. 2.5 |
 | **Self-Hit** | Intersection of an architrino with its own past emissions | Sec. 2.4, self-hit-dynamics.md |
 | **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) | Sec. 2.2 |
 | **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly | assemblies/tri-binary-architecture.md |
@@ -1781,13 +1781,13 @@ where:
 
 ### 6.5 Simulation Parameters (Computational Necessities)
 
-These parameters arise from the discretization and regularization that Sol applies when approximating the continuous retarded potential integral. They are **implementation choices**, not fundamental postulates of the ontology.
+These parameters arise from the discretization and regularization that Sol applies when approximating the continuous path-history potential integral. They are **implementation choices**, not fundamental postulates of the ontology.
 
 | **Parameter** | **Symbol** | **Purpose** | **Comment** |
 |:--------------|:-----------|:-----------|:------------|
-| Shell thickness | $\eta$ | Numerical regularization | Smooths each retarded impulse into a narrow shell of width $\eta$ so the integral can be sampled with finite time steps and no singularities |
+| Shell thickness | $\eta$ | Numerical regularization | Smooths each causal impulse into a narrow shell of width $\eta$ so the integral can be sampled with finite time steps and no singularities |
 
-$\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous retarded flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
+$\eta$ exists because computers sample the past worldline at discrete times; as the resolution increases ($\eta\to 0$) the simulation converges to the continuous causal flux described in Section 1.3. Its presence does not imply that physics is fundamentally pulsed.
 
 ---
 
