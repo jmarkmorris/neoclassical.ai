@@ -1047,7 +1047,7 @@ Architrinos have no volume, so multiple particles may coincide in space at the s
 
 #### 2.4.4 Sphere Stream: The Field Landscape
 
-As an Architrino moves, it leaves behind a **sphere stream**—the collection of all expanding causal wake surfaces it has emitted up to the observation time $t_{obs}$:
+As an Architrino moves, it leaves behind a **wake stream**—the collection of all expanding causal wake surfaces it has emitted up to the observation time $t_{obs}$:
 
 $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
@@ -1217,17 +1217,17 @@ When $|\mathbf{v}_a| > v_f$, individual Architrinos can outrun their own fields.
 
 A special and fundamental case arises when an Architrino is stationary with respect to absolute space, i.e., its velocity $\mathbf{v}_a = \mathbf{0}$.
 
-**Static sphere stream geometry:**
+**Static wake stream geometry:**
 
-For a stationary Architrino at a fixed position $\mathbf{s}_{\text{fixed}}$, its sphere stream consists of a continuous family of perfectly concentric causal wake surfaces. While each individual wake surface expands, the overall geometric form of the stream is static and time-invariant.
+For a stationary Architrino at a fixed position $\mathbf{s}_{\text{fixed}}$, its wake stream consists of a continuous family of perfectly concentric causal wake surfaces. While each individual wake surface expands, the overall geometric form of the stream is static and time-invariant.
 
 **Bridge to absolute space:**
 
-This state is **physically distinguishable** from any state of non-zero velocity. An Architrino in motion ($\mathbf{v}_a \neq \mathbf{0}$) generates a non-concentric sphere stream whose pattern is dynamic. The perfect symmetry of the stationary stream provides a unique, observable reference frame.
+This state is **physically distinguishable** from any state of non-zero velocity. An Architrino in motion ($\mathbf{v}_a \neq \mathbf{0}$) generates a non-concentric wake stream whose pattern is dynamic. The perfect symmetry of the stationary stream provides a unique, observable reference frame.
 
 **Important caveat:**
 
-In realistic many-Architrino systems, distinguishing absolute rest from motion requires the ability to reconstruct the global pattern of sphere streams, which is nontrivial. However, the ontology supports an **objective notion of rest**—a departure from Einstein's relativity, but compatible with absolute time.
+In realistic many-Architrino systems, distinguishing absolute rest from motion requires the ability to reconstruct the global pattern of wake streams, which is nontrivial. However, the ontology supports an **objective notion of rest**—a departure from Einstein's relativity, but compatible with absolute time.
 
 **Lorentz suppression requirement (Critical Constraint):**
 
