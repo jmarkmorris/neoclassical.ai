@@ -1047,13 +1047,13 @@ Architrinos have no volume, so multiple particles may coincide in space at the s
 
 #### 2.4.4 Sphere Stream: The Field Landscape
 
-As an Architrino moves, it leaves behind a **wake stream**—the collection of all expanding causal wake surfaces it has emitted up to the observation time $t_{obs}$:
+As an Architrino moves, it leaves behind a **wake stream**—the collection of all expanding causal wake surfaces (isochrons) it has emitted up to the observation time $t_{obs}$:
 
 $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
 $$
 
-Each causal wake surface in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$.
+Each wake surface in the stream carries surface density $q/(4\pi r^2)$ so the union represents the full locus of active potential at time $t_{obs}$; the union simply tracks which causal wake surfaces intersect the receiver now, not a sequence of discrete pulses.
 
 #### 2.4.5 Causal Intersection Times and the Master Equation
 

@@ -136,7 +136,7 @@ Plain language: split your velocity into along-the-line and sideways. A hit only
 
 ### 4.5 Well-posedness and Regularization
 
-The ideal local model uses surface–delta causal isochrons, which yield impulsive forces at isolated hit times. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or regularize by replacing the surface delta with a narrow causal surface of width $\eta$:
+The ideal local model uses surface–delta causal wake surfaces, which yield impulsive forces at isolated hit times. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or regularize by replacing the surface delta with a narrow causal surface of width $\eta$:
 \[
 \delta(r - \tau)\ \longrightarrow\ \delta_\eta(r - \tau)
 =\frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(-\frac{(r - \tau)^2}{2\eta^2}\Big),

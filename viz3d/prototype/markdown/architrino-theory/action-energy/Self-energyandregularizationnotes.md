@@ -11,7 +11,7 @@ In classical electrostatics, a static 1/r potential yields an electric field E �
 This project does not posit a static near field. Instead:
 
 - Measure-valued expanding causal surfaces (no static 1/r near field):
-  - Each emission is a razor-thin causal isochron with surface density q/(4$\pi$r²), represented by $\rho$(t,s) = (q/(4$\pi$r²)) $\delta$(r − v$\tau$) H($\tau$). The field support at fixed t is a sphere $S_r$, not a 3D 1/r² fill down to r=0. See 00.1.0 — Architrino (Analytic form).
+- Each emission is a razor-thin causal isochron with surface density q/(4$\pi$r²), represented by $\rho$(t,s) = (q/(4$\pi$r²)) $\delta$(r − v$\tau$) H($\tau$). The field support at fixed t is a causal wake surface $S_r$, not a 3D 1/r² fill down to r=0. See 00.1.0 — Architrino (Analytic form).
 
 - H(0)=0 (no coincident self-kick):
   - The instantaneous emission ($\tau$=0) contributes nothing to the force on the emitter; r=0 roots beyond $\tau$=0 do not exist because r = v(t − t₀). This removes the only event where a literal r=0 could enter. See 00.1.4 — Action (conventions).
