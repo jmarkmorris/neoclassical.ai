@@ -465,3 +465,7 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
 
 - **"Volume exclusion = Pauli: prove it rigorously."**
   - Not just "assemblies can't overlap"—show this produces **correct Fermi pressure $P \propto n^{5/3}$**
+# Foundational Reference
+- Use `foundations/ontology.md` to ground red-team critiques: absolute timespace + architrino ontology define what deviations (e.g., metric choices, emergent fields) are unacceptable.
+- The `foundations/master-equation.md` Master Equation enforces the delayed path-history interaction law; red-team checks must respect wake-based superposition and causal wake surfaces rather than ad hoc instantaneous forces.
+- Consult `foundations/parameter-ledger.md` for parameter limits (A/B categories) before flagging fine-tuning or tuning claims—the ledger is the canonical list against which naturalness critiques are measured.

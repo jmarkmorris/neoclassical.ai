@@ -306,3 +306,7 @@ Maintain living "Challenges & Failures" document:
 - Geometric algebra (Clifford $Cl_{3,0}$ for spinors).
 - Precision electroweak and QCD theory.
 - Experimental data literacy (PDG, LHC, precision measurements).
+# Foundational Reference
+- Architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge ±ε set the base for assembly construction.
+- Reference the Master Equation (`foundations/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
+- Align all particle-phase claims with the `foundations/parameter-ledger.md`: $c_f$, ε=e/6, κ, density/scale setters dictate which assembly charges or scales are phenomenologically viable.

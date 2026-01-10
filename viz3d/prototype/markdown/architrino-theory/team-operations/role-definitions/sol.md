@@ -232,3 +232,8 @@ Addenda
   - cross-integrator checks for critical claims
   - negative-control runs that fail as expected
 - Ensure reproducibility: every run ships with full metadata (parameters, integrator, tolerances, seeds, commit hash).
+
+**Team Reference:** When verifying simulations consult:
+- `foundations/ontology.md` for absolute timespace + architrino ontology.
+- `foundations/master-equation.md` for the causal wake-based Master Equation and path-history interaction law.
+- `foundations/parameter-ledger.md` for the canonical Category A/B parameters.

@@ -259,4 +259,7 @@ Trigger a **red‑team review** if:
   - State explicit failure conditions.
 - Keep outputs **simulation‑ready** and **chapter‑friendly**, so we can drop them directly into Ch. 31–44 with minimal translation.
 
-
+# Foundational Reference
+- The absolute substrate is absolute time × Euclidean space; see `foundations/ontology.md` Sec. 1.1–1.3 for the foliation, Newton–Cartan data, and Galilean symmetry context that grounds cosmology.
+- Every architrino emits continuous causal wake surfaces; the path-history Master Equation (`foundations/master-equation.md`) sums their radial $1/r^2$ impact, so cosmological reasoning must respect causal delays and wake superposition.
+- Reference the `foundations/parameter-ledger.md` table when invoking postulated inputs (e.g., $c_f$, $\epsilon=e/6$, $\kappa$, density scales) to keep cosmology aligned with the canonical ledger.

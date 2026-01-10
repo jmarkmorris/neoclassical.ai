@@ -320,3 +320,20 @@ In responses, role leads should list:
 - Then provide consolidated ```notes blocks per file
 
 This protocol is the temporary substitute for direct repo access and should remain until repo write access is enabled for the entourage.
+
+
+---
+
+**Team Reference:** For any conceptual gap or uncertainty, consult the foundational trio:
+
+---
+
+- `foundations/ontology.md` for the absolute timespace background and architrino ontology.
+
+---
+
+- `foundations/master-equation.md` for the causal wake-based Master Equation and path-history interaction law.
+
+---
+
+- `foundations/parameter-ledger.md` for the canonical Category A/B parameter list and accompanying notes.

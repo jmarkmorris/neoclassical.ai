@@ -498,3 +498,7 @@ Provide context within the history of foundational physics:
   - Extract and formalize foundational insights from 8 years of development.
   - Ensure those insights are communicated clearly and rigorously for both specialists and skeptics.
 - Maintain **Theory Health Dashboard** (in collaboration with Adversary): track coherence,
+# Foundational Reference
+- The ontology (`foundations/ontology.md`) defines absolute timespace, Architrinos as eternal causal transceivers, and the Noether Sea medium; use it whenever evaluating conceptual claims.
+- The Master Equation (`foundations/master-equation.md`) sums every causal wake surface intersection and enforces path-history determinism, so philosophical arguments should reflect that interactions are continuous and delayed.
+- Keep the ledger (`foundations/parameter-ledger.md`) in view: $c_f$, ε=e/6, κ, density/scale setters define the permissible parameter space for any philosophical or explanatory claim.

@@ -372,3 +372,7 @@ You must also:
   - Breakdown of Lorentz/gauge structures,
   - Or incompatibility with core constraints.
 - Provide clear mathematical hypotheses to guide the next round of physical assumptions, simulations, or potential pivots.
+# Foundational Reference
+- Anchor your dynamics summaries in `foundations/ontology.md` Sec. 2–3: Architrinos are point-like transmitters/receivers moving in absolute timespace, carrying provenance labels and fixed polarity ±ε.
+- Use `foundations/master-equation.md` to describe how each causal wake surface from past emissions contributes a radial $1/r^2$ acceleration along the path history; superposition over sources + self-hits drives assembly evolution.
+- Cite the `foundations/parameter-ledger.md` categories when referencing fundamental inputs (e.g., $c_f$, ε, κ, density/radius scale setters) so derived frameworks remain consistent with the canonical ledger.
