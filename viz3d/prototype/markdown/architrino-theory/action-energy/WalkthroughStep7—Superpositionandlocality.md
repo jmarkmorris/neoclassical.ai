@@ -5,7 +5,7 @@ Existing text excerpt:
 >     $$
 >     \Phi_{\text{net}} = \sum_{i} \Phi_i
 >     $$
->     The total acceleration on a particle at any instant is the vector sum of the accelerations from all intersecting expanding spherical shells. Operationally, every Architrino is continuously immersed in the superposed sphere streams of all others (and, when kinematics permit, its own); tractability comes from treating each causal hit independently with $1/r^2$ distance weighting, which makes local sources dominate.
+>     The total acceleration on a particle at any instant is the vector sum of the contributions from every intersecting spherically expanding wake strea. Operationally, every Architrino is continuously immersed in the superposed wakes of all others (and, when kinematics permit, its own); calculating the path-history integral is tractable by isolating each causal emission event, evaluating the $1/r^2$ kernel at that emission, and then summing—nearby sources dominate because their contributions fall off most slowly and cancelation is more complete at long range.
 
 Detailed explanation (why near fields dominate):
 
