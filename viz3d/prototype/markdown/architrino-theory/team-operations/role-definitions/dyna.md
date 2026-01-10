@@ -76,7 +76,7 @@ Deliverable: **Pathology & Regularization report** (feeds Appendix B and Ch. 5).
 ### 3.1 Geometry of Self‑Hit
 
 - Define precisely the **self‑hit condition**:
-  - Kinematic criteria (e.g. segments of an architrino trajectory re‑intersect its own history potential sphere).
+  - Kinematic criteria (e.g. segments of an architrino trajectory re‑intersect its own causal isochron).
   - Geometric construction: worldline vs past light (field) cones in absolute time.
 - Express the self‑interaction force as a **history‑dependent functional**:
   - Either as an explicit delay term or as a convolution over past trajectory segments.

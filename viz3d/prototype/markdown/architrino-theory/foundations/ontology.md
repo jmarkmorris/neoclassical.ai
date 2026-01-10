@@ -766,9 +766,9 @@ $$
 \{(t, \mathbf{x}) : t \geq t_0, \, \|\mathbf{x} - \mathbf{x}_0\| \leq c_f(t - t_0)\}.
 $$
 
-This is an **expanding sphere** in space, not a cone in spacetime. The boundary is a sphere of radius $c_f(t - t_0)$ at time $t$.
+This is an **expanding causal surface** in space, not a cone in spacetime. The boundary is the set of points at radius $c_f(t - t_0)$ at time $t$.
 
-**Critical difference from relativity:** Our "expanding sphere" causal structure, unlike a rigid metric light cone, does **not forbid superluminal** ($v > c_f$) **particle velocities**. This is not a violation of causality (which is defined by the absolute time ordering), but a feature that enables the **self-hit regime**, where an architrino overtakes its own emitted potential. This self-hit mechanism is foundational to our theory of mass quantization and inflation/deflation dynamics.
+**Critical difference from relativity:** Our "expanding causal surface" causal structure, unlike a rigid metric light cone, does **not forbid superluminal** ($v > c_f$) **particle velocities**. This is not a violation of causality (which is defined by the absolute time ordering), but a feature that enables the **self-hit regime**, where an architrino overtakes its own emitted potential. This self-hit mechanism is foundational to our theory of mass quantization and inflation/deflation dynamics.
 
 Additionally, the "effective light cones" seen by assemblies at $v \leq c_f$ can approximate Minkowski light cones, setting up the **emergent Lorentz structure** experienced by low-energy observers and systems.
 
@@ -943,19 +943,19 @@ An Architrino is a transceiver: it continuously emits potential flux and receive
 
 - **Continuous flux:** At every instant the Architrino injects potential into the surrounding void. The “spherical shell” is nothing more than an **isochron of causality**—the surface that connects all spatial points currently receiving the contribution emitted at a specific past time. The shell is therefore a *calculation tool* for isolating path-history interactions, not a discrete “pulse” that turns on and off.
 - **Point of origin:** The potential effectively originates at the Architrino’s current location. We encode this as a spatial Dirac delta for bookkeeping (the boundary condition “the flux begins here with total charge $q$”), but the underlying reality is a steady flux of potential rather than intermittent pulses.
-- **Spherical expansion:** Once emitted, the contribution propagates outward in a radially symmetric fashion; the relevant locus for a given emission time is the expanding sphere defined by the causal constraint.
+- **Surface expansion:** Once emitted, the contribution propagates outward in a radially symmetric fashion; the relevant locus for a given emission time is the expanding causal surface defined by the same constraint.
 - **Field speed:** The propagation occurs at the field speed $v_f$, so the isochron surface satisfies $r = v_f(t-t_0)$ for emission time $t_0$. In natural units we set $v_f = 1$.
 - **Surface density:** On that isochron surface the potential’s intensity decreases as $1/r^2$, preserving the total “charge” $q$ as the flux spreads over ever larger areas.
 
 **Geometric Characterization:**
 
-Consider timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$ with coordinates $(t,\mathbf{s})$ and Euclidean spatial metric. An emission event at $(t_0,\mathbf{s}_0)$ generates a radially symmetric, measure-valued field supported on the expanding spherical shell:
+Consider timespace $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$ with coordinates $(t,\mathbf{s})$ and Euclidean spatial metric. An emission event at $(t_0,\mathbf{s}_0)$ generates a radially symmetric, measure-valued field supported on the expanding causal surface:
 
 $$
 \mathcal{C}=\{(t,\mathbf{s}) : t\ge t_0,\; r = v_f(t-t_0)\},\quad r=\|\mathbf{s}-\mathbf{s}_0\|.
 $$
 
-At the emission time $t=t_0$, the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. At each fixed time $t>t_0$, the field is a surface delta measure on the sphere \$S_{r}$ of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
+At the emission time $t=t_0$, the field is a spatial Dirac delta of charge $q$ located at $\mathbf{s}_0$. At each fixed time $t>t_0$, the field is a surface delta measure on the causal surface $S_{r}$ of radius $r=v_f(t-t_0)$ centered at $\mathbf{s}_0$, normalized so its total mass is $q$.
 
 This expanding wavefront has two key properties:
 

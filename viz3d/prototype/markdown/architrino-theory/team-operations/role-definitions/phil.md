@@ -203,7 +203,7 @@ Define **measurement** in architrino ontology:
 
 **What Is Measurement?**
 - No observer postulate. Measurement is simply a **complex assembly interaction** (e.g., particle + detector + environment).
-- All components (system, apparatus, environment) are assemblies of architrinos evolving deterministically based upon intersecting potential spheres.
+- All components (system, apparatus, environment) are assemblies of architrinos evolving deterministically based upon intersecting causal isochrons.
 
 **How Do Definite Outcomes Arise?**
 - From:
@@ -231,7 +231,7 @@ Articulate the **causal picture**:
 **Is Evolution Deterministic?**
 - **In principle**: Yes (given all architrino positions/velocities at $t_0$, the future is determined by the master equation).
 - **In practice**: Computational intractability + potential sensitivity to initial conditions (chaos) may make long-term prediction infeasible.
-- **Note from Marko**: The analog architrinos operate in R4 which is continuous and real in all dimensions. Likewise, architrinos move continuously in response to received potential spheres.  Yet assemblies form which exhibit quantum behaviours, or states. These states produce potential fields. Physicist require photons to observe behqviour.The absorbtion or emission of a photon changes the wave equation.
+- **Note from Marko**: The analog architrinos operate in R4 which is continuous and real in all dimensions. Likewise, architrinos move continuously in response to received causal isochrons.  Yet assemblies form which exhibit quantum behaviours, or states. These states produce potential fields. Physicist require photons to observe behqviour.The absorbtion or emission of a photon changes the wave equation.
 
 **Is There Irreducible Randomness?**
 - **To be determined** (in collaboration with topologist and simulator):

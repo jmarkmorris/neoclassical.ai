@@ -50,7 +50,7 @@ No major physical claim is accepted without:
 
 1. **Grid Initialization**: All simulations run on a rigid Cartesian grid representing the **Euclidean Void**. The grid is pre-loaded with a lattice of coupled Noether cores to simulate the "Vacuum."
 2. **Fiducial Observer Array**: Instantiate a grid of "Virtual Sensors" at fixed $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
-3. **Retarded Time Lookup**: When a sphere intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
+3. **Causal Time Lookup**: When a causal isochron intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
 4. **Logging Standard**: All runs must log VO channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
 
 ## Addenda (Sol - supplemental)

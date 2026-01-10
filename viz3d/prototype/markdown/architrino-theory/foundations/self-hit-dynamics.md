@@ -1,10 +1,10 @@
 
 ### Non-Markovian Memory and the Self-Hit Condition
 
-1. **Self-Hit Definition**: A self-hit occurs when an architrino’s current trajectory $(\mathbf{x}(t))$ intersects the expanding potential sphere emitted by itself at a prior time $t_{hist}$.
+1. **Self-Hit Definition**: A self-hit occurs when an architrino’s current trajectory $(\mathbf{x}(t))$ intersects the expanding causal isochron emitted by itself at a prior time $t_{hist}$.
 2. **Intersection Logic**: In absolute Euclidean coordinates, find $t_{hist}$ such that:
    $$|\mathbf{x}(t) - \mathbf{x}(t_{hist})| = c_f (t - t_{hist})$$
-3. **The Stability Mechanism**: Self-hit provides the non-linear "push-back" force required to prevent binary collapse. It replaces the "singularities" of 1/r potential with a high-curvature constraint.
+3. **The Stability Mechanism**: Self-hit provides the non-linear "push-back" force required to prevent binary collapse. It replaces the "singularities" of 1/r potential with a high-curvature constraint derived from re-entering causal isochrons.
 4. **Virtual Observer Diagnostics**: Simulation logs must record self-hit frequency and "provenance" (the age of the shell being hit) to distinguish stable Tri-Binary attractors from chaotic or decaying states.
 
 ## Self-Hit Detection and Logging (VO-based)
@@ -47,7 +47,7 @@ Because the underlying coordinates and time are absolute, this condition is unam
 **Dynamical role:**
 
 - At low velocities ($v < c_f$), self‑hit is rare or absent; dynamics are approximately Markovian.
-- As velocities approach and exceed $c_f$, emission spheres catch up with the emitter’s future positions, generating:
+- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter’s future positions, generating:
   - Nonlocal feedback on its motion.
   - Effective restoring or destabilizing forces depending on configuration.
 - For binary and tri‑binary assemblies, repeated self‑hit events can:
@@ -76,7 +76,7 @@ If self‑hit signatures are numerically unstable under refinement, treat any re
 
 The use of an Absolute Observer allows for a non-ambiguous definition of the self-hit condition.
 
-1. **Coordinate Identification**: Because $(x,y,z)$ labels in the void are permanent, the "Self-Hit" occurs when a potential shell emitted at $(\mathbf{x}_{em}, t_{em})$ intersects the source architrino at $(\mathbf{x}_{rec}, t_{rec})$ such that:
+1. **Coordinate Identification**: Because $(x,y,z)$ labels in the void are permanent, the "Self-Hit" occurs when a causal isochron emitted at $(\mathbf{x}_{em}, t_{em})$ intersects the source architrino at $(\mathbf{x}_{rec}, t_{rec})$ such that:
    $$|\mathbf{x}_{rec}(t_{rec}) - \mathbf{x}_{em}(t_{em})| = c_f (t_{rec} - t_{em})$$
 2. **Path History**: The path is a straight Euclidean vector. Curvature is not in the path, but in the **deformation of the source's trajectory** due to the self-interaction force.
 3. **Non-Markovian Memory**: The feedback loop at $t$ is determined by the position of the architrino at $t_{history}$. This prevents binary singularities; as $r \to 0$ and $v$ increases, the self-hit force provides a non-linear "push-back."
