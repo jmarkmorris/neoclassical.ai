@@ -267,7 +267,7 @@ That is the minimal sense in which an assembly “chooses its response” in thi
 
 ---
 
-## 5. Suggested refinements / questions for the group
+## 5. Suggested refinements 
 
 1. **Natural Selection of States**
    - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
@@ -285,4 +285,4 @@ That is the minimal sense in which an assembly “chooses its response” in thi
 4. **Causality language**
    - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
 
----</previous_assistant>
+
