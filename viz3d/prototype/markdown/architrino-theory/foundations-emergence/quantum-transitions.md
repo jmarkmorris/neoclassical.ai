@@ -49,9 +49,10 @@ Those events are **rare threshold crossings** in a continuous, deterministic flo
 At the fundamental level:
 
 - Every wake segment satisfies:
-  \[
+
+  $$
   t_{\text{arrival}} = t_{\text{emission}} + \frac{r}{c_f}
-  \]
+  $$
 - Forces at time $t$ on a given architrino/assembly depend only on:
   - Its own past trajectory (self-hit),
   - Other architrinos’ past trajectories, via wakes that have reached the point by $t$.
@@ -65,7 +66,7 @@ From the viewpoint of an embedded assembly:
 - The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with spacetime assemblies / photon-like modes.
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
-1. **Near-field-speed assemblies ("Stealth" vs. "Suicide" Modes)**
+1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
    - **The Linear Instability:** An architrino moving in a straight line at $v \approx c_f$ rides its own potential wave front ("pulse pileup"). This creates a diverging potential density (singularity). Such states are **highly reactive and transient**, likely disintegrating or reacting immediately upon contact with any other potential. This acts as a **natural filter**, removing linear stealth objects from the population.
    - **The Curvature Solution (Stable Stealth):** Stable assemblies at $v \approx c_f$ (like the middle binary) must be **orbiting or corkscrewing**. The curvature allows the particle to continuously "shed" its shockwave tangentially, avoiding self-destruction while still maintaining a "hard" potential front relative to external interactions.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
