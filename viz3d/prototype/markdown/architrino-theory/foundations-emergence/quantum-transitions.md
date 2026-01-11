@@ -1,5 +1,5 @@
 
-# The Universal Soup: Reality, Causality, and Navigation in the Architrino Sea  
+# The Universal Soup: Reality, Causality, and Navigation in the Architrino Sea
 
 ## 1. Reality: The Architrino “Weather” at Two Levels
 
@@ -31,9 +31,9 @@ At the emergent level:
 
 - We talk about “an electron,” “a nucleus,” etc. as if they are isolated, but each is really a **tri-binary assembly** plus its coupling to the surrounding architrino weather.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
-- Occasionally, when the assembly’s configuration is **metastable** (near a separatrix in its phase space), a particular combination of incoming wakes pushes it across a threshold:  
-  - Electron “jumps” orbital  
-  - Nucleus “decays”  
+- Occasionally, when the assembly’s configuration is **metastable** (near a separatrix in its phase space), a particular combination of incoming wakes pushes it across a threshold:
+  - Electron “jumps” orbital
+  - Nucleus “decays”
   - Detector “clicks”
 
 Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips.
@@ -63,13 +63,13 @@ From the viewpoint of an embedded assembly:
 - The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with spacetime assemblies / photon-like modes.
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
-1. **Near-field-speed assemblies (“stealth assemblies”)**  
+1. **Near-field-speed assemblies (“stealth assemblies”)**
    - Definition (absolute): An assembly whose center-of-mass velocity satisfies $v \approx c_f$, such that:
      - Its emitted wake fronts are compressed in the forward direction,
      - The potential profile it brings into a neighborhood arrives sharply in time, with little advance “warning” through the tails of earlier emissions.
    - Operationally: A receiver sees little change until the assembly is very close, then feels a rapid potential surge coincident with the passage—similar to a sonic boom.
 
-2. **$v>c_f$ inner-binary motion**  
+2. **$v>c_f$ inner-binary motion**
    - Inner binaries routinely have $v>c_f$ relative to the wake speed.
    - Their self-hit geometry (intersections with their own wakes) creates nontrivial potential patterns that:
      - Are fully causal in absolute time,
@@ -96,7 +96,7 @@ At the assembly level (tri-binaries, atoms, etc.):
 
 - The **outer binary** can be modeled as such a metastable subsystem:
   - It supports discrete energy levels (quantization).
-  - A transition (e.g., $\Delta E = \hbar\omega$) occurs when the net potential plus internal state crosses a threshold.
+  - A transition (e.g., $\Delta E = \hbar\omega$) occurs when the net potential **resonates with the binary frequency** and pushes the internal state across a stability threshold.
 
 - The **middle binary**, near $v = c_f$, likely sits near a **bifurcation surface**:
   - Slightly below $c_f$: one regime (e.g., $h$-like response).
@@ -267,21 +267,21 @@ That is the minimal sense in which an assembly “chooses its response” in thi
 
 ## 5. Suggested refinements / questions for the group
 
-1. **Stealth assemblies definition**  
+1. **Stealth assemblies definition**
    - Are we comfortable defining them explicitly as $v\approx c_f$ assemblies with forward-compressed wake geometry?
    - Should we formalize them in the parameter ledger (category B/C) as a special kinematic regime?
 
-2. **Middle-binary bifurcation**  
+2. **Middle-binary bifurcation**
    - We should specify at least one toy dynamical system (even a low-dimensional map) where:
      - A control parameter mimics $v/c_f$,
      - The response shows $h$ vs $2h$-like thresholds,
      - Basins of attraction and Lyapunov exponents can be computed.
 
-3. **Chaos → Born rule**  
+3. **Chaos → Born rule**
    - We need a clear program for investigating whether chaotic threshold dynamics in the architrino sea can reproduce $|\psi|^2$ distributions.
    - This will likely require Sol’s simulations plus some ergodic/measure-theoretic work.
 
-4. **Causality language**  
+4. **Causality language**
    - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
 
 ---
