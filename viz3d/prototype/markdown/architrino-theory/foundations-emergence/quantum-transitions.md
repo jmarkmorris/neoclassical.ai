@@ -452,12 +452,6 @@ Change the squeeze, and you change whether you are listening to the noise or ign
 
 ---
 
-**Role:** Phil – Foundations & Philosophy of Physics Specialist
-
-Marko, this is **the** question. Let me cut through the fog with precision.
-
----
-
 ## The Short Answer
 
 **No assembly has "free will" in the libertarian sense** (the ability to violate physical law or act without prior cause).
