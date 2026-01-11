@@ -1,0 +1,430 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "standard_model",
+    "name": "Standard Model",
+    "units": "relative",
+    "scaleBandLog10m": [
+      -19,
+      -17
+    ]
+  },
+  "objects": [
+    {
+      "id": "up_quark",
+      "label": "up quark",
+      "radius": 1.1,
+      "color": "RED",
+      "position": [
+        -9.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/up_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "+2/3 e",
+        "mass": "2.2 MeV",
+        "spin": "1/2",
+        "generation": "I"
+      }
+    },
+    {
+      "id": "down_quark",
+      "label": "down quark",
+      "radius": 1.1,
+      "color": "BLUE",
+      "position": [
+        -9.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/down_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "-1/3 e",
+        "mass": "4.7 MeV",
+        "spin": "1/2",
+        "generation": "I"
+      }
+    },
+    {
+      "id": "electron",
+      "label": "electron",
+      "radius": 1.1,
+      "color": "BLUE",
+      "position": [
+        -9.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "-1 e",
+        "mass": "0.511 MeV",
+        "spin": "1/2",
+        "generation": "I"
+      }
+    },
+    {
+      "id": "electron_neutrino",
+      "label": "electron neutrino",
+      "radius": 1.1,
+      "color": "PURPLE",
+      "position": [
+        -9.0,
+        -4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/neutrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "0",
+        "mass": "unknown (< 1 eV)",
+        "spin": "1/2",
+        "generation": "I"
+      }
+    },
+    {
+      "id": "charm_quark",
+      "label": "charm quark",
+      "radius": 1.1,
+      "color": "RED",
+      "position": [
+        -3.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/charm.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "+2/3 e",
+        "mass": "1.27 GeV",
+        "spin": "1/2",
+        "generation": "II"
+      }
+    },
+    {
+      "id": "strange_quark",
+      "label": "strange quark",
+      "radius": 1.1,
+      "color": "BLUE",
+      "position": [
+        -3.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/strange.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "-1/3 e",
+        "mass": "96 MeV",
+        "spin": "1/2",
+        "generation": "II"
+      }
+    },
+    {
+      "id": "muon",
+      "label": "muon",
+      "radius": 1.1,
+      "color": "BLUE",
+      "position": [
+        -3.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/muon.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "-1 e",
+        "mass": "105.66 MeV",
+        "spin": "1/2",
+        "generation": "II"
+      }
+    },
+    {
+      "id": "muon_neutrino",
+      "label": "muon neutrino",
+      "radius": 1.1,
+      "color": "PURPLE",
+      "position": [
+        -3.0,
+        -4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/muon_neutrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "0",
+        "mass": "unknown (< 1 eV)",
+        "spin": "1/2",
+        "generation": "II"
+      }
+    },
+    {
+      "id": "top_quark",
+      "label": "top quark",
+      "radius": 1.1,
+      "color": "RED",
+      "position": [
+        3.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/top.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "+2/3 e",
+        "mass": "173 GeV",
+        "spin": "1/2",
+        "generation": "III"
+      }
+    },
+    {
+      "id": "bottom_quark",
+      "label": "bottom quark",
+      "radius": 1.1,
+      "color": "BLUE",
+      "position": [
+        3.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/bottom.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "-1/3 e",
+        "mass": "4.18 GeV",
+        "spin": "1/2",
+        "generation": "III"
+      }
+    },
+    {
+      "id": "tau",
+      "label": "tau",
+      "radius": 1.1,
+      "color": "BLUE",
+      "position": [
+        3.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/tau.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "-1 e",
+        "mass": "1.777 GeV",
+        "spin": "1/2",
+        "generation": "III"
+      }
+    },
+    {
+      "id": "tau_neutrino",
+      "label": "tau neutrino",
+      "radius": 1.1,
+      "color": "PURPLE",
+      "position": [
+        3.0,
+        -4.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/tau_neutrino.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Fermion",
+      "details": {
+        "charge": "0",
+        "mass": "unknown (< 1 eV)",
+        "spin": "1/2",
+        "generation": "III"
+      }
+    },
+    {
+      "id": "photon",
+      "label": "photon",
+      "radius": 1.1,
+      "color": "PURPLE",
+      "position": [
+        9.0,
+        8.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson",
+      "details": {
+        "charge": "0",
+        "mass": "0",
+        "spin": "1"
+      }
+    },
+    {
+      "id": "gluon",
+      "label": "gluon",
+      "radius": 1.1,
+      "color": "PURPLE",
+      "position": [
+        9.0,
+        4.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson",
+      "details": {
+        "charge": "0",
+        "mass": "0",
+        "spin": "1"
+      }
+    },
+    {
+      "id": "z_boson",
+      "label": "Z boson",
+      "radius": 1.1,
+      "color": "PURPLE",
+      "position": [
+        9.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson",
+      "details": {
+        "charge": "0",
+        "mass": "91.19 GeV",
+        "spin": "1"
+      }
+    },
+    {
+      "id": "w_plus",
+      "label": "W+",
+      "radius": 1.1,
+      "color": "RED",
+      "position": [
+        9.0,
+        -2.8,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson",
+      "details": {
+        "charge": "+1 e",
+        "mass": "80.38 GeV",
+        "spin": "1"
+      }
+    },
+    {
+      "id": "w_minus",
+      "label": "W-",
+      "radius": 1.1,
+      "color": "BLUE",
+      "position": [
+        9.0,
+        -5.2,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson",
+      "details": {
+        "charge": "-1 e",
+        "mass": "80.38 GeV",
+        "spin": "1"
+      }
+    },
+    {
+      "id": "higgs_boson",
+      "label": "Higgs boson",
+      "radius": 1.1,
+      "color": "PURPLE",
+      "position": [
+        9.0,
+        -8.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/higgs_boson.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "Boson",
+      "details": {
+        "charge": "0",
+        "mass": "125.25 GeV",
+        "spin": "0"
+      }
+    }
+  ]
+}

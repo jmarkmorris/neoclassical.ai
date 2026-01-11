@@ -23,7 +23,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p2",
@@ -38,7 +41,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p3",
@@ -53,7 +59,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p4",
@@ -68,7 +77,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p5",
@@ -83,7 +95,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p6",
@@ -98,7 +113,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p7",
@@ -113,7 +131,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p8",
@@ -128,7 +149,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p9",
@@ -143,7 +167,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p10",
@@ -158,7 +185,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p11",
@@ -173,7 +203,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p12",
@@ -188,7 +221,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p13",
@@ -203,7 +239,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p14",
@@ -218,7 +257,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p15",
@@ -233,7 +275,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p16",
@@ -248,7 +293,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p17",
@@ -263,7 +311,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p18",
@@ -278,7 +329,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p19",
@@ -293,7 +347,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p20",
@@ -308,7 +365,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p21",
@@ -323,7 +383,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p22",
@@ -338,7 +401,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p23",
@@ -353,7 +419,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p24",
@@ -368,7 +437,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p25",
@@ -383,7 +455,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p26",
@@ -398,7 +473,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p27",
@@ -413,7 +491,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p28",
@@ -428,7 +509,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p29",
@@ -443,7 +527,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p30",
@@ -458,7 +545,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p31",
@@ -473,7 +563,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p32",
@@ -488,7 +581,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p33",
@@ -503,7 +599,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p34",
@@ -518,7 +617,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p35",
@@ -533,7 +635,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p36",
@@ -548,7 +653,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p37",
@@ -563,7 +671,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p38",
@@ -578,7 +689,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p39",
@@ -593,7 +707,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p40",
@@ -608,7 +725,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "n1",
@@ -623,7 +743,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n2",
@@ -638,7 +761,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n3",
@@ -653,7 +779,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n4",
@@ -668,7 +797,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n5",
@@ -683,7 +815,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n6",
@@ -698,7 +833,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n7",
@@ -713,7 +851,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n8",
@@ -728,7 +869,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n9",
@@ -743,7 +887,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n10",
@@ -758,7 +905,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n11",
@@ -773,7 +923,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n12",
@@ -788,7 +941,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n13",
@@ -803,7 +959,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n14",
@@ -818,7 +977,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n15",
@@ -833,7 +995,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n16",
@@ -848,7 +1013,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n17",
@@ -863,7 +1031,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n18",
@@ -878,7 +1049,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n19",
@@ -893,7 +1067,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n20",
@@ -908,7 +1085,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n21",
@@ -923,7 +1103,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n22",
@@ -938,7 +1121,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n23",
@@ -953,7 +1139,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n24",
@@ -968,7 +1157,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n25",
@@ -983,7 +1175,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n26",
@@ -998,7 +1193,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n27",
@@ -1013,7 +1211,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n28",
@@ -1028,7 +1229,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n29",
@@ -1043,7 +1247,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n30",
@@ -1058,7 +1265,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n31",
@@ -1073,7 +1283,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n32",
@@ -1088,7 +1301,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n33",
@@ -1103,7 +1319,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n34",
@@ -1118,7 +1337,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n35",
@@ -1133,7 +1355,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n36",
@@ -1148,7 +1373,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n37",
@@ -1163,7 +1391,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n38",
@@ -1178,7 +1409,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n39",
@@ -1193,7 +1427,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n40",
@@ -1208,7 +1445,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n41",
@@ -1223,7 +1463,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n42",
@@ -1238,7 +1481,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n43",
@@ -1253,7 +1499,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n44",
@@ -1268,7 +1517,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n45",
@@ -1283,7 +1535,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n46",
@@ -1298,7 +1553,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n47",
@@ -1313,7 +1571,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n48",
@@ -1328,7 +1589,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n49",
@@ -1343,7 +1607,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n50",
@@ -1358,7 +1625,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n51",
@@ -1373,7 +1643,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "e1_1",
@@ -1397,7 +1670,10 @@
         "phase": 0.0
       },
       "category": "electron",
-      "shell": 1
+      "shell": 1,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e1_2",
@@ -1421,7 +1697,10 @@
         "phase": 3.142
       },
       "category": "electron",
-      "shell": 1
+      "shell": 1,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_1",
@@ -1445,7 +1724,10 @@
         "phase": 0.0
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_2",
@@ -1469,7 +1751,10 @@
         "phase": 0.785
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_3",
@@ -1493,7 +1778,10 @@
         "phase": 1.571
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_4",
@@ -1517,7 +1805,10 @@
         "phase": 2.356
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_5",
@@ -1541,7 +1832,10 @@
         "phase": 3.142
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_6",
@@ -1565,7 +1859,10 @@
         "phase": 3.927
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_7",
@@ -1589,7 +1886,10 @@
         "phase": 4.712
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e2_8",
@@ -1613,7 +1913,10 @@
         "phase": 5.498
       },
       "category": "electron",
-      "shell": 2
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_1",
@@ -1637,7 +1940,10 @@
         "phase": 0.0
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_2",
@@ -1661,7 +1967,10 @@
         "phase": 0.349
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_3",
@@ -1685,7 +1994,10 @@
         "phase": 0.698
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_4",
@@ -1709,7 +2021,10 @@
         "phase": 1.047
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_5",
@@ -1733,7 +2048,10 @@
         "phase": 1.396
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_6",
@@ -1757,7 +2075,10 @@
         "phase": 1.745
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_7",
@@ -1781,7 +2102,10 @@
         "phase": 2.094
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_8",
@@ -1805,7 +2129,10 @@
         "phase": 2.443
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_9",
@@ -1829,7 +2156,10 @@
         "phase": 2.793
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_10",
@@ -1853,7 +2183,10 @@
         "phase": 3.142
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_11",
@@ -1877,7 +2210,10 @@
         "phase": 3.491
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_12",
@@ -1901,7 +2237,10 @@
         "phase": 3.84
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_13",
@@ -1925,7 +2264,10 @@
         "phase": 4.189
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_14",
@@ -1949,7 +2291,10 @@
         "phase": 4.538
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_15",
@@ -1973,7 +2318,10 @@
         "phase": 4.887
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_16",
@@ -1997,7 +2345,10 @@
         "phase": 5.236
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_17",
@@ -2021,7 +2372,10 @@
         "phase": 5.585
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e3_18",
@@ -2045,7 +2399,10 @@
         "phase": 5.934
       },
       "category": "electron",
-      "shell": 3
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_1",
@@ -2069,7 +2426,10 @@
         "phase": 0.0
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_2",
@@ -2093,7 +2453,10 @@
         "phase": 0.628
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_3",
@@ -2117,7 +2480,10 @@
         "phase": 1.257
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_4",
@@ -2141,7 +2507,10 @@
         "phase": 1.885
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_5",
@@ -2165,7 +2534,10 @@
         "phase": 2.513
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_6",
@@ -2189,7 +2561,10 @@
         "phase": 3.142
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_7",
@@ -2213,7 +2588,10 @@
         "phase": 3.77
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_8",
@@ -2237,7 +2615,10 @@
         "phase": 4.398
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_9",
@@ -2261,7 +2642,10 @@
         "phase": 5.027
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e4_10",
@@ -2285,7 +2669,10 @@
         "phase": 5.655
       },
       "category": "electron",
-      "shell": 4
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e5_1",
@@ -2309,7 +2696,10 @@
         "phase": 0.0
       },
       "category": "electron",
-      "shell": 5
+      "shell": 5,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e5_2",
@@ -2333,7 +2723,10 @@
         "phase": 3.142
       },
       "category": "electron",
-      "shell": 5
+      "shell": 5,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "legend_p",
@@ -2348,7 +2741,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "legend"
+      "category": "legend",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "legend_n",
@@ -2363,7 +2759,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "legend"
+      "category": "legend",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "legend_e",
@@ -2378,7 +2777,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "legend"
+      "category": "legend",
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     }
   ]
 }

@@ -22,7 +22,7 @@
         0.0
       ],
       "subScenes": [
-        "json/universe.json"
+        "json/cosmology/universe.json"
       ],
       "motion": {
         "type": "fixed"
@@ -40,7 +40,7 @@
         0.0
       ],
       "subScenes": [
-        "json/standard-model/standard_model.json"
+        "json/standard-model-particles/standard_model.json"
       ],
       "motion": {
         "type": "fixed"
@@ -58,7 +58,7 @@
         0.0
       ],
       "subScenes": [
-        "json/periodic_table_scene.json"
+        "json/chemistry/periodic_table_scene.json"
       ],
       "motion": {
         "type": "fixed"
@@ -75,7 +75,7 @@
         0.0
       ],
       "subScenes": [
-        "json/fermion_generation_color.json"
+        "json/standard-model-theory/fermion_generation_color.json"
       ],
       "motion": {
         "type": "fixed"
@@ -422,7 +422,7 @@
         0.0
       ],
       "subScenes": [
-        "json/philosopher.json"
+        "json/philosophy/philosopher.json"
       ],
       "motion": {
         "type": "fixed"
@@ -559,7 +559,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns_paradoxes.json"
+        "json/unknowns-paradoxes/unknowns_paradoxes.json"
       ],
       "motion": {
         "type": "fixed"

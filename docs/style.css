@@ -69,7 +69,8 @@ body {
 #scene-label {
   position: absolute;
   top: 16px;
-  left: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
   padding: 8px 12px;
   background: rgba(8, 10, 18, 0.6);
@@ -82,6 +83,11 @@ body {
   text-transform: uppercase;
   color: #f5f7ff;
   pointer-events: none;
+  max-width: calc(100% - 240px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 #nav-controls {
@@ -166,11 +172,7 @@ body {
 }
 
 #scene-search {
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 8;
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -204,8 +206,12 @@ body {
 }
 
 #scene-search-panel {
+  position: absolute;
+  top: 44px;
+  right: 0;
   display: none;
   min-width: 260px;
+  max-width: 80vw;
   z-index: 7;
   background: rgba(8, 10, 18, 0.75);
   border: 1px solid rgba(160, 170, 220, 0.25);

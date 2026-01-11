@@ -23,7 +23,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "p2",
@@ -38,7 +41,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "proton"
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "n1",
@@ -53,7 +59,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "n2",
@@ -68,7 +77,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "neutron"
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "e1_1",
@@ -92,7 +104,10 @@
         "phase": 0.0
       },
       "category": "electron",
-      "shell": 1
+      "shell": 1,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "e1_2",
@@ -116,7 +131,10 @@
         "phase": 3.142
       },
       "category": "electron",
-      "shell": 1
+      "shell": 1,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     },
     {
       "id": "legend_p",
@@ -131,7 +149,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "legend"
+      "category": "legend",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
     },
     {
       "id": "legend_n",
@@ -146,7 +167,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "legend"
+      "category": "legend",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
     },
     {
       "id": "legend_e",
@@ -161,7 +185,10 @@
       "motion": {
         "type": "fixed"
       },
-      "category": "legend"
+      "category": "legend",
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
     }
   ]
 }
