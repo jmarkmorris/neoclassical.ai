@@ -65,10 +65,10 @@ From the viewpoint of an embedded assembly:
 - The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with spacetime assemblies / photon-like modes.
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
-1. **Near-field-speed assemblies (“stealth assemblies”)**
-   - Definition (absolute): An assembly whose center-of-mass velocity satisfies $v \approx c_f$.
-   - **The Pulse-Pileup Mechanism:** Since architrinos issue potential as point-source pulses (Dirac-like) at each update, motion at $v \approx c_f$ effectively "stacks" these pulses forward. The interaction is handled by the continuous update equation, integrating this pileup into a finite but intense momentum transfer event (a "digital" shockwave).
-   - Operationally: A receiver sees little change until the assembly is very close, then feels a rapid potential surge coincident with the passage—similar to a sonic boom.
+1. **Near-field-speed assemblies ("Stealth" vs. "Suicide" Modes)**
+   - **The Linear Instability:** An architrino moving in a straight line at $v \approx c_f$ rides its own potential wave front ("pulse pileup"). This creates a diverging potential density (singularity). Such states are **highly reactive and transient**, likely disintegrating or reacting immediately upon contact with any other potential. This acts as a **natural filter**, removing linear stealth objects from the population.
+   - **The Curvature Solution (Stable Stealth):** Stable assemblies at $v \approx c_f$ (like the middle binary) must be **orbiting or corkscrewing**. The curvature allows the particle to continuously "shed" its shockwave tangentially, avoiding self-destruction while still maintaining a "hard" potential front relative to external interactions.
+   - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
 2. **$v>c_f$ inner-binary motion**
    - Inner binaries routinely have $v>c_f$ relative to the wake speed.
@@ -268,9 +268,8 @@ That is the minimal sense in which an assembly “chooses its response” in thi
 
 ## 5. Suggested refinements / questions for the group
 
-1. **Stealth assemblies definition**
-   - Are we comfortable defining them explicitly as $v\approx c_f$ assemblies with forward-compressed wake geometry?
-   - Should we formalize them in the parameter ledger (category B/C) as a special kinematic regime?
+1. **Natural Selection of States**
+   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
 
 2. **Middle-binary bifurcation**
    - We should specify at least one toy dynamical system (even a low-dimensional map) where:
