@@ -11,150 +11,171 @@ This presents an apparent paradox:
 
 This is not merely a philosophical puzzle—it is a **practical requirement** for the theory's internal consistency. If we cannot, even in principle, bootstrap a coordinate system from the intrinsic physics, then claims about "absolute velocity" are empirically vacuous.
 
-## The Clever Solution: Self-Generated Coordinates via Potential Wake Geometry
+## Detecting Absolute Rest: The Causal Wake Diagnostic
 
-The resolution exploits the theory's **finite field-speed** postulate: architrino-emitted potentials propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This creates a **dynamically preferred frame** detectable through geometric relationships.
+### The Key Physical Mechanism
 
-### Understanding the Causal Wake
+The resolution exploits the theory's **finite field-speed** postulate: architrino-emitted potentials propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This single postulate creates a **dynamically preferred frame** detectable through purely geometric relationships.
+
+### The Nature of Causal Wakes
 
 Each architrino continuously emits potential that propagates outward as a **spherically expanding causal wake**—a continuous field structure expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **continuous potential distribution** that grows radially from its origin. At any given absolute time, the wake forms a spherical surface of radius $r = c_f \Delta t$ centered on the point where it was emitted.
 
-The key insight: this expanding wake carries information about the **absolute location** where the architrino was when it emitted that portion of the potential field.
+Here's the crucial insight: this expanding wake carries information about the **absolute location** where the architrino was when it emitted that portion of the potential field. The wake doesn't "remember" where the architrino went afterward—it simply continues expanding from its birth point in the void.
 
-### The Virtual Measurement Protocol
+### The Concentricity Test
 
-Consider an omniscient "virtual observer" who can track:
+Consider a virtual observer with access to complete microdynamics who can track:
 1. The complete path history of any architrino,
 2. All outgoing potential wakes it has emitted,
-3. The geometric relationships between these continuous field structures.
+3. The geometric centers of these expanding field structures.
 
-**Key Insight:** An architrino at **absolute rest** ($\mathbf{v} = 0$) has a unique geometric signature: it remains at the **exact center** of every spherically expanding causal wake it has ever emitted.
+**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = 0$) exhibits a unique geometric property—it remains at the **exact center** of every spherically expanding causal wake it has ever emitted.
 
-**Why?**
+**The Physical Basis:**
 - At time $t_0$, the architrino emits potential from position $\mathbf{x}_0$, creating a causal wake.
 - This wake expands at speed $c_f$ relative to the void, centered on $\mathbf{x}_0$.
-- If the architrino is stationary, at later time $t_1 = t_0 + \Delta t$, it is still at $\mathbf{x}_0$.
+- If the architrino is stationary, at later time $t_1 = t_0 + \Delta t$, it remains at $\mathbf{x}_0$.
 - The wake has expanded to radius $r = c_f \Delta t$, but its center remains $\mathbf{x}_0$.
-- All successive emissions create perfectly **concentric wakes**—nested spherical potential distributions, all centered on $\mathbf{x}_0$.
+- All successive emissions create perfectly **concentric wakes**—nested spherical potential distributions sharing a common geometric center.
 
-**If the architrino is moving:**
+**If the architrino moves:**
 - At $t_0$, emission occurs at $\mathbf{x}_0$.
-- At $t_1$, the architrino has moved to $\mathbf{x}_1 = \mathbf{x}_0 + \mathbf{v} \Delta t$.
-- The first wake is centered on $\mathbf{x}_0$ with current radius $c_f \Delta t$.
+- At $t_1$, the architrino has displaced to $\mathbf{x}_1 = \mathbf{x}_0 + \mathbf{v} \Delta t$.
+- The first wake remains centered on $\mathbf{x}_0$ with radius $c_f \Delta t$.
 - Subsequent wakes are centered on displaced positions along the trajectory.
-- The centers are **displaced**; the wakes are **non-concentric**.
-- The architrino is closer to the expanding wavefront in the direction of motion (Doppler-like geometry in the absolute frame).
+- The wake centers are **non-coincident**; the pattern is **non-concentric**.
+- The architrino lies closer to the expanding wavefront in its direction of motion—a Doppler-like geometry in the absolute frame.
 
-### The Measurement
+### The Operational Procedure
 
-**Procedure:**
-1. Track the geometric centers of all spherically expanding causal wakes emitted by the architrino over a time interval.
-2. Check for **coincidence** of these centers.
+**Step 1:** Track the geometric centers of all spherically expanding causal wakes emitted by a target architrino over a measurement interval.
+
+**Step 2:** Test for spatial coincidence of these centers.
 
 **Result:**
-- **All centers coincident** → $\mathbf{v}_{abs} = 0$ (absolute rest).
-- **Centers form a trajectory** → $\mathbf{v}_{abs} \neq 0$; the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ gives the absolute velocity: $\mathbf{v}_{abs} = \Delta \mathbf{x} / \Delta t$.
+- **All centers coincident** → $\mathbf{v}_{\text{abs}} = 0$ (absolute rest)
+- **Centers form a trajectory** → $\mathbf{v}_{\text{abs}} \neq 0$; the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
 
-**Crucially:** This is a **coordinate-free** geometric test. We are not measuring position relative to some external grid; we are checking an **intrinsic relational property**: do the centers of these continuous spherical wakes occupy the same point in the Euclidean void?
+**The Power of This Test:** This is a **coordinate-free** geometric measurement. We are not comparing position to some external grid; we are checking an **intrinsic relational property**—whether the centers of continuous spherical wakes occupy the same point in the Euclidean void. No pre-existing coordinate system required.
 
-## Bootstrapping the Coordinate System
+### Establishing the Reference Frame
 
-Once a single architrino at absolute rest is identified, we can construct a coordinate system:
-1. **Origin:** Place the coordinate origin at the common center of the concentric wakes (the stationary architrino's location).
-2. **Time zero:** Choose any convenient absolute time $t$ as $t = 0$.
-3. **Axes:** Choose any three orthogonal directions (the void is isotropic; no direction is privileged).
+Once we've identified a stationary architrino via concentric wake geometry, we can construct a coordinate system:
 
-From this bootstrapped frame, all other architrino positions and velocities can be measured relative to the identified rest frame.
+1. **Origin:** The common center of the concentric wakes defines the coordinate origin: $\mathbf{r}_{\text{origin}} = (0, 0, 0)$
+2. **Time zero:** Any convenient absolute time $t$ can be designated $t = 0$
+3. **Length scale:** The wake expansion rate provides a fundamental ruler: $\Delta r = c_f \Delta t$
+4. **Axes:** Three orthogonal directions can be chosen (the void is isotropic; no direction is privileged—we'll address this systematically in the next section)
 
-Alternatively, if no single architrino is perfectly at rest, we can define the **aether rest frame** operationally:
-- The frame in which the **net momentum** of the spacetime-aether assemblies (graviton–Higgs–binary sea) vanishes locally, or
-- The frame in which the **cosmic microwave background** (if present) is isotropic (cosmological rest frame).
+If no single architrino is perfectly at rest, we can define the **aether rest frame** operationally as:
+- The frame minimizing net momentum of the spacetime-aether assemblies (graviton–Higgs–binary sea) locally, or
+- The frame rendering the cosmic microwave background (if present) isotropic (cosmological rest frame)
 
-## Ontological and Operational Clarity
+## Ontological Clarifications
 
-### What Is "Real"?
-- **Absolute space and time**: Ontologically fundamental. All architrino dynamics occur in this substrate.
-- **Absolute velocity**: Physically meaningful and detectable (via causal wake concentricity).
-- **Coordinate systems**: Conventional labels we impose for bookkeeping, but the geometric relationships (concentricity, displacement) are objective.
-- **Spherically expanding causal wakes**: Continuous potential field structures that propagate through the void, carrying information about emission geometry.
+### What Is Physically Real vs. What Is Convention
 
-### Why Don't We See "Aether Wind" Effects?
-This measurement works for the **virtual observer** with access to full microdynamics. **Operational observers** (made of assemblies) measure:
-- **Proper time** $\tau$, not absolute time $t$.
-- **Effective coordinates** via assembly-based rulers and clocks, which are distorted by motion and aether coupling.
-- At accessible energies and weak aether gradients, emergent **Lorentz symmetry** suppresses preferred-frame effects (see Ch. 32).
+**Ontologically fundamental (physically real):**
+- **Absolute space and time**: The substrate in which all architrino dynamics occur
+- **Absolute velocity**: Physically meaningful and detectable via wake concentricity; has dynamical consequences
+- **Causal wakes**: Continuous potential field structures propagating through the void
+- **Geometric relationships**: Concentricity and displacement are objective, observer-independent properties
 
-The concentric-wake test is a **foundational consistency check**, not an experimentally accessible protocol for us. It demonstrates that absolute rest is **well-defined in principle**, which is necessary for the theory's coherence.
+**Conventional (human-imposed scaffolding):**
+- **Coordinate labels**: Tools for calculation and communication
+- **Choice of origin**: Any stationary architrino (or aether rest frame) works equally well
+- **Axis orientation**: The void is isotropic; we'll systematically construct axes in the next section, but no direction is physically privileged
 
-### Hidden Assumption Made Explicit
-The measurement relies on:
+### Why Operational Observers Don't Detect the Preferred Frame
+
+The concentric-wake measurement requires access to full microdynamics—something only a virtual observer (our theoretical construct or simulation engine) can achieve. **Operational observers** composed of assemblies measure through assembly-based apparatus:
+
+- **Proper time** $\tau$ via internal clocks (binary oscillation periods), not absolute time $t$
+- **Effective coordinates** via local rulers (atomic lattice spacings, wavelengths)
+- **Relative velocities** via Doppler shifts and aberration
+
+Assembly-based measuring devices are themselves distorted by motion and coupling to the aether medium. At accessible energies and weak aether gradients, emergent **Lorentz symmetry** suppresses preferred-frame signatures to below experimental detection thresholds (Michelson-Morley null result, etc.). The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation.
+
+### The Source-Independence Assumption
+
+The diagnostic relies on a critical physical assumption:
 - **Field independence from source motion**: Once emitted, the potential wake propagates at $c_f$ relative to the void, independent of the source's subsequent trajectory.
-- This is analogous to **sound waves** detaching from a moving speaker and propagating at the speed of sound in air (source-independent).
-- In standard relativity, this is inverted: light speed is source-independent **and** observer-independent (no medium). Here, there is a medium (the void), and $c_f$ is isotropic only in that medium's rest frame.
 
-## Philosophical Implications
+This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium—the wave doesn't "follow" the speaker if it moves. The wave has detached from its source.
+
+In standard relativity, this picture is inverted: electromagnetic wave speed is source-independent **and** observer-independent (no medium). In the architrino theory, we posit a medium (the void), and $c_f$ is isotropic only in that medium's rest frame.
+
+## Philosophical Context
 
 ### Relationalism vs. Substantivalism
-- **Relationalism** (Leibniz, Mach): Space is nothing but relations between objects; "absolute space" is meaningless.
-- **Substantivalism** (Newton, this theory): Space is a real container with its own structure, independent of matter.
 
-The architrino framework is **substantivalist**:
-- The Euclidean void is real (though structureless).
-- Absolute rest is detectable via intrinsic geometric relations (concentric wakes).
-- But it avoids Newton's "bucket argument" objections: the void has no intrinsic markers; **dynamics** (field propagation) reveal the structure.
+- **Relationalism** (Leibniz, Mach): Space is merely relations between objects; "absolute space" is meaningless
+- **Substantivalism** (Newton, this theory): Space is a real container with intrinsic structure, existing independent of matter
+
+The architrino framework is **substantivalist**, but it avoids Newton's "bucket argument" objections. The void has no intrinsic coordinate markers painted on it; rather, **field dynamics** reveal its structure. Absolute rest is detectable via intrinsic geometric invariants (concentric wakes), not by reference to arbitrary gridlines.
 
 ### Neo-Lorentzian Character
+
 This places the theory in the tradition of **Lorentz Ether Theory** (LET):
-- Absolute space and time are fundamental.
-- Lorentz symmetry is emergent and approximate.
-- Preferred frame exists but is hidden at low energies.
+- Absolute space and time are fundamental
+- Lorentz symmetry is emergent and approximate
+- A preferred frame exists but is operationally hidden at low energies
 
-**Difference from LET:**
-- The "aether" is not a continuous medium; it is a sea of discrete tri-binary assemblies.
-- The preferred frame is not directly observable by assembly-based observers (us) due to emergent effective geometry.
-- Clear predictions for where symmetry breaking might appear (Planck-scale physics, strong aether gradients, self-hit regime).
+**Key distinctions from classical LET:**
+- The "aether" is not a continuous classical medium—it is a discrete sea of tri-binary assemblies
+- The preferred frame is undetectable by assembly-based observers due to emergent effective geometry
+- We make clear predictions for where symmetry-breaking signatures should appear (Planck-scale physics, strong aether gradients, self-hit regime)
 
-## Connection to Other Foundations
+## Connections to Core Dynamics
 
 ### Self-Hit Dynamics (Ch. 5)
-The concentric-wake measurement is intimately tied to **self-hit**:
-- An architrino at rest ($v = 0$) in the aether frame experiences **symmetric self-hit**: it intercepts its own past potential wake equally from all directions.
-- An architrino in motion ($v > 0$) experiences **asymmetric self-hit**: stronger interaction with the wake emitted "ahead" of its trajectory.
-- This asymmetry generates **inertia** (resistance to acceleration) and **self-interaction forces** (inflation/deflation, depending on $v$ relative to $c_f$).
 
-**Upshot:** Absolute velocity is not just a kinematic label; it has **dynamical consequences** via self-hit geometry of the continuous causal wakes.
+The concentricity diagnostic connects directly to **self-interaction geometry**:
 
-### Master Equation (Ch. 9)
-The master equation requires **explicit positions** $\mathbf{x}_i(t)$ to compute:
-- Distance $r_{ij}$ between architrinos $i$ and $j$.
-- Path history positions (where was $j$ when the potential reaching $i$ now was emitted?).
+- An architrino at rest ($v = 0$) experiences **symmetric self-hit**: it intercepts its own past potential wake equally from all directions
+- An architrino in motion ($v > 0$) experiences **asymmetric self-hit**: stronger interaction with wake components emitted "ahead" of its trajectory
+- This asymmetry generates **inertia** (resistance to acceleration) and regime-dependent **self-interaction forces** (inflation at $v > c_f$, deflation at $v < c_f$)
 
-The concentric-wake measurement justifies treating $\mathbf{x}_i(t)$ as meaningful: we can operationally define "stationary" without circular reference to coordinates.
+**The upshot:** Absolute velocity is not merely a kinematic label—it has **dynamical consequences** through the self-hit geometry of the continuous causal wakes.
 
-### Validation Protocols (Ch. 7)
-This measurement is a **consistency test**:
-- Can the theory self-consistently define its own reference frame?
-- Yes: via intrinsic geometric properties of the continuous field dynamics.
-- This avoids the theory being "stuck" without operational content.
+### Master Equation Requirements (Ch. 9)
 
-## Summary
+The master equation demands **explicit positions** $\mathbf{x}_i(t)$ to compute:
+- Separation distance $r_{ij}$ between architrinos $i$ and $j$
+- Path history positions (where was architrino $j$ when the potential currently reaching $i$ was emitted?)
+
+The concentric-wake measurement demonstrates that $\mathbf{x}_i(t)$ is physically meaningful and operationally definable: we can identify "stationary" without circular reference to pre-existing coordinates.
+
+### Foundational Validation (Ch. 7)
+
+This measurement serves as a **consistency test**:
+- Can the theory self-consistently define its own reference frame from intrinsic physics alone?
+- **Yes**: Through geometric properties of continuous field dynamics
+- This prevents the theory from being "stuck" without empirical content or operational meaning
+
+## Summary: The Detection Method
 
 **The Question:** Can a virtual observer determine when an architrino has absolute velocity zero, without pre-existing coordinates?
 
-**The Answer:** **Yes**, by checking the **concentricity** of outgoing spherically expanding causal wakes.
-- Absolute rest ↔ all wake centers coincident.
-- Absolute motion ↔ wake centers displaced; displacement per time = absolute velocity.
+**The Answer:** **Yes**, by testing the **concentricity** of outgoing spherically expanding causal wakes.
 
-**Why It Works:**
-- Field speed $c_f$ is isotropic in the void's rest frame (by postulate).
-- Emission centers mark absolute positions.
-- Concentricity is a coordinate-free geometric invariant of continuous potential distributions.
+**Detection signatures:**
+- Absolute rest ↔ all wake centers spatially coincident
+- Absolute motion ↔ wake centers form displacement trajectory; velocity $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$
 
-**Implications:**
-- Absolute space and time are not empirically vacuous; they have dynamical content.
-- The theory can bootstrap its own coordinate system from intrinsic physics.
-- This confirms the theory is **substantivalist** and **neo-Lorentzian** in character.
-- Operational Lorentz invariance (what we observe) is compatible with fundamental absolute structure (what is real).
+**Why this works:**
+- Field speed $c_f$ is isotropic in the void's rest frame (foundational postulate)
+- Emission centers mark absolute positions in the void
+- Concentricity is a coordinate-free geometric invariant of continuous potential distributions
+
+**Theoretical implications:**
+- Absolute space and time have measurable dynamical content, not merely philosophical status
+- The theory bootstraps its own coordinate system from intrinsic physics
+- This confirms the framework is **substantivalist** and **neo-Lorentzian** in character
+- Operational Lorentz invariance (what we observe) is compatible with fundamental absolute structure (what is ontologically real)
+
+Having established that we can identify absolute rest and fix an origin, we now turn to the systematic construction of a complete coordinate system.
 
 ---
 
