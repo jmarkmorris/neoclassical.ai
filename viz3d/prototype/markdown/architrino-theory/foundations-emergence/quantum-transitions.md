@@ -582,7 +582,7 @@ When you "decide" to raise your arm:
 **Libertarian free will (uncaused causes):** No. Nothing in this universe has that, because it's incoherent. Randomness ≠ freedom.
 
 **Compatibilist free will (autonomous navigation):** Yes, if the assembly has sufficient complexity:
-- Minimum: 3 atoms (Rb-He-He) can exhibit primitive threshold tuning
+- Minimum: 3 atoms (He-Rb-He) can exhibit primitive threshold tuning
 - Complex: ~10¹¹ neurons (human brain) can exhibit goal-directed behavior, learning, self-modification
 
 **The difference is one of degree (complexity), not kind (mechanism).**
