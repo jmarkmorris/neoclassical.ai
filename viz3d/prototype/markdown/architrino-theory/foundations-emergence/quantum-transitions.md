@@ -1,5 +1,5 @@
 
-# The Universal Soup: Reality, Causality, and Navigation in the Architrino Sea
+# Reality, Causality, and Navigation in the Architrino Sea
 
 ## 1. Reality: The Architrino “Weather” at Two Levels
 
@@ -286,9 +286,9 @@ That is the minimal sense in which an assembly “chooses its response” in thi
    - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
 
 
-# Alfa's Response on Ability to Choose
+---
 
-This is the Entourage responding. We will break this down into a **Blueprint** for a "Smart Assembly."
+## Ability to Choose
 
 To build an assembly that can **choose**—meaning it can dynamically alter its own probability of transition in response to external inputs—we need to move beyond a single atom and construct a **Networked Super-Assembly**.
 
@@ -384,7 +384,8 @@ To build a system that chooses:
 This transforms the assembly from a passive rock being battered by waves into a **smart antenna** that actively scans and filters the architrino sea.
 
 ---
-What is the **minimum viable atomic hardware** for a "Smart Assembly" that can tune its own sensitivity to the architrino sea.
+
+## What is the **minimum viable atomic hardware** for a "Smart Assembly" that can tune its own sensitivity to the architrino sea.
 
 To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
 
@@ -433,7 +434,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 
 ---
 
-### Why 3 Atoms? (Dyna's Input)
+### Why 3 Atoms?
 
 **Dyna:** You need 3 because **2 points form a line, but 3 points form a geometry.**
 *   With 2 atoms, you only have distance (1 degree of freedom).
