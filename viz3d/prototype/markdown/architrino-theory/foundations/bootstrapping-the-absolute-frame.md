@@ -350,7 +350,7 @@ The universe doesn't care. **We do**, because we are building a theory to explai
 | **Step** | **Architrinos Required** | **Purpose** | **DOFs Fixed** | **What Remains Undefined** | **Notes** |
 |----------|-------------------------|-------------|----------------|---------------------------|-----------|
 | **1. Origin** | 1 (stationary) | Fix translational reference point | Translation (3) | Orientation, handedness, time zero | Concentric wake identifies absolute rest |
-| **2. Primary Axis** | +1 (any) | Define first spatial direction ($\hat{x}$) | Rotation (2) | Second/third axes, roll, handedness | Displacement vector gives objective direction |
+| **2. Primary Axis** | +1 (non-coincedent) | Define first spatial direction ($\hat{x}$) | Rotation (2) | Second/third axes, roll, handedness | Displacement vector gives objective direction |
 | **3. Plane** | +1 (non-collinear) | Define second independent direction ($\hat{y}$) and lock the $xy$-plane | Rotation (1) | Third axis, handedness | Gram-Schmidt ensures orthogonality |
 | **4A. Handedness (Conventional)** | 0 | Complete basis via right-hand rule | Parity (1) | None | Mathematical convention ($\hat{z} = \hat{x} \times \hat{y}$) |
 | **4B. Handedness (Empirical)** | +1 (non-coplanar) | Determine handedness from physical configuration | Parity (1) | None | Scalar triple product resolves $\pm\hat{z}$ ambiguity |
