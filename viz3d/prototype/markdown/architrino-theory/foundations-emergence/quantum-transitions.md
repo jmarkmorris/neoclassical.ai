@@ -23,6 +23,8 @@ At the absolute level, any local neighborhood is crowded:
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
 
+- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). The "weather" is therefore a local fluctuating noise floor, not an infinite static field.
+
 “Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
 ### 1.2 Operational picture: Stable objects and rare “events”
@@ -64,9 +66,8 @@ From the viewpoint of an embedded assembly:
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
 1. **Near-field-speed assemblies (“stealth assemblies”)**
-   - Definition (absolute): An assembly whose center-of-mass velocity satisfies $v \approx c_f$, such that:
-     - Its emitted wake fronts are compressed in the forward direction,
-     - The potential profile it brings into a neighborhood arrives sharply in time, with little advance “warning” through the tails of earlier emissions.
+   - Definition (absolute): An assembly whose center-of-mass velocity satisfies $v \approx c_f$.
+   - **The Pulse-Pileup Mechanism:** Since architrinos issue potential as point-source pulses (Dirac-like) at each update, motion at $v \approx c_f$ effectively "stacks" these pulses forward. The interaction is handled by the continuous update equation, integrating this pileup into a finite but intense momentum transfer event (a "digital" shockwave).
    - Operationally: A receiver sees little change until the assembly is very close, then feels a rapid potential surge coincident with the passage—similar to a sonic boom.
 
 2. **$v>c_f$ inner-binary motion**
@@ -174,7 +175,7 @@ Concretely:
   - The assembly can hold a “configuration of sensitivity” over many incoming rogue waves,
   - But can still adjust that configuration over longer time (learning, context).
 
-Without tunable thresholds, the assembly’s sensitivity to rogue waves is fixed by design; it does not “choose” when to be on the edge.
+**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the aether to maintain a tuned state.
 
 ---
 
@@ -284,5 +285,4 @@ That is the minimal sense in which an assembly “chooses its response” in thi
 4. **Causality language**
    - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
 
----
-
+---</previous_assistant>
