@@ -1,7 +1,5 @@
 # Foundational Ontology
 
-**Status:** Authoritative (Consolidated from Geometrical-Model-of-Nature and prior architrino-theory drafts)  
-**Last Updated:** January 2026 (v1.1 - Team feedback incorporated)  
 **Owners:** Phil (lead), Dyna (mathematical structure), entire Entourage (review)
 
 ---
@@ -1854,11 +1852,6 @@ The following questions remain open and are active areas of investigation:
     - EM, weak, strong, gravity—all from tri-binary geometry and Noether Sea dynamics?
     - Current status: Qualitative framework in place (see TOC Ch. 20); quantitative derivations in progress.
 
-**Cross-references:**
-- TOC Ch. 52: "Solving the Unsolved Problems in Physics"
-- TOC Ch. 53: "Challenges, Criticisms, and Open Questions"
-- `philosophy-history/open-questions.md`: Extended discussion
-
 ---
 
 ## 8. Summary and Cross-References
@@ -1876,88 +1869,4 @@ This Foundational Ontology defines:
 
 All subsequent chapters build on this foundation.
 
-### 8.2 Key Cross-References (TOC)
 
-- **Ch. 1-3**: Crisis, absolute time/space, architrino (foundational introduction)
-- **Ch. 4-7**: Master equation, self-hit, validation, constraint ledger (dynamics and testing)
-- **Ch. 8-10**: Two-body baselines, binaries, emergence definitions (analytic foundations)
-- **Ch. 11-16**: Noether core, tri-binary variants, Assembly Atlas, no-go theorems (assembly classification)
-- **Ch. 17-22**: Effective Lagrangian, fermions, bosons, gauge emergence, precision tests (SM mapping)
-- **Ch. 23-28**: Nucleons, binding, atoms, spectra, chemistry, condensed matter (nuclear/atomic scale)
-- **Ch. 29-30**: Quantum interpretation, measurement (foundations of QM)
-- **Ch. 31-36**: Spacetime emergence, GR phenomenology, PPN, black holes, hierarchy problem (gravity)
-- **Ch. 37-44**: Cosmology, CMB, expansion, structure, tensions, failure modes (universe-scale)
-- **Ch. 45-47**: Mapping to existing theories, historical context, philosophy (comparative foundations)
-- **Ch. 48-51**: Simulation, computation, predictions, technology (implementation)
-- **Ch. 52-56**: Unsolved problems, challenges, parameter ledger, vision (synthesis)
-
-### 8.3 Key Cross-References (Repository Files)
-
-- `foundations/master-equation.md`: Full dynamical law with path history and self-hit
-- `foundations/self-hit-dynamics.md`: Maximum-curvature orbit, velocity regimes
-- `foundations/absolute-time-defense.md`: Philosophical defense against relativistic objections
-- `foundations/euclidean-void.md`: Detailed treatment of spatial geometry
-- `assemblies/tri-binary-architecture.md`: Noether core structure and stability
-- `assemblies/noether-core.md`: Spacetime aether ontology
-- `gravity-spacetime/emergent-metric.md`: Derivation of $g_{\mu\nu}$ from $\rho_{vac}$
-- `gravity-spacetime/proper-time-derivation.md`: $d\tau/dt$ formula and clock dynamics
-- `particle-physics/charge-quantization.md`: Why only $0, \pm e/3, \pm 2e/3, \pm e$ stable
-- `philosophy-history/lorentz-ether-comparison.md`: Comparison to LET and neo-Lorentzian interpretations
-- `philosophy-history/major-thinkers.md`: Historical and philosophical context
-- `adversarial/constraint-ledger.md`: Tier-1 falsification criteria
-- `GLOSSARY.md`: Full indexed glossary
-
----
-
-## 9. Maintenance and Governance
-
-**Document Status:** **Authoritative**
-
-Changes to this document require:
-1. Full-team review (all roles must acknowledge)
-2. Explicit justification (what changed, why, and what downstream impacts)
-3. Version control (changelog entry)
-
-**Review Cadence:**
-- **Quarterly**: Check for internal consistency and updates from new results
-- **Annual**: Major revision if foundational assumptions change
-
-**Ownership:**
-- **Lead**: Phil (Foundations & Philosophy)
-- **Mathematical rigor**: Dyna (Topologist & Dynamical Systems)
-- **Empirical grounding**: Sig (Experimentalist)
-- **Adversarial review**: Red (Red Team)
-
-**Changelog:**
-- **January 2026**: Initial consolidation (Geometrical-Model + prior architrino-theory drafts)
-- Future updates logged here
-
----
-
-**End of Foundational Ontology Document**
-
----
-
-*This document is the ontological bedrock upon which the entire Architrino Theory stands. All claims, derivations, and mappings trace back to the commitments made here. Guard it well.*
-
-**Phil (Foundations Lead)**  
-*"Define what exists. Derive what must follow. Test what can fail."* 🏛️
-```
-
----
-
-## POST-CONSOLIDATION STATUS
-
-✅ **Consolidated `foundations/ontology.md` COMPLETE**
-
-**Documents fully consumed and ready for archival:**
-- `Geometrical-Model-of-Nature/00-FoundationElements/00.0-AbsoluteTimeandSpace/00.0.1-AbsoluteTime.md`
-- `Geometrical-Model-of-Nature/00-FoundationElements/00.0-AbsoluteTimeandSpace/00.0.2-AbsoluteSpace.md`
-- `Geometrical-Model-of-Nature/00-FoundationElements/00.1-Architrino/00.1.0-Architrino.md` (sections 1.1-1.10)
-
-**Retained for next phase (master-equation.md):**
-- `Geometrical-Model-of-Nature/00-FoundationElements/00.1-Architrino/00.1.4-Action.md`
-- `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.1.4-MasterEquationWalkthrough.md`
-
-**Retained for self-hit-dynamics.md:**
-- `Geometrical-Model-of-Nature/00-FoundationElements/00.2-ActionExpositionandIdealizedExamples/00.2.3.3-MaximumCurvatureOrbit.md`
