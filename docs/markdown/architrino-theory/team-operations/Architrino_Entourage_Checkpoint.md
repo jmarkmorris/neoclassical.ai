@@ -169,7 +169,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 **To prevent semantic drift and preserve conceptual clarity:**
 
 **USE (Mandatory):**  
-- **"Path history"** (for time-delayed potentials; replaces "retarded time/potentials").  
+- **"Path History" / "causal wake surface" / "causal isochron"** whenever describing paths, emissions, intersections, or self-hits
 - **"Sea of Cores" / "Noether Sea" / "Spacetime medium"** (for the tri-binary lattice filling space).  
 - **"Effective metric" / "refractive index field"** (for emergent curved geometry).  
 - **"Field speed" ($c_f$)** for fundamental potential propagation speed.  
@@ -182,9 +182,8 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **"Vacuum"** → space is never empty; use "void" (Euclidean container) or "medium" (Noether Sea).  
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
-- **"Retard or Retarded"** → *causal wake surface* / *causal isochron*
-  - Use the term 'history' or 'path history' rather than the term retarded. 
-  - Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete retarded pulses.  
+- **"Retard or Retarded"** → **"Path History" / "causal wake surface" / "causal isochron"**
+  - When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
 
 **Why This Matters:**  
 - Prevents accidental import of incompatible ontological commitments (e.g., "curved space" implies GR's fundamental geometry).  
@@ -448,7 +447,7 @@ Assess five dimensions (Green/Yellow/Red):
 **Foundational Ontology:**  
 - **Absolute Observer (AO) codified**: Clear distinction between simulation ground truth (AO) and operational measurements (Physical Observers).  
 - **Noether Sea ontology**: Spacetime is not empty void; it is a dense lattice of coupled tri-binary assemblies (superfluid-like medium).  
-- **Terminology locked**: "Path history" (not retarded), "Sea/Medium" (not vacuum), "Void" (Euclidean container).
+- **Terminology locked**: "Path history" , "Sea/Medium" (not vacuum), "Void" (Euclidean container).
 
 **Gravity as Refraction:**  
 - Moved from "curved space" metaphor to **refractive index model**: $c_{\text{eff}}(x) = c_f / n(x)$ where $n$ depends on medium density and stress.  
