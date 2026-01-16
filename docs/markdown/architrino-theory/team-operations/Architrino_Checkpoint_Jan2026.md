@@ -178,11 +178,13 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **"Physical Observer (PO)"** for assembly-based measurements (epistemic).
 
 **AVOID (Prohibited without explicit justification):**  
-- **"Retarded time"** → use "emission time" or "path history."  
 - **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."  
 - **"Vacuum"** → space is never empty; use "void" (Euclidean container) or "medium" (Noether Sea).  
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
+- **"Retarded"** → *causal wake surface* / *causal isochron*
+  - Use the term 'history' or 'path history' rather than the term retarded. 
+  - Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete retarded pulses.  
 
 **Why This Matters:**  
 - Prevents accidental import of incompatible ontological commitments (e.g., "curved space" implies GR's fundamental geometry).  
