@@ -477,7 +477,11 @@ When session resumes, **prioritize these four tasks**:
 
 **Action 1 (Marko-initiated): Master Equation of Motion (EOM)**  
 - **Goal**: Write down the explicit, rigorous equation governing architrino dynamics:  
-  $$m \frac{d^2 \mathbf{x}_i}{dt^2} = \mathbf{F}_i = -q_i \nabla \Phi_i(\mathbf{x}_i, t)$$  
+  
+  $$
+  m \frac{d^2 \mathbf{x}_i}{dt^2} = \mathbf{F}_i = -q_i \nabla \Phi_i(\mathbf{x}_i, t)
+  $$
+  
   where $\Phi_i$ is the total potential received by architrino $i$ from all others (and self, if in self-hit regime).  
 - **Includes**:  
   - Path history integral (emission time calculation),  
