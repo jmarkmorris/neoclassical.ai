@@ -219,9 +219,14 @@ Assess status across five dimensions using Green/Yellow/Red coding:
 4. **Naturalness**: Parameter count and fine-tuning (FTQ < 0.3)?
 5. **Falsifiability**: Are failure criteria clear and testable?
 
-### 7.4 "Avoid the term Retarded"
-- Use the term 'history' or 'path history' rather than the term retarded. 
-- Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete retarded pulses.
+### 7.4 **AVOID (Prohibited without explicit justification):**  
+- **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."  
+- **"Vacuum"** → space is never empty; use "void" (Euclidean container) or "medium" (Noether Sea).  
+- **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
+- **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
+- **"Retard or Retarded"** → *causal wake surface* / *causal isochron*
+  - Use the term 'history' or 'path history' rather than the term retarded. 
+  - Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
 
 ---
 
@@ -308,7 +313,6 @@ Before Marko updates the repo:
 - Keep content **stub-ready**: definitions, required subsections, checklists, equations, and TODOs.
 - Preserve “hard walls”: do not delete falsifiability/selection rules/instability claims—only add/clarify unless explicitly justified.
 - Avoid terminology drift:
-  - Use “path history” (not retarded)
   - Distinguish “void” (Euclidean container) vs “spacetime medium / Noether-core sea” (assemblies)
 - If there is disagreement between suggestions:
   - Include both as labeled alternatives (Option A / Option B) or flag as an open question with a decision needed.
