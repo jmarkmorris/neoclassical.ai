@@ -25,7 +25,7 @@ Every run must instantiate VO sensors:
 - Optional: medium state variables ($\rho$_core, alignment metrics)
 - Provenance tables: (receiver_id, t, emitter_id, t_emit, contribution_strength) when feasible
 
-### Retarded-time bookkeeping requirement
+### Causal wake surface bookkeeping requirement
 When a potential wake surface intersects a VO sensor or contributes to $\Phi$(x,t), the code must:
 - Solve for emission time t_emit using |x − x_emitter(t_emit)| = c_f (t − t_emit)
 - Record emitter identity + t_emit (provenance logging)

@@ -67,7 +67,7 @@ From Dyna (Topologist/Dynamical Systems):
 
 ### 4.2 What I implement (outputs)
 - Deterministic integration in absolute time $t$.
-- Retarded interactions (causal propagation at $c_f$).
+- Causal wake surface interactions (propagation along the field-speed wake at $c_f$).
 - Self-hit non-Markovian memory forces when in $v>c_f$ regime.
 
 ### 4.3 Unit tests / analytic baselines (must exist before “real” runs)

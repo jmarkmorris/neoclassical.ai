@@ -24,7 +24,7 @@ Everything I write should be **simulation‑ready** (for the computational role)
   - N‑body: configuration space $(\mathbb{R}^3 \times \mathbb{R}^3 \times \{\pm\})^N$ over absolute time $t \in \mathbb{R}$.
 - Specify the **interaction law**:
   - Potential kernel(s): spatial decay (e.g. 1/r type), propagation at field speed $c_f$, sign structure (pro/anti).
-  - Retarded dependence: forces at time $t$ depend on positions at earlier times $t - r/c_f$.
+  - Path-history dependence: forces at time $t$ depend on positions along earlier causal wake surfaces (via $t - r/c_f$).
 - Choose the fundamental evolution form:
   - **Delay integro‑differential equations**: ODEs in $t$ with history integrals (self‑hit regime included explicitly).
   - Make explicit which variables are local vs history‑dependent.
