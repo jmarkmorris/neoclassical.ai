@@ -38,7 +38,7 @@ The key insight: **Files are nodes, directories are conceptual clusters, and exp
 ## 3. Final Directory Structure (Network-Optimized)
 
 ```
-architrino-theory/
+architrino-assembly-architecture/
 ├── README.md                          # Landing page: navigation guide
 ├── TOC.md                             # Linear reading order (textbook mode)
 ├── CONCEPT-TREE.md                    # Hierarchical concept outline

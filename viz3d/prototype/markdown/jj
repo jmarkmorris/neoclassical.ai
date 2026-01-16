@@ -1,0 +1,219 @@
+#!/usr/bin/env bash
+set -e
+
+ROOT="architrino-assembly-architecture"
+
+# Helper: make dir and empty files
+mk() {
+  mkdir -p "$1"
+  shift
+  for f in "$@"; do
+    : > "$f"
+  done
+}
+
+# Root
+mk "$ROOT" \
+  "$ROOT/README.md" \
+  "$ROOT/TOC.md" \
+  "$ROOT/CONCEPT-TREE.md" \
+  "$ROOT/NETWORK-MAP.md" \
+  "$ROOT/GLOSSARY.md" \
+  "$ROOT/CHANGELOG.md"
+
+# substrate
+mk "$ROOT/substrate" \
+  "$ROOT/substrate/README.md" \
+  "$ROOT/substrate/absolute-time.md" \
+  "$ROOT/substrate/euclidean-void.md" \
+  "$ROOT/substrate/architrino-entity.md" \
+  "$ROOT/substrate/substrate-summary.md"
+
+# dynamics
+mk "$ROOT/dynamics" \
+  "$ROOT/dynamics/README.md" \
+  "$ROOT/dynamics/master-equation.md" \
+  "$ROOT/dynamics/causal-structure.md" \
+  "$ROOT/dynamics/self-hit-mechanism.md" \
+  "$ROOT/dynamics/velocity-regimes.md" \
+  "$ROOT/dynamics/two-body-systems.md" \
+  "$ROOT/dynamics/regularization.md" \
+  "$ROOT/dynamics/dynamics-summary.md"
+
+# assemblies
+mk "$ROOT/assemblies" \
+  "$ROOT/assemblies/README.md" \
+  "$ROOT/assemblies/binary-formation.md" \
+  "$ROOT/assemblies/maximum-curvature-orbit.md" \
+  "$ROOT/assemblies/tri-binary-architecture.md" \
+  "$ROOT/assemblies/ellipsoidal-vs-planar.md" \
+  "$ROOT/assemblies/assembly-atlas.md" \
+  "$ROOT/assemblies/stability-analysis.md" \
+  "$ROOT/assemblies/velocity-regime-transitions.md" \
+  "$ROOT/assemblies/assemblies-summary.md"
+
+# particles
+mk "$ROOT/particles/fermions" \
+  "$ROOT/particles/fermions/electron.md" \
+  "$ROOT/particles/fermions/muon-tau.md" \
+  "$ROOT/particles/fermions/neutrinos.md" \
+  "$ROOT/particles/fermions/quarks.md"
+
+mk "$ROOT/particles/bosons" \
+  "$ROOT/particles/bosons/photon.md" \
+  "$ROOT/particles/bosons/gluons.md" \
+  "$ROOT/particles/bosons/weak-bosons.md" \
+  "$ROOT/particles/bosons/higgs.md"
+
+mk "$ROOT/particles" \
+  "$ROOT/particles/README.md" \
+  "$ROOT/particles/effective-lagrangian.md" \
+  "$ROOT/particles/charge-quantization.md" \
+  "$ROOT/particles/gauge-symmetries.md" \
+  "$ROOT/particles/spin-statistics.md" \
+  "$ROOT/particles/particle-masses.md" \
+  "$ROOT/particles/precision-tests.md"
+
+# nuclear-atomic
+mk "$ROOT/nuclear-atomic" \
+  "$ROOT/nuclear-atomic/README.md" \
+  "$ROOT/nuclear-atomic/nucleon-structure.md" \
+  "$ROOT/nuclear-atomic/nuclear-binding.md" \
+  "$ROOT/nuclear-atomic/atomic-structure.md" \
+  "$ROOT/nuclear-atomic/spectroscopy.md" \
+  "$ROOT/nuclear-atomic/molecular-geometry.md" \
+  "$ROOT/nuclear-atomic/condensed-matter.md" \
+  "$ROOT/nuclear-atomic/dense-matter-eos.md"
+
+# spacetime
+mk "$ROOT/spacetime" \
+  "$ROOT/spacetime/README.md" \
+  "$ROOT/spacetime/aether-ontology.md" \
+  "$ROOT/spacetime/emergent-metric.md" \
+  "$ROOT/spacetime/proper-time.md" \
+  "$ROOT/spacetime/gr-phenomenology.md" \
+  "$ROOT/spacetime/ppn-parameters.md" \
+  "$ROOT/spacetime/gravitational-waves.md" \
+  "$ROOT/spacetime/singularity-resolution.md" \
+  "$ROOT/spacetime/hierarchy-problem.md" \
+  "$ROOT/spacetime/spacetime-summary.md"
+
+# cosmology
+mk "$ROOT/cosmology" \
+  "$ROOT/cosmology/README.md" \
+  "$ROOT/cosmology/cosmological-ontology.md" \
+  "$ROOT/cosmology/expansion-mechanism.md" \
+  "$ROOT/cosmology/inflation-model.md" \
+  "$ROOT/cosmology/cmb-origin.md" \
+  "$ROOT/cosmology/bbn-predictions.md" \
+  "$ROOT/cosmology/structure-formation.md" \
+  "$ROOT/cosmology/h0-tension.md" \
+  "$ROOT/cosmology/sigma8-tension.md" \
+  "$ROOT/cosmology/cosmology-summary.md"
+
+# quantum
+mk "$ROOT/quantum" \
+  "$ROOT/quantum/README.md" \
+  "$ROOT/quantum/pilot-wave-character.md" \
+  "$ROOT/quantum/wavefunction-ontology.md" \
+  "$ROOT/quantum/superposition-mechanism.md" \
+  "$ROOT/quantum/measurement-ontology.md" \
+  "$ROOT/quantum/entanglement-nonlocality.md" \
+  "$ROOT/quantum/bell-theorem.md" \
+  "$ROOT/quantum/collapse-problem.md" \
+  "$ROOT/quantum/quantum-summary.md"
+
+# foundations
+mk "$ROOT/foundations" \
+  "$ROOT/foundations/README.md" \
+  "$ROOT/foundations/ontology.md" \
+  "$ROOT/foundations/parameter-ledger.md" \
+  "$ROOT/foundations/validation-protocols.md" \
+  "$ROOT/foundations/no-go-theorems.md" \
+  "$ROOT/foundations/theory-virtues.md" \
+  "$ROOT/foundations/explanatory-scoreboard.md" \
+  "$ROOT/foundations/failure-criteria.md"
+
+# simulations
+mk "$ROOT/simulations" \
+  "$ROOT/simulations/README.md" \
+  "$ROOT/simulations/tier1-architrino.md" \
+  "$ROOT/simulations/tier2-binary.md" \
+  "$ROOT/simulations/tier3-tribinary.md" \
+  "$ROOT/simulations/tier4-continuum.md" \
+  "$ROOT/simulations/convergence-tests.md" \
+  "$ROOT/simulations/run-protocols.md" \
+  "$ROOT/simulations/synthetic-observables.md" \
+  "$ROOT/simulations/pdg-solver-ideas.md"
+
+# experiments
+mk "$ROOT/experiments" \
+  "$ROOT/experiments/README.md" \
+  "$ROOT/experiments/constraint-ledger.md" \
+  "$ROOT/experiments/lorentz-tests.md" \
+  "$ROOT/experiments/equivalence-principle.md" \
+  "$ROOT/experiments/charge-conservation.md" \
+  "$ROOT/experiments/proton-stability.md" \
+  "$ROOT/experiments/gw-tests.md" \
+  "$ROOT/experiments/cmb-observations.md" \
+  "$ROOT/experiments/bbn-abundances.md" \
+  "$ROOT/experiments/precision-qed.md" \
+  "$ROOT/experiments/proposed-tests.md"
+
+# philosophy-history
+mk "$ROOT/philosophy-history" \
+  "$ROOT/philosophy-history/README.md" \
+  "$ROOT/philosophy-history/crisis-in-physics.md" \
+  "$ROOT/philosophy-history/historical-context.md" \
+  "$ROOT/philosophy-history/lorentz-ether.md" \
+  "$ROOT/philosophy-history/bohmian-mechanics.md" \
+  "$ROOT/philosophy-history/major-thinkers.md" \
+  "$ROOT/philosophy-history/theory-mapping.md" \
+  "$ROOT/philosophy-history/open-questions.md" \
+  "$ROOT/philosophy-history/future-vision.md"
+
+# adversarial
+mk "$ROOT/adversarial" \
+  "$ROOT/adversarial/README.md" \
+  "$ROOT/adversarial/parameter-audit.md" \
+  "$ROOT/adversarial/stop-conditions.md" \
+  "$ROOT/adversarial/theory-health.md" \
+  "$ROOT/adversarial/known-tensions.md"
+
+# synthesis
+mk "$ROOT/synthesis" \
+  "$ROOT/synthesis/README.md" \
+  "$ROOT/synthesis/unsolved-problems.md" \
+  "$ROOT/synthesis/empirical-scorecard.md" \
+  "$ROOT/synthesis/integration-map.md" \
+  "$ROOT/synthesis/research-roadmap.md"
+
+# team
+mk "$ROOT/team/roles" \
+  "$ROOT/team/roles/phil.md" \
+  "$ROOT/team/roles/dyna.md" \
+  "$ROOT/team/roles/phe.md" \
+  "$ROOT/team/roles/alfa.md" \
+  "$ROOT/team/roles/cos.md" \
+  "$ROOT/team/roles/sol.md" \
+  "$ROOT/team/roles/sig.md" \
+  "$ROOT/team/roles/red.md"
+
+mk "$ROOT/team" \
+  "$ROOT/team/README.md" \
+  "$ROOT/team/team-charter.md" \
+  "$ROOT/team/governance.md" \
+  "$ROOT/team/communication-standards.md" \
+  "$ROOT/team/mathematical-style-guide.md" \
+  "$ROOT/team/quarterly-review-template.md"
+
+# appendices
+mk "$ROOT/appendices" \
+  "$ROOT/appendices/glossary.md" \
+  "$ROOT/appendices/notation.md" \
+  "$ROOT/appendices/units-conventions.md" \
+  "$ROOT/appendices/bibliography.md" \
+  "$ROOT/appendices/index.md"
+
+echo "Structure created under $ROOT"
+
