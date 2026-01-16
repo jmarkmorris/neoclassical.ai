@@ -1,120 +1,154 @@
 # Quantum Number Mapping: Architrino Geometry to Standard Model
 
-**Status:** Draft / Conceptual Baseline
+**Status:** Draft / v2 (Noether Core Architecture)
 **Owner:** Phe (Phenomenology)
 **Contributors:** Dyna (Topology), Alfa (Nuclear Stability)
 
 ## 1. Purpose
-This document establishes the canonical dictionary translating **Tri-Binary Assembly Geometry** into **Standard Model (SM) Quantum Numbers**. It defines the specific decoration patterns of architrinos ($|e/6|$ charges) on the tri-binary manifold that correspond to the observed spectrum of Quarks and Leptons.
+This document establishes the canonical dictionary translating **Tri-Binary Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
 
-**The Hard Constraint:** We must reproduce the exact charge assignments ($0, \pm 1/3, \pm 2/3, \pm 1$) and group structures of the SM. Any derivation that predicts stable fractional charges like $\pm 1/6$ or $\pm 1/2$ appearing in isolation falsifies the model.
+It adopts the **Nucleus + Personality** model:
+1.  **The Nucleus (Noether Core):** A neutral, rotating tri-binary structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
+2.  **The Personality (Decoration):** A layer of 6 charged architrinos occupying polar sites on the Nucleus, defining the electric charge, weak isospin, and color charge.
 
 ---
 
-## 2. Fundamental Ingredients
+## 2. The Assembly Architecture
 
-### 2.1 The Substrate (The "Bit")
-- **Architrino Charge ($\epsilon$):** Magnitude $|e/6|$.
-- **Polarity:**
-  - **Positrino ($P$):** Charge $+1\epsilon$ ($+e/6$).
-  - **Electrino ($E$):** Charge $-1\epsilon$ ($-e/6$).
+### 2.1 The Fundamental Substrate
+*   **Architrino Charge ($\epsilon$):** Magnitude $|e/6|$.
+*   **Polarity:**
+    *   **Positrino ($P$):** Charge $+1\epsilon$.
+    *   **Electrino ($E$):** Charge $-1\epsilon$.
 
-### 2.2 The Manifold (The "Byte")
-- **The Tri-Binary Assembly:** A nested system of three rotating binaries.
-- **Decoration Sites:** We postulate **6 polar regions** (nodes) available for charge decoration on the stable tri-binary manifold.
-  - *Derivation required from Dyna:* Why 6? (likely related to the 3-axis symmetry of the tri-binary structure, $2 \text{ poles} \times 3 \text{ binaries} = 6 \text{ sites}$).
+### 2.2 The Nucleus (Noether Core)
+Every fermion contains a central engine composed of nested binary pairs.
+*   **Composition:** Each binary contains 1 Positrino + 1 Electrino (Neutral).
+*   **Generation I Nucleus (Tri-Binary):** 3 Nested Binaries (Inner, Middle, Outer). Total 6 architrinos (3P, 3E).
+*   **Chirality (Matter vs. Antimatter):**
+    *   **Pro-Core:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
+    *   **Anti-Core:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
+*   **Net Charge:** Always $0$.
 
-### 2.3 Stability Rule (The "Checksum")
-- **Full Population Hypothesis:** The most stable particles have all 6 sites occupied. Vacancies create instability (high reactivity).
-- **Net Charge ($Q$):** $Q = \sum n_P - \sum n_E$ in units of $\epsilon$.
-- **SM Charge ($q_{sm}$):** $q_{sm} = Q/6$.
+### 2.3 The Personality Layer (Decorations)
+*   **Sites:** 6 Polar regions available for decoration.
+*   **Occupancy:** All stable fermions have all 6 sites filled.
+*   **Function:** This layer interacts with external fields (EM, Weak).
+
+### 2.4 Total Constituent Count (Gen I)
+*   **Nucleus (6) + Personality (6) = 12 Architrinos.**
 
 ---
 
 ## 3. The Fermion Mapping (Generation I)
 
-We map the combinatorial possibilities of 6 slots filled with $P$ or $E$ to the first generation of matter.
+All Generation I particles utilize the full **Tri-Binary Nucleus** (3 Binaries).
 
 ### 3.1 Leptons
 
 **The Electron ($e^-$)**
-- **Target Charge:** $-1e$ ($-6\epsilon$)
-- **Configuration:** 6 Electrinos ($6E$)
-- **Net:** $-6\epsilon$
-- **Spin:** 1/2 (arising from the ellipsoidal deformation of the tri-binary).
-- **Anti-particle ($e^+$):** 6 Positrinos ($6P$).
+*   **Nucleus:** Pro-Tri-Binary (3P, 3E, Neutral, Matter-chirality).
+*   **Personality:** 6 Electrinos ($6E$).
+*   **Net Charge:** $0 (\text{core}) - 6\epsilon (\text{dec}) = -6\epsilon = -1e$.
+*   **Total Count:** 12 Architrinos.
+
+**The Positron ($e^+$)**
+*   **Nucleus:** Anti-Tri-Binary (3P, 3E, Neutral, Antimatter-chirality).
+*   **Personality:** 6 Positrinos ($6P$).
+*   **Net Charge:** $0 + 6\epsilon = +1e$.
+*   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the decoration polarity.
 
 **The Electron Neutrino ($\nu_e$)**
-- **Target Charge:** $0$
-- **Configuration:** 3 Positrinos, 3 Electrinos ($3P, 3E$)
-- **Net:** $0\epsilon$
-- **Balance:** Perfectly symmetric charge distribution implies weak coupling to the electromagnetic field (zero monopole, minimal dipole).
+*   **Nucleus:** Pro-Tri-Binary.
+*   **Personality:** 3 Positrinos, 3 Electrinos ($3P, 3E$).
+*   **Net Charge:** $0$.
+*   **Note:** The oscillating dipole moments of the personality layer are perfectly balanced, minimizing EM coupling.
 
 ### 3.2 Quarks
 
 **The Up Quark ($u$)**
-- **Target Charge:** $+2/3e$ ($+4\epsilon$)
-- **Configuration:** 5 Positrinos, 1 Electrino ($5P, 1E$)
-- **Net:** $5 - 1 = +4\epsilon$
-- **Note:** This implies the Up quark is "mostly positive."
+*   **Nucleus:** Pro-Tri-Binary.
+*   **Personality:** 5 Positrinos, 1 Electrino ($5P, 1E$).
+*   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
-- **Target Charge:** $-1/3e$ ($-2\epsilon$)
-- **Configuration:** 2 Positrinos, 4 Electrinos ($2P, 4E$)
-- **Net:** $2 - 4 = -2\epsilon$
-- **Note:** The Down quark is "net negative" but more balanced than the electron.
+*   **Nucleus:** Pro-Tri-Binary.
+*   **Personality:** 2 Positrinos, 4 Electrinos ($2P, 4E$).
+*   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
 ### 3.3 Summary Table (Gen I)
 
-| Particle | Symbol | SM Charge ($e$) | Architrino Charge ($\epsilon$) | Composition (P, E) |
+| Particle | Nucleus Type | Decoration (Personality) | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
-| **Electron** | $e^-$ | -1 | -6 | 0P, 6E |
-| **Neutrino** | $\nu_e$ | 0 | 0 | 3P, 3E |
-| **Up Quark** | $u$ | +2/3 | +4 | 5P, 1E |
-| **Down Quark** | $d$ | -1/3 | -2 | 2P, 4E |
+| **Electron** ($e^-$) | Pro-Tri-Binary | 6E | -1 | 12 |
+| **Positron** ($e^+$) | Anti-Tri-Binary | 6P | +1 | 12 |
+| **Neutrino** ($\nu_e$) | Pro-Tri-Binary | 3P, 3E | 0 | 12 |
+| **Up Quark** ($u$) | Pro-Tri-Binary | 5P, 1E | +2/3 | 12 |
+| **Down Quark** ($d$) | Pro-Tri-Binary | 2P, 4E | -1/3 | 12 |
 
 ---
 
-## 4. The Generation Problem (Gen II & III)
+## 4. The Generation Mechanism (Mass Hierarchy)
 
-How do we explain Muons/Tau and Charm/Top/Strange/Bottom without changing the charge?
+Generations are defined by the **shedding of shielding binaries** from the Nucleus. The Personality Layer (Charge) remains constant.
 
-**Hypothesis:** Generational differences are **energetic excitations** of the binary nesting structure, not changes in decoration.
+### 4.1 Generation II (Muon, Charm, Strange)
+*   **Architecture:** Missing the **Outer Binary**.
+*   **Nucleus:** **Bi-Binary** (Inner, Middle).
+    *   Composition: 2P, 2E (4 architrinos).
+*   **Personality:** 6 decorations (unchanged).
+*   **Physics:** Without the outer binary shell, the high-energy inner binaries are more "exposed" to the Noether Sea, creating higher drag/interaction (Mass).
+*   **Example: The Muon ($\mu^-$)**
+    *   Nucleus: Pro-Bi-Binary (4 architrinos).
+    *   Personality: 6E.
+    *   Total Count: 10 Architrinos.
 
-- **Gen I (Stable):** 3 binaries (Outer, Middle, Inner) in ground state equilibrium.
-- **Gen II (Muon, Charm, Strange):** High Energy Binary exposed or excited? Possibly a "Bi-binary" state where the outer shielding is compromised, exposing higher energy/mass?
-- **Gen III (Tau, Top, Bottom):** "Uni-binary" limit? Extreme energy density, minimal shielding, incredibly short lifetime.
-
-*Action:* Need precise topological definition of Gen II/III from Dyna.
+### 4.2 Generation III (Tau, Top, Bottom)
+*   **Architecture:** Missing **Outer and Middle Binaries**.
+*   **Nucleus:** **Uni-Binary** (Inner only).
+    *   Composition: 1P, 1E (2 architrinos).
+    *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
+*   **Personality:** 6 decorations (unchanged).
+*   **Physics:** Maximal exposure of the maximum-curvature regime. Highest Mass. Shortest lifetime.
+*   **Example: The Top Quark ($t$)**
+    *   Nucleus: Pro-Uni-Binary (2 architrinos).
+    *   Personality: 5P, 1E.
+    *   Total Count: 8 Architrinos.
 
 ---
 
-## 5. Color Charge and Gluons
+## 5. Phenomenological Implications
 
-If Quarks are tri-binaries, where is **Color**?
+### 5.1 Universality of Gauge Couplings
+Because the **Personality Layer** (which dictates charge and isospin) is structurally identical across generations (always 6 sites), the electromagnetic and weak couplings are identical for $e, \mu, \tau$. This elegantly explains Lepton Universality.
 
-**Hypothesis:** Color is **Phase Orientation**.
-- The tri-binary has three orthogonal rotation axes.
-- A quark's "color" (Red, Green, Blue) corresponds to the **dominant axis of orientation** or the phase relationship of the inner binary relative to the lattice.
-- **Gluons:** Are the planar boson connectors that link these phase orientations.
+### 5.2 The Proton vs. Neutron
+Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
+
+*   **Proton ($uud$):**
+    *   3 Pro-Cores (Gen I).
+    *   Decorations: $(5P,1E) + (5P,1E) + (2P,4E)$.
+    *   Total Decoration P: $5+5+2 = 12$.
+    *   Total Decoration E: $1+1+4 = 6$.
+    *   Net: $+6\epsilon = +1e$.
+    *   Total Architrinos: $3 \times 6 \text{ (Cores)} + 18 \text{ (Dec)} = 36$.
+
+*   **Neutron ($udd$):**
+    *   3 Pro-Cores (Gen I).
+    *   Decorations: $(5P,1E) + (2P,4E) + (2P,4E)$.
+    *   Total Decoration P: $5+2+2 = 9$.
+    *   Total Decoration E: $1+4+4 = 9$.
+    *   Net: $0$.
+    *   Total Architrinos: 36.
+
+### 5.3 Decay Pathways
+*   **Muon Decay ($\mu^- \to e^- + \bar{\nu}_e + \nu_\mu$):**
+    *   This represents the **regrowth** or **capture** of an Outer Binary by the Muon's Bi-binary core to become an Electron (Tri-binary core), shedding energy (neutrinos).
+    *   *Alternative View:* The Muon core is unstable and breaks down? No, usually decay goes High Mass -> Low Mass. The Muon (high mass, exposed) must *acquire* shielding (lower mass, stable) from the Noether Sea to become an Electron. This implies decay is an interaction with the vacuum density.
 
 ---
 
-## 6. Open Questions & Failure Modes
-
-1.  **Why no fractional leptons?** Why is a configuration of (4P, 2E) -> Net +2 -> $+1/3e$ not a stable lepton?
-    *   *Proposed Solution:* Confinement. Any net charge not equal to $\pm 6\epsilon$ or $0$ might induce strong Noether Sea stress (flux tubes), forcing it to bind into hadrons. Only $\pm 6\epsilon$ (pure sign) and $0$ (balanced) interact "smoothly" enough to exist as free leptons.
-2.  **The Neutron:** A neutron is $udd$.
-    *   Sum of parts: $(5P, 1E) + (2P, 4E) + (2P, 4E) = 9P, 9E$.
-    *   This equals 18 architrinos (3 full tri-binaries).
-    *   Net charge: $9 - 9 = 0$.
-    *   *Check:* Matches observation.
-3.  **Proton Stability:** A proton is $uud$.
-    *   Sum of parts: $(5P, 1E) + (5P, 1E) + (2P, 4E) = 12P, 6E$.
-    *   Net charge: $+6\epsilon = +1e$.
-    *   *Check:* Matches observation.
-
-## 7. Next Steps
-1.  **Dyna:** Validate the "6-pole" hypothesis for tri-binary topology.
-2.  **Sol:** Simulate the stability of a (5P, 1E) configuration versus a (6E) configuration.
-3.  **Phe:** Map the $W^\pm$ boson interaction. Does $W^-$ ($6E$ boson?) transform a neutron ($udd$) to a proton ($uud$) by swapping decorations?
+## 6. Action Items
+1.  **Dyna:** Verify that Bi-binary and Uni-binary cores can geometrically support the same 6-pole Personality Layer as the full Tri-binary. (Essential for Lepton Universality).
+2.  **Alfa:** Analyze the binding energy of the Proton (36 architrinos).
+3.  **Phe:** Calculate the magnetic moment difference between Gen I, II, and III based on the "exposed core" radius.
