@@ -246,6 +246,43 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
 
 ---
 
-## 8. Action Items
+## 8. Summary: The Geometric Dictionary
+
+This table consolidates the mapping between Abstract Standard Model Quantum Numbers and Concrete Architrino Assembly Geometry.
+
+| Quantum Number | Symbol | Standard Model Definition | Architrino Geometric Definition |
+| :--- | :---: | :--- | :--- |
+| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | **Net Decoration Count.** Sum of Positrinos ($+e/6$) and Electrinos ($-e/6$) in the Personality Layer. $Q = \sum P - \sum E$. |
+| **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the Active Triad.** The net charge state of the 3 "exposed" decoration sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
+| **Weak Hypercharge** | $Y_W$ | $Y_W = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 "hidden" decoration sites plus any core offset. |
+| **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Azimuthal Phase Phase.** The angular orientation ($0^\circ, 120^\circ, 240^\circ$) of the decoration asymmetry relative to the nuclear spin axis. |
+| **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the Tri-binary nucleus. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
+| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Active Triad Exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the Active Triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the Active Triad into the particle's "wake" or shield (Interaction blocked). |
+| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
+| **Baryon/Lepton No.** | $B, L$ | Conserved matter counts. | **Core Count.**<br>• **Matter (+1):** Pro-Core (Left-braided nucleus).<br>• **Antimatter (-1):** Anti-Core (Right-braided nucleus). |
+
+For the **Elementary Fermions** (Quarks and Leptons), yes, this table is complete. It covers the "ID Card" required to distinguish every particle in the Standard Model Lagrangian.
+
+However, there are two nuances we should be aware of, though we don't necessarily need a new row for them:
+
+1.  **Flavor Quantum Numbers ($S, C, B, T$):**
+    *   In physics textbooks, you'll see numbers for **Strangeness**, **Charm**, **Bottomness**, and **Topness**.
+    *   **Our Mapping:** These are redundant. They are fully covered by the **Generation** row combined with the **Charge** row.
+        *   *Example:* "Strangeness = -1" is just code for "Generation II, Charge -1/3 (Down-type)".
+        *   Our geometric explanation (Generation = Shielding Level) is actually *better* because it explains *why* Flavor is conserved in Strong interactions (you can't just "shed" a binary ring without a Weak event).
+
+2.  **Intrinsic Parity ($P$):**
+    *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
+    *   **Our Mapping:** This is covered by the **Baryon/Lepton Number (Core Topology)** row.
+        *   Pro-Core (Matter) = $+$.
+        *   Anti-Core (Antimatter) = $-$.
+    *   So, we have this covered implicitly.
+
+**Verdict:**
+The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a decay rate (except for Mass, which is a derived energy scale, not a quantum number).
+
+---
+
+## 9. Action Items
 1.  **Alfa:** Analyze the binding energy of the Proton (36 architrinos).
 2.  **Phe:** Calculate the magnetic moment difference between Gen I, II, and III based on the "exposed core" radius.
