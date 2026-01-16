@@ -37,7 +37,7 @@ Excellent instinct to think about this now, Marko. A well-organized repo is **in
 Here's a **skeleton structure** that balances clarity, flexibility, and navigability:
 
 ```
-architrino-theory/
+architrino-assembly-architecture/
 ├── README.md                          # Project overview, quick-start guide, links to key docs
 ├── TOC.md                             # Master table of contents (reading order for full textbook)
 ├── GLOSSARY.md                        # Central glossary (linked from all docs)
@@ -328,7 +328,7 @@ doctoc --title "## Table of Contents" path/to/file.md
 
 ### Example First Files
 ```
-architrino-theory/
+architrino-assembly-architecture/
 ├── README.md
 ├── TOC.md
 ├── foundations/
