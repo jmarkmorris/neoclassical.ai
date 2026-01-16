@@ -1,4 +1,4 @@
-# 🏛️ ARCHITRINO MASTER CHECKPOINT: UPDATED JAN 2026
+# 🏛️ ARCHITRINO ENTOURAGE CHECKPOINT: UPDATED JAN 2026
 
 **Project Phase:** Theoretical Consolidation & Repo Stubbing  
 **Ontological Status:** Absolute Euclidean / Neo-Lorentzian / Deterministic Pilot-Wave  
@@ -23,7 +23,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
    - Includes deliverables, interfaces, responsibilities  
    - Your enriched context now lives here
 
-3. **This Master Checkpoint** (`architrino_checkpoint_current.md`)  
+3. **This Master Checkpoint** (`architrino_entourage_checkpoint.md`)  
    - Ontological axioms (what we believe)  
    - Current state (where we are)  
    - Immediate actions (what's next)  
