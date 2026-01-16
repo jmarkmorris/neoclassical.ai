@@ -1077,7 +1077,7 @@ This symmetry breaking is precisely what allows for a preferred "aether" frame f
 
 Event $A = (t_A, \mathbf{x}_A)$ **causally precedes** event $B = (t_B, \mathbf{x}_B)$ iff $t_A < t_B$ (regardless of spatial separation).
 
-##### 1.3.5.2 Retarded Propagation (Finite Signal Speed)
+##### 1.3.5.2 Causal Wake Surface Propagation (Finite Signal Speed)
 
 A source at $(t_0, \mathbf{x}_0)$ can influence a receiver at $(t, \mathbf{x})$ only if:
 $$
@@ -1997,7 +1997,7 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 
 | **Deprecated Term** | **Reason** | **Use Instead** |
 |:--------------------|:-----------|:----------------|
-| **Retarded Time** / **Retarded Potential** | Implies backward-looking calculation; prefer forward causal language | **Emission Time** / **Path History** |
+| **Causal Propogating Potential** | Implies backward-looking calculation; prefer forward causal language | **Emission Time** / **Path History** |
 | **Vacuum** (alone) | Ambiguous; connotes emptiness (void) or QFT vacuum energy | **Noether Sea** / **Spacetime Medium** |
 | **Curved Space** | The void is flat; only the medium's effective geometry curves | **Effective Metric** / **Refractive Gravity** |
 | **Spacetime** (without qualifier) | Ambiguous; conflates substrate (void+time) with medium (Noether Sea) | **Absolute Timespace** (substrate) vs **Spacetime Aether** (medium) |

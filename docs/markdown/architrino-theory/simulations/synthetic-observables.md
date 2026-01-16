@@ -11,7 +11,7 @@ A VO is defined by:
   - Local potential $\Phi$(x\_k,t)
   - Local gradient ∇$\Phi$(x\_k,t) (force proxy)
   - Optional local medium state variables for Noether-core sea (e.g., $\rho$\_core, alignment/orientation metrics)
-  - Retarded provenance/event tags: for each received contribution at (x\_k,t), record (emitter\_id, emission\_time t\_emit) satisfying |x\_k − x\_emitter(t\_emit)| = c\_f (t − t\_emit)
+  - Causal wake surface provenance/event tags: for each received contribution at (x\_k,t), record (emitter\_id, emission\_time t\_emit) satisfying |x\_k − x\_emitter(t\_emit)| = c\_f (t − t\_emit)
 
 ### Minimal synthetic products
 - Time series: $\Phi$(t), ∇$\Phi$(t) at fixed points (“stationary detectors”)

@@ -76,7 +76,7 @@
 - Polar Vortices of Potential
 - Stability, Attractors, and Selection Rules
 - Binary Capture and Energy Exchange
-- Recap: Self-Hit vs. Retardation Balance in Binary Orbits
+- Recap: Self-Hit vs. Causal Wake Surface Balance in Binary Orbits
 
 ### Chapter 10: Emergence and the Concept of Assembly
 - What Does "Emergence" Mean in This Framework?
