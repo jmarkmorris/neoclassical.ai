@@ -225,8 +225,8 @@ Assess status across five dimensions using Green/Yellow/Red coding:
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 - **"Retard or Retarded"** → **"Path History" / "causal wake surface" / "causal isochron"**
-  - Use the term 'history' or 'path history' rather than the term retarded. 
-  - Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
+  - When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
+ 
 
 ---
 

@@ -183,8 +183,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 - **"Retard or Retarded"** → **"Path History" / "causal wake surface" / "causal isochron"**
-  - Use the term 'history' or 'path history' rather than the term retarded. 
-  - Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
+  - When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
 
 **Why This Matters:**  
 - Prevents accidental import of incompatible ontological commitments (e.g., "curved space" implies GR's fundamental geometry).  
