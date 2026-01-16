@@ -88,11 +88,68 @@ All Generation I particles utilize the full **Tri-Binary Nucleus** (3 Binaries).
 
 ---
 
-## 4. The Generation Mechanism (Mass Hierarchy)
+## 4. Weak Isospin ($T_3$) and Chirality
+
+In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It transforms members of a doublet (e.g., $e^- \leftrightarrow \nu_e$) into each other. We map this to the **Active Triad Hypothesis**.
+
+### 4.1 The Active Triad Geometry
+Every fermion personality layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the tri-binary rotation axis:
+1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These decorations *cannot* be swapped without destroying the particle.
+2.  **The Active Triad (3 sites):** Exposed to the Noether Sea. These are the "switchable bits."
+
+**Weak Isospin ($T_3$)** is defined by the polarity of this **Active Triad**:
+*   **$T_3 = +1/2$ (Up-State):** The Active Triad contains maximal **Positrinos** (relative to the baseline).
+*   **$T_3 = -1/2$ (Down-State):** The Active Triad contains maximal **Electrinos**.
+
+### 4.2 Mapping the Doublets
+
+**The Lepton Doublet ($\nu_e, e^-_L$)**
+*   **Base (Shielded):** 3 Electrinos ($3E$).
+*   **Neutrino ($\nu_e$):** Shielded ($3E$) + Active ($3P$).
+    *   Net: $3E, 3P$ (Neutral).
+    *   State: Active Triad is Positive $\to T_3 = +1/2$.
+*   **Electron ($e^-_L$):** Shielded ($3E$) + Active ($3E$).
+    *   Net: $6E$ (Charge -1).
+    *   State: Active Triad is Negative $\to T_3 = -1/2$.
+*   **The Transformation:** The $W^-$ boson is the packet that removes $3P$ and replaces them with $3E$.
+
+**The Quark Doublet ($u_L, d_L$)**
+*   **Base (Shielded):** 2 Positrinos, 1 Electrino ($2P, 1E$).
+*   **Up Quark ($u_L$):** Shielded ($2P, 1E$) + Active ($3P$).
+    *   Net: $5P, 1E$ (Charge +2/3).
+    *   State: Active Triad is Positive $\to T_3 = +1/2$.
+*   **Down Quark ($d_L$):** Shielded ($2P, 1E$) + Active ($3E$).
+    *   Net: $2P, 4E$ (Charge -1/3).
+    *   State: Active Triad is Negative $\to T_3 = -1/2$.
+
+### 4.3 Gell-Mann–Nishijima Consistency Check
+Does this geometry satisfy $Q = T_3 + \frac{Y_W}{2}$?
+
+**Leptons (Hypercharge $Y_W = -1$):**
+*   $\nu_e$: $T_3 (+1/2) + Y_W/2 (-1/2) = 0$. (Matches Geometry: 3P3E = 0).
+*   $e^-$: $T_3 (-1/2) + Y_W/2 (-1/2) = -1$. (Matches Geometry: 6E = -1).
+
+**Quarks (Hypercharge $Y_W = +1/3$):**
+*   $u$: $T_3 (+1/2) + Y_W/2 (+1/6)$. *Wait... Standard Model Y is +1/3. (+1/2 + 1/6 = 2/3).* Correct.
+*   $d$: $T_3 (-1/2) + Y_W/2 (+1/6) = -1/3$. Correct.
+*   *Geometric Insight:* **Hypercharge ($Y_W$)** corresponds to the charge of the **Shielded Triad** plus the Core offset!
+    *   Lepton Shielded Triad ($3E$) = $-1/2$ charge? No, charge is -1/2e.
+    *   *Correction:* This suggests Hypercharge is physically stored in the **Shielded Triad**.
+
+### 4.4 Chirality (Why Right-Handed = 0?)
+Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
+*   **Geometric Mechanism:** Chirality is the alignment of the particle's **Spin** with its **Momentum**.
+*   **Lock-out:** In the "Right-Handed" configuration, the **Active Triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
+*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the Active Triad to perform the swap. It bounces off.
+*   Therefore, $e^-_R$ has no "Active" Triad accessible to the Weak force. $T_3 = 0$.
+
+---
+
+## 5. The Generation Mechanism (Mass Hierarchy)
 
 Generations are defined by the **shedding of shielding binaries** from the Nucleus. The Personality Layer (Charge) remains constant.
 
-### 4.1 Generation II (Muon, Charm, Strange)
+### 5.1 Generation II (Muon, Charm, Strange)
 *   **Architecture:** Missing the **Outer Binary**.
 *   **Nucleus:** **Bi-Binary** (Inner, Middle).
     *   Composition: 2P, 2E (4 architrinos).
@@ -103,7 +160,7 @@ Generations are defined by the **shedding of shielding binaries** from the Nucle
     *   Personality: 6E.
     *   Total Count: 10 Architrinos.
 
-### 4.2 Generation III (Tau, Top, Bottom)
+### 5.2 Generation III (Tau, Top, Bottom)
 *   **Architecture:** Missing **Outer and Middle Binaries**.
 *   **Nucleus:** **Uni-Binary** (Inner only).
     *   Composition: 1P, 1E (2 architrinos).
@@ -115,14 +172,18 @@ Generations are defined by the **shedding of shielding binaries** from the Nucle
     *   Personality: 5P, 1E.
     *   Total Count: 8 Architrinos.
 
+### 5.3 Core Depletion, Axial Vortices, and Lifetime
+
+From the dynamical-systems perspective, the nested binaries in the Noether core are not just bookkeeping devices; each binary supports a pair of **axial vortices** that act as topological “rails” for the Personality charges. In a full tri-binary (Gen I) core, the three binaries generate a robust 3D vortex skeleton that tightly constrains the six decoration sites and distributes stresses into the surrounding Noether Sea. When a binary is removed (Gen II: loss of the outer binary), that corresponding axial vortex structure collapses: one layer of the vortex scaffold disappears, and the remaining binaries must now carry the same decoration pattern with reduced geometric support. This lowers the stability margin of the assembly in ordinary 3D spacetime; small perturbations in the Noether Sea are more effective at driving the core away from its attractor, so the lifetime shortens. With two binaries removed (Gen III: only the inner binary remains), the situation is extreme: a single high‑curvature binary must anchor all six decoration charges with only one axial vortex pair. In this depleted-core regime the configuration sits near the edge of dynamical stability—its basin of attraction is tiny, and any sizable hit from the medium can disrupt the vortex, allowing the Personality charges to reconfigure or escape. The observable short lifetimes of Gen II and Gen III fermions are thus interpreted as direct signatures of **core depletion**: fewer binaries → fewer axial vortices → weaker topological confinement of the decorations → faster decay of the overall assembly.
+
 ---
 
-## 5. Phenomenological Implications
+## 6. Phenomenological Implications
 
-### 5.1 Universality of Gauge Couplings
+### 6.1 Universality of Gauge Couplings
 Because the **Personality Layer** (which dictates charge and isospin) is structurally identical across generations (always 6 sites), the electromagnetic and weak couplings are identical for $e, \mu, \tau$. This elegantly explains Lepton Universality.
 
-### 5.2 The Proton vs. Neutron
+### 6.2 The Proton vs. Neutron
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
 
 *   **Proton ($uud$):**
@@ -141,14 +202,13 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
     *   Net: $0$.
     *   Total Architrinos: 36.
 
-### 5.3 Decay Pathways
+### 6.3 Decay Pathways
 *   **Muon Decay ($\mu^- \to e^- + \bar{\nu}_e + \nu_\mu$):**
     *   This represents the **regrowth** or **capture** of an Outer Binary by the Muon's Bi-binary core to become an Electron (Tri-binary core), shedding energy (neutrinos).
     *   *Alternative View:* The Muon core is unstable and breaks down? No, usually decay goes High Mass -> Low Mass. The Muon (high mass, exposed) must *acquire* shielding (lower mass, stable) from the Noether Sea to become an Electron. This implies decay is an interaction with the vacuum density.
 
 ---
 
-## 6. Action Items
-1.  **Dyna:** Verify that Bi-binary and Uni-binary cores can geometrically support the same 6-pole Personality Layer as the full Tri-binary. (Essential for Lepton Universality).
-2.  **Alfa:** Analyze the binding energy of the Proton (36 architrinos).
-3.  **Phe:** Calculate the magnetic moment difference between Gen I, II, and III based on the "exposed core" radius.
+## 7. Action Items
+1.  **Alfa:** Analyze the binding energy of the Proton (36 architrinos).
+2.  **Phe:** Calculate the magnetic moment difference between Gen I, II, and III based on the "exposed core" radius.
