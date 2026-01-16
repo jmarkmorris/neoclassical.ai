@@ -1,7 +1,7 @@
 
 The viz3d app is deployed via GitHub pages. 
 
-To do so, the 'docs' directory contains an entire copy of this markdown directory.
+To do so, the 'docs' directory contains an entire copy of the prototype directory.
 
 Periodically the 'docs' directory should be refreshed.
 

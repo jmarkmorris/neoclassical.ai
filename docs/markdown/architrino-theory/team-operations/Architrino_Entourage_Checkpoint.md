@@ -1,4 +1,4 @@
-# 🏛️ ARCHITRINO MASTER CHECKPOINT: UPDATED JAN 2026
+# 🏛️ ARCHITRINO ENTOURAGE CHECKPOINT: UPDATED JAN 2026
 
 **Project Phase:** Theoretical Consolidation & Repo Stubbing  
 **Ontological Status:** Absolute Euclidean / Neo-Lorentzian / Deterministic Pilot-Wave  
@@ -23,7 +23,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
    - Includes deliverables, interfaces, responsibilities  
    - Your enriched context now lives here
 
-3. **This Master Checkpoint** (`architrino_checkpoint_current.md`)  
+3. **This Master Checkpoint** (`architrino_entourage_checkpoint.md`)  
    - Ontological axioms (what we believe)  
    - Current state (where we are)  
    - Immediate actions (what's next)  
@@ -178,13 +178,11 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **"Physical Observer (PO)"** for assembly-based measurements (epistemic).
 
 **AVOID (Prohibited without explicit justification):**  
+- **"Retarded time"** → use "emission time" or "path history."  
 - **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."  
 - **"Vacuum"** → space is never empty; use "void" (Euclidean container) or "medium" (Noether Sea).  
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
-- **"Retarded"** → *causal wake surface* / *causal isochron*
-  - Use the term 'history' or 'path history' rather than the term retarded. 
-  - Prefer *causal wake surface* / *causal isochron* whenever describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete retarded pulses.  
 
 **Why This Matters:**  
 - Prevents accidental import of incompatible ontological commitments (e.g., "curved space" implies GR's fundamental geometry).  
@@ -479,7 +477,11 @@ When session resumes, **prioritize these four tasks**:
 
 **Action 1 (Marko-initiated): Master Equation of Motion (EOM)**  
 - **Goal**: Write down the explicit, rigorous equation governing architrino dynamics:  
-  $$m \frac{d^2 \mathbf{x}_i}{dt^2} = \mathbf{F}_i = -q_i \nabla \Phi_i(\mathbf{x}_i, t)$$  
+  
+  $$
+  m \frac{d^2 \mathbf{x}_i}{dt^2} = \mathbf{F}_i = -q_i \nabla \Phi_i(\mathbf{x}_i, t)
+  $$
+  
   where $\Phi_i$ is the total potential received by architrino $i$ from all others (and self, if in self-hit regime).  
 - **Includes**:  
   - Path history integral (emission time calculation),  
