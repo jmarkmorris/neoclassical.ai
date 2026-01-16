@@ -167,7 +167,7 @@ class PhysicsMover(Mover):
     mover_type = "physics"
 
     def step(self, state: ArchitrinoState, env: MoverEnv, path_spec: PathSpec) -> Vec2:
-        # Retarded-force integration using historical emissions.
+        # Delayed-force integration using historical emissions.
         dt_step = env.time - state.last_time
         if dt_step <= 0:
             return state.pos
