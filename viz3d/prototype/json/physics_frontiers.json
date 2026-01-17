@@ -232,21 +232,6 @@
       }
     },
     {
-      "id": "information_loss_paradox",
-      "label": "Black Hole Information Loss Paradox",
-      "radius": 1.68,
-      "color": "#4f315f",
-      "position": [
-        18.0,
-        12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "black_hole_interior",
       "label": "Black Hole Interior Structure",
       "radius": 1.68,
@@ -382,21 +367,6 @@
       }
     },
     {
-      "id": "hierarchy_problem",
-      "label": "Hierarchy Problem",
-      "radius": 1.68,
-      "color": "#2c2f45",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "history",
       "label": "History",
       "radius": 1.68,
@@ -457,42 +427,12 @@
       }
     },
     {
-      "id": "muon_g_minus_2",
-      "label": "Muon g-2 Anomaly",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        -6.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "nature_of_time",
       "label": "Nature of Time",
       "radius": 1.68,
       "color": "#556277",
       "position": [
         0.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "neutrino_sector",
-      "label": "Neutrino Sector Unknowns",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        6.0,
         -6.0,
         0.0
       ],
@@ -600,21 +540,6 @@
       "color": "#7a4a1f",
       "position": [
         12.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "vacuum_stability",
-      "label": "Vacuum Stability",
-      "radius": 1.68,
-      "color": "#7a2f5a",
-      "position": [
-        18.0,
         -12.0,
         0.0
       ],
