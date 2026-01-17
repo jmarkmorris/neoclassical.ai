@@ -62,7 +62,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
     *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination cores.
-    *   **Free Bundle:** In high-energy events, the bundle is "launched" into the vacuum, propagating briefly before decaying (rupturing) due to internal instability.
+    *   **Free Bundle:** In high-energy events, the bundle is "launched" into the vacuum, propagating near the field speed along its axis before decaying (rupturing) due to internal instability.
 
 ### 2.2 Quantum Numbers and Channels
 *   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
@@ -111,6 +111,6 @@ The Higgs is not a propagating assembly *through* the vacuum; it is a resonance 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
 | **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Corridor ("Train") | None (Planar/Edge-on) |
-| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-range Bridge | 3D Bulge Drag |
-| **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-range Bridge | Hybrid Drag |
+| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Corridor Confinement Energy (env-dependent drag) |
+| **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Corridor Confinement Energy (env-dependent drag) |
 | **Higgs** | Radial Vacuum Oscillation | N/A | Local Resonance | Lattice Stiffness |
