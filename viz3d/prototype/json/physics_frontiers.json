@@ -228,7 +228,9 @@
         24.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/philosophy_history/philosophy_history.json"
+      ],
       "motion": {
         "type": "fixed"
       }
@@ -394,23 +396,6 @@
         0.0
       ],
       "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "philosophy",
-      "label": "Philosophy",
-      "radius": 1.68,
-      "color": "#4b678f",
-      "position": [
-        12.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophy/philosopher.json"
-      ],
       "motion": {
         "type": "fixed"
       }

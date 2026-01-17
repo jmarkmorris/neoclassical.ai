@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "philosopher",
-    "name": "Philosopher Grid",
+    "name": "Philosopers",
     "units": "relative",
     "wrapLabels": true,
     "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/major-thinkers.md",

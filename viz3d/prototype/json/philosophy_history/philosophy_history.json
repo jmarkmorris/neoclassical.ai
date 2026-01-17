@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history",
+    "name": "Philosophy-History",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "philosopers",
+      "label": "Philosopers",
+      "radius": 1.6,
+      "color": "#4b678f",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy/philosopher.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

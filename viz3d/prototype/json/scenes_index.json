@@ -71,6 +71,11 @@
       "path": "json/physics_frontiers.json"
     },
     {
+      "id": "philosophy_history",
+      "name": "Philosophy-History",
+      "path": "json/philosophy_history/philosophy_history.json"
+    },
+    {
       "id": "gravity",
       "name": "Gravity",
       "path": "json/spacetime/gravity.json"
