@@ -4,13 +4,13 @@
 **Goal:** Derive the relation between **absolute time** $t$ (used by the virtual observer in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
 
 We seek a map
-\[
+$$
 \frac{d\tau}{dt} = F\big(\mathbf{v}, \rho_{\text{vac}}(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
-\]
+$$
 that reproduces, in the appropriate regime,
-\[
+$$
 \frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c^2} - \frac{v^2}{c^2}}
-\]
+$$
 and generalizes to strong‑field / high‑velocity conditions.
 
 ---
@@ -42,9 +42,9 @@ A clock is any assembly with a **stable, countable internal cycle**:
   - In a region of homogeneous Noether Sea density $\rho_{\text{vac,0}}$ and negligible external gradients.
 
 Proper time is then defined operationally as:
-\[
+$$
 d\tau = \frac{\omega(\text{state})}{\omega_0}\, dt
-\]
+$$
 where $\omega(\text{state})$ is the instantaneous internal oscillation frequency in the actual kinematic and environmental state.
 
 The central problem is to compute $\omega(\mathbf{v},\rho_{\text{vac}},\Phi_{\text{eff}})$ from the master dynamics.
