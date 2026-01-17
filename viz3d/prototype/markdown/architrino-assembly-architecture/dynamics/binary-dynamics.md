@@ -1,3 +1,204 @@
+# Orbiting Binary Assembly
+
+An orbiting binary is the simplest emergent assembly, consisting of two Architrinos of opposite charge—an Electrino and a Positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the velocity symmetry point. 
+
+### 1. System Definition and Equations of Motion
+
+Let's consider the ideal case of a symmetric orbit in a universe with no other Architrinos.
+
+Let the Electrino be particle 1 and the Positrino be particle 2.
+-   **Positions:** $\mathbf{s}_1(t)$ and $\mathbf{s}_2(t)$
+-   **Charges:** $q_1 = -\epsilon$ and $q_2 = +\epsilon$
+
+The motion of each particle is determined by the field emitted by the other at a delayed time. The acceleration of the Electrino (particle 1) at time $t$ is caused by the Positrino's (particle 2) field emitted at an emission time $t_0$. This is governed by the interaction condition:
+$$
+\|\mathbf{s}_1(t) - \mathbf{s}_2(t_0)\| = v(t - t_0)
+$$
+The acceleration vector for the Electrino is attractive, pointing towards the Positrino's delayed position:
+$$
+\mathbf{a}_1(t) \propto -\hat{\mathbf{r}}_{21} = - \frac{\mathbf{s}_1(t) - \mathbf{s}_2(t_0)}{\|\mathbf{s}_1(t) - \mathbf{s}_2(t_0)\|}
+$$
+A symmetric set of equations governs the Positrino's motion based on the Electrino's emissions.
+
+### 2. The Inward Exponential Spiral
+
+In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le v$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward exponential spiral** that shrinks $r$ and increases speed until the self-interaction threshold ($|\mathbf{v}|>v$) is crossed.
+
+-   The tangential component of the delayed force sustains the orbital motion.
+-   The radial component continuously pulls the particles closer together.
+
+With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the Electrino and Positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and per-wavefront amplitude remain constant; the evolution is driven entirely by delay geometry and, once active, self-interaction.
+
+### 3. Evolution Through Velocity Regimes
+
+The binary system's evolution is characterized by two distinct phases defined by the velocity symmetry point.
+
+#### **Contraction Phase ($|\mathbf{v}| \le v$)**
+Initially, and as long as the speeds of both particles are less than or equal to the field speed $v$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
+$$
+\mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) \quad \text{and} \quad \mathbf{a}_{2, \text{total}}(t) = \mathbf{a}_{2,1}(t)
+$$
+During this phase, the system is purely contractile, with the particles accelerating and spiraling towards each other.
+
+#### **Deflationary Phase ($|\mathbf{v}| > v$)**
+Once the particles' speeds exceed the field speed $v$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive wakes. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the Electrino:
+$$
+\mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
+$$
+The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases, causing the inward spiral to tighten while driving the system toward a curvature-limited minimum radius rather than a singular collapse. This phase is "deflationary" in that self-interaction accelerates the approach to the limiting circular state.
+
+### 4. The Stable State and Emergent Properties
+
+The deflationary spiral does not continue indefinitely. The self-repulsive force creates a dynamic feedback mechanism that ultimately stabilizes the system and prevents a singularity.
+
+#### **Curvature Limit and Stability**
+The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each Architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
+
+At this limit, the trajectory stabilizes, and the system settles into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is perfectly channeled into the circular motion, while the self-repulsive force prevents any further tightening of the path's curvature. Importantly, this minimum-radius circular state only exists once self-interaction is active ($|\mathbf{v}|>v$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le v$) no stable circular orbit exists.
+
+#### **Emergent Properties**
+The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
+-   No intrinsic speed cap at the Architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$).
+-   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $v$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
+-   **An Imposed Speed Limit:** While individual Architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
+-   **A Zero-Potential Axis:** In an ideal, symmetric orbit, the positive and negative potentials emitted by the two particles perfectly cancel along the axis of rotation. This creates a line of zero net potential. This axis acts as a near-zero-potential corridor through which another Architrino could pass without being accelerated by the binary, provided its path is perfectly aligned with the axis.
+
+Validation note: Compare these claims against the standard numerical cross-checks (see 00.2.5 — Numerical Cross-Checks).
+
+---
+
+**Note on Complex Scenarios:** The analysis above describes a stationary binary system. More complex dynamics arise when the binary assembly is also translating through space, especially when the axis of orbit is not aligned with the direction of the group's velocity.
+
+---
+
+# Emergent Measurement of Time and Distance
+
+While the model is founded on the concepts of absolute space and absolute time, these are featureless, continuous arenas. They provide the mathematical background for geometry and motion but contain no inherent "ruler" or "clock." There are no fundamental, pre-defined units of distance or time. Instead, these units must emerge from the dynamics of the system itself.
+
+### The Stable Binary as a Universal Standard
+
+The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As described previously, an isolated Electrino-Positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
+-   A **minimum possible radius**.
+-   A **maximum possible orbital frequency** (and thus a minimum period).
+
+This stable state is a universal attractor for a binary system, and its properties are determined solely by the fundamental constants of the model (such as field speed $v$ and charge $\epsilon$). It is this predictable, reproducible configuration that provides the foundation for all measurement.
+
+### An Emergent Unit of Distance
+
+The radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
+
+-   **Definition:** $d_0$ is the radius of a stable, circular Electrino-Positrino orbit.
+-   **Universality:** Any observer in the universe can, in principle, construct this standard by observing an isolated binary system.
+-   **Function:** All other spatial measurements, from the size of more complex assemblies to the distances between them, can be expressed in terms of $d_0$.
+
+### An Emergent Unit of Time
+
+The motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
+
+-   **Definition:** The fundamental unit of time, $t_0$, is the orbital period of a stable, circular Electrino-Positrino orbit.
+-   **Universality:** Like the unit of distance, this period is a constant derived from the system's fundamental dynamics.
+-   **Function:** All other temporal measurements, such as the duration of events or the lifetimes of unstable assemblies, can be measured in multiples of $t_0$.
+
+### Establishing a Physical Coordinate System
+
+With the emergent units $d_0$ and $t_0$, we can move from the abstract, uncalibrated coordinates of absolute space and time to a concrete, physical coordinate system. Any measurement of a physical quantity can be rendered dimensionless by expressing it in these natural units. For example, the fundamental field speed $v$ can be written as a constant multiple of $d_0/t_0$.
+
+This framework establishes that while the *arena* of space and time is absolute, the *measurement* of space and time is necessarily relative to the properties of the emergent structures that populate it.
+
+
+
+### Non-Markovian Memory and the Self-Hit Condition
+
+1. **Self-Hit Definition**: A self-hit occurs when an architrino’s current trajectory $(\mathbf{x}(t))$ intersects the expanding causal isochron emitted by itself at a prior time $t_{hist}$.
+2. **Intersection Logic**: In absolute Euclidean coordinates, find $t_{hist}$ such that:
+   $$|\mathbf{x}(t) - \mathbf{x}(t_{hist})| = c_f (t - t_{hist})$$
+3. **The Stability Mechanism**: Self-hit provides the non-linear "push-back" force required to prevent binary collapse. It replaces the "singularities" of 1/r potential with a high-curvature constraint derived from re-entering causal isochrons.
+4. **Virtual Observer Diagnostics**: Simulation logs must record self-hit frequency and "provenance" (the age of the wake surface being hit) to distinguish stable Tri-Binary attractors from chaotic or decaying states.
+
+## Self-Hit Detection and Logging (VO-based)
+
+Frame self-hit as a path-history intersection problem:
+- Find (t_emit, t_hit) such that:
+  |x_emitter(t_hit) − x_emitter(t_emit)| = c_f (t_hit − t_emit)
+  with same emitter identity
+
+Simulation requirement:
+- Use VO provenance tables to detect/count self-hit events:
+  (emitter\_id, t\_hit, t\_emit, impact\_parameter, contribution\_strength)
+
+Acceptance criteria:
+- Self-hit event rates and distributions must converge under:
+  - $\Delta$t refinement
+  - history-resolution refinement
+  - integrator swap
+If self-hit signatures change qualitatively under refinement, treat as numerical artifact until proven otherwise.
+
+## Addenda (Dyna)
+
+### Self-Hit as a Path-History Intersection in the Absolute Frame
+
+Self‑hit is the key non‑Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
+
+**Geometric condition (absolute coordinates):**
+
+For a given architrino with trajectory $\mathbf{x}(t)$, a self‑hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that:
+
+$|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),$
+
+ and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
+
+Because the underlying coordinates and time are absolute, this condition is unambiguous:
+
+- The virtual observer knows $\mathbf{x}(t)$ for all $t$ and can solve for all such pairs $(t_\text{emit}, t_\text{hit})$ along the worldline.
+- No coordinate‑gauge ambiguity enters the definition.
+
+**Dynamical role:**
+
+- At low velocities ($v < c_f$), self‑hit is rare or absent; dynamics are approximately Markovian.
+- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter’s future positions, generating:
+  - Nonlocal feedback on its motion.
+  - Effective restoring or destabilizing forces depending on configuration.
+- For binary and tri‑binary assemblies, repeated self‑hit events can:
+  - Prevent collapse to singularity (short‑distance repulsion),
+  - Lock in stable radii and frequencies (Noether‑core formation),
+  - Create new limit cycles and attractors in phase space.
+
+**Simulation & diagnostics:**
+
+In simulations:
+
+- Use virtual‑observer provenance tables to record, for each self‑hit:
+  - $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$,
+  - $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$,
+  - Impact parameters and force contributions.
+- Check convergence of self‑hit statistics under:
+- Time step refinement,
+- History resolution refinement,
+- Different integrators.
+
+If self‑hit signatures are numerically unstable under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
+
+## Addenda (Dyna - Alternate formalism)
+
+### Formalizing Self-Hit Geometry in Absolute Coordinates
+
+The use of an Absolute Observer allows for a non-ambiguous definition of the self-hit condition.
+
+1. **Coordinate Identification**: Because $(x,y,z)$ labels in the void are permanent, the "Self-Hit" occurs when a causal isochron emitted at $(\mathbf{x}_{em}, t_{em})$ intersects the source architrino at $(\mathbf{x}_{rec}, t_{rec})$ such that:
+   $$|\mathbf{x}_{rec}(t_{rec}) - \mathbf{x}_{em}(t_{em})| = c_f (t_{rec} - t_{em})$$
+2. **Path History**: The path is a straight Euclidean vector. Curvature is not in the path, but in the **deformation of the source's trajectory** due to the self-interaction force.
+3. **Non-Markovian Memory**: The feedback loop at $t$ is determined by the position of the architrino at $t_{history}$. This prevents binary singularities; as $r \to 0$ and $v$ increases, the self-hit force provides a non-linear "push-back."
+
+## Addenda (Dyna - supplemental)
+
+### Self-Hit in Absolute Coordinates
+
+* **Definition:** A self-hit occurs when an architrino trajectory intersects its own past causal wake surface in the fixed frame.
+* **Geometry:** The feedback loop is strictly non-Markovian. The "memory" is stored in the field at specific absolute coordinates.
+* **Stability:** Self-hit provides the bounding force for the Noether core.
+
+---
+
 
 
 # Maximum-Curvature Circular Orbit (Opposite Charges)
@@ -509,3 +710,6 @@ Further analysis (Ch. 11–13) will address:
 5. **Bridge from fundamental to operational**: The MCB is the **first emergent structure** with physical dimensions. All larger assemblies (atoms, particles, macroscopic matter) scale from this. Operational measurements (rulers, clocks) ultimately trace back to MCB oscillations.
 
 6. **Tri-binary structure is more complex**: While the MCB forms naturally in isolation, tri-binary assemblies (with middle and outer binaries) likely require additional stabilization mechanisms (Noether Sea coupling, phase-locking, quantization).
+
+
+
