@@ -125,6 +125,7 @@ Consider how the "**Valley of Stability**" might evolve in high "gravitational g
 ---
 
 **Alfa's Working Motto:** "If you can't build an atom with it, it isn't physics."
+
 # Foundational Reference
 - **Absolute timespace** (absolute time × Euclidean space) is the invariant substrate; see `foundations/ontology.md` Sec. 1 for constants and symmetry assumptions.
 - **Architrino ontology** (Sec. 2) treats each architrino as an eternal point transceiver of continuous potential wakes; the Master Equation (`foundations/master-equation.md`) sums the $1/r^2$ contributions from every causal emission (path history) intersecting a receiver.
