@@ -179,11 +179,11 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **AVOID (Prohibited without explicit justification):**  
 - **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."  
-- **"Vacuum"** → space is never empty; use "void" (Euclidean container) or "medium" (Noether Sea).  
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
-- **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 - **"Retard or Retarded"** → **"Path History" / "causal wake surface" / "causal isochron"**
-  - When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
+- **"Shell"** → When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.
+- **"Vacuum"** → carries a lot of baggage—both historical and intuitive—that suggests truly empty space. Many readers (including some physicists) still interpret it that way. Whenever we’re describing the physical medium of tri-binary spacetime, let’s use **“spacetime assemblies,” “Noether Sea,”** or **“tri-binary spacetime”** instead. Reserve “vacuum” only when referring explicitly to the historical semantics of mainstream physics.  
+- **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 
 **Why This Matters:**  
 - Prevents accidental import of incompatible ontological commitments (e.g., "curved space" implies GR's fundamental geometry).  
@@ -543,4 +543,4 @@ When session resumes, **prioritize these four tasks**:
 
 ---
 
-## V. SIMULATION PARAMETERS (For Sol)
+

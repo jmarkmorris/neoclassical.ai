@@ -220,13 +220,12 @@ Assess status across five dimensions using Green/Yellow/Red coding:
 5. **Falsifiability**: Are failure criteria clear and testable?
 
 ### 7.4 **AVOID (Prohibited without explicit justification):**  
-- **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."  
-- **"Vacuum"** → space is never empty; use "void" (Euclidean container) or "medium" (Noether Sea).  
+  **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."  
 - **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); always clarify: "Noether Sea" or "spacetime medium."  
-- **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 - **"Retard or Retarded"** → **"Path History" / "causal wake surface" / "causal isochron"**
-  - When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.  
- 
+- **"Shell"** → When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.
+- **"Vacuum"** → carries a lot of baggage—both historical and intuitive—that suggests truly empty space. Many readers (including some physicists) still interpret it that way. Whenever we’re describing the physical medium of tri-binary spacetime, let’s use **“spacetime assemblies,” “Noether Sea,”** or **“tri-binary spacetime”** instead. Reserve “vacuum” only when referring explicitly to the historical semantics of mainstream physics.  
+- **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 
 ---
 
@@ -332,4 +331,3 @@ Ask for these resources if you don't have them.
 
 - `foundations/ontology.md` 
 - `foundations/master-equation.md` 
-

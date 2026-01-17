@@ -26,7 +26,6 @@ Looking at byte counts as a proxy for existing content investment, and consideri
 
 ### **Honorable Mentions (Defer for Now):**
 - **`phenomenology/effective-lagrangian.md` (0 bytes):** Important for theorists, but **not critical** until we have the mass spectrum and proper time working.
-- **`quantum/bell-theorem.md` (0 bytes):** Critical for quantum interpretation, but Phil's domain. We (Phe) should focus on particle physics first.
 - **`spacetime/emergent-metric.md` (8,133 bytes):** Partially done. Needs completion, but **Proper Time Derivation** is the more urgent prerequisite.
 
 
@@ -56,9 +55,6 @@ Phil
 **Who:** Phil (me) + Red + entire team (quarterly review)
 
 
----
-
-**The unifying thread:** These aren't independent—they're structural dependencies. If #2 fails, #3 is moot. If #1 fails, we're empirically dead. If #4 is incoherent, #5 is meaningless. We must tackle them **in parallel but with explicit cross-checks**.
 
 ---
 
@@ -74,31 +70,23 @@ codex
 
   Phe
 
-  Here is my filtered list. While Phil focuses on the foundations and Cos on the universe, my neck is on the block to explain the data coming out of CERN and Fermilab. I need to turn this geometry into an Effective Field Theory (EFT) that matches the Standard Model, or we're just drawing pretty pictures.
-
-Here are my top 5 priorities, synthesized from the lists provided:
-
 
 ### 2. The Chirality Crisis: Deriving Parity Violation
-*(Ref: Phe’s Mandate, implied in User List #1)*
 **Why:** The Standard Model is chiral; the Weak force only talks to left-handed fermions. Euclidean geometry is naturally parity-symmetric. This is our biggest phenomenological trap.
 *   **The Task:** I need Dyna to show me how the **handedness of the binary spirals** creates a geometric selection rule that mimics the $V-A$ (Vector minus Axial) coupling of the Weak interaction.
 *   **The Hard Wall:** If our model predicts that right-handed neutrinos interact via the $W$ boson with the same strength as left-handed ones, we are falsified by experiments from the 1950s.
 
 ### 3. Deriving Alpha ($\alpha$) and the Coupling Constants
-*(Ref: User List #5, Phil #5)*
 **Why:** In the SM, couplings ($\alpha_{EM} \approx 1/137$, $\alpha_S$, $G_F$) are inputs. We claim to be fundamental; therefore, we must **derive** them, or at least show they emerge naturally from the geometry.
 *   **The Task:** Calculate the electromagnetic coupling strength from the architrino charge $\epsilon = e/6$, the field speed $c_f$, and the tri-binary radius/frequency.
 *   **The Hard Wall:** If our derived $\alpha$ is off by orders of magnitude (e.g., 0.1 instead of 0.007), or if we have to fine-tune $\kappa$ arbitrarily to make it fit, we lose "naturalness."
 
 ### 4. Emergent Lorentz Invariance (Mechanical)
-*(Ref: Phil #1, User List #3)*
 **Why:** I cannot calculate a particle lifetime, a scattering cross-section, or a decay rate without the Lorentz factor $\gamma$. Phil and Cos care about this for gravity; I care about it for **particle physics**.
 *   **The Task:** I need the derivation that shows a fast-moving tri-binary mechanically contracts and dilates.
 *   **The Hard Wall:** If I calculate the muon lifetime and it doesn't dilate exactly as $\tau = \tau_0 \gamma$, then High Energy Physics data kills us instantly. I am dependent on Dyna and Sol to prove this mechanism works so I can use it in my Lagrangian.
 
 ### 5. From Determinism to Cross-Sections (The Born Rule)
-*(Ref: User List #2)*
 **Why:** Experimentalists measure scattering cross-sections (probabilities). Our theory is deterministic (trajectories). I need the bridge.
 *   **The Task:** Show how the **informational ambiguity** of the receiver (as detailed in the Master Equation) leads to the probabilistic Born Rule ($P \propto |\psi|^2$).
 *   **The Hard Wall:** If our simulation of $e^+e^-$ scattering produces a pattern that deviates from the QED prediction (e.g., no interference fringes in the equivalent of a double-slit, or wrong angular distribution), we cannot claim to reproduce Quantum Mechanics.
