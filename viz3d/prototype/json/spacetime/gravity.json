@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "gravity",
+    "name": "Gravity",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "gravity",
+      "label": "Gravity",
+      "radius": 1.6,
+      "color": "#2a3b5a",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}
