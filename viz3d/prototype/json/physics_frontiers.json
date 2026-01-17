@@ -352,21 +352,6 @@
       }
     },
     {
-      "id": "history",
-      "label": "History",
-      "radius": 1.68,
-      "color": "#5f5f7a",
-      "position": [
-        6.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "horizon_problem",
       "label": "Horizon Problem",
       "radius": 1.68,
