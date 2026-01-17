@@ -1,94 +1,116 @@
-##  Photons: Neutral Planar Bundles on a Phase-Locked Corridor (“Photon Train”)
+# Electroweak Bosons: Photons, W/Z, and Higgs
 
-Definition (geometric): A photon is a coherent, charge-neutral, propagating bundle of delayed, purely radial per-hit actions organized along a narrow axial corridor. In practice it appears as a phase-locked stack of planar sub-bundles (“planar bosons on the photon train”) organized by oscillatory constituent architrinos (typically bound in binaries within assemblies). Emission/absorption are re-coupling events among constituent architrinos via internal binaries; no separate gauge-field inventory is required.
-
-- Neutrality and classical character:
-  - Net charge is zero at all times; far fields are dominated by transverse oscillations set by path-history geometry. In coherent regimes, photons exhibit classical-beam behavior (“evidence for classical photons”) while retaining packet-like coupling to discrete normal modes.
-
-- Axial corridor geometry:
-  - A quasi-cylindrical corridor aligned with propagation axis $\hat{\mathbf{e}}$ carries the superposed $1/r^2$ wake surfaces in a phase structure that self-guides the bundle. The corridor supports a train of phase-aligned planar slices that advance at group speed ~ $v$.
-
-- Polarization, helicity, and Malus:
-  - Linear polarization = fixed orientation of the principal transverse oscillation ellipse relative to $\hat{\mathbf{e}}$.
-  - Circular/elliptic polarization = constant-phase rotation of that ellipse around $\hat{\mathbf{e}}$; helicity is the sign of this axial phase winding.
-  - Malus’s law emerges geometrically: an analyzer projects the corridor’s transverse pattern onto its axis, giving transmitted intensity $\propto \cos^2\theta$ from corridor–analyzer overlap, without invoking right-hand-rule magnetism.
-
-- Kinematics and path:
-  - Group velocity ≈ $v$ (1 in our units); no rest frame (apparent rest energy is zero).
-  - Energy–frequency correspondence: for a periodic source of angular frequency $\omega$, the apparent energy flux scales $E_{\text{app}} \propto \omega$ over resolved intervals.
-  - “Absolute distance and path” correspond to the geometric length of the axial corridor threaded by the train across simultaneity slices $\Sigma_t$.
-
-- Environmental coupling (spacetime æther and media):
-  - Refraction, dispersion, and attenuation arise from re-coupling/decoupling between the corridor and coherent ambient assemblies (including spacetime æther assemblies), changing phase velocity or depleting the train.
-
-- Interaction rules (emergent):
-  - Coupling is strongest to assemblies with compatible axial corridors (polar regions of binaries/cores).
-  - Absorption = corridor re-capture by an internal binary via re-binding of constituent architrinos, increasing mode energy or reconfiguring personality architrinos.
-  - Emission = corridor release driven by accelerated constituent architrinos within subassemblies; bursts form short trains, continuous drives form long trains.
-
-Plain language: A photon is a neutral, phase-locked “train” of planar pushes guided down a narrow tube; polarizers simply project that tube’s sideways wiggle (giving cos²$\theta$), and making or absorbing a photon is the tube locking onto or peeling off an internal rotating pair.
+**Status:** Draft / Integrated Definition
+**Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
+**Core Principle:** Bosons are discrete, propagating assemblies of architrinos (Planar Tri-binaries) organized into phase-locked corridors.
 
 ---
 
-# W and Z Bosons as Transient Electroweak Meta-Assemblies
+## 1. The Photon ($\gamma$): Coaxial Contra-Rotating Stack
 
-We work in units with field speed $v=1$ unless stated otherwise. $\epsilon = |e|/6$ is the unit charge magnitude.
+The Photon is the fundamental carrier of the electromagnetic interaction. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework derives the photon as a **propagating assembly of discrete action history**.
 
-## 1) Concept: Localized Recoupling Bundles
+### 1.1 Ontological Status: No Separate Gauge Inventory
+*   **The Claim:** There is no abstract "electromagnetic field" separate from the particles.
+*   **The Reality:** The "field" is simply the aggregate path-history of constituent architrinos.
+*   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable geometric corridor. Emission is not the excitation of a background field; it is the **release** of internal architrino sub-assemblies from a source.
 
-In this framework, W± and Z⁰ are not fundamental particles; they are short-lived, localized meta-assemblies—corridors of coupled, high-intensity axial field that mediate discrete reconfigurations of personality architrinos between Noether Core assemblies.
+### 1.2 Geometric Unit: The Contra-Rotating Pair
+At the finest scale, the photon unit is a composite assembly:
+*   **Planar Tri-Binaries:** Unlike spherical fermions, the constituents are 2D (flattened) tri-binaries.
+*   **The Sandwich:** Two of these planar disks are stacked **Coaxially** (sharing the propagation axis $\hat{\mathbf{e}}$).
+*   **Dynamics:** They are **Contra-Rotating** (Clockwise / Counter-Clockwise).
+*   **Neutrality:** This cancellation ensures zero net static charge, leaving only the transverse oscillating field.
 
-- Corridor geometry:
-  - A W/Z bundle is a compact, phase-locked vortex corridor connecting two polar regions (within or between assemblies). It carries concentrated delayed, radial-only actions arranged to transport charge and/or angular momentum during a brief interval.
-- Lifetime and scale:
-  - Spatial extent $\ell$ is a few $d_0$ (the minimal binary radius); lifetime $\tau$ is short (impulsive on assembly timescales). The bundle typically propagates near $v$ along its axis when emitted into open space, or remains tethered between sources during transfer.
+### 1.3 Propagation: The "Photon Train"
+A photon manifests as a **Phase-Locked Corridor** of delayed actions.
+*   **The Corridor:** A quasi-cylindrical tube aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
+*   **Burst vs. Continuous:**
+    *   **Packet (Particle-like):** A discrete atomic transition releases a short "burst" train—a finite segment of the corridor.
+    *   **Beam (Classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
+*   **Group Velocity:** The planar (edge-on) orientation minimizes interaction with the vacuum lattice, allowing propagation at the field speed limit ($v \approx 1$).
 
-Plain language: W and Z are fleeting “thickened tubes” of push that briefly connect two poles to swap charge or spin before they fade.
+### 1.4 Interaction Rules: Capture and Release
+*   **Emission (Corridor Release):** Driven by accelerated motion in the source binary. The internal binding is overcome, and a "stack" of planar wakes is shed along a tangential vector.
+*   **Absorption (Corridor Capture):**
+    *   Absorption is not the annihilation of a quantum field operator.
+    *   It is the **mechanical re-capture** of the corridor by an internal binary in the target atom.
+    *   The "Train" docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
 
----
+### 1.5 Environmental Coupling (The Aether)
+*   **Spacetime Aether:** The vacuum is populated by neutral assemblies.
+*   **Attenuation & Refraction:**
+    *   As the photon train passes through regions of varying density (dielectric media or dense Aether), the corridor **re-couples** transiently with ambient assemblies.
+    *   **Refraction:** This drag slows the phase velocity ($v_{phase} < c$).
+    *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
 
-## 2) Channels and Quantum Numbers
-
-- W± (charged transfer):
-  - Function: transports net charge $\pm 6\epsilon$ between assemblies by reconfiguring which cores/personality architrinos carry those $\epsilon$-units.
-  - Charge: $q_W = \pm 6\epsilon$ (matches $\pm e$ when measured in electron units).
-  - Spin: effectively spin-1 from the axial corridor structure and its transverse phase.
-  - Interpretation: a localized transfer operation that updates the charge bookkeeping of the coupled assemblies while conserving the global $\epsilon$-inventory.
-
-- Z⁰ (neutral transfer):
-  - Function: transports energy, momentum, and angular momentum with zero net charge.
-  - Charge: $q_Z = 0$.
-  - Spin: effectively spin-1 for the same axial reasons.
-  - Interpretation: a neutral corridor enabling re-phasing and mode exchange without charge movement.
-
-Conservation: All transfers are implemented as reassignment of personality architrinos among cores and changes in internal mode energies; global sums of ±$\epsilon$ and total energy are conserved by construction.
-
----
-
-## 3) Emission and Absorption (Geometric Rules)
-
-- Emission:
-  - Triggered by strongly accelerated, asymmetric internal motion near a polar region (e.g., binary mode transitions). A corridor nucleates from the superposition of constituent architrinos’ delayed radial pushes that add coherently along an axis and then either tethers to a nearby target or departs as a free bundle.
-- Absorption:
-  - Occurs when a corridor aligns with a compatible polar region; the phase-locked pattern is re-captured via constituent architrino re-binding, yielding a discrete update of bound personality architrinos and internal mode energies.
-- Selection rules:
-  - Axial and chiral compatibility determine W vs Z channel availability and polarization. Right-hand-rule constructs do not appear; allowed/forbidden couplings follow from path-history geometry and the phase structure of the nested binaries.
-
-Plain language: A sharp internal shove at a pole can launch a tube; if another pole of the right shape and timing is waiting, the tube docks and hands off charge or spin; if not, it decays in flight.
+### 1.6 Phenomenology
+*   **Energy-Frequency:** For a periodic source $\omega$, the flux of architrino hits along the corridor scales as $E_{app} \propto \omega$.
+*   **Malus' Law:** Emerges as the geometric projection of the transverse corridor width onto the analyzer's acceptance slot ($I \propto \cos^2 \theta$).
 
 ---
 
-## 4) Effective Mass Scales (Apparent)
+## 2. The Weak Bosons ($W^\pm, Z^0$): Transient Recoupling Bundles
 
-These bundles are localized and energetic; their “masses” in scattering experiments are apparent energy scales of the corridor at emission/absorption (confinement energy of the bundle), not rest masses of fundamental particles. Apparent mass peaks thus reflect the typical mode energies and lifetimes of the corridor in a given environment.
+W and Z bosons are not fundamental particles in the sense of eternal objects; they are **localized, short-lived meta-assemblies**—corridors of coupled, high-intensity axial fields that mediate discrete reconfigurations of personality architrinos.
 
-Prediction handle: Changing assembly environments (mode spectra, polarization statistics, corridor length scales) shifts apparent widths and branching tendencies without invoking new fundamental fields.
+### 2.1 Concept: The "Thickened" Corridor
+*   **Definition:** A W/Z bundle is a compact, phase-locked vortex corridor connecting two polar regions (within or between assemblies).
+*   **Composition:** It consists of concentrated **delayed, radial-only actions** arranged to transport charge and angular momentum during a brief interval.
+*   **Scale:**
+    *   **Spatial Extent ($\ell$):** A few $d_0$ (the minimal binary radius).
+    *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
+*   **Tether vs. Free:**
+    *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination cores.
+    *   **Free Bundle:** In high-energy events, the bundle is "launched" into the vacuum, propagating briefly before decaying (rupturing) due to internal instability.
+
+### 2.2 Quantum Numbers and Channels
+*   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
+*   **W Boson ($W^\pm$):**
+    *   **Function:** Transports net charge $\pm 6\epsilon$ ($3P \leftrightarrow 3E$ swap).
+    *   **Bookkeeping:** The corridor physically moves the "Active Triad" components.
+*   **Z Boson ($Z^0$):**
+    *   **Function:** Transports energy, momentum, and phase *without* net charge flux.
+    *   **Bookkeeping:** A neutral corridor enabling re-phasing and mode exchange.
+
+### 2.3 Dynamics: Emission and Absorption
+*   **The Trigger (Emission):**
+    *   Caused by a **Strongly Accelerated Shove** (e.g., a violent binary mode transition).
+    *   This kick ejects a "corridor of influence" that nucleates from the superposition of the constituent architrinos' delayed wakes.
+*   **Selection Rules (Phase History):**
+    *   Coupling is not "magic"; it requires geometric compatibility.
+    *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's nested binaries. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
+*   **Absorption:** The corridor is re-captured by a target binary, integrating its payload and updating the target's internal mode energy.
+
+### 2.4 Effective Mass Scales
+*   **Apparent Energy:** The "Mass" ($80/91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
+*   **Environment Dependence:**
+    *   Because it is a dynamic bundle, its effective width (mass) depends on the electromagnetic environment (vacuum density).
+    *   **Prediction:** Changing assembly environments (e.g., extreme plasma density) may shift the apparent mass peaks and widths by altering the "tethering stiffness" of the vacuum, without invoking new fields.
+---
+
+## 3. The Higgs Boson ($H$): The Vacuum Breathing Mode
+
+The Higgs is not a propagating assembly *through* the vacuum; it is a resonance *of* the vacuum structure.
+
+### 3.1 Geometric Structure
+*   **The Substrate:** The Noether Sea (vacuum) is a lattice of neutral Tri-Binaries ($1P, 1E$).
+*   **Scalar Excitation:** The Higgs is a **Radial Breathing Mode** ($r \to r + \delta r$) of these vacuum units.
+*   **Spin-0:** The oscillation is purely radial (scalar), possessing no vector orientation.
+
+### 3.2 Mass Generation Mechanism
+*   **The Cause:** Massive particles (Quarks, W/Z) have complex 3D geometries that do not fit neatly in the lattice interstices.
+*   **The Effect:** They physically displace or distort the surrounding vacuum nodes.
+*   **The Resistance:** This distortion creates a "tension" field—the resistance of the vacuum tri-binaries to compression. We measure this resistance as **Inertial Mass**.
+*   **The Boson:** If you "strike" the vacuum hard enough (e.g., at LHC), you excite this radial ringing mode independently. That resonance is the Higgs Boson ($125$ GeV).
 
 ---
 
-# Higgs Boson as a Scalar-Like Meta-Assembly (Working Hypothesis)
+## 4. Summary Table
 
-We work in units with field speed $v=1$.
-
-## Purpose
-Outline a minimal, testable hypothesis for a Higgs-like phenomenon within the neoclassical, delayed radial-action framework.
+| Boson | Geometry | Payload | Propagation | Mass Origin |
+| :--- | :--- | :--- | :--- | :--- |
+| **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Corridor ("Train") | None (Planar/Edge-on) |
+| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-range Bridge | 3D Bulge Drag |
+| **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-range Bridge | Hybrid Drag |
+| **Higgs** | Radial Vacuum Oscillation | N/A | Local Resonance | Lattice Stiffness |
