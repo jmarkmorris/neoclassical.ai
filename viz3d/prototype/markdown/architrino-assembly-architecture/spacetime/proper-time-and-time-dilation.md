@@ -72,12 +72,12 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
    - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
 **Kinematic hypothesis:**
-\[
+$$
 \omega(v, \rho_{\text{vac,0}}) \approx \omega_0 \sqrt{1 - \frac{v^2}{c_f^2}}
 \quad \Rightarrow\quad
-\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c^2}}
-\]
-in the regime where the clock’s motion does not significantly disturb the local Noether Sea.
+\frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c_f^2}}
+$$
+in the regime where the clock’s motion does not significantly disturb the local Noether Sea. We take $c_f = c$ in SI units when comparing to experiments.
 
 ### 2.2 Gravitational Effect (Medium Dependence)
 
@@ -95,22 +95,22 @@ Massive assemblies polarize and densify the surrounding Noether Sea. A clock dee
 
 **Gravitational hypothesis:**
 To first order in the Newtonian potential $\Phi_N(\mathbf{x})$,
-\[
+$$
 \omega(\Phi_N) \approx \omega_0\left(1 + \frac{\Phi_N}{c^2}\right)
 \quad \Rightarrow \quad
 \frac{d\tau}{dt}\bigg|_{\text{grav}} \approx 1 + \frac{\Phi_N}{c^2},
-\]
+$$
 with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields **slower** clocks ($d\tau/dt < 1$), consistent with GR.
 
 ### 2.3 Combined Dilation
 
 In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether Sea, we conjecture:
-\[
+$$
 \frac{d\tau}{dt} 
 = \frac{\omega(v,\Phi_N,\rho_{\text{vac}})}{\omega_0}
-\approx \sqrt{1 + \frac{2\Phi_N}{c^2} - \frac{v^2}{c^2}}
-\]
-in the weak‑field, low‑velocity limit, with higher‑order corrections ($v^4/c^4$, $\Phi_N^2/c^4$, cross‑terms) determined by the detailed tri‑binary response.
+\approx \sqrt{1 + \frac{2\Phi_N}{c_f^2} - \frac{v^2}{c_f^2}}
+$$
+in the weak‑field, low‑velocity limit, with higher‑order corrections ($v^4/c_f^4$, $\Phi_N^2/c_f^4$, cross‑terms) determined by the detailed tri‑binary response. We set $c_f = c$ (SI) when matching to GR benchmarks.
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 
@@ -139,9 +139,9 @@ Using `dynamics/master-equation.md`:
 2. For the rest clock in homogeneous medium ($\mathbf{v}=0$, constant $\rho_{\text{vac,0}}$), solve (analytically or numerically) for the stable periodic orbit and its period $T_0$.
 
 3. Define proper time for this ideal clock as:
-   \[
+   $$
    \tau(t) = \frac{t}{T_0} \quad\text{(up to units)}
-   \]
+   $$
    so that $d\tau/dt = 1$ by construction in this special case.
 
 ### 3.3 Boosted and Curved‑Medium Clocks
@@ -154,9 +154,9 @@ Next, consider the **same internal configuration** but with:
 The equations of motion now have modified retardation conditions for all interactions, since the source and receiver worldlines are tilted in $(t,\mathbf{x})$, and the medium modifies effective propagation.
 
 We must solve for the new period $T(v,\Phi_{\text{eff}},\rho_{\text{vac}})$:
-\[
+$$
 \omega(v,\Phi_{\text{eff}},\rho_{\text{vac}}) = \frac{2\pi}{T(v,\Phi_{\text{eff}},\rho_{\text{vac}})}.
-\]
+$$
 
 ---
 
