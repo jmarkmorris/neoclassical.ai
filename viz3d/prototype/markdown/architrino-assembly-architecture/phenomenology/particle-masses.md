@@ -9,7 +9,7 @@
 ### 1.1 Core Thesis
 In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass—**inertial resistance to acceleration**—emerges from the interaction between assemblies and the surrounding **Noether Sea** (the spacetime medium composed of neutral tri-binary assemblies).
 
-**Mass is coupling to the vacuum.**
+**Mass is coupling to spacetime assemblies.**
 
 ### 1.2 The Two-Component Mechanism
 
