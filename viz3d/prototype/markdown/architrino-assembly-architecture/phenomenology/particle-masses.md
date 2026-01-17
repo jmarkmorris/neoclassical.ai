@@ -22,10 +22,6 @@
 - **W/Z:** Short-lived corridors; apparent $80/91$ GeV peaks are **confinement energy + drag** of an inflated corridor in the sea. Widths/peaks may shift with medium stiffness.
 - **Higgs:** Radial breathing mode of the sea; not a source of mass but a scalar excitation of the medium’s stiffness.
 
-## Chirality and mass
-- **What’s supported:** Chiral docking rules for weak corridors (W/Z) follow from phase geometry; matter/antimatter braid order distinguishes cores (`assemblies/fermions/fermion-mapping.md`, `assemblies/bosons/electroweak-bosons.md`).
-- **What’s pending:** A derivation that left/right geometries couple with different drag coefficients to the polarized sea (i.e., chirality-driven mass splittings) is **not yet written**. Needs explicit sea polarization model and fit to fermion masses.
-
 ## Validation hooks
 - Show $m_{\text{inertial}}$ scaling with $\zeta\,E_{\text{internal}}$ in simulations; verify emergent $E \sim m(\gamma-1)$ near $c_{\text{eff}}$.
 - Bound sea-induced drag to avoid orbital decay (see `validation/adversarial/failure-criteria.md`).
