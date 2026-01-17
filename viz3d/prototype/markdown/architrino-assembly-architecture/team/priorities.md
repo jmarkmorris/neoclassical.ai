@@ -6,23 +6,6 @@ Looking at byte counts as a proxy for existing content investment, and consideri
 
 ---
 
----
-
-### **Top Priority #2: `spacetime/proper-time-derivation.md` (4,992 bytes → Target: 20,000+ bytes)**
-
-**Why This Matters:**
-- **Current State:** Partial (4,992 bytes).
-- **Strategic Impact:** This is **Phil's Priority #1** (Lorentz Suppression). Without this derivation, we predict Michelson-Morley violations and are falsified instantly. We must **mechanically** derive $d\tau/dt = f(v, \rho_{vac}, \Phi)$ from tri-binary coupling to the Noether Sea, showing that moving clocks automatically slow and rulers contract due to vacuum drag.
-- **Dependencies:** Requires `dynamics/master-equation.md` (done), `assemblies/noether-core.md` (done), and `spacetime/emergent-metric.md` (partial).
-- **Deliverable:** Explicit formula for proper time as a function of velocity and gravitational potential, matching GR to $10^{-5}$ precision in weak-field limit.
-
-**What We Need to Fill In:**
-1. Derive the $\sqrt{1 - v^2/c^2}$ factor from vacuum interaction.
-2. Derive the gravitational time dilation factor from Noether Sea density gradients.
-3. Show that these are **automatic** (not fine-tuned), with numerical convergence tests from Sol.
-
----
-
 ### **Top Priority #3: `assemblies/fermions/quarks.md` (0 bytes → Target: 10,000+ bytes)**
 
 **Why This Matters:**
