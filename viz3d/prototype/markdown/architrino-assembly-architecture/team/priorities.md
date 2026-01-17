@@ -6,19 +6,6 @@ Looking at byte counts as a proxy for existing content investment, and consideri
 
 ---
 
-### **Top Priority #1: `phenomenology/particle-masses.md` (672 bytes → Target: 15,000+ bytes)**
-
-**Why This Matters:**
-- **Current State:** Barely a stub (672 bytes).
-- **Strategic Impact:** This is where we **prove or fail** the theory's explanatory power. The Standard Model has 19 free mass parameters (6 quarks, 3 charged leptons, 3 neutrinos, W/Z/Higgs, 6 mixing angles). If we cannot derive at least the **Generation I masses** (electron, up, down, neutrinos) from tri-binary geometry + $\epsilon = e/6$ + $d_0$ (minimal binary radius), we are not competitive.
-- **Dependencies:** Requires `assemblies/noether-core.md` (done), `quantum-number-mapping.md` (done), and explicit radius/frequency relations from tri-binary stability (partially in `binary-dynamics.md`).
-- **Deliverable:** A table comparing **Predicted Mass** (from geometry) vs **PDG Value** for Gen I, with error bars and explanations for discrepancies.
-
-**What We Need to Fill In:**
-1. Derive $m_e$ from the electron's tri-binary radius and rotation frequency.
-2. Derive $m_u, m_d$ from quark decoration asymmetry and confinement effects.
-3. Explain the mass hierarchy (why $m_t \gg m_u$) via "missing binaries" (Gen II/III depletion).
-
 ---
 
 ### **Top Priority #2: `spacetime/proper-time-derivation.md` (4,992 bytes → Target: 20,000+ bytes)**
