@@ -177,10 +177,10 @@ Because closed‑form analytic solutions are unlikely, we will combine **perturb
 3. **Solve for frequency shift**:
    - Compute $\delta\omega(v,\Phi_N)$ from the linearized equations.
    - Show explicitly that:
-     \[
+     $$
      \frac{\omega(v,\Phi_N)}{\omega_0}
-     = 1 + \alpha\,\frac{\Phi_N}{c^2} - \frac{1}{2}\,\frac{v^2}{c^2} + \mathcal{O}(\epsilon_v^4,\epsilon_\Phi^2)
-     \]
+     = 1 + \alpha\,\frac{\Phi_N}{c_f^2} - \frac{1}{2}\,\frac{v^2}{c_f^2} + \mathcal{O}(\epsilon_v^4,\epsilon_\Phi^2)
+     $$
      with $\alpha$ expected to be $1$ in the GR‑matching limit.
 
 4. **Match to GR:**  
@@ -199,9 +199,9 @@ Sol’s tasks (see `validation/simulations`):
    - Introduce a background Noether Sea density profile corresponding to a Newtonian potential $\Phi_N(r)$ from a massive body (using our emergent‑metric model).
    - Place identical clocks at radii $r_1$ and $r_2$.
    - Measure frequency ratio and compare to
-     \[
-     \frac{\omega(r_2)}{\omega(r_1)} \approx 1 + \frac{\Phi_N(r_2) - \Phi_N(r_1)}{c^2}.
-     \]
+     $$
+     \frac{\omega(r_2)}{\omega(r_1)} \approx 1 + \frac{\Phi_N(r_2) - \Phi_N(r_1)}{c_f^2}.
+     $$
 
 3. **Isotropy Test:**
    - Run boosted clock simulations in orthogonal directions relative to some fiducial lattice orientation.
