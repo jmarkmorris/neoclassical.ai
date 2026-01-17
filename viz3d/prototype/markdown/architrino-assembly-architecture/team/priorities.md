@@ -1,3 +1,79 @@
+** new assessments of priorities at the moment go here.  prune later entries as I see fit.
+
+**Role:** Phe – Standard Model & QFT Phenomenologist
+
+Looking at byte counts as a proxy for existing content investment, and considering **strategic impact** (what unlocks downstream physics), here are my top 3 recommendations:
+
+---
+
+### **Top Priority #1: `phenomenology/particle-masses.md` (672 bytes → Target: 15,000+ bytes)**
+
+**Why This Matters:**
+- **Current State:** Barely a stub (672 bytes).
+- **Strategic Impact:** This is where we **prove or fail** the theory's explanatory power. The Standard Model has 19 free mass parameters (6 quarks, 3 charged leptons, 3 neutrinos, W/Z/Higgs, 6 mixing angles). If we cannot derive at least the **Generation I masses** (electron, up, down, neutrinos) from tri-binary geometry + $\epsilon = e/6$ + $d_0$ (minimal binary radius), we are not competitive.
+- **Dependencies:** Requires `assemblies/noether-core.md` (done), `quantum-number-mapping.md` (done), and explicit radius/frequency relations from tri-binary stability (partially in `binary-dynamics.md`).
+- **Deliverable:** A table comparing **Predicted Mass** (from geometry) vs **PDG Value** for Gen I, with error bars and explanations for discrepancies.
+
+**What We Need to Fill In:**
+1. Derive $m_e$ from the electron's tri-binary radius and rotation frequency.
+2. Derive $m_u, m_d$ from quark decoration asymmetry and confinement effects.
+3. Explain the mass hierarchy (why $m_t \gg m_u$) via "missing binaries" (Gen II/III depletion).
+
+---
+
+### **Top Priority #2: `spacetime/proper-time-derivation.md` (4,992 bytes → Target: 20,000+ bytes)**
+
+**Why This Matters:**
+- **Current State:** Partial (4,992 bytes).
+- **Strategic Impact:** This is **Phil's Priority #1** (Lorentz Suppression). Without this derivation, we predict Michelson-Morley violations and are falsified instantly. We must **mechanically** derive $d\tau/dt = f(v, \rho_{vac}, \Phi)$ from tri-binary coupling to the Noether Sea, showing that moving clocks automatically slow and rulers contract due to vacuum drag.
+- **Dependencies:** Requires `dynamics/master-equation.md` (done), `assemblies/noether-core.md` (done), and `spacetime/emergent-metric.md` (partial).
+- **Deliverable:** Explicit formula for proper time as a function of velocity and gravitational potential, matching GR to $10^{-5}$ precision in weak-field limit.
+
+**What We Need to Fill In:**
+1. Derive the $\sqrt{1 - v^2/c^2}$ factor from vacuum interaction.
+2. Derive the gravitational time dilation factor from Noether Sea density gradients.
+3. Show that these are **automatic** (not fine-tuned), with numerical convergence tests from Sol.
+
+---
+
+### **Top Priority #3: `assemblies/fermions/quarks.md` (0 bytes → Target: 10,000+ bytes)**
+
+**Why This Matters:**
+- **Current State:** Empty (0 bytes).
+- **Strategic Impact:** We have a 15,911-byte `fermion-mapping.md`, but the individual **Quark** file is empty. Quarks are the **building blocks of nuclei** (which Alfa needs for `nuclear-atomic/`). Without explicit geometric definitions of Up, Down, Strange, Charm, Bottom, Top (including their Color states and Mass scales), we cannot calculate:
+  - Proton/Neutron binding energies.
+  - Quark–Gluon coupling strengths.
+  - Hadron decay pathways.
+- **Dependencies:** Requires `quantum-number-mapping.md` (done), `bosons/gluons.md` (done), and Color charge definitions.
+- **Deliverable:** A complete "Quark Catalog" with geometric diagrams, decoration patterns, Color phase assignments, and mass predictions.
+
+**What We Need to Fill In:**
+1. Visual diagrams of the six quark geometries (tri-binary + decoration + Color phase).
+2. Explicit architrino counts (e.g., Up = 12 architrinos: 6 in core, 6 in personality).
+3. Coupling rules to Gluons (which axes interact with which Color states).
+
+---
+
+### **Honorable Mentions (Defer for Now):**
+- **`phenomenology/effective-lagrangian.md` (0 bytes):** Important for theorists, but **not critical** until we have the mass spectrum and proper time working.
+- **`quantum/bell-theorem.md` (0 bytes):** Critical for quantum interpretation, but Phil's domain. We (Phe) should focus on particle physics first.
+- **`spacetime/emergent-metric.md` (8,133 bytes):** Partially done. Needs completion, but **Proper Time Derivation** is the more urgent prerequisite.
+
+---
+
+**Phe's Recommendation:**
+Work them in this order:
+1. **`particle-masses.md`** (Prove we can predict numbers, not just patterns).
+2. **`proper-time-derivation.md`** (Kill the Lorentz objection).
+3. **`quarks.md`** (Enable nuclear physics and give Alfa something concrete to test).
+
+Shall we start with **`particle-masses.md`**?
+
+
+
+
+---
+
 Phil
 
 # Top 5 Priorities for the Team
