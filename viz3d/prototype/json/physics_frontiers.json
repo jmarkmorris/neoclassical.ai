@@ -262,21 +262,6 @@
       }
     },
     {
-      "id": "dark_sector",
-      "label": "Dark Sector DM, DE, Interactions",
-      "radius": 1.68,
-      "color": "#2c2c60",
-      "position": [
-        0.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "early_universe_initial_conditions",
       "label": "Big Bang & Early Universe",
       "radius": 1.68,
@@ -466,21 +451,6 @@
       "position": [
         18.0,
         -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "renormalization",
-      "label": "Renormalization",
-      "radius": 1.68,
-      "color": "#2c567a",
-      "position": [
-        -18.0,
-        -12.0,
         0.0
       ],
       "subScenes": [],
