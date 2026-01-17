@@ -474,21 +474,6 @@
       }
     },
     {
-      "id": "spacetime",
-      "label": "Spacetime",
-      "radius": 1.68,
-      "color": "#2c6c7e",
-      "position": [
-        -6.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "symmetry",
       "label": "Symmetry",
       "radius": 1.68,
