@@ -32,6 +32,10 @@
    - Higher Noether-core density $\rho_{\text{core}}$ and deeper potential $\Phi$ slow down internal interactions (effective “index of refraction” of the medium).
    - Internal potential gradients distort tri-binary shapes, changing oscillation frequencies.
 
+**Velocity-driven shape deformation (Lorentz link hypothesis):**
+
+- As a Noether core’s center-of-mass speed rises, each binary’s precessing angular momentum vector must align more tightly with the bulk velocity to maintain coherence. The outer binary’s exclusion volume, nearly spherical at low $v$, becomes increasingly oblate—flattened along the direction of motion. This deformation is the geometric handle on Lorentz-like behavior: the “short” axis of the oblate ellipsoid tracks the shrinking leg in the $c^2 - v^2$ triangle, while the in-plane axes encode the preserved transverse structure. By the equivalence principle, the same flattening arises for clocks deeper in potential wells (higher effective $v$ relative to local $c_{\text{eff}}$). Literature on mapping deformable ellipsoids to GR metrics suggests an effective metric can be read off from the axis ratios; we treat this as a working hypothesis and target derivation.
+
 #### 3. Derivation Outline
 
 We must:
