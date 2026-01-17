@@ -85,3 +85,10 @@ These bundles are localized and energetic; their “masses” in scattering expe
 Prediction handle: Changing assembly environments (mode spectra, polarization statistics, corridor length scales) shifts apparent widths and branching tendencies without invoking new fundamental fields.
 
 ---
+
+# Higgs Boson as a Scalar-Like Meta-Assembly (Working Hypothesis)
+
+We work in units with field speed $v=1$.
+
+## Purpose
+Outline a minimal, testable hypothesis for a Higgs-like phenomenon within the neoclassical, delayed radial-action framework.
