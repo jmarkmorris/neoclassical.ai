@@ -29,29 +29,10 @@ Looking at byte counts as a proxy for existing content investment, and consideri
 - **`quantum/bell-theorem.md` (0 bytes):** Critical for quantum interpretation, but Phil's domain. We (Phe) should focus on particle physics first.
 - **`spacetime/emergent-metric.md` (8,133 bytes):** Partially done. Needs completion, but **Proper Time Derivation** is the more urgent prerequisite.
 
----
-
-**Phe's Recommendation:**
-Work them in this order:
-1. **`particle-masses.md`** (Prove we can predict numbers, not just patterns).
-2. **`proper-time-derivation.md`** (Kill the Lorentz objection).
-3. **`quarks.md`** (Enable nuclear physics and give Alfa something concrete to test).
-
-Shall we start with **`particle-masses.md`**?
-
-
-
 
 ---
 
 Phil
-
-# Top 5 Priorities for the Team
-
-## 1. **Lorentz Suppression Mechanism (Action 3)**
-**Why critical:** Without a rigorous derivation showing that tri-binary assemblies *automatically* contract and time-dilate when moving through the Noether Sea, the theory is immediately falsified by Michelson-Morley and modern Lorentz-violation tests (<10⁻¹⁷ bounds). This is our **hardest empirical constraint** and must be mechanical, not tuned.
-
-**Who:** Cos + Dyna + Sol (proper time derivation from assembly dynamics)
 
 ---
 
@@ -74,12 +55,6 @@ Phil
 
 **Who:** Phil (me) + Red + entire team (quarterly review)
 
----
-
-## 5. **Empirical Discrimination Tests (Killer Experiments)**
-**Why critical:** A theory that "explains everything" but predicts nothing falsifiable is philosophy, not physics. We need *at least three* accessible, unambiguous tests where architrino predictions differ from SM+GR—and we need them **before** we claim this is competitive science.
-
-**Who:** Sig + Cos + Phe (constraint ledger → testable signatures)
 
 ---
 
@@ -103,11 +78,6 @@ codex
 
 Here are my top 5 priorities, synthesized from the lists provided:
 
-### 1. The "Rosetta Stone": Full Quantum Number Mapping
-*(Ref: User List #1, Phil #3)*
-**Why:** This is the absolute bedrock of my role. We need to rigorously derive the dictionary that translates **Tri-Binary Geometry ↔ SM Quantum Numbers** (Charge, Spin, Isospin, Color).
-*   **The Task:** Explicitly define the decoration patterns for the Up quark, Down quark, Electron, and Neutrino. Show that these—and *only* these—are the stable configurations.
-*   **The Hard Wall:** If we find a stable geometric configuration that corresponds to a particle *not* seen in nature (e.g., a fractional charge $e/12$ lepton), or if we can't build a neutron, the model fails immediately.
 
 ### 2. The Chirality Crisis: Deriving Parity Violation
 *(Ref: Phe’s Mandate, implied in User List #1)*
