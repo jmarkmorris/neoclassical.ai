@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "cosmic_censorship",
+    "name": "Cosmic Censorship",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "holography",
+      "label": "Holography",
+      "radius": 1.6,
+      "color": "#556277",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}
