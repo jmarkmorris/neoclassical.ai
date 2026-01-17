@@ -82,6 +82,156 @@
       }
     },
     {
+      "id": "foundations",
+      "label": "Foundations",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -18.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "assemblies",
+      "label": "Assemblies",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -12.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "dynamics",
+      "label": "Dynamics",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -6.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "phenomenology",
+      "label": "Phenomenology",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        6.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "quantum",
+      "label": "Quantum",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        12.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "nuclear_atomic",
+      "label": "Nuclear-Atomic",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        18.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "spacetime",
+      "label": "Spacetime",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -18.0,
+        24.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology",
+      "label": "Cosmology",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -12.0,
+        24.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "validation",
+      "label": "Validation",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        -6.0,
+        24.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosophy_history",
+      "label": "Philosophy-History",
+      "radius": 1.68,
+      "color": "#556277",
+      "position": [
+        0.0,
+        24.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
       "id": "arrow_of_time",
       "label": "Arrow of Time",
       "radius": 1.68,
