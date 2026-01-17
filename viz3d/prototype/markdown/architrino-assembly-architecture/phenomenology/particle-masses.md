@@ -16,7 +16,7 @@ In the architrino framework, **mass is not a fundamental property** of individua
 Apparent inertial mass arises from two intertwined effects:
 
 #### A. Internal Energy Shielding ($\zeta$-Factor)
-- **Energy Storage:** Assemblies (fermions, in particular) contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy \$E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
+- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
 - **Shielding:** The pro/anti structure of the Noether core creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, it only "sees" this shielded fraction:
   $$
@@ -25,7 +25,7 @@ Apparent inertial mass arises from two intertwined effects:
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer binaries are missing. With fewer layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass.
 
 #### B. Noether Sea Drag (Medium Coupling)
-- **The Medium:** The Noether Sea is not empty space; it is a dynamic lattice of neutral tri-binaries. Moving an assembly through this medium requires displacing or reorganizing these vacuum nodes.
+- **The Medium:** The Noether Sea is not empty space; it is a dynamic lattice of neutral tri-binaries. Moving an assembly through this medium requires navigating, displacing, or reorganizing these spacetime nodes.
 - **The Drag:** As the assembly accelerates, it must "push" the surrounding sea structures out of the way. This creates a **resistance to motion** analogous to hydrodynamic drag or the friction experienced by a solid moving through a fluid.
 - **Velocity Dependence:** The drag increases with speed, producing an effective relativistic response:
   $$
@@ -34,7 +34,7 @@ Apparent inertial mass arises from two intertwined effects:
 - **Environment Dependence:** Local variations in Noether Sea density $\rho_{\text{vac}}(\mathbf{x})$ modulate the drag. In regions of higher vacuum density (e.g., near massive objects), the effective inertia increases.
 
 ### 1.3 Stability Constraint
-A critical requirement (flagged by Alfa): assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbits) must experience **zero net drag**. Otherwise, electron orbitals would decay, radiating energy and collapsing into the nucleus (classical electron catastrophe).
+A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbits) must experience **zero net drag**. Otherwise, electron orbitals would decay, radiating energy and collapsing into the nucleus (classical electron catastrophe).
 
 **Resolution Hypothesis:**
 - Stable configurations (e.g., bound states at specific radii and frequencies) are those where the assembly's internal dynamics are **phase-locked** with the surrounding sea oscillations, creating a resonance that cancels net drag.
@@ -46,7 +46,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Concept | Status in Architrino Framework |
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
-| **Architrino Charge ($\epsilon = e/6$)** | Fundamental (postulated) |
+| **Architrino Charge ($\epsilon = e/6$)** | Fundamental |
 | **Noether Sea Density ($\rho_{\text{vac}}$)** | Emergent (assembly density in void) |
 | **Inertial Mass ($m$)** | **Emergent** (shielding + drag) |
 | **Gravitational Mass** | **Emergent** (Noether Sea gradient response) |
@@ -70,7 +70,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 **Actions:**
 1. **Define the Tri-Binary Stability Conditions** (`assemblies/noether-core.md`):
-   - Derive the radius \$R_{\text{min}}$ and frequency $\omega_{\text{max}}$ of the maximum-curvature orbit (inner binary).
+   - Derive the radius $R_{\text{min}}$ and frequency $\omega_{\text{max}}$ of the maximum-curvature orbit (inner binary).
    - Derive the middle and outer binary parameters from symmetry-breaking and self-hit balance.
    - **Deliverable:** A table of $(R_i, \omega_i)$ for each binary level (H, M, L).
 
@@ -80,12 +80,12 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
      E_{\text{internal}} = \sum_{i=1}^{N_{\text{bins}}} \frac{1}{2} m_{\text{eff},i} v_i^2,
      $$
      where $m_{\text{eff},i}$ is the apparent inertia of the $i$-th binary at its speed $v_i$.
-   - **Challenge:** This is circular (we need mass to calculate energy). Resolution: Start with a dimensionless energy ratio \$E_{\text{internal}} / E_0$, where \$E_0 = \kappa \epsilon^2 / d_0$ (fundamental energy scale).
+   - **Challenge:** This is circular (we need mass to calculate energy). Resolution: Start with a dimensionless energy ratio $E_{\text{internal}} / E_0$, where $E_0 = \kappa \epsilon^2 / d_0$ (fundamental energy scale).
    - **Deliverable:** Internal energy budget for electron, up quark, down quark (Gen I).
 
 3. **Cross-Reference with Observations**:
-   - Compare \$E_{\text{internal}}$ to observed rest masses ($m_e c^2 = 0.511$ MeV, $m_u \sim 2.2$ MeV, $m_d \sim 4.7$ MeV).
-   - If \$E_{\text{internal}} \gg m c^2$, this confirms massive shielding ($\zeta \ll 1$).
+   - Compare $E_{\text{internal}}$ to observed rest masses ($m_e c^2 = 0.511$ MeV, $m_u \sim 2.2$ MeV, $m_d \sim 4.7$ MeV).
+   - If $E_{\text{internal}} \gg m c^2$, this confirms massive shielding ($\zeta \ll 1$).
 
 **Milestone:** Energy ledger complete. We know what energy is "stored" internally.
 
@@ -145,7 +145,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 **Actions:**
 1. **Electron Mass Calculation**:
    - Input: Tri-binary radius, frequency, decoration (\$6E$).
-   - Compute: \$E_{\text{internal}}$, $\zeta$, $\beta$.
+   - Compute: $E_{\text{internal}}$, $\zeta$, $\beta$.
    - Output: Predicted $m_e$.
    - **Target:** Match $m_e = 0.511$ MeV to within 10%.
 
@@ -191,10 +191,4 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 ---
 
-**Phil's Verdict:**
-This revised opening section provides:
-1. A clear ontological stance (mass = medium interaction).
-2. A mechanistic explanation (shielding + drag).
-3. A rigorous research roadmap with explicit milestones.
-4. Falsifiability criteria.
 
