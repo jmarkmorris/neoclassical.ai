@@ -86,6 +86,11 @@
       "path": "json/philosophy_history/philosophy_history.json"
     },
     {
+      "id": "belief_systems",
+      "name": "Belief Systems",
+      "path": "json/philosophy_history/belief_systems.json"
+    },
+    {
       "id": "gravity",
       "name": "Gravity",
       "path": "json/spacetime/gravity.json"

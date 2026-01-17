@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "belief_systems",
+    "name": "Belief Systems",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": []
+}

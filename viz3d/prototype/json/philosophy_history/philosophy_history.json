@@ -13,12 +13,30 @@
       "radius": 1.6,
       "color": "#4b678f",
       "position": [
-        0.0,
+        -4.5,
         0.0,
         0.0
       ],
       "subScenes": [
         "json/philosophy/philosopher.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+    ,
+    {
+      "id": "belief_systems",
+      "label": "Belief Systems",
+      "radius": 1.6,
+      "color": "#556277",
+      "position": [
+        4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/belief_systems.json"
       ],
       "motion": {
         "type": "fixed"
