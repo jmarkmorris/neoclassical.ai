@@ -182,7 +182,7 @@
         0.0
       ],
       "subScenes": [
-        "json/spacetime/gravity.json"
+        "json/spacetime/spacetime.json"
       ],
       "motion": {
         "type": "fixed"
@@ -231,21 +231,6 @@
       "subScenes": [
         "json/philosophy_history/philosophy_history.json"
       ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "black_hole_interior",
-      "label": "Black Hole Interior Structure",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        -18.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       }
