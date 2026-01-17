@@ -38,7 +38,7 @@ A photon manifests as a **Phase-Locked Corridor** of delayed actions.
     *   The "Train" docks with the binary, transferring its angular momentum and re-binding the architrinos into the target's mass/energy inventory.
 
 ### 1.5 Environmental Coupling (The Aether)
-*   **Spacetime Aether:** The vacuum is populated by neutral assemblies.
+*   **Spacetime Aether:** The vacuum is populated by neutral assemblies (Noether Cores).
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Aether), the corridor **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This drag slows the phase velocity ($v_{phase} < c$).
@@ -62,7 +62,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
     *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination cores.
-    *   **Free Bundle:** In high-energy events, the bundle is "launched" into the vacuum, propagating near the field speed along its axis before decaying (rupturing) due to internal instability.
+    *   **Free Bundle:** In high-energy events, the bundle is "launched" into the vacuum, propagating near the field speed ($v \approx 1$) along its axis before decaying (rupturing) due to internal instability.
 
 ### 2.2 Quantum Numbers and Channels
 *   **Spin-1 (Vector):** The corridor possesses a defined axis and transverse phase structure, giving it an effective angular momentum of $1\hbar$.
@@ -83,10 +83,11 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 *   **Absorption:** The corridor is re-captured by a target binary, integrating its payload and updating the target's internal mode energy.
 
 ### 2.4 Effective Mass Scales
-*   **Apparent Energy:** The "Mass" ($80/91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
+*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
 *   **Environment Dependence:**
     *   Because it is a dynamic bundle, its effective width (mass) depends on the electromagnetic environment (vacuum density).
     *   **Prediction:** Changing assembly environments (e.g., extreme plasma density) may shift the apparent mass peaks and widths by altering the "tethering stiffness" of the vacuum, without invoking new fields.
+
 ---
 
 ## 3. The Higgs Boson ($H$): The Vacuum Breathing Mode
@@ -111,6 +112,6 @@ The Higgs is not a propagating assembly *through* the vacuum; it is a resonance 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
 | **Photon** | Coaxial Contra-Rotating Planar Stack | Neutral (0) | Infinite Corridor ("Train") | None (Planar/Edge-on) |
-| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Corridor Confinement Energy (env-dependent drag) |
-| **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Corridor Confinement Energy (env-dependent drag) |
+| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
+| **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Spacetime Drag |
 | **Higgs** | Radial Vacuum Oscillation | N/A | Local Resonance | Lattice Stiffness |
