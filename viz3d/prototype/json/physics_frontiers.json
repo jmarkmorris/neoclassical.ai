@@ -238,38 +238,6 @@
       }
     },
     {
-      "id": "cosmic_censorship",
-      "label": "Cosmic Censorship",
-      "radius": 1.68,
-      "color": "#2f4f7a",
-      "position": [
-        -12.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/spacetime/cosmic_censorship.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "early_universe_initial_conditions",
-      "label": "Big Bang & Early Universe",
-      "radius": 1.68,
-      "color": "#2c2c60",
-      "position": [
-        6.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "fermi_paradox",
       "label": "Fermi Paradox",
       "radius": 1.68,
