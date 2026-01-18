@@ -11,9 +11,9 @@
 ## 1. Introduction: Religion and Cosmology
 
 Religious cosmologies address three core questions:
-1. **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed?
-2. **Cosmogony (How did it begin?):** What is the origin story of the universe/cosmos?
-3. **Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants?
+1. **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
+2. **Cosmogony (How did it begin?):** What is the origin story of the universe/cosmos? — Where did it come from?
+3. **Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? — How does it end?
 
 Unlike scientific theories, religious cosmologies typically embed metaphysical and moral frameworks: the cosmos has purpose, agency (divine or otherwise), and often a teleological arc.
 
