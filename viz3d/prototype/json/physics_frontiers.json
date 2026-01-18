@@ -360,21 +360,6 @@
       }
     },
     {
-      "id": "singularity",
-      "label": "Singularity",
-      "radius": 1.68,
-      "color": "#1c2a4f",
-      "position": [
-        -12.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "symmetry",
       "label": "Symmetry",
       "radius": 1.68,
@@ -467,23 +452,6 @@
       ],
       "subScenes": [
         "json/physics_frontiers/strong-cp-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "mechanism_of_inflation",
-      "label": "Mechanism of Inflation",
-      "radius": 1.68,
-      "color": "#2c2c60",
-      "position": [
-        6.0,
-        -18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/mechanism-of-inflation.json"
       ],
       "motion": {
         "type": "fixed"
