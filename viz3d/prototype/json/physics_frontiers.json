@@ -244,36 +244,6 @@
       }
     },
     {
-      "id": "leptogenesis",
-      "label": "Leptogenesis CP Sources",
-      "radius": 1.68,
-      "color": "#2c567a",
-      "position": [
-        -18.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "measurement_problem",
-      "label": "Measurement Problem",
-      "radius": 1.68,
-      "color": "#5a1f2e",
-      "position": [
-        -12.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "nonlocality_vs_causality",
       "label": "Relativistic Causality vs. Entanglement",
       "radius": 1.68,
@@ -284,55 +254,6 @@
         0.0
       ],
       "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "uv_divergence",
-      "label": "UV Divergence",
-      "radius": 1.68,
-      "color": "#7a4a1f",
-      "position": [
-        12.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "hierarchy_problem",
-      "label": "Hierarchy Problem (Naturalness)",
-      "radius": 1.68,
-      "color": "PURPLE",
-      "position": [
-        -18.0,
-        -18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/hierarchy-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "vacuum_instability",
-      "label": "Vacuum Instability",
-      "radius": 1.68,
-      "color": "#2c2f45",
-      "position": [
-        -6.0,
-        -24.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/vacuum-instability.json"
-      ],
       "motion": {
         "type": "fixed"
       }
