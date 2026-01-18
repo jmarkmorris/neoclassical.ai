@@ -101,6 +101,11 @@
       "path": "json/philosophy_history/philosophy_history.json"
     },
     {
+      "id": "validation",
+      "name": "Validation",
+      "path": "json/validation/validation.json"
+    },
+    {
       "id": "belief_systems",
       "name": "Belief Systems",
       "path": "json/philosophy_history/belief_systems.json"

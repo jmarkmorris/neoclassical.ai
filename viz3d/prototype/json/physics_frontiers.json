@@ -221,7 +221,9 @@
         24.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/validation/validation.json"
+      ],
       "motion": {
         "type": "fixed"
       }
@@ -238,55 +240,6 @@
       ],
       "subScenes": [
         "json/philosophy_history/philosophy_history.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "nonlocality_vs_causality",
-      "label": "Relativistic Causality vs. Entanglement",
-      "radius": 1.68,
-      "color": "#4b678f",
-      "position": [
-        18.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "muon_g_2_lepton_universality",
-      "label": "Muon g-2 and Lepton Universality Anomalies",
-      "radius": 1.68,
-      "color": "#5f5f7a",
-      "position": [
-        0.0,
-        -24.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/muon-g-2.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "lithium_problem",
-      "label": "Lithium Problem",
-      "radius": 1.68,
-      "color": "#3c6a7a",
-      "position": [
-        6.0,
-        -24.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/lithium-problem.json"
       ],
       "motion": {
         "type": "fixed"

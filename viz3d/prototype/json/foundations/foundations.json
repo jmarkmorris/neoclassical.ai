@@ -53,6 +53,21 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "nonlocality_vs_causality",
+      "label": "Relativistic Causality vs. Entanglement",
+      "radius": 1.6,
+      "color": "#4b678f",
+      "position": [
+        -4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }
