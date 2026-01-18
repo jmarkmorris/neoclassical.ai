@@ -2757,7 +2757,7 @@ function updateMarkdownDocButton() {
   }
   const hasDoc = !!currentLevel?.markdownPath;
   markdownDocButton.classList.toggle("is-hidden", !hasDoc);
-  markdownDocButton.disabled = transitionState.active || !hasDoc;
+  markdownDocButton.disabled = !hasDoc;
 }
 
 function updateSceneLabel() {
