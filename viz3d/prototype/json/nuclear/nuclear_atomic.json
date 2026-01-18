@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "nuclear_atomic",
+    "name": "Nuclear-Atomic",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "proton_stability",
+      "label": "Proton Stability",
+      "radius": 1.6,
+      "color": "#2a3b5a",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/nuclear/proton-stability.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

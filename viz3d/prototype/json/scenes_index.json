@@ -66,6 +66,11 @@
       "path": "json/nuclear/neutron.json"
     },
     {
+      "id": "nuclear_atomic",
+      "name": "Nuclear-Atomic",
+      "path": "json/nuclear/nuclear_atomic.json"
+    },
+    {
       "id": "physics_frontiers",
       "name": "Physics Frontiers",
       "path": "json/physics_frontiers.json"

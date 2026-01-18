@@ -166,7 +166,9 @@
         18.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/nuclear/nuclear_atomic.json"
+      ],
       "motion": {
         "type": "fixed"
       }
@@ -499,23 +501,6 @@
       ],
       "subScenes": [
         "json/physics_frontiers/flavor-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "proton_stability",
-      "label": "Proton Stability",
-      "radius": 1.68,
-      "color": "#2a3b5a",
-      "position": [
-        -12.0,
-        -24.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/proton-stability.json"
       ],
       "motion": {
         "type": "fixed"
