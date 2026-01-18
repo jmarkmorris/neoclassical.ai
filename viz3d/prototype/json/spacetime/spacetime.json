@@ -170,6 +170,21 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "nature_of_time",
+      "label": "Nature of Time",
+      "radius": 1.6,
+      "color": "#2a3b5a",
+      "position": [
+        -10.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

@@ -41,6 +41,21 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "fermi_paradox",
+      "label": "Fermi Paradox",
+      "radius": 1.6,
+      "color": "#3f6a5a",
+      "position": [
+        0.0,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }
