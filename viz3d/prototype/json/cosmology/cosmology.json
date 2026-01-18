@@ -13,12 +13,46 @@
       "radius": 1.6,
       "color": "#243d8f",
       "position": [
-        -4.5,
-        0.0,
+        -6.0,
+        2.5,
         0.0
       ],
       "subScenes": [
         "json/unknowns-paradoxes/unknown_nature-of-dark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "identity_of_dark_matter",
+      "label": "Identity of Dark Matter",
+      "radius": 1.6,
+      "color": "#2f6b6f",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_identity-of-dark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmological_constant_problem",
+      "label": "Cosmological Constant Problem",
+      "radius": 1.6,
+      "color": "#5a1f2e",
+      "position": [
+        6.0,
+        2.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_cosmological-constant-problem.json"
       ],
       "motion": {
         "type": "fixed"
@@ -30,12 +64,29 @@
       "radius": 1.6,
       "color": "#6a3c3c",
       "position": [
-        4.5,
-        0.0,
+        -3.0,
+        -2.5,
         0.0
       ],
       "subScenes": [
         "json/unknowns-paradoxes/unknown_hubble-tension.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "s_8_tension",
+      "label": "S_8 (Structure Growth) Tension",
+      "radius": 1.6,
+      "color": "#3a5f9f",
+      "position": [
+        3.0,
+        -2.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_s-8-tension.json"
       ],
       "motion": {
         "type": "fixed"
