@@ -31,7 +31,7 @@
     },
     {
       "id": "standard_model",
-      "label": "Standard Model",
+      "label": "Standard Model Assemblies",
       "radius": 1.68,
       "color": "#2f6b6f",
       "position": [
@@ -94,21 +94,6 @@
       "subScenes": [
         "json/foundations/foundations.json"
       ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "assemblies",
-      "label": "Assemblies",
-      "radius": 1.68,
-      "color": "#2f6b6f",
-      "position": [
-        -12.0,
-        18.0,
-        0.0
-      ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       }
