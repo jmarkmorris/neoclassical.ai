@@ -3256,7 +3256,10 @@ if (docButton) {
       return;
     }
     if (currentLevel?.markdownPath) {
-      showMarkdownPanel(currentLevel);
+      const docLevel = currentLevel.markdownSection
+        ? { ...currentLevel, markdownSection: null }
+        : currentLevel;
+      showMarkdownPanel(docLevel);
     }
   });
 }

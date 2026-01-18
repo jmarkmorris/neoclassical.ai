@@ -49,7 +49,7 @@
       "id": "philosopher_3",
       "label": "Plato",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#3a5f9f",
       "position": [
         -12.0,
         15.0,
@@ -715,7 +715,7 @@
       "id": "philosopher_40",
       "label": "Gerard 't Hooft",
       "radius": 2.2,
-      "color": "#556277",
+      "color": "#2f6b6f",
       "position": [
         -6.0,
         -9.0,

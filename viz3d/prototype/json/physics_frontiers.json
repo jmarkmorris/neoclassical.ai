@@ -85,7 +85,7 @@
       "id": "foundations",
       "label": "Foundations",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#243d8f",
       "position": [
         -18.0,
         18.0,
@@ -100,7 +100,7 @@
       "id": "assemblies",
       "label": "Assemblies",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#2f6b6f",
       "position": [
         -12.0,
         18.0,
@@ -115,7 +115,7 @@
       "id": "dynamics",
       "label": "Dynamics",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#5a1f2e",
       "position": [
         -6.0,
         18.0,
@@ -130,7 +130,7 @@
       "id": "phenomenology",
       "label": "Phenomenology",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#3a5f9f",
       "position": [
         6.0,
         18.0,
@@ -145,7 +145,7 @@
       "id": "quantum",
       "label": "Quantum",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#2f4f7a",
       "position": [
         12.0,
         18.0,
@@ -160,7 +160,7 @@
       "id": "nuclear_atomic",
       "label": "Nuclear-Atomic",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#7a4a1f",
       "position": [
         18.0,
         18.0,
@@ -175,7 +175,7 @@
       "id": "spacetime",
       "label": "Spacetime",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#1c2a4f",
       "position": [
         -18.0,
         24.0,
@@ -192,7 +192,7 @@
       "id": "cosmology",
       "label": "Cosmology",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#3c6a7a",
       "position": [
         -12.0,
         24.0,
@@ -207,7 +207,7 @@
       "id": "validation",
       "label": "Validation",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#3f6a5a",
       "position": [
         -6.0,
         24.0,
@@ -222,7 +222,7 @@
       "id": "philosophy_history",
       "label": "Philosophy-History",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#6a3c3c",
       "position": [
         0.0,
         24.0,
@@ -256,7 +256,7 @@
       "id": "early_universe_initial_conditions",
       "label": "Big Bang & Early Universe",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#2c2c60",
       "position": [
         6.0,
         6.0,
@@ -301,7 +301,7 @@
       "id": "fine_tuning",
       "label": "Fine-Tuning / Anthropic Landscape",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#7a3f4a",
       "position": [
         -12.0,
         0.0,
@@ -331,7 +331,7 @@
       "id": "leptogenesis",
       "label": "Leptogenesis CP Sources",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#2c567a",
       "position": [
         -18.0,
         -6.0,
@@ -361,7 +361,7 @@
       "id": "nature_of_time",
       "label": "Nature of Time",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#2a3b5a",
       "position": [
         0.0,
         -6.0,
@@ -376,7 +376,7 @@
       "id": "nonlocality_vs_causality",
       "label": "Relativistic Causality vs. Entanglement",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#4b678f",
       "position": [
         18.0,
         -6.0,
@@ -436,7 +436,7 @@
       "id": "unknowns_paradoxes",
       "label": "Unknowns & Paradoxes",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#5a3c7a",
       "position": [
         0.0,
         18.0,
