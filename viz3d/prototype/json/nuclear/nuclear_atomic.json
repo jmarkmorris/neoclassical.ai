@@ -74,6 +74,23 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "strong_cp_problem",
+      "label": "Strong CP Problem",
+      "radius": 1.6,
+      "color": "#2f6b6f",
+      "position": [
+        4.5,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/nuclear/strong-cp-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

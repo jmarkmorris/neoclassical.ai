@@ -321,23 +321,6 @@
       }
     },
     {
-      "id": "strong_cp_problem",
-      "label": "Strong CP Problem",
-      "radius": 1.68,
-      "color": "#2f6b6f",
-      "position": [
-        0.0,
-        -18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/strong-cp-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "vacuum_instability",
       "label": "Vacuum Instability",
       "radius": 1.68,
