@@ -1,128 +1,128 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "belief_systems",
-    "name": "Belief Systems",
+    "id": "out_of_the_ashes",
+    "name": "Out of the Ashes",
     "units": "relative",
     "wrapLabels": true,
-    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md",
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md",
     "markdownAutoOpen": false
   },
   "objects": [
     {
-      "id": "judaism",
-      "label": "Judaism",
+      "id": "ashes_big_shift",
+      "label": "The Big Shift",
       "radius": 1.6,
-      "color": "#2f4f7a",
+      "color": "#243d8f",
       "position": [
         -6.0,
         3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophy_history/religion_judaism.json"
+        "json/philosophy_history/out_of_the_ashes_big_shift.json"
       ],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "christianity",
-      "label": "Christianity",
+      "id": "ashes_identity",
+      "label": "Identity",
       "radius": 1.6,
-      "color": "#3a5f9f",
+      "color": "#2f6b6f",
       "position": [
         0.0,
         3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophy_history/religion_christianity.json"
+        "json/philosophy_history/out_of_the_ashes_identity.json"
       ],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "islam",
-      "label": "Islam",
-      "radius": 1.6,
-      "color": "#4b678f",
-      "position": [
-        6.0,
-        3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophy_history/religion_islam.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "hinduism",
-      "label": "Hinduism",
-      "radius": 1.6,
-      "color": "#2c2c60",
-      "position": [
-        -6.0,
-        -3.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophy_history/religion_hinduism.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "buddhism",
-      "label": "Buddhism",
+      "id": "ashes_galactic_heart",
+      "label": "The Galactic Heart",
       "radius": 1.6,
       "color": "#5a1f2e",
       "position": [
-        0.0,
-        -3.0,
+        6.0,
+        3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophy_history/religion_buddhism.json"
+        "json/philosophy_history/out_of_the_ashes_galactic_heart.json"
       ],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "daoism",
-      "label": "Daoism",
+      "id": "ashes_ethics",
+      "label": "Ethics",
       "radius": 1.6,
-      "color": "#6a3c3c",
+      "color": "#3a5f9f",
+      "position": [
+        -6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_ethics.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_how_to_live",
+      "label": "How to Live",
+      "radius": 1.6,
+      "color": "#2f4f7a",
+      "position": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_how_to_live.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_death",
+      "label": "Death",
+      "radius": 1.6,
+      "color": "#7a4a1f",
       "position": [
         6.0,
         -3.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophy_history/religion_daoism.json"
+        "json/philosophy_history/out_of_the_ashes_death.json"
       ],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "out_of_the_ashes",
-      "label": "Out of the Ashes",
+      "id": "ashes_credo",
+      "label": "The Credo",
       "radius": 1.6,
-      "color": "#2c567a",
+      "color": "#6a3c3c",
       "position": [
         0.0,
         -9.0,
         0.0
       ],
       "subScenes": [
-        "json/philosophy_history/out_of_the_ashes.json"
+        "json/philosophy_history/out_of_the_ashes_credo.json"
       ],
       "motion": {
         "type": "fixed"

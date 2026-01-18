@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "out_of_the_ashes_how_to_live",
+    "name": "How to Live",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md",
+    "markdownSection": "5. How to Live: Active Harmony",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "out_of_the_ashes_big_shift",
+    "name": "The Big Shift",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md",
+    "markdownSection": "1. The Big Shift: From Dying Machine to Living Organism",
+    "markdownColumns": 1
+  },
+  "objects": []
+}
