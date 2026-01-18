@@ -198,7 +198,9 @@
         24.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/cosmology/cosmology.json"
+      ],
       "motion": {
         "type": "fixed"
       }

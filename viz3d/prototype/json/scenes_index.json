@@ -71,6 +71,11 @@
       "path": "json/physics_frontiers.json"
     },
     {
+      "id": "cosmology",
+      "name": "Cosmology",
+      "path": "json/cosmology/cosmology.json"
+    },
+    {
       "id": "spacetime",
       "name": "Spacetime",
       "path": "json/spacetime/spacetime.json"

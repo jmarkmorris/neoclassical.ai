@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "cosmology",
+    "name": "Cosmology",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "nature_of_dark_energy",
+      "label": "Nature of Dark Energy",
+      "radius": 1.6,
+      "color": "#243d8f",
+      "position": [
+        -4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_nature-of-dark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "hubble_tension",
+      "label": "Hubble Tension",
+      "radius": 1.6,
+      "color": "#6a3c3c",
+      "position": [
+        4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_hubble-tension.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}
