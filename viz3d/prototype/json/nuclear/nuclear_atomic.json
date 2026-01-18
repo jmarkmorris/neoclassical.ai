@@ -57,6 +57,23 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "neutrino_mass_and_nature",
+      "label": "Neutrino Mass and Nature",
+      "radius": 1.6,
+      "color": "#4f315f",
+      "position": [
+        0.0,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/nuclear/neutrino-mass-and-nature.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

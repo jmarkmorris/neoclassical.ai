@@ -76,6 +76,11 @@
       "path": "json/physics_frontiers.json"
     },
     {
+      "id": "foundations",
+      "name": "Foundations",
+      "path": "json/foundations/foundations.json"
+    },
+    {
       "id": "cosmology",
       "name": "Cosmology",
       "path": "json/cosmology/cosmology.json"

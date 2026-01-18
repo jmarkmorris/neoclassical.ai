@@ -23,6 +23,21 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "quantum_statistics",
+      "label": "Fermi-Dirac & Bose-Einstein Statistics",
+      "radius": 1.6,
+      "color": "#3a5f9f",
+      "position": [
+        4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
     }
   ]
 }

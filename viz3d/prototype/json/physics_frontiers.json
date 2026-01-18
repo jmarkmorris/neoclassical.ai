@@ -91,7 +91,9 @@
         18.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/foundations/foundations.json"
+      ],
       "motion": {
         "type": "fixed"
       }
@@ -242,36 +244,6 @@
       }
     },
     {
-      "id": "quantum_statistics",
-      "label": "Fermi-Dirac & Bose-Einstein Statistics",
-      "radius": 1.68,
-      "color": "#3a5f9f",
-      "position": [
-        -18.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "fine_tuning",
-      "label": "Fine-Tuning / Anthropic Landscape",
-      "radius": 1.68,
-      "color": "#7a3f4a",
-      "position": [
-        -12.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "leptogenesis",
       "label": "Leptogenesis CP Sources",
       "radius": 1.68,
@@ -317,21 +289,6 @@
       }
     },
     {
-      "id": "symmetry",
-      "label": "Symmetry",
-      "radius": 1.68,
-      "color": "#3a5f9f",
-      "position": [
-        6.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "uv_divergence",
       "label": "UV Divergence",
       "radius": 1.68,
@@ -358,23 +315,6 @@
       ],
       "subScenes": [
         "json/physics_frontiers/hierarchy-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "neutrino_mass_and_nature",
-      "label": "Neutrino Mass and Nature",
-      "radius": 1.68,
-      "color": "#4f315f",
-      "position": [
-        -6.0,
-        -18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/neutrino-mass-and-nature.json"
       ],
       "motion": {
         "type": "fixed"
