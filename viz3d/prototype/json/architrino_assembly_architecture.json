@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "physics_frontiers",
-    "name": "Physics Frontiers",
+    "id": "architrino_assembly_architecture",
+    "name": "Architrino Assembly Architecture",
     "units": "relative",
     "scaleBandLog10m": [
       0,
