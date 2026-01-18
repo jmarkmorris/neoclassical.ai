@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "religion_buddhism",
+    "name": "Buddhism",
+    "units": "relative",
+    "wrapLabels": true,
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md",
+    "markdownSection": "3.2 Buddhism",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

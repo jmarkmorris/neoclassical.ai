@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknown_19",
+    "name": "Arrow of Time",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/unknowns-paradoxes.md",
+    "markdownSection": "The Arrow of Time",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

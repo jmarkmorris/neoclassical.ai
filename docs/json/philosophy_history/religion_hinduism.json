@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "religion_hinduism",
+    "name": "Hinduism",
+    "units": "relative",
+    "wrapLabels": true,
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md",
+    "markdownSection": "3.1 Hinduism",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

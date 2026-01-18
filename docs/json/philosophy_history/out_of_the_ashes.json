@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "out_of_the_ashes",
+    "name": "Out of the Ashes",
+    "units": "relative",
+    "wrapLabels": true,
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md",
+    "markdownAutoOpen": false
+  },
+  "objects": [
+    {
+      "id": "ashes_big_shift",
+      "label": "The Big Shift",
+      "radius": 1.6,
+      "color": "#243d8f",
+      "position": [
+        -6.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_big_shift.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_identity",
+      "label": "Identity",
+      "radius": 1.6,
+      "color": "#2f6b6f",
+      "position": [
+        0.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_identity.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_galactic_heart",
+      "label": "The Galactic Heart",
+      "radius": 1.6,
+      "color": "#5a1f2e",
+      "position": [
+        6.0,
+        3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_galactic_heart.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_ethics",
+      "label": "Ethics",
+      "radius": 1.6,
+      "color": "#3a5f9f",
+      "position": [
+        -6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_ethics.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_how_to_live",
+      "label": "How to Live",
+      "radius": 1.6,
+      "color": "#2f4f7a",
+      "position": [
+        0.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_how_to_live.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_death",
+      "label": "Death",
+      "radius": 1.6,
+      "color": "#7a4a1f",
+      "position": [
+        6.0,
+        -3.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_death.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "ashes_credo",
+      "label": "The Credo",
+      "radius": 1.6,
+      "color": "#6a3c3c",
+      "position": [
+        0.0,
+        -9.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/out_of_the_ashes_credo.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

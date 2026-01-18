@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history",
+    "name": "Philosophy-History",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "philosopers",
+      "label": "Philosopers",
+      "radius": 1.6,
+      "color": "#4b678f",
+      "position": [
+        -4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy/philosopher.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+    ,
+    {
+      "id": "belief_systems",
+      "label": "Belief Systems",
+      "radius": 1.6,
+      "color": "#3c6a7a",
+      "position": [
+        4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/belief_systems.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "fermi_paradox",
+      "label": "Fermi Paradox",
+      "radius": 1.6,
+      "color": "#3f6a5a",
+      "position": [
+        0.0,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "fine_tuning",
+      "label": "Fine-Tuning / Anthropic Landscape",
+      "radius": 1.6,
+      "color": "#7a3f4a",
+      "position": [
+        4.5,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "measurement_problem",
+      "label": "Measurement Problem",
+      "radius": 1.6,
+      "color": "#5a1f2e",
+      "position": [
+        -4.5,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

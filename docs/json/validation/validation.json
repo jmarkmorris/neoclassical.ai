@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "validation",
+    "name": "Validation",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "muon_g_2_lepton_universality",
+      "label": "Muon g-2 and Lepton Universality Anomalies",
+      "radius": 1.6,
+      "color": "#5f5f7a",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/validation/muon-g-2.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

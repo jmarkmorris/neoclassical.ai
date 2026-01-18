@@ -17,8 +17,8 @@
       "radius": 1.68,
       "color": "#243d8f",
       "position": [
-        -18.0,
-        12.0,
+        0.0,
+        18.0,
         0.0
       ],
       "subScenes": [
@@ -31,12 +31,12 @@
     },
     {
       "id": "standard_model",
-      "label": "Standard Model",
+      "label": "Standard Model Assemblies",
       "radius": 1.68,
       "color": "#2f6b6f",
       "position": [
-        -12.0,
-        12.0,
+        8.37,
+        15.94,
         0.0
       ],
       "subScenes": [
@@ -53,8 +53,8 @@
       "radius": 1.68,
       "color": "#5a1f2e",
       "position": [
-        -6.0,
-        12.0,
+        14.81,
+        10.23,
         0.0
       ],
       "subScenes": [
@@ -70,8 +70,8 @@
       "radius": 1.68,
       "color": "PURPLE",
       "position": [
-        0.0,
-        12.0,
+        17.87,
+        2.17,
         0.0
       ],
       "subScenes": [
@@ -82,360 +82,30 @@
       }
     },
     {
-      "id": "arrow_of_time",
-      "label": "Arrow of Time",
+      "id": "foundations",
+      "label": "Foundations",
       "radius": 1.68,
-      "color": "#6a3c3c",
+      "color": "#243d8f",
       "position": [
-        6.0,
-        12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "baryon_asymmetry",
-      "label": "Baryon Asymmetry",
-      "radius": 1.68,
-      "color": "#7a3f4a",
-      "position": [
-        12.0,
-        12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "information_loss_paradox",
-      "label": "Black Hole Information Loss Paradox",
-      "radius": 1.68,
-      "color": "#4f315f",
-      "position": [
-        18.0,
-        12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "black_hole_interior",
-      "label": "Black Hole Interior Structure",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        -18.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "cosmic_censorship",
-      "label": "Cosmic Censorship",
-      "radius": 1.68,
-      "color": "#2f4f7a",
-      "position": [
-        -12.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "cosmological_constant_problem",
-      "label": "Cosmological Constant Problem",
-      "radius": 1.68,
-      "color": "#5a3c7a",
-      "position": [
-        -6.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "dark_sector",
-      "label": "Dark Sector DM, DE, Interactions",
-      "radius": 1.68,
-      "color": "#2c2c60",
-      "position": [
-        0.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "early_universe_initial_conditions",
-      "label": "Big Bang & Early Universe",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        6.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "emergent_spacetime",
-      "label": "Emergent Spacetime / Holography",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        12.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "fermi_paradox",
-      "label": "Fermi Paradox",
-      "radius": 1.68,
-      "color": "#3f6a5a",
-      "position": [
-        18.0,
-        6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "quantum_statistics",
-      "label": "Fermi-Dirac & Bose-Einstein Statistics",
-      "radius": 1.68,
-      "color": "#3a5f9f",
-      "position": [
-        -18.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "fine_tuning",
-      "label": "Fine-Tuning / Anthropic Landscape",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        -12.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "gravity",
-      "label": "Gravity",
-      "radius": 1.68,
-      "color": "#2a3b5a",
-      "position": [
-        -6.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "hierarchy_problem",
-      "label": "Hierarchy Problem",
-      "radius": 1.68,
-      "color": "#2c2f45",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "history",
-      "label": "History",
-      "radius": 1.68,
-      "color": "#5f5f7a",
-      "position": [
-        6.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "horizon_problem",
-      "label": "Horizon Problem",
-      "radius": 1.68,
-      "color": "#3c6a7a",
-      "position": [
-        12.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "hubble_tension",
-      "label": "Hubble Tension",
-      "radius": 1.68,
-      "color": "#5a4a7a",
-      "position": [
-        18.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "leptogenesis",
-      "label": "Leptogenesis CP Sources",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        -18.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "measurement_problem",
-      "label": "Measurement Problem",
-      "radius": 1.68,
-      "color": "#5a1f2e",
-      "position": [
-        -12.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "muon_g_minus_2",
-      "label": "Muon g-2 Anomaly",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        -6.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "nature_of_time",
-      "label": "Nature of Time",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        0.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "neutrino_sector",
-      "label": "Neutrino Sector Unknowns",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        6.0,
-        -6.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "philosophy",
-      "label": "Philosophy",
-      "radius": 1.68,
-      "color": "#4b678f",
-      "position": [
-        12.0,
-        -6.0,
+        16.83,
+        -6.38,
         0.0
       ],
       "subScenes": [
-        "json/philosophy/philosopher.json"
+        "json/foundations/foundations.json"
       ],
       "motion": {
         "type": "fixed"
       }
     },
     {
-      "id": "nonlocality_vs_causality",
-      "label": "Relativistic Causality vs. Entanglement",
+      "id": "dynamics",
+      "label": "Dynamics",
       "radius": 1.68,
-      "color": "#556277",
+      "color": "#5a1f2e",
       "position": [
-        18.0,
-        -6.0,
+        11.94,
+        -13.47,
         0.0
       ],
       "subScenes": [],
@@ -444,13 +114,13 @@
       }
     },
     {
-      "id": "renormalization",
-      "label": "Renormalization",
+      "id": "phenomenology",
+      "label": "Phenomenology",
       "radius": 1.68,
-      "color": "#2c567a",
+      "color": "#3a5f9f",
       "position": [
-        -18.0,
-        -12.0,
+        4.31,
+        -17.48,
         0.0
       ],
       "subScenes": [],
@@ -459,16 +129,35 @@
       }
     },
     {
-      "id": "singularity",
-      "label": "Singularity",
+      "id": "quantum",
+      "label": "Quantum",
       "radius": 1.68,
-      "color": "#1c2a4f",
+      "color": "#2f4f7a",
       "position": [
-        -12.0,
-        -12.0,
+        -4.31,
+        -17.48,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/quantum/quantum.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "nuclear_atomic",
+      "label": "Nuclear-Atomic",
+      "radius": 1.68,
+      "color": "#7a4a1f",
+      "position": [
+        -11.94,
+        -13.47,
+        0.0
+      ],
+      "subScenes": [
+        "json/nuclear/nuclear_atomic.json"
+      ],
       "motion": {
         "type": "fixed"
       }
@@ -477,89 +166,65 @@
       "id": "spacetime",
       "label": "Spacetime",
       "radius": 1.68,
-      "color": "#2c6c7e",
+      "color": "#1c2a4f",
       "position": [
-        -6.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "strong_cp_problem",
-      "label": "Strong CP Problem",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        0.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "symmetry",
-      "label": "Symmetry",
-      "radius": 1.68,
-      "color": "#3a5f9f",
-      "position": [
-        6.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "uv_divergence",
-      "label": "UV Divergence",
-      "radius": 1.68,
-      "color": "#7a4a1f",
-      "position": [
-        12.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "vacuum_stability",
-      "label": "Vacuum Stability",
-      "radius": 1.68,
-      "color": "#7a2f5a",
-      "position": [
-        18.0,
-        -12.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "unknowns_paradoxes",
-      "label": "Unknowns & Paradoxes",
-      "radius": 1.68,
-      "color": "#556277",
-      "position": [
-        0.0,
-        18.0,
+        -16.83,
+        -6.38,
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknowns_paradoxes.json"
+        "json/spacetime/spacetime.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology",
+      "label": "Cosmology",
+      "radius": 1.68,
+      "color": "#3c6a7a",
+      "position": [
+        -17.87,
+        2.17,
+        0.0
+      ],
+      "subScenes": [
+        "json/cosmology/cosmology.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "validation",
+      "label": "Validation",
+      "radius": 1.68,
+      "color": "#3f6a5a",
+      "position": [
+        -14.81,
+        10.23,
+        0.0
+      ],
+      "subScenes": [
+        "json/validation/validation.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosophy_history",
+      "label": "Philosophy-History",
+      "radius": 1.68,
+      "color": "#6a3c3c",
+      "position": [
+        -8.37,
+        15.94,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/philosophy_history.json"
       ],
       "motion": {
         "type": "fixed"

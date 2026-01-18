@@ -4,7 +4,7 @@
     "id": "philosopher_detail_04",
     "name": "Albert Einstein",
     "units": "relative",
-    "markdownPath": "markdown/architrino-theory/philosophy-history/major-thinkers.md",
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/major-thinkers.md",
     "markdownSection": "albert einstein 1879 1955 special relativity",
     "markdownColumns": 1
   },

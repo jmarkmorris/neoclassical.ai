@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknown_06",
+    "name": "Baryon Asymmetry",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/unknowns-paradoxes.md",
+    "markdownSection": "Baryon Asymmetry",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

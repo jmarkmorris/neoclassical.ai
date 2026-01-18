@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "quantum",
+    "name": "Quantum",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "flavor_problem",
+      "label": "Flavor Problem",
+      "radius": 1.6,
+      "color": "#3f6a5a",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/quantum/flavor-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "quantum_statistics",
+      "label": "Fermi-Dirac & Bose-Einstein Statistics",
+      "radius": 1.6,
+      "color": "#3a5f9f",
+      "position": [
+        4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

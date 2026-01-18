@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknown_01",
+    "name": "Nature of Dark Energy",
+    "units": "relative",
+    "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/unknowns-paradoxes.md",
+    "markdownSection": "The Nature of Dark Energy",
+    "markdownColumns": 1
+  },
+  "objects": []
+}

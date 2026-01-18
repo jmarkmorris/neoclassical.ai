@@ -28,6 +28,7 @@ const markdownContent = document.getElementById("markdown-content");
 const markdownBody = document.getElementById("markdown-body");
 const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
+const markdownDocButton = document.getElementById("markdown-doc-button");
 const mathJaxScript = document.getElementById("mathjax-script");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
@@ -169,6 +170,7 @@ let haloSeed = 0;
 let infoDrawerOpen = false;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "json/physics_frontiers.json";
+const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;
 const searchBackStack = [];
@@ -650,6 +652,11 @@ function purgeWorldState() {
   }
 }
 
+function appendCacheBust(path) {
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}v=${cacheBustToken}`;
+}
+
 async function loadSceneConfig(scenePath) {
   if (sceneConfigCache.has(scenePath)) {
     return sceneConfigCache.get(scenePath);
@@ -658,7 +665,7 @@ async function loadSceneConfig(scenePath) {
     return sceneLoadPromises.get(scenePath);
   }
 
-  const promise = fetch(scenePath)
+  const promise = fetch(appendCacheBust(scenePath))
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Failed to load scene ${scenePath}`);
@@ -2750,12 +2757,22 @@ function updateDocButton() {
   docButton.disabled = transitionState.active || !hasDoc;
 }
 
+function updateMarkdownDocButton() {
+  if (!markdownDocButton) {
+    return;
+  }
+  const hasDoc = !!currentLevel?.markdownPath;
+  markdownDocButton.classList.toggle("is-hidden", !hasDoc);
+  markdownDocButton.disabled = !hasDoc;
+}
+
 function updateSceneLabel() {
   if (!sceneLabel) {
     return;
   }
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
+  updateMarkdownDocButton();
   updatePeriodicOverlay();
   updateElementLegend();
   updateElementInfoPanel();
@@ -3256,7 +3273,10 @@ if (docButton) {
       return;
     }
     if (currentLevel?.markdownPath) {
-      showMarkdownPanel(currentLevel);
+      const docLevel = currentLevel.markdownSection
+        ? { ...currentLevel, markdownSection: null }
+        : currentLevel;
+      showMarkdownPanel(docLevel);
     }
   });
 }
@@ -3284,6 +3304,20 @@ if (detailClose) {
 if (markdownClose) {
   markdownClose.addEventListener("click", () => {
     hideMarkdownPanel();
+  });
+}
+
+if (markdownDocButton) {
+  markdownDocButton.addEventListener("click", () => {
+    if (transitionState.active) {
+      return;
+    }
+    if (currentLevel?.markdownPath) {
+      const docLevel = currentLevel.markdownSection
+        ? { ...currentLevel, markdownSection: null }
+        : currentLevel;
+      showMarkdownPanel(docLevel);
+    }
   });
 }
 

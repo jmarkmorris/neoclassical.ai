@@ -306,6 +306,39 @@ body {
   gap: 8px;
 }
 
+#markdown-doc-button {
+  width: 32px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(15, 18, 32, 0.8);
+  color: #f5f7ff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#markdown-doc-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+#markdown-doc-button:hover,
+#markdown-doc-button:focus-visible {
+  border-color: rgba(160, 170, 220, 0.55);
+  background: rgba(25, 30, 48, 0.9);
+}
+
+#markdown-doc-button.is-hidden {
+  display: none;
+}
+
+#markdown-doc-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 #markdown-layout-toggle {
   width: 32px;
   height: 28px;
@@ -794,6 +827,10 @@ body {
 }
 
 #nav-up {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid rgba(160, 170, 220, 0.25);

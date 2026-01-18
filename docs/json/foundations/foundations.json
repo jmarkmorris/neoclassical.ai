@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "foundations",
+    "name": "Foundations",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "symmetry",
+      "label": "Symmetry",
+      "radius": 1.6,
+      "color": "#3a5f9f",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "uv_divergence",
+      "label": "UV Divergence",
+      "radius": 1.6,
+      "color": "#7a4a1f",
+      "position": [
+        4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "hierarchy_problem",
+      "label": "Hierarchy Problem (Naturalness)",
+      "radius": 1.6,
+      "color": "PURPLE",
+      "position": [
+        0.0,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [
+        "json/foundations/hierarchy-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "nonlocality_vs_causality",
+      "label": "Relativistic Causality vs. Entanglement",
+      "radius": 1.6,
+      "color": "#4b678f",
+      "position": [
+        -4.5,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

@@ -66,9 +66,124 @@
       "path": "json/nuclear/neutron.json"
     },
     {
+      "id": "nuclear_atomic",
+      "name": "Nuclear-Atomic",
+      "path": "json/nuclear/nuclear_atomic.json"
+    },
+    {
       "id": "physics_frontiers",
       "name": "Physics Frontiers",
       "path": "json/physics_frontiers.json"
+    },
+    {
+      "id": "foundations",
+      "name": "Foundations",
+      "path": "json/foundations/foundations.json"
+    },
+    {
+      "id": "cosmology",
+      "name": "Cosmology",
+      "path": "json/cosmology/cosmology.json"
+    },
+    {
+      "id": "spacetime",
+      "name": "Spacetime",
+      "path": "json/spacetime/spacetime.json"
+    },
+    {
+      "id": "cosmic_censorship",
+      "name": "Cosmic Censorship",
+      "path": "json/spacetime/cosmic_censorship.json"
+    },
+    {
+      "id": "philosophy_history",
+      "name": "Philosophy-History",
+      "path": "json/philosophy_history/philosophy_history.json"
+    },
+    {
+      "id": "validation",
+      "name": "Validation",
+      "path": "json/validation/validation.json"
+    },
+    {
+      "id": "belief_systems",
+      "name": "Belief Systems",
+      "path": "json/philosophy_history/belief_systems.json"
+    },
+    {
+      "id": "religion_judaism",
+      "name": "Judaism",
+      "path": "json/philosophy_history/religion_judaism.json"
+    },
+    {
+      "id": "religion_christianity",
+      "name": "Christianity",
+      "path": "json/philosophy_history/religion_christianity.json"
+    },
+    {
+      "id": "religion_islam",
+      "name": "Islam",
+      "path": "json/philosophy_history/religion_islam.json"
+    },
+    {
+      "id": "religion_hinduism",
+      "name": "Hinduism",
+      "path": "json/philosophy_history/religion_hinduism.json"
+    },
+    {
+      "id": "religion_buddhism",
+      "name": "Buddhism",
+      "path": "json/philosophy_history/religion_buddhism.json"
+    },
+    {
+      "id": "religion_daoism",
+      "name": "Daoism",
+      "path": "json/philosophy_history/religion_daoism.json"
+    },
+    {
+      "id": "out_of_the_ashes",
+      "name": "Out of the Ashes",
+      "path": "json/philosophy_history/out_of_the_ashes.json"
+    },
+    {
+      "id": "out_of_the_ashes_big_shift",
+      "name": "The Big Shift",
+      "path": "json/philosophy_history/out_of_the_ashes_big_shift.json"
+    },
+    {
+      "id": "out_of_the_ashes_identity",
+      "name": "Identity",
+      "path": "json/philosophy_history/out_of_the_ashes_identity.json"
+    },
+    {
+      "id": "out_of_the_ashes_galactic_heart",
+      "name": "The Galactic Heart",
+      "path": "json/philosophy_history/out_of_the_ashes_galactic_heart.json"
+    },
+    {
+      "id": "out_of_the_ashes_ethics",
+      "name": "Ethics",
+      "path": "json/philosophy_history/out_of_the_ashes_ethics.json"
+    },
+    {
+      "id": "out_of_the_ashes_how_to_live",
+      "name": "How to Live",
+      "path": "json/philosophy_history/out_of_the_ashes_how_to_live.json"
+    },
+    {
+      "id": "out_of_the_ashes_death",
+      "name": "Death",
+      "path": "json/philosophy_history/out_of_the_ashes_death.json"
+    },
+    {
+      "id": "out_of_the_ashes_credo",
+      "name": "The Credo",
+      "path": "json/philosophy_history/out_of_the_ashes_credo.json"
+    },
+    {
+      "id": "gravity",
+      "name": "Gravity",
+      "path": "json/spacetime/gravity.json"
     },
     {
       "id": "philosopher",
@@ -94,6 +209,11 @@
       "id": "standard_model",
       "name": "Standard Model",
       "path": "json/standard-model-particles/standard_model.json"
+    },
+    {
+      "id": "quantum",
+      "name": "Quantum",
+      "path": "json/quantum/quantum.json"
     },
     {
       "id": "star_interior",
@@ -730,10 +850,5 @@
       "name": "Ununennium (UUE)",
       "path": "json/elements/uue.json"
     },
-    {
-      "id": "unknowns_paradoxes",
-      "name": "Unknowns & Paradoxes",
-      "path": "json/unknowns-paradoxes/unknowns_paradoxes.json"
-    }
   ]
 }

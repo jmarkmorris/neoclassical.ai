@@ -170,6 +170,7 @@ let haloSeed = 0;
 let infoDrawerOpen = false;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "json/physics_frontiers.json";
+const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;
 const searchBackStack = [];
@@ -651,6 +652,11 @@ function purgeWorldState() {
   }
 }
 
+function appendCacheBust(path) {
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}v=${cacheBustToken}`;
+}
+
 async function loadSceneConfig(scenePath) {
   if (sceneConfigCache.has(scenePath)) {
     return sceneConfigCache.get(scenePath);
@@ -659,7 +665,7 @@ async function loadSceneConfig(scenePath) {
     return sceneLoadPromises.get(scenePath);
   }
 
-  const promise = fetch(scenePath)
+  const promise = fetch(appendCacheBust(scenePath))
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Failed to load scene ${scenePath}`);
