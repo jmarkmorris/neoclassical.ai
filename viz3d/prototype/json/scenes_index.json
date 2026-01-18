@@ -201,6 +201,11 @@
       "path": "json/standard-model-particles/standard_model.json"
     },
     {
+      "id": "quantum",
+      "name": "Quantum",
+      "path": "json/quantum/quantum.json"
+    },
+    {
       "id": "star_interior",
       "name": "Star Interior",
       "path": "json/cosmology/star.json"

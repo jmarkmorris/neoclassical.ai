@@ -151,7 +151,9 @@
         18.0,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/quantum/quantum.json"
+      ],
       "motion": {
         "type": "fixed"
       }
@@ -362,23 +364,6 @@
       }
     },
     {
-      "id": "baryon_asymmetry",
-      "label": "Baryon Asymmetry",
-      "radius": 1.68,
-      "color": "#7a3f4a",
-      "position": [
-        -12.0,
-        -18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/baryon-asymmetry.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "neutrino_mass_and_nature",
       "label": "Neutrino Mass and Nature",
       "radius": 1.68,
@@ -407,23 +392,6 @@
       ],
       "subScenes": [
         "json/physics_frontiers/strong-cp-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "flavor_problem",
-      "label": "Flavor Problem",
-      "radius": 1.68,
-      "color": "#3f6a5a",
-      "position": [
-        12.0,
-        -18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/flavor-problem.json"
       ],
       "motion": {
         "type": "fixed"
@@ -475,23 +443,6 @@
       ],
       "subScenes": [
         "json/physics_frontiers/lithium-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "confinement_mass_gap",
-      "label": "Confinement and the Mass Gap",
-      "radius": 1.68,
-      "color": "#5a4a7a",
-      "position": [
-        12.0,
-        -24.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/physics_frontiers/confinement-and-mass.json"
       ],
       "motion": {
         "type": "fixed"

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "quantum",
+    "name": "Quantum",
+    "units": "relative",
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "flavor_problem",
+      "label": "Flavor Problem",
+      "radius": 1.6,
+      "color": "#3f6a5a",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/quantum/flavor-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}
