@@ -18,7 +18,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_nature-of-dark.json"
+        "json/cosmology/nature-of-dark.json"
       ],
       "motion": {
         "type": "fixed"
@@ -35,7 +35,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_identity-of-dark.json"
+        "json/cosmology/identity-of-dark.json"
       ],
       "motion": {
         "type": "fixed"
@@ -52,7 +52,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_cosmological-constant-problem.json"
+        "json/cosmology/cosmological-constant-problem.json"
       ],
       "motion": {
         "type": "fixed"
@@ -69,7 +69,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_hubble-tension.json"
+        "json/cosmology/hubble-tension.json"
       ],
       "motion": {
         "type": "fixed"
@@ -86,7 +86,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_s-8-tension.json"
+        "json/cosmology/s-8-tension.json"
       ],
       "motion": {
         "type": "fixed"

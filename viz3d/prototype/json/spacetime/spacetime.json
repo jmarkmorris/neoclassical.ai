@@ -50,7 +50,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_quantum-gravity-and-renormalizability.json"
+        "json/spacetime/quantum-gravity-and-renormalizability.json"
       ],
       "motion": {
         "type": "fixed"
@@ -67,7 +67,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_black-hole-information.json"
+        "json/spacetime/black-hole-information.json"
       ],
       "motion": {
         "type": "fixed"
@@ -84,7 +84,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_arrow-of-time.json"
+        "json/spacetime/arrow-of-time.json"
       ],
       "motion": {
         "type": "fixed"
@@ -101,7 +101,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_trans-planckian-censorship.json"
+        "json/spacetime/trans-planckian-censorship.json"
       ],
       "motion": {
         "type": "fixed"

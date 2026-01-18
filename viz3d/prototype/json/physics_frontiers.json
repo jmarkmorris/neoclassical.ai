@@ -413,7 +413,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_hierarchy-problem.json"
+        "json/physics_frontiers/hierarchy-problem.json"
       ],
       "motion": {
         "type": "fixed"
@@ -430,7 +430,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_baryon-asymmetry.json"
+        "json/physics_frontiers/baryon-asymmetry.json"
       ],
       "motion": {
         "type": "fixed"
@@ -447,7 +447,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_neutrino-mass-and-nature.json"
+        "json/physics_frontiers/neutrino-mass-and-nature.json"
       ],
       "motion": {
         "type": "fixed"
@@ -464,7 +464,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_strong-cp-problem.json"
+        "json/physics_frontiers/strong-cp-problem.json"
       ],
       "motion": {
         "type": "fixed"
@@ -481,7 +481,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_mechanism-of-inflation.json"
+        "json/physics_frontiers/mechanism-of-inflation.json"
       ],
       "motion": {
         "type": "fixed"
@@ -498,7 +498,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_flavor-problem.json"
+        "json/physics_frontiers/flavor-problem.json"
       ],
       "motion": {
         "type": "fixed"
@@ -515,7 +515,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_proton-stability.json"
+        "json/physics_frontiers/proton-stability.json"
       ],
       "motion": {
         "type": "fixed"
@@ -532,7 +532,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_vacuum-instability.json"
+        "json/physics_frontiers/vacuum-instability.json"
       ],
       "motion": {
         "type": "fixed"
@@ -549,7 +549,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_muon-g-2.json"
+        "json/physics_frontiers/muon-g-2.json"
       ],
       "motion": {
         "type": "fixed"
@@ -566,7 +566,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_lithium-problem.json"
+        "json/physics_frontiers/lithium-problem.json"
       ],
       "motion": {
         "type": "fixed"
@@ -583,24 +583,7 @@
         0.0
       ],
       "subScenes": [
-        "json/unknowns-paradoxes/unknown_confinement-and-mass.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "unknowns_paradoxes",
-      "label": "Unknowns & Paradoxes",
-      "radius": 1.68,
-      "color": "#5a3c7a",
-      "position": [
-        0.0,
-        18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/unknowns-paradoxes/unknowns_paradoxes.json"
+        "json/physics_frontiers/confinement-and-mass.json"
       ],
       "motion": {
         "type": "fixed"
