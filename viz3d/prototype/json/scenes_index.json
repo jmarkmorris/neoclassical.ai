@@ -91,6 +91,36 @@
       "path": "json/philosophy_history/belief_systems.json"
     },
     {
+      "id": "religion_judaism",
+      "name": "Judaism",
+      "path": "json/philosophy_history/religion_judaism.json"
+    },
+    {
+      "id": "religion_christianity",
+      "name": "Christianity",
+      "path": "json/philosophy_history/religion_christianity.json"
+    },
+    {
+      "id": "religion_islam",
+      "name": "Islam",
+      "path": "json/philosophy_history/religion_islam.json"
+    },
+    {
+      "id": "religion_hinduism",
+      "name": "Hinduism",
+      "path": "json/philosophy_history/religion_hinduism.json"
+    },
+    {
+      "id": "religion_buddhism",
+      "name": "Buddhism",
+      "path": "json/philosophy_history/religion_buddhism.json"
+    },
+    {
+      "id": "religion_daoism",
+      "name": "Daoism",
+      "path": "json/philosophy_history/religion_daoism.json"
+    },
+    {
       "id": "gravity",
       "name": "Gravity",
       "path": "json/spacetime/gravity.json"
