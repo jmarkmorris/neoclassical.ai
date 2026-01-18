@@ -23,12 +23,13 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ### 2.1 Judaism
 
-**Foundational Ontology:**
+
+**Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Torah* (Genesis) and later *Talmudic* and *Kabbalistic* elaborations.
 - **Elements:** God (YHWH) is the sole uncreated, eternal substance. All matter and form are **created ex nihilo** (from nothing) by divine speech (*"Let there be light"*).
 - **Structure:** Hierarchical: Heaven (spiritual realm), Earth (material realm), and the Underworld (Sheol). Later mysticism (Kabbalah) introduces the *Sefirot* (ten emanations/attributes of God) as the structure mediating between the infinite (*Ein Sof*) and finite creation.
 
-**Cosmogony:**
+**Cosmogony (How did it begin?):** What is the origin story of the universe/cosmos? — Where did it come from?
 - **Genesis Creation:** Six-day creation culminating in the Sabbath rest. God creates:
   - Light and darkness (Day 1),
   - Firmament/sky separating waters (Day 2),
@@ -38,7 +39,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
   - Land animals, humanity (Day 6).
 - Humanity (*Adam* and *Eve*) created "in the image of God" (*tzelem Elohim*), granted dominion over creation.
 
-**Eschatology:**
+**Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? — How does it end?
 - **Classical Judaism:** Relatively minimal eschatology in the *Tanakh* (Hebrew Bible). Focus on covenantal fulfillment in history rather than cosmic end.
 - **Later Developments:**
   - Resurrection of the dead (*Olam Ha-Ba*, the World to Come).
@@ -49,7 +50,8 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ### 2.2 Christianity
 
-**Foundational Ontology:**
+
+**Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** Bible (*Old* and *New Testaments*), Church Fathers, Scholastic theology (Aquinas, Augustine).
 - **Elements:** God (Father, Son, Holy Spirit) is the Trinitarian uncreated being. Creation is *ex nihilo*.
 - **Distinctions:**
@@ -57,13 +59,13 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
   - **Spirit/Soul** (immaterial, rational component of humanity; angels as pure spirits).
   - **Logos** (Divine Reason/Word): In Johannine theology, Christ as the *Logos* through whom all things were made (John 1:1–3).
 
-**Cosmogony:**
+**Cosmogony (How did it begin?):** What is the origin story of the universe/cosmos? — Where did it come from?
 - **Genesis Account** (shared with Judaism): Six-day creation, with Christ/Logos interpreted as the mediating agent (*"All things were made through Him"*).
 - **Theological Developments:**
   - Augustine: Creation occurs in an instant; the "days" are logical/pedagogical divisions.
   - Aquinas: God sustains creation continuously (*creatio continua*); without God's active will, creation would collapse into nothingness.
 
-**Eschatology:**
+**Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? — How does it end?
 - **New Testament Framework:**
   - **Parousia** (Second Coming of Christ).
   - **Resurrection of the Dead** and Final Judgment.
@@ -75,7 +77,8 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ### 2.3 Islam
 
-**Foundational Ontology:**
+
+**Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Qur'an*, *Hadith*, Islamic philosophy (Al-Ghazali, Ibn Sina/Avicenna).
 - **Elements:** Allah is the sole uncreated, eternal being (*Tawhid*, absolute monotheism). All else is *makhluq* (created).
 - **Structure:**
@@ -83,13 +86,13 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
   - Earth (material world, *dunya*).
   - *Barzakh* (intermediate realm between death and resurrection).
 
-**Cosmogony:**
+**Cosmogony (How did it begin?):** What is the origin story of the universe/cosmos? — Where did it come from?
 - **Qur'anic Account:**
   - Allah creates the heavens and earth in six "days" (*ayyam*, interpreted as epochs; Qur'an 7:54, 25:59).
   - Throne (*Arsh*) above the heavens; universe created by divine command (*Kun fayakun*: "Be, and it is").
   - Humanity (Adam) created from clay, angels from light, jinn from smokeless fire.
 
-**Eschatology:**
+**Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? — How does it end?
 - **Day of Judgment (*Yawm al-Qiyamah*):**
   - Trumpet blast signals resurrection (*Ba'th*).
   - All souls judged; eternal reward (Jannah/Paradise) or punishment (Jahannam/Hell).
@@ -102,7 +105,8 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ### 3.1 Hinduism
 
-**Foundational Ontology:**
+
+**Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Vedas*, *Upanishads*, *Bhagavad Gita*, *Puranas*.
 - **Elements:**
   - **Brahman:** The ultimate, unchanging reality; infinite, formless consciousness (*Sat-Chit-Ananda*: Being-Consciousness-Bliss).
@@ -127,7 +131,8 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ### 3.2 Buddhism
 
-**Foundational Ontology:**
+
+**Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Pali Canon* (Theravada), *Mahayana Sutras*, *Abhidhamma*.
 - **Elements (Radically Different from Abrahamic/Hindu models):**
   - **No permanent substance.** All phenomena are *anatman* (no-self, impermanent).
@@ -139,7 +144,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 - **Cyclic time:** Universes arise and dissolve in vast cycles (*kalpas*), but there is no "first cause."
 - **Process Focus:** The Buddha explicitly refused metaphysical speculation about cosmic origins (*"The Unanswered Questions"*), focusing instead on the liberation from suffering.
 
-**Eschatology:**
+**Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? — How does it end?
 - **Individual:** *Nirvana*—cessation of suffering and rebirth by extinguishing craving and ignorance.
 - **Cosmic:** No final end. The cycle of cosmic formation and dissolution continues indefinitely.
 - **Mahayana Twist:** Bodhisattvas delay final liberation to help all sentient beings; vision of universal enlightenment (all beings eventually reach Buddhahood).
@@ -150,7 +155,8 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ### 4.1 Daoism (Taoism)
 
-**Foundational Ontology:**
+
+**Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Dao De Jing* (Laozi), *Zhuangzi*, later alchemical texts.
 - **Elements:**
   - **Dao (Tao):** The ultimate, nameless, formless source of all things, generally described as a principle rather than a personal creator—ineffable, preceding Heaven and Earth.
@@ -158,13 +164,13 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
   - **Yin and Yang:** Complementary dualities (dark/light, passive/active) that structure the manifestation of Qi.
   - **Wu (Emptiness) and You (Being):** Dao operates through non-being (*wu*) to give rise to being (*you*).
 
-**Cosmogony:**
+**Cosmogony (How did it begin?):** What is the origin story of the universe/cosmos? — Where did it come from?
 - **From the *Dao De Jing* (Chapter 42):**
   > "The Dao gave birth to One. One gave birth to Two. Two gave birth to Three. Three gave birth to the ten thousand things."
   - **Interpretation:** Dao → Primordial Unity → Yin/Yang Duality → Heaven/Earth/Humanity → All Phenomena.
 - **No explicit creation "event."** The cosmos is a continuous unfolding of the Dao's patterns.
 
-**Eschatology:**
+**Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? — How does it end?
 - **No apocalyptic end.** The cosmos follows natural cycles of growth and decay.
 - **Individual Goal:** Alignment with the Dao (naturalness, spontaneity, longevity). Some traditions pursue physical immortality (*xian*) through alchemy and cultivation.
 - **Cosmic Vision:** Eternal return; harmony restored through natural rhythms.
