@@ -403,6 +403,193 @@
       }
     },
     {
+      "id": "hierarchy_problem",
+      "label": "Hierarchy Problem (Naturalness)",
+      "radius": 1.68,
+      "color": "PURPLE",
+      "position": [
+        -18.0,
+        -18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_hierarchy-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "baryon_asymmetry",
+      "label": "Baryon Asymmetry",
+      "radius": 1.68,
+      "color": "#7a3f4a",
+      "position": [
+        -12.0,
+        -18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_baryon-asymmetry.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "neutrino_mass_and_nature",
+      "label": "Neutrino Mass and Nature",
+      "radius": 1.68,
+      "color": "#4f315f",
+      "position": [
+        -6.0,
+        -18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_neutrino-mass-and-nature.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "strong_cp_problem",
+      "label": "Strong CP Problem",
+      "radius": 1.68,
+      "color": "#2f6b6f",
+      "position": [
+        0.0,
+        -18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_strong-cp-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "mechanism_of_inflation",
+      "label": "Mechanism of Inflation",
+      "radius": 1.68,
+      "color": "#2c2c60",
+      "position": [
+        6.0,
+        -18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_mechanism-of-inflation.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "flavor_problem",
+      "label": "Flavor Problem",
+      "radius": 1.68,
+      "color": "#3f6a5a",
+      "position": [
+        12.0,
+        -18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_flavor-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "proton_stability",
+      "label": "Proton Stability",
+      "radius": 1.68,
+      "color": "#2a3b5a",
+      "position": [
+        -12.0,
+        -24.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_proton-stability.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "vacuum_instability",
+      "label": "Vacuum Instability",
+      "radius": 1.68,
+      "color": "#2c2f45",
+      "position": [
+        -6.0,
+        -24.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_vacuum-instability.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "muon_g_2_lepton_universality",
+      "label": "Muon g-2 and Lepton Universality Anomalies",
+      "radius": 1.68,
+      "color": "#5f5f7a",
+      "position": [
+        0.0,
+        -24.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_muon-g-2.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "lithium_problem",
+      "label": "Lithium Problem",
+      "radius": 1.68,
+      "color": "#3c6a7a",
+      "position": [
+        6.0,
+        -24.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_lithium-problem.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "confinement_mass_gap",
+      "label": "Confinement and the Mass Gap",
+      "radius": 1.68,
+      "color": "#5a4a7a",
+      "position": [
+        12.0,
+        -24.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/unknowns-paradoxes/unknown_confinement-and-mass.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
       "id": "unknowns_paradoxes",
       "label": "Unknowns & Paradoxes",
       "radius": 1.68,
