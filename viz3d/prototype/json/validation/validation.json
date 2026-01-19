@@ -7,6 +7,7 @@
     "wrapLabels": true,
     "autoMarkdownSpheres": true,
     "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/validation",
+    "autoMarkdownSubdirectories": true,
     "autoMarkdownIncludeExistingInLayout": true,
     "autoMarkdownNodeRadius": 2.688,
     "autoMarkdownRingRadius": 12

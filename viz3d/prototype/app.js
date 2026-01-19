@@ -176,6 +176,7 @@ if (markdownRenderer) {
   markdownRenderer.disable("escape");
 }
 const markdownDirectoryCache = new Map();
+const markdownSubdirCache = new Map();
 let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPromise;
 let pendingMathTypeset = false;
 let activeMarkdownPath = null;
@@ -316,6 +317,50 @@ async function listMarkdownFilesInDir(directory) {
   }
 }
 
+async function listMarkdownDirectoriesInDir(directory) {
+  if (!directory) {
+    return [];
+  }
+  const normalized = directory.replace(/\/+$/, "").replace(/^\.?\//, "");
+  if (markdownSubdirCache.has(normalized)) {
+    return markdownSubdirCache.get(normalized);
+  }
+  try {
+    const response = await fetch(appendCacheBust(`${normalized}/`));
+    if (!response.ok) {
+      markdownSubdirCache.set(normalized, []);
+      return [];
+    }
+    const html = await response.text();
+    const matches = [];
+    const hrefRegex = /href="([^"]+\/)"/gi;
+    let match = null;
+    while ((match = hrefRegex.exec(html))) {
+      matches.push(match[1]);
+    }
+    const directories = Array.from(
+      new Set(
+        matches
+          .map((href) => decodeURIComponent(href))
+          .map((href) => href.split("?")[0])
+          .map((href) => href.split("#")[0])
+          .map((href) => href.replace(/^\.?\//, ""))
+          .filter((href) => href && href !== "../" && href !== "./")
+          .filter((href) => href.endsWith("/"))
+          .map((href) => href.replace(/\/$/, ""))
+          .filter((href) => !href.includes("/"))
+          .map((href) => `${normalized}/${href}`)
+      )
+    );
+    markdownSubdirCache.set(normalized, directories);
+    return directories;
+  } catch (error) {
+    console.warn("Failed to read markdown directories", directory, error);
+    markdownSubdirCache.set(normalized, []);
+    return [];
+  }
+}
+
 function titleFromSlug(slug) {
   return slug
     .split(/[-_]+/g)
@@ -328,26 +373,31 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   if (!scene?.autoMarkdownSpheres || !scene?.autoMarkdownDirectory) {
     return [];
   }
-  const files = (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
-  if (!files.length) {
+  const useDirectories = scene.autoMarkdownSubdirectories === true;
+  const entries = useDirectories
+    ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
+    : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
+  if (!entries.length) {
     return [];
   }
   const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
-  const fileInfos = await Promise.all(
-    files.map(async (path) => {
-      try {
-        const response = await fetch(appendCacheBust(path));
-        if (!response.ok) {
-          return { path, isNonEmpty: false };
-        }
-        const text = await response.text();
-        return { path, isNonEmpty: text.trim().length > 0 };
-      } catch (error) {
-        console.warn("Failed to read markdown file", path, error);
-        return { path, isNonEmpty: false };
-      }
-    })
-  );
+  const fileInfos = useDirectories
+    ? entries.map((path) => ({ path, isNonEmpty: false }))
+    : await Promise.all(
+        entries.map(async (path) => {
+          try {
+            const response = await fetch(appendCacheBust(path));
+            if (!response.ok) {
+              return { path, isNonEmpty: false };
+            }
+            const text = await response.text();
+            return { path, isNonEmpty: text.trim().length > 0 };
+          } catch (error) {
+            console.warn("Failed to read markdown file", path, error);
+            return { path, isNonEmpty: false };
+          }
+        })
+      );
   const usedIds = new Set(existingNodes.map((node) => node.id));
   const baseRadius =
     typeof scene.autoMarkdownNodeRadius === "number"
@@ -369,7 +419,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     typeof scene.autoMarkdownMaxRingCount === "number"
       ? scene.autoMarkdownMaxRingCount
       : 14;
-  const layoutCount = includeExisting ? existingNodes.length + files.length : files.length;
+  const layoutCount = includeExisting ? existingNodes.length + fileInfos.length : fileInfos.length;
   const ringRadius =
     typeof scene.autoMarkdownRingRadius === "number"
       ? scene.autoMarkdownRingRadius
@@ -404,8 +454,10 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const autoStartIndex = includeExisting ? existingNodes.length : 0;
   return fileInfos
     .map((info, index) => {
-      const fileName = info.path.split("/").pop() ?? "";
-      const slug = fileName.replace(/\.md$/i, "");
+      const entryName = info.path.split("/").pop() ?? "";
+      const slug = useDirectories
+        ? entryName
+        : entryName.replace(/\.md$/i, "");
       const id = slug
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "_")
@@ -425,7 +477,16 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
         color,
       };
-      if (info.isNonEmpty) {
+      if (useDirectories) {
+        const childScene = ensureMarkdownDirectoryScene(
+          info.path,
+          scene,
+          node.name
+        );
+        if (childScene) {
+          node.childScene = childScene;
+        }
+      } else if (info.isNonEmpty) {
         node.markdownPath = info.path;
         if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
           node.markdownColumns = scene.autoMarkdownColumns;
@@ -986,10 +1047,11 @@ async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
   }
-  const config = await loadSceneConfig(scenePath);
+  const config = levelConfigs[scenePath] ?? (await loadSceneConfig(scenePath));
   if (!config) {
     return;
   }
+  await ensureDynamicSceneConfig(scenePath);
   if (options.mode === "instant") {
     purgeWorldState();
     const level = buildLevel(scenePath);
@@ -1109,6 +1171,10 @@ function getMarkdownReaderSceneId(markdownPath) {
   return `__markdown_reader__:${markdownPath}`;
 }
 
+function getMarkdownDirectorySceneId(directory) {
+  return `__markdown_directory__:${directory}`;
+}
+
 function ensureMarkdownReaderScene(nodeData) {
   const markdownPath = nodeData.markdownPath;
   if (!markdownPath) {
@@ -1133,6 +1199,56 @@ function ensureMarkdownReaderScene(nodeData) {
   };
   markdownReaderScenes.set(sceneId, true);
   return sceneId;
+}
+
+function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
+  if (!directory) {
+    return null;
+  }
+  const sceneId = getMarkdownDirectorySceneId(directory);
+  if (levelConfigs[sceneId]) {
+    return sceneId;
+  }
+  levelConfigs[sceneId] = {
+    layout: "static",
+    nodes: [],
+    links: [],
+    sceneName: nodeName ?? titleFromSlug(directory.split("/").pop() ?? "Notes"),
+    sceneId,
+    markdownPath: null,
+    markdownSection: null,
+    markdownColumns: null,
+    markdownAutoOpen: false,
+    centerOn: null,
+    autoMarkdownSpheres: true,
+    autoMarkdownDirectory: directory,
+    autoMarkdownIncludeExistingInLayout: false,
+    autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
+    autoMarkdownRingRadius: parentScene?.autoMarkdownRingRadius,
+    autoMarkdownMaxRingCount: parentScene?.autoMarkdownMaxRingCount,
+    autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
+    autoMarkdownColumns: parentScene?.autoMarkdownColumns,
+    autoMarkdownPalette: parentScene?.autoMarkdownPalette,
+    autoMarkdownColor: parentScene?.autoMarkdownColor,
+  };
+  return sceneId;
+}
+
+async function ensureDynamicSceneConfig(sceneId) {
+  const config = levelConfigs[sceneId];
+  if (!config || !config.autoMarkdownSpheres) {
+    return;
+  }
+  if (!Array.isArray(config.nodes)) {
+    config.nodes = [];
+  }
+  if (config.nodes.length) {
+    return;
+  }
+  const autoNodes = await buildAutoMarkdownNodes(config, config.nodes);
+  if (autoNodes.length) {
+    config.nodes = config.nodes.concat(autoNodes);
+  }
 }
 
 function computeWarpScale(objectRadius) {
@@ -2265,6 +2381,7 @@ async function startLevelTransitionFromNode(targetNode) {
       return;
     }
   }
+  await ensureDynamicSceneConfig(childLevelId);
 
   beginLevelTransition(targetNode, childLevelId);
 }
