@@ -187,8 +187,8 @@ In this model, time itself has no internal structure or dynamics. It does not en
 
 -- **Geodesics of time** are trivial: they are simply the flow $t \mapsto t$ at constant rate.
 -- All **forces and accelerations** arise from:
-  - **Fields and potentials** acting within the fixed Euclidean space,
-  - **Self-interaction** of extended assemblies (e.g., self-hit regime of binaries),
+ - **Fields and potentials** acting within the fixed Euclidean space,
+ - **Self-interaction** of extended assemblies (e.g., self-hit regime of binaries),
 
 **not** from any curvature or dynamics of the time coordinate itself.
 
@@ -209,7 +209,7 @@ In this model, time itself has no internal structure or dynamics. It does not en
 
 **Summary Postulate (Absolute Time):**
 
-> **Postulate 1 (Absolute Time):**  
+> **Postulate 1 (Absolute Time):** 
 > Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed field propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical "arrow of time" or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
 
 ### 1.2 Absolute Space (Euclidean Void)
@@ -365,26 +365,26 @@ Vector calculus with the Euclidean metric specializes to:
 
 - **Gradient** of a scalar field:
 
-  $$
-  \nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right) = h^{ij} \partial_i f \, \mathbf{e}_j.
-  $$
+ $$
+ \nabla f = \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right) = h^{ij} \partial_i f \, \mathbf{e}_j.
+ $$
 - **Divergence** of a vector field:
 
-  $$
-  \nabla \cdot \mathbf{v} = \partial_i v^i = \frac{1}{\sqrt{\det h}} \partial_i \left( \sqrt{\det h} \, v^i \right).
-  $$
+ $$
+ \nabla \cdot \mathbf{v} = \partial_i v^i = \frac{1}{\sqrt{\det h}} \partial_i \left(\sqrt{\det h} \, v^i \right).
+ $$
 
-  In Cartesian coordinates this reduces to $\partial_x v^x + \partial_y v^y + \partial_z v^z$.
+ In Cartesian coordinates this reduces to $\partial_x v^x + \partial_y v^y + \partial_z v^z$.
 - **Laplacian** (scalar and vector components) is the divergence of the gradient:
 
-  $$
-  \Delta f = \nabla^2 f = \partial_i \partial^i f.
-  $$
+ $$
+ \Delta f = \nabla^2 f = \partial_i \partial^i f.
+ $$
 - **Volume integrals** use the Cartesian measure:
 
-  $$
-  \int_V f \, dV = \int \!\!\int \!\!\int f(x,y,z) \, dx \, dy \, dz.
-  $$
+ $$
+ \int_V f \, dV = \int \!\!\int \!\!\int f(x,y,z) \, dx \, dy \, dz.
+ $$
 
 All these operators remain coordinate-invariant when expressed via tensor indices.
 
@@ -513,7 +513,7 @@ Any observed "curvature," such as the bending of light or the precession of orbi
 
 **Summary Postulate (Absolute Space):**
 
-> **Postulate 2 (Absolute Space):**  
+> **Postulate 2 (Absolute Space):** 
 > Three-dimensional space is absolute, static, and **flat Euclidean** with metric $h_{ij} = \delta_{ij}$. It is **homogeneous** (no special location) and **isotropic** (no preferred direction), with symmetry group $E(3)$. Space is **non-dynamical**; it does not curve, expand, or contract. It does not respond to matter or energy. The curvature of trajectories arises entirely from forces and interactions within space, never from the geometry of space itself. All spatial displacements and distances are measured by the fixed Euclidean metric. Cosmological expansion must be understood as dynamics *of the tri-binary medium within space*, not as expansion *of space itself*.
 
 ### 1.3 Absolute Timespace (The Product Structure)
@@ -866,7 +866,7 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 #### 1.3.11 Summary of Postulate (Absolute Timespace)
 
-> **Postulate 3 (Absolute Timespace):**  
+> **Postulate 3 (Absolute Timespace):** 
 > The background arena for all physics is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$, equipped with absolute time $\tau = dt$ and absolute space metric $h_{ij} = \delta_{ij}$. This defines a foliation into global, simultaneous 3D Euclidean slices indexed by universal time. The background is non-dynamical and non-curved ($R = 0$ everywhere). Causality is defined by absolute temporal ordering and finite propagation speed $c_f$. The background preserves Galilean kinematic symmetries, but the interaction law selects a preferred rest frame, breaking boost invariance dynamically. This preferred frame is essential for the propagation of potentials and the self-hit mechanisms that underpin the theory. All relativistic phenomena—including effective Lorentz invariance at certain scales—are emergent from the dynamics of assemblies. All gravitational phenomena, including lensing and cosmological expansion, are derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
 
 ---
@@ -1144,7 +1144,7 @@ where:
 - $r = \|\mathbf{s}_{\text{rec}}(t) - \mathbf{s}_{\text{emit}}(t_0)\|$,
 - $\hat{\mathbf{r}} = (\mathbf{s}_{\text{rec}}(t) - \mathbf{s}_{\text{emit}}(t_0)) / r$.
 
-The total acceleration is summed over all sources and all causal emission times (see `foundations/master-equation.md` for full formulation).
+The total acceleration is summed over all sources and all causal emission times.
 
 ---
 
@@ -1186,7 +1186,7 @@ In realistic many-Architrino systems, distinguishing absolute rest from motion r
 
 While absolute rest is ontologically well-defined, the theory must ensure that **Physical Observers** (assemblies) **cannot operationally detect** the absolute frame to precision better than $<10^{-17}$ (see Tier-1 constraint ledger). 
 
-**Mechanism (Red's Warning):** This requires that assembly dynamics (rulers, clocks) naturally Lorentz-contract and time-dilate when moving through the Noether Sea (see Section 3 and TOC Ch. 32). This "Lorentzian Conspiracy" must be an **inevitable mechanical consequence** of the Master Equation (see `master-equation.md`), not a tuning of parameters $\eta$ and $\kappa$. **If this contraction is not automatic and exact, the theory is immediately falsified by Michelson-Morley and modern Lorentz-violation tests.**
+**Mechanism Warning:** This requires that assembly dynamics (rulers, clocks) naturally Lorentz-contract and time-dilate when moving through the Noether Sea. This "Lorentzian Conspiracy" must be an **inevitable mechanical consequence** of the Master Equation, not a tuning of parameters $\eta$ and $\kappa$. **If this contraction is not automatic and exact, the theory is immediately falsified by Michelson-Morley and modern Lorentz-violation tests.**
 
 **Experimental Strategy (Sig):** If the Lorentz suppression mechanism is a physical interaction with the Noether Sea, there **must exist** a breakdown regime (high energy, strong field gradients, or near Planck cores) where Lorentz invariance cracks. Identifying observable signatures of this breakdown is a primary experimental target.
 
@@ -1218,7 +1218,7 @@ The Architrino framework distinguishes sharply between:
 
 **Analogy:**
 
-- **Void** : **Vacuum** :: **Stage** : **Performers**
+- **Void**: **Vacuum**:: **Stage**: **Performers**
 - The void is the theater; the vacuum is the cast of actors.
 - The void does not move; the vacuum does.
 
@@ -1228,7 +1228,7 @@ The Architrino framework distinguishes sharply between:
 
 **Terminology Lock:**
 
-✅ **USE:** "Euclidean void" (substrate), "Noether Sea" / "Spacetime medium" / "Aether" (physical substance)  
+✅ **USE:** "Euclidean void" (substrate), "Noether Sea" / "Spacetime medium" / "Aether" (physical substance) 
 ❌ **AVOID:** "Vacuum" alone (ambiguous; connotes emptiness), "Curved space" (space itself is flat; only the medium's effective geometry curves)
 
 ### 3.2 Ontological Status of the Noether Sea
@@ -1381,10 +1381,10 @@ The Absolute Observer serves multiple functions:
 
 - **Ontology (what exists):** Architrinos at definite $(x,y,z)$ with definite velocities at absolute time $t$. This is what the AO witnesses.
 - **Epistemology (what we can measure):** Physical observers (tri-binary assemblies) have limited, perspectival access constrained by:
-  - Finite signal speed $c_f$
-  - Emergent proper time $\tau \neq t$
-  - Coarse-graining (effective field descriptions)
-  - Decoherence and irreversibility
+ - Finite signal speed $c_f$
+ - Emergent proper time $\tau \neq t$
+ - Coarse-graining (effective field descriptions)
+ - Decoherence and irreversibility
 
 **Critical Constraint (Lorentz Suppression):**
 
@@ -1456,7 +1456,7 @@ The key requirement is that **PO rulers and clocks must automatically Lorentz-co
 - Internal binding dynamics adjust to minimize energy in the moving frame.
 - This produces **mechanical contraction** along the direction of motion and **slowing of internal oscillation rates**, exactly mimicking Lorentz transformations.
 
-**Red's Warning (Repeated for Emphasis):** "This 'Mechanical Contraction' must be an **inevitable consequence** of the Master Equation (`master-equation.md`), not a 'just-so' story where $\eta$ and $\kappa$ were tuned to achieve it. If that contraction isn't exact to $10^{-17}$, I will kill the theory on the Michelson-Morley hill."
+**Repeated for Emphasis:** "This 'Mechanical Contraction' must be an **inevitable consequence** of the Master Equation, not a 'just-so' story where $\eta$ and $\kappa$ were tuned to achieve it. If that contraction isn't exact to $10^{-17}$, I will kill the theory on the Michelson-Morley hill."
 
 **Sol (Implementation Need):** "I need the explicit $d\tau/dt$ expression ASAP. Without it, I cannot build the clock/ruler modules that Sig and Red need for the Lorentz leakage test."
 
@@ -1537,16 +1537,16 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 
 | **Term** | **Definition** | **Cross-Reference** |
 |:---------|:---------------|:--------------------|
-| **Path History** | Time-delayed potential from past emissions (avoid outdated terminology) | Sec. 2.5, master-equation.md |
-| **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores | Sec. 3.1, assemblies/noether-core.md |
-| **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ | Sec. 1.2, euclidean-void.md |
-| **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly | Sec. 1.1, absolute-time-defense.md |
+| **Path History** | Time-delayed potential from past emissions (avoid outdated terminology) | Sec. 2.5, |
+| **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores | Sec. 3.1, |
+| **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ | Sec. 1.2, |
+| **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly | Sec. 1.1, |
 | **Absolute Virtual Observer (AVO)** / **Absolute Observer (AO)** | Conceptual probe with complete microstate knowledge | Sec. 4.1 |
 | **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics | Sec. 4.2 |
 | **Emission Time** | Time $t_0$ when a causal wake surface was emitted (we label this simply an emission time) | Sec. 2.5 |
-| **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces | Sec. 2.4, self-hit-dynamics.md |
+| **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces | Sec. 2.4, |
 | **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) | Sec. 2.2 |
-| **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly | assemblies/tri-binary-architecture.md |
+| **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly | |
 | **Electrino / Positrino** | Negative / positive fundamental charge unit $\mp e/6$ | Sec. 2.3 |
 
 ### 5.2 Deprecated Terms (AVOID THESE)
@@ -1635,7 +1635,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 **Status:**
 
 - $\rho_{vac}$: **To be derived** from cosmological observations (CMB, $H_0$, etc.)
-- $R_{\text{inner}}$: **To be derived** from maximum-curvature analysis (see self-hit-dynamics.md)
+- $R_{\text{inner}}$: **To be derived** from maximum-curvature analysis
 - $R_{\text{middle}}$, $R_{\text{outer}}$: **To be derived** from stability conditions
 
 ### 6.4 Naturalness Assessment
@@ -1681,58 +1681,58 @@ The following questions remain open and are active areas of investigation:
 ### 7.1 Fundamental Dynamics
 
 1. **Is self-hit fundamentally deterministic or stochastic?**
-   - When multiple self-hit roots exist, is the selection rule deterministic (e.g., sum over all roots) or stochastic (e.g., random selection with Born-rule probabilities)?
-   - Current hypothesis: Deterministic (sum over roots), with apparent randomness emerging from chaotic sensitivity to initial conditions.
+ - When multiple self-hit roots exist, is the selection rule deterministic (e.g., sum over all roots) or stochastic (e.g., random selection with Born-rule probabilities)?
+ - Current hypothesis: Deterministic (sum over roots), with apparent randomness emerging from chaotic sensitivity to initial conditions.
 
 2. **What is the origin of $\epsilon = e/6$?**
-   - Can this be derived from tri-binary topology, or is it a brute fact?
-   - Connection to 6-fold symmetry of tri-binary polar decoration?
+ - Can this be derived from tri-binary topology, or is it a brute fact?
+ - Connection to 6-fold symmetry of tri-binary polar decoration?
 
 3. **What determines $\kappa$?**
-   - Is it related to Planck units? To $e$, $c_f$, $\hbar$?
-   - Or is it an independent postulate?
+ - Is it related to Planck units? To $e$, $c_f$, $\hbar$?
+ - Or is it an independent postulate?
 
 ### 7.2 Quantum Interpretation
 
 4. **What is the ontological status of the wavefunction $\psi$?**
-   - **Realistic**: $\psi$ is the coarse-grained potential field (physical).
-   - **Nomological**: $\psi$ is a law-like object encoding initial conditions (not substance, not epistemic).
-   - **Epistemic**: $\psi$ is an effective description of incomplete knowledge.
-   - Current lean: **Realistic or Nomological** (see TOC Ch. 29).
+ - **Realistic**: $\psi$ is the coarse-grained potential field (physical).
+ - **Nomological**: $\psi$ is a law-like object encoding initial conditions (not substance, not epistemic).
+ - **Epistemic**: $\psi$ is an effective description of incomplete knowledge.
+ - Current lean: **Realistic or Nomological** (see TOC Ch. 29).
 
 5. **How does decoherence arise?**
-   - Mechanism: Entanglement with Noether Sea degrees of freedom?
-   - Is decoherence fundamental (irreversible in principle) or practical (reversible in principle but infeasible)?
+ - Mechanism: Entanglement with Noether Sea degrees of freedom?
+ - Is decoherence fundamental (irreversible in principle) or practical (reversible in principle but infeasible)?
 
 ### 7.3 Symmetries and Conservation
 
 6. **Does CPT hold?**
-   - Standard proof requires local relativistic QFT; does the architrino framework preserve or violate CPT?
-   - Implications for matter-antimatter asymmetry (see TOC Ch. 52).
+ - Standard proof requires local relativistic QFT; does the architrino framework preserve or violate CPT?
+ - Implications for matter-antimatter asymmetry (see TOC Ch. 52).
 
 7. **Is baryon number conserved?**
-   - Or can protons decay via architrino reassembly at ultra-high energies?
-   - Current bound: $\tau_p > 10^{34}$ years (Tier-1 constraint).
+ - Or can protons decay via architrino reassembly at ultra-high energies?
+ - Current bound: $\tau_p > 10^{34}$ years (Tier-1 constraint).
 
 ### 7.4 Cosmology and Initial Conditions
 
 8. **Did the universe "begin," or is it eternal?**
-   - Is there a $t = -\infty$ past, or a finite-age "Big Bang" event?
-   - Architrino framework allows for eternal steady-state with local recycling (see TOC Ch. 37).
+ - Is there a $t = -\infty$ past, or a finite-age "Big Bang" event?
+ - Architrino framework allows for eternal steady-state with local recycling (see TOC Ch. 37).
 
 9. **What set the initial conditions?**
-   - If the universe had a beginning, what determined the initial architrino distribution?
-   - If eternal, how do we explain large-scale homogeneity and isotropy?
+ - If the universe had a beginning, what determined the initial architrino distribution?
+ - If eternal, how do we explain large-scale homogeneity and isotropy?
 
 ### 7.5 Unification and Emergence
 
 10. **Can all forces be unified geometrically?**
-    - EM, weak, strong, gravity—all from tri-binary geometry and Noether Sea dynamics?
-    - Current status: Qualitative framework in place (see TOC Ch. 20); quantitative derivations in progress.
+ - EM, weak, strong, gravity—all from tri-binary geometry and Noether Sea dynamics?
+ - Current status: Qualitative framework in place (see TOC Ch. 20); quantitative derivations in progress.
 
 ---
 
-## 8. Summary and Cross-References
+## 8. Summary
 
 ### 8.1 What This Document Establishes
 
