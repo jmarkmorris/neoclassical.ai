@@ -4,13 +4,18 @@
     "id": "nuclear_atomic",
     "name": "Nuclear-Atomic",
     "units": "relative",
-    "wrapLabels": true
+    "wrapLabels": true,
+    "autoMarkdownSpheres": true,
+    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/nuclear-atomic",
+    "autoMarkdownIncludeExistingInLayout": true,
+    "autoMarkdownNodeRadius": 2.688,
+    "autoMarkdownRingRadius": 12
   },
   "objects": [
     {
       "id": "proton_stability",
       "label": "Proton Stability",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2a3b5a",
       "position": [
         0.0,
@@ -27,7 +32,7 @@
     {
       "id": "baryon_asymmetry",
       "label": "Baryon Asymmetry",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#7a3f4a",
       "position": [
         4.5,
@@ -44,7 +49,7 @@
     {
       "id": "confinement_mass_gap",
       "label": "Confinement and the Mass Gap",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#5a4a7a",
       "position": [
         -4.5,
@@ -61,7 +66,7 @@
     {
       "id": "neutrino_mass_and_nature",
       "label": "Neutrino Mass and Nature",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#4f315f",
       "position": [
         0.0,
@@ -78,7 +83,7 @@
     {
       "id": "strong_cp_problem",
       "label": "Strong CP Problem",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
         4.5,
@@ -95,7 +100,7 @@
     {
       "id": "leptogenesis",
       "label": "Leptogenesis CP Sources",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2c567a",
       "position": [
         -4.5,

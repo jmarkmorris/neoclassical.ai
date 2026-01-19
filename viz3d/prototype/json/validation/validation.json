@@ -4,13 +4,18 @@
     "id": "validation",
     "name": "Validation",
     "units": "relative",
-    "wrapLabels": true
+    "wrapLabels": true,
+    "autoMarkdownSpheres": true,
+    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/validation",
+    "autoMarkdownIncludeExistingInLayout": true,
+    "autoMarkdownNodeRadius": 2.688,
+    "autoMarkdownRingRadius": 12
   },
   "objects": [
     {
       "id": "muon_g_2_lepton_universality",
       "label": "Muon g-2 and Lepton Universality Anomalies",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#5f5f7a",
       "position": [
         0.0,
