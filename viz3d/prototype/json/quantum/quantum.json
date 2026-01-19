@@ -4,13 +4,18 @@
     "id": "quantum",
     "name": "Quantum",
     "units": "relative",
-    "wrapLabels": true
+    "wrapLabels": true,
+    "autoMarkdownSpheres": true,
+    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/quantum",
+    "autoMarkdownIncludeExistingInLayout": true,
+    "autoMarkdownNodeRadius": 2.688,
+    "autoMarkdownRingRadius": 12
   },
   "objects": [
     {
       "id": "flavor_problem",
       "label": "Flavor Problem",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
         0.0,
@@ -27,7 +32,7 @@
     {
       "id": "quantum_statistics",
       "label": "Fermi-Dirac & Bose-Einstein Statistics",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
         4.5,

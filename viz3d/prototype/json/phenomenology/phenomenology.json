@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "phenomenology",
+    "name": "Phenomenology",
+    "units": "relative",
+    "wrapLabels": true,
+    "autoMarkdownSpheres": true,
+    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/phenomenology",
+    "autoMarkdownNodeRadius": 2.688,
+    "autoMarkdownRingRadius": 12
+  },
+  "objects": []
+}
