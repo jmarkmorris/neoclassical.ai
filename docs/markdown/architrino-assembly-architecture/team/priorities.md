@@ -28,7 +28,6 @@ Looking at byte counts as a proxy for existing content investment, and consideri
 - **`phenomenology/effective-lagrangian.md` (0 bytes):** Important for theorists, but **not critical** until we have the mass spectrum and proper time working.
 - **`spacetime/emergent-metric.md` (8,133 bytes):** Partially done. Needs completion, but **Proper Time Derivation** is the more urgent prerequisite.
 
-
 ---
 
 Phil
