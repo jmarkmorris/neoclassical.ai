@@ -1535,19 +1535,19 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 
 ### 5.1 Mandatory Terms (USE THESE)
 
-| **Term** | **Definition** | **Cross-Reference** |
-|:---------|:---------------|:--------------------|
-| **Path History** | Time-delayed potential from past emissions (avoid outdated terminology) | Sec. 2.5, |
-| **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores | Sec. 3.1, |
-| **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ | Sec. 1.2, |
-| **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly | Sec. 1.1, |
-| **Absolute Virtual Observer (AVO)** / **Absolute Observer (AO)** | Conceptual probe with complete microstate knowledge | Sec. 4.1 |
-| **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics | Sec. 4.2 |
-| **Emission Time** | Time $t_0$ when a causal wake surface was emitted (we label this simply an emission time) | Sec. 2.5 |
-| **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces | Sec. 2.4, |
-| **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) | Sec. 2.2 |
-| **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly | |
-| **Electrino / Positrino** | Negative / positive fundamental charge unit $\mp e/6$ | Sec. 2.3 |
+| **Term** | **Definition** |
+|:---------|:---------------|
+| **Path History** | Time-delayed potential from past emissions (avoid outdated terminology) |
+| **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores |
+| **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ |
+| **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly |
+| **Absolute Virtual Observer (AVO)** / **Absolute Observer (AO)** | Conceptual probe with complete microstate knowledge |
+| **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics |
+| **Emission Time** | Time $t_0$ when a causal wake surface was emitted (we label this simply an emission time) |
+| **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces |
+| **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) |
+| **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly |
+| **Electrino / Positrino** | Negative / positive fundamental charge unit $\mp e/6$ |
 
 ### 5.2 Deprecated Terms (AVOID THESE)
 
@@ -1746,5 +1746,3 @@ This Foundational Ontology defines:
 6. **Parameter Ledger**: Foundational postulates and scale setters.
 
 All subsequent chapters build on this foundation.
-
-
