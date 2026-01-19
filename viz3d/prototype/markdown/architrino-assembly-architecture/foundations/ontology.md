@@ -19,14 +19,6 @@ All subsequent dynamical laws, assembly mappings, and emergent phenomena are **b
 
 **This document is Law.** Changes require full-team review and explicit justification.
 
-**Cross-references:**
-- TOC Chapters 1-3 (Crisis, Absolute Time/Space, Architrino)
-- TOC Chapter 10 (Emergence definitions)
-- TOC Chapter 31 (Spacetime as Aether)
-- TOC Chapter 47 (Philosophy of the Framework)
-
----
-
 ## 1. The Substrate (What Exists Fundamentally)
 
 ### 1.1 Absolute Time
@@ -219,13 +211,6 @@ In this model, time itself has no internal structure or dynamics. It does not en
 
 > **Postulate 1 (Absolute Time):**  
 > Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed field propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical "arrow of time" or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
-
-**Cross-references:**
-- TOC Ch. 2: "Absolute Time and Euclidean Space"
-- TOC Ch. 32: "Emergent Metric and the Bridge to General Relativity" (proper time derivation)
-- `foundations/absolute-time-defense.md`: Detailed philosophical defense against relativistic objections
-
----
 
 ### 1.2 Absolute Space (Euclidean Void)
 
@@ -530,14 +515,6 @@ Any observed "curvature," such as the bending of light or the precession of orbi
 
 > **Postulate 2 (Absolute Space):**  
 > Three-dimensional space is absolute, static, and **flat Euclidean** with metric $h_{ij} = \delta_{ij}$. It is **homogeneous** (no special location) and **isotropic** (no preferred direction), with symmetry group $E(3)$. Space is **non-dynamical**; it does not curve, expand, or contract. It does not respond to matter or energy. The curvature of trajectories arises entirely from forces and interactions within space, never from the geometry of space itself. All spatial displacements and distances are measured by the fixed Euclidean metric. Cosmological expansion must be understood as dynamics *of the tri-binary medium within space*, not as expansion *of space itself*.
-
-**Cross-references:**
-- TOC Ch. 2: "Absolute Time and Euclidean Space"
-- TOC Ch. 31: "Spacetime as Aether: Ontology and Intuition"
-- `foundations/euclidean-void.md`: Detailed treatment of spatial geometry
-- `cosmology/expansion-mechanism.md`: Reinterpretation of Hubble expansion
-
----
 
 ### 1.3 Absolute Timespace (The Product Structure)
 
@@ -1018,13 +995,6 @@ This is a **high-priority explanatory target**. Current hypothesis: the tri-bina
 
 See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Map") for detailed assembly-to-particle mappings.
 
-**Cross-references:**
-- TOC Ch. 18: "Fermions: Leptons and Quarks"
-- `particle-physics/charge-quantization.md`: Derivation of stable charge configurations
-- `assemblies/tri-binary-architecture.md`: Six-site decoration patterns
-
----
-
 ### 2.4 Architrino Paths
 
 The Architrino path ontology describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
@@ -1139,14 +1109,6 @@ This wake-stabilized orbit:
 - Underpins stable particle assemblies (see TOC Ch. 11: "Noether Core")
 - Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
 
-**Cross-references:**
-- TOC Ch. 8: "Maximum Curvature Orbit and the Emergence of Units of Length and Time"
-- TOC Ch. 12: "Velocity Regimes and Symmetry Breaking"
-- `foundations/self-hit-dynamics.md`: Detailed analysis of wake-triggered interactions
-- `assemblies/binary-dynamics.md`: Formation and stability of binaries
-
----
-
 ### 2.6 Reception Rule and Acceleration
 
 Each Architrino possesses a **reception rule**: a deterministic law that converts incoming potential into acceleration. The rule is **universal** (all Architrinos follow the same law).
@@ -1204,13 +1166,6 @@ When $|\mathbf{v}_a| > v_f$, individual Architrinos can outrun their own fields.
 2. Self-hit events, while non-local in configuration space, are still ordered in absolute time and cannot be used for backward signaling.
 3. The theory remains compatible with causality at the level of information and influence: no signal can propagate faster than $v_f$ between **distinct** architrinos.
 
-**Cross-references:**
-- TOC Ch. 5: "Self-Hit Dynamics and Non-Markovian Memory"
-- TOC Ch. 29: "Quantum Mechanics as Emergent Determinism"
-- `philosophy-history/unknowns-paradoxes.md`: Bell's theorem and nonlocality
-
----
-
 ### 2.8 Absolute Rest and Stationary Frame
 
 A special and fundamental case arises when an Architrino is stationary with respect to absolute space, i.e., its velocity $\mathbf{v}_a = \mathbf{0}$.
@@ -1234,13 +1189,6 @@ While absolute rest is ontologically well-defined, the theory must ensure that *
 **Mechanism (Red's Warning):** This requires that assembly dynamics (rulers, clocks) naturally Lorentz-contract and time-dilate when moving through the Noether Sea (see Section 3 and TOC Ch. 32). This "Lorentzian Conspiracy" must be an **inevitable mechanical consequence** of the Master Equation (see `master-equation.md`), not a tuning of parameters $\eta$ and $\kappa$. **If this contraction is not automatic and exact, the theory is immediately falsified by Michelson-Morley and modern Lorentz-violation tests.**
 
 **Experimental Strategy (Sig):** If the Lorentz suppression mechanism is a physical interaction with the Noether Sea, there **must exist** a breakdown regime (high energy, strong field gradients, or near Planck cores) where Lorentz invariance cracks. Identifying observable signatures of this breakdown is a primary experimental target.
-
-**Cross-references:**
-- TOC Ch. 46: "Lorentz Ether Theory and Neo-Lorentzian Relativity"
-- `adversarial/constraint-ledger.md`: Lorentz leakage bounds ($< 10^{-17}$)
-- `gravity-spacetime/proper-time-derivation.md`: Clock dynamics in the Noether Sea (Action 3)
-
----
 
 ## 3. The Physical Medium (Noether Sea / Spacetime Aether)
 
@@ -1283,13 +1231,6 @@ The Architrino framework distinguishes sharply between:
 ✅ **USE:** "Euclidean void" (substrate), "Noether Sea" / "Spacetime medium" / "Aether" (physical substance)  
 ❌ **AVOID:** "Vacuum" alone (ambiguous; connotes emptiness), "Curved space" (space itself is flat; only the medium's effective geometry curves)
 
-**Cross-references:**
-- TOC Ch. 31: "Spacetime as Aether: Ontology and Intuition"
-- `foundations/euclidean-void.md`: Detailed substrate treatment
-- `assemblies/noether-core.md`: Structure of the spacetime medium
-
----
-
 ### 3.2 Ontological Status of the Noether Sea
 
 **What is the Noether Sea?**
@@ -1326,13 +1267,6 @@ Massive bodies (composed of architrino assemblies) increase the local density of
 - Geodesic deviation (particles follow "curved" paths in effective geometry)
 
 All of these are **refractive effects** in the Noether Sea, not curvature of the void itself.
-
-**Cross-references:**
-- TOC Ch. 31: "Spacetime as Aether: Ontology and Intuition"
-- TOC Ch. 32: "Emergent Metric and the Bridge to General Relativity"
-- `gravity-spacetime/emergent-metric.md`: Derivation of effective $g_{\mu\nu}$ from $\rho_{vac}$
-
----
 
 ### 3.3 Emergent Proper Time and Assembly Dynamics
 
@@ -1374,13 +1308,6 @@ recovering the familiar SR and weak-field GR time dilation formulas in appropria
 
 **Stability Concern (Alfa):** If atoms are assemblies in this Sea, the medium drag must **not** cause electron orbitals to decay. The stability condition must be robust: either (1) assemblies in equilibrium with the Sea experience zero net drag, or (2) internal binding forces exactly compensate Sea drag. This requires explicit demonstration.
 
-**Cross-references:**
-- TOC Ch. 32: "Emergent Metric and Proper Time" (Action 2 - **immediate priority**)
-- `gravity-spacetime/proper-time-derivation.md`: Full derivation of $d\tau/dt$ formula
-- `assemblies/tri-binary-architecture.md`: Internal clock mechanisms
-
----
-
 ### 3.4 Cosmological Implications (Expansion, Dark Energy)
 
 **Hubble Expansion Reinterpreted:**
@@ -1415,13 +1342,6 @@ In the Architrino framework:
 - Accelerated expansion arises from **negative pressure** in the Noether Sea (assemblies resist compression → effective $w \approx -1$).
 
 **Cos:** "By eliminating the need for Dark Energy as a separate field—treating it as internal Sea pressure—we can potentially resolve the $H_0$ tension. The key words from Section 3.1: 'void doesn't expand; assemblies rescale' will be used verbatim in the expansion-mechanism chapter."
-
-**Cross-references:**
-- TOC Ch. 37: "Cosmological Ontology"
-- TOC Ch. 41: "Expansion, Inflation, and Redshift"
-- `cosmology/expansion-mechanism.md`: Detailed Hubble law derivation
-
----
 
 ## 4. The Observer Framework (Ontic vs Epistemic)
 
@@ -1473,14 +1393,6 @@ The existence of an absolute observer as a theoretical construct does **not** im
 **Failure mode:**
 
 If we accidentally use "absolute observer powers" in derivations of physical predictions (e.g., assuming instantaneous knowledge across space), we will predict Lorentz violations that falsify the model. All physically measurable quantities must be **local** and **causally accessible** to assembly-based observers.
-
-**Cross-references:**
-- TOC Ch. 29: "Quantum Mechanics as Emergent Determinism"
-- TOC Ch. 47: "Philosophy of the Architrino Framework"
-- `adversarial/constraint-ledger.md`: Lorentz leakage bounds
-- `simulations/run-protocols.md`: Implementation of AO frame in simulations
-
----
 
 ### 4.2 The Physical Observer (PO)
 
@@ -1550,14 +1462,6 @@ The key requirement is that **PO rulers and clocks must automatically Lorentz-co
 
 If this mechanism fails (e.g., if assemblies do not naturally contract), the theory predicts observable violations of Lorentz invariance, falsifying the model.
 
-**Cross-references:**
-- TOC Ch. 32: "Emergent Metric and Proper Time"
-- TOC Ch. 33: "General Relativity Phenomenology and Tests"
-- `gravity-spacetime/proper-time-derivation.md`: Full derivation
-- `adversarial/constraint-ledger.md`: Lorentz leakage, PPN parameters
-
----
-
 ### 4.3 Ontic vs Epistemic: The Two-Level Framework
 
 The Architrino theory operates on **two distinct levels**:
@@ -1590,13 +1494,6 @@ Many apparent "mysteries" of quantum mechanics and relativity dissolve when we r
 - **Epistemic**: Temperature, pressure, entropy (macroscopic observables accessible to thermometers and gauges).
 
 The gas molecules don't care about temperature; temperature is a coarse-graining. Similarly, architrinos don't care about "wavefunctions" or "spacetime curvature"—those are effective descriptions for Physical Observers.
-
-**Cross-references:**
-- TOC Ch. 29: "Quantum Mechanics as Emergent Determinism"
-- TOC Ch. 47: "Philosophy of the Architrino Framework"
-- `philosophy-history/major-thinkers.md`: Connections to Bohmian mechanics, neo-Lorentzian relativity
-
----
 
 ### 4.4 Simultaneity: Absolute (Ontic) vs Relative (Epistemic)
 
@@ -1631,13 +1528,6 @@ The Architrino framework is **not** in conflict with the empirical success of sp
 **Observational Constraint:**
 
 The absolute frame must be **undetectable** to POs at precision $<10^{-17}$ (see Lorentz suppression requirement). Any proposed experiment to "find the absolute frame" must fail due to automatic Lorentz contraction/dilation of the measuring apparatus.
-
-**Cross-references:**
-- TOC Ch. 2: "Absolute Time and Euclidean Space"
-- TOC Ch. 46: "Lorentz Ether Theory and Neo-Lorentzian Relativity"
-- `philosophy-history/lorentz-ether-comparison.md`: Detailed comparison to LET
-
----
 
 ## 5. Terminology Discipline (Locked Definitions)
 
@@ -1699,12 +1589,6 @@ Always clarify which level you're working at.
 
 - **Fundamental**: Architrino charge magnitude $|e/6|$.
 - **Effective**: Particle charges $0, \pm e/3, \pm 2e/3, \pm e$ (see TOC Ch. 18).
-
-**Cross-references:**
-- `GLOSSARY.md`: Full indexed glossary of terms
-- `appendices/notation.md`: Mathematical notation conventions
-
----
 
 ## 6. Parameter Ledger (Foundation Level)
 
@@ -1775,12 +1659,6 @@ where:
 - $\epsilon = e/6$: **Not fine-tuned** (discrete topological value; see TOC Ch. 18)
 - $\kappa$: **To be assessed** (depends on whether it can be derived)
 - $\rho_{vac}$: **Potentially fine-tuned** (zero-point energy; requires energy shielding mechanism; see TOC Ch. 31)
-
-**Cross-references:**
-- TOC Ch. 54: "Parameter Accountability and Naturalness Assessment"
-- `adversarial/parameter-count-audit.md`: Full ledger with FTQ calculations
-
----
 
 ### 6.5 Simulation Parameters (Computational Necessities)
 

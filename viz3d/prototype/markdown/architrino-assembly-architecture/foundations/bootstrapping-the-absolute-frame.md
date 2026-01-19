@@ -424,7 +424,3 @@ This section should be added to:
 **Primary:** `./absolute-time-defense.md`  
 (as a subsection following "Bootstrapping the Absolute Frame: The Concentric Wake Measurement")
 
-**Cross-references:**
-- `./euclidean-void.md` – structural properties of the substrate
-- `./master-equation.md` – why explicit coordinates are needed for the integro-differential equation
-- `../simulations/run-protocols.md` – practical implementation of coordinate handling in Sol's code

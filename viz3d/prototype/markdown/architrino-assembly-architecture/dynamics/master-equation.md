@@ -18,15 +18,6 @@ The Master EOM is:
 - **Causal**: All influences propagate at finite field speed $c_f$.
 - **Self-consistent**: Includes self-interaction (self-hit) when $v > c_f$ at past emission times.
 
-**Cross-references:**
-- `foundations/ontology.md`: Architrino definition, reception rule, absolute time/space
-- `foundations/self-hit-dynamics.md`: Detailed treatment of self-hit regime
-- `simulations/run-protocols.md`: Numerical implementation standards
-- TOC Ch. 4: "The Point Potential Action and Master Equation"
-- TOC Ch. 5: "Self-Hit Dynamics and Non-Markovian Memory"
-
----
-
 ## 1. Overview and Key Principle
 
 ### 1.1 The Central Idea
@@ -446,12 +437,6 @@ Then:
 2. Apply fixed-point theorems for DDEs with state-dependent delays (see Hale & Verduyn Lunel, *Functional Differential Equations*).
 3. Verify that self-hit terms (if present) satisfy the same Lipschitz bounds.
 
-**Cross-references:**
-- Appendix B: "Self-Energy and Regularization Notes" (technical details)
-- `simulations/run-protocols.md`: Numerical stability and convergence criteria
-
----
-
 ## 6. Core Principles (Operational Summary)
 
 ### 6.1 Superposition
@@ -557,13 +542,6 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Next steps (Dyna):** Map the full phase-space attractor landscape for self-hit binaries. Questions: (1) How large is the basin of attraction for maximum-curvature orbit? (2) What initial conditions lead to escape (dissociation)? (3) Are there secondary attractors (e.g., elliptical orbits)? See: `assemblies/stability-conditions.md`.
 
-**Cross-references:**
-- `foundations/ontology.md`: Section 2.4.3 (Maximum-Curvature Equilibrium)
-- `foundations/self-hit-dynamics.md`: Detailed analysis of stability, multi-root regimes, and attractor basins
-- TOC Ch. 8: "Maximum Curvature Orbit and the Emergence of Units of Length and Time"
-
----
-
 ## 8. Worked Examples (Analytic Baselines)
 
 ### 8.1 Stationary Opposite Charges (Radial Fall)
@@ -629,12 +607,6 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 
 **Full derivation:** See `self-hit-dynamics.md`, Section on Maximum-Curvature Orbit (includes delay equations, tangential components, radial balance, and stability analysis).
 
-**Cross-references:**
-- TOC Ch. 8: "Maximum Curvature Orbit and the Emergence of Units of Length and Time"
-- TOC Ch. 11: "The Noether Core: Central Architecture"
-
----
-
 ## 9. Informational Ambiguity at the Receiver
 
 ### 9.1 Limited Information Per Hit
@@ -686,15 +658,6 @@ This limited, unoriented, and source-ambiguous information at the hit level is a
 
 **Open question (High Priority):** Does the informational ambiguity in Section 9.2-9.4, when statistically averaged over many similar configurations, **reproduce the Born rule** ($P \propto |\psi|^2$)? This requires: (1) Ensemble simulations of identically prepared systems, (2) Statistical analysis of hit patterns, (3) Comparison to QM predictions. See Action: "Born Rule Derivation" (TBD).
 
-**Cross-references:**
-- TOC Ch. 29: "Quantum Mechanics as Emergent Determinism"
-- TOC Ch. 30: "Measurement and the Collapse Problem"
-- `philosophy-history/unknowns-paradoxes.md`: Bell's theorem, EPR, and nonlocality
-
----
-
----
-
 ## 10. Parameter Definitions (From Ledger)
 
 All parameters used in the Master EOM are defined in the **Parameter Ledger** (`foundations/ontology.md`, Section 6; and `adversarial/parameter-ledger.md`). For quick reference:
@@ -716,13 +679,6 @@ All parameters used in the Master EOM are defined in the **Parameter Ledger** (`
   - **Physical justification required**: Is $\eta \sim \ell_P$ (Planck length), or $\eta \sim R_{\text{inner}}$ (tri-binary inner radius)? If $\eta$ varies by $> 10\%$ across different physical contexts (binaries vs nuclei vs cosmology), theory lacks naturalness.
 
 **Naturalness assessment:** Track fine-tuning quotient (FTQ) for each parameter; flag if FTQ $> 10$ (see TOC Ch. 54).
-
-**Cross-references:**
-- `foundations/ontology.md`: Section 6 (Parameter Ledger, Foundation Level)
-- `adversarial/parameter-ledger.md`: Complete ledger with all categories (A, B, C, D)
-- TOC Ch. 54: "Parameter Accountability and Naturalness Assessment"
-
----
 
 ## 11. Numerical Implementation Notes
 
@@ -785,11 +741,6 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
   - **Special attention during $v \to c_f$ transitions** (self-hit activation): if energy spikes $> 10^{-4}$ instantaneously, integrator is unstable.
 - **Symmetry preservation**: If initial conditions have symmetry (e.g., reflection, rotation), check that solution respects it.
 
-**Cross-references:**
-- `simulations/run-protocols.md`: Detailed numerical standards
-- `simulations/convergence-tests.md`: Required test matrix
-- TOC Ch. 6: "Numerical Standards and Validation Protocols"
-
 ### 11.4 Provenance Tracking (Emission Event → Receiver → Response)
 
 **For debugging and interpretation:**
@@ -809,10 +760,6 @@ At each hit, log:
 - Trace energy transfer pathways
 - Validate superposition (sum of logged forces = total acceleration?)
 
-**Cross-references:**
-- `simulations/run-protocols.md`: Metadata and logging requirements
-- TOC Ch. 49: "Provenance Tracking and Visualization"
-
 ### 11.5 Numerical Parameter Baseline
 
 To ensure reproducibility across all simulation runs, the following **baseline parameter values** are recommended:
@@ -829,12 +776,6 @@ To ensure reproducibility across all simulation runs, the following **baseline p
 - All runs must cite these baseline values or explicit deviations with justification.
 - Convergence tests (halving $\Delta t$, halving $\eta$) must be performed for any new physical regime.
 - Parameter sweeps (varying $\eta$ over $[10^{-4}, 10^{-1}]$) required to verify physical results are not numerical artifacts.
-
-**Cross-references:**
-- `simulations/run-protocols.md`: Full parameter documentation requirements
-- `adversarial/parameter-ledger.md`: Distinction between physical and numerical parameters
-
----
 
 ## 12. Cross-References
 
