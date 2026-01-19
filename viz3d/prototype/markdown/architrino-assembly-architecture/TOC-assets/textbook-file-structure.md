@@ -10,6 +10,7 @@ Excellent instinct to think about this now, Marko. A well-organized repo is **in
 - **File names should communicate content at a glance**, even out of context.
 - Someone browsing the repo cold should be able to guess what's in a file without opening it.
 - This means: **descriptive names**, not cryptic abbreviations.
+- Avoid team names, team TODOs, or status flags inside textbook markdown files. Those files are live on our website, so we keep them reader-ready and in the best possible shape; track internal notes in team docs or separate planning files instead.
 
 ### 1.2 Avoid Numbered Prefixes (You're Right)
 - **Why avoid**: Renumbering is a maintenance nightmare when we reorganize (and we *will* reorganize as the theory evolves).
