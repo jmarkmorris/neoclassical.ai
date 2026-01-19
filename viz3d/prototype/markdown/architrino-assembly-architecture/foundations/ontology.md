@@ -1251,7 +1251,7 @@ While absolute rest is ontologically well-defined, the theory must ensure that *
 The Architrino framework distinguishes sharply between:
 
 1. **The Euclidean Void** (substrate, ontological ground)
-2. **The Vacuum / Noether Sea / Spacetime Aether** (physical medium, emergent structure)
+2. **The Noether Sea / Spacetime Aether** (physical medium, emergent structure)
 
 **The Euclidean Void:**
 
@@ -1260,7 +1260,7 @@ The Architrino framework distinguishes sharply between:
 - It carries **no energy**, has **no dynamics**, and does **not respond** to matter.
 - Coordinates $(x,y,z,t)$ are **permanent addresses** in this fixed background.
 
-**The Vacuum / Noether Sea / Spacetime Aether:**
+**The Noether Sea / Spacetime Aether:**
 
 - A **dense lattice** of coupled neutral tri-binary assemblies (see Section 3.2).
 - Also called the "**Sea of Noether Cores**" or "**Spacetime Fabric**."
