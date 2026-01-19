@@ -77,6 +77,19 @@ const colorTokens = {
   BLUE: "#0000ff",
   PURPLE: "#4b0082",
 };
+const defaultAutoMarkdownPalette = [
+  "#243d8f",
+  "#2f6b6f",
+  "#5a1f2e",
+  "#4b0082",
+  "#3a5f9f",
+  "#2f4f7a",
+  "#7a4a1f",
+  "#1c2a4f",
+  "#3c6a7a",
+  "#3f6a5a",
+  "#6a3c3c",
+];
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -162,6 +175,7 @@ const markdownRenderer =
 if (markdownRenderer) {
   markdownRenderer.disable("escape");
 }
+const markdownDirectoryCache = new Map();
 let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPromise;
 let pendingMathTypeset = false;
 let activeMarkdownPath = null;
@@ -257,6 +271,130 @@ if (mathJaxScript) {
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
+}
+
+async function listMarkdownFilesInDir(directory) {
+  if (!directory) {
+    return [];
+  }
+  const normalized = directory.replace(/\/+$/, "").replace(/^\.?\//, "");
+  if (markdownDirectoryCache.has(normalized)) {
+    return markdownDirectoryCache.get(normalized);
+  }
+  try {
+    const response = await fetch(appendCacheBust(`${normalized}/`));
+    if (!response.ok) {
+      markdownDirectoryCache.set(normalized, []);
+      return [];
+    }
+    const html = await response.text();
+    const matches = [];
+    const hrefRegex = /href="([^"]+\.md)"/gi;
+    let match = null;
+    while ((match = hrefRegex.exec(html))) {
+      matches.push(match[1]);
+    }
+    const files = Array.from(
+      new Set(
+        matches
+          .map((href) => decodeURIComponent(href))
+          .map((href) => href.split("?")[0])
+          .map((href) => href.split("#")[0])
+          .map((href) => href.replace(/^\.?\//, ""))
+          .filter((href) => href.endsWith(".md"))
+          .filter((href) => !href.includes("/"))
+          .map((href) => `${normalized}/${href}`)
+      )
+    );
+    markdownDirectoryCache.set(normalized, files);
+    return files;
+  } catch (error) {
+    console.warn("Failed to read markdown directory", directory, error);
+    markdownDirectoryCache.set(normalized, []);
+    return [];
+  }
+}
+
+function titleFromSlug(slug) {
+  return slug
+    .split(/[-_]+/g)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+async function buildAutoMarkdownNodes(scene, existingNodes) {
+  if (!scene?.autoMarkdownSpheres || !scene?.autoMarkdownDirectory) {
+    return [];
+  }
+  const files = (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
+  if (!files.length) {
+    return [];
+  }
+  const usedIds = new Set(existingNodes.map((node) => node.id));
+  const baseRadius =
+    typeof scene.autoMarkdownNodeRadius === "number"
+      ? scene.autoMarkdownNodeRadius
+      : 1.6;
+  const palette =
+    Array.isArray(scene.autoMarkdownPalette) && scene.autoMarkdownPalette.length
+      ? scene.autoMarkdownPalette
+      : defaultAutoMarkdownPalette;
+  const baseColor = scene.autoMarkdownColor ?? null;
+  const maxRingCount =
+    typeof scene.autoMarkdownMaxRingCount === "number"
+      ? scene.autoMarkdownMaxRingCount
+      : 14;
+  const ringRadius =
+    typeof scene.autoMarkdownRingRadius === "number"
+      ? scene.autoMarkdownRingRadius
+      : Math.max(6, Math.min(files.length, maxRingCount) * baseRadius * 1.4);
+  const gridSpacing =
+    typeof scene.autoMarkdownGridSpacing === "number"
+      ? scene.autoMarkdownGridSpacing
+      : baseRadius * 2.6;
+  const useRing = files.length <= maxRingCount;
+  const columns = useRing ? 1 : Math.ceil(Math.sqrt(files.length));
+  const rows = useRing ? files.length : Math.ceil(files.length / columns);
+  const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
+  const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
+  return files
+    .map((path, index) => {
+      const fileName = path.split("/").pop() ?? "";
+      const slug = fileName.replace(/\.md$/i, "");
+      const id = slug
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "");
+      if (!id || usedIds.has(id)) {
+        return null;
+      }
+      let x = 0;
+      let y = 0;
+      if (useRing) {
+        const angle = (index / files.length) * Math.PI * 2;
+        x = Math.cos(angle) * ringRadius;
+        y = Math.sin(angle) * ringRadius;
+      } else {
+        const row = Math.floor(index / columns);
+        const col = index % columns;
+        x = startX + col * gridSpacing;
+        y = startY - row * gridSpacing;
+      }
+      let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
+      if (typeof color === "string" && colorTokens[color]) {
+        color = colorTokens[color];
+      }
+      const node = {
+        id,
+        name: titleFromSlug(slug),
+        radius: baseRadius,
+        position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
+        color,
+      };
+      return node;
+    })
+    .filter(Boolean);
 }
 
 function closeDetailPanel() {
@@ -672,13 +810,13 @@ async function loadSceneConfig(scenePath) {
       }
       return response.json();
     })
-    .then((data) => {
+    .then(async (data) => {
       const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
       const wrapLabels = data.scene?.wrapLabels ?? true;
       const idMap = new Map(
         data.objects.map((obj) => [obj.id, obj.label || obj.id])
       );
-      const nodes = data.objects.map((obj) => {
+      let nodes = data.objects.map((obj) => {
         const hasScale =
           obj.scaleExponent !== undefined && obj.scaleExponent !== null;
         const binaryBands = Array.isArray(obj.binaryBands)
@@ -742,6 +880,10 @@ async function loadSceneConfig(scenePath) {
         }
         return node;
       });
+      const autoNodes = await buildAutoMarkdownNodes(data.scene, nodes);
+      if (autoNodes.length) {
+        nodes = nodes.concat(autoNodes);
+      }
 
       const sceneName =
         data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;

@@ -1,0 +1,9 @@
+{
+  "scene": {
+    "id": "dynamics",
+    "name": "Dynamics",
+    "autoMarkdownSpheres": true,
+    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/dynamics"
+  },
+  "objects": []
+}
