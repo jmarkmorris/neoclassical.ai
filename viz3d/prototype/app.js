@@ -187,6 +187,7 @@ const rootScenePath = "json/architrino_assembly_architecture.json";
 const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;
+const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
@@ -331,6 +332,21 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   if (!files.length) {
     return [];
   }
+  const fileInfos = await Promise.all(
+    files.map(async (path) => {
+      try {
+        const response = await fetch(appendCacheBust(path));
+        if (!response.ok) {
+          return { path, isNonEmpty: false };
+        }
+        const text = await response.text();
+        return { path, isNonEmpty: text.trim().length > 0 };
+      } catch (error) {
+        console.warn("Failed to read markdown file", path, error);
+        return { path, isNonEmpty: false };
+      }
+    })
+  );
   const usedIds = new Set(existingNodes.map((node) => node.id));
   const baseRadius =
     typeof scene.autoMarkdownNodeRadius === "number"
@@ -358,9 +374,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const rows = useRing ? files.length : Math.ceil(files.length / columns);
   const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
   const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
-  return files
-    .map((path, index) => {
-      const fileName = path.split("/").pop() ?? "";
+  return fileInfos
+    .map((info, index) => {
+      const fileName = info.path.split("/").pop() ?? "";
       const slug = fileName.replace(/\.md$/i, "");
       const id = slug
         .toLowerCase()
@@ -392,6 +408,12 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
         color,
       };
+      if (info.isNonEmpty) {
+        node.markdownPath = info.path;
+        if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
+          node.markdownColumns = scene.autoMarkdownColumns;
+        }
+      }
       return node;
     })
     .filter(Boolean);
@@ -1059,6 +1081,43 @@ function applyZoom(value) {
   camera.updateProjectionMatrix();
 }
 
+function computeFocusZoom(radius, fraction = 0.32) {
+  const targetFraction = clamp(fraction, 0.15, 0.6);
+  const safeRadius = Math.max(radius, 0.01);
+  const targetZoom = (targetFraction * baseViewHeight) / (2 * safeRadius);
+  return clampZoom(targetZoom);
+}
+
+function getMarkdownReaderSceneId(markdownPath) {
+  return `__markdown_reader__:${markdownPath}`;
+}
+
+function ensureMarkdownReaderScene(nodeData) {
+  const markdownPath = nodeData.markdownPath;
+  if (!markdownPath) {
+    return null;
+  }
+  const sceneId = getMarkdownReaderSceneId(markdownPath);
+  if (levelConfigs[sceneId]) {
+    return sceneId;
+  }
+  const sceneName = nodeData.name ?? "Notes";
+  levelConfigs[sceneId] = {
+    layout: "static",
+    nodes: [],
+    links: [],
+    sceneName,
+    sceneId,
+    markdownPath,
+    markdownSection: nodeData.markdownSection ?? null,
+    markdownColumns: nodeData.markdownColumns ?? null,
+    markdownAutoOpen: true,
+    centerOn: null,
+  };
+  markdownReaderScenes.set(sceneId, true);
+  return sceneId;
+}
+
 function computeWarpScale(objectRadius) {
   const aspect = window.innerWidth / window.innerHeight;
   const viewHeight = baseViewHeight / camera.zoom;
@@ -1501,7 +1560,7 @@ function createNode(nodeData) {
   }
 
   let halo = null;
-  if (nodeData.childScene) {
+  if (nodeData.childScene || nodeData.markdownPath) {
     const haloGeometry = new THREE.SphereGeometry(nodeData.radius * 1.18, 24, 16);
     const haloMaterial = new THREE.MeshBasicMaterial({
       color: "#d5dcff",
@@ -3054,6 +3113,14 @@ function focusOnPointer(clientX, clientY) {
     closeDetailPanel();
     hideHoverTooltip();
     startLevelTransitionFromNode(targetNode);
+  } else if (targetNode.data.markdownPath) {
+    closeDetailPanel();
+    hideHoverTooltip();
+    const readerSceneId = ensureMarkdownReaderScene(targetNode.data);
+    if (readerSceneId) {
+      targetNode.data.childScene = readerSceneId;
+      startLevelTransitionFromNode(targetNode);
+    }
   } else {
     const targetWorld = new THREE.Vector3();
     targetNode.group.getWorldPosition(targetWorld);
