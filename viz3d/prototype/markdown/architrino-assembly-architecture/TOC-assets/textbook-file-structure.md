@@ -124,11 +124,7 @@ Include **YAML frontmatter** at the top of each markdown file for metadata:
 ```yaml
 ---
 title: "Absolute Time: Ontology and Defense"
-author: "Phil (Foundations Specialist)"
-date: 2025-01-20
-status: draft | review | stable
-tags: [foundations, time, ontology, relativity]
-dependencies: [ontology.md, euclidean-void.md]
+
 ---
 ```
 

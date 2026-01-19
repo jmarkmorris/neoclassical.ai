@@ -1,6 +1,5 @@
 # Quantum Number Mapping: Architrino Geometry to Standard Model
 
-**Status:** Draft / v2 (Noether Core Architecture)
 **Owner:** Phe (Phenomenology)
 **Contributors:** Dyna (Topology), Alfa (Nuclear Stability)
 

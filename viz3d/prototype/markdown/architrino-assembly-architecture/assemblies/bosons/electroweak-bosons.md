@@ -1,6 +1,5 @@
 # Electroweak Bosons: Photons, W/Z, and Higgs
 
-**Status:** Draft / Integrated Definition
 **Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos (Planar Tri-binaries) organized into phase-locked corridors.
 

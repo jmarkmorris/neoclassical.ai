@@ -1,6 +1,5 @@
 # Reaction Ledger: Point Potential Provenance
 
-**Status:** Draft / Experimental
 **Method:** Conservation of Architrinos
 **Principle:** Spacetime (Noether Cores) acts as a reactant and product.
 

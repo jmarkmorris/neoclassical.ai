@@ -86,7 +86,6 @@ $$
 3. Calculate the nuclear spin coupling via aether-mediated potential exchange
 4. Derive the splitting frequency
 
-**Status:** This is **Tier 2-3 work** (requires detailed atomic structure solver). But in principle, the frequency is **fully determined** by architrino geometry + $c_f$.
 
 ---
 
@@ -121,7 +120,6 @@ $$
 - In strong gravitational fields (dense aether): $c_{\text{eff}} < c_f$ (gravitational lensing, Shapiro delay)
 - At Planck scales (aether structure resolves): $c_{\text{eff}} \neq c_f$ (Lorentz violation signatures)
 
-**Status:** This is **foundational**. If $c \neq c_f$ at accessible scales, the theory is falsified.
 
 ---
 
@@ -156,7 +154,6 @@ $$
 h \propto |e/6| \cdot c_f \cdot (\text{geometric factor from tri-binary})
 $$
 
-**Status:** This is **Tier 1 critical**. If we can't derive $h$ from architrino geometry, we've failed to explain quantum mechanics.
 
 ---
 
@@ -179,7 +176,6 @@ $$
 - Why we observe $0, \pm e/3, \pm 2e/3, \pm e$ in nature, never $\pm e/6$ isolated
 - Answer: **Confinement**. The $|e/6|$ units are bound in tri-binaries (quarks) or assemblies (leptons). You can't isolate a single architrino without infinite energy.
 
-**Status:** This is **already done**. The elementary charge is a **Category A parameter**.
 
 ---
 
@@ -219,7 +215,6 @@ $$
 k_B \propto m_{\text{aether}} \cdot c_f^2 / (\text{typical thermal velocity})^2
 $$
 
-**Status:** This is **Tier 2**. Temperature is emergent from aether dynamics.
 
 ---
 
@@ -242,7 +237,6 @@ $$
 **What we must derive:**
 - The proton mass $m_p$ from tri-binary geometry (3 quarks = 3 tri-binaries + gluon field = aether coupling)
 
-**Status:** Once we derive particle masses (Tier 1), $N_A$ is automatic.
 
 ---
 
@@ -266,7 +260,6 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 - The human retina's photoreceptors (assemblies themselves) couple resonantly to this frequency
 - The constant 683 lm/W is **arbitrary**—it's a choice of units based on human biology
 
-**Status:** Not relevant to fundamental physics. We **skip** this one.
 
 ---
 
@@ -306,7 +299,6 @@ If the architrino program succeeds, we can **replace** the seven SI-defining con
 
 ---
 
-## Open Questions & Next Steps
 
 ### Tier 1 (Must Answer)
 1. **Derive $h$ from tri-binary geometry**

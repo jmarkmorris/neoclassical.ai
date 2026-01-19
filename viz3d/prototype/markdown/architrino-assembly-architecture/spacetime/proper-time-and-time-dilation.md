@@ -1,6 +1,5 @@
 # Proper Time and Time Dilation from Absolute Time
 
-**Status:** Draft / Hypothesis + Derivation Plan 
 **Goal:** Derive the relation between **absolute time** $t$ (used by the virtual observer in the Euclidean void) and the **proper time** $\tau$ measured by physical clocks built from tri‑binary assemblies, and show how GR‑like time dilation and gravitational redshift arise as effective behavior.
 
 We seek a map

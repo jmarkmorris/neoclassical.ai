@@ -599,7 +599,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 - Prevents classical $r \to 0$ singularities
 - Foundation for stable particle assemblies (tri-binaries; see TOC Ch. 11)
 
-**Status:** Stability of maximum-curvature orbit is currently a **hypothesis** (not yet proven). Requires: (1) Dyna to map attractor basins in phase space, (2) Sol to demonstrate convergence to stable orbit in long-time simulations ($> 10^6$ orbits), (3) Red to verify no secular energy drift.
+**Status:** Stability of maximum-curvature orbit is currently a **hypothesis** (not yet proven). Requires: (1) map attractor basins in phase space, (2) demonstrate convergence to stable orbit in long-time simulations ($> 10^6$ orbits), (3) Red to verify no secular energy drift.
 
 **Failure mode:** If simulations show radial oscillations **diverge** (orbit spirals outward or collapses), maximum-curvature orbit is **not** an attractor; self-hit alone is insufficient for stability.
 
