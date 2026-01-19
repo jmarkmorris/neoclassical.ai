@@ -332,6 +332,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   if (!files.length) {
     return [];
   }
+  const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
   const fileInfos = await Promise.all(
     files.map(async (path) => {
       try {
@@ -352,6 +353,13 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     typeof scene.autoMarkdownNodeRadius === "number"
       ? scene.autoMarkdownNodeRadius
       : 1.6;
+  const existingMaxRadius = includeExisting
+    ? existingNodes.reduce(
+        (maxRadius, node) => Math.max(maxRadius, node.radius ?? 0),
+        0
+      )
+    : 0;
+  const layoutRadius = Math.max(baseRadius, existingMaxRadius);
   const palette =
     Array.isArray(scene.autoMarkdownPalette) && scene.autoMarkdownPalette.length
       ? scene.autoMarkdownPalette
@@ -361,19 +369,39 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     typeof scene.autoMarkdownMaxRingCount === "number"
       ? scene.autoMarkdownMaxRingCount
       : 14;
+  const layoutCount = includeExisting ? existingNodes.length + files.length : files.length;
   const ringRadius =
     typeof scene.autoMarkdownRingRadius === "number"
       ? scene.autoMarkdownRingRadius
-      : Math.max(6, Math.min(files.length, maxRingCount) * baseRadius * 1.4);
+      : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
   const gridSpacing =
     typeof scene.autoMarkdownGridSpacing === "number"
       ? scene.autoMarkdownGridSpacing
-      : baseRadius * 2.6;
-  const useRing = files.length <= maxRingCount;
-  const columns = useRing ? 1 : Math.ceil(Math.sqrt(files.length));
-  const rows = useRing ? files.length : Math.ceil(files.length / columns);
+      : layoutRadius * 2.6;
+  const useRing = layoutCount <= maxRingCount;
+  const columns = useRing ? 1 : Math.ceil(Math.sqrt(layoutCount));
+  const rows = useRing ? layoutCount : Math.ceil(layoutCount / columns);
   const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
   const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
+
+  const positionForIndex = (index) => {
+    if (useRing) {
+      const angle = (index / layoutCount) * Math.PI * 2;
+      return [Math.cos(angle) * ringRadius, Math.sin(angle) * ringRadius];
+    }
+    const row = Math.floor(index / columns);
+    const col = index % columns;
+    return [startX + col * gridSpacing, startY - row * gridSpacing];
+  };
+
+  if (includeExisting) {
+    existingNodes.forEach((node, index) => {
+      const [x, y] = positionForIndex(index);
+      node.position = [Number(x.toFixed(2)), Number(y.toFixed(2)), 0];
+    });
+  }
+
+  const autoStartIndex = includeExisting ? existingNodes.length : 0;
   return fileInfos
     .map((info, index) => {
       const fileName = info.path.split("/").pop() ?? "";
@@ -385,18 +413,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
       if (!id || usedIds.has(id)) {
         return null;
       }
-      let x = 0;
-      let y = 0;
-      if (useRing) {
-        const angle = (index / files.length) * Math.PI * 2;
-        x = Math.cos(angle) * ringRadius;
-        y = Math.sin(angle) * ringRadius;
-      } else {
-        const row = Math.floor(index / columns);
-        const col = index % columns;
-        x = startX + col * gridSpacing;
-        y = startY - row * gridSpacing;
-      }
+      const [x, y] = positionForIndex(autoStartIndex + index);
       let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
       if (typeof color === "string" && colorTokens[color]) {
         color = colorTokens[color];
