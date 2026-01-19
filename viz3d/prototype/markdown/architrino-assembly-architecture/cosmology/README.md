@@ -1,11 +1,9 @@
-## Addenda (Cos)
 
 ### Cosmology in the Absolute Frame
 
 1. **Two Times**: We analyze dynamics using **Absolute time $t$** (for the Virtual Observer/Simulation) and **Cosmic time $\tau_c$** (effective FRW time for physical observers).
 2. **Expansion Ontology**: The universe is a fixed box containing a medium (Noether cores) that is evolving/relaxing. It is not a box that is getting bigger.
 
-## Addenda (Cos - consolidated batch)
 
 ### Architrino Cosmology: Overview
 
@@ -37,7 +35,6 @@ Throughout, we maintain the principle:
 
 > Cosmological observables (H(z), BAO, CMB peaks, lensing) must be reproducible from the absolute-frame dynamics of the architrino + Noether-core system, with GR/$\Lambda$CDM appearing as an effective large-scale description.
 
-## Addenda (Cos - supplemental)
 
 ### Two Time Notions
 

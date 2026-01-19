@@ -8,7 +8,6 @@ The Absolute Observer reveals that what we perceive as "Empty Space" is actually
 2. **Aether Composition**: The "Vacuum" consists of Helium-like couplings (2 pro tri-binaries + 2 anti tri-binaries).
 3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of this aether. An AO sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the density of the aether sea. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box.
 
-## Addenda (Dyna)
 
 ### Void vs. Vacuum / Medium
 
@@ -41,7 +40,6 @@ We avoid using “vacuum” alone without qualification; we prefer:
 - **Medium** or **spacetime fabric** for the Noether‑core sea,  
 - **Occupancy** for local architrino/assembly content.
 
-## Addenda (Phil)
 
 ### The Canonical Coordinate Chart
 
@@ -51,7 +49,6 @@ Unlike General Relativity, where coordinates are gauge labels (diffeomorphism in
 * **Event Identity**: The point $(x_0,y_0,z_0)$ at time $t_1$ and at time $t_2$ refers to the **same spatial location** in the void, even if the local assembly configuration (spacetime fabric) has changed.
 * **Implication**: Diffeomorphism invariance is not a fundamental symmetry of the void; it is an approximate symmetry of the *Lagrangian of effective fields* moving through the void.
 
-## Addenda (Phil - supplemental)
 
 ### The Canonical Coordinate Chart
 

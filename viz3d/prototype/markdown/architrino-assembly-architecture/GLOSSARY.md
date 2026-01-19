@@ -1,4 +1,3 @@
-## Addenda (Sol)
 
 ### New Definitions
 

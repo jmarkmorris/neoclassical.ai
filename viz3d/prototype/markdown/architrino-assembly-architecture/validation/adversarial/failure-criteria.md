@@ -8,7 +8,6 @@ While the Absolute Observer is a powerful tool, it introduces a "Hard Wall" for 
 2. **Requirement of Conspiracy**: We must provide a rigorous derivation showing that the **forces between architrinos in a moving assembly** contract the assembly in the direction of motion by exactly $\sqrt{1-v^2/c^2}$ in the absolute frame.
 3. **Falsification**: If the tri-binary stability analysis shows that the assembly "breaks" or "distorts" at high absolute velocities in a way that *doesn't* match the Lorentz transformation, the Absolute Observer becomes a liability, and the theory must be discarded.
 
-## Addenda (Red)
 
 ### The Lorentzian Conspiracy Stop-Condition
 
@@ -16,7 +15,6 @@ While the Absolute Observer is a powerful tool, it introduces a "Hard Wall" for 
 2. **Required Conspiracy**: We must derive that assembly forces naturally contract dimensions by $\sqrt{1-v^2/c^2}$ relative to the Absolute Grid.
 3. **Vacuum Drag**: If the "Sea of Cores" induces drag that slows cosmological bodies without a counter-mechanism, the theory is falsified.
 
-## Addenda (Red - supplemental)
 
 ### Critical Stop Conditions
 

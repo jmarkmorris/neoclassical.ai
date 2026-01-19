@@ -27,7 +27,6 @@ Intentionally use a wrong history kernel / wrong c_f / wrong emission-time solve
 - Expected invariants (e.g., binary stability window, energy-flow signature) must fail
 - Confirms the code is sensitive to the correct physics and not producing “numerical conspiracy”
 
-## Addenda (Sol - supplemental)
 
 ### Non-Markovian Convergence
 

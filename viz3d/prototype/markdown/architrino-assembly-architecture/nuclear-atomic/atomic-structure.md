@@ -5,7 +5,6 @@
 3. **Superfluid Vacuum**: Given the Helium-like (2 pro + 2 anti) coupling of the vacuum cores, the vacuum should be analyzed as a superfluid medium. This explains inertia as motion without resistance until a critical energy threshold is reached.
 4. **Atomic Resonance**: Atomic orbitals are standing-wave resonances of architrino decorations within the aether lattice.
 
-## Addenda (Alfa)
 
 ### Nuclear Physics in the Noether Sea
 
@@ -13,7 +12,6 @@
 2. **Binding Energy**: Calculation of binding energy must account for the pressure/tension exerted by the surrounding "Sea."
 3. **Aether Density**: We define the local vacuum density $\rho_{nc}$ as a scalar field on the Absolute Observer's grid.
 
-## Addenda (Alfa - supplemental)
 
 ### Nuclear Physics in the Sea of Cores
 

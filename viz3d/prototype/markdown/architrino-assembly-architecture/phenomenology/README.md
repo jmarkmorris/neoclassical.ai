@@ -8,7 +8,6 @@ By employing the Absolute Observer, we define "Fields" not as fundamental entiti
 2. **Charge Quantization**: The AO observes that only specific clusterings of $|e/6|$ are stable under self-hit constraints. Observed charges (1/3, 2/3, 1) are the only configurations that prevent the "Inner Binary" from collapsing or flying apart in the absolute frame.
 3. **Resolving the Unruh Ambiguity**: GR suggests an accelerating observer sees a warm bath of particles while an inertial one sees a vacuum. The AO resolves this: the architrino assemblies (particles) are either there or they aren't. The "warm bath" is the PO's **frictional interaction** with the Noether core sea as it accelerates relative to the Absolute Frame.
 
-## Addenda (Phe)
 
 ### Emergent Gauge Symmetry from Absolute Potential Fields
 
@@ -16,7 +15,6 @@ By employing the Absolute Observer, we define "Fields" not as fundamental entiti
 2. **VEV Reinterpretation**: The Vacuum Expectation Value (VEV) is the **ground-state density of the Noether core sea**. Symmetry breaking is a physical phase transition of these coupled pro-anti binaries.
 3. **Unruh Effect**: The Absolute Observer resolves the Unruh ambiguity. The "warm bath" seen by an accelerating observer is the physical friction/scattering against the Noether core sea.
 
-## Addenda (Phe - supplemental)
 
 ### Emergent Gauge Fields
 

@@ -4,7 +4,6 @@
 2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether Sea density gradient around the Sun. Target accuracy: $10^{-5}$.
 3. **Geodetic Precession**: Derived from the interaction of the assembly's angular momentum with the gradient of the Noether Sea's potential.
 
-## Addenda (Sig)
 
 ### Testing the Euclidean Anchor (Shapiro Delay)
 

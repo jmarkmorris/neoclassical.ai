@@ -1,4 +1,3 @@
-## Addenda (Dyna)
 
 ### Entries Related to Absolute Observer & Substrate
 

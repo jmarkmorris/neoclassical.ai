@@ -44,7 +44,6 @@ No major physical claim is accepted without:
 - history-resolution convergence
 - cross-integrator comparison (for critical results)
 
-## Addenda (Sol)
 
 ### Virtual Observer Implementation & Grid Protocols
 
@@ -53,7 +52,6 @@ No major physical claim is accepted without:
 3. **Causal Time Lookup**: When a causal isochron intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
 4. **Logging Standard**: All runs must log VO channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
 
-## Addenda (Sol - supplemental)
 
 ### Absolute Observer Grid
 
