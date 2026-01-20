@@ -1355,8 +1355,8 @@ The **Absolute Observer** is a conceptual (non-physical) probe that represents c
 
 - **Position and velocity** of every architrino: $\{(\mathbf{x}_i(t), \mathbf{v}_i(t))\}_{i=1}^N$
 - **Charge state** (electrino, positrino, magnitude $|e/6|$): $\{q_i, \sigma_i\}$
-- **Full potential field configuration**: All outgoing causal wake surfaces from all sources at all past times
 - **Path history**: For any causal wake surface passing a point, the AO knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
+- **Full potential field configuration**: From which it can derive all outgoing causal wake surfaces from all sources at all past times
 - **Self-hit histories**: Which causal wake surfaces have returned to intersect their sources
 
 **What the Absolute Observer is NOT:**

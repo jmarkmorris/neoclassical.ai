@@ -65,7 +65,7 @@ Once we've identified a stationary architrino via concentric wake geometry, we c
 
 1. **Origin:** The common center of the concentric wakes defines the coordinate origin: $\mathbf{r}_{\text{origin}} = (0, 0, 0)$
 2. **Time zero:** Any convenient absolute time $t$ can be designated $t = 0$
-3. **Length scale:** The wake expansion rate provides a fundamental ruler: $\Delta r = c_f \Delta t$
+3. **Length scale:** The radius of the maximum curvature binary provides the emergent unit of distance.
 4. **Axes:** Three orthogonal directions can be chosen (the void is isotropic; no direction is privileged—we'll address this systematically in the next section)
 
 If no single architrino is perfectly at rest, we can define the **aether rest frame** operationally as:
