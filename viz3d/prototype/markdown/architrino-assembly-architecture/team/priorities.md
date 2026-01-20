@@ -1,5 +1,9 @@
 ** new assessments of priorities at the moment go here.  prune later entries as I see fit.
 
+I think the priority should be on the math and the mapping. advancing the mapping.
+
+
+
 **Role:** Phe – Standard Model & QFT Phenomenologist
 
 Looking at byte counts as a proxy for existing content investment, and considering **strategic impact** (what unlocks downstream physics), here are my top 3 recommendations:
