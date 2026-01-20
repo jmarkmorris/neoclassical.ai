@@ -35,7 +35,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 ## 18.4 The Higgs Mechanism & VEV Reinterpretation
 
-The "God Particle" narrative is replaced by a hydrodynamic analog.
+The oft lamented"God Particle" narrative is replaced by a hydrodynamic analog.
 
 *   **The VEV (Vacuum Expectation Value):** This is simply the **equilibrium density** of the Noether Core sea. It is non-zero because the void is populated.
 *   **Symmetry Breaking:** The electroweak phase transition is a literal **phase change** (like freezing). As the universe cooled, the high-energy, chaotic plasma of architrinos crystallized into the stable, coupled tri-binary "lattice" we see today.
@@ -60,7 +60,7 @@ Why are charges quantized? Why $1/3, 2/3, 1$?
 *   **The Survivors:** Only specific geometric configurations (the 6-pole decoration patterns) establish a stable resonance where attractive and repulsive forces balance via the tri-binary structure. These stable islands correspond exactly to the SM particle spectrum.
 
 ### TODO / Next Steps
-- [ ] **Phe/Dyna:** Mathematize the "Drag" coefficient. Can we derive the electron mass from the density of the Noether Sea ($\rho_{vac}$)?
-- [ ] **Cos/Phe:** If the Vacuum is a lattice, does it have a preferred frame? We need to show how **effective Lorentz Invariance** emerges for $v \ll c_f$.
-- [ ] **Red:** Challenge the "Friction" model of Unruh effect. Does it preserve the Principle of Equivalence exactly, or are there detectable deviations?
+- [ ] Mathematize the "Drag" coefficient. Can we derive the electron mass from the density of the Noether Sea ($\rho_{vac}$)?
+- [ ] the Vacuum is a lattice, does it have a preferred frame? We need to show how **effective Lorentz Invariance** emerges for $v \ll c_f$.
+- [ ] Challenge the "Friction" model of Unruh effect. Does it preserve the Principle of Equivalence exactly, or are there detectable deviations?
 
