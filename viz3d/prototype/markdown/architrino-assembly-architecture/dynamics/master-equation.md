@@ -1466,7 +1466,7 @@ At those intersection events, its kinetic energy can change sharply.
 
 From the Absolute Observer’s standpoint:
 
-- When self‑hit first becomes possible near $v \approx c_f$, the kinetic energy of that particular architrino can begin to grow much faster (the “2‑to‑1 amplifier” behavior).
+- When self‑hit first becomes possible near $v \approx c_f$, the kinetic energy of that particular architrino can begin to grow much faster (a strong amplifier of the local rate of kinetic-energy growth).
 - At that exact moment, no other architrino directly feels anything; their kinetic energies do not change until the consequences of this altered motion propagate outward via their own emitted wakes and later intersect them.
 
 This suggests that any notion of “interaction energy” for a finite, isolated set cannot be a simple instantaneous function of the positions $\{\mathbf{x}_i(t)\}$. Instead, it must somehow encode the **deferred effect** of past emissions that have been launched but whose influence on kinetic energy has not yet been realized at their future intersection points.
@@ -1534,7 +1534,7 @@ Now specialize to an architrino that has just entered the **self‑hit regime**.
 
 - Before its speed and geometry allowed self‑hit, many of its emitted wakes might never have intersected its own future worldline again.
 - Once self‑hit becomes possible ($v>c_f$ in some segment of its history with sufficient curvature), new causal‑intersection roots $t_0 \in \mathcal{C}_i(t)$ appear where its past wakes now intersect its current position.
-- Each such new intersection contributes an additional term to $\mathbf{a}_i(t)$ and hence to $\mathbf{a}_i\cdot\mathbf{v}_i$. As a result, the instantaneous rate $\frac{dK}{dt}$ for that architrino can increase sharply—the “2‑to‑1 amplifier” effect in local dynamics.
+- Each such new intersection contributes an additional term to $\mathbf{a}_i(t)$ and hence to $\mathbf{a}_i\cdot\mathbf{v}_i$. As a result, the instantaneous rate $\frac{dK}{dt}$ for that architrino can increase sharply—a strong amplifier of the local rate of kinetic-energy growth.
 
 In terms of energy accounting:
 
@@ -1616,7 +1616,7 @@ If $E_{\text{calc}}(t)$ shows systematic drift for truly isolated ensembles unde
 If, instead, $E_{\text{calc}}(t)$ is robustly constant, then we will have:
 
 - A precise, architrino‑level notion of “total energy” that does **not** rely on field energy,
-- A clear understanding of how the apparent “2‑to‑1 amplification” near $v = c_f$ is a **delayed, geometry‑driven rerouting** of how and when past emissions change kinetic motion across the ensemble.
+- A clear understanding of how the apparent amplification near $v = c_f$ is a **delayed, geometry‑driven rerouting** of how and when past emissions change kinetic motion across the ensemble.
 
 ---
 
