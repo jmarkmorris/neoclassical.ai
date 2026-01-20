@@ -1427,6 +1427,12 @@ $$
 \kappa\,\sigma_{ij}\,\frac{\lvert q_i q_j \rvert}{r_{ij}^2(t; t_0)}\,\hat{\mathbf{r}}_{ij}(t; t_0),
 $$
 
+Here $\mathbf{a}_{ij}(t; t_0)$ denotes the per-hit acceleration contribution inside the double sum, i.e.
+$$
+\mathbf{a}_{ij}(t; t_0) \equiv \kappa\,\sigma_{ij}\,\frac{\lvert q_i q_j \rvert}{r_{ij}^2(t; t_0)}\,\hat{\mathbf{r}}_{ij}(t; t_0),
+$$
+so that $\mathbf{a}_i(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{ij}(t; t_0)$.
+
 where each term corresponds to a **causal‑wake intersection** at time $t$ between architrino $i$ and a wake emitted by architrino $j$ at earlier time $t_0$. The set $\mathcal{C}_j(t)$ contains all such emission times selected by the causal condition
 
 $$
