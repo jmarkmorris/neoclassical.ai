@@ -38,14 +38,16 @@ The Master Equation of Motion (abstract level):
 
 $$
 \boxed{
-\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j \neq i} \mathbf{F}_{ij}(\text{causal history}) + \mathbf{F}_{ii}(\text{self-hit})
+\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j \neq i} \mathbf{a}_{ij}(\text{causal history}) + \mathbf{a}_{ii}(\text{self-hit})
 }
 $$
 
 where:
 
-- $\mathbf{F}_{ij}(\text{causal history})$: Sum of all causal hits from source $j \neq i$ arriving at receiver $i$ at time $t$
-- $\mathbf{F}_{ii}(\text{self-hit})$: Sum of all self-hits (architrino $i$ intersecting its own past emissions)
+- $\mathbf{a}_{ij}(\text{causal history})$: Sum of all per-hit accelerations from source $j \neq i$ arriving at receiver $i$ at time $t$
+- $\mathbf{a}_{ii}(\text{self-hit})$: Sum of all self-hit acceleration contributions (architrino $i$ intersecting its own past emissions)
+
+(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined rigorously in Section 3.1. If a force symbol is needed, define $\mathbf{F}_{ij} \equiv m_i \mathbf{a}_{ij}$.)
 
 **Key insight:** Both terms have the same functional form (radial $1/r^2$ force law); they differ only in source identity ($j = i$ vs $j \neq i$).
 
