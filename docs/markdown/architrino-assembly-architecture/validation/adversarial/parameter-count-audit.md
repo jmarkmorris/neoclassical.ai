@@ -1,4 +1,3 @@
-## Addenda (Red)
 
 ### Absolute Observer Impact
 

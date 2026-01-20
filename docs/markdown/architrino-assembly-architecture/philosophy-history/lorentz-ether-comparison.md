@@ -1,4 +1,3 @@
-## Addenda (Dyna)
 
 ### Neo-Lorentzian Structure: Ether vs Architrino Substrate
 
@@ -30,7 +29,6 @@ Key differences from historical ether models:
 
 This places the theory as a **neo‑Lorentzian** competitor to Einstein’s spacetime ontology: empirically equivalent where tested, but conceptually rooted in a fixed substrate with explicit microphysics.
 
-## Addenda (Phil)
 
 ### Absolute Observer as Neo-Lorentz Ether Frame
 
@@ -38,7 +36,6 @@ This places the theory as a **neo‑Lorentzian** competitor to Einstein’s spac
 * **Emergence**: Lorentz symmetry is **emergent**. Assemblies moving through the medium experience dynamical deformations (length contraction) and clock-rate changes (time dilation) that make the preferred frame undetectable in standard experiments.
 * **Distinction**: Unlike the 19th-century Aether (a fluid), our medium consists of discrete, coupled assemblies obeying $c_f$ propagation limits.
 
-## Addenda (Phil - supplemental)
 
 ### Neo-Lorentzian Interpretation
 
@@ -49,7 +46,6 @@ This places the theory as a **neo‑Lorentzian** competitor to Einstein’s spac
 * **Distinction:** Unlike the classical aether, our "medium" is composed of the same fundamental entities (architrinos) as the matter moving through it.
 * **Invisibility:** The AO frame is physically undetectable in the $v \le c_f$ regime due to assembly contraction.
 
-## Addenda (Phil - consolidated batch)
 
 ### Lorentz Ether vs. Architrino Framework: The Absolute Observer
 

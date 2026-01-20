@@ -5,7 +5,6 @@
 3. **Derived Proper Time ($\tau$)**: Proper time is not fundamental; it is a derived functional of the tri-binary clock's motion and its interaction with the local Noether core sea density.
 4. **Simultaneity Reclaimed**: In the absolute frame, simultaneity is objective. The "Relativity of Simultaneity" is reinterpreted as a synchronization convention used by assemblies that rely on $c_f$-limited signaling within a moving medium.
 
-## Addenda (Dyna)
 
 ### Absolute Time, Global Foliation, and Proper Time
 
@@ -48,7 +47,6 @@ Physical observers experience relativity of simultaneity and time dilation as **
 
 Any observable signal of absolute time (e.g. orientation‑dependent tick rates absent medium gradients) would falsify the model.
 
-## Addenda (Phil)
 
 ### Absolute Time and Unique Global Foliation
 
@@ -58,7 +56,6 @@ Absolute time $t$ provides a **unique foliation** of the universe into “instan
 * **Causal Realism**: The AO sees causation as explicit lawlike mapping from one architrino configuration at time $t$ to one at time $t+\Delta t$.
 * **Refutation of Timelessness**: We reject the "Block Universe" where time is a dimension. Time is a process parameter.
 
-## Addenda (Phil - supplemental)
 
 ### Absolute Time and Unique Global Foliation
 

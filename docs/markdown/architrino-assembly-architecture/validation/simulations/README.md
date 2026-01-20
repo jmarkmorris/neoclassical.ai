@@ -10,7 +10,6 @@ Checklist per tier:
 - How to compute physical observables ($\tau$, redshift, lensing proxies, GW strain proxies)
 - Convergence requirements for each output type
 
-## Addenda (Dyna)
 
 ### Simulation Frame and the Virtual Observer
 

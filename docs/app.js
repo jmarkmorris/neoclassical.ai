@@ -77,6 +77,19 @@ const colorTokens = {
   BLUE: "#0000ff",
   PURPLE: "#4b0082",
 };
+const defaultAutoMarkdownPalette = [
+  "#243d8f",
+  "#2f6b6f",
+  "#5a1f2e",
+  "#4b0082",
+  "#3a5f9f",
+  "#2f4f7a",
+  "#7a4a1f",
+  "#1c2a4f",
+  "#3c6a7a",
+  "#3f6a5a",
+  "#6a3c3c",
+];
 const linkStyle = {
   minLength: 0.7,
   tipClearance: 0.12,
@@ -162,6 +175,8 @@ const markdownRenderer =
 if (markdownRenderer) {
   markdownRenderer.disable("escape");
 }
+const markdownDirectoryCache = new Map();
+const markdownSubdirCache = new Map();
 let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPromise;
 let pendingMathTypeset = false;
 let activeMarkdownPath = null;
@@ -173,6 +188,7 @@ const rootScenePath = "json/architrino_assembly_architecture.json";
 const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;
+const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
@@ -257,6 +273,228 @@ if (mathJaxScript) {
 
 function formatSuperscripts(text) {
   return String(text).replace(/\^(-?\d+)/g, "<sup>$1</sup>");
+}
+
+async function listMarkdownFilesInDir(directory) {
+  if (!directory) {
+    return [];
+  }
+  const normalized = directory.replace(/\/+$/, "").replace(/^\.?\//, "");
+  if (markdownDirectoryCache.has(normalized)) {
+    return markdownDirectoryCache.get(normalized);
+  }
+  try {
+    const response = await fetch(appendCacheBust(`${normalized}/`));
+    if (!response.ok) {
+      markdownDirectoryCache.set(normalized, []);
+      return [];
+    }
+    const html = await response.text();
+    const matches = [];
+    const hrefRegex = /href="([^"]+\.md)"/gi;
+    let match = null;
+    while ((match = hrefRegex.exec(html))) {
+      matches.push(match[1]);
+    }
+    const files = Array.from(
+      new Set(
+        matches
+          .map((href) => decodeURIComponent(href))
+          .map((href) => href.split("?")[0])
+          .map((href) => href.split("#")[0])
+          .map((href) => href.replace(/^\.?\//, ""))
+          .filter((href) => href.endsWith(".md"))
+          .filter((href) => !href.includes("/"))
+          .map((href) => `${normalized}/${href}`)
+      )
+    );
+    markdownDirectoryCache.set(normalized, files);
+    return files;
+  } catch (error) {
+    console.warn("Failed to read markdown directory", directory, error);
+    markdownDirectoryCache.set(normalized, []);
+    return [];
+  }
+}
+
+async function listMarkdownDirectoriesInDir(directory) {
+  if (!directory) {
+    return [];
+  }
+  const normalized = directory.replace(/\/+$/, "").replace(/^\.?\//, "");
+  if (markdownSubdirCache.has(normalized)) {
+    return markdownSubdirCache.get(normalized);
+  }
+  try {
+    const response = await fetch(appendCacheBust(`${normalized}/`));
+    if (!response.ok) {
+      markdownSubdirCache.set(normalized, []);
+      return [];
+    }
+    const html = await response.text();
+    const matches = [];
+    const hrefRegex = /href="([^"]+\/)"/gi;
+    let match = null;
+    while ((match = hrefRegex.exec(html))) {
+      matches.push(match[1]);
+    }
+    const directories = Array.from(
+      new Set(
+        matches
+          .map((href) => decodeURIComponent(href))
+          .map((href) => href.split("?")[0])
+          .map((href) => href.split("#")[0])
+          .map((href) => href.replace(/^\.?\//, ""))
+          .filter((href) => href && href !== "../" && href !== "./")
+          .filter((href) => href.endsWith("/"))
+          .map((href) => href.replace(/\/$/, ""))
+          .filter((href) => !href.includes("/"))
+          .map((href) => `${normalized}/${href}`)
+      )
+    );
+    markdownSubdirCache.set(normalized, directories);
+    return directories;
+  } catch (error) {
+    console.warn("Failed to read markdown directories", directory, error);
+    markdownSubdirCache.set(normalized, []);
+    return [];
+  }
+}
+
+function titleFromSlug(slug) {
+  return slug
+    .split(/[-_]+/g)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+async function buildAutoMarkdownNodes(scene, existingNodes) {
+  if (!scene?.autoMarkdownSpheres || !scene?.autoMarkdownDirectory) {
+    return [];
+  }
+  const useDirectories = scene.autoMarkdownSubdirectories === true;
+  const entries = useDirectories
+    ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
+    : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
+  if (!entries.length) {
+    return [];
+  }
+  const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
+  const fileInfos = useDirectories
+    ? entries.map((path) => ({ path, isNonEmpty: false }))
+    : await Promise.all(
+        entries.map(async (path) => {
+          try {
+            const response = await fetch(appendCacheBust(path));
+            if (!response.ok) {
+              return { path, isNonEmpty: false };
+            }
+            const text = await response.text();
+            return { path, isNonEmpty: text.trim().length > 0 };
+          } catch (error) {
+            console.warn("Failed to read markdown file", path, error);
+            return { path, isNonEmpty: false };
+          }
+        })
+      );
+  const usedIds = new Set(existingNodes.map((node) => node.id));
+  const baseRadius =
+    typeof scene.autoMarkdownNodeRadius === "number"
+      ? scene.autoMarkdownNodeRadius
+      : 1.6;
+  const existingMaxRadius = includeExisting
+    ? existingNodes.reduce(
+        (maxRadius, node) => Math.max(maxRadius, node.radius ?? 0),
+        0
+      )
+    : 0;
+  const layoutRadius = Math.max(baseRadius, existingMaxRadius);
+  const palette =
+    Array.isArray(scene.autoMarkdownPalette) && scene.autoMarkdownPalette.length
+      ? scene.autoMarkdownPalette
+      : defaultAutoMarkdownPalette;
+  const baseColor = scene.autoMarkdownColor ?? null;
+  const maxRingCount =
+    typeof scene.autoMarkdownMaxRingCount === "number"
+      ? scene.autoMarkdownMaxRingCount
+      : 14;
+  const layoutCount = includeExisting ? existingNodes.length + fileInfos.length : fileInfos.length;
+  const ringRadius =
+    typeof scene.autoMarkdownRingRadius === "number"
+      ? scene.autoMarkdownRingRadius
+      : Math.max(6, Math.min(layoutCount, maxRingCount) * layoutRadius * 1.4);
+  const gridSpacing =
+    typeof scene.autoMarkdownGridSpacing === "number"
+      ? scene.autoMarkdownGridSpacing
+      : layoutRadius * 2.6;
+  const useRing = layoutCount <= maxRingCount;
+  const columns = useRing ? 1 : Math.ceil(Math.sqrt(layoutCount));
+  const rows = useRing ? layoutCount : Math.ceil(layoutCount / columns);
+  const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
+  const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
+
+  const positionForIndex = (index) => {
+    if (useRing) {
+      const angle = (index / layoutCount) * Math.PI * 2;
+      return [Math.cos(angle) * ringRadius, Math.sin(angle) * ringRadius];
+    }
+    const row = Math.floor(index / columns);
+    const col = index % columns;
+    return [startX + col * gridSpacing, startY - row * gridSpacing];
+  };
+
+  if (includeExisting) {
+    existingNodes.forEach((node, index) => {
+      const [x, y] = positionForIndex(index);
+      node.position = [Number(x.toFixed(2)), Number(y.toFixed(2)), 0];
+    });
+  }
+
+  const autoStartIndex = includeExisting ? existingNodes.length : 0;
+  return fileInfos
+    .map((info, index) => {
+      const entryName = info.path.split("/").pop() ?? "";
+      const slug = useDirectories
+        ? entryName
+        : entryName.replace(/\.md$/i, "");
+      const id = slug
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "");
+      if (!id || usedIds.has(id)) {
+        return null;
+      }
+      const [x, y] = positionForIndex(autoStartIndex + index);
+      let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
+      if (typeof color === "string" && colorTokens[color]) {
+        color = colorTokens[color];
+      }
+      const node = {
+        id,
+        name: titleFromSlug(slug),
+        radius: baseRadius,
+        position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
+        color,
+      };
+      if (useDirectories) {
+        const childScene = ensureMarkdownDirectoryScene(
+          info.path,
+          scene,
+          node.name
+        );
+        if (childScene) {
+          node.childScene = childScene;
+        }
+      } else if (info.isNonEmpty) {
+        node.markdownPath = info.path;
+        if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
+          node.markdownColumns = scene.autoMarkdownColumns;
+        }
+      }
+      return node;
+    })
+    .filter(Boolean);
 }
 
 function closeDetailPanel() {
@@ -672,13 +910,13 @@ async function loadSceneConfig(scenePath) {
       }
       return response.json();
     })
-    .then((data) => {
+    .then(async (data) => {
       const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
       const wrapLabels = data.scene?.wrapLabels ?? true;
       const idMap = new Map(
         data.objects.map((obj) => [obj.id, obj.label || obj.id])
       );
-      const nodes = data.objects.map((obj) => {
+      let nodes = data.objects.map((obj) => {
         const hasScale =
           obj.scaleExponent !== undefined && obj.scaleExponent !== null;
         const binaryBands = Array.isArray(obj.binaryBands)
@@ -742,6 +980,10 @@ async function loadSceneConfig(scenePath) {
         }
         return node;
       });
+      const autoNodes = await buildAutoMarkdownNodes(data.scene, nodes);
+      if (autoNodes.length) {
+        nodes = nodes.concat(autoNodes);
+      }
 
       const sceneName =
         data.scene?.name ?? data.scene?.id ?? data.scene?.title ?? scenePath;
@@ -805,10 +1047,11 @@ async function jumpToScene(scenePath, options = {}) {
   if (transitionState.active) {
     return;
   }
-  const config = await loadSceneConfig(scenePath);
+  const config = levelConfigs[scenePath] ?? (await loadSceneConfig(scenePath));
   if (!config) {
     return;
   }
+  await ensureDynamicSceneConfig(scenePath);
   if (options.mode === "instant") {
     purgeWorldState();
     const level = buildLevel(scenePath);
@@ -915,6 +1158,97 @@ function setTargetPan(nextPosition, duration = 420) {
 function applyZoom(value) {
   camera.zoom = clampZoom(value);
   camera.updateProjectionMatrix();
+}
+
+function computeFocusZoom(radius, fraction = 0.32) {
+  const targetFraction = clamp(fraction, 0.15, 0.6);
+  const safeRadius = Math.max(radius, 0.01);
+  const targetZoom = (targetFraction * baseViewHeight) / (2 * safeRadius);
+  return clampZoom(targetZoom);
+}
+
+function getMarkdownReaderSceneId(markdownPath) {
+  return `__markdown_reader__:${markdownPath}`;
+}
+
+function getMarkdownDirectorySceneId(directory) {
+  return `__markdown_directory__:${directory}`;
+}
+
+function ensureMarkdownReaderScene(nodeData) {
+  const markdownPath = nodeData.markdownPath;
+  if (!markdownPath) {
+    return null;
+  }
+  const sceneId = getMarkdownReaderSceneId(markdownPath);
+  if (levelConfigs[sceneId]) {
+    return sceneId;
+  }
+  const sceneName = nodeData.name ?? "Notes";
+  levelConfigs[sceneId] = {
+    layout: "static",
+    nodes: [],
+    links: [],
+    sceneName,
+    sceneId,
+    markdownPath,
+    markdownSection: nodeData.markdownSection ?? null,
+    markdownColumns: nodeData.markdownColumns ?? null,
+    markdownAutoOpen: true,
+    centerOn: null,
+  };
+  markdownReaderScenes.set(sceneId, true);
+  return sceneId;
+}
+
+function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
+  if (!directory) {
+    return null;
+  }
+  const sceneId = getMarkdownDirectorySceneId(directory);
+  if (levelConfigs[sceneId]) {
+    return sceneId;
+  }
+  levelConfigs[sceneId] = {
+    layout: "static",
+    nodes: [],
+    links: [],
+    sceneName: nodeName ?? titleFromSlug(directory.split("/").pop() ?? "Notes"),
+    sceneId,
+    markdownPath: null,
+    markdownSection: null,
+    markdownColumns: null,
+    markdownAutoOpen: false,
+    centerOn: null,
+    autoMarkdownSpheres: true,
+    autoMarkdownDirectory: directory,
+    autoMarkdownIncludeExistingInLayout: false,
+    autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
+    autoMarkdownRingRadius: parentScene?.autoMarkdownRingRadius,
+    autoMarkdownMaxRingCount: parentScene?.autoMarkdownMaxRingCount,
+    autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
+    autoMarkdownColumns: parentScene?.autoMarkdownColumns,
+    autoMarkdownPalette: parentScene?.autoMarkdownPalette,
+    autoMarkdownColor: parentScene?.autoMarkdownColor,
+  };
+  return sceneId;
+}
+
+async function ensureDynamicSceneConfig(sceneId) {
+  const config = levelConfigs[sceneId];
+  if (!config || !config.autoMarkdownSpheres) {
+    return;
+  }
+  if (!Array.isArray(config.nodes)) {
+    config.nodes = [];
+  }
+  if (config.nodes.length) {
+    return;
+  }
+  const autoNodes = await buildAutoMarkdownNodes(config, config.nodes);
+  if (autoNodes.length) {
+    config.nodes = config.nodes.concat(autoNodes);
+  }
 }
 
 function computeWarpScale(objectRadius) {
@@ -1359,7 +1693,7 @@ function createNode(nodeData) {
   }
 
   let halo = null;
-  if (nodeData.childScene) {
+  if (nodeData.childScene || nodeData.markdownPath) {
     const haloGeometry = new THREE.SphereGeometry(nodeData.radius * 1.18, 24, 16);
     const haloMaterial = new THREE.MeshBasicMaterial({
       color: "#d5dcff",
@@ -2047,6 +2381,7 @@ async function startLevelTransitionFromNode(targetNode) {
       return;
     }
   }
+  await ensureDynamicSceneConfig(childLevelId);
 
   beginLevelTransition(targetNode, childLevelId);
 }
@@ -2912,6 +3247,14 @@ function focusOnPointer(clientX, clientY) {
     closeDetailPanel();
     hideHoverTooltip();
     startLevelTransitionFromNode(targetNode);
+  } else if (targetNode.data.markdownPath) {
+    closeDetailPanel();
+    hideHoverTooltip();
+    const readerSceneId = ensureMarkdownReaderScene(targetNode.data);
+    if (readerSceneId) {
+      targetNode.data.childScene = readerSceneId;
+      startLevelTransitionFromNode(targetNode);
+    }
   } else {
     const targetWorld = new THREE.Vector3();
     targetNode.group.getWorldPosition(targetWorld);

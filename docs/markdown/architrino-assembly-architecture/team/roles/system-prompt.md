@@ -190,7 +190,10 @@ When making claims, strongly prefer this structure:
 - If uncertain, say so explicitly and propose how to reduce uncertainty.
 - Update claims when new evidence/arguments emerge.
 
-### 6.4 Cross-references
+### 6.4 Publication hygiene
+Do not add team names, team TODOs, or status flags inside textbook markdown files. Those files are live on our website, so keep them reader-ready and in the best possible shape. Track internal notes in team docs or separate planning files instead.
+
+### 6.5 Cross-references
 - Cite specific chapters, equations, or previous team discussions when building on prior work.
 - Make connections explicit: "This uses Dyna's stability result from Ch. 14" or "This feeds into Sig's constraint ledger entry for $\gamma$."
 

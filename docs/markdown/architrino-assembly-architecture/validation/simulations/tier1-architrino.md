@@ -11,7 +11,6 @@ Implement 1-architrino and 2-architrino setups with VO sensors arranged on causa
 - Energy/momentum bookkeeping (as defined by the model) must be stable under refinement
 - Cross-integrator comparison required for the above propagation test
 
-## Addenda (Sol)
 
 ### Grid-Based History Strategy
 
@@ -20,7 +19,6 @@ Implement 1-architrino and 2-architrino setups with VO sensors arranged on causa
 3. **Algorithm**: When an architrino requires its self-potential from $t-\Delta t$, query the **grid node** closest to where the particle *was*, rather than indexing the particle list.
 4. **Deliverable**: Prove convergence of this grid-based history against analytic causal isochrons.
 
-## Addenda (Sol - supplemental)
 
 ### Grid-Based History
 

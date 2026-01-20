@@ -1,4 +1,3 @@
-## Addenda (Sig)
 
 ### Validation Protocols: Proving the Absolute Frame
 

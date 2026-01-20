@@ -9,7 +9,6 @@
    - The resulting path is "refracted," appearing as a geodesic in a curved manifold to the Physical Observer.
 4. **Coordinate Identity**: $(x,y,z)$ labels are permanent. GR’s diffeomorphism invariance is an approximate symmetry valid only in the low-energy continuum limit of the assembly medium.
 
-## Addenda (Dyna)
 
 ### Effective Metric: Virtual vs Physical Observers
 
@@ -52,7 +51,6 @@ such that:
 
 The effective metric is thus a *derived, observer‑dependent construct* summarizing how the medium and potentials shape assembly‑based measurements, not a fundamental property of the void itself.
 
-## Addenda (Cos)
 
 ### Effective Metric as Seen by Assembly Observers
 
@@ -60,7 +58,6 @@ The effective metric is thus a *derived, observer‑dependent construct* summari
 2. **Geodesics**: A "straight line" in the Void (Absolute Observer view) appears as a curved path to a matter assembly because the "Sea" has a refractive index gradient caused by mass.
 3. **Operational Mapping**: GR’s curved spacetime is an effective description of how assembly clocks behave when embedded in the Noether-core medium, encoded as static geometry in the virtual observer’s Euclidean coordinates.
 
-## Addenda (Sig)
 
 ### The Effective Metric as a Density Map
 
@@ -78,7 +75,6 @@ The effective metric is thus a *derived, observer‑dependent construct* summari
 #### 3. Singularity Resolution
 * The metric is an effective description of a medium. Where GR predicts a singularity ($r=0$), our model predicts a **Planck-density core** of architrinos where the tri-binary lattice reaches maximum packing/saturation.
 
-## Addenda (Cos - consolidated batch)
 
 ### Emergent Metric: Absolute Frame vs. Effective Geometry
 

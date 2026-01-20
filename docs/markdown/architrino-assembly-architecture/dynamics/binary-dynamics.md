@@ -133,7 +133,6 @@ Acceptance criteria:
   - integrator swap
 If self-hit signatures change qualitatively under refinement, treat as numerical artifact until proven otherwise.
 
-## Addenda (Dyna)
 
 ### Self-Hit as a Path-History Intersection in the Absolute Frame
 
@@ -178,7 +177,6 @@ In simulations:
 
 If self‑hit signatures are numerically unstable under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
 
-## Addenda (Dyna - Alternate formalism)
 
 ### Formalizing Self-Hit Geometry in Absolute Coordinates
 
@@ -189,7 +187,6 @@ The use of an Absolute Observer allows for a non-ambiguous definition of the sel
 2. **Path History**: The path is a straight Euclidean vector. Curvature is not in the path, but in the **deformation of the source's trajectory** due to the self-interaction force.
 3. **Non-Markovian Memory**: The feedback loop at $t$ is determined by the position of the architrino at $t_{history}$. This prevents binary singularities; as $r \to 0$ and $v$ increases, the self-hit force provides a non-linear "push-back."
 
-## Addenda (Dyna - supplemental)
 
 ### Self-Hit in Absolute Coordinates
 

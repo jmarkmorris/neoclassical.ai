@@ -4,13 +4,18 @@
     "id": "cosmology",
     "name": "Cosmology",
     "units": "relative",
-    "wrapLabels": true
+    "wrapLabels": true,
+    "autoMarkdownSpheres": true,
+    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/cosmology",
+    "autoMarkdownIncludeExistingInLayout": true,
+    "autoMarkdownNodeRadius": 2.688,
+    "autoMarkdownRingRadius": 12
   },
   "objects": [
     {
       "id": "nature_of_dark_energy",
       "label": "Nature of Dark Energy",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#243d8f",
       "position": [
         -6.0,
@@ -27,7 +32,7 @@
     {
       "id": "identity_of_dark_matter",
       "label": "Identity of Dark Matter",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
         0.0,
@@ -44,7 +49,7 @@
     {
       "id": "cosmological_constant_problem",
       "label": "Cosmological Constant Problem",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#5a1f2e",
       "position": [
         6.0,
@@ -61,7 +66,7 @@
     {
       "id": "hubble_tension",
       "label": "Hubble Tension",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#6a3c3c",
       "position": [
         -3.0,
@@ -78,7 +83,7 @@
     {
       "id": "s_8_tension",
       "label": "S_8 (Structure Growth) Tension",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
         3.0,
@@ -95,7 +100,7 @@
     {
       "id": "horizon_problem",
       "label": "Horizon Problem",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
         0.0,
@@ -110,7 +115,7 @@
     {
       "id": "lithium_problem",
       "label": "Lithium Problem",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
         0.0,

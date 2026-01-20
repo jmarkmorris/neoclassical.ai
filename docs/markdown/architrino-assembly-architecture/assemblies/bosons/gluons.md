@@ -1,7 +1,6 @@
 # Gluons and the Strong Force: Geometric Origins
 
-**Status:** Consolidated Draft
-**Sources:** Merges `fermion-mapping.md` (Vacuum Dynamics) and `gluons.md` (Internal Geometry)
+
 **Scope:** Definition of Color Charge, Gluon Structure, and Confinement.
 
 ## 1. The Geometric Origin of Color Charge
@@ -11,18 +10,18 @@ In the Standard Model, "Color" is an abstract SU(3) label. In the Architrino Ass
 ### 1.1 The Tri-Binary Substrate
 Timespace itself is populated by high‑energy, small‑scale tri‑binaries (often in tightly bound pro/anti groups). These form a background lattice/sea of Noether cores in color‑singlet configurations.
 A quark nucleus also consists of three orthogonal binaries ($B_1, B_2, B_3$).
-*   **Personality Layer:** 6 Decoration sites (2 per binary).
-*   **Symmetry Breaking:** Quarks have asymmetric decorations (e.g., $5P, 1E$). This asymmetry must exist on *one* specific binary, distinguishing it from the others.
+* **Personality Layer:** 6 Decoration sites (2 per binary).
+* **Symmetry Breaking:** Quarks have asymmetric decorations (e.g., $5P, 1E$). This asymmetry must exist on *one* specific binary, distinguishing it from the others.
 
 ### 1.2 Defining Color States (The "Byte" Level)
 We define Color by the location of the "Minority Carrier."
 
 #### Case A: The Up Quark ($u$)
-*   **Composition:** 5 Positrinos ($P$), 1 Electrino ($E$). Net $+4\epsilon (+2/3e)$.
-*   **Distribution:** Two binaries hold ($P, P$). One binary holds ($P, E$).
-*   **The "Red" State:** The distinct ($P, E$) pair is on **Binary 1**.
-*   **The "Green" State:** The distinct ($P, E$) pair is on **Binary 2**.
-*   **The "Blue" State:** The distinct ($P, E$) pair is on **Binary 3**.
+* **Composition:** 5 Positrinos ($P$), 1 Electrino ($E$). Net $+4\epsilon (+2/3e)$.
+* **Distribution:** Two binaries hold ($P, P$). One binary holds ($P, E$).
+* **The "Red" State:** The distinct ($P, E$) pair is on **Binary 1**.
+* **The "Green" State:** The distinct ($P, E$) pair is on **Binary 2**.
+* **The "Blue" State:** The distinct ($P, E$) pair is on **Binary 3**.
 
 | Color | Binary 1 (Axis X) | Binary 2 (Axis Y) | Binary 3 (Axis Z) | Net Charge |
 | :--- | :---: | :---: | :---: | :--- |
@@ -31,9 +30,9 @@ We define Color by the location of the "Minority Carrier."
 | **Blue** ($u_B$) | $+2\epsilon$ ($P, P$) | $+2\epsilon$ ($P, P$) | **$0$ ($P, E$)** | $+4\epsilon$ |
 
 #### Case B: The Down Quark ($d$)
-*   **Composition:** 2 Positrinos ($P$), 4 Electrinos ($E$). Net $-2\epsilon (-1/3e)$.
-*   **Distribution:** Two binaries hold ($E, E$). One binary holds ($P, P$).
-*   **Anticolor Definition:** We track the "positive" anomaly? Or standard color? Let's map the distinct ($P, P$) pair.
+* **Composition:** 2 Positrinos ($P$), 4 Electrinos ($E$). Net $-2\epsilon (-1/3e)$.
+* **Distribution:** Two binaries hold ($E, E$). One binary holds ($P, P$).
+* **Anticolor Definition:** We track the "positive" anomaly? Or standard color? Let's map the distinct ($P, P$) pair.
 
 | Color | Binary 1 (Axis X) | Binary 2 (Axis Y) | Binary 3 (Axis Z) | Net Charge |
 | :--- | :---: | :---: | :---: | :--- |
@@ -48,15 +47,15 @@ We define Color by the location of the "Minority Carrier."
 In this model, the gluon is not a fundamental particle but an **emergent meta-assembly**—a dynamic link formed by the coupling of potential vortices between quark cores.
 
 ### 2.1 Polar Vortices and Flux Tubes
-*   **Source:** Each orbiting binary within the Noether core generates a pair of persistent, high-intensity **Polar Vortices** (potential theory singularities) along its rotation axis.
-*   **Coupling:** When colored quarks interact, these vortices do not terminate in the vacuum. Instead, they twist the surrounding Noether Sea into a **Flux Tube**—a coherent bundle of vacuum tri-binaries locked into a non-singlet phase.
-*   **The Glue:** The strong force *is* the tension of these coupled vortices trying to shorten and restore the vacuum to its isotropic ground state.
+* **Source:** Each orbiting binary within the Noether core generates a pair of persistent, high-intensity **Polar Vortices** (potential theory singularities) along its rotation axis.
+* **Coupling:** When colored quarks interact, these vortices do not terminate in the vacuum. Instead, they twist the surrounding Noether Sea into a **Flux Tube**—a coherent bundle of vacuum tri-binaries locked into a non-singlet phase.
+* **The Glue:** The strong force *is* the tension of these coupled vortices trying to shorten and restore the vacuum to its isotropic ground state.
 
 ### 2.2 The Gluon as an Axis-Reconfiguration Braid
 A "Gluon" is not just a force carrier; it is a geometric instruction set—a propagating disturbance in the tri-binary lattice that forces a swap of axis roles.
 
-*   **The Operator:** When a Red Quark ($P,E$ on Axis 1) interacts with a Green Quark ($P,E$ on Axis 2), the Gluon acts as a **bridge mechanism** that swaps the internal phase or decoration pattern between Axis 1 and Axis 2.
-*   **The Braid:** Geometrically, this is realized as a twisting of the vacuum flux tube—a braid segment that propagates between the cores. It carries the specific topology required to turn an "Axis 1 Asymmetry" into an "Axis 2 Asymmetry."
+* **The Operator:** When a Red Quark ($P,E$ on Axis 1) interacts with a Green Quark ($P,E$ on Axis 2), the Gluon acts as a **bridge mechanism** that swaps the internal phase or decoration pattern between Axis 1 and Axis 2.
+* **The Braid:** Geometrically, this is realized as a twisting of the vacuum flux tube—a braid segment that propagates between the cores. It carries the specific topology required to turn an "Axis 1 Asymmetry" into an "Axis 2 Asymmetry."
 
 ### 2.3 The 8 Gluon Modes (Deriving the Octet)
 Why are there 8 gluons?
@@ -73,9 +72,9 @@ Why are there 8 gluons?
 
 Standard Model gluons are Spin-1 bosons. In the Architrino framework, this emerges from the **Axial Geometry** of the connection.
 
-*   **Vector Geometry:** A flux tube or vortex filament is inherently a **Vector** object—it defines a direction in space (the axis of the vortex). It is not a point (Scalar, $J=0$) nor a shear-stress field (Tensor, $J=2$).
-*   **Helicity:** The vortex bundle can twist in a left-handed or right-handed manner. This corresponds to the two transverse polarization states of the massless gluon.
-*   **Momentum Transfer:** When a gluon is exchanged, it transfers the angular momentum stored in this rotating vortex link. Since the link connects two rotating binaries (each with angular momentum), the coupling acts like a driveshaft, transferring angular momentum in integer units ($\pm 1\hbar$).
+* **Vector Geometry:** A flux tube or vortex filament is inherently a **Vector** object—it defines a direction in space (the axis of the vortex). It is not a point (Scalar, $J=0$) nor a shear-stress field (Tensor, $J=2$).
+* **Helicity:** The vortex bundle can twist in a left-handed or right-handed manner. This corresponds to the two transverse polarization states of the massless gluon.
+* **Momentum Transfer:** When a gluon is exchanged, it transfers the angular momentum stored in this rotating vortex link. Since the link connects two rotating binaries (each with angular momentum), the coupling acts like a driveshaft, transferring angular momentum in integer units ($\pm 1\hbar$).
 
 ---
 
@@ -107,9 +106,9 @@ A Proton ($u_R, u_G, d_B$) is stable because:
 Unlike photons, which pass through each other, gluons carry Color Charge themselves (because they represent a relation between axes, e.g., Red-AntiGreen).
 
 ### 4.1 The 3-Gluon Vertex
-*   **Mechanism:** Since a gluon is a polarized distortion of the vacuum lattice, two gluon braids crossing paths can interact. The distortion of one braid alters the effective metric for the other.
-*   **Topology:** Two flux tubes can merge or split. Geometrically, this corresponds to the "tangling" of vacuum vortices. This self-stickiness is what makes the strong force nonlinear (asymptotic freedom).
+* **Mechanism:** Since a gluon is a polarized distortion of the vacuum lattice, two gluon braids crossing paths can interact. The distortion of one braid alters the effective metric for the other.
+* **Topology:** Two flux tubes can merge or split. Geometrically, this corresponds to the "tangling" of vacuum vortices. This self-stickiness is what makes the strong force nonlinear (asymptotic freedom).
 
 ### 4.2 Glueballs
 If these self-interacting braids form a closed loop without quarks at the ends (a toroidal knot of polarized vacuum), it becomes a **Glueball**.
-*   **Prediction:** Massive, unstable resonances of pure vacuum excitation.
+* **Prediction:** Massive, unstable resonances of pure vacuum excitation.

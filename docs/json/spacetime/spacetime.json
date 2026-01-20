@@ -4,13 +4,18 @@
     "id": "spacetime",
     "name": "Spacetime",
     "units": "relative",
-    "wrapLabels": true
+    "wrapLabels": true,
+    "autoMarkdownSpheres": true,
+    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/spacetime",
+    "autoMarkdownIncludeExistingInLayout": true,
+    "autoMarkdownNodeRadius": 2.688,
+    "autoMarkdownRingRadius": 12
   },
   "objects": [
     {
       "id": "gravity",
       "label": "Gravity",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2a3b5a",
       "position": [
         0.0,
@@ -27,7 +32,7 @@
     {
       "id": "black_hole_interior",
       "label": "Black Hole Interior Structure",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
         5.94,
@@ -42,7 +47,7 @@
     {
       "id": "quantum_gravity",
       "label": "Quantum Gravity and Renormalizability",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
         10.01,
@@ -59,7 +64,7 @@
     {
       "id": "black_hole_information",
       "label": "Black Hole Information Paradox",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#5a3c7a",
       "position": [
         10.86,
@@ -76,7 +81,7 @@
     {
       "id": "arrow_of_time",
       "label": "Arrow of Time",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#4b678f",
       "position": [
         8.32,
@@ -93,7 +98,7 @@
     {
       "id": "trans_planckian_censorship",
       "label": "Trans-Planckian Censorship and the Swampland",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2c567a",
       "position": [
         3.16,
@@ -110,7 +115,7 @@
     {
       "id": "early_universe_initial_conditions",
       "label": "Big Bang & Early Universe",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2c2c60",
       "position": [
         -3.16,
@@ -125,7 +130,7 @@
     {
       "id": "cosmic_censorship",
       "label": "Cosmic Censorship",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
         -8.32,
@@ -142,7 +147,7 @@
     {
       "id": "mechanism_of_inflation",
       "label": "Mechanism of Inflation",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2c2c60",
       "position": [
         -10.86,
@@ -159,7 +164,7 @@
     {
       "id": "singularity",
       "label": "Singularity",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#1c2a4f",
       "position": [
         -10.01,
@@ -174,7 +179,7 @@
     {
       "id": "nature_of_time",
       "label": "Nature of Time",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2a3b5a",
       "position": [
         -5.94,
@@ -189,7 +194,7 @@
     {
       "id": "vacuum_instability",
       "label": "Vacuum Instability",
-      "radius": 1.6,
+      "radius": 2.688,
       "color": "#2c2f45",
       "position": [
         0.0,

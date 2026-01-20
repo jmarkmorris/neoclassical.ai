@@ -1,6 +1,5 @@
-## Addenda (Sol)
 
-### New Definitions
+### Definitions
 
 * **Virtual Observer (VO):** Non-physical bookkeeping operator with access to full microstate and history at $(x,y,z,t)$.
 * **Euclidean Void:** Continuous, unmoving $\mathbb{R}^3$ container.

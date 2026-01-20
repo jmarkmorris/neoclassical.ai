@@ -81,6 +81,16 @@
       "path": "json/foundations/foundations.json"
     },
     {
+      "id": "dynamics",
+      "name": "Dynamics",
+      "path": "json/dynamics/dynamics.json"
+    },
+    {
+      "id": "phenomenology",
+      "name": "Phenomenology",
+      "path": "json/phenomenology/phenomenology.json"
+    },
+    {
       "id": "cosmology",
       "name": "Cosmology",
       "path": "json/cosmology/cosmology.json"
@@ -849,6 +859,6 @@
       "id": "uue",
       "name": "Ununennium (UUE)",
       "path": "json/elements/uue.json"
-    },
+    }
   ]
 }

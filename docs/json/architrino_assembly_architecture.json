@@ -108,7 +108,9 @@
         -13.47,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/dynamics/dynamics.json"
+      ],
       "motion": {
         "type": "fixed"
       }
@@ -123,7 +125,9 @@
         -17.48,
         0.0
       ],
-      "subScenes": [],
+      "subScenes": [
+        "json/phenomenology/phenomenology.json"
+      ],
       "motion": {
         "type": "fixed"
       }
