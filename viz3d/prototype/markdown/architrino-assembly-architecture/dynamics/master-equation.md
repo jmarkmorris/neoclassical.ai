@@ -181,8 +181,14 @@ $$
 **Per-hit acceleration contribution:**
 
 $$
-\mathbf{F}_{ij}(t; t_0) = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij},
+\mathbf{a}_{ij}(t; t_0) = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij},
 $$
+
+If a force symbol is desired, we define it via Newton’s law as
+$$
+\mathbf{F}_{ij}(t; t_0) \equiv m_i\,\mathbf{a}_{ij}(t; t_0),
+$$
+where $m_i$ is the inertial parameter of the receiving architrino.
 
 where:
 
