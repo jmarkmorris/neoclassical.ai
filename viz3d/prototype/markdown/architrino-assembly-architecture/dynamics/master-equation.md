@@ -830,7 +830,7 @@ $$
 Part II - Are Analytic Solutions Possible?
 
 
-## 1. Fully general case (arbitrary N, arbitrary trajectories)
+## 14. Fully general case (arbitrary N, arbitrary trajectories)
 
 The master EOM is a coupled system of **state‑dependent delay differential equations** with:
 
@@ -855,11 +855,11 @@ That’s standard: even Newtonian N‑body gravity is analytically intractable g
 
 ---
 
-## 2. Ideal / symmetric cases where analytic work *is* realistic
+## 15. Ideal / symmetric cases where analytic work *is* realistic
 
 Here’s where I do think we can get genuine closed forms or very controlled approximations.
 
-### 2.1 Static / quasi‑static limit (Coulomb analogue)
+### 15.1 Static / quasi‑static limit (Coulomb analogue)
 
 Assumptions:
 
@@ -886,7 +886,7 @@ This is basically our “sanity check” regime.
 
 ---
 
-### 2.2 Two‑body, 1D radial motion (head‑on, no angular momentum)
+### 15.2 Two‑body, 1D radial motion (head‑on, no angular momentum)
 
 Setup:
 
@@ -912,7 +912,7 @@ So: **analytic yes** (up to standard quadratures), and corrections doable.
 
 ---
 
-### 2.3 Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)
+### 15.3 Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)
 
 This is in the draft as the “unstable orbit” case.
 
@@ -934,7 +934,7 @@ Outcome:
 
 ---
 
-### 2.4 Self‑hit for uniform circular motion, $v > c_f$ (single particle)
+### 15.4 Self‑hit for uniform circular motion, $v > c_f$ (single particle)
 
 This is the key toy model for self‑hit/maximum curvature.
 
@@ -983,7 +983,7 @@ This is the right playground to:
 
 ---
 
-### 2.5 Maximum‑curvature binary (inner binary idealization)
+### 15.5 Maximum‑curvature binary (inner binary idealization)
 
 For the full **two‑body** maximum‑curvature orbit (inner binary), we have:
 
@@ -1015,11 +1015,11 @@ This would be an “analytic scaffold + numerical check” situation, not full c
 
 ---
 
-## 3. Emergent‑field / continuum limits
+## 16. Emergent‑field / continuum limits
 
 There’s another class of “analytic solutions” that matter:
 
-### 3.1 Homogeneous, isotropic Noether Sea
+### 16.1 Homogeneous, isotropic Noether Sea
 
 Assume:
 
@@ -1048,7 +1048,7 @@ That’s analytically tractable and important for:
 
 ---
 
-## 4. What I recommend as next analytic targets
+## 17. What I recommend as next analytic targets
 
 If we prioritize “bang for analytic buck,” I’d line up:
 
@@ -1075,7 +1075,7 @@ All four are realistically doable analytically (modulo standard transcendental e
 
 ---
 
-## 5. Bottom line
+## 18. Bottom line
 
 - **General N‑body analytic solution:** No; the structure is too complex (DDE with state‑dependent delays and self‑hit multiplicity).
 - **Idealized / symmetric cases:** Yes, in several important classes:
@@ -1087,7 +1087,7 @@ All four are realistically doable analytically (modulo standard transcendental e
 
 ---
 
-## 6. Energy, Lagrangian, and Hamiltonian Structure of the Architrino Dynamics
+## 19. Energy, Lagrangian, and Hamiltonian Structure of the Architrino Dynamics
 
 In this section we outline how **energy** and **variational structure** are handled in the Architrino Assembly Architecture, given the Master Equation of Motion:
 
@@ -1114,7 +1114,7 @@ We organize the discussion into four pieces:
 
 ---
 
-### 6.1 Aggregate Kinetic Energy
+### 19.1 Aggregate Kinetic Energy
 
 We work with **absolute time** $t$ and Euclidean 3‑space. For each architrino $i$, define:
 
@@ -1146,7 +1146,7 @@ Thus kinetic energy splits naturally into:
 
 ---
 
-### 6.2 Aggregate Potential Energy as Path‑History Bookkeeping
+### 19.2 Aggregate Potential Energy as Path‑History Bookkeeping
 
 With finite‑speed causal wakes and path‑history dependence, traditional “instantaneous potential energy as a function only of positions” is not fundamental. Forces at time $t$ depend on **where sources were** at their emission times $t_0$, not where they are now. Nevertheless, for finite isolated sets we can define a useful **energy bookkeeping** that:
 
@@ -1154,7 +1154,7 @@ With finite‑speed causal wakes and path‑history dependence, traditional “i
 - Reduces, in appropriate limits, to familiar pairwise $1/r$‑like structure,
 - Requires no independent “field energy” living in the void between sources and receivers.
 
-#### 6.2.1 Energy exchange per causal hit
+#### 19.2.1 Energy exchange per causal hit
 
 Consider a single contribution to the acceleration of architrino $i$ at time $t$ from a causal hit emitted by $j$ at time $t_0\in\mathcal{C}_j(t)$. The acceleration contribution is:
 
@@ -1182,7 +1182,7 @@ $$
 
 with the understanding that for self‑hit we include $j=i$ as well.
 
-#### 6.2.2 Effective potential energy for finite systems
+#### 19.2.2 Effective potential energy for finite systems
 
 For an *isolated* finite system, we can define an **effective potential energy** $U(t)$ by demanding that the **total energy**
 
@@ -1224,11 +1224,11 @@ This gives us:
 
 ---
 
-### 6.3 Nonlocal Lagrangian for Path‑History Dynamics
+### 19.3 Nonlocal Lagrangian for Path‑History Dynamics
 
 To connect with variational methods and with later continuum approximations, it is useful to exhibit an **action principle** from which the Master Equation can be derived. Because the dynamics depend on **path history** via causal wakes (not just instantaneous positions), the action is necessarily **nonlocal in time**.
 
-#### 6.3.1 Multi‑time interaction term
+#### 19.3.1 Multi‑time interaction term
 
 Let the worldline of architrino $i$ be $\mathbf{x}_i(t)$. Consider an action of the form:
 
@@ -1271,7 +1271,7 @@ Interpretation:
 - The peak $\delta_\eta(r - c_f|t-t'|)$ selects only those pairs that lie on the **causal isochrons** of the wake emitted at $(t',\mathbf{x}_j(t'))$,
 - The $1/r_{ij}$ factor produces the eventual $1/r^2$ dependence in the acceleration after variation and time differentiation.
 
-#### 6.3.2 Variation and line‑of‑action forces
+#### 19.3.2 Variation and line‑of‑action forces
 
 Varying $S$ with respect to $\mathbf{x}_i(t)$ yields:
 
@@ -1309,11 +1309,11 @@ Thus:
 
 ---
 
-### 6.4 Hamiltonian and Total Energy for an Isolated Set
+### 19.4 Hamiltonian and Total Energy for an Isolated Set
 
 Given the nonlocal action and the kinetic energy definition, we now address the **Hamiltonian** and total energy for an isolated architrino set.
 
-#### 6.4.1 General structure
+#### 19.4.1 General structure
 
 We define a functional $H$ such that:
 
@@ -1354,7 +1354,7 @@ This matches the ontology:
 - It is only updated at the times $t$ when wake surfaces intersect receivers,
 - Yet there exists a global invariant $H$ for isolated systems, defined entirely from the particle worldlines and their induced accelerations.
 
-#### 6.4.2 Local canonical form in effective limits
+#### 19.4.2 Local canonical form in effective limits
 
 In regimes where:
 
@@ -1384,7 +1384,7 @@ which:
 
 ---
 
-### 6.5 Summary
+### 19.5 Summary
 
 - **Kinetic energy** is defined in the usual way at the architrino level, with internal kinetic energy of tightly bound self‑hit binaries contributing to assembly rest masses.
 - **Potential energy** is not primitive but arises as a **bookkeeping device** ensuring conservation of a total energy $H = K + U$ in an isolated system, with $U$ defined from the time‑integrated work done by causal‑wake intersections.
@@ -1395,7 +1395,7 @@ All energy accounting remains localized to **architrinos and their assemblies** 
 
 ---
 
-## 7. Total Energy Calculation for an Isolated Set of Architrinos
+## 20. Total Energy Calculation for an Isolated Set of Architrinos
 
 In the Architrino Assembly Architecture, we start from a **concrete dynamical rule** at the architrino level and ask what happens to total energy as the system evolves. We do **not** assume in advance that there is a simple, conserved scalar like in textbook mechanics; instead, we:
 
@@ -1408,7 +1408,7 @@ Throughout, we avoid assigning any independent “field energy” to the void. A
 
 ---
 
-### 7.1 Kinetic Energy of an Architrino Ensemble
+### 20.1 Kinetic Energy of an Architrino Ensemble
 
 For each architrino $i$ with position $\mathbf{x}_i(t)$, velocity $\mathbf{v}_i(t)$, and inertial parameter $m_i$, we define the instantaneous kinetic energy as
 
@@ -1455,7 +1455,7 @@ Thus **all changes in kinetic energy are localized**: they occur only when a cau
 
 ---
 
-### 7.2 Interaction Energy as Deferred Work of Past Emissions
+### 20.2 Interaction Energy as Deferred Work of Past Emissions
 
 Consider an architrino that has, at some earlier times $t_0$, emitted causal wakes while following a certain trajectory. Much later, at times $t > t_0$, its own worldline $\mathbf{x}_i(t)$ may intersect those wakes again (self‑hit), especially when:
 
@@ -1477,7 +1477,7 @@ This motivates a different perspective:
 
 ---
 
-### 7.3 A Path‑History Based Interaction Functional
+### 20.3 A Path‑History Based Interaction Functional
 
 To formalize this for a finite, isolated set of architrinos:
 
@@ -1528,7 +1528,7 @@ This construction is **agnostic** about where “interaction energy” resides s
 
 ---
 
-### 7.4 Behavior at the Self‑Hit Threshold
+### 20.4 Behavior at the Self‑Hit Threshold
 
 Now specialize to an architrino that has just entered the **self‑hit regime**.
 
@@ -1555,7 +1555,7 @@ Crucially:
 
 ---
 
-### 7.5 A Calculated Total Energy
+### 20.5 A Calculated Total Energy
 
 With the definitions above, we can introduce
 
@@ -1591,7 +1591,7 @@ In this sense, one can regard $E_{\text{calc}}$ either as:
 
 ---
 
-### 7.6 Open Tasks for This Framework
+### 20.6 Open Tasks for This Framework
 
 To turn this into a practical tool rather than a formal definition, we still need to:
 
