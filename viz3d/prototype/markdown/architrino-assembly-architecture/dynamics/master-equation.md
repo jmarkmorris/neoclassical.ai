@@ -1186,13 +1186,13 @@ with the understanding that for self‑hit we include $j=i$ as well.
 
 #### 19.2.2 Effective potential energy for finite systems
 
-For an *isolated* finite system, we can define an **effective potential energy** $U(t)$ by demanding that the **total energy**
+For an *isolated* finite system, we define an **effective potential energy** $U(t)$ such that the **total energy**
 
 $$
 E_\text{tot}(t) \equiv K(t) + U(t)
 $$
 
-be conserved in absolute time for the exact path‑history evolution dictated by the Master Equation.
+is conserved in absolute time under the exact path‑history evolution dictated by the Master Equation. This is a **constructive definition**: we are not imposing conservation as an independent axiom, but rather defining $U(t)$ as the complementary bookkeeping quantity that makes the sum $K + U$ time-independent.
 
 Operationally:
 
