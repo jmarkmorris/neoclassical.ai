@@ -1491,10 +1491,12 @@ To formalize this for a finite, isolated set of architrinos:
 3. Define an **interaction functional** $W(t)$ (you can think of it as “unrealized work”) by
 
    $$
-   W(t) \equiv W(t_\ast)
-   - \int_{t_\ast}^{t}
-     \sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
-   $$
+W(t) \equiv W(t_\ast)
+- \int_{t_\ast}^{t}
+  \sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
+$$
+
+In particular, if we choose the same reference-time convention and drop the explicit $m_i$ factor (absorbing it into the definition of $\mathbf{a}_i$), we can identify this interaction functional with the $U(t)$ defined in Section 6.2, i.e. set $W(t) \equiv U(t)$ up to an overall reference constant.
 
 By construction, this implies
 
@@ -1555,13 +1557,13 @@ $$
 E_{\text{calc}}(t) \;\equiv\; K(t) + W(t).
 $$
 
-For any finite, isolated set of architrinos evolving under the Master Equation,
+If we identify $W(t)$ with the interaction functional $U(t)$ of Section 6 (up to a fixed reference constant), then $E_{\text{calc}}(t)$ coincides with the Hamiltonian $H(t) = K(t) + U(t)$ for an isolated system. In the continuous theory this quantity is time-independent; in simulations, conservation of
 
 $$
-E_{\text{calc}}(t) = E_0
+E_{\text{calc}}(t) \approx E_0
 $$
 
-by construction; it is a **calculated invariant** of the dynamics.
+within numerical tolerance becomes a diagnostic of integrator quality and of whether the implemented dynamics faithfully reproduce the Master Equation.
 
 Two important clarifications:
 
@@ -1603,9 +1605,7 @@ To turn this into a practical tool rather than a formal definition, we still nee
      to define $W(t)$.
    - Check whether $E_{\text{calc}}(t) = K(t) + W(t)$ remains flat (within numerical tolerance) over long times.
 
-If $E_{\text{calc}}(t)$ shows systematic drift for truly isolated ensembles under accurate integration, the correct statement will be:
-
-- Under the present Master Equation, there is no time‑independent scalar of this form; self‑hit genuinely injects or removes energy from the architrino sector.
+If $E_{\text{calc}}(t)$ shows systematic drift for truly isolated ensembles under accurate integration, this flags either numerical issues or a need to revisit the assumed form of the Master Equation or the interaction functional.
 
 If, instead, $E_{\text{calc}}(t)$ is robustly constant, then we will have:
 
