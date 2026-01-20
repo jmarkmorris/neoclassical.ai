@@ -261,11 +261,10 @@ Falsifying the Hubble Constant
 Cosmological Metrics
 The $\alpha$$\beta$$\gamma$ Paper
 Black Holes
-Black Holes
-Black Holes and Planck Cores
-Planck Core Energy
-Planck Cores and Asymptotic Safety
-Can Planck Cores Spin?
+Black Holes and their Cores
+Black Hole Core Energy
+Black Hole Cores and Asymptotic Safety
+Can Black Hole Cores Spin?
 Black Holes are Not Opaque
 Rethink Supermassive Black Hole Dynamics!
 New Ideas on Galaxy Dynamics

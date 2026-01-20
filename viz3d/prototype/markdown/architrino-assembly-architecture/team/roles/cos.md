@@ -95,7 +95,7 @@ Link the three dynamical regimes to gravitational/cosmological behavior:
 
 - $v < c_f$: quasi‑hydrodynamic deformation of aether → **standard (but misconceived) cosmological expansion**, subluminal matter motion, everyday gravity.
 - $v = c_f$: emergent Lorentz symmetry and effective universal speed “c”; define how this threshold arises from tri‑binary scaling.
-- $v > c_f$: self‑hit → inflation/deflation forces, Planck cores, jetting; map this to early‑universe inflation and to strong‑gravity phenomena (Ch. 34, 39, 41).
+- $v > c_f$: self‑hit → inflation/deflation forces, Black hole cores, jetting; map this to early‑universe inflation and to strong‑gravity phenomena (Ch. 34, 39, 41).
 
 Deliver explicit **transition criteria** and a sketch of governing equations in each regime.
 
@@ -117,7 +117,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 - Ch. 34:
   - Derive the **aether perturbation equation** for weak waves → effective GW equation.
   - Show propagation speed, possible dispersion $\omega(k)$, and polarization content.
-  - Outline how Planck cores / no true singularities alter “black hole” predictions, while staying compatible with LIGO/Virgo results.
+  - Outline how Black hole cores / no true singularities alter “black hole” predictions, while staying compatible with LIGO/Virgo results.
 
 ### 4.2 Dense Matter & Gravity (Ch. 35–36)
 

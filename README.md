@@ -100,7 +100,7 @@ Three nested binaries at distinct scales (radius / frequency / energy):
 - **Expansion**: Tri-binary outer orbits scale with energy dissipation; "tired light" from medium coupling (not stretching of fundamental space).
 - **Dark matter**: Energy shielded within nested assemblies (superposition suppresses external manifestation).
 - **Dark energy**: Zero-point energy of Noether Sea or expansion mode of tri-binaries.
-- **Black holes**: Planck cores where middle-binary parameters approach Planck scale due to extreme compression; no fundamental singularities (MCB prevents r → 0).
+- **Black holes**: Black hole event horizons where middle-binary parameters approach Planck scale due to extreme compression; no fundamental singularities (MCB prevents r → 0).
 
 ---
 

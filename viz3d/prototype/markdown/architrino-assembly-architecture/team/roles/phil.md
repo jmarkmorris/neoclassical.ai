@@ -136,7 +136,7 @@ Provide a **conceptual explanation** of how Lorentz invariance arises as an effe
 - **Architrino theory**: similar structure, but:
   - Aether is not a continuous medium; it is a sea of discrete assemblies.
   - Preferred frame (absolute time) is not directly observable at low energies; all local physics respects emergent Lorentz symmetry.
-  - Clear predictions for where Lorentz breaking might appear (high energy, strong gradients, Planck cores).
+  - Clear predictions for where Lorentz breaking might appear (high energy, strong gradients, black hole event horizons).
 
 **Comparison with Standard Minkowski Spacetime Ontology:**
 - Standard view: Minkowski spacetime is fundamental; Lorentz invariance is exact.
