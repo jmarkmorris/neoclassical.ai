@@ -27,8 +27,8 @@ Here's the crucial insight: this expanding wake carries information about the **
 
 Consider a virtual observer with access to complete microdynamics who can track:
 1. The complete path history of any architrino,
-2. All outgoing potential wakes it has emitted,
-3. The geometric centers of these expanding field structures.
+2. From which it knows the geometric centers of all emitted and expanding field structures.
+3. From which it knows all outgoing potential wakes it has emitted.
 
 **The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = 0$) exhibits a unique geometric property—it remains at the **exact center** of every spherically expanding causal wake it has ever emitted.
 

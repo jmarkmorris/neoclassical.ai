@@ -182,7 +182,7 @@ Deliverable: Explicit **coarse‑graining map** and resulting field equations (C
   - Geodesics in this effective metric correspond to coarse‑grained architrino/assembly paths.
   - In appropriate limits, recover Newtonian potential, Schwarzschild, FRW, etc.
 - Formalize **singularity replacement**:
-  - Conditions under which dense but finite core structures (Planck cores) arise instead of divergences.
+  - Conditions under which dense but finite core structures (Black hole cores) arise instead of divergences.
 
 Deliverable: Mathematical backbone for Ch. 31–32 and 34 (metric emergence and singularity resolution).
 
@@ -279,7 +279,7 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
   - Emergent metric structure from aether assemblies.
   - Conditions under which GR is recovered (PPN, GW propagation) vs where corrections appear.
 - Provide:
-  - Mathematical analysis of horizon structures, Planck cores, and inflating/deflating phases from self‑hit.
+  - Mathematical analysis of horizon structures,  and inflating/deflating phases from self‑hit.
 
 ### 7.5 With Adversary / Red Team
 

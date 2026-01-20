@@ -286,7 +286,7 @@
 ### Chapter 34: Post-Newtonian and Strong-Field Predictions
 - PPN Parameters and Current Constraints
 - Gravitational Wave Speed and Polarization
-- Black Holes and Planck Cores: Reinterpretation
+- Black Holes and Black hole cores: Reinterpretation
 - Information Preservation and Singularity Resolution
 - Empirical Scorecard: GW Speed, Polarization, Dispersion
   - GW170817 Constraint: |v\_GW - c|/c < 10⁻¹⁵
@@ -332,7 +332,7 @@
 
 ### Chapter 39: Black Holes, Jets, and Recycling
 - Supermassive Black Hole Dynamics
-- Planck Core Jetting and Plasma Emissions
+- Black Hole Jetting and Plasma Emissions
 - Galaxy Rotation and Dark Matter Alternatives
 - Black Holes as Recycling Engines
 

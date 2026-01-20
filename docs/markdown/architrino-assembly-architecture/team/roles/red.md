@@ -458,7 +458,7 @@ Maintain **ranked list** of 5–10 **most decisive tests** (updated quarterly):
 
 - **"Singularity resolution: be specific."**
   - What **replaces** $r = 0$ in Schwarzschild geometry?
-  - Give **density profile** $\rho(r)$ for "resolved" black hole core (Planck core)
+  - Give **density profile** $\rho(r)$ for "resolved" black hole core 
   - Verify it **satisfies energy conditions** and **matches exterior Schwarzschild**
 
 **G.4 To Atomic, Nuclear & Condensed Matter Physicist**
