@@ -318,10 +318,10 @@ where:
 
 **Instantaneous effect of the hit:**
 
-Because $\mathbf{F}_{ij}(t; t_0) \parallel \hat{\mathbf{r}}_{ij}$, its instantaneous effect satisfies:
+Because $\mathbf{a}_{ij}(t; t_0) \parallel \hat{\mathbf{r}}_{ij}$, its instantaneous effect satisfies:
 
 $$
-\frac{d}{dt}\mathbf{v}_\perp\Big|_{\text{hit}} = \mathbf{0}, \quad \frac{d}{dt}v_r\Big|_{\text{hit}} = \mathbf{F}_{ij} \cdot \hat{\mathbf{r}}_{ij} = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2}.
+\frac{d}{dt}\mathbf{v}_\perp\Big|_{\text{hit}} = \mathbf{0}, \quad \frac{d}{dt}v_r\Big|_{\text{hit}} = \mathbf{a}_{ij} \cdot \hat{\mathbf{r}}_{ij} = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2}.
 $$
 
 **Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected (at the instant of the hit). Over time, of course, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
@@ -333,7 +333,7 @@ $$
 The **instantaneous power** (rate of kinetic energy change) from a single hit is:
 
 $$
-\frac{dE_k}{dt}\Big|_{\text{hit}} = \mathbf{F}_{ij} \cdot \mathbf{v}_i = \Big(\mathbf{F}_{ij} \cdot \hat{\mathbf{r}}_{ij}\Big) v_r = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, v_r.
+\frac{dE_k}{dt}\Big|_{\text{hit}} = \mathbf{F}_{ij} \cdot \mathbf{v}_i = \big(m_i \mathbf{a}_{ij} \cdot \hat{\mathbf{r}}_{ij}\big) v_r = m_i\,\kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, v_r.
 $$
 
 **Key insight:** There is **no instantaneous work** on the orthogonal component. Power depends only on the radial velocity $v_r$.
