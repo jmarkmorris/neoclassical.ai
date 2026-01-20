@@ -1613,7 +1613,12 @@ To turn this into a practical tool rather than a formal definition, we still nee
      to define $W(t)$.
    - Check whether $E_{\text{calc}}(t) = K(t) + W(t)$ remains flat (within numerical tolerance) over long times.
 
-If $E_{\text{calc}}(t)$ shows systematic drift for truly isolated ensembles under accurate integration, this flags either numerical issues or a need to revisit the assumed form of the Master Equation or the interaction functional.
+If $E_{\text{calc}}(t)$ shows systematic drift for truly isolated ensembles under accurate integration (after ruling out numerical artifacts via convergence tests), this is a **falsification signal**: it indicates either:
+
+1. The Master Equation as written is not strictly conservative (which would require adding dissipative or source terms), or
+2. The definition of $W(t)$ (or $U(t)$) is incomplete and must account for additional energy-storage mechanisms in the wake pattern.
+
+Either outcome would require revising the fundamental dynamics or the energy bookkeeping. This is a **hard test** of the theory's internal consistency.
 
 If, instead, $E_{\text{calc}}(t)$ is robustly constant, then we will have:
 
