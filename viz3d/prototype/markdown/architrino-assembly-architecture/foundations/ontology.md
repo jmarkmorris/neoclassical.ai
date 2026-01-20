@@ -50,7 +50,7 @@ $$
 $$
 where $t$ is dimensionless.
 
-> **Plain language:** We pick a standard unit of duration (e.g., "one second" or "one Planck time") and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
+> **Plain language:** We pick a standard unit of duration (e.g., "one second" or "one maximum curvature binary orbit time") and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
 
 **Duration and Linear Advancement:**
 

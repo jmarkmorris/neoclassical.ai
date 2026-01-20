@@ -200,7 +200,7 @@ class noether(ThreeDScene):
         #     text.shift(RIGHT*0.25 + UP*0.25)
         #     self.add_fixed_in_frame_mobjects(text)
 
-        #     text = Text("architrinos have no fundamental speed limit.\nAssemblies may impose an emergent speed limit.\nOrbiting charges with v = field speed are the symmetry breaking point.\nThe smallest orbital radius and maximum curvature maps to Planck scale.\nThe orbital radii are at vastly different scales.\nDipoles broker energy in quanta of angular momentum.\nNoether cores are stretchy rulers and variable clocks. (ala Einstein's GR)", font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
+        #     text = Text("architrinos have no fundamental speed limit.\nAssemblies may impose an emergent speed limit.\nOrbiting charges with v = field speed are the symmetry breaking point.\nThe smallest orbital radius and maximum curvature maps to black hole cores.\nThe orbital radii are at vastly different scales.\nDipoles broker energy in quanta of angular momentum.\nNoether cores are stretchy rulers and variable clocks. (ala Einstein's GR)", font="Helvetica Neue", font_size=12, weight=ULTRALIGHT, line_spacing=0.5)
         #     text.to_corner(DR)
         #     text.shift(RIGHT*0.25 + DOWN*0.25)
         #     self.add_fixed_in_frame_mobjects(text)

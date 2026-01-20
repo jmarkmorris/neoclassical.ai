@@ -74,7 +74,7 @@ This places the theory as a **neo‑Lorentzian** competitor to Einstein’s spac
 | Ether composition | Unspecified (metaphysical substance) | Tri-binary assemblies (coupled Noether cores) |
 | Ether detection | Impossible (compensation exact) | Impossible in $v \leq c_f$ regime (emergent Lorentz); possible in $v > c_f$ regime (self-hit signatures) |
 | Ontological status | Auxiliary hypothesis (empirically idle) | Necessary for substrate ontology (architrinos need a "where") |
-| Falsifiability | Unfalsifiable (by design) | Falsifiable (predict deviations in extreme regimes: Planck scale, early universe, self-hit) |
+| Falsifiability | Unfalsifiable (by design) | Falsifiable (predict deviations in extreme regimes: early universe, self-hit) |
 
 **Why architrino framework is NOT merely "Lorentz ether rebranded":**
 1. Explicit microphysics (architrinos, interaction laws, assembly rules)

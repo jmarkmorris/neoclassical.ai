@@ -332,7 +332,7 @@
 
 ### Chapter 39: Black Holes, Jets, and Recycling
 - Supermassive Black Hole Dynamics
-- Planck Core Jetting and Plasma Emissions
+- Black Hole Jetting and Plasma Emissions
 - Galaxy Rotation and Dark Matter Alternatives
 - Black Holes as Recycling Engines
 

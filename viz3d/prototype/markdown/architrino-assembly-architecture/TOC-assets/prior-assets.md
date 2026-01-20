@@ -66,7 +66,7 @@ The Orbiting Architrino Binary II
 The Orbiting Architrino Binary III
 The Orbiting Architrino Binary IV
 The Orbiting Architrino Binary V
-The Binary Curvature Limit Matches the Planck Scale
+The Binary Curvature Limit
 Architrinos Implement Asymptotic Safety
 The Polar Vortices of Potential of a Binary
 Accounting for h-bar
@@ -270,7 +270,7 @@ Rethink Supermassive Black Hole Dynamics!
 New Ideas on Galaxy Dynamics
 Mapping Galaxy Rotation Dynamics
 Black Hole Jets : Planck and Arp
-Does a Black Hole Shrink While Jetting Planck Plasma?
+Does a Black Hole Shrink While Jetting Plasma?
 NPQG Prediction of SMBH Jet Inflation Validated
 Do Black Holes Emit Spacetime Aether?
 Reasoning on the Universe’s Shape
