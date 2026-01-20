@@ -197,7 +197,7 @@ where:
 - $r_{ij}$: distance from emission point to reception point
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 
-**Note:** The force is **purely radial** (along $\hat{\mathbf{r}}_{ij}$). There are no "magnetic" or velocity-cross-product terms in the fundamental law.
+**Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **purely radial**—it points along the line-of-action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. All "magnetic" or velocity-dependent forces in emergent physics (e.g., the Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry** and **superposition of radial hits**, not from intrinsic magnetic structure in the per-hit law.
 
 **Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry** and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the entire burden of magnetic-field emergence on the assembly structure and Noether Sea dynamics (see TOC Ch. 20: "Emergence of Gauge Symmetries").
 
