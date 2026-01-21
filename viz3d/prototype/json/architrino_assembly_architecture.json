@@ -12,76 +12,6 @@
   },
   "objects": [
     {
-      "id": "universe",
-      "label": "Universe",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "position": [
-        0.0,
-        18.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/cosmology/universe.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "scaleExponent": 26
-    },
-    {
-      "id": "standard_model",
-      "label": "Standard Model Assemblies",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "position": [
-        8.37,
-        15.94,
-        0.0
-      ],
-      "subScenes": [
-        "json/standard-model-particles/standard_model.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "scaleExponent": -18
-    },
-    {
-      "id": "periodic_table",
-      "label": "Periodic Table",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "position": [
-        14.81,
-        10.23,
-        0.0
-      ],
-      "subScenes": [
-        "json/chemistry/periodic_table_scene.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "fermion_generations",
-      "label": "Fermion Generation and Color",
-      "radius": 2.688,
-      "color": "PURPLE",
-      "position": [
-        17.87,
-        2.17,
-        0.0
-      ],
-      "subScenes": [
-        "json/standard-model-theory/fermion_generation_color.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "foundations",
       "label": "Foundations",
       "radius": 2.688,
@@ -144,6 +74,58 @@
       ],
       "subScenes": [
         "json/quantum/quantum.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "standard_model",
+      "label": "Standard Model Assemblies",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        8.37,
+        15.94,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/standard_model.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "scaleExponent": -18
+    },
+    {
+      "id": "fermion_generations",
+      "label": "Fermion Generation and Color",
+      "radius": 2.688,
+      "color": "PURPLE",
+      "position": [
+        17.87,
+        2.17,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-theory/fermion_generation_color.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "periodic_table",
+      "label": "Periodic Table",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        14.81,
+        10.23,
+        0.0
+      ],
+      "subScenes": [
+        "json/chemistry/periodic_table_scene.json"
       ],
       "motion": {
         "type": "fixed"
@@ -233,6 +215,24 @@
       "motion": {
         "type": "fixed"
       }
+    },
+    {
+      "id": "universe",
+      "label": "Universe",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        0.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/cosmology/universe.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "scaleExponent": 26
     }
   ]
 }

@@ -394,7 +394,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const entries = useDirectories
     ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
     : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
-  if (!entries.length) {
+  if (!entries.length && !includeExisting) {
     return [];
   }
   const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
@@ -436,7 +436,24 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     typeof scene.autoMarkdownMaxRingCount === "number"
       ? scene.autoMarkdownMaxRingCount
       : 14;
-  const layoutCount = includeExisting ? existingNodes.length + fileInfos.length : fileInfos.length;
+  const autoEntries = [];
+  fileInfos.forEach((info) => {
+    const entryName = info.path.split("/").pop() ?? "";
+    const slug = useDirectories
+      ? entryName
+      : entryName.replace(/\.md$/i, "");
+    const id = slug
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+    if (!id || usedIds.has(id)) {
+      return;
+    }
+    autoEntries.push({ info, slug, id });
+  });
+  const layoutCount = includeExisting
+    ? existingNodes.length + autoEntries.length
+    : autoEntries.length;
   const ringRadius =
     typeof scene.autoMarkdownRingRadius === "number"
       ? scene.autoMarkdownRingRadius
@@ -467,7 +484,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const positionForIndex = (index) => {
     if (useRing) {
       const angle =
-        (index / layoutCount) * Math.PI * 2 - ringLayoutDefaults.startAngle;
+        (index / layoutCount) * Math.PI * 2 + ringLayoutDefaults.startAngle;
       return [Math.cos(angle) * ringRadius, Math.sin(angle) * ringRadius];
     }
     const row = Math.floor(index / columns);
@@ -477,26 +494,15 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
 
   if (includeExisting) {
     existingNodes.forEach((node, index) => {
-      const [x, y] = positionForIndex(index);
+      const [x, y] = positionForIndex(autoEntries.length + index);
       node.position = [Number(x.toFixed(2)), Number(y.toFixed(2)), 0];
     });
   }
 
-  const autoStartIndex = includeExisting ? existingNodes.length : 0;
-  return fileInfos
-    .map((info, index) => {
-      const entryName = info.path.split("/").pop() ?? "";
-      const slug = useDirectories
-        ? entryName
-        : entryName.replace(/\.md$/i, "");
-      const id = slug
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "_")
-        .replace(/^_+|_+$/g, "");
-      if (!id || usedIds.has(id)) {
-        return null;
-      }
-      const [x, y] = positionForIndex(autoStartIndex + index);
+  return autoEntries
+    .map((entry, index) => {
+      const { info, slug, id } = entry;
+      const [x, y] = positionForIndex(index);
       let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
       if (typeof color === "string" && colorTokens[color]) {
         color = colorTokens[color];
@@ -1362,7 +1368,7 @@ function layoutRootLevel(level) {
     });
   }
 
-  const angleStep = (Math.PI * 2) / nodes.length;
+  const angleStep = (-Math.PI * 2) / nodes.length;
   const startAngle = ringLayoutDefaults.startAngle;
   nodes.forEach((node, index) => {
     const angle = startAngle + angleStep * index;
