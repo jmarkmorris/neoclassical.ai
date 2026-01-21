@@ -3299,11 +3299,7 @@ function focusOnPointer(clientX, clientY) {
       startLevelTransitionFromNode(targetNode);
     }
   } else {
-    const targetWorld = new THREE.Vector3();
-    targetNode.group.getWorldPosition(targetWorld);
-    const panTarget = worldGroup.position.clone().sub(targetWorld);
-    setTargetPan(panTarget, 420);
-    setDetailPanel(targetNode);
+    return true;
   }
   return true;
 }
