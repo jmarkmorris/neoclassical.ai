@@ -547,7 +547,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
 
   if (useRing && layoutCount > 1) {
     const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
-    if (Number.isFinite(maxRadius) && maxRadius > 0) {
+    if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
       baseRadius = maxRadius;
     }
   }
