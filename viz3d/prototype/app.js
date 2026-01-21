@@ -36,9 +36,7 @@ const periodicLegend = document.getElementById("periodic-legend");
 const hud = document.getElementById("hud");
 const infoDrawer = document.getElementById("info-drawer");
 const infoBody = document.getElementById("info-body");
-const rootSceneId = "physics_frontiers";
 const rootLayoutMarginPx = { x: 160, y: 140 };
-const rootGapFactor = 0.785; // half of prior gap vs radius
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -196,6 +194,24 @@ let periodicGridBuilt = false;
 const levels = new Map();
 const navigationStack = [];
 let currentLevel = null;
+
+const ringLayoutDefaults = {
+  haloScale: 1.18,
+  guardBandMin: 0.15,
+  guardBandRatio: 0.08,
+};
+
+function maxRingNodeRadius(ringRadius, count) {
+  if (!Number.isFinite(ringRadius) || count <= 1) {
+    return Infinity;
+  }
+  const chord = 2 * ringRadius * Math.sin(Math.PI / count);
+  const guardBand = Math.max(
+    ringLayoutDefaults.guardBandMin,
+    chord * ringLayoutDefaults.guardBandRatio
+  );
+  return (chord - guardBand) / (2 * ringLayoutDefaults.haloScale);
+}
 
 const zoomState = {
   active: false,
@@ -399,7 +415,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         })
       );
   const usedIds = new Set(existingNodes.map((node) => node.id));
-  const baseRadius =
+  let baseRadius =
     typeof scene.autoMarkdownNodeRadius === "number"
       ? scene.autoMarkdownNodeRadius
       : 1.6;
@@ -433,6 +449,19 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const rows = useRing ? layoutCount : Math.ceil(layoutCount / columns);
   const startX = useRing ? 0 : -((columns - 1) * gridSpacing) / 2;
   const startY = useRing ? 0 : ((rows - 1) * gridSpacing) / 2;
+
+  if (useRing && layoutCount > 1) {
+    const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
+    if (Number.isFinite(maxRadius) && maxRadius > 0) {
+      baseRadius = maxRadius;
+    }
+  }
+
+  if (includeExisting) {
+    existingNodes.forEach((node) => {
+      node.radius = baseRadius;
+    });
+  }
 
   const positionForIndex = (index) => {
     if (useRing) {
@@ -1283,49 +1312,53 @@ function getSafeViewportWorld() {
 }
 
 function layoutRootLevel(level) {
-  if (!level || level.sceneId !== rootSceneId) {
+  if (!level || level.id !== rootScenePath) {
     return;
   }
   const nodes = level.nodes;
   if (!nodes?.length) {
     return;
   }
-  const radius = Math.max(...nodes.map((node) => node.data?.radius ?? 0));
-  const baseSpacing = radius * (2 + rootGapFactor);
-  const { safeWidth, safeHeight } = getSafeViewportWorld();
-  let columns = Math.max(
-    1,
-    Math.min(
-      nodes.length,
-      Math.floor((safeWidth - 2 * radius) / Math.max(baseSpacing, 0.01)) + 1
-    )
+  nodes.forEach((node) => {
+    if (node.data && typeof node.data.baseRadius !== "number") {
+      node.data.baseRadius = node.data.radius ?? 0;
+    }
+  });
+  const baseRadius = Math.max(
+    ...nodes.map((node) => node.data?.baseRadius ?? node.data?.radius ?? 0)
   );
-  const rowsNeeded = (cols) => Math.ceil(nodes.length / Math.max(cols, 1));
-  const totalHeight = (cols) =>
-    (rowsNeeded(cols) - 1) * baseSpacing + 2 * radius;
-  while (columns > 1 && totalHeight(columns) > safeHeight) {
-    columns -= 1;
+  const { safeWidth, safeHeight } = getSafeViewportWorld();
+  const safeRadius = Math.max(2, Math.min(safeWidth, safeHeight) / 2);
+  let targetRadius = baseRadius;
+  if (nodes.length > 1) {
+    let r = baseRadius;
+    for (let i = 0; i < 6; i += 1) {
+      const candidateRing = Math.max(2, safeRadius - r);
+      const maxRadius = maxRingNodeRadius(candidateRing, nodes.length);
+      if (!Number.isFinite(maxRadius) || maxRadius <= 0) {
+        break;
+      }
+      r = Math.min(maxRadius, safeRadius - 2);
+    }
+    targetRadius = r;
   }
-  const rows = rowsNeeded(columns);
-  const spacingX =
-    columns > 1
-      ? Math.max(
-          baseSpacing,
-          Math.min(
-            baseSpacing * 1.4,
-            (safeWidth - 2 * radius) / Math.max(columns - 1, 1)
-          )
-        )
-      : 0;
-  const spacingY = baseSpacing;
-  const startX = -((columns - 1) * spacingX) / 2;
-  const startY = ((rows - 1) * spacingY) / 2;
+  const ringRadius = Math.max(2, safeRadius - targetRadius);
+  const scaleFactor = baseRadius > 0 ? targetRadius / baseRadius : 1;
+  if (Number.isFinite(scaleFactor) && scaleFactor !== 1) {
+    nodes.forEach((node) => {
+      node.group.scale.setScalar(scaleFactor);
+      if (node.data?.baseRadius) {
+        node.data.radius = node.data.baseRadius * scaleFactor;
+      }
+    });
+  }
 
+  const angleStep = (Math.PI * 2) / nodes.length;
+  const startAngle = -Math.PI / 2;
   nodes.forEach((node, index) => {
-    const row = Math.floor(index / columns);
-    const col = index % columns;
-    const x = startX + col * spacingX;
-    const y = startY - row * spacingY;
+    const angle = startAngle + angleStep * index;
+    const x = Math.cos(angle) * ringRadius;
+    const y = Math.sin(angle) * ringRadius;
     node.group.position.set(x, y, node.group.position.z);
   });
 }
@@ -1942,7 +1975,7 @@ function buildLevel(levelId) {
     links: [],
   };
 
-  if (level.sceneId === rootSceneId) {
+  if (level.id === rootScenePath) {
     layoutRootLevel(level);
   }
 
@@ -3544,7 +3577,7 @@ function onResize() {
   updateCamera();
   renderer.setSize(window.innerWidth, window.innerHeight, false);
   labelRenderer.setSize(window.innerWidth, window.innerHeight);
-  if (currentLevel?.sceneId === rootSceneId) {
+  if (currentLevel?.id === rootScenePath) {
     layoutRootLevel(currentLevel);
     fitCameraToLevel(currentLevel);
   }
