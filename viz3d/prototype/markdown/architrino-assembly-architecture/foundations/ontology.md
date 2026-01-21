@@ -50,7 +50,7 @@ $$
 $$
 where $t$ is dimensionless.
 
-> **Plain language:** We pick a standard unit of duration (e.g., "one second" or "one Planck time") and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
+> **Plain language:** We pick a standard unit of duration (e.g., "one second" or "one maximum curvature binary orbit time") and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
 
 **Duration and Linear Advancement:**
 
@@ -1105,7 +1105,7 @@ At a critical speed $v_{\text{eq}} > c_f$ and minimum radius $R_{\text{min}}$, t
 This wake-stabilized orbit:
 
 - Defines a **fundamental length scale** $R_{\text{min}}$ that sets the tightest stable orbit radius
-- Prevents classical $r \to 0$ singularities (see TOC Ch. 34: "Black Holes and Planck Cores")
+- Prevents classical $r \to 0$ singularities (see TOC Ch. 34: "Black Holes and Black hole cores")
 - Underpins stable particle assemblies (see TOC Ch. 11: "Noether Core")
 - Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
 
@@ -1188,7 +1188,7 @@ While absolute rest is ontologically well-defined, the theory must ensure that *
 
 **Mechanism Warning:** This requires that assembly dynamics (rulers, clocks) naturally Lorentz-contract and time-dilate when moving through the Noether Sea. This "Lorentzian Conspiracy" must be an **inevitable mechanical consequence** of the Master Equation, not a tuning of parameters $\eta$ and $\kappa$. **If this contraction is not automatic and exact, the theory is immediately falsified by Michelson-Morley and modern Lorentz-violation tests.**
 
-**Experimental Strategy (Sig):** If the Lorentz suppression mechanism is a physical interaction with the Noether Sea, there **must exist** a breakdown regime (high energy, strong field gradients, or near Planck cores) where Lorentz invariance cracks. Identifying observable signatures of this breakdown is a primary experimental target.
+**Experimental Strategy (Sig):** If the Lorentz suppression mechanism is a physical interaction with the Noether Sea, there **must exist** a breakdown regime (high energy, strong field gradients, or near Black hole event horizonss) where Lorentz invariance cracks. Identifying observable signatures of this breakdown is a primary experimental target.
 
 ## 3. The Physical Medium (Noether Sea / Spacetime Aether)
 
@@ -1355,8 +1355,8 @@ The **Absolute Observer** is a conceptual (non-physical) probe that represents c
 
 - **Position and velocity** of every architrino: $\{(\mathbf{x}_i(t), \mathbf{v}_i(t))\}_{i=1}^N$
 - **Charge state** (electrino, positrino, magnitude $|e/6|$): $\{q_i, \sigma_i\}$
-- **Full potential field configuration**: All outgoing causal wake surfaces from all sources at all past times
 - **Path history**: For any causal wake surface passing a point, the AO knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
+- **Full potential field configuration**: From which it can derive all outgoing causal wake surfaces from all sources at all past times
 - **Self-hit histories**: Which causal wake surfaces have returned to intersect their sources
 
 **What the Absolute Observer is NOT:**
@@ -1572,7 +1572,7 @@ When using the word "emerges," always specify:
 
 **Example (correct usage):**
 
-> "Lorentz invariance **emerges** as an effective symmetry at low energies ($E \ll E_{\text{Planck}}$) and weak Noether Sea gradients via the mechanism of assembly contraction/dilation (see TOC Ch. 32). It breaks down in the self-hit regime ($v > c_f$) and near Planck cores."
+> "Lorentz invariance **emerges** as an effective symmetry at low energies ($E \ll E_{\text{Planck}}$) and weak Noether Sea gradients via the mechanism of assembly contraction/dilation (see TOC Ch. 32). It breaks down in the self-hit regime ($v > c_f$) and near black hole event horizonss."
 
 **Example (incorrect usage):**
 

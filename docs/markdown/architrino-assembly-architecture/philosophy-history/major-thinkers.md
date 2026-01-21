@@ -253,7 +253,7 @@ The architrino project is positioned as:
 - ❌ **Con**: Einstein's framework denies any physical meaning to an absolute observer; in the architrino ontology, such an observer is **mathematically well-defined** (even if no real observer can align with it operationally).
 - ✅ **Pro**: All **empirical predictions** of SR (time dilation, length contraction, mass-energy equivalence *E=mc²*, relativistic momentum) are **reproduced** as emergent phenomena from assembly dynamics.
 - ⚠️ **Clarification**: This does **not** violate empirical SR, because actual observers (assemblies with clocks/rulers) still measure SR effects exactly as predicted. The absolute observer is **not accessible** to physical measurements—it is a theoretical construct for tracking objective reality.
-- ⚠️ **Tension**: Deviations from exact Lorentz invariance may appear in extreme regimes (self-hit, Planck scale, early cosmology).
+- ⚠️ **Tension**: Deviations from exact Lorentz invariance may appear in extreme regimes (self-hit, early cosmology).
 
 **Legacy shift**: Einstein's SR is an **effective theory**. His **kinematic** interpretation (spacetime symmetry) is replaced by **dynamical emergence** from absolute-time substrate. Einstein's **empirical predictions** stand; his **ontology** is superseded. The absolute observer reveals Einstein's relativity of simultaneity as **emergent** and **perspectival**, not fundamental.
 
