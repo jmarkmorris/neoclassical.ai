@@ -136,21 +136,6 @@ $$
 
 ---
 
-### Grand Unified Theories (GUTs)
-
-**Summary:** Strong, weak, and electromagnetic forces unify at high energy.
-
-**Conceptual View:** A larger gauge group breaks into the SM group at a unification
-scale, often predicting proton decay.
-
-**Key Equation:** Example breaking chain:
-$$
-\mathrm{SU(5)} \rightarrow \mathrm{SU(3)}_C \times \mathrm{SU(2)}_L \times
-\mathrm{U(1)}_Y.
-$$
-
----
-
 ### Technicolor / Composite Higgs
 
 **Summary:** The Higgs is not elementary; it is a bound state of new dynamics.
@@ -226,49 +211,6 @@ the force law below a threshold $a_0$.
 **Key Equation:** MOND interpolation:
 $$
 \mu\left(\frac{a}{a_0}\right) a = a_N.
-$$
-
----
-
-### f(R) and Scalar-Tensor Gravity
-
-**Summary:** Gravity is modified by changing the action or adding scalar fields.
-
-**Conceptual View:** Replaces the Einstein-Hilbert term $R$ with a function $f(R)$ or
-adds new dynamical fields that alter large-scale behavior.
-
-**Key Equation:** Modified action (schematic):
-$$
-S = \frac{1}{16\pi G}\int d^4x \sqrt{-g}\, f(R) + S_{\text{matter}}.
-$$
-
----
-
-### Emergent Gravity (Entropic / Induced)
-
-**Summary:** Gravity may emerge from microscopic degrees of freedom rather than
-being fundamental.
-
-**Conceptual View:** Spacetime and gravity arise from thermodynamics, entanglement, or
-induced effective actions.
-
-**Key Equation:** Induced gravity idea (schematic):
-$$
-S_{\mathrm{eff}}[g] \sim \int d^4x \sqrt{-g}\, R + \cdots.
-$$
-
----
-
-### Quantum Gravity (Generic Problem)
-
-**Summary:** The unfinished task of reconciling quantum mechanics with gravity.
-
-**Conceptual View:** QFT expects quantized interactions, but GR treats gravity as
-geometry. Combining them leads to divergences or conceptual conflicts.
-
-**Key Equation:** Perturbative GR as a quantum field theory:
-$$
-G_{\mu\nu} = 8\pi G T_{\mu\nu}.
 $$
 
 ---
@@ -472,7 +414,7 @@ $$
 
 ---
 
-### Ekpyrotic / Cyclic Cosmology
+### Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok)
 
 **Summary:** The universe undergoes repeated cycles of contraction and bounce.
 
@@ -621,45 +563,3 @@ $$
 $$
 
 ---
-
-### Objective Collapse (GRW and Related)
-
-**Summary:** The wavefunction collapses spontaneously with a small rate.
-
-**Conceptual View:** Modifies unitary evolution with stochastic terms that localize
-macroscopic superpositions.
-
-**Key Equation:** GRW collapse rate (schematic):
-$$
-\lambda \sim 10^{-16}\ \text{s}^{-1}\ \text{per particle}.
-$$
-
----
-
-### Consistent Histories
-
-**Summary:** Quantum events are described by decoherent histories without
-collapse.
-
-**Conceptual View:** Sets of histories with negligible interference can be assigned
-probabilities consistently.
-
-**Key Equation:** Decoherence functional:
-$$
-D(\alpha,\beta) = \mathrm{Tr}(C_\alpha \rho C_\beta^\dagger).
-$$
-### QBism
-
-**Summary:** The wavefunction encodes an agent's beliefs, not an objective
-state.
-
-**Conceptual View:** Quantum probabilities are personal Bayesian degrees of belief;
-measurement updates beliefs rather than collapsing reality.
-
-**Key Equation:** Born rule as a consistency relation (schematic):
-$$
-P(E) = \sum_i P(H_i)\, P(E|H_i).
-$$
-
----
-
