@@ -559,7 +559,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
 
   if (includeExisting) {
     existingNodes.forEach((node, index) => {
-      const [x, y] = positionForIndex(autoEntries.length + index);
+      const [x, y] = positionForIndex(index);
       node.position = [Number(x.toFixed(2)), Number(y.toFixed(2)), 0];
     });
   }
@@ -567,7 +567,8 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   return autoEntries
     .map((entry, index) => {
       const { info, slug, id } = entry;
-      const [x, y] = positionForIndex(index);
+      const layoutIndex = includeExisting ? existingNodes.length + index : index;
+      const [x, y] = positionForIndex(layoutIndex);
       let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
       if (typeof color === "string" && colorTokens[color]) {
         color = colorTokens[color];
@@ -1054,6 +1055,10 @@ async function loadSceneConfig(scenePath) {
           reaction: obj.reaction,
           details: obj.details ?? null,
           renderStyle: obj.renderStyle ?? null,
+          markdownPath: obj.markdownPath ?? null,
+          markdownSection: obj.markdownSection ?? null,
+          markdownColumns: obj.markdownColumns ?? null,
+          markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
           binaryBands,
           glowRing: obj.glowRing ?? false,
           glowRingColor: obj.glowRingColor ?? null,
@@ -1289,8 +1294,17 @@ function computeFocusZoom(radius, fraction = 0.32) {
   return clampZoom(targetZoom);
 }
 
-function getMarkdownReaderSceneId(markdownPath) {
-  return `__markdown_reader__:${markdownPath}`;
+function getMarkdownReaderSceneId(markdownPath, markdownSection) {
+  if (!markdownSection) {
+    return `__markdown_reader__:${markdownPath}`;
+  }
+  const normalized = normalizeMarkdownKey(markdownSection);
+  return `__markdown_reader__:${markdownPath}::${normalized}`;
+}
+
+function getMarkdownIndexSceneId(markdownPath, headingLevel) {
+  const levelToken = typeof headingLevel === "number" ? `::h${headingLevel}` : "";
+  return `__markdown_index__:${markdownPath}${levelToken}`;
 }
 
 function getMarkdownDirectorySceneId(directory) {
@@ -1302,11 +1316,42 @@ function ensureMarkdownReaderScene(nodeData) {
   if (!markdownPath) {
     return null;
   }
-  const sceneId = getMarkdownReaderSceneId(markdownPath);
+  const sceneName = nodeData.name ?? "Notes";
+  const markdownSection = nodeData.markdownSection ?? null;
+  const headingLevel =
+    typeof nodeData.markdownHeadingLevel === "number"
+      ? nodeData.markdownHeadingLevel
+      : null;
+
+  if (!markdownSection) {
+    const sceneId = getMarkdownIndexSceneId(markdownPath, headingLevel);
+    if (levelConfigs[sceneId]) {
+      return sceneId;
+    }
+    levelConfigs[sceneId] = {
+      layout: "static",
+      nodes: [],
+      links: [],
+      sceneName,
+      sceneId,
+      markdownPath,
+      markdownSection: null,
+      markdownColumns: nodeData.markdownColumns ?? null,
+      markdownAutoOpen: false,
+      centerOn: null,
+      autoSphereRing: true,
+      autoMarkdownPath: markdownPath,
+      autoMarkdownHeadingLevel: headingLevel,
+      autoMarkdownIncludeExistingInLayout: false,
+    };
+    markdownReaderScenes.set(sceneId, true);
+    return sceneId;
+  }
+
+  const sceneId = getMarkdownReaderSceneId(markdownPath, markdownSection);
   if (levelConfigs[sceneId]) {
     return sceneId;
   }
-  const sceneName = nodeData.name ?? "Notes";
   levelConfigs[sceneId] = {
     layout: "static",
     nodes: [],
@@ -1314,7 +1359,7 @@ function ensureMarkdownReaderScene(nodeData) {
     sceneName,
     sceneId,
     markdownPath,
-    markdownSection: nodeData.markdownSection ?? null,
+    markdownSection,
     markdownColumns: nodeData.markdownColumns ?? null,
     markdownAutoOpen: true,
     centerOn: null,
