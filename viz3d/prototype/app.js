@@ -572,9 +572,12 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
       if (typeof color === "string" && colorTokens[color]) {
         color = colorTokens[color];
       }
+      const nodeName = scene.autoMarkdownPath
+        ? info.title ?? titleFromSlug(slug)
+        : titleFromSlug(slug);
       const node = {
         id,
-        name: titleFromSlug(slug),
+        name: nodeName,
         radius: baseRadius,
         position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
         color,
