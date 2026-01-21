@@ -582,7 +582,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         radius: baseRadius,
         position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
         color,
-        wrapLabel: scene.wrapLabels ?? false,
+        wrapLabel: scene.wrapLabels ?? true,
       };
       if (scene.autoMarkdownPath) {
         node.markdownPath = scene.autoMarkdownPath;
