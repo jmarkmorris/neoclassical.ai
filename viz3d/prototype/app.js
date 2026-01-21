@@ -1311,6 +1311,13 @@ function getSafeViewportWorld() {
   return { safeWidth, safeHeight };
 }
 
+function cloneNodeData(nodeData) {
+  if (typeof structuredClone === "function") {
+    return structuredClone(nodeData);
+  }
+  return JSON.parse(JSON.stringify(nodeData));
+}
+
 function layoutRootLevel(level) {
   if (!level || level.id !== rootScenePath) {
     return;
@@ -1344,7 +1351,7 @@ function layoutRootLevel(level) {
   }
   const ringRadius = Math.max(2, safeRadius - targetRadius);
   const scaleFactor = baseRadius > 0 ? targetRadius / baseRadius : 1;
-  if (Number.isFinite(scaleFactor) && scaleFactor !== 1) {
+  if (Number.isFinite(scaleFactor)) {
     nodes.forEach((node) => {
       node.group.scale.setScalar(scaleFactor);
       if (node.data?.baseRadius) {
@@ -1779,7 +1786,8 @@ function buildLevel(levelId) {
   const centerOffset = (config.nodes.length - 1) / 2;
   const isElementScene = typeof levelId === "string" && levelId.startsWith("json/elements/");
 
-  config.nodes.forEach((nodeData, index) => {
+  config.nodes.forEach((nodeDataRaw, index) => {
+    const nodeData = cloneNodeData(nodeDataRaw);
     if (nodeData.category === "legend") {
       return;
     }
