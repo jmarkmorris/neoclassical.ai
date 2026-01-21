@@ -47,6 +47,23 @@
       }
     },
     {
+      "id": "unknowns_paradoxes",
+      "label": "Unknowns & Paradoxes",
+      "radius": 2.688,
+      "color": "#2c567a",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/unknowns_paradoxes.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
       "id": "fermi_paradox",
       "label": "Fermi Paradox",
       "radius": 2.688,

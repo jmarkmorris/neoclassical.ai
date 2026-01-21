@@ -201,6 +201,7 @@ const ringLayoutDefaults = {
   guardBandRatio: 0.08,
   startAngle: Math.PI / 2,
 };
+const standardRingMaxCount = 14;
 
 function maxRingNodeRadius(ringRadius, count) {
   if (!Number.isFinite(ringRadius) || count <= 1) {
@@ -212,6 +213,34 @@ function maxRingNodeRadius(ringRadius, count) {
     chord * ringLayoutDefaults.guardBandRatio
   );
   return (chord - guardBand) / (2 * ringLayoutDefaults.haloScale);
+}
+
+function computeRingLayout(nodes) {
+  const count = nodes.length;
+  if (!count || count > standardRingMaxCount) {
+    return null;
+  }
+  let baseRadius = Math.max(...nodes.map((node) => node.radius ?? 0));
+  if (!Number.isFinite(baseRadius) || baseRadius <= 0) {
+    baseRadius = 1.6;
+  }
+  const ringRadius = Math.max(
+    6,
+    Math.min(count, standardRingMaxCount) * baseRadius * 1.4
+  );
+  const maxRadius = maxRingNodeRadius(ringRadius, count);
+  if (Number.isFinite(maxRadius) && maxRadius > 0) {
+    baseRadius = maxRadius;
+  }
+  const positions = [];
+  for (let i = 0; i < count; i += 1) {
+    const angle = (i / count) * Math.PI * 2 + ringLayoutDefaults.startAngle;
+    positions.push([
+      Number((Math.cos(angle) * ringRadius).toFixed(2)),
+      Number((Math.sin(angle) * ringRadius).toFixed(2)),
+    ]);
+  }
+  return { ringRadius, nodeRadius: baseRadius, positions };
 }
 
 const zoomState = {
@@ -387,34 +416,70 @@ function titleFromSlug(slug) {
 }
 
 async function buildAutoMarkdownNodes(scene, existingNodes) {
-  if (!scene?.autoSphereRing || !scene?.autoMarkdownDirectory) {
-    return [];
-  }
-  const useDirectories = scene.autoMarkdownSubdirectories === true;
-  const entries = useDirectories
-    ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
-    : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
-  if (!entries.length && !includeExisting) {
+  if (!scene?.autoSphereRing || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
     return [];
   }
   const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
-  const fileInfos = useDirectories
-    ? entries.map((path) => ({ path, isNonEmpty: false }))
-    : await Promise.all(
-        entries.map(async (path) => {
-          try {
-            const response = await fetch(appendCacheBust(path));
-            if (!response.ok) {
+  let entries = [];
+  let useDirectories = false;
+
+  if (scene.autoMarkdownPath) {
+    const headingLevel =
+      typeof scene.autoMarkdownHeadingLevel === "number"
+        ? scene.autoMarkdownHeadingLevel
+        : 3;
+    try {
+      const response = await fetch(appendCacheBust(scene.autoMarkdownPath));
+      if (response.ok) {
+        const text = await response.text();
+        const lines = text.split(/\r?\n/);
+        lines.forEach((line) => {
+          const heading = parseMarkdownHeading(line);
+          if (heading && heading.level === headingLevel) {
+            entries.push({ title: heading.title });
+          }
+        });
+        if (!entries.length && headingLevel !== 2) {
+          lines.forEach((line) => {
+            const heading = parseMarkdownHeading(line);
+            if (heading && heading.level === 2) {
+              entries.push({ title: heading.title });
+            }
+          });
+        }
+      }
+    } catch (error) {
+      console.warn("Failed to read markdown file", scene.autoMarkdownPath, error);
+    }
+  } else {
+    useDirectories = scene.autoMarkdownSubdirectories === true;
+    entries = useDirectories
+      ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
+      : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
+  }
+
+  if (!entries.length && !includeExisting) {
+    return [];
+  }
+  const fileInfos = scene.autoMarkdownPath
+    ? entries.map((entry) => ({ title: entry.title }))
+    : useDirectories
+      ? entries.map((path) => ({ path, isNonEmpty: false }))
+      : await Promise.all(
+          entries.map(async (path) => {
+            try {
+              const response = await fetch(appendCacheBust(path));
+              if (!response.ok) {
+                return { path, isNonEmpty: false };
+              }
+              const text = await response.text();
+              return { path, isNonEmpty: text.trim().length > 0 };
+            } catch (error) {
+              console.warn("Failed to read markdown file", path, error);
               return { path, isNonEmpty: false };
             }
-            const text = await response.text();
-            return { path, isNonEmpty: text.trim().length > 0 };
-          } catch (error) {
-            console.warn("Failed to read markdown file", path, error);
-            return { path, isNonEmpty: false };
-          }
-        })
-      );
+          })
+        );
   const usedIds = new Set(existingNodes.map((node) => node.id));
   let baseRadius =
     typeof scene.autoMarkdownNodeRadius === "number"
@@ -438,7 +503,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
       : 14;
   const autoEntries = [];
   fileInfos.forEach((info) => {
-    const entryName = info.path.split("/").pop() ?? "";
+    const entryName = info.title ?? info.path?.split("/").pop() ?? "";
     const slug = useDirectories
       ? entryName
       : entryName.replace(/\.md$/i, "");
@@ -513,8 +578,12 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         radius: baseRadius,
         position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
         color,
+        wrapLabel: scene.wrapLabels ?? false,
       };
-      if (useDirectories) {
+      if (scene.autoMarkdownPath) {
+        node.markdownPath = scene.autoMarkdownPath;
+        node.markdownSection = info.title ?? null;
+      } else if (useDirectories) {
         const childScene = ensureMarkdownDirectoryScene(
           info.path,
           scene,
@@ -1036,6 +1105,19 @@ async function loadSceneConfig(scenePath) {
         markdownColumns: data.scene?.markdownColumns ?? null,
         markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
         centerOn: data.scene?.centerOn ?? null,
+        autoSphereRing: data.scene?.autoSphereRing ?? false,
+        autoMarkdownDirectory: data.scene?.autoMarkdownDirectory ?? null,
+        autoMarkdownPath: data.scene?.autoMarkdownPath ?? null,
+        autoMarkdownHeadingLevel: data.scene?.autoMarkdownHeadingLevel ?? null,
+        autoMarkdownIncludeExistingInLayout:
+          data.scene?.autoMarkdownIncludeExistingInLayout ?? false,
+        autoMarkdownNodeRadius: data.scene?.autoMarkdownNodeRadius ?? null,
+        autoMarkdownRingRadius: data.scene?.autoMarkdownRingRadius ?? null,
+        autoMarkdownMaxRingCount: data.scene?.autoMarkdownMaxRingCount ?? null,
+        autoMarkdownGridSpacing: data.scene?.autoMarkdownGridSpacing ?? null,
+        autoMarkdownColumns: data.scene?.autoMarkdownColumns ?? null,
+        autoMarkdownPalette: data.scene?.autoMarkdownPalette ?? null,
+        autoMarkdownColor: data.scene?.autoMarkdownColor ?? null,
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
@@ -1790,6 +1872,16 @@ function buildLevel(levelId) {
   const ringTargetByMesh = new Map();
   let primaryBinaryNode = null;
 
+  const useAutoSphereRing =
+    !!config.autoSphereRing &&
+    !config.autoMarkdownDirectory &&
+    config.layout === "static";
+  const ringNodes = useAutoSphereRing
+    ? config.nodes.filter((node) => node?.category !== "legend")
+    : [];
+  const ringLayout = useAutoSphereRing ? computeRingLayout(ringNodes) : null;
+  let ringIndex = 0;
+
   const spacing = config.spacing ?? 7;
   const centerOffset = (config.nodes.length - 1) / 2;
   const isElementScene = typeof levelId === "string" && levelId.startsWith("json/elements/");
@@ -1798,6 +1890,14 @@ function buildLevel(levelId) {
     const nodeData = cloneNodeData(nodeDataRaw);
     if (nodeData.category === "legend") {
       return;
+    }
+    if (ringLayout) {
+      const pos = ringLayout.positions[ringIndex];
+      if (pos) {
+        nodeData.position = [pos[0], pos[1], 0];
+      }
+      nodeData.radius = ringLayout.nodeRadius;
+      ringIndex += 1;
     }
     const node = createNode(nodeData);
     const hasPosition =

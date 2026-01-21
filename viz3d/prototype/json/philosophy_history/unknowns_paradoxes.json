@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknowns_paradoxes",
+    "name": "Unknowns & Paradoxes",
+    "units": "relative",
+    "wrapLabels": true,
+    "autoSphereRing": true,
+    "autoMarkdownPath": "markdown/architrino-assembly-architecture/philosophy-history/unknowns-paradoxes.md",
+    "autoMarkdownHeadingLevel": 3,
+    "autoMarkdownNodeRadius": 2.2,
+    "autoMarkdownRingRadius": 14
+  },
+  "objects": []
+}

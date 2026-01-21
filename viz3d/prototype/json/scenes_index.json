@@ -121,6 +121,11 @@
       "path": "json/philosophy_history/belief_systems.json"
     },
     {
+      "id": "unknowns_paradoxes",
+      "name": "Unknowns & Paradoxes",
+      "path": "json/philosophy_history/unknowns_paradoxes.json"
+    },
+    {
       "id": "religion_judaism",
       "name": "Judaism",
       "path": "json/philosophy_history/religion_judaism.json"
