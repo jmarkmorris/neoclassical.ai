@@ -427,6 +427,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     typeof scene.autoMarkdownHeadingLevel === "number"
       ? scene.autoMarkdownHeadingLevel
       : 3;
+  let sectionSubheadings = null;
 
   if (scene.autoMarkdownPath) {
     const preferredLevels = [usedHeadingLevel];
@@ -458,6 +459,26 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
             usedHeadingLevel = level;
             break;
           }
+        }
+        if (!sectionKey && usedHeadingLevel === 2) {
+          sectionSubheadings = new Map();
+          let currentSection = null;
+          text.split(/\r?\n/).forEach((line) => {
+            const heading = parseMarkdownHeading(line);
+            if (!heading) {
+              return;
+            }
+            if (heading.level === 2) {
+              currentSection = heading.title;
+              if (!sectionSubheadings.has(currentSection)) {
+                sectionSubheadings.set(currentSection, false);
+              }
+            } else if (heading.level === 3 && currentSection) {
+              sectionSubheadings.set(currentSection, true);
+            } else if (heading.level <= 2) {
+              currentSection = heading.title;
+            }
+          });
         }
       }
     } catch (error) {
@@ -601,7 +622,11 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         wrapLabel: scene.wrapLabels ?? true,
       };
       if (scene.autoMarkdownPath) {
-        if (isTwoLevelRoot && info.title) {
+        const hasSubheadings =
+          isTwoLevelRoot && info.title
+            ? sectionSubheadings?.get(info.title) === true
+            : false;
+        if (isTwoLevelRoot && info.title && hasSubheadings) {
           const childScene = ensureMarkdownSectionIndexScene(
             scene.autoMarkdownPath,
             info.title,
