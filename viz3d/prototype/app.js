@@ -420,32 +420,44 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     return [];
   }
   const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
+  const sectionKey = scene.autoMarkdownSection ?? null;
   let entries = [];
   let useDirectories = false;
+  let usedHeadingLevel =
+    typeof scene.autoMarkdownHeadingLevel === "number"
+      ? scene.autoMarkdownHeadingLevel
+      : 3;
 
   if (scene.autoMarkdownPath) {
-    const headingLevel =
-      typeof scene.autoMarkdownHeadingLevel === "number"
-        ? scene.autoMarkdownHeadingLevel
-        : 3;
+    const preferredLevels = [usedHeadingLevel];
+    if (usedHeadingLevel === 2) {
+      preferredLevels.push(3);
+    } else if (usedHeadingLevel !== 2) {
+      preferredLevels.push(2);
+    }
     try {
       const response = await fetch(appendCacheBust(scene.autoMarkdownPath));
       if (response.ok) {
         const text = await response.text();
-        const lines = text.split(/\r?\n/);
-        lines.forEach((line) => {
-          const heading = parseMarkdownHeading(line);
-          if (heading && heading.level === headingLevel) {
-            entries.push({ title: heading.title });
-          }
-        });
-        if (!entries.length && headingLevel !== 2) {
+        let content = text;
+        if (sectionKey) {
+          const section = extractMarkdownSection(text, sectionKey);
+          content = section?.body ?? "";
+        }
+        const lines = content.split(/\r?\n/);
+        for (const level of preferredLevels) {
+          const levelEntries = [];
           lines.forEach((line) => {
             const heading = parseMarkdownHeading(line);
-            if (heading && heading.level === 2) {
-              entries.push({ title: heading.title });
+            if (heading && heading.level === level) {
+              levelEntries.push({ title: heading.title });
             }
           });
+          if (levelEntries.length) {
+            entries = levelEntries;
+            usedHeadingLevel = level;
+            break;
+          }
         }
       }
     } catch (error) {
@@ -564,6 +576,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     });
   }
 
+  const isSectionIndex = !!sectionKey;
+  const isTwoLevelRoot = !isSectionIndex && scene.autoMarkdownPath && usedHeadingLevel === 2;
+
   return autoEntries
     .map((entry, index) => {
       const { info, slug, id } = entry;
@@ -585,8 +600,19 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         wrapLabel: scene.wrapLabels ?? true,
       };
       if (scene.autoMarkdownPath) {
-        node.markdownPath = scene.autoMarkdownPath;
-        node.markdownSection = info.title ?? null;
+        if (isTwoLevelRoot && info.title) {
+          const childScene = ensureMarkdownSectionIndexScene(
+            scene.autoMarkdownPath,
+            info.title,
+            scene
+          );
+          if (childScene) {
+            node.childScene = childScene;
+          }
+        } else {
+          node.markdownPath = scene.autoMarkdownPath;
+          node.markdownSection = info.title ?? null;
+        }
       } else if (useDirectories) {
         const childScene = ensureMarkdownDirectoryScene(
           info.path,
@@ -1116,6 +1142,7 @@ async function loadSceneConfig(scenePath) {
         autoSphereRing: data.scene?.autoSphereRing ?? false,
         autoMarkdownDirectory: data.scene?.autoMarkdownDirectory ?? null,
         autoMarkdownPath: data.scene?.autoMarkdownPath ?? null,
+        autoMarkdownSection: data.scene?.autoMarkdownSection ?? null,
         autoMarkdownHeadingLevel: data.scene?.autoMarkdownHeadingLevel ?? null,
         autoMarkdownIncludeExistingInLayout:
           data.scene?.autoMarkdownIncludeExistingInLayout ?? false,
@@ -1307,6 +1334,11 @@ function getMarkdownIndexSceneId(markdownPath, headingLevel) {
   return `__markdown_index__:${markdownPath}${levelToken}`;
 }
 
+function getMarkdownSectionIndexSceneId(markdownPath, markdownSection) {
+  const normalized = normalizeMarkdownKey(markdownSection);
+  return `__markdown_section_index__:${markdownPath}::${normalized}`;
+}
+
 function getMarkdownDirectorySceneId(directory) {
   return `__markdown_directory__:${directory}`;
 }
@@ -1321,7 +1353,7 @@ function ensureMarkdownReaderScene(nodeData) {
   const headingLevel =
     typeof nodeData.markdownHeadingLevel === "number"
       ? nodeData.markdownHeadingLevel
-      : null;
+      : 2;
 
   if (!markdownSection) {
     const sceneId = getMarkdownIndexSceneId(markdownPath, headingLevel);
@@ -1365,6 +1397,41 @@ function ensureMarkdownReaderScene(nodeData) {
     centerOn: null,
   };
   markdownReaderScenes.set(sceneId, true);
+  return sceneId;
+}
+
+function ensureMarkdownSectionIndexScene(markdownPath, markdownSection, parentScene) {
+  if (!markdownPath || !markdownSection) {
+    return null;
+  }
+  const sceneId = getMarkdownSectionIndexSceneId(markdownPath, markdownSection);
+  if (levelConfigs[sceneId]) {
+    return sceneId;
+  }
+  levelConfigs[sceneId] = {
+    layout: "static",
+    nodes: [],
+    links: [],
+    sceneName: markdownSection,
+    sceneId,
+    markdownPath,
+    markdownSection,
+    markdownColumns: parentScene?.autoMarkdownColumns ?? null,
+    markdownAutoOpen: false,
+    centerOn: null,
+    autoSphereRing: true,
+    autoMarkdownPath: markdownPath,
+    autoMarkdownSection: markdownSection,
+    autoMarkdownHeadingLevel: 3,
+    autoMarkdownIncludeExistingInLayout: false,
+    autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
+    autoMarkdownRingRadius: parentScene?.autoMarkdownRingRadius,
+    autoMarkdownMaxRingCount: parentScene?.autoMarkdownMaxRingCount,
+    autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
+    autoMarkdownColumns: parentScene?.autoMarkdownColumns,
+    autoMarkdownPalette: parentScene?.autoMarkdownPalette,
+    autoMarkdownColor: parentScene?.autoMarkdownColor,
+  };
   return sceneId;
 }
 
