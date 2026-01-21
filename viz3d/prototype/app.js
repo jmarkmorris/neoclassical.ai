@@ -199,6 +199,7 @@ const ringLayoutDefaults = {
   haloScale: 1.18,
   guardBandMin: 0.15,
   guardBandRatio: 0.08,
+  startAngle: Math.PI / 2,
 };
 
 function maxRingNodeRadius(ringRadius, count) {
@@ -465,7 +466,8 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
 
   const positionForIndex = (index) => {
     if (useRing) {
-      const angle = (index / layoutCount) * Math.PI * 2;
+      const angle =
+        (index / layoutCount) * Math.PI * 2 - ringLayoutDefaults.startAngle;
       return [Math.cos(angle) * ringRadius, Math.sin(angle) * ringRadius];
     }
     const row = Math.floor(index / columns);
@@ -1361,7 +1363,7 @@ function layoutRootLevel(level) {
   }
 
   const angleStep = (Math.PI * 2) / nodes.length;
-  const startAngle = -Math.PI / 2;
+  const startAngle = ringLayoutDefaults.startAngle;
   nodes.forEach((node, index) => {
     const angle = startAngle + angleStep * index;
     const x = Math.cos(angle) * ringRadius;
