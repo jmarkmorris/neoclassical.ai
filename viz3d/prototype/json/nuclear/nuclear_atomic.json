@@ -5,7 +5,7 @@
     "name": "Nuclear-Atomic",
     "units": "relative",
     "wrapLabels": true,
-    "autoMarkdownSpheres": true,
+    "autoSphereRing": true,
     "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/nuclear-atomic",
     "autoMarkdownIncludeExistingInLayout": true,
     "autoMarkdownNodeRadius": 2.688,

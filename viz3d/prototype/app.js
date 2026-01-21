@@ -387,7 +387,7 @@ function titleFromSlug(slug) {
 }
 
 async function buildAutoMarkdownNodes(scene, existingNodes) {
-  if (!scene?.autoMarkdownSpheres || !scene?.autoMarkdownDirectory) {
+  if (!scene?.autoSphereRing || !scene?.autoMarkdownDirectory) {
     return [];
   }
   const useDirectories = scene.autoMarkdownSubdirectories === true;
@@ -1257,7 +1257,7 @@ function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
     markdownColumns: null,
     markdownAutoOpen: false,
     centerOn: null,
-    autoMarkdownSpheres: true,
+    autoSphereRing: true,
     autoMarkdownDirectory: directory,
     autoMarkdownIncludeExistingInLayout: false,
     autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
@@ -1273,7 +1273,7 @@ function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
 
 async function ensureDynamicSceneConfig(sceneId) {
   const config = levelConfigs[sceneId];
-  if (!config || !config.autoMarkdownSpheres) {
+  if (!config || !config.autoSphereRing) {
     return;
   }
   if (!Array.isArray(config.nodes)) {

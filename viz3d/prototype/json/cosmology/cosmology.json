@@ -5,7 +5,7 @@
     "name": "Cosmology",
     "units": "relative",
     "wrapLabels": true,
-    "autoMarkdownSpheres": true,
+    "autoSphereRing": true,
     "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/cosmology",
     "autoMarkdownIncludeExistingInLayout": true,
     "autoMarkdownNodeRadius": 2.688,
