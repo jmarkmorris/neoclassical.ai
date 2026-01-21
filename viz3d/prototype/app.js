@@ -560,8 +560,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
 
   const positionForIndex = (index) => {
     if (useRing) {
+      const orderIndex = layoutCount - 1 - index;
       const angle =
-        (index / layoutCount) * Math.PI * 2 + ringLayoutDefaults.startAngle;
+        ringLayoutDefaults.startAngle + (orderIndex / layoutCount) * Math.PI * 2;
       return [Math.cos(angle) * ringRadius, Math.sin(angle) * ringRadius];
     }
     const row = Math.floor(index / columns);
@@ -1995,6 +1996,10 @@ function buildLevel(levelId) {
     ? config.nodes.filter((node) => node?.category !== "legend")
     : [];
   const ringLayout = useAutoSphereRing ? computeRingLayout(ringNodes) : null;
+  const useClockwiseOrder =
+    !!ringLayout &&
+    !!config.autoSphereRing &&
+    (config.autoMarkdownPath || config.autoMarkdownDirectory || config.autoMarkdownSection);
   let ringIndex = 0;
 
   const spacing = config.spacing ?? 7;
@@ -2007,7 +2012,11 @@ function buildLevel(levelId) {
       return;
     }
     if (ringLayout) {
-      const pos = ringLayout.positions[ringIndex];
+      const positionIndex =
+        useClockwiseOrder && ringIndex > 0
+          ? ringLayout.positions.length - ringIndex
+          : ringIndex;
+      const pos = ringLayout.positions[positionIndex];
       if (pos) {
         nodeData.position = [pos[0], pos[1], 0];
       }
