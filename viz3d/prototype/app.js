@@ -810,9 +810,13 @@ async function showMarkdownPanel(level) {
   if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
     return;
   }
-  if (level.markdownColumns === 1) {
+  if (sectionKey) {
+    markdownTwoColumns = false;
+  } else if (level.markdownColumns === 1) {
     markdownTwoColumns = false;
   } else if (level.markdownColumns === 2) {
+    markdownTwoColumns = true;
+  } else {
     markdownTwoColumns = true;
   }
   const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
