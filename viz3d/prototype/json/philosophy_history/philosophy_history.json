@@ -13,23 +13,6 @@
   },
   "objects": [
     {
-      "id": "philosopers",
-      "label": "Philosopers",
-      "radius": 2.688,
-      "color": "#4b678f",
-      "position": [
-        -4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophy/philosopher.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "belief_systems",
       "label": "Belief Systems",
       "radius": 2.688,

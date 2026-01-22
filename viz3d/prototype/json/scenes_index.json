@@ -201,11 +201,6 @@
       "path": "json/spacetime/gravity.json"
     },
     {
-      "id": "philosopher",
-      "name": "Philosopher Grid",
-      "path": "json/philosophy/philosopher.json"
-    },
-    {
       "id": "planet",
       "name": "Planet",
       "path": "json/cosmology/planet.json"
