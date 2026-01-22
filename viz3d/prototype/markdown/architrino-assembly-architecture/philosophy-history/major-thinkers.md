@@ -6,18 +6,20 @@ This document maps key historical and contemporary figures who have shaped found
 
 The architrino project is positioned as:
 - **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite architrinos) and their interaction rules.
-- **Deterministic substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness at the architrino level.
+- **Causal substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness in the base interactions, but not strictly deterministic at self-hit branch points.
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry and GR emergent.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
 - **Absolute observer**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and charge of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This observer knows where and when each causal wake surface was emitted as it passes any point.
-- **Spacetime as assembly network**: "Vacuum" is not empty void but a sea of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime fabric). Most of the continuous Euclidean 3D void remains unoccupied by architrinos.
+- **Spacetime as assembly network**: What has been termed "Vacuum" is not empty void but a sea of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime fabric). 
 
-**Central philosophical claim**: This framework, if empirically successful, will **annihilate teleology, idealism, and transcendentalism**, and **resurrect a severe, mathematically disciplined materialism**. Philosophy does not disappear—it becomes **boundary analysis**: clarifying which concepts (causation, identity, emergence) remain coherent once everything, including spacetime, is bookkeeping over point-charge assemblies.
+The Architrino Assembly Architecture is **not strictly deterministic** despite its foundation in continuous, causal wake-surface interactions governed by the Master Equation, because **self-hit dynamics in the super-field-speed regime ($v > c_f$) introduce irreducible branching points where multiple stable attractor states become accessible from a single prior configuration**. When an architrino intercepts its own outgoing potential, the resulting non-Markovian memory effects can create bifurcations in phase space—critical junctures where infinitesimal perturbations (potentially below any operationally resolvable threshold) determine which of several topologically distinct assembly configurations the system settles into. This is not mere epistemic uncertainty from incomplete information; it reflects an **ontological openness** at transition points where the theory's deterministic evolution equations admit multiple physically realizable futures. Whether this manifests as true randomness (requiring a fundamental stochastic selection rule at branch points) or as deterministic chaos so sensitive to initial conditions that it becomes operationally indistinguishable from randomness remains an open question requiring deeper analysis of self-hit attractor landscapes—but either way, the practical predictability and the **in-principle determinism** claimed by classical mechanics are both broken, making AAA a deterministic-substrate theory with emergent quantum-like indeterminacy rather than a purely deterministic theory in the Laplacian sense.
+
+**Central philosophical claim**: This framework, if empirically successful, will **displace teleology, idealism, and transcendentalism**, and **rebuild a mathematically disciplined materialism** that admits **ontological openness at self-hit branch points**. Philosophy does not disappear—it becomes **boundary analysis**: clarifying which concepts (causation, identity, emergence) remain coherent once spacetime and its laws are emergent from point-charge assemblies and their wake-surface dynamics.
 
 ---
 
-## 1. Ancient Atomists & Materialists
+## Classical & Early Modern Metaphysics + Mechanism
 
 ### **Democritus (c. 460–370 BCE) & Leucippus**
 **Core belief**: Atomism—reality is composed of indivisible atoms moving in void. All qualities are relational effects of atomic configurations.
@@ -28,7 +30,7 @@ The architrino project is positioned as:
 - ✅ **Pro**: All qualities (mass, charge magnitude, spin, color) are **relational effects** of architrino assemblies—exactly as Democritus envisioned.
 - ⚠️ **Refinement**: Classical atomism assumed atoms had intrinsic properties (shape, size). Architrinos are **dimensionless point transmitter/receivers**; all structure is **dynamic and relational**.
 
-**Legacy shift**: From philosophical atomism to **mechanistic point-field ontology**. Democritus's vision is **realized with mathematical precision**. The absolute observer provides the "God's-eye view" that makes Democritus's determinism complete.
+**Legacy shift**: From philosophical atomism to **mechanistic point-field ontology**. Democritus's vision is **realized with mathematical precision**. The absolute observer provides a complete microphysical perspective that clarifies how lawful dynamics and self-hit branching coexist in the architrino substrate.
 
 ---
 
@@ -40,15 +42,13 @@ The architrino project is positioned as:
 
 **Architrino impact**:
 - ✅ **Pro**: **Perfect alignment** on eternality. Architrinos are eternal; no creation/annihilation events.
-- ✅ **Pro**: No teleology, no gods, no cosmic purpose. Structure emerges from **deterministic laws** alone, fully transparent to the absolute observer.
-- ❌ **Con**: The **swerve is eliminated**. No fundamental indeterminacy. The absolute observer sees deterministic evolution at all times; all apparent randomness is **coarse-graining** of the full microstate.
+- ✅ **Pro**: No teleology, no gods, no cosmic purpose. Structure emerges from **lawful dynamics** with self-hit branching, transparent to the absolute observer.
+- ❌ **Con**: The **swerve is eliminated** as an ad hoc postulate. Indeterminacy is localized to self-hit branch points rather than an intrinsic atomic swerve.
 - ⚠️ **Implication for free will**: If it exists, it must be an **emergent property** of complex assemblies (brains), not a fundamental feature.
 
-**Legacy shift**: Epicureanism **purified**—strict determinism replaces the swerve. Materialist ethics must be regrounded in emergent agency, not metaphysical freedom.
+**Legacy shift**: Epicureanism **purified**—the swerve is replaced by lawful self-hit branching rather than strict determinism. Materialist ethics must be regrounded in emergent agency, not metaphysical freedom.
 
 ---
-
-## 2. Rationalists & Metaphysicians
 
 ### **Plato (428–348 BCE)**
 **Core belief**: 
@@ -83,6 +83,23 @@ The architrino project is positioned as:
 
 ---
 
+### **René Descartes (1596–1650)**
+**Core belief**: 
+- **Mechanistic universe**: Nature operates like a machine, governed by contact forces.
+- **Substance dualism**: Mind (res cogitans) and matter (res extensa) are fundamentally distinct.
+- Matter is **extension** in space.
+- Vortex theory of planetary motion and light propagation.
+
+**Architrino impact**:
+- ✅ **Pro**: **Mechanistic universe fully upheld**. No irreducible mental substance at the fundamental level; no teleology. The absolute observer sees pure mechanism.
+- ✅ **Pro**: **Vortex-like structures** (spiral binaries, nested tri-binaries) are **natural outcomes** of architrino dynamics.
+- ❌ **Con**: **Substance dualism is rejected**. Mind is emergent from complex physical assemblies (brains), not a separate substance.
+- ⚠️ **Con**: Descartes' **matter = extension** is rejected. Architrinos are **point sources**, not extended substance. Extension (spacetime) is **emergent** from point-network dynamics (coupled Noether cores).
+
+**Legacy shift**: From "matter as extension" to **extension from point-network dynamics**. Mechanism vindicated; dualism rejected.
+
+---
+
 ### **Baruch Spinoza (1632–1677)**
 **Core belief**: 
 - **One substance** (Deus sive Natura—God or Nature), with infinite attributes (thought, extension, etc.).
@@ -91,12 +108,12 @@ The architrino project is positioned as:
 
 **Architrino impact**:
 - ✅ **Pro**: **Strong vindication** of the metaphysical structure. Architrinos are the **one substance**. All diversity (particles, fields, spacetime, minds) consists of **modes** (configurations) of this one substance.
-- ✅ **Pro**: Spinoza's **strict determinism** and **rejection of teleology** are fully upheld. The absolute observer embodies Spinoza's "infinite intellect"—the perspective that sees the necessity of all events flowing from architrino laws.
+- ✅ **Pro**: Spinoza's **rejection of teleology** is fully upheld. The absolute observer embodies Spinoza's "infinite intellect"—the perspective that sees the lawful flow of events, including self-hit branch points.
 - ✅ **Pro**: "God" (Spinoza's term) becomes the **totality of architrino configurations and their laws**—Nature, not a personal deity. The absolute observer sees Nature *sub specie aeternitatis*.
 - ⚠️ **Difference**: Spinoza's "infinite attributes" (thought, extension, etc.) **collapse** into **one physical attribute**: architrino dynamics. Mind is **emergent** from complex assemblies, not a parallel fundamental attribute.
 - ✅ **Pro**: Geometric method is **realized**: architrino laws + initial conditions → all phenomena, with mathematical necessity.
 
-**Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = deterministic laws. His system is the closest **historical precursor** to the architrino worldview. The absolute observer is Spinoza's God knowing itself.
+**Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = lawful dynamics with branching. His system is the closest **historical precursor** to the architrino worldview. The absolute observer is Spinoza's God knowing itself.
 
 ---
 
@@ -118,8 +135,6 @@ The architrino project is positioned as:
 **Legacy shift**: Leibniz's **relationalism about physical states** is saved (properties depend on configurations). His **rejection of absolute space** is overturned. The architrino framework is "Leibnizian relationalism + Newtonian absolute coordinates + physical realism."
 
 ---
-
-## 3. Empiricists & Skeptics
 
 ### **David Hume (1711–1776)**
 **Core belief**: 
@@ -153,25 +168,6 @@ The architrino project is positioned as:
 
 ---
 
-## 4. Classical Mechanists
-
-### **René Descartes (1596–1650)**
-**Core belief**: 
-- **Mechanistic universe**: Nature operates like a machine, governed by contact forces.
-- **Substance dualism**: Mind (res cogitans) and matter (res extensa) are fundamentally distinct.
-- Matter is **extension** in space.
-- Vortex theory of planetary motion and light propagation.
-
-**Architrino impact**:
-- ✅ **Pro**: **Mechanistic universe fully upheld**. No irreducible mental substance at the fundamental level; no teleology. The absolute observer sees pure mechanism.
-- ✅ **Pro**: **Vortex-like structures** (spiral binaries, nested tri-binaries) are **natural outcomes** of architrino dynamics.
-- ❌ **Con**: **Substance dualism is rejected**. Mind is emergent from complex physical assemblies (brains), not a separate substance.
-- ⚠️ **Con**: Descartes' **matter = extension** is rejected. Architrinos are **point sources**, not extended substance. Extension (spacetime) is **emergent** from point-network dynamics (coupled Noether cores).
-
-**Legacy shift**: From "matter as extension" to **extension from point-network dynamics**. Mechanism vindicated; dualism rejected.
-
----
-
 ### **Isaac Newton (1643–1727)**
 **Core belief**: 
 - **Absolute space** and **absolute time** as the cosmic stage.
@@ -189,25 +185,20 @@ The architrino project is positioned as:
 
 ---
 
-## 5. Thermodynamics & Statistical Mechanics
+### **Pierre-Simon Laplace (1749–1827)**
 
-### **Ludwig Boltzmann (1844–1906)**
-**Core belief**: 
-- Thermodynamics and entropy arise from **statistical behavior** of vast numbers of microscopic entities.
-- Probabilistic laws emerge from deterministic microstates.
-- Defense of atomism and reductionism against energeticists (Mach, Ostwald).
+**Core belief**:
+- **Laplace's Demon**: A hypothetical intellect that knows all positions and momenta of all particles could predict the entire future and retrodict the entire past of the universe.
+- Deterministic, mechanistic universe.
 
 **Architrino impact**:
-- ✅ **Pro**: **Perfect alignment**. Macroscopic laws (thermodynamics, perhaps even quantum probabilities) emerge from **deterministic architrino dynamics** in complex assemblies, fully trackable by the absolute observer.
-- ✅ **Pro**: Entropy is **coarse-graining** over architrino configuration space. The absolute observer knows the full microstate; entropy measures *our* ignorance of it (or, equivalently, the size of the macrostate-compatible region of microstate space).
-- ✅ **Pro**: Boltzmann's defense of **atomism and reductionism** is philosophically vindicated.
-- ✅ **Pro**: His tragic struggle against anti-atomist positivism is **resolved in his favor**.
+- ✅ **Pro**: **Qualified vindication**. The **absolute observer** approximates Laplace's Demon: it knows the position, velocity, and charge of every architrino at any (x,y,z,t).
+- ⚠️ **Refinement**: Given complete initial conditions, evolution is law-governed but **not uniquely determined** at self-hit branch points, where multiple stable futures are physically realizable.
+- ⚠️ **Refinement**: Laplacean predictability survives **between** branch points but fails **at** them; predictability is limited in principle, not just in practice.
 
-**Legacy shift**: Boltzmann's statistical mechanics becomes the **template** for emergent quantum and thermodynamic behavior. His vision is **fully realized**.
+**Legacy shift**: Laplace's Demon is no longer a thought experiment—it becomes a **qualified ideal** for the absolute observer, bounded by self-hit branching.
 
----
-
-## 6. Relativity & Spacetime
+## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
 ### **Ernst Mach (1838–1916)**
 **Core belief**: 
@@ -272,233 +263,11 @@ The architrino project is positioned as:
 - ✅ **Pro**: GR's **empirical successes** (light bending, perihelion precession, gravitational redshift, gravitational waves, black hole shadows) must be reproduced as the **effective field limit** of architrino dynamics.
 - ✅ **Advantage over GR**: In GR, "returning to the same point in spacetime" requires choosing coordinates, and the metric changes, making physical identification ambiguous. In architrino theory, the **coordinate labels (x,y,z) are permanent**. The absolute observer at (*x₀, y₀, z₀*) at *t₁* and later at *t₂* is looking at **the same location** in the Euclidean substrate, even if the local assembly network has deformed. This restores **coordinate realism** without sacrificing the empirical successes of GR.
 - ⚠️ **Tension**: Singularities, event horizons, and cosmological solutions (inflation, dark energy) may be **artifacts** of the effective description, not fundamental features.
-- ✅ **Pro**: Potential resolution of **quantum gravity problem**: No need to quantize geometry. Gravity emerges from quantum-like (deterministic, pilot-wave) architrino assemblies.
+- ✅ **Pro**: Potential resolution of **quantum gravity problem**: No need to quantize geometry. Gravity emerges from quantum-like (causal, branching pilot-wave) architrino assemblies.
 
 **Legacy shift**: GR becomes a **phenomenological field theory**, analogous to fluid mechanics emerging from molecular dynamics. Einstein's equations are **emergent**, not fundamental. Curvature is an **effective description** of architrino assembly density gradients and stress. The absolute observer provides the ontological clarity GR lacks.
 
 ---
-
-## 7. Quantum Mechanics Founders
-
-### **Max Planck (1858–1947)**
-**Core belief**: 
-- Quantization of energy in blackbody radiation.
-- Introduction of quantum of action *h*.
-
-**Architrino impact**:
-- ✅ **Pro**: Planck's constant *h* emerges from **architrino assembly dynamics** (e.g., angular momentum quantization in circular binaries, tri-binary scale relations, nested frequency hierarchies).
-- ✅ **Pro**: Energy quantization arises from **discrete stable configurations** of tri-binaries, not from an ad hoc postulate. The absolute observer sees the exact microstate yielding these quantized levels.
-
-**Legacy shift**: Planck's quantum as **emergent discreteness** from deterministic microphysics, not fundamental randomness.
-
----
-
-### **Niels Bohr (1885–1962) & Copenhagen Interpretation**
-**Core belief**: 
-- Wavefunction is **not a real physical entity**; it is a tool for predicting measurement outcomes.
-- Quantum mechanics is **complete** (no hidden variables).
-- **Measurement collapses** the wavefunction.
-- **Complementarity**: Wave-particle duality is fundamental; different experimental setups reveal incompatible aspects of reality.
-
-**Architrino impact**:
-- ❌ **Con**: **Strong rejection**. Quantum mechanics is **incomplete** (it is an effective description of complex architrino assemblies).
-- ❌ **Con**: Wavefunction collapse is **not fundamental**; it is an **emergent coarse-graining** of deterministic dynamics.
-- ❌ **Con**: Wave-particle duality is **not fundamental**; it is an artifact of describing pilot-wave-like architrino assemblies using classical or quantum formalisms.
-- ❌ **Con**: **Copenhagen instrumentalism is incompatible** with the absolute observer framework. The absolute observer asserts that reality (architrino configurations) exists **independently of measurement**, and measurement is merely a **physical interaction** between assemblies, not a special ontological category.
-- ✅ **Pro**: **Complementarity is explained**: Different experimental setups probe different **aspects** of assembly configurations (position vs. momentum configurations, particle-like vs. field-like descriptions).
-
-**Legacy shift**: Copenhagen interpretation is **superseded** by a realist, deterministic ontology. Bohr's instrumentalism is **rejected**; his complementarity is **explained** mechanistically.
-
----
-
-### **Werner Heisenberg (1901–1976)**
-**Core belief**: 
-- **Uncertainty principle** is fundamental (not just epistemic).
-- Only **observables** matter; no reality "behind" the formalism.
-- Matrix mechanics as the correct formulation.
-
-**Architrino impact**:
-- ⚠️ **Partial**: Uncertainty relations are **emergent** from the complex dynamics of architrino assemblies (e.g., position-momentum complementarity from pilot-wave-like guidance or configuration-space structure).
-- ❌ **Con**: Reality "behind" the formalism (architrinos, their positions, velocities, interactions) is **fully specified** and accessible to the absolute observer.
-- ✅ **Pro**: Uncertainty as **epistemic limitation** on effective macroscopic descriptions (from the perspective of **physical** observers who are themselves assemblies), not ontological indeterminacy. Heisenberg's uncertainty principle reflects **limitations of assembly-based measurements**, not ontological indeterminacy. The absolute observer, in principle, knows both position and momentum of all architrinos exactly.
-
-**Legacy shift**: Heisenberg's **operational/formalist** stance is replaced by **ontological realism**. His uncertainty relations are **derived**, not postulated.
-
----
-
-### **Erwin Schrödinger (1887–1961)**
-**Core belief**: 
-- Wavefunction $\psi$ as a **real physical field** (at least initially).
-- Wave mechanics as a continuous, deterministic theory (before accepting probabilistic interpretation).
-- Schrödinger's cat paradox highlights the **measurement problem**.
-
-**Architrino impact**:
-- ⚠️ **Partial**: Wavefunction may be a **pilot field** or **emergent effective field** describing architrino assembly configurations (collective potential distribution, guidance field, etc.).
-- ✅ **Pro**: Schrödinger's cat paradox is **dissolved**: No superposition of macroscopic states at the fundamental level. The absolute observer sees one definite configuration at all times. Assemblies evolve deterministically; "collapse" is coarse-graining when macro-systems decohere.
-- ✅ **Pro**: Schrödinger's desire for a **realistic ontology** (vs. Copenhagen instrumentalism) is **fulfilled**.
-
-**Legacy shift**: Schrödinger's **realism** vindicated; his wave mechanics **reinterpreted** as effective field theory of assemblies.
-
----
-
-### **Paul Dirac (1902–1984)**
-**Core belief**: 
-- Dirac equation for relativistic electrons.
-- Prediction of **antimatter** (positron).
-- Quantum field theory framework (creation/annihilation operators).
-
-**Architrino impact**:
-- ✅ **Pro**: Dirac's antimatter prediction is **naturally explained**: **opposite architrinos** form binaries; "particles and antiparticles" are **ellipsoidal tri-binaries** with opposite orientations/charges.
-- ✅ **Pro**: Dirac equation as **effective description** of fermionic tri-binary assemblies (ellipsoidal/3D configurations obeying Fermi-Dirac statistics).
-- ⚠️ **Tension**: QFT formalism (fields, creation/annihilation operators, virtual particles, vacuum fluctuations) is **emergent**, not fundamental. These are **bookkeeping devices** for complex assembly interactions, visible in full detail only to the absolute observer.
-
-**Legacy shift**: Dirac's **results** are **rederived** from assembly dynamics; QFT becomes an effective language, not fundamental ontology.
-
----
-
-## 8. Pilot-Wave & Hidden-Variable Theories (Continued)
-
-### **Louis de Broglie (1892–1987)**
-**Core belief**: 
-- Pilot-wave theory (1927): Particles are **real**, guided by a **real wave**.
-- Deterministic, but nonlocal.
-- Matter waves are physical, not just probabilistic.
-
-**Architrino impact**:
-- ✅ **Pro**: **Strong alignment**. Architrino assemblies are "particles" (or their effective representations), guided by **potential fields** (from all other architrinos, including self-hit contributions).
-- ✅ **Pro**: Deterministic evolution upheld. The absolute observer tracks the full trajectory.
-- ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space ($\psi$(x₁, x₂, ...)); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
-
-**Legacy shift**: De Broglie's intuition is **validated and extended** with explicit microphysical entities (architrinos). His pilot wave becomes **architrino potential fields**.
-
----
-
-### **David Bohm (1917–1992)**
-**Core belief**: 
-- **Bohmian mechanics**: Particles have **definite positions** at all times, guided by **quantum potential** derived from wavefunction.
-- Nonlocal but deterministic.
-- Hidden variables are particle positions.
-
-**Architrino impact**:
-- ✅ **Pro**: **Strong vindication**. Architrinos are the **hidden variables**. Their positions/velocities are always definite and known to the absolute observer.
-- ✅ **Pro**: Nonlocality is natural (architrinos interact via long-range potentials; guidance can be global or via self-hit memory).
-- ⚠️ **Difference**: Bohm's quantum potential is **derived from** $\psi$. In our model, $\psi$ itself (if used) is **emergent** from architrino configurations. The guidance is more direct (architrino-to-architrino potentials).
-- ✅ **Pro**: Measurement problem is **dissolved** in the same way: no collapse, only deterministic evolution + environmental decoherence, all visible to the absolute observer.
-
-**Legacy shift**: Bohmian mechanics is a **precursor**; architrino theory is its **reductionist realization**. Bohm pointed the way; we provide the substrate.
-
----
-
-### **John Bell (1928–1990)**
-**Core belief**: 
-- **Bell's theorem**: Local hidden-variable theories cannot reproduce quantum correlations.
-- Nature is either **nonlocal** or **not realistic** (in the EPR sense).
-
-**Architrino impact**:
-- ✅ **Pro**: Bell's work is **respected**. The architrino model is **explicitly nonlocal** (via instantaneous or finite-but-long-range interactions among all architrinos).
-- ✅ **Pro**: We embrace **ontological realism** (architrinos exist with definite states, known to the absolute observer) + **nonlocality**.
-- ✅ **Pro**: Bell's theorem **does not threaten us**; it **constrains** us (we must reproduce quantum correlations and respect no-signaling).
-- ✅ **Pro**: The absolute observer sees the full nonlocal state at each moment, making Bell's "spooky action" fully transparent at the fundamental level.
-
-**Legacy shift**: Bell's theorem is a **touchstone** for verifying that our nonlocal realism is consistent with experiment. Bell is a **guide**, not an obstacle.
-
----
-
-## 9. Quantum Field Theory & Standard Model Architects
-
-### **Richard Feynman (1918–1988)**
-**Core belief**: 
-- Path integral formulation (sum over all possible histories).
-- Virtual particles as (at least) useful calculational entities.
-- Feynman diagrams as fundamental.
-
-**Architrino impact**:
-- ⚠️ **Reinterpretation**: Path integrals and virtual particles are **effective calculational tools**, not ontologically fundamental.
-- ✅ **Pro**: Feynman diagrams describe **coarse-grained interactions** among tri-binary assemblies.
-- ⚠️ **Con**: "Sum over histories" is **not fundamental**; there is **one actual history** (deterministic architrino evolution), fully known to the absolute observer. The path integral is a **statistical ensemble** approximation.
-
-**Legacy shift**: Feynman's **methods** remain powerful for calculations, but are **reinterpreted as emergent statistical mechanics** on assembly space. Virtual particles are bookkeeping, not real entities.
-
----
-
-### **Murray Gell-Mann (1929–2019) & the Quark Model**
-**Core belief**: 
-- Quarks as fundamental constituents of hadrons.
-- SU(3) flavor symmetry, color charge.
-
-**Architrino impact**:
-- ⚠️ **Reinterpretation**: Quarks are **not fundamental**. They are **effective descriptions** of certain architrino assembly modes (likely tri-binary configurations with specific charge decorations and binding).
-- ✅ **Pro**: Quark **confinement** may be **natural**: quarks (as assemblies) cannot exist in isolation, only as bound states (hadrons). Isolation would destabilize the assembly.
-- ⚠️ **Tension**: We must reproduce quark masses, mixing angles, CKM matrix, and QCD phenomenology (asymptotic freedom, running coupling) from architrino rules.
-
-**Legacy shift**: Quarks as **emergent quasi-particles**, not fundamental. Gell-Mann's classification scheme is **phenomenologically valid**, ontologically reinterpreted.
-
----
-
-### **Steven Weinberg, Abdus Salam, Sheldon Glashow — Electroweak Unification**
-**Core belief**: 
-- SU(2) × U(1) gauge theory.
-- **Higgs mechanism** for mass generation via spontaneous symmetry breaking.
-
-**Architrino impact**:
-- ⚠️ **Reinterpretation**: Gauge symmetries (SU(2), U(1), SU(3)) are **emergent** from architrino assembly symmetries and interaction structure.
-- ✅ **Pro**: **Higgs field** is the **spacetime assembly network** (coupled Noether cores—the sea of tri-binaries forming the vacuum). Mass arises from **coupling to this assembly medium** (resistance to acceleration through the tri-binary lattice).
-- ✅ **Pro**: **Electroweak symmetry breaking** is a **phase transition** in assembly configurations (analogous to ferromagnetic phase transition).
-
-**Legacy shift**: Gauge theories and Higgs mechanism as **effective field theories** of assembly dynamics. The Standard Model Lagrangian is **emergent**.
-
----
-
-## 10. Process Philosophy & Organicism
-
-### **Alfred North Whitehead (1861–1947)**
-**Core belief**: 
-- **Process metaphysics**: Reality is fundamentally flux, events, and becoming. Entities are "occasions of experience."
-- Nature is **organic**, not mechanical.
-- Substance ontology is an abstraction; process is primary.
-
-**Architrino impact**:
-- ❌ **Con**: **Reversal** of Whitehead's priority. **Being precedes becoming**: Architrinos are **eternal, unchanging entities** (no creation/destruction). Processes (assembly formation, evolution, dissociation) are **secondary**. The absolute observer sees eternal entities reconfiguring, not flux alone.
-- ❌ **Con**: "Occasions of experience" are rejected. No panpsychism; no intrinsic mentality in fundamental entities. Consciousness is **emergent** from complex assemblies (brains).
-- ⚠️ **Partial**: Whitehead's emphasis on **relations** is preserved (architrinos are defined by their interactions, not intrinsic isolated properties). Relationalism upheld; process priority rejected.
-
-**Legacy shift**: Process metaphysics is **subordinated** to substance ontology. Whitehead's **relational insights** are retained; his **ontological priority** (process > substance) is **inverted**.
-
----
-
-## 11. Quantum Measurement & Foundations (Modern)
-
-### **Hugh Everett III (1930–1982) — Many-Worlds Interpretation**
-**Core belief**: 
-- Wavefunction is **real** and **never collapses**.
-- All possible measurement outcomes occur in **branching parallel worlds**.
-- No special role for observers or measurement.
-
-**Architrino impact**:
-- ❌ **Con**: **Rejected**. There is **one real world**—one deterministic history of architrino evolution.
-- ❌ **Con**: Branching is **unnecessary**; definite outcomes arise from actual configurations of assemblies, not splitting of worlds.
-- ✅ **Pro** (ironic): Everett's motivation—**no collapse, no special observer role**—is **satisfied**, but via deterministic evolution, not branching.
-- ✅ **Pro**: The existence of a **single global map** from absolute time to architrino state—the perspective of the absolute observer—locks in a **unique history** of the universe, directly at odds with any ontology of branching worlds.
-
-**Legacy shift**: Many-Worlds is **superseded** by single-world, deterministic ontology. Everett's anti-collapse instinct is **vindicated**; his solution (branching) is **rejected**.
-
----
-
-### **Lucien Hardy, Rob Spekkens, Matthew Leifer — Quantum Foundations (Operational/Psi-Epistemic)**
-**Core belief**: 
-- Some explore **$\psi$-epistemic models** (wavefunction as knowledge/information, not ontic reality).
-- Others refine **operational constraints** on quantum theories (generalized probability theories, no-signaling, etc.).
-
-**Architrino impact**:
-- ⚠️ **Partial alignment**: $\psi$ is **epistemic** in the sense that it describes **coarse-grained knowledge** of complex architrino assemblies, not the full microstate (which only the absolute observer knows).
-- ✅ **Pro**: **PBR theorem** and similar results are respected: the epistemic $\psi$ **reflects real underlying states** (architrino configurations). Different $\psi$ correspond to different ontic states.
-- ✅ **Pro**: Operational constraints (no-signaling, monogamy of entanglement, etc.) are **emergent** from architrino interaction rules + statistical structure of assemblies.
-
-**Legacy shift**: $\psi$-epistemic programs are **realized** with explicit ontology (not just reformulated quantum theory). Operational quantum mechanics becomes **effective theory** of architrino statistical ensembles.
-
----
-
-## 12. Emergent Gravity & Quantum Gravity Programs
 
 ### **Andrei Sakharov (1921–1989) — Induced Gravity**
 **Core belief**: 
@@ -557,8 +326,6 @@ The architrino project is positioned as:
 
 ---
 
-## 13. Cosmology & Inflation
-
 ### **Alan Guth (1947–) — Cosmic Inflation**
 **Core belief**: 
 - **Exponential expansion** in the early universe driven by a scalar field (inflaton).
@@ -588,35 +355,6 @@ The architrino project is positioned as:
 
 ---
 
-## 14. Contemporary Dissidents & Realists
-
-### **Gerard 't Hooft (1946–) — Deterministic Quantum Mechanics**
-**Core belief**: 
-- Quantum mechanics may be **deterministic at a deeper level**.
-- Cellular Automaton Interpretation: underlying discrete, deterministic dynamics.
-
-**Architrino impact**:
-- ✅ **Pro**: **Strong alignment**. 't Hooft's vision of underlying determinism is **realized**. The absolute observer tracks the deterministic evolution completely.
-- ⚠️ **Difference**: 't Hooft uses **discrete cellular automata**; we use **continuous architrino dynamics** in Euclidean 3D + absolute time (though tri-binary lattice introduces discrete structure at assembly scale).
-
-**Legacy shift**: 't Hooft's program is **vindicated** and **extended** with explicit microphysical ontology. His cellular automaton is replaced by **architrino network**.
-
----
-
-### **Antony Valentini (1965–) — Quantum Nonequilibrium**
-**Core belief**: 
-- Bohmian mechanics with **relaxation to quantum equilibrium**.
-- Violations of **Born rule** possible in **nonequilibrium** states.
-- Potential observational signatures in early universe or exotic systems.
-
-**Architrino impact**:
-- ✅ **Pro**: Valentini's framework is **compatible**. Architrino assemblies may have **nonequilibrium distributions**, leading to deviations from standard QM (Born rule violations).
-- ✅ **Pro**: Explicit **testable predictions** (violations of Born rule in exotic regimes, early universe relics, etc.).
-
-**Legacy shift**: Valentini's ideas are **incorporated** and tested via architrino simulations. His program becomes a **prediction tool** for our model.
-
----
-
 ### **Lee Smolin (1955–) — The Trouble With Physics, Temporal Naturalism**
 **Core belief**: 
 - **Time is real and fundamental** (critique of timeless approaches like Wheeler-DeWitt).
@@ -629,7 +367,7 @@ The architrino project is positioned as:
 - ⚠️ **Difference**: We assume architrino interaction rules are **fixed**, not evolving (at least initially). Laws are eternal, not subject to cosmological selection.
 - ✅ **Pro**: Smolin's critique of unfalsifiable theories (string theory) aligns with our **Popperian methodology**.
 
-**Legacy shift**: Smolin's **temporal naturalism** is **realized** in our framework. His cosmological natural selection is **unnecessary** (laws are fixed; complexity emerges deterministically).
+**Legacy shift**: Smolin's **temporal naturalism** is **realized** in our framework. His cosmological natural selection is **unnecessary** (laws are fixed; complexity emerges through lawful dynamics with branching).
 
 ---
 
@@ -646,9 +384,260 @@ The architrino project is positioned as:
 
 **Legacy shift**: Hossenfelder's **methodological critique** is **embodied** in our team charter. Her call for empirical rigor is our **operating principle**.
 
+## Quantum Foundations & Hidden-Variable Landscape
+
+### **Ludwig Boltzmann (1844–1906)**
+**Core belief**: 
+- Thermodynamics and entropy arise from **statistical behavior** of vast numbers of microscopic entities.
+- Probabilistic laws emerge from lawful microstates with branching.
+- Defense of atomism and reductionism against energeticists (Mach, Ostwald).
+
+**Architrino impact**:
+- ✅ **Pro**: **Strong alignment**. Macroscopic laws (thermodynamics, perhaps even quantum probabilities) emerge from **lawful architrino dynamics with branching** in complex assemblies, trackable by the absolute observer up to branch points.
+- ✅ **Pro**: Entropy is **coarse-graining** over architrino configuration space. The absolute observer knows the full microstate; entropy measures *our* ignorance of it (or, equivalently, the size of the macrostate-compatible region of microstate space).
+- ✅ **Pro**: Boltzmann's defense of **atomism and reductionism** is philosophically vindicated.
+- ✅ **Pro**: His tragic struggle against anti-atomist positivism is **resolved in his favor**.
+
+**Legacy shift**: Boltzmann's statistical mechanics becomes the **template** for emergent quantum and thermodynamic behavior. His vision is **fully realized**.
+
 ---
 
-## 15. Information-Theoretic & Computational Approaches
+### **Max Planck (1858–1947)**
+**Core belief**: 
+- Quantization of energy in blackbody radiation.
+- Introduction of quantum of action *h*.
+
+**Architrino impact**:
+- ✅ **Pro**: Planck's constant *h* emerges from **architrino assembly dynamics** (e.g., angular momentum quantization in circular binaries, tri-binary scale relations, nested frequency hierarchies).
+- ✅ **Pro**: Energy quantization arises from **discrete stable configurations** of tri-binaries, not from an ad hoc postulate. The absolute observer sees the exact microstate yielding these quantized levels.
+
+**Legacy shift**: Planck's quantum as **emergent discreteness** from lawful microphysics with branching, not fundamental randomness.
+
+---
+
+### **Niels Bohr (1885–1962) & Copenhagen Interpretation**
+**Core belief**: 
+- Wavefunction is **not a real physical entity**; it is a tool for predicting measurement outcomes.
+- Quantum mechanics is **complete** (no hidden variables).
+- **Measurement collapses** the wavefunction.
+- **Complementarity**: Wave-particle duality is fundamental; different experimental setups reveal incompatible aspects of reality.
+
+**Architrino impact**:
+- ❌ **Con**: **Strong rejection**. Quantum mechanics is **incomplete** (it is an effective description of complex architrino assemblies).
+- ❌ **Con**: Wavefunction collapse is **not fundamental**; it is an **emergent coarse-graining** of lawful dynamics with self-hit branching.
+- ❌ **Con**: Wave-particle duality is **not fundamental**; it is an artifact of describing pilot-wave-like architrino assemblies using classical or quantum formalisms.
+- ❌ **Con**: **Copenhagen instrumentalism is incompatible** with the absolute observer framework. The absolute observer asserts that reality (architrino configurations) exists **independently of measurement**, and measurement is merely a **physical interaction** between assemblies, not a special ontological category.
+- ✅ **Pro**: **Complementarity is explained**: Different experimental setups probe different **aspects** of assembly configurations (position vs. momentum configurations, particle-like vs. field-like descriptions).
+
+**Legacy shift**: Copenhagen interpretation is **superseded** by a realist, law-governed ontology with branching. Bohr's instrumentalism is **rejected**; his complementarity is **explained** mechanistically.
+
+---
+
+### **Werner Heisenberg (1901–1976)**
+**Core belief**: 
+- **Uncertainty principle** is fundamental (not just epistemic).
+- Only **observables** matter; no reality "behind" the formalism.
+- Matrix mechanics as the correct formulation.
+
+**Architrino impact**:
+- ⚠️ **Partial**: Uncertainty relations are **emergent** from the complex dynamics of architrino assemblies (e.g., position-momentum complementarity from pilot-wave-like guidance or configuration-space structure).
+- ❌ **Con**: Reality "behind" the formalism (architrinos, their positions, velocities, interactions) is **fully specified** and accessible to the absolute observer.
+- ✅ **Pro**: Uncertainty as **epistemic limitation** on effective macroscopic descriptions (from the perspective of **physical** observers who are themselves assemblies), not ontological indeterminacy. Heisenberg's uncertainty principle reflects **limitations of assembly-based measurements**, not ontological indeterminacy. The absolute observer, in principle, knows both position and momentum of all architrinos exactly **between branch points**, while branch points admit multiple realizable futures.
+
+**Legacy shift**: Heisenberg's **operational/formalist** stance is replaced by **ontological realism**. His uncertainty relations are **derived**, not postulated.
+
+---
+
+### **Erwin Schrödinger (1887–1961)**
+**Core belief**: 
+- Wavefunction $\psi$ as a **real physical field** (at least initially).
+- Wave mechanics as a continuous, deterministic theory (before accepting probabilistic interpretation).
+- Schrödinger's cat paradox highlights the **measurement problem**.
+
+**Architrino impact**:
+- ⚠️ **Partial**: Wavefunction may be a **pilot field** or **emergent effective field** describing architrino assembly configurations (collective potential distribution, guidance field, etc.).
+- ✅ **Pro**: Schrödinger's cat paradox is **dissolved**: No superposition of macroscopic states at the fundamental level. The absolute observer sees one definite configuration at all times. Assemblies evolve lawfully with self-hit branching; "collapse" is coarse-graining when macro-systems decohere.
+- ✅ **Pro**: Schrödinger's desire for a **realistic ontology** (vs. Copenhagen instrumentalism) is **fulfilled**.
+
+**Legacy shift**: Schrödinger's **realism** vindicated; his wave mechanics **reinterpreted** as effective field theory of assemblies.
+
+---
+
+### **Louis de Broglie (1892–1987)**
+**Core belief**: 
+- Pilot-wave theory (1927): Particles are **real**, guided by a **real wave**.
+- Deterministic, but nonlocal.
+- Matter waves are physical, not just probabilistic.
+
+**Architrino impact**:
+- ✅ **Pro**: **Strong alignment**. Architrino assemblies are "particles" (or their effective representations), guided by **potential fields** (from all other architrinos, including self-hit contributions).
+- ✅ **Pro**: Lawful evolution upheld, with self-hit branching at critical points. The absolute observer tracks the full trajectory up to branch points.
+- ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space ($\psi$(x₁, x₂, ...)); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
+
+**Legacy shift**: De Broglie's intuition is **validated and extended** with explicit microphysical entities (architrinos). His pilot wave becomes **architrino potential fields**.
+
+---
+
+### **David Bohm (1917–1992)**
+**Core belief**: 
+- **Bohmian mechanics**: Particles have **definite positions** at all times, guided by **quantum potential** derived from wavefunction.
+- Nonlocal but causal, with branching at self-hit points.
+- Hidden variables are particle positions.
+
+**Architrino impact**:
+- ✅ **Pro**: **Strong vindication**. Architrinos are the **hidden variables**. Their positions/velocities are always definite and known to the absolute observer.
+- ✅ **Pro**: Nonlocality is natural (architrinos interact via long-range potentials; guidance can be global or via self-hit memory).
+- ⚠️ **Difference**: Bohm's quantum potential is **derived from** $\psi$. In our model, $\psi$ itself (if used) is **emergent** from architrino configurations. The guidance is more direct (architrino-to-architrino potentials).
+- ✅ **Pro**: Measurement problem is **dissolved** in the same way: no collapse, only lawful evolution with branching + environmental decoherence, all visible to the absolute observer.
+
+**Legacy shift**: Bohmian mechanics is a **precursor**; architrino theory is its **reductionist realization**. Bohm pointed the way; we provide the substrate.
+
+---
+
+### **John Bell (1928–1990)**
+**Core belief**: 
+- **Bell's theorem**: Local hidden-variable theories cannot reproduce quantum correlations.
+- Nature is either **nonlocal** or **not realistic** (in the EPR sense).
+
+**Architrino impact**:
+- ✅ **Pro**: Bell's work is **respected**. The architrino model is **explicitly nonlocal** (via instantaneous or finite-but-long-range interactions among all architrinos).
+- ✅ **Pro**: We embrace **ontological realism** (architrinos exist with definite states, known to the absolute observer) + **nonlocality**.
+- ✅ **Pro**: Bell's theorem **does not threaten us**; it **constrains** us (we must reproduce quantum correlations and respect no-signaling).
+- ✅ **Pro**: The absolute observer sees the full nonlocal state at each moment, making Bell's "spooky action" fully transparent at the fundamental level.
+
+**Legacy shift**: Bell's theorem is a **touchstone** for verifying that our nonlocal realism is consistent with experiment. Bell is a **guide**, not an obstacle.
+
+---
+
+### **Hugh Everett III (1930–1982) — Many-Worlds Interpretation**
+**Core belief**: 
+- Wavefunction is **real** and **never collapses**.
+- All possible measurement outcomes occur in **branching parallel worlds**.
+- No special role for observers or measurement.
+
+**Architrino impact**:
+- ❌ **Con**: **Rejected**. There is **one real world** with a single realized history, even though it passes through self-hit branch points.
+- ❌ **Con**: Branching is **unnecessary**; definite outcomes arise from actual configurations of assemblies, not splitting of worlds.
+- ✅ **Pro** (ironic): Everett's motivation—**no collapse, no special observer role**—is **satisfied**, but via lawful evolution with self-hit branching, not universal wavefunction splitting.
+- ✅ **Pro**: The existence of a **single global map** from absolute time to architrino state—the perspective of the absolute observer—locks in a **unique history** of the universe, directly at odds with any ontology of branching worlds.
+
+**Legacy shift**: Many-Worlds is **superseded** by a single-world ontology with self-hit branching. Everett's anti-collapse instinct is **vindicated**; his solution (branching worlds) is **rejected**.
+
+---
+
+### **Lucien Hardy, Rob Spekkens, Matthew Leifer — Quantum Foundations (Operational/Psi-Epistemic)**
+**Core belief**: 
+- Some explore **$\psi$-epistemic models** (wavefunction as knowledge/information, not ontic reality).
+- Others refine **operational constraints** on quantum theories (generalized probability theories, no-signaling, etc.).
+
+**Architrino impact**:
+- ⚠️ **Partial alignment**: $\psi$ is **epistemic** in the sense that it describes **coarse-grained knowledge** of complex architrino assemblies, not the full microstate (which only the absolute observer knows).
+- ✅ **Pro**: **PBR theorem** and similar results are respected: the epistemic $\psi$ **reflects real underlying states** (architrino configurations). Different $\psi$ correspond to different ontic states.
+- ✅ **Pro**: Operational constraints (no-signaling, monogamy of entanglement, etc.) are **emergent** from architrino interaction rules + statistical structure of assemblies.
+
+**Legacy shift**: $\psi$-epistemic programs are **realized** with explicit ontology (not just reformulated quantum theory). Operational quantum mechanics becomes **effective theory** of architrino statistical ensembles.
+
+---
+
+### **Antony Valentini (1965–) — Quantum Nonequilibrium**
+**Core belief**: 
+- Bohmian mechanics with **relaxation to quantum equilibrium**.
+- Violations of **Born rule** possible in **nonequilibrium** states.
+- Potential observational signatures in early universe or exotic systems.
+
+**Architrino impact**:
+- ✅ **Pro**: Valentini's framework is **compatible**. Architrino assemblies may have **nonequilibrium distributions**, leading to deviations from standard QM (Born rule violations).
+- ✅ **Pro**: Explicit **testable predictions** (violations of Born rule in exotic regimes, early universe relics, etc.).
+
+**Legacy shift**: Valentini's ideas are **incorporated** and tested via architrino simulations. His program becomes a **prediction tool** for our model.
+
+## QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)
+
+### **Paul Dirac (1902–1984)**
+**Core belief**: 
+- Dirac equation for relativistic electrons.
+- Prediction of **antimatter** (positron).
+- Quantum field theory framework (creation/annihilation operators).
+
+**Architrino impact**:
+- ✅ **Pro**: Dirac's antimatter prediction is **naturally explained**: **opposite architrinos** form binaries; "particles and antiparticles" are **ellipsoidal tri-binaries** with opposite orientations/charges.
+- ✅ **Pro**: Dirac equation as **effective description** of fermionic tri-binary assemblies (ellipsoidal/3D configurations obeying Fermi-Dirac statistics).
+- ⚠️ **Tension**: QFT formalism (fields, creation/annihilation operators, virtual particles, vacuum fluctuations) is **emergent**, not fundamental. These are **bookkeeping devices** for complex assembly interactions, visible in full detail only to the absolute observer.
+
+**Legacy shift**: Dirac's **results** are **rederived** from assembly dynamics; QFT becomes an effective language, not fundamental ontology.
+
+---
+
+### **Richard Feynman (1918–1988)**
+**Core belief**: 
+- Path integral formulation (sum over all possible histories).
+- Virtual particles as (at least) useful calculational entities.
+- Feynman diagrams as fundamental.
+
+**Architrino impact**:
+- ⚠️ **Reinterpretation**: Path integrals and virtual particles are **effective calculational tools**, not ontologically fundamental.
+- ✅ **Pro**: Feynman diagrams describe **coarse-grained interactions** among tri-binary assemblies.
+- ⚠️ **Con**: "Sum over histories" is **not fundamental**; there is **one actual history** (lawful architrino evolution with self-hit branching), fully known to the absolute observer up to branch points. The path integral is a **statistical ensemble** approximation.
+
+**Legacy shift**: Feynman's **methods** remain powerful for calculations, but are **reinterpreted as emergent statistical mechanics** on assembly space. Virtual particles are bookkeeping, not real entities.
+
+---
+
+### **Murray Gell-Mann (1929–2019) & the Quark Model**
+**Core belief**: 
+- Quarks as fundamental constituents of hadrons.
+- SU(3) flavor symmetry, color charge.
+
+**Architrino impact**:
+- ⚠️ **Reinterpretation**: Quarks are **not fundamental**. They are **effective descriptions** of certain architrino assembly modes (likely tri-binary configurations with specific charge decorations and binding).
+- ✅ **Pro**: Quark **confinement** may be **natural**: quarks (as assemblies) cannot exist in isolation, only as bound states (hadrons). Isolation would destabilize the assembly.
+- ⚠️ **Tension**: We must reproduce quark masses, mixing angles, CKM matrix, and QCD phenomenology (asymptotic freedom, running coupling) from architrino rules.
+
+**Legacy shift**: Quarks as **emergent quasi-particles**, not fundamental. Gell-Mann's classification scheme is **phenomenologically valid**, ontologically reinterpreted.
+
+---
+
+### **Steven Weinberg, Abdus Salam, Sheldon Glashow — Electroweak Unification**
+**Core belief**: 
+- SU(2) × U(1) gauge theory.
+- **Higgs mechanism** for mass generation via spontaneous symmetry breaking.
+
+**Architrino impact**:
+- ⚠️ **Reinterpretation**: Gauge symmetries (SU(2), U(1), SU(3)) are **emergent** from architrino assembly symmetries and interaction structure.
+- ✅ **Pro**: **Higgs field** is the **spacetime assembly network** (coupled Noether cores—the sea of tri-binaries forming the vacuum). Mass arises from **coupling to this assembly medium** (resistance to acceleration through the tri-binary lattice).
+- ✅ **Pro**: **Electroweak symmetry breaking** is a **phase transition** in assembly configurations (analogous to ferromagnetic phase transition).
+
+**Legacy shift**: Gauge theories and Higgs mechanism as **effective field theories** of assembly dynamics. The Standard Model Lagrangian is **emergent**.
+
+---
+
+### **Gerard 't Hooft (1946–) — Deterministic Quantum Mechanics**
+**Core belief**: 
+- Quantum mechanics may be **deterministic at a deeper level**.
+- Cellular Automaton Interpretation: underlying discrete, deterministic dynamics.
+
+**Architrino impact**:
+- ✅ **Pro**: **Strong alignment**. 't Hooft's vision of underlying determinism is **partially realized**: evolution is lawful and causal, but admits self-hit branch points.
+- ⚠️ **Difference**: 't Hooft uses **discrete cellular automata**; we use **continuous architrino dynamics** in Euclidean 3D + absolute time (though tri-binary lattice introduces discrete structure at assembly scale).
+
+**Legacy shift**: 't Hooft's program is **vindicated** and **extended** with explicit microphysical ontology. His cellular automaton is replaced by **architrino network**.
+
+## Information/Computation + Philosophy of Science
+
+### **Alfred North Whitehead (1861–1947)**
+**Core belief**: 
+- **Process metaphysics**: Reality is fundamentally flux, events, and becoming. Entities are "occasions of experience."
+- Nature is **organic**, not mechanical.
+- Substance ontology is an abstraction; process is primary.
+
+**Architrino impact**:
+- ❌ **Con**: **Reversal** of Whitehead's priority. **Being precedes becoming**: Architrinos are **eternal, unchanging entities** (no creation/destruction). Processes (assembly formation, evolution, dissociation) are **secondary**. The absolute observer sees eternal entities reconfiguring, not flux alone.
+- ❌ **Con**: "Occasions of experience" are rejected. No panpsychism; no intrinsic mentality in fundamental entities. Consciousness is **emergent** from complex assemblies (brains).
+- ⚠️ **Partial**: Whitehead's emphasis on **relations** is preserved (architrinos are defined by their interactions, not intrinsic isolated properties). Relationalism upheld; process priority rejected.
+
+**Legacy shift**: Process metaphysics is **subordinated** to substance ontology. Whitehead's **relational insights** are retained; his **ontological priority** (process > substance) is **inverted**.
+
+---
 
 ### **John Archibald Wheeler (1911–2008) — "It from Bit"**
 **Core belief**: 
@@ -680,8 +669,6 @@ The architrino project is positioned as:
 
 ---
 
-## 16. Philosophers of Science
-
 ### **Karl Popper (1902–1994) — Falsificationism**
 **Core belief**: 
 - Scientific theories must be **falsifiable** (have testable failure conditions).
@@ -704,7 +691,7 @@ The architrino project is positioned as:
 - Normal science = puzzle-solving within paradigm.
 
 **Architrino impact**:
-- ✅ **Pro**: Architrino theory is a potential **paradigm shift** (Euclidean + absolute time vs. curved spacetime; deterministic vs. indeterminate QM).
+- ✅ **Pro**: Architrino theory is a potential **paradigm shift** (Euclidean + absolute time vs. curved spacetime; lawful-with-branching vs. indeterminate QM).
 - ⚠️ **Tension**: We aim to **reduce**, not replace, GR and QM (they become effective theories). **Partial commensurability**: empirical predictions overlap.
 - ✅ **Pro**: If successful, this is a Kuhnian revolution with **bridge principles** (old theories are limits/approximations).
 
@@ -739,24 +726,9 @@ The architrino project is positioned as:
 
 **Legacy shift**: If successful, architrino theory is a **counter-example** to Cartwright's dappled-world thesis. Unification is **possible** after all.
 
----
+## Synthesis & Outcomes
 
-## 17. Additional Figure: Pierre-Simon Laplace (1749–1827)
-
-**Core belief**:
-- **Laplace's Demon**: A hypothetical intellect that knows all positions and momenta of all particles could predict the entire future and retrodict the entire past of the universe.
-- Deterministic, mechanistic universe.
-
-**Architrino impact**:
-- ✅ **Pro**: **Perfect vindication**. The **absolute observer** *is* Laplace's Demon. It knows the position, velocity, and charge of every architrino at any (x,y,z,t).
-- ✅ **Pro**: Given complete initial conditions, the future (and past) are **uniquely determined** by architrino laws.
-- ✅ **Pro**: This makes the architrino framework the **realization** of Laplace's vision: complete determinism, complete predictability in principle (though not in computational practice for finite observers).
-
-**Legacy shift**: Laplace's Demon is no longer a thought experiment—it is the **conceptual foundation** of the absolute observer framework.
-
----
-
-## 18. Summary Table: Vindicated, Challenged, Transcended (Complete)
+### Summary Table: Vindicated, Challenged, Transcended (Complete)
 
 | **Thinker** | **Years** | **Vindicated ✅** | **Challenged ❌** | **Transcended ⚠️** |
 |---|---|---|---|---|
@@ -771,7 +743,7 @@ The architrino project is positioned as:
 | **Gottfried Wilhelm Leibniz** | 1646–1716 | Relationalism, pre-established harmony | **Monads, no interaction, rejection of absolute space** | Idealism → physicalism |
 | **David Hume** | 1711–1776 | Empiricism (in spirit) | **No necessary connections** | Physical necessity restored |
 | **Immanuel Kant** | 1724–1804 | — | **A priori space/time, thing-in-itself, transcendental idealism** | — |
-| **Pierre-Simon Laplace** | 1749–1827 | **Determinism, Laplace's Demon** | — | — |
+| **Pierre-Simon Laplace** | 1749–1827 | **Laplacian ideal (qualified by branching)** | — | — |
 | **Ernst Mach** | 1838–1916 | Relational inertia (emergent), economy of thought | **Positivist anti-realism, rejection of absolute frame** | Absolute time persists |
 | **Ludwig Boltzmann** | 1844–1906 | **Statistical emergence, atomism** | — | — |
 | **Hendrik Lorentz** | 1853–1928 | **Ether, dynamical Lorentz symmetry, preferred frame** | — | — |
@@ -786,7 +758,7 @@ The architrino project is positioned as:
 | **Karl Popper** | 1902–1994 | **Falsificationism** | — | — |
 | **Paul Dirac** | 1902–1984 | **Antimatter, relativistic QM** | — | QFT as emergent |
 | **John Archibald Wheeler** | 1911–2008 | Information as useful | **"It from bit" (information primacy)** | "Bit from it" |
-| **David Bohm** | 1917–1992 | **Hidden variables, determinism, nonlocality** | — | Quantum potential → architrino potentials |
+| **David Bohm** | 1917–1992 | **Hidden variables, nonlocality, lawful dynamics** | — | Quantum potential → architrino potentials |
 | **Richard Feynman** | 1918–1988 | Calculational methods | **Virtual particles as real, sum-over-histories as fundamental** | Effective statistical mechanics |
 | **Andrei Sakharov** | 1921–1989 | **Induced gravity** | — | — |
 | **Thomas Kuhn** | 1922–1996 | Paradigm shift structure | — | Incommensurability softened |
@@ -815,30 +787,32 @@ The architrino project is positioned as:
 | **Matthew Leifer** | 1975– | $\psi$-epistemic + ontic states | — | Operational QM as effective theory |
 | **Sabine Hossenfelder** | 1976– | **Empirical discipline, falsifiability** | — | — |
 
-## 19. Conclusion: The Architrino Weltanschauung
+---
+
+### Conclusion: The Architrino Weltanschauung
 
 If the architrino/tri-binary framework succeeds empirically, it will not merely refine physics—it will **force a philosophical reckoning**, centering on the distinction between the **Absolute Observer** (the ontological view) and the **Physical Observer** (the assembly-based view).
 
-### **What Dies**
+#### **What Dies**
 
 1.  **Teleology is dead**: No purposes, no final causes, no cosmic goals. The Absolute Observer sees only initial conditions + necessary laws → outcomes. Aristotle, Aquinas, Hegel—all refuted.
 2.  **Idealism is dead**: Reality is not mind-dependent. No Platonic Forms, no Kantian categories structuring experience, no Hegelian Spirit. Architrinos exist at precise (x,y,z,t) coordinates whether or not anyone thinks about them.
 3.  **Transcendentalism is dead**: No realm "beyond" the physical. No noumena, no higher dimensions, no separate mental substance. Only this: architrinos in Euclidean void, with linear time.
-4.  **Fundamental Indeterminacy is dead**: Quantum randomness is revealed as the coarse-graining of deterministic architrino dynamics. The Copenhagen interpretation and Heisenberg's ontological uncertainty are rejected.
+4.  **Indeterminacy is localized**: Quantum randomness is not universal; it is tied to self-hit branch points in architrino dynamics. The Copenhagen interpretation and Heisenberg's ontological uncertainty are rejected as global claims.
 5.  **Diffeomorphism Invariance as Ontology is dead**: While coordinate invariance is a powerful mathematical tool for effective theories (GR), the Absolute Observer reveals that **fixed Euclidean coordinates** are the deeper reality. "Returning to the same point" is unambiguous in the void.
 
-### **What Is Resurrected**
+#### **What Is Resurrected**
 
 1.  **Severe Materialism**: Stripped of 19th-century baggage (solid spheres, clockwork without field memory). It is:
     *   **Relational** (properties emerge from interactions).
-    *   **Deterministic** (fully trackable by the Absolute Observer).
+    *   **Law-governed** (trackable by the Absolute Observer up to self-hit branch points).
     *   **Reductionist** (all complexity reduces to architrinos + void + time).
 2.  **Atomism**: Not Democritus's spheres, but **point transmitter/receivers**.
 3.  **Absolute Time & Space**: Newton and Lorentz are vindicated against Einstein's spacetime ontology. The "void" is a rigid stage; the "vacuum" is the sea of assemblies (coupled Noether cores) filling that stage.
 4.  **Causal Realism**: Hume is refuted. Necessary connections are real (architrino laws). Causation is an objective mapping of state $S(t)$ to $S(t+\Delta t)$.
-5.  **Laplace’s Demon**: Reborn as the **Absolute Observer**—the theoretical entity that proves the universe is a coherent, deterministic whole.
+5.  **Laplace’s Demon**: Reborn as the **Absolute Observer**—a qualified ideal that maps the full microstate but does not restore strict determinism at self-hit branch points.
 
-### **Philosophy's New Role: Boundary Analysis**
+#### **Philosophy's New Role: Boundary Analysis**
 
 Philosophy does not disappear. It matures into **Conceptual Hygiene**:
 

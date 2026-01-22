@@ -482,6 +482,13 @@ P(\theta \mid \mathrm{obs}) \propto P(\mathrm{obs}\mid\theta)P(\theta).
 $$
 Here, $\mathrm{obs}$ denotes observer existence.
 
+**Fine-Tuning Note:** This principle is often invoked to explain why many
+dimensionless constants (vacuum energy scale, coupling ratios, mass hierarchies)
+sit in narrow ranges that permit chemistry, long-lived stars, and complex
+structures. The anthropic move is not a mechanism but a filter: among many
+possible parameter sets, only a small subset yields observers, so apparent
+fine-tuning reflects conditional selection rather than design.
+
 ---
 
 ## 4. Epistemic / Effective Theories of Observation

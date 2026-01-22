@@ -201,6 +201,7 @@ const ringLayoutDefaults = {
   guardBandRatio: 0.08,
   startAngle: Math.PI / 2,
 };
+const standardRingMaxCount = 14;
 
 function maxRingNodeRadius(ringRadius, count) {
   if (!Number.isFinite(ringRadius) || count <= 1) {
@@ -212,6 +213,34 @@ function maxRingNodeRadius(ringRadius, count) {
     chord * ringLayoutDefaults.guardBandRatio
   );
   return (chord - guardBand) / (2 * ringLayoutDefaults.haloScale);
+}
+
+function computeRingLayout(nodes) {
+  const count = nodes.length;
+  if (!count || count > standardRingMaxCount) {
+    return null;
+  }
+  let baseRadius = Math.max(...nodes.map((node) => node.radius ?? 0));
+  if (!Number.isFinite(baseRadius) || baseRadius <= 0) {
+    baseRadius = 1.6;
+  }
+  const ringRadius = Math.max(
+    6,
+    Math.min(count, standardRingMaxCount) * baseRadius * 1.4
+  );
+  const maxRadius = maxRingNodeRadius(ringRadius, count);
+  if (Number.isFinite(maxRadius) && maxRadius > 0) {
+    baseRadius = maxRadius;
+  }
+  const positions = [];
+  for (let i = 0; i < count; i += 1) {
+    const angle = (i / count) * Math.PI * 2 + ringLayoutDefaults.startAngle;
+    positions.push([
+      Number((Math.cos(angle) * ringRadius).toFixed(2)),
+      Number((Math.sin(angle) * ringRadius).toFixed(2)),
+    ]);
+  }
+  return { ringRadius, nodeRadius: baseRadius, positions };
 }
 
 const zoomState = {
@@ -387,34 +416,121 @@ function titleFromSlug(slug) {
 }
 
 async function buildAutoMarkdownNodes(scene, existingNodes) {
-  if (!scene?.autoMarkdownSpheres || !scene?.autoMarkdownDirectory) {
-    return [];
-  }
-  const useDirectories = scene.autoMarkdownSubdirectories === true;
-  const entries = useDirectories
-    ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
-    : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
-  if (!entries.length) {
+  if (!scene?.autoSphereRing || (!scene?.autoMarkdownDirectory && !scene?.autoMarkdownPath)) {
     return [];
   }
   const includeExisting = scene.autoMarkdownIncludeExistingInLayout === true;
-  const fileInfos = useDirectories
-    ? entries.map((path) => ({ path, isNonEmpty: false }))
-    : await Promise.all(
-        entries.map(async (path) => {
-          try {
-            const response = await fetch(appendCacheBust(path));
-            if (!response.ok) {
+  const sectionKey = scene.autoMarkdownSection ?? null;
+  let entries = [];
+  let useDirectories = false;
+  let usedHeadingLevel =
+    typeof scene.autoMarkdownHeadingLevel === "number"
+      ? scene.autoMarkdownHeadingLevel
+      : 3;
+  let sectionSubheadings = null;
+
+  if (scene.autoMarkdownPath) {
+    const preferredLevels = [usedHeadingLevel];
+    if (usedHeadingLevel === 2) {
+      preferredLevels.push(3);
+    } else if (usedHeadingLevel !== 2) {
+      preferredLevels.push(2);
+    }
+    try {
+      const response = await fetch(appendCacheBust(scene.autoMarkdownPath));
+      if (response.ok) {
+        const text = await response.text();
+        let content = text;
+        if (sectionKey) {
+          const section = extractMarkdownSection(text, sectionKey);
+          content = section?.body ?? "";
+        }
+        const lines = content.split(/\r?\n/);
+        for (const level of preferredLevels) {
+          const levelEntries = [];
+          lines.forEach((line) => {
+            const heading = parseMarkdownHeading(line);
+            if (heading && heading.level === level) {
+              levelEntries.push({ title: heading.title });
+            }
+          });
+          if (levelEntries.length) {
+            entries = levelEntries;
+            usedHeadingLevel = level;
+            break;
+          }
+        }
+        if (!sectionKey && usedHeadingLevel === 2) {
+          sectionSubheadings = new Map();
+          let currentSection = null;
+          text.split(/\r?\n/).forEach((line) => {
+            const heading = parseMarkdownHeading(line);
+            if (!heading) {
+              return;
+            }
+            if (heading.level === 2) {
+              currentSection = heading.title;
+              if (!sectionSubheadings.has(currentSection)) {
+                sectionSubheadings.set(currentSection, false);
+              }
+            } else if (heading.level === 3 && currentSection) {
+              sectionSubheadings.set(currentSection, true);
+            } else if (heading.level <= 2) {
+              currentSection = heading.title;
+            }
+          });
+        }
+      }
+    } catch (error) {
+      console.warn("Failed to read markdown file", scene.autoMarkdownPath, error);
+    }
+  } else {
+    useDirectories = scene.autoMarkdownSubdirectories === true;
+    entries = useDirectories
+      ? (await listMarkdownDirectoriesInDir(scene.autoMarkdownDirectory)).sort()
+      : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
+  }
+
+  if (Array.isArray(scene.autoMarkdownExcludePaths) && scene.autoMarkdownExcludePaths.length) {
+    const exclude = new Set(
+      scene.autoMarkdownExcludePaths.map((path) => normalizeMarkdownPath(path))
+    );
+    entries = entries.filter((entry) => !exclude.has(normalizeMarkdownPath(entry)));
+  }
+
+  const defaultIndex = scene.autoMarkdownDefaultIndex === true;
+  const indexPaths = Array.isArray(scene.autoMarkdownIndexPaths)
+    ? new Set(scene.autoMarkdownIndexPaths.map((path) => normalizeMarkdownPath(path)))
+    : null;
+  const plainPaths = Array.isArray(scene.autoMarkdownPlainPaths)
+    ? new Set(scene.autoMarkdownPlainPaths.map((path) => normalizeMarkdownPath(path)))
+    : null;
+  const plainSectionPaths = Array.isArray(scene.autoMarkdownPlainSectionPaths)
+    ? new Set(scene.autoMarkdownPlainSectionPaths.map((path) => normalizeMarkdownPath(path)))
+    : null;
+
+  if (!entries.length && !includeExisting) {
+    return [];
+  }
+  const fileInfos = scene.autoMarkdownPath
+    ? entries.map((entry) => ({ title: entry.title }))
+    : useDirectories
+      ? entries.map((path) => ({ path, isNonEmpty: false }))
+      : await Promise.all(
+          entries.map(async (path) => {
+            try {
+              const response = await fetch(appendCacheBust(path));
+              if (!response.ok) {
+                return { path, isNonEmpty: false };
+              }
+              const text = await response.text();
+              return { path, isNonEmpty: text.trim().length > 0 };
+            } catch (error) {
+              console.warn("Failed to read markdown file", path, error);
               return { path, isNonEmpty: false };
             }
-            const text = await response.text();
-            return { path, isNonEmpty: text.trim().length > 0 };
-          } catch (error) {
-            console.warn("Failed to read markdown file", path, error);
-            return { path, isNonEmpty: false };
-          }
-        })
-      );
+          })
+        );
   const usedIds = new Set(existingNodes.map((node) => node.id));
   let baseRadius =
     typeof scene.autoMarkdownNodeRadius === "number"
@@ -436,7 +552,24 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     typeof scene.autoMarkdownMaxRingCount === "number"
       ? scene.autoMarkdownMaxRingCount
       : 14;
-  const layoutCount = includeExisting ? existingNodes.length + fileInfos.length : fileInfos.length;
+  const autoEntries = [];
+  fileInfos.forEach((info) => {
+    const entryName = info.title ?? info.path?.split("/").pop() ?? "";
+    const slug = useDirectories
+      ? entryName
+      : entryName.replace(/\.md$/i, "");
+    const id = slug
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+    if (!id || usedIds.has(id)) {
+      return;
+    }
+    autoEntries.push({ info, slug, id });
+  });
+  const layoutCount = includeExisting
+    ? existingNodes.length + autoEntries.length
+    : autoEntries.length;
   const ringRadius =
     typeof scene.autoMarkdownRingRadius === "number"
       ? scene.autoMarkdownRingRadius
@@ -453,7 +586,7 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
 
   if (useRing && layoutCount > 1) {
     const maxRadius = maxRingNodeRadius(ringRadius, layoutCount);
-    if (Number.isFinite(maxRadius) && maxRadius > 0) {
+    if (Number.isFinite(maxRadius) && maxRadius > 0 && maxRadius < baseRadius) {
       baseRadius = maxRadius;
     }
   }
@@ -466,8 +599,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
 
   const positionForIndex = (index) => {
     if (useRing) {
+      const orderIndex = layoutCount - 1 - index;
       const angle =
-        (index / layoutCount) * Math.PI * 2 - ringLayoutDefaults.startAngle;
+        ringLayoutDefaults.startAngle + (orderIndex / layoutCount) * Math.PI * 2;
       return [Math.cos(angle) * ringRadius, Math.sin(angle) * ringRadius];
     }
     const row = Math.floor(index / columns);
@@ -482,33 +616,50 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     });
   }
 
-  const autoStartIndex = includeExisting ? existingNodes.length : 0;
-  return fileInfos
-    .map((info, index) => {
-      const entryName = info.path.split("/").pop() ?? "";
-      const slug = useDirectories
-        ? entryName
-        : entryName.replace(/\.md$/i, "");
-      const id = slug
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "_")
-        .replace(/^_+|_+$/g, "");
-      if (!id || usedIds.has(id)) {
-        return null;
-      }
-      const [x, y] = positionForIndex(autoStartIndex + index);
+  const isSectionIndex = !!sectionKey;
+  const isTwoLevelRoot = !isSectionIndex && scene.autoMarkdownPath && usedHeadingLevel === 2;
+
+  return autoEntries
+    .map((entry, index) => {
+      const { info, slug, id } = entry;
+      const layoutIndex = includeExisting ? existingNodes.length + index : index;
+      const [x, y] = positionForIndex(layoutIndex);
       let color = baseColor ?? palette[index % palette.length] ?? "#3a5a8a";
       if (typeof color === "string" && colorTokens[color]) {
         color = colorTokens[color];
       }
+      const nodeName = scene.autoMarkdownPath
+        ? info.title ?? titleFromSlug(slug)
+        : titleFromSlug(slug);
       const node = {
         id,
-        name: titleFromSlug(slug),
+        name: nodeName,
         radius: baseRadius,
         position: [Number(x.toFixed(2)), Number(y.toFixed(2)), 0],
         color,
+        wrapLabel: scene.wrapLabels ?? true,
       };
-      if (useDirectories) {
+      if (scene.autoMarkdownPath) {
+        const allowSectionIndex =
+          !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.autoMarkdownPath)));
+        const hasSubheadings =
+          isTwoLevelRoot && info.title
+            ? sectionSubheadings?.get(info.title) === true
+            : false;
+        if (isTwoLevelRoot && info.title && hasSubheadings && allowSectionIndex) {
+          const childScene = ensureMarkdownSectionIndexScene(
+            scene.autoMarkdownPath,
+            info.title,
+            scene
+          );
+          if (childScene) {
+            node.childScene = childScene;
+          }
+        } else {
+          node.markdownPath = scene.autoMarkdownPath;
+          node.markdownSection = info.title ?? null;
+        }
+      } else if (useDirectories) {
         const childScene = ensureMarkdownDirectoryScene(
           info.path,
           scene,
@@ -519,6 +670,18 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         }
       } else if (info.isNonEmpty) {
         node.markdownPath = info.path;
+        const normalizedPath = normalizeMarkdownPath(info.path);
+        let autoIndex = defaultIndex;
+        if (indexPaths && indexPaths.has(normalizedPath)) {
+          autoIndex = true;
+        }
+        if (plainPaths && plainPaths.has(normalizedPath)) {
+          autoIndex = false;
+        }
+        node.markdownAutoIndex = autoIndex;
+        if (Array.isArray(scene.autoMarkdownPlainSectionPaths)) {
+          node.markdownPlainSectionPaths = scene.autoMarkdownPlainSectionPaths;
+        }
         if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
           node.markdownColumns = scene.autoMarkdownColumns;
         }
@@ -620,6 +783,13 @@ function normalizeMarkdownKey(text) {
     .trim();
 }
 
+function normalizeMarkdownPath(path) {
+  return String(path)
+    .replace(/\\/g, "/")
+    .replace(/^\.?\//, "")
+    .toLowerCase();
+}
+
 function parseMarkdownHeading(line) {
   const match = line.match(/^(#{2,3})\s+(.*)$/);
   if (!match) {
@@ -704,9 +874,13 @@ async function showMarkdownPanel(level) {
   if (activeMarkdownPath === cacheKey && markdownPanel.classList.contains("is-open")) {
     return;
   }
-  if (level.markdownColumns === 1) {
+  if (sectionKey) {
+    markdownTwoColumns = false;
+  } else if (level.markdownColumns === 1) {
     markdownTwoColumns = false;
   } else if (level.markdownColumns === 2) {
+    markdownTwoColumns = true;
+  } else {
     markdownTwoColumns = true;
   }
   const sectionCache = sectionKey ? markdownSectionCache : markdownCache;
@@ -976,6 +1150,10 @@ async function loadSceneConfig(scenePath) {
           reaction: obj.reaction,
           details: obj.details ?? null,
           renderStyle: obj.renderStyle ?? null,
+          markdownPath: obj.markdownPath ?? null,
+          markdownSection: obj.markdownSection ?? null,
+          markdownColumns: obj.markdownColumns ?? null,
+          markdownHeadingLevel: obj.markdownHeadingLevel ?? null,
           binaryBands,
           glowRing: obj.glowRing ?? false,
           glowRingColor: obj.glowRingColor ?? null,
@@ -1030,6 +1208,33 @@ async function loadSceneConfig(scenePath) {
         markdownColumns: data.scene?.markdownColumns ?? null,
         markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
         centerOn: data.scene?.centerOn ?? null,
+        autoSphereRing: data.scene?.autoSphereRing ?? false,
+        autoMarkdownDirectory: data.scene?.autoMarkdownDirectory ?? null,
+        autoMarkdownPath: data.scene?.autoMarkdownPath ?? null,
+        autoMarkdownSection: data.scene?.autoMarkdownSection ?? null,
+        autoMarkdownHeadingLevel: data.scene?.autoMarkdownHeadingLevel ?? null,
+        autoMarkdownIncludeExistingInLayout:
+          data.scene?.autoMarkdownIncludeExistingInLayout ?? false,
+        autoMarkdownNodeRadius: data.scene?.autoMarkdownNodeRadius ?? null,
+        autoMarkdownRingRadius: data.scene?.autoMarkdownRingRadius ?? null,
+        autoMarkdownMaxRingCount: data.scene?.autoMarkdownMaxRingCount ?? null,
+        autoMarkdownGridSpacing: data.scene?.autoMarkdownGridSpacing ?? null,
+        autoMarkdownColumns: data.scene?.autoMarkdownColumns ?? null,
+        autoMarkdownPalette: data.scene?.autoMarkdownPalette ?? null,
+        autoMarkdownColor: data.scene?.autoMarkdownColor ?? null,
+        autoMarkdownExcludePaths: Array.isArray(data.scene?.autoMarkdownExcludePaths)
+          ? data.scene.autoMarkdownExcludePaths
+          : [],
+        autoMarkdownPlainPaths: Array.isArray(data.scene?.autoMarkdownPlainPaths)
+          ? data.scene.autoMarkdownPlainPaths
+          : [],
+        autoMarkdownDefaultIndex: data.scene?.autoMarkdownDefaultIndex ?? null,
+        autoMarkdownIndexPaths: Array.isArray(data.scene?.autoMarkdownIndexPaths)
+          ? data.scene.autoMarkdownIndexPaths
+          : [],
+        autoMarkdownPlainSectionPaths: Array.isArray(data.scene?.autoMarkdownPlainSectionPaths)
+          ? data.scene.autoMarkdownPlainSectionPaths
+          : [],
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
@@ -1198,8 +1403,26 @@ function computeFocusZoom(radius, fraction = 0.32) {
   return clampZoom(targetZoom);
 }
 
-function getMarkdownReaderSceneId(markdownPath) {
-  return `__markdown_reader__:${markdownPath}`;
+function getMarkdownReaderSceneId(markdownPath, markdownSection) {
+  if (!markdownSection) {
+    return `__markdown_reader__:${markdownPath}`;
+  }
+  const normalized = normalizeMarkdownKey(markdownSection);
+  return `__markdown_reader__:${markdownPath}::${normalized}`;
+}
+
+function getMarkdownIndexSceneId(markdownPath, headingLevel) {
+  const levelToken = typeof headingLevel === "number" ? `::h${headingLevel}` : "";
+  return `__markdown_index__:${markdownPath}${levelToken}`;
+}
+
+function getMarkdownDocSceneId(markdownPath) {
+  return `__markdown_doc__:${markdownPath}`;
+}
+
+function getMarkdownSectionIndexSceneId(markdownPath, markdownSection) {
+  const normalized = normalizeMarkdownKey(markdownSection);
+  return `__markdown_section_index__:${markdownPath}::${normalized}`;
 }
 
 function getMarkdownDirectorySceneId(directory) {
@@ -1211,11 +1434,65 @@ function ensureMarkdownReaderScene(nodeData) {
   if (!markdownPath) {
     return null;
   }
-  const sceneId = getMarkdownReaderSceneId(markdownPath);
+  const sceneName = nodeData.name ?? "Notes";
+  const markdownSection = nodeData.markdownSection ?? null;
+  const headingLevel =
+    typeof nodeData.markdownHeadingLevel === "number"
+      ? nodeData.markdownHeadingLevel
+      : 2;
+
+  if (!markdownSection) {
+    if (nodeData.markdownAutoIndex === false) {
+      const sceneId = getMarkdownDocSceneId(markdownPath);
+      if (levelConfigs[sceneId]) {
+        return sceneId;
+      }
+      levelConfigs[sceneId] = {
+        layout: "static",
+        nodes: [],
+        links: [],
+        sceneName,
+        sceneId,
+        markdownPath,
+        markdownSection: null,
+        markdownColumns: nodeData.markdownColumns ?? null,
+        markdownAutoOpen: true,
+        centerOn: null,
+      };
+      markdownReaderScenes.set(sceneId, true);
+      return sceneId;
+    }
+    const sceneId = getMarkdownIndexSceneId(markdownPath, headingLevel);
+    if (levelConfigs[sceneId]) {
+      return sceneId;
+    }
+      levelConfigs[sceneId] = {
+        layout: "static",
+        nodes: [],
+        links: [],
+        sceneName,
+        sceneId,
+        markdownPath,
+        markdownSection: null,
+        markdownColumns: nodeData.markdownColumns ?? null,
+        markdownAutoOpen: false,
+        centerOn: null,
+        autoSphereRing: true,
+        autoMarkdownPath: markdownPath,
+        autoMarkdownHeadingLevel: headingLevel,
+        autoMarkdownIncludeExistingInLayout: false,
+        autoMarkdownPlainSectionPaths: Array.isArray(nodeData.markdownPlainSectionPaths)
+          ? nodeData.markdownPlainSectionPaths
+          : [],
+      };
+    markdownReaderScenes.set(sceneId, true);
+    return sceneId;
+  }
+
+  const sceneId = getMarkdownReaderSceneId(markdownPath, markdownSection);
   if (levelConfigs[sceneId]) {
     return sceneId;
   }
-  const sceneName = nodeData.name ?? "Notes";
   levelConfigs[sceneId] = {
     layout: "static",
     nodes: [],
@@ -1223,12 +1500,47 @@ function ensureMarkdownReaderScene(nodeData) {
     sceneName,
     sceneId,
     markdownPath,
-    markdownSection: nodeData.markdownSection ?? null,
+    markdownSection,
     markdownColumns: nodeData.markdownColumns ?? null,
     markdownAutoOpen: true,
     centerOn: null,
   };
   markdownReaderScenes.set(sceneId, true);
+  return sceneId;
+}
+
+function ensureMarkdownSectionIndexScene(markdownPath, markdownSection, parentScene) {
+  if (!markdownPath || !markdownSection) {
+    return null;
+  }
+  const sceneId = getMarkdownSectionIndexSceneId(markdownPath, markdownSection);
+  if (levelConfigs[sceneId]) {
+    return sceneId;
+  }
+  levelConfigs[sceneId] = {
+    layout: "static",
+    nodes: [],
+    links: [],
+    sceneName: markdownSection,
+    sceneId,
+    markdownPath,
+    markdownSection,
+    markdownColumns: parentScene?.autoMarkdownColumns ?? null,
+    markdownAutoOpen: false,
+    centerOn: null,
+    autoSphereRing: true,
+    autoMarkdownPath: markdownPath,
+    autoMarkdownSection: markdownSection,
+    autoMarkdownHeadingLevel: 3,
+    autoMarkdownIncludeExistingInLayout: false,
+    autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
+    autoMarkdownRingRadius: parentScene?.autoMarkdownRingRadius,
+    autoMarkdownMaxRingCount: parentScene?.autoMarkdownMaxRingCount,
+    autoMarkdownGridSpacing: parentScene?.autoMarkdownGridSpacing,
+    autoMarkdownColumns: parentScene?.autoMarkdownColumns,
+    autoMarkdownPalette: parentScene?.autoMarkdownPalette,
+    autoMarkdownColor: parentScene?.autoMarkdownColor,
+  };
   return sceneId;
 }
 
@@ -1251,7 +1563,7 @@ function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
     markdownColumns: null,
     markdownAutoOpen: false,
     centerOn: null,
-    autoMarkdownSpheres: true,
+    autoSphereRing: true,
     autoMarkdownDirectory: directory,
     autoMarkdownIncludeExistingInLayout: false,
     autoMarkdownNodeRadius: parentScene?.autoMarkdownNodeRadius,
@@ -1267,7 +1579,7 @@ function ensureMarkdownDirectoryScene(directory, parentScene, nodeName) {
 
 async function ensureDynamicSceneConfig(sceneId) {
   const config = levelConfigs[sceneId];
-  if (!config || !config.autoMarkdownSpheres) {
+  if (!config || !config.autoSphereRing) {
     return;
   }
   if (!Array.isArray(config.nodes)) {
@@ -1362,7 +1674,7 @@ function layoutRootLevel(level) {
     });
   }
 
-  const angleStep = (Math.PI * 2) / nodes.length;
+  const angleStep = (-Math.PI * 2) / nodes.length;
   const startAngle = ringLayoutDefaults.startAngle;
   nodes.forEach((node, index) => {
     const angle = startAngle + angleStep * index;
@@ -1784,6 +2096,20 @@ function buildLevel(levelId) {
   const ringTargetByMesh = new Map();
   let primaryBinaryNode = null;
 
+  const useAutoSphereRing =
+    !!config.autoSphereRing &&
+    !config.autoMarkdownDirectory &&
+    config.layout === "static";
+  const ringNodes = useAutoSphereRing
+    ? config.nodes.filter((node) => node?.category !== "legend")
+    : [];
+  const ringLayout = useAutoSphereRing ? computeRingLayout(ringNodes) : null;
+  const useClockwiseOrder =
+    !!ringLayout &&
+    !!config.autoSphereRing &&
+    (config.autoMarkdownPath || config.autoMarkdownDirectory || config.autoMarkdownSection);
+  let ringIndex = 0;
+
   const spacing = config.spacing ?? 7;
   const centerOffset = (config.nodes.length - 1) / 2;
   const isElementScene = typeof levelId === "string" && levelId.startsWith("json/elements/");
@@ -1792,6 +2118,18 @@ function buildLevel(levelId) {
     const nodeData = cloneNodeData(nodeDataRaw);
     if (nodeData.category === "legend") {
       return;
+    }
+    if (ringLayout) {
+      const positionIndex =
+        useClockwiseOrder && ringIndex > 0
+          ? ringLayout.positions.length - ringIndex
+          : ringIndex;
+      const pos = ringLayout.positions[positionIndex];
+      if (pos) {
+        nodeData.position = [pos[0], pos[1], 0];
+      }
+      nodeData.radius = ringLayout.nodeRadius;
+      ringIndex += 1;
     }
     const node = createNode(nodeData);
     const hasPosition =
@@ -3299,11 +3637,7 @@ function focusOnPointer(clientX, clientY) {
       startLevelTransitionFromNode(targetNode);
     }
   } else {
-    const targetWorld = new THREE.Vector3();
-    targetNode.group.getWorldPosition(targetWorld);
-    const panTarget = worldGroup.position.clone().sub(targetWorld);
-    setTargetPan(panTarget, 420);
-    setDetailPanel(targetNode);
+    return true;
   }
   return true;
 }

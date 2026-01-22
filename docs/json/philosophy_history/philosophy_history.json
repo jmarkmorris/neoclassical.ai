@@ -5,91 +5,19 @@
     "name": "Philosophy-History",
     "units": "relative",
     "wrapLabels": true,
-    "autoMarkdownSpheres": true,
+    "autoSphereRing": true,
     "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/philosophy-history",
     "autoMarkdownIncludeExistingInLayout": true,
+    "autoMarkdownDefaultIndex": true,
+    "autoMarkdownPlainPaths": [
+      "markdown/architrino-assembly-architecture/philosophy-history/lorentz-ether-comparison.md"
+    ],
+    "autoMarkdownPlainSectionPaths": [
+      "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md"
+    ],
     "autoMarkdownNodeRadius": 2.688,
     "autoMarkdownRingRadius": 12
   },
   "objects": [
-    {
-      "id": "philosopers",
-      "label": "Philosopers",
-      "radius": 2.688,
-      "color": "#4b678f",
-      "position": [
-        -4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophy/philosopher.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "belief_systems",
-      "label": "Belief Systems",
-      "radius": 2.688,
-      "color": "#3c6a7a",
-      "position": [
-        4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophy_history/belief_systems.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "fermi_paradox",
-      "label": "Fermi Paradox",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "position": [
-        0.0,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "fine_tuning",
-      "label": "Fine-Tuning / Anthropic Landscape",
-      "radius": 2.688,
-      "color": "#7a3f4a",
-      "position": [
-        4.5,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "measurement_problem",
-      "label": "Measurement Problem",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "position": [
-        -4.5,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    }
   ]
 }
