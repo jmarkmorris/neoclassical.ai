@@ -13,57 +13,6 @@
   },
   "objects": [
     {
-      "id": "proton_stability",
-      "label": "Proton Stability",
-      "radius": 2.688,
-      "color": "#2a3b5a",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/nuclear/proton-stability.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "baryon_asymmetry",
-      "label": "Baryon Asymmetry",
-      "radius": 2.688,
-      "color": "#7a3f4a",
-      "position": [
-        4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/nuclear/baryon-asymmetry.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "neutrino_mass_and_nature",
-      "label": "Neutrino Mass and Nature",
-      "radius": 2.688,
-      "color": "#4f315f",
-      "position": [
-        0.0,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/nuclear/neutrino-mass-and-nature.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "leptogenesis",
       "label": "Leptogenesis CP Sources",
       "radius": 2.688,
