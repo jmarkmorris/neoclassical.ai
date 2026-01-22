@@ -508,6 +508,14 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const plainSectionPaths = Array.isArray(scene.autoMarkdownPlainSectionPaths)
     ? new Set(scene.autoMarkdownPlainSectionPaths.map((path) => normalizeMarkdownPath(path)))
     : null;
+  const defaultSectionDepth =
+    typeof scene.autoMarkdownSectionDepth === "number"
+      ? scene.autoMarkdownSectionDepth
+      : 2;
+  const pathOverrides =
+    scene.autoMarkdownOverrides && typeof scene.autoMarkdownOverrides === "object"
+      ? scene.autoMarkdownOverrides
+      : null;
 
   if (!entries.length && !includeExisting) {
     return [];
@@ -640,7 +648,13 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         wrapLabel: scene.wrapLabels ?? true,
       };
       if (scene.autoMarkdownPath) {
+        const override = pathOverrides
+          ? pathOverrides[normalizeMarkdownPath(scene.autoMarkdownPath)]
+          : null;
+        const sectionDepth =
+          typeof override?.sectionDepth === "number" ? override.sectionDepth : defaultSectionDepth;
         const allowSectionIndex =
+          sectionDepth >= 2 &&
           !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.autoMarkdownPath)));
         const hasSubheadings =
           isTwoLevelRoot && info.title
@@ -669,8 +683,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
           node.childScene = childScene;
         }
       } else if (info.isNonEmpty) {
-        node.markdownPath = info.path;
         const normalizedPath = normalizeMarkdownPath(info.path);
+        const override = pathOverrides ? pathOverrides[normalizedPath] : null;
+        node.markdownPath = info.path;
         let autoIndex = defaultIndex;
         if (indexPaths && indexPaths.has(normalizedPath)) {
           autoIndex = true;
@@ -678,9 +693,29 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         if (plainPaths && plainPaths.has(normalizedPath)) {
           autoIndex = false;
         }
+        if (override?.mode === "index") {
+          autoIndex = true;
+        } else if (override?.mode === "doc") {
+          autoIndex = false;
+        }
         node.markdownAutoIndex = autoIndex;
-        if (Array.isArray(scene.autoMarkdownPlainSectionPaths)) {
-          node.markdownPlainSectionPaths = scene.autoMarkdownPlainSectionPaths;
+        if (typeof override?.headingLevel === "number") {
+          node.markdownHeadingLevel = override.headingLevel;
+        }
+        if (override?.columns === 1 || override?.columns === 2) {
+          node.markdownColumns = override.columns;
+        }
+        const sectionDepth =
+          typeof override?.sectionDepth === "number" ? override.sectionDepth : defaultSectionDepth;
+        const plainSectionList = [];
+        if (plainSectionPaths && plainSectionPaths.has(normalizedPath)) {
+          plainSectionList.push(info.path);
+        }
+        if (sectionDepth < 2) {
+          plainSectionList.push(info.path);
+        }
+        if (plainSectionList.length) {
+          node.markdownPlainSectionPaths = plainSectionList;
         }
         if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
           node.markdownColumns = scene.autoMarkdownColumns;
@@ -788,6 +823,114 @@ function normalizeMarkdownPath(path) {
     .replace(/\\/g, "/")
     .replace(/^\.?\//, "")
     .toLowerCase();
+}
+
+function deriveMarkdownConfig(markdownPolicy) {
+  if (!markdownPolicy) {
+    return null;
+  }
+  const derived = {};
+  const source = markdownPolicy.source ?? {};
+  const sourcePath = typeof source.path === "string" ? source.path : null;
+  const sourceType =
+    source.type ??
+    (sourcePath && sourcePath.toLowerCase().endsWith(".md") ? "file" : "directory");
+  if (sourceType === "file" && sourcePath) {
+    derived.autoMarkdownPath = sourcePath;
+  } else if (sourceType === "directory" && sourcePath) {
+    derived.autoMarkdownDirectory = sourcePath;
+    derived.autoMarkdownSubdirectories = source.subdirectories === true;
+  }
+
+  const layout = markdownPolicy.layout ?? {};
+  if (layout.includeExisting !== undefined) {
+    derived.autoMarkdownIncludeExistingInLayout = layout.includeExisting === true;
+  }
+  if (typeof layout.nodeRadius === "number") {
+    derived.autoMarkdownNodeRadius = layout.nodeRadius;
+  }
+  if (typeof layout.ringRadius === "number") {
+    derived.autoMarkdownRingRadius = layout.ringRadius;
+  }
+  if (typeof layout.maxRingCount === "number") {
+    derived.autoMarkdownMaxRingCount = layout.maxRingCount;
+  }
+  if (typeof layout.gridSpacing === "number") {
+    derived.autoMarkdownGridSpacing = layout.gridSpacing;
+  }
+  if (Array.isArray(layout.palette)) {
+    derived.autoMarkdownPalette = layout.palette;
+  }
+  if (typeof layout.color === "string") {
+    derived.autoMarkdownColor = layout.color;
+  }
+
+  const render = markdownPolicy.render ?? {};
+  if (render.defaultMode === "index") {
+    derived.autoMarkdownDefaultIndex = true;
+  } else if (render.defaultMode === "doc") {
+    derived.autoMarkdownDefaultIndex = false;
+  }
+  if (typeof render.headingLevel === "number") {
+    derived.autoMarkdownHeadingLevel = render.headingLevel;
+  }
+  if (typeof render.sectionDepth === "number") {
+    derived.autoMarkdownSectionDepth = render.sectionDepth;
+  }
+  if (render.columns === 1 || render.columns === 2) {
+    derived.autoMarkdownColumns = render.columns;
+  }
+
+  if (Array.isArray(markdownPolicy.exclude)) {
+    derived.autoMarkdownExcludePaths = markdownPolicy.exclude;
+  }
+
+  const overrides = Array.isArray(markdownPolicy.overrides) ? markdownPolicy.overrides : [];
+  const indexPaths = [];
+  const plainPaths = [];
+  const plainSectionPaths = [];
+  const perPath = {};
+  overrides.forEach((override) => {
+    if (!override || typeof override.path !== "string") {
+      return;
+    }
+    const normalized = normalizeMarkdownPath(override.path);
+    const record = perPath[normalized] ?? {};
+    if (override.mode === "index") {
+      indexPaths.push(override.path);
+      record.mode = "index";
+    } else if (override.mode === "doc") {
+      plainPaths.push(override.path);
+      record.mode = "doc";
+    }
+    if (typeof override.headingLevel === "number") {
+      record.headingLevel = override.headingLevel;
+    }
+    if (typeof override.sectionDepth === "number") {
+      record.sectionDepth = override.sectionDepth;
+      if (override.sectionDepth < 2) {
+        plainSectionPaths.push(override.path);
+      }
+    }
+    if (override.columns === 1 || override.columns === 2) {
+      record.columns = override.columns;
+    }
+    perPath[normalized] = record;
+  });
+  if (indexPaths.length) {
+    derived.autoMarkdownIndexPaths = indexPaths;
+  }
+  if (plainPaths.length) {
+    derived.autoMarkdownPlainPaths = plainPaths;
+  }
+  if (plainSectionPaths.length) {
+    derived.autoMarkdownPlainSectionPaths = plainSectionPaths;
+  }
+  if (Object.keys(perPath).length) {
+    derived.autoMarkdownOverrides = perPath;
+  }
+
+  return derived;
 }
 
 function parseMarkdownHeading(line) {
@@ -1118,6 +1261,7 @@ async function loadSceneConfig(scenePath) {
     .then(async (data) => {
       const hideScaleLabels = Boolean(data.scene?.hideScaleLabels);
       const wrapLabels = data.scene?.wrapLabels ?? true;
+      const markdownDerived = deriveMarkdownConfig(data.scene?.markdown);
       const idMap = new Map(
         data.objects.map((obj) => [obj.id, obj.label || obj.id])
       );
@@ -1189,7 +1333,10 @@ async function loadSceneConfig(scenePath) {
         }
         return node;
       });
-      const autoNodes = await buildAutoMarkdownNodes(data.scene, nodes);
+      const autoMarkdownScene = markdownDerived
+        ? { ...data.scene, ...markdownDerived }
+        : data.scene;
+      const autoNodes = await buildAutoMarkdownNodes(autoMarkdownScene, nodes);
       if (autoNodes.length) {
         nodes = nodes.concat(autoNodes);
       }
@@ -1209,32 +1356,65 @@ async function loadSceneConfig(scenePath) {
         markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
         centerOn: data.scene?.centerOn ?? null,
         autoSphereRing: data.scene?.autoSphereRing ?? false,
-        autoMarkdownDirectory: data.scene?.autoMarkdownDirectory ?? null,
-        autoMarkdownPath: data.scene?.autoMarkdownPath ?? null,
-        autoMarkdownSection: data.scene?.autoMarkdownSection ?? null,
-        autoMarkdownHeadingLevel: data.scene?.autoMarkdownHeadingLevel ?? null,
+        autoMarkdownDirectory:
+          markdownDerived?.autoMarkdownDirectory ?? data.scene?.autoMarkdownDirectory ?? null,
+        autoMarkdownPath:
+          markdownDerived?.autoMarkdownPath ?? data.scene?.autoMarkdownPath ?? null,
+        autoMarkdownSection:
+          markdownDerived?.autoMarkdownSection ?? data.scene?.autoMarkdownSection ?? null,
+        autoMarkdownHeadingLevel:
+          markdownDerived?.autoMarkdownHeadingLevel ?? data.scene?.autoMarkdownHeadingLevel ?? null,
         autoMarkdownIncludeExistingInLayout:
-          data.scene?.autoMarkdownIncludeExistingInLayout ?? false,
-        autoMarkdownNodeRadius: data.scene?.autoMarkdownNodeRadius ?? null,
-        autoMarkdownRingRadius: data.scene?.autoMarkdownRingRadius ?? null,
-        autoMarkdownMaxRingCount: data.scene?.autoMarkdownMaxRingCount ?? null,
-        autoMarkdownGridSpacing: data.scene?.autoMarkdownGridSpacing ?? null,
-        autoMarkdownColumns: data.scene?.autoMarkdownColumns ?? null,
-        autoMarkdownPalette: data.scene?.autoMarkdownPalette ?? null,
-        autoMarkdownColor: data.scene?.autoMarkdownColor ?? null,
-        autoMarkdownExcludePaths: Array.isArray(data.scene?.autoMarkdownExcludePaths)
-          ? data.scene.autoMarkdownExcludePaths
+          markdownDerived?.autoMarkdownIncludeExistingInLayout ??
+          data.scene?.autoMarkdownIncludeExistingInLayout ??
+          false,
+        autoMarkdownNodeRadius:
+          markdownDerived?.autoMarkdownNodeRadius ?? data.scene?.autoMarkdownNodeRadius ?? null,
+        autoMarkdownRingRadius:
+          markdownDerived?.autoMarkdownRingRadius ?? data.scene?.autoMarkdownRingRadius ?? null,
+        autoMarkdownMaxRingCount:
+          markdownDerived?.autoMarkdownMaxRingCount ?? data.scene?.autoMarkdownMaxRingCount ?? null,
+        autoMarkdownGridSpacing:
+          markdownDerived?.autoMarkdownGridSpacing ?? data.scene?.autoMarkdownGridSpacing ?? null,
+        autoMarkdownColumns:
+          markdownDerived?.autoMarkdownColumns ?? data.scene?.autoMarkdownColumns ?? null,
+        autoMarkdownPalette:
+          markdownDerived?.autoMarkdownPalette ?? data.scene?.autoMarkdownPalette ?? null,
+        autoMarkdownColor:
+          markdownDerived?.autoMarkdownColor ?? data.scene?.autoMarkdownColor ?? null,
+        autoMarkdownExcludePaths: Array.isArray(
+          markdownDerived?.autoMarkdownExcludePaths ??
+            data.scene?.autoMarkdownExcludePaths
+        )
+          ? markdownDerived?.autoMarkdownExcludePaths ?? data.scene.autoMarkdownExcludePaths
           : [],
-        autoMarkdownPlainPaths: Array.isArray(data.scene?.autoMarkdownPlainPaths)
-          ? data.scene.autoMarkdownPlainPaths
+        autoMarkdownPlainPaths: Array.isArray(
+          markdownDerived?.autoMarkdownPlainPaths ?? data.scene?.autoMarkdownPlainPaths
+        )
+          ? markdownDerived?.autoMarkdownPlainPaths ?? data.scene.autoMarkdownPlainPaths
           : [],
-        autoMarkdownDefaultIndex: data.scene?.autoMarkdownDefaultIndex ?? null,
-        autoMarkdownIndexPaths: Array.isArray(data.scene?.autoMarkdownIndexPaths)
-          ? data.scene.autoMarkdownIndexPaths
+        autoMarkdownDefaultIndex:
+          markdownDerived?.autoMarkdownDefaultIndex ?? data.scene?.autoMarkdownDefaultIndex ?? null,
+        autoMarkdownIndexPaths: Array.isArray(
+          markdownDerived?.autoMarkdownIndexPaths ?? data.scene?.autoMarkdownIndexPaths
+        )
+          ? markdownDerived?.autoMarkdownIndexPaths ?? data.scene.autoMarkdownIndexPaths
           : [],
-        autoMarkdownPlainSectionPaths: Array.isArray(data.scene?.autoMarkdownPlainSectionPaths)
-          ? data.scene.autoMarkdownPlainSectionPaths
+        autoMarkdownPlainSectionPaths: Array.isArray(
+          markdownDerived?.autoMarkdownPlainSectionPaths ??
+            data.scene?.autoMarkdownPlainSectionPaths
+        )
+          ? markdownDerived?.autoMarkdownPlainSectionPaths ??
+            data.scene.autoMarkdownPlainSectionPaths
           : [],
+        autoMarkdownSectionDepth:
+          markdownDerived?.autoMarkdownSectionDepth ?? data.scene?.autoMarkdownSectionDepth ?? null,
+        autoMarkdownOverrides:
+          markdownDerived?.autoMarkdownOverrides ?? data.scene?.autoMarkdownOverrides ?? null,
+        autoMarkdownSubdirectories:
+          markdownDerived?.autoMarkdownSubdirectories ??
+          data.scene?.autoMarkdownSubdirectories ??
+          false,
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
