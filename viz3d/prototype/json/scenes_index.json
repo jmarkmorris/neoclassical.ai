@@ -116,44 +116,9 @@
       "path": "json/validation/validation.json"
     },
     {
-      "id": "belief_systems",
-      "name": "Belief Systems",
-      "path": "json/philosophy_history/belief_systems.json"
-    },
-    {
       "id": "unknowns_paradoxes",
       "name": "Unknowns & Paradoxes",
       "path": "json/philosophy_history/unknowns_paradoxes.json"
-    },
-    {
-      "id": "religion_judaism",
-      "name": "Judaism",
-      "path": "json/philosophy_history/religion_judaism.json"
-    },
-    {
-      "id": "religion_christianity",
-      "name": "Christianity",
-      "path": "json/philosophy_history/religion_christianity.json"
-    },
-    {
-      "id": "religion_islam",
-      "name": "Islam",
-      "path": "json/philosophy_history/religion_islam.json"
-    },
-    {
-      "id": "religion_hinduism",
-      "name": "Hinduism",
-      "path": "json/philosophy_history/religion_hinduism.json"
-    },
-    {
-      "id": "religion_buddhism",
-      "name": "Buddhism",
-      "path": "json/philosophy_history/religion_buddhism.json"
-    },
-    {
-      "id": "religion_daoism",
-      "name": "Daoism",
-      "path": "json/philosophy_history/religion_daoism.json"
     },
     {
       "id": "out_of_the_ashes",

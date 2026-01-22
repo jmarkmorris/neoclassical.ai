@@ -13,23 +13,6 @@
   },
   "objects": [
     {
-      "id": "belief_systems",
-      "label": "Belief Systems",
-      "radius": 2.688,
-      "color": "#3c6a7a",
-      "position": [
-        4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/philosophy_history/belief_systems.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "unknowns_paradoxes",
       "label": "Unknowns & Paradoxes",
       "radius": 2.688,
