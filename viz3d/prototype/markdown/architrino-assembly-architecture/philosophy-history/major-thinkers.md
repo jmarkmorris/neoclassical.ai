@@ -87,6 +87,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 - ✅ **Pro** (ironic): Aristotle valued **continuous substance**. The **spacetime assembly network** (spacetime fabric—coupled Noether cores) is effectively continuous at macroscopic scales—**emergent from discrete architrinos**.
 
 **Legacy shift**: Aristotelian teleology and form/matter dualism are **rejected**. His emphasis on **emergence of properties from relations** is partially vindicated (but mechanistically, not teleologically).
+All emergence in the architrino framework is **weak emergence**: effective theories (GR, QM, thermodynamics) are coarse-grainings of exact architrino dynamics. There are no **strongly emergent** properties with autonomous causal powers. The absolute observer sees only architrinos; higher-level causation is shorthand for micro-level interactions.
 
 ---
 
