@@ -788,8 +788,8 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 | **Edward Witten** | 1951– | — | **Strings, extra dimensions, SUSY as fundamental** | — |
 | **Joseph Polchinski** | 1954–2018 | — | **Strings, extra dimensions, SUSY as fundamental** | — |
 | **Lee Smolin (Temporal Naturalism)** | 1955– | **Time as fundamental, critique of timeless QG** | Evolving laws | Laws are eternal |
-| **Lee Smolin (LQG)** | 1955– | Discrete structure intuition | **Quantized geometry** | Background independence (different route) |
-| **Carlo Rovelli** | 1956– | Discrete structure intuition | **Quantized geometry** | Background independence (different route) |
+| **Lee Smolin (LQG)** | 1955– | Discrete structure intuition | **Quantized gravity** | Background independence (different route) |
+| **Carlo Rovelli** | 1956– | Discrete structure intuition | **Quantized gravity** | Background independence (different route) |
 | **Stephen Wolfram** | 1959– | Emergence from simple rules | **Hypergraphs as fundamental, computation primacy** | Physical ontology > computation |
 | **Erik Verlinde** | 1962– | Gravity as emergent | **Holographic screens, info primacy** | Entropic aspects as special cases |
 | **Antony Valentini** | 1965– | **Quantum nonequilibrium framework** | — | Born rule violations as predictions |
