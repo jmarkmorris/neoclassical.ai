@@ -53,7 +53,7 @@ Phil
 ---
 
 ## 4. **Ontological Coherence Audit**
-**Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, determinism + quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
+**Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, deterministic multistability + effective quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
 
 **Who:** Phil (me) + Red + entire team (quarterly review)
 
@@ -90,7 +90,7 @@ codex
 *   **The Hard Wall:** If I calculate the muon lifetime and it doesn't dilate exactly as $\tau = \tau_0 \gamma$, then High Energy Physics data kills us instantly. I am dependent on Dyna and Sol to prove this mechanism works so I can use it in my Lagrangian.
 
 ### 5. From Determinism to Cross-Sections (The Born Rule)
-**Why:** Experimentalists measure scattering cross-sections (probabilities). Our theory is deterministic (trajectories). I need the bridge.
+**Why:** Experimentalists measure scattering cross-sections (probabilities). Our theory is deterministic but **meta-stable** at thresholds (trajectories with multistable outcomes). I need the bridge.
 *   **The Task:** Show how the **informational ambiguity** of the receiver (as detailed in the Master Equation) leads to the probabilistic Born Rule ($P \propto |\psi|^2$).
 *   **The Hard Wall:** If our simulation of $e^+e^-$ scattering produces a pattern that deviates from the QED prediction (e.g., no interference fringes in the equivalent of a double-slit, or wrong angular distribution), we cannot claim to reproduce Quantum Mechanics.
 
