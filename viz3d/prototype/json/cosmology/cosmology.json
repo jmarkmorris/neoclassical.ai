@@ -13,40 +13,6 @@
   },
   "objects": [
     {
-      "id": "nature_of_dark_energy",
-      "label": "Nature of Dark Energy",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "position": [
-        -6.0,
-        2.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/cosmology/nature-of-dark.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "identity_of_dark_matter",
-      "label": "Identity of Dark Matter",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "position": [
-        0.0,
-        2.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/cosmology/identity-of-dark.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "cosmological_constant_problem",
       "label": "Cosmological Constant Problem",
       "radius": 2.688,
