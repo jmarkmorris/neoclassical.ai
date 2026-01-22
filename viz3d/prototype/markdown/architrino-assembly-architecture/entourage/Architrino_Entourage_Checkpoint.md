@@ -121,7 +121,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - Each architrino:  
   - Continuously **emits** outgoing potential (spherical wavefront at speed $c_f$),  
   - Continuously **receives** potential from all others (and sometimes itself),  
-  - Responds deterministically to the **vector sum** of all received potentials.
+  - Responds lawfully to the **vector sum** of all received potentials, with deterministic multistability at threshold regimes.
 
 **Self-Hit Dynamics (Critical Innovation):**  
 - When an architrino's velocity $v$ exceeds field speed $c_f$, it **intercepts its own past outgoing potential**.  
@@ -542,5 +542,4 @@ When session resumes, **prioritize these four tasks**:
 - Early universe pre-inflationary state.
 
 ---
-
 

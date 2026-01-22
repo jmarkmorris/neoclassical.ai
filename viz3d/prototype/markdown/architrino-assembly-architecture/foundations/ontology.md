@@ -146,7 +146,7 @@ $$
 $$
 where $I$ is an interval and $t$ is **strictly increasing** (respecting the time orientation).
 
-**Key property:** Worldlines are **monotone in $t$**—there are no closed timelike curves, no backward time travel, no branching of the timeline. Formally:
+**Key property:** Worldlines are **monotone in $t$**—there are no closed timelike curves or backward time travel. Branching, when it occurs, is **meta-stable branching in the dynamics** (multiple coexisting attractors), not a splitting of the time parameter itself. Formally:
 $$
 \frac{dt}{ds} > 0
 $$
@@ -175,7 +175,7 @@ A critical feature of the architrino model is that **all interactions are mediat
 
 At time $t$, an architrino at position $\mathbf{x}(t)$ experiences forces from all other architrinos based on the **intersection of its worldline with causal wake surfaces** emitted at all past times $t' < t$. This is naturally encoded in the path history interaction law and gives rise to **non-Markovian memory effects** (e.g., the self-hit regime, where an architrino interacts with its own past emissions).
 
-Because $t$ is universal and absolute, we can unambiguously define "the past" (all $t' < t$) and integrate over it. This allows for a mechanistic, deterministic model of interaction without invoking quantum indeterminacy or action-at-a-distance.
+Because $t$ is universal and absolute, we can unambiguously define "the past" (all $t' < t$) and integrate over it. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **meta-stable branching** at self-hit thresholds.
 
 **Provenance and Identity Through Time:**
 
@@ -891,7 +891,7 @@ An **Architrino** is the sole fundamental entity in this theory. It is:
 
 - A **point-like transmitter/receiver** located at a position $\mathbf{s}_a(t)$ in the flat Euclidean 3D space.
 - **Always active**: it continuously emits a flux of causal wake surfaces and continuously receives potential from all other Architrinos.
-- **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is uniquely determined.
+- **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is determined, with **deterministic multistability** at threshold regimes.
 - **Charged**: each Architrino carries a fundamental charge magnitude $|e/6|$ (see Section 2.3).
 
 The Architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, spacetime itself—emerges from coordinated configurations and interactions of many Architrinos.
@@ -1061,7 +1061,7 @@ $$
 \mathbf{a}_a(t) = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \mathbf{a}_{a,j}(t; t_0),
 $$
 
-where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted by source $j$'s causal wake surface emitted at $t_0$. This is the deterministic, history-dependent evolution law.
+where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted by source $j$'s causal wake surface emitted at $t_0$. This is the history-dependent evolution law, with meta-stable branching possible at self-hit thresholds.
 
 ---
 
@@ -1111,7 +1111,7 @@ This wake-stabilized orbit:
 
 ### 2.6 Reception Rule and Acceleration
 
-Each Architrino possesses a **reception rule**: a deterministic law that converts incoming potential into acceleration. The rule is **universal** (all Architrinos follow the same law).
+Each Architrino possesses a **reception rule**: a law that converts incoming potential into acceleration. The rule is **universal** (all Architrinos follow the same law) but may admit **meta-stable branching** when multiple self-hit roots are available.
 
 When potential from another Architrino (or from one's own past emissions, in the self-hit regime) reaches the location of an Architrino, it imparts an **instantaneous acceleration** along the radial direction connecting the current position to the emission location.
 
@@ -1122,7 +1122,7 @@ When potential from another Architrino (or from one's own past emissions, in the
 - **$1/r^2$ magnitude scaling**: The strength of each individual hit scales as the inverse square of the distance from emission to receiver.
 - **Superposition**: The total acceleration is the vector sum of all individual hits from all sources (including self-hits, if present).
 
-This rule is **deterministic and universal**, making the evolution of any system of Architrinos completely determined by initial conditions (positions and velocities at some reference time $t_0$).
+This rule is **universal**, making the evolution of any system of Architrinos determined by initial conditions, with **meta-stable branch points** where multiple attractors are dynamically accessible and outcomes are microstate-sensitive.
 
 **Formal Statement (Schematic):**
 
@@ -1150,7 +1150,10 @@ The total acceleration is summed over all sources and all causal emission times.
 
 ### 2.7 Determinism and Causal Structure
 
-The architrino model is **deterministic in principle**: given initial conditions (all Architrino positions and velocities at $t=t_0$), the future evolution is uniquely determined by the reception rule and the dynamics of self-hit.
+The architrino model is **deterministic in its laws**: given initial conditions (all Architrino positions and velocities at $t=t_0$), the future evolution is determined by the reception rule, with **meta-stable branching** where microstate-sensitive thresholds select among coexisting attractors.
+
+**Clarification (Determinism vs "pre-ordained future"):**  
+Deterministic laws do **not** imply a frozen or trivial future. They mean outcomes are **caused** by the full microstate. In practice, multistability and chaos make the future **computationally open** to any observer lacking complete information. A "decision" by a complex assembly is modeled as **attractor selection**: the system settles into one of several stable outcomes based on its internal state and inputs, without invoking randomness.
 
 However, determinism does not imply practical predictability: the non-linear, non-Markovian nature of the dynamics makes long-term prediction intractable except in special symmetric cases.
 
@@ -1162,7 +1165,7 @@ Accelerations are propagated at the field speed $v_f$. An Architrino at $\mathbf
 
 When $|\mathbf{v}_a| > v_f$, individual Architrinos can outrun their own fields. This does *not* permit causality violation because:
 
-1. The Architrino cannot choose to exceed $v_f$ without deterministic changes to field structure; there is no volitional control.
+1. The Architrino cannot choose to exceed $v_f$ without lawful changes to field structure; there is no volitional control.
 2. Self-hit events, while non-local in configuration space, are still ordered in absolute time and cannot be used for backward signaling.
 3. The theory remains compatible with causality at the level of information and influence: no signal can propagate faster than $v_f$ between **distinct** architrinos.
 
@@ -1254,6 +1257,9 @@ Each Noether core is itself a **tri-binary assembly**: three nested, counter-rot
 - **Energy density**: $\rho_{vac} \times E_{\text{core}}$ (where \$E_{\text{core}}$ is the binding energy of a single core)
 - **Effective permittivity/permeability**: Emergent electromagnetic constants $\epsilon_0$, $\mu_0$ arise from Noether Sea response to charge/current distributions
 - **Refractive index**: Variations in $\rho_{vac}$ cause variations in effective light speed $c_{\text{eff}} = c_f / n(\rho_{vac})$
+
+**Edge-condition energy transfer (deterministic multistability):**  
+Even below the self-hit regime, energy transfer to/from a Noether core can pass through **threshold conditions** where multiple outcomes are dynamically accessible (transfer proceeds or stalls). Which outcome occurs is **deterministic but microstate-sensitive**: the local wake phase configuration from other architrinos can tip the system into one attractor or another. This is **meta-stable branching** without Many-Worlds or fundamental randomness.
 
 **Vacuum Catastrophe Resolution (Alfa/Red):** Because energy density resides in **discrete assemblies** (Noether cores) rather than in the continuum, we have a **natural cutoff** at the assembly scale. This eliminates the QFT vacuum catastrophe (120 orders of magnitude fine-tuning). However, **Red flags**: We must demonstrate that $\rho_{vac}$ does not itself require fine-tuning to prevent universe collapse or explosion. If $\rho_{vac}$ needs tuning beyond naturalness thresholds (FTQ > 10), the model fails.
 
@@ -1486,7 +1492,7 @@ Many apparent "mysteries" of quantum mechanics and relativity dissolve when we r
 
 - **Wavefunction collapse**: Not a physical process (ontic), but an update of incomplete knowledge (epistemic; see TOC Ch. 30).
 - **Relativity of simultaneity**: Not a feature of time itself (ontic), but a measurement artifact (epistemic).
-- **Measurement problem**: Not a fundamental issue (ontic dynamics is always deterministic), but an emergent complexity in PO-accessible information.
+- **Measurement problem**: Not a fundamental issue (ontic dynamics is lawful but can be meta-stable), but an emergent complexity in PO-accessible information.
 
 **Analogy:**
 
@@ -1680,9 +1686,9 @@ The following questions remain open and are active areas of investigation:
 
 ### 7.1 Fundamental Dynamics
 
-1. **Is self-hit fundamentally deterministic or stochastic?**
- - When multiple self-hit roots exist, is the selection rule deterministic (e.g., sum over all roots) or stochastic (e.g., random selection with Born-rule probabilities)?
- - Current hypothesis: Deterministic (sum over roots), with apparent randomness emerging from chaotic sensitivity to initial conditions.
+1. **How are multiple self-hit roots resolved deterministically?**
+ - When multiple self-hit roots exist, what is the deterministic selection rule (e.g., weighted sum over roots, phase-sensitive thresholding, or basin selection by microstate/wake phases)?
+ - Current hypothesis: Deterministic multistability, with apparent randomness emerging from chaotic sensitivity to initial conditions and coarse-graining.
 
 2. **What is the origin of $\epsilon = e/6$?**
  - Can this be derived from tri-binary topology, or is it a brute fact?
@@ -1739,7 +1745,7 @@ The following questions remain open and are active areas of investigation:
 This Foundational Ontology defines:
 
 1. **The Substrate**: Absolute time ($t \in \mathbb{R}$) + Euclidean space ($\mathbb{R}^3$, $\delta_{ij}$) = fixed, non-dynamical background.
-2. **The Fundamental Entity**: Architrino (point transmitter/receiver, charge $|e/6|$, deterministic reception rule).
+2. **The Fundamental Entity**: Architrino (point transmitter/receiver, charge $|e/6|$, universal reception rule with possible meta-stable branching at self-hit thresholds).
 3. **The Physical Medium**: Noether Sea (assembly lattice; mediates gravity, inertia, effective spacetime).
 4. **The Observer Framework**: Absolute Observer (ontic, complete knowledge) vs Physical Observer (epistemic, limited access).
 5. **Terminology Discipline**: Locked definitions to prevent semantic drift.

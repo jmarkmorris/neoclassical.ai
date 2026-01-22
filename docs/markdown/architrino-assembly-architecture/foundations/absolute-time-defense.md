@@ -1,7 +1,7 @@
 ### The Case for Absolute Time ($t$)
 
 1. **Fundamental Parameter**: Absolute time $t$ is the unique, universal evolution parameter of the architrino Master Equation. It provides a unique global foliation of the universe.
-2. **Virtual Observer Knowledge**: The Virtual (Absolute) Observer indexes the state of all architrinos against $t$, allowing for a single, non-branching history (dissolving Many-Worlds).
+2. **Virtual Observer Knowledge**: The Virtual (Absolute) Observer indexes the state of all architrinos against $t$. The microdynamics can admit **meta-stable branching** at self-hit thresholds (multiple coexisting attractors), so $t$ still defines a single realized history while allowing branching *possibilities* in the evolution rule.
 3. **Derived Proper Time ($\tau$)**: Proper time is not fundamental; it is a derived functional of the tri-binary clock's motion and its interaction with the local Noether core sea density.
 4. **Simultaneity Reclaimed**: In the absolute frame, simultaneity is objective. The "Relativity of Simultaneity" is reinterpreted as a synchronization convention used by assemblies that rely on $c_f$-limited signaling within a moving medium.
 
@@ -47,13 +47,16 @@ Physical observers experience relativity of simultaneity and time dilation as **
 
 Any observable signal of absolute time (e.g. orientation‑dependent tick rates absent medium gradients) would falsify the model.
 
+**Clarification (Determinism vs "pre-ordained future"):**  
+Deterministic laws do **not** imply a frozen or trivial future. They mean outcomes are **caused** by the full microstate. In practice, multistability and chaos make the future **computationally open** to any observer lacking complete information. A "decision" by a complex assembly is modeled as **attractor selection**: the system settles into one of several stable outcomes based on its internal state and inputs, without invoking randomness.
+
 
 ### Absolute Time and Unique Global Foliation
 
 Absolute time $t$ provides a **unique foliation** of the universe into “instants.” The Absolute Observer has access to the full microstate on each slice.
 
 * **AO vs. PO Time**: Absolute time $t$ is the evolution parameter. Proper time $\tau$ (measured by assembly clocks) is a derived functional: $d\tau = F(\text{local medium}, v) dt$.
-* **Causal Realism**: The AO sees causation as explicit lawlike mapping from one architrino configuration at time $t$ to one at time $t+\Delta t$.
+* **Causal Realism**: The AO sees causation as explicit lawlike evolution from one architrino configuration at time $t$ to the distribution of allowed configurations at time $t+\Delta t$, including meta-stable branches.
 * **Refutation of Timelessness**: We reject the "Block Universe" where time is a dimension. Time is a process parameter.
 
 

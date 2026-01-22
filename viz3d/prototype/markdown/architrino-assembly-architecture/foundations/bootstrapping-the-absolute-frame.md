@@ -185,7 +185,7 @@ Having established that we can identify absolute rest and fix an origin, we now 
 
 Having established that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, we now face the practical challenge of constructing a complete coordinate system. The Euclidean void provides no intrinsic markers—no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." 
 
-The coordinate system we construct is a **human cognitive tool**: a scaffolding we impose to perform calculations, run simulations, and make predictions. **The universe itself requires none of this.** The architrinos interact through their potential wakes according to deterministic laws that are invariant under translation, rotation, and reflection. The physics continues whether or not any observer bothers to label the axes.
+The coordinate system we construct is a **human cognitive tool**: a scaffolding we impose to perform calculations, run simulations, and make predictions. **The universe itself requires none of this.** The architrinos interact through their potential wakes according to invariant laws that can exhibit **meta-stable branching** at self-hit thresholds. The physics continues whether or not any observer bothers to label the axes.
 
 What follows is the systematic procedure by which a virtual observer (our simulation engine, or any sufficiently omniscient bookkeeper) can bootstrap a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
 
@@ -417,5 +417,4 @@ We cannot directly measure the concentric wake geometry or identify an absolutel
 The bootstrap described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and absolute coordinates **in principle**. At accessible energies, emergent Lorentz symmetry ensures we cannot detect the absolute frame operationally (Michelson-Morley null result, etc.)—but the frame exists as the ontological bedrock upon which the effective geometry is built.
 
 ---
-
 

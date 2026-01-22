@@ -38,8 +38,8 @@ Deliverable: **The Master Equation(s)** (Ch. 4–5 backbone) in a form that can 
   - Conditions on kernels and initial history data for global existence.
   - Sensitivity to initial conditions (Lyapunov exponents for simple subsystems).
 - Clarify:
-  - Where evolution is **purely deterministic**.
-  - Whether any **stochastic elements** are structurally required (e.g. choice among multiple attractors in self‑hit regimes or just chaotic determinism).
+  - Where evolution is **deterministic** vs **deterministic multistability** at threshold regimes.
+  - How microstate/wake‑phase sensitivity selects among coexisting attractors without invoking fundamental randomness.
 
 Deliverable: A **well‑posedness & stability summary** for Ch. 5.
 
