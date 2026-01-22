@@ -111,7 +111,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 - ✅ **Pro**: Spinoza's **rejection of teleology** is fully upheld. The absolute observer embodies Spinoza's "infinite intellect"—the perspective that sees the lawful flow of events, including self-hit branch points.
 - ✅ **Pro**: "God" (Spinoza's term) becomes the **totality of architrino configurations and their laws**—Nature, not a personal deity. The absolute observer sees Nature *sub specie aeternitatis*.
 - ⚠️ **Difference**: Spinoza's "infinite attributes" (thought, extension, etc.) **collapse** into **one physical attribute**: architrino dynamics. Mind is **emergent** from complex assemblies, not a parallel fundamental attribute.
-- ✅ **Pro**: Geometric method is **realized**: architrino laws + initial conditions → all phenomena, with mathematical necessity.
+- ✅ **Pro**: Spinoza's "necessity" is realized as lawful flow with branching—deterministic in structure, but admitting multiple physically realizable futures at critical junctures.
 
 **Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = lawful dynamics with branching. His system is the closest **historical precursor** to the architrino worldview. The absolute observer is Spinoza's God knowing itself.
 
@@ -194,7 +194,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 **Architrino impact**:
 - ✅ **Pro**: **Qualified vindication**. The **absolute observer** approximates Laplace's Demon: it knows the position, velocity, and charge of every architrino at any (x,y,z,t).
 - ⚠️ **Refinement**: Given complete initial conditions, evolution is law-governed but **not uniquely determined** at self-hit branch points, where multiple stable futures are physically realizable.
-- ⚠️ **Refinement**: Laplacean predictability survives **between** branch points but fails **at** them; predictability is limited in principle, not just in practice.
+- ⚠️ **Refinement**: Laplacean predictability holds **between** branch points but encounters **irreducible openness** at them; predictability is limited in principle, not just in practice.
 
 **Legacy shift**: Laplace's Demon is no longer a thought experiment—it becomes a **qualified ideal** for the absolute observer, bounded by self-hit branching.
 
@@ -398,7 +398,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 - ✅ **Pro**: Boltzmann's defense of **atomism and reductionism** is philosophically vindicated.
 - ✅ **Pro**: His tragic struggle against anti-atomist positivism is **resolved in his favor**.
 
-**Legacy shift**: Boltzmann's statistical mechanics becomes the **template** for emergent quantum and thermodynamic behavior. His vision is **fully realized**.
+**Legacy shift**: Boltzmann's statistical mechanics becomes the **template** for emergent quantum and thermodynamic behavior—lawful dynamics up to self-hit branch points. His vision is **fully realized**.
 
 ---
 
