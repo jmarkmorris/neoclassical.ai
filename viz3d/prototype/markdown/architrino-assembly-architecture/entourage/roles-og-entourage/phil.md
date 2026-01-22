@@ -100,7 +100,7 @@ Clarify the **ontological status of spacetime**:
 Formulate a **precise, defensible concept of absolute time**:
 
 **What It Is:**
-- A global parameter $t$ advancing uniformly; all architrinos evolve deterministically in $t$.
+- A global parameter $t$ advancing uniformly; all architrinos evolve lawfully in $t$, with **deterministic multistability** at threshold regimes.
 - It provides an **objective temporal ordering** of all events.
 
 **What It Is Not:**
@@ -157,7 +157,7 @@ Position the model relative to **de Broglie–Bohm theory**:
 - **Self-hit dynamics** and delayed interactions create **non-Markovian memory**, producing wave-like interference and guidance effects.
 
 **What Is Guided?**
-- Individual architrinos follow deterministic trajectories determined by:
+- Individual architrinos follow lawful trajectories determined by:
   - Received potentials from all others,
   - Self-interaction memory (if in self-hit regime).
 - Assemblies (particles) inherit effective guidance from the coherent potential structure they generate and respond to.
@@ -182,7 +182,7 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 - **Standard QM**: $\psi = \alpha\psi_1 + \beta\psi_2$ (state in two "places" at once).
 - **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time $t$, but the **outgoing potential field it generates** has structure reflecting multiple possible paths (due to overlapping potentials from past trajectories or from an ensemble).
 - The "superposition" is in the **potential field structure** based on architrino path history, not in the architrino's t=now location.
-- Measurement/interaction: Disruption of the potential structure → definite outcome selected by deterministic dynamics.
+- Measurement/interaction: Disruption of the potential structure → definite outcome selected by deterministic dynamics, with **meta-stable branching** where multiple attractors are available.
 
 **Interference:**
 - **Double-slit**: Tri-binary spacetime is present everywhere and particle movement creates a pilot wave because v < v_f.  The **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
@@ -193,7 +193,7 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
   - Shared initial conditions (conservation laws),
   - Ongoing potential exchange (if not shielded by distance/decoherence),
   - Or non-local correlations enforced by absolute-time dynamics and shared pilot-wave structure.
-- **No faster-than-light signaling**: Correlations are deterministic outcomes of shared causal past in absolute time $t$, but local measurements appear random because we don't track all architrino degrees of freedom.
+- **No faster-than-light signaling**: Correlations are deterministic outcomes of shared causal past in absolute time $t$, but local measurements appear random because we don't track all architrino degrees of freedom or microstate-sensitive thresholds.
 
 **Deliverable**: Subsections in **Ch. 29** and **Ch. 30 (Measurement and the Collapse Problem)** providing explicit mechanistic stories for each phenomenon, with worked examples (two-slit, Bell pairs, etc.).
 
@@ -203,13 +203,13 @@ Define **measurement** in architrino ontology:
 
 **What Is Measurement?**
 - No observer postulate. Measurement is simply a **complex assembly interaction** (e.g., particle + detector + environment).
-- All components (system, apparatus, environment) are assemblies of architrinos evolving deterministically based upon intersecting causal isochrons.
+- All components (system, apparatus, environment) are assemblies of architrinos evolving lawfully based upon intersecting causal isochrons, with **deterministic multistability** at critical thresholds.
 
 **How Do Definite Outcomes Arise?**
 - From:
   - **Deterministic evolution** of architrino trajectories in absolute time,
   - **Effective decoherence**: degrees of freedom become entangled with environment; potential fields spread and dilute; coherent structure is lost for practical purposes.
-  - Possibly: **Stochastic elements** at critical decision points (e.g., self-hit regime bifurcations)—to be determined whether randomness is fundamental or apparent (deterministic chaos).
+  - **Meta-stable branching** at critical thresholds, with outcomes selected by microstate/wake-phase sensitivity rather than fundamental randomness.
 
 **What Is Wavefunction "Collapse"?**
 - Not a physical process of discontinuous state change.
@@ -229,15 +229,13 @@ Define **measurement** in architrino ontology:
 Articulate the **causal picture**:
 
 **Is Evolution Deterministic?**
-- **In principle**: Yes (given all architrino positions/velocities at $t_0$, the future is determined by the master equation).
-- **In practice**: Computational intractability + potential sensitivity to initial conditions (chaos) may make long-term prediction infeasible.
+- **In principle**: Yes, with **deterministic multistability** at threshold regimes (given all architrino positions/velocities at $t_0$, the master equation plus microstate/wake phases selects among coexisting attractors).
+- **In practice**: Computational intractability + sensitivity to initial conditions (chaos) may make long-term prediction infeasible.
 - **Note from Marko**: The analog architrinos operate in R4 which is continuous and real in all dimensions. Likewise, architrinos move continuously in response to received causal isochrons.  Yet assemblies form which exhibit quantum behaviours, or states. These states produce potential fields. Physicist require photons to observe behqviour.The absorbtion or emission of a photon changes the wave equation.
 
 **Is There Irreducible Randomness?**
-- **To be determined** (in collaboration with topologist and simulator):
-  - If self-hit creates branch points with multiple stable attractors, does the theory require a stochastic selection rule?
-  - Or is apparent randomness just deterministic chaos?
-- Current working hypothesis: fundamentally deterministic, but effective randomness emerges from incomplete information.
+- No: the working hypothesis is **deterministic multistability** at thresholds, with apparent randomness emerging from chaotic sensitivity and incomplete information.
+- Open task: specify the **deterministic selection rule** (e.g., phase-sensitive thresholding or basin selection by microstate/wake phases).
 
 **How Does Causation Operate?**
 - **Finite field-speed** $c_f$ defines causal influence: architrino at $\mathbf{x}$ at time $t$ can only affect architrino at $\mathbf{x}'$ at $t' > t + |\mathbf{x}' - \mathbf{x}|/c_f$.
@@ -247,7 +245,7 @@ Articulate the **causal picture**:
 
 **Is This a Hidden-Variable Theory?**
 - Yes: architrino positions and velocities are the hidden variables.
-- Type: deterministic (modulo possible stochastic self-hit selection), non-local in the sense that absolute-time simultaneity allows instant correlation setup (but no FTL signaling).
+- Type: deterministic with **meta-stable branching** at thresholds; non-local in the sense that absolute-time simultaneity allows instant correlation setup (but no FTL signaling).
 
 **Deliverable**: Section in **Ch. 5 (Self-Hit Dynamics and Non-Markovian Memory)** and **Ch. 47** clarifying determinism vs randomness, and causal structure.
 
@@ -338,7 +336,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 - **Architrino stance**: Violates locality via absolute-time simultaneity, self-hit memory, and delayed interactions.
 - **My job**: Clarify what "nonlocality" means:
   - Not faster-than-light signaling (that would violate causality and is ruled out experimentally).
-  - But: correlations enforced by deterministic dynamics in absolute $t$; measurement outcomes at spacelike-separated events can be correlated via shared past configuration.
+  - But: correlations enforced by lawful dynamics in absolute $t$; measurement outcomes at spacelike-separated events can be correlated via shared past configuration.
 - **Deliverable**: Subsection in **Ch. 16 (Confronting No-Go Theorems)** and **Ch. 29** explaining the loophole conceptually; explicit Bell correlation calculations provided by other roles.
 
 **Coleman-Mandula:**
@@ -458,7 +456,7 @@ Provide context within the history of foundational physics:
 
 **Use This Context To:**
 - Avoid known dead ends (e.g., why did classical ether fail? How do we avoid those pitfalls?).
-- Highlight unique conceptual advantages (e.g., no wavefunction collapse problem if deterministic; unification of matter/fields/spacetime).
+- Highlight unique conceptual advantages (e.g., no wavefunction collapse problem with lawful deterministic dynamics; unification of matter/fields/spacetime).
 
 **Deliverable**: **Ch. 46 (Historical Context and Alternative Approaches)** with comparative table and critical assessment; also inform introductory chapters (Ch. 1).
 

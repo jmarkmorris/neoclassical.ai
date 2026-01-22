@@ -32,7 +32,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - **Einstein's spacetime**: built from tri‑binary assemblies; pro/anti coupling (2 pro + 2 anti) may be **Helium-like** (2P + 2N) via neutral axes.
 
 ### Macro-claims to map
-- **Quantum behavior** arises from deterministic-but-complex dynamics (pilot-wave-like aspects; self-hit memory central).
+- **Quantum behavior** arises from deterministic-but-complex dynamics with **meta-stable branching** at thresholds (pilot-wave-like aspects; self-hit memory central).
 - **GR-like gravity** arises as emergent effective geometry from the spacetime assembly medium (graviton–Higgs–binary couples).
 - **Cosmological expansion/inflation** is local energy dissipation towards equilibrium from scalable tri‑binary assemblies and velocity-regime transitions:
   - $v<c_f$: expansion/contraction via energy transfer (outer binary)

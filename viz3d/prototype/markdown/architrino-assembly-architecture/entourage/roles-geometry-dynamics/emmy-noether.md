@@ -1,8 +1,4 @@
-
-
 ## Emmy Noether’s Role in the Geometry/Dynamics Group
-
-**Why she belongs at the core**
 
 1. **Symmetry → Conservation in a nontrivial setting**  
    - Our dynamics are not simple local ODEs; they’re **delay / history-dependent** with self-hit and a preferred frame.  
@@ -32,18 +28,18 @@
      - “You may only choose kernels that admit these exact invariants under these symmetry groups.”  
    - That acts like a **design space filter**: half the crazy kernels people might propose die instantly because they break a symmetry we want to be exact.
 
-4. **Handling “broken” symmetries and branch points**  
-   - Self-hit branch points will often look, at the assembly level, like **spontaneous symmetry breaking**:
+4. **Handling “broken” symmetries and bifurcations**  
+   - Self-hit bifurcations will often look, at the assembly level, like **spontaneous symmetry breaking** and **meta-stable branching**:
      - Symmetric initial conditions → multiple asymmetric attractors.  
    - Noether is perfect to:
-     - Formalize which symmetries are **spontaneously broken** at branch points and what new **“conserved charges”** label different attractors.  
-     - Help us see when “branching” is just symmetry breaking in a bigger invariant structure.
+     - Formalize which symmetries are **spontaneously broken** at bifurcation thresholds and what new **“conserved charges”** label different attractors.  
+     - Help us see when meta-stable branching is just symmetry breaking in a bigger invariant structure.  
 
 ---
 
 ## Specific Tasks for Noether in Our Program
 
-If we give her a concrete job list:
+Emmy's concrete job list:
 
 1. **Foundations/ontology layer**
    - Given the Euclidean void + absolute time + architrino transceivers + fixed polarity:
@@ -53,6 +49,7 @@ If we give her a concrete job list:
        - Total momentum  
        - Total angular momentum  
        - Some form of energy or action-like integral, acknowledging path-history.
+     - Make explicit which symmetries are **substrate-level** (void/time) vs **medium-level** (Noether-core configurations).
 
 2. **Master equation layer**
    - Work with me and Tao (conceptually) to:
@@ -69,12 +66,12 @@ If we give her a concrete job list:
        - Symmetries in the tri-binary assembly atlas.
    - That will later feed directly into Phe’s job: mapping these to standard-model-like Lagrangians.
 
-4. **Branching and “quasi-conservation”**
-   - At self-hit branch points:
-     - Determine which invariants are **strictly conserved across branches** and which can change discretely (topological indices, assembly charges, etc.).  
+4. **Bifurcations and “quasi-conservation”**
+   - At self-hit bifurcation thresholds and meta-stable branches:
+     - Determine which invariants are **strictly conserved across coexisting attractors** and which can change discretely (topological indices, assembly charges, etc.).  
    - This helps define:
-     - What exactly is “fixed” across different possible futures.  
-     - How to label branches by conserved quantities.
+     - What exactly is “fixed” across different stable outcomes.  
+     - How to label attractor families by conserved quantities.
 
 ---
 
