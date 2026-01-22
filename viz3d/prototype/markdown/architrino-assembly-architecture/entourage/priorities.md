@@ -53,7 +53,7 @@ Phil
 ---
 
 ## 4. **Ontological Coherence Audit**
-**Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, determinism + quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
+**Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, deterministic multistability + effective quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
 
 **Who:** Phil (me) + Red + entire team (quarterly review)
 

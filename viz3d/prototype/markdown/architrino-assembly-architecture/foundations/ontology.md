@@ -891,7 +891,7 @@ An **Architrino** is the sole fundamental entity in this theory. It is:
 
 - A **point-like transmitter/receiver** located at a position $\mathbf{s}_a(t)$ in the flat Euclidean 3D space.
 - **Always active**: it continuously emits a flux of causal wake surfaces and continuously receives potential from all other Architrinos.
-- **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is uniquely determined.
+- **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is determined, with **deterministic multistability** at threshold regimes.
 - **Charged**: each Architrino carries a fundamental charge magnitude $|e/6|$ (see Section 2.3).
 
 The Architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, spacetime itself—emerges from coordinated configurations and interactions of many Architrinos.

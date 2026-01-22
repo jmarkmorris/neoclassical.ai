@@ -466,10 +466,10 @@ The confusion arises because "free will" is a philosophically loaded term with m
 
 In the architrino framework:
 - Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
-- The master equation is **deterministic**: given complete initial conditions, the future is fixed
+- The master equation is **lawful**: given complete initial conditions, the future is fixed, with **deterministic multistability** at threshold regimes
 - **There is no ontological randomness**, no dice-rolling, no violations of causality
 
-**So in the strict metaphysical sense:** The universe is a deterministic machine. Rewind the tape, replay it, get exactly the same outcome.
+**So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
 
 ---
 
@@ -498,7 +498,7 @@ When Alfa and Dyna described the "Decision Super-Assembly," they were **not** cl
 Here's the critical distinction:
 
 **External Determination (Passive Rock):**
-- A hydrogen atom in a laser beam absorbs a photon → deterministic outcome
+- A hydrogen atom in a laser beam absorbs a photon → deterministic outcome (away from edge-condition thresholds)
 - The atom has no internal degrees of freedom that modify the absorption probability
 - It's a **fixed-threshold detector**
 
@@ -508,7 +508,7 @@ Here's the critical distinction:
   - Which mode it's in depends on its recent history (what transitions it made before)
   - That history was shaped by prior inputs **plus** the assembly's own structural feedback rules
 
-**The assembly's response is still deterministic** (given complete microstate + history, outcome is fixed), **but the determining factors include the assembly's own internal architecture and historical trajectory**.
+**The assembly's response is still deterministic** (given complete microstate + history, outcome is fixed), **but the determining factors include the assembly's own internal architecture, history, and threshold-sensitive multistability**.
 
 From the **outside**, this looks like the assembly "chose" to ignore or leverage the input. From the **inside** (absolute microdynamics), it's just deterministic evolution with complex, history-dependent feedback.
 
@@ -522,7 +522,7 @@ What we care about practically is whether a system can:
 - **Self-regulate** (maintain internal goals/states against perturbations)
 - **Navigate** (steer toward preferred attractors in a complex landscape)
 
-The architrino super-assembly can do all of this **while remaining fully deterministic**.
+The architrino super-assembly can do all of this **while remaining fully deterministic** (with multistability at thresholds).
 
 **This is compatibilist free will:**
 - Your decisions are caused (by your brain's microstate + inputs)
@@ -564,7 +564,7 @@ When you "decide" to raise your arm:
 3. The motor signal (rogue wave from upstream neurons) arrives and tips the assemblies into firing
 4. The firing cascade triggers muscle contraction
 
-**At every step:** deterministic.
+**At every step:** lawful (with multistability at thresholds).
 **But:** The outcome depends on your brain's **current configuration** (which you shaped through learning) and your **current internal state** (which reflects your history and goals).
 
 **So in what sense is it "your" decision?**
@@ -593,7 +593,7 @@ When you "decide" to raise your arm:
 
 | Concept | Architrino Framework Position |
 |---------|-------------------------------|
-| **Determinism** | Yes, fundamentally (absolute time + master equation) |
+| **Determinism** | Yes, fundamentally (absolute time + master equation; deterministic multistability at thresholds) |
 | **Ontological Randomness** | No (chaos + ignorance, not dice-rolling) |
 | **Libertarian Free Will** | No (incoherent concept; "uncaused cause" violates causality) |
 | **Compatibilist Free Will / Agency** | Yes (complex assemblies can navigate deterministic dynamics autonomously) |
