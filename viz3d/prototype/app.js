@@ -491,6 +491,17 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
       : (await listMarkdownFilesInDir(scene.autoMarkdownDirectory)).sort();
   }
 
+  if (Array.isArray(scene.autoMarkdownExcludePaths) && scene.autoMarkdownExcludePaths.length) {
+    const exclude = new Set(
+      scene.autoMarkdownExcludePaths.map((path) => normalizeMarkdownPath(path))
+    );
+    entries = entries.filter((entry) => !exclude.has(normalizeMarkdownPath(entry)));
+  }
+
+  const plainPaths = Array.isArray(scene.autoMarkdownPlainPaths)
+    ? new Set(scene.autoMarkdownPlainPaths.map((path) => normalizeMarkdownPath(path)))
+    : null;
+
   if (!entries.length && !includeExisting) {
     return [];
   }
@@ -650,6 +661,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         }
       } else if (info.isNonEmpty) {
         node.markdownPath = info.path;
+        if (plainPaths) {
+          node.markdownAutoIndex = !plainPaths.has(normalizeMarkdownPath(info.path));
+        }
         if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
           node.markdownColumns = scene.autoMarkdownColumns;
         }
@@ -749,6 +763,13 @@ function normalizeMarkdownKey(text) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
+}
+
+function normalizeMarkdownPath(path) {
+  return String(path)
+    .replace(/\\/g, "/")
+    .replace(/^\.?\//, "")
+    .toLowerCase();
 }
 
 function parseMarkdownHeading(line) {
@@ -1183,6 +1204,12 @@ async function loadSceneConfig(scenePath) {
         autoMarkdownColumns: data.scene?.autoMarkdownColumns ?? null,
         autoMarkdownPalette: data.scene?.autoMarkdownPalette ?? null,
         autoMarkdownColor: data.scene?.autoMarkdownColor ?? null,
+        autoMarkdownExcludePaths: Array.isArray(data.scene?.autoMarkdownExcludePaths)
+          ? data.scene.autoMarkdownExcludePaths
+          : [],
+        autoMarkdownPlainPaths: Array.isArray(data.scene?.autoMarkdownPlainPaths)
+          ? data.scene.autoMarkdownPlainPaths
+          : [],
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
@@ -1364,6 +1391,10 @@ function getMarkdownIndexSceneId(markdownPath, headingLevel) {
   return `__markdown_index__:${markdownPath}${levelToken}`;
 }
 
+function getMarkdownDocSceneId(markdownPath) {
+  return `__markdown_doc__:${markdownPath}`;
+}
+
 function getMarkdownSectionIndexSceneId(markdownPath, markdownSection) {
   const normalized = normalizeMarkdownKey(markdownSection);
   return `__markdown_section_index__:${markdownPath}::${normalized}`;
@@ -1386,6 +1417,26 @@ function ensureMarkdownReaderScene(nodeData) {
       : 2;
 
   if (!markdownSection) {
+    if (nodeData.markdownAutoIndex === false) {
+      const sceneId = getMarkdownDocSceneId(markdownPath);
+      if (levelConfigs[sceneId]) {
+        return sceneId;
+      }
+      levelConfigs[sceneId] = {
+        layout: "static",
+        nodes: [],
+        links: [],
+        sceneName,
+        sceneId,
+        markdownPath,
+        markdownSection: null,
+        markdownColumns: nodeData.markdownColumns ?? null,
+        markdownAutoOpen: true,
+        centerOn: null,
+      };
+      markdownReaderScenes.set(sceneId, true);
+      return sceneId;
+    }
     const sceneId = getMarkdownIndexSceneId(markdownPath, headingLevel);
     if (levelConfigs[sceneId]) {
       return sceneId;
