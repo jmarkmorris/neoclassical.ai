@@ -30,6 +30,10 @@
         {
           "path": "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md",
           "sectionDepth": 1
+        },
+        {
+          "path": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md",
+          "mode": "doc"
         }
       ]
     }
