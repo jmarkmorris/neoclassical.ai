@@ -16,9 +16,7 @@
         "ringRadius": 12
       },
       "render": {
-        "defaultMode": "index",
-        "headingLevel": 2,
-        "sectionDepth": 2
+        "defaultMode": "doc"
       }
     }
   },
