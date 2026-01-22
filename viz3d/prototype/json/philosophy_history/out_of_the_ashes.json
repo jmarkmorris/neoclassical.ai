@@ -6,10 +6,21 @@
     "units": "relative",
     "wrapLabels": true,
     "autoSphereRing": true,
-    "autoMarkdownPath": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md",
-    "autoMarkdownHeadingLevel": 2,
-    "autoMarkdownNodeRadius": 2.2,
-    "autoMarkdownRingRadius": 12
+    "markdown": {
+      "source": {
+        "type": "file",
+        "path": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md"
+      },
+      "layout": {
+        "nodeRadius": 2.2,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "index",
+        "headingLevel": 2,
+        "sectionDepth": 2
+      }
+    }
   },
   "objects": []
 }

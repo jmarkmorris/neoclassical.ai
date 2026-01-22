@@ -1333,9 +1333,7 @@ async function loadSceneConfig(scenePath) {
         }
         return node;
       });
-      const autoMarkdownScene = markdownDerived
-        ? { ...data.scene, ...markdownDerived }
-        : data.scene;
+      const autoMarkdownScene = markdownDerived ? { ...data.scene, ...markdownDerived } : data.scene;
       const autoNodes = await buildAutoMarkdownNodes(autoMarkdownScene, nodes);
       if (autoNodes.length) {
         nodes = nodes.concat(autoNodes);
@@ -1356,65 +1354,42 @@ async function loadSceneConfig(scenePath) {
         markdownAutoOpen: data.scene?.markdownAutoOpen ?? true,
         centerOn: data.scene?.centerOn ?? null,
         autoSphereRing: data.scene?.autoSphereRing ?? false,
-        autoMarkdownDirectory:
-          markdownDerived?.autoMarkdownDirectory ?? data.scene?.autoMarkdownDirectory ?? null,
-        autoMarkdownPath:
-          markdownDerived?.autoMarkdownPath ?? data.scene?.autoMarkdownPath ?? null,
-        autoMarkdownSection:
-          markdownDerived?.autoMarkdownSection ?? data.scene?.autoMarkdownSection ?? null,
-        autoMarkdownHeadingLevel:
-          markdownDerived?.autoMarkdownHeadingLevel ?? data.scene?.autoMarkdownHeadingLevel ?? null,
+        autoMarkdownDirectory: markdownDerived?.autoMarkdownDirectory ?? null,
+        autoMarkdownPath: markdownDerived?.autoMarkdownPath ?? null,
+        autoMarkdownSection: markdownDerived?.autoMarkdownSection ?? null,
+        autoMarkdownHeadingLevel: markdownDerived?.autoMarkdownHeadingLevel ?? null,
         autoMarkdownIncludeExistingInLayout:
-          markdownDerived?.autoMarkdownIncludeExistingInLayout ??
-          data.scene?.autoMarkdownIncludeExistingInLayout ??
-          false,
+          markdownDerived?.autoMarkdownIncludeExistingInLayout ?? false,
         autoMarkdownNodeRadius:
-          markdownDerived?.autoMarkdownNodeRadius ?? data.scene?.autoMarkdownNodeRadius ?? null,
+          markdownDerived?.autoMarkdownNodeRadius ?? null,
         autoMarkdownRingRadius:
-          markdownDerived?.autoMarkdownRingRadius ?? data.scene?.autoMarkdownRingRadius ?? null,
+          markdownDerived?.autoMarkdownRingRadius ?? null,
         autoMarkdownMaxRingCount:
-          markdownDerived?.autoMarkdownMaxRingCount ?? data.scene?.autoMarkdownMaxRingCount ?? null,
+          markdownDerived?.autoMarkdownMaxRingCount ?? null,
         autoMarkdownGridSpacing:
-          markdownDerived?.autoMarkdownGridSpacing ?? data.scene?.autoMarkdownGridSpacing ?? null,
+          markdownDerived?.autoMarkdownGridSpacing ?? null,
         autoMarkdownColumns:
-          markdownDerived?.autoMarkdownColumns ?? data.scene?.autoMarkdownColumns ?? null,
+          markdownDerived?.autoMarkdownColumns ?? null,
         autoMarkdownPalette:
-          markdownDerived?.autoMarkdownPalette ?? data.scene?.autoMarkdownPalette ?? null,
+          markdownDerived?.autoMarkdownPalette ?? null,
         autoMarkdownColor:
-          markdownDerived?.autoMarkdownColor ?? data.scene?.autoMarkdownColor ?? null,
-        autoMarkdownExcludePaths: Array.isArray(
-          markdownDerived?.autoMarkdownExcludePaths ??
-            data.scene?.autoMarkdownExcludePaths
-        )
-          ? markdownDerived?.autoMarkdownExcludePaths ?? data.scene.autoMarkdownExcludePaths
+          markdownDerived?.autoMarkdownColor ?? null,
+        autoMarkdownExcludePaths: Array.isArray(markdownDerived?.autoMarkdownExcludePaths)
+          ? markdownDerived.autoMarkdownExcludePaths
           : [],
-        autoMarkdownPlainPaths: Array.isArray(
-          markdownDerived?.autoMarkdownPlainPaths ?? data.scene?.autoMarkdownPlainPaths
-        )
-          ? markdownDerived?.autoMarkdownPlainPaths ?? data.scene.autoMarkdownPlainPaths
+        autoMarkdownPlainPaths: Array.isArray(markdownDerived?.autoMarkdownPlainPaths)
+          ? markdownDerived.autoMarkdownPlainPaths
           : [],
-        autoMarkdownDefaultIndex:
-          markdownDerived?.autoMarkdownDefaultIndex ?? data.scene?.autoMarkdownDefaultIndex ?? null,
-        autoMarkdownIndexPaths: Array.isArray(
-          markdownDerived?.autoMarkdownIndexPaths ?? data.scene?.autoMarkdownIndexPaths
-        )
-          ? markdownDerived?.autoMarkdownIndexPaths ?? data.scene.autoMarkdownIndexPaths
+        autoMarkdownDefaultIndex: markdownDerived?.autoMarkdownDefaultIndex ?? null,
+        autoMarkdownIndexPaths: Array.isArray(markdownDerived?.autoMarkdownIndexPaths)
+          ? markdownDerived.autoMarkdownIndexPaths
           : [],
-        autoMarkdownPlainSectionPaths: Array.isArray(
-          markdownDerived?.autoMarkdownPlainSectionPaths ??
-            data.scene?.autoMarkdownPlainSectionPaths
-        )
-          ? markdownDerived?.autoMarkdownPlainSectionPaths ??
-            data.scene.autoMarkdownPlainSectionPaths
+        autoMarkdownPlainSectionPaths: Array.isArray(markdownDerived?.autoMarkdownPlainSectionPaths)
+          ? markdownDerived.autoMarkdownPlainSectionPaths
           : [],
-        autoMarkdownSectionDepth:
-          markdownDerived?.autoMarkdownSectionDepth ?? data.scene?.autoMarkdownSectionDepth ?? null,
-        autoMarkdownOverrides:
-          markdownDerived?.autoMarkdownOverrides ?? data.scene?.autoMarkdownOverrides ?? null,
-        autoMarkdownSubdirectories:
-          markdownDerived?.autoMarkdownSubdirectories ??
-          data.scene?.autoMarkdownSubdirectories ??
-          false,
+        autoMarkdownSectionDepth: markdownDerived?.autoMarkdownSectionDepth ?? null,
+        autoMarkdownOverrides: markdownDerived?.autoMarkdownOverrides ?? null,
+        autoMarkdownSubdirectories: markdownDerived?.autoMarkdownSubdirectories ?? false,
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
