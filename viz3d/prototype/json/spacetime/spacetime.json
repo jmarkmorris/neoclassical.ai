@@ -6,10 +6,21 @@
     "units": "relative",
     "wrapLabels": true,
     "autoSphereRing": true,
-    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/spacetime",
-    "autoMarkdownIncludeExistingInLayout": true,
-    "autoMarkdownNodeRadius": 2.688,
-    "autoMarkdownRingRadius": 12
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/spacetime",
+        "subdirectories": false
+      },
+      "layout": {
+        "includeExisting": true,
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
   },
   "objects": [
     {

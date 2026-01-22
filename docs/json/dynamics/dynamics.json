@@ -3,9 +3,20 @@
     "id": "dynamics",
     "name": "Dynamics",
     "autoSphereRing": true,
-    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/dynamics",
-    "autoMarkdownNodeRadius": 2.688,
-    "autoMarkdownRingRadius": 12
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/dynamics",
+        "subdirectories": false
+      },
+      "layout": {
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
   },
   "objects": []
 }
