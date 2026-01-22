@@ -64,23 +64,6 @@
       }
     },
     {
-      "id": "hubble_tension",
-      "label": "Hubble Tension",
-      "radius": 2.688,
-      "color": "#6a3c3c",
-      "position": [
-        -3.0,
-        -2.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/cosmology/hubble-tension.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "s_8_tension",
       "label": "S_8 (Structure Growth) Tension",
       "radius": 2.688,
