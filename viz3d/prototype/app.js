@@ -1787,6 +1787,19 @@ function cloneNodeData(nodeData) {
   return JSON.parse(JSON.stringify(nodeData));
 }
 
+function resetNodeScale(node) {
+  if (!node?.group) {
+    return;
+  }
+  const baseScale =
+    typeof node.baseScale === "number"
+      ? node.baseScale
+      : typeof node.data?.baseScale === "number"
+        ? node.data.baseScale
+        : 1;
+  node.group.scale.setScalar(baseScale);
+}
+
 function layoutRootLevel(level) {
   if (!level || level.id !== rootScenePath) {
     return;
@@ -1823,6 +1836,10 @@ function layoutRootLevel(level) {
   if (Number.isFinite(scaleFactor)) {
     nodes.forEach((node) => {
       node.group.scale.setScalar(scaleFactor);
+      node.baseScale = scaleFactor;
+      if (node.data) {
+        node.data.baseScale = scaleFactor;
+      }
       if (node.data?.baseRadius) {
         node.data.radius = node.data.baseRadius * scaleFactor;
       }
@@ -1999,6 +2016,7 @@ function createStripedSphereNode(nodeData) {
     haloBaseOpacity: 0,
     haloIntensity: 1,
     haloPhase: haloSeed++ * 0.6,
+    baseScale: 1,
     data: nodeData,
     baseOpacity: {
       mesh: baseOpacity,
@@ -2128,6 +2146,7 @@ function createBinaryCoreNode(nodeData, useCutaway) {
     haloBaseOpacity: 0,
     haloIntensity: 1,
     haloPhase: haloSeed++ * 0.6,
+    baseScale: 1,
     data: nodeData,
     baseOpacity: {
       mesh: shellMaterial.opacity,
@@ -2226,6 +2245,7 @@ function createNode(nodeData) {
     haloBaseOpacity: halo ? halo.material.opacity : 0,
     haloIntensity: 1,
     haloPhase: haloSeed++ * 0.6,
+    baseScale: 1,
     data: nodeData,
     baseOpacity: {
       mesh: material.opacity,
@@ -3038,8 +3058,9 @@ const transitionHandlers = {
 
       const focusNode = getTransitionFocusNode(fromLevel);
       if (focusNode) {
+        const baseScale = focusNode.baseScale ?? focusNode.data?.baseScale ?? 1;
         focusNode.group.scale.setScalar(
-          1 + (payload.warpScale - 1) * scaleProgress
+          baseScale * (1 + (payload.warpScale - 1) * scaleProgress)
         );
       }
       const toScale =
@@ -3072,7 +3093,7 @@ const transitionHandlers = {
       }
       const fromFocus = getTransitionFocusNode(fromLevel);
       if (fromFocus) {
-        fromFocus.group.scale.setScalar(1);
+        resetNodeScale(fromFocus);
       }
       fromLevel.group.scale.setScalar(1);
       setLevelOpacity(fromLevel, 0);
@@ -3143,7 +3164,7 @@ const transitionHandlers = {
 
       const toFocus = getTransitionFocusNode(toLevel);
       if (toFocus) {
-        toFocus.group.scale.setScalar(1);
+        resetNodeScale(toFocus);
       }
       if (payload.fromPivot) {
         payload.fromPivot.scale.setScalar(1);
@@ -3445,7 +3466,11 @@ async function updatePeriodicOverlay() {
   const isPeriodic = currentLevel?.sceneId === "periodic_table";
   periodicOverlay.classList.toggle("is-open", !!isPeriodic);
   periodicOverlay.setAttribute("aria-hidden", isPeriodic ? "false" : "true");
+  periodicOverlay.inert = !isPeriodic;
   if (!isPeriodic) {
+    if (periodicOverlay.contains(document.activeElement)) {
+      (navUpButton ?? homeButton ?? sceneSearchToggle ?? document.body).focus();
+    }
     periodicOverlay.classList.remove("is-fading");
     return;
   }
