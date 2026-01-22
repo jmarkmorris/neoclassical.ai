@@ -28,21 +28,6 @@
       }
     },
     {
-      "id": "fine_tuning",
-      "label": "Fine-Tuning / Anthropic Landscape",
-      "radius": 2.688,
-      "color": "#7a3f4a",
-      "position": [
-        4.5,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "measurement_problem",
       "label": "Measurement Problem",
       "radius": 2.688,
