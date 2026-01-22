@@ -28,38 +28,6 @@
       }
     },
     {
-      "id": "uv_divergence",
-      "label": "UV Divergence",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "position": [
-        4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "hierarchy_problem",
-      "label": "Hierarchy Problem (Naturalness)",
-      "radius": 2.688,
-      "color": "PURPLE",
-      "position": [
-        0.0,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/foundations/hierarchy-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "nonlocality_vs_causality",
       "label": "Relativistic Causality vs. Entanglement",
       "radius": 2.688,
