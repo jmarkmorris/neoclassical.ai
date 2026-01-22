@@ -64,23 +64,6 @@
       }
     },
     {
-      "id": "s_8_tension",
-      "label": "S_8 (Structure Growth) Tension",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "position": [
-        3.0,
-        -2.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/cosmology/s-8-tension.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "horizon_problem",
       "label": "Horizon Problem",
       "radius": 2.688,
