@@ -13,23 +13,6 @@
   },
   "objects": [
     {
-      "id": "gravity",
-      "label": "Gravity",
-      "radius": 2.688,
-      "color": "#2a3b5a",
-      "position": [
-        0.0,
-        11.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/spacetime/gravity.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "black_hole_interior",
       "label": "Black Hole Interior Structure",
       "radius": 2.688,
@@ -157,36 +140,6 @@
       "subScenes": [
         "json/spacetime/mechanism-of-inflation.json"
       ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "singularity",
-      "label": "Singularity",
-      "radius": 2.688,
-      "color": "#1c2a4f",
-      "position": [
-        -10.01,
-        4.58,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "nature_of_time",
-      "label": "Nature of Time",
-      "radius": 2.688,
-      "color": "#2a3b5a",
-      "position": [
-        -5.94,
-        9.24,
-        0.0
-      ],
-      "subScenes": [],
       "motion": {
         "type": "fixed"
       }
