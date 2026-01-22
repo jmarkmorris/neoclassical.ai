@@ -28,23 +28,6 @@
       }
     },
     {
-      "id": "quantum_gravity",
-      "label": "Quantum Gravity and Renormalizability",
-      "radius": 2.688,
-      "color": "#2f4f7a",
-      "position": [
-        10.01,
-        4.58,
-        0.0
-      ],
-      "subScenes": [
-        "json/spacetime/quantum-gravity-and-renormalizability.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "black_hole_information",
       "label": "Black Hole Information Paradox",
       "radius": 2.688,
@@ -56,23 +39,6 @@
       ],
       "subScenes": [
         "json/spacetime/black-hole-information.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "arrow_of_time",
-      "label": "Arrow of Time",
-      "radius": 2.688,
-      "color": "#4b678f",
-      "position": [
-        8.32,
-        -7.19,
-        0.0
-      ],
-      "subScenes": [
-        "json/spacetime/arrow-of-time.json"
       ],
       "motion": {
         "type": "fixed"

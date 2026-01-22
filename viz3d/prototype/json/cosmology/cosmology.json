@@ -27,22 +27,5 @@
         "type": "fixed"
       }
     },
-    {
-      "id": "lithium_problem",
-      "label": "Lithium Problem",
-      "radius": 2.688,
-      "color": "#3c6a7a",
-      "position": [
-        0.0,
-        -12.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/cosmology/lithium-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    }
   ]
 }
