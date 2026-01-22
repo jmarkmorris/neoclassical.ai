@@ -6,17 +6,37 @@
     "units": "relative",
     "wrapLabels": true,
     "autoSphereRing": true,
-    "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/philosophy-history",
-    "autoMarkdownIncludeExistingInLayout": true,
-    "autoMarkdownDefaultIndex": true,
-    "autoMarkdownPlainPaths": [
-      "markdown/architrino-assembly-architecture/philosophy-history/lorentz-ether-comparison.md"
-    ],
-    "autoMarkdownPlainSectionPaths": [
-      "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md"
-    ],
-    "autoMarkdownNodeRadius": 2.688,
-    "autoMarkdownRingRadius": 12
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/philosophy-history",
+        "subdirectories": false
+      },
+      "layout": {
+        "includeExisting": true,
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "index",
+        "headingLevel": 2,
+        "sectionDepth": 2
+      },
+      "overrides": [
+        {
+          "path": "markdown/architrino-assembly-architecture/philosophy-history/lorentz-ether-comparison.md",
+          "mode": "doc"
+        },
+        {
+          "path": "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md",
+          "sectionDepth": 1
+        },
+        {
+          "path": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md",
+          "mode": "doc"
+        }
+      ]
+    }
   },
   "objects": [
   ]
