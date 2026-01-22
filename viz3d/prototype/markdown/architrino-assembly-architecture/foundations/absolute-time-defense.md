@@ -47,6 +47,9 @@ Physical observers experience relativity of simultaneity and time dilation as **
 
 Any observable signal of absolute time (e.g. orientation‑dependent tick rates absent medium gradients) would falsify the model.
 
+**Clarification (Determinism vs "pre-ordained future"):**  
+Deterministic laws do **not** imply a frozen or trivial future. They mean outcomes are **caused** by the full microstate. In practice, multistability and chaos make the future **computationally open** to any observer lacking complete information. A "decision" by a complex assembly is modeled as **attractor selection**: the system settles into one of several stable outcomes based on its internal state and inputs, without invoking randomness.
+
 
 ### Absolute Time and Unique Global Foliation
 

@@ -1152,6 +1152,9 @@ The total acceleration is summed over all sources and all causal emission times.
 
 The architrino model is **deterministic in its laws**: given initial conditions (all Architrino positions and velocities at $t=t_0$), the future evolution is determined by the reception rule, with **meta-stable branching** where microstate-sensitive thresholds select among coexisting attractors.
 
+**Clarification (Determinism vs "pre-ordained future"):**  
+Deterministic laws do **not** imply a frozen or trivial future. They mean outcomes are **caused** by the full microstate. In practice, multistability and chaos make the future **computationally open** to any observer lacking complete information. A "decision" by a complex assembly is modeled as **attractor selection**: the system settles into one of several stable outcomes based on its internal state and inputs, without invoking randomness.
+
 However, determinism does not imply practical predictability: the non-linear, non-Markovian nature of the dynamics makes long-term prediction intractable except in special symmetric cases.
 
 **Causality and local causality:**
