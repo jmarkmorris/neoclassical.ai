@@ -161,41 +161,6 @@
       "path": "json/philosophy_history/out_of_the_ashes.json"
     },
     {
-      "id": "out_of_the_ashes_big_shift",
-      "name": "The Big Shift",
-      "path": "json/philosophy_history/out_of_the_ashes_big_shift.json"
-    },
-    {
-      "id": "out_of_the_ashes_identity",
-      "name": "Identity",
-      "path": "json/philosophy_history/out_of_the_ashes_identity.json"
-    },
-    {
-      "id": "out_of_the_ashes_galactic_heart",
-      "name": "The Galactic Heart",
-      "path": "json/philosophy_history/out_of_the_ashes_galactic_heart.json"
-    },
-    {
-      "id": "out_of_the_ashes_ethics",
-      "name": "Ethics",
-      "path": "json/philosophy_history/out_of_the_ashes_ethics.json"
-    },
-    {
-      "id": "out_of_the_ashes_how_to_live",
-      "name": "How to Live",
-      "path": "json/philosophy_history/out_of_the_ashes_how_to_live.json"
-    },
-    {
-      "id": "out_of_the_ashes_death",
-      "name": "Death",
-      "path": "json/philosophy_history/out_of_the_ashes_death.json"
-    },
-    {
-      "id": "out_of_the_ashes_credo",
-      "name": "The Credo",
-      "path": "json/philosophy_history/out_of_the_ashes_credo.json"
-    },
-    {
       "id": "gravity",
       "name": "Gravity",
       "path": "json/spacetime/gravity.json"
