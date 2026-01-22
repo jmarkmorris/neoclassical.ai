@@ -12,6 +12,9 @@
     "autoMarkdownPlainPaths": [
       "markdown/architrino-assembly-architecture/philosophy-history/lorentz-ether-comparison.md"
     ],
+    "autoMarkdownPlainSectionPaths": [
+      "markdown/architrino-assembly-architecture/philosophy-history/religious-ontologies.md"
+    ],
     "autoMarkdownNodeRadius": 2.688,
     "autoMarkdownRingRadius": 12
   },

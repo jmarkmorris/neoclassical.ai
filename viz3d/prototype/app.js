@@ -505,6 +505,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
   const plainPaths = Array.isArray(scene.autoMarkdownPlainPaths)
     ? new Set(scene.autoMarkdownPlainPaths.map((path) => normalizeMarkdownPath(path)))
     : null;
+  const plainSectionPaths = Array.isArray(scene.autoMarkdownPlainSectionPaths)
+    ? new Set(scene.autoMarkdownPlainSectionPaths.map((path) => normalizeMarkdownPath(path)))
+    : null;
 
   if (!entries.length && !includeExisting) {
     return [];
@@ -637,11 +640,13 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         wrapLabel: scene.wrapLabels ?? true,
       };
       if (scene.autoMarkdownPath) {
+        const allowSectionIndex =
+          !(plainSectionPaths && plainSectionPaths.has(normalizeMarkdownPath(scene.autoMarkdownPath)));
         const hasSubheadings =
           isTwoLevelRoot && info.title
             ? sectionSubheadings?.get(info.title) === true
             : false;
-        if (isTwoLevelRoot && info.title && hasSubheadings) {
+        if (isTwoLevelRoot && info.title && hasSubheadings && allowSectionIndex) {
           const childScene = ensureMarkdownSectionIndexScene(
             scene.autoMarkdownPath,
             info.title,
@@ -674,6 +679,9 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
           autoIndex = false;
         }
         node.markdownAutoIndex = autoIndex;
+        if (Array.isArray(scene.autoMarkdownPlainSectionPaths)) {
+          node.markdownPlainSectionPaths = scene.autoMarkdownPlainSectionPaths;
+        }
         if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
           node.markdownColumns = scene.autoMarkdownColumns;
         }
@@ -1224,6 +1232,9 @@ async function loadSceneConfig(scenePath) {
         autoMarkdownIndexPaths: Array.isArray(data.scene?.autoMarkdownIndexPaths)
           ? data.scene.autoMarkdownIndexPaths
           : [],
+        autoMarkdownPlainSectionPaths: Array.isArray(data.scene?.autoMarkdownPlainSectionPaths)
+          ? data.scene.autoMarkdownPlainSectionPaths
+          : [],
       };
       levelConfigs[scenePath] = config;
       sceneConfigCache.set(scenePath, config);
@@ -1455,22 +1466,25 @@ function ensureMarkdownReaderScene(nodeData) {
     if (levelConfigs[sceneId]) {
       return sceneId;
     }
-    levelConfigs[sceneId] = {
-      layout: "static",
-      nodes: [],
-      links: [],
-      sceneName,
-      sceneId,
-      markdownPath,
-      markdownSection: null,
-      markdownColumns: nodeData.markdownColumns ?? null,
-      markdownAutoOpen: false,
-      centerOn: null,
-      autoSphereRing: true,
-      autoMarkdownPath: markdownPath,
-      autoMarkdownHeadingLevel: headingLevel,
-      autoMarkdownIncludeExistingInLayout: false,
-    };
+      levelConfigs[sceneId] = {
+        layout: "static",
+        nodes: [],
+        links: [],
+        sceneName,
+        sceneId,
+        markdownPath,
+        markdownSection: null,
+        markdownColumns: nodeData.markdownColumns ?? null,
+        markdownAutoOpen: false,
+        centerOn: null,
+        autoSphereRing: true,
+        autoMarkdownPath: markdownPath,
+        autoMarkdownHeadingLevel: headingLevel,
+        autoMarkdownIncludeExistingInLayout: false,
+        autoMarkdownPlainSectionPaths: Array.isArray(nodeData.markdownPlainSectionPaths)
+          ? nodeData.markdownPlainSectionPaths
+          : [],
+      };
     markdownReaderScenes.set(sceneId, true);
     return sceneId;
   }
