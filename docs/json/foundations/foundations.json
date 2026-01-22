@@ -5,74 +5,11 @@
     "name": "Foundations",
     "units": "relative",
     "wrapLabels": true,
-    "autoMarkdownSpheres": true,
+    "autoSphereRing": true,
     "autoMarkdownDirectory": "markdown/architrino-assembly-architecture/foundations",
     "autoMarkdownIncludeExistingInLayout": true,
     "autoMarkdownNodeRadius": 2.688,
     "autoMarkdownRingRadius": 12
   },
-  "objects": [
-    {
-      "id": "symmetry",
-      "label": "Symmetry",
-      "radius": 2.688,
-      "color": "#3a5f9f",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "uv_divergence",
-      "label": "UV Divergence",
-      "radius": 2.688,
-      "color": "#7a4a1f",
-      "position": [
-        4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "hierarchy_problem",
-      "label": "Hierarchy Problem (Naturalness)",
-      "radius": 2.688,
-      "color": "PURPLE",
-      "position": [
-        0.0,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/foundations/hierarchy-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "nonlocality_vs_causality",
-      "label": "Relativistic Causality vs. Entanglement",
-      "radius": 2.688,
-      "color": "#4b678f",
-      "position": [
-        -4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    }
-  ]
+  "objects": []
 }
