@@ -1,4 +1,4 @@
-# Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework (Revised Edition with Absolute Observer Integration)
+# Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework 
 
 ## Introduction
 
@@ -28,35 +28,6 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 
 ## Classical & Early Modern Metaphysics + Mechanism
 
-### **Democritus (c. 460–370 BCE) & Leucippus**
-**Core belief**: Atomism—reality is composed of indivisible atoms moving in void. All qualities are relational effects of atomic configurations.
-
-**Architrino impact**:
-- ✅ **Pro**: **Radical vindication** of the atomistic impulse. Architrinos are the true "atoms" (indivisible point entities).
-- ✅ **Pro**: The void is rehabilitated as **fundamental Euclidean substrate**, not mere absence. The absolute observer can, in principle, track every architrino in this void at any moment.
-- ✅ **Pro**: All qualities (mass, charge magnitude, spin, color) are **relational effects** of architrino assemblies—exactly as Democritus envisioned.
-- ⚠️ **Refinement**: Classical atomism assumed atoms had intrinsic properties (shape, size). Architrinos are **dimensionless point transmitter/receivers**; all structure is **dynamic and relational**.
-
-**Legacy shift**: From philosophical atomism to **mechanistic point-field ontology**. Democritus's vision is **realized with mathematical precision**. The absolute observer provides a complete microphysical perspective that clarifies how lawful dynamics and self-hit branching coexist in the architrino substrate.
-
----
-
-### **Epicurus (341–270 BCE)**
-**Core belief**: 
-- **Eternal atoms** in void—no creation, no destruction.
-- **No cosmic teleology**, no divine intervention.
-- The **swerve** (clinamen): spontaneous deviation of atoms to allow free will and break strict determinism.
-
-**Architrino impact**:
-- ✅ **Pro**: **Perfect alignment** on eternality. Architrinos are eternal; no creation/annihilation events.
-- ✅ **Pro**: No teleology, no gods, no cosmic purpose. Structure emerges from **lawful dynamics** with self-hit branching, transparent to the absolute observer.
-- ❌ **Con**: The **swerve is eliminated** as an ad hoc postulate. Indeterminacy is localized to self-hit branch points rather than an intrinsic atomic swerve.
-- ⚠️ **Implication for free will**: If it exists, it must be an **emergent property** of complex assemblies (brains), not a fundamental feature.
-
-**Legacy shift**: Epicureanism **purified**—the swerve is replaced by lawful self-hit branching rather than strict determinism. Materialist ethics must be regrounded in emergent agency, not metaphysical freedom.
-
----
-
 ### **Heraclitus (c. 535–475 BCE)**
 **Core belief**: 
 - Reality is **flux** ("panta rhei"); stability is an illusion.
@@ -68,6 +39,19 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 - ⚠️ **Partial**: Heraclitus's emphasis on **opposition** aligns with the electrino/positrino binary and the role of competing wake interactions.
 
 **Legacy shift**: Becoming is **reinterpreted** as pattern evolution within an unchanging substrate.
+
+---
+
+### **Democritus (c. 460–370 BCE) & Leucippus**
+**Core belief**: Atomism—reality is composed of indivisible atoms moving in void. All qualities are relational effects of atomic configurations.
+
+**Architrino impact**:
+- ✅ **Pro**: **Radical vindication** of the atomistic impulse. Architrinos are the true "atoms" (indivisible point entities).
+- ✅ **Pro**: The void is rehabilitated as **fundamental Euclidean substrate**, not mere absence. The absolute observer can, in principle, track every architrino in this void at any moment.
+- ✅ **Pro**: All qualities (mass, charge magnitude, spin, color) are **relational effects** of architrino assemblies—exactly as Democritus envisioned.
+- ⚠️ **Refinement**: Classical atomism assumed atoms had intrinsic properties (shape, size). Architrinos are **dimensionless point transmitter/receivers**; all structure is **dynamic and relational**.
+
+**Legacy shift**: From philosophical atomism to **mechanistic point-field ontology**. Democritus's vision is **realized with mathematical precision**. The absolute observer provides a complete microphysical perspective that clarifies how lawful dynamics and self-hit branching coexist in the architrino substrate.
 
 ---
 
@@ -105,6 +89,22 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
+### **Epicurus (341–270 BCE)**
+**Core belief**: 
+- **Eternal atoms** in void—no creation, no destruction.
+- **No cosmic teleology**, no divine intervention.
+- The **swerve** (clinamen): spontaneous deviation of atoms to allow free will and break strict determinism.
+
+**Architrino impact**:
+- ✅ **Pro**: **Perfect alignment** on eternality. Architrinos are eternal; no creation/annihilation events.
+- ✅ **Pro**: No teleology, no gods, no cosmic purpose. Structure emerges from **lawful dynamics** with self-hit branching, transparent to the absolute observer.
+- ❌ **Con**: The **swerve is eliminated** as an ad hoc postulate. Indeterminacy is localized to self-hit branch points rather than an intrinsic atomic swerve.
+- ⚠️ **Implication for free will**: If it exists, it must be an **emergent property** of complex assemblies (brains), not a fundamental feature.
+
+**Legacy shift**: Epicureanism **purified**—the swerve is replaced by lawful self-hit branching rather than strict determinism. Materialist ethics must be regrounded in emergent agency, not metaphysical freedom.
+
+---
+
 ### **René Descartes (1596–1650)**
 **Core belief**: 
 - **Mechanistic universe**: Nature operates like a machine, governed by contact forces.
@@ -136,6 +136,23 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ✅ **Pro**: Spinoza's "necessity" is realized as lawful flow with branching—deterministic in structure, but admitting multiple physically realizable futures at critical junctures.
 
 **Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = lawful dynamics with branching. His system is the closest **historical precursor** to the architrino worldview. The absolute observer is Spinoza's God knowing itself.
+
+---
+
+### **Isaac Newton (1643–1727)**
+**Core belief**: 
+- **Absolute space** and **absolute time** as the cosmic stage.
+- Gravity as **instantaneous action at a distance**.
+- Particles and forces as fundamental.
+
+**Architrino impact**:
+- ✅ **Pro**: **Absolute time fully retained** as the global parameter (linear, forward-only, universal). The absolute observer at *any* (x,y,z) at time *t* sees the **same *t*** as an absolute observer at any other location.
+- ✅ **Pro**: **Absolute space vindicated**—the Euclidean void is a **real geometric structure** that supports the absolute observer. This observer can assign unique (x,y,z) labels and detect absolute motion (rotation, acceleration) without ambiguity. Newton's bucket argument (rotation is absolute because water surface curves in absolute space) is fully confirmed.
+- ✅ **Pro**: The absolute observer is the **Newtonian ideal observer**—someone who can measure positions and velocities relative to absolute space and synchronize clocks via absolute time.
+- ❌ **Con**: **Action-at-a-distance gravity is replaced** by emergent curved-spacetime-like behavior from **finite-speed architrino interactions** (field propagation speed *c_f*).
+- ✅ **Pro**: Newtonian gravity as **low-velocity, weak-field limit** is reproduced from emergent geometry.
+
+**Legacy shift**: Absolute time **vindicated**; absolute space **vindicated** (not a substance, but a real coordinate structure—the permanent Euclidean grid); gravity transformed from instantaneous force to **emergent geometry**. Newton's absolutes are **ontologically correct**; his gravitational mechanism is replaced. The absolute observer is Newton's "Sensorium Dei" de-theologized and made mathematical.
 
 ---
 
@@ -191,23 +208,6 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - **Architrino response**: The absolute observer is not a mind presupposing forms; it is a **mathematical construct defined by the ontology itself**—a coordinate system on the Euclidean void plus a time parameter in the dynamics. Architrinos are not representations; they are the substrate that makes representation possible for physical observers (brains, instruments). Kant conflates conditions for cognition (true for finite observers) with conditions for existence (false). The architrino framework gives access to the thing-in-itself because the thing-in-itself is simpler than our representations of it.
 
 **Legacy shift**: Kant's **Copernican revolution** is **reversed**. Return to **direct realism**. Knowledge is possible because the mind conforms to reality, not because reality conforms to the mind.
-
----
-
-### **Isaac Newton (1643–1727)**
-**Core belief**: 
-- **Absolute space** and **absolute time** as the cosmic stage.
-- Gravity as **instantaneous action at a distance**.
-- Particles and forces as fundamental.
-
-**Architrino impact**:
-- ✅ **Pro**: **Absolute time fully retained** as the global parameter (linear, forward-only, universal). The absolute observer at *any* (x,y,z) at time *t* sees the **same *t*** as an absolute observer at any other location.
-- ✅ **Pro**: **Absolute space vindicated**—the Euclidean void is a **real geometric structure** that supports the absolute observer. This observer can assign unique (x,y,z) labels and detect absolute motion (rotation, acceleration) without ambiguity. Newton's bucket argument (rotation is absolute because water surface curves in absolute space) is fully confirmed.
-- ✅ **Pro**: The absolute observer is the **Newtonian ideal observer**—someone who can measure positions and velocities relative to absolute space and synchronize clocks via absolute time.
-- ❌ **Con**: **Action-at-a-distance gravity is replaced** by emergent curved-spacetime-like behavior from **finite-speed architrino interactions** (field propagation speed *c_f*).
-- ✅ **Pro**: Newtonian gravity as **low-velocity, weak-field limit** is reproduced from emergent geometry.
-
-**Legacy shift**: Absolute time **vindicated**; absolute space **vindicated** (not a substance, but a real coordinate structure—the permanent Euclidean grid); gravity transformed from instantaneous force to **emergent geometry**. Newton's absolutes are **ontologically correct**; his gravitational mechanism is replaced. The absolute observer is Newton's "Sensorium Dei" de-theologized and made mathematical.
 
 ---
 
@@ -276,7 +276,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **Albert Einstein — General Relativity**
+### **Albert Einstein (1879–1955) — General Relativity**
 **Core belief**: 
 - Gravity is **curvature of spacetime**.
 - Spacetime is a **dynamical entity**, not a fixed background.
@@ -308,47 +308,17 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **Erik Verlinde (1962–) — Entropic Gravity**
+### **Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory**
 **Core belief**: 
-- Gravity arises from **thermodynamic entropy** of microscopic degrees of freedom on holographic screens.
-- No fundamental gravitons or force carriers.
+- **CCC**: Universe undergoes **infinite cycles**, with conformal boundary conditions connecting end of one aeon to beginning of next.
+- **Twistor Theory**: Spacetime points are **derived** from twistor space (complex geometric structure).
 
 **Architrino impact**:
-- ⚠️ **Partial alignment**: Gravity is emergent, and thermodynamic/statistical aspects (entropy of architrino assembly microstates) **may play a role**.
-- ⚠️ **Difference**: We do **not** assume holographic screens or information-theoretic primacy. Architrinos are **real physical entities** in 3D Euclidean space, not information on 2D surfaces.
-- ✅ **Pro**: Entropic aspects may arise as **statistical consequences** of assembly dynamics, not as fundamental drivers.
+- ⚠️ **CCC**: Cyclic cosmology **may or may not fit**; depends on whether architrino dynamics allows for cosmological "resets" or phase transitions that mimic cyclic behavior. Open question.
+- ⚠️ **Twistor Theory**: Interesting mathematical structure, but spacetime is emergent from **3D Euclidean assemblies**, not twistor space. Twistors may be **useful mathematical tools**, not fundamental ontology.
+- ✅ **Pro**: Penrose's emphasis on **real physical geometry** (not just formalism) aligns with our realism.
 
-**Legacy shift**: Entropic gravity ideas are **subsumed** into a more fundamental mechanistic picture. Verlinde's insights become **special cases** of assembly thermodynamics.
-
----
-
-### **Loop Quantum Gravity (Rovelli, Smolin, Ashtekar)**
-**Core belief**: 
-- **Quantize spacetime geometry** itself.
-- Spacetime has **discrete structure** (spin networks, loop states).
-- Background-independent formulation.
-
-**Architrino impact**:
-- ❌ **Con**: We do **not quantize geometry**. Geometry is **emergent** from classical-but-complex architrino assemblies.
-- ⚠️ **Partial**: **Discrete structure** arises naturally (architrinos are discrete point entities; the tri-binary lattice of the spacetime assembly network is discrete), but **not in the LQG formalism** (no spin networks, no loop quantization).
-- ⚠️ **Partial**: **Background independence** is achieved (Euclidean void + architrinos; no fixed metric), but via different route.
-
-**Legacy shift**: LQG is **bypassed**—geometry is classical and emergent, not quantized. LQG's discrete-structure intuition is **vindicated**; its quantization program is **unnecessary**.
-
----
-
-### **String Theory (Witten, Polchinski, et al.)**
-**Core belief**: 
-- Fundamental entities are **1D strings** (or higher-dimensional branes).
-- **Extra dimensions** (typically 10 or 11 total).
-- Supersymmetry, unique vacuum selection problem (landscape).
-
-**Architrino impact**:
-- ❌ **Con**: **Strongly rejected**. No extra dimensions. No strings or branes as fundamental.
-- ❌ **Con**: Supersymmetry is **not fundamental** (if it appears, it is emergent and broken at accessible energies).
-- ✅ **Pro**: String theory's **landscape problem is avoided** (no vacuum selection ambiguity; architrino laws are unique and simple).
-
-**Legacy shift**: String theory is **replaced** by a radically simpler, 3D ontology. String theory's mathematical structures may be **effective descriptions** in certain regimes, but are not fundamental.
+**Legacy shift**: CCC and twistors are **alternative effective descriptions** or mathematical tools; architrino ontology is more fundamental. Penrose's realism about geometry is **vindicated**; his specific geometric frameworks are **reinterpreted**.
 
 ---
 
@@ -367,17 +337,33 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **Roger Penrose (1931–) — Conformal Cyclic Cosmology, Twistor Theory**
+### **Loop Quantum Gravity (Ashtekar 1949–, Smolin 1955–, Rovelli 1956–)**
 **Core belief**: 
-- **CCC**: Universe undergoes **infinite cycles**, with conformal boundary conditions connecting end of one aeon to beginning of next.
-- **Twistor Theory**: Spacetime points are **derived** from twistor space (complex geometric structure).
+- **Quantize spacetime geometry** itself.
+- Spacetime has **discrete structure** (spin networks, loop states).
+- Background-independent formulation.
 
 **Architrino impact**:
-- ⚠️ **CCC**: Cyclic cosmology **may or may not fit**; depends on whether architrino dynamics allows for cosmological "resets" or phase transitions that mimic cyclic behavior. Open question.
-- ⚠️ **Twistor Theory**: Interesting mathematical structure, but spacetime is emergent from **3D Euclidean assemblies**, not twistor space. Twistors may be **useful mathematical tools**, not fundamental ontology.
-- ✅ **Pro**: Penrose's emphasis on **real physical geometry** (not just formalism) aligns with our realism.
+- ❌ **Con**: We do **not quantize geometry**. Geometry is **emergent** from classical-but-complex architrino assemblies.
+- ⚠️ **Partial**: **Discrete structure** arises naturally (architrinos are discrete point entities; the tri-binary lattice of the spacetime assembly network is discrete), but **not in the LQG formalism** (no spin networks, no loop quantization).
+- ⚠️ **Partial**: **Background independence** is achieved (Euclidean void + architrinos; no fixed metric), but via different route.
 
-**Legacy shift**: CCC and twistors are **alternative effective descriptions** or mathematical tools; architrino ontology is more fundamental. Penrose's realism about geometry is **vindicated**; his specific geometric frameworks are **reinterpreted**.
+**Legacy shift**: LQG is **bypassed**—geometry is classical and emergent, not quantized. LQG's discrete-structure intuition is **vindicated**; its quantization program is **unnecessary**.
+
+---
+
+### **String Theory (Witten 1951–, Polchinski 1954–2018, et al.)**
+**Core belief**: 
+- Fundamental entities are **1D strings** (or higher-dimensional branes).
+- **Extra dimensions** (typically 10 or 11 total).
+- Supersymmetry, unique vacuum selection problem (landscape).
+
+**Architrino impact**:
+- ❌ **Con**: **Strongly rejected**. No extra dimensions. No strings or branes as fundamental.
+- ❌ **Con**: Supersymmetry is **not fundamental** (if it appears, it is emergent and broken at accessible energies).
+- ✅ **Pro**: String theory's **landscape problem is avoided** (no vacuum selection ambiguity; architrino laws are unique and simple).
+
+**Legacy shift**: String theory is **replaced** by a radically simpler, 3D ontology. String theory's mathematical structures may be **effective descriptions** in certain regimes, but are not fundamental.
 
 ---
 
@@ -394,6 +380,20 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ✅ **Pro**: Smolin's critique of unfalsifiable theories (string theory) aligns with our **Popperian methodology**.
 
 **Legacy shift**: Smolin's **temporal naturalism** is **realized** in our framework. His cosmological natural selection is **unnecessary** (laws are fixed; complexity emerges through lawful dynamics with branching).
+
+---
+
+### **Erik Verlinde (1962–) — Entropic Gravity**
+**Core belief**: 
+- Gravity arises from **thermodynamic entropy** of microscopic degrees of freedom on holographic screens.
+- No fundamental gravitons or force carriers.
+
+**Architrino impact**:
+- ⚠️ **Partial alignment**: Gravity is emergent, and thermodynamic/statistical aspects (entropy of architrino assembly microstates) **may play a role**.
+- ⚠️ **Difference**: We do **not** assume holographic screens or information-theoretic primacy. Architrinos are **real physical entities** in 3D Euclidean space, not information on 2D surfaces.
+- ✅ **Pro**: Entropic aspects may arise as **statistical consequences** of assembly dynamics, not as fundamental drivers.
+
+**Legacy shift**: Entropic gravity ideas are **subsumed** into a more fundamental mechanistic picture. Verlinde's insights become **special cases** of assembly thermodynamics.
 
 ---
 
@@ -459,21 +459,6 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **Werner Heisenberg (1901–1976)**
-**Core belief**: 
-- **Uncertainty principle** is fundamental (not just epistemic).
-- Only **observables** matter; no reality "behind" the formalism.
-- Matrix mechanics as the correct formulation.
-
-**Architrino impact**:
-- ⚠️ **Partial**: Uncertainty relations are **emergent** from the complex dynamics of architrino assemblies (e.g., position-momentum complementarity from pilot-wave-like guidance or configuration-space structure).
-- ❌ **Con**: Reality "behind" the formalism (architrinos, their positions, velocities, interactions) is **fully specified** and accessible to the absolute observer.
-- ✅ **Pro**: Uncertainty as **epistemic limitation** on effective macroscopic descriptions (from the perspective of **physical** observers who are themselves assemblies), not ontological indeterminacy. Heisenberg's uncertainty principle reflects **limitations of assembly-based measurements**, not ontological indeterminacy. The absolute observer, in principle, knows both position and momentum of all architrinos exactly **between branch points**, while branch points admit multiple realizable futures.
-
-**Legacy shift**: Heisenberg's **operational/formalist** stance is replaced by **ontological realism**. His uncertainty relations are **derived**, not postulated.
-
----
-
 ### **Erwin Schrödinger (1887–1961)**
 **Core belief**: 
 - Wavefunction $\psi$ as a **real physical field** (at least initially).
@@ -501,6 +486,21 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space ($\psi$(x₁, x₂, ...)); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
 
 **Legacy shift**: De Broglie's intuition is **validated and extended** with explicit microphysical entities (architrinos). His pilot wave becomes **architrino potential fields**.
+
+---
+
+### **Werner Heisenberg (1901–1976)**
+**Core belief**: 
+- **Uncertainty principle** is fundamental (not just epistemic).
+- Only **observables** matter; no reality "behind" the formalism.
+- Matrix mechanics as the correct formulation.
+
+**Architrino impact**:
+- ⚠️ **Partial**: Uncertainty relations are **emergent** from the complex dynamics of architrino assemblies (e.g., position-momentum complementarity from pilot-wave-like guidance or configuration-space structure).
+- ❌ **Con**: Reality "behind" the formalism (architrinos, their positions, velocities, interactions) is **fully specified** and accessible to the absolute observer.
+- ✅ **Pro**: Uncertainty as **epistemic limitation** on effective macroscopic descriptions (from the perspective of **physical** observers who are themselves assemblies), not ontological indeterminacy. Heisenberg's uncertainty principle reflects **limitations of assembly-based measurements**, not ontological indeterminacy. The absolute observer, in principle, knows both position and momentum of all architrinos exactly **between branch points**, while branch points admit multiple realizable futures.
+
+**Legacy shift**: Heisenberg's **operational/formalist** stance is replaced by **ontological realism**. His uncertainty relations are **derived**, not postulated.
 
 ---
 
@@ -551,7 +551,19 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **Lucien Hardy, Rob Spekkens, Matthew Leifer — Quantum Foundations (Operational/Psi-Epistemic)**
+### **Antony Valentini (1965–) — Quantum Nonequilibrium**
+**Core belief**: 
+- Bohmian mechanics with **relaxation to quantum equilibrium**.
+- Violations of **Born rule** possible in **nonequilibrium** states.
+- Potential observational signatures in early universe or exotic systems.
+
+**Architrino impact**:
+- ✅ **Pro**: Valentini's framework is **compatible**. Architrino assemblies may have **nonequilibrium distributions**, leading to deviations from standard QM (Born rule violations).
+- ✅ **Pro**: Explicit **testable predictions** (violations of Born rule in exotic regimes, early universe relics, etc.).
+
+**Legacy shift**: Valentini's ideas are **incorporated** and tested via architrino simulations. His program becomes a **prediction tool** for our model.
+
+### **Lucien Hardy (1966–), Rob Spekkens (1970–), Matthew Leifer (1975–) — Quantum Foundations (Operational/Psi-Epistemic)**
 **Core belief**: 
 - Some explore **$\psi$-epistemic models** (wavefunction as knowledge/information, not ontic reality).
 - Others refine **operational constraints** on quantum theories (generalized probability theories, no-signaling, etc.).
@@ -564,18 +576,6 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 **Legacy shift**: $\psi$-epistemic programs are **realized** with explicit ontology (not just reformulated quantum theory). Operational quantum mechanics becomes **effective theory** of architrino statistical ensembles.
 
 ---
-
-### **Antony Valentini (1965–) — Quantum Nonequilibrium**
-**Core belief**: 
-- Bohmian mechanics with **relaxation to quantum equilibrium**.
-- Violations of **Born rule** possible in **nonequilibrium** states.
-- Potential observational signatures in early universe or exotic systems.
-
-**Architrino impact**:
-- ✅ **Pro**: Valentini's framework is **compatible**. Architrino assemblies may have **nonequilibrium distributions**, leading to deviations from standard QM (Born rule violations).
-- ✅ **Pro**: Explicit **testable predictions** (violations of Born rule in exotic regimes, early universe relics, etc.).
-
-**Legacy shift**: Valentini's ideas are **incorporated** and tested via architrino simulations. His program becomes a **prediction tool** for our model.
 
 ## QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)
 
@@ -609,6 +609,20 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
+### **Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification**
+**Core belief**: 
+- SU(2) × U(1) gauge theory.
+- **Higgs mechanism** for mass generation via spontaneous symmetry breaking.
+
+**Architrino impact**:
+- ⚠️ **Reinterpretation**: Gauge symmetries (SU(2), U(1), SU(3)) are **emergent** from architrino assembly symmetries and interaction structure.
+- ✅ **Pro**: **Higgs field** is the **spacetime assembly network** (coupled Noether cores—the sea of tri-binaries forming the "vacuum"). Mass arises from **coupling to this assembly medium** (resistance to acceleration through the tri-binary lattice).
+- ✅ **Pro**: **Electroweak symmetry breaking** is a **phase transition** in assembly configurations (analogous to ferromagnetic phase transition).
+
+**Legacy shift**: Gauge theories and Higgs mechanism as **effective field theories** of assembly dynamics. The Standard Model Lagrangian is **emergent**.
+
+---
+
 ### **Murray Gell-Mann (1929–2019) & the Quark Model**
 **Core belief**: 
 - Quarks as fundamental constituents of hadrons.
@@ -620,20 +634,6 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ⚠️ **Tension**: We must reproduce quark masses, mixing angles, CKM matrix, and QCD phenomenology (asymptotic freedom, running coupling) from architrino rules.
 
 **Legacy shift**: Quarks as **emergent quasi-particles**, not fundamental. Gell-Mann's classification scheme is **phenomenologically valid**, ontologically reinterpreted.
-
----
-
-### **Steven Weinberg, Abdus Salam, Sheldon Glashow — Electroweak Unification**
-**Core belief**: 
-- SU(2) × U(1) gauge theory.
-- **Higgs mechanism** for mass generation via spontaneous symmetry breaking.
-
-**Architrino impact**:
-- ⚠️ **Reinterpretation**: Gauge symmetries (SU(2), U(1), SU(3)) are **emergent** from architrino assembly symmetries and interaction structure.
-- ✅ **Pro**: **Higgs field** is the **spacetime assembly network** (coupled Noether cores—the sea of tri-binaries forming the "vacuum"). Mass arises from **coupling to this assembly medium** (resistance to acceleration through the tri-binary lattice).
-- ✅ **Pro**: **Electroweak symmetry breaking** is a **phase transition** in assembly configurations (analogous to ferromagnetic phase transition).
-
-**Legacy shift**: Gauge theories and Higgs mechanism as **effective field theories** of assembly dynamics. The Standard Model Lagrangian is **emergent**.
 
 ---
 
@@ -665,36 +665,6 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ---
 
-### **John Archibald Wheeler (1911–2008) — "It from Bit"**
-**Core belief**: 
-- **Information is fundamental**; physical reality arises from information processing.
-- "Every it—every particle, every field of force, even spacetime itself—derives its function, its meaning, its very existence from binary choices, bits."
-
-**Architrino impact**:
-- ⚠️ **Partial**: Information (architrino states, configurations) is **encoded** in physical entities, but **architrinos are ontologically prior** to information.
-- ❌ **Con**: We reject **information primacy**. Architrinos are **physical**, not abstract bits. Information is a **description** of physical states, not their ground.
-- ✅ **Pro**: Wheeler's participatory universe (observer-involvement) is **rejected**; architrinos evolve independently of observation (though the absolute observer can track them).
-
-**Legacy shift**: **"It from bit" is reversed**: **"Bit from it"** (information emerges from physical architrino configurations). Wheeler's information-theoretic insights are **useful**, but not fundamental.
-
----
-
-### **Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project**
-**Core belief**: 
-- Universe is a **computational automaton**.
-- **Hypergraphs** evolving by simple rules generate spacetime and physics.
-- Computation is fundamental; complexity emerges from simple rules.
-
-**Architrino impact**:
-- ⚠️ **Partial**: Discrete evolution rules resemble our architrino update rules (transmit/receive potential, update positions/velocities).
-- ❌ **Con**: We use **continuous 3D Euclidean space + absolute time**, not abstract graph rewriting.
-- ⚠️ **Con**: Wolfram's approach is often **graph-first, geometry-emergent**; we have **geometry-first** (Euclidean 3D), **entities-emergent** (architrino dynamics produce assemblies).
-- ✅ **Pro**: Computational complexity and emergence from simple rules is **shared** (we agree on methodological parsimony).
-
-**Legacy shift**: Computational ideas are **incorporated** (simulations), but ontology is **physical** (architrinos in space), not purely computational (abstract graph nodes). Wolfram's hypergraphs may be **useful models**, not fundamental reality.
-
----
-
 ### **Karl Popper (1902–1994) — Falsificationism**
 **Core belief**: 
 - Scientific theories must be **falsifiable** (have testable failure conditions).
@@ -707,6 +677,20 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ✅ **Pro**: Every major claim comes with: testable prediction, failure condition, uncertainty estimate.
 
 **Legacy shift**: Popperism is **vindicated** and **operationalized** in our methodology. Popper becomes the **patron saint** of the architrino project.
+
+---
+
+### **John Archibald Wheeler (1911–2008) — "It from Bit"**
+**Core belief**: 
+- **Information is fundamental**; physical reality arises from information processing.
+- "Every it—every particle, every field of force, even spacetime itself—derives its function, its meaning, its very existence from binary choices, bits."
+
+**Architrino impact**:
+- ⚠️ **Partial**: Information (architrino states, configurations) is **encoded** in physical entities, but **architrinos are ontologically prior** to information.
+- ❌ **Con**: We reject **information primacy**. Architrinos are **physical**, not abstract bits. Information is a **description** of physical states, not their ground.
+- ✅ **Pro**: Wheeler's participatory universe (observer-involvement) is **rejected**; architrinos evolve independently of observation (though the absolute observer can track them).
+
+**Legacy shift**: **"It from bit" is reversed**: **"Bit from it"** (information emerges from physical architrino configurations). Wheeler's information-theoretic insights are **useful**, but not fundamental.
 
 ---
 
@@ -751,6 +735,22 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ❌ **Con**: Cartwright's **anti-reductionism is rejected**. We claim macroscopic laws (thermodynamics, GR, QM, biology) **do reduce** to architrino dynamics.
 
 **Legacy shift**: If successful, architrino theory is a **counter-example** to Cartwright's dappled-world thesis. Unification is **possible** after all.
+
+### **Stephen Wolfram (1959–) — A New Kind of Science, Wolfram Physics Project**
+**Core belief**: 
+- Universe is a **computational automaton**.
+- **Hypergraphs** evolving by simple rules generate spacetime and physics.
+- Computation is fundamental; complexity emerges from simple rules.
+
+**Architrino impact**:
+- ⚠️ **Partial**: Discrete evolution rules resemble our architrino update rules (transmit/receive potential, update positions/velocities).
+- ❌ **Con**: We use **continuous 3D Euclidean space + absolute time**, not abstract graph rewriting.
+- ⚠️ **Con**: Wolfram's approach is often **graph-first, geometry-emergent**; we have **geometry-first** (Euclidean 3D), **entities-emergent** (architrino dynamics produce assemblies).
+- ✅ **Pro**: Computational complexity and emergence from simple rules is **shared** (we agree on methodological parsimony).
+
+**Legacy shift**: Computational ideas are **incorporated** (simulations), but ontology is **physical** (architrinos in space), not purely computational (abstract graph nodes). Wolfram's hypergraphs may be **useful models**, not fundamental reality.
+
+---
 
 ## Synthesis & Outcomes
 
