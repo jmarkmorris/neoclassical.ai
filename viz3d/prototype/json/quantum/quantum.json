@@ -13,23 +13,6 @@
   },
   "objects": [
     {
-      "id": "flavor_problem",
-      "label": "Flavor Problem",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "position": [
-        0.0,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/quantum/flavor-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "quantum_statistics",
       "label": "Fermi-Dirac & Bose-Einstein Statistics",
       "radius": 2.688,

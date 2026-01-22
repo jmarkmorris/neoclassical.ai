@@ -47,23 +47,6 @@
       }
     },
     {
-      "id": "confinement_mass_gap",
-      "label": "Confinement and the Mass Gap",
-      "radius": 2.688,
-      "color": "#5a4a7a",
-      "position": [
-        -4.5,
-        0.0,
-        0.0
-      ],
-      "subScenes": [
-        "json/nuclear/confinement-and-mass.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "neutrino_mass_and_nature",
       "label": "Neutrino Mass and Nature",
       "radius": 2.688,
@@ -75,23 +58,6 @@
       ],
       "subScenes": [
         "json/nuclear/neutrino-mass-and-nature.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "strong_cp_problem",
-      "label": "Strong CP Problem",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "position": [
-        4.5,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/nuclear/strong-cp-problem.json"
       ],
       "motion": {
         "type": "fixed"

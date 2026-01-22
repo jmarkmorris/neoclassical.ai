@@ -13,23 +13,6 @@
   },
   "objects": [
     {
-      "id": "cosmological_constant_problem",
-      "label": "Cosmological Constant Problem",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "position": [
-        6.0,
-        2.5,
-        0.0
-      ],
-      "subScenes": [
-        "json/cosmology/cosmological-constant-problem.json"
-      ],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
       "id": "horizon_problem",
       "label": "Horizon Problem",
       "radius": 2.688,
