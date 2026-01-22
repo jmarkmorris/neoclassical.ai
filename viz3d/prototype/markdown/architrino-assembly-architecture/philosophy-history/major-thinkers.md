@@ -851,6 +851,15 @@ Philosophy does not disappear. It matures into **Conceptual Hygiene**:
 1.  **Separating Ontology from Epistemology**: The philosopher's job is to police the line between what the **Absolute Observer** knows (the Truth: architrino microstates) and what the **Physical Observer** measures (the Fiction: curved spacetime, probability waves).
 2.  **Clarifying Emergence**: Tracking how rigid micro-laws give rise to plastic macro-phenomena (e.g., how absolute time gives rise to proper time $\tau$ in a tri-binary clock).
 3.  **The Limits of Explanation**: Distinguishing between what is fundamentally inexplicable (the axioms: why architrinos? why $c_f$?) and what is derived (everything else).
+4.  **Emergence Audits**: Mapping where effective theories work and where they fail—where GR breaks, where Born-rule QM fails, where thermodynamic approximations lose accuracy.
+5.  **Translation Work**: Clarifying what "mass," "time," "particle," or "field" mean at the architrino level versus in effective theories, and preventing category errors between them.
+6.  **Ethics and Anthropology**: If mind and agency are emergent assembly dynamics, what follows for responsibility, freedom, and meaning? These are not pseudo-problems; they are the interface between ontology and human life.
+
+Philosophy's task is no longer to legislate reality (Kant), nor to interpret it in isolation from science (post-Kantian idealism). Instead, it becomes conceptual hygiene:
+
+- Tracking limits: Where does GR break? Where does Born-rule QM fail? Philosophy maps the boundaries.
+- Translation: Clarifying what 'electron' means at the fundamental vs. effective level; ensuring we don't commit category errors.
+- Anthropic questions: If consciousness is emergent assembly dynamics, what does that imply for ethics, agency, and meaning? These are not pseudo-problems—they are the interface between ontology and human experience.
 
 **This is not the end of philosophy. It is philosophy's graduation from metaphysical speculation to the rigorous auditing of a fully physicalized universe.**
 
