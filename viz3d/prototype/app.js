@@ -498,6 +498,10 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
     entries = entries.filter((entry) => !exclude.has(normalizeMarkdownPath(entry)));
   }
 
+  const defaultIndex = scene.autoMarkdownDefaultIndex === true;
+  const indexPaths = Array.isArray(scene.autoMarkdownIndexPaths)
+    ? new Set(scene.autoMarkdownIndexPaths.map((path) => normalizeMarkdownPath(path)))
+    : null;
   const plainPaths = Array.isArray(scene.autoMarkdownPlainPaths)
     ? new Set(scene.autoMarkdownPlainPaths.map((path) => normalizeMarkdownPath(path)))
     : null;
@@ -661,9 +665,15 @@ async function buildAutoMarkdownNodes(scene, existingNodes) {
         }
       } else if (info.isNonEmpty) {
         node.markdownPath = info.path;
-        if (plainPaths) {
-          node.markdownAutoIndex = !plainPaths.has(normalizeMarkdownPath(info.path));
+        const normalizedPath = normalizeMarkdownPath(info.path);
+        let autoIndex = defaultIndex;
+        if (indexPaths && indexPaths.has(normalizedPath)) {
+          autoIndex = true;
         }
+        if (plainPaths && plainPaths.has(normalizedPath)) {
+          autoIndex = false;
+        }
+        node.markdownAutoIndex = autoIndex;
         if (scene.autoMarkdownColumns === 1 || scene.autoMarkdownColumns === 2) {
           node.markdownColumns = scene.autoMarkdownColumns;
         }
@@ -1209,6 +1219,10 @@ async function loadSceneConfig(scenePath) {
           : [],
         autoMarkdownPlainPaths: Array.isArray(data.scene?.autoMarkdownPlainPaths)
           ? data.scene.autoMarkdownPlainPaths
+          : [],
+        autoMarkdownDefaultIndex: data.scene?.autoMarkdownDefaultIndex ?? null,
+        autoMarkdownIndexPaths: Array.isArray(data.scene?.autoMarkdownIndexPaths)
+          ? data.scene.autoMarkdownIndexPaths
           : [],
       };
       levelConfigs[scenePath] = config;
