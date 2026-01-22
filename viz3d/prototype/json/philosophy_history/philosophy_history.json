@@ -12,35 +12,5 @@
     "autoMarkdownRingRadius": 12
   },
   "objects": [
-    {
-      "id": "fermi_paradox",
-      "label": "Fermi Paradox",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "position": [
-        0.0,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    },
-    {
-      "id": "measurement_problem",
-      "label": "Measurement Problem",
-      "radius": 2.688,
-      "color": "#5a1f2e",
-      "position": [
-        -4.5,
-        -4.5,
-        0.0
-      ],
-      "subScenes": [],
-      "motion": {
-        "type": "fixed"
-      }
-    }
   ]
 }
