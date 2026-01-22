@@ -11,7 +11,7 @@ The architrino project is positioned as:
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
 - **Absolute observer**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and charge of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This observer knows where and when each causal wake surface was emitted as it passes any point.
-- **Spacetime as assembly network**: What has been termed "Vacuum" is not empty void but a sea of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime fabric). 
+- **Spacetime assembly network**: What GR calls the "vacuum" is not empty void but a **spacetime assembly network** of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime fabric). 
 
 ### The Absolute Observer: Capabilities and Limits
 - **What it knows**: The position, velocity, and charge of every architrino at any (x,y,z,t), and the complete causal history up to the present moment.
@@ -84,7 +84,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 - ❌ **Con**: **Hylomorphism collapses**. No independent "forms" imposed on matter. All structure is dynamic assembly of architrinos, fully visible to the absolute observer.
 - ❌ **Con**: **Teleology is eliminated**. No final causes. Stable structures (particles, organisms) exist because they are **dynamical attractors**, not because they fulfill purposes. The absolute observer sees only lawlike evolution, no goal-directedness.
 - ❌ **Con**: The void is **real and fundamental** (though mostly unoccupied by architrinos).
-- ✅ **Pro** (ironic): Aristotle valued **continuous substance**. The architrino *assembly network* (spacetime fabric—coupled Noether cores) is effectively continuous at macroscopic scales—**emergent from discrete architrinos**.
+- ✅ **Pro** (ironic): Aristotle valued **continuous substance**. The **spacetime assembly network** (spacetime fabric—coupled Noether cores) is effectively continuous at macroscopic scales—**emergent from discrete architrinos**.
 
 **Legacy shift**: Aristotelian teleology and form/matter dualism are **rejected**. His emphasis on **emergence of properties from relations** is partially vindicated (but mechanistically, not teleologically).
 
@@ -231,7 +231,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 
 **Architrino impact**:
 - ✅ **Pro**: **Strong vindication**. The architrino model is a **neo-Lorentzian ontology**: Euclidean void + absolute time with **emergent Lorentz symmetry** from architrino dynamics.
-- ✅ **Pro**: "Ether" is the **architrino assembly network** (spacetime fabric—coupled Noether cores).
+- ✅ **Pro**: "Ether" is the **spacetime assembly network** (spacetime fabric—coupled Noether cores).
 - ✅ **Pro**: Lorentz contraction and time dilation are **real dynamical effects** of assembly configurations, not mere coordinate artifacts (as in Einstein's interpretation).
 - ✅ **Pro**: The **absolute observer** is the entity "at rest with respect to the architrino substrate." In this frame, effective Maxwell-like and gravity-like equations have their simplest form. This is Lorentz's preferred frame made explicit.
 
@@ -282,7 +282,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 - Einstein-Hilbert action emerges from integrating out matter degrees of freedom.
 
 **Architrino impact**:
-- ✅ **Pro**: **Strong alignment**. Gravity is **emergent** from the dynamics and configuration of architrino assemblies (spacetime fabric / vacuum tri-binary network—coupled Noether cores).
+- ✅ **Pro**: **Strong alignment**. Gravity is **emergent** from the dynamics and configuration of architrino assemblies (spacetime assembly network—coupled Noether cores).
 - ✅ **Pro**: Einstein's equations arise as **effective hydrodynamics** of the assembly medium (analogous to fluid equations from molecular dynamics).
 
 **Legacy shift**: Sakharov's vision is **realized** with explicit microphysics. His "induced gravity" becomes **assembly-network gravity**.
@@ -311,7 +311,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 
 **Architrino impact**:
 - ❌ **Con**: We do **not quantize geometry**. Geometry is **emergent** from classical-but-complex architrino assemblies.
-- ⚠️ **Partial**: **Discrete structure** arises naturally (architrinos are discrete point entities; tri-binary lattice is discrete), but **not in the LQG formalism** (no spin networks, no loop quantization).
+- ⚠️ **Partial**: **Discrete structure** arises naturally (architrinos are discrete point entities; the tri-binary lattice of the spacetime assembly network is discrete), but **not in the LQG formalism** (no spin networks, no loop quantization).
 - ⚠️ **Partial**: **Background independence** is achieved (Euclidean void + architrinos; no fixed metric), but via different route.
 
 **Legacy shift**: LQG is **bypassed**—geometry is classical and emergent, not quantized. LQG's discrete-structure intuition is **vindicated**; its quantization program is **unnecessary**.
@@ -341,7 +341,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 
 **Architrino impact**:
 - ✅ **Pro**: Inflation may be **natural** in the architrino framework: **self-hit regime** (sources exceed field speed *c_f*) and **tri-binary scalability** can produce **rapid expansion** phases.
-- ⚠️ **Difference**: Inflaton is not a fundamental scalar field, but an **effective description** of architrino assembly dynamics in super-field-speed regime (collective expansion mode of tri-binary vacuum).
+- ⚠️ **Difference**: Inflaton is not a fundamental scalar field, but an **effective description** of architrino assembly dynamics in super-field-speed regime (collective expansion mode of the spacetime assembly network).
 - ✅ **Pro**: Inflation's successes (flatness, horizon problem, structure seeds) must be **reproduced** from first principles.
 
 **Legacy shift**: Inflation is **mechanistically explained** (not just parameterized by a scalar field). Guth's phenomenology is **vindicated**; his ontology (fundamental inflaton) is **replaced**.
@@ -569,7 +569,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 **Architrino impact**:
 - ✅ **Pro**: Dirac's antimatter prediction is **naturally explained**: **opposite architrinos** form binaries; "particles and antiparticles" are **ellipsoidal tri-binaries** with opposite orientations/charges.
 - ✅ **Pro**: Dirac equation as **effective description** of fermionic tri-binary assemblies (ellipsoidal/3D configurations obeying Fermi-Dirac statistics).
-- ⚠️ **Tension**: QFT formalism (fields, creation/annihilation operators, virtual particles, vacuum fluctuations) is **emergent**, not fundamental. These are **bookkeeping devices** for complex assembly interactions, visible in full detail only to the absolute observer.
+- ⚠️ **Tension**: QFT formalism (fields, creation/annihilation operators, virtual particles, "vacuum" fluctuations) is **emergent**, not fundamental. These are **bookkeeping devices** for complex assembly interactions, visible in full detail only to the absolute observer.
 
 **Legacy shift**: Dirac's **results** are **rederived** from assembly dynamics; QFT becomes an effective language, not fundamental ontology.
 
@@ -611,7 +611,7 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 
 **Architrino impact**:
 - ⚠️ **Reinterpretation**: Gauge symmetries (SU(2), U(1), SU(3)) are **emergent** from architrino assembly symmetries and interaction structure.
-- ✅ **Pro**: **Higgs field** is the **spacetime assembly network** (coupled Noether cores—the sea of tri-binaries forming the vacuum). Mass arises from **coupling to this assembly medium** (resistance to acceleration through the tri-binary lattice).
+- ✅ **Pro**: **Higgs field** is the **spacetime assembly network** (coupled Noether cores—the sea of tri-binaries forming the "vacuum"). Mass arises from **coupling to this assembly medium** (resistance to acceleration through the tri-binary lattice).
 - ✅ **Pro**: **Electroweak symmetry breaking** is a **phase transition** in assembly configurations (analogous to ferromagnetic phase transition).
 
 **Legacy shift**: Gauge theories and Higgs mechanism as **effective field theories** of assembly dynamics. The Standard Model Lagrangian is **emergent**.
@@ -815,7 +815,7 @@ If the architrino/tri-binary framework succeeds empirically, it will not merely 
     *   **Law-governed** (trackable by the Absolute Observer up to self-hit branch points).
     *   **Reductionist** (all complexity reduces to architrinos + void + time).
 2.  **Atomism**: Not Democritus's spheres, but **point transmitter/receivers**.
-3.  **Absolute Time & Space**: Newton and Lorentz are vindicated against Einstein's spacetime ontology. The "void" is a rigid stage; the "vacuum" is the sea of assemblies (coupled Noether cores) filling that stage.
+3.  **Absolute Time & Space**: Newton and Lorentz are vindicated against Einstein's spacetime ontology. The "void" is a rigid stage; the "vacuum" is the **spacetime assembly network** (coupled Noether cores) filling that stage.
 4.  **Causal Realism**: Hume is refuted. Necessary connections are real (architrino laws). Causation is an objective mapping of state $S(t)$ to $S(t+\Delta t)$.
 5.  **Laplace’s Demon**: Reborn as the **Absolute Observer**—a qualified ideal that maps the full microstate but does not restore strict determinism at self-hit branch points.
 
