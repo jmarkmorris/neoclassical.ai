@@ -46,7 +46,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
   - Messianic Age: A future era of peace and divine presence, but not necessarily the *end* of the cosmos—more a transformation of history.
 - **Kabbalistic End:** Return of all creation to its divine source (*Tikkun Olam*, repairing the world; ultimate reabsorption into *Ein Sof*).
 
-**Architrino contrast:** The architrino framework rejects *ex nihilo* creation and any ontological dependence on a personal creator. It replaces covenantal teleology with lawful dynamics and self-hit branching in a spacetime assembly network. Any "return" is physical reconfiguration, not reabsorption into a divine source.
+**Architrino contrast:** The architrino framework rejects *ex nihilo* creation and any ontological dependence on a personal creator. It replaces covenantal teleology with lawful dynamics and **deterministic multistability** (self-hit branching) in a spacetime assembly network. Any "return" is physical reconfiguration, not reabsorption into a divine source.
 
 ---
 
