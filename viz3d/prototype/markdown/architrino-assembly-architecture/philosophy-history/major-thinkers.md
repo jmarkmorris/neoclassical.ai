@@ -803,10 +803,15 @@ If the architrino/tri-binary framework succeeds empirically, it will not merely 
 #### **What Dies**
 
 1.  **Teleology is dead**: No purposes, no final causes, no cosmic goals. The Absolute Observer sees only initial conditions + necessary laws → outcomes. Aristotle, Aquinas, Hegel—all refuted.
+    **Replaced by**: Emergent functional structure—stable attractors (particles, organisms) exist because they are dynamically robust, not because they fulfill purposes. "Purpose" returns as a useful shorthand in biology and engineering, not as ontological causation.
 2.  **Idealism is dead**: Reality is not mind-dependent. No Platonic Forms, no Kantian categories structuring experience, no Hegelian Spirit. Architrinos exist at precise (x,y,z,t) coordinates whether or not anyone thinks about them.
+    **Replaced by**: Epistemic humility and model pluralism—mental models track real structures but do not constitute them. Mind is an emergent assembly phenomenon with causal power inside the physical network.
 3.  **Transcendentalism is dead**: No realm "beyond" the physical. No noumena, no higher dimensions, no separate mental substance. Only this: architrinos in Euclidean void, with linear time.
+    **Replaced by**: Immanent realism—explanation stays inside the architrino substrate; "beyond" becomes deeper structure in the same physical ontology.
 4.  **Indeterminacy is localized**: Quantum randomness is not universal; it is tied to self-hit branch points in architrino dynamics. The Copenhagen interpretation and Heisenberg's ontological uncertainty are rejected as global claims.
+    **Replaced by**: Ontological openness at branch points with lawful evolution between them—quantum statistics emerge from branching structure and coarse-graining, not from global indeterminacy.
 5.  **Diffeomorphism Invariance as Ontology is dead**: While coordinate invariance is a powerful mathematical tool for effective theories (GR), the Absolute Observer reveals that **fixed Euclidean coordinates** are the deeper reality. "Returning to the same point" is unambiguous in the void.
+    **Replaced by**: Coordinate-invariant effective physics over a fixed Euclidean substrate—gauge freedom as a calculational symmetry, not a claim about ontology.
 
 #### **What Is Resurrected**
 
