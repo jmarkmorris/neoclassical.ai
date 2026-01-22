@@ -57,6 +57,20 @@ The Architrino Assembly Architecture is **not strictly deterministic** despite i
 
 ---
 
+### **Heraclitus (c. 535–475 BCE)**
+**Core belief**: 
+- Reality is **flux** ("panta rhei"); stability is an illusion.
+- Strife and opposition are fundamental; harmony arises through tension.
+- Logos as the law-like structure of change.
+
+**Architrino impact**:
+- ❌ **Con**: Change is **derivative**, not fundamental. Architrinos are eternal; configurations change, but entities do not.
+- ⚠️ **Partial**: Heraclitus's emphasis on **opposition** aligns with the electrino/positrino binary and the role of competing wake interactions.
+
+**Legacy shift**: Becoming is **reinterpreted** as pattern evolution within an unchanging substrate.
+
+---
+
 ### **Plato (428–348 BCE)**
 **Core belief**: 
 - **Theory of Forms**: Abstract, eternal, perfect essences (Forms) are more real than physical particulars.
@@ -744,6 +758,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 | **Thinker** | **Years** | **Vindicated ✅** | **Challenged ❌** | **Transcended ⚠️** |
 |---|---|---|---|---|
+| **Heraclitus** | c. 535–475 BCE | Opposition as structuring tension | **Flux as fundamental** | Becoming → pattern evolution |
 | **Leucippus** | c. 490–430 BCE | Atomism, void, relational qualities | — | Intrinsic atomic properties |
 | **Democritus** | c. 460–370 BCE | Atomism, void, relational qualities | — | Intrinsic atomic properties |
 | **Plato** | 428–348 BCE | — | **Theory of Forms** | — |
