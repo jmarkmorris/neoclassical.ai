@@ -1,11 +1,11 @@
 
 # Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)
 
-**Purpose:** A compact, cross-audience map of major theories as commonly presented
-in outreach. Each entry is ordered **reverse**: (1) high-level summary, (2) an
-abstract STEM-friendly view, (3) the mathematical essence (key idea or formula).
+**Purpose:** A compact, cross-audience map of major theories. Each entry moves from accessible to technical: (1) a
+high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical
+essence (key idea or formula).
 
-**Note:** This is descriptive, not an endorsement.
+**Note:** This is descriptive only, not an endorsement.
 
 ---
 
