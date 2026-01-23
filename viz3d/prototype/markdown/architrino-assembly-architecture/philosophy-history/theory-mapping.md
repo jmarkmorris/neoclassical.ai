@@ -5,8 +5,6 @@
 high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical
 essence (key idea or formula).
 
-**Note:** This is descriptive only, not an endorsement.
-
 ---
 
 ## 1. Core Assembly Layer (Noether Core / Tri-Binary)
