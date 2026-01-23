@@ -61,7 +61,7 @@ $$
 -\frac{1}{4}G^a_{\mu\nu}G^{a\mu\nu}, \quad
 \text{where } D_\mu = \partial_\mu + ig_s T^a A^a_\mu.
 $$
-**AAA View:** Quarks are specific charged tri-binary assemblies; color labels are discrete topological/phase states on subsets of their decoration sites. Gluons are planar (bosonic) assemblies that shuttle these labels between tri-binaries. Confinement reflects the energetics and topology of architrino flux routing: isolated color charges are dynamically unstable, so only color-neutral composite assemblies are long-lived.
+**AAA View:** Quarks are specific charged tri-binary assemblies; color labels are discrete topological/phase states on subsets of their decoration sites. Gluons are vortices between binaries that shuttle these labels between tri-binaries. Confinement reflects the energetics and topology of architrino flux routing: isolated color charges are dynamically unstable, so only color-neutral composite assemblies are long-lived.
 
 ---
 
