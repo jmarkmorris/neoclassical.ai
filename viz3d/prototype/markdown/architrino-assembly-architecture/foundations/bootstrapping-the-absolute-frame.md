@@ -125,7 +125,7 @@ This places the theory in the tradition of **Lorentz Ether Theory** (LET):
 **Key distinctions from classical LET:**
 - The "aether" is not a continuous classical medium—it is a discrete sea of tri-binary assemblies
 - The preferred frame is undetectable by assembly-based observers due to emergent effective geometry
-- We make clear predictions for where symmetry-breaking signatures should appear (Planck-scale physics, strong aether gradients, self-hit regime)
+- We make clear predictions for where symmetry-breaking signatures should appear (event-horizon alignment/Planck-scale conditions, strong aether gradients, self-hit regime)
 
 ## Connections to Core Dynamics
 
@@ -417,4 +417,3 @@ We cannot directly measure the concentric wake geometry or identify an absolutel
 The bootstrap described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and absolute coordinates **in principle**. At accessible energies, emergent Lorentz symmetry ensures we cannot detect the absolute frame operationally (Michelson-Morley null result, etc.)—but the frame exists as the ontological bedrock upon which the effective geometry is built.
 
 ---
-

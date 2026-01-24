@@ -224,13 +224,13 @@ In the architrino framework, the **Maximal Curvature Binary (MCB)** is the **inn
 
 ### Distinction from Planck Scale
 
-- **Planck scale** ($\ell_P$, $t_P$): Emerges in extreme environments (e.g., black hole horizons) where middle-binary parameters may approach Planck values due to extreme Noether Sea compression. **Not fundamental** in this theory.
+- **Planck scale** ($\ell_P$, $t_P$): Emerges in extreme environments (e.g., black hole horizons) as an **event-horizon alignment condition** where the outer binary approaches $v=c_f$ and the tri-binary becomes coplanar/co-linear. **Not fundamental** in this theory.
 - **MCB scale** ($r_{\text{min}}$, $T_{\text{MCB}}$): **Fundamental** unit set by architrino self-hit dynamics; same throughout the universe (modulo local medium coupling effects for moving/embedded assemblies).
 
 ### Relationship to Tri-Binary Structure
 
 - **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **defines fundamental units**.
-- **Middle binary**: $v = c_f$; symmetry-breaking threshold; **defines effective light speed** $c_{\text{eff}}$.
+- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
 - **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether Sea** for gravitational/cosmological effects.
 
 **This document analyzes the isolated two-body problem to understand MCB formation and stability.**
@@ -707,6 +707,5 @@ Further analysis (Ch. 11–13) will address:
 5. **Bridge from fundamental to operational**: The MCB is the **first emergent structure** with physical dimensions. All larger assemblies (atoms, particles, macroscopic matter) scale from this. Operational measurements (rulers, clocks) ultimately trace back to MCB oscillations.
 
 6. **Tri-binary structure is more complex**: While the MCB forms naturally in isolation, tri-binary assemblies (with middle and outer binaries) likely require additional stabilization mechanisms (Noether Sea coupling, phase-locking, quantization).
-
 
 
