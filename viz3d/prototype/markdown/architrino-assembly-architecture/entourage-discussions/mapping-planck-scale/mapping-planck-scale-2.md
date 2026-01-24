@@ -42,7 +42,7 @@ As translation increases, retarded reception times and incident directions shift
 Let an emitter at emission time $t_0$ be at $\mathbf{x}_e(t_0)$ and a receiver at time $t$ be at $\mathbf{x}_r(t)$. The causal constraint is:
 
 $$
-\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\| = c_f (t - t_0)
+\left\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\right\| = c_f (t - t_0)
 $$
 
 Decompose positions into orbital + translational motion:
@@ -54,8 +54,8 @@ $$
 As $\mathbf{v}_{\text{trans}}$ increases, the solution set for $t_0$ shifts, changing:
 
 - **Timing**: $\Delta t = t - t_0$ (phase of received potential),
-- **Direction**: $\hat{\mathbf{r}} = (\mathbf{x}_r(t) - \mathbf{x}_e(t_0)) / \|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\|$,
-- **Magnitude**: $\propto 1/\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\|^2$.
+- **Direction**: $\hat{\mathbf{r}} = (\mathbf{x}_r(t) - \mathbf{x}_e(t_0)) / \left\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\right\|$,
+- **Magnitude**: $\propto 1/\left\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\right\|^2$.
 
 Those shifts modify the effective coupling between middle and outer binaries, providing a concrete pathway for translation-driven phase-lock adjustment.
 
@@ -98,4 +98,3 @@ A proposed addition is **translation-driven ratcheting**: as translational veloc
 - **Middle binary rides $v=c_f$** across regimes and serves as the energy fulcrum.
 - **Outer binary may reach $v=c_f$** as the horizon is approached; alignment collapses planes and damps precession.
 - **Low-energy regime** retains energy-separated radii/frequencies and near-orthogonal planes.
-
