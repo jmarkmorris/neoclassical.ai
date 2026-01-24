@@ -6,7 +6,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
 
 - Build the **metric-level description**: $g_{\mu\nu}(x)$, geodesics, and proper time from the spacetime-aether assemblies (graviton–Higgs–binary background).
 - Recover **GR and $\Lambda\mathrm{CDM}$ phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
-- Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, H₀, $\sigma_8$, EP/Lorentz bounds.
+- Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, $H_0$, $\sigma_8$, EP/Lorentz bounds.
 - Ensure all gravity/cosmology claims are grounded in explicit mechanisms from:
   - **Absolute time + Euclidean 3-space**
   - **Tri-binary architecture** (inner/mid/outer)
@@ -40,7 +40,7 @@ I am responsible for ensuring the architrino framework can meet (or very clearly
 - BBN: $Y_p \approx 0.24$, D/H, $N_{\rm eff}\approx 3$.
 - CMB: acoustic peak positions, basic TT/TE/EE structure, lensing amplitude.
 - Linear growth and lensing: $\sigma_8/S_8$ in the observed ballpark.
-- Clear story on H₀ tension and $\sigma_8$/LSS tensions: resolved, worsened, or neutral.
+- Clear story on $H_0$ tension and $\sigma_8$/LSS tensions: resolved, worsened, or neutral.
 
 These are Tier‑1/2 constraints: if we systematically can’t approach them, we document and may trigger stop‑conditions.
 
@@ -141,12 +141,12 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
     - any non‑standard contributions from aether dynamics.
 - Ch. 41:
   - Redshift as clock comparison in evolving aether: explicit formulas relating $z$, proper time, and aether evolution.
-  - Map architrino‑based expansion to observed H(z), SN Ia, BAO, and H₀ tension.
+  - Map architrino‑based expansion to observed $H(z)$, SN Ia, BAO, and $H_0$ tension.
 - Ch. 42:
   - Growth equation for density perturbations in the emergent metric.
   - Matter power spectrum sketch, and how DM vs modified gravity vs hybrid emerges from the aether and assembly content.
 - Ch. 43:
-  - Make quantitative, falsifiable proposals for resolving (or not) the H₀ and $\sigma_8$ tensions.
+  - Make quantitative, falsifiable proposals for resolving (or not) the $H_0$ and $\sigma_8$ tensions.
   - Identify clean observable discriminants for the architrino cosmology.
 
 - Ch. 44:
@@ -233,7 +233,7 @@ Tiered, consistent with the project’s global criteria but focused on my domain
   - CMB first acoustic peak and basic structure within ~5%; LSS growth broadly in line.
 
 - **Tier 3 (Novel & Predictive):**
-  - At least one major cosmological tension (H₀ or $\sigma_8$) is addressed quantitatively with a clear, testable signature.
+  - At least one major cosmological tension ($H_0$ or $\sigma_8$) is addressed quantitatively with a clear, testable signature.
   - Unique predictions in GW phenomenology, late‑time expansion, or large‑scale structure distinguishable from $\Lambda\mathrm{CDM}$+GR.
 
 ---
