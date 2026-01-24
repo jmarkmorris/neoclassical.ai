@@ -1,13 +1,6 @@
-It’s close, but I’d like one more quick review pass after we tighten the epistemic labeling. Here’s the updated draft text, already incorporating the reviewer’s points; after this, I’d suggest a short sanity check from Red (on failure modes) and Phil (on ontology/wording), then it’s repo-ready.
 
----
 
 ## Draft 2: Planck Scale as Alignment-Lock of Tri-Binary Delay Geometry
-
-**Document:** `entourage-discussions/mapping-planck-scale/synthesis-1.md`  
-**Role:** Dyna - Geometric Topologist & Dynamical Systems Theorist
-
----
 
 ### 1. Thesis (Version 2)
 
@@ -254,37 +247,7 @@ Those steps remain open.
    - Conserve total angular momentum via emission of spin-1 radiation (circularly polarized bosons).
    - Produce potentially observable signatures (e.g. polarization patterns near strong-gravity regions).
 
----
 
-### 8. Next Work Packages
-
-- **Dyna-Sol:** Construct minimal delay-equation model for a tri-binary with translational drift and self-hit; identify discrete modes and any terminal aligned state, extracting $L_{\text{align}},R_{\text{align}}$.
-- **Dyna:** Build an explicit configuration-manifold model for tri-binary orientations + self-hit phase; test SU(2)-like vs U(1)-like behavior.
-- **Cos-Phe:** Use candidate $L_{\text{align}},R_{\text{align}}$ to estimate $G_{\text{eff}}$ and compare to gravity constraints; sketch BH thermodynamics from tile counting.
-- **Red-Sig:** Define observational tests and failure thresholds for:
-  - non-Lorentzian effects,
-  - non-universal $R_{\text{align}}$,
-  - multiple aligned endpoints.
-
----
-
-### On Readiness
-
-Substantively, this draft now:
-
-- Separates **assumptions**, **conjectured mappings**, and **targets for derivation**.
-- Answers the reviewer’s concerns about over-strong equalities, c vs $c_f$, spin topology, kinematics vs full feedback, and condensate language.
-
-I would like:
-
-- **Phil** to do a quick language/ontology pass (are we clean on what’s fundamental vs emergent?),
-- **Red** to glance at the failure-mode statements and confirm they’re sharp enough.
-
-If they don’t raise new structural objections, I’d treat this as ready for the repo as **Synthesis Draft 2** and a baseline for simulations/theory to either support or kill specific conjectured mappings.
-
----
-
-Dyna here. Here’s a press-release style summary of the Planck-alignment thesis, in bullet-point messaging.
 
 ---
 
