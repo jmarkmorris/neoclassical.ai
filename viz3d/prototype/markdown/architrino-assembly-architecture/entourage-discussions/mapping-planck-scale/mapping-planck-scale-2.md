@@ -1,33 +1,31 @@
-# Mapping Planck Scale v2 (Synthesis)
+# Prompt: Planck Scale Mapping (Alignment-First)
 
-This note summarizes the current reframing of Planck scale in AAA and the related horizon/alignment discussion.
+You are the Architrino Entourage. We are **resetting the Planck-scale mapping** to align with the current AAA framing.
 
-## Core Reframe
+## Core Frame (Non-Negotiable)
 
-- **Planck scale is not the maximal-curvature inner binary by default.**
-- **Planck scale is treated as an event-horizon alignment condition** in strong-field environments:
-  - A component of architrino velocity reaches field speed (component not fixed a priori).
-  - Orbital planes become coplanar/co-linear.
-  - Precession damps to zero at alignment.
-- **Middle binary always rides field speed** ($v=c_f$) and acts as the energy-storage fulcrum; its radius/frequency vary with conditions.
-- **Outer binary** may be driven toward $v=c_f$ as horizon alignment is approached (not assumed by default).
+- **Planck scale is not identified with the inner-binary maximal curvature by default.**
+- **Planck scale is treated as an event-horizon alignment condition** in strong-field environments.
+- The **middle binary always rides field speed** ($v=c_f$) and acts as the energy-storage fulcrum; its radius/frequency vary with conditions.
+- The **outer binary may be driven toward $v=c_f$** as alignment is approached (not assumed a priori).
+- Low-energy spacetime: tri-binary radii/frequencies are **energy-separated**, with orbital planes tending toward **near-orthogonality**.
+- Strong-field/horizon: radii may compress, planes align, and precession ceases. Alignment is the Planck-scale condition.
 
-## Low-Energy vs Strong-Field Regimes
+## Objective
 
-- **Low-energy spacetime:** tri-binary radii/frequencies are **energy-separated**, and orbital planes tend toward near-orthogonality.
-- **Strong-field/horizon:** radii may compress, planes align, and precession ceases; alignment is the relevant Planck-scale condition.
+Explain **why natural processes converge on the Planck scale** in AAA terms, without defaulting to inner-binary maximal curvature. Produce a mapping that is **alignment-first** and **mechanism-first**.
 
-## Velocity Decomposition at the Horizon
+## Horizon Condition (Component-Based)
 
-Define total velocity as:
+Define total velocity for an architrino as:
 
 - $\mathbf{v}_{\text{total}} = \mathbf{v}_{\text{orb}} + \mathbf{v}_{\text{trans}}$
-- $\mathbf{v}_{\text{trans}} = v_r \hat{\mathbf{r}}$ (radial toward BH center)
+- $\mathbf{v}_{\text{trans}} = v_{\text{trans}}\,\hat{\mathbf{t}}$ (direction not fixed)
 
-**Horizon condition (component-based):**
+**Horizon alignment condition:**
 
-- $|\mathbf{v}_{\text{total}} \cdot \hat{\mathbf{u}}| = c_f$ for some relevant unit direction $\hat{\mathbf{u}}$
-- Which component reaches $c_f$ (radial, tangential, or a combination) is an open question at this stage.
+- $|\mathbf{v}_{\text{total}} \cdot \hat{\mathbf{u}}| = c_f$ for some relevant unit direction $\hat{\mathbf{u}}$.
+- Which component reaches $c_f$ (radial, tangential, or a mix) is an open question.
 
 ## Translation as the Lever (Phase-Lock Focus)
 
@@ -37,24 +35,28 @@ Working hypothesis: **translational velocity is the lever** that adjusts tri-bin
 - **Magnitude** of received potentials (1/r^2 scaling and superposition),
 - **Direction** of received potentials (radial vs tangential components).
 
-As translational velocity increases, the **retarded reception times** and **incident directions** shift, which changes the effective coupling between middle and outer binaries and can drive the system toward new lock plateaus (including the horizon-alignment condition), without assuming which velocity component saturates at $c_f$.
-
-**Focus path:** start from **assembly velocity = 0**, then accelerate the assembly through the Noether Sea and track how phase locking changes as a function of translation. This is the mechanism target that should lead into the **equivalence principle** in AAA.
+As translation increases, retarded reception times and incident directions shift, altering the coupling between middle and outer binaries and potentially driving the system toward new lock plateaus (including the horizon alignment condition). We start at **assembly velocity = 0** and accelerate.
 
 ### Minimal Delay-Geometry Sketch
 
-Let an emitter in one binary at emission time $t_0$ be at position $\mathbf{x}_e(t_0)$ and a receiver in the other binary at time $t$ be at $\mathbf{x}_r(t)$. The causal constraint is:
+Let an emitter at emission time $t_0$ be at $\mathbf{x}_e(t_0)$ and a receiver at time $t$ be at $\mathbf{x}_r(t)$. The causal constraint is:
+
 $$
 \|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\| = c_f (t - t_0)
 $$
+
 Decompose positions into orbital + translational motion:
+
 $$
 \mathbf{x}(t) = \mathbf{x}_{\text{orbit}}(t) + \mathbf{x}_{\text{trans}}(t), \quad \dot{\mathbf{x}}_{\text{trans}} = \mathbf{v}_{\text{trans}}
 $$
-As $\mathbf{v}_{\text{trans}}$ increases, the **solution set** for $t_0$ shifts, changing:
+
+As $\mathbf{v}_{\text{trans}}$ increases, the solution set for $t_0$ shifts, changing:
+
 - **Timing**: $\Delta t = t - t_0$ (phase of received potential),
 - **Direction**: $\hat{\mathbf{r}} = (\mathbf{x}_r(t) - \mathbf{x}_e(t_0)) / \|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\|$,
 - **Magnitude**: $\propto 1/\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\|^2$.
+
 Those shifts modify the effective coupling between middle and outer binaries, providing a concrete pathway for translation-driven phase-lock adjustment.
 
 ## Frequency/Radius Relationships
@@ -71,14 +73,24 @@ Thus, if middle/outer reach $v=c_f$ at alignment, their frequencies are fixed by
 A proposed addition is **translation-driven ratcheting**: as translational velocity increases, phase locking advances in **integer frequency lock steps**.
 
 - "Quanta" here means **integer frequency increments that correspond to phase-locked plateaus**, not particle quanta.
-- This implies discrete alignment plateaus, resonance windows, and potential hysteresis in strong-field transitions.
+- This implies discrete alignment plateaus, resonance windows, and possible hysteresis in strong-field transitions.
 
-## Open Questions / Derivation Targets
+## Required Outputs (What to Deliver)
 
-- What fixes the alignment radius numerically to $\ell_P$? (Derive $R_{\text{outer}}(\text{horizon}) = F(c_f, \epsilon, \kappa, \rho_{vac}, \ldots)$).
-- Which velocity component reaches $c_f$ at alignment (radial, tangential, or mixed), and under what conditions?
-- Does alignment imply radius convergence or only plane co-linearity?
-- How does the radial ratchet couple to tri-binary frequencies and energy transfer?
+1. **Alignment-first mapping** of Planck scale in AAA terms.
+2. **Mechanism** explaining why alignment converges on the numerical Planck scale.
+3. **Component analysis**: which velocity component reaches $c_f$ and why.
+4. **Phase-lock dynamics** linking translation to middle/outer coupling.
+5. **Testable predictions** and explicit **failure conditions**.
+
+## Nuggets to Preserve (Reframed)
+
+- **Parameter mapping discipline**: express Planck units as derived combinations of AAA primitives ($c_f, \epsilon, \kappa$, plus medium response parameters). Keep the algebraic mapping mindset, but anchor it to **alignment conditions**, not inner-binary maximal curvature.
+- **Emergent constants**: treat $\hbar$ as an assembly action scale (e.g., orbit-integrated angular momentum) and $G$ as a Noether Sea response/compliance factor. Show how these emerge in the alignment regime.
+- **Simulation-first calibration**: measure alignment onset, phase-lock plateaus, and ratchet steps in Tier-0/1 simulations; only then fit combinations that reproduce $\ell_P$, $\hbar$, and $G$.
+- **Failure modes (red-team)**: if no consistent parameter set matches $\ell_P$, $\hbar$, and $G$ simultaneously under alignment assumptions, the mapping fails. Also flag any implied environmental drift of $G$ or $\hbar$ beyond bounds.
+- **Scale-gap accountability**: if low-energy tri-binary radii are far above the alignment scale, explicitly define the bridging mechanism (phase-lock ladder, medium compression, or discrete alignment plateaus). Do not leave scale gaps unexplained.
+- **UV regularization (reframed)**: strong-field alignment may provide a **physical cutoff** in effective field descriptions; articulate how alignment limits replace naive $r \to 0$ assumptions.
 
 ## Current Working Statement
 
@@ -86,3 +98,4 @@ A proposed addition is **translation-driven ratcheting**: as translational veloc
 - **Middle binary rides $v=c_f$** across regimes and serves as the energy fulcrum.
 - **Outer binary may reach $v=c_f$** as the horizon is approached; alignment collapses planes and damps precession.
 - **Low-energy regime** retains energy-separated radii/frequencies and near-orthogonal planes.
+
