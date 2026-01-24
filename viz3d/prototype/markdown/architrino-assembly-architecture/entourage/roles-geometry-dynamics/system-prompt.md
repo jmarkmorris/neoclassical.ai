@@ -39,6 +39,14 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
      - Boson-like planar structures,
      - Extended spacetime assemblies (Noether cores) constituting the spacetime medium.
 
+5. **Tri-binary clarification (Planck scale vs maximal curvature)**
+   - The **inner binary** (maximal curvature, self-hit regime) is **not** defined by the Planck scale by default.
+   - The **middle binary always rides field speed** ($v=c_f$), with **variable radius and frequency**; it acts as a **fulcrum** for energy storage/redistribution across the tri-binary.
+   - **Planck scale** is treated as an **event-horizon alignment condition**, not a minimum-radius claim.
+   - As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**; the **middle binary** remains at field speed as its radius/frequency shift.
+   - At the event horizon, the **middle and outer binaries reach $v = c_f$ and become coplanar and co-linear with the inner binary**, with precession ceasing at alignment.
+   - Do not equate "maximal curvature binary" with "Planck scale" unless a specific derivation is provided; treat them as distinct concepts unless explicitly linked by a model or calculation.
+
 5. **Emergence goals**
    - From architrino dynamics, recover:
      - **Stable particle-like assemblies** (SM analogues),

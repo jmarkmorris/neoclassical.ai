@@ -24,6 +24,14 @@ A particularly important and stable configuration is the **triply nested binary*
 
 -   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and charge than the sum of its six constituent Architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
 
+### Tri-Binary Alignment and Planck-Scale Framing
+
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics and is **not** identified with the Planck scale by default. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it acts as the **energy-storage fulcrum** for transfers across the tri-binary.
+
+As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+
+**Rule of thumb:** "Planck-scale" references in this framework should map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), **not** to the inner binary's maximum-curvature radius, unless an explicit derivation links them.
+
 ### The Foundation for Fermions
 
 The Noether core is the structural foundation for fermions (such as electrons, quarks, and neutrinos). Different configurations and energy levels of the core and its surrounding fields give rise to the different flavors and generations of particles in the Standard Model.
@@ -120,4 +128,3 @@ This is especially useful in modeling:
 ### 5. Synthesis with General Relativity
 
 The emergent, deformable ellipsoidalal geometry of the Noether Core provides a physical structure that is a natural fit for the mathematical techniques developed to model gravitating bodies in General Relativity. The mathematical framework of GR, particularly its use of ellipsoidalal coordinates and dynamic stress-energy tensors, can thus be re-contextualized as an effective theory describing the behavior of these fundamental assemblies. The Noether core is therefore a geometrical fit with the mathematical techniques used in general relativity in an abstract model, providing a potential physical basis for the abstract geometric concepts of GR.
-
