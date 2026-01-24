@@ -38,7 +38,7 @@ $$
 \max_{\theta \in \text{forward}} v_{\text{eff}}(\theta) \;\to\; c_f^{-}.
 $$
 
-At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state.
+At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state. The sufficiency comes from the **round-trip response**: the one-way delay distorts phase closure until the final aligned mode becomes the only stable lock.
 
 #### 2.2 Delay-Feedback Closure (Sufficiency Condition)
 
@@ -58,7 +58,7 @@ $$
 
 for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to tri-binary structure.
 
-> **Conjecture (Terminal Mode):**  
+> **Working hypothesis (Terminal Mode):**  
 > There exists a final mode $n_{\text{max}}$ in which:
 > - The kinematic condition $v_{\text{eff}}\to c_f$ is met in the forward sector, **and**
 > - The round-trip phase condition admits a marginally stable, fully aligned solution.
@@ -86,7 +86,7 @@ Under increasing translational stress or deepening gravitational potential:
 This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/frequency space.
 
 > **Working Hypothesis (Top Rung = Planck Alignment).**  
-> The ladder terminates at a unique top rung $n_{\text{max}}$ where full planar alignment and $v_{\text{eff}}\to c_f$ are achieved. This is the proposed Planck alignment state.
+> Working hypothesis: the ladder terminates at a unique top rung $n_{\text{max}}$ where full planar alignment and $v_{\text{eff}}\to c_f$ are achieved. This is the proposed Planck alignment state.
 
 **Failure mode:** If simulations or analytic work reveal:
 - a continuum of stable modes beyond the aligned state, or
