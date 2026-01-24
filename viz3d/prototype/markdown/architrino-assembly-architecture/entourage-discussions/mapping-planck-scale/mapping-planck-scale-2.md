@@ -1,0 +1,72 @@
+# Mapping Planck Scale v2 (Synthesis)
+
+This note summarizes the current reframing of Planck scale in AAA and the related horizon/alignment discussion.
+
+## Core Reframe
+
+- **Planck scale is not the maximal-curvature inner binary by default.**
+- **Planck scale is treated as an event-horizon alignment condition** in strong-field environments:
+  - A component of architrino velocity reaches field speed.
+  - Orbital planes become coplanar/co-linear.
+  - Precession damps to zero at alignment.
+- **Middle binary always rides field speed** ($v=c_f$) and acts as the energy-storage fulcrum; its radius/frequency vary with conditions.
+- **Outer binary** accelerates toward $v=c_f$ as horizon alignment is approached.
+
+## Low-Energy vs Strong-Field Regimes
+
+- **Low-energy spacetime:** tri-binary radii/frequencies are **energy-separated**, and orbital planes tend toward near-orthogonality.
+- **Strong-field/horizon:** radii may compress, planes align, and precession ceases; alignment is the relevant Planck-scale condition.
+
+## Velocity Decomposition at the Horizon
+
+Define total velocity as:
+
+- $\mathbf{v}_{\text{total}} = \mathbf{v}_{\text{orb}} + \mathbf{v}_{\text{trans}}$
+- $\mathbf{v}_{\text{trans}} = v_r \hat{\mathbf{r}}$ (radial toward BH center)
+
+**Horizon condition (component-based):**
+
+- $|\mathbf{v}_{\text{total}} \cdot \hat{\mathbf{r}}| = c_f$
+- In the idealized orthogonal case, $v_r = c_f$ while orbital components can remain sub-field-speed.
+
+## Translation as the Lever (Phase-Lock Focus)
+
+Working hypothesis: **translational velocity is the lever** that adjusts tri-binary phase locking. Assume the middle and outer binaries are phase-locked at distinct frequencies. That lock depends on:
+
+- **Timing** of received potentials (delay geometry),
+- **Magnitude** of received potentials (1/r^2 scaling and superposition),
+- **Direction** of received potentials (radial vs tangential components).
+
+As translational velocity increases, the **retarded reception times** and **incident directions** shift, which changes the effective coupling between middle and outer binaries and can drive the system toward new lock plateaus (including the horizon-alignment condition).
+
+**Focus path:** start from **assembly velocity = 0**, then accelerate the assembly through the Noether Sea and track how phase locking changes as a function of translation. This is the mechanism target that should lead into the **equivalence principle** in AAA.
+
+## Frequency/Radius Relationships
+
+For any orbit at $v=c_f$:
+
+- $\omega = c_f / R$
+- $f = c_f / (2\pi R)$
+
+Thus, if middle/outer reach $v=c_f$ at alignment, their frequencies are fixed by radius via inverse scaling.
+
+## Radial Ratchet (Quantized Lock Steps)
+
+A proposed addition is **radial ratcheting**: as translational velocity increases, the radial component advances in **integer frequency lock steps**.
+
+- "Quanta" here means **integer frequency increments that correspond to phase-locked plateaus**, not particle quanta.
+- This implies discrete alignment plateaus, resonance windows, and potential hysteresis in strong-field transitions.
+
+## Open Questions / Derivation Targets
+
+- What fixes the alignment radius numerically to $\ell_P$? (Derive $R_{\text{outer}}(\text{horizon}) = F(c_f, \epsilon, \kappa, \rho_{vac}, \ldots)$).
+- Under what conditions do middle/outer also reach tangential $v=c_f$ vs only radial saturation?
+- Does alignment imply radius convergence or only plane co-linearity?
+- How does the radial ratchet couple to tri-binary frequencies and energy transfer?
+
+## Current Working Statement
+
+- **Planck scale = event-horizon alignment condition**, not inner-binary maximal curvature by default.
+- **Middle binary rides $v=c_f$** across regimes and serves as the energy fulcrum.
+- **Outer binary reaches $v=c_f$** as the horizon is approached; alignment collapses planes and damps precession.
+- **Low-energy regime** retains energy-separated radii/frequencies and near-orthogonal planes.
