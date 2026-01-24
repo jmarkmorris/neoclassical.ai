@@ -23,7 +23,7 @@ In the Architrino Assembly Architecture, the Planck scale is reached when a tri-
    \( f_{\rm align} = \dfrac{c_f}{2\pi R_{\rm align}} \), \( L_{\rm align} = m_{\rm eff} c_f R_{\rm align} \).  
 2. Identify \( L_{\rm align} \) with \( \hbar \) by matching simulation-measured angular momentum at the alignment plateau.  
 3. The same \( R_{\rm align} \) sets a compliance threshold in the Noether Sea: compressing the tri-binary assembly to that radius defines an effective “Planck density,” giving \( G \sim \dfrac{c_f^3}{\mu_{\rm NS} f_{\rm align}} \).  
-4. Combining \( c_f, \hbar, G \) reproduces \( \ell_P = \sqrt{\hbar G / c^3} \). In AAA, all three constants are derived from alignment observables, closing the algebraic loop without referencing inner-binary curvature directly.
+4. Combining \( c_f, \hbar, G \) reproduces \( \ell_P = \sqrt{\hbar G / c^3} \). In AAA, all three constants are derived from alignment observables, closing the algebraic loop.
 
 **Why processes converge there**  
 - Translation raises the self-hit incidence for the inner binary, increasing dissipative drag that must be balanced by middle and outer binaries.  

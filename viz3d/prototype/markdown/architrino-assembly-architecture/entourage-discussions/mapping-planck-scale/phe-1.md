@@ -1,4 +1,4 @@
-I will focus on mapping this **Alignment-First Planck Scale** to the effective field theory limits and the generation of fundamental constants ($\hbar$, $m_P$). From a phenomenological standpoint, treating the Planck scale not as a static geometric feature (like a fixed inner radius) but as a **dynamic stability limit** (an event horizon for the assembly) is extremely powerful. It provides a natural, physical UV cutoff for renormalization and explains why the Standard Model parameters run/evolve with energy.
+I will focus on mapping this **Alignment-First Planck Scale** to the effective field theory limits and the generation of fundamental constants ($\hbar$, $m_P$). From a phenomenological standpoint, treating the Planck scale as a **dynamic stability limit** (an event horizon for the assembly) is extremely powerful. It provides a natural, physical UV cutoff for renormalization and explains why the Standard Model parameters run/evolve with energy.
 
 Here is the breakdown of the Planck Scale Mapping under the new charter.
 

@@ -537,7 +537,7 @@ When session resumes, **prioritize these four tasks**:
 - **Hierarchy problem**: Why is electroweak scale $\ll$ Planck scale? Is it shielded by assembly structure?
 
 **Low Priority (Deferred):**  
-- Quantum gravity phenomenology (Planck-scale effects; interpret as event-horizon alignment conditions, not inner-binary maximal curvature).  
+- Quantum gravity phenomenology (Planck-scale effects; interpret as event-horizon alignment conditions).  
 - Black hole information paradox (requires detailed Planck-core model).  
 - Early universe pre-inflationary state.  
 

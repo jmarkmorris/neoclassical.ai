@@ -215,17 +215,12 @@ In the architrino framework, the **Maximal Curvature Binary (MCB)** is the **inn
 - **Length standard**: The orbital radius $r_{\text{min}}$ of the MCB is the **prototype rod**.
 - **Time standard**: The orbital period $T_{\text{MCB}} = 1/f_{\text{MCB}}$ is the **prototype clock tick**.
 
-**Key Point**: This scale is **not** the Planck length. The MCB radius $r_{\text{min}}$ is determined by the balance of:
+The MCB radius $r_{\text{min}}$ is determined by the balance of:
 1. Coulomb-like attraction between opposite charges ($\propto |e/6|^2 / r^2$),
 2. Self-hit repulsion (non-Markovian feedback when $v > c_f$),
 3. Centripetal requirement for stable circular orbit.
 
-**Expected scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength), many orders of magnitude **larger** than the Planck length $\ell_P \sim 10^{-35}$ m.
-
-### Distinction from Planck Scale
-
-- **Planck scale** ($\ell_P$, $t_P$): Emerges in extreme environments (e.g., black hole horizons) as an **event-horizon alignment condition** where the outer binary approaches $v=c_f$ and the tri-binary becomes coplanar/co-linear. **Not fundamental** in this theory.
-- **MCB scale** ($r_{\text{min}}$, $T_{\text{MCB}}$): **Fundamental** unit set by architrino self-hit dynamics; same throughout the universe (modulo local medium coupling effects for moving/embedded assemblies).
+**Expected scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
 
 ### Relationship to Tri-Binary Structure
 
@@ -702,10 +697,8 @@ Further analysis (Ch. 11–13) will address:
 
 3. **Fundamental units are dynamically generated**: $r_{\text{min}}$ and $T_{\text{MCB}}$ emerge from the balance of forces in the two-body problem, not from external conventions or empirical input.
 
-4. **The MCB is not Planck-scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength), many orders of magnitude larger than $\ell_P \sim 10^{-35}$ m.
+4. **MCB scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
 
 5. **Bridge from fundamental to operational**: The MCB is the **first emergent structure** with physical dimensions. All larger assemblies (atoms, particles, macroscopic matter) scale from this. Operational measurements (rulers, clocks) ultimately trace back to MCB oscillations.
 
 6. **Tri-binary structure is more complex**: While the MCB forms naturally in isolation, tri-binary assemblies (with middle and outer binaries) likely require additional stabilization mechanisms (Noether Sea coupling, phase-locking, quantization).
-
-

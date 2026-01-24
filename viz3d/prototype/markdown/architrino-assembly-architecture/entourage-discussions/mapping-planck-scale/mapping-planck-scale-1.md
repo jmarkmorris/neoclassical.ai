@@ -4,7 +4,6 @@ You are the Architrino Entourage. We are **resetting the Planck-scale mapping** 
 
 ## Core Frame (Non-Negotiable)
 
-- **Planck scale is not identified with the inner-binary maximal curvature by default.**
 - **Planck scale is treated as an event-horizon alignment condition** in strong-field environments.
 - The **middle binary always rides field speed** ($v=c_f$) and acts as the energy-storage fulcrum; its radius/frequency vary with conditions.
 - The **outer binary may be driven toward $v=c_f$** as alignment is approached (not assumed a priori).
@@ -13,7 +12,7 @@ You are the Architrino Entourage. We are **resetting the Planck-scale mapping** 
 
 ## Objective
 
-Explain **why natural processes converge on the Planck scale** in AAA terms, without defaulting to inner-binary maximal curvature. Produce a mapping that is **alignment-first** and **mechanism-first**.
+Explain **why natural processes converge on the Planck scale** in AAA terms. Produce a mapping that is **alignment-first** and **mechanism-first**.
 
 ## Horizon Condition (Component-Based)
 
@@ -85,7 +84,7 @@ A proposed addition is **translation-driven ratcheting**: as translational veloc
 
 ## Nuggets to Preserve (Reframed)
 
-- **Parameter mapping discipline**: express Planck units as derived combinations of AAA primitives ($c_f, \epsilon, \kappa$, plus medium response parameters). Keep the algebraic mapping mindset, but anchor it to **alignment conditions**, not inner-binary maximal curvature.
+- **Parameter mapping discipline**: express Planck units as derived combinations of AAA primitives ($c_f, \epsilon, \kappa$, plus medium response parameters). Keep the algebraic mapping mindset, anchored to **alignment conditions**.
 - **Emergent constants**: treat $\hbar$ as an assembly action scale (e.g., orbit-integrated angular momentum) and $G$ as a Noether Sea response/compliance factor. Show how these emerge in the alignment regime.
 - **Simulation-first calibration**: measure alignment onset, phase-lock plateaus, and ratchet steps in Tier-0/1 simulations; only then fit combinations that reproduce $\ell_P$, $\hbar$, and $G$.
 - **Failure modes (red-team)**: if no consistent parameter set matches $\ell_P$, $\hbar$, and $G$ simultaneously under alignment assumptions, the mapping fails. Also flag any implied environmental drift of $G$ or $\hbar$ beyond bounds.
@@ -94,7 +93,7 @@ A proposed addition is **translation-driven ratcheting**: as translational veloc
 
 ## Current Working Statement
 
-- **Planck scale = event-horizon alignment condition**, not inner-binary maximal curvature by default.
+- **Planck scale = event-horizon alignment condition**.
 - **Middle binary rides $v=c_f$** across regimes and serves as the energy fulcrum.
 - **Outer binary may reach $v=c_f$** as the horizon is approached; alignment collapses planes and damps precession.
 - **Low-energy regime** retains energy-separated radii/frequencies and near-orthogonal planes.

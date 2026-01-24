@@ -682,7 +682,7 @@ All parameters used in the Master EOM are defined in the **Parameter Ledger**.
  - **Explanatory target**: Derive from $\epsilon$, $c_f$, and Planck units, or demonstrate independence. If $\kappa$ requires adjustment beyond 2 significant figures to match Coulomb constant, flag as potential fine-tuning (FTQ assessment required).
 - $\epsilon = e/6$: **Postulated** (explanatory target: why 1/6?)
 - $\eta$: **Numerical parameter**
- - **Physical justification required**: Is $\eta \sim \ell_P$ (Planck length), or $\eta \sim R_{\text{inner}}$ (tri-binary inner radius)? If $\eta$ varies by $> 10\%$ across different physical contexts (binaries vs nuclei vs cosmology), theory lacks naturalness.
+ - **Physical justification required**: Is $\eta$ tied to a fixed microscopic length scale, or does it vary across contexts? If $\eta$ varies by $> 10\%$ across different physical contexts (binaries vs nuclei vs cosmology), theory lacks naturalness.
 
 **Naturalness assessment:** Track fine-tuning quotient (FTQ) for each parameter; flag if FTQ $> 10$ (see TOC Ch. 54).
 

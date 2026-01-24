@@ -272,7 +272,7 @@ In standard QFT, UV divergences require renormalization. In AAA:
 ## 10. Sig's Final Assessment
 
 ### What I Accept (Provisional)
-- **Alignment-first framing** is conceptually cleaner than "inner-binary = Planck scale."
+**Alignment-first framing** is conceptually cleaner for mapping the Planck scale in AAA terms.
 - **Translation-driven phase-lock ratchet** is a concrete mechanism worthy of simulation.
 - **Emergent $\hbar, G, \ell_P$** from alignment dynamics is testable and falsifiable.
 

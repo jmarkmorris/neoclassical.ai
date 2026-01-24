@@ -1,7 +1,7 @@
 **Role:** Red – Adversary / Red Team Physicist
 **Subject:** Critique of Alignment-First Planck Mapping & The "Translational Lever" Risk
 
-Marko, this pivot to **"Planck Scale as Alignment Condition"** is strategically sound. It moves us away from the naive "$r \to 0$ singularity" trap and the inner-binary-as-Planck assumption, which was always risky given the scale gap. Treating the Planck scale as a dynamic *state*—specifically a **horizon condition**—gives us a mechanism for UV regularization that might actually work.
+Marko, this pivot to **"Planck Scale as Alignment Condition"** is strategically sound. Treating the Planck scale as a dynamic *state*—specifically a **horizon condition**—gives us a mechanism for UV regularization that might actually work.
 
 **However,** you have introduced a mechanism—**"Translation as the Lever"**—that walks us directly into a minefield of **Lorentz violation**. If the internal phase-locking of a particle depends on its absolute velocity through the void (or Noether Sea), you are predicting that physics looks different at 370 km/s (Earth's motion vs CMB) than at rest.
 

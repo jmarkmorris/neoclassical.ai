@@ -4,7 +4,7 @@
 
 ### 1. Alignment-First Planck Mapping (AAA framing)
 
-- **Claim:** The Planck scale corresponds to the *alignment threshold* where translational motion drives the middle+outer binaries into a common $v=c_f$ phase-lock, collapsing their plane separation and halting precession. This is an *event-horizon condition* rather than an inner-binary curvature limit.
+- **Claim:** The Planck scale corresponds to the *alignment threshold* where translational motion drives the middle+outer binaries into a common $v=c_f$ phase-lock, collapsing their plane separation and halting precession. This is an *event-horizon condition*.
 - **Assumptions:** 
   1. Absolute time/Euclidean void; field speed $c_f$ (Ledger A1).
   2. Middle binary always at $v=c_f$; outer binary subluminal at low energy.

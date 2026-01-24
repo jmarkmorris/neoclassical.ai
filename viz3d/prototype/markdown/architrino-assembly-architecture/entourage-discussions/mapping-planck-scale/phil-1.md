@@ -8,10 +8,7 @@
 
 ### 1.1 The Alignment Condition as Fundamental
 
-**Previous (rejected) assumption:**
-- Planck scale ≡ inner-binary maximal curvature radius (a fixed geometric scale).
-
-**New (alignment-first) ontology:**
+**Alignment-first ontology:**
 - **Planck scale is an *event* condition**, not a fixed length scale.
 - It marks the **convergence regime** where tri-binary orbital dynamics enter maximal phase alignment with the Noether Sea medium's causal structure.
 - This is a **process-dependent threshold**, not a fundamental geometric constant.
@@ -20,7 +17,7 @@
 - A tri-binary assembly where:
   - Middle binary: always at $v = c_f$ (energy fulcrum, fixed by definition),
   - Outer binary: driven toward $v = c_f$ by environmental pressure (gravitational potential, translation, or self-hit memory),
-  - Inner binary: *may* also approach maximal curvature, but this is **derived**, not assumed.
+  - Inner binary: remains in its self-hit regime and participates in the alignment geometry.
 - Orbital planes collapse toward **mutual alignment** (precession damps → zero).
 - Phase locking becomes **total**: all three binaries lock into integer frequency ratios with each other *and* with the local Noether Sea causal structure.
 
@@ -41,8 +38,8 @@
    - There is no "smallest possible length" in AAA (space is Euclidean and continuous).
    - The Planck scale is a **dynamical threshold**, not a geometric atom.
 
-2. **Not the inner-binary radius by default:**
-   - Inner-binary maximal curvature is a **separate stability condition** (self-hit regime, $v > c_f$).
+2. **Inner-binary stability condition:**
+   - Inner-binary maximal curvature is a **self-hit stability condition** (self-hit regime, $v > c_f$).
    - Whether it coincides with the alignment condition is an **empirical question** to be tested via simulation.
 
 3. **Not a UV cutoff in the field-theory sense:**
@@ -297,7 +294,7 @@ $$
 
 **Failure 1: No consistent parameter calibration**
 - If Tier-1 simulations cannot find $(\kappa, \rho_{\text{arch}})$ that simultaneously reproduces $\ell_P$, $\hbar$, and $G$ within 10%, the alignment-first mapping is falsified.
-- Response: Pivot to alternative (e.g., inner-binary maximal curvature) or abandon Planck-scale mapping entirely.
+- Response: Pivot to an alternative alignment trigger or abandon Planck-scale mapping entirely.
 
 **Failure 2: $\hbar$ or $G$ drift exceeds bounds**
 - If the theory predicts $\Delta\hbar/\hbar > 10^{-5}$ or $\Delta G/G > 10^{-12}$ yr$^{-1}$ in accessible environments, and observations rule this out, the environmental-dependence hypothesis is falsified.
@@ -322,7 +319,7 @@ $$
 ### 5.1 Parameter Mapping Discipline
 
 **From prompt:**
-> Express Planck units as derived combinations of AAA primitives ($c_f, \epsilon, \kappa$, plus medium response parameters). Keep the algebraic mapping mindset, but anchor it to alignment conditions, not inner-binary maximal curvature.
+> Express Planck units as derived combinations of AAA primitives ($c_f, \epsilon, \kappa$, plus medium response parameters). Keep the algebraic mapping mindset, anchored to alignment conditions.
 
 **Phil's stance:**
 - **Algebraic rigor is essential**, but it must be **mechanism-grounded**.

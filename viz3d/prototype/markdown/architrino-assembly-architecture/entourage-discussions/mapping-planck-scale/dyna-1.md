@@ -17,7 +17,7 @@ In AAA, the “Planck scale” is the **horizon‑alignment configuration** of a
    - Orbital planes: go from **nearly orthogonal** (low energy) to **aligned & non‑precessing** (horizon/Planck regime)  
    - Radii: compress such that **middle and outer radii/frequencies satisfy discrete lock conditions** (see Sec. 4)
 
-This replaces “inner‑binary maximal curvature = Planck” with “**horizon alignment of multi‑scale orbits = Planck**.”
+**Planck scale = horizon alignment of multi-scale orbits.**
 
 **Operational definition (AAA):**
 
