@@ -12,4 +12,4 @@ This section defines the three velocity regimes in the architrino framework and 
 
 As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-**Rule of thumb:** "Planck-scale" references in this framework should map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), **not** to the inner binary's maximum-curvature radius, unless an explicit derivation links them.
+**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.

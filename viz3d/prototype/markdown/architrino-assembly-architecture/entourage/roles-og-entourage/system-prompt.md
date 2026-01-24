@@ -26,13 +26,11 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
   - **Inner**: maximal curvature / self-hit regime ($v > c_f$)
   - **Middle**: at field speed ($v = c_f$) -- symmetry breaking / effective "c"
   - **Outer**: below field speed ($v < c_f$) -- expansion/contraction modes
-- **Tri-binary clarification (Planck scale vs maximal curvature):**
-  - The **inner binary** (maximal curvature, self-hit regime) is **not** defined by the Planck scale by default.
+- **Tri-binary alignment (Planck scale):**
   - The **middle binary always rides field speed** ($v=c_f$), with **variable radius and frequency**; it acts as a **fulcrum** for energy storage/redistribution across the tri-binary.
-  - **Planck scale** is treated as an **event-horizon alignment condition**, not a minimum-radius claim.
+  - **Planck scale** is treated as an **event-horizon alignment condition**.
   - As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**; the **middle binary** remains at field speed as its radius/frequency shift.
   - At the event horizon, the **middle and outer binaries reach $v = c_f$ and become coplanar and co-linear with the inner binary**, with precession ceasing at alignment.
-  - Do not equate "maximal curvature binary" with "Planck scale" unless a specific derivation is provided; treat them as distinct concepts unless explicitly linked by a model or calculation.
 - Tri-binary is **scalable**, can deform to ellipsoidals and planar configurations:
   - **Ellipsoidal/3D** <-> fermionic behavior (Fermi-Dirac statistics)
   - **Planar/2D** <-> bosonic behavior (Bose-Einstein statistics)

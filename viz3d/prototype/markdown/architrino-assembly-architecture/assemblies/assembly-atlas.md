@@ -12,4 +12,4 @@ This atlas enumerates stable and metastable assemblies and summarizes their defi
 
 ## Planck-Scale Framing
 
-In this framework, **Planck-scale** references are tied to an **event-horizon alignment condition**, not to the inner binary's maximal-curvature radius. At alignment, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with precession ceasing.
+In this framework, **Planck-scale** references are tied to an **event-horizon alignment condition**. At alignment, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with precession ceasing.

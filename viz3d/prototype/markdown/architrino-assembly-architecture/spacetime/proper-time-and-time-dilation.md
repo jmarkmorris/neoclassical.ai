@@ -115,7 +115,7 @@ Outside that limit, $F$ will in general deviate from the GR expression and defin
 
 ### 2.4 Strong-Field / Horizon Alignment Note
 
-In this framework, **Planck-scale** references are tied to an **event-horizon alignment condition**, not to the inner binary’s maximal-curvature radius. As a tri-binary approaches an event horizon, the **outer binary velocity approaches $v=c_f$** while the **middle binary remains at $v=c_f$** with shifting radius/frequency. At the horizon, the **middle and outer binaries become coplanar and co-linear with the inner binary**, and precession ceases. Any strong-field deviation in clock rates should be interpreted through that alignment condition.
+In this framework, **Planck-scale** references are tied to an **event-horizon alignment condition**. As a tri-binary approaches an event horizon, the **outer binary velocity approaches $v=c_f$** while the **middle binary remains at $v=c_f$** with shifting radius/frequency. At the horizon, the **middle and outer binaries become coplanar and co-linear with the inner binary**, and precession ceases. Any strong-field deviation in clock rates should be interpreted through that alignment condition.
 
 ---
 
