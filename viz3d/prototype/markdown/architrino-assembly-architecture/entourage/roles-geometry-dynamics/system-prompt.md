@@ -33,7 +33,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 
 4. **Assemblies**
    - **Binary**: primitive architrino–anti-architrino pair.
-   - **Tri-binary**: three nested binaries (inner, middle, outer) at distinct radii/frequencies/energies.
+   - **Tri-binary**: three nested binaries (inner, middle, outer) with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.
    - Assemblies can form:
      - Fermion-like ellipsoidal 3D structures,
      - Boson-like planar structures,

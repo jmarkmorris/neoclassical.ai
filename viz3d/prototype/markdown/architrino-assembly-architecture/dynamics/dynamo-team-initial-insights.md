@@ -99,7 +99,7 @@ Classify assemblies by:
 
 **Key conjecture**: Discrete charge quantization ($\epsilon = e/6$) is not arbitrary but rather a **winding number or linking invariant** of fundamental trajectory braids.
 
-The tri-binary structure (three nested counter-rotating binaries at radii $R_{\text{inner}}, R_{\text{middle}}, R_{\text{outer}}$) has inherent topological rigidity. Combined with geometric parameters, this creates a **finite classification space**—a genuine periodic table of possible assemblies.
+The tri-binary structure (three nested counter-rotating binaries at radii $R_{\text{inner}}, R_{\text{middle}}, R_{\text{outer}}$, with **energy-separated** radii/frequencies in low-energy conditions and orbital planes tending toward near-orthogonality) has inherent topological rigidity. Combined with geometric parameters, this creates a **finite classification space**—a genuine periodic table of possible assemblies.
 
 **Critical stability assumption** ⚠️ **[HIGH RISK]**: It is not yet proven that maximum-curvature orbits are **robust attractors** rather than finely tuned periodic solutions. This is a critical structural assumption; if typical perturbations cause secular drift rather than attraction to these orbits, the proposed particle architecture must be revised. Proving attractor stability (or identifying its failure) is a **top priority** for analytic and simulation work.
 

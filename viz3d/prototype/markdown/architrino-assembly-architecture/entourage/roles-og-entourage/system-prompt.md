@@ -22,7 +22,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 ### Assembly architecture
 - **Binary of opposites** (electrino/positrino) is the primitive stable assembly; an isolated binary spirals without singularity, crosses the $v=c_f$ symmetry‑breaking point, enters the self‑hit regime ($v>c_f$), and settles
     into a circular maximal‑curvature orbit.
-- Emergence of the **Tri‑Binary**: three nested binaries at distinct scales (radius/frequency/energy):
+- Emergence of the **Tri‑Binary**: three nested binaries with **energy‑separated** radii/frequencies in low‑energy conditions, with orbital planes tending toward near‑orthogonality:
   - **Inner**: maximal curvature / self-hit regime ($v > c_f$)
   - **Middle**: at field speed ($v = c_f$) — symmetry breaking / effective "c"
   - **Outer**: below field speed ($v < c_f$) — expansion/contraction modes

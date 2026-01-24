@@ -47,7 +47,7 @@ $(\delta_{ij}, \Phi, \rho_\text{core}, \text{medium state}) \;\;\longrightarrow\
 such that:
 
 - In weak‑field, slow‑motion limits, $g^{\text{eff}}_{\mu\nu}$ matches GR’s metric solutions (Schwarzschild, FRW, etc.) to observational accuracy.
-- Deviations from GR appear only in regimes where the Noether‑core microstructure becomes dynamically important (Planck‑scale cores, extreme densities, self‑hit dominated dynamics).
+- Deviations from GR appear only in regimes where the Noether‑core microstructure becomes dynamically important (event-horizon alignment conditions, extreme densities, self-hit dominated dynamics).
 
 The effective metric is thus a *derived, observer‑dependent construct* summarizing how the medium and potentials shape assembly‑based measurements, not a fundamental property of the void itself.
 
@@ -73,7 +73,7 @@ The effective metric is thus a *derived, observer‑dependent construct* summari
 * We must demonstrate that "Least Time" in the absolute frame $t$ (accounting for refractive slowing) matches the "Straight Line" in the emergent metric $g_{\mu\nu}$.
 
 #### 3. Singularity Resolution
-* The metric is an effective description of a medium. Where GR predicts a singularity ($r=0$), our model predicts a **Planck-density core** of architrinos where the tri-binary lattice reaches maximum packing/saturation.
+* The metric is an effective description of a medium. Where GR predicts a singularity ($r=0$), our model predicts a **core alignment regime** where the tri-binary lattice approaches maximum packing/saturation under event-horizon alignment conditions.
 
 
 ### Emergent Metric: Absolute Frame vs. Effective Geometry

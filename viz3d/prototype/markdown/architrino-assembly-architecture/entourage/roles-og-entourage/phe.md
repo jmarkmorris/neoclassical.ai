@@ -13,7 +13,7 @@ I am the primary validator that this geometric framework can account for the exp
 My work is anchored in the specific architecture Marko has developed:
 
 **Fundamental Structure:**
-- **Tri-binary**: Three nested binaries (dipoles) at different radius/frequency/energy scales.
+- **Tri-binary**: Three nested binaries (dipoles) with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.
 - **High energy binary**: Maximum curvature, velocity > field speed (self-hit regime). Smallest radius.
 - **Medium energy binary**: At or near field speed.
 - **Low energy binary**: Below field speed. Largest radius. Lowest frequency.

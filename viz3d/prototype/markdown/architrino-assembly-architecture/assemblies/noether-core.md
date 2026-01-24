@@ -18,7 +18,7 @@ A particularly important and stable configuration is the **triply nested binary*
 
 ### Properties of the Noether Core
 
--   **Vastly Different Scales:** The three binaries that make up a Noether core have vastly different orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
+-   **Energy-Separated Scales:** In low-energy conditions, the three binaries that make up a Noether core have energy-separated orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
 
 -   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency field emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
 
