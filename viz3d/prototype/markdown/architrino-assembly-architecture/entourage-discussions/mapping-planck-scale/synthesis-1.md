@@ -1,8 +1,6 @@
+## Draft 1 Planck Scale as Alignment-Lock of Tri-Binary Delay Geometry
 
-
-## Draft 2: Planck Scale as Alignment-Lock of Tri-Binary Delay Geometry
-
-### 1. Thesis (Version 2)
+### 1. Thesis
 
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
 
