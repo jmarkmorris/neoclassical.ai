@@ -153,11 +153,18 @@ This framing strips away individual emitters and treats the architrino as a mini
 
 *   **Energy as interaction history:** The architrino has no internal energy store; its motion is the accumulated effect of the field it experiences. "Kinetic energy" is a bookkeeping of delayed field impulses, not a private reservoir.
 *   **Identity as causal loop:** Experience field $\rightarrow$ respond $\rightarrow$ move into new field $\rightarrow$ respond again. Stable structure appears only when this loop closes into a repeatable lock.
+*   **Field = path-history aggregate:** The experienced field is the superposition of many delayed path histories. Abstractly, only path history matters; individual emitters are a bookkeeping convenience.
 
 #### 8.1 Field-Speed Regimes in the Experienced-Field View
 
 *   **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic. Alignment and phase-locking are pushed toward coplanarity because the forward sector starves while side/behind sectors dominate.
 *   **At $v > c_f$:** It outruns field propagation. The only gradients it can experience are delayed fields from behind/sideways, which produces **self-hit** dynamics. This creates a strong inward feedback that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+
+#### 8.2 One-Way Delay vs. Round-Trip Response
+
+*   **One-way delay (action):** The causal lag between an emission event and its arrival at a receiver, $\Delta t = d/c_f$. This sets when a potential gradient can be felt.
+*   **Round-trip response (action-in-response):** The next response cycle after a received impulse, where the receiver's motion alters the field it will later experience. This closes the loop and is the basis of phase-locking.
+*   **Why it matters:** One-way delay governs *timing of influence*; round-trip response governs *stability of a lock*. Mixing them blurs whether we are describing propagation or feedback.
 
 ---
 
