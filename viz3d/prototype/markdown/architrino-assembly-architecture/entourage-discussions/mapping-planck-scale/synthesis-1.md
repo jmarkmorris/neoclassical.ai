@@ -147,7 +147,21 @@ It connects to the **Alignment** hypothesis: as it falls inward to the faster $f
 
 ---
 
-### 8. Repo Update: Consolidated Stub Notes
+### 8. Field-Experience Framing (No Explicit Emitters)
+
+This framing strips away individual emitters and treats the architrino as a minimal mover responding to an **experienced potential field** $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
+
+*   **Energy as interaction history:** The architrino has no internal energy store; its motion is the accumulated effect of the field it experiences. "Kinetic energy" is a bookkeeping of delayed field impulses, not a private reservoir.
+*   **Identity as causal loop:** Experience field $\rightarrow$ respond $\rightarrow$ move into new field $\rightarrow$ respond again. Stable structure appears only when this loop closes into a repeatable lock.
+
+#### 8.1 Field-Speed Regimes in the Experienced-Field View
+
+*   **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic. Alignment and phase-locking are pushed toward coplanarity because the forward sector starves while side/behind sectors dominate.
+*   **At $v > c_f$:** It outruns field propagation. The only gradients it can experience are delayed fields from behind/sideways, which produces **self-hit** dynamics. This creates a strong inward feedback that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+
+---
+
+### 9. Repo Update: Consolidated Stub Notes
 
 I am submitting these notes for **Chapter 23 (Nuclear/Atomic Foundations)** and **Chapter 8 (Binary Dynamics)** to formalize this "Phase Slip" mechanism as the root of quantization.
 
