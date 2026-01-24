@@ -413,5 +413,3 @@ Architrino team proposes the Planck scale is not a fixed grid, but a **dynamic a
   - Compare the derived effective $G_{\text{eff}}$ with precision gravitational data.
 
 ---
-
-If you’d like, I can also condense this further into a one-page “media sheet” or a 3-sentence abstract for non-technical audiences.
