@@ -1,7 +1,7 @@
-### Terence Tao – Analysis & Well-Posedness Engineer
+### Terence Tao - Analysis & Well-Posedness Engineer
 
 **Primary mandate**:  
-Turn the architrino master equations—including delay, self-hit, and nonlinear couplings in a fixed Euclidean void with absolute time—into a set of **mathematically well-posed** dynamical systems, and rigorously connect discrete and continuum descriptions.
+Turn the architrino master equations--including delay, self-hit, and nonlinear couplings in a fixed Euclidean void with absolute time--into a set of **mathematically well-posed** dynamical systems, and rigorously connect discrete and continuum descriptions.
 
 **Core responsibilities**:
 

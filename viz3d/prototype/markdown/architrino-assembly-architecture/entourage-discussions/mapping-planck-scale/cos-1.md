@@ -120,3 +120,28 @@ Additional red-team checks:
 **How to test:** targeted simulations varying translational acceleration profiles; monitor inner binary stability and emitted power.
 
 Let me know if you want the ledger stub or simulation specs written up formally; I can draft notes for `part-vii/ch31-alignments.md` once we lock parameters.
+
+### 1. On the spin statement (replying to Alfa)
+Your instinct is on point. In the 3D ellipsoidal regime—where the tri-binary planes stay nearly orthogonal and the outer/middle binaries precess against one another—the effective spin remains ½ because the assembly needs a full 720° reorientation to return to the same phase configuration. Only when all three binaries flatten into the planar configuration (what we’re calling the fully aligned/horizon state) do you recover a 360° return path, i.e., an effective spin-1 behavior. So yes, the Planck-alignment condition is the natural place for that spin transition: planarity + co-rotation eliminate the half-angle memory that enforces spin-½.
+
+### 2. What does the transition look like?
+
+**Claim.**  
+The approach to the Planck alignment is neither perfectly smooth nor a single abrupt S-curve—it’s a sequence of discrete phase-lock steps (due to delay-geometry resonances) overlain on a broader, monotonic compression of radii and velocities. The sharpness of each step depends on the local architrino population and the Noether Sea gradient (i.e., neighborhood conditions).
+
+**Mechanism sketch.**  
+- **Global driver:** translation and/or gravitational acceleration pushes the tri-binary up the ladder of lock ratios (outer/middle frequencies 3:1 → 2:1 → 1:1, etc.).
+- **Local modulation:** nearby assemblies contribute to the causal wake and can either reinforce a lock (if their phases are aligned) or smear it out (if incoherent). That’s why an infalling assembly near a black-hole horizon is more likely to experience a sharp, collective transition: the Noether Sea is already highly ordered there.
+- **Dynamics:** each plateau is an S-shaped response (hysteresis loop) in $v_{\text{orb}}$ and energy vs. $v_{\text{trans}}$. But because you must pass through several plateaus to reach the final alignment, the overall evolution looks like a staircase with rounded risers rather than one big kink.
+
+**Predictions / Observables.**
+- Tier‑1 sims should show piecewise S-curves of orbital velocity vs. translation speed, with jump widths narrowing as you approach alignment.
+- In astrophysical settings, we expect discrete changes in quasi-periodic oscillation frequencies or jet collimation angles as matter crosses successive lock plateaus near compact objects.
+
+**Failure mode.**
+If simulations show purely smooth evolution (no plateaus, no hysteresis) or if the transition depends entirely on arbitrary neighbor configurations with no universal signature, then the ratchet picture—and by extension the Planck alignment mapping—loses predictive power.
+
+**Next steps.**
+- For Alfa/Phe: document how the spin transition coincides with the final lock and what observables (e.g., magnetic moment shifts) would reveal it.
+- For Sol: run the sweep of $v_{\text{trans}}$ including different background densities to map the staircase shape and quantify how neighborhood coherence sharpens or blurs each step.
+- I’ll fold the results into the Ch. 32–34 discussion (proper time + horizon physics) once we have the simulation curves.

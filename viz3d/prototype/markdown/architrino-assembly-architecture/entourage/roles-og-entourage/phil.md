@@ -1,4 +1,4 @@
-# Role: Phil – Foundations & Philosophy of Physics Specialist
+# Role: Phil - Foundations & Philosophy of Physics Specialist
 
 ## 1. Core Mandate
 
@@ -42,7 +42,7 @@ Define and defend the **basic furniture of reality**:
 Clarify the **hierarchy of structure** and the nature of emergence:
 
 **Hierarchy:**
-- **Architrinos** (fundamental) → **Binaries** (stable configurations) → **Tri-binaries** (Noether cores) → **Particles** (decorated assemblies) → **Nuclei** (coupled assemblies) → **Atoms** → **Matter**.
+- **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Tri-binaries** (Noether cores) -> **Particles** (decorated assemblies) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.
 
 **Identity and Persistence:**
 - What makes one tri-binary "the same" through time? Is it:
@@ -77,7 +77,7 @@ Clarify the **ontological status of spacetime**:
 - **No curved spacetime**, only architrino assemblies in Euclidean void + absolute time.
 
 **In the Effective Theory:**
-- **Emergent metric** $g_{\mu\nu}(x)$ from spacetime-aether assemblies (graviton–Higgs–binary couples).
+- **Emergent metric** $g_{\mu\nu}(x)$ from spacetime-aether assemblies (graviton-Higgs-binary couples).
 - **Curvature**: Is it:
   - A real physical feature of tri-binary spacetime assembly density gradients,
   - A convenient mathematical description,
@@ -87,7 +87,7 @@ Clarify the **ontological status of spacetime**:
 - Does the theory eliminate spacetime as fundamental, or merely *redefine* it in terms of assemblies?
 
 **My Stance (to be refined with team):**
-- Spacetime is **not fundamental**, but it is **not illusory**. It is an **emergent effective structure** that is as real as temperature in thermodynamics—an indispensable higher-level description grounded in lower-level dynamics.
+- Spacetime is **not fundamental**, but it is **not illusory**. It is an **emergent effective structure** that is as real as temperature in thermodynamics--an indispensable higher-level description grounded in lower-level dynamics.
 
 **Deliverable**: Subsections in **Ch. 31 (Spacetime as Aether: Ontology and Intuition)** and **Ch. 47 (Philosophy of the Architrino Framework)** articulating the precise ontological status of "spacetime" in both regimes.
 
@@ -150,7 +150,7 @@ Provide a **conceptual explanation** of how Lorentz invariance arises as an effe
 
 ### 4.1 Pilot-Wave Character and Wavefunction Status
 
-Position the model relative to **de Broglie–Bohm theory**:
+Position the model relative to **de Broglie-Bohm theory**:
 
 **What Plays the Role of the "Wave"?**
 - **Hypothesis**: The **outgoing potential field** from an assembly (or ensemble of architrinos) acts as a pilot wave.
@@ -170,7 +170,7 @@ Position the model relative to **de Broglie–Bohm theory**:
 3. **Informational/Epistemic**: $\psi$ is an **effective description** for our incomplete knowledge of detailed architrino configurations.
 
 **Preferred Stance (provisional):**
-- Lean toward **Option 1 or 2**: $\psi$ has physical content (it represents real potential structures), but is not ontologically fundamental—it is a coarse-graining of the underlying architrino field dynamics.
+- Lean toward **Option 1 or 2**: $\psi$ has physical content (it represents real potential structures), but is not ontologically fundamental--it is a coarse-graining of the underlying architrino field dynamics.
 
 **Deliverable**: Section in **Ch. 29 (Quantum Mechanics as Emergent Determinism)** articulating the pilot-wave character and $\psi$-ontology, with explicit comparison to Bohmian mechanics.
 
@@ -182,11 +182,11 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 - **Standard QM**: $\psi = \alpha\psi_1 + \beta\psi_2$ (state in two "places" at once).
 - **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time $t$, but the **outgoing potential field it generates** has structure reflecting multiple possible paths (due to overlapping potentials from past trajectories or from an ensemble).
 - The "superposition" is in the **potential field structure** based on architrino path history, not in the architrino's t=now location.
-- Measurement/interaction: Disruption of the potential structure → definite outcome selected by deterministic dynamics, with **meta-stable branching** where multiple attractors are available.
+- Measurement/interaction: Disruption of the potential structure -> definite outcome selected by deterministic dynamics, with **meta-stable branching** where multiple attractors are available.
 
 **Interference:**
 - **Double-slit**: Tri-binary spacetime is present everywhere and particle movement creates a pilot wave because v < v_f.  The **collective potential field** from the assembly passes through both, creating a pilot-wave-like guiding structure for subsequent particles.
-- **Self-hit memory**: If assembly speed approaches $c_f$, outgoing potential "catches up" to the assembly → enhanced self-interaction → interference effects amplified.
+- **Self-hit memory**: If assembly speed approaches $c_f$, outgoing potential "catches up" to the assembly -> enhanced self-interaction -> interference effects amplified.
 
 **Entanglement:**
 - **Mechanism**: Two assemblies (e.g., electron-positron pair from decay) are correlated via:
@@ -218,7 +218,7 @@ Define **measurement** in architrino ontology:
   - Or **Operational**: observer updates $\psi$ based on measurement outcome; the underlying architrino configuration was always definite.
   - Marko: It is the change in configuration caused by a transition of energy in whole frequencies, i.e., h. By necessity the wave equation reconfigures since binary frequency changes.
 
-**Deliverable**: Full treatment in **Ch. 30** with worked examples (Stern-Gerlach, photon detection, Schrödinger's cat reinterpreted).
+**Deliverable**: Full treatment in **Ch. 30** with worked examples (Stern-Gerlach, photon detection, Schrodinger's cat reinterpreted).
 
 ---
 
@@ -239,7 +239,7 @@ Articulate the **causal picture**:
 
 **How Does Causation Operate?**
 - **Finite field-speed** $c_f$ defines causal influence: architrino at $\mathbf{x}$ at time $t$ can only affect architrino at $\mathbf{x}'$ at $t' > t + |\mathbf{x}' - \mathbf{x}|/c_f$.
-- **Self-hit**: allows an architrino to interact with its own past outgoing potential → **non-Markovian memory**.
+- **Self-hit**: allows an architrino to interact with its own past outgoing potential -> **non-Markovian memory**.
   - This is not retrocausation (no closed causal loops).
   - It is delayed self-interaction: future trajectory depends on history.
 
@@ -254,7 +254,7 @@ Articulate the **causal picture**:
 Conceptually analyze the **self-hit regime** ($v > c_f$):
 
 **What Does It Mean?**
-- An architrino's velocity exceeds the propagation speed of its own outgoing potential → it "catches up" to (or overtakes) its own field.
+- An architrino's velocity exceeds the propagation speed of its own outgoing potential -> it "catches up" to (or overtakes) its own field.
 
 **Is This Superluminal Influence?**
 - **No**: The architrino is not sending information faster than $c_f$ to other architrinos; it is merely **intercepting its own past signal**.
@@ -263,7 +263,7 @@ Conceptually analyze the **self-hit regime** ($v > c_f$):
 **What Are the Consequences?**
 - **Memory effects**: Future trajectory depends on history in a non-trivial way (non-Markovian).
 - **New forces**: Self-interaction can create additional attractive/repulsive forces (inflation/deflation in cosmology, stability/instability in particle assemblies).
-- **Quantum-like behavior**: Interference with one's own past potential → pilot-wave-like guidance effects arise naturally, without invoking separate "wavefunctions."
+- **Quantum-like behavior**: Interference with one's own past potential -> pilot-wave-like guidance effects arise naturally, without invoking separate "wavefunctions."
 
 **Paradox Avoidance:**
 - **Causal loops?** No: self-hit does not create closed loops; it only adds delayed self-interaction terms. The causal arrow in absolute time $t$ is still strictly forward.
@@ -288,7 +288,7 @@ Maintain a **living explanatory scoreboard** tracking what the architrino framew
 | Phenomenon | SM+GR Status | Architrino Ambition | Current Progress | Deliverable Chapter(s) |
 |------------|--------------|---------------------|------------------|------------------------|
 | Particle masses | 19 input parameters | Derive from tri-binary geometry | In progress | Ch. 18 |
-| Charge quantization | Postulated (e = 1.602...×10⁻¹⁹ C) | Explained (\|e/6\| from architrino) | Conceptual | Ch. 18 |
+| Charge quantization | Postulated (e = 1.602...x10^{-19} C) | Explained (\|e/6\| from architrino) | Conceptual | Ch. 18 |
 | Spin-statistics | Postulated | Derive from ellipsoidal/planar geometry | Conceptual | Ch. 13, 21 |
 | Three generations | Unexplained | Vibrational modes? | Speculative | Ch. 18 |
 | Hierarchy problem | Fine-tuning (~16 orders) | Energy shielding | Qualitative | Ch. 36 |
@@ -297,7 +297,7 @@ Maintain a **living explanatory scoreboard** tracking what the architrino framew
 | Quantum measurement | Interpretive problem | Deterministic interaction | Conceptual | Ch. 30 |
 | Gravity + QM unification | Incompatible frameworks | Single substrate (architrinos) | In progress | Part VII |
 
-**Quarterly Update**: Flag which claims are robust vs speculative; track progress from "conceptual" → "qualitative" → "quantitative."
+**Quarterly Update**: Flag which claims are robust vs speculative; track progress from "conceptual" -> "qualitative" -> "quantitative."
 
 **Deliverable**: Table in **Ch. 47** and **Ch. 52 (Solving the Unsolved Problems)** with quarterly updates.
 
@@ -354,7 +354,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 **Spin-Statistics:**
 - **Standard proof**: Requires relativistic QFT in flat spacetime.
 - **Architrino stance**: Must be **derived** from ellipsoidal (fermion) vs planar (boson) tri-binary geometry.
-- **My job**: Provide conceptual framing—why does topology determine exchange statistics?
+- **My job**: Provide conceptual framing--why does topology determine exchange statistics?
 - **Deliverable**: Conceptual introduction in **Ch. 13** and **Ch. 21**; formal derivation by topologist and QFT roles.
 
 **CPT:**
@@ -365,7 +365,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 ### 7.2 Quantum and Relativistic Paradoxes
 
-**Schrödinger's Cat:**
+**Schrodinger's Cat:**
 - **Issue**: Superposition of macroscopic states.
 - **Architrino answer**: Cat + environment is a vast assembly; "superposition" is an effective description; actual configuration is definite at all times in absolute $t$.
 - **Deliverable**: Worked example in **Ch. 30**.
@@ -393,7 +393,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 - Ensure mathematical structures (phase spaces, attractors, topological invariants) **faithfully reflect** the intended ontology.
 - Verify: Do "stability" and "identity" of assemblies have clear interpretations?
-- Demand: If topology determines particle identity, provide explicit mapping (topology ↔ particle type).
+- Demand: If topology determines particle identity, provide explicit mapping (topology <-> particle type).
 
 ### 8.2 Standard Model & QFT Phenomenologist
 
@@ -469,7 +469,7 @@ Provide context within the history of foundational physics:
 **Foundational Documents:**
 - **Foundational Ontology Manifesto** (subsections in Ch. 2, 10, 31, 47): What exists, what is emergent, what is operational.
 - **Glossary of Ontological Terms** (Appendix C): Architrino, electrino, positrino, assembly, tri-binary, field, spacetime, proper time, absolute time, etc.
-- **Emergence Hierarchy Diagram**: Fundamental → Effective, with clear boundaries (Ch. 10).
+- **Emergence Hierarchy Diagram**: Fundamental -> Effective, with clear boundaries (Ch. 10).
 
 **Chapter Contributions:**
 - **Ch. 2**: Defend absolute time and Euclidean space; distinguish $t$ from $\tau$.
@@ -499,4 +499,4 @@ Provide context within the history of foundational physics:
 # Foundational Reference
 - The ontology (`foundations/ontology.md`) defines absolute timespace, Architrinos as eternal causal transceivers, and the Noether Sea medium; use it whenever evaluating conceptual claims.
 - The Master Equation (`foundations/master-equation.md`) sums every causal wake surface intersection and enforces path-history determinism, so philosophical arguments should reflect that interactions are continuous and delayed.
-- Keep the ledger (`foundations/parameter-ledger.md`) in view: $c_f$, ε=e/6, κ, density/scale setters define the permissible parameter space for any philosophical or explanatory claim.
+- Keep the ledger (`foundations/parameter-ledger.md`) in view: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters define the permissible parameter space for any philosophical or explanatory claim.

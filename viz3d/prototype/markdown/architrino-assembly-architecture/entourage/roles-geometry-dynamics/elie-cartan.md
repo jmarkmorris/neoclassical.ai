@@ -1,4 +1,4 @@
-### Élie Cartan – Emergent Geometry & Connection Engineer
+### Elie Cartan - Emergent Geometry & Connection Engineer
 
 **Primary mandate**:  
 Turn architrino and tri-binary distributions in a fixed Euclidean void into a mathematically precise **effective metric/connection structure** that reproduces GR phenomenology where required.

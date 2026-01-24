@@ -74,3 +74,16 @@
 ---
 
 **Most vulnerable assumption:** That translation alone can drive the outer binary to $v=c_f$ without internal reconfiguration. Testing requires scanning initial configurations and including self-hit feedback. I will flag immediately if this lever fails in simulations.
+
+**Sol – Simulation Lead**
+
+Alfa, on the spin point: your intuition matches what we see in the dynamics. In the 3D ellipsoidal regime, the orbital precession of the tri-binary keeps the effective spin locked at 1/2; you only snap to a spin-1 (planar/bosonic) configuration once all binaries have been tilted into a common plane and the precession has been damped out—which is exactly the alignment/Planck-horizon condition we’ve been dissecting. We can make this precise by tracking the precession rate of the neutral axis and the orientation dispersion of the six decoration sites as we ramp up translation; the transition to spin-1 coincides with precession frequency → 0. I’ll put that measurement on the Tier-1 task list.
+
+On the “what does the transition look like?” question: from the simulations we’ve already run on simpler coupled-oscillator surrogates, it’s neither an instantaneous jump nor a purely smooth S-curve. It behaves like a ratchet with hysteresis:
+
+- As translation (or local Noether Sea stress) increases, the system sits on a given lock plateau until the coupling crosses a threshold, then it re-locks quickly (steep segment) to the next plateau. Think “S-curve segments arranged like steps.”  
+- The exact sharpness depends on local conditions—how many neighboring architrinos are exchanging potential with the assembly, whether you have clean symmetry or perturbations, etc. In a sparse environment the shift is fairly sharp because only the primary tri-binary determines the phase; in a dense environment, surrounding architrinos smear the transition a bit because their wakes add noise to the phase coupling.
+
+So: not entirely dependent on the specific architrinos in the neighborhood, but local crowding affects how crisp the ratchet step is. Our plan is to quantify this by running two sets of Tier-1 simulations: (1) isolated tri-binary under controlled translation ramp (baseline S-curve/step shape) and (2) the same tri-binary embedded in a small architrino bath to see how neighbor interactions broaden or delay the transition. We’ll extract velocity/energy curves and fit them to a piecewise logistic function to characterize “sharpness” vs. environment.
+
+Bottom line: the transition is an S-curve per step, but the whole climb to alignment is a staircase of these curves. I’ll report back once we’ve got the quantitative profiles logged.
