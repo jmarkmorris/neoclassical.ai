@@ -41,6 +41,22 @@ As translational velocity increases, the **retarded reception times** and **inci
 
 **Focus path:** start from **assembly velocity = 0**, then accelerate the assembly through the Noether Sea and track how phase locking changes as a function of translation. This is the mechanism target that should lead into the **equivalence principle** in AAA.
 
+### Minimal Delay-Geometry Sketch
+
+Let an emitter in one binary at emission time $t_0$ be at position $\mathbf{x}_e(t_0)$ and a receiver in the other binary at time $t$ be at $\mathbf{x}_r(t)$. The causal constraint is:
+$$
+\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\| = c_f (t - t_0)
+$$
+Decompose positions into orbital + translational motion:
+$$
+\mathbf{x}(t) = \mathbf{x}_{\text{orbit}}(t) + \mathbf{x}_{\text{trans}}(t), \quad \dot{\mathbf{x}}_{\text{trans}} = \mathbf{v}_{\text{trans}}
+$$
+As $\mathbf{v}_{\text{trans}}$ increases, the **solution set** for $t_0$ shifts, changing:
+- **Timing**: $\Delta t = t - t_0$ (phase of received potential),
+- **Direction**: $\hat{\mathbf{r}} = (\mathbf{x}_r(t) - \mathbf{x}_e(t_0)) / \|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\|$,
+- **Magnitude**: $\propto 1/\|\mathbf{x}_r(t) - \mathbf{x}_e(t_0)\|^2$.
+Those shifts modify the effective coupling between middle and outer binaries, providing a concrete pathway for translation-driven phase-lock adjustment.
+
 ## Frequency/Radius Relationships
 
 For any orbit at $v=c_f$:
