@@ -37,11 +37,9 @@ The deeper insight is that the Planck units can be read as **constraints on a co
 | Length $\ell_P$ | $\ell_P = c\,t_P$ | Convert period to length using $c \approx c_f$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
 | Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Energy scale of the aligned outer-binary state. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Effective aligned mass scale tied to $R_{\text{align}}$ and medium stiffness. |
-| Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
-| Acceleration $a_P$ | $a_P = c / t_P$ | Rate of change of $c$ over $t_P$ | Characteristic alignment acceleration scale. |
-| Density $\rho_P$ | $\rho_P = m_P / \ell_P^3$ | Mass over alignment volume | Effective alignment-core density of packed outer-binary states. |
+| Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
 
 
 
