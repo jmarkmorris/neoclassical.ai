@@ -36,10 +36,11 @@ The deeper insight is that the Planck units can be read as **constraints on a co
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
 | Length $\ell_P$ | $\ell_P = c\,t_P$ | Convert period to length using $c \approx c_f$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
 | Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Energy scale of the aligned outer-binary state. |
-| Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Effective aligned mass scale tied to $R_{\text{align}}$ and medium stiffness. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
+| Gravitation $G$ | $G = 2\pi c^3 \ell_P^2 / h$ | Solve the Planck-length relation for $G$ | Medium compliance derived from alignment geometry and action scale. |
 | Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
+| Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 
 
 
