@@ -20,42 +20,47 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 ---
 
-### 1.1 Pedantic Mapping: What Planck Units Imply About the Outer Binary
+### 1.1 What Planck Units Imply About the Outer Binary
 
-This section is deliberately slow and explicit. It answers: if we describe the outer binary using Planck-unit formulas, what does that actually tell us about its geometry and motion?
+If we describe the outer binary using Planck-unit formulas, what does that tell us about its geometry and motion?
 
-**Step 1: Use the standard Planck relationships.**
-- Planck time and Planck length are related by: Planck length divided by Planck time equals the speed of light.
-- Planck frequency is defined as one over Planck time.
-Together that means: Planck frequency times Planck length equals the speed of light (or field speed in AAA terms).
+**Step 1: Start from the standard Planck relations.**
+$$
+t_P = \sqrt{\frac{\hbar G}{c^5}}, \quad
+\ell_P = \sqrt{\frac{\hbar G}{c^3}}, \quad
+f_P = \frac{1}{t_P}
+$$
+So:
+$$
+f_P \ell_P = \frac{\ell_P}{t_P} = c
+$$
+In AAA terms we take $c \approx c_f$ in low-energy regimes.
 
-**Step 2: Interpret this as an orbital statement.**
-- For a circular orbit, speed equals circumference times frequency.
-- Circumference equals 2*pi times radius.
+**Step 2: Express circular-orbit kinematics.**
+For a circular orbit:
+$$
+v = 2\pi R f
+$$
+If the aligned outer binary runs at field speed, then:
+$$
+v_{\text{align}} = c_f
+$$
 
-**Step 3: Decide what "Planck frequency" means in the orbit.**
-Planck frequency is conventionally stated in cycles per second (Hz), not radians per second. That matters because cycles per second already include the 2*pi factor that would otherwise appear in angular frequency.
+**Step 3: Geometric convention (Planck length = circumference).**
+We take $f_{\text{align}} = f_P$. Then
+$$
+2\pi R_{\text{align}} f_P = c_f
+$$
+and since $f_P \ell_P = c_f$, we get:
+$$
+2\pi R_{\text{align}} = \ell_P
+$$
+So the Planck length corresponds to the **outer circumference**, and
+$$
+R_{\text{align}} = \frac{\ell_P}{2\pi}
+$$
 
-**Step 4: Two consistent modeling choices.**
-If we insist that the orbital frequency of the aligned outer binary equals the Planck frequency (in Hz), then:
-- The orbit's circumference matches the Planck length.
-- The orbit's radius is the Planck length divided by 2*pi.
 
-If we instead insist that the orbit's radius equals the Planck length, then:
-- The orbital frequency is the Planck frequency divided by 2*pi.
-- The circumference is 2*pi times the Planck length.
-
-**Step 5: What we learn either way.**
-- The outer binary at alignment runs at the field speed.
-- Planck-unit formulas are telling us about the **outer binary's geometry** (radius or circumference), not the inner binary.
-- The 2*pi factor is not a detail; it decides whether Planck length is a radius or a full orbital path.
-
-**Step 6: Working convention (to choose).**
-We should choose and state a convention explicitly:
-- Either "Planck length corresponds to the outer circumference at alignment,"
-- Or "Planck length corresponds to the outer radius at alignment."
-
-This choice sets the numerical mapping between alignment frequency and Planck frequency and determines how h vs h-bar enters the geometry.
 
 ---
 
