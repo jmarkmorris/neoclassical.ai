@@ -22,15 +22,15 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 ### 1.1 What Planck Units Imply About the Outer Binary
 
-We treat the Planck relations as constraints on a **specific alignment geometry** rather than abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$, and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
+We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$ and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
 $$
 2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P.
 $$
 So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
-With $E = h f$, the action per cycle is $S = E/f = h$. That makes the $2\pi$ factor geometrical (circumference), not a constant artifact.
+With $E = h f$, the action per cycle is $S = E/f = h$, so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
 
-**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. Seen geometrically, the $G$ expression says the Noether Sea's compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The Noether Sea's compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})^2}{h}.
 $$
@@ -44,7 +44,7 @@ Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; uni
 | Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Action-per-cycle scale at alignment. |
 | Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
 | Radius $R_P$ | $R_P = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
-| Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_P^2$ | Square of the alignment radius | Geometric scale of the planar alignment. |
+| Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_P^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}}^2 / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
