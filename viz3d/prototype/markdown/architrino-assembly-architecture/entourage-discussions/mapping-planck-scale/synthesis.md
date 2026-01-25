@@ -35,8 +35,6 @@ The deeper insight is that the Planck units can be read as **constraints on a co
 | Frequency $f_P$ | $f_P = 1/t_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
 | Length $\ell_P$ | $\ell_P = c\,t_P$ | Convert period to length using $c \approx c_f$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
-| Area $A_P$ | $A_P = \ell_P^2$ | Square the length scale | Area tile for aligned outer-binary shells. |
-| Volume $V_P$ | $V_P = \ell_P^3$ | Cube the length scale | Volume tile for aligned core packing. |
 | Mass $m_P$ | $m_P = \sqrt{\hbar c / G}$ | Mass scale tied to $c$, $G$, and action | Effective aligned mass scale tied to $R_{\text{align}}$ and medium stiffness. |
 | Energy $E_P$ | $E_P = m_P c^2$ | Convert mass scale to energy | Energy scale of the aligned outer-binary state. |
 | Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
