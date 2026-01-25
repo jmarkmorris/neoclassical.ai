@@ -67,6 +67,33 @@ Demonstrating this terminal aligned mode is an **open dynamical problem** for th
 
 ---
 
+### 2.3 Experienced-Field Framing (Energy as Interaction History)
+
+This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the **experienced field** $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
+
+1. An architrino moves through a sea of potential gradients from many emitters.  
+2. Each emitter’s influence arrives after a delay.  
+3. Those delayed gradients are the only things that can push or pull it.  
+4. Its speed at any moment is the sum of those time-lagged pushes.  
+5. “Kinetic energy” is just a name for that accumulated motion.  
+6. So it is not stored inside the architrino; it is the record of many delayed interactions.  
+7. Change the delay geometry (translation, gravity well), and the push timing changes.  
+8. Change the timing, and the speed changes.  
+9. Therefore the kinetic term is an interaction history with the emitter field, not a private reservoir.
+
+In this experienced-field framing:
+
+- The architrino’s identity is the consistent causal loop: experience the field -> respond -> move into a new field -> respond again.  
+- Stability or structure emerges only when this response loop becomes periodic (locks) within the field.
+- Momentum is the conserved motion state produced by past interactions; if the field vanishes, the architrino coasts unchanged.
+
+#### 2.3.1 Field-Speed Regimes in the Experienced-Field View
+
+- **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
+- **At $v > c_f$:** It outruns field propagation. The only gradients it can experience are from delayed emissions and the medium behind/sideways, which leads to self-hit dynamics. This creates a strong inward/centripetal feedback that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+
+---
+
 ### 3. Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
 Based on Alfa’s phase-slip picture and standard delay-system behavior, we adopt:
