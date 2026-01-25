@@ -76,6 +76,20 @@ $$
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
+### D) Time Distortion: Spacetime Time vs Absolute Time (Call-Out)
+
+**Goal:** Make explicit how "time in spacetime" is distorted relative to absolute time by delay geometry and gradient effects.
+
+**Effective lapse from delays:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
+$$
+\alpha(\theta, G_{\text{grad}}) = \frac{\Delta t_{\text{rt}}(\theta, G_{\text{grad}})}{\Delta t_{\text{rt,ref}}}
+$$
+acts as an effective time-dilation factor: clocks tied to local dynamics tick slower (larger $\alpha$) or faster (smaller $\alpha$) relative to absolute time.
+
+**Interpretation:** High group velocity flattens the envelope and shortens forward delays, creating anisotropic clock rates. High gradients stretch or skew delays across the orbit, producing redshift-like effects. This provides a geometric analog to GR time dilation without invoking full metric dynamics.
+
+**Action item:** Add a short derivation or narrative example that translates delay-based time distortion into a spacetime-style statement (e.g., "local clock period = intrinsic period × $\alpha$") and specify where this enters phase closure and stability.
+
 ---
 
 ## Minimal Models and Experiments
