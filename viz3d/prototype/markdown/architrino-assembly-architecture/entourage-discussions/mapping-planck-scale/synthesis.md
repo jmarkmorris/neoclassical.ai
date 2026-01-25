@@ -30,7 +30,7 @@ So the Planck length maps to the **outer circumference**, with $R_{\text{align}}
 
 With $E = h f$, the action per cycle is $S = E/f = h$. That makes the $2\pi$ factor geometrical (circumference), not a constant artifact.
 
-**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry:
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. Seen geometrically, the $G$ expression says the Noether Sea's compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})^2}{h}.
 $$
@@ -50,8 +50,6 @@ Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; uni
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
 | Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
-
-Seen geometrically, the $G$ expression says the Noether Sea's compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing.
 
 
 
