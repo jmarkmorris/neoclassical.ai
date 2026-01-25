@@ -1,6 +1,8 @@
-## Draft 20260124a - Mapping the Planck Scale to the Tri-Binary Delay Geometry
+## Draft 20260124a - Mapping the Planck Scale to the Tri-Binary Geometry
 
 ### 1. Thesis
+
+Our goal is to map the Planck scale with the tri-binary geometry and dynamics. We have many moving parts yet we also have vast knowledge and framing about the Planck scale. This exercise will help us refine both framing of the Planck scale and operational detail about the tri-binary.  It is important that we use all of our information at hand, including effective formulas from the fields of physics and its siblings. The end state is a complete understanding of the behaviour of the tri-binary in the energy neighborhood below and above the Planck scale.
 
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
 
