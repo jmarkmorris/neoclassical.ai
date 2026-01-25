@@ -22,57 +22,36 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 ### 1.1 What Planck Units Imply About the Outer Binary
 
-If we describe the outer binary using Planck-unit formulas, the geometry comes out cleanly once we align the kinematics. The standard Planck relations give $f_P \ell_P = c$, and in AAA we take $c \approx c_f$ in low-energy regimes. For a circular orbit, $v = 2\pi R f$. In the aligned state the outer binary runs at field speed, so $v_{\text{align}} = c_f$, and we set the orbital frequency to the Planck frequency, $f_{\text{align}} = f_P$. Combining these yields $2\pi R_{\text{align}} f_P = c_f$, so $2\pi R_{\text{align}} = \ell_P$. In this convention, the Planck length corresponds to the **outer circumference**, and the alignment radius is $R_{\text{align}} = \ell_P/(2\pi)$.
+We treat the Planck relations as constraints on a **specific alignment geometry** rather than abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$, and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
+$$
+2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P.
+$$
+So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
-If we adopt the standard energy-frequency relation $E = h f$, then a 1 Hz shift in orbital frequency corresponds to an energy change of $h$ joules. If we further treat the action per cycle as $S = E/f = h$, then the action per orbit is set by $h$ directly, which pins the $2\pi$ factor through the orbit geometry.
+With $E = h f$, the action per cycle is $S = E/f = h$. That makes the $2\pi$ factor geometrical (circumference), not a constant artifact.
 
-The deeper insight is that the Planck units can be read as **constraints on a concrete mechanical state** rather than abstract dimensional coincidences. In AAA, the Planck length anchors a specific outer-binary geometry at the alignment horizon, the Planck time/frequency describe the corresponding orbital cadence at field speed, and $\hbar$ expresses the action of one full cycle of that aligned orbit. Gravity then slots in as a **medium response parameter**: if $L_{\text{align}}$ and $R_{\text{align}}$ are fixed by the alignment lock, the effective $G$ measures how the surrounding Noether Sea yields to that locked configuration, which is why it appears as a stiffness/compliance in the inverted mapping $G_{\text{eff}} \sim R_{\text{align}}^2 c_f^3 / L_{\text{align}}$. The point is not that $G$ is arbitrary, but that it is *emergent from the alignment mechanism* rather than a fundamental input.
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry:
+$$
+G \propto \frac{c_f^3 (\text{alignment geometry})^2}{h}.
+$$
+Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
 
 #### Planck Units as Outer-Binary Mappings (Alignment State)
 
 | Planck Unit | Expression | Cascade | Outer-binary mapping (alignment interpretation) |
 | --- | --- | --- | --- |
 | Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
-| Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Energy scale of the aligned outer-binary state. |
-| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
+| Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Action-per-cycle scale at alignment. |
+| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment. |
 | Radius $R_P$ | $R_P = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
-| Gravitation $G$ | $G = 8\pi^3 c^3 R_P^2 / h$ | Express in terms of $R_P$ | Medium compliance tied to the alignment geometry scale ($R_P^2$). |
+| Gravitation $G$ | $G = 8\pi^3 c^3 R_P^2 / h$ | Express in terms of $R_P$ and $h$ | Medium compliance tied to the alignment geometry scale ($R_P^2$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
 | Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
 
-Seen geometrically, the $G$ expression says the Noether Sea's compliance scales with the **alignment-area** of the outer orbit: using $\ell_P = 2\pi R_{\text{align}}$, the $\ell_P^2$ term becomes a direct proxy for $R_{\text{align}}^2$. If you prefer a Planck-volume view, you can interpret this as a compliance per alignment "cell" of size $\ell_P^3$, but that volumetric framing is optional and not required for the outer-binary geometry mapping.
-
-Post-snap, $G$ is best read as a **planar compliance parameter**: it sets how readily the Noether Sea yields to the aligned, field-speed outer orbit. A radial drift component can perturb the delay-closure timing, but it does not by itself define the field-speed condition; the alignment limit is set by the forward-sector effective velocity and the planar lock. In this framing, $G$ governs how the medium absorbs or resists those post-snap timing shifts rather than requiring the inward component to reach $c_f$.
-
-One way to read the $c^3$ factor is as a **causal throughput scale** tied to a spherical wavefront, not a cube. A field-speed signal emitted at time $t$ fills a causal ball of radius $r = c_f \Delta t$ after delay $\Delta t$, with volume
-$$
-V(\Delta t) = \frac{4}{3}\pi (c_f \Delta t)^3.
-$$
-The volumetric expansion rate is
-$$
-\frac{dV}{d(\Delta t)} = 4\pi c_f^3 \Delta t^2,
-$$
-so the natural geometric scale factor carried by the propagation is $c_f^3$ with units $L^3/T^3$. In AAA terms, $c_f^3$ sets the baseline 3D causal throughput of the Noether Sea. To convert that throughput into a **compliance** (the $G$ dimension $L^3/(M T^2)$), you divide by an action scale $h$ and supply the remaining time factor through the specific alignment geometry (the locked orbit fixes the relevant $\Delta t$ and $R_{\text{align}}$). Under this reading, $G$ measures how much spherical causal volume-per-time the medium can sustain per unit action: higher $c_f$ raises throughput, higher $h$ lowers compliance.
-
-#### Minimal-Model Probe: Isolated In-Spiraling Binary (Hypothesis)
-
-To explore where a universal-looking $G$ could emerge, start with the lowest-level system: a single isolated binary in an otherwise Euclidean void, already past symmetry breaking and spiraling inward toward maximal curvature.
-
-Assume:
-- The binary sheds a fixed action quantum per full turn, $\Delta S \approx h$ (the "click" per cycle).
-- The orbit contracts by $\Delta r$ per turn due to the medium response to that action loss.
-
-Then an **effective compliance** can be inferred from the mapping
-$$
-\Delta S \;\to\; \Delta r \quad \text{per cycle}.
-$$
-
-In this framing, $G$ is the universal coefficient that links **action per turn** to **radial contraction per turn** in the Noether Sea.
-
-This isolates the emergence question: if a constant $G$ is observed even for a single in-spiraling binary, it indicates that the Noether Sea imposes a universal action-to-geometry conversion before tri-binary alignment enters the story.
+Seen geometrically, the $G$ expression says the Noether Sea's compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing.
 
 
 
