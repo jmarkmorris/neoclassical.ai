@@ -28,6 +28,23 @@ If we adopt the standard energy-frequency relation $E = h f$, then a 1 Hz shift 
 
 The deeper insight is that the Planck units can be read as **constraints on a concrete mechanical state** rather than abstract dimensional coincidences. In AAA, the Planck length anchors a specific outer-binary geometry at the alignment horizon, the Planck time/frequency describe the corresponding orbital cadence at field speed, and $\hbar$ expresses the action of one full cycle of that aligned orbit. Gravity then slots in as a **medium response parameter**: if $L_{\text{align}}$ and $R_{\text{align}}$ are fixed by the alignment lock, the effective $G$ measures how the surrounding Noether Sea yields to that locked configuration, which is why it appears as a stiffness/compliance in the inverted mapping $G_{\text{eff}} \sim R_{\text{align}}^2 c_f^3 / L_{\text{align}}$. The point is not that $G$ is arbitrary, but that it is *emergent from the alignment mechanism* rather than a fundamental input.
 
+#### Planck Units as Outer-Binary Mappings (Alignment State)
+
+| Unit | Expression | Outer-binary mapping (alignment interpretation) |
+| --- | --- | --- |
+| Length $\ell_P$ | $\ell_P = \sqrt{\hbar G / c^3}$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
+| Time $t_P$ | $t_P = \sqrt{\hbar G / c^5}$ | One orbital **period** at alignment if $f_{\text{align}} = f_P = 1/t_P$. |
+| Frequency $f_P$ | $f_P = 1/t_P$ | Alignment orbital cadence in Hz (cycles per second). |
+| Mass $m_P$ | $m_P = \sqrt{\hbar c / G}$ | Effective aligned mass scale tied to $R_{\text{align}}$ and medium stiffness. |
+| Energy $E_P$ | $E_P = m_P c^2$ | Energy scale of the aligned outer-binary state. |
+| Temperature $T_P$ | $T_P = E_P / k_B$ | Effective temperature of alignment-scale excitations. |
+| Momentum $p_P$ | $p_P = m_P c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
+| Force $F_P$ | $F_P = c^4 / G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
+| Acceleration $a_P$ | $a_P = c / t_P$ | Characteristic alignment acceleration scale. |
+| Density $\rho_P$ | $\rho_P = m_P / \ell_P^3$ | Effective alignment-core density of packed outer-binary states. |
+| Area $A_P$ | $A_P = \ell_P^2$ | Area tile for aligned outer-binary shells. |
+| Volume $V_P$ | $V_P = \ell_P^3$ | Volume tile for aligned core packing. |
+
 
 
 ---
