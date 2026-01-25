@@ -88,7 +88,19 @@ acts as an effective time-dilation factor: clocks tied to local dynamics tick sl
 
 **Interpretation:** High group velocity flattens the envelope and shortens forward delays, creating anisotropic clock rates. High gradients stretch or skew delays across the orbit, producing redshift-like effects. This provides a geometric analog to GR time dilation without invoking full metric dynamics.
 
-**Action item:** Add a short derivation or narrative example that translates delay-based time distortion into a spacetime-style statement (e.g., "local clock period = intrinsic period × $\alpha$") and specify where this enters phase closure and stability.
+**Lorentz beta in geometric form:** In Lorentz kinematics, $\beta = v/c$ and $\gamma = 1/\sqrt{1-\beta^2}$. In this model, use $\beta = v_{\text{trans}}/c_f$ and the oblate ellipsoid relation
+$$
+R_\parallel = R_\perp \sqrt{1-\beta^2} = \frac{R_\perp}{\gamma}.
+$$
+Geometrically, $\beta$ is the axis-squash control: as $\beta \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
+
+**Why time appears to dilate:** The "clock" in this framework is the round-trip delay that closes phase in the outer-binary loop. As motion or gradient changes the causal path length, the local period inferred from phase closure changes:
+$$
+T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}),
+$$
+with $T_0$ referenced to a baseline configuration (e.g., low speed, weak gradient). When $\alpha > 1$, the local dynamics take longer to complete a cycle relative to absolute time, which reads as time dilation. When $\alpha < 1$, the local cycle runs faster. This is the geometric analog: time dilation is a statement about how geometry (ellipsoid shape and gradient-induced delays) stretches or compresses the effective causal loop length.
+
+**Action item:** Add a short derivation or narrative example that translates delay-based time distortion into a spacetime-style statement (e.g., "local clock period = intrinsic period x $\alpha$") and specify where this enters phase closure and stability.
 
 ---
 
