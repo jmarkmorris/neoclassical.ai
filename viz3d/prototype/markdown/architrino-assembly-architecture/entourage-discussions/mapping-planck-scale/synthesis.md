@@ -30,7 +30,7 @@ So the Planck length maps to the **outer circumference**, with $R_{\text{align}}
 
 With $E = h f$, the action per cycle is $S = E/f = h$, so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
 
-**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The Noether Sea's compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})^2}{h}.
 $$
