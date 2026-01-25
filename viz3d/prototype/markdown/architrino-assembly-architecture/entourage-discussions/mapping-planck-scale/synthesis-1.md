@@ -1,4 +1,4 @@
-## Draft 1 Planck Scale as Alignment-Lock of Tri-Binary Delay Geometry
+## Draft 20260124a - Mapping the Planck Scale to the Tri-Binary Delay Geometry
 
 ### 1. Thesis
 
