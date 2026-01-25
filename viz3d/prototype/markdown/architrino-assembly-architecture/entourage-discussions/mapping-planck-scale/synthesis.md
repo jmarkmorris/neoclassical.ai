@@ -22,43 +22,7 @@ These identifications are **conjectured mappings**, not definitions. They must e
 
 ### 1.1 What Planck Units Imply About the Outer Binary
 
-If we describe the outer binary using Planck-unit formulas, what does that tell us about its geometry and motion?
-
-**Step 1: Start from the standard Planck relations.**
-$$
-t_P = \sqrt{\frac{\hbar G}{c^5}}, \quad
-\ell_P = \sqrt{\frac{\hbar G}{c^3}}, \quad
-f_P = \frac{1}{t_P}
-$$
-So:
-$$
-f_P \ell_P = \frac{\ell_P}{t_P} = c
-$$
-In AAA terms we take $c \approx c_f$ in low-energy regimes.
-
-**Step 2: Express circular-orbit kinematics.**
-For a circular orbit:
-$$
-v = 2\pi R f
-$$
-If the aligned outer binary runs at field speed, then:
-$$
-v_{\text{align}} = c_f
-$$
-
-**Step 3: Geometric convention (Planck length = circumference).**
-We take $f_{\text{align}} = f_P$. Then
-$$
-2\pi R_{\text{align}} f_P = c_f
-$$
-and since $f_P \ell_P = c_f$, we get:
-$$
-2\pi R_{\text{align}} = \ell_P
-$$
-So the Planck length corresponds to the **outer circumference**, and
-$$
-R_{\text{align}} = \frac{\ell_P}{2\pi}
-$$
+If we describe the outer binary using Planck-unit formulas, the geometry comes out cleanly once we align the kinematics. The standard Planck relations give $f_P \ell_P = c$, and in AAA we take $c \approx c_f$ in low-energy regimes. For a circular orbit, $v = 2\pi R f$. In the aligned state the outer binary runs at field speed, so $v_{\text{align}} = c_f$, and we set the orbital frequency to the Planck frequency, $f_{\text{align}} = f_P$. Combining these yields $2\pi R_{\text{align}} f_P = c_f$, so $2\pi R_{\text{align}} = \ell_P$. In this convention, the Planck length corresponds to the **outer circumference**, and the alignment radius is $R_{\text{align}} = \ell_P/(2\pi)$.
 
 
 
