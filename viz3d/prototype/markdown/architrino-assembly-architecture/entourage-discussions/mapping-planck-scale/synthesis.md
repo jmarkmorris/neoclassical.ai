@@ -34,13 +34,16 @@ The deeper insight is that the Planck units can be read as **constraints on a co
 | --- | --- | --- | --- |
 | Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
 | Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
+| Radius $R_P$ | $R_P = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
 | Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Energy scale of the aligned outer-binary state. |
-| Gravitation $G$ | $G = 2\pi c^3 \ell_P^2 / h$ | Solve the Planck-length relation for $G$ | Medium compliance derived from alignment geometry and action scale. |
+| Gravitation $G$ | $G = 8\pi^3 c^3 R_P^2 / h$ | Express in terms of $R_P$ | Medium compliance tied to the alignment geometry scale ($R_P^2$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
 | Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
+
+Seen geometrically, the $G$ expression says the Noether Sea's compliance scales with the **alignment-area** of the outer orbit: using $\ell_P = 2\pi R_{\text{align}}$, the $\ell_P^2$ term becomes a direct proxy for $R_{\text{align}}^2$. If you prefer a Planck-volume view, you can interpret this as a compliance per alignment "cell" of size $\ell_P^3$, but that volumetric framing is optional and not required for the outer-binary geometry mapping.
 
 
 
