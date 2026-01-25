@@ -30,7 +30,7 @@ $$
 $$
 So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
-With $E = h f$, the action per cycle is $S = E/f = h$, so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
+With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
 
 **Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the outer orbit ($R_P^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
@@ -221,8 +221,8 @@ Let $L$ denote the total orbital angular momentum of a tri-binary assembly.
   - the coupling $\kappa$ (A6),
   - and the causal speed $c_f$ (A1).
 
-> **Conjectured Mapping (Action):**  
-> The action associated with this aligned state,
+> **Conjectured Mapping (Angular Momentum):**  
+> The angular momentum associated with this aligned state,
 > $$
 >   L_{\text{align}} \equiv L(n_{\text{max}}),
 > $$
