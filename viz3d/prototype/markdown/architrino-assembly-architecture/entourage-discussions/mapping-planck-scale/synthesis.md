@@ -45,6 +45,8 @@ The deeper insight is that the Planck units can be read as **constraints on a co
 
 Seen geometrically, the $G$ expression says the Noether Sea's compliance scales with the **alignment-area** of the outer orbit: using $\ell_P = 2\pi R_{\text{align}}$, the $\ell_P^2$ term becomes a direct proxy for $R_{\text{align}}^2$. If you prefer a Planck-volume view, you can interpret this as a compliance per alignment "cell" of size $\ell_P^3$, but that volumetric framing is optional and not required for the outer-binary geometry mapping.
 
+Post-snap, $G$ is best read as a **planar compliance parameter**: it sets how readily the Noether Sea yields to the aligned, field-speed outer orbit. A radial drift component can perturb the delay-closure timing, but it does not by itself define the field-speed condition; the alignment limit is set by the forward-sector effective velocity and the planar lock. In this framing, $G$ governs how the medium absorbs or resists those post-snap timing shifts rather than requiring the inward component to reach $c_f$.
+
 
 
 ---
