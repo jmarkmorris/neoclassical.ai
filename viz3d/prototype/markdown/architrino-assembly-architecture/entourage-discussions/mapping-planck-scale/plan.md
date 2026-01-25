@@ -6,48 +6,44 @@ Here are three low‑hanging, high‑leverage next steps that I think give us th
 
 ---
 
-## 1) Nail a 1‑Binary Maximum‑Curvature Benchmark (Single Outer Ring)
+## 1) Noether Core Baseline (Inner+Middle Fixed)
 
-**Goal:** Get a clean, simulation‑backed “outer binary at $v\to c_f$” reference orbit: radius, frequency, and total angular momentum for a simple 2‑architrino binary. This is the minimal sandbox for your alignment story.
+**Goal:** Treat inner+middle as an already formed Noether core and establish its internal timescale(s), radii, and phase relations before stressing the outer binary.
 
 **Why this first?**
 
-- It’s much simpler than a full tri‑binary, but it already contains:
-  - the self‑hit regime,
-  - the $v \approx c_f$ transition,
-  - delay‑feedback closure.
+- The current framing assumes a formed core; we need its invariants before attributing dynamics to the outer binary.
 - It gives us **actual numbers** (in code units) for:
-  - $R_{\text{max‑curv}}$,
-  - $\omega_{\text{max‑curv}}$,
-  - $L_{\text{max‑curv}}$,
-  which we can immediately compare to the Planck mappings (up to scale factors).
+  - $R_{\text{core}}$,
+  - $\omega_{\text{core}}$,
+  - internal phase offsets,
+  which anchor later coupling and alignment tests.
 
 **Concrete tasks:**
 
-1. **Set up a symmetric 2‑body opposite‑charge system** in Sol’s code:
+1. **Hold the Noether core fixed (or slowly varying)** in Sol’s code:
    - Center of mass at rest.
-   - Initial conditions chosen to drive a spiral‑in until $v \gtrsim c_f$ and self‑hit activates.
-2. **Let it relax into its tightest stable orbit** (if one exists):
-   - Run long enough ($\gg 10^4$ orbits) with convergence checks (Δt, η).
+   - Inner+middle binaries treated as a formed core.
+2. **Run long enough** to stabilize internal phase relationships:
+   - Use convergence checks (Δt, η).
 3. **Measure:**
-   - Time‑averaged radius $R_{\text{bin}}$.
-   - Time‑averaged angular frequency $\omega_{\text{bin}}$.
-   - Total angular momentum $L_{\text{bin}}$ of the pair.
-4. **Compare to Planck‑style relations in code units:**
-   - Is $v_{\text{bin}}\approx R_{\text{bin}}\omega_{\text{bin}}$ saturating $c_f$?
-   - Do we get something close to a universal product like  
-     $L_{\text{bin}} \sim \text{const}$ across different initial energies?
+   - Core radius $R_{\text{core}}$.
+   - Core angular frequency $\omega_{\text{core}}$.
+   - Stable phase offsets among core elements.
+4. **Verify:**
+   - Whether any core element rides $v=c_f$ continuously.
+   - Repeatability across nearby initial conditions.
 
 **Why it matters for the Planck story:**
 
-- If even the **simplest** maximum‑curvature binary does *not* show a unique, robust $R,\omega,L$ plateau, then expecting a sharp, universal $R_{\text{align}},L_{\text{align}}$ for a tri‑binary is suspect.
-- If it *does*, we’ve got a concrete “unit cell” orbit to embed as inner/middle/outer in the tri‑binary and a strong hint that the Planck alignment state is not wishful thinking.
+- If the core invariants are unstable or non-repeatable, any outer-binary alignment story will drift.
+- If they are stable, we can treat the core as a fixed reference for outer-binary coupling and alignment.
 
 ---
 
-## 2) Build a Minimal Tri‑Binary “Rung Ladder” Model (No Gravity Yet)
+## 2) Build a Minimal Tri‑Binary “Rung Ladder” Model (Formed Core)
 
-**Goal:** Test the **discrete ladder / top‑rung** hypothesis in the *cleanest possible setting*: an isolated tri‑binary with no external potential, only internal delay‑feedback and a tunable “stress” parameter.
+**Goal:** Test the **discrete ladder / top‑rung** hypothesis with an already formed Noether core: an isolated tri‑binary with no external potential, only internal delay‑feedback and a tunable “stress” parameter.
 
 **Why this is low‑hanging:**
 
@@ -59,7 +55,8 @@ Here are three low‑hanging, high‑leverage next steps that I think give us th
 **Concrete tasks:**
 
 1. **Specify a minimal tri‑binary geometry**:
-   - Inner, middle, outer binaries with initial radii ratio (e.g. $R_\text{inner}:R_\text{mid}:R_\text{outer} = 1:3:9$).
+   - Inner+middle define a formed core with fixed internal timescale(s).
+   - Outer binary orbits that core with initial radii ratio (e.g. $R_\text{inner}:R_\text{mid}:R_\text{outer} = 1:3:9$).
    - Planes initially non‑coplanar (fermion‑like).
 2. **Define a “stress” protocol**:
    - E.g. slowly inject angular momentum or tighten the outer binary radius quasi‑adiabatically.
@@ -123,7 +120,7 @@ Here are three low‑hanging, high‑leverage next steps that I think give us th
 
 If we do just these three:
 
-1. A clean 1‑binary maximum‑curvature benchmark (numbers in hand),
+1. A Noether core baseline (invariants in hand),
 2. A minimal tri‑binary ladder test (do we see a terminal aligned mode?),
 3. A set of alignment invariants checking the SU(2)→U(1) collapse,
 
@@ -138,10 +135,10 @@ From where I sit (geometry + dynamics), three starting points stand out as the m
 
 ---
 
-### 1) Outer-Binary Delay Loop Model at $v_{\text{eff}}\to c_f$ (Minimal Working System)
+### 1) Outer-Binary Delay Loop Model with Formed Core (Minimal Working System)
 
 **Why here:**  
-Everything in the thesis hangs on there *being* a discrete, terminal, aligned mode of the delay system. Before we talk $\hbar$, $\ell_P$, or $G_{\text{eff}}$, we need a mathematically clean **toy tri-binary** that actually shows:
+Everything in the thesis hangs on there *being* a discrete, terminal, aligned mode of the delay system with a formed core. Before we talk $\hbar$, $\ell_P$, or $G_{\text{eff}}$, we need a mathematically clean **toy tri-binary** that actually shows:
 
 - discrete delay-locked modes $n$,
 - a drift / phase-slip instability as parameters are pushed,
