@@ -44,6 +44,17 @@ $$
 \Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n).
 $$
 
+**Exclusion volume (instantaneous):**
+$$
+V(v_{\text{trans}}) = \frac{4\pi}{3} R_\perp^2 R_\parallel
+= \frac{4\pi}{3} R_\perp^3 \sqrt{1-\left(\frac{v_{\text{trans}}}{c_f}\right)^2}.
+$$
+If the outer radius is infalling, treat $R_\perp = R_\perp(t)$ so
+$$
+V(t) = \frac{4\pi}{3} R_\perp(t)^3 \sqrt{1-\left(\frac{v_{\text{trans}}(t)}{c_f}\right)^2}.
+$$
+**Coupling caveat:** Whether $v_{\text{trans}}$ is independent of the radial infall speed $v_r$ is unresolved. Use the independent form by default, or adopt a coupling $v_{\text{trans}} = f(R_\perp)$ and substitute to test specific scenarios.
+
 ### B) High Gravitational Gradient Geometry
 
 **Assumption (testable):** A strong external gradient (tidal field or effective curvature) perturbs the delay loop, altering phase closure and stability of rungs.
@@ -54,6 +65,16 @@ $$
 - Differential path delays across the outer orbit (forward vs backward sector).
 - Drift in precession cone angle and inter-plane tilt under increasing $G_{\text{grad}}$.
 - Shifts in the stability sign $\partial \Phi_n/\partial r$ or loss of plateau behavior.
+
+### C) Exclusion Volume Under Precession (Caveat)
+
+**Implication:** Outer-binary precession sweeps an exclusion region that is larger than a static orbit. The effective exclusion volume is the union of the orbit's causal envelope over a precession cycle, not just a single instantaneous shell.
+
+**Modeling at $v>0$:** Use the oblate envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
+
+**As $v_{\text{trans}} \to c_f$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
+
+**Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
 ---
 
