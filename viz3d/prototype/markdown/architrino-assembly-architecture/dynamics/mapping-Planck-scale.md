@@ -243,10 +243,10 @@ $$
 R_{\text{align}} \equiv r_{\text{Outer}}(n_{\text{max}}).
 $$
 
-Let $\ell_P^{\text{(emp)}}$ be the standard Planck length defined operationally by GR/QM constants:
+Let $\ell_P^{\text{(emp)}}$ be the standard Planck length defined operationally by GR/QM constants (using $h = 2\pi\hbar$ with $f$):
 
 $$
-\ell_P^{\text{(emp)}} = \sqrt{\frac{\hbar G}{c^3}}.
+\ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}.
 $$
 
 > **Conjectured Mapping (Length):**  
