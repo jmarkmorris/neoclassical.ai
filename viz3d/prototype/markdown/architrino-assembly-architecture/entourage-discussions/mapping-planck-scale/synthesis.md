@@ -30,20 +30,20 @@ The deeper insight is that the Planck units can be read as **constraints on a co
 
 #### Planck Units as Outer-Binary Mappings (Alignment State)
 
-| Unit | Expression | Outer-binary mapping (alignment interpretation) |
-| --- | --- | --- |
-| Length $\ell_P$ | $\ell_P = \sqrt{\hbar G / c^3}$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
-| Time $t_P$ | $t_P = \sqrt{\hbar G / c^5}$ | One orbital **period** at alignment if $f_{\text{align}} = f_P = 1/t_P$. |
-| Frequency $f_P$ | $f_P = 1/t_P$ | Alignment orbital cadence in Hz (cycles per second). |
-| Mass $m_P$ | $m_P = \sqrt{\hbar c / G}$ | Effective aligned mass scale tied to $R_{\text{align}}$ and medium stiffness. |
-| Energy $E_P$ | $E_P = m_P c^2$ | Energy scale of the aligned outer-binary state. |
-| Temperature $T_P$ | $T_P = E_P / k_B$ | Effective temperature of alignment-scale excitations. |
-| Momentum $p_P$ | $p_P = m_P c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
-| Force $F_P$ | $F_P = c^4 / G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
-| Acceleration $a_P$ | $a_P = c / t_P$ | Characteristic alignment acceleration scale. |
-| Density $\rho_P$ | $\rho_P = m_P / \ell_P^3$ | Effective alignment-core density of packed outer-binary states. |
-| Area $A_P$ | $A_P = \ell_P^2$ | Area tile for aligned outer-binary shells. |
-| Volume $V_P$ | $V_P = \ell_P^3$ | Volume tile for aligned core packing. |
+| Unit | Expression | Cascade | Outer-binary mapping (alignment interpretation) |
+| --- | --- | --- | --- |
+| Frequency $f_P$ | $f_P = 1/t_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
+| Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
+| Length $\ell_P$ | $\ell_P = c\,t_P$ | Convert period to length using $c \approx c_f$ | Outer-binary **circumference** at alignment; $R_{\text{align}} = \ell_P / (2\pi)$. |
+| Area $A_P$ | $A_P = \ell_P^2$ | Square the length scale | Area tile for aligned outer-binary shells. |
+| Volume $V_P$ | $V_P = \ell_P^3$ | Cube the length scale | Volume tile for aligned core packing. |
+| Mass $m_P$ | $m_P = \sqrt{\hbar c / G}$ | Mass scale tied to $c$, $G$, and action | Effective aligned mass scale tied to $R_{\text{align}}$ and medium stiffness. |
+| Energy $E_P$ | $E_P = m_P c^2$ | Convert mass scale to energy | Energy scale of the aligned outer-binary state. |
+| Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
+| Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
+| Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
+| Acceleration $a_P$ | $a_P = c / t_P$ | Rate of change of $c$ over $t_P$ | Characteristic alignment acceleration scale. |
+| Density $\rho_P$ | $\rho_P = m_P / \ell_P^3$ | Mass over alignment volume | Effective alignment-core density of packed outer-binary states. |
 
 
 
