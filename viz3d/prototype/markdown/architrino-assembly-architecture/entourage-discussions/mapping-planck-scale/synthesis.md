@@ -57,6 +57,23 @@ $$
 $$
 so the natural geometric scale factor carried by the propagation is $c_f^3$ with units $L^3/T^3$. In AAA terms, $c_f^3$ sets the baseline 3D causal throughput of the Noether Sea. To convert that throughput into a **compliance** (the $G$ dimension $L^3/(M T^2)$), you divide by an action scale $h$ and supply the remaining time factor through the specific alignment geometry (the locked orbit fixes the relevant $\Delta t$ and $R_{\text{align}}$). Under this reading, $G$ measures how much spherical causal volume-per-time the medium can sustain per unit action: higher $c_f$ raises throughput, higher $h$ lowers compliance.
 
+#### Minimal-Model Probe: Isolated In-Spiraling Binary (Hypothesis)
+
+To explore where a universal-looking $G$ could emerge, start with the lowest-level system: a single isolated binary in an otherwise Euclidean void, already past symmetry breaking and spiraling inward toward maximal curvature.
+
+Assume:
+- The binary sheds a fixed action quantum per full turn, $\Delta S \approx h$ (the "click" per cycle).
+- The orbit contracts by $\Delta r$ per turn due to the medium response to that action loss.
+
+Then an **effective compliance** can be inferred from the mapping
+$$
+\Delta S \;\to\; \Delta r \quad \text{per cycle}.
+$$
+
+In this framing, $G$ is the universal coefficient that links **action per turn** to **radial contraction per turn** in the Noether Sea.
+
+This isolates the emergence question: if a constant $G$ is observed even for a single in-spiraling binary, it indicates that the Noether Sea imposes a universal action-to-geometry conversion before tri-binary alignment enters the story.
+
 
 
 ---
