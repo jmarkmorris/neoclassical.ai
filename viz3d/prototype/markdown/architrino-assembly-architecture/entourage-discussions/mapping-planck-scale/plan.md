@@ -1,12 +1,136 @@
 ### Prompt Deltas for Next Round (Concrete Progress Only)
 
-- **System (Global):** Do not restate framing. Convert each hypothesis into a testable claim or derivation step; produce either an equation-level sketch or a simulation plan.
-- **Dyna:** Formalize the delay-equation bifurcation. Identify the minimal DDE that yields phase-slip and terminal lock; state parameters and stability criteria.
-- **Sol:** Define a minimal simulation: tri-binary with delayed coupling + translation. Output: stable mode ladder, phase-slip thresholds, candidate terminal mode.
-- **Cos:** Translate alignment condition into observational signatures (polarization, QPOs, ringdown features). Prioritize one concrete prediction.
-- **Phe:** Map the alignment condition to an energy/length scaling law; specify how to compute $L_{\text{align}}$, $R_{\text{align}}$ from model parameters.
-- **Phil:** Check conceptual consistency: one-way vs round-trip delay, momentum-as-history, and invariance under reparametrization of absolute time.
-- **Red/Sig:** Define falsifiers and sensitivity thresholds; propose a minimal test that could break the alignment-first mapping.
+---
+
+Here are three low‑hanging, high‑leverage next steps that I think give us the best return per unit effort.
+
+---
+
+## 1) Nail a 1‑Binary Maximum‑Curvature Benchmark (Single Outer Ring)
+
+**Goal:** Get a clean, simulation‑backed “outer binary at $v\to c_f$” reference orbit: radius, frequency, and total angular momentum for a simple 2‑architrino binary. This is the minimal sandbox for your alignment story.
+
+**Why this first?**
+
+- It’s much simpler than a full tri‑binary, but it already contains:
+  - the self‑hit regime,
+  - the $v \approx c_f$ transition,
+  - delay‑feedback closure.
+- It gives us **actual numbers** (in code units) for:
+  - $R_{\text{max‑curv}}$,
+  - $\omega_{\text{max‑curv}}$,
+  - $L_{\text{max‑curv}}$,
+  which we can immediately compare to the Planck mappings (up to scale factors).
+
+**Concrete tasks:**
+
+1. **Set up a symmetric 2‑body opposite‑charge system** in Sol’s code:
+   - Center of mass at rest.
+   - Initial conditions chosen to drive a spiral‑in until $v \gtrsim c_f$ and self‑hit activates.
+2. **Let it relax into its tightest stable orbit** (if one exists):
+   - Run long enough ($\gg 10^4$ orbits) with convergence checks (Δt, η).
+3. **Measure:**
+   - Time‑averaged radius $R_{\text{bin}}$.
+   - Time‑averaged angular frequency $\omega_{\text{bin}}$.
+   - Total angular momentum $L_{\text{bin}}$ of the pair.
+4. **Compare to Planck‑style relations in code units:**
+   - Is $v_{\text{bin}}\approx R_{\text{bin}}\omega_{\text{bin}}$ saturating $c_f$?
+   - Do we get something close to a universal product like  
+     $L_{\text{bin}} \sim \text{const}$ across different initial energies?
+
+**Why it matters for the Planck story:**
+
+- If even the **simplest** maximum‑curvature binary does *not* show a unique, robust $R,\omega,L$ plateau, then expecting a sharp, universal $R_{\text{align}},L_{\text{align}}$ for a tri‑binary is suspect.
+- If it *does*, we’ve got a concrete “unit cell” orbit to embed as inner/middle/outer in the tri‑binary and a strong hint that the Planck alignment state is not wishful thinking.
+
+---
+
+## 2) Build a Minimal Tri‑Binary “Rung Ladder” Model (No Gravity Yet)
+
+**Goal:** Test the **discrete ladder / top‑rung** hypothesis in the *cleanest possible setting*: an isolated tri‑binary with no external potential, only internal delay‑feedback and a tunable “stress” parameter.
+
+**Why this is low‑hanging:**
+
+- We don’t need full GR‑like curvature or a black‑hole environment.
+- We can model “increasing stress” as a simple knob:
+  - e.g. gradually increase total angular momentum or impose a slow contraction of the outer radius and let self‑hit & delay dynamics re‑lock the system.
+- We’re only asking: do we see **mode plateaus** and does the ladder terminate?
+
+**Concrete tasks:**
+
+1. **Specify a minimal tri‑binary geometry**:
+   - Inner, middle, outer binaries with initial radii ratio (e.g. $R_\text{inner}:R_\text{mid}:R_\text{outer} = 1:3:9$).
+   - Planes initially non‑coplanar (fermion‑like).
+2. **Define a “stress” protocol**:
+   - E.g. slowly inject angular momentum or tighten the outer binary radius quasi‑adiabatically.
+3. **Track observables as stress increases:**
+   - Outer radius $R_\text{out}(t)$.
+   - Outer binary frequency $\omega_\text{out}(t)$.
+   - Inter‑plane angles (inner/mid/outer).
+4. **Look for:**
+   - **Plateaus** in $(R_\text{out},\omega_\text{out})$ vs applied stress (discrete rungs).
+   - A **terminal state** where:
+     - planes become nearly co‑planar (alignment),
+     - $v_{\text{eff,forward}}\to c_f$,
+     - further stress no longer yields a new stable configuration (it just destabilizes or radiates).
+
+**Why it matters for the Planck story:**
+
+- If we see a clear staircase and a final plateau with coplanarity and $v_{\text{eff}}\to c_f$, we have direct dynamical evidence for:
+  - the **discrete ladder**,
+  - and a **top rung**—your Planck alignment mode.
+- If the ladder **doesn’t** terminate (e.g. continuous family of modes, or multiple inequivalent planar endpoints), we know exactly where to refine the thesis.
+
+---
+
+## 3) Define “Alignment Invariants” and Check SU(2)→U(1) Collapse in a Toy Model
+
+**Goal:** Before tackling full SU(2) rigor, define **simple, computable orientation invariants** for the tri‑binary and see whether they:
+
+1. Distinguish the 3D precessing (fermion‑like) regime from the planar (boson‑like) regime, and  
+2. Actually **collapse** to a U(1‑like one‑angle variable** at high alignment.
+
+**Why this is low‑hanging but high leverage:**
+
+- We don’t need full group theory out of the gate—just **good diagnostics** we can compute from simulations:
+  - e.g. three inter‑plane angles, a precession cone angle, and a “phase winding number” over a rotation.
+- This immediately tells us whether our spin‑mapping story is geometrically consistent with what the dynamics actually do.
+
+**Concrete tasks:**
+
+1. **Define orientation variables for each binary:**
+   - Unit normal vectors $\hat{n}_\text{inner}, \hat{n}_\text{mid}, \hat{n}_\text{outer}$.
+2. **Define invariants / diagnostics:**
+   - Inter‑plane angles: $\alpha_{IM} = \arccos(\hat{n}_\text{inner}\cdot\hat{n}_\text{mid})$, etc.
+   - A **precession cone angle** for the net tri‑binary axis over one outer‑binary period.
+   - A “rotation test”: rotate the entire tri‑binary by $2\pi$ in space and check if the internal causal configuration (phases of the three binaries relative to each other and to the self‑hit pattern) returns to itself or requires $4\pi$.
+3. **Run two regimes:**
+   - A low‑stress, 3D precessing state.
+   - A high‑stress, quasi‑aligned state found in step 2.
+4. **Check:**
+   - Does the precession cone angle → 0 with increasing alignment?
+   - Do the inter‑plane angles → 0?
+   - Does the effective configuration space reduce to just a **single in‑plane phase angle** (U(1)‑like), or do hidden SU(2)‑like features survive?
+
+**Why it matters for the Planck story:**
+
+- If the aligned state’s degrees of freedom really collapse to one angular variable (plus some discrete symmetries), the **fermion→boson spin narrative** becomes geometrically credible.
+- If even at “full alignment” the configuration space still behaves like SU(2) (needs $4\pi$ to return to identical causal configuration), then:
+  - either the Planck state is not boson‑like the way we expect, or
+  - the actual “boson‑like” configuration requires a further constraint we haven’t formulated.
+
+---
+
+If we do just these three:
+
+1. A clean 1‑binary maximum‑curvature benchmark (numbers in hand),
+2. A minimal tri‑binary ladder test (do we see a terminal aligned mode?),
+3. A set of alignment invariants checking the SU(2)→U(1) collapse,
+
+we’ll either:
+
+- Sharpen the Planck‑alignment thesis into something quantitatively anchored, or  
+- Discover exactly where the architecture needs re‑phrasing before we invest in more exotic derivations (e.g. $G$ from compliance, BH entropy, etc.).
 
 ---
 
