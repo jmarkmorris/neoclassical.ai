@@ -10,7 +10,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 > A tri-binary reaches the Planck state when the Outer binary’s forward-sector effective velocity (translational + tangential orbital) approaches the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. In this state:
 > 1. Forward-sector one-way causal updates are starved (local horizon behavior).
 > 2. The tri-binary collapses geometrically from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
-> 3. The assembly acquires a **minimal action** $L_{\text{align}}$ and **minimal radius** $R_{\text{align}}$, which we **propose to identify** with $\hbar$ and $\ell_P/(2\pi)$ respectively, pending derivation:
+> 3. The assembly acquires a **minimal angular momentum** $L_{\text{align}}$ and **minimal radius** $R_{\text{align}}$, which we **propose to identify** with $\hbar$ and $\ell_P/(2\pi)$ respectively, pending derivation:
 >    $$
 >      L_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \hbar, \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
