@@ -173,6 +173,35 @@ If this fails (either no discrete modes, or no terminal one), the whole “Planc
 
 ---
 
+### Add: Oblate Spheroid (Ellipsoid) Contraction with Motion
+
+**Assumption (testable):** The outer binary, moving at translational speed $v_{\text{trans}}$, generates a causal interaction envelope that is **oblate** and flattens along the direction of motion as $v_{\text{trans}}\to c_f$.
+
+**Geometry:** Let the motion define the $z$-axis. Model the envelope as an ellipsoid
+$$
+\frac{x^2 + y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
+$$
+with transverse radius $R_\perp$ and longitudinal radius $R_\parallel$.
+
+Adopt a kinematic contraction law (to be validated by dynamics):
+$$
+\beta = \frac{v_{\text{trans}}}{c_f}, \quad \gamma = \frac{1}{\sqrt{1-\beta^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma}.
+$$
+As $\beta \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
+
+**Impact on delay locking:** The round-trip delay becomes anisotropic. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
+$$
+R(\theta) = \left(\frac{\sin^2\theta}{R_\perp^2} + \frac{\cos^2\theta}{R_\parallel^2}\right)^{-1/2}.
+$$
+Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_f$, and the phase condition generalizes to
+$$
+\Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n).
+$$
+
+**Why this helps the terminal-rung story:** As $v_{\text{trans}}$ grows, forward-sector delays shrink, forcing the stable lock to migrate toward the equatorial plane. In the limit, the only consistent closure is planar (aligned) motion.
+
+**Concrete test:** Use the ellipsoid-based $\Delta t_{\text{rt}}(\theta)$ in the toy delay ODEs and scan for plateau stability vs $\beta$, checking whether a last aligned rung emerges as $R_\parallel$ collapses.
+
 ### 2) Aligned-State Angular Momentum Functional $L_{\text{align}}$ (Geometry -> $\hbar$)
 
 **Why here:**  
