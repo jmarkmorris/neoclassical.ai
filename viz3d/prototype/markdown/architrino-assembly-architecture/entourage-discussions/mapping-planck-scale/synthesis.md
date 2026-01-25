@@ -42,9 +42,9 @@ Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; uni
 | --- | --- | --- | --- |
 | Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
 | Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Action-per-cycle scale at alignment. |
-| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment. |
-| Radius $R_P$ | $R_P = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
-| Gravitation $G$ | $G = 8\pi^3 c^3 R_P^2 / h$ | Express in terms of $R_P$ and $h$ | Medium compliance tied to the alignment geometry scale ($R_P^2$). |
+| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
+| Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2 = \ell_P^2 / (4\pi^2)$ | Square of the alignment radius | Geometric scale of the planar alignment. |
+| Gravitation $G$ | $G \propto c_f^3 A_{\text{align}}^2 / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
