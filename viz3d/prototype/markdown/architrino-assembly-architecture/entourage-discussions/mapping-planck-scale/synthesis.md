@@ -47,7 +47,15 @@ Seen geometrically, the $G$ expression says the Noether Sea's compliance scales 
 
 Post-snap, $G$ is best read as a **planar compliance parameter**: it sets how readily the Noether Sea yields to the aligned, field-speed outer orbit. A radial drift component can perturb the delay-closure timing, but it does not by itself define the field-speed condition; the alignment limit is set by the forward-sector effective velocity and the planar lock. In this framing, $G$ governs how the medium absorbs or resists those post-snap timing shifts rather than requiring the inward component to reach $c_f$.
 
-One way to read the $c^3$ factor is as a **causal throughput scale**. Dimensionally, $G$ carries $L^3/(M T^2)$. The factor $c^3$ supplies $L^3/T^3$, which can be interpreted as a "causal volume per time" swept out by field-speed propagation in three dimensions. In AAA terms, it is the rate at which the Noether Sea can update a full 3D neighborhood. To turn that throughput into a compliance, you divide by an action scale ($h$), which introduces the missing mass-time factor and yields the correct $L^3/(M T^2)$ units. Under this reading, $G$ measures how much causal volume-per-time the medium can sustain per unit action: higher $c_f$ raises throughput, higher $h$ lowers compliance.
+One way to read the $c^3$ factor is as a **causal throughput scale** tied to a spherical wavefront, not a cube. A field-speed signal emitted at time $t$ fills a causal ball of radius $r = c_f \Delta t$ after delay $\Delta t$, with volume
+$$
+V(\Delta t) = \frac{4}{3}\pi (c_f \Delta t)^3.
+$$
+The volumetric expansion rate is
+$$
+\frac{dV}{d(\Delta t)} = 4\pi c_f^3 \Delta t^2,
+$$
+so the natural geometric scale factor carried by the propagation is $c_f^3$ with units $L^3/T^3$. In AAA terms, $c_f^3$ sets the baseline 3D causal throughput of the Noether Sea. To convert that throughput into a **compliance** (the $G$ dimension $L^3/(M T^2)$), you divide by an action scale $h$ and supply the remaining time factor through the specific alignment geometry (the locked orbit fixes the relevant $\Delta t$ and $R_{\text{align}}$). Under this reading, $G$ measures how much spherical causal volume-per-time the medium can sustain per unit action: higher $c_f$ raises throughput, higher $h$ lowers compliance.
 
 
 
