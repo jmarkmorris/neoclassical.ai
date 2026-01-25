@@ -36,6 +36,12 @@ G \propto \frac{c_f^3 (\text{alignment geometry})^2}{h}.
 $$
 Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
 
+This leaves three coherent origin stories to keep in view:
+1. **One-constant ontology:** a deeper invariance in the delay-geometry produces both $c_f$ and $h$, with $G$ a composite of those.
+2. **Two-constant ontology:** $c_f$ (signal speed) and $h$ (action-per-cycle) are primitive; $G$ is an emergent bookkeeping constant fixed by a universal alignment geometry.
+3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation.
+We keep these as open threads while we test whether alignment alone can lock the scale.
+
 #### Planck Units as Outer-Binary Mappings (Alignment State)
 
 | Planck Unit | Expression | Cascade | Outer-binary mapping (alignment interpretation) |
