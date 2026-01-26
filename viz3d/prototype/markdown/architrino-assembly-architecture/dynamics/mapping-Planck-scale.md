@@ -7,10 +7,20 @@ Our goal is to map the Planck scale with the tri-binary geometry and dynamics. W
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
 
 > **Working Thesis (Planck Alignment Horizon).**  
-> A tri-binary reaches the Planck state when the Outer binary’s forward-sector effective velocity (translational + tangential orbital) approaches the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. In this state:
+> A tri-binary reaches the Planck state when the forward-sector effective speed
+> $$
+> v_{\text{eff}} = \bigl|\mathbf{v}_{\text{trans}} + \mathbf{v}_{\text{orb}}^{\text{tan}}\bigr|
+> $$
+> approaches the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. In this state:
 > 1. Forward-sector one-way causal updates are starved (local horizon behavior).
-> 2. The tri-binary collapses geometrically from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
-> 3. The assembly acquires a **minimal angular momentum** $L_{\text{align}}$ and **minimal radius** $R_{\text{align}}$, which we **propose to identify** with $\hbar$ and $\ell_P/(2\pi)$ respectively, pending derivation:
+> 2. The tri-binary collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
+> 3. In the planar limit, both $\mathbf{v}_{\text{trans}}$ and the transverse orbital motion can approach $c_f$, so the effective in-plane motion outruns $c_f$ and produces a Mach-wedge causal wake. The wedge half-angle follows:
+>    $$
+>    \sin\theta = \frac{c_f}{v_{\text{eff}}} \quad (\;v_{\text{eff}} > c_f\;),
+>    $$
+>    so for orthogonal components near $c_f$ ($v_{\text{eff}} \approx \sqrt{2}\,c_f$), $\theta \approx 45^\circ$.
+> 4. The wedge geometry constrains which delay loops can close; the terminal aligned mode is the last wedge-compatible, phase-locked configuration.
+> 5. The assembly acquires a **minimal angular momentum** $L_{\text{align}}$ and **minimal radius** $R_{\text{align}}$, which we **propose to identify** with $\hbar$ and $\ell_P/(2\pi)$ respectively, pending derivation:
 >    $$
 >      L_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \hbar, \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
