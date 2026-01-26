@@ -1,8 +1,35 @@
-** new assessments of priorities at the moment go here.  prune later entries as I see fit.
+# ** new assessments of priorities at the moment go here.  prune later entries as I see fit.
 
 I think the priority should be on the math and the mapping. advancing the mapping.
 
+- look for rapid hits - ckm matrix?
+- sime2rewrite.md has ideas for importing this software (redeveloping)
+- mine material from wordpress for key areas
+- finish topology (where is it)
+- PDG solver
+  - provenance
+  - diagrams
+  - core disposition
+- periodic table of the standard model
+- what about the charts I made showing the bootstrap of knowledge.
+- what is the smallest assembly that can make a decision
+- ai assembly language
+- double click pins vscode tab
+- review all my entourage docs
+- go hard at math
+- read lorentz-aether and integrated it with ellipsoid
+- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
+- continue the ellipsoid work, aiming to understand time
+- I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
+- make a web page that genrates a live toc, cross-referenres, and glossary?
 
+- link a markdown file [text](../../file). Add note to system prompts.
+- set up 4 level branch in git
+- one H1 heading per md
+- og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a
+- attempt to understand open ai billing
+- get a usb-c hub and cable management hub must be capable of video to my monitors - look up specs
+- use open???? credits
 
 **Role:** Phe – Standard Model & QFT Phenomenologist
 
