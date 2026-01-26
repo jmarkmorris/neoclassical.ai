@@ -34,6 +34,11 @@ $$
 \beta = \frac{v_{\text{trans}}}{c_f}, \quad \gamma = \frac{1}{\sqrt{1-\beta^2}}, \quad R_\parallel = \frac{R_\perp}{\gamma}.
 $$
 As $\beta \to 1$, $R_\parallel \to 0$ and the envelope collapses toward a disk.
+**Right-triangle link:** Treat $c_f$ as the fixed causal propagation speed and decompose it into orthogonal components: one leg is the group translation $v_{\text{trans}}$, the other leg is the longitudinal closure speed $v_\parallel$. Then
+$$
+c_f^2 = v_{\text{trans}}^2 + v_\parallel^2 \quad \Rightarrow \quad v_\parallel = c_f\sqrt{1-\beta^2}.
+$$
+Mapping causal speed to closure length gives $R_\parallel = R_\perp (v_\parallel/c_f) = R_\perp\sqrt{1-\beta^2} = R_\perp/\gamma$, recovering the ellipsoid law from the triangle geometry.
 
 **Impact on delay locking:** The round-trip delay becomes anisotropic. For a ray at polar angle $\theta$ relative to the $z$-axis, the intersection radius with the ellipsoid is
 $$
@@ -65,14 +70,17 @@ $$
 - Differential path delays across the outer orbit (forward vs backward sector).
 - Drift in precession cone angle and inter-plane tilt under increasing $G_{\text{grad}}$.
 - Shifts in the stability sign $\partial \Phi_n/\partial r$ or loss of plateau behavior.
+**Prediction:** Increasing $G_{\text{grad}}$ shifts stable $n$ values and narrows or removes plateaus; strong gradients can pull the terminal alignment inward or erase it.
 
 ### C) Exclusion Volume Under Precession (Caveat)
 
 **Implication:** Outer-binary precession sweeps an exclusion region that is larger than a static orbit. The effective exclusion volume is the union of the orbit's causal envelope over a precession cycle, not just a single instantaneous shell.
+This union geometry sets packing and overlap limits by construction, rather than relying on point-particle exclusion rules.
 
 **Modeling at $v>0$:** Use the oblate envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
 
 **As $v_{\text{trans}} \to c_f$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
+At sufficiently high stress, this implies a terminal rung: further increases cannot support a stable 3D mode, only a planar aligned state.
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
@@ -99,6 +107,8 @@ $$
 T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}),
 $$
 with $T_0$ referenced to a baseline configuration (e.g., low speed, weak gradient). When $\alpha > 1$, the local dynamics take longer to complete a cycle relative to absolute time, which reads as time dilation. When $\alpha < 1$, the local cycle runs faster. This is the geometric analog: time dilation is a statement about how geometry (ellipsoid shape and gradient-induced delays) stretches or compresses the effective causal loop length.
+In scans, this is equivalent to using an effective frequency $\omega_n/\alpha$ inside $\Phi_n$ for the local sector.
+Redshift follows because emitted periodicity inherits the local clock rate: longer causal loops (larger $\alpha$) yield lower observed frequency at fixed absolute-time reference.
 
 **Action item:** Add a short derivation or narrative example that translates delay-based time distortion into a spacetime-style statement (e.g., "local clock period = intrinsic period x $\alpha$") and specify where this enters phase closure and stability.
 
@@ -131,6 +141,7 @@ $$
 \Phi_n(\theta, \mathbf{v}_{\text{trans}}, G_{\text{grad}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n),
 $$
 and track when $\partial \Phi_n/\partial r$ changes sign.
+Quantization here is emergent: only delay-locked, stable closures persist as discrete rungs, not imposed eigenmodes.
 
 ### 3) Alignment Invariants and Configuration Diagnostics
 
@@ -140,6 +151,7 @@ and track when $\partial \Phi_n/\partial r$ changes sign.
 - Inter-plane angles from unit normals $\hat{n}_{\text{inner}}, \hat{n}_{\text{mid}}, \hat{n}_{\text{outer}}$.
 - Precession cone angle of the net tri-binary axis over one outer period.
 - Rotation test: does a $2\pi$ spatial rotation return the causal configuration or require $4\pi$?
+As alignment increases and planes coincide, the remaining degree of freedom is a single in-plane phase (U(1)-like), consistent with a boson-like terminal configuration.
 
 ---
 
