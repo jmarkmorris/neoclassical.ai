@@ -121,6 +121,8 @@ The fixed Euclidean void plus dynamical Noether Sea enables clean separation:
 - Orientation fields (neutral-axis directions)
 - Internal tri-binary state (radii, frequencies)
 
+**Caution on coarse-graining:** Modeling at the “core” level is tempting but can drift from true N-architrino dynamics. Any effective-field or core-level model should be validated against explicit N-body delay simulations to avoid introducing artifacts.
+
 **Target effective metric**:
 $$
 g_{\mu\nu}^{\text{eff}} = e^a{}_\mu e^b{}_\nu \eta_{ab}
