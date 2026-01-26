@@ -100,9 +100,10 @@ Classify assemblies by:
 - **Knot/link type** of representative orbits
 - **Winding numbers** around self-hit regions
 - **Handedness** (pro/anti: H/M/L vs H/L/M frequency ordering)
+- **Orbit chirality** (CW vs CCW around the momentum vector)
 - **Charge decoration** on six polar sites ($\pm \epsilon$ assignments)
 
-**Key conjecture**: Discrete charge quantization ($\epsilon = e/6$) is not arbitrary but rather a **winding number or linking invariant** of fundamental trajectory braids.
+**Key conjecture**: Discrete charge quantization ($\epsilon = e/6$) is not arbitrary. The unit magnitude is fixed per architrino/site, while braid topology (winding/linking) selects which counts and sign patterns are stable, yielding quantized net charge for the assembly.
 
 The tri-binary structure (three nested counter-rotating binaries at radii $R_{\text{inner}}, R_{\text{middle}}, R_{\text{outer}}$, with **energy-separated** radii/frequencies in low-energy conditions and orbital planes tending toward near-orthogonality) has inherent topological rigidity. Combined with geometric parameters, this creates a **finite classification space**—a genuine periodic table of possible assemblies.
 
