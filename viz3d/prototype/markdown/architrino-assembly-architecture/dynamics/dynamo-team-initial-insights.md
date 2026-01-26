@@ -35,7 +35,7 @@ Yet the ontology asserts the existence of **stable, discrete assemblies** (Noeth
 
 ### Proposed Resolution (Grothendieck, Kolmogorov)
 
-The answer likely lies in the **moduli space of self-intersecting trajectories**. The "meta-stable branching" mechanism suggests that stable assemblies correspond to **isolated strata** in the vast space of possible histories—essentially **topologically protected knots of causality** that effectively screen off the infinite past, allowing a "particle" to act as a simple object with finite memory depth.
+The answer likely lies in the **moduli space of self-intersecting trajectories**, but it is enforced by three concrete physical filters: **locality**, **finite field speed $c_f$**, and **distance-decaying potentials**. Because interactions propagate at finite speed and fall off with distance, the most recent and most local segments of history dominate the force budget; distant segments contribute weakly and with long delay. This creates conditions where **local paths in timespace have the most influence**, allowing stable assemblies to form as **isolated strata** in the space of histories—essentially **topologically protected knots of causality** that effectively screen off the infinite past and behave as finite-memory objects.
 
 Mathematically, we should organize assemblies into **categories** where:
 - **Objects**: Assembly configurations equipped with their internal dynamics and invariants
@@ -65,6 +65,11 @@ The self-hit regime is best understood as **delay-coupled oscillators** in flat 
 - Maximum-curvature organizing centers
 
 **Research priority**: Map this zoo systematically via bifurcation diagrams parameterized by wake strength vs velocity relative to $c_f$.
+- Use $(\kappa, \beta)$ with $\beta = v/c_f$ as primary controls.
+- Start with a minimal binary, then extend to tri-binary.
+- Sweep a grid in $(\kappa,\beta)$ and classify attractors (fixed points, cycles, tori, chaotic).
+- Track stability via Floquet multipliers / Lyapunov exponents and label bifurcation types.
+- Use continuation (e.g., pseudo-arclength) to follow branches and locate transitions.
 
 ### Singularity Structure and Well-Posedness (Tao)
 
