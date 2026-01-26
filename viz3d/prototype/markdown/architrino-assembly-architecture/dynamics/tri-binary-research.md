@@ -48,6 +48,7 @@ Then $\Delta t_{\text{rt}}(\theta) \approx 2 R(\theta)/c_f$, and the phase condi
 $$
 \Phi_n(\theta, \mathbf{v}_{\text{trans}}) = \omega_n\,\Delta t_{\text{rt}}(\theta) + \phi_{\text{geom}}(n).
 $$
+**Conjecture (velocity convergence):** As translational speed increases, delay-closure constraints drive the orbital degree of freedom to adjust (e.g., by shrinking radius and raising $v_{\text{orb}}^{\text{tan}}$) so that both $v_{\text{trans}}$ and $v_{\text{orb}}^{\text{tan}}$ converge toward $c_f$ at the planar transition.
 
 **Exclusion volume (instantaneous):**
 $$
@@ -95,6 +96,10 @@ At sufficiently high stress, this implies a terminal rung: further increases can
 **Local clock from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
 $$
 \alpha(\theta, G_{\text{grad}}) = \frac{\Delta t_{\text{rt}}(\theta, G_{\text{grad}})}{\Delta t_{\text{rt,ref}}}
+$$
+and, for the ellipsoid-only case with no gradient,
+$$
+\alpha(\theta) = \frac{R(\theta)}{R_{\text{ref}}}
 $$
 measures how the local phase-closure period compares to the invariant clock:
 $$
@@ -181,3 +186,19 @@ As alignment increases and planes coincide, the remaining degree of freedom is a
 2. Outer-binary delay loop without gradient; validate oblate geometry at high $v_{\text{trans}}$.
 3. Add $G_{\text{grad}}$ and scan stability vs gradient.
 4. Run alignment invariants across low-stress and high-stress regimes.
+
+---
+
+## Equivalence Principle (Working Interpretation)
+
+**Premise:** In high gravity, Noether cores become more oblate as the local delay geometry is distorted by the surrounding volume gradient. In pure acceleration (deep space), an object’s internal delay geometry also becomes more oblate. If the equivalence principle is to hold locally, the surrounding spacetime must adapt as well.
+
+**Local-equivalence statement (model-level):** A uniformly accelerated assembly should experience the same local delay geometry as a stationary assembly in a corresponding Noether core volume gradient. This requires the local spacetime delay structure (pilot-wave environment) to co-distort with the accelerated object, not just the object alone.
+
+**Implementation idea:** Treat acceleration as imposing an effective gradient in the experienced field, mediated by the pilot-wave structure. In the minimal model:
+- High gravity: oblate cores arise because $G_{\text{grad}}$ skews delays across the orbit.
+- Uniform acceleration: oblate cores arise because the pilot-wave environment rephases so that the same $\Delta t_{\text{rt}}(\theta)$ pattern appears in the accelerated frame.
+
+**Testable consequence:** If equivalence holds, the same delay-closure diagnostics (phase residuals, anisotropy ratios, stability thresholds) should match between (i) a gradient-driven case and (ii) an acceleration-driven case with matched effective $\alpha(\theta)$.
+
+**Momentum after acceleration:** During acceleration, the object and its pilot-wave environment rephase into a moving, oblate configuration. When the external acceleration ceases, the established delay-closure state persists (no gradient remains to unwind it), so translation continues. Momentum is the conserved motion state of this locked geometry; it relaxes only if interactions or gradients rephase the delays.
