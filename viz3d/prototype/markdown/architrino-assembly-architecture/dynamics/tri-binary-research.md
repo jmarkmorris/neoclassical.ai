@@ -86,17 +86,23 @@ At sufficiently high stress, this implies a terminal rung: further increases can
 
 **Status:** This precession-expanded exclusion volume is not explicitly modeled in the current minimal system; treat results as lower bounds until the swept-volume effect is added.
 
-### D) Time Distortion: Spacetime Time vs Absolute Time (Call-Out)
+### D) Time Distortion: Spacetime Time vs Absolute Time
 
-**Goal:** Make explicit how "time in spacetime" is distorted relative to absolute time by delay geometry and gradient effects.
+**Goal:** Define "time in spacetime" as a geometric effect in the delay loop, not a relativistic postulate.
 
-**Effective lapse from delays:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
+**Absolute clock:** Use the outer-binary Planck cadence as the invariant clock: $T_0 = 1/f_P$. This is a reference for absolute time in the model.
+
+**Local clock from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
 $$
 \alpha(\theta, G_{\text{grad}}) = \frac{\Delta t_{\text{rt}}(\theta, G_{\text{grad}})}{\Delta t_{\text{rt,ref}}}
 $$
-acts as an effective time-dilation factor: clocks tied to local dynamics tick slower (larger $\alpha$) or faster (smaller $\alpha$) relative to absolute time.
+measures how the local phase-closure period compares to the invariant clock:
+$$
+T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}).
+$$
+When $\alpha > 1$, local cycles are longer relative to $T_0$; when $\alpha < 1$, they are shorter. This is the definition of time distortion in this model.
 
-**Interpretation:** High group velocity flattens the envelope and shortens forward delays, creating anisotropic clock rates. High gradients stretch or skew delays across the orbit, producing redshift-like effects. This provides a geometric analog to GR time dilation without invoking full metric dynamics.
+**Geometric source of distortion:** The causal envelope shape sets $\Delta t_{\text{rt}}$. As the tri-binary tilts out of planar and loses energy, the envelope becomes less oblate (larger $R_\parallel/R_\perp$), increasing some path lengths and stretching $T_{\text{local}}$; as it flattens, $R_\parallel$ shrinks and the corresponding delays contract. Gradients ($G_{\text{grad}}$) further skew delays across the orbit.
 
 **Lorentz beta in geometric form:** In Lorentz kinematics, $\beta = v/c$ and $\gamma = 1/\sqrt{1-\beta^2}$. In this model, use $\beta = v_{\text{trans}}/c_f$ and the oblate ellipsoid relation
 $$
@@ -104,15 +110,7 @@ R_\parallel = R_\perp \sqrt{1-\beta^2} = \frac{R_\perp}{\gamma}.
 $$
 Geometrically, $\beta$ is the axis-squash control: as $\beta \to 1$, the causal envelope collapses along the motion axis, shrinking longitudinal path lengths and altering the delay.
 
-**Why time appears to dilate:** The "clock" in this framework is the round-trip delay that closes phase in the outer-binary loop. As motion or gradient changes the causal path length, the local period inferred from phase closure changes:
-$$
-T_{\text{local}}(\theta) = T_0 \, \alpha(\theta, G_{\text{grad}}),
-$$
-with $T_0$ referenced to a baseline configuration (e.g., low speed, weak gradient). When $\alpha > 1$, the local dynamics take longer to complete a cycle relative to absolute time, which reads as time dilation. When $\alpha < 1$, the local cycle runs faster. This is the geometric analog: time dilation is a statement about how geometry (ellipsoid shape and gradient-induced delays) stretches or compresses the effective causal loop length.
-In scans, this is equivalent to using an effective frequency $\omega_n/\alpha$ inside $\Phi_n$ for the local sector.
-Redshift follows because emitted periodicity inherits the local clock rate: longer causal loops (larger $\alpha$) yield lower observed frequency at fixed absolute-time reference.
-
-**Action item:** Add a short derivation or narrative example that translates delay-based time distortion into a spacetime-style statement (e.g., "local clock period = intrinsic period x $\alpha$") and specify where this enters phase closure and stability.
+**Where it enters phase closure:** In scans, treat the local clock as an effective frequency $\omega_n/\alpha$ inside $\Phi_n$ for the sector under consideration. Redshift follows because emitted periodicity inherits the local clock rate: longer causal loops (larger $\alpha$) yield lower observed frequency at fixed absolute-time reference.
 
 ---
 
