@@ -16,9 +16,9 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >    $$
 >    so for orthogonal components near $c_f$ ($v_{\text{eff}} \approx \sqrt{2}\,c_f$), $\theta \approx 45^\circ$.
 > 4. The wedge modifies the delay-feedback geometry, constraining which loops can close; the terminal aligned mode is the last wedge-compatible, phase-locked configuration.
-> 5. The assembly acquires a **minimal angular momentum** $L_{\text{align}}$ and **minimal radius** $R_{\text{align}}$, which we **propose to identify** with $\hbar$ and $\ell_P/(2\pi)$ respectively, pending derivation:
+> 5. The assembly acquires the **minimum action/rotation increment** $L_{\text{align}}$, identified with the universal quantum $h$ (not a system-specific lower bound), and an **alignment radius** $R_{\text{align}}$, defined by the Planck-alignment circumference $2\pi R_{\text{align}} = \ell_P$:
 >    $$
->      L_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \hbar, \qquad
+>      L_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; h, \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
 >    $$
 
@@ -83,11 +83,11 @@ $$
 
 with $\theta$ the orbital phase and the “forward sector” the subset where the tangential velocity projects along $\mathbf{v}_{\text{trans}}$.
 
-We define the **kinematic alignment horizon** as the locus where
-
+We define the **kinematic alignment horizon** as the locus where the forward-sector components satisfy
 $$
-\max_{\theta \in \text{forward}} v_{\text{eff}}(\theta) \;\to\; c_f^{-}.
+v_{\text{trans}} \to c_f \quad \text{and} \quad v_{\text{orb}}^{\text{tan}}(\theta) \to c_f,
 $$
+so the combined forward-sector effective speed approaches the field speed at the onset of flattening.
 
 At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state. The sufficiency comes from the **round-trip response**: the one-way delay distorts phase closure until the final aligned mode becomes the only stable lock.
 
@@ -164,7 +164,7 @@ Under increasing translational stress or deepening gravitational potential:
 This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/frequency space.
 
 > **Working Hypothesis (Top Rung = Planck Alignment).**  
-> Working hypothesis: the ladder terminates at a unique top rung $n_{\text{max}}$ where full planar alignment and $v_{\text{eff}}\to c_f$ are achieved. This is the proposed Planck alignment state.
+> Working hypothesis: the ladder terminates at a unique top rung $n_{\text{max}}$ where full planar alignment is achieved and the forward-sector components satisfy $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ at the onset of flattening. This is the proposed Planck alignment state.
 
 **Failure mode:** If simulations or analytic work reveal:
 - a continuum of stable modes beyond the aligned state, or
@@ -218,7 +218,7 @@ We adopt:
 
 Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to A-cf-match.
 
-#### 5.2 Minimal Action: $L_{\text{align}}$ and $\hbar$
+#### 5.2 Minimal Action: $L_{\text{align}}$ and $h$
 
 Let $L$ denote the total orbital angular momentum of a tri-binary assembly.
 
@@ -233,15 +233,15 @@ Let $L$ denote the total orbital angular momentum of a tri-binary assembly.
 > $$
 >   L_{\text{align}} \equiv L(n_{\text{max}}),
 > $$
-> is proposed to **coincide with** the reduced Planck constant $\hbar$:
+> is proposed to **coincide with** the Planck action quantum $h$:
 > $$
->   L_{\text{align}} \stackrel{\text{hyp.}}{\approx} \hbar.
+>   L_{\text{align}} \stackrel{\text{hyp.}}{\approx} h.
 > $$
 > This must ultimately be derived from the architrino master equation and checked numerically.
 
 If the dynamics admit multiple distinct aligned states with significantly different $L$, this identification fails.
 
-#### 5.3 Minimal Radius: $R_{\text{align}}$ and $\ell_P$
+#### 5.3 Alignment Radius: $R_{\text{align}}$ and $\ell_P$
 
 Define
 
@@ -255,8 +255,8 @@ $$
 \ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}.
 $$
 
-> **Conjectured Mapping (Length):**  
-> We propose that the dynamically derived alignment radius $R_{\text{align}}$ **matches** the empirical Planck length divided by $2\pi$:
+> **Empirical Check (Length):**  
+> We compare the dynamically derived alignment radius $R_{\text{align}}$ to the empirical Planck length divided by $2\pi$:
 > $$
 >  R_{\text{align}} \stackrel{\text{hyp.}}{\approx} \ell_P^{\text{(emp)}}/(2\pi),
 > $$
