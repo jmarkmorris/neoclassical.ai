@@ -115,24 +115,24 @@ The fixed Euclidean void plus dynamical Noether Sea enables clean separation:
 - **Background connection**: Trivial (flat Newton–Cartan)
 - **Effective connection**: Built from assembly fields
 
-**Construction**: Define a **moving-frame field** $e^a{}_\mu(x)$ whose orientation and norm are functionals of:
+**Construction**: Define a **moving-frame field** $e^a{}_\mu(x)$ whose orientation and norm are functionals of explicitly defined, measurable assembly fields:
 - Tri-binary density $\rho_{\text{core}}(\mathbf{x},t)$
-- Flow velocity $u^\alpha_{\text{core}}$
-- Orientation fields (neutral-axis directions)
+- Flow velocity $u^\alpha_{\text{core}}$ (an operationally defined local transport velocity)
+- Orientation fields (neutral-axis directions with a specified estimator)
 - Internal tri-binary state (radii, frequencies)
 
 **Caution on coarse-graining:** Modeling at the “core” level is tempting but can drift from true N-architrino dynamics. Any effective-field or core-level model should be validated against explicit N-body delay simulations to avoid introducing artifacts.
 
-**Target effective metric**:
+**Target effective metric** (underspecified until $e^a{}_\mu$ is made explicit):
 $$
 g_{\mu\nu}^{\text{eff}} = e^a{}_\mu e^b{}_\nu \eta_{ab}
 $$
 
-**Emergent curvature**: The Cartan curvature of this frame bundle, not of the void. Operational observers measure geodesics of $g_{\mu\nu}^{\text{eff}}$, not of the substrate.
+**Emergent curvature**: The Cartan curvature of this frame bundle, not of the void. Operational observers measure geodesics of $g_{\mu\nu}^{\text{eff}}$, not of the substrate, but this claim must be tied to explicit observables (e.g., redshift, light bending) in defined regimes.
 
 **Research program** *(design goals, not established results)*:
 1. Derive explicit functional form $g_{\mu\nu}[\rho_{\text{core}}, u_{\text{core}}, \text{orientations}]$
-2. Show in which regimes geodesics shadow GR geodesics (Schwarzschild, FRW, etc.)—recovery of GR is a **design goal**, not yet an established result
+2. Identify a minimal test set (redshift, light bending, orbital precession) and the regimes where geodesics should shadow GR (Schwarzschild, FRW, etc.)—recovery of GR is a **design goal**, not yet an established result
 3. Identify breakdown regimes and novel predictions
 
 This is **refractive gravity**: geodesics are Fermat paths in an inhomogeneous medium. Import machinery from **optical metrics and eikonal limits**.
