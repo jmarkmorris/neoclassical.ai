@@ -203,6 +203,17 @@ The deterministic delay dynamics, immense number of architrinos, and meta-stable
 
 **Target emergent probabilities**: Effective quantum-like statistics should arise from **typicality with respect to these measures** when observers are assemblies embedded in the same dynamics.
 
+**Action item (make probability precise):** Define a concrete probability space and invariant measure for a minimal branching scenario.
+1. Pick a minimal branching example (e.g., a tri-binary near a self-hit bifurcation with two attractors $A_1, A_2$).
+2. Specify the sample space $\Omega$ (initial microstates or history segments on $[t_0-T, t_0]$ that include internal phase and local Noether Sea micro-configuration).
+3. Define a measure $\mu$ on $\Omega$ (e.g., invariant measure for the local Sea microdynamics; uniform phase for internal angle).
+4. Define the outcome map $\Phi:\Omega \to \{A_1, A_2\}$ as the attractor reached by deterministic evolution.
+5. Define outcome probabilities as basin measures:
+$$
+P(A_k) = \mu\big(\Phi^{-1}(A_k)\big).
+$$
+Only after this can we ask whether $P(A_k)$ varies smoothly with macroscopic controls or reduces to $|\psi|^2$ in interference-like regimes.
+
 **Status**: Whether a Born-rule form $P \propto |\psi|^2$ can be derived from typicality with respect to invariant measures over trajectory space is currently **conjectural**. It is a major target, not an assumption.
 
 **Research path**:
