@@ -107,6 +107,12 @@ Classify assemblies by:
 
 **Causal self-linking (action item):** Define a **Causal Linking Number** $Lk_{\text{causal}}$ by treating the trajectory $\gamma(t)$ together with its primary causal wake vector $\hat{\mathbf{r}}(t)$ as a ribbon. When $|\mathbf{v}| > c_f$, the trajectory winds around its own past causal cone, creating a topological obstruction in the complement of the causal wake. This supplies a nontrivial winding invariant that cannot be removed without crossing the self-hit barrier.
 
+**Working definition (first pass):** Let $\gamma(t)$ be a worldline segment over a long period and define its causal offset curve $\gamma_\epsilon(t) = \gamma(t) + \epsilon\,\hat{\mathbf{r}}(t)$, where $\hat{\mathbf{r}}(t)$ points toward the dominant causal-hit direction at time $t$. Then define
+$$
+Lk_{\text{causal}} = \text{Link}(\gamma, \gamma_\epsilon),
+$$
+the linking number of the trajectory and its causal-offset ribbon. This is well-defined only when the self-hit barrier keeps $\gamma$ and $\gamma_\epsilon$ disjoint; changes in $Lk_{\text{causal}}$ require passing through the divergent self-hit region, making it a topological invariant of stable assemblies.
+
 **Key conjecture**: Discrete charge quantization ($\epsilon = e/6$) is not arbitrary. The unit magnitude is fixed per architrino/site, while $Lk_{\text{causal}}$ (and related winding/linking counts) selects which counts and sign patterns are stable, yielding quantized net charge for the assembly.
 
 The tri-binary structure (three nested counter-rotating binaries at radii $R_{\text{inner}}, R_{\text{middle}}, R_{\text{outer}}$, with **energy-separated** radii/frequencies in low-energy conditions and orbital planes tending toward near-orthogonality) has inherent topological rigidity. Combined with geometric parameters, this creates a **finite classification space**—a genuine periodic table of possible assemblies.
