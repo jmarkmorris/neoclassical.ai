@@ -396,23 +396,49 @@ To explore the two-body circular dynamics numerically:
 
 **Working hypothesis**: An isolated electrino–positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it is a natural attractor of the two-body delay dynamics.
 
-**Mechanism (summary)**:
-1. **Spiral-in** ($v < c_f$): Partner attraction dominates; tangential drive accelerates; radius decreases.
-2. **Self-hit onset** ($v > c_f$): Non-Markovian feedback activates and begins to oppose further collapse.
-3. **MCB regime** ($v \gg c_f$): Self-repulsion is minimized in radial direction while partner attraction accumulates across multiple roots; the orbit stabilizes at maximal curvature if $\langle T \rangle \approx 0$.
+### Mechanism and geometric expectations
 
-**Key geometric expectations**:
-- **Not** at the self-hit threshold: $\delta_s \to 0^+$ gives large outward radial term; tight orbits are blocked there.
-- **High-speed regime**: $\delta_s \to \pi$ minimizes radial self-repulsion; multiple partner hits raise inward pull; balance occurs at finite $r_{\text{min}}$.
+The hypothesis has three dynamical phases. In the spiral-in phase ($v < c_f$), partner attraction dominates, the net tangential drive is positive, and the radius decreases while speed rises. Once self-hits activate ($v > c_f$), non-Markovian feedback begins to oppose further collapse. In the MCB regime ($v \gg c_f$), radial self-repulsion is minimized while partner attraction accumulates across multiple causal roots; the orbit stabilizes at maximal curvature if the time-averaged tangential drive satisfies $\langle T \rangle \approx 0$.
 
-**Fundamental units (hypothesis)**:
-- $r_{\text{min}}$ defines the prototype rod and $T_{\text{MCB}}$ the prototype clock tick, emergent from the balance of partner attraction, self-hit repulsion, and centripetal requirement.
+Two geometric expectations follow. The MCB is not realized near the self-hit threshold: $\delta_s \to 0^+$ makes the outward radial term large and blocks tight orbits. At high speed, $\delta_s \to \pi$ minimizes radial self-repulsion, while multiple partner hits increase inward pull; balance occurs at finite $r_{\text{min}}$.
 
-**Attractor test requirements**:
-- **Poincaré map**: locate the MCB as a fixed point of the stroboscopic map.
-- **Floquet multipliers / Lyapunov exponents**: require all multipliers strictly inside the unit circle.
-- **Basin scan**: verify non-trivial attraction under perturbations in radius, phase, and velocity.
+If the hypothesis holds, $r_{\text{min}}$ defines the prototype rod and $T_{\text{MCB}}$ the prototype clock tick, both emergent from the balance of partner attraction, self-hit repulsion, and centripetal requirement.
 
-**Architectural implications**:
-- If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies.
-- If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
+### Attractor test requirements
+
+The practical attractor test consists of three steps:
+1. Locate the MCB as a fixed point of a stroboscopic Poincare map.
+2. Compute Floquet multipliers (or short Lyapunov exponents) around that fixed point; all nontrivial multipliers must satisfy $|\lambda|<1$.
+3. Map a non-trivial basin of attraction under perturbations in radius, phase, and velocity.
+
+### Finite-dimensional projection caveat
+
+The true state of a delay system is a history function in an infinite-dimensional phase space; the Poincare map strictly lives on that function space. The practical test uses a finite parametrization, typically $(R, s, \delta_s, \delta_p)$. If attraction fails even in this favorable finite projection, the full system will not be better behaved.
+
+### Minimal simulation protocol (Henri)
+
+**Model and regularization**: Use two opposite charges with no translation and full delayed interaction including self-hits. Fix $\eta$ with $\eta \ll R_{\text{MCB}}$, and choose $\Delta t \ll \eta$ and $\Delta t \ll T_{\text{MCB}}$.
+
+**Locate a candidate MCB orbit**: Run a spiral-in simulation until radius oscillations become small. Estimate $(\bar R, \bar s)$ and take a one-orbit window as an initial guess. Refine this guess by periodic-orbit shooting, enforcing periodicity in $R, s, \delta_s, \delta_p$ with a Newton iteration.
+
+**Construct the Poincare map**: Define the section $\Sigma$ as “particle 1 at angle $\theta=0$ with $\dot\theta>0$.” For each crossing, record $(R, s, \delta_s, \delta_p)$ and define the return map $P:(R, s, \delta_s, \delta_p)\mapsto(R', s', \delta_s', \delta_p')$.
+
+**Floquet multipliers**: Approximate the Jacobian $DP$ by finite differences and compute its eigenvalues. One multiplier should be $1$ (phase invariance); all others must satisfy $|\lambda|<1$.
+
+**Basin scan**: Fix $\eta$ and the delay phases at their MCB values. Vary $R_0$ and $s_0$ over a small grid (e.g., $\pm 10\%$) and integrate for $10^3$--$10^4$ periods. Classify outcomes by convergence to the MCB, drift, or irregular behavior, and plot a basin map.
+
+**Convergence tests**: Repeat the protocol with smaller $\Delta t$, smaller $\eta$, and longer integration times. The existence, stability, and basin shape must remain stable under refinement.
+
+### Additional diagnostics
+
+**Eta dependence**: Track $R_{\text{MCB}}(\eta)$, $s_{\text{MCB}}(\eta)$, and nontrivial multipliers versus $\eta$. If stability degrades as $\eta \to 0$, the MCB is likely a regularization artifact.
+
+**Energy drift (proxy)**: Monitor a proxy energy $E(t)=K(t)+U_{\text{wake}}(t)$ and require drift per period to be small and unbiased. If the only stability depends on numerical dissipation, it is not physical.
+
+**Tangential balance**: Measure $\langle T \rangle$ over an orbit and decompose it into self/partner contributions. Require $\langle T \rangle \to 0$ as $\Delta t,\eta \to 0$.
+
+**Near-orbit structure**: Compute a short Lyapunov exponent and a frequency spectrum of $R(t)$ or $\theta(t)$ to distinguish true limit cycles from nearby tori or chaos.
+
+### Architectural implications
+
+If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies. If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
