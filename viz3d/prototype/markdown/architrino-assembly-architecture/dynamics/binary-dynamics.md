@@ -157,7 +157,7 @@ The MCB radius $r_{\text{min}}$ is determined by the balance of:
 
 **Dynamical priority (attractor status):** The architecture assumes the MCB is a **robust attractor**, not a finely tuned periodic orbit. This must be established explicitly:
 - Start from a reduced two-body model (opposite charges, self-hit enabled, explicit $\eta$).
-- Construct a Poincaré map (e.g., strobing at orbital phase) and locate the MCB as a fixed point.
+- Construct a Poincare map (e.g., strobing at orbital phase) and locate the MCB as a fixed point.
 - Compute Floquet multipliers / Lyapunov exponents and map the basin of attraction under perturbations in radius, phase, and velocity.
 Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
@@ -533,16 +533,13 @@ Two geometric expectations follow. The MCB is not realized near the self-hit thr
 
 If the hypothesis holds, $r_{\text{min}}$ defines the prototype rod and $T_{\text{MCB}}$ the prototype clock tick, both emergent from the balance of partner attraction, self-hit repulsion, and centripetal requirement.
 
-#### Attractor test requirements
+#### Attractor test requirements (summary)
 
-The practical attractor test consists of three steps:
-1. Locate the MCB as a fixed point of a stroboscopic Poincare map.
-2. Compute Floquet multipliers (or short Lyapunov exponents) around that fixed point; all nontrivial multipliers must satisfy $|\lambda|<1$.
-3. Map a non-trivial basin of attraction under perturbations in radius, phase, and velocity.
+Use the Poincare map and reduced variables defined in the next section to: (1) locate a candidate fixed point, (2) estimate nontrivial multipliers, and (3) map a basin of attraction under perturbations in radius, phase, and velocity. The detailed protocol and diagnostics appear in **Poincare Map, Stability, and Basins of Attraction for the MCB**.
 
 #### Finite-dimensional projection caveat
 
-The true state of a delay system is a history function in an infinite-dimensional phase space; the Poincare map strictly lives on that function space. The practical test uses a finite parametrization, typically $(R, s, \delta_s, \delta_p)$. If attraction fails even in this favorable finite projection, the full system will not be better behaved.
+All diagnostics use reduced coordinates; stability in the full history space remains a separate proof obligation.
 
 ### Poincare Map, Stability, and Basins of Attraction for the MCB
 
@@ -1064,13 +1061,8 @@ The solution ceases to exist at finite time $T^*$ if:
 
 We formulate the physical hypothesis of the MCB as a mathematical conjecture regarding the topological dynamics of the system.
 
-#### Definition 5 (The Poincare Return Map)
-Let $\Sigma$ be a transverse section in $\mathcal{H}$ defined by:
-$$
-\Sigma = \{ \phi \in \mathcal{H} : (\phi_1(0) - \phi_2(0)) \cdot \hat{\mathbf{e}}_y = 0, \quad \dot{\phi}_1(0) \cdot \hat{\mathbf{e}}_x > 0 \}.
-$$
-(Physically: The binary separation vector crosses the y-axis).
-The Poincare map $P: D(\Sigma) \to \Sigma$ is defined by evolving the flow from $\phi \in \Sigma$ until the next crossing.
+#### Definition 5 (Poincare map reference)
+Use the Poincare section above for the definition of the section $\Sigma$ and the return map $P$ on the history space. The conjectures below refer to that map and its monodromy operator.
 
 #### Conjecture A (Existence of the MCB Limit Cycle)
 There exists a fixed point $\phi^* \in \Sigma$ corresponding to a periodic solution $\mathbf{x}^*(t)$ with period $T_{MCB}$. This solution corresponds to the Maximum-Curvature Orbit.
