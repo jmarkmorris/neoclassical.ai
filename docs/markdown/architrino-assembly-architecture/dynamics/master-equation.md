@@ -6,7 +6,7 @@
 
 ## 1. Foundations and Causal Geometry
 
-### Purpose and Scope
+### 1.1 Purpose and Scope
 
 This document presents the **Master Equation of Motion (EOM)** governing the lawful evolution of all architrinos in the Euclidean void + absolute time substrate. This is the **fundamental dynamical law** of the Architrino Theory, from which all emergent phenomena (particles, fields, spacetime, quantum behavior, gravity) ultimately derive.
 
@@ -18,9 +18,9 @@ The Master EOM is:
 - **Causal**: All influences propagate at finite field speed $c_f$.
 - **Self-consistent**: Includes self-interaction (self-hit) when $v > c_f$ at past emission times.
 
-### 1. Overview and Key Principle
+### 1.2 Overview and Key Principle
 
-#### 1.1 The Central Idea
+#### 1.2.1 The Central Idea
 
 **Fundamental Principle (from Marko's presentation):**
 
@@ -36,7 +36,7 @@ This is a **strictly local (in spacetime) interaction rule**, despite being non-
 
 In the absence of any causal hits, an architrino follows inertial motion: straight-line, constant-velocity trajectories in the fixed Euclidean background.
 
-#### 1.2 Abstract Form
+#### 1.2.2 Abstract Form
 
 The Master Equation of Motion (abstract level):
 
@@ -51,11 +51,11 @@ where:
 - $\mathbf{a}_{ij}(\text{causal history})$: Sum of all per-hit accelerations from source $j \neq i$ arriving at receiver $i$ at time $t$
 - $\mathbf{a}_{ii}(\text{self-hit})$: Sum of all self-hit acceleration contributions (architrino $i$ intersecting its own past emissions)
 
-(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined rigorously in Section 3.1. If a force symbol is needed, define $\mathbf{F}_{ij} \equiv m_i \mathbf{a}_{ij}$.)
+(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined rigorously in Section 2.1.1. If a force symbol is needed, define $\mathbf{F}_{ij} \equiv m_i \mathbf{a}_{ij}$.)
 
 **Key insight:** Both terms have the same functional form (radial $1/r^2$ force law); they differ only in source identity ($j = i$ vs $j \neq i$).
 
-#### 1.3 Path History Potential Integral Form
+#### 1.2.3 Path History Potential Integral Form
 
 The Master Equation is most naturally understood as a **path history potential law** akin to the Liénard–Wiechert representation in electromagnetism, though strictly Euclidean/Galilean in character. All of the physical content resides in the past worldlines of the sources, and the path history constraint selects the points on those worldlines whose influence reaches the receiver “now.”
 
@@ -76,13 +76,13 @@ where
 - $\delta(\cdot)$ enforces the causal constraint $r_{ij} = c_f(t - t_0)$, and
 - $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ encodes attraction/repulsion.
 
-The delta collapses the time integral to the causal set $\mathcal{C}_j(t)$ (see Section 2), so the integrand is evaluated at the **path-history time** $t_0$ determined by the causal constraint $r_{ij}(t; t_0) = c_f(t - t_0)$. This is the causal path-history potential law: acceleration at $t$ depends on the $1/r^2$ contributions from each emission selected by the causal history (rather than any future or instantaneous value). The Euclidean analog of the Liénard–Wiechert potential thus emerges as a **path-history integral** whose kernel is purely radial.
+The delta collapses the time integral to the causal set $\mathcal{C}_j(t)$ (see Section 1.3), so the integrand is evaluated at the **path-history time** $t_0$ determined by the causal constraint $r_{ij}(t; t_0) = c_f(t - t_0)$. This is the causal path-history potential law: acceleration at $t$ depends on the $1/r^2$ contributions from each emission selected by the causal history (rather than any future or instantaneous value). The Euclidean analog of the Liénard–Wiechert potential thus emerges as a **path-history integral** whose kernel is purely radial.
 
 Numerical implementations (Sol) discretize this integral by sampling discrete emission times, producing the familiar picture of summing over “spherical wake surfaces.” That discrete wake surface sum is therefore **a numerical approximation** of the continuous path-history integral, not a separate physical mechanism. The underlying physics remains the continuous causal flux of potential.
 
 ---
 
-#### 1.4 Working Non-Local Action (Defines $E_{\text{wake}}$)
+#### 1.2.4 Working Non-Local Action (Defines $E_{\text{wake}}$)
 
 To define the conserved energy in a delay system, we require an explicit non-local action. A minimal, $\eta$-regularized working form is:
 $$
@@ -106,9 +106,9 @@ E_{\text{wake}}(t) =
 $$
 where $\tau_{\max}$ bounds the causal memory depth used in analysis/simulation. This is the history (path) integral of interaction energy carried by the causal wakes in flight. A full derivation from the action should confirm the precise prefactors and any additional boundary terms, but the structure (kinetic plus history-integral) is fixed by time-translation symmetry.
 
-### 2. Causal Interaction Set (The Geometry of Delay)
+### 1.3 Causal Interaction Set (The Geometry of Delay)
 
-#### 2.1 Definition of Causal Emission Times
+#### 1.3.1 Definition of Causal Emission Times
 
 For a receiver at position $\mathbf{x}_i(t)$ (architrino $i$ at time $t$) and a source with worldline $\mathbf{x}_j(t')$, the **causal emission times** $\mathcal{C}_j(t)$ are all past times $t_0 < t$ such that a causal wake surface emitted by source $j$ at $t_0$ arrives at $\mathbf{x}_i(t)$ at time $t$.
 
@@ -126,13 +126,13 @@ $$
 \mathcal{C}_j(t) = \Big\{ t_0 < t \;\Big|\; \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0) \Big\}.
 $$
 
-#### 2.2 Single-Hit Regime (Unique $t_0$)
+#### 1.3.2 Single-Hit Regime (Unique $t_0$)
 
 In the **sub-field-speed regime** ($|\mathbf{v}_j(t_0)| < c_f$ locally), the causal set $\mathcal{C}_j(t)$ is **generically a singleton**: there is exactly one emission time $t_0$ that satisfies the causal constraint.
 
 **Intuition:** If the source is moving slower than the field speed, its past emissions form a non-overlapping family of concentric (or nearly concentric) isochrons. Any given receiver location lies on exactly one of those causal surfaces.
 
-#### 2.3 Multi-Hit Regime (Multiple $t_0$)
+#### 1.3.3 Multi-Hit Regime (Multiple $t_0$)
 
 In the **super-field-speed regime** ($|\mathbf{v}_j| > c_f$ at some past times), the causal set $\mathcal{C}_j(t)$ can contain **multiple solutions**:
 
@@ -144,7 +144,7 @@ $$
 
 **Example:** In uniform circular motion at $v > c_f$, a receiver can be hit by wake surfaces from multiple points on the source's orbit (different "winding numbers" $m$ due to self-hit dynamics).
 
-#### 2.4 Self-Hit (Source = Receiver, $j = i$)
+#### 1.3.4 Self-Hit (Source = Receiver, $j = i$)
 
 When $j = i$ (source and receiver are the same architrino), the causal set $\mathcal{C}_i(t)$ represents **self-hits**: times when architrino $i$ intersects its own past emissions.
 
@@ -166,7 +166,7 @@ $$
 
 **Implication:** Self-hit is a **non-Markovian memory effect**. The architrino's current acceleration depends on whether it **ever** exceeded $c_f$ in the past and curved, not just on its current state.
 
-#### 2.5 Geometric Interpretation
+#### 1.3.5 Geometric Interpretation
 
 **Visualize the causal constraint as:**
 
@@ -183,9 +183,9 @@ For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\m
 
 ## 2. Master Equation and DDE Formulation
 
-### 3. The Master Equation (Canonical Form)
+### 2.1 The Master Equation (Canonical Form)
 
-#### 3.1 Per-Hit Acceleration
+#### 2.1.1 Per-Hit Acceleration
 
 For each causal emission time $t_0 \in \mathcal{C}_j(t)$, define:
 
@@ -233,7 +233,7 @@ where:
 
 **Implication for emergent forces**: All "magnetic" or velocity-dependent forces (e.g., Lorentz force $\mathbf{v} \times \mathbf{B}$) must arise from **delay geometry** and **superposition of radial hits**, not from intrinsic cross-product terms in the fundamental law. This places the entire burden of magnetic-field emergence on the assembly structure and Noether Sea dynamics (see TOC Ch. 20: "Emergence of Gauge Symmetries").
 
-#### 3.2 Total Acceleration (Sum Over All Causal Hits)
+#### 2.1.2 Total Acceleration (Sum Over All Causal Hits)
 
 The total acceleration on architrino $i$ at time $t$ is the **vector sum** over:
 
@@ -265,7 +265,7 @@ $$
 
 This sum can be viewed as a **path-history integral**: each emission time in $\mathcal{C}_j(t)$ marks where the receiver's worldline crosses the causal wake surface emitted at $t_0$. The delta constraint in the Green's-function representation ensures we only collect those wake surfaces that currently intersect the receiver, so the integral directly reconstructs the continuous causal potential field.
 
-#### 3.3 Conventions and Exclusions
+#### 2.1.3 Conventions and Exclusions
 
 **Heaviside Convention ($H(0) = 0$):**
 
@@ -283,7 +283,7 @@ $$
 
 Because $r = c_f(t - t_0)$, $r = 0$ implies $\tau = t - t_0 = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
-#### 3.4 Superposition Principle
+#### 2.1.4 Superposition Principle
 
 The Master EOM is **linear in sources**:
 
@@ -297,9 +297,9 @@ Potentials from distinct sources **superpose** without mutual interference. The 
 
 ---
 
-### 4. Terms and Conventions (Detailed Breakdown)
+### 2.2 Terms and Conventions (Detailed Breakdown)
 
-#### 4.1 Direction and Sign
+#### 2.2.1 Direction and Sign
 
 **Direction of $\hat{\mathbf{r}}_{ij}$:**
 
@@ -317,7 +317,7 @@ $\hat{\mathbf{r}}_{ij}$ points **from the source's historical position** $\mathb
 - Electrino + Positrino (unlike charges): attraction
 - All symmetric: if source and receiver swap roles, the force direction reverses (Newton's third law in the instantaneous-interaction limit)
 
-#### 4.2 Scaling and Normalization
+#### 2.2.2 Scaling and Normalization
 
 **The $1/r^2$ factor:**
 
@@ -335,7 +335,7 @@ $$
 
 In natural units with $c_f = 1$, $[\text{Length}] = [\text{Time}]$, and $\kappa$ has dimensions of $[\text{Length}]/[\text{Charge}]^2$.
 
-#### 4.3 Receiver Kinematics (Radial vs Orthogonal Components)
+#### 2.2.3 Receiver Kinematics (Radial vs Orthogonal Components)
 
 At a given hit $(t; t_0)$, decompose the receiver's velocity into components parallel and orthogonal to the line of action $\hat{\mathbf{r}}_{ij}$:
 
@@ -360,7 +360,7 @@ $$
 
 **Lorentz Suppression Requirement (Tier-1 Constraint):** The receiver kinematics described here must **mechanically** produce Lorentz contraction for moving assemblies. If tri-binaries do not naturally contract along direction of motion when coupled to Noether Sea, this falsifies the model. Lorentz leakage bound ($< 10^{-17}$).
 
-#### 4.4 Work and Power
+#### 2.2.4 Work and Power
 
 The **instantaneous power** (rate of kinetic energy change) from a single hit is:
 
@@ -377,7 +377,7 @@ $$
 
 **Important caveat:** Path-history delay shifts both the causal root $t_0$ and $\hat{\mathbf{r}}_{ij}$ over finite intervals, so these are strictly **local** statements about infinitesimal time evolution. The global trajectory depends on the full history of all sources.
 
-#### 4.5 Emission Cadence and Per-Wavefront Amplitude
+#### 2.2.5 Emission Cadence and Per-Wavefront Amplitude
 
 **Critical modeling note:**
 
@@ -393,9 +393,9 @@ The receiver's velocity $\mathbf{v}_i(t)$ does **not** modulate the force magnit
 
 ---
 
-### 5. Delay Differential Equation (DDE) Formulation
+### 2.3 Delay Differential Equation (DDE) Formulation
 
-#### 5.1 State Vector and Evolution
+#### 2.3.1 State Vector and Evolution
 
 Define the **state vector** for architrino $i$:
 
@@ -415,7 +415,7 @@ $$
 \mathbf{a}_i(t) = \sum_{j} \sum_{t_0 \in \mathcal{C}_j(t)} \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2} \, \hat{\mathbf{r}}_{ij}.
 $$
 
-#### 5.2 Causal Functional Form
+#### 2.3.2 Causal Functional Form
 
 The acceleration $\mathbf{a}_i(t)$ depends on the **history** of all worldlines $\{\mathbf{X}_j(t') : t' < t\}$ through the implicit causal constraint:
 
@@ -433,7 +433,7 @@ $$
 
 where $\mathcal{F}$ is a **causal functional**: it depends on the current state $\mathbf{X}_i(t)$ and the past states $\{\mathbf{X}_j(t') : t' < t\}$ of all architrinos (including $i$ itself for self-hits).
 
-#### 5.3 Regularization (Mollified Shells, Finite $\eta$)
+#### 2.3.3 Regularization (Mollified Shells, Finite $\eta$)
 
 The ideal model uses **surface-delta causal isochrons**, which yield **impulsive forces** at isolated hit times $t_0 \in \mathcal{C}_j(t)$. One may treat the dynamics as a **measure-driven ODE** in $t$ (with velocity of bounded variation), or **regularize** by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
@@ -449,7 +449,7 @@ while preserving total emission $q$.
 
 **Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. 
 
-#### 5.4 Well-Posedness (Existence and Uniqueness)
+#### 2.3.4 Well-Posedness (Existence and Uniqueness)
 
 **Theorem (Schematic):**
 
@@ -475,9 +475,9 @@ Then:
 
 ## 3. Operational Principles, Self-Interaction, and Examples
 
-### 6. Core Principles (Operational Summary)
+### 3.1 Core Principles (Operational Summary)
 
-#### 6.1 Superposition
+#### 3.1.1 Superposition
 
 **Statement:** The potential fields from all sources **superpose linearly**. The net potential at any point is the sum of the individual potentials:
 
@@ -489,7 +489,7 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 **Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when kinematics permit, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting, which makes **local sources dominate** (distant contributions dilute over large causal surfaces and largely cancel).
 
-#### 6.2 Velocity Dependence
+#### 3.1.2 Velocity Dependence
 
 **Statement:** The dynamics are **delayed-only** and **purely radial**. Architrinos are transceivers: they emit causal isochrons at a **constant cadence** and **constant per-wavefront amplitude** (independent of emitter speed). The receiver's speed does not change the instantaneous force magnitude; it affects only the **work rate** via $\mathbf{F} \cdot \mathbf{v} = |\mathbf{F}| v_r$.
 
@@ -497,7 +497,7 @@ The total acceleration on a particle at any instant is the **vector sum** of the
 
 **Persistent memory (from Marko's clarification):** Once an architrino has exceeded $v > c_f$ in its past and emitted wake surfaces, it can **later slow down** to $v < c_f$ and **still receive self-hits** from those earlier emissions. The self-hit regime is **not instantaneously tied to current velocity**; it is a **path-history memory effect**.
 
-#### 6.3 Causality and Locality
+#### 3.1.3 Causality and Locality
 
 **Causal structure:** Event $A$ at $(t_A, \mathbf{x}_A)$ can influence event $B$ at $(t_B, \mathbf{x}_B)$ only if:
 
@@ -513,9 +513,9 @@ This defines a **field-speed light cone** (or "causal cone") centered at each ev
 
 ---
 
-### 7. Self-Interaction (Self-Hit Dynamics)
+### 3.2 Self-Interaction (Self-Hit Dynamics)
 
-#### 7.1 Self-Hit Condition
+#### 3.2.1 Self-Hit Condition
 
 An architrino $i$ experiences self-hit at time $t$ if there exists $t_0 < t$ such that:
 
@@ -530,7 +530,7 @@ $$
 1. **Curvature**: The worldline must curve (straight-line motion admits no self-hits).
 2. **Super-field-speed history**: At emission time $t_0$, the speed must have been $|\mathbf{v}_i(t_0)| > c_f$ (otherwise, the architrino never outruns its wake surfaces).
 
-#### 7.2 Multiple Self-Hits (Plural)
+#### 3.2.2 Multiple Self-Hits (Plural)
 
 **Key insight (from Marko):** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
 
@@ -546,7 +546,7 @@ $$
 
 where $\sigma_{ii} = +1$ (like charges repel), so each self-hit contributes an **outward** (repulsive) force.
 
-#### 7.3 Persistent Memory (Self-Hit After Slowing Down)
+#### 3.2.3 Persistent Memory (Self-Hit After Slowing Down)
 
 **Critical clarification (from Marko):**
 
@@ -564,7 +564,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. You need the **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ to identify all causal self-hit times $t_0 \in \mathcal{C}_i(t)$.
 
-#### 7.4 Self-Hit as Stabilization Mechanism
+#### 3.2.4 Self-Hit as Stabilization Mechanism
 
 **Role in binary formation:** Self-hit provides **repulsive radial force** that opposes the attractive pull of opposite-charge partners. This competition produces:
 
@@ -576,13 +576,13 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 - Pilot-wave guidance (self-interference creates effective "guiding field")
 - Discrete stable states (attractors in phase space)
-- Measurement uncertainty (informational ambiguity at receiver; see Section 9)
+- Measurement uncertainty (informational ambiguity at receiver; see Section 3.4)
 
 **Next steps (Dyna):** Map the full phase-space attractor landscape for self-hit binaries. Questions: (1) How large is the basin of attraction for maximum-curvature orbit? (2) What initial conditions lead to escape (dissociation)? (3) Are there secondary attractors (e.g., elliptical orbits)?
 
-### 8. Worked Examples (Analytic Baselines)
+### 3.3 Worked Examples (Analytic Baselines)
 
-#### 8.1 Stationary Opposite Charges (Radial Fall)
+#### 3.3.1 Stationary Opposite Charges (Radial Fall)
 
 **Setup:**
 - Two architrinos: Electrino at $\mathbf{x}_1(t)$, Positrino at $\mathbf{x}_2(t)$
@@ -603,7 +603,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 
 **Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
 
-#### 8.2 Sub-Field-Speed Circular Orbit (Instability)
+#### 3.3.2 Sub-Field-Speed Circular Orbit (Instability)
 
 **Setup:**
 - Two opposite charges in symmetric circular orbit at radius $R$, speed $v < c_f$
@@ -619,7 +619,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 
 
 
-#### 8.3 Maximum-Curvature Orbit (Self-Hit Stabilization)
+#### 3.3.3 Maximum-Curvature Orbit (Self-Hit Stabilization)
 
 **Setup:**
 - Opposite-charge binary spirals inward (as in 8.2) until speed crosses $v = c_f$
@@ -645,9 +645,9 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 
 
 
-### 9. Informational Ambiguity at the Receiver
+### 3.4 Informational Ambiguity at the Receiver
 
-#### 9.1 Limited Information Per Hit
+#### 3.4.1 Limited Information Per Hit
 
 From the perspective of the receiving architrino, the information carried by an intersecting causal isochron is **limited**. The receiver only knows:
 
@@ -659,7 +659,7 @@ The receiver does **not** have direct knowledge of:
 - The source's precise distance $r_{ij}$ (without additional assumptions)
 - The source's velocity at emission $\mathbf{v}_j(t_0)$
 
-#### 9.2 Ambiguity: Electrino vs Positrino on Opposite Sides
+#### 3.4.2 Ambiguity: Electrino vs Positrino on Opposite Sides
 
 A particularly important ambiguity: the receiver cannot distinguish between:
 
@@ -672,7 +672,7 @@ if the resulting radial acceleration is the same.
 - Attraction to a Positrino at that point, **or**
 - Repulsion from an Electrino located at the diametrically opposite point on the same line.
 
-#### 9.3 Rest-Frame Recast (Useful Inference Device)
+#### 3.4.3 Rest-Frame Recast (Useful Inference Device)
 
 Any single hit can be **equivalently described** with a **stationary emitter** ($|\mathbf{v}| = 0$) placed somewhere along the same unoriented line of action, with the emitter's actual speed at emission accounted for by an adjusted emission time and, if desired, a surrogate location along that line.
 
@@ -680,13 +680,13 @@ Any single hit can be **equivalently described** with a **stationary emitter** (
 
 **Utility:** This recast simplifies some analytic calculations and provides intuition for the receiver's "inference problem" (what source configurations are consistent with a given hit?).
 
-#### 9.4 Superposition Complicates Inference
+#### 3.4.4 Superposition Complicates Inference
 
 The ambiguity is compounded by **superposition**: The net potential at any instant is the sum of all intersecting expanding causal wake surfaces. A measured potential along a single radial can be the consequence of a **complex confluence of fields** from many different emitters located along that line of action, arriving from both directions.
 
 **Consequence:** The receiver experiences a **deterministic acceleration** (given full microstate knowledge, as known to the Absolute Observer), but has **incomplete local information** about the source configuration.
 
-#### 9.5 Connection to Quantum Measurement Uncertainty
+#### 3.4.5 Connection to Quantum Measurement Uncertainty
 
 This limited, unoriented, and source-ambiguous information at the hit level is a **key ingredient** for the emergence of effective quantum-like behavior and measurement uncertainty from deterministic micro-dynamics:
 
@@ -694,11 +694,11 @@ This limited, unoriented, and source-ambiguous information at the hit level is a
 - **Measurement as interaction**: "Measurement" is simply a complex assembly interaction; the "outcome" is determined by which causal hits occur (see TOC Ch. 30).
 - **Uncertainty**: Not fundamental indeterminacy, but **informational ambiguity** from the receiver's limited perspective.
 
-**Open question (High Priority):** Does the informational ambiguity in Section 9.2-9.4, when statistically averaged over many similar configurations, **reproduce the Born rule** ($P \propto |\psi|^2$)? This requires: (1) Ensemble simulations of identically prepared systems, (2) Statistical analysis of hit patterns, (3) Comparison to QM predictions. See Action: "Born Rule Derivation" (TBD).
+**Open question (High Priority):** Does the informational ambiguity in Section 3.4.2-3.4.4, when statistically averaged over many similar configurations, **reproduce the Born rule** ($P \propto |\psi|^2$)? This requires: (1) Ensemble simulations of identically prepared systems, (2) Statistical analysis of hit patterns, (3) Comparison to QM predictions. See Action: "Born Rule Derivation" (TBD).
 
 ## 4. Parameters and Numerical Implementation
 
-### 10. Parameter Definitions (From Ledger)
+### 4.1 Parameter Definitions (From Ledger)
 
 All parameters used in the Master EOM are defined in the **Parameter Ledger**.
 
@@ -720,9 +720,9 @@ All parameters used in the Master EOM are defined in the **Parameter Ledger**.
 
 **Naturalness assessment:** Track fine-tuning quotient (FTQ) for each parameter; flag if FTQ $> 10$ (see TOC Ch. 54).
 
-### 11. Numerical Implementation Notes
+### 4.2 Numerical Implementation Notes
 
-#### 11.1 Delay Root-Finding Algorithms
+#### 4.2.1 Delay Root-Finding Algorithms
 
 At each time step $t$, the numerical integrator must solve the **implicit causal constraint** for each source $j$:
 
@@ -739,7 +739,7 @@ $$
 
 **Efficiency:** Use **history binning** or **spatial hashing** to avoid exhaustive search over all past times.
 
-##### 11.1.1 Spatial Hashing for History Buffers
+##### 4.2.1.1 Spatial Hashing for History Buffers
 
 **Efficiency requirement:** Naïve all-pairs history search scales as $O(N^2 T_{\text{history}})$, intractable for $N > 100$ particles. 
 
@@ -752,7 +752,7 @@ $$
 - Update hash grid incrementally (not from scratch each step)
 
 
-#### 11.2 Time-Stepping Schemes for DDEs
+#### 4.2.2 Time-Stepping Schemes for DDEs
 
 The Master EOM is a **state-dependent DDE** (delay depends on the solution itself). Standard ODE integrators (e.g., RK4) must be adapted:
 
@@ -764,7 +764,7 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
 
 **Stability:** Ensure $\Delta t < \eta / c_f$ (resolve mollified wake surface width); adjust $\eta$ and $\Delta t$ together in convergence tests.
 
-#### 11.3 Convergence and Validation
+#### 4.2.3 Convergence and Validation
 
 **Convergence tests (required):**
 
@@ -780,7 +780,7 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
  - **Special attention during $v \to c_f$ transitions** (self-hit activation): if energy spikes $> 10^{-4}$ instantaneously, integrator is unstable.
 - **Symmetry preservation**: If initial conditions have symmetry (e.g., reflection, rotation), check that solution respects it.
 
-#### 11.4 Provenance Tracking (Emission Event → Receiver → Response)
+#### 4.2.4 Provenance Tracking (Emission Event → Receiver → Response)
 
 **For debugging and interpretation:**
 
@@ -799,7 +799,7 @@ At each hit, log:
 - Trace energy transfer pathways
 - Validate superposition (sum of logged forces = total acceleration?)
 
-#### 11.5 Numerical Parameter Baseline
+#### 4.2.5 Numerical Parameter Baseline
 
 To ensure reproducibility across all simulation runs, the following **baseline parameter values** are recommended:
 
@@ -820,7 +820,7 @@ To ensure reproducibility across all simulation runs, the following **baseline p
 
 ## 5. Analytic Regimes and Research Roadmap
 
-### 12. Upstream Dependencies (Required for Full Theory Validation)
+### 5.1 Upstream Dependencies (Required for Full Theory Validation)
 
 The following documents **depend on** the Master EOM being correct and must be completed to validate the full theory:
 
@@ -832,9 +832,9 @@ The following documents **depend on** the Master EOM being correct and must be c
 
 ---
 
-### 13. Summary and Key Takeaways
+### 5.2 Summary and Key Takeaways
 
-#### 13.1 What This Document Establishes
+#### 5.2.1 What This Document Establishes
 
 The **Master Equation of Motion** is the deterministic law governing the evolution of all architrinos:
 
@@ -850,7 +850,7 @@ $$
 4. **Self-hit**: Repulsive self-interaction when $v > c_f$ at past emission times; persists even after slowing down.
 5. **Purely radial**: No magnetic or velocity-cross-product terms; all forces along $\hat{\mathbf{r}}_{ij}$.
 
-#### 13.2 Implications for Emergent Phenomena
+#### 5.2.2 Implications for Emergent Phenomena
 
 **From this single equation:**
 
@@ -868,7 +868,7 @@ $$
 Part II - Are Analytic Solutions Possible?
 
 
-### 14. Fully general case (arbitrary N, arbitrary trajectories)
+### 5.3 Fully general case (arbitrary N, arbitrary trajectories)
 
 The master EOM is a coupled system of **state‑dependent delay differential equations** with:
 
@@ -893,11 +893,11 @@ That’s standard: even Newtonian N‑body gravity is analytically intractable g
 
 ---
 
-### 15. Ideal / symmetric cases where analytic work *is* realistic
+### 5.4 Ideal / symmetric cases where analytic work *is* realistic
 
 Here’s where I do think we can get genuine closed forms or very controlled approximations.
 
-#### 15.1 Static / quasi‑static limit (Coulomb analogue)
+#### 5.4.1 Static / quasi‑static limit (Coulomb analogue)
 
 Assumptions:
 
@@ -924,7 +924,7 @@ This is basically our “sanity check” regime.
 
 ---
 
-#### 15.2 Two‑body, 1D radial motion (head‑on, no angular momentum)
+#### 5.4.2 Two‑body, 1D radial motion (head‑on, no angular momentum)
 
 Setup:
 
@@ -950,7 +950,7 @@ So: **analytic yes** (up to standard quadratures), and corrections doable.
 
 ---
 
-#### 15.3 Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)
+#### 5.4.3 Two‑body uniform circular orbit, sub‑$c_f$ (no self‑hit)
 
 This is in the draft as the “unstable orbit” case.
 
@@ -972,7 +972,7 @@ Outcome:
 
 ---
 
-#### 15.4 Self‑hit for uniform circular motion, $v > c_f$ (single particle)
+#### 5.4.4 Self‑hit for uniform circular motion, $v > c_f$ (single particle)
 
 This is the key toy model for self‑hit/maximum curvature.
 
@@ -1021,7 +1021,7 @@ This is the right playground to:
 
 ---
 
-#### 15.5 Maximum‑curvature binary (inner binary idealization)
+#### 5.4.5 Maximum‑curvature binary (inner binary idealization)
 
 For the full **two‑body** maximum‑curvature orbit (inner binary), we have:
 
@@ -1053,11 +1053,11 @@ This would be an “analytic scaffold + numerical check” situation, not full c
 
 ---
 
-### 16. Emergent‑field / continuum limits
+### 5.5 Emergent‑field / continuum limits
 
 There’s another class of “analytic solutions” that matter:
 
-#### 16.1 Homogeneous, isotropic Noether Sea
+#### 5.5.1 Homogeneous, isotropic Noether Sea
 
 Assume:
 
@@ -1086,7 +1086,7 @@ That’s analytically tractable and important for:
 
 ---
 
-### 17. What I recommend as next analytic targets
+### 5.6 What I recommend as next analytic targets
 
 If we prioritize “bang for analytic buck,” I’d line up:
 
@@ -1113,7 +1113,7 @@ All four are realistically doable analytically (modulo standard transcendental e
 
 ---
 
-### 18. Bottom line
+### 5.7 Bottom line
 
 - **General N‑body analytic solution:** No; the structure is too complex (DDE with state‑dependent delays and self‑hit multiplicity).
 - **Idealized / symmetric cases:** Yes, in several important classes:
@@ -1127,7 +1127,7 @@ All four are realistically doable analytically (modulo standard transcendental e
 
 ## 6. Energy, Symmetry, and Conservation
 
-### 19. Energy, Lagrangian, and Hamiltonian Structure of the Architrino Dynamics
+### 6.1 Energy, Lagrangian, and Hamiltonian Structure of the Architrino Dynamics
 
 In this section we outline how **energy** and **variational structure** are handled in the Architrino Assembly Architecture, given the Master Equation of Motion:
 
@@ -1154,7 +1154,7 @@ We organize the discussion into four pieces:
 
 ---
 
-#### 19.1 Aggregate Kinetic Energy
+#### 6.1.1 Aggregate Kinetic Energy
 
 We work with **absolute time** $t$ and Euclidean 3‑space. For each architrino $i$, define:
 
@@ -1186,7 +1186,7 @@ Thus kinetic energy splits naturally into:
 
 ---
 
-#### 19.2 Aggregate Potential Energy as Path‑History Bookkeeping
+#### 6.1.2 Aggregate Potential Energy as Path‑History Bookkeeping
 
 With finite‑speed causal wakes and path‑history dependence, traditional “instantaneous potential energy as a function only of positions” is not fundamental. Forces at time $t$ depend on **where sources were** at their emission times $t_0$, not where they are now. Nevertheless, for finite isolated sets we can define a useful **energy bookkeeping** that:
 
@@ -1194,7 +1194,7 @@ With finite‑speed causal wakes and path‑history dependence, traditional “i
 - Reduces, in appropriate limits, to familiar pairwise $1/r$‑like structure,
 - Requires no independent “field energy” living in the void between sources and receivers.
 
-##### 19.2.1 Energy exchange per causal hit
+##### 6.1.2.1 Energy exchange per causal hit
 
 Consider a single contribution to the acceleration of architrino $i$ at time $t$ from a causal hit emitted by $j$ at time $t_0\in\mathcal{C}_j(t)$. The acceleration contribution is:
 
@@ -1222,7 +1222,7 @@ $$
 
 with the understanding that for self‑hit we include $j=i$ as well.
 
-##### 19.2.2 Effective potential energy for finite systems
+##### 6.1.2.2 Effective potential energy for finite systems
 
 For an *isolated* finite system, we define an **effective potential energy** $U(t)$ such that the **total energy**
 
@@ -1264,11 +1264,11 @@ This gives us:
 
 ---
 
-#### 19.3 Nonlocal Lagrangian for Path‑History Dynamics
+#### 6.1.3 Nonlocal Lagrangian for Path‑History Dynamics
 
 To connect with variational methods and with later continuum approximations, it is useful to exhibit an **action principle** from which the Master Equation can be derived. Because the dynamics depend on **path history** via causal wakes (not just instantaneous positions), the action is necessarily **nonlocal in time**.
 
-##### 19.3.1 Multi‑time interaction term
+##### 6.1.3.1 Multi‑time interaction term
 
 Let the worldline of architrino $i$ be $\mathbf{x}_i(t)$. Consider an action of the form:
 
@@ -1311,7 +1311,7 @@ Interpretation:
 - The peak $\delta_\eta(r - c_f|t-t'|)$ selects only those pairs that lie on the **causal isochrons** of the wake emitted at $(t',\mathbf{x}_j(t'))$,
 - The $1/r_{ij}$ factor produces the eventual $1/r^2$ dependence in the acceleration after variation and time differentiation.
 
-##### 19.3.2 Variation and line‑of‑action forces
+##### 6.1.3.2 Variation and line‑of‑action forces
 
 Varying $S$ with respect to $\mathbf{x}_i(t)$ yields:
 
@@ -1349,16 +1349,16 @@ Thus:
 
 ---
 
-#### 19.4 Hamiltonian and Total Energy for an Isolated Set
+#### 6.1.4 Hamiltonian and Total Energy for an Isolated Set
 
 Given the nonlocal action and the kinetic energy definition, we now address the **Hamiltonian** and total energy for an isolated architrino set.
 
-##### 19.4.1 General structure
+##### 6.1.4.1 General structure
 
 We define a functional $H$ such that:
 
 - $H$ is **constant in $t$** for any isolated system evolving under the Master Equation,
-- $H$ reduces to $K+U$ in regimes where an effective potential $U(t)$ as in Section 6.2 is a good description.
+- $H$ reduces to $K+U$ in regimes where an effective potential $U(t)$ as in Section 3.1.2 is a good description.
 
 Formally, for an isolated system,
 
@@ -1394,7 +1394,7 @@ This matches the ontology:
 - It is only updated at the times $t$ when wake surfaces intersect receivers,
 - Yet there exists a global invariant $H$ for isolated systems, defined entirely from the particle worldlines and their induced accelerations.
 
-##### 19.4.2 Local canonical form in effective limits
+##### 6.1.4.2 Local canonical form in effective limits
 
 In regimes where:
 
@@ -1424,7 +1424,7 @@ which:
 
 ---
 
-#### 19.5 Summary
+#### 6.1.5 Summary
 
 - **Kinetic energy** is defined in the usual way at the architrino level, with internal kinetic energy of tightly bound self‑hit binaries contributing to assembly rest masses.
 - **Potential energy** is not primitive but arises as a **bookkeeping device** ensuring conservation of a total energy $H = K + U$ in an isolated system, with $U$ defined from the time‑integrated work done by causal‑wake intersections.
@@ -1435,7 +1435,7 @@ All energy accounting remains localized to **architrinos and their assemblies** 
 
 ---
 
-### 20. Total Energy Calculation for an Isolated Set of Architrinos
+### 6.2 Total Energy Calculation for an Isolated Set of Architrinos
 
 In the Architrino Assembly Architecture, we start from a **concrete dynamical rule** at the architrino level and ask what happens to total energy as the system evolves. We do **not** assume in advance that there is a simple, conserved scalar like in textbook mechanics; instead, we:
 
@@ -1448,7 +1448,7 @@ Throughout, we avoid assigning any independent “field energy” to the void. A
 
 ---
 
-#### 20.1 Kinetic Energy of an Architrino Ensemble
+#### 6.2.1 Kinetic Energy of an Architrino Ensemble
 
 For each architrino $i$ with position $\mathbf{x}_i(t)$, velocity $\mathbf{v}_i(t)$, and inertial parameter $m_i$, we define the instantaneous kinetic energy as
 
@@ -1495,7 +1495,7 @@ Thus **all changes in kinetic energy are localized**: they occur only when a cau
 
 ---
 
-#### 20.2 Interaction Energy as Deferred Work of Past Emissions
+#### 6.2.2 Interaction Energy as Deferred Work of Past Emissions
 
 Consider an architrino that has, at some earlier times $t_0$, emitted causal wakes while following a certain trajectory. Much later, at times $t > t_0$, its own worldline $\mathbf{x}_i(t)$ may intersect those wakes again (self‑hit), especially when:
 
@@ -1517,7 +1517,7 @@ This motivates a different perspective:
 
 ---
 
-#### 20.3 A Path‑History Based Interaction Functional
+#### 6.2.3 A Path‑History Based Interaction Functional
 
 To formalize this for a finite, isolated set of architrinos:
 
@@ -1542,7 +1542,7 @@ To formalize this for a finite, isolated set of architrinos:
      \sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
    $$
 
-In particular, if we choose the same reference-time convention and drop the explicit $m_i$ factor (absorbing it into the definition of $\mathbf{a}_i$), we can identify this interaction functional with the $U(t)$ defined in Section 6.2, i.e. set $W(t) \equiv U(t)$ up to an overall reference constant.
+In particular, if we choose the same reference-time convention and drop the explicit $m_i$ factor (absorbing it into the definition of $\mathbf{a}_i$), we can identify this interaction functional with the $U(t)$ defined in Section 3.1.2, i.e. set $W(t) \equiv U(t)$ up to an overall reference constant.
 
 By construction, this implies
 
@@ -1568,7 +1568,7 @@ This construction is **agnostic** about where “interaction energy” resides s
 
 ---
 
-#### 20.4 Behavior at the Self‑Hit Threshold
+#### 6.2.4 Behavior at the Self‑Hit Threshold
 
 Now specialize to an architrino that has just entered the **self‑hit regime**.
 
@@ -1595,7 +1595,7 @@ Crucially:
 
 ---
 
-#### 20.5 A Calculated Total Energy
+#### 6.2.5 A Calculated Total Energy
 
 With the definitions above, we can introduce
 
@@ -1603,7 +1603,7 @@ $$
 E_{\text{calc}}(t) \;\equiv\; K(t) + W(t).
 $$
 
-If we identify $W(t)$ with the interaction functional $U(t)$ of Section 6 (up to a fixed reference constant), then $E_{\text{calc}}(t)$ coincides with the Hamiltonian $H(t) = K(t) + U(t)$ for an isolated system. In the continuous theory this quantity is time-independent; in simulations, conservation of
+If we identify $W(t)$ with the interaction functional $U(t)$ of Section 3.1 (up to a fixed reference constant), then $E_{\text{calc}}(t)$ coincides with the Hamiltonian $H(t) = K(t) + U(t)$ for an isolated system. In the continuous theory this quantity is time-independent; in simulations, conservation of
 
 $$
 E_{\text{calc}}(t) \approx E_0
@@ -1631,7 +1631,7 @@ In this sense, one can regard $E_{\text{calc}}$ either as:
 
 ---
 
-#### 20.6 Open Tasks for This Framework
+#### 6.2.6 Open Tasks for This Framework
 
 To turn this into a practical tool rather than a formal definition, we still need to:
 
@@ -1665,15 +1665,15 @@ If, instead, $E_{\text{calc}}(t)$ is robustly constant, then we will have:
 
 ---
 
-### 21. Symmetry, Conservation, and Lyapunov Functionals
+### 6.3 Symmetry, Conservation, and Lyapunov Functionals
 
-#### 21.1 Introduction
+#### 6.3.1 Introduction
 
 The Master Equation is a state-dependent delay system: acceleration at time $t$ depends on the path-history segment over $[t-h,t]$. In this setting, conservation laws are not functions of the instantaneous state $(\mathbf{x},\mathbf{v})$ alone. Instead, they are **functionals on path history** that track "in-flight" wake contributions.
 
 This section makes the symmetry group explicit and states the corresponding conserved functionals for isolated systems with $\eta > 0$.
 
-#### 21.2 Fundamental Symmetry Group
+#### 6.3.2 Fundamental Symmetry Group
 
 **Definition (Fundamental symmetry group).** The substrate and interaction kernel are invariant under
 $$
@@ -1688,7 +1688,7 @@ where $E(3)=\mathbb{R}^3 \rtimes O(3)$ acts by spatial translations and rotation
 
 *Proof sketch.* The causal constraint depends only on Euclidean distances and time differences. Both are invariant under $G_{\text{fund}}$. The line-of-action vector $\hat{\mathbf{r}}_{ij}$ transforms covariantly under rotations, so the per-hit acceleration retains the same form.
 
-#### 21.3 Generalized Momentum and Angular Momentum
+#### 6.3.3 Generalized Momentum and Angular Momentum
 
 **Definition (Mechanical momentum).**
 $$
@@ -1724,15 +1724,15 @@ $$
 $$
 is constant in time for isolated systems.
 
-**Remark.** These definitions mirror the energy bookkeeping in Sections 19-20: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total conserved quantities are functionals of the path history.
+**Remark.** These definitions mirror the energy bookkeeping in Sections 6.1-6.2: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total conserved quantities are functionals of the path history.
 
-#### 21.4 Energy Functional and No-Runaway Criterion
+#### 6.3.4 Energy Functional and No-Runaway Criterion
 
 Time-translation invariance implies a conserved history functional. In this document we define the total energy as
 $$
 E_{\text{tot}}(t) = K(t) + U(t),
 $$
-where $K$ is kinetic energy and $U$ is the interaction bookkeeping functional defined in Sections 19-20.
+where $K$ is kinetic energy and $U$ is the interaction bookkeeping functional defined in Sections 6.1-6.2.
 
 **Lemma (Bounded work rate under regularization).** If $\eta>0$ and the mollified kernel bounds the per-hit force, then there exists $F_{\max}(\eta)$ such that
 $$
@@ -1744,11 +1744,11 @@ $$
 
 *Interpretation.* Self-hit repulsion can transfer energy between $U$ and $K$, but it cannot generate unbounded kinetic energy without a corresponding unbounded decrease in $U$. This is the core diagnostic for excluding unphysical runaway acceleration in the regularized model.
 
-#### 21.5 Simulation Diagnostics (Symmetry and Conservation)
+#### 6.3.5 Simulation Diagnostics (Symmetry and Conservation)
 
-In addition to the convergence checks in Section 11, track these conserved functionals in any isolated run:
+In addition to the convergence checks in Section 4.2, track these conserved functionals in any isolated run:
 
-- **Total energy**: $E_{\text{calc}}(t) = K(t) + U(t)$ should be constant up to the energy-drift thresholds in Section 11.3.
+- **Total energy**: $E_{\text{calc}}(t) = K(t) + U(t)$ should be constant up to the energy-drift thresholds in Section 4.2.3.
 - **Total momentum**: $\mathbf{P}_{\text{tot}}(t)$ should be constant; monitor $\|\mathbf{P}_{\text{tot}}(t)-\mathbf{P}_{\text{tot}}(0)\|$.
 - **Total angular momentum**: $\mathbf{L}_{\text{tot}}(t)$ should be constant; in planar runs, the unit axis $\hat{\mathbf{n}} = \mathbf{L}_{\text{tot}}/\|\mathbf{L}_{\text{tot}}\|$ should remain fixed.
 - **Binary symmetry defect** (for symmetric initial data):
