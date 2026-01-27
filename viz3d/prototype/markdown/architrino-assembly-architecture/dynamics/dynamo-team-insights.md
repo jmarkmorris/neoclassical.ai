@@ -185,7 +185,7 @@ This is **refractive gravity**: geodesics are Fermat paths in an inhomogeneous m
     $$
 
     This is not a static scalar field at $\mathbf{x}$ but a history-dependent functional.
-4. **Energy accounting:** The total energy is $E(t) = \sum_i K_i(t) + U(t)$; conservation is an open problem that depends on the precise form of $\mathcal{W}$ and the regularization of the delay kernel.
+4. **Energy accounting:** The total energy is $E(t) = \sum_i K_i(t) + U(t)$; conservation follows from time-translation symmetry of the non-local action but must be verified for the explicit $\eta>0$ form of $\mathcal{W}$.
 
 At higher levels, $U(t)$ coarse-grains into a local Noether-core volume gradient (assembly/core scale) and then into an effective refractive/metric field (continuum scale). The ontology shift is that PE is fundamentally geometry of causal history, with the familiar potential emerging by coarse-graining.
 
@@ -204,6 +204,7 @@ $$
 where the integral accounts for “potential in flight” carried by the causal wakes. This functional **is** the definition of $E_{\text{wake}}$ and must be derived from the action.
 
 **Working action (η-regularized)**: Use the non-local action in `dynamics/master-equation.md` (Section 1.4) as the starting point. The Noether energy derived from time translations of that action is the explicit $E_{\text{wake}}$.
+
 **History integral (path-integral form):** For the $\eta>0$ system, the working explicit form is
 $$
 E_{\text{wake}}(t) =
