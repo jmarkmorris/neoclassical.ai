@@ -221,7 +221,7 @@ The deterministic delay dynamics, immense number of architrinos, and meta-stable
 ### 2. Emergent Metric Derivation (Cartan)
 - Explicit functional form for $g_{\mu\nu}[\rho_{\text{core}}, u_{\text{core}}, \text{orientations}]$
 - Geodesic equation and connection to operational measurements
-- Regime identification: when does this reproduce GR tests? (target effective theory)
+- Define a minimal test set (redshift, light bending, orbital precession) and the regimes where GR should be reproduced (target effective theory)
 - **Note**: GR recovery is a design goal, not yet established
 
 ### 3. Assembly Atlas Construction (Thurston, Grothendieck)
@@ -232,7 +232,7 @@ The deterministic delay dynamics, immense number of architrinos, and meta-stable
 - Test robustness of maximum-curvature configurations
 
 ### 4. Energy Functional and Conservation (Noether)
-- Rigorous definition of wake energy $E_{\text{wake}}$ as worldline functional
+- Rigorous definition of wake energy $E_{\text{wake}}$ as a worldline functional (e.g., from pairwise $W_{ij}$)
 - Attempt proof of conservation for isolated systems; if it fails, characterize deviations
 - Connection to mass, binding energy, and stability
 - Clarify ontological status: bookkeeping vs. substance
@@ -341,5 +341,4 @@ The mathematical challenge is to rigorously connect these scales:
 
 **End of Consolidated Observations (Second Draft)**
 
-**Document Status**: Living reference for Geometry & Dynamics Working Group  
-**Next Review**: After completion of Priority Tasks 1, 2, 7 (well-posedness, emergent metric, Lorentz suppression)
+**Document Status**: Living reference for Geometry & Dynamics Working Group
