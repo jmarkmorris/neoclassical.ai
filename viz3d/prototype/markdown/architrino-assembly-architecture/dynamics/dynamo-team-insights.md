@@ -204,6 +204,15 @@ $$
 where the integral accounts for “potential in flight” carried by the causal wakes. This functional **is** the definition of $E_{\text{wake}}$ and must be derived from the action.
 
 **Working action (η-regularized)**: Use the non-local action in `dynamics/master-equation.md` (Section 1.4) as the starting point. The Noether energy derived from time translations of that action is the explicit $E_{\text{wake}}$.
+**History integral (path-integral form):** For the $\eta>0$ system, the working explicit form is
+$$
+E_{\text{wake}}(t) =
+\frac{1}{2}\sum_{i,j} \kappa\,\sigma_{ij}\,|q_i q_j|
+\int_{t-\tau_{\max}}^{t} dt_0\;
+\frac{1}{r_{ij}^2(t; t_0)}\,
+\delta_\eta\!\big(r_{ij}(t; t_0) - c_f(t - t_0)\big),
+$$
+which is the history (path) integral of causal-wake energy in flight. Prefactors and boundary terms should be confirmed by the full Noether derivation.
 
 **Ontological clarification**: In this framework, "wake energy" is **not an independent field energy density living in the void**. It is the canonical history functional conjugate to time translations, derived from the non-local action. All energy ultimately resides in architrino kinetic and assembly-internal motion; $E_{\text{wake}}$ encodes how much of that capacity for kinetic change is geometrically allocated by past emissions but not yet realized. In periodic MCB states the wake is predominantly reactive (near-field) and carries no net energy flux; radiative components appear only when symmetry is broken.
 

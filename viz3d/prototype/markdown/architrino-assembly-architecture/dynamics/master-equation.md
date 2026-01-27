@@ -92,7 +92,15 @@ where $\delta_\eta$ is a mollified delta (shell of width $\eta$). This action yi
 $$
 E_{\text{total}}(t) = \sum_i \frac{1}{2}m_i|\dot{\mathbf{x}}_i(t)|^2 + E_{\text{wake}}(t),
 $$
-with $E_{\text{wake}}$ given by the associated Noether functional over the history segment. The explicit $E_{\text{wake}}$ is to be derived from this action in the $\eta>0$ system.
+with $E_{\text{wake}}$ given by the associated Noether functional over the history segment. For the $\eta>0$ system, a working explicit form is:
+$$
+E_{\text{wake}}(t) =
+\frac{1}{2}\sum_{i,j} \kappa\,\sigma_{ij}\,|q_i q_j|
+\int_{t-\tau_{\max}}^{t} dt_0\;
+\frac{1}{r_{ij}^2(t; t_0)}\,
+\delta_\eta\!\big(r_{ij}(t; t_0) - c_f(t - t_0)\big),
+$$
+where $\tau_{\max}$ bounds the causal memory depth used in analysis/simulation. This is the history (path) integral of interaction energy carried by the causal wakes in flight. A full derivation from the action should confirm the precise prefactors and any additional boundary terms, but the structure (kinetic plus history-integral) is fixed by time-translation symmetry.
 
 ## 2. Causal Interaction Set (The Geometry of Delay)
 
