@@ -151,6 +151,12 @@ The MCB radius $r_{\text{min}}$ is determined by the balance of:
 
 **Expected scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
 
+**Dynamical priority (attractor status):** The architecture assumes the MCB is a **robust attractor**, not a finely tuned periodic orbit. This must be established explicitly:
+- Start from a reduced two-body model (opposite charges, self-hit enabled, explicit $\eta$).
+- Construct a Poincaré map (e.g., strobing at orbital phase) and locate the MCB as a fixed point.
+- Compute Floquet multipliers / Lyapunov exponents and map the basin of attraction under perturbations in radius, phase, and velocity.
+Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+
 ### Relationship to Tri-Binary Structure
 
 - **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **defines fundamental units**.
