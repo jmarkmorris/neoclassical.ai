@@ -2,25 +2,25 @@
 
 ## Orbiting Binary Assembly
 
-An orbiting binary is the simplest emergent assembly, consisting of two Architrinos of opposite charge—an Electrino and a Positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point. 
+An orbiting binary is the simplest emergent assembly, consisting of two Architrinos of opposite charge—an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
 
 ### 1. System Definition and Equations of Motion
 
 Let's consider the ideal case of a symmetric orbit in a universe with no other Architrinos.
 
-Let the Electrino be particle 1 and the Positrino be particle 2.
+Let the electrino be particle 1 and the positrino be particle 2.
 -   **Positions:** $\mathbf{s}_1(t)$ and $\mathbf{s}_2(t)$
 -   **Charges:** $q_1 = -\epsilon$ and $q_2 = +\epsilon$
 
-The motion of each particle is determined by the field emitted by the other at a delayed time. The acceleration of the Electrino (particle 1) at time $t$ is caused by the Positrino's (particle 2) field emitted at an emission time $t_0$. This is governed by the interaction condition:
+The motion of each particle is determined by the field emitted by the other at a delayed time. The acceleration of the electrino (particle 1) at time $t$ is caused by the positrino's (particle 2) field emitted at an emission time $t_0$. This is governed by the interaction condition:
 $$
 \|\mathbf{s}_1(t) - \mathbf{s}_2(t_0)\| = c_f(t - t_0)
 $$
-The acceleration vector for the Electrino is attractive, pointing towards the Positrino's delayed position:
+The acceleration vector for the electrino is attractive, pointing towards the positrino's delayed position:
 $$
 \mathbf{a}_1(t) \propto -\hat{\mathbf{r}}_{21} = - \frac{\mathbf{s}_1(t) - \mathbf{s}_2(t_0)}{\|\mathbf{s}_1(t) - \mathbf{s}_2(t_0)\|}
 $$
-A symmetric set of equations governs the Positrino's motion based on the Electrino's emissions.
+A symmetric set of equations governs the positrino's motion based on the electrino's emissions.
 
 ### 2. The Inward Exponential Spiral
 
@@ -29,7 +29,7 @@ In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_
 -   The tangential component of the delayed force sustains the orbital motion.
 -   The radial component continuously pulls the particles closer together.
 
-With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the Electrino and Positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and per-wavefront amplitude remain constant; the evolution is driven entirely by delay geometry and, once active, self-interaction.
+With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the electrino and positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and per-wavefront amplitude remain constant; the evolution is driven entirely by delay geometry and, once active, self-interaction.
 
 ### 3. Evolution Through Velocity Regimes
 
@@ -43,7 +43,7 @@ $$
 During this phase, the system is purely contractile, with the particles accelerating and spiraling towards each other.
 
 #### **Deflationary Phase ($|\mathbf{v}| > c_f$)**
-Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive wakes. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the Electrino:
+Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive wakes. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the electrino:
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
@@ -77,7 +77,7 @@ While the model is founded on the concepts of absolute space and absolute time, 
 
 ### The Stable Binary as a Universal Standard
 
-The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As described previously, an isolated Electrino-Positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
+The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As described previously, an isolated electrino-positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
 -   A **minimum possible radius**.
 -   A **maximum possible orbital frequency** (and thus a minimum period).
 
@@ -87,7 +87,7 @@ This stable state is a universal attractor for a binary system, and its properti
 
 The radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
 
--   **Definition:** $d_0$ is the radius of a stable, circular Electrino-Positrino orbit.
+-   **Definition:** $d_0$ is the radius of a stable, circular electrino-positrino orbit.
 -   **Universality:** Any observer in the universe can, in principle, construct this standard by observing an isolated binary system.
 -   **Function:** All other spatial measurements, from the size of more complex assemblies to the distances between them, can be expressed in terms of $d_0$.
 
@@ -95,7 +95,7 @@ The radius of the stable binary orbit is the smallest possible radius for such a
 
 The motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
 
--   **Definition:** The fundamental unit of time, $t_0$, is the orbital period of a stable, circular Electrino-Positrino orbit.
+-   **Definition:** The fundamental unit of time, $t_0$, is the orbital period of a stable, circular electrino-positrino orbit.
 -   **Universality:** Like the unit of distance, this period is a constant derived from the system's fundamental dynamics.
 -   **Function:** All other temporal measurements, such as the duration of events or the lifetimes of unstable assemblies, can be measured in multiples of $t_0$.
 
@@ -550,7 +550,7 @@ All diagnostics use reduced coordinates; stability in the full history space rem
 
 We work in the regularized two-body model defined in this chapter and in `dynamics/master-equation.md`:
 
-- Two opposite-charge architrinos (Electrino-Positrino), charges $q_1=-\epsilon$, $q_2=+\epsilon$.
+- Two opposite-charge architrinos (electrino-positrino), charges $q_1=-\epsilon$, $q_2=+\epsilon$.
 - Dynamics given by the delayed, purely radial Master Equation with regularization $\eta>0$.
 - Field speed $c_f$ (typically set to 1 in simulation units).
 - Focus on the maximum-curvature binary (MCB): the putative tight, self-hit-stabilized circular orbit.
