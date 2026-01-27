@@ -18,11 +18,19 @@ A particularly important and stable configuration is the **triply nested binary*
 
 ### Properties of the Noether Core
 
--   **Vastly Different Scales:** The three binaries that make up a Noether core have vastly different orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
+-   **Energy-Separated Scales:** In low-energy conditions, the three binaries that make up a Noether core have energy-separated orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
 
 -   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency field emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
 
 -   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and charge than the sum of its six constituent Architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
+
+### Tri-Binary Alignment and Planck-Scale Framing
+
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it acts as the **energy-storage fulcrum** for transfers across the tri-binary.
+
+As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+
+**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
 
 ### The Foundation for Fermions
 
@@ -120,4 +128,3 @@ This is especially useful in modeling:
 ### 5. Synthesis with General Relativity
 
 The emergent, deformable ellipsoidalal geometry of the Noether Core provides a physical structure that is a natural fit for the mathematical techniques developed to model gravitating bodies in General Relativity. The mathematical framework of GR, particularly its use of ellipsoidalal coordinates and dynamic stress-energy tensors, can thus be re-contextualized as an effective theory describing the behavior of these fundamental assemblies. The Noether core is therefore a geometrical fit with the mathematical techniques used in general relativity in an abstract model, providing a potential physical basis for the abstract geometric concepts of GR.
-

@@ -1,12 +1,44 @@
-** new assessments of priorities at the moment go here.  prune later entries as I see fit.
+# ** new assessments of priorities at the moment go here.  prune later entries as I see fit.
 
 I think the priority should be on the math and the mapping. advancing the mapping.
 
+- look for rapid hits - ckm matrix?
+- sime2rewrite.md has ideas for importing this software (redeveloping)
+- mine material from wordpress for key areas
+- finish topology (where is it)
+- PDG solver
+  - provenance
+  - diagrams
+  - core disposition
+- periodic table of the standard model
+- what about the charts I made showing the bootstrap of knowledge.
+- what is the smallest assembly that can make a decision
+- ai assembly language
+- double click pins vscode tab
+- review all my entourage docs
+- go hard at math
+- read lorentz-aether and integrated it with ellipsoid
+- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
+- continue the ellipsoid work, aiming to understand time
+- I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
+- make a web page that genrates a live toc, cross-referenres, and glossary?
 
-
-**Role:** Phe – Standard Model & QFT Phenomenologist
-
-Looking at byte counts as a proxy for existing content investment, and considering **strategic impact** (what unlocks downstream physics), here are my top 3 recommendations:
+- link a markdown file [text](../../file). Add note to system prompts.
+- set up 4 level branch in git
+- one H1 heading per md
+- og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a
+- attempt to understand open ai billing
+- get a usb-c hub and cable management hub must be capable of video to my monitors - look up specs
+- use open???? credits
+- gears idea
+- 2h vs h
+- mid orbit always at field speed = though r varies.
+- can we now pin down the radius of gen II?
+- once a single dipole reaches max curvature then it has a chance to link up with others and become a bubble that inflates?
+and now all three orbits are stable 'circular' in an abstract sense given precession and perturbation. 
+there are stable orbits at each h-bar
+- so the Noether core must self stabilize itself. Gen II = field speed. Does the inner binary float or stay at the minimum?  It is probably the main source and sync of energy.  So the symmetry breaking point. It operates like a gear.
+- It takes a full h or h-bar internally which is two h or h-bar. (check).
 
 ---
 

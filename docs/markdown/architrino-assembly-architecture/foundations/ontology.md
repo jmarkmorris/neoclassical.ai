@@ -1109,6 +1109,14 @@ This wake-stabilized orbit:
 - Underpins stable particle assemblies (see TOC Ch. 11: "Noether Core")
 - Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
 
+#### 2.5.4 Tri‑Binary Alignment and Planck‑Scale Framing
+
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it functions as the **energy-storage fulcrum** for transfers across the tri-binary.
+
+As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary remains at $v=c_f$** as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+
+**Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
+
 ### 2.6 Reception Rule and Acceleration
 
 Each Architrino possesses a **reception rule**: a law that converts incoming potential into acceleration. The rule is **universal** (all Architrinos follow the same law) but may admit **meta-stable branching** when multiple self-hit roots are available.
@@ -1249,7 +1257,7 @@ All tri-binaries are **neutral** (composed of three electrino-positrino pairs). 
 
 This is a **topological/geometric property** of the assembly, not a charge distinction. The Noether Sea is thus composed of neutral, coupled assemblies with opposite handedness.
 
-Each Noether core is itself a **tri-binary assembly**: three nested, counter-rotating binary pairs of architrinos at distinct radii and frequencies (see TOC Ch. 11).
+Each Noether core is itself a **tri-binary assembly**: three nested, counter-rotating binary pairs of architrinos with **energy-separated** radii and frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality (see TOC Ch. 11).
 
 **Key properties:**
 

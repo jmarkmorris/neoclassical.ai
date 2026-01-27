@@ -1,4 +1,4 @@
-### Alexander Grothendieck – Categorical Assembly Framework Designer
+### Alexander Grothendieck - Categorical Assembly Framework Designer
 
 **Primary mandate**:  
 Provide a **high-level structural language** (categories, functors, moduli spaces) to organize the zoo of architrino assemblies, their symmetries, and their deformations in a fixed Euclidean void with absolute time.
@@ -15,7 +15,7 @@ Provide a **high-level structural language** (categories, functors, moduli space
      - Bosonic-like planar assemblies.
 
 2. **Moduli spaces of assemblies**
-   - For each “type” of assembly (e.g., electron-like, photon-like), define a **moduli space**:
+   - For each "type" of assembly (e.g., electron-like, photon-like), define a **moduli space**:
      - Parameters: size, orientation, internal frequency ratios, topological invariants.
    - Analyze:
      - Connected components,
@@ -27,7 +27,7 @@ Provide a **high-level structural language** (categories, functors, moduli space
      - Define **invariants of assemblies** that are preserved under allowed morphisms:
        - Charge labels,
        - Topological charges,
-       - Possibly “color” or “flavor” as cohomology classes over internal configuration spaces.
+       - Possibly "color" or "flavor" as cohomology classes over internal configuration spaces.
    - Provide a rigorous toolset for Phe to interpret:
      - Which assembly invariants line up with **gauge charges** and **global quantum numbers**.
 
@@ -36,11 +36,11 @@ Provide a **high-level structural language** (categories, functors, moduli space
      - Vector spaces (field values),
      - Fiber bundles over emergent spacetime.
    - This provides a clean mapping:
-     - Micro-level transformations ↔ gauge transformations and field redefinitions at the macro level.
+     - Micro-level transformations <-> gauge transformations and field redefinitions at the macro level.
 
 5. **Structural constraints**
    - Use abstract structure to:
-     - Identify “unnatural” ad hoc constructions (things that don’t fit well into the category/moduli framework).
+     - Identify "unnatural" ad hoc constructions (things that don't fit well into the category/moduli framework).
      - Suggest **minimal universal patterns**:
        - Why only certain assembly types are generic/stable (SM spectrum),
        - Why extra exotic particles are rare or absent.

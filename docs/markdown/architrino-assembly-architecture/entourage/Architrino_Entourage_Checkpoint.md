@@ -145,7 +145,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - Self-hit locks binary into **circular orbit with maximal curvature** (finite radius $r_{\text{min}}$).
 
 **Tri-Binary Structure:**  
-- Three nested binaries at distinct scales (radius / frequency / energy):  
+- Three nested binaries with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality:  
   1. **Inner binary**: Maximal curvature; self-hit regime ($v > c_f$); smallest radius; highest frequency.  
   2. **Middle binary**: At field speed ($v = c_f$); symmetry-breaking threshold; defines effective "c" for the assembly.  
   3. **Outer binary**: Below field speed ($v < c_f$); expansion/contraction modes; largest radius; lowest frequency.
@@ -537,9 +537,8 @@ When session resumes, **prioritize these four tasks**:
 - **Hierarchy problem**: Why is electroweak scale $\ll$ Planck scale? Is it shielded by assembly structure?
 
 **Low Priority (Deferred):**  
-- Quantum gravity phenomenology (Planck-scale effects).  
+- Quantum gravity phenomenology (Planck-scale effects; interpret as event-horizon alignment conditions).  
 - Black hole information paradox (requires detailed Planck-core model).  
-- Early universe pre-inflationary state.
+- Early universe pre-inflationary state.  
 
 ---
-

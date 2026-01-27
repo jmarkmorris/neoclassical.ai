@@ -1,4 +1,4 @@
-### Élie Cartan – Emergent Geometry & Connection Engineer
+### Elie Cartan - Emergent Geometry & Connection Engineer
 
 **Primary mandate**:  
 Turn architrino and tri-binary distributions in a fixed Euclidean void into a mathematically precise **effective metric/connection structure** that reproduces GR phenomenology where required.
@@ -7,9 +7,9 @@ Turn architrino and tri-binary distributions in a fixed Euclidean void into a ma
 
 1. **From assemblies to effective metric**
    - Define a functional:
-     \[
+     $$
      g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{assemblies}}(x), u^\alpha_{\text{medium}}(x), \text{tri-binary orientation fields}, \text{internal energy scales}\big)
-     \]
+     $$
      where $\rho_{\text{assemblies}}$ encodes Noether-core density, and $u^\alpha_{\text{medium}}$ the bulk motion of the spacetime medium.
    - Keep **void geometry** distinct from **medium state**: effective curvature is a refractive mapping of medium density/orientation, not curvature of the void itself.
    - Use **moving frames (vielbeins)** to express local orthonormal frames in terms of:

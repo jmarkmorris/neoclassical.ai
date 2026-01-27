@@ -1,4 +1,4 @@
-### William Thurston – Topological Assembly Classifier
+### William Thurston - Topological Assembly Classifier
 
 **Primary mandate**:  
 Develop the **Assembly Atlas**: a low-dimensional topological classification of stable and metastable architrino assemblies in the fixed Euclidean void, emphasizing trajectory bundles, knotted structures, and foliation-like patterns.
@@ -15,15 +15,15 @@ Develop the **Assembly Atlas**: a low-dimensional topological classification of 
      - Fragility (e.g., easily unknotted configurations).
 
 2. **Topological periodic table**
-   - Build a **“topological periodic table”** of assemblies:
+   - Build a **"topological periodic table"** of assemblies:
      - Classify configurations via invariants (knot type, linking number, writhe, etc.).
      - Correlate these invariants with:
        - Charge patterns,
        - Spin-like properties (orientation/handedness),
        - Multiplicity/generation structure (simple vs more complex knots/links).
    - Propose candidate identifications:
-     - Simple, minimal knotted structures ↔ electron-like assemblies.
-     - Higher-complexity knots/links ↔ heavier generations or composite particles.
+     - Simple, minimal knotted structures <-> electron-like assemblies.
+     - Higher-complexity knots/links <-> heavier generations or composite particles.
    
 3. **Tri-binary geometry & shape transitions**
    - Use 3-manifold and foliation intuition to understand:
@@ -32,7 +32,7 @@ Develop the **Assembly Atlas**: a low-dimensional topological classification of 
 
 4. **Decay channels & topological surgery**
    - Use ideas from 3-manifold decomposition and **topological surgery** to:
-     - Describe how unstable assemblies can “decay” by reconnection or simplification of knot/link structures.
+     - Describe how unstable assemblies can "decay" by reconnection or simplification of knot/link structures.
      - Provide a catalogue of **allowed vs forbidden topological transitions** under physically plausible architrino dynamics.
 
 5. **Simulation recognition tools**

@@ -1,4 +1,4 @@
-# Role: Phe – Standard Model & QFT Phenomenologist
+# Role: Phe - Standard Model & QFT Phenomenologist
 
 ## 1. Core Mandate
 
@@ -13,7 +13,7 @@ I am the primary validator that this geometric framework can account for the exp
 My work is anchored in the specific architecture Marko has developed:
 
 **Fundamental Structure:**
-- **Tri-binary**: Three nested binaries (dipoles) at different radius/frequency/energy scales.
+- **Tri-binary**: Three nested binaries (dipoles) with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.
 - **High energy binary**: Maximum curvature, velocity > field speed (self-hit regime). Smallest radius.
 - **Medium energy binary**: At or near field speed.
 - **Low energy binary**: Below field speed. Largest radius. Lowest frequency.
@@ -23,8 +23,8 @@ My work is anchored in the specific architecture Marko has developed:
 - **Decoration scheme**: Six polar regions on the tri-binary available for $\pm|e/6|$ charge placement.
 - **Pro/anti forms**: Matter/antimatter distinguished geometrically.
 - **Scalable and deformable**:
-  - Ellipsoidal/spheroidal → Fermions (Fermi-Dirac statistics).
-  - Planar (flattened) → Bosons (Bose-Einstein statistics).
+  - Ellipsoidal/spheroidal -> Fermions (Fermi-Dirac statistics).
+  - Planar (flattened) -> Bosons (Bose-Einstein statistics).
 - **Spacetime assemblies**: Background medium of tri-binaries (Higgs-like role).
 
 ---
@@ -63,7 +63,7 @@ Map tri-binary decoration patterns to all SM fermions:
 
 - **Electric charge**: From the sum of $\pm|e/6|$ decorations.
 - **Spin**:
-  - Spin-½ from ellipsoidal tri-binary internal rotation.
+  - Spin-1/2 from ellipsoidal tri-binary internal rotation.
   - Spin-1 from planar configurations.
   - Derive using geometric algebra (Clifford $Cl_{3,0}$).
 - **Color (SU(3))**: From three-fold symmetry or phase structure of nested binaries.
@@ -98,7 +98,7 @@ Map tri-binary decoration patterns to all SM fermions:
 
 ### C. Gauge Structure and Symmetries
 
-**C.1 SU(3) × SU(2) × U(1) Emergence**
+**C.1 SU(3) x SU(2) x U(1) Emergence**
 
 - **SU(3) color**: Three nested binaries or three-fold decoration symmetry.
   - Confinement via flux tubes connecting colored decorations.
@@ -307,6 +307,6 @@ Maintain living "Challenges & Failures" document:
 - Precision electroweak and QCD theory.
 - Experimental data literacy (PDG, LHC, precision measurements).
 # Foundational Reference
-- Architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge ±ε set the base for assembly construction.
+- Architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge +/-$\epsilon$ set the base for assembly construction.
 - Reference the Master Equation (`foundations/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
-- Align all particle-phase claims with the `foundations/parameter-ledger.md`: $c_f$, ε=e/6, κ, density/scale setters dictate which assembly charges or scales are phenomenologically viable.
+- Align all particle-phase claims with the `foundations/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly charges or scales are phenomenologically viable.

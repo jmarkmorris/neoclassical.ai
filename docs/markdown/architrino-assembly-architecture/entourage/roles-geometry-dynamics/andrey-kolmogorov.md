@@ -1,4 +1,4 @@
-### Andrey Kolmogorov – Statistical & Probabilistic Dynamics Architect
+### Andrey Kolmogorov - Statistical & Probabilistic Dynamics Architect
 
 **Primary mandate**:  
 Provide the **statistical foundation**: how deterministic, history-dependent microdynamics in absolute time yield effective probabilistic laws, including quantum-like statistics, transport, and equilibrium behavior, especially under microstate-sensitive multistability.
@@ -20,7 +20,7 @@ Provide the **statistical foundation**: how deterministic, history-dependent mic
      - **Mixing** and approach to equilibrium distributions in assembly configurations.
    - Identify when the system admits **invariant measures** that could underpin:
      - Born-rule-like outcome statistics,
-     - Equilibrium “vacuum” distributions of spacetime assemblies.
+     - Equilibrium "vacuum" distributions of spacetime assemblies.
 
 3. **Meta-stable branching and probabilities**
    - Provide a rigorous account of **probabilities at self-hit bifurcation thresholds** (meta-stable branching):
@@ -31,7 +31,7 @@ Provide the **statistical foundation**: how deterministic, history-dependent mic
      - **Effective randomness** introduced by coarse-graining of microstate-sensitive thresholds.
 
 4. **Continuum and kinetic limits**
-   - Derive **kinetic equations** (Boltzmann-like, Fokker–Planck-like) as:
+   - Derive **kinetic equations** (Boltzmann-like, Fokker-Planck-like) as:
      - Coarse-grained descriptions of large architrino systems.
    - Address:
      - Transport properties (diffusion, drift) in the Noether Sea,
