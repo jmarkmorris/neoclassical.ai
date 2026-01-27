@@ -147,7 +147,21 @@ This is **refractive gravity**: geodesics are Fermat paths in an inhomogeneous m
 
 > **Example (black-hole core):** If binaries survive in the core, their rapid orbital motion contributes to the *internal* energy density of the core. The core “gains” energy only through compression and infall (more assemblies packed at tighter radii), not by creation. In a closed region, total energy remains conserved; the accounting shifts toward high-frequency orbital motion and wake energy concentrated in a dense volume.
 
-**Potential energy across ontologies:** At the binary level, “potential energy” is not a static scalar but a history-dependent wake/geometry functional that trades with kinetic energy. At the assembly/core level, it coarse-grains into the local Noether-core volume gradient. At the spacetime/continuum level, it appears as an effective refractive or metric field governing trajectories. The ontology shift is that PE is fundamentally geometry of causal history, and the familiar potential is a coarse-grained expression of that geometry.
+**Potential and kinetic energy (step-by-step):**  
+1. **Kinetic energy (KE):** For each architrino $i$, define $K_i(t) = \tfrac{1}{2} m_i |\mathbf{v}_i(t)|^2$.  
+2. **Pairwise wake contribution:** For each ordered pair $(i,j)$, define a wake functional that depends on the emitter’s history and the receiver’s trajectory:
+$$
+W_{ij}(t) = \mathcal{W}\!\left[\{\mathbf{x}_j(t') : t' \le t\},\, \mathbf{x}_i(t)\right],
+$$
+with the delay roots $t_0 \in \mathcal{C}_j(t)$ setting the interaction geometry.  
+3. **Potential energy (PE):** The potential energy at time $t$ is the superposed wake bookkeeping:
+$$
+U(t) = \sum_i \sum_{j\ne i} W_{ij}(t).
+$$
+This is not a static scalar field at $\mathbf{x}$ but a history-dependent functional.  
+4. **Energy accounting:** The total energy is $E(t) = \sum_i K_i(t) + U(t)$; conservation is an open problem that depends on the precise form of $\mathcal{W}$ and the regularization of the delay kernel.
+
+At higher levels, $U(t)$ coarse-grains into a local Noether-core volume gradient (assembly/core scale) and then into an effective refractive/metric field (continuum scale). The ontology shift is that PE is fundamentally geometry of causal history, with the familiar potential emerging by coarse-graining.
 
 > **Example (spherical wake and energy extraction):** A causal wake emitted on a spherical surface carries a fixed total flux $q = |e/6|$ and propagates indefinitely, but its influence dilutes with distance. The energy flux per area falls with radius, so each architrino only samples a small, weakening patch. Many receivers can interact with the same wake, yet the total extractable energy is bounded by what the wake carries; infinite propagation does not imply infinite energy.
 
