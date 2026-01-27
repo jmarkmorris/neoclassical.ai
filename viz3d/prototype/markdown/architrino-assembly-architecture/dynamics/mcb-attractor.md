@@ -209,7 +209,7 @@ $$
 
 ---
 
-## Requirements for True Circular Orbit
+## Requirements for True Circular Orbit (Working Hypothesis)
 
 For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
@@ -218,28 +218,28 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
    A_{\text{rad}} = \frac{s^2}{R}.
    $$
 
-2. **Zero tangential power** (constant speed):
+2. **Net-zero tangential power** (constant speed on average):
    $$
-   T = 0.
+   \langle T \rangle = 0.
    $$
 
 ---
 
-### The Obstruction: Non-Negativity of Tangential Components
+### Apparent Obstruction: Non-Negativity of Tangential Components
 
-**Key Result**: For the symmetric, non-translating two-body circle geometry, and for **any** causal root (including all older roots with winding index $m \ge 0$), the tangential components satisfy:
+**Key Result**: For the symmetric, non-translating two-body circle geometry, and for **any** single causal root (including all older roots with winding index $m \ge 0$), the tangential components satisfy:
 
 $$
 T_s \ge 0, \quad T_p \ge 0 \quad \Rightarrow \quad T = T_s + T_p > 0.
 $$
 
-**Conclusion**: An isolated two-body system **cannot** achieve $T = 0$ under the canonical delayed, purely radial interaction law. A true constant-speed, fixed-radius circular orbit **does not exist** without additional physics:
+**Conclusion (provisional)**: The per-hit analysis yields $T \ge 0$, which appears to obstruct strict $T = 0$ at the level of a single-root snapshot. The working hypothesis is that the full multi-root, time-averaged dynamics admit a steady circular orbit with $\langle T \rangle = 0$ once self-hits are fully active.
 
 - External fields or assemblies (e.g., embedding in Noether Sea),
 - Modified interaction rules (e.g., velocity-dependent forces, radiation damping),
 - Or multi-body stabilization (tri-binary structure with three nested pairs).
 
-**Plain language**: In the isolated pair, tangential pushes never cancel, so a perfectly steady circle is not achievable. The binary will either spiral inward (if $T$ accelerates it past centripetal balance) or require external coupling to stabilize.
+**Plain language**: The isolated pair shows persistent tangential drive at the per-hit level, so a steady circle must arise from averaging over many self-hit roots or from additional structure in the delay law. This is a primary test of the MCB attractor hypothesis.
 
 ---
 
@@ -269,7 +269,7 @@ Therefore, **just-above-threshold self-hits do not maximize curvature**—they *
 - $\delta_s$ is large (approaching $\pi$),
 - Outward self-repulsion is minimized while inward partner attraction is maximized.
 
-**However**: Due to the $T > 0$ obstruction, this "maximum curvature" state is **not a stable equilibrium** for the isolated two-body system. It represents a **transient regime** or requires **external stabilization**.
+**However**: Due to the per-hit $T > 0$ result, this "maximum curvature" state is a **hypothesis** for the isolated two-body system. Its stability must be verified by the full, multi-root time-averaged dynamics.
 
 ---
 
@@ -392,123 +392,27 @@ To explore the two-body circular dynamics numerically:
 
 ---
 
-## Summary Answers
+## MCB Attractor Hypothesis and Test Plan
 
-### Can an Isolated Two-Body System Form a Stable Circular Orbit?
+**Working hypothesis**: An isolated electrino–positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it is a natural attractor of the two-body delay dynamics.
 
-**Yes—at the MCB (Maximal Curvature Binary) scale.**
+**Mechanism (summary)**:
+1. **Spiral-in** ($v < c_f$): Partner attraction dominates; tangential drive accelerates; radius decreases.
+2. **Self-hit onset** ($v > c_f$): Non-Markovian feedback activates and begins to oppose further collapse.
+3. **MCB regime** ($v \gg c_f$): Self-repulsion is minimized in radial direction while partner attraction accumulates across multiple roots; the orbit stabilizes at maximal curvature if $\langle T \rangle \approx 0$.
 
-An isolated electrino–positrino pair in an otherwise empty Euclidean void will naturally **spiral inward** under mutual attraction until they reach the **MCB configuration** at radius $r_{\text{min}}$, where self-hit dynamics stabilize the orbit.
+**Key geometric expectations**:
+- **Not** at the self-hit threshold: $\delta_s \to 0^+$ gives large outward radial term; tight orbits are blocked there.
+- **High-speed regime**: $\delta_s \to \pi$ minimizes radial self-repulsion; multiple partner hits raise inward pull; balance occurs at finite $r_{\text{min}}$.
 
-**Dynamics**:
+**Fundamental units (hypothesis)**:
+- $r_{\text{min}}$ defines the prototype rod and $T_{\text{MCB}}$ the prototype clock tick, emergent from the balance of partner attraction, self-hit repulsion, and centripetal requirement.
 
-1. **Initial spiral-in** ($v < c_f$):
-   - Partner attraction dominates.
-   - Net tangential force $T > 0$ accelerates the binary.
-   - Radius decreases; speed increases.
+**Attractor test requirements**:
+- **Poincaré map**: locate the MCB as a fixed point of the stroboscopic map.
+- **Floquet multipliers / Lyapunov exponents**: require all multipliers strictly inside the unit circle.
+- **Basin scan**: verify non-trivial attraction under perturbations in radius, phase, and velocity.
 
-2. **Self-hit onset** ($v > c_f$):
-   - Self-repulsion activates (non-Markovian feedback).
-   - Begins to counteract inward collapse.
-
-3. **Stabilization at MCB** ($v \gg c_f$, $r = r_{\text{min}}$):
-   - Balance achieved between:
-     - Partner attraction (multiple causal roots),
-     - Self-repulsion (prevents $r \to 0$ singularity),
-     - Centripetal requirement.
-   - The orbit locks into a quasi-stable configuration at **maximal curvature**.
-
-**Key Point**: The positive tangential force **drives the spiral-in**, and self-hit dynamics **halt the collapse** at finite $r_{\text{min}}$. This is the **natural attractor** for the isolated two-body system.
-
-**No external physics required**: The MCB forms purely from the canonical delayed, radial interaction law plus self-hit feedback. No Noether Sea, no external fields, no multi-body configurations are necessary for this fundamental stable state.
-
----
-
-### What Stabilizes the MCB?
-
-**Self-hit repulsion** (non-Markovian feedback when $v > c_f$) is the critical stabilizing mechanism:
-
-- **At large radii** ($r \gg r_{\text{min}}$): Partner attraction dominates → spiral inward.
-- **Near the threshold** ($v \approx c_f$, $\delta_s \to 0$): Self-repulsion is strong but outward radial component diverges → **not** the stable point.
-- **At high speeds** ($v \gg c_f$, $\delta_s \to \pi$): Self-repulsion is **minimized** in radial direction (emission from "behind"), but still sufficient to prevent collapse to $r = 0$ → **this is the MCB**.
-
-**Ontological Implication**: The MCB is a **natural attractor** arising purely from architrino dynamics, not an imposed structure. It represents the **ground state** of the electrino–positrino system.
-
----
-
-### Where Is Curvature Maximized?
-
-**At the MCB**: The tightest stable orbit occurs when self-hit feedback exactly balances further inward collapse.
-
-**Not** at the self-hit threshold ($s \to 1^+$):
-- Near threshold, $\delta_s \to 0^+$ → $1/\sin(\delta_s/2) \to \infty$ → strong outward repulsion prevents tight orbits.
-
-**At high speeds** ($s \gg 1$, $\delta_s \to \pi$):
-- Self-emission comes from "behind" → radial component of self-repulsion is minimized.
-- Multiple partner hits (older roots $m = 0, 1, 2, \dots$) provide cumulative inward pull.
-- Balance occurs at finite $r_{\text{min}}$ → **maximum curvature** $\kappa = 1/r_{\text{min}}$.
-
----
-
-### Relationship to Fundamental Units
-
-The **Maximal Curvature Binary (MCB)** radius $r_{\text{min}}$ is:
-
-- **Determined entirely by fundamental architrino dynamics**: No external physics required.
-- **Emergent from the balance**:
-  1. Coulomb-like attraction ($\propto \epsilon^2 / r^2$),
-  2. Self-hit repulsion (non-Markovian feedback when $v > c_f$),
-  3. Centripetal requirement for circular orbit.
-
-- **Universal**: All electrino–positrino pairs in isolation will spiral to the same $r_{\text{min}}$ (modulo initial conditions that might lead to different final velocities, but the minimal stable radius should be a fixed attractor).
-
-**This is the fundamental length scale of the theory**: $r_{\text{min}}$ is the **prototype rod**, and $T_{\text{MCB}} = 2\pi r_{\text{min}} / v_{\text{MCB}}$ is the **prototype clock tick**.
-
----
-
-### Implications for Tri-Binary Formation
-
-The MCB is the **building block** for larger assemblies:
-
-- **Inner binary** (of a tri-binary): Operates at MCB scale; $v > c_f$; self-hit stabilized.
-- **Middle and outer binaries**: Larger-radius, lower-energy configurations that may require:
-  - Coupling to Noether Sea (for environmental stabilization),
-  - Multi-body phase-locking (three nested binaries stabilize each other),
-  - Or quantum-like selection rules (angular momentum quantization).
-
-The existence of the MCB as a **natural attractor** in the isolated two-body problem is **foundational**—it proves the theory can generate stable structures without external scaffolding.
-
-Further analysis (Ch. 11–13) will address:
-- How tri-binaries form from multiple MCBs,
-- What determines the radius ratios $r_{\text{inner}} : r_{\text{middle}} : r_{\text{outer}}$,
-- Whether middle/outer binaries also have natural attractors or require environmental coupling.
-
----
-
-## Notes
-
-- **Self-hit threshold** ($s \to 1^+$): Near threshold, self radial term is large and **outward** ($\propto 1/\sin(\delta_s/2)$); tight orbits are **not** realized here. This is a **barrier**, not the final state.
-
-- **High-speed regime** ($s \gg 1$, $\delta_s \to \pi$): Self-repulsion is minimized in the radial direction; the binary reaches **maximal curvature** at finite $r_{\text{min}}$. This is the **MCB attractor**.
-
-- **Spiral-in is natural**: The positive tangential force $T > 0$ is the **mechanism** that drives the pair from initial separation to the MCB. Once at MCB, the configuration is quasi-stable (small oscillations may persist, but no further collapse).
-
-- **No external coupling required** for MCB: The isolated two-body system self-organizes to MCB purely from canonical architrino dynamics. External physics (Noether Sea, multi-body configurations) becomes important for **larger assemblies** (middle/outer binaries, tri-binaries, particles).
-
-- **Transition to tri-binary**: The MCB forms naturally in isolation. Larger tri-binary structures (with nested middle and outer binaries) likely require additional stabilization mechanisms, motivating the architecture of more complex assemblies and their coupling to the medium.
-
----
-
-## Phil's Addendum: Ontological Takeaways
-
-1. **The MCB is a natural attractor**: An isolated electrino–positrino pair will spiral inward to $r_{\text{min}}$ and stabilize there via self-hit dynamics. **No external physics required** for this fundamental structure.
-
-2. **Self-hit prevents singularity**: The theory naturally avoids $r \to 0$ collapse without invoking quantum mechanics, uncertainty principles, or external constraints. Self-interaction with one's own past potential provides a **deterministic** mechanism for singularity resolution.
-
-3. **Fundamental units are dynamically generated**: $r_{\text{min}}$ and $T_{\text{MCB}}$ emerge from the balance of forces in the two-body problem, not from external conventions or empirical input.
-
-4. **MCB scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
-
-5. **Bridge from fundamental to operational**: The MCB is the **first emergent structure** with physical dimensions. All larger assemblies (atoms, particles, macroscopic matter) scale from this. Operational measurements (rulers, clocks) ultimately trace back to MCB oscillations.
-
-6. **Tri-binary structure is more complex**: While the MCB forms naturally in isolation, tri-binary assemblies (with middle and outer binaries) likely require additional stabilization mechanisms (Noether Sea coupling, phase-locking, quantization).
+**Architectural implications**:
+- If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies.
+- If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
