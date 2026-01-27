@@ -177,20 +177,21 @@ This step-by-step $U(t)$ construction is the concrete candidate for $E_{\text{wa
 
 Standard energy conservation assumes instantaneous potentials. Here, the interaction law is **non-Markovian**: forces at $t$ depend on past trajectories via wake geometry, and the dominant contributions are local in timespace due to finite $c_f$ and distance falloff.
 
-**Critical insight**: The "state" is not $(x,v)$ but a function over a past interval. We **aim to construct** a history-aware interaction functional $E_{\text{wake}}$ such that:
+**Symmetry requirement**: Absolute time-translation invariance ($t \to t + \delta t$) in $\mathbb{R}^3 \times \mathbb{R}$ mandates a conserved energy functional even for delay systems. The conserved quantity is **not** simply $T+V(\mathbf{x})$ but a history functional over the delay segment. A schematic form is:
 $$
-E_{\text{total}}(t) = \sum_i \frac{1}{2}m_i v_i^2 + E_{\text{wake}}[\{\mathbf{x}_i(t') : t' \leq t\}]
+H(t) = \sum_i \frac{1}{2}m_i v_i^2 + \frac{1}{2}\sum_{i,j}\int_{-\tau_{\max}}^0 \mathcal{E}_{ij}(h_t)\, d\theta,
 $$
-is conserved for isolated systems. Whether this is exactly achievable, or only approximately in certain regimes, is an **open problem**.
+where the integral accounts for “potential in flight” carried by the causal wakes. This functional **is** the definition of $E_{\text{wake}}$ and must be derived from the action.
 
-**Ontological clarification**: In this framework, "wake energy" is **not an independent field energy density living in the void**. It is a **bookkeeping functional** of architrino worldlines and their causal intersections. All energy ultimately resides in architrino kinetic and assembly-internal motion; $E_{\text{wake}}$ encodes how much of that capacity for kinetic change is geometrically allocated by past emissions but not yet realized. In periodic MCB states the wake is predominantly reactive (near-field) and carries no net energy flux; radiative components appear only when symmetry is broken.
+**Ontological clarification**: In this framework, "wake energy" is **not an independent field energy density living in the void**. It is the canonical history functional conjugate to time translations, derived from the non-local action. All energy ultimately resides in architrino kinetic and assembly-internal motion; $E_{\text{wake}}$ encodes how much of that capacity for kinetic change is geometrically allocated by past emissions but not yet realized. In periodic MCB states the wake is predominantly reactive (near-field) and carries no net energy flux; radiative components appear only when symmetry is broken.
 
 **Self-hit interpretation**: When a particle intersects its own wake, energy transfers between the history bookkeeping and instantaneous kinetic energy. The "mass" of stable assemblies may be the **trapped energy of self-intersecting history loops**.
 
 **Open problems**:
-- Define $E_{\text{wake}}$ rigorously (e.g., via pairwise wake functionals $W_{ij}$) and prove (or falsify) $dE_{\text{total}}/dt = 0$ for isolated systems under the Master Equation
-- If exact conservation fails, characterize the precise non-conservative terms (radiative loss, regularization artifacts)
-- Relate $E_{\text{wake}}$ to assembly binding energy and mass
+- Write the non-local action $S$ that yields the Master Equation and derive the exact conserved energy via time-translation symmetry.
+- Express $E_{\text{wake}}$ explicitly (e.g., in pairwise $W_{ij}$ form) and verify conservation in the regularized $\eta > 0$ system.
+- If conservation fails in practice, identify which assumptions break (regularization artifacts, missing terms, or explicit time dependence).
+- Relate $E_{\text{wake}}$ to assembly binding energy and mass.
 
 Whether we truly have conservative microdynamics affects the statistical framework (invariant measures, equilibrium) profoundly.
 
