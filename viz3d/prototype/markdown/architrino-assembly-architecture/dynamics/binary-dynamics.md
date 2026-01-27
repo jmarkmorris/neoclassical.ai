@@ -1,4 +1,6 @@
-# Orbiting Binary Assembly
+# Binary Dynamics
+
+## Orbiting Binary Assembly
 
 An orbiting binary is the simplest emergent assembly, consisting of two Architrinos of opposite charge—an Electrino and a Positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point. 
 
@@ -69,7 +71,7 @@ The stabilization of the orbiting binary gives rise to fundamental, emergent pro
 
 ---
 
-# Emergent Measurement of Time and Distance
+## Emergent Measurement of Time and Distance
 
 While the model is founded on the concepts of absolute space and absolute time, these are featureless, continuous arenas. They provide the mathematical background for geometry and motion but contain no inherent "ruler" or "clock." There are no fundamental, pre-defined units of distance or time. Instead, these units must emerge from the dynamics of the system itself.
 
@@ -125,14 +127,588 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - Check convergence of self‑hit statistics under time‑step refinement, history‑resolution refinement, and integrator swap.
 - If self‑hit signatures change qualitatively under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
 
+## MCB Attractor and Max-Curvature Orbit
 
+This section collects the full two-body, self-hit analysis for the maximum-curvature binary (MCB), including delay geometry, force components, stability criteria, and computational diagnostics. It is the canonical reference for MCB attractor status.
 
+## Maximum-Curvature Circular Orbit (Opposite Charges)
 
-# Maximum-Curvature Circular Orbit (Opposite Charges)
+**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed, purely radial per-hit law.
 
-The full MCB analysis (delay roots, force decomposition, stability obstruction, and computational recipe) has moved to `dynamics/mcb-attractor.md`.
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-charge pair can trace when the only forces come from delayed, radial interactions with the partner (multiple-hits) and from one's own past emissions (self-hits, active only when speed exceeds field speed).
 
-Short orientation:
-- Use `dynamics/mcb-attractor.md` as the canonical two-body MCB reference.
-- This binary overview keeps the general assembly narrative and self-hit diagnostics.
-- Attractor status and Poincare/Floquet tests are defined in the MCB doc.
+---
+
+### Foundational Context (Ontological Clarification)
+
+#### The Maximal Curvature Binary (MCB) as Fundamental Unit
+
+In the architrino framework, the **Maximal Curvature Binary (MCB)** is the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. It defines the **fundamental physical units**:
+
+- **Length standard**: The orbital radius $r_{\text{min}}$ of the MCB is the **prototype rod**.
+- **Time standard**: The orbital period $T_{\text{MCB}} = 1/f_{\text{MCB}}$ is the **prototype clock tick**.
+
+The MCB radius $r_{\text{min}}$ is determined by the balance of:
+1. Coulomb-like attraction between opposite charges ($\propto |e/6|^2 / r^2$),
+2. Self-hit repulsion (non-Markovian feedback when $v > c_f$),
+3. Centripetal requirement for stable circular orbit.
+
+**Expected scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
+
+**Dynamical priority (attractor status):** The architecture assumes the MCB is a **robust attractor**, not a finely tuned periodic orbit. This must be established explicitly:
+- Start from a reduced two-body model (opposite charges, self-hit enabled, explicit $\eta$).
+- Construct a Poincaré map (e.g., strobing at orbital phase) and locate the MCB as a fixed point.
+- Compute Floquet multipliers / Lyapunov exponents and map the basin of attraction under perturbations in radius, phase, and velocity.
+Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+
+#### Relationship to Tri-Binary Structure
+
+- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **defines fundamental units**.
+- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
+- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether Sea** for gravitational/cosmological effects.
+
+**This document analyzes the isolated two-body problem to understand MCB formation and stability.**
+
+---
+
+### Setup and Notation (Symmetric Frame)
+
+- **Two architrinos** with charges $q_1 = -\epsilon$ and $q_2 = +\epsilon$ (where $\epsilon = |e/6|$).
+- **Equal-time positions** (in absolute time $t$) are diametrically opposite on a circle of radius $R$ about the midpoint.
+- **Uniform circular motion**: Angular speed $\omega$, constant tangential speed $s = R\omega$.
+- **Non-translating binary**: Circle center (midpoint) is fixed in Euclidean 3D space; no net translation.
+
+#### Phase Angles and Delays
+
+Let $\delta_s$ and $\delta_p$ denote the angular phase separations (measured along the circle) between:
+- **Self** (same particle): Current position → its own past emission position that hits "now."
+  - Delay time: $\tau_s$; angular separation: $\delta_s = \omega \tau_s$.
+  - Chord length: $r_s = 2R \sin(\delta_s / 2)$.
+  
+- **Partner** (other particle): Current position → partner's past emission position that hits "now."
+  - Delay time: $\tau_p$; angular separation: $\delta_p = \omega \tau_p$.
+  - Chord length: $r_p = 2R \cos(\delta_p / 2)$.
+
+#### Causal-Time Constraints (Field Speed $c_f = 1$)
+
+For a signal to travel from emission point to reception point:
+$$
+r = c_f \cdot \tau \quad \Rightarrow \quad r = \tau \quad \text{(in units where } c_f = 1\text{)}.
+$$
+
+This yields two delay equations:
+
+1. **Self-hit**:
+   $$
+   \delta_s = \omega \tau_s = \omega \cdot r_s = \omega \cdot 2R \sin(\delta_s / 2) = 2s \sin(\delta_s / 2).
+   $$
+
+2. **Partner hit**:
+   $$
+   \delta_p = \omega \tau_p = \omega \cdot r_p = \omega \cdot 2R \cos(\delta_p / 2) = 2s \cos(\delta_p / 2).
+   $$
+
+**These two transcendental equations determine** $(\delta_s, \delta_p)$ **as functions of speed** $s$.
+
+**Critical threshold**: Self-hits exist only when $s > 1$ (i.e., $v > c_f$). For $s \le 1$, no self-hits occur.
+
+---
+
+#### Terminology: Roots and Winding Numbers
+
+**Root**: An emission time $t_0 < t$ (from either self or partner) that satisfies the causal constraint $r = c_f (t - t_0)$ and produces a hit at reception time $t$.
+
+**Integer-indexed older roots (winding numbers)**:
+
+Let $\tilde{\delta}_s \in (0, \pi]$ and $\tilde{\delta}_p \in (0, \pi]$ denote the **minimal (principal) angular separations** that determine the chord lengths and force directions.
+
+The full families of causal delays are:
+
+- **Self**: 
+  $$
+  \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
+  $$
+  
+- **Partner**: 
+  $$
+  \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
+  $$
+
+**Geometric interpretation**:
+- The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **geometry** (chord lengths, force directions).
+- The winding index $m$ affects **timing/ordering** of multiple hits but does not change the **sign** or **direction** of force components (all derived from principal geometry).
+
+---
+
+### Per-Hit Directions and Force Components
+
+#### Local Coordinate Frame at Receiver
+
+- **Radial outward**: $\hat{e}_r$ (from rotation center toward receiver).
+- **Tangential**: $\hat{e}_t$ (direction of motion along circle).
+
+#### Unit Directions of Lines of Action (Emission → Reception)
+
+**Self-hit**:
+$$
+\hat{u}_s = \sin(\delta_s / 2) \, \hat{e}_r + \cos(\delta_s / 2) \, \hat{e}_t.
+$$
+
+**Partner hit** (geometric chord across circle):
+$$
+\hat{u}_p = \cos(\delta_p / 2) \, \hat{e}_r - \sin(\delta_p / 2) \, \hat{e}_t.
+$$
+
+#### Canonical Per-Hit Accelerations
+
+Using the delayed, radial law with magnitude $\kappa \epsilon^2 / r^2$ (where $\kappa$ is a coupling constant and $\epsilon = |e/6|$):
+
+**Self-hit** (like charges → repulsive):
+$$
+\mathbf{a}_s = +\kappa \epsilon^2 \frac{1}{r_s^2} \hat{u}_s.
+$$
+
+**Partner hit** (opposite charges → attractive):
+$$
+\mathbf{a}_p = -\kappa \epsilon^2 \frac{1}{r_p^2} \hat{u}_p.
+$$
+
+---
+
+#### Radial and Tangential Components
+
+Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
+
+**Chord lengths**:
+$$
+r_s = 2R \sin(\delta_s / 2), \quad r_p = 2R \cos(\delta_p / 2).
+$$
+
+**Inward radial components**:
+
+- **Self** (repulsive → outward → negative):
+  $$
+  A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)}.
+  $$
+
+- **Partner** (attractive → inward → positive):
+  $$
+  A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)}.
+  $$
+
+**Net inward radial acceleration**:
+$$
+A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
+$$
+
+**Tangential components** (both non-negative for $0 < \delta_s, \delta_p < \pi$):
+
+- **Self**:
+  $$
+  T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)}.
+  $$
+
+- **Partner**:
+  $$
+  T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)}.
+  $$
+
+**Net tangential acceleration**:
+$$
+T = T_s + T_p \ge 0.
+$$
+
+---
+
+#### Sub-Field-Speed Simplification ($s \le 1$; No Self-Hits)
+
+When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes:
+
+$$
+T(s < 1) = T_p = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)}.
+$$
+
+Using the delay relation $\delta_p = 2s \cos(\delta_p / 2)$:
+
+$$
+T(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2} > 0.
+$$
+
+**Interpretation**: Even at sub-field speeds, there is always a **net positive tangential force** (accelerating the binary). This prevents a truly stable, constant-speed circular orbit.
+
+---
+
+### Requirements for True Circular Orbit (Working Hypothesis)
+
+For uniform circular motion at fixed radius $R$ and constant speed $s$:
+
+1. **Centripetal balance**:
+   $$
+   A_{\text{rad}} = \frac{s^2}{R}.
+   $$
+
+2. **Net-zero tangential power** (constant speed on average):
+   $$
+   \langle T \rangle = 0.
+   $$
+
+---
+
+#### Apparent Obstruction: Non-Negativity of Tangential Components
+
+**Key Result**: For the symmetric, non-translating two-body circle geometry, and for **any** single causal root (including all older roots with winding index $m \ge 0$), the tangential components satisfy:
+
+$$
+T_s \ge 0, \quad T_p \ge 0 \quad \Rightarrow \quad T = T_s + T_p > 0.
+$$
+
+**Conclusion (provisional)**: The per-hit analysis yields $T \ge 0$, which appears to obstruct strict $T = 0$ at the level of a single-root snapshot. The working hypothesis is that the full multi-root, time-averaged dynamics admit a steady circular orbit with $\langle T \rangle = 0$ once self-hits are fully active.
+
+- External fields or assemblies (e.g., embedding in Noether Sea),
+- Modified interaction rules (e.g., velocity-dependent forces, radiation damping),
+- Or multi-body stabilization (tri-binary structure with three nested pairs).
+
+**Plain language**: The isolated pair shows persistent tangential drive at the per-hit level, so a steady circle must arise from averaging over many self-hit roots or from additional structure in the delay law. This is a primary test of the MCB attractor hypothesis.
+
+---
+
+### What "Maximum Curvature" Demands
+
+From the radial component formula:
+
+$$
+A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
+$$
+
+**Increasing curvature** ($\kappa = 1/R$ larger → $R$ smaller) requires **stronger inward radial force**. This occurs when:
+
+1. **$\delta_p$ increases** → $\cos(\delta_p / 2)$ decreases → partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
+2. **$\delta_s$ increases** → $\sin(\delta_s / 2)$ increases → self term $1/\sin(\delta_s / 2)$ **decreases** (weaker outward repulsion).
+
+**Critical observation**: Near the self-hit threshold ($s \to 1^+$, $\delta_s \to 0^+$):
+
+$$
+\frac{1}{\sin(\delta_s / 2)} \to \infty \quad \text{(strong outward repulsion)}.
+$$
+
+Therefore, **just-above-threshold self-hits do not maximize curvature**—they **strongly oppose** it by blowing up the outward radial component.
+
+**Maximum curvature** (smallest stable $R$) likely occurs at **higher speeds** ($s \gg 1$) where:
+- Multiple self-hits ($m \ge 1$) are active,
+- $\delta_s$ is large (approaching $\pi$),
+- Outward self-repulsion is minimized while inward partner attraction is maximized.
+
+**However**: Due to the per-hit $T > 0$ result, this "maximum curvature" state is a **hypothesis** for the isolated two-body system. Its stability must be verified by the full, multi-root time-averaged dynamics.
+
+---
+
+### Self-Hit Multiplicity vs. Speed
+
+**Definition**: A self-hit is an emission time from the same architrino that satisfies the causal constraint $r = (t - t_0)$ and arrives "now." In uniform circular, non-translating geometry, admissible self-roots are indexed by winding number $m \ge 0$ and minimal angular separation $\tilde{\delta}_s \in (0, \pi]$:
+
+$$
+\delta_s = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2).
+$$
+
+#### Counting Self-Hits by Winding Index
+
+A new self-hit branch (for winding $m$) appears when:
+
+$$
+s \ge s_m^\star = \frac{(2m + 1) \pi}{2}.
+$$
+
+Therefore, the number of distinct self-hits at speed $s$ is:
+
+$$
+N_{\text{self}}(s) = \begin{cases}
+0, & s \le 1, \\
+1 + \max\!\left(0, \left\lfloor \frac{s}{\pi} - \frac{1}{2} \right\rfloor \right), & s > 1.
+\end{cases}
+$$
+
+**Examples**:
+
+- $1 < s < 3\pi/2 \approx 4.712$ → $N_{\text{self}} = 1$ (only $m = 0$).
+- $s \ge 3\pi/2$ → $N_{\text{self}} \ge 2$ ($m = 0$ and $m = 1$).
+- Higher $m$ branches turn on at $s \ge 5\pi/2$, $7\pi/2$, etc.
+
+**Note**: Straight-line motion admits **no self-hits** even if $s > 1$; **curvature is required**. The above statements apply specifically to uniform circular, non-translating geometry.
+
+---
+
+### Where Do Causal Hits Come From on the Circle? (Discrete Azimuth Pattern)
+
+**Context**: Non-translating, uniform circular binary at fixed speed $s$. Receiver "now" at azimuth $\theta = 0$.
+
+The emission points on the circle that can produce hits "now" form a **finite, discrete set** of azimuths determined by the delay equations—**not arbitrary locations**.
+
+#### Partner Hits
+
+- Minimal angular separation: $\tilde{\delta}_p \in (0, \pi]$.
+- Causal delays:
+  $$
+  \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
+  $$
+
+- **Emission azimuth** at reception:
+  $$
+  \varphi_p(m; s) = \pi - \tilde{\delta}_p(m; s).
+  $$
+
+- **Existence thresholds**: For each $m \ge 0$, a solution exists only if $s > m\pi$.
+- As $m$ increases, $\tilde{\delta}_p$ decreases → $\varphi_p$ drifts monotonically toward $\pi$ (diametrically opposite point).
+
+#### Self-Hits
+
+- Minimal angular separation: $\tilde{\delta}_s \in (0, \pi]$.
+- Causal delays:
+  $$
+  \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
+  $$
+
+- **Emission azimuth** at reception:
+  $$
+  \varphi_s(m; s) = -\tilde{\delta}_s(m; s).
+  $$
+
+- **Existence windows**:
+  - Principal branch ($m = 0$): exists only for $1 < s \le \pi/2$; terminates at $\tilde{\delta}_s = \pi$ when $s = \pi/2$.
+  - For $m \ge 1$: new branch appears when
+    $$
+    s \ge s_m^\star = \frac{(2m + 1) \pi}{2}.
+    $$
+  - Within a branch, $\tilde{\delta}_s$ decreases with $s$ → $\varphi_s$ drifts toward $-\pi$.
+
+#### Multiplicity and Pattern
+
+- At any fixed $s$, the admissible emission azimuths form a **finite, ordered "comb"** of discrete points.
+- These points accumulate toward the diametric opposite direction:
+  - $\varphi = \pi$ for partner,
+  - $\varphi = -\pi$ for self.
+- As $s$ increases, the set grows in **steps** at the thresholds above; more roots appear but they **never fill the circle**.
+- Multiple hits at the same "now" correspond to different winding indices $m$ (and occasionally multiple $\tilde{\delta}_s$ solutions within a branch); all are fixed by the delay equations and circle geometry.
+
+**Plain language**: For a given speed, hits come from a **short list of specific angles** set by causality and delay—not from arbitrary points all around the circle. Going faster unlocks more of these specific angles at predictable threshold speeds.
+
+---
+
+### Practical Recipe (Computational)
+
+To explore the two-body circular dynamics numerically:
+
+1. **Pick a speed** $s > 1$ (to activate self-hits).
+
+2. **Solve the delay equations**:
+   $$
+   \delta_s = 2s \sin(\delta_s / 2), \quad \delta_p = 2s \cos(\delta_p / 2),
+   $$
+   for $(\delta_s, \delta_p) \in (0, \pi]$ (principal solutions).
+
+3. **Enumerate causal roots** by winding index $m \ge 0$:
+   - Use minimal angular separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ to compute chord lengths and force components.
+   - Winding index $m$ affects emission timing/ordering but not the sign or direction of components (all derived from principal geometry).
+
+4. **Compute radial and tangential accelerations**:
+   $$
+   A_{\text{rad}}(s), \quad T(s).
+   $$
+   Verify that $T(s) > 0$ (no constant-speed equilibrium without external physics).
+
+5. **Identify speed regimes**:
+   - Near $s \to 1^+$: Strong outward self-repulsion ($1/\sin(\delta_s/2) \to \infty$) → low curvature.
+   - Higher $s$ ($s \gg 1$): Multiple self-hits active; $\delta_s$ large → outward repulsion minimized → higher curvature possible (but still not stable due to $T > 0$).
+
+---
+
+### MCB Attractor Hypothesis and Test Plan
+
+**Working hypothesis**: An isolated electrino–positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it is a natural attractor of the two-body delay dynamics.
+
+#### Mechanism and geometric expectations
+
+The hypothesis has three dynamical phases. In the spiral-in phase ($v < c_f$), partner attraction dominates, the net tangential drive is positive, and the radius decreases while speed rises. Once self-hits activate ($v > c_f$), non-Markovian feedback begins to oppose further collapse. In the MCB regime ($v \gg c_f$), radial self-repulsion is minimized while partner attraction accumulates across multiple causal roots; the orbit stabilizes at maximal curvature if the time-averaged tangential drive satisfies $\langle T \rangle \approx 0$.
+
+Two geometric expectations follow. The MCB is not realized near the self-hit threshold: $\delta_s \to 0^+$ makes the outward radial term large and blocks tight orbits. At high speed, $\delta_s \to \pi$ minimizes radial self-repulsion, while multiple partner hits increase inward pull; balance occurs at finite $r_{\text{min}}$.
+
+If the hypothesis holds, $r_{\text{min}}$ defines the prototype rod and $T_{\text{MCB}}$ the prototype clock tick, both emergent from the balance of partner attraction, self-hit repulsion, and centripetal requirement.
+
+#### Attractor test requirements
+
+The practical attractor test consists of three steps:
+1. Locate the MCB as a fixed point of a stroboscopic Poincare map.
+2. Compute Floquet multipliers (or short Lyapunov exponents) around that fixed point; all nontrivial multipliers must satisfy $|\lambda|<1$.
+3. Map a non-trivial basin of attraction under perturbations in radius, phase, and velocity.
+
+#### Finite-dimensional projection caveat
+
+The true state of a delay system is a history function in an infinite-dimensional phase space; the Poincare map strictly lives on that function space. The practical test uses a finite parametrization, typically $(R, s, \delta_s, \delta_p)$. If attraction fails even in this favorable finite projection, the full system will not be better behaved.
+
+#### Minimal simulation protocol (Henri)
+
+**Model and regularization**: Use two opposite charges with no translation and full delayed interaction including self-hits. Fix $\eta$ with $\eta \ll R_{\text{MCB}}$, and choose $\Delta t \ll \eta$ and $\Delta t \ll T_{\text{MCB}}$.
+
+**Locate a candidate MCB orbit**: Run a spiral-in simulation until radius oscillations become small. Estimate $(\bar R, \bar s)$ and take a one-orbit window as an initial guess. Refine this guess by periodic-orbit shooting, enforcing periodicity in $R, s, \delta_s, \delta_p$ with a Newton iteration.
+
+**Construct the Poincare map**: Define the section $\Sigma$ as “particle 1 at angle $\theta=0$ with $\dot\theta>0$.” For each crossing, record $(R, s, \delta_s, \delta_p)$ and define the return map $P:(R, s, \delta_s, \delta_p)\mapsto(R', s', \delta_s', \delta_p')$.
+
+**Floquet multipliers**: Approximate the Jacobian $DP$ by finite differences and compute its eigenvalues. One multiplier should be $1$ (phase invariance); all others must satisfy $|\lambda|<1$.
+
+**Basin scan**: Fix $\eta$ and the delay phases at their MCB values. Vary $R_0$ and $s_0$ over a small grid (e.g., $\pm 10\%$) and integrate for $10^3$--$10^4$ periods. Classify outcomes by convergence to the MCB, drift, or irregular behavior, and plot a basin map.
+
+**Convergence tests**: Repeat the protocol with smaller $\Delta t$, smaller $\eta$, and longer integration times. The existence, stability, and basin shape must remain stable under refinement.
+
+#### Additional diagnostics
+
+**Eta dependence**: Track $R_{\text{MCB}}(\eta)$, $s_{\text{MCB}}(\eta)$, and nontrivial multipliers versus $\eta$. If stability degrades as $\eta \to 0$, the MCB is likely a regularization artifact.
+
+**Energy drift (proxy)**: Monitor a proxy energy $E(t)=K(t)+U_{\text{wake}}(t)$ and require drift per period to be small and unbiased. If the only stability depends on numerical dissipation, it is not physical.
+
+**Tangential balance**: Measure $\langle T \rangle$ over an orbit and decompose it into self/partner contributions. Require $\langle T \rangle \to 0$ as $\Delta t,\eta \to 0$.
+
+**Near-orbit structure**: Compute a short Lyapunov exponent and a frequency spectrum of $R(t)$ or $\theta(t)$ to distinguish true limit cycles from nearby tori or chaos.
+
+#### Architectural implications
+
+If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies. If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
+
+---
+
+## State Space and Well-Posedness of the Delayed Two-Body System
+
+**Author:** Terence Tao  
+**Context:** Architrino Assembly Architecture – Mathematical Foundations  
+**Status:** DRAFT – Theoretical Framework for Numerical Validation  
+**Reference:** `dynamics/master-equation.md`, `dynamics/regularization.md`
+
+---
+
+### 1. Introduction and Scope
+
+The Master Equation of Motion for the Architrino system constitutes a system of **State-Dependent Neutral Delay Differential Equations (SD-NDDEs)**. Unlike ordinary differential equations (ODEs) where the state is a point in $\mathbb{R}^{6N}$, the state of this system is a **function segment** representing the past history of the particles.
+
+This section establishes the rigorous analytical framework required to discuss the existence, uniqueness, and stability of the Maximum-Curvature Binary (MCB). We treat the regularization parameter $\eta > 0$ as fixed for the analysis of well-posedness; the limit $\eta \to 0$ is treated as a singular perturbation problem in the Gap Ledger.
+
+We denote the position of the $i$-th architrino as $\mathbf{x}_i(t) \in \mathbb{R}^3$. We work in the **Euclidean Void** with fixed metric $\delta_{ij}$.
+
+---
+
+### 2. Functional Phase Space
+
+To define the evolution at time $t$, we require knowledge of the trajectory over an interval $[t - \tau_{\max}, t]$, where $\tau_{\max}$ is the maximum causal lookback time relevant to the current dynamics.
+
+#### Definition 1 (The History Space)
+Let $h > 0$ be a history horizon (sufficiently large to capture all active causal roots). The **history space** $\mathcal{H}$ is defined as the Banach space of continuously differentiable functions mapping the delay interval to the configuration space:
+$$
+\mathcal{H} = C^1\left([-h, 0]; (\mathbb{R}^3)^N\right).
+$$
+For a trajectory $\mathbf{x}: [-h, \infty) \to (\mathbb{R}^3)^N$, the **state at time $t$**, denoted $\mathbf{x}_t$, is the element of $\mathcal{H}$ given by:
+$$
+\mathbf{x}_t(\theta) = \mathbf{x}(t + \theta), \quad \theta \in [-h, 0].
+$$
+The norm is the standard $C^1$ sup-norm: $\|\phi\|_\mathcal{H} = \sup_{\theta \in [-h,0]} (\|\phi(\theta)\| + \|\dot{\phi}(\theta)\|)$.
+
+**Remark:** We require $C^1$ rather than $C^0$ because the delay $\tau$ depends on the state (state-dependent delay). In such systems, the vector field is typically not Lipschitz continuous in the $C^0$ topology, endangering uniqueness.
+
+---
+
+### 3. The Regularized Interaction Functional
+
+We formalize the force term derived in the Master Equation.
+
+#### Definition 2 (Causal Constraint Functional)
+For a target particle $i$ at time $t$ and source $j$, the delay $\tau_{ij}(t)$ is implicitly defined by the light-cone condition. Let $\phi \in \mathcal{H}$ be the history. A **causal root** is a value $\tau > 0$ satisfying:
+$$
+g_{ij}(\tau, \phi) \equiv \|\phi_i(0) - \phi_j(-\tau)\| - c_f \tau = 0.
+$$
+
+#### Lemma 1 (Regularity of the Delay Map)
+*Assumption:* The velocities are sub-luminal relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (Single-Hit Regime) OR we isolate a specific branch of the multi-hit solution where the relative radial velocity is not $c_f$.
+
+*Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+}$ such that $\tau(\phi) = \tau^*$.
+
+*Proof Sketch:* Apply the Implicit Function Theorem to $g_{ij}$. The condition $\partial_\tau g \neq 0$ corresponds to the source not moving exactly at the speed of light *towards* the receiver at the retarded time (no "causal shock" accumulation).
+
+#### Definition 3 (Regularized Force Field)
+To ensure the vector field is Lipschitz, we replace the distributional Dirac delta of the Master Equation with the mollifier $\rho_\eta$ (Definition 5.3 in `dynamics/master-equation.md`). The acceleration functional $F_i: \mathcal{H} \to \mathbb{R}^3$ is:
+$$
+F_i(\phi) = \sum_{j} \kappa \sigma_{ij} q_i q_j \int_{-h}^0 \frac{\phi_i(0) - \phi_j(\theta)}{\|\phi_i(0) - \phi_j(\theta)\|^3} \, \rho_\eta\left( \|\phi_i(0) - \phi_j(\theta)\| + c_f \theta \right) \, d\theta.
+$$
+**Crucial Property:** For $\eta > 0$ and smooth $\rho_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
+
+---
+
+### 4. Local Well-Posedness
+
+#### Theorem 1 (Local Existence and Uniqueness)
+**Assumptions:**
+1. $\eta > 0$ (Finite regularization).
+2. The initial history $\phi^0 \in \mathcal{H}$ satisfies the "gluing condition" at $t=0$ (acceleration computed from history matches $\ddot{\phi}^0(0-)$) to ensure $C^2$ smoothness at the junction, though $C^1$ solutions exist without this.
+3. No "tangential" causal intersections in the history (roots are simple).
+
+**Statement:**
+There exists a maximal time $T > 0$ and a unique solution $\mathbf{x}(t)$ on $[-h, T)$ such that $\mathbf{x}_0 = \phi^0$ and $\mathbf{x}(t)$ satisfies the regularized Master Equation.
+
+*Proof Strategy:*
+The problem is reduced to $\dot{\mathbf{x}}(t) = \mathbf{v}(t), \dot{\mathbf{v}}(t) = F(\mathbf{x}_t)$. Since $F$ is locally Lipschitz on the open subset of $\mathcal{H}$ where causal roots are simple (Lemma 1), the Picard-Lindelöf theorem for Banach spaces applies.
+
+---
+
+### 5. Global Existence vs. Blow-Up
+
+Unlike Newtonian gravity, global existence is **not guaranteed** simply by avoiding collisions, because the delay equation can harbor "runaway" modes where self-acceleration diverges.
+
+#### Theorem 2 (Continuation Principle)
+The solution $\mathbf{x}(t)$ can be extended as long as the state $\mathbf{x}_t$ remains within a compact subset of the phase space where causal roots are simple.
+
+#### Definition 4 (Blow-Up Criteria)
+The solution ceases to exist at finite time $T^*$ if:
+1. **Collision:** $\inf_{i,j} \|\mathbf{x}_i(t) - \mathbf{x}_j(t')\| \to 0$ inside the regularization kernel support.
+2. **Infinite Speed:** $\sup_i \|\mathbf{v}_i(t)\| \to \infty$.
+3. **Causal Shock:** The derivative of the delay $\dot{\tau}(t)$ diverges (Doppler factor becomes singular). This occurs if a particle moves directly toward a receiver at speed $v = c_f$.
+
+**Remark (Self-Hit Instability):** The most dangerous failure mode for MCB stability is Type 2/3. If self-hit repulsion is not sufficiently strong or timely to counteract orbital collapse, or if it adds energy faster than it radiates/disperses, velocities may diverge.
+
+---
+
+### 6. The MCB Attractor: Conjecture and Stability
+
+We formulate the physical hypothesis of the MCB as a mathematical conjecture regarding the topological dynamics of the system.
+
+#### Definition 5 (The Poincare Return Map)
+Let $\Sigma$ be a transverse section in $\mathcal{H}$ defined by:
+$$
+\Sigma = \{ \phi \in \mathcal{H} : (\phi_1(0) - \phi_2(0)) \cdot \hat{\mathbf{e}}_y = 0, \quad \dot{\phi}_1(0) \cdot \hat{\mathbf{e}}_x > 0 \}.
+$$
+(Physically: The binary separation vector crosses the y-axis).
+The Poincare map $P: D(\Sigma) \to \Sigma$ is defined by evolving the flow from $\phi \in \Sigma$ until the next crossing.
+
+#### Conjecture A (Existence of the MCB Limit Cycle)
+There exists a fixed point $\phi^* \in \Sigma$ corresponding to a periodic solution $\mathbf{x}^*(t)$ with period $T_{MCB}$. This solution corresponds to the Maximum-Curvature Orbit.
+
+#### Conjecture B (Spectral Stability)
+Let $DP(\phi^*)$ be the linearized monodromy operator of the Poincare map.
+The spectrum $\sigma(DP(\phi^*))$ lies strictly within the unit disk in the complex plane, excluding the trivial eigenvalue $\lambda=1$ associated with time translation.
+$$
+\sup \{ |\lambda| : \lambda \in \sigma(DP(\phi^*)) \setminus \{1\} \} < 1.
+$$
+
+**Physical Implication:** If Conjecture B holds, the MCB is an **Asymptotic Attractor**. If the spectrum contains elements with $|\lambda| > 1$, the MCB is unstable. If $|\lambda| = 1$, it is a center (non-generic in dissipative delay systems).
+
+---
+
+### 7. Gap Ledger: Missing Proofs & Analytical Risks
+
+The following are the precise mathematical gaps that currently prevent the theory from being rigorous. These define the "To-Do" list for the Analysis/Math team.
+
+| ID | Lemma / Theorem Needed | Status | Risk Level | Description |
+|:---|:---|:---|:---|:---|
+| **GAP-01** | **Global Energy Bound** | *Missing* | **Critical** | We lack a proof that the self-hit force does not pump infinite energy into the system. Need an *a priori* estimate on $\|\mathbf{v}(t)\|$ for the regularized self-force. |
+| **GAP-02** | **Hopf Bifurcation at $c_f$** | *Conjecture* | High | We postulate a bifurcation from spiral-in to stable orbit as $v$ crosses $c_f$. Standard Hopf theorems for DDEs need to be adapted to state-dependent delays. |
+| **GAP-03** | **Regularization Limit $\eta \to 0$** | *Missing* | Medium | We compute with $\eta > 0$. We need to show that the attractor $\phi^*_\eta$ converges to a limit distribution $\Phi^*$ as $\eta \to 0$, rather than vanishing or diverging. |
+| **GAP-04** | **Basin of Attraction Topology** | *Unknown* | Medium | Is the basin of attraction simply connected? Does it include "zero velocity" initial data (starting from rest)? |
+
+---
+
+#### Final Remark from the Analysis Desk
+The system defined above is **locally well-posed**. The master equations do not immediately generate nonsense. However, **global stability is not guaranteed** by the current math. The simulation program (Sol) must specifically test for **GAP-01** (runaway acceleration) and **GAP-02** (existence of the cycle). If the numerical eigenvalues of the Poincare map are outside the unit circle, the "MCB Attractor" hypothesis is mathematically false for this force law.
