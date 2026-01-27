@@ -27,7 +27,7 @@ $$
 \frac{d^2 \mathbf{x}_i}{dt^2} = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,\hat{\mathbf{r}}_{ij}(t;t_0)
 $$
 
-**Key insight**: The "state" at time $t$ is not the finite-dimensional tuple $(\mathbf{x}_i(t), \mathbf{v}_i(t))$ but rather the **entire trajectory history** $\{\mathbf{x}_i(t') : t' < t\}$ over the causal horizon. Formally, this is a **Neutral Functional Differential Equation (NFDE)** with state-dependent delays, making the effective phase space **infinite-dimensional**.
+**Key insight**: The "state" at time $t$ is not the finite-dimensional tuple $(\mathbf{x}_i(t), \mathbf{v}_i(t))$ but rather the **entire trajectory history** $h_t(\theta) = \mathbf{x}(t+\theta)$ for $\theta \in [-\tau_{\max}, 0]$ over the causal horizon. Formally, this is a **Neutral Functional Differential Equation (NFDE)** with state-dependent delays, making the effective phase space **infinite-dimensional**.
 
 Yet the ontology asserts the existence of **stable, discrete assemblies** (Noether cores, electrons, quarks) with fixed finite-dimensional properties. This presents the central puzzle:
 
@@ -75,7 +75,7 @@ The self-hit regime is best understood as **delay-coupled oscillators** in flat 
 
 The $1/r^2$ interaction kernel is singular on causal wake surfaces. When $|\mathbf{v}| > c_f$ causes a particle to traverse its own past wake (the "shock cone"), the force term potentially diverges. 
 
-**Current status**: At present, existence and uniqueness are only clear for **mollified interactions** (finite regularization parameter $\eta$). Whether the $\eta \to 0$ limit exists as a mathematically well-posed theory is an **open question**; until this is resolved, all claims using sharp $1/r^2$ hits should be labeled as **formal** or **heuristic**.
+**Current status**: At present, existence and uniqueness are only clear for **mollified interactions** (finite regularization parameter $\eta$). When delays are state-dependent, the root set $\mathcal{C}_j(t)$ can bifurcate or merge, and the delay derivative can blow up, breaking Lipschitz continuity. Whether the $\eta \to 0$ limit exists as a mathematically well-posed theory is an **open question**; until this is resolved, all claims using sharp $1/r^2$ hits should be labeled as **formal** or **heuristic**.
 
 **Critical dichotomy**: Either
 1. The dynamics remain well-posed in the limit $\eta \to 0$ (perhaps maximum-curvature constraints naturally avoid the singularity), or
@@ -83,7 +83,7 @@ The $1/r^2$ interaction kernel is singular on causal wake surfaces. When $|\math
 
 The "meta-stable branching" likely arises precisely where Lipschitz continuity breaks down near these singularities. We may need to define a **weak solution concept** with a selection principle (analogous to entropy conditions in conservation laws) to maintain determinism.
 
-**First task**: Prove global well-posedness for the N-architrino delay system under specified regularization, then rigorously justify continuum limits. Any derivations assuming $\eta \to 0$ should be marked **(formal limit; analytic control TBD)**.
+**First task**: Treat $\eta > 0$ as the fundamental regularized system, prove local existence/uniqueness for the state-dependent delay equation, then attempt a controlled $\eta \to 0$ weak/viscosity limit. Any derivations assuming $\eta \to 0$ should be marked **(formal limit; analytic control TBD)**. Sol’s simulations should converge to the $\eta > 0$ dynamics as $\Delta t \to 0$; if not, the code is wrong.
 
 ---
 
@@ -214,8 +214,9 @@ The deterministic delay dynamics, immense number of architrinos, and meta-stable
 ## VI. Immediate Research Priorities
 
 ### 1. Well-Posedness and Bifurcation Analysis (Poincaré, Tao)
-- Prove global existence/uniqueness for N-architrino delay system with finite $\eta$
-- Investigate $\eta \to 0$ limit: does it exist? If not, determine minimal physical $\eta$
+- Prove local existence/uniqueness for the state-dependent delay system with finite $\eta$ (treat $\eta > 0$ as fundamental)
+- Investigate $\eta \to 0$ limit via a weak/viscosity selection; if it fails, determine minimal physical $\eta$
+- Validate simulations: as $\Delta t \to 0$, numerical trajectories must converge to the $\eta > 0$ dynamics
 - Map phase space near $v = c_f$ bifurcation
 - Classify attractor zoo for binaries and tri-binaries
 - **HIGH PRIORITY**: Establish whether maximum-curvature orbits are robust attractors
