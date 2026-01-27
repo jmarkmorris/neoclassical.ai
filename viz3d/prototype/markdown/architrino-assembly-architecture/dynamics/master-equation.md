@@ -1523,10 +1523,10 @@ To formalize this for a finite, isolated set of architrinos:
 3. Define an **interaction functional** $W(t)$ (you can think of it as “unrealized work”) by
 
    $$
-W(t) \equiv W(t_\ast)
-- \int_{t_\ast}^{t}
-  \sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
-$$
+   W(t) \equiv W(t_\ast)
+   - \int_{t_\ast}^{t}
+     \sum_i m_i\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'.
+   $$
 
 In particular, if we choose the same reference-time convention and drop the explicit $m_i$ factor (absorbing it into the definition of $\mathbf{a}_i$), we can identify this interaction functional with the $U(t)$ defined in Section 6.2, i.e. set $W(t) \equiv U(t)$ up to an overall reference constant.
 
@@ -1648,6 +1648,102 @@ If, instead, $E_{\text{calc}}(t)$ is robustly constant, then we will have:
 
 - A precise, architrino‑level notion of “total energy” that does **not** rely on field energy,
 - A clear understanding of how the apparent amplification near $v = c_f$ is a **delayed, geometry‑driven rerouting** of how and when past emissions change kinetic motion across the ensemble.
+
+---
+
+## 21. Symmetry, Conservation, and Lyapunov Functionals
+
+### 21.1 Introduction
+
+The Master Equation is a state-dependent delay system: acceleration at time $t$ depends on the path-history segment over $[t-h,t]$. In this setting, conservation laws are not functions of the instantaneous state $(\mathbf{x},\mathbf{v})$ alone. Instead, they are **functionals on path history** that track "in-flight" wake contributions.
+
+This section makes the symmetry group explicit and states the corresponding conserved functionals for isolated systems with $\eta > 0$.
+
+### 21.2 Fundamental Symmetry Group
+
+**Definition (Fundamental symmetry group).** The substrate and interaction kernel are invariant under
+$$
+G_{\text{fund}} = E(3) \times \mathbb{R}_{\text{time}},
+$$
+where $E(3)=\mathbb{R}^3 \rtimes O(3)$ acts by spatial translations and rotations, and $\mathbb{R}_{\text{time}}$ acts by time translation.
+
+**Theorem (Invariance of the Master Equation).** If $\mathbf{x}(t)$ is a solution, then:
+
+1. **Time translation:** $\mathbf{y}(t)=\mathbf{x}(t+\tau)$ is a solution for any $\tau \in \mathbb{R}$.
+2. **Spatial isometry:** $\mathbf{y}(t)=R\mathbf{x}(t)+\mathbf{b}$ is a solution for any $R\in O(3)$ and $\mathbf{b}\in\mathbb{R}^3$.
+
+*Proof sketch.* The causal constraint depends only on Euclidean distances and time differences. Both are invariant under $G_{\text{fund}}$. The line-of-action vector $\hat{\mathbf{r}}_{ij}$ transforms covariantly under rotations, so the per-hit acceleration retains the same form.
+
+### 21.3 Generalized Momentum and Angular Momentum
+
+**Definition (Mechanical momentum).**
+$$
+\mathbf{P}_{\text{mech}}(t) = \sum_i m_i \mathbf{v}_i(t).
+$$
+Because the forces are delayed, $\dot{\mathbf{P}}_{\text{mech}}(t)$ is generally nonzero.
+
+**Definition (Wake momentum functional).** For an isolated system, define
+$$
+\mathbf{P}_{\text{wake}}(t) = \mathbf{P}_{\text{wake}}(t_\ast) - \int_{t_\ast}^{t} \sum_i \mathbf{F}_i(s)\,ds,
+$$
+with $\mathbf{F}_i = m_i \mathbf{a}_i$ from the Master Equation.
+
+**Theorem (Total momentum conservation).**
+$$
+\mathbf{P}_{\text{tot}}(t) \equiv \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}(t)
+$$
+is constant in time for isolated systems.
+
+**Definition (Mechanical angular momentum).**
+$$
+\mathbf{L}_{\text{mech}}(t) = \sum_i \mathbf{x}_i(t) \times m_i \mathbf{v}_i(t).
+$$
+
+**Definition (Wake angular momentum functional).**
+$$
+\mathbf{L}_{\text{wake}}(t) = \mathbf{L}_{\text{wake}}(t_\ast) - \int_{t_\ast}^{t} \sum_i \mathbf{x}_i(s)\times \mathbf{F}_i(s)\,ds.
+$$
+
+**Theorem (Total angular momentum conservation).**
+$$
+\mathbf{L}_{\text{tot}}(t) \equiv \mathbf{L}_{\text{mech}}(t) + \mathbf{L}_{\text{wake}}(t)
+$$
+is constant in time for isolated systems.
+
+**Remark.** These definitions mirror the energy bookkeeping in Sections 19-20: the "missing" momentum and angular momentum are attributed to in-flight wake geometry, so the total conserved quantities are functionals of the path history.
+
+### 21.4 Energy Functional and No-Runaway Criterion
+
+Time-translation invariance implies a conserved history functional. In this document we define the total energy as
+$$
+E_{\text{tot}}(t) = K(t) + U(t),
+$$
+where $K$ is kinetic energy and $U$ is the interaction bookkeeping functional defined in Sections 19-20.
+
+**Lemma (Bounded work rate under regularization).** If $\eta>0$ and the mollified kernel bounds the per-hit force, then there exists $F_{\max}(\eta)$ such that
+$$
+\bigg|\frac{dK}{dt}\bigg| \le \sum_i \|\mathbf{F}_i\|\,\|\mathbf{v}_i\|
+\le N\,F_{\max}(\eta)\,v_{\max}(t).
+$$
+
+**Theorem (No-runaway criterion).** For an isolated system with fixed $\eta>0$, if the interaction functional $U(t)$ is bounded below on the admissible history class (for example, by enforcing a minimum separation within the regularized kernel support), then $K(t)$ is bounded for all times where the solution exists. In particular, a runaway $v_{\max}(t)\to\infty$ is only possible if $U(t)\to -\infty$, which requires a collapse toward the singular regime or a breakdown of the regularized assumptions.
+
+*Interpretation.* Self-hit repulsion can transfer energy between $U$ and $K$, but it cannot generate unbounded kinetic energy without a corresponding unbounded decrease in $U$. This is the core diagnostic for excluding unphysical runaway acceleration in the regularized model.
+
+### 21.5 Simulation Diagnostics (Symmetry and Conservation)
+
+In addition to the convergence checks in Section 11, track these conserved functionals in any isolated run:
+
+- **Total energy**: $E_{\text{calc}}(t) = K(t) + U(t)$ should be constant up to the energy-drift thresholds in Section 11.3.
+- **Total momentum**: $\mathbf{P}_{\text{tot}}(t)$ should be constant; monitor $\|\mathbf{P}_{\text{tot}}(t)-\mathbf{P}_{\text{tot}}(0)\|$.
+- **Total angular momentum**: $\mathbf{L}_{\text{tot}}(t)$ should be constant; in planar runs, the unit axis $\hat{\mathbf{n}} = \mathbf{L}_{\text{tot}}/\|\mathbf{L}_{\text{tot}}\|$ should remain fixed.
+- **Binary symmetry defect** (for symmetric initial data):
+$$
+\Delta_{\text{sym}}(t)=\|\mathbf{x}_1(t)+\mathbf{x}_2(t)\|.
+$$
+A secular drift indicates numerical asymmetry or a symmetry-breaking perturbation.
+
+These diagnostics operationalize the symmetry constraints and provide early warning of numerical artifacts or model inconsistencies.
 
 ---
 
