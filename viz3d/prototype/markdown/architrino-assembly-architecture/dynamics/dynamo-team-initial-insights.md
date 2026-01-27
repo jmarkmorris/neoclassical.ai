@@ -147,18 +147,22 @@ This is **refractive gravity**: geodesics are Fermat paths in an inhomogeneous m
 
 > **Example (black-hole core):** If binaries survive in the core, their rapid orbital motion contributes to the *internal* energy density of the core. The core “gains” energy only through compression and infall (more assemblies packed at tighter radii), not by creation. In a closed region, total energy remains conserved; the accounting shifts toward high-frequency orbital motion and wake energy concentrated in a dense volume.
 
-**Potential and kinetic energy (step-by-step):**  
-1. **Kinetic energy (KE):** For each architrino $i$, define $K_i(t) = \tfrac{1}{2} m_i |\mathbf{v}_i(t)|^2$.  
+**Potential and kinetic energy (step-by-step):**
+1. **Kinetic energy (KE):** For each architrino $i$, define $K_i(t) = \tfrac{1}{2} m_i |\mathbf{v}_i(t)|^2$.
 2. **Pairwise wake contribution:** For each ordered pair $(i,j)$, define a wake functional that depends on the emitter’s history and the receiver’s trajectory:
-$$
-W_{ij}(t) = \mathcal{W}\!\left[\{\mathbf{x}_j(t') : t' \le t\},\, \mathbf{x}_i(t)\right],
-$$
-with the delay roots $t_0 \in \mathcal{C}_j(t)$ setting the interaction geometry.  
+
+    $$
+    W_{ij}(t) = \mathcal{W}\!\left[\{\mathbf{x}_j(t') : t' \le t\},\, \mathbf{x}_i(t)\right],
+    $$
+
+    with the delay roots $t_0 \in \mathcal{C}_j(t)$ setting the interaction geometry.
 3. **Potential energy (PE):** The potential energy at time $t$ is the superposed wake bookkeeping:
-$$
-U(t) = \sum_i \sum_{j\ne i} W_{ij}(t).
-$$
-This is not a static scalar field at $\mathbf{x}$ but a history-dependent functional.  
+
+    $$
+    U(t) = \sum_i \sum_{j\ne i} W_{ij}(t).
+    $$
+
+    This is not a static scalar field at $\mathbf{x}$ but a history-dependent functional.
 4. **Energy accounting:** The total energy is $E(t) = \sum_i K_i(t) + U(t)$; conservation is an open problem that depends on the precise form of $\mathcal{W}$ and the regularization of the delay kernel.
 
 At higher levels, $U(t)$ coarse-grains into a local Noether-core volume gradient (assembly/core scale) and then into an effective refractive/metric field (continuum scale). The ontology shift is that PE is fundamentally geometry of causal history, with the familiar potential emerging by coarse-graining.
