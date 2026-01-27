@@ -258,7 +258,7 @@ The deterministic delay dynamics, immense number of architrinos, and meta-stable
 ### 7. Lorentz Suppression Mechanism ⚠️ **[HIGH RISK]**
 The claim that assembly dynamics in the Noether Sea automatically produce Lorentz-like length contraction and time dilation (to $\lesssim 10^{-17}$ precision) is currently a **hypothesis**. If detailed assembly models fail to generate this suppression mechanically and exactly, the ontology with a detectable absolute frame will be falsified by existing experiments (Michelson-Morley, modern Lorentz-violation tests).
 
-**Priority**: Derive contraction/dilation from tri-binary coupling to Noether Sea and verify precision bounds.
+**Priority**: Frame this as a **group mismatch** problem (Galilean substrate vs Poincaré effective symmetry) and derive the Lorentz factor from the delay geometry. The required theorem: after a Galilean boost, the assembly relaxes to a new equilibrium whose internal clocks/rulers are isomorphic to the rest state **iff** the transformation uses $\gamma = 1/\sqrt{1-v^2/c_f^2}$. This should be derived from Doppler shifts in the causal feedback loop and action minimization, not imposed by hand.
 
 ---
 
@@ -305,10 +305,10 @@ Every major claim requires:
 The following architectural pieces are **most fragile** and require focused analytic/simulation effort:
 
 ### 1. **Lorentz Suppression Mechanism** ⚠️ **[CRITICAL]**
-- **Claim**: Assembly dynamics automatically produce length contraction and time dilation mimicking SR/GR to $< 10^{-17}$ precision
+-- **Claim**: Assembly dynamics rearrange symmetry so that internal clocks/rulers transform with the Lorentz factor, yielding effective Poincaré invariance to $< 10^{-17}$ precision
 - **Status**: Hypothesis
 - **Failure mode**: If assemblies do not naturally contract/dilate, absolute frame becomes operationally detectable → immediate falsification by existing experiments
-- **Required**: Explicit derivation from tri-binary + Noether Sea coupling
+- **Required**: Explicit derivation showing the boosted equilibrium is isomorphic to the rest state only under $\gamma$, from Doppler-shifted delay feedback and action minimization
 
 ### 2. **Maximum-Curvature Orbit Stability** ⚠️ **[CRITICAL]**
 - **Claim**: Maximum-curvature configurations are robust attractors
