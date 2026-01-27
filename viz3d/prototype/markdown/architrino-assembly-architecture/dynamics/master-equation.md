@@ -78,6 +78,22 @@ Numerical implementations (Sol) discretize this integral by sampling discrete em
 
 ---
 
+### 1.4 Working Non-Local Action (Defines $E_{\text{wake}}$)
+
+To define the conserved energy in a delay system, we require an explicit non-local action. A minimal, $\eta$-regularized working form is:
+$$
+S = \int dt \left[\sum_i \frac{1}{2} m_i |\dot{\mathbf{x}}_i(t)|^2\right]
+ + \frac{1}{2}\sum_{i,j} \kappa\,\sigma_{ij}\,|q_i q_j|
+ \int dt \int_{-\infty}^{t} dt_0\;
+\frac{1}{r_{ij}^2(t; t_0)}\,
+\delta_\eta\!\big(r_{ij}(t; t_0) - c_f(t - t_0)\big),
+$$
+where $\delta_\eta$ is a mollified delta (shell of width $\eta$). This action yields the Master Equation under variation and, by time-translation symmetry, defines the conserved energy:
+$$
+E_{\text{total}}(t) = \sum_i \frac{1}{2}m_i|\dot{\mathbf{x}}_i(t)|^2 + E_{\text{wake}}(t),
+$$
+with $E_{\text{wake}}$ given by the associated Noether functional over the history segment. The explicit $E_{\text{wake}}$ is to be derived from this action in the $\eta>0$ system.
+
 ## 2. Causal Interaction Set (The Geometry of Delay)
 
 ### 2.1 Definition of Causal Emission Times

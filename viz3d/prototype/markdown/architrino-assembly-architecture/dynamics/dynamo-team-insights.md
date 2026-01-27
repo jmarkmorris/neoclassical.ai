@@ -203,6 +203,8 @@ H(t) = \sum_i \frac{1}{2}m_i v_i^2 + \frac{1}{2}\sum_{i,j}\int_{-\tau_{\max}}^0 
 $$
 where the integral accounts for “potential in flight” carried by the causal wakes. This functional **is** the definition of $E_{\text{wake}}$ and must be derived from the action.
 
+**Working action (η-regularized)**: Use the non-local action in `dynamics/master-equation.md` (Section 1.4) as the starting point. The Noether energy derived from time translations of that action is the explicit $E_{\text{wake}}$.
+
 **Ontological clarification**: In this framework, "wake energy" is **not an independent field energy density living in the void**. It is the canonical history functional conjugate to time translations, derived from the non-local action. All energy ultimately resides in architrino kinetic and assembly-internal motion; $E_{\text{wake}}$ encodes how much of that capacity for kinetic change is geometrically allocated by past emissions but not yet realized. In periodic MCB states the wake is predominantly reactive (near-field) and carries no net energy flux; radiative components appear only when symmetry is broken.
 
 **Self-hit interpretation**: When a particle intersects its own wake, energy transfers between the history bookkeeping and instantaneous kinetic energy. The "mass" of stable assemblies may be the **trapped energy of self-intersecting history loops**.

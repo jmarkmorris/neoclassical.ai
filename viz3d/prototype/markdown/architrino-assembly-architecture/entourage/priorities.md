@@ -30,10 +30,15 @@ I think the priority should be on the math and the mapping. advancing the mappin
 - attempt to understand open ai billing
 - get a usb-c hub and cable management hub must be capable of video to my monitors - look up specs
 - use open???? credits
-
-**Role:** Phe – Standard Model & QFT Phenomenologist
-
-Looking at byte counts as a proxy for existing content investment, and considering **strategic impact** (what unlocks downstream physics), here are my top 3 recommendations:
+- gears idea
+- 2h vs h
+- mid orbit always at field speed = though r varies.
+- can we now pin down the radius of gen II?
+- once a single dipole reaches max curvature then it has a chance to link up with others and become a bubble that inflates?
+and now all three orbits are stable 'circular' in an abstract sense given precession and perturbation. 
+there are stable orbits at each h-bar
+- so the Noether core must self stabilize itself. Gen II = field speed. Does the inner binary float or stay at the minimum?  It is probably the main source and sync of energy.  So the symmetry breaking point. It operates like a gear.
+- It takes a full h or h-bar internally which is two h or h-bar. (check).
 
 ---
 
