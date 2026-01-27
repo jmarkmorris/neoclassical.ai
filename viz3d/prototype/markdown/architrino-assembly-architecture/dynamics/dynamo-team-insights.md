@@ -14,7 +14,7 @@ The ontology presents us with an unusually clean separation:
 - **Dynamics**: Point entities (architrinos) interacting via finite-speed causal wake surfaces with path-history dependence
 - **Emergence**: All non-trivial structure—geometry, particles, fields—lives in the *bundle of worldlines and wakes*, not in the substrate itself
 
-This separation enables a **hierarchy of dynamical atlases**: local charts of assembly phase space organized by regime (low/high density, weak/strong self-hit, sub/super-$c_f$) with explicit gluing maps between regions. If we construct this atlas correctly, the entire architecture—emergent metric, probabilistic laws, particle taxonomy—will have a coherent backbone and remain simulation-ready.
+This separation enables a **hierarchy of dynamical atlases**: local charts of assembly phase space organized by regime (low/high density, weak/strong self-hit, sub/super-$c_f$) with explicit gluing maps between regions. The emergence layer should be formalized as a **sheaf of local assembly states** over absolute timespace, so that sheaf cohomology can classify global excitations (e.g., field-like twists in orientation fields). If we construct this atlas correctly, the entire architecture—emergent metric, probabilistic laws, particle taxonomy—will have a coherent backbone and remain simulation-ready.
 
 ---
 
@@ -39,8 +39,10 @@ The answer likely lies in the **moduli space of self-intersecting trajectories**
 
 Mathematically, we should organize assemblies into **categories** where:
 - **Objects**: Assembly configurations equipped with their internal dynamics and invariants
-- **Morphisms**: Decay/transformation channels, coarse-graining maps, adiabatic deformations preserving key invariants (charge, topological type, action)
+- **Morphisms**: Cobordisms of worldline knots embedded in the causal wake field; decay/transformation channels, coarse-graining maps, adiabatic deformations preserving key invariants (charge, topological type, action)
 - **Stable particles**: Objects with no (or highly suppressed) outgoing morphisms
+
+**Action item (categorical dynamics):** Define the **elementary cobordisms** allowed by the interaction law (e.g., strand crossing with energy penalty, loop creation/annihilation). These generate the morphisms and enable computation of transition amplitudes between assembly types (categorical precursor to decay rates and cross-sections).
 
 This categorical structure can be organized as **fibered categories over absolute timespace**: over each region of $\mathbb{R}^3 \times \mathbb{R}$ lives a category of assemblies and their morphisms, glued by compatibility of interaction laws.
 
@@ -288,6 +290,7 @@ $$
 \Lambda^a{}_b(\mathbf{v})\ \text{Lorentz with }\gamma = (1-v^2/c_f^2)^{-1/2}.
 $$
 This gives a concrete simulation diagnostic: reconstruct $e^a{}_\mu$ from internal periods and bond lengths of a moving tri-binary and test whether it transforms Lorentzian.
+**Moduli-space test:** Treat the space of stable tri-binary configurations $\mathcal{M}_{TB}$ as a fiber bundle over velocity space. The Lorentz-suppression claim requires $\mathcal{M}_{TB}(\mathbf{v})$ to be canonically isomorphic to $\mathcal{M}_{TB}(\mathbf{0})$ only after rescaling the internal metric by $\gamma^{-1}$. If the fiber changes shape (e.g., inner/outer radius ratios drift) rather than scale, the particle changes identity under motion and the mechanism fails.
 
 ---
 
