@@ -130,12 +130,24 @@ $$
 g_{\mu\nu}^{\text{eff}} = e^a{}_\mu e^b{}_\nu \eta_{ab}
 $$
 
+**First working ansatz (weak-field, quasi-static):** Commit to a concrete leading-order frame field:
+$$
+e^0{}_0(\mathbf{x}) \approx 1 + \alpha\,\Phi_{\text{core}}(\mathbf{x}),\qquad
+e^i{}_j(\mathbf{x}) \approx \delta^i{}_j + \beta\,\Psi^i{}_j(\mathbf{x}),
+$$
+where $\Phi_{\text{core}}$ is a scalar functional of $\rho_{\text{core}}$ (Noether-core overdensity) and $\Psi^i{}_j$ encodes anisotropic orientation of neutral axes. Even with provisional $\alpha,\beta$, this provides a concrete metric to test: recover the Newtonian limit and check the sign/order of light bending.
+
 **Emergent curvature**: The Cartan curvature of this frame bundle, not of the void. Operational observers measure geodesics of $g_{\mu\nu}^{\text{eff}}$, not of the substrate, but this claim must be tied to explicit observables (e.g., redshift, light bending) in defined regimes.
 
 **Research program** *(design goals, not established results)*:
 1. Derive explicit functional form $g_{\mu\nu}[\rho_{\text{core}}, u_{\text{core}}, \text{orientations}]$
 2. Identify a minimal test set (redshift, light bending, orbital precession) and the regimes where geodesics should shadow GR (Schwarzschild, FRW, etc.)—recovery of GR is a **design goal**, not yet an established result
 3. Identify breakdown regimes and novel predictions
+
+**Scale-separation criterion (GR vs. non-GR):**
+- Define $\epsilon_{\text{geo}} \sim \ell_{\text{core}} / L_{\text{curv}}$, comparing core scale to curvature radius inferred from $\rho_{\text{core}}$.
+- For $\epsilon_{\text{geo}} \ll 1$ and weak time-dependence of $\rho_{\text{core}}$, the effective connection from $e^a{}_\mu[\rho_{\text{core}}, u_{\text{core}}]$ should approximate a GR connection to $O(\epsilon_{\text{geo}}^2)$; use perihelion precession, Shapiro delay, and light bending to bound $\epsilon_{\text{geo}}$.
+- For $\epsilon_{\text{geo}} \sim 1$ (near black-hole cores, sharp gradients, Planck-alignment layers), expect refractive/anisotropic deviations that are not describable by an Einstein metric sourced by a smooth stress-energy tensor.
 
 This is **refractive gravity**: geodesics are Fermat paths in an inhomogeneous medium. Import machinery from **optical metrics and eikonal limits**.
 
@@ -270,6 +282,12 @@ Only after this can we ask whether $P(A_k)$ varies smoothly with macroscopic con
 The claim that assembly dynamics in the Noether Sea automatically produce Lorentz-like length contraction and time dilation (to $\lesssim 10^{-17}$ precision) is currently a **hypothesis**. If detailed assembly models fail to generate this suppression mechanically and exactly, the ontology with a detectable absolute frame will be falsified by existing experiments (Michelson-Morley, modern Lorentz-violation tests).
 
 **Priority**: Frame this as a **group mismatch** problem (Galilean substrate vs Poincaré effective symmetry) and derive the Lorentz factor from the delay geometry. The required theorem: after a Galilean boost, the assembly relaxes to a new equilibrium whose internal clocks/rulers are isomorphic to the rest state **iff** the transformation uses $\gamma = 1/\sqrt{1-v^2/c_f^2}$. This should be derived from Doppler shifts in the causal feedback loop and action minimization, not imposed by hand.
+**Cartan reformulation:** Under a substrate Galilean boost followed by relaxation, the effective tetrad should transform as
+$$
+\tilde e^a{}_\mu = \Lambda^a{}_b(\mathbf{v})\, e^b{}_\mu,\quad
+\Lambda^a{}_b(\mathbf{v})\ \text{Lorentz with }\gamma = (1-v^2/c_f^2)^{-1/2}.
+$$
+This gives a concrete simulation diagnostic: reconstruct $e^a{}_\mu$ from internal periods and bond lengths of a moving tri-binary and test whether it transforms Lorentzian.
 
 ---
 
@@ -319,7 +337,7 @@ The following architectural pieces are **most fragile** and require focused anal
 -- **Claim**: Assembly dynamics rearrange symmetry so that internal clocks/rulers transform with the Lorentz factor, yielding effective Poincaré invariance to $< 10^{-17}$ precision
 - **Status**: Hypothesis
 - **Failure mode**: If assemblies do not naturally contract/dilate, absolute frame becomes operationally detectable → immediate falsification by existing experiments
-- **Required**: Explicit derivation showing the boosted equilibrium is isomorphic to the rest state only under $\gamma$, from Doppler-shifted delay feedback and action minimization
+- **Required**: Explicit derivation showing the boosted equilibrium is isomorphic to the rest state only under $\gamma$, from Doppler-shifted delay feedback and action minimization; equivalently, show the effective tetrad transforms as $\tilde e = \Lambda e$.
 
 ### 2. **Maximum-Curvature Orbit Stability** ⚠️ **[CRITICAL]**
 - **Claim**: Maximum-curvature configurations are robust attractors
