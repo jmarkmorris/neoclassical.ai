@@ -93,7 +93,7 @@ The "meta-stable branching" likely arises precisely where Lipschitz continuity b
 
 Since the substrate $\mathbb{R}^3 \times \mathbb{R}$ is topologically trivial, all interesting topology lives in the **braiding and linking of worldlines** and the structure of recurrent trajectories.
 
-**Central hypothesis**: Stable assemblies correspond to **topologically protected knots** of causal wake surfaces. If a trajectory wraps around its own past wake in a specific braiding pattern (the tri-binary structure), it creates a self-reinforcing geometric cage.
+**Central hypothesis**: Stable assemblies are not generic knots of worldlines (since 1D curves in $\mathbb{R}^3 \times \mathbb{R}$ can typically be untied), but are protected by a **causal self-linking obstruction**. The obstruction is the self-hit singularity barrier (or its regularized high-potential shell): trajectories cannot be continuously deformed across the divergent self-force region.
 
 **Topological Periodic Table**:
 Classify assemblies by:
@@ -103,7 +103,9 @@ Classify assemblies by:
 - **Orbit chirality** (CW vs CCW around the momentum vector)
 - **Charge decoration** on six polar sites ($\pm \epsilon$ assignments)
 
-**Key conjecture**: Discrete charge quantization ($\epsilon = e/6$) is not arbitrary. The unit magnitude is fixed per architrino/site, while braid topology (winding/linking) selects which counts and sign patterns are stable, yielding quantized net charge for the assembly.
+**Causal self-linking (action item):** Define a **Causal Linking Number** $Lk_{\text{causal}}$ by treating the trajectory $\gamma(t)$ together with its primary causal wake vector $\hat{\mathbf{r}}(t)$ as a ribbon. When $|\mathbf{v}| > c_f$, the trajectory winds around its own past causal cone, creating a topological obstruction in the complement of the causal wake. This supplies a nontrivial winding invariant that cannot be removed without crossing the self-hit barrier.
+
+**Key conjecture**: Discrete charge quantization ($\epsilon = e/6$) is not arbitrary. The unit magnitude is fixed per architrino/site, while $Lk_{\text{causal}}$ (and related winding/linking counts) selects which counts and sign patterns are stable, yielding quantized net charge for the assembly.
 
 The tri-binary structure (three nested counter-rotating binaries at radii $R_{\text{inner}}, R_{\text{middle}}, R_{\text{outer}}$, with **energy-separated** radii/frequencies in low-energy conditions and orbital planes tending toward near-orthogonality) has inherent topological rigidity. Combined with geometric parameters, this creates a **finite classification space**—a genuine periodic table of possible assemblies.
 
