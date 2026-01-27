@@ -141,6 +141,16 @@ This is **refractive gravity**: geodesics are Fermat paths in an inhomogeneous m
 
 ## V. Energy, Conservation Laws, and the Noether Sea
 
+**Locality and dominance:** All architrinos are in causal relation and can exchange energy in principle, but finite field speed and distance falloff make local interactions **dominant**. Distant couplings are delayed and weak, so they contribute corrections rather than setting the primary dynamics. This dominance of local exchange is what allows stable assemblies and meaningful energy bookkeeping in practice.
+
+**Maximal-curvature binary (MCB) and energy flow:** In a steady, phase-locked MCB orbit, each architrino’s kinetic energy is approximately constant over a cycle, while the “potential” is best treated as a time-dependent wake/history functional that oscillates but returns to its prior value when the loop closes. The binary generates a dynamic potential wake, but in the ideal periodic state this wake is predominantly **reactive** (near-field): it can exchange energy with nearby assemblies yet carries **zero net energy flux** over a cycle. Apparent energy export only arises when the loop is perturbed (asymmetry, gradients, dissipation), at which point part of the wake becomes **radiative** and the binary’s kinetic energy can change. Thus the MCB is a singularity preventer by trapping energy in a tight, self-consistent feedback loop, not by creating energy ex nihilo.
+
+> **Example (black-hole core):** If binaries survive in the core, their rapid orbital motion contributes to the *internal* energy density of the core. The core “gains” energy only through compression and infall (more assemblies packed at tighter radii), not by creation. In a closed region, total energy remains conserved; the accounting shifts toward high-frequency orbital motion and wake energy concentrated in a dense volume.
+
+**Potential energy across ontologies:** At the binary level, “potential energy” is not a static scalar but a history-dependent wake/geometry functional that trades with kinetic energy. At the assembly/core level, it coarse-grains into the local Noether-core volume gradient. At the spacetime/continuum level, it appears as an effective refractive or metric field governing trajectories. The ontology shift is that PE is fundamentally geometry of causal history, and the familiar potential is a coarse-grained expression of that geometry.
+
+> **Example (spherical wake and energy extraction):** A causal wake emitted on a spherical surface carries a fixed total flux $q = |e/6|$ and propagates indefinitely, but its influence dilutes with distance. The energy flux per area falls with radius, so each architrino only samples a small, weakening patch. Many receivers can interact with the same wake, yet the total extractable energy is bounded by what the wake carries; infinite propagation does not imply infinite energy.
+
 ### Path-History Energy Functional (Noether, Kolmogorov)
 
 Standard energy conservation assumes instantaneous potentials. Here, the interaction law is **non-Markovian**: forces at $t$ depend on past trajectories via wake geometry.
