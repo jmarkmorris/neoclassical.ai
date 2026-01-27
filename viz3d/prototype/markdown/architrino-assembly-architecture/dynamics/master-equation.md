@@ -32,6 +32,8 @@ At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ de
 
 This is a **strictly local (in spacetime) interaction rule**, despite being non-Markovian (depends on path history).
 
+In the absence of any causal hits, an architrino follows inertial motion: straight-line, constant-velocity trajectories in the fixed Euclidean background.
+
 ### 1.2 Abstract Form
 
 The Master Equation of Motion (abstract level):
