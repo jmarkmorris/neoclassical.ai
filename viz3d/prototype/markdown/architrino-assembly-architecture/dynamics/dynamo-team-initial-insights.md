@@ -171,7 +171,7 @@ At higher levels, $U(t)$ coarse-grains into a local Noether-core volume gradient
 
 ### Path-History Energy Functional (Noether, Kolmogorov)
 
-Standard energy conservation assumes instantaneous potentials. Here, the interaction law is **non-Markovian**: forces at $t$ depend on past trajectories via wake geometry.
+Standard energy conservation assumes instantaneous potentials. Here, the interaction law is **non-Markovian**: forces at $t$ depend on past trajectories via wake geometry, and the dominant contributions are local in timespace due to finite $c_f$ and distance falloff.
 
 **Critical insight**: The "state" is not $(x,v)$ but a function over a past interval. We **aim to construct** a history-aware interaction functional $E_{\text{wake}}$ such that:
 $$
@@ -179,13 +179,13 @@ E_{\text{total}}(t) = \sum_i \frac{1}{2}m_i v_i^2 + E_{\text{wake}}[\{\mathbf{x}
 $$
 is conserved for isolated systems. Whether this is exactly achievable, or only approximately in certain regimes, is an **open problem**.
 
-**Ontological clarification**: In this framework, "wake energy" is **not an independent field energy density living in the void**. It is a **bookkeeping functional** of architrino worldlines and their future causal intersections. All energy ultimately resides in the architrinos' kinetic and assembly-internal motion; $E_{\text{wake}}$ encodes how much of that capacity for kinetic change is geometrically "pre-allocated" by past emissions but not yet realized.
+**Ontological clarification**: In this framework, "wake energy" is **not an independent field energy density living in the void**. It is a **bookkeeping functional** of architrino worldlines and their causal intersections. All energy ultimately resides in architrino kinetic and assembly-internal motion; $E_{\text{wake}}$ encodes how much of that capacity for kinetic change is geometrically allocated by past emissions but not yet realized. In periodic MCB states the wake is predominantly reactive (near-field) and carries no net energy flux; radiative components appear only when symmetry is broken.
 
-**Self-hit interpretation**: When a particle intersects its own wake, energy transfers between the *history bookkeeping* and *instantaneous kinetic energy*. The "mass" of stable assemblies may be the **trapped energy of self-intersecting history loops**.
+**Self-hit interpretation**: When a particle intersects its own wake, energy transfers between the history bookkeeping and instantaneous kinetic energy. The "mass" of stable assemblies may be the **trapped energy of self-intersecting history loops**.
 
 **Open problems**:
-- Define $E_{\text{wake}}$ rigorously and prove (or falsify) $dE_{\text{total}}/dt = 0$ for isolated systems under the Master Equation
-- If exact conservation fails, characterize the precise non-conservative terms
+- Define $E_{\text{wake}}$ rigorously (e.g., via pairwise wake functionals $W_{ij}$) and prove (or falsify) $dE_{\text{total}}/dt = 0$ for isolated systems under the Master Equation
+- If exact conservation fails, characterize the precise non-conservative terms (radiative loss, regularization artifacts)
 - Relate $E_{\text{wake}}$ to assembly binding energy and mass
 
 Whether we truly have conservative microdynamics affects the statistical framework (invariant measures, equilibrium) profoundly.
