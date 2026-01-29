@@ -131,6 +131,8 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 
 This section collects the full two-body, self-hit analysis for the maximum-curvature binary (MCB), including delay geometry, force components, stability criteria, and computational diagnostics. It is the canonical reference for MCB attractor status.
 
+MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to the MCB gap ledger (MCB-07). The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
+
 ## Maximum-Curvature Circular Orbit (Opposite Charges)
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed, purely radial per-hit law.
@@ -981,8 +983,6 @@ If the attractor test succeeds, the MCB is the natural building block for tri-bi
 ### 1. Introduction and Scope
 
 The Master Equation of Motion for the Architrino system constitutes a system of **State-Dependent Neutral Delay Differential Equations (SD-NDDEs)**. Unlike ordinary differential equations (ODEs) where the state is a point in $\mathbb{R}^{6N}$, the state of this system is a **function segment** representing the past history of the particles.
-
-This section establishes the rigorous analytical framework required to discuss the existence, uniqueness, and stability of the Maximum-Curvature Binary (MCB). We treat the regularization parameter $\eta > 0$ as fixed for the analysis of well-posedness; the limit $\eta \to 0$ is treated as a singular perturbation problem in the Gap Ledger.
 
 We denote the position of the $i$-th architrino as $\mathbf{x}_i(t) \in \mathbb{R}^3$. We work in the **Euclidean Void** with fixed metric $\delta_{ij}$.
 
