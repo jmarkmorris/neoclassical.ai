@@ -935,6 +935,8 @@ Possible bifurcation routes as $s$ increases further:
 
 Each of these failure modes would invalidate the attractor role of the MCB assumed by the architecture.
 
+**Self-hit instability note:** A high-risk failure mode is runaway acceleration when self-hit repulsion is not sufficiently strong or timely to counteract orbital collapse, or when it adds energy faster than the system can dissipate. This is tracked explicitly in the global energy bound gap (MCB-09).
+
 ---
 
 #### 6. Gap Ledger: Missing Proofs and Open Problems
@@ -964,13 +966,42 @@ Until MCB-02, MCB-04, and MCB-07 are addressed (at least numerically with strong
 
 ### Additional diagnostics
 
-**Eta dependence**: Track $R_{\text{MCB}}(\eta)$, $s_{\text{MCB}}(\eta)$, and nontrivial multipliers versus $\eta$. If stability degrades as $\eta \to 0$, the MCB is likely a regularization artifact.
+**Energy accounting (numerical)**:
+- **Calculated total energy:**  
+  $$
+  E_{\text{calc}}(t) = K(t) + \mathcal{W}(t)
+  $$
+  with
+  $$
+  \mathcal{W}(t_{n+1}) = \mathcal{W}(t_n) - \sum_i \mathbf{v}_i(t_n) \cdot \mathbf{a}_i(t_n) \Delta t.
+  $$
+- **Energy drift:** $\delta E(t) = |(E_{\text{calc}}(t) - E_{\text{calc}}(0)) / E_{\text{calc}}(0)|$.
+- **Expected drift rates:** Tier-1 pass $\delta E < 10^{-9}$ per orbit (symplectic/geometric); Tier-2 pass $\delta E < 10^{-6}$ per orbit (standard RK4).
 
-**Energy drift (proxy)**: Monitor a proxy energy $E(t)=K(t)+U_{\text{wake}}(t)$ and require drift per period to be small and unbiased. If the only stability depends on numerical dissipation, it is not physical.
+**Angular momentum / planarity**:
+- For planar initial data, the direction of $\mathbf{L}_{\text{mech}} = \sum \mathbf{x} \times \mathbf{p}$ should be conserved:
+  $$
+  \hat{\mathbf{n}} = \frac{\mathbf{L}_{\text{mech}}}{\|\mathbf{L}_{\text{mech}}\|},\quad \frac{d}{dt}\hat{\mathbf{n}} \approx 0.
+  $$
+- Planarity check: track $\mathbf{x}_i \cdot \hat{\mathbf{z}}$ if initialized in the $xy$ plane.
+
+**Symmetry drift metric**:
+$$
+\Delta_{\text{sym}}(t) = \|\mathbf{x}_1(t) + \mathbf{x}_2(t)\|.
+$$
+In the center-of-mass frame, this should remain near zero for symmetric binaries.
+
+**Self-work vs. partner-work**: Accumulate $\mathcal{W}_{\text{self}}$ and $\mathcal{W}_{\text{partner}}$ separately to diagnose which interaction drives instability.
+
+**Eta dependence**: Track $R_{\text{MCB}}(\eta)$, $s_{\text{MCB}}(\eta)$, and nontrivial multipliers versus $\eta$. If stability degrades as $\eta \to 0$, the MCB is likely a regularization artifact.
 
 **Tangential balance**: Measure $\langle T \rangle$ over an orbit and decompose it into self/partner contributions. Require $\langle T \rangle \to 0$ as $\Delta t,\eta \to 0$.
 
 **Near-orbit structure**: Compute a short Lyapunov exponent and a frequency spectrum of $R(t)$ or $\theta(t)$ to distinguish true limit cycles from nearby tori or chaos.
+
+**Failure conditions (falsification signals)**:
+- **Secular energy drift:** If $E_{\text{calc}}$ drifts monotonically (not oscillating), the regularized interaction kernel is non-conservative (numerical heating).
+- **Runaway:** If $K(t) \to \infty$ while $r(t) > r_{\min}$, the no-runaway criterion is violated, implying the discrete approximation has broken causality constraints.
 
 ### Architectural implications
 
@@ -1062,8 +1093,6 @@ The solution ceases to exist at finite time $T^*$ if:
 2. **Infinite Speed:** $\sup_i \|\mathbf{v}_i(t)\| \to \infty$.
 3. **Causal Shock:** The derivative of the delay $\dot{\tau}(t)$ diverges (Doppler factor becomes singular). This occurs if a particle moves directly toward a receiver at speed $v = c_f$.
 
-**Remark (Self-Hit Instability):** The most dangerous failure mode for MCB stability is Type 2/3. If self-hit repulsion is not sufficiently strong or timely to counteract orbital collapse, or if it adds energy faster than it radiates/disperses, velocities may diverge.
-
 ---
 
 # Symmetry, Conservation, and Lyapunov Functionals
@@ -1144,7 +1173,7 @@ For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ does not mov
 
 ## 4. Energy and The Lyapunov Functional
 
-Energy conservation is the critical constraint preventing runaway solutions (GAP-01).
+Energy conservation is the critical constraint preventing runaway solutions (MCB-09).
 
 ### Definition 3 (The History Hamiltonian)
 Since the system is time-translation invariant, there exists a conserved quantity $\mathcal{H}$. For state-dependent delays, this is a **Lyapunov-Krasovskii Functional**:
@@ -1188,47 +1217,3 @@ For $K(t)$ to diverge, $\mathcal{W}(t)$ must decrease without bound.
 **Conclusion:** The "free lunch" runaway, where a particle accelerates itself indefinitely using self-forces, is forbidden by the conservation of $\mathcal{H}$. The system can oscillate or settle, but it cannot explode to $v=\infty$ without singular collapse of the radius.
 
 ---
-
-## 5. Explicit Formulas for Simulation
-
-To validate the dynamics, the following quantities must be computed at every timestep.
-
-### 5.1 The Calculated Total Energy
-$$
-E_{\text{calc}}(t) = K(t) + \mathcal{W}(t)
-$$
-where $\mathcal{W}(t)$ is accumulated numerically:
-$$
-\mathcal{W}(t_{n+1}) = \mathcal{W}(t_n) - \sum_i \mathbf{v}_i(t_n) \cdot \mathbf{a}_i(t_n) \Delta t.
-$$
-
-### 5.2 Angular Momentum Vector
-Due to delay, the mechanical angular momentum $\mathbf{L}_{\text{mech}} = \sum \mathbf{x} \times \mathbf{p}$ is not conserved. However, for **planar initial data**, the direction of $\mathbf{L}$ should be conserved.
-$$
-\hat{\mathbf{n}} = \frac{\mathbf{L}_{\text{mech}}}{\|\mathbf{L}_{\text{mech}}\|}
-$$
-**Constraint:** $\frac{d}{dt}\hat{\mathbf{n}} \approx 0$. Deviation indicates numerical error or symmetry breaking out of plane.
-
-### 5.3 Symmetry Drift Metric
-For a symmetric binary (MCB candidate), compute the **symmetry defect**:
-$$
-\Delta_{\text{sym}}(t) = \|\mathbf{x}_1(t) + \mathbf{x}_2(t)\|.
-$$
-In the center-of-mass frame, this should remain zero (within machine precision) if the integrator preserves the symplectic structure of the discrete update.
-
----
-
-## 6. Simulation Diagnostics
-
-### What to Compute
-1.  **Energy Drift:** $\delta E(t) = |(E_{\text{calc}}(t) - E_{\text{calc}}(0)) / E_{\text{calc}}(0)|$.
-2.  **Planarity Check:** $\mathbf{x}_i \cdot \hat{\mathbf{z}}$ (if initialized in $xy$ plane).
-3.  **Self-Work vs. Partner-Work:** Accumulate $\mathcal{W}_{\text{self}}$ and $\mathcal{W}_{\text{partner}}$ separately to diagnose which force drives instability.
-
-### Expected Drift Rates
-*   **Tier-1 Pass:** $\delta E < 10^{-9}$ per orbit (Symplectic/Geometric integrator).
-*   **Tier-2 Pass:** $\delta E < 10^{-6}$ per orbit (Standard RK4).
-
-### Failure Conditions (Falsification Signals)
-1.  **Secular Energy Drift:** If $E_{\text{calc}}$ drifts monotonically (not oscillating), the regularized interaction kernel $\rho_\eta$ is non-conservative (numerical heating).
-2.  **Runaway:** If $K(t) \to \infty$ while $r(t) > r_{\min}$ (i.e., velocity divergence without spatial collapse), the no-runaway theorem is violated, implying the discrete approximation of the path history integral has broken causality constraints.
