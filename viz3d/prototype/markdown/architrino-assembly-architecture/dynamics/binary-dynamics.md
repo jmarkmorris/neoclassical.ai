@@ -543,11 +543,6 @@ All diagnostics use reduced coordinates; stability in the full history space rem
 
 ### Poincare Map, Stability, and Basins of Attraction for the MCB
 
-**Author:** Henri Poincare  
-**Context:** Architrino Assembly Architecture - Nonlinear Dynamics  
-**Status:** DRAFT - Stability and Basin Diagnostics  
-**Reference:** `dynamics/master-equation.md`, this chapter
-
 We work in the regularized two-body model defined in this chapter and in `dynamics/master-equation.md`:
 
 - Two opposite-charge architrinos (electrino-positrino), charges $q_1=-\epsilon$, $q_2=+\epsilon$.
@@ -784,6 +779,24 @@ If any $|\lambda^{\text{(num)}}_k|>1$ persists under refinement, the MCB is not 
 
 ---
 
+#### 3.2 MCB Attractor Conjectures (Existence and Spectral Stability)
+
+We formalize the physical hypothesis of the MCB as conjectures about the Poincare map defined above.
+
+##### Conjecture A (Existence of the MCB Limit Cycle)
+There exists a fixed point $\phi^* \in \Sigma$ corresponding to a periodic solution $\mathbf{x}^*(t)$ with period $T_{MCB}$. This solution corresponds to the Maximum-Curvature Orbit.
+
+##### Conjecture B (Spectral Stability)
+Let $DP(\phi^*)$ be the linearized monodromy operator of the Poincare map.
+The spectrum $\sigma(DP(\phi^*))$ lies strictly within the unit disk in the complex plane, excluding the trivial eigenvalue $\lambda=1$ associated with time translation.
+$$
+\sup \{ |\lambda| : \lambda \in \sigma(DP(\phi^*)) \setminus \{1\} \} < 1.
+$$
+
+**Physical implication:** If Conjecture B holds, the MCB is an asymptotic attractor. If the spectrum contains elements with $|\lambda| > 1$, the MCB is unstable. If $|\lambda| = 1$, it is a center (non-generic in dissipative delay systems).
+
+---
+
 #### 4. Basins of Attraction and Separatrices
 
 Assuming a stable fixed point (in reduced space), we next characterize its basin and the separatrices delineating its domain of attraction.
@@ -928,21 +941,24 @@ We collect the specific nonlinear dynamics questions that remain open and must b
 
 | ID | Item | Statement / Needed Result | Status | Risk |
 |----|------|---------------------------|--------|------|
-| ND-01 | Existence of Poincare map | Show that for the regularized two-body system with $v$ crossing $c_f$, the section $\Sigma$ is transverse and every trajectory near the candidate MCB crosses it again in finite time, defining $P$ (and $P_{\text{red}}$) locally. | Assumed; not rigorously proven for all regimes | Medium |
-| ND-02 | Existence of MCB fixed point | Prove that $P$ (or at least $P_{\text{red}}$) admits a fixed point corresponding to a finite-radius, finite-speed limit cycle (MCB) for physically relevant parameters $(\kappa,\epsilon,c_f,\eta)$. | Conjectural; numerical search planned | Critical |
-| ND-03 | Local uniqueness and smoothness of MCB | Show the fixed point is isolated and depends smoothly on parameters; rule out families of neutrally stable cycles (centers) in the physically relevant regime. | Open | High |
-| ND-04 | Floquet spectrum of MCB | Establish that all nontrivial Floquet multipliers of $DP(\phi^*)$ lie strictly inside the unit circle (or, minimally, that the reduced multipliers of $DP_{\text{red}}$ do). | Only numerical estimates planned; no analytic bounds | Critical |
-| ND-05 | Hopf-like bifurcation at $s=c_f$ | Use center-manifold or normal-form theory for state-dependent delay equations to show that as $s$ crosses $c_f$, a stable limit cycle (MCB) is born from the inward spiral. | Conjecture; no rigorous proof | High |
-| ND-06 | Global basin structure | Characterize the topology of the MCB basin in $(R,s)$ (simply connected vs fractal), identify main separatrices and competing attractors (escape, secondary cycles, chaos). | Only exploratory numerics | Medium |
-| ND-07 | Regularization limit $\eta\to 0$ for $P$ | Show that if an MCB fixed point $\mathbf{z}^*_\eta$ and its multipliers are stable for all sufficiently small $\eta$, then a meaningful limiting object exists as $\eta\to 0$; rule out that stability is purely a smoothing artifact. | Open | Critical |
-| ND-08 | Correlation with full history dynamics | Prove that stability of the reduced fixed point $\mathbf{z}^*$ implies stability of the full periodic orbit in the infinite-dimensional history space (no hidden unstable modes). | Open | High |
+| MCB-01 | Existence of Poincare map | Show that for the regularized two-body system with $v$ crossing $c_f$, the section $\Sigma$ is transverse and every trajectory near the candidate MCB crosses it again in finite time, defining $P$ (and $P_{\text{red}}$) locally. | Assumed; not rigorously proven for all regimes | Medium |
+| MCB-02 | Existence of MCB fixed point | Prove that $P$ (or at least $P_{\text{red}}$) admits a fixed point corresponding to a finite-radius, finite-speed limit cycle (MCB) for physically relevant parameters $(\kappa,\epsilon,c_f,\eta)$. | Conjectural; numerical search planned | Critical |
+| MCB-03 | Local uniqueness and smoothness of MCB | Show the fixed point is isolated and depends smoothly on parameters; rule out families of neutrally stable cycles (centers) in the physically relevant regime. | Open | High |
+| MCB-04 | Floquet spectrum of MCB | Establish that all nontrivial Floquet multipliers of $DP(\phi^*)$ lie strictly inside the unit circle (or, minimally, that the reduced multipliers of $DP_{\text{red}}$ do). | Only numerical estimates planned; no analytic bounds | Critical |
+| MCB-05 | Hopf-like bifurcation at $s=c_f$ | Use center-manifold or normal-form theory for state-dependent delay equations to show that as $s$ crosses $c_f$, a stable limit cycle (MCB) is born from the inward spiral. | Conjecture; no rigorous proof | High |
+| MCB-06 | Global basin structure | Characterize the topology of the MCB basin in $(R,s)$ (simply connected vs fractal), identify main separatrices and competing attractors (escape, secondary cycles, chaos). | Only exploratory numerics | Medium |
+| MCB-07 | Regularization limit $\eta \to 0$ for $P$ | Show that if an MCB fixed point $\mathbf{z}^*_\eta$ and its multipliers are stable for all sufficiently small $\eta$, then a meaningful limiting object exists as $\eta \to 0$; rule out that stability is purely a smoothing artifact. | Open | Critical |
+| MCB-08 | Correlation with full history dynamics | Prove that stability of the reduced fixed point $\mathbf{z}^*$ implies stability of the full periodic orbit in the infinite-dimensional history space (no hidden unstable modes). | Open | High |
+| MCB-09 | Global energy bound | Establish an a priori bound on $\|\mathbf{v}(t)\|$ for the regularized self-force to rule out runaway acceleration. | Missing | Critical |
 
 **Summary:**  
 - The definition of the Poincare map, MCB fixed point, Floquet multipliers, and basins is clear and consistent with the delay geometry.
 - The numerical protocols for estimating multipliers and mapping basins are explicit and implementable.
-- The critical gaps are: showing that an MCB fixed point exists for the actual two-body, self-hit-inclusive dynamics; that it is spectrally stable; and that this stability is not an artifact of regularization.
+- The critical gaps remain: existence of the MCB fixed point, spectral stability, and the $\eta \to 0$ limit for any stability claims.
 
-Until ND-02, ND-04, and ND-07 are addressed (at least numerically with strong convergence evidence, ideally analytically), the MCB must be treated as a working hypothesis, not yet a proven dynamical attractor.
+Until MCB-02, MCB-04, and MCB-07 are addressed (at least numerically with strong convergence evidence, ideally analytically), the MCB must be treated as a working hypothesis, not yet a proven dynamical attractor.
+
+**Note:** The system is locally well-posed for $\eta > 0$, but global stability is not guaranteed. Simulations should explicitly test MCB-09 (runaway acceleration) and MCB-05 (existence of the cycle). If the numerical eigenvalues of the Poincare map are outside the unit circle, the MCB attractor hypothesis is false for this force law.
 
 ### Additional diagnostics
 
@@ -1057,39 +1073,169 @@ The solution ceases to exist at finite time $T^*$ if:
 
 ---
 
-### 6. The MCB Attractor: Conjecture and Stability
+# Symmetry, Conservation, and Lyapunov Functionals
 
-We formulate the physical hypothesis of the MCB as a mathematical conjecture regarding the topological dynamics of the system.
-
-#### Definition 5 (Poincare map reference)
-Use the Poincare section above for the definition of the section $\Sigma$ and the return map $P$ on the history space. The conjectures below refer to that map and its monodromy operator.
-
-#### Conjecture A (Existence of the MCB Limit Cycle)
-There exists a fixed point $\phi^* \in \Sigma$ corresponding to a periodic solution $\mathbf{x}^*(t)$ with period $T_{MCB}$. This solution corresponds to the Maximum-Curvature Orbit.
-
-#### Conjecture B (Spectral Stability)
-Let $DP(\phi^*)$ be the linearized monodromy operator of the Poincare map.
-The spectrum $\sigma(DP(\phi^*))$ lies strictly within the unit disk in the complex plane, excluding the trivial eigenvalue $\lambda=1$ associated with time translation.
-$$
-\sup \{ |\lambda| : \lambda \in \sigma(DP(\phi^*)) \setminus \{1\} \} < 1.
-$$
-
-**Physical Implication:** If Conjecture B holds, the MCB is an **Asymptotic Attractor**. If the spectrum contains elements with $|\lambda| > 1$, the MCB is unstable. If $|\lambda| = 1$, it is a center (non-generic in dissipative delay systems).
+**Author:** Emmy Noether  
+**Context:** Architrino Assembly Architecture – Geometric Invariants  
+**Status:** DRAFT – Conservation Laws for Path-History Systems  
+**Reference:** `dynamics/master-equation.md`
 
 ---
 
-### 7. Gap Ledger: Missing Proofs & Analytical Risks
+## 1. Introduction
 
-The following are the precise mathematical gaps that currently prevent the theory from being rigorous. These define the "To-Do" list for the Analysis/Math team.
+Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's Theorem to local Lagrangian densities. The Architrino Master Equation, however, is a **state-dependent neutral delay differential equation (SD-NDDE)**. The force at time $t$ depends on the phase-space trajectory over the interval $[t - h, t]$.
 
-| ID | Lemma / Theorem Needed | Status | Risk Level | Description |
-|:---|:---|:---|:---|:---|
-| **GAP-01** | **Global Energy Bound** | *Missing* | **Critical** | We lack a proof that the self-hit force does not pump infinite energy into the system. Need an *a priori* estimate on $\|\mathbf{v}(t)\|$ for the regularized self-force. |
-| **GAP-02** | **Hopf Bifurcation at $c_f$** | *Conjecture* | High | We postulate a bifurcation from spiral-in to stable orbit as $v$ crosses $c_f$. Standard Hopf theorems for DDEs need to be adapted to state-dependent delays. |
-| **GAP-03** | **Regularization Limit $\eta \to 0$** | *Missing* | Medium | We compute with $\eta > 0$. We need to show that the attractor $\phi^*_\eta$ converges to a limit distribution $\Phi^*$ as $\eta \to 0$, rather than vanishing or diverging. |
-| **GAP-04** | **Basin of Attraction Topology** | *Unknown* | Medium | Is the basin of attraction simply connected? Does it include "zero velocity" initial data (starting from rest)? |
+In such systems, symmetries of the substrate (Euclidean Void + Absolute Time) still imply conservation laws, but the conserved quantities are no longer simple functions of the instantaneous state $(\mathbf{x}, \mathbf{v})$. Instead, they are **functionals on the history space** $\mathcal{H}$.
+
+This section derives these functionals, establishes the exact symmetry group of the regularized dynamics ($\eta > 0$), and provides the *a priori* bounds required to ensure physical well-posedness (preventing unphysical runaway acceleration).
 
 ---
 
-#### Final Remark from the Analysis Desk
-The system defined above is **locally well-posed**. The master equations do not immediately generate nonsense. However, **global stability is not guaranteed** by the current math. The simulation program (Sol) must specifically test for **GAP-01** (runaway acceleration) and **GAP-02** (existence of the cycle). If the numerical eigenvalues of the Poincare map are outside the unit circle, the "MCB Attractor" hypothesis is mathematically false for this force law.
+## 2. The Global Symmetry Group
+
+We consider the regularized two-body system in the Euclidean Void $\mathbb{R}^3$ with metric $\delta_{ij}$ and absolute time $t$.
+
+### Definition 1 (The Fundamental Symmetry Group)
+The background substrate and the Master Equation interaction kernel
+$$
+\mathbf{a}_{ij}(t) \propto \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^2}
+$$
+(regularized by $\eta$) respect the group:
+$$
+G_{\text{fund}} = E(3) \times \mathbb{R}_{\text{time}}
+$$
+where $E(3) = \mathbb{R}^3 \rtimes O(3)$ is the Euclidean group of spatial translations and rotations, and $\mathbb{R}_{\text{time}}$ denotes time translation.
+
+### Theorem 1 (Invariance of the Equations of Motion)
+Let $\mathbf{x}(t)$ be a solution to the Master Equation.
+1.  **Time Translation:** For any $\tau \in \mathbb{R}$, $\mathbf{y}(t) = \mathbf{x}(t + \tau)$ is also a solution.
+2.  **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf{b} \in \mathbb{R}^3$, $\mathbf{y}(t) = R\mathbf{x}(t) + \mathbf{b}$ is also a solution.
+
+*Proof Sketch:*
+The causal constraint $\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0)$ depends only on the Euclidean distance and time difference. Both are invariants of $G_{\text{fund}}$. The vector direction $\hat{\mathbf{r}}$ rotates covariantly with $R$. Thus, the dynamics are form-invariant.
+
+**Implication:** There exist exact integrals of motion corresponding to these symmetries. However, because the interaction is non-local in time, these integrals must account for "momentum and energy in flight" (stored in the wake surfaces).
+
+---
+
+## 3. Conservation of Generalized Momentum
+
+In a delay system, Newton's Third Law ($\mathbf{F}_{12}(t) = -\mathbf{F}_{21}(t)$) fails instantaneously because $\mathbf{F}_{12}(t)$ originates from particle 2 at $t-\tau_1$, while $\mathbf{F}_{21}(t)$ originates from particle 1 at $t-\tau_2$.
+
+### Definition 2 (Mechanical Momentum)
+The instantaneous mechanical momentum is:
+$$
+\mathbf{P}_{\text{mech}}(t) = \sum_{i} m_i \mathbf{v}_i(t).
+$$
+Because of the delay, $\frac{d}{dt}\mathbf{P}_{\text{mech}} \neq 0$ generally.
+
+### Theorem 2 (Conservation of Total Momentum Functional)
+There exists a functional $\mathbf{P}_{\text{field}}[\mathbf{x}_t]$ representing the momentum flux encoded in the active causal wake surfaces such that the total momentum:
+$$
+\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{field}}[\mathbf{x}_t]
+$$
+is strictly conserved ($\frac{d}{dt}\mathbf{P}_{\text{tot}} = 0$).
+
+**Explicit Form (Weak Coupling Limit):**
+For $\eta \to 0$, the field momentum can be approximated by integrating the force impulse over the delay time:
+$$
+\mathbf{P}_{\text{field}} \approx \sum_{i \neq j} \int_{t - \tau_{ij}(t)}^{t} \mathbf{F}_{ij}^{\text{emit}}(s) \, ds.
+$$
+*Physical Interpretation:* The "missing" momentum is strictly accounted for by the wake surfaces currently traversing the space between sources and receivers.
+
+**Corollary (Center of Mass Motion):**
+For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ does not move at constant velocity. Instead, it oscillates around a mean trajectory. However, **self-acceleration of the center of mass to infinity is forbidden** by the exact translation invariance of the Lagrangian. The system cannot "bootstrap" itself to arbitrary speeds without external interaction.
+
+---
+
+## 4. Energy and The Lyapunov Functional
+
+Energy conservation is the critical constraint preventing runaway solutions (GAP-01).
+
+### Definition 3 (The History Hamiltonian)
+Since the system is time-translation invariant, there exists a conserved quantity $\mathcal{H}$. For state-dependent delays, this is a **Lyapunov-Krasovskii Functional**:
+$$
+\mathcal{H}(\mathbf{x}_t) = K(\mathbf{v}(t)) + \mathcal{U}_{\text{history}}(\mathbf{x}_t).
+$$
+
+1.  **Kinetic Energy:** $K(t) = \sum \frac{1}{2} m_i \|\mathbf{v}_i(t)\|^2$.
+2.  **Potential Functional:** $\mathcal{U}_{\text{history}}$ accumulates the work done by the conservative forces. Unlike an instantaneous potential $V(r)$, this depends on the configuration of all active wake surfaces.
+
+### Theorem 3 (Energy Balance Equation)
+$$
+\frac{dK}{dt} = \sum_{i} \mathbf{v}_i(t) \cdot \mathbf{F}_i(t).
+$$
+We define the **Interaction Potential Functional** $\mathcal{W}(t)$ such that:
+$$
+\mathcal{W}(t) = -\int_{t_0}^t \sum_i \mathbf{v}_i(s) \cdot \mathbf{F}_i(s) \, ds.
+$$
+Then, by construction, $\mathcal{E}_{\text{tot}} = K(t) + \mathcal{W}(t)$ is constant.
+
+### Lemma 1 (Boundedness of the Potential)
+**Assumption:** The interaction is regularized with width $\eta > 0$ such that the maximum force is bounded: $\|\mathbf{F}_{ij}\| \le F_{\max}(\eta)$.
+**Statement:** For a bound system (particles confined to a finite volume $V$), the rate of work is bounded by $N F_{\max} v_{\max}$.
+
+### Theorem 4 (No-Runaway Criterion)
+In the Master Equation dynamics, an isolated binary cannot undergo runaway acceleration ($v \to \infty$) *unless* the potential energy functional $\mathcal{W}(t)$ diverges to $-\infty$.
+
+*Proof Logic:*
+Since $\mathcal{E}_{\text{tot}}$ is constant:
+$$
+K(t) = \mathcal{E}_{\text{tot}} - \mathcal{W}(t).
+$$
+For $K(t)$ to diverge, $\mathcal{W}(t)$ must decrease without bound.
+1.  **Partner Attraction:** $q_1 q_2 < 0$. The potential is negative (attractive). As $r \to 0$, $V \to -\infty$. Collapse leads to infinite kinetic energy (standard Kepler singularity, resolved by self-hit).
+2.  **Self-Hit Repulsion:** $q_1 q_1 > 0$. The force is **repulsive**. The potential contribution is **positive**.
+    *   Work done by self-hit: If a particle is pushed "from behind" by its own wake, it gains $K$.
+    *   However, this energy must come from the $\mathcal{W}$ term.
+    *   Since self-hit potential is repulsive (positive energy hill), converting it to kinetic energy lowers the total potential.
+    *   **Crucial Bound:** The "stored energy" in a self-wake is finite (determined by emission charge). A particle cannot extract infinite energy from its own past unless it puts infinite energy *into* the field first.
+
+**Conclusion:** The "free lunch" runaway, where a particle accelerates itself indefinitely using self-forces, is forbidden by the conservation of $\mathcal{H}$. The system can oscillate or settle, but it cannot explode to $v=\infty$ without singular collapse of the radius.
+
+---
+
+## 5. Explicit Formulas for Simulation
+
+To validate the dynamics, the following quantities must be computed at every timestep.
+
+### 5.1 The Calculated Total Energy
+$$
+E_{\text{calc}}(t) = K(t) + \mathcal{W}(t)
+$$
+where $\mathcal{W}(t)$ is accumulated numerically:
+$$
+\mathcal{W}(t_{n+1}) = \mathcal{W}(t_n) - \sum_i \mathbf{v}_i(t_n) \cdot \mathbf{a}_i(t_n) \Delta t.
+$$
+
+### 5.2 Angular Momentum Vector
+Due to delay, the mechanical angular momentum $\mathbf{L}_{\text{mech}} = \sum \mathbf{x} \times \mathbf{p}$ is not conserved. However, for **planar initial data**, the direction of $\mathbf{L}$ should be conserved.
+$$
+\hat{\mathbf{n}} = \frac{\mathbf{L}_{\text{mech}}}{\|\mathbf{L}_{\text{mech}}\|}
+$$
+**Constraint:** $\frac{d}{dt}\hat{\mathbf{n}} \approx 0$. Deviation indicates numerical error or symmetry breaking out of plane.
+
+### 5.3 Symmetry Drift Metric
+For a symmetric binary (MCB candidate), compute the **symmetry defect**:
+$$
+\Delta_{\text{sym}}(t) = \|\mathbf{x}_1(t) + \mathbf{x}_2(t)\|.
+$$
+In the center-of-mass frame, this should remain zero (within machine precision) if the integrator preserves the symplectic structure of the discrete update.
+
+---
+
+## 6. Simulation Diagnostics
+
+### What to Compute
+1.  **Energy Drift:** $\delta E(t) = |(E_{\text{calc}}(t) - E_{\text{calc}}(0)) / E_{\text{calc}}(0)|$.
+2.  **Planarity Check:** $\mathbf{x}_i \cdot \hat{\mathbf{z}}$ (if initialized in $xy$ plane).
+3.  **Self-Work vs. Partner-Work:** Accumulate $\mathcal{W}_{\text{self}}$ and $\mathcal{W}_{\text{partner}}$ separately to diagnose which force drives instability.
+
+### Expected Drift Rates
+*   **Tier-1 Pass:** $\delta E < 10^{-9}$ per orbit (Symplectic/Geometric integrator).
+*   **Tier-2 Pass:** $\delta E < 10^{-6}$ per orbit (Standard RK4).
+
+### Failure Conditions (Falsification Signals)
+1.  **Secular Energy Drift:** If $E_{\text{calc}}$ drifts monotonically (not oscillating), the regularized interaction kernel $\rho_\eta$ is non-conservative (numerical heating).
+2.  **Runaway:** If $K(t) \to \infty$ while $r(t) > r_{\min}$ (i.e., velocity divergence without spatial collapse), the no-runaway theorem is violated, implying the discrete approximation of the path history integral has broken causality constraints.
