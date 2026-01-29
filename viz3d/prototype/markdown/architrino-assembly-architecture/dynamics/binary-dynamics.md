@@ -978,13 +978,6 @@ If the attractor test succeeds, the MCB is the natural building block for tri-bi
 
 ## State Space and Well-Posedness of the Delayed Two-Body System
 
-**Author:** Terence Tao  
-**Context:** Architrino Assembly Architecture – Mathematical Foundations  
-**Status:** DRAFT – Theoretical Framework for Numerical Validation  
-**Reference:** `dynamics/master-equation.md`, `dynamics/regularization.md`
-
----
-
 ### 1. Introduction and Scope
 
 The Master Equation of Motion for the Architrino system constitutes a system of **State-Dependent Neutral Delay Differential Equations (SD-NDDEs)**. Unlike ordinary differential equations (ODEs) where the state is a point in $\mathbb{R}^{6N}$, the state of this system is a **function segment** representing the past history of the particles.
