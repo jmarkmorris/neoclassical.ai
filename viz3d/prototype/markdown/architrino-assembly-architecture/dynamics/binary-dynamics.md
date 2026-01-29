@@ -1097,18 +1097,11 @@ The solution ceases to exist at finite time $T^*$ if:
 
 # Symmetry, Conservation, and Lyapunov Functionals
 
-**Author:** Emmy Noether  
-**Context:** Architrino Assembly Architecture – Geometric Invariants  
-**Status:** DRAFT – Conservation Laws for Path-History Systems  
-**Reference:** `dynamics/master-equation.md`
-
----
-
 ## 1. Introduction
 
-Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's Theorem to local Lagrangian densities. The Architrino Master Equation, however, is a **state-dependent neutral delay differential equation (SD-NDDE)**. The force at time $t$ depends on the phase-space trajectory over the interval $[t - h, t]$.
+Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's Theorem to local Lagrangian densities. In this delayed setting, the force at time $t$ depends on the phase-space trajectory over the interval $[t - h, t]$.
 
-In such systems, symmetries of the substrate (Euclidean Void + Absolute Time) still imply conservation laws, but the conserved quantities are no longer simple functions of the instantaneous state $(\mathbf{x}, \mathbf{v})$. Instead, they are **functionals on the history space** $\mathcal{H}$.
+Symmetries of the substrate (Euclidean Void + Absolute Time) still imply conservation laws, but the conserved quantities are no longer simple functions of the instantaneous state $(\mathbf{x}, \mathbf{v})$. Instead, they are **functionals on the history space** $\mathcal{H}$.
 
 This section derives these functionals, establishes the exact symmetry group of the regularized dynamics ($\eta > 0$), and provides the *a priori* bounds required to ensure physical well-posedness (preventing unphysical runaway acceleration).
 
