@@ -1,6 +1,6 @@
 # Binary Dynamics
 
-This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature binary (MCB) attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed.
+This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed.
 
 ## Self-Hit: Definition and Diagnostics
 
@@ -21,6 +21,8 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - Use virtual‑observer provenance tables to record, for each self‑hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
 - Check convergence of self‑hit statistics under time‑step refinement, history‑resolution refinement, and integrator swap.
 - If self‑hit signatures change qualitatively under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
+
+For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in the maximum-curvature chapter.
 
 With self‑hit defined, we turn to the simplest assembly where it drives the dynamics: the orbiting binary.
 
@@ -50,6 +52,12 @@ A symmetric set of equations governs the positrino's motion based on the electri
 
 In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward exponential spiral** that shrinks $r$ and increases speed until the self-interaction threshold ($|\mathbf{v}|>c_f$) is crossed.
 
+**Lemma (No stable circular orbit for $v < c_f$).** In circular motion, $v=s=R\omega$. In the partner-only regime, the per-hit tangential component satisfies
+$$
+T_p \propto \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)} > 0 \quad (0<\delta_p<\pi),
+$$
+where $\delta_p$ is the partner delay angle. The time-averaged tangential acceleration cannot vanish; a constant-speed circular orbit is impossible.
+
 -   The tangential component of the delayed force sustains the orbital motion.
 -   The radial component continuously pulls the particles closer together.
 
@@ -71,19 +79,20 @@ Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
-The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases, causing the inward spiral to tighten while driving the system toward a curvature-limited minimum radius rather than a singular collapse. This phase is "deflationary" in that self-interaction accelerates the approach to the limiting circular state.
+At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**).
+The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases, causing the inward spiral to tighten while driving the system toward a curvature-limited minimum radius rather than a singular collapse. This phase is "deflationary" in that self-interaction accelerates the approach to the conjectured limiting circular state.
 
 ### 4. The Stable State and Emergent Properties
 
-The deflationary spiral does not continue indefinitely. The self-repulsive force creates a dynamic feedback mechanism that ultimately stabilizes the system and prevents a singularity.
+In the working hypothesis, the deflationary spiral does not continue indefinitely. Self-repulsive feedback is expected to stabilize the system and prevent a singularity, but this remains part of the maximum-curvature attractor conjecture (see the gap ledger in the maximum-curvature chapter).
 
 #### **Curvature Limit and Stability**
-The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
+The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. In the maximum-curvature hypothesis, the inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
 
-At this limit, the trajectory stabilizes, and the system settles into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is perfectly channeled into the circular motion, while the self-repulsive force prevents any further tightening of the path's curvature. Importantly, this minimum-radius circular state only exists once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
+If the maximum-curvature attractor conjecture holds, the trajectory stabilizes, and the system is expected to settle into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is channeled into circular motion while self-repulsion prevents further tightening of the path's curvature. If such a minimum-radius circular state exists, it only occurs once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
 
 #### **Emergent Properties**
-The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
+If the maximum-curvature attractor conjecture holds, the stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
 -   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$).
 -   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
 -   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
@@ -95,9 +104,9 @@ The stabilization of the orbiting binary gives rise to fundamental, emergent pro
 
 ---
 
-## MCB Attractor and Max-Curvature Orbit
+## Maximum-Curvature Limit and Attractor Analysis
 
-This section collects the full two-body, self-hit analysis for the maximum-curvature binary (MCB), including delay geometry, force components, stability criteria, and computational diagnostics. It is the canonical reference for MCB attractor status.
+Once self-hit turns on, the natural question is whether the spiral-in converges to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, stability criteria, and computational diagnostics. It is the canonical reference for MCB attractor status.
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to the MCB gap ledger (MCB-07). The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
 
@@ -147,6 +156,8 @@ Only if the multipliers lie strictly inside the unit circle and the basin is non
 - **Equal-time positions** (in absolute time $t$) are diametrically opposite on a circle of radius $R$ about the midpoint.
 - **Uniform circular motion**: Angular speed $\omega$, constant tangential speed $s = R\omega$.
 - **Non-translating binary**: Circle center (midpoint) is fixed in Euclidean 3D space; no net translation.
+
+Let $C_i(t_\text{emit})$ denote the causal wake surface emitted by architrino $i$ at emission time $t_\text{emit}$. For uniform circular motion, self‑hit events are discrete intersections between the worldline and its own wake surfaces. Define the **principal self‑delay angle** $\tilde{\delta}_s \in (0, \pi]$ as the minimal angular separation between the current position and the emission point that yields a hit. Additional self‑hits occur at longer delays indexed by winding number $m \ge 0$, giving a discrete family $\delta_s(m) = \tilde{\delta}_s + 2\pi m$.
 
 #### Phase Angles and Delays
 
@@ -975,6 +986,10 @@ In the center-of-mass frame, this should remain near zero for symmetric binaries
 
 If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies. If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
 
+### Tri-Binary Bridge
+
+If the MCB exists as a stable attractor, it serves as the **inner binary** of tri‑binary assemblies. The outer pair then evolves in a broader, typically precessing orbit around the inner MCB, with additional modes (middle binary at $v=c_f$, outer binary at $v<c_f$) supplying energy storage and coupling to the Noether Sea. This chapter focuses on the two‑body MCB; tri‑binary dynamics are treated separately.
+
 ---
 
 ## Emergent Measurement of Time and Distance
@@ -983,25 +998,25 @@ While the model is founded on the concepts of absolute space and absolute time, 
 
 ### The Stable Binary as a Universal Standard
 
-The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As developed above, an isolated electrino-positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
+The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. If the MCB attractor conjecture holds (see the gap ledger: MCB-02, MCB-04, MCB-07), an isolated electrino-positrino pair is expected to avoid singular collapse. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it should settle into a stable, circular orbit characterized by:
 -   A **minimum possible radius**.
 -   A **maximum possible orbital frequency** (and thus a minimum period).
 
-This stable state is a universal attractor for a binary system, and its properties are determined solely by the fundamental constants of the model (such as field speed $c_f$ and charge $\epsilon$). It is this predictable, reproducible configuration that provides the foundation for all measurement.
+Under this conjecture, the stable state is a universal attractor for a binary system, and its properties are determined solely by the fundamental constants of the model (such as field speed $c_f$ and charge $\epsilon$). It is this predictable, reproducible configuration that provides the foundation for all measurement.
 
 ### An Emergent Unit of Distance
 
-The radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
+Under the MCB attractor conjecture, the radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
 
--   **Definition:** $d_0$ is the radius of a stable, circular electrino-positrino orbit.
+-   **Definition (conditional):** $d_0$ is defined as the radius of a stable, circular electrino-positrino orbit if the MCB attractor conjecture holds.
 -   **Universality:** Any observer in the universe can, in principle, construct this standard by observing an isolated binary system.
 -   **Function:** All other spatial measurements, from the size of more complex assemblies to the distances between them, can be expressed in terms of $d_0$.
 
 ### An Emergent Unit of Time
 
-The motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
+Under the MCB attractor conjecture, the motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
 
--   **Definition:** The fundamental unit of time, $t_0$, is the orbital period of a stable, circular electrino-positrino orbit.
+-   **Definition (conditional):** The fundamental unit of time, $t_0$, is defined as the orbital period of a stable, circular electrino-positrino orbit if the MCB attractor conjecture holds.
 -   **Universality:** Like the unit of distance, this period is a constant derived from the system's fundamental dynamics.
 -   **Function:** All other temporal measurements, such as the duration of events or the lifetimes of unstable assemblies, can be measured in multiples of $t_0$.
 
