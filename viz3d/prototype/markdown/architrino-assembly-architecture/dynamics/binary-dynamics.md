@@ -140,6 +140,7 @@ The stabilization of the orbiting binary gives rise to fundamental, emergent pro
 **Falsification signals (two-body level):**
 - If high-resolution simulations of isolated opposite-charge pairs never show long-lived bounded orbits for any initial conditions, the stable-binary/MCB hypothesis fails.
 - If all inward spirals either (a) collapse to unphysical radii despite regularization, or (b) blow out to infinity without forming a limit cycle, the self-hit stabilization mechanism is wrong or incomplete.
+- If, after including all causal roots in the pure two-body kernel, the time-averaged tangential acceleration remains strictly positive for every bounded near-circular trajectory, then an MCB limit cycle cannot exist without additional physics; the current force law is insufficient.
 
 ---
 
