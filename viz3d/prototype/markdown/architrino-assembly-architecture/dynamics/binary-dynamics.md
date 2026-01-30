@@ -126,7 +126,7 @@ In this picture, the trajectory stabilizes into a **stable, circular orbit of a 
 
 #### **Emergent Properties**
 The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
--   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$).
+-   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$). At the assembly level this practical speed cap is what physical observers infer as a fundamental "speed of light"; it is an emergent consequence of binary/tri-binary structure, not a kinematic axiom of the void.
 -   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
 -   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
 -   **A Zero-Potential Axis (Idealized):** In the ideal symmetric, non-translating, exactly circular orbit, and under linear superposition, the contributions from the two charges cancel almost exactly along the rotation axis, producing a corridor of very low net potential. In that idealization, an architrino traveling perfectly along this axis would experience negligible acceleration from the binary. In practice, discrete-wake geometry, translation, or slight asymmetry will leave residual off-axis hits, so the corridor is approximate rather than exact.
@@ -925,7 +925,7 @@ When the spiral drives $s$ to $c_f$, self-hits become geometrically possible:
 
 Possible dynamical routes here:
 
-1. Hopf-like bifurcation: The inward spiral (focus) could bifurcate to a limit cycle at the MCB radius as self-hit competes with partner delay. This would be a genuine birth of the MCB as a stable periodic orbit.
+1. Hopf-like bifurcation: The inward spiral (focus) could bifurcate to a limit cycle at the MCB radius as self-hit competes with partner delay. This would be a genuine birth of the MCB as a stable periodic orbit. We use "Hopf-like" here because the system is an SD-NDDE; rigorous Hopf theorems require smoothness and nondegeneracy conditions that have not yet been verified for this kernel.
 2. Subcritical behavior or blow-up: Self-hit may overcompensate or mis-time its repulsion, yielding overshoot to large $R$ or unstable oscillations in $R,s$ that do not settle.
 3. Fold (saddle-node) of cycles: A stable-unstable pair of periodic orbits might appear, with the MCB as the stable member and an outer unstable cycle defining the separatrix.
 
