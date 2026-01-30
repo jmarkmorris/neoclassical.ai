@@ -1,5 +1,7 @@
 # Binary Dynamics
 
+This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature binary (MCB) attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed.
+
 ## Self-Hit: Definition and Diagnostics
 
 Self‑hit is the key non‑Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
