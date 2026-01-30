@@ -362,13 +362,13 @@ $$
 T_s \ge 0, \quad T_p \ge 0 \quad \Rightarrow \quad T = T_s + T_p > 0.
 $$
 
-**Conclusion (provisional)**: The per-hit analysis yields $T \ge 0$, which appears to obstruct strict $T = 0$ at the level of a single-root snapshot. The working hypothesis is that the full multi-root, time-averaged dynamics admit a steady circular orbit with $\langle T \rangle = 0$ once self-hits are fully active.
+**Conclusion (provisional)**: The per-hit analysis yields $T \ge 0$ for every root. Because all roots for a given speed have the same sign of tangential projection (the chords all lean the same way), the **bare two-body kernel tends to monotonically increase orbital speed at fixed radius**. A genuine $\langle T \rangle = 0$ circle from this kernel alone would require **nontrivial** geometric/time-averaged cancellation across many roots; it is not guaranteed. The existence of an MCB in the pure two-body system is therefore a conjecture that must be directly tested; if simulations fail to find such a cycle, the architecture must invoke either additional physics (e.g., medium coupling, radiation, velocity dependence) or a modified interaction law.
 
-- External fields or assemblies (e.g., embedding in Noether Sea),
-- Modified interaction rules (e.g., velocity-dependent forces, radiation damping),
-- Or multi-body stabilization (tri-binary structure with three nested pairs).
+- **Nontrivial multi-root cancellation** from geometry/time-weighting across roots,
+- **Additional interactions** that provide negative tangential work on average (medium coupling, radiation, velocity dependence),
+- **Multi-body stabilization** (tri-binary structure with nested pairs) that changes the root geometry.
 
-**Plain language**: The isolated pair shows persistent tangential drive at the per-hit level, so a steady circle must arise from averaging over many self-hit roots or from additional structure in the delay law. This is a primary test of the MCB attractor hypothesis.
+**Plain language**: The isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every root pushes the same way. A steady circle must come from exceptional multi-root averaging or from extra physics beyond the bare kernel. This is a primary test of the MCB attractor hypothesis.
 
 ---
 
