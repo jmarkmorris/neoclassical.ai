@@ -1,5 +1,25 @@
 # Binary Dynamics
 
+## Self-Hit: Definition and Diagnostics
+
+Self‑hit is the key non‑Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
+
+**Geometric condition (absolute coordinates):** For a given architrino with trajectory $\mathbf{x}(t)$, a self‑hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that
+$$
+|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
+$$
+and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
+
+**Dynamical role:**
+- At low velocities ($v < c_f$), self‑hit is rare or absent; dynamics are approximately Markovian.
+- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter’s future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
+- For binary and tri‑binary assemblies, repeated self‑hit events can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
+
+**Simulation & diagnostics:**
+- Use virtual‑observer provenance tables to record, for each self‑hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
+- Check convergence of self‑hit statistics under time‑step refinement, history‑resolution refinement, and integrator swap.
+- If self‑hit signatures change qualitatively under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
+
 ## Orbiting Binary Assembly
 
 An orbiting binary is the simplest emergent assembly, consisting of two Architrinos of opposite charge—an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
@@ -70,62 +90,6 @@ The stabilization of the orbiting binary gives rise to fundamental, emergent pro
 **Note on Complex Scenarios:** The analysis above describes a stationary binary system. More complex dynamics arise when the binary assembly is also translating through space, especially when the axis of orbit is not aligned with the direction of the group's velocity.
 
 ---
-
-## Emergent Measurement of Time and Distance
-
-While the model is founded on the concepts of absolute space and absolute time, these are featureless, continuous arenas. They provide the mathematical background for geometry and motion but contain no inherent "ruler" or "clock." There are no fundamental, pre-defined units of distance or time. Instead, these units must emerge from the dynamics of the system itself.
-
-### The Stable Binary as a Universal Standard
-
-The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As described previously, an isolated electrino-positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
--   A **minimum possible radius**.
--   A **maximum possible orbital frequency** (and thus a minimum period).
-
-This stable state is a universal attractor for a binary system, and its properties are determined solely by the fundamental constants of the model (such as field speed $c_f$ and charge $\epsilon$). It is this predictable, reproducible configuration that provides the foundation for all measurement.
-
-### An Emergent Unit of Distance
-
-The radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
-
--   **Definition:** $d_0$ is the radius of a stable, circular electrino-positrino orbit.
--   **Universality:** Any observer in the universe can, in principle, construct this standard by observing an isolated binary system.
--   **Function:** All other spatial measurements, from the size of more complex assemblies to the distances between them, can be expressed in terms of $d_0$.
-
-### An Emergent Unit of Time
-
-The motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
-
--   **Definition:** The fundamental unit of time, $t_0$, is the orbital period of a stable, circular electrino-positrino orbit.
--   **Universality:** Like the unit of distance, this period is a constant derived from the system's fundamental dynamics.
--   **Function:** All other temporal measurements, such as the duration of events or the lifetimes of unstable assemblies, can be measured in multiples of $t_0$.
-
-### Establishing a Physical Coordinate System
-
-With the emergent units $d_0$ and $t_0$, we can move from the abstract, uncalibrated coordinates of absolute space and time to a concrete, physical coordinate system. Any measurement of a physical quantity can be rendered dimensionless by expressing it in these natural units. For example, the fundamental field speed $c_f$ can be written as a constant multiple of $d_0/t_0$.
-
-This framework establishes that while the *arena* of space and time is absolute, the *measurement* of space and time is necessarily relative to the properties of the emergent structures that populate it.
-
-
-
-## Self-Hit: Definition and Diagnostics
-
-Self‑hit is the key non‑Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
-
-**Geometric condition (absolute coordinates):** For a given architrino with trajectory $\mathbf{x}(t)$, a self‑hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that
-$$
-|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
-$$
-and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
-
-**Dynamical role:**
-- At low velocities ($v < c_f$), self‑hit is rare or absent; dynamics are approximately Markovian.
-- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter’s future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
-- For binary and tri‑binary assemblies, repeated self‑hit events can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
-
-**Simulation & diagnostics:**
-- Use virtual‑observer provenance tables to record, for each self‑hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
-- Check convergence of self‑hit statistics under time‑step refinement, history‑resolution refinement, and integrator swap.
-- If self‑hit signatures change qualitatively under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
 
 ## MCB Attractor and Max-Curvature Orbit
 
@@ -1008,6 +972,42 @@ In the center-of-mass frame, this should remain near zero for symmetric binaries
 If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies. If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
 
 ---
+
+## Emergent Measurement of Time and Distance
+
+While the model is founded on the concepts of absolute space and absolute time, these are featureless, continuous arenas. They provide the mathematical background for geometry and motion but contain no inherent "ruler" or "clock." There are no fundamental, pre-defined units of distance or time. Instead, these units must emerge from the dynamics of the system itself.
+
+### The Stable Binary as a Universal Standard
+
+The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As described previously, an isolated electrino-positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
+-   A **minimum possible radius**.
+-   A **maximum possible orbital frequency** (and thus a minimum period).
+
+This stable state is a universal attractor for a binary system, and its properties are determined solely by the fundamental constants of the model (such as field speed $c_f$ and charge $\epsilon$). It is this predictable, reproducible configuration that provides the foundation for all measurement.
+
+### An Emergent Unit of Distance
+
+The radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
+
+-   **Definition:** $d_0$ is the radius of a stable, circular electrino-positrino orbit.
+-   **Universality:** Any observer in the universe can, in principle, construct this standard by observing an isolated binary system.
+-   **Function:** All other spatial measurements, from the size of more complex assemblies to the distances between them, can be expressed in terms of $d_0$.
+
+### An Emergent Unit of Time
+
+The motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
+
+-   **Definition:** The fundamental unit of time, $t_0$, is the orbital period of a stable, circular electrino-positrino orbit.
+-   **Universality:** Like the unit of distance, this period is a constant derived from the system's fundamental dynamics.
+-   **Function:** All other temporal measurements, such as the duration of events or the lifetimes of unstable assemblies, can be measured in multiples of $t_0$.
+
+### Establishing a Physical Coordinate System
+
+With the emergent units $d_0$ and $t_0$, we can move from the abstract, uncalibrated coordinates of absolute space and time to a concrete, physical coordinate system. Any measurement of a physical quantity can be rendered dimensionless by expressing it in these natural units. For example, the fundamental field speed $c_f$ can be written as a constant multiple of $d_0/t_0$.
+
+This framework establishes that while the *arena* of space and time is absolute, the *measurement* of space and time is necessarily relative to the properties of the emergent structures that populate it.
+
+
 
 ## State Space and Well-Posedness of the Delayed Two-Body System
 
