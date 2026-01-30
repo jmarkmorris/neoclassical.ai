@@ -32,6 +32,7 @@ there are stable orbits at each h-bar
 - It takes a full h or h-bar internally which is two h or h-bar. (check).
 - is the lack of one of the neutrino chiralities due to converting a pro-Noether core?
 - look at what I wrote on the equivalence principal. does it make sense? 
+- ask ai how we get indeterminism?  we have local multideterminism, .... how
 
 - double click pins vscode tab
 - link a markdown file [text](../../file). Add note to system prompts.
