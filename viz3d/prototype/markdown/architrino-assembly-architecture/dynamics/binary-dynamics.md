@@ -1095,9 +1095,9 @@ The solution ceases to exist at finite time $T^*$ if:
 
 ---
 
-# Symmetry, Conservation, and Lyapunov Functionals
+## Symmetry, Conservation, and Lyapunov Functionals
 
-## 1. Introduction
+### 1. Introduction
 
 Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's Theorem to local Lagrangian densities. In this delayed setting, the force at time $t$ depends on the phase-space trajectory over the interval $[t - h, t]$.
 
@@ -1107,11 +1107,11 @@ This section derives these functionals, establishes the exact symmetry group of 
 
 ---
 
-## 2. The Global Symmetry Group
+### 2. The Global Symmetry Group
 
 We consider the regularized two-body system in the Euclidean Void $\mathbb{R}^3$ with metric $\delta_{ij}$ and absolute time $t$.
 
-### Definition 1 (The Fundamental Symmetry Group)
+#### Definition 1 (The Fundamental Symmetry Group)
 The background substrate and the Master Equation interaction kernel
 $$
 \mathbf{a}_{ij}(t) \propto \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^2}
@@ -1122,7 +1122,7 @@ G_{\text{fund}} = E(3) \times \mathbb{R}_{\text{time}}
 $$
 where $E(3) = \mathbb{R}^3 \rtimes O(3)$ is the Euclidean group of spatial translations and rotations, and $\mathbb{R}_{\text{time}}$ denotes time translation.
 
-### Theorem 1 (Invariance of the Equations of Motion)
+#### Theorem 1 (Invariance of the Equations of Motion)
 Let $\mathbf{x}(t)$ be a solution to the Master Equation.
 1.  **Time Translation:** For any $\tau \in \mathbb{R}$, $\mathbf{y}(t) = \mathbf{x}(t + \tau)$ is also a solution.
 2.  **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf{b} \in \mathbb{R}^3$, $\mathbf{y}(t) = R\mathbf{x}(t) + \mathbf{b}$ is also a solution.
@@ -1134,18 +1134,18 @@ The causal constraint $\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0)$ d
 
 ---
 
-## 3. Conservation of Generalized Momentum
+### 3. Conservation of Generalized Momentum
 
 In a delay system, Newton's Third Law ($\mathbf{F}_{12}(t) = -\mathbf{F}_{21}(t)$) fails instantaneously because $\mathbf{F}_{12}(t)$ originates from particle 2 at $t-\tau_1$, while $\mathbf{F}_{21}(t)$ originates from particle 1 at $t-\tau_2$.
 
-### Definition 2 (Mechanical Momentum)
+#### Definition 2 (Mechanical Momentum)
 The instantaneous mechanical momentum is:
 $$
 \mathbf{P}_{\text{mech}}(t) = \sum_{i} m_i \mathbf{v}_i(t).
 $$
 Because of the delay, $\frac{d}{dt}\mathbf{P}_{\text{mech}} \neq 0$ generally.
 
-### Theorem 2 (Conservation of Total Momentum Functional)
+#### Theorem 2 (Conservation of Total Momentum Functional)
 There exists a functional $\mathbf{P}_{\text{field}}[\mathbf{x}_t]$ representing the momentum flux encoded in the active causal wake surfaces such that the total momentum:
 $$
 \mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{field}}[\mathbf{x}_t]
@@ -1164,11 +1164,11 @@ For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ does not mov
 
 ---
 
-## 4. Energy and The Lyapunov Functional
+### 4. Energy and The Lyapunov Functional
 
 Energy conservation is the critical constraint preventing runaway solutions (MCB-09).
 
-### Definition 3 (The History Hamiltonian)
+#### Definition 3 (The History Hamiltonian)
 Since the system is time-translation invariant, there exists a conserved quantity $\mathcal{H}$. For state-dependent delays, this is a **Lyapunov-Krasovskii Functional**:
 $$
 \mathcal{H}(\mathbf{x}_t) = K(\mathbf{v}(t)) + \mathcal{U}_{\text{history}}(\mathbf{x}_t).
@@ -1177,7 +1177,7 @@ $$
 1.  **Kinetic Energy:** $K(t) = \sum \frac{1}{2} m_i \|\mathbf{v}_i(t)\|^2$.
 2.  **Potential Functional:** $\mathcal{U}_{\text{history}}$ accumulates the work done by the conservative forces. Unlike an instantaneous potential $V(r)$, this depends on the configuration of all active wake surfaces.
 
-### Theorem 3 (Energy Balance Equation)
+#### Theorem 3 (Energy Balance Equation)
 $$
 \frac{dK}{dt} = \sum_{i} \mathbf{v}_i(t) \cdot \mathbf{F}_i(t).
 $$
@@ -1187,11 +1187,11 @@ $$
 $$
 Then, by construction, $\mathcal{E}_{\text{tot}} = K(t) + \mathcal{W}(t)$ is constant.
 
-### Lemma 1 (Boundedness of the Potential)
+#### Lemma 1 (Boundedness of the Potential)
 **Assumption:** The interaction is regularized with width $\eta > 0$ such that the maximum force is bounded: $\|\mathbf{F}_{ij}\| \le F_{\max}(\eta)$.
 **Statement:** For a bound system (particles confined to a finite volume $V$), the rate of work is bounded by $N F_{\max} v_{\max}$.
 
-### Theorem 4 (No-Runaway Criterion)
+#### Theorem 4 (No-Runaway Criterion)
 In the Master Equation dynamics, an isolated binary cannot undergo runaway acceleration ($v \to \infty$) *unless* the potential energy functional $\mathcal{W}(t)$ diverges to $-\infty$.
 
 *Proof Logic:*
