@@ -110,7 +110,7 @@ Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
-At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction can accelerate the approach to the conjectured limiting circular state while preventing singular collapse.
+At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly "deflates" the effective inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state while preventing singular collapse, but overshoot or destabilization remain possible.
 
 ### 4. The Stable State and Emergent Properties
 
