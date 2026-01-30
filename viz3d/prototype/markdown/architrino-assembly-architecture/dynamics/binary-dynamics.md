@@ -67,6 +67,16 @@ With perfectly symmetric initial conditions (e.g., starting at rest), the paths 
 
 The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), which geometrically means the self-hit emission point lies almost directly behind the current position. The radial factor scales like $1/\sin(\tilde{\delta}_s/2)$ and therefore becomes very large as $\tilde{\delta}_s\to 0^+$. This large outward term initially reduces curvature; the maximum-curvature regime does not occur near threshold but only after $\tilde{\delta}_s$ becomes appreciable (higher $s$ and larger-angle roots).
 
+> **Black Box: Surfing the moving wave (lanes under translation and perturbation)**
+>
+> Picture the orbit as a surfer riding a **moving wave**, not a fixed landscape. The "wave" is the delay geometry: as the architrino moves, the causal roots reshape the force it feels. There is no static trough; there are **stable lanes**—recurring orbital patterns that can persist even while the whole assembly **translates through the Noether sea**.
+>
+> As the spiral tightens toward $v=c_f$, the wave develops a sharp **crest**: the first self-hit root appears with $\tilde{\delta}_s \to 0^+$, and the outward radial factor scales like $1/\sin(\tilde{\delta}_s/2)$. That crest is a geometry-driven defocusing surge, not a barrier. The architrino surfs through because tangential drive continues to push it forward. **Lane changes can occur both before and after the crest**; in the spiral case the change is continuous with a slope break at $v=c_f$ rather than a discontinuous jump.
+>
+> Past the crest, the wave face relaxes. $\tilde{\delta}_s$ grows, additional self-hit branches open, and outward push spreads over larger angles. This is where **lane changes** remain possible: small energy shifts or **external perturbations** can move the system from one stable orbital lane to another (binary, tri-binary, decorator, photon-like), even though the whole assembly is drifting. The local orbit changes lanes; the global translation continues.
+>
+> **Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2h$ rather than $h$, because two accelerating contributions (partner delay and self-hit) act together. In the inward spiral this would look like a slope change from $h$ to $2h$ at the hinge, marking the transition from contraction to deflation. This is a hypothesis, not a derived result.
+
 #### **Contraction Phase ($|\mathbf{v}| \le c_f$)**
 Initially, and as long as the speeds of both particles are less than or equal to the field speed $c_f$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
 $$
