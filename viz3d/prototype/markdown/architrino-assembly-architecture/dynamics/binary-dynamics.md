@@ -129,7 +129,7 @@ The stabilization of the orbiting binary gives rise to fundamental, emergent pro
 -   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$).
 -   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
 -   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
--   **A Zero-Potential Axis:** In an ideal, symmetric orbit, the positive and negative potentials emitted by the two particles perfectly cancel along the axis of rotation. This creates a line of zero net potential. This axis acts as a near-zero-potential corridor through which another architrino could pass without being accelerated by the binary, provided its path is perfectly aligned with the axis.
+-   **A Zero-Potential Axis (Idealized):** In the ideal symmetric, non-translating, exactly circular orbit, and under linear superposition, the contributions from the two charges cancel almost exactly along the rotation axis, producing a corridor of very low net potential. In that idealization, an architrino traveling perfectly along this axis would experience negligible acceleration from the binary. In practice, discrete-wake geometry, translation, or slight asymmetry will leave residual off-axis hits, so the corridor is approximate rather than exact.
 
 ---
 
