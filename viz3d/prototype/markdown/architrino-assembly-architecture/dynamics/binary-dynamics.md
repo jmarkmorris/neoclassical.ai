@@ -1,6 +1,6 @@
 # Binary Dynamics
 
-This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed.
+This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. Stability and attractor claims are conjectural unless explicitly established; see the MCB gap ledger for open tests.
 
 ## Self-Hit: Definition and Diagnostics
 
@@ -16,7 +16,7 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - At low velocities ($v < c_f$), self-hit is rare or absent; dynamics are approximately Markovian.
 - As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
 - In generic trajectories, once a particle has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions; self-hit is a path-history effect, not tied solely to the instantaneous speed.
-- For binary and tri-binary assemblies, repeated self-hit events can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
+- For binary and tri-binary assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
 **Simulation & diagnostics:**
 - Use virtual-observer provenance tables to record, for each self-hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
