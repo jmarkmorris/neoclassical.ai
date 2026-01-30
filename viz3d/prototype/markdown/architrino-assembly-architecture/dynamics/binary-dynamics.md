@@ -50,7 +50,7 @@ A symmetric set of equations governs the positrino's motion based on the electri
 
 ### 2. The Inward Exponential Spiral
 
-In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward exponential spiral** that shrinks $r$ and increases speed until the self-interaction threshold ($|\mathbf{v}|>c_f$) is crossed.
+In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward spiral that is naturally modeled as exponential in angle** (a logarithmic spiral), consistent with a per-cycle action increment $\Delta J = h$ in the partner-only regime. The radius shrinks geometrically per turn and speed increases until the self-interaction threshold ($|\mathbf{v}|>c_f$) is crossed.
 
 **Lemma (No stable circular orbit for $v < c_f$).** In circular motion, $v=s=R\omega$. In the partner-only regime, the per-hit tangential component satisfies
 $$
@@ -75,7 +75,7 @@ The binary system's evolution is organized around the **field-speed symmetry poi
 >
 > Past the crest, the wave face relaxes. $\tilde{\delta}_s$ grows, additional self-hit branches open, and outward push spreads over larger angles. This is where **lane changes** remain possible: small energy shifts or **external perturbations** can move the system from one stable orbital lane to another (binary, tri-binary, decorator, photon-like), even though the whole assembly is drifting. The local orbit changes lanes; the global translation continues.
 >
-> **Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2h$ rather than $h$, because two accelerating contributions (partner delay and self-hit) act together. In the inward spiral this would look like a slope change from $h$ to $2h$ at the hinge, marking the transition from contraction to deflation. This is a hypothesis, not a derived result.
+> **Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2h$ rather than $h$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta J = h$ below $c_f$, $\Delta J = 2h$ above. This is a hypothesis, not a derived result.
 
 #### **Contraction Phase ($|\mathbf{v}| \le c_f$)**
 Initially, and as long as the speeds of both particles are less than or equal to the field speed $c_f$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
