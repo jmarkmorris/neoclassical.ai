@@ -22,7 +22,7 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - Check convergence of self‑hit statistics under time‑step refinement, history‑resolution refinement, and integrator swap.
 - If self‑hit signatures change qualitatively under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
 
-For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in the maximum-curvature chapter.
+For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Limit and Attractor Analysis**.
 
 With self‑hit defined, we turn to the simplest assembly where it drives the dynamics: the orbiting binary.
 
@@ -83,10 +83,10 @@ At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; 
 
 ### 4. The Stable State and Emergent Properties
 
-In the working hypothesis, the deflationary spiral does not continue indefinitely. Self-repulsive feedback is expected to stabilize the system and prevent a singularity, but this remains part of the maximum-curvature attractor conjecture (see the gap ledger in the maximum-curvature chapter).
+In the working hypothesis, the deflationary spiral does not continue indefinitely. Self-repulsive feedback is expected to stabilize the system and prevent a singularity, but this remains part of the maximum-curvature attractor conjecture (see the gap ledger in **Maximum-Curvature Limit and Attractor Analysis**).
 
 #### **Curvature Limit and Stability**
-The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. In the maximum-curvature hypothesis, the inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
+The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. In the maximum-curvature attractor conjecture, the inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
 
 Here and below, “potential” or “pressure” is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
 
@@ -105,9 +105,17 @@ If the maximum-curvature attractor conjecture holds, the stabilization of the or
 
 ---
 
+**Falsification signals (two-body level):**
+- If high-resolution simulations of isolated opposite-charge pairs never show long-lived bounded orbits for any initial conditions, the stable-binary/MCB hypothesis fails.
+- If all inward spirals either (a) collapse to unphysical radii despite regularization, or (b) blow out to infinity without forming a limit cycle, the self-hit stabilization mechanism is wrong or incomplete.
+
+---
+
 ## Maximum-Curvature Limit and Attractor Analysis
 
 Once self-hit turns on, the natural question is whether the spiral-in converges to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, stability criteria, and computational diagnostics. It is the canonical reference for MCB attractor status.
+
+All claims of MCB stability and unit-definition are conditional on the conjectures and tests summarized in the gap ledger below.
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to the MCB gap ledger (MCB-07). The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
 
@@ -128,12 +136,12 @@ The architecture hypothesizes that the **Maximal Curvature Binary (MCB)** would 
 - **Length standard**: The orbital radius $r_{\text{min}}$ of the MCB would be the **prototype rod**.
 - **Time standard**: The orbital period $T_{\text{MCB}} = 1/f_{\text{MCB}}$ would be the **prototype clock tick**.
 
-The MCB radius $r_{\text{min}}$ is determined by the balance of:
+If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the balance of:
 1. Coulomb-like attraction between opposite charges ($\propto |e/6|^2 / r^2$),
 2. Self-hit repulsion (non-Markovian feedback when $v > c_f$),
 3. Centripetal requirement for stable circular orbit.
 
-**Expected scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
+**Expected scale (if realized)**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
 
 **Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. This must be established explicitly:
 - Start from a reduced two-body model (opposite charges, self-hit enabled, explicit $\eta$).
@@ -147,7 +155,7 @@ Only if the multipliers lie strictly inside the unit circle and the basin is non
 - **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
 - **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether Sea** for gravitational/cosmological effects.
 
-**This chapter analyzes the isolated two-body problem to understand MCB formation and stability.**
+**This chapter analyzes the isolated two-body problem to understand candidate MCB formation and stability.**
 
 ---
 
@@ -505,7 +513,7 @@ To explore the two-body circular dynamics numerically:
 
 ### MCB Attractor Hypothesis and Test Plan
 
-**Working hypothesis**: An isolated electrino–positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it is a natural attractor of the two-body delay dynamics.
+**Working hypothesis**: An isolated electrino–positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it would be a natural attractor of the two-body delay dynamics.
 
 #### Mechanism and geometric expectations
 
