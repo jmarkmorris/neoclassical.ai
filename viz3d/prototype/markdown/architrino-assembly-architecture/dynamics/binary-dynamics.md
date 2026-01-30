@@ -22,13 +22,15 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - Check convergence of self‑hit statistics under time‑step refinement, history‑resolution refinement, and integrator swap.
 - If self‑hit signatures change qualitatively under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
 
+With self‑hit defined, we turn to the simplest assembly where it drives the dynamics: the orbiting binary.
+
 ## Orbiting Binary Assembly
 
-An orbiting binary is the simplest emergent assembly, consisting of two Architrinos of opposite charge—an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
+An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge—an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
 
 ### 1. System Definition and Equations of Motion
 
-Let's consider the ideal case of a symmetric orbit in a universe with no other Architrinos.
+Consider the ideal case of a symmetric orbit in a universe with no other architrinos.
 
 Let the electrino be particle 1 and the positrino be particle 2.
 -   **Positions:** $\mathbf{s}_1(t)$ and $\mathbf{s}_2(t)$
@@ -76,16 +78,16 @@ The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path cu
 The deflationary spiral does not continue indefinitely. The self-repulsive force creates a dynamic feedback mechanism that ultimately stabilizes the system and prevents a singularity.
 
 #### **Curvature Limit and Stability**
-The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each Architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
+The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
 
 At this limit, the trajectory stabilizes, and the system settles into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is perfectly channeled into the circular motion, while the self-repulsive force prevents any further tightening of the path's curvature. Importantly, this minimum-radius circular state only exists once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
 
 #### **Emergent Properties**
 The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
--   No intrinsic speed cap at the Architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$).
+-   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$).
 -   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
--   **An Imposed Speed Limit:** While individual Architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
--   **A Zero-Potential Axis:** In an ideal, symmetric orbit, the positive and negative potentials emitted by the two particles perfectly cancel along the axis of rotation. This creates a line of zero net potential. This axis acts as a near-zero-potential corridor through which another Architrino could pass without being accelerated by the binary, provided its path is perfectly aligned with the axis.
+-   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
+-   **A Zero-Potential Axis:** In an ideal, symmetric orbit, the positive and negative potentials emitted by the two particles perfectly cancel along the axis of rotation. This creates a line of zero net potential. This axis acts as a near-zero-potential corridor through which another architrino could pass without being accelerated by the binary, provided its path is perfectly aligned with the axis.
 
 ---
 
@@ -135,7 +137,7 @@ Only if the multipliers lie strictly inside the unit circle and the basin is non
 - **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
 - **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether Sea** for gravitational/cosmological effects.
 
-**This document analyzes the isolated two-body problem to understand MCB formation and stability.**
+**This chapter analyzes the isolated two-body problem to understand MCB formation and stability.**
 
 ---
 
@@ -981,7 +983,7 @@ While the model is founded on the concepts of absolute space and absolute time, 
 
 ### The Stable Binary as a Universal Standard
 
-The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As described previously, an isolated electrino-positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
+The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. As developed above, an isolated electrino-positrino pair does not collapse into a singularity. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it settles into a stable, circular orbit characterized by:
 -   A **minimum possible radius**.
 -   A **maximum possible orbital frequency** (and thus a minimum period).
 
@@ -1009,13 +1011,11 @@ With the emergent units $d_0$ and $t_0$, we can move from the abstract, uncalibr
 
 This framework establishes that while the *arena* of space and time is absolute, the *measurement* of space and time is necessarily relative to the properties of the emergent structures that populate it.
 
-
-
 ## State Space and Well-Posedness of the Delayed Two-Body System
 
 ### 1. Introduction and Scope
 
-The Master Equation of Motion for the Architrino system constitutes a system of **State-Dependent Neutral Delay Differential Equations (SD-NDDEs)**. Unlike ordinary differential equations (ODEs) where the state is a point in $\mathbb{R}^{6N}$, the state of this system is a **function segment** representing the past history of the particles.
+The Master Equation of Motion for the architrino system constitutes a system of **State-Dependent Neutral Delay Differential Equations (SD-NDDEs)**. Unlike ordinary differential equations (ODEs) where the state is a point in $\mathbb{R}^{6N}$, the state of this system is a **function segment** representing the past history of the particles.
 
 We denote the position of the $i$-th architrino as $\mathbf{x}_i(t) \in \mathbb{R}^3$. We work in the **Euclidean Void** with fixed metric $\delta_{ij}$.
 
