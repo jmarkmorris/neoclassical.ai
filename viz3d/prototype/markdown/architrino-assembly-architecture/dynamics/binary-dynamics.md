@@ -4,31 +4,31 @@ This chapter develops two-body architrino dynamics from the appearance of self-h
 
 ## Self-Hit: Definition and Diagnostics
 
-Self‑hit is the key non‑Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
+Self-hit is the key non-Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
 
-**Geometric condition (absolute coordinates):** For a given architrino with trajectory $\mathbf{x}(t)$, a self‑hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that
+**Geometric condition (absolute coordinates):** For a given architrino with trajectory $\mathbf{x}(t)$, a self-hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that
 $$
 |\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
 $$
 and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
 
 **Dynamical role:**
-- At low velocities ($v < c_f$), self‑hit is rare or absent; dynamics are approximately Markovian.
-- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter’s future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
-- For binary and tri‑binary assemblies, repeated self‑hit events can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
+- At low velocities ($v < c_f$), self-hit is rare or absent; dynamics are approximately Markovian.
+- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
+- For binary and tri-binary assemblies, repeated self-hit events can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
 **Simulation & diagnostics:**
-- Use virtual‑observer provenance tables to record, for each self‑hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
-- Check convergence of self‑hit statistics under time‑step refinement, history‑resolution refinement, and integrator swap.
-- If self‑hit signatures change qualitatively under refinement, treat any resulting “stable structures” as artifacts until proven otherwise.
+- Use virtual-observer provenance tables to record, for each self-hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
+- Check convergence of self-hit statistics under time-step refinement, history-resolution refinement, and integrator swap.
+- If self-hit signatures change qualitatively under refinement, treat any resulting "stable structures" as artifacts until proven otherwise.
 
 For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Limit and Attractor Analysis**.
 
-With self‑hit defined, we turn to the simplest assembly where it drives the dynamics: the orbiting binary.
+With self-hit defined, we turn to the simplest assembly where it drives the dynamics: the orbiting binary.
 
 ## Orbiting Binary Assembly
 
-An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge—an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
+An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge--an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
 
 ### 1. System Definition and Equations of Motion
 
@@ -69,9 +69,9 @@ The binary system's evolution is organized around the **field-speed symmetry poi
 
 > **Black Box: Surfing the moving wave (lanes under translation and perturbation)**
 >
-> Picture the orbit as a surfer riding a **moving wave**, not a fixed landscape. The "wave" is the delay geometry: as the architrino moves, the causal roots reshape the force it feels. There is no static trough; there are **stable lanes**—recurring orbital patterns that can persist even while the whole assembly **translates through the Noether sea**.
+> Picture the orbit as a surfer riding a **moving wave**, not a fixed landscape. The "wave" is the delay geometry: as the architrino moves, the causal roots reshape the force it feels. There is no static trough; there are **stable lanes**--recurring orbital patterns that can persist even while the whole assembly **translates through the Noether sea**.
 >
-> As the spiral tightens toward $v=c_f$, the wave develops a sharp **crest**: the first self-hit root appears with $\tilde{\delta}_s \to 0^+$, and the outward radial factor scales like $1/\sin(\tilde{\delta}_s/2)$. That crest is a geometry-driven defocusing surge, not a barrier. The architrino surfs through because tangential drive continues to push it forward. **Lane changes can occur both before and after the crest**; in the spiral case the evolution is continuous in state (C⁰) but has a **kink** in slope at $v=c_f$ rather than a discontinuous jump.
+> As the spiral tightens toward $v=c_f$, the wave develops a sharp **crest**: the first self-hit root appears with $\tilde{\delta}_s \to 0^+$, and the outward radial factor scales like $1/\sin(\tilde{\delta}_s/2)$. That crest is a geometry-driven defocusing surge, not a barrier. The architrino surfs through because tangential drive continues to push it forward. **Lane changes can occur both before and after the crest**; in the spiral case the evolution is continuous in state (C0) but has a **kink** in slope at $v=c_f$ rather than a discontinuous jump.
 >
 > Past the crest, the wave face relaxes. $\tilde{\delta}_s$ grows, additional self-hit branches open, and outward push spreads over larger angles. This is where **lane changes** remain possible: small energy shifts or **external perturbations** can move the system from one stable orbital lane to another (binary, tri-binary, decorator, photon-like), even though the whole assembly is drifting. The local orbit changes lanes; the global translation continues.
 >
@@ -98,7 +98,7 @@ In the working hypothesis, the deflationary spiral does not continue indefinitel
 #### **Curvature Limit and Stability**
 The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. In the maximum-curvature attractor conjecture, the inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
 
-Here and below, “potential” or “pressure” is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
+Here and below, "potential" or "pressure" is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
 
 If the maximum-curvature attractor conjecture holds, the trajectory stabilizes, and the system is expected to settle into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is channeled into circular motion while self-repulsion prevents further tightening of the path's curvature. If such a minimum-radius circular state exists, it only occurs once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
 
@@ -139,9 +139,9 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 ### Foundational Context (Ontological Clarification)
 
-#### The Maximal Curvature Binary (MCB) as Fundamental Unit
+#### The maximum-curvature binary (MCB) as Fundamental Unit
 
-The architecture hypothesizes that the **Maximal Curvature Binary (MCB)** would be the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would define the **fundamental physical units**:
+The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would define the **fundamental physical units**:
 
 - **Length standard**: The orbital radius $r_{\text{min}}$ of the MCB would be the **prototype rod**.
 - **Time standard**: The orbital period $T_{\text{MCB}} = 1/f_{\text{MCB}}$ would be the **prototype clock tick**.
@@ -163,7 +163,7 @@ Only if the multipliers lie strictly inside the unit circle and the basin is non
 
 - **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
 - **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
-- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether Sea** for gravitational/cosmological effects.
+- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
 
 **This chapter analyzes the isolated two-body problem to understand candidate MCB formation and stability.**
 
@@ -176,16 +176,16 @@ Only if the multipliers lie strictly inside the unit circle and the basin is non
 - **Uniform circular motion**: Angular speed $\omega$, constant tangential speed $s = R\omega$.
 - **Non-translating binary**: Circle center (midpoint) is fixed in Euclidean 3D space; no net translation.
 
-Let $C_i(t_\text{emit})$ denote the causal wake surface emitted by architrino $i$ at emission time $t_\text{emit}$. For uniform circular motion, self‑hit events are discrete intersections between the worldline and its own wake surfaces. Define the **principal self‑delay angle** $\tilde{\delta}_s \in (0, \pi]$ as the minimal angular separation between the current position and the emission point that yields a hit. Additional self‑hits occur at longer delays indexed by winding number $m \ge 0$, giving a discrete family $\delta_s(m) = \tilde{\delta}_s + 2\pi m$.
+Let $C_i(t_\text{emit})$ denote the causal wake surface emitted by architrino $i$ at emission time $t_\text{emit}$. For uniform circular motion, self-hit events are discrete intersections between the worldline and its own wake surfaces. Define the **principal self-delay angle** $\tilde{\delta}_s \in (0, \pi]$ as the minimal angular separation between the current position and the emission point that yields a hit. Additional self-hits occur at longer delays indexed by winding number $m \ge 0$, giving a discrete family $\delta_s(m) = \tilde{\delta}_s + 2\pi m$.
 
 #### Phase Angles and Delays
 
 Let $\delta_s$ and $\delta_p$ denote the angular phase separations (measured along the circle) between:
-- **Self** (same particle): Current position → its own past emission position that hits "now."
+- **Self** (same particle): Current position -> its own past emission position that hits "now."
   - Delay time: $\tau_s$; angular separation: $\delta_s = \omega \tau_s$.
   - Chord length: $r_s = 2R \sin(\delta_s / 2)$.
   
-- **Partner** (other particle): Current position → partner's past emission position that hits "now."
+- **Partner** (other particle): Current position -> partner's past emission position that hits "now."
   - Delay time: $\tau_p$; angular separation: $\delta_p = \omega \tau_p$.
   - Chord length: $r_p = 2R \cos(\delta_p / 2)$.
 
@@ -247,7 +247,7 @@ The full families of causal delays are:
 - **Radial outward**: $\hat{e}_r$ (from rotation center toward receiver).
 - **Tangential**: $\hat{e}_t$ (direction of motion along circle).
 
-#### Unit Directions of Lines of Action (Emission → Reception)
+#### Unit Directions of Lines of Action (Emission -> Reception)
 
 **Self-hit**:
 $$
@@ -263,12 +263,12 @@ $$
 
 Using the delayed, radial law with magnitude $\kappa \epsilon^2 / r^2$ (where $\kappa$ is a coupling constant and $\epsilon = |e/6|$):
 
-**Self-hit** (like charges → repulsive):
+**Self-hit** (like charges -> repulsive):
 $$
 \mathbf{a}_s = +\kappa \epsilon^2 \frac{1}{r_s^2} \hat{u}_s.
 $$
 
-**Partner hit** (opposite charges → attractive):
+**Partner hit** (opposite charges -> attractive):
 $$
 \mathbf{a}_p = -\kappa \epsilon^2 \frac{1}{r_p^2} \hat{u}_p.
 $$
@@ -286,12 +286,12 @@ $$
 
 **Inward radial components**:
 
-- **Self** (repulsive → outward → negative):
+- **Self** (repulsive -> outward -> negative):
   $$
   A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)}.
   $$
 
-- **Partner** (attractive → inward → positive):
+- **Partner** (attractive -> inward -> positive):
   $$
   A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)}.
   $$
@@ -380,10 +380,10 @@ $$
 A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
 $$
 
-**Increasing curvature** ($\kappa = 1/R$ larger → $R$ smaller) requires **stronger inward radial force**. This occurs when:
+**Increasing curvature** ($\kappa = 1/R$ larger -> $R$ smaller) requires **stronger inward radial force**. This occurs when:
 
-1. **$\delta_p$ increases** → $\cos(\delta_p / 2)$ decreases → partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
-2. **$\delta_s$ increases** → $\sin(\delta_s / 2)$ increases → self term $1/\sin(\delta_s / 2)$ **decreases** (weaker outward repulsion).
+1. **$\delta_p$ increases** -> $\cos(\delta_p / 2)$ decreases -> partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
+2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> self term $1/\sin(\delta_s / 2)$ **decreases** (weaker outward repulsion).
 
 **Critical observation**: Near the self-hit threshold ($s \to 1^+$, $\delta_s \to 0^+$):
 
@@ -391,7 +391,7 @@ $$
 \frac{1}{\sin(\delta_s / 2)} \to \infty \quad \text{(strong outward repulsion)}.
 $$
 
-Therefore, **just-above-threshold self-hits do not maximize curvature**—they **strongly oppose** it by blowing up the outward radial component.
+Therefore, **just-above-threshold self-hits do not maximize curvature**--they **strongly oppose** it by blowing up the outward radial component.
 
 **Maximum curvature** (smallest stable $R$) likely occurs at **higher speeds** ($s \gg 1$) where:
 - Multiple self-hits ($m \ge 1$) are active,
@@ -429,8 +429,8 @@ $$
 
 **Examples**:
 
-- $1 < s < 3\pi/2 \approx 4.712$ → $N_{\text{self}} = 1$ (only $m = 0$).
-- $s \ge 3\pi/2$ → $N_{\text{self}} \ge 2$ ($m = 0$ and $m = 1$).
+- $1 < s < 3\pi/2 \approx 4.712$ -> $N_{\text{self}} = 1$ (only $m = 0$).
+- $s \ge 3\pi/2$ -> $N_{\text{self}} \ge 2$ ($m = 0$ and $m = 1$).
 - Higher $m$ branches turn on at $s \ge 5\pi/2$, $7\pi/2$, etc.
 
 **Note**: Straight-line motion admits **no self-hits** even if $s > 1$; **curvature is required**. The above statements apply specifically to uniform circular, non-translating geometry.
@@ -441,7 +441,7 @@ $$
 
 **Context**: Non-translating, uniform circular binary at fixed speed $s$. Receiver "now" at azimuth $\theta = 0$.
 
-The emission points on the circle that can produce hits "now" form a **finite, discrete set** of azimuths determined by the delay equations—**not arbitrary locations**.
+The emission points on the circle that can produce hits "now" form a **finite, discrete set** of azimuths determined by the delay equations--**not arbitrary locations**.
 
 #### Partner Hits
 
@@ -457,7 +457,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
   $$
 
 - **Existence thresholds**: For each $m \ge 0$, a solution exists only if $s > m\pi$.
-- As $m$ increases, $\tilde{\delta}_p$ decreases → $\varphi_p$ drifts monotonically toward $\pi$ (diametrically opposite point).
+- As $m$ increases, $\tilde{\delta}_p$ decreases -> $\varphi_p$ drifts monotonically toward $\pi$ (diametrically opposite point).
 
 #### Self-Hits
 
@@ -478,7 +478,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
     $$
     s \ge s_m^\star = \frac{(2m + 1) \pi}{2}.
     $$
-  - Within a branch, $\tilde{\delta}_s$ decreases with $s$ → $\varphi_s$ drifts toward $-\pi$.
+  - Within a branch, $\tilde{\delta}_s$ decreases with $s$ -> $\varphi_s$ drifts toward $-\pi$.
 
 #### Multiplicity and Pattern
 
@@ -489,7 +489,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 - As $s$ increases, the set grows in **steps** at the thresholds above; more roots appear but they **never fill the circle**.
 - Multiple hits at the same "now" correspond to different winding indices $m$ (and occasionally multiple $\tilde{\delta}_s$ solutions within a branch); all are fixed by the delay equations and circle geometry.
 
-**Plain language**: For a given speed, hits come from a **short list of specific angles** set by causality and delay—not from arbitrary points all around the circle. Going faster unlocks more of these specific angles at predictable threshold speeds.
+**Plain language**: For a given speed, hits come from a **short list of specific angles** set by causality and delay--not from arbitrary points all around the circle. Going faster unlocks more of these specific angles at predictable threshold speeds.
 
 ---
 
@@ -516,14 +516,14 @@ To explore the two-body circular dynamics numerically:
    Verify that $T(s) > 0$ (no constant-speed equilibrium without external physics).
 
 5. **Identify speed regimes**:
-   - Near $s \to 1^+$: Strong outward self-repulsion ($1/\sin(\delta_s/2) \to \infty$) → low curvature.
-   - Higher $s$ ($s \gg 1$): Multiple self-hits active; $\delta_s$ large → outward repulsion minimized → higher curvature possible (but still not stable due to $T > 0$).
+   - Near $s \to 1^+$: Strong outward self-repulsion ($1/\sin(\delta_s/2) \to \infty$) -> low curvature.
+   - Higher $s$ ($s \gg 1$): Multiple self-hits active; $\delta_s$ large -> outward repulsion minimized -> higher curvature possible (but still not stable due to $T > 0$).
 
 ---
 
 ### MCB Attractor Hypothesis and Test Plan
 
-**Working hypothesis**: An isolated electrino–positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it would be a natural attractor of the two-body delay dynamics.
+**Working hypothesis**: An isolated electrino--positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it would be a natural attractor of the two-body delay dynamics.
 
 #### Mechanism and geometric expectations
 
@@ -1009,7 +1009,7 @@ If the attractor test succeeds, the MCB is the natural building block for tri-bi
 
 ### Tri-Binary Bridge
 
-If the MCB exists as a stable attractor, it serves as the **inner binary** of tri‑binary assemblies. The outer pair then evolves in a broader, typically precessing orbit around the inner MCB, with additional modes (middle binary at $v=c_f$, outer binary at $v<c_f$) supplying energy storage and coupling to the Noether Sea. This chapter focuses on the two‑body MCB; tri‑binary dynamics are treated separately.
+If the MCB exists as a stable attractor, it serves as the **inner binary** of tri-binary assemblies. The outer pair then evolves in a broader, typically precessing orbit around the inner MCB, with additional modes (middle binary at $v=c_f$, outer binary at $v<c_f$) supplying energy storage and coupling to the Noether sea. This chapter focuses on the two-body MCB; tri-binary dynamics are treated separately.
 
 ---
 
@@ -1114,7 +1114,7 @@ $$
 There exists a maximal time $T > 0$ and a unique solution $\mathbf{x}(t)$ on $[-h, T)$ such that $\mathbf{x}_0 = \phi^0$ and $\mathbf{x}(t)$ satisfies the regularized Master Equation.
 
 *Proof Strategy:*
-The problem is reduced to $\dot{\mathbf{x}}(t) = \mathbf{v}(t), \dot{\mathbf{v}}(t) = F(\mathbf{x}_t)$. Since $F$ is locally Lipschitz on the open subset of $\mathcal{H}$ where causal roots are simple (Lemma 1), the Picard-Lindelöf theorem for Banach spaces applies.
+The problem is reduced to $\dot{\mathbf{x}}(t) = \mathbf{v}(t), \dot{\mathbf{v}}(t) = F(\mathbf{x}_t)$. Since $F$ is locally Lipschitz on the open subset of $\mathcal{H}$ where causal roots are simple (Lemma 1), the Picard-Lindelof theorem for Banach spaces applies.
 
 ---
 
