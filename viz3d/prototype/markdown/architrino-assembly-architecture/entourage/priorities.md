@@ -3,6 +3,7 @@
 I think the priority should be on the math and the mapping. advancing the mapping.
 
 - look for rapid hits - ckm matrix?
+- math/geometry/dynamics are huge
 - sim2rewrite.md has ideas for importing this software (redeveloping)
 - mine material from wordpress for key areas
 - finish topology (where is it)
