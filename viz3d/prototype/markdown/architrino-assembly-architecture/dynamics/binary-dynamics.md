@@ -32,7 +32,7 @@ An orbiting binary is the simplest emergent assembly, consisting of two architri
 
 ### 1. System Definition and Equations of Motion
 
-Consider the ideal case of a symmetric orbit in a universe with no other architrinos.
+Consider the ideal case of a symmetric orbit in a universe with no other architrinos. In general, each architrino is subject to a superposition of external potential waves from all other sources; the analysis below isolates the binary by setting those external contributions to zero.
 
 Let the electrino be particle 1 and the positrino be particle 2.
 -   **Positions:** $\mathbf{s}_1(t)$ and $\mathbf{s}_2(t)$
@@ -792,6 +792,8 @@ $$
 \lim_{n\to\infty} P_{\text{red}}^{(n)}(\mathbf{z}_0) = \mathbf{z}^*
 \Big\}.
 $$
+
+If a stable MCB fixed point exists and the binary remains bound, perturbations that stay within $\mathcal{B}(\mathbf{z}^*)$ return to the MCB; perturbations outside the basin may escape, collapse, or transition to other attractors.
 
 In practice, we restrict to a 2D slice (e.g. $(R_0,s_0)$ with $\delta_s,\delta_p$ fixed at $\delta_s^*,\delta_p^*$) and study
 $$
