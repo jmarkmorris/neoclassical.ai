@@ -88,6 +88,8 @@ In the working hypothesis, the deflationary spiral does not continue indefinitel
 #### **Curvature Limit and Stability**
 The inward spiral does not lead to a singularity. The limiting factor is the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. In the maximum-curvature hypothesis, the inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop.
 
+Here and below, “potential” or “pressure” is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
+
 If the maximum-curvature attractor conjecture holds, the trajectory stabilizes, and the system is expected to settle into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is channeled into circular motion while self-repulsion prevents further tightening of the path's curvature. If such a minimum-radius circular state exists, it only occurs once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
 
 #### **Emergent Properties**
@@ -121,10 +123,10 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 #### The Maximal Curvature Binary (MCB) as Fundamental Unit
 
-In the architrino framework, the **Maximal Curvature Binary (MCB)** is the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. It defines the **fundamental physical units**:
+The architecture hypothesizes that the **Maximal Curvature Binary (MCB)** would be the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would define the **fundamental physical units**:
 
-- **Length standard**: The orbital radius $r_{\text{min}}$ of the MCB is the **prototype rod**.
-- **Time standard**: The orbital period $T_{\text{MCB}} = 1/f_{\text{MCB}}$ is the **prototype clock tick**.
+- **Length standard**: The orbital radius $r_{\text{min}}$ of the MCB would be the **prototype rod**.
+- **Time standard**: The orbital period $T_{\text{MCB}} = 1/f_{\text{MCB}}$ would be the **prototype clock tick**.
 
 The MCB radius $r_{\text{min}}$ is determined by the balance of:
 1. Coulomb-like attraction between opposite charges ($\propto |e/6|^2 / r^2$),
@@ -133,7 +135,7 @@ The MCB radius $r_{\text{min}}$ is determined by the balance of:
 
 **Expected scale**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
 
-**Dynamical priority (attractor status):** The architecture assumes the MCB is a **robust attractor**, not a finely tuned periodic orbit. This must be established explicitly:
+**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. This must be established explicitly:
 - Start from a reduced two-body model (opposite charges, self-hit enabled, explicit $\eta$).
 - Construct a Poincare map (e.g., strobing at orbital phase) and locate the MCB as a fixed point.
 - Compute Floquet multipliers / Lyapunov exponents and map the basin of attraction under perturbations in radius, phase, and velocity.
@@ -141,7 +143,7 @@ Only if the multipliers lie strictly inside the unit circle and the basin is non
 
 #### Relationship to Tri-Binary Structure
 
-- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **defines fundamental units**.
+- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
 - **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
 - **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether Sea** for gravitational/cosmological effects.
 
@@ -1203,6 +1205,7 @@ We define the **Interaction Potential Functional** $\mathcal{W}(t)$ such that:
 $$
 \mathcal{W}(t) = -\int_{t_0}^t \sum_i \mathbf{v}_i(s) \cdot \mathbf{F}_i(s) \, ds.
 $$
+This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$.
 Then, by construction, $\mathcal{E}_{\text{tot}} = K(t) + \mathcal{W}(t)$ is constant.
 
 #### Lemma 1 (Boundedness of the Potential)
@@ -1223,7 +1226,7 @@ For $K(t)$ to diverge, $\mathcal{W}(t)$ must decrease without bound.
     *   Work done by self-hit: If a particle is pushed "from behind" by its own wake, it gains $K$.
     *   However, this energy must come from the $\mathcal{W}$ term.
     *   Since self-hit potential is repulsive (positive energy hill), converting it to kinetic energy lowers the total potential.
-    *   **Crucial Bound:** The "stored energy" in a self-wake is finite (determined by emission charge). A particle cannot extract infinite energy from its own past unless it puts infinite energy *into* the field first.
+    *   **Crucial Bound:** The deferred work encoded in a self-wake is finite (determined by emission charge). A particle cannot extract infinite energy from its own past unless it puts infinite energy *into* the field first.
 
 **Conclusion:** The "free lunch" runaway, where a particle accelerates itself indefinitely using self-forces, is forbidden by the conservation of $\mathcal{H}$. The system can oscillate or settle, but it cannot explode to $v=\infty$ without singular collapse of the radius.
 
