@@ -65,7 +65,7 @@ With perfectly symmetric initial conditions (e.g., starting at rest), the paths 
 
 ### 3. Evolution Through Velocity Regimes
 
-The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), so the new repulsive feedback can be dynamically stiff even though it turns on continuously.
+The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), which geometrically means the self-hit emission point lies almost directly behind the current position. The radial factor scales like $1/\sin(\tilde{\delta}_s/2)$ and therefore becomes very large as $\tilde{\delta}_s\to 0^+$. This large outward term initially reduces curvature; the maximum-curvature regime does not occur near threshold but only after $\tilde{\delta}_s$ becomes appreciable (higher $s$ and larger-angle roots).
 
 #### **Contraction Phase ($|\mathbf{v}| \le c_f$)**
 Initially, and as long as the speeds of both particles are less than or equal to the field speed $c_f$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
@@ -79,7 +79,7 @@ Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
-At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases, so the spiral can tighten faster with each increment in frequency. This phase is "deflationary" in that self-interaction accelerates the approach to the conjectured limiting circular state while preventing singular collapse.
+At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction can accelerate the approach to the conjectured limiting circular state while preventing singular collapse.
 
 ### 4. The Stable State and Emergent Properties
 
