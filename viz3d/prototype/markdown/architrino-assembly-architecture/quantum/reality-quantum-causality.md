@@ -444,10 +444,17 @@ These are the four points where architrino theory **explains** standard quantum 
 >
 > Crucially, the transition itself is not an observable steady state. Attempting to probe the in‑between injects action and **forces a resolution to one side**, which is why you cannot continuously sample the bifurcation with photons.
 
-> ### **Uncertainty Brackets the Integer Step (Black‑Box View)**
+> ### **Uncertainty Brackets the Integer Step (Phenomenological + Toy Dynamics)**
 > The outer binary occupies discrete **resonance bands** labeled by an integer $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$‑scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
 >
 > Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
+>
+> **Status:** The rule below is a phenomenological summary of micro-dynamics, not a derivation.
+>
+> **Toy dynamics (one plausible micro-model):** Let $S$ be an action-like variable and $E$ an energy-like slow variable.
+> $\dot S = E - E_{\mathrm{ref}}$  
+> $\dot E = -\gamma (E - E_{\mathrm{ref}}) + F_{\mathrm{ext}}(t) + \kappa M(t-\tau)$  
+> A basin flip occurs when $S$ crosses $S = n h$. A finite Lyapunov time $\tau_L$ and typical forcing scale $|F_{\mathrm{ext}}|$ yield a bracket $\delta \sim |F_{\mathrm{ext}}| \tau_L$ (order-of-magnitude), with measurement back-action contributing at the same scale.
 >
 > ```
 > Input: potential packet P + internal state S
