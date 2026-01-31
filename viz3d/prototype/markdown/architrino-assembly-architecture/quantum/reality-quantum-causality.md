@@ -115,8 +115,8 @@ At the assembly level (tri-binaries, atoms, etc.):
   - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary; see 3.1.1). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
 - The **middle binary**, near $v = c_f$, likely sits near a **self-hit threshold** (see 3.1.1):
-  - Slightly below $c_f$: one regime (e.g., $h$-like response per cycle).
-  - Slightly above $c_f$: another regime (e.g., $2h$-like, self-hit-amplified response per cycle).
+  - Slightly below $c_f$: one regime (e.g., a response on the order of an $h$-scale action increment per cycle, phenomenological).
+  - Slightly above $c_f$: another regime (e.g., a response on the order of a $2h$-scale action increment per cycle, phenomenological; self-hit-amplified).
   - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
 
 #### 3.1.1 Threshold Structure Guide (Plain-Language Labels)
@@ -133,6 +133,8 @@ We use "threshold" and "separatrix" in several regimes. A separatrix is a bounda
 Where the exact topology is not proven, we use "-like" and treat the label as a structural analogy.
 
 #### 3.1.2 Schematic Self‑Hit Threshold Dynamics (Toy Model)
+
+Status: This is a toy delay‑oscillator model chosen to illustrate how a control parameter ($v/c_f$) can change stability; the mapping to exact $h$‑scale increments is heuristic, not derived.
 
 This is a **schematic** dynamical sketch that makes the $v \approx c_f$ threshold concrete in textbook terms. It is not a full derivation of the architrino master equation, but it shows how a **bifurcation surface** can arise from delayed self‑interaction.
 
