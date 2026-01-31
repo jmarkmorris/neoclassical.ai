@@ -456,6 +456,17 @@ These are the four points where architrino theory **explains** standard quantum 
 > $\dot E = -\gamma (E - E_{\mathrm{ref}}) + F_{\mathrm{ext}}(t) + \kappa M(t-\tau)$  
 > A basin flip occurs when $S$ crosses $S = n h$. A finite Lyapunov time $\tau_L$ and typical forcing scale $|F_{\mathrm{ext}}|$ yield a bracket $\delta \sim |F_{\mathrm{ext}}| \tau_L$ (order-of-magnitude), with measurement back-action contributing at the same scale.
 >
+> #### **Outer Binary as a Quasi-Harmonic Oscillator (Attractor Bands)**
+> **Baseline orbit:** Model the outer binary as an effective two-body oscillator with potential $V(r) = -\kappa q^2/r + \Phi_{\mathrm{ext}}(t)$. For a circular orbit,
+> $m r \omega_0^2 = \kappa q^2/r^2$, so $\omega_0^2 = \kappa q^2/(m r^3)$.
+>
+> **Action variable:** Define the action $J = \oint p \, dq$. For a nearly harmonic orbit, $J \approx E/\omega_0$. Under weak periodic driving, resonances occur when the phase advances by $2\pi f$ per drive period (winding number $f$). The Poincare section then shows island chains labeled by $f$; each chain is a stable attractor family.
+>
+> **Band labeling:** In architrino language we label these families by integer $f$ and set thresholds at $J \approx f h$. Equivalently, the mode frequency is $\nu_f = f \nu_0$, so a resonant packet supplies $\Delta E \approx h \nu_f = f h \nu_0$; per cycle this is an action step of order $h$. This yields energy bands $E \in [f h \nu_0, (f+1) h \nu_0)$ (or, in normalized units, $E \in [f h, (f+1) h)$).
+>
+> **Transition:** When $E$ (or $J$) crosses the boundary, the system crosses a separatrix and falls into the next island chain. This is the discrete step $f \to f \pm 1$; near the separatrix the islands shrink, sensitivity grows, and the uncertainty bracket appears operationally.
+>
+> **Operational summary (black-box view):**
 > ```
 > Input: potential packet P + internal state S
 > Compute: action increment per cycle ΔA
