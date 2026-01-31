@@ -435,9 +435,9 @@ You're not free **from** the laws of physics. You're free **within** them, becau
 
 ---
 
-### 4.15 Bifurcation, Observability, and Many-Worlds
+### 4.15 Core Reinterpretations of Quantum Language
 
-These are not side notes; they are **core interpretive claims** of the architrino framework. We state them explicitly to prevent confusion for readers coming from standard quantum language.
+These are the four points where architrino theory **explains** standard quantum interpretations in terms of explicit dynamical mechanisms. They are foundational to the framework, not commentary.
 
 > ### **Wavefunction Collapse = Threshold Resolution**
 > In standard QM, “collapse” is an axiom added to a linear wave equation. In architrino theory the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a separatrix by a record‑making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore see a different equation *after* the resolution than *before*. “Collapse” is the observer’s forced update to the correct effective equation once the threshold has been crossed.
