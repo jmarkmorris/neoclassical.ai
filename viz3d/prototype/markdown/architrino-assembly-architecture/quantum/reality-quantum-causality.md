@@ -140,18 +140,18 @@ This is a **schematic** dynamical sketch that makes the $v \approx c_f$ threshol
 
 Let $x(t)$ be a reduced coordinate describing a middle‑binary deviation (e.g., radius or phase offset) from a nominal orbit. Model partner coupling as a damped harmonic restoring force, and model **self‑hit** as a delayed feedback term whose gain increases rapidly as $\beta = v/c_f \to 1$:
 
-\[
+$$
 \ddot{x}(t) + 2\zeta\omega_0 \dot{x}(t) + \omega_0^2 x(t) = g(\beta)\,x(t-\tau).
-\]
+$$
 
 - $\tau$ is the causal delay around the orbit (set by path length and $c_f$).
 - $g(\beta)$ is small for $\beta<1$ and rises sharply as $\beta \to 1$ due to wake pileup; it encodes the onset of self‑hit coupling.
 
 Linearizing with $x(t) \sim e^{\lambda t}$ gives the characteristic equation:
 
-\[
+$$
 \lambda^2 + 2\zeta\omega_0 \lambda + \omega_0^2 - g(\beta)\,e^{-\lambda\tau} = 0.
-\]
+$$
 
 As $g(\beta)$ crosses a critical value $g_c$, an eigenvalue crosses $\Re(\lambda)=0$ (a **stability change**). For small $\tau$, one finds $g_c \approx \omega_0^2$ (real‑root crossing); for finite $\tau$, a **Hopf‑type** crossing appears when $\lambda=i\omega$ satisfies the phase and gain conditions. In either case the qualitative picture is standard for delay systems:
 
@@ -230,7 +230,7 @@ In the architrino framework:
 
 ### 4.5 Interpretation of Decision
 
-When Alfa and Dyna described the **Decider** (a bias‑setting complex), they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess.
+The **Decider** (a bias‑setting complex) is **not** a claim of magical free will. It is a **dynamical capacity** that certain architectures can possess.
 
 #### Required Capacities
 
@@ -615,7 +615,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 
 ### 6.3 Why Three Atoms?
 
-**Dyna:** You need 3 because **2 points form a line, but 3 points form a geometry.**
+Geometric heuristic: you need 3 because **2 points form a line, but 3 points form a geometry.**
 *   With 2 atoms, you only have distance (1 degree of freedom).
 *   With 3 atoms, you have **distance** and **angle** (bending mode).
 *   **Symmetry Breaking:** A linear molecule ($\text{He-Rb-He}$) has high symmetry. If you bend it ($\angle < 180^\circ$), you break that symmetry. This geometric symmetry breaking maps directly to the **Middle Binary's velocity threshold**.
