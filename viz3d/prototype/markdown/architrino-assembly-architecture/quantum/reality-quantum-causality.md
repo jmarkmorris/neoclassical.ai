@@ -40,12 +40,12 @@ At the emergent level:
 
 - We talk about “an electron,” “a nucleus,” etc. as if they are isolated, but each is really a **tri-binary assembly** plus its coupling to the surrounding architrino weather.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
-- Occasionally, when the assembly’s configuration is **metastable** (near a separatrix in its phase space), a particular combination of incoming wakes pushes it across a threshold:
+- Occasionally, when the assembly’s configuration is **metastable** (near a threshold manifold; see 3.1.1), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
   - Nucleus “decays”
   - Detector “clicks”
 
-Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses a separatrix.
+Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses the relevant separatrix (see 3.1.1).
 
 Two clarifications matter here:
 
@@ -110,19 +110,32 @@ At the assembly level (tri-binaries, atoms, etc.):
 
 - The **outer binary** can be modeled as such a metastable subsystem:
   - It supports discrete resonance bands labeled by frequency $f$.
-  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E = \hbar \omega = h f$, and pushes the system across the cusp between bands (e.g., $f \to f \pm 1$). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
+  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E = \hbar \omega = h f$, and pushes the system across the heteroclinic separatrix between island chains (the $f \to f \pm 1$ boundary; see 3.1.1). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
-- The **middle binary**, near $v = c_f$, likely sits near a **bifurcation surface**:
+- The **middle binary**, near $v = c_f$, likely sits near a **homoclinic-like threshold** (self-hit onset; see 3.1.1):
   - Slightly below $c_f$: one regime (e.g., $h$-like response per cycle).
   - Slightly above $c_f$: another regime (e.g., $2h$-like, self-hit-amplified response per cycle).
   - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
+
+#### 3.1.1 Threshold Structure Taxonomy (Separatrix Types)
+
+We use "threshold" and "separatrix" in several regimes. They are not the same topology. This table is a classification guide for the local phase-space geometry (not a proof of global structure).
+
+| Context | Structure | Effective dimension | Example anchor |
+| --- | --- | --- | --- |
+| Outer $f$-step | Heteroclinic separatrix between resonant island chains | 1D action (2D Poincare map) | Island-chain boundary |
+| Middle $v = c_f$ | Homoclinic-like threshold (self-hit onset) | 2D phase subspace | Entry into wake-coupled regime |
+| He-Rb-He mode | Conical-intersection-like mode crossing | 3D+ configuration space | Vibronic coupling analogue |
+| Neural firing | Saddle-node separatrix | High-D network manifold | Spike threshold |
+
+Where the exact topology is not proven, we use "-like" and treat the label as a structural analogy.
 
 ### 3.2 Chaos and Effective Unpredictability
 
 Because:
 
 - The input signal (sum of wakes from the architrino sea) is **high-dimensional** and **history-dependent**,
-- The local assembly is sitting near a **separatrix** (especially via the middle binary),
+- The local assembly is sitting near a **threshold manifold** (heteroclinic island boundary in the outer binary or homoclinic-like threshold in the middle binary; see 3.1.1),
 
 we get classic deterministic chaos:
 
@@ -388,6 +401,8 @@ When you "decide" to raise your arm:
 3. The motor signal (rogue wave from upstream neurons) arrives and tips the assemblies into firing
 4. The firing cascade triggers muscle contraction
 
+At the neural level this firing threshold is a saddle-node separatrix in a high-dimensional network (see 3.1.1).
+
 **At every step:** lawful (with multistability at thresholds).
 **But:** The outcome depends on your brain's **current configuration** (which you shaped through learning) and your **current internal state** (which reflects your history and goals).
 
@@ -440,7 +455,7 @@ You're not free **from** the laws of physics. You're free **within** them, becau
 These are the four points where architrino theory **explains** standard quantum interpretations in terms of explicit dynamical mechanisms. They are foundational to the framework, not commentary.
 
 > ### **Wavefunction Collapse = Threshold Resolution**
-> In standard QM, “collapse” is an axiom added to a linear wave equation. In architrino theory the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a separatrix by a record‑making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore see a different equation *after* the resolution than *before*. “Collapse” is the observer’s forced update to the correct effective equation once the threshold has been crossed.
+> In standard QM, “collapse” is an axiom added to a linear wave equation. In architrino theory the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold manifold (see 3.1.1) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore see a different equation *after* the resolution than *before*. “Collapse” is the observer’s forced update to the correct effective equation once the threshold has been crossed.
 >
 > Crucially, the transition itself is not an observable steady state. Attempting to probe the in‑between injects action and **forces a resolution to one side**, which is why you cannot continuously sample the bifurcation with photons.
 
@@ -464,7 +479,7 @@ These are the four points where architrino theory **explains** standard quantum 
 >
 > **Band labeling:** In architrino language we label these families by integer $f$ and set thresholds at $J \approx f h$. Equivalently, the mode frequency is $\nu_f = f \nu_0$, so a resonant packet supplies $\Delta E \approx h \nu_f = f h \nu_0$; per cycle this is an action step of order $h$. This yields energy bands $E \in [f h \nu_0, (f+1) h \nu_0)$ (or, in normalized units, $E \in [f h, (f+1) h)$).
 >
-> **Transition:** When $E$ (or $J$) crosses the boundary, the system crosses a separatrix and falls into the next island chain. This is the discrete step $f \to f \pm 1$; near the separatrix the islands shrink, sensitivity grows, and the uncertainty bracket appears operationally.
+> **Transition:** When $E$ (or $J$) crosses the boundary, the system crosses the heteroclinic separatrix between island chains (see 3.1.1) and falls into the next island chain. This is the discrete step $f \to f \pm 1$; near that separatrix the islands shrink, sensitivity grows, and the uncertainty bracket appears operationally.
 >
 > **Operational summary (black-box view):**
 > ```
@@ -649,7 +664,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 *   With 2 atoms, you only have distance (1 degree of freedom).
 *   With 3 atoms, you have **distance** and **angle** (bending mode).
 *   **Symmetry Breaking:** A linear molecule ($\text{He-Rb-He}$) has high symmetry. If you bend it ($\angle < 180^\circ$), you break that symmetry. This geometric symmetry breaking maps directly to the **Middle Binary's velocity threshold**.
-*   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **conical intersections** in its potential energy surface—regions where the distinction between states vanishes and "choice" (bifurcation) becomes physically possible.
+*   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **conical-intersection-like mode crossings** in its potential energy surface—regions where the distinction between states vanishes and "choice" (bifurcation) becomes physically possible (see 3.1.1).
 
 ### 6.4 Summary
 
