@@ -16,6 +16,11 @@ Document how we plan to use the official PDG Python API to access Particle Data 
 - Requirements include Python 3 and SQLAlchemy >= 1.4 (see PDG docs for any legacy support notes).
 - The PDG data in the Review of Particle Physics is licensed by PDG (CC BY 4.0 for recent editions); the `pdg` package code is open source under a BSD-style license.
 
+## Documentation
+- Python API docs: https://pdgapi.lbl.gov/doc/pythonapi.html
+- PDG API general docs: https://pdgapi.lbl.gov/doc/
+- PDG database file (schema and download context): https://pdgapi.lbl.gov/doc/schema.html
+
 ## Installation
 Use standard Python tooling:
 
@@ -35,13 +40,108 @@ api = pdg.connect()
 schema_version = api.info("schema_version")
 ```
 
-To use a different PDG database file, pass a database URL:
+To use a different PDG database file, pass a database URL (downloaded from the PDG website):
 
 ```python
-api = pdg.connect("sqlite:////absolute/path/to/pdg.sqlite")
+api = pdg.connect("sqlite:///pdgall-2025-v0.2.2.sqlite")  # example filename; see PDG API page for current files
 ```
 
 The `pedantic` flag can be used to enable stricter validation behavior; use it for tests or debug runs if needed.
+
+## Example calls and returned data
+The examples below mirror PDG's documented usage. Outputs vary by edition; values shown are representative.
+
+### 1) Connect and inspect the database
+```python
+import pdg
+api = pdg.connect()
+print(api.edition)                 # e.g. "2025" (edition-dependent)
+print(api.info("schema_version"))  # schema version as a string
+```
+Example output (edition-specific):
+```
+<edition>
+<schema_version>
+```
+
+### 2) Get a particle and simple properties
+```python
+pi_minus = api.get_particle_by_name("pi-")
+print(pi_minus.mcid)       # Monte Carlo particle number (int)
+print(pi_minus.mass)       # mass in GeV (float, unrounded)
+print(pi_minus.quantum_J)  # spin J (quantum number)
+```
+Example output (edition-specific):
+```
+-211
+<mass_in_GeV>
+<J>
+```
+
+### 3) Get all charge states for a PDG identifier
+```python
+charged_pions = api.get("S008")
+print([p.name for p in charged_pions])
+```
+Expected output:
+```
+['pi+', 'pi-']
+```
+
+### 4) Iterate properties (example)
+```python
+for p in api.get_particle_by_mcid(211).properties():
+    print(p.pdgid, p.description, p.display_value_text)
+```
+Returned data are per-property objects with identifiers, descriptions, and display-ready values (one per row), for example:
+```
+S008M  mass (pi+-)  <value +/- error>
+```
+
+## Detailed example: list decay modes, products, and probabilities
+Below is a narrated example using a particle with multiple exclusive decay modes (the charged pion). The same pattern works for any particle with branching fractions.
+
+### Step 1: connect and select the particle
+```python
+import pdg
+api = pdg.connect()
+pi_plus = api.get_particle_by_name("pi+")
+```
+
+### Step 2: iterate decay modes and build product lists
+Each exclusive decay is a `PdgBranchingFraction`. The `decay_products` list contains `PdgDecayProduct` entries, each with:
+- `item`: a `PdgItem` (may be a specific particle or a generic particle class),
+- `multiplier`: how many of that item appear in the decay,
+- `subdecay`: optional nested decay requirement.
+
+```python
+def format_products(decay):
+    parts = []
+    for dp in decay.decay_products:
+        name = dp.item.name
+        mult = dp.multiplier
+        parts.append(name if mult == 1 else f"{mult}*{name}")
+    return " + ".join(parts)
+
+for decay in pi_plus.exclusive_branching_fractions():
+    products = format_products(decay)
+    prob = decay.display_value_text  # formatted value with uncertainties/limits
+    print(decay.description)
+    print(f"  products: {products}")
+    print(f"  branching: {prob} (limit={decay.is_limit})")
+```
+
+### Example output (truncated; edition-specific)
+```
+pi+ --> mu+ nu_mu
+  products: mu+ + nu_mu
+  branching: <value +/- error> (limit=False)
+<other decay modes omitted>
+```
+
+### Notes
+- Some products are generic (e.g., "K", "l") rather than a fixed charge state. The `PdgItem` tells you what the term means, and may resolve to more than one particle.
+- If you need a structured tree of subdecays, use `decay.subdecays()` to inspect nested modes and their conventions as recorded in the Listings.
 
 ## Data versioning and reproducibility
 - Pin the `pdg` package version in requirements.
@@ -57,6 +157,13 @@ The `pedantic` flag can be used to enable stricter validation behavior; use it f
 - Add a small smoke test that opens the default database and reads `schema_version`.
 
 ## Open items
-- Decide whether we want to mirror PDG database files in repo artifacts or rely on pinned package versions.
+- Decide whether to mirror PDG SQLite database files in repo artifacts or rely on pinned `pdg` package versions.
 - Define a small wrapper module for the most common PDG queries used by our pipelines.
-*** End Patch작성 before the final response. We also used web.run; need citations in final response. But doc doesn't include sources. It's okay. We'll cite in response summary referencing PDG docs and PyPI maybe. We'll mention file created with details consistent with PDG docs. We should mention that we did not include rest. We'll provide citations. Use cite format. For statements: "Created pdg-api.md describing pdg package: offline SQLite DB, updates with RPP, SQLAlchemy, pip install, connect API". We'll cite sources: python API doc, overview, pdg package doc, about page, PyPI. We might not need to mention versions. Keep summary with citations accordingly. Also mention if we didn't create directory (exists). We'll mention file path. Provide suggestion for next steps e.g., review doc or add code. Provide file path with inline code. Also per instructions, don't mention "summary" label; just start with explanation. For "workdir not repo root", must advise user each response. We'll include at top. Provide note that we created file. Provide suggestions with numbered list. Provide no big formatting. Use bullet list. Provide citations in response (not within code). Ensure citations not inside bold or code or lines containing only citations. Provide them after relevant sentences. Also avoid raw URLs in response; citations are fine. If mention 'pdg package' and offline features etc; cite PDG docs and PyPI. We'll include 2-3 citations. We should mention we used PDG Python API docs, overview, about page, PyPI. We'll include 3 citations. Let's craft response: "Created `ideas-designs/pdg-api.md` documenting PDG Python API workflow (pdg package, offline SQLite DB, SQLAlchemy, versioned releases, licensing, installation, connect pattern) and explicitly scoped out REST API." Provide citations for features: recommended, offline, uses SQLite, updates with new package, uses SQLAlchemy; from pythonapi page. For license info from about page. For package and pip install from PyPI. So include citations after relevant sentences. Provide next steps suggestions: review content and decide on wrapper module, etc. Use numbered list if suggestions. Also mention we used PDG docs. Provide "workdir notice" at top. Ensure response not too long. Let's craft. We'll not mention web.run. We'll follow instructions to use code fences for commands? Not necessary. We'll mention file path using inline code. Provide suggestions. Ensure "Architrino" not used? We'll avoid. We'll use "architrino"? not needed. If used, only at sentence start - avoid. Let's craft response. Remember to include citations with proper format. Let's craft final. We'll keep to guidelines: "Lead with quick explanation of change, then details." We'll say: "Created `ideas-designs/pdg-api.md` with Python API guidance ...". Provide details bullet list maybe. Then suggestions list. Provide workdir notice first. Let's craft. We'll not mention "summary." Provide direct text. Let's craft final response. Ensure citations appended. We'll reference sources with cite format. We'll include at least 2. Ok. Let's finalize. And don't forget to mention workdir not repo root. Ensure no bold headings etc? The guidelines allow optional headings; for simple update we can just do plain text plus bullets. We'll use a small bullet list for what's inside file. Provide citations. Let's craft. We'll ensure citations after sentences. Done. Let's finalize. In response, we should not include new line with only citations. We must place citations at end of sentence. We'll do. Let's craft. We'll include two sentences with citations. Great. Let's deliver. We'll not mention test run. Provide next steps suggestions, 1-2. Done. Let's finalize. (Workdir notice line at start.)
+- Add a short note on where we store downloaded PDG database files for reproducible runs.
+
+## Implementation notes (recommended deployment pattern)
+- Do not commit the full PDG SQLite database to git; it is large, changes by edition, and bloats clones.
+- Pin a PDG edition and store the edition string and schema version in config/metadata for reproducibility.
+- Host the SQLite database on the backend server (not in the GitHub Pages frontend) and expose a thin API or precomputed JSON artifacts for the webapp.
+- If you need to distribute the database file, prefer GitHub Releases or LFS rather than normal git history.
+- Review PDG redistribution terms and include attribution if you publish derived datasets or APIs.
