@@ -191,6 +191,8 @@ Here I’ll sharpen this in terms of **minimal structural/dynamical conditions**
 
 ### 4.1 Definition of Decision
 
+**Canonical Working Definition (Agency/Decision):** An assembly “decides” between outcomes when (i) multiple attractors are dynamically accessible, and (ii) its internal slow variables deterministically modulate the basins of attraction so that, for a given class of inputs, different internal states lead to different realized attractors.
+
 We keep everything strictly dynamical:
 
 - There is no extra “will field.”
@@ -200,7 +202,7 @@ So the question becomes: what is the minimal set of features an assembly must ha
 
 ### 4.2 Justification for the Canonical Definition
 
-This chapter's stance on determinism and agency follows directly from the core dynamics:
+This chapter's stance on determinism and agency follows directly from the core dynamics. (This matches the canonical determinism/branching/agency definitions in `foundations/ontology.md`, §4.x.)
 
 1. **Lawful micro-dynamics**: the master equation fixes evolution given complete initial conditions.
 2. **Threshold multistability**: self-hit and edge-condition regimes admit multiple coexisting attractors from a single prior state.
@@ -678,9 +680,7 @@ Here's the critical distinction:
   - Which mode it's in depends on its recent history (what transitions it made before)
   - That history was shaped by prior inputs **plus** the assembly's own structural feedback rules
 
-**The assembly's response is still deterministic** (given complete microstate + history, outcome is fixed), **but the determining factors include the assembly's own internal architecture, history, and threshold-sensitive multistability**.
-
-From the **outside**, this looks like the assembly "chose" to ignore or leverage the input. From the **inside** (absolute microdynamics), it's just deterministic evolution with complex, history-dependent feedback.
+From the **outside**, this looks like the assembly "chose" to ignore or leverage the input. From the **inside**, it is the assembly's own feedback history shaping which attractor is realized.
 
 ### C.2 Functional Agency
 
