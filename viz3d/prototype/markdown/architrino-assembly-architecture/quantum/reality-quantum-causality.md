@@ -435,9 +435,39 @@ You're not free **from** the laws of physics. You're free **within** them, becau
 
 ---
 
+### 4.15 Bifurcation, Observability, and Many-Worlds
+
+Operationally, a decision is **detectable** only if it produces a **bifurcation** in the coarse-grained history (a different macroscopic record). If an internal configuration changes but the trajectory remains in the same basin, there is no external divergence and thus no observable "decision." In that sense, **decisions that do not cause a timeline bifurcation are empirically invisible**.
+
+This does **not** require a many-worlds ontology. The branching tree at a bifurcation looks like many-worlds diagrams, but here it is an **epistemic branching**: a bookkeeping of alternative futures given coarse-grained knowledge. The absolute description still has a single realized trajectory.
+
+The uncertainty principle can be read as **bracketing the bifurcation point** at the operational level: near a separatrix, $h$-scale action increments and measurement back-action limit how precisely an observer can place the system relative to the basin boundary. The bifurcation is sharp in the absolute microstate, but it is smeared into a finite uncertainty band for any embedded observer.
+
+#### 4.15.1 Black-Box View: Uncertainty Brackets the Integer Frequency Step
+
+Here's the operational "black box" that links uncertainty to the **integer change in frequency**:
+
+- The outer binary sits in discrete **resonance bands** labeled by an integer $f$ (or $n$), and a transition occurs when the **action per cycle** crosses the $h$-scale threshold.
+- In absolute dynamics the step is clean: if the increment exceeds the threshold, the system moves to $f \to f \pm 1$.
+- In operational dynamics you cannot localize the action/phase *precisely* at the boundary. The uncertainty principle ($\Delta E \Delta t \gtrsim h$ or, equivalently, an $h$-scale limit in action–phase resolution) plus measurement back‑action imposes a **finite bracketing band** around the threshold.
+
+A minimal decision rule looks like this:
+
+```
+Input: potential packet P + internal state S
+Compute: action increment per cycle ΔA
+If ΔA < h - δ   → stay in band f
+If ΔA > h + δ   → shift band (f → f ± 1)
+If |ΔA - h| ≤ δ → bifurcation zone (microstate decides)
+```
+
+Here $\delta$ is an **uncertainty bandwidth** of order $h$ set by operational limits, not by ontological randomness. That is the key linkage: the **integer frequency step is real**, but the **uncertainty principle brackets the step**, producing the appearance of probabilistic outcomes when the system is poised near the bifurcation point.
+
+---
+
 ## 5. Case Study: Navigational Assembly
 
-To build an assembly that can **choose**—meaning it can dynamically alter its own probability of transition in response to external inputs—we need to move beyond a single atom and construct a **Networked Super-Assembly**.
+To build an assembly that can **choose**-meaning it can dynamically alter its own probability of transition in response to external inputs-we need to move beyond a single atom and construct a **Networked Super-Assembly**.
 
 Here is the engineering architecture for a primitive "Choice Unit" (or **Navigational Gate**) based on the Tri-Binary physics we have established.
 
@@ -530,7 +560,9 @@ This transforms the assembly from a passive rock being battered by waves into a 
 
 ---
 
-## 6. Minimum Viable Atomic Hardware
+## 6. Applied Example: Minimum Viable Atomic Hardware (Rb-He-He Triad)
+
+This is one **applied realization** of the decision mechanism, not the unique way to do it. Many physical architectures can implement the same control loop (bias setting -> threshold positioning -> bifurcation). The triad is a concrete, manipulable example where the **decision** is upstream (in the bias configuration) and the **electron transition** is the downstream execution.
 
 To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
 
