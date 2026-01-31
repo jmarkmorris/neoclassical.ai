@@ -152,7 +152,7 @@ Linearizing with $x(t) \sim e^{\lambda t}$ gives the characteristic equation:
 As $g(\beta)$ crosses a critical value $g_c$, an eigenvalue crosses $\Re(\lambda)=0$ (a **stability change**). For small $\tau$, one finds $g_c \approx \omega_0^2$ (real‑root crossing); for finite $\tau$, a **Hopf‑type** crossing appears when $\lambda=i\omega$ satisfies the phase and gain conditions. In either case the qualitative picture is standard for delay systems:
 
 - **Below threshold** ($g<g_c$): a single stable attractor (no self‑hit amplification).
-- **At threshold** ($g\approx g_c$): sensitivity spikes; a separatrix forms between basins.
+- **At threshold** ($g\approx g_c$): sensitivity surges; a separatrix forms between basins.
 - **Above threshold** ($g>g_c$): new attractors or limit cycles appear; trajectories split.
 
 This schematic shows how **$v \approx c_f$ defines a bifurcation surface** in a reduced phase space: the self‑hit feedback term activates and changes the stability of the local orbit. A full derivation and numerical phase‑portrait mapping would require the full delay‑kernel of the master equation and is handled in the dynamics notes.
@@ -183,7 +183,7 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ## 4. Agency and Decision
 
-Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *choose* its response—either leveraging incoming “rogue” waves or effectively ignoring them.
+Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *decide* its response—either leveraging incoming **large‑deviation wake peaks** (≥ 3σ constructive interference above the local noise floor) or effectively ignoring them.
 
 ### 4.1 Definition of Decision
 
@@ -253,7 +253,7 @@ The assembly must have:
 - At least **two distinct, dynamically stable or metastable attractors** in its coarse‑grained state space (e.g. “fire” vs “don’t fire,” “transition A” vs “transition B”).
 - These attractors correspond to **different macroscopic outcomes** in response to similar classes of input.
 
-Without at least two attractors, there is nothing to “choose” between; the system’s response is trivial.
+Without at least two attractors, there is nothing to **decide between**; the system’s response is trivial.
 
 ---
 
@@ -271,7 +271,7 @@ Concretely:
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
   - Local aether‑coupling “stiffness” (how strongly sub‑assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
-  - The assembly can hold a “configuration of sensitivity” over many incoming rogue waves,
+  - The assembly can hold a “configuration of sensitivity” over many incoming wake peaks,
   - But can still adjust that configuration over longer time (learning, context).
 
 **Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the aether to maintain a tuned state.
@@ -307,7 +307,7 @@ To have any meaningful “self-control” over its response, the assembly must n
 
 In dynamical terms:
 
-- The slow internal variables (thresholds, couplings) must not be **overridden** by any single typical rogue wave.
+- The slow internal variables (thresholds, couplings) must not be **overridden** by any single large‑deviation wake peak.
 - Instead, they should:
   - Shape *how* a broad class of inputs is interpreted,
   - Allow the same input class to produce different outcomes depending on the current internal configuration.
@@ -315,16 +315,16 @@ In dynamical terms:
 Minimal condition:
 
 - **Robustness** of the slow variables to typical input fluctuations:
-  - They change only under integrated, structured input over time (e.g., sustained patterns, not single spikes),
+  - They change only under integrated, structured input over time (e.g., sustained patterns, not single peaks),
   - This lets the assembly maintain a “stance” toward incoming waves for a while (e.g., “currently ignore small perturbations” vs “currently be highly sensitive”).
 
-Without this partial decoupling, the internal configuration is always yanked around by whatever the last rogue wave happened to be—no stable policy, no self-chosen stance.
+Without this partial decoupling, the internal configuration is always yanked around by whatever the last peak happened to be—no stable policy, no self-chosen stance.
 
 ---
 
-#### (5) Nontrivial mapping from rogue waves to internal update
+#### (5) Nontrivial mapping from wake peaks to internal update
 
-Finally, the way rogue waves update the internal variables must itself be **structured**, not trivial:
+Finally, the way wake peaks update the internal variables must itself be **structured**, not trivial:
 
 - Different classes of potential patterns (e.g., direction, frequency, correlation structure) should drive $u$ and related variables in **different directions**.
 - This allows the assembly to:
@@ -356,12 +356,12 @@ With these five pieces:
 
 Then, for a fixed external architrino “weather”:
 
-- In one internal configuration, the assembly sits far from thresholds and **ignores** almost all rogue waves of a given type.
-- In another configuration, it moves those thresholds closer so that the **same class** of rogue waves is now sufficient to trigger transitions—**leveraging** them to produce amplified, macroscopic changes.
+- In one internal configuration, the assembly sits far from thresholds and **ignores** almost all peaks of a given type.
+- In another configuration, it moves those thresholds closer so that the **same class** of peaks is now sufficient to trigger transitions—**leveraging** them to produce amplified, macroscopic changes.
 
 From the outside, that difference looks like a **change of policy**: “now respond to this kind of stimulus, now don’t.” From the inside (in foundational terms), it is nothing but a lawful reconfiguration of basin geometry and threshold conditions—implemented by the assembly’s own dynamics.
 
-That is the minimal sense in which an assembly “chooses its response” in this deterministic architrino framework.
+That is the minimal sense in which an assembly **decides its response** in this deterministic architrino framework.
 
 ### 4.8 Philosophical Implications (Appendix C)
 
@@ -463,7 +463,7 @@ If architrino theory is correct, the last 150 years look like this:
 
 ## 5. Decider: Minimal Bias-Setting Complex
 
-To build an assembly that can **choose**-meaning it can dynamically alter its own probability of transition in response to external inputs-we need to move beyond a single atom and construct a **Decider** (a minimal bias‑setting complex). This is the smallest assembly complex that can **make a decision and set a bias**.
+To build an assembly that can **decide**-meaning it can dynamically alter its own probability of transition in response to external inputs-we need to move beyond a single atom and construct a **Decider** (a minimal bias‑setting complex). This is the smallest assembly complex that can **make a decision and set a bias**.
 
 ### 5.0 Minimality Lens (Fewest-Architrino Candidates)
 
@@ -476,7 +476,7 @@ Here is the engineering architecture for that candidate minimal **Decider** base
 
 ### 5.1 Architecture
 
-To achieve the ability to leverage or ignore "rogue waves" (constructive interference spikes in the potential field), the system needs three distinct functional components:
+To achieve the ability to leverage or ignore **large‑deviation wake peaks** (≥ 3σ constructive interference above the local noise floor), the system needs three distinct functional components:
 
 1.  **The Resonator (The Sensor)**: An assembly exposed to the environment.
 2.  **The Switch (The Amplifier)**: A Middle Binary sitting near $v \approx c_f$.
@@ -489,7 +489,7 @@ To achieve the ability to leverage or ignore "rogue waves" (constructive interfe
 This is the most direct method to toggle between **leveraging** and **ignoring** (see 4.7 for the full conceptual framing). A bias unit adjacent to the target assembly shifts the target’s middle‑binary threshold:
 
 - **Ignore (high threshold):** move the Bias Unit closer (or stabilize phase) → deepen the local potential well → pull the target away from $v=c_f$.
-- **Leverage (high sensitivity):** move the Bias Unit away (or destabilize phase) → shallow the well → bring the target toward $v\approx c_f$ so small rogue waves can tip it.
+- **Leverage (high sensitivity):** move the Bias Unit away (or destabilize phase) → shallow the well → bring the target toward $v\approx c_f$ so incoming peaks can tip it.
 
 The **decision** is the bias configuration held by the assembly at that moment.
 
@@ -524,7 +524,7 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 **The Mechanism:**
 *   **Precession Control:** The Decider can induce a Larmor-like precession in the Target assembly using a magnetic-like interaction from neighbors.
 *   **Alignment:**
-    *   **Ignore:** Orient the Target's sensitive plane *orthogonal* to the direction of incoming rogue waves. The cross-section is minimized.
+    *   **Ignore:** Orient the Target's sensitive plane *orthogonal* to the direction of incoming peaks. The cross-section is minimized.
     *   **Leverage:** Precess the Target until its plane is *parallel* to the incoming waves. The cross-section is maximized.
 
 ---
@@ -535,11 +535,11 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
 *   The system must expend stored energy to change its configuration.
 *   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.
-*   You "invest" energy in the Bias Unit to lower the threshold, hoping that the "rogue wave" you catch will yield a payout (information or energy) greater than the cost of tuning.
+*   You "invest" energy in the Bias Unit to lower the threshold, hoping that the peak you catch will yield a payout (information or energy) greater than the cost of tuning.
 
 ### 5.6 Summary
 
-To build a system that chooses:
+To build a system that decides:
 1.  **Construct a Decider** containing a **Switch core** (metastable tri‑binary).
 2.  **Surround it with "Control Binaries"** (Bias Units).
 3.  **Implement Feedback:**
@@ -597,7 +597,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 *   **Configuration:** The He‑Rb‑He assembly allows the Helium atoms to relax closer to the Rubidium core.
 *   **Effect:** The potential wakes from the stable Helium atoms overlap with the Rubidium's outer electron. They compress the orbital, increasing the "pressure."
 *   **Architrino Result:** The Rubidium electron's Middle Binary is pushed **away** from the critical velocity $c_f$ (down to a safer, lower velocity).
-*   **Outcome:** The Sensor is "detuned." It ignores rogue waves.
+*   **Outcome:** The Sensor is "detuned." It ignores peaks.
 
 **2. State B: "Leverage Mode" (High Sensitivity)**
 *   **Configuration:** The He‑Rb‑He assembly excites a vibrational mode (a "breathing mode") where the Helium atoms oscillate slightly outward.
