@@ -86,7 +86,7 @@ So causality is **unbroken** at the substrate, but **opaque** and sometimes misl
 
 ---
 
-## 3. Randomness vs Deterministic Chaos
+## 3. Determinism, Multistability, and Chaos
 
 ### 3.1 Metastability and threshold crossings
 
@@ -129,7 +129,7 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ---
 
-## 4. Free Will and “Navigation” – Minimal Dynamical Requirements
+## 4. Agency and “Choice” in a Deterministic World
 
 Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *choose* its response—either leveraging incoming “rogue” waves or effectively ignoring them.
 
@@ -142,7 +142,53 @@ We keep everything strictly dynamical:
 
 So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
 
-### 4.2 Minimal requirements
+### 4.2 Why the canonical definition follows
+
+This chapter's stance on determinism and agency follows directly from the core dynamics:
+
+1. **Lawful micro-dynamics**: the master equation fixes evolution given complete initial conditions.
+2. **Threshold multistability**: self-hit and edge-condition regimes admit multiple coexisting attractors from a single prior state.
+3. **Internal structure matters**: assemblies can tune their own thresholds and thereby shape which attractor they fall into.
+4. **Predictability is limited**: microstate sensitivity makes outcomes effectively unpredictable to operational observers without introducing ontological randomness.
+
+These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md` (see canonical definition).
+
+### 4.3 The Short Answer
+
+**No assembly has "free will" in the libertarian sense** (the ability to violate physical law or act without prior cause).
+
+**But yes, complex assemblies can have "agency" in the compatibilist sense** (the capacity to navigate deterministic dynamics in ways that depend on their internal structure and history, making their behavior functionally autonomous and practically unpredictable).
+
+The confusion arises because "free will" is a philosophically loaded term with multiple incompatible definitions. Let me clarify what the architrino framework actually allows.
+
+### 4.4 What Determinism Really Means Here
+
+In the architrino framework:
+- Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
+- The master equation is **lawful**: given complete initial conditions, the future is fixed, with **deterministic multistability** at threshold regimes
+- **There is no ontological randomness**, no dice-rolling, no violations of causality
+
+**So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
+
+### 4.5 Then What Did We Mean by "Choice"?
+
+When Alfa and Dyna described the "Decision Super-Assembly," they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess.
+
+#### The Five Capacities (Not Magic, Just Physics)
+
+1. **Multiple Attractors:** The assembly can settle into different stable configurations (State A vs State B) depending on inputs.
+
+2. **Tunable Thresholds:** The assembly can **modify its own basin geometry** (change which attractor it's likely to fall into) by adjusting internal slow variables.
+
+3. **Memory/Feedback:** The assembly's current threshold settings depend on its **past history** of transitions (path dependence).
+
+4. **Partial Decoupling:** The threshold settings are robust against instant noise; they change only under sustained, structured inputs.
+
+5. **Structured Response:** Different input patterns drive different threshold adjustments (not all inputs are equivalent).
+
+**This is deterministic navigation**, not libertarian free will.
+
+### 4.6 Minimal requirements (expanded)
 
 I see at least **five** necessary ingredients.
 
@@ -246,7 +292,7 @@ This is what makes the assembly a **selector of its own future sensitivity**, no
 
 ---
 
-### 4.3 Putting it together: “Leveraging vs Ignoring” in practice
+### 4.7 Putting it together: “Leveraging vs Ignoring” in practice
 
 With these five pieces:
 
@@ -265,38 +311,125 @@ From the outside, that difference looks like a **change of policy**: “now resp
 
 That is the minimal sense in which an assembly “chooses its response” in this deterministic architrino framework.
 
+### 4.8 The Key Insight: Internal Causation vs External Determination
+
+Here's the critical distinction:
+
+**External Determination (Passive Rock):**
+- A hydrogen atom in a laser beam absorbs a photon → deterministic outcome (away from edge-condition thresholds)
+- The atom has no internal degrees of freedom that modify the absorption probability
+- It's a **fixed-threshold detector**
+
+**Internal Causation (Active Navigator):**
+- The Rubidium-Helium triad in the same laser beam may or may not absorb, depending on:
+  - Whether it's currently in "Ignore Mode" (He atoms compressed) or "Leverage Mode" (He atoms relaxed)
+  - Which mode it's in depends on its recent history (what transitions it made before)
+  - That history was shaped by prior inputs **plus** the assembly's own structural feedback rules
+
+**The assembly's response is still deterministic** (given complete microstate + history, outcome is fixed), **but the determining factors include the assembly's own internal architecture, history, and threshold-sensitive multistability**.
+
+From the **outside**, this looks like the assembly "chose" to ignore or leverage the input. From the **inside** (absolute microdynamics), it's just deterministic evolution with complex, history-dependent feedback.
+
+### 4.9 Why This Matters: Functional Agency
+
+What we care about practically is whether a system can:
+- **Adapt** (change its behavior based on past outcomes)
+- **Discriminate** (respond differently to different environmental patterns)
+- **Self-regulate** (maintain internal goals/states against perturbations)
+- **Navigate** (steer toward preferred attractors in a complex landscape)
+
+The architrino super-assembly can do all of this **while remaining fully deterministic** (with multistability at thresholds).
+
+**This is compatibilist free will:**
+- Your decisions are caused (by your brain's microstate + inputs)
+- But the causal chain runs **through you** (your internal structure matters)
+- And your internal structure was shaped by **your history** (learning, adaptation)
+- So in a meaningful sense, **you** are steering, even though the steering is deterministic
+
+### 4.10 The Determinism Paradox (Resolved)
+
+**Objection:** "If everything is determined, how is this different from a billiard ball?"
+
+**Answer:** A billiard ball has:
+- No internal tunable thresholds
+- No memory of past collisions
+- No feedback loops that modify future responsiveness
+- No capacity to place itself near or far from bifurcation points
+
+A brain (or the Rb-He triad) has all of these. **The difference is architectural complexity**, not magic.
+
+**Key point:** Determinism does not imply **predictability** or **simplicity**. A deterministic system with:
+- High-dimensional state space
+- Nonlinear dynamics
+- Chaotic sensitivity
+- History-dependent feedback
+
+...is **functionally indistinguishable from a random system** to any observer who doesn't have omniscient knowledge of the microstate.
+
+### 4.11 Where Does "Will" Enter?
+
+**"Will"** in this framework is the **organized pattern of threshold settings** across a vast network of assemblies (like neurons in a brain).
+
+When you "decide" to raise your arm:
+1. A pattern of neural assemblies shifts into "high-sensitivity" mode for motor cortex signals
+2. This shift was caused by prior activity (your intention, shaped by your goals/beliefs/learning)
+3. The motor signal (rogue wave from upstream neurons) arrives and tips the assemblies into firing
+4. The firing cascade triggers muscle contraction
+
+**At every step:** lawful (with multistability at thresholds).
+**But:** The outcome depends on your brain's **current configuration** (which you shaped through learning) and your **current internal state** (which reflects your history and goals).
+
+**So in what sense is it "your" decision?**
+- The causal chain runs through your brain's architecture
+- That architecture was modified by your past experiences and choices
+- The outcome reflects your learned patterns and goals
+- No external agent forced this particular threshold configuration on you
+
+**Compatibilist conclusion:** It's determined, but it's **yours**.
+
+### 4.12 Can an Assembly "Have" Free Will?
+
+**Libertarian free will (uncaused causes):** No. Nothing in this universe has that, because it's incoherent. Randomness ≠ freedom.
+
+**Compatibilist free will (autonomous navigation):** Yes, if the assembly has sufficient complexity:
+- Minimum: 3 atoms (He-Rb-He) can exhibit primitive threshold tuning
+- Complex: ~10¹¹ neurons (human brain) can exhibit goal-directed behavior, learning, self-modification
+
+**The difference is one of degree (complexity), not kind (mechanism).**
+
+### 4.13 Summary: The Entourage's Position
+
+| Concept | Architrino Framework Position |
+|---------|-------------------------------|
+| **Determinism** | Yes, fundamentally (absolute time + master equation; deterministic multistability at thresholds) |
+| **Ontological Randomness** | No (chaos + ignorance, not dice-rolling) |
+| **Libertarian Free Will** | No (incoherent concept; "uncaused cause" violates causality) |
+| **Compatibilist Free Will / Agency** | Yes (complex assemblies can navigate deterministic dynamics autonomously) |
+| **Mechanism of "Choice"** | Threshold tuning + feedback + memory in networked assemblies |
+| **Can assemblies decide?** | Yes, in the sense of "dynamically modulating responsiveness based on internal state and history" |
+| **Is it "real" agency?** | Yes, if "real" means "has causal efficacy and functional autonomy," not "violates physics" |
+
 ---
 
-## 5. Suggested refinements 
+### 4.14 Final Clarity
 
-1. **Natural Selection of States**
-   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
+The super-assembly doesn't **violate** determinism. It **exploits** determinism.
 
-2. **Middle-binary bifurcation**
-   - We should specify at least one toy dynamical system (even a low-dimensional map) where:
-     - A control parameter mimics $v/c_f$,
-     - The response shows $h$ vs $2h$-like thresholds,
-     - Basins of attraction and Lyapunov exponents can be computed.
+By sitting on the edge of chaos (middle binary near $v = c_f$), it makes tiny differences in internal configuration lead to vastly different macroscopic outcomes. **That sensitivity is the substrate of agency.**
 
-3. **Chaos → Born rule**
-   - We need a clear program for investigating whether chaotic threshold dynamics in the architrino sea can reproduce $|\psi|^2$ distributions.
-   - This will likely require Sol’s simulations plus some ergodic/measure-theoretic work.
+You're not free **from** the laws of physics. You're free **within** them, because the laws permit extraordinarily complex, self-modifying, history-dependent structures that steer their own futures in ways that are unpredictable to external observers and responsive to internal goals.
 
-4. **Causality language**
-   - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
-
+**That's as "free" as any physical system can be—and it's enough.**
 
 ---
 
-## Ability to Choose
+## 5. Case Study: The Navigational Assembly (Choice Unit)
 
 To build an assembly that can **choose**—meaning it can dynamically alter its own probability of transition in response to external inputs—we need to move beyond a single atom and construct a **Networked Super-Assembly**.
 
 Here is the engineering architecture for a primitive "Choice Unit" (or **Navigational Gate**) based on the Tri-Binary physics we have established.
 
----
-
-### The Blueprint: The Tri-Partite "Choice Unit"
+### 5.1 The Blueprint: The Tri-Partite "Choice Unit"
 
 To achieve the ability to leverage or ignore "rogue waves" (constructive interference spikes in the potential field), the system needs three distinct functional components:
 
@@ -306,7 +439,7 @@ To achieve the ability to leverage or ignore "rogue waves" (constructive interfe
 
 ---
 
-### Mechanism 1: The Bias Control (Amplitude Tuning)
+### 5.2 Mechanism 1: The Bias Control (Amplitude Tuning)
 
 This is the most direct method to toggle between "Leveraging" and "Ignoring."
 
@@ -330,7 +463,7 @@ The "Choice" is the movement/state of the **Bias Unit**. If the super-assembly (
 
 ---
 
-### Mechanism 2: Frequency Matching (Resonance Tuning)
+### 5.3 Mechanism 2: Frequency Matching (Resonance Tuning)
 
 Instead of changing the threshold amplitude, the assembly changes *what* it listens to.
 
@@ -349,7 +482,7 @@ The Outer Binary is an oscillator. It absorbs energy most efficiently when the i
 
 ---
 
-### Mechanism 3: Geometric Gating (Spatial Tuning)
+### 5.4 Mechanism 3: Geometric Gating (Spatial Tuning)
 
 Architrino wakes are vector fields—they have directionality.
 
@@ -364,7 +497,7 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 
 ---
 
-### The Cost of Choice (Thermodynamics)
+### 5.5 The Cost of Choice (Thermodynamics)
 
 **Red** insists we mention the cost:
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
@@ -372,7 +505,7 @@ None of this is free. To move the Bias Unit, shift the frequency, or precess the
 *   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.
 *   You "invest" energy in the Bias Unit to lower the threshold, hoping that the "rogue wave" you catch will yield a payout (information or energy) greater than the cost of tuning.
 
-### Summary: The "Navigational Assembly"
+### 5.6 Summary: The "Navigational Assembly"
 
 To build a system that chooses:
 1.  **Construct a Super-Assembly** containing a "Decision Core" (metastable tri-binary).
@@ -385,7 +518,7 @@ This transforms the assembly from a passive rock being battered by waves into a 
 
 ---
 
-## What is the **minimum viable atomic hardware** for a "Smart Assembly" that can tune its own sensitivity to the architrino sea.
+## 6. Minimum Viable Atomic Hardware for a "Smart Assembly"
 
 To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
 
@@ -396,7 +529,7 @@ Here is the specific bill of materials and the rationale based on the architectu
 
 ---
 
-### The Hardware: The "Rydberg Triad"
+### 6.1 The Hardware: The "Rydberg Triad"
 
 To build the "Decision Super-Assembly," I recommend:
 
@@ -416,7 +549,7 @@ To build the "Decision Super-Assembly," I recommend:
 
 ---
 
-### How the "Decision" Works (The Mechanism)
+### 6.2 How the "Decision" Works (The Mechanism)
 
 We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$.
 
@@ -434,7 +567,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 
 ---
 
-### Why 3 Atoms?
+### 6.3 Why 3 Atoms?
 
 **Dyna:** You need 3 because **2 points form a line, but 3 points form a geometry.**
 *   With 2 atoms, you only have distance (1 degree of freedom).
@@ -442,7 +575,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 *   **Symmetry Breaking:** A linear molecule ($\text{He-Rb-He}$) has high symmetry. If you bend it ($\angle < 180^\circ$), you break that symmetry. This geometric symmetry breaking maps directly to the **Middle Binary's velocity threshold**.
 *   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **conical intersections** in its potential energy surface—regions where the distinction between states vanishes and "choice" (bifurcation) becomes physically possible.
 
-### Summary
+### 6.4 Summary
 
 To build a machine that possesses the primitive seeds of agency (tuning its own receptivity to the universe). This is not full agency or "decision" in the canonical sense; it is a minimal threshold-tuning capacity that scales into agency only in more complex assemblies (see `foundations/ontology.md`).
 
@@ -452,174 +585,20 @@ Change the squeeze, and you change whether you are listening to the noise or ign
 
 ---
 
-### Why the canonical definition follows
+## 7. Suggested refinements
 
-This chapter's stance on determinism and agency follows directly from the core dynamics:
+1. **Natural Selection of States**
+   - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
 
-1. **Lawful micro-dynamics**: the master equation fixes evolution given complete initial conditions.
-2. **Threshold multistability**: self-hit and edge-condition regimes admit multiple coexisting attractors from a single prior state.
-3. **Internal structure matters**: assemblies can tune their own thresholds and thereby shape which attractor they fall into.
-4. **Predictability is limited**: microstate sensitivity makes outcomes effectively unpredictable to operational observers without introducing ontological randomness.
+2. **Middle-binary bifurcation**
+   - We should specify at least one toy dynamical system (even a low-dimensional map) where:
+     - A control parameter mimics $v/c_f$,
+     - The response shows $h$ vs $2h$-like thresholds,
+     - Basins of attraction and Lyapunov exponents can be computed.
 
-These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md` (see canonical definition).
+3. **Chaos → Born rule**
+   - We need a clear program for investigating whether chaotic threshold dynamics in the architrino sea can reproduce $|\psi|^2$ distributions.
+   - This will likely require Sol’s simulations plus some ergodic/measure-theoretic work.
 
-## The Short Answer
-
-**No assembly has "free will" in the libertarian sense** (the ability to violate physical law or act without prior cause).
-
-**But yes, complex assemblies can have "agency" in the compatibilist sense** (the capacity to navigate deterministic dynamics in ways that depend on their internal structure and history, making their behavior functionally autonomous and practically unpredictable).
-
-The confusion arises because "free will" is a philosophically loaded term with multiple incompatible definitions. Let me clarify what the architrino framework actually allows.
-
----
-
-## What Determinism Really Means Here
-
-In the architrino framework:
-- Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
-- The master equation is **lawful**: given complete initial conditions, the future is fixed, with **deterministic multistability** at threshold regimes
-- **There is no ontological randomness**, no dice-rolling, no violations of causality
-
-**So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
-
----
-
-## Then What Did We Mean by "Choice"?
-
-When Alfa and Dyna described the "Decision Super-Assembly," they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess:
-
-### The Five Capacities (Not Magic, Just Physics)
-
-1. **Multiple Attractors:** The assembly can settle into different stable configurations (State A vs State B) depending on inputs.
-
-2. **Tunable Thresholds:** The assembly can **modify its own basin geometry** (change which attractor it's likely to fall into) by adjusting internal slow variables.
-
-3. **Memory/Feedback:** The assembly's current threshold settings depend on its **past history** of transitions (path dependence).
-
-4. **Partial Decoupling:** The threshold settings are robust against instant noise; they change only under sustained, structured inputs.
-
-5. **Structured Response:** Different input patterns drive different threshold adjustments (not all inputs are equivalent).
-
-**This is deterministic navigation**, not libertarian free will.
-
----
-
-## The Key Insight: Internal Causation vs External Determination
-
-Here's the critical distinction:
-
-**External Determination (Passive Rock):**
-- A hydrogen atom in a laser beam absorbs a photon → deterministic outcome (away from edge-condition thresholds)
-- The atom has no internal degrees of freedom that modify the absorption probability
-- It's a **fixed-threshold detector**
-
-**Internal Causation (Active Navigator):**
-- The Rubidium-Helium triad in the same laser beam may or may not absorb, depending on:
-  - Whether it's currently in "Ignore Mode" (He atoms compressed) or "Leverage Mode" (He atoms relaxed)
-  - Which mode it's in depends on its recent history (what transitions it made before)
-  - That history was shaped by prior inputs **plus** the assembly's own structural feedback rules
-
-**The assembly's response is still deterministic** (given complete microstate + history, outcome is fixed), **but the determining factors include the assembly's own internal architecture, history, and threshold-sensitive multistability**.
-
-From the **outside**, this looks like the assembly "chose" to ignore or leverage the input. From the **inside** (absolute microdynamics), it's just deterministic evolution with complex, history-dependent feedback.
-
----
-
-## Why This Matters: Functional Agency
-
-What we care about practically is whether a system can:
-- **Adapt** (change its behavior based on past outcomes)
-- **Discriminate** (respond differently to different environmental patterns)
-- **Self-regulate** (maintain internal goals/states against perturbations)
-- **Navigate** (steer toward preferred attractors in a complex landscape)
-
-The architrino super-assembly can do all of this **while remaining fully deterministic** (with multistability at thresholds).
-
-**This is compatibilist free will:**
-- Your decisions are caused (by your brain's microstate + inputs)
-- But the causal chain runs **through you** (your internal structure matters)
-- And your internal structure was shaped by **your history** (learning, adaptation)
-- So in a meaningful sense, **you** are steering, even though the steering is deterministic
-
----
-
-## The Determinism Paradox (Resolved)
-
-**Objection:** "If everything is determined, how is this different from a billiard ball?"
-
-**Answer:** A billiard ball has:
-- No internal tunable thresholds
-- No memory of past collisions
-- No feedback loops that modify future responsiveness
-- No capacity to place itself near or far from bifurcation points
-
-A brain (or the Rb-He triad) has all of these. **The difference is architectural complexity**, not magic.
-
-**Key point:** Determinism does not imply **predictability** or **simplicity**. A deterministic system with:
-- High-dimensional state space
-- Nonlinear dynamics
-- Chaotic sensitivity
-- History-dependent feedback
-
-...is **functionally indistinguishable from a random system** to any observer who doesn't have omniscient knowledge of the microstate.
-
----
-
-## Where Does "Will" Enter?
-
-**"Will"** in this framework is the **organized pattern of threshold settings** across a vast network of assemblies (like neurons in a brain).
-
-When you "decide" to raise your arm:
-1. A pattern of neural assemblies shifts into "high-sensitivity" mode for motor cortex signals
-2. This shift was caused by prior activity (your intention, shaped by your goals/beliefs/learning)
-3. The motor signal (rogue wave from upstream neurons) arrives and tips the assemblies into firing
-4. The firing cascade triggers muscle contraction
-
-**At every step:** lawful (with multistability at thresholds).
-**But:** The outcome depends on your brain's **current configuration** (which you shaped through learning) and your **current internal state** (which reflects your history and goals).
-
-**So in what sense is it "your" decision?**
-- The causal chain runs through your brain's architecture
-- That architecture was modified by your past experiences and choices
-- The outcome reflects your learned patterns and goals
-- No external agent forced this particular threshold configuration on you
-
-**Compatibilist conclusion:** It's determined, but it's **yours**.
-
----
-
-## Can an Assembly "Have" Free Will?
-
-**Libertarian free will (uncaused causes):** No. Nothing in this universe has that, because it's incoherent. Randomness ≠ freedom.
-
-**Compatibilist free will (autonomous navigation):** Yes, if the assembly has sufficient complexity:
-- Minimum: 3 atoms (He-Rb-He) can exhibit primitive threshold tuning
-- Complex: ~10¹¹ neurons (human brain) can exhibit goal-directed behavior, learning, self-modification
-
-**The difference is one of degree (complexity), not kind (mechanism).**
-
----
-
-## Summary: The Entourage's Position
-
-| Concept | Architrino Framework Position |
-|---------|-------------------------------|
-| **Determinism** | Yes, fundamentally (absolute time + master equation; deterministic multistability at thresholds) |
-| **Ontological Randomness** | No (chaos + ignorance, not dice-rolling) |
-| **Libertarian Free Will** | No (incoherent concept; "uncaused cause" violates causality) |
-| **Compatibilist Free Will / Agency** | Yes (complex assemblies can navigate deterministic dynamics autonomously) |
-| **Mechanism of "Choice"** | Threshold tuning + feedback + memory in networked assemblies |
-| **Can assemblies decide?** | Yes, in the sense of "dynamically modulating responsiveness based on internal state and history" |
-| **Is it "real" agency?** | Yes, if "real" means "has causal efficacy and functional autonomy," not "violates physics" |
-
----
-
-## Final Clarity
-
-The super-assembly doesn't **violate** determinism. It **exploits** determinism.
-
-By sitting on the edge of chaos (middle binary near $v = c_f$), it makes tiny differences in internal configuration lead to vastly different macroscopic outcomes. **That sensitivity is the substrate of agency.**
-
-You're not free **from** the laws of physics. You're free **within** them, because the laws permit extraordinarily complex, self-modifying, history-dependent structures that steer their own futures in ways that are unpredictable to external observers and responsive to internal goals.
-
-**That's as "free" as any physical system can be—and it's enough.**
+4. **Causality language**
+   - I’ve tried here to keep “absolute” vs “emergent” causality distinct. We should standardize this split in the foundations chapters to avoid confusion.
