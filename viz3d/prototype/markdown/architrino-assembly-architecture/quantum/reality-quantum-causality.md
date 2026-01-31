@@ -444,7 +444,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 
 ### Summary
 
-To build a machine that possesses the primitive seeds of agency (tuning its own receptivity to the universe):
+To build a machine that possesses the primitive seeds of agency (tuning its own receptivity to the universe). This is not full agency or "decision" in the canonical sense; it is a minimal threshold-tuning capacity that scales into agency only in more complex assemblies (see `foundations/ontology.md`).
 
 **Take one large, fluffy atom (Rubidium) to act as the antenna, and squeeze it between two hard, stable atoms (Helium) to act as the tuner.**
 
@@ -461,7 +461,7 @@ This chapter's stance on determinism and agency follows directly from the core d
 3. **Internal structure matters**: assemblies can tune their own thresholds and thereby shape which attractor they fall into.
 4. **Predictability is limited**: microstate sensitivity makes outcomes effectively unpredictable to operational observers without introducing ontological randomness.
 
-These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md`.
+These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md` (see canonical definition).
 
 ## The Short Answer
 
