@@ -452,6 +452,17 @@ Change the squeeze, and you change whether you are listening to the noise or ign
 
 ---
 
+### Why the canonical definition follows
+
+This chapter's stance on determinism and agency follows directly from the core dynamics:
+
+1. **Lawful micro-dynamics**: the master equation fixes evolution given complete initial conditions.
+2. **Threshold multistability**: self-hit and edge-condition regimes admit multiple coexisting attractors from a single prior state.
+3. **Internal structure matters**: assemblies can tune their own thresholds and thereby shape which attractor they fall into.
+4. **Predictability is limited**: microstate sensitivity makes outcomes effectively unpredictable to operational observers without introducing ontological randomness.
+
+These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md`.
+
 ## The Short Answer
 
 **No assembly has "free will" in the libertarian sense** (the ability to violate physical law or act without prior cause).
