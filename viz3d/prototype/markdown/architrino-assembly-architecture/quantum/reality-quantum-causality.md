@@ -437,33 +437,33 @@ You're not free **from** the laws of physics. You're free **within** them, becau
 
 ### 4.15 Bifurcation, Observability, and Many-Worlds
 
-Operationally, a decision is **detectable** only if it produces a **bifurcation** in the coarse-grained history (a different macroscopic record). If an internal configuration changes but the trajectory remains in the same basin, there is no external divergence and thus no observable "decision." In that sense, **decisions that do not cause a timeline bifurcation are empirically invisible**.
+These are not side notes; they are **core interpretive claims** of the architrino framework. We state them explicitly to prevent confusion for readers coming from standard quantum language.
 
-This does **not** require a many-worlds ontology. The branching tree at a bifurcation looks like many-worlds diagrams, but here it is an **epistemic branching**: a bookkeeping of alternative futures given coarse-grained knowledge. The absolute description still has a single realized trajectory.
+> ### **Interpretive Box A — Wavefunction Collapse = Threshold Resolution**
+> In standard QM, “collapse” is an axiom added to a linear wave equation. In architrino theory the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a separatrix by a record‑making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore see a different equation *after* the resolution than *before*. “Collapse” is the observer’s forced update to the correct effective equation once the threshold has been crossed.
+>
+> Crucially, the transition itself is not an observable steady state. Attempting to probe the in‑between injects action and **forces a resolution to one side**, which is why you cannot continuously sample the bifurcation with photons.
 
-The uncertainty principle can be read as **bracketing the bifurcation point** at the operational level: near a separatrix, $h$-scale action increments and measurement back-action limit how precisely an observer can place the system relative to the basin boundary. The bifurcation is sharp in the absolute microstate, but it is smeared into a finite uncertainty band for any embedded observer.
+> ### **Interpretive Box B — Uncertainty Brackets the Integer Step (Black‑Box View)**
+> The outer binary occupies discrete **resonance bands** labeled by an integer $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$‑scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
+>
+> Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
+>
+> ```
+> Input: potential packet P + internal state S
+> Compute: action increment per cycle ΔA
+> If ΔA < h - δ   → stay in band f
+> If ΔA > h + δ   → shift band (f → f ± 1)
+> If |ΔA - h| ≤ δ → bifurcation zone (microstate decides)
+> ```
+>
+> Here $\delta$ is an **uncertainty bandwidth** of order $h$ set by operational limits, not by ontological randomness. This is the direct linkage: **the integer frequency step is real**, and **uncertainty brackets it**.
 
-Technically, the **effective wave equation changes** across the threshold. Observers do not “see” the pre‑bifurcation and post‑bifurcation dynamics with the same equation; the photon (or any probe) couples to *one side or the other*, producing a record consistent with that basin’s effective equation. The in‑between is not a stable operational state: attempting to probe it injects action and forces a resolution to one side, which is why **you cannot continuously sample the transition itself** with photons. What looks like “collapse” is the observer’s forced update to the appropriate effective wave equation once the bifurcation is resolved.
+> ### **Interpretive Box C — Branching Trees Are Epistemic, Not Ontic**
+> Many‑worlds diagrams visualize the tree of **possible coarse‑grained histories** near a bifurcation. In the architrino framework there is still **one realized trajectory** in absolute time; the “branching” reflects the observer’s incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
 
-#### 4.15.1 Black-Box View: Uncertainty Brackets the Integer Frequency Step
-
-Here's the operational "black box" that links uncertainty to the **integer change in frequency**:
-
-- The outer binary sits in discrete **resonance bands** labeled by an integer $f$ (or $n$), and a transition occurs when the **action per cycle** crosses the $h$-scale threshold.
-- In absolute dynamics the step is clean: if the increment exceeds the threshold, the system moves to $f \to f \pm 1$.
-- In operational dynamics you cannot localize the action/phase *precisely* at the boundary. The uncertainty principle ($\Delta E \Delta t \gtrsim h$ or, equivalently, an $h$-scale limit in action–phase resolution) plus measurement back‑action imposes a **finite bracketing band** around the threshold.
-
-A minimal decision rule looks like this:
-
-```
-Input: potential packet P + internal state S
-Compute: action increment per cycle ΔA
-If ΔA < h - δ   → stay in band f
-If ΔA > h + δ   → shift band (f → f ± 1)
-If |ΔA - h| ≤ δ → bifurcation zone (microstate decides)
-```
-
-Here $\delta$ is an **uncertainty bandwidth** of order $h$ set by operational limits, not by ontological randomness. That is the key linkage: the **integer frequency step is real**, but the **uncertainty principle brackets the step**, producing the appearance of probabilistic outcomes when the system is poised near the bifurcation point.
+> ### **Interpretive Box D — Observability Requires a Record**
+> A decision is **detectable** only if it produces a macroscopic record—a bifurcation in the coarse‑grained history. If the internal configuration shifts but stays in the same basin, there is no external divergence and no observable “decision.” This is why **photons (or any probe)** are central to observability: they create the record and, through back‑action, finalize which basin is realized. Decisions that do not produce a record are empirically invisible.
 
 ---
 
