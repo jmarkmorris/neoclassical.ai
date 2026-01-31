@@ -130,6 +130,33 @@ We use "threshold" and "separatrix" in several regimes. A separatrix is a bounda
 
 Where the exact topology is not proven, we use "-like" and treat the label as a structural analogy.
 
+#### 3.1.2 Schematic Self‑Hit Threshold Dynamics (Toy Model)
+
+This is a **schematic** dynamical sketch that makes the $v \approx c_f$ threshold concrete in textbook terms. It is not a full derivation of the architrino master equation, but it shows how a **bifurcation surface** can arise from delayed self‑interaction.
+
+Let $x(t)$ be a reduced coordinate describing a middle‑binary deviation (e.g., radius or phase offset) from a nominal orbit. Model partner coupling as a damped harmonic restoring force, and model **self‑hit** as a delayed feedback term whose gain increases rapidly as $\beta = v/c_f \to 1$:
+
+\[
+\ddot{x}(t) + 2\zeta\omega_0 \dot{x}(t) + \omega_0^2 x(t) = g(\beta)\,x(t-\tau).
+\]
+
+- $\tau$ is the causal delay around the orbit (set by path length and $c_f$).
+- $g(\beta)$ is small for $\beta<1$ and rises sharply as $\beta \to 1$ due to wake pileup; it encodes the onset of self‑hit coupling.
+
+Linearizing with $x(t) \sim e^{\lambda t}$ gives the characteristic equation:
+
+\[
+\lambda^2 + 2\zeta\omega_0 \lambda + \omega_0^2 - g(\beta)\,e^{-\lambda\tau} = 0.
+\]
+
+As $g(\beta)$ crosses a critical value $g_c$, an eigenvalue crosses $\Re(\lambda)=0$ (a **stability change**). For small $\tau$, one finds $g_c \approx \omega_0^2$ (real‑root crossing); for finite $\tau$, a **Hopf‑type** crossing appears when $\lambda=i\omega$ satisfies the phase and gain conditions. In either case the qualitative picture is standard for delay systems:
+
+- **Below threshold** ($g<g_c$): a single stable attractor (no self‑hit amplification).
+- **At threshold** ($g\approx g_c$): sensitivity spikes; a separatrix forms between basins.
+- **Above threshold** ($g>g_c$): new attractors or limit cycles appear; trajectories split.
+
+This schematic shows how **$v \approx c_f$ defines a bifurcation surface** in a reduced phase space: the self‑hit feedback term activates and changes the stability of the local orbit. A full derivation and numerical phase‑portrait mapping would require the full delay‑kernel of the master equation and is handled in the dynamics notes.
+
 ### 3.2 Chaos and Effective Unpredictability
 
 Because:
