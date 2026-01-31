@@ -1,4 +1,4 @@
-# Reality, Causality, and Navigation in the Architrino Sea
+# Reality, Causality, and Navigation
 
 ## Objectives
 
@@ -8,14 +8,14 @@
 - Connect the navigational assembly and triatomic case study to those requirements.
 - Tie the chapter to the canonical definition in `foundations/ontology.md`.
 
-## 1. Reality: The Architrino “Weather” at Two Levels
+## 1. Reality: Absolute vs Operational
 
 Let’s keep a clean separation between:
 
 - **Absolute level**: Euclidean void + absolute time; architrinos with definite trajectories and wakes at speed $c_f$.
 - **Emergent/operational level**: What assemblies (atoms, detectors, brains) “see” in terms of quantum statistics, effective light cones, etc.
 
-### 1.1 Absolute picture: Dense corkscrew dynamics
+### 1.1 Absolute Picture
 
 At the absolute level, any local neighborhood is crowded:
 
@@ -34,7 +34,7 @@ At the absolute level, any local neighborhood is crowded:
 
 “Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
-### 1.2 Operational picture: Stable objects and rare events
+### 1.2 Operational Picture
 
 At the emergent level:
 
@@ -51,7 +51,7 @@ Those events are **rare threshold crossings** in a continuous, deterministic flo
 
 ## 2. Causality: Absolute vs Emergent
 
-### 2.1 Absolute causality
+### 2.1 Absolute Causality
 
 At the fundamental level:
 
@@ -66,7 +66,7 @@ At the fundamental level:
 
 There is **no backward-in-$t$ influence**. The absolute-time ordering is strictly causal.
 
-### 2.2 Emergent stealth and apparent acausality
+### 2.2 Emergent Acausality and Stealth Effects
 
 From the viewpoint of an embedded assembly:
 
@@ -95,7 +95,7 @@ So causality is **unbroken** at the substrate, but **opaque** and sometimes misl
 
 ## 3. Determinism, Multistability, and Chaos
 
-### 3.1 Metastability and threshold crossings
+### 3.1 Metastability and Threshold Crossings
 
 At the assembly level (tri-binaries, atoms, etc.):
 
@@ -112,7 +112,7 @@ At the assembly level (tri-binaries, atoms, etc.):
   - Slightly above $c_f$: another regime (e.g., $2h$-like, self-hit-amplified response).
   - Small differences in forcing near this manifold can send trajectories to qualitatively different long-term behavior.
 
-### 3.2 Chaos: structure without predictability
+### 3.2 Chaos and Effective Unpredictability
 
 Because:
 
@@ -136,11 +136,11 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ---
 
-## 4. Agency and Choice in a Deterministic World
+## 4. Agency and Choice
 
 Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *choose* its response—either leveraging incoming “rogue” waves or effectively ignoring them.
 
-### 4.1 What choosing a response means in this framework
+### 4.1 Definition of Choice
 
 We keep everything strictly dynamical:
 
@@ -149,7 +149,7 @@ We keep everything strictly dynamical:
 
 So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
 
-### 4.2 Why the canonical definition follows
+### 4.2 Justification for the Canonical Definition
 
 This chapter's stance on determinism and agency follows directly from the core dynamics:
 
@@ -160,7 +160,7 @@ This chapter's stance on determinism and agency follows directly from the core d
 
 These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md` (see canonical definition).
 
-### 4.3 The Short Answer
+### 4.3 Position Summary
 
 **No assembly has "free will" in the libertarian sense** (the ability to violate physical law or act without prior cause).
 
@@ -168,7 +168,7 @@ These points motivate the canonical definition of determinism, branching, and ag
 
 The confusion arises because "free will" is a philosophically loaded term with multiple incompatible definitions. Let me clarify what the architrino framework actually allows.
 
-### 4.4 What Determinism Really Means Here
+### 4.4 Determinism in This Framework
 
 In the architrino framework:
 - Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
@@ -177,11 +177,11 @@ In the architrino framework:
 
 **So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
 
-### 4.5 Then what do we mean by choice?
+### 4.5 Interpretation of Choice
 
 When Alfa and Dyna described the "Decision Super-Assembly," they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess.
 
-#### The Five Capacities (Not Magic, Just Physics)
+#### Required Capacities
 
 1. **Multiple Attractors:** The assembly can settle into different stable configurations (State A vs State B) depending on inputs.
 
@@ -195,7 +195,7 @@ When Alfa and Dyna described the "Decision Super-Assembly," they were **not** cl
 
 **This is deterministic navigation**, not libertarian free will.
 
-### 4.6 Minimal requirements (expanded)
+### 4.6 Requirements (Expanded)
 
 I see at least **five** necessary ingredients.
 
@@ -299,7 +299,7 @@ This is what makes the assembly a **selector of its own future sensitivity**, no
 
 ---
 
-### 4.7 Putting it together: leveraging vs ignoring in practice
+### 4.7 Leveraging vs Ignoring (Worked Interpretation)
 
 With these five pieces:
 
@@ -318,7 +318,7 @@ From the outside, that difference looks like a **change of policy**: “now resp
 
 That is the minimal sense in which an assembly “chooses its response” in this deterministic architrino framework.
 
-### 4.8 The Key Insight: Internal Causation vs External Determination
+### 4.8 Internal vs External Causation
 
 Here's the critical distinction:
 
@@ -337,7 +337,7 @@ Here's the critical distinction:
 
 From the **outside**, this looks like the assembly "chose" to ignore or leverage the input. From the **inside** (absolute microdynamics), it's just deterministic evolution with complex, history-dependent feedback.
 
-### 4.9 Why This Matters: Functional Agency
+### 4.9 Functional Agency
 
 What we care about practically is whether a system can:
 - **Adapt** (change its behavior based on past outcomes)
@@ -353,7 +353,7 @@ The architrino super-assembly can do all of this **while remaining fully determi
 - And your internal structure was shaped by **your history** (learning, adaptation)
 - So in a meaningful sense, **you** are steering, even though the steering is deterministic
 
-### 4.10 The Determinism Paradox (Resolved)
+### 4.10 Determinism and Predictability
 
 **Objection:** "If everything is determined, how is this different from a billiard ball?"
 
@@ -373,7 +373,7 @@ A brain (or the Rb-He triad) has all of these. **The difference is architectural
 
 ...is **functionally indistinguishable from a random system** to any observer who doesn't have omniscient knowledge of the microstate.
 
-### 4.11 Where Does "Will" Enter?
+### 4.11 Will as Threshold Setting
 
 **"Will"** in this framework is the **organized pattern of threshold settings** across a vast network of assemblies (like neurons in a brain).
 
@@ -394,7 +394,7 @@ When you "decide" to raise your arm:
 
 **Compatibilist conclusion:** It's determined, but it's **yours**.
 
-### 4.12 Can an Assembly Have Free Will?
+### 4.12 Free Will: Compatibilist vs Libertarian
 
 **Libertarian free will (uncaused causes):** No. Nothing in this universe has that, because it's incoherent. Randomness ≠ freedom.
 
@@ -404,7 +404,7 @@ When you "decide" to raise your arm:
 
 **The difference is one of degree (complexity), not kind (mechanism).**
 
-### 4.13 Summary: Position
+### 4.13 Summary
 
 | Concept | Architrino Framework Position |
 |---------|-------------------------------|
@@ -418,7 +418,7 @@ When you "decide" to raise your arm:
 
 ---
 
-### 4.14 Final Clarity
+### 4.14 Closing Statement
 
 The super-assembly doesn't **violate** determinism. It **exploits** determinism.
 
@@ -430,13 +430,13 @@ You're not free **from** the laws of physics. You're free **within** them, becau
 
 ---
 
-## 5. Case Study: The Navigational Assembly (Choice Unit)
+## 5. Case Study: Navigational Assembly
 
 To build an assembly that can **choose**—meaning it can dynamically alter its own probability of transition in response to external inputs—we need to move beyond a single atom and construct a **Networked Super-Assembly**.
 
 Here is the engineering architecture for a primitive "Choice Unit" (or **Navigational Gate**) based on the Tri-Binary physics we have established.
 
-### 5.1 The Blueprint: The Tri-Partite Choice Unit
+### 5.1 Architecture
 
 To achieve the ability to leverage or ignore "rogue waves" (constructive interference spikes in the potential field), the system needs three distinct functional components:
 
@@ -446,7 +446,7 @@ To achieve the ability to leverage or ignore "rogue waves" (constructive interfe
 
 ---
 
-### 5.2 Mechanism 1: The Bias Control (Amplitude Tuning)
+### 5.2 Mechanism 1: Bias Control (Amplitude Tuning)
 
 This is the most direct method to toggle between "Leveraging" and "Ignoring."
 
@@ -504,7 +504,7 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 
 ---
 
-### 5.5 The Cost of Choice (Thermodynamics)
+### 5.5 Cost of Choice (Thermodynamics)
 
 **Red** insists we mention the cost:
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
@@ -512,7 +512,7 @@ None of this is free. To move the Bias Unit, shift the frequency, or precess the
 *   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.
 *   You "invest" energy in the Bias Unit to lower the threshold, hoping that the "rogue wave" you catch will yield a payout (information or energy) greater than the cost of tuning.
 
-### 5.6 Summary: The Navigational Assembly
+### 5.6 Summary
 
 To build a system that chooses:
 1.  **Construct a Super-Assembly** containing a "Decision Core" (metastable tri-binary).
@@ -525,7 +525,7 @@ This transforms the assembly from a passive rock being battered by waves into a 
 
 ---
 
-## 6. Minimum Viable Atomic Hardware for a Smart Assembly
+## 6. Minimum Viable Atomic Hardware
 
 To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
 
@@ -536,14 +536,14 @@ Here is the specific bill of materials and the rationale based on the architectu
 
 ---
 
-### 6.1 The Hardware: The Rydberg Triad
+### 6.1 Hardware: Rydberg Triad
 
 To build the "Decision Super-Assembly," I recommend:
 
 **1. The Sensor Atom: One Rubidium-87 ($^{87}\text{Rb}$) Atom**
 **2. The Bias/Clamp Atoms: Two Helium-4 ($^4\text{He}$) Atoms (or Protons)**
 
-#### Why these specific atoms?
+#### Rationale for Atom Choice
 
 **1. The Sensor (Rubidium): The "Feeler"**
 *   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to its nucleus.
@@ -556,7 +556,7 @@ To build the "Decision Super-Assembly," I recommend:
 
 ---
 
-### 6.2 How the decision works (the mechanism)
+### 6.2 Decision Mechanism
 
 We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$.
 
@@ -574,7 +574,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 
 ---
 
-### 6.3 Why 3 Atoms?
+### 6.3 Why Three Atoms?
 
 **Dyna:** You need 3 because **2 points form a line, but 3 points form a geometry.**
 *   With 2 atoms, you only have distance (1 degree of freedom).
