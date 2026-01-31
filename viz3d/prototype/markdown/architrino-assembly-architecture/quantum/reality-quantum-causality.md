@@ -560,25 +560,12 @@ To achieve the ability to leverage or ignore "rogue waves" (constructive interfe
 
 ### 5.2 Mechanism 1: Bias Control (Amplitude Tuning)
 
-This is the most direct method to toggle between "Leveraging" and "Ignoring."
+This is the most direct method to toggle between **leveraging** and **ignoring** (see 4.7 for the full conceptual framing). A bias unit adjacent to the target assembly shifts the target’s middle‑binary threshold:
 
-**The Setup:**
-Imagine a primary assembly (Target) that performs the action (e.g., firing a signal). Next to it, we bond a secondary assembly (Bias).
+- **Ignore (high threshold):** move the Bias Unit closer (or stabilize phase) → deepen the local potential well → pull the target away from $v=c_f$.
+- **Leverage (high sensitivity):** move the Bias Unit away (or destabilize phase) → shallow the well → bring the target toward $v\approx c_f$ so small rogue waves can tip it.
 
-**State A: "Ignoring" (High Threshold)**
-*   **Action:** The system moves the Bias Unit slightly *closer* to the Target (or adjusts its phase to be stabilizing).
-*   **Physics:** The potential wake from the Bias Unit creates a "potential well" around the Target's Middle Binary. It effectively adds a damping term.
-*   **Result:** The Target's Middle Binary is pulled safely away from the $v = c_f$ instability point (say, down to $0.9 c_f$).
-*   **Outcome:** Incoming "rogue waves" hit the Target, but because the Target is deep in a stability well, they fail to trigger a transition. The system effectively **ignores** the noise.
-
-**State B: "Leveraging" (High Sensitivity)**
-*   **Action:** The system moves the Bias Unit away (or shifts phase to be destabilizing).
-*   **Physics:** The stabilizing potential is removed. The Target's Middle Binary drifts back up to the critical threshold ($v \approx 0.999 c_f$).
-*   **Result:** The Target is now "metastable" or "on the edge."
-*   **Outcome:** Even a microscopic "rogue wave" (a tiny superposition spike) is now sufficient to push the velocity past $c_f$. The Middle Binary amplifies this input ($1h \to 2h$), and the Target fires. The system has **leveraged** a tiny environmental fluctuation to perform work.
-
-**Where is the "Choice"?**
-The "Choice" is the movement/state of the **Bias Unit**. If the super-assembly learns that "Input X is important," it configures its Bias Units to State B (High Sensitivity). If it learns "Input Y is noise," it configures to State A.
+The “choice” is the bias configuration held by the assembly at that moment.
 
 ---
 
