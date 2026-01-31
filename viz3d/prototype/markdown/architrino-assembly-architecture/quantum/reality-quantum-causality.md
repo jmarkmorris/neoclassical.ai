@@ -30,7 +30,7 @@ At the absolute level, any local neighborhood is crowded:
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
 
-- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). The "weather" is therefore a local fluctuating noise floor, not an infinite static field.
+- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). The "weather" is, with high probability, a local fluctuating noise floor, not an infinite static field.
 
 “Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
