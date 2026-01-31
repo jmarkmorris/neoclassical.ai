@@ -40,12 +40,12 @@ At the emergent level:
 
 - We talk about “an electron,” “a nucleus,” etc. as if they are isolated, but each is really a **tri-binary assembly** plus its coupling to the surrounding architrino weather.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
-- Occasionally, when the assembly’s configuration is **metastable** (near a threshold manifold; see 3.1.1), a particular combination of incoming wakes pushes it across a threshold:
+- Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see 3.1.1), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
   - Nucleus “decays”
   - Detector “clicks”
 
-Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses the relevant separatrix (see 3.1.1).
+Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses the relevant boundary (see 3.1.1).
 
 Two clarifications matter here:
 
@@ -109,24 +109,24 @@ At the assembly level (tri-binaries, atoms, etc.):
   - Crosses into a neighboring attractor (discrete energy change, change of configuration).
 
 - The **outer binary** can be modeled as such a metastable subsystem:
-  - It supports discrete resonance bands labeled by frequency $f$.
-  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E = \hbar \omega = h f$, and pushes the system across the heteroclinic separatrix between island chains (the $f \to f \pm 1$ boundary; see 3.1.1). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
+  - It supports discrete resonance bands labeled by an integer index $f$ (linked to a characteristic frequency).
+  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary; see 3.1.1). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
-- The **middle binary**, near $v = c_f$, likely sits near a **homoclinic-like threshold** (self-hit onset; see 3.1.1):
+- The **middle binary**, near $v = c_f$, likely sits near a **self-hit threshold** (see 3.1.1):
   - Slightly below $c_f$: one regime (e.g., $h$-like response per cycle).
   - Slightly above $c_f$: another regime (e.g., $2h$-like, self-hit-amplified response per cycle).
   - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
 
-#### 3.1.1 Threshold Structure Taxonomy (Separatrix Types)
+#### 3.1.1 Threshold Structure Guide (Plain-Language Labels)
 
-We use "threshold" and "separatrix" in several regimes. They are not the same topology. This table is a classification guide for the local phase-space geometry (not a proof of global structure).
+We use "threshold" and "separatrix" in several regimes. A separatrix is a boundary between basins of attraction in phase space. The table below gives a plain-language boundary description and the typical dynamical-systems term used in models (in parentheses). It is a classification guide, not a proof of global topology.
 
-| Context | Structure | Effective dimension | Example anchor |
+| Context | Boundary (plain language) | Typical term in models | Example anchor |
 | --- | --- | --- | --- |
-| Outer $f$-step | Heteroclinic separatrix between resonant island chains | 1D action (2D Poincare map) | Island-chain boundary |
-| Middle $v = c_f$ | Homoclinic-like threshold (self-hit onset) | 2D phase subspace | Entry into wake-coupled regime |
-| He-Rb-He mode | Conical-intersection-like mode crossing | 3D+ configuration space | Vibronic coupling analogue |
-| Neural firing | Saddle-node separatrix | High-D network manifold | Spike threshold |
+| Outer $f$-step | Boundary between resonant island families | Separatrix between island chains (heteroclinic in maps) | Island-chain boundary |
+| Middle $v = c_f$ | Self-hit onset boundary | Homoclinic-like threshold in reduced phase space | Entry into wake-coupled regime |
+| He-Rb-He mode | Mode-crossing boundary | Conical-intersection-like crossing in configuration space | Vibronic coupling analogue |
+| Neural firing | Firing threshold manifold | Saddle-node threshold in network models | Spike threshold |
 
 Where the exact topology is not proven, we use "-like" and treat the label as a structural analogy.
 
@@ -135,7 +135,7 @@ Where the exact topology is not proven, we use "-like" and treat the label as a 
 Because:
 
 - The input signal (sum of wakes from the architrino sea) is **high-dimensional** and **history-dependent**,
-- The local assembly is sitting near a **threshold manifold** (heteroclinic island boundary in the outer binary or homoclinic-like threshold in the middle binary; see 3.1.1),
+- The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in the outer binary or a self-hit onset in the middle binary; see 3.1.1),
 
 we get classic deterministic chaos:
 
@@ -401,7 +401,7 @@ When you "decide" to raise your arm:
 3. The motor signal (rogue wave from upstream neurons) arrives and tips the assemblies into firing
 4. The firing cascade triggers muscle contraction
 
-At the neural level this firing threshold is a saddle-node separatrix in a high-dimensional network (see 3.1.1).
+At the neural level this firing threshold is often modeled as a saddle-node boundary in a high-dimensional network (see 3.1.1).
 
 **At every step:** lawful (with multistability at thresholds).
 **But:** The outcome depends on your brain's **current configuration** (which you shaped through learning) and your **current internal state** (which reflects your history and goals).
@@ -455,12 +455,12 @@ You're not free **from** the laws of physics. You're free **within** them, becau
 These are the four points where architrino theory **explains** standard quantum interpretations in terms of explicit dynamical mechanisms. They are foundational to the framework, not commentary.
 
 > ### **Wavefunction Collapse = Threshold Resolution**
-> In standard QM, “collapse” is an axiom added to a linear wave equation. In architrino theory the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold manifold (see 3.1.1) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore see a different equation *after* the resolution than *before*. “Collapse” is the observer’s forced update to the correct effective equation once the threshold has been crossed.
+> In standard QM, “collapse” is an axiom added to a linear wave equation. In architrino theory the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold boundary (see 3.1.1) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore see a different equation *after* the resolution than *before*. “Collapse” is the observer’s forced update to the correct effective equation once the threshold has been crossed.
 >
 > Crucially, the transition itself is not an observable steady state. Attempting to probe the in‑between injects action and **forces a resolution to one side**, which is why you cannot continuously sample the bifurcation with photons.
 
 > ### **Uncertainty Brackets the Integer Step (Phenomenological + Toy Dynamics)**
-> The outer binary occupies discrete **resonance bands** labeled by an integer $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$‑scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
+> The outer binary occupies discrete **resonance bands** labeled by an integer index $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$‑scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
 >
 > Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
 >
@@ -475,11 +475,11 @@ These are the four points where architrino theory **explains** standard quantum 
 > **Baseline orbit:** Model the outer binary as an effective two-body oscillator with potential $V(r) = -\kappa q^2/r + \Phi_{\mathrm{ext}}(t)$. For a circular orbit,
 > $m r \omega_0^2 = \kappa q^2/r^2$, so $\omega_0^2 = \kappa q^2/(m r^3)$.
 >
-> **Action variable:** Define the action $J = \oint p \, dq$. For a nearly harmonic orbit, $J \approx E/\omega_0$. Under weak periodic driving, resonances occur when the phase advances by $2\pi f$ per drive period (winding number $f$). The Poincare section then shows island chains labeled by $f$; each chain is a stable attractor family.
+> **Action variable:** Define the action $J = \oint p \, dq$. For near-harmonic motion, $J$ scales like $E/\omega_0$. Under weak periodic driving, resonances occur when the phase advances by $2\pi f$ per drive period (winding number $f$). In standard driven-oscillator models, the Poincare section then shows island chains labeled by $f$; each chain is a stable attractor family.
 >
-> **Band labeling:** In architrino language we label these families by integer $f$ and set thresholds at $J \approx f h$. Equivalently, the mode frequency is $\nu_f = f \nu_0$, so a resonant packet supplies $\Delta E \approx h \nu_f = f h \nu_0$; per cycle this is an action step of order $h$. This yields energy bands $E \in [f h \nu_0, (f+1) h \nu_0)$ (or, in normalized units, $E \in [f h, (f+1) h)$).
+> **Band labeling:** In architrino language we label these families by integer $f$ and use $J \approx f h$ as a working threshold (toy model). A resonant packet with frequency $\nu$ supplies $\Delta E \approx h \nu$; for resonances near $\nu \approx f \nu_0$ this yields action steps of order $h$. In this schematic picture, long-lived families occupy band-like intervals $E \in [f h \nu_0, (f+1) h \nu_0)$ (or, in normalized units, $E \in [f h, (f+1) h)$), with transitions at the boundaries.
 >
-> **Transition:** When $E$ (or $J$) crosses the boundary, the system crosses the heteroclinic separatrix between island chains (see 3.1.1) and falls into the next island chain. This is the discrete step $f \to f \pm 1$; near that separatrix the islands shrink, sensitivity grows, and the uncertainty bracket appears operationally.
+> **Transition:** When $E$ (or $J$) crosses the boundary, the system crosses the separatrix between island chains (see 3.1.1) and falls into the next island chain. This is the discrete step $f \to f \pm 1$; near that boundary the islands shrink, sensitivity grows, and the uncertainty bracket appears operationally.
 >
 > **Operational summary (black-box view):**
 > ```
@@ -490,7 +490,7 @@ These are the four points where architrino theory **explains** standard quantum 
 > If |ΔA - h| ≤ δ → bifurcation zone (microstate decides)
 > ```
 >
-> Here $\delta$ is an **uncertainty bandwidth** of order $h$ set by operational limits, not by ontological randomness. This is the direct linkage: **the integer frequency step is real**, and **uncertainty brackets it**.
+> Here $\delta$ is an **uncertainty bandwidth** of order $h$ set by operational limits, not by ontological randomness. This provides the linkage: **the integer step is real in the model**, and **uncertainty brackets it** operationally.
 
 > ### **Branching Trees Are Epistemic, Not Ontic**
 > Many‑worlds diagrams visualize the tree of **possible coarse‑grained histories** near a bifurcation. In the architrino framework there is still **one realized trajectory** in absolute time; the “branching” reflects the observer’s incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
@@ -664,7 +664,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 *   With 2 atoms, you only have distance (1 degree of freedom).
 *   With 3 atoms, you have **distance** and **angle** (bending mode).
 *   **Symmetry Breaking:** A linear molecule ($\text{He-Rb-He}$) has high symmetry. If you bend it ($\angle < 180^\circ$), you break that symmetry. This geometric symmetry breaking maps directly to the **Middle Binary's velocity threshold**.
-*   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **conical-intersection-like mode crossings** in its potential energy surface—regions where the distinction between states vanishes and "choice" (bifurcation) becomes physically possible (see 3.1.1).
+*   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **mode crossings** in its potential energy surface (analogous to conical intersections in molecular physics)—regions where the distinction between states vanishes and "choice" (bifurcation) becomes physically possible (see 3.1.1).
 
 ### 6.4 Summary
 
