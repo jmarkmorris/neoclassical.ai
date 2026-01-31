@@ -614,7 +614,7 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 
 **Red** insists we mention the cost:
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
-*   The system must expend stored energy (metabolic potential) to change its configuration.
+*   The system must expend stored energy to change its configuration.
 *   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.
 *   You "invest" energy in the Bias Unit to lower the threshold, hoping that the "rogue wave" you catch will yield a payout (information or energy) greater than the cost of tuning.
 
