@@ -5,7 +5,7 @@
 - Distinguish absolute vs emergent descriptions of the architrino "weather" and causality.
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/choice in assemblies.
-- Connect the navigational assembly and triatomic case study to those requirements.
+- Connect the **Decider** and **Switch** case studies to those requirements.
 - Tie the chapter to the canonical definition in `foundations/ontology.md`.
 
 ## 1. Reality: Absolute vs Operational
@@ -197,7 +197,7 @@ In the architrino framework:
 
 ### 4.5 Interpretation of Choice
 
-When Alfa and Dyna described the "Decision Super-Assembly," they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess.
+When Alfa and Dyna described the **Decider** (a bias‑setting complex), they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess.
 
 #### Required Capacities
 
@@ -363,7 +363,7 @@ What we care about practically is whether a system can:
 - **Self-regulate** (maintain internal goals/states against perturbations)
 - **Navigate** (steer toward preferred attractors in a complex landscape)
 
-The architrino super-assembly can do all of this **while remaining fully deterministic** (with multistability at thresholds).
+A **Decider** can do all of this **while remaining fully deterministic** (with multistability at thresholds).
 
 **Compatibilist free will in this framework:**
 - Decisions are caused (by the assembly’s microstate + inputs)
@@ -381,7 +381,7 @@ The architrino super-assembly can do all of this **while remaining fully determi
 - No feedback loops that modify future responsiveness
 - No capacity to place itself near or far from bifurcation points
 
-A networked super-assembly can have all of these. The Rb-He-He triad in this document demonstrates **(1) multiple attractors** and **(2) tunable thresholds** only. It is a **threshold gate**, not a full navigator.
+A networked **Decider** can have all of these. The Rb-He-He triad in this document demonstrates **(1) multiple attractors** and **(2) tunable thresholds** only. It is a **Switch**, not a full Decider.
 
 **Key point:** Determinism does not imply **predictability** or **simplicity**. A deterministic system with:
 - High-dimensional state space
@@ -395,7 +395,7 @@ A networked super-assembly can have all of these. The Rb-He-He triad in this doc
 
 **"Will"** in this framework is the **organized pattern of threshold settings** across a networked assembly.
 
-When a super-assembly "decides" to amplify a signal:
+When a **Decider** "decides" to amplify a signal:
 1. A subset of sub-assemblies shifts into "high-sensitivity" mode (thresholds lowered).
 2. This shift is caused by prior internal updates (history + feedback).
 3. An incoming potential packet arrives and tips the metastable units across their boundaries.
@@ -440,7 +440,7 @@ At this scale, threshold boundaries are often modeled as saddle-node boundaries 
 
 ### 4.14 Closing Statement
 
-The super-assembly doesn't **violate** determinism. It **exploits** determinism.
+The **Decider** doesn't **violate** determinism. It **exploits** determinism.
 
 By sitting on the edge of chaos (middle binary near $v = c_f$), it makes tiny differences in internal configuration lead to vastly different macroscopic outcomes. **That sensitivity is the substrate of agency.**
 
@@ -542,18 +542,25 @@ If architrino theory is correct, the last 150 years look like this:
 
 ---
 
-## 5. Case Study: Navigational Assembly
+## 5. Decider: Minimal Bias-Setting Complex
 
-To build an assembly that can **choose**-meaning it can dynamically alter its own probability of transition in response to external inputs-we need to move beyond a single atom and construct a **Networked Super-Assembly**.
+To build an assembly that can **choose**-meaning it can dynamically alter its own probability of transition in response to external inputs-we need to move beyond a single atom and construct a **Decider** (a minimal bias‑setting complex). This is the smallest assembly complex that can **make a decision and set a bias**.
 
-Here is the engineering architecture for a primitive "Choice Unit" (or **Navigational Gate**) based on the Tri-Binary physics we have established.
+### 5.0 Minimality Lens (Fewest-Architrino Candidates)
+
+One way to classify the evolution of mechanism is by **fewest architrinos** required to implement a function. This is only **one** classifier; others include assembly depth (single element vs network), threshold type, and energy budget. Under the minimality lens we currently have two candidate mechanisms:
+
+- **Decider (bias‑setting complex):** the smallest *architectural topology* that can implement biasing + threshold placement + feedback. The architrino count is not yet computed; this is a **candidate minimal topology**, not a proven minimum.
+- **Switch (bias‑to‑state mechanism):** the smallest *computed* self‑contained gate we can exhibit (see Section 6). Current estimate: **3912 architrinos** for a neutral He‑Rb‑He triad.
+
+Here is the engineering architecture for that candidate minimal **Decider** based on the Tri‑Binary physics we have established.
 
 ### 5.1 Architecture
 
 To achieve the ability to leverage or ignore "rogue waves" (constructive interference spikes in the potential field), the system needs three distinct functional components:
 
 1.  **The Resonator (The Sensor)**: An assembly exposed to the environment.
-2.  **The Critical Gate (The Amplifier)**: A Middle Binary sitting near $v \approx c_f$.
+2.  **The Switch (The Amplifier)**: A Middle Binary sitting near $v \approx c_f$.
 3.  **The Bias Unit (The Controller)**: An adjacent assembly that acts as a "tuner."
 
 ---
@@ -577,7 +584,7 @@ Instead of changing the threshold amplitude, the assembly changes *what* it list
 The Outer Binary is an oscillator. It absorbs energy most efficiently when the incoming potential frequency matches its orbital frequency (or harmonics).
 
 **The Tuning Mechanism:**
-1.  **Energy Injection/Extraction:** The super-assembly pumps a small amount of energy into the Outer Binary.
+1.  **Energy Injection/Extraction:** The Decider pumps a small amount of energy into the Outer Binary.
 2.  **Radius Change:** This changes the orbital radius ($r$) and velocity ($v$).
 3.  **Frequency Shift:** Consequently, the orbital frequency $\omega$ shifts.
 
@@ -596,7 +603,7 @@ Architrino wakes are vector fields—they have directionality.
 A Middle Binary is planar (or toroidal). It is most sensitive to potential impacts that align with its orbital plane or rotation axis (depending on the specific coupling).
 
 **The Mechanism:**
-*   **Precession Control:** The super-assembly can induce a Larmor-like precession in the Target assembly using a magnetic-like interaction from neighbors.
+*   **Precession Control:** The Decider can induce a Larmor-like precession in the Target assembly using a magnetic-like interaction from neighbors.
 *   **Alignment:**
     *   **Ignore:** Orient the Target's sensitive plane *orthogonal* to the direction of incoming rogue waves. The cross-section is minimized.
     *   **Leverage:** Precess the Target until its plane is *parallel* to the incoming waves. The cross-section is maximized.
@@ -614,19 +621,19 @@ None of this is free. To move the Bias Unit, shift the frequency, or precess the
 ### 5.6 Summary
 
 To build a system that chooses:
-1.  **Construct a Super-Assembly** containing a "Decision Core" (metastable tri-binary).
+1.  **Construct a Decider** containing a **Switch core** (metastable tri‑binary).
 2.  **Surround it with "Control Binaries"** (Bias Units).
 3.  **Implement Feedback:**
-    *   To **Ignore**: Use Control Binaries to dampen the Decision Core (pull $v \ll c_f$).
-    *   To **Leverage**: Use Control Binaries to push the Decision Core to the edge of chaos ($v \approx c_f$) or tune its frequency to match the incoming wave.
+    *   To **Ignore**: Use Control Binaries to dampen the Switch core (pull $v \ll c_f$).
+    *   To **Leverage**: Use Control Binaries to push the Switch core to the edge of chaos ($v \approx c_f$) or tune its frequency to match the incoming wave.
 
 This transforms the assembly from a passive rock being battered by waves into a **smart antenna** that actively scans and filters the architrino sea.
 
 ---
 
-## 6. Applied Example: Minimum Viable Atomic Hardware (Rb-He-He Triad)
+## 6. Switch: Minimum Viable Atomic Hardware (Rb-He-He Triad)
 
-This is one **applied realization** of the decision mechanism, not the unique way to do it. Many physical architectures can implement the same control loop (bias setting -> threshold positioning -> bifurcation). The triad is a concrete, manipulable example where the **decision** is upstream (in the bias configuration) and the **electron transition** is the downstream execution.
+This is one **applied realization** of the **Switch** mechanism, not the unique way to do it. This is the smallest mechanism we can currently compute that **takes a bias signal and executes a larger‑scale physical state change**. Many physical architectures can implement the same control loop (bias setting -> threshold positioning -> bifurcation). In the **minimality lens**, the triad is the smallest *computed* Switch so far, where the **bias** is upstream (in the configuration) and the **electron transition** is the downstream execution.
 
 To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
 
@@ -639,7 +646,7 @@ Here is the specific bill of materials and the rationale based on the architectu
 
 ### 6.1 Hardware: Rydberg Triad
 
-To build the minimal **decision element** (threshold gate), I recommend:
+To build the minimal **Switch**, I recommend:
 
 **1. The Sensor Atom: One Rubidium-87 ($^{87}\text{Rb}$) Atom**
 **2. The Bias/Clamp Atoms: Two Helium-4 ($^4\text{He}$) Atoms (or Protons)**
@@ -657,21 +664,21 @@ To build the minimal **decision element** (threshold gate), I recommend:
 
 ---
 
-### 6.2 Decision Mechanism
+### 6.2 Switch Mechanism
 
 We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$.
 
 **1. State A: "Ignore Mode" (Damped)**
-*   **Configuration:** The super-assembly allows the Helium atoms to relax closer to the Rubidium core.
+*   **Configuration:** The triad allows the Helium atoms to relax closer to the Rubidium core.
 *   **Effect:** The potential wakes from the stable Helium atoms overlap with the Rubidium's outer electron. They compress the orbital, increasing the "pressure."
 *   **Architrino Result:** The Rubidium electron's Middle Binary is pushed **away** from the critical velocity $c_f$ (down to a safer, lower velocity).
 *   **Outcome:** The Sensor is "detuned." It ignores rogue waves.
 
 **2. State B: "Leverage Mode" (High Sensitivity)**
-*   **Configuration:** The super-assembly excites a vibrational mode (a "breathing mode") where the Helium atoms oscillate slightly outward.
+*   **Configuration:** The triad excites a vibrational mode (a "breathing mode") where the Helium atoms oscillate slightly outward.
 *   **Effect:** The pressure releases. The Rubidium electron expands further out.
 *   **Architrino Result:** The electron's Middle Binary drifts closer to the instability threshold ($v \approx c_f$). It is now balanced on the razor's edge.
-*   **Outcome:** The Sensor is "live." A faint signal from the background architrino weather (a thought, a distant correlation) is enough to trigger a transition (ionization or state flip).
+*   **Outcome:** The Sensor is "live." A faint external fluctuation in the architrino weather is enough to trigger a transition (ionization or state flip).
 
 ---
 
@@ -685,7 +692,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 
 ### 6.4 Summary
 
-To build a machine that possesses the primitive seeds of agency (tuning its own receptivity to the universe). This is not full agency or "decision" in the canonical sense; it is a minimal threshold-tuning capacity that scales into agency only in more complex assemblies (see `foundations/ontology.md`).
+This Switch executes a bias into a physical state change. It is not a full **Decider**; it is the minimal **bias‑to‑state** mechanism. The Decider that sets the bias sits upstream (Section 5).
 
 **Take one large, fluffy atom (Rubidium) to act as the antenna, and squeeze it between two hard, stable atoms (Helium) to act as the tuner.**
 
@@ -703,7 +710,7 @@ Using the working counts (12 architrinos per electron, 36 per nucleon):
 
 If the Rb is ionized, subtract **12** per missing electron.
 
-**Caveat:** This is the smallest self‑contained decision element we can explicitly calculate at present. There may be architectures with fewer architrinos that still implement a threshold decision, but we have not derived them yet.
+**Caveat:** This is the smallest self‑contained **Switch** we can explicitly calculate at present. There may be architectures with fewer architrinos that still implement a threshold decision, but we have not derived them yet.
 
 ## 7. Suggested Refinements
 
