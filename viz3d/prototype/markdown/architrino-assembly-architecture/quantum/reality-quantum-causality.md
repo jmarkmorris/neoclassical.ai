@@ -1,5 +1,12 @@
-
 # Reality, Causality, and Navigation in the Architrino Sea
+
+## Objectives
+
+- Distinguish absolute vs emergent descriptions of the architrino "weather" and causality.
+- Explain how deterministic microdynamics yield effective randomness at the operational level.
+- Define minimal dynamical requirements for agency/choice in assemblies.
+- Connect the navigational assembly and triatomic case study to those requirements.
+- Tie the chapter to the canonical definition in `foundations/ontology.md`.
 
 ## 1. Reality: The Architrino “Weather” at Two Levels
 
@@ -27,7 +34,7 @@ At the absolute level, any local neighborhood is crowded:
 
 “Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
-### 1.2 Operational picture: Stable objects and rare “events”
+### 1.2 Operational picture: Stable objects and rare events
 
 At the emergent level:
 
@@ -59,7 +66,7 @@ At the fundamental level:
 
 There is **no backward-in-$t$ influence**. The absolute-time ordering is strictly causal.
 
-### 2.2 Emergent “stealth” and apparent acausality
+### 2.2 Emergent stealth and apparent acausality
 
 From the viewpoint of an embedded assembly:
 
@@ -129,11 +136,11 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ---
 
-## 4. Agency and “Choice” in a Deterministic World
+## 4. Agency and Choice in a Deterministic World
 
 Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *choose* its response—either leveraging incoming “rogue” waves or effectively ignoring them.
 
-### 4.1 What “choosing a response” means in this framework
+### 4.1 What choosing a response means in this framework
 
 We keep everything strictly dynamical:
 
@@ -170,7 +177,7 @@ In the architrino framework:
 
 **So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
 
-### 4.5 Then What Did We Mean by "Choice"?
+### 4.5 Then what do we mean by choice?
 
 When Alfa and Dyna described the "Decision Super-Assembly," they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess.
 
@@ -292,7 +299,7 @@ This is what makes the assembly a **selector of its own future sensitivity**, no
 
 ---
 
-### 4.7 Putting it together: “Leveraging vs Ignoring” in practice
+### 4.7 Putting it together: leveraging vs ignoring in practice
 
 With these five pieces:
 
@@ -387,7 +394,7 @@ When you "decide" to raise your arm:
 
 **Compatibilist conclusion:** It's determined, but it's **yours**.
 
-### 4.12 Can an Assembly "Have" Free Will?
+### 4.12 Can an Assembly Have Free Will?
 
 **Libertarian free will (uncaused causes):** No. Nothing in this universe has that, because it's incoherent. Randomness ≠ freedom.
 
@@ -397,7 +404,7 @@ When you "decide" to raise your arm:
 
 **The difference is one of degree (complexity), not kind (mechanism).**
 
-### 4.13 Summary: The Entourage's Position
+### 4.13 Summary: Position
 
 | Concept | Architrino Framework Position |
 |---------|-------------------------------|
@@ -429,7 +436,7 @@ To build an assembly that can **choose**—meaning it can dynamically alter its 
 
 Here is the engineering architecture for a primitive "Choice Unit" (or **Navigational Gate**) based on the Tri-Binary physics we have established.
 
-### 5.1 The Blueprint: The Tri-Partite "Choice Unit"
+### 5.1 The Blueprint: The Tri-Partite Choice Unit
 
 To achieve the ability to leverage or ignore "rogue waves" (constructive interference spikes in the potential field), the system needs three distinct functional components:
 
@@ -505,7 +512,7 @@ None of this is free. To move the Bias Unit, shift the frequency, or precess the
 *   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.
 *   You "invest" energy in the Bias Unit to lower the threshold, hoping that the "rogue wave" you catch will yield a payout (information or energy) greater than the cost of tuning.
 
-### 5.6 Summary: The "Navigational Assembly"
+### 5.6 Summary: The Navigational Assembly
 
 To build a system that chooses:
 1.  **Construct a Super-Assembly** containing a "Decision Core" (metastable tri-binary).
@@ -518,7 +525,7 @@ This transforms the assembly from a passive rock being battered by waves into a 
 
 ---
 
-## 6. Minimum Viable Atomic Hardware for a "Smart Assembly"
+## 6. Minimum Viable Atomic Hardware for a Smart Assembly
 
 To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
 
@@ -529,7 +536,7 @@ Here is the specific bill of materials and the rationale based on the architectu
 
 ---
 
-### 6.1 The Hardware: The "Rydberg Triad"
+### 6.1 The Hardware: The Rydberg Triad
 
 To build the "Decision Super-Assembly," I recommend:
 
@@ -549,7 +556,7 @@ To build the "Decision Super-Assembly," I recommend:
 
 ---
 
-### 6.2 How the "Decision" Works (The Mechanism)
+### 6.2 How the decision works (the mechanism)
 
 We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$.
 
@@ -585,7 +592,7 @@ Change the squeeze, and you change whether you are listening to the noise or ign
 
 ---
 
-## 7. Suggested refinements
+## 7. Suggested Refinements
 
 1. **Natural Selection of States**
    - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.
