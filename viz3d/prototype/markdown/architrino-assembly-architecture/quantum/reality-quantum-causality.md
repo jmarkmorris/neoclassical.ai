@@ -8,6 +8,8 @@
 - Connect the **Decider** and **Switch** case studies to those requirements.
 - Tie the chapter to the canonical definition in `foundations/ontology.md`.
 
+**Blanket hypothesis:** All claims in this chapter are asserted within the architrino framework and reflect our current best understanding unless explicitly labeled otherwise.
+
 ## 1. Reality: Absolute vs Operational
 
 Let’s keep a clean separation between:
