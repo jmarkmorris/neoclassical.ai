@@ -13,7 +13,7 @@
 Let’s keep a clean separation between:
 
 - **Absolute level**: Euclidean void + absolute time; architrinos with definite trajectories and wakes at speed $c_f$.
-- **Emergent/operational level**: What assemblies (atoms, detectors, brains) “see” in terms of quantum statistics, effective light cones, etc.
+- **Emergent/operational level**: What assemblies (atoms, detectors, instruments) “see” in terms of quantum statistics, effective light cones, etc.
 
 ### 1.1 Absolute Picture
 
@@ -365,11 +365,11 @@ What we care about practically is whether a system can:
 
 The architrino super-assembly can do all of this **while remaining fully deterministic** (with multistability at thresholds).
 
-**This is compatibilist free will:**
-- Your decisions are caused (by your brain's microstate + inputs)
-- But the causal chain runs **through you** (your internal structure matters)
-- And your internal structure was shaped by **your history** (learning, adaptation)
-- So in a meaningful sense, **you** are steering, even though the steering is deterministic
+**Compatibilist free will in this framework:**
+- Decisions are caused (by the assembly’s microstate + inputs)
+- The causal chain runs **through the assembly** (its internal structure matters)
+- That structure is shaped by **its history** (feedback, adaptation)
+- So in a meaningful sense, the assembly is steering, even though the steering is deterministic
 
 ### 4.10 Determinism and Predictability
 
@@ -381,7 +381,7 @@ The architrino super-assembly can do all of this **while remaining fully determi
 - No feedback loops that modify future responsiveness
 - No capacity to place itself near or far from bifurcation points
 
-A brain (or the Rb-He triad) has all of these. **The difference is architectural complexity**, not magic.
+A networked super-assembly can have all of these. The Rb-He-He triad in this document demonstrates **(1) multiple attractors** and **(2) tunable thresholds** only. It is a **threshold gate**, not a full navigator.
 
 **Key point:** Determinism does not imply **predictability** or **simplicity**. A deterministic system with:
 - High-dimensional state space
@@ -393,34 +393,34 @@ A brain (or the Rb-He triad) has all of these. **The difference is architectural
 
 ### 4.11 Will as Threshold Setting
 
-**"Will"** in this framework is the **organized pattern of threshold settings** across a vast network of assemblies (like neurons in a brain).
+**"Will"** in this framework is the **organized pattern of threshold settings** across a networked assembly.
 
-When you "decide" to raise your arm:
-1. A pattern of neural assemblies shifts into "high-sensitivity" mode for motor cortex signals
-2. This shift was caused by prior activity (your intention, shaped by your goals/beliefs/learning)
-3. The motor signal (rogue wave from upstream neurons) arrives and tips the assemblies into firing
-4. The firing cascade triggers muscle contraction
+When a super-assembly "decides" to amplify a signal:
+1. A subset of sub-assemblies shifts into "high-sensitivity" mode (thresholds lowered).
+2. This shift is caused by prior internal updates (history + feedback).
+3. An incoming potential packet arrives and tips the metastable units across their boundaries.
+4. The transition cascades, creating a macroscopic record.
 
-At the neural level this firing threshold is often modeled as a saddle-node boundary in a high-dimensional network (see 3.1.1).
+At this scale, threshold boundaries are often modeled as saddle-node boundaries in a high-dimensional network (see 3.1.1).
 
 **At every step:** lawful (with multistability at thresholds).
-**But:** The outcome depends on your brain's **current configuration** (which you shaped through learning) and your **current internal state** (which reflects your history and goals).
+**But:** The outcome depends on the assembly’s **current configuration** (shaped by past updates) and **current internal state**.
 
-**So in what sense is it "your" decision?**
-- The causal chain runs through your brain's architecture
-- That architecture was modified by your past experiences and choices
-- The outcome reflects your learned patterns and goals
-- No external agent forced this particular threshold configuration on you
+**So in what sense is it the assembly’s decision?**
+- The causal chain runs through its architecture
+- That architecture was modified by its history
+- The outcome reflects its stored configuration and internal goals
+- No external agent forced this particular threshold configuration
 
-**Compatibilist conclusion:** It's determined, but it's **yours**.
+**Compatibilist conclusion:** It's determined, but it is **owned by the assembly**.
 
 ### 4.12 Free Will: Compatibilist vs Libertarian
 
 **Libertarian free will (uncaused causes):** No. Nothing in this universe has that, because it's incoherent. Randomness ≠ freedom.
 
 **Compatibilist free will (autonomous navigation):** Yes, if the assembly has sufficient complexity:
-- Minimum: 3 atoms (He-Rb-He) can exhibit primitive threshold tuning
-- Complex: ~10¹¹ neurons (human brain) can exhibit goal-directed behavior, learning, self-modification
+- Minimum: 3 atoms (He-Rb-He) can exhibit primitive threshold tuning (see Section 6 for counts and caveat)
+- Complex: large networked assemblies can exhibit structured adaptation and self-modification
 
 **The difference is one of degree (complexity), not kind (mechanism).**
 
@@ -548,7 +548,7 @@ Imagine a primary assembly (Target) that performs the action (e.g., firing a sig
 *   **Outcome:** Even a microscopic "rogue wave" (a tiny superposition spike) is now sufficient to push the velocity past $c_f$. The Middle Binary amplifies this input ($1h \to 2h$), and the Target fires. The system has **leveraged** a tiny environmental fluctuation to perform work.
 
 **Where is the "Choice"?**
-The "Choice" is the movement/state of the **Bias Unit**. If the super-assembly (like a brain) learns that "Input X is important," it configures its Bias Units to State B (High Sensitivity). If it learns "Input Y is noise," it configures to State A.
+The "Choice" is the movement/state of the **Bias Unit**. If the super-assembly learns that "Input X is important," it configures its Bias Units to State B (High Sensitivity). If it learns "Input Y is noise," it configures to State A.
 
 ---
 
@@ -622,7 +622,7 @@ Here is the specific bill of materials and the rationale based on the architectu
 
 ### 6.1 Hardware: Rydberg Triad
 
-To build the "Decision Super-Assembly," I recommend:
+To build the minimal **decision element** (threshold gate), I recommend:
 
 **1. The Sensor Atom: One Rubidium-87 ($^{87}\text{Rb}$) Atom**
 **2. The Bias/Clamp Atoms: Two Helium-4 ($^4\text{He}$) Atoms (or Protons)**
@@ -675,6 +675,18 @@ To build a machine that possesses the primitive seeds of agency (tuning its own 
 Change the squeeze, and you change whether you are listening to the noise or ignoring it.
 
 ---
+
+### 6.5 Architrino Count (Current Estimate)
+
+Using the working counts (12 architrinos per electron, 36 per nucleon):
+
+- **He‑4**: 4 nucleons × 36 = 144; 2 electrons × 12 = 24; total **168**
+- **Rb‑87 (neutral)**: 87 nucleons × 36 = 3132; 37 electrons × 12 = 444; total **3576**
+- **He‑Rb‑He total (neutral)**: 2 × 168 + 3576 = **3912 architrinos**
+
+If the Rb is ionized, subtract **12** per missing electron.
+
+**Caveat:** This is the smallest self‑contained decision element we can explicitly calculate at present. There may be architectures with fewer architrinos that still implement a threshold decision, but we have not derived them yet.
 
 ## 7. Suggested Refinements
 
