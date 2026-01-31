@@ -11,6 +11,8 @@ I think the priority should be on the math and the mapping. advancing the mappin
   - provenance
   - diagrams
   - core disposition
+  - there is an api now
+  - look into madgraph for reactions as well
 - periodic table of the standard model
 - what about the charts I made showing the bootstrap of knowledge.
 - what is the smallest assembly that can make a decision
@@ -36,7 +38,7 @@ there are stable orbits at each h-bar
 - ask ai how we get indeterminism?  we have local multideterminism, .... how
 
 - double click pins vscode tab
-- link a markdown file [text](../../file). Add note to system prompts.
+- link a markdown file [text](../prototype/markdown/file). Add note to system prompts.
 - one H1 heading per md
 - set up 4 level branch in git
 - og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a
