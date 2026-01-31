@@ -500,6 +500,36 @@ These are the four points where architrino theory **explains** standard quantum 
 
 ---
 
+### 4.15.5 Operational Mapping (Phenomenological)
+
+Below is an explicit **operational dictionary** linking the QM formal step to architrino micro‑dynamics. This is not a full derivation; it is a **phenomenological mapping** that clarifies what is meant by each claim and where it could, in principle, diverge in experiment.
+
+**1) Collapse**
+- **QM formalism:** $\rho \rightarrow |n\rangle\langle n|$ (projection onto an eigenstate).
+- **Architrino micro‑dynamics:** The full microstate $\Gamma(t)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action‑like variable $J$ crosses a basin boundary.
+- **Coarse‑graining map:** Define $C[\Gamma] = f$ and $\rho_{\mathrm{eff}}(f)$ as an average over fast phases (inner/middle binaries). “Collapse” corresponds to conditioning on a realized basin label.
+- **Difference (in principle):** Transition time is finite and tied to threshold crossing / Lyapunov time, not instantaneous; near threshold, history‑dependent hysteresis is expected.
+
+**2) Uncertainty**
+- **QM formalism:** $\Delta x\,\Delta p \ge \hbar/2$.
+- **Architrino micro‑dynamics:** The basin boundary is sharp in $\Gamma$, but measurement back‑action plus finite predictability time create a **band** of operational indeterminacy $\delta$ around it.
+- **Coarse‑graining map:** Operational observables cannot resolve $\Gamma$ inside the $\delta$‑band; this is the bracket around the integer step.
+- **Difference (in principle):** The width of the bracket depends on probe strength and forcing scale (not solely on $\hbar$), and can vary across architectures.
+
+**3) Branching / Many‑Worlds**
+- **QM formalism:** $\sum_n c_n |n\rangle$ treated as coexisting branches.
+- **Architrino micro‑dynamics:** One realized trajectory $\Gamma(t)$; multiple branches are **epistemic** alternatives for observers lacking phase/history information.
+- **Coarse‑graining map:** A single micro‑trajectory maps to multiple coarse‑grained histories near a threshold boundary.
+- **Difference (in principle):** No ontic branching; the “tree” is a bookkeeping device for incomplete knowledge.
+
+**4) Observability / Record**
+- **QM formalism:** Measurement yields an eigenvalue and a record.
+- **Architrino micro‑dynamics:** Only basin changes that generate macroscopic divergence create a record; micro‑reconfigurations within a basin are not externally visible.
+- **Coarse‑graining map:** “Record” = a persistent coarse‑grained divergence in histories.
+- **Difference (in principle):** Decisions without basin changes are empirically invisible; repeated weak probes should show record creation only when a boundary is crossed.
+
+---
+
 ### 4.16 Historical Note (1875–present): From Operational Success to Ontological Drift
 
 If architrino theory is correct, the last 150 years look like this:
