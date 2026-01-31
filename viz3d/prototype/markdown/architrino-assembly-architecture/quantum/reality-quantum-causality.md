@@ -109,13 +109,13 @@ At the assembly level (tri-binaries, atoms, etc.):
   - Crosses into a neighboring attractor (discrete energy change, change of configuration).
 
 - The **outer binary** can be modeled as such a metastable subsystem:
-  - It supports discrete energy levels (quantization).
-  - A transition (e.g., $\Delta E = \hbar\omega$) occurs when the net potential **resonates with the binary frequency** and pushes the internal state across a stability threshold.
+  - It supports discrete resonance bands labeled by frequency $f$.
+  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E = \hbar \omega = h f$, and pushes the system across the cusp between bands (e.g., $f \to f \pm 1$). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
 - The **middle binary**, near $v = c_f$, likely sits near a **bifurcation surface**:
-  - Slightly below $c_f$: one regime (e.g., $h$-like response).
-  - Slightly above $c_f$: another regime (e.g., $2h$-like, self-hit-amplified response).
-  - Small differences in forcing near this manifold can send trajectories to qualitatively different long-term behavior.
+  - Slightly below $c_f$: one regime (e.g., $h$-like response per cycle).
+  - Slightly above $c_f$: another regime (e.g., $2h$-like, self-hit-amplified response per cycle).
+  - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
 
 ### 3.2 Chaos and Effective Unpredictability
 
