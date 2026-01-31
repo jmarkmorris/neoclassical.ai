@@ -45,7 +45,12 @@ At the emergent level:
   - Nucleus “decays”
   - Detector “clicks”
 
-Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips.
+Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses a separatrix.
+
+Two clarifications matter here:
+
+- **$h$-scale transitions:** Even a minute transfer on the scale of $h$ can be decisive when the system sits at a cusp between neighboring resonance patterns (e.g., $f \to f \pm 1$). Radius, frequency, and speed adjust continuously, but the operational “wavefunction pattern” can switch sharply because the system crosses a basin boundary.
+- **Multiple bifurcation sites:** This is not confined to the self-hit symmetry point $v = c_f$. Any metastable threshold (orbital resonances, coupling changes, edge-condition energy transfers) can act as a bifurcation surface. The $v = c_f$ hinge is one prominent example, not the only one.
 
 ---
 
