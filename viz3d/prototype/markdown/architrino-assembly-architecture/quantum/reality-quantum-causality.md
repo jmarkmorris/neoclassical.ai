@@ -346,7 +346,7 @@ Here's the critical distinction:
 - It's a **fixed-threshold detector**
 
 **Internal Causation (Active Navigator):**
-- The Rubidium-Helium triad in the same laser beam may or may not absorb, depending on:
+- The He‑Rb‑He assembly in the same laser beam may or may not absorb, depending on:
   - Whether it's currently in "Ignore Mode" (He atoms compressed) or "Leverage Mode" (He atoms relaxed)
   - Which mode it's in depends on its recent history (what transitions it made before)
   - That history was shaped by prior inputs **plus** the assembly's own structural feedback rules
@@ -381,7 +381,7 @@ A **Decider** can do all of this **while remaining fully deterministic** (with m
 - No feedback loops that modify future responsiveness
 - No capacity to place itself near or far from bifurcation points
 
-A networked **Decider** can have all of these. The Rb-He-He triad in this document demonstrates **(1) multiple attractors** and **(2) tunable thresholds** only. It is a **Switch**, not a full Decider.
+A networked **Decider** can have all of these. The He‑Rb‑He assembly in this document demonstrates **(1) multiple attractors** and **(2) tunable thresholds** only. It is a **Switch**, not a full Decider.
 
 **Key point:** Determinism does not imply **predictability** or **simplicity**. A deterministic system with:
 - High-dimensional state space
@@ -551,7 +551,7 @@ To build an assembly that can **choose**-meaning it can dynamically alter its ow
 One way to classify the evolution of mechanism is by **fewest architrinos** required to implement a function. This is only **one** classifier; others include assembly depth (single element vs network), threshold type, and energy budget. Under the minimality lens we currently have two candidate mechanisms:
 
 - **Decider (bias‑setting complex):** the smallest *architectural topology* that can implement biasing + threshold placement + feedback. The architrino count is not yet computed; this is a **candidate minimal topology**, not a proven minimum.
-- **Switch (bias‑to‑state mechanism):** the smallest *computed* self‑contained gate we can exhibit (see Section 6). Current estimate: **3912 architrinos** for a neutral He‑Rb‑He triad.
+- **Switch (bias‑to‑state mechanism):** the smallest *computed* self‑contained gate we can exhibit (see Section 6). Current estimate: **3912 architrinos** for a neutral He‑Rb‑He assembly.
 
 Here is the engineering architecture for that candidate minimal **Decider** based on the Tri‑Binary physics we have established.
 
@@ -631,20 +631,20 @@ This transforms the assembly from a passive rock being battered by waves into a 
 
 ---
 
-## 6. Switch: Minimum Viable Atomic Hardware (Rb-He-He Triad)
+## 6. Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)
 
-This is one **applied realization** of the **Switch** mechanism, not the unique way to do it. This is the smallest mechanism we can currently compute that **takes a bias signal and executes a larger‑scale physical state change**. Many physical architectures can implement the same control loop (bias setting -> threshold positioning -> bifurcation). In the **minimality lens**, the triad is the smallest *computed* Switch so far, where the **bias** is upstream (in the configuration) and the **electron transition** is the downstream execution.
+This is one **applied realization** of the **Switch** mechanism, not the unique way to do it. This is the smallest mechanism we can currently compute that **takes a bias signal and executes a larger‑scale physical state change**. Many physical architectures can implement the same control loop (bias setting -> threshold positioning -> bifurcation). In the **minimality lens**, the He‑Rb‑He assembly is the smallest *computed* Switch so far, where the **bias** is upstream (in the configuration) and the **electron transition** is the downstream execution.
 
 To do this, we need a system that isn't a rigid rock (like a Helium atom) but also isn't a chaotic mess. We need a system with **tunable metastability**.
 
 **The Answer: The Minimum Number is 3.**
-We need a **Triatomic Cluster** (a "Triad").
+We need a **triatomic cluster** (here, He‑Rb‑He).
 
 Here is the specific bill of materials and the rationale based on the architecture we just defined.
 
 ---
 
-### 6.1 Hardware: Rydberg Triad
+### 6.1 Hardware: Rydberg He‑Rb‑He Assembly
 
 To build the minimal **Switch**, I recommend:
 
@@ -669,13 +669,13 @@ To build the minimal **Switch**, I recommend:
 We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$.
 
 **1. State A: "Ignore Mode" (Damped)**
-*   **Configuration:** The triad allows the Helium atoms to relax closer to the Rubidium core.
+*   **Configuration:** The He‑Rb‑He assembly allows the Helium atoms to relax closer to the Rubidium core.
 *   **Effect:** The potential wakes from the stable Helium atoms overlap with the Rubidium's outer electron. They compress the orbital, increasing the "pressure."
 *   **Architrino Result:** The Rubidium electron's Middle Binary is pushed **away** from the critical velocity $c_f$ (down to a safer, lower velocity).
 *   **Outcome:** The Sensor is "detuned." It ignores rogue waves.
 
 **2. State B: "Leverage Mode" (High Sensitivity)**
-*   **Configuration:** The triad excites a vibrational mode (a "breathing mode") where the Helium atoms oscillate slightly outward.
+*   **Configuration:** The He‑Rb‑He assembly excites a vibrational mode (a "breathing mode") where the Helium atoms oscillate slightly outward.
 *   **Effect:** The pressure releases. The Rubidium electron expands further out.
 *   **Architrino Result:** The electron's Middle Binary drifts closer to the instability threshold ($v \approx c_f$). It is now balanced on the razor's edge.
 *   **Outcome:** The Sensor is "live." A faint external fluctuation in the architrino weather is enough to trigger a transition (ionization or state flip).
