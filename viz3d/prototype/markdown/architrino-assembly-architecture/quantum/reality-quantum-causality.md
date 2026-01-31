@@ -443,6 +443,8 @@ This does **not** require a many-worlds ontology. The branching tree at a bifurc
 
 The uncertainty principle can be read as **bracketing the bifurcation point** at the operational level: near a separatrix, $h$-scale action increments and measurement back-action limit how precisely an observer can place the system relative to the basin boundary. The bifurcation is sharp in the absolute microstate, but it is smeared into a finite uncertainty band for any embedded observer.
 
+Technically, the **effective wave equation changes** across the threshold. Observers do not “see” the pre‑bifurcation and post‑bifurcation dynamics with the same equation; the photon (or any probe) couples to *one side or the other*, producing a record consistent with that basin’s effective equation. The in‑between is not a stable operational state: attempting to probe it injects action and forces a resolution to one side, which is why **you cannot continuously sample the transition itself** with photons. What looks like “collapse” is the observer’s forced update to the appropriate effective wave equation once the bifurcation is resolved.
+
 #### 4.15.1 Black-Box View: Uncertainty Brackets the Integer Frequency Step
 
 Here's the operational "black box" that links uncertainty to the **integer change in frequency**:
