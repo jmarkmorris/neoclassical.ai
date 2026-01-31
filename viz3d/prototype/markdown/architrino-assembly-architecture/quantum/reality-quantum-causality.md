@@ -4,7 +4,7 @@
 
 - Distinguish absolute vs emergent descriptions of the architrino "weather" and causality.
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
-- Define minimal dynamical requirements for agency/choice in assemblies.
+- Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
 - Tie the chapter to the canonical definition in `foundations/ontology.md`.
 
@@ -154,16 +154,16 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ---
 
-## 4. Agency and Choice
+## 4. Agency and Decision
 
 Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *choose* its response—either leveraging incoming “rogue” waves or effectively ignoring them.
 
-### 4.1 Definition of Choice
+### 4.1 Definition of Decision
 
 We keep everything strictly dynamical:
 
 - There is no extra “will field.”
-- “Choice” = **the assembly’s internal state and architecture bias which attractor/transition is realized** for a given class of incoming potential patterns.
+- “Decision” = **the assembly’s internal state and architecture bias which attractor/transition is realized** for a given class of incoming potential patterns.
 
 So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
 
@@ -195,7 +195,7 @@ In the architrino framework:
 
 **So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
 
-### 4.5 Interpretation of Choice
+### 4.5 Interpretation of Decision
 
 When Alfa and Dyna described the **Decider** (a bias‑setting complex), they were **not** claiming it has magical free will. They were describing a **dynamical capacity** that certain architectures can possess.
 
@@ -432,7 +432,7 @@ At this scale, threshold boundaries are often modeled as saddle-node boundaries 
 | **Ontological Randomness** | No (chaos + ignorance, not dice-rolling) |
 | **Libertarian Free Will** | No (incoherent concept; "uncaused cause" violates causality) |
 | **Compatibilist Free Will / Agency** | Yes (complex assemblies can navigate deterministic dynamics autonomously) |
-| **Mechanism of "Choice"** | Threshold tuning + feedback + memory in networked assemblies |
+| **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
 | **Can assemblies decide?** | Yes, in the sense of "dynamically modulating responsiveness based on internal state and history" |
 | **Is it "real" agency?** | Yes, if "real" means "has causal efficacy and functional autonomy," not "violates physics" |
 
@@ -572,7 +572,7 @@ This is the most direct method to toggle between **leveraging** and **ignoring**
 - **Ignore (high threshold):** move the Bias Unit closer (or stabilize phase) → deepen the local potential well → pull the target away from $v=c_f$.
 - **Leverage (high sensitivity):** move the Bias Unit away (or destabilize phase) → shallow the well → bring the target toward $v\approx c_f$ so small rogue waves can tip it.
 
-The “choice” is the bias configuration held by the assembly at that moment.
+The **decision** is the bias configuration held by the assembly at that moment.
 
 ---
 
@@ -610,7 +610,7 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 
 ---
 
-### 5.5 Cost of Choice (Thermodynamics)
+### 5.5 Cost of Decision (Thermodynamics)
 
 **Red** insists we mention the cost:
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
@@ -651,7 +651,7 @@ To build the minimal **Switch**, I recommend:
 **1. The Sensor Atom: One Rubidium-87 ($^{87}\text{Rb}$) Atom**
 **2. The Bias/Clamp Atoms: Two Helium-4 ($^4\text{He}$) Atoms (or Protons)**
 
-#### Rationale for Atom Choice
+#### Rationale for Atom Selection
 
 **1. The Sensor (Rubidium): The "Feeler"**
 *   **Architrino Physics:** Rubidium is an Alkali metal. It has one lonely electron in its outer shell (5s orbital). This electron is heavily shielded by the inner core. In architrino terms, this outer tri-binary assembly is loosely coupled to its nucleus.
@@ -688,7 +688,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 *   With 2 atoms, you only have distance (1 degree of freedom).
 *   With 3 atoms, you have **distance** and **angle** (bending mode).
 *   **Symmetry Breaking:** A linear molecule ($\text{He-Rb-He}$) has high symmetry. If you bend it ($\angle < 180^\circ$), you break that symmetry. This geometric symmetry breaking maps directly to the **Middle Binary's velocity threshold**.
-*   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **mode crossings** in its potential energy surface (analogous to conical intersections in molecular physics)—regions where the distinction between states vanishes and "choice" (bifurcation) becomes physically possible (see 3.1.1).
+*   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **mode crossings** in its potential energy surface (analogous to conical intersections in molecular physics)—regions where the distinction between states vanishes and "decision" (bifurcation) becomes physically possible (see 3.1.1).
 
 ### 6.4 Summary
 
