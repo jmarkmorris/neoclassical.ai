@@ -774,13 +774,15 @@ In the ideal symmetric, non-translating, exactly circular orbit, the two charges
 
 ## Tri-Binary Emergence and Hypothetical Properties
 
-> **Surfing the moving wave (lanes under translation and perturbation)**
->
-> Picture the orbit as a surfer riding a **moving wave**, not a fixed landscape. The "wave" is the delay geometry: as the architrino moves, the causal roots reshape the force it feels. There is no static trough; there are **stable lanes**--recurring orbital patterns that can persist even while the whole assembly **translates through the Noether sea**.
->
-> As the spiral tightens toward $v=c_f$, the wave develops a sharp **crest**: the first self-hit root appears with $\tilde{\delta}_s \to 0^+$, and the outward radial factor scales like $1/\sin(\tilde{\delta}_s/2)$. That crest is a geometry-driven defocusing surge, not a barrier. The architrino surfs through because tangential drive continues to push it forward. **Lane changes can occur both before and after the crest**; in the spiral case the evolution is continuous in state (C0) but has a **kink** in slope at $v=c_f$ rather than a discontinuous jump.
->
-> Past the crest, the wave face relaxes. $\tilde{\delta}_s$ grows, additional self-hit branches open, and outward push spreads over larger angles. This is where **lane changes** remain possible: small energy shifts or **external perturbations** can move the system from one stable orbital lane to another (binary, tri-binary, decorator, photon-like), even though the whole assembly is drifting. The local orbit changes lanes; the global translation continues.
+An electrino-positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles. Each binary plays an important role in the assembly.
+
+- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
+- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
+- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
+
+
+
+
 >
 > **Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2h$ rather than $h$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta J = h$ below $c_f$, $\Delta J = 2h$ above. This is a hypothesis, not a derived result.
 
@@ -805,15 +807,6 @@ In the ideal symmetric, non-translating, exactly circular orbit, the two charges
 > $$
 > The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
-### Relationship to Tri-Binary Structure
-
-- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
-- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
-- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
-
-**This chapter analyzes the isolated two-body problem to understand candidate MCB formation and stability.**
-
-In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. In a dense Noether sea, the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
 
 ---
 
@@ -843,7 +836,7 @@ The key behaviours of the tri-binary include it's wide scalability and deformabi
 
 cft
 
-
+In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. Einstein's spacetime is implemented by a dense Noether sea, and the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
 
 ---
 
