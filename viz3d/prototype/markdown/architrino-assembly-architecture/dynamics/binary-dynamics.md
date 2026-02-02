@@ -2,11 +2,11 @@
 
 This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. Stability and attractor claims are conjectural unless explicitly established; see the MCB gap ledger for open tests.
 
-## Orbiting Binary Assembly
+
+## Spiral Binary Contraction Phase
 
 An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge--an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
 
-### 1. System Definition and Equations of Motion
 
 Consider the ideal case of a symmetric orbit in a universe with no other architrinos. In general, each architrino is subject to a superposition of external potential waves from all other sources; the analysis below isolates the binary by setting those external contributions to zero.
 
@@ -24,7 +24,6 @@ $$
 $$
 A symmetric set of equations governs the positrino's motion based on the electrino's emissions.
 
-### 2. The Inward Exponential Spiral
 
 In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward spiral that is naturally modeled as exponential in angle** (a logarithmic spiral), consistent with a per-cycle action increment $\Delta J = h$ in the partner-only regime. The radius shrinks geometrically per turn and speed increases until the self-interaction threshold ($|\mathbf{v}|>c_f$) is crossed.
 
@@ -39,7 +38,15 @@ where $\delta_p$ is the partner delay angle. The time-averaged tangential accele
 
 With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the electrino and positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and per-wavefront amplitude remain constant; the evolution is driven entirely by delay geometry and, once active, self-interaction.
 
-### 3. Evolution Through Velocity Regimes
+
+
+Initially, and as long as the speeds of both particles are less than or equal to the field speed $c_f$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
+$$
+\mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) \quad \text{and} \quad \mathbf{a}_{2, \text{total}}(t) = \mathbf{a}_{2,1}(t)
+$$
+During this phase, the system is purely contractile, with the particles accelerating and spiraling towards each other. The positive tangential component (see Lemma in the prior section) guarantees continued speed-up, so the spiral tightens until the self-hit regime is reached.
+
+## Spiral Binary Symmetry-Breaking Point (v = c_f)
 
 The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), which geometrically means the self-hit emission point lies almost directly behind the current position. The radial factor scales like $1/\sin(\tilde{\delta}_s/2)$ and therefore becomes very large as $\tilde{\delta}_s\to 0^+$. This large outward term initially reduces curvature; the maximum-curvature regime does not occur near threshold but only after $\tilde{\delta}_s$ becomes appreciable (higher $s$ and larger-angle roots).
 
@@ -74,14 +81,9 @@ The binary system's evolution is organized around the **field-speed symmetry poi
 > $$
 > The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
-#### **Contraction Phase ($|\mathbf{v}| \le c_f$)**
-Initially, and as long as the speeds of both particles are less than or equal to the field speed $c_f$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
-$$
-\mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) \quad \text{and} \quad \mathbf{a}_{2, \text{total}}(t) = \mathbf{a}_{2,1}(t)
-$$
-During this phase, the system is purely contractile, with the particles accelerating and spiraling towards each other. The positive tangential component (see Lemma in the prior section) guarantees continued speed-up, so the spiral tightens until the self-hit regime is reached.
 
-#### **Self-Hit: Definition and Diagnostics**
+
+## Self-Hit: Definition and Diagnostics
 
 Self-hit is the key non-Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
 
@@ -102,24 +104,27 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - Check convergence of self-hit statistics under time-step refinement, history-resolution refinement, and integrator swap.
 - If self-hit signatures change qualitatively under refinement, treat any resulting "stable structures" as artifacts until proven otherwise.
 
-For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Limit and Attractor Analysis**.
+For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Binary — Circular**.
 
-#### **Deflationary Phase ($|\mathbf{v}| > c_f$)**
+
+
+## Spiral Binary Deflationary Phase
+
 Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive wakes. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the electrino:
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
 At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly "deflates" the effective inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state while preventing singular collapse, but overshoot or destabilization remain possible. Whether this regime actually settles into a limit cycle, or instead overshoots and exhibits sustained oscillations or escape, is an open dynamical question addressed explicitly in the MCB gap ledger.
 
-## Maximum-Curvature Limit and Attractor Analysis
+
+
+## Maximum-Curvature Binary — Circular
 
 Once self-hit turns on, the natural question is whether the spiral-in converges to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, stability criteria, and computational diagnostics. It is the canonical reference for MCB attractor status.
 
 All claims of MCB stability and unit-definition are conditional on the conjectures and tests summarized in the gap ledger below.
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to the MCB gap ledger (MCB-07). The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
-
-## Maximum-Curvature Circular Orbit (Opposite Charges)
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed, purely radial per-hit law.
 
@@ -149,15 +154,6 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 - Compute Floquet multipliers / Lyapunov exponents and map the basin of attraction under perturbations in radius, phase, and velocity.
 Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
-#### Relationship to Tri-Binary Structure
-
-- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
-- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
-- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
-
-**This chapter analyzes the isolated two-body problem to understand candidate MCB formation and stability.**
-
----
 
 ### Setup and Notation (Symmetric Frame)
 
@@ -991,15 +987,33 @@ In the center-of-mass frame, this should remain near zero for symmetric binaries
 
 If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies. If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
 
+## Tri-Binary Coupling Hypothesis
+
+### Relationship to Tri-Binary Structure
+
+- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
+- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
+- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
+
+**This chapter analyzes the isolated two-body problem to understand candidate MCB formation and stability.**
+
+In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. In a dense Noether sea, the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
+
 ### Tri-Binary Bridge
 
 If the MCB exists as a stable attractor, it serves as the **inner binary** of tri-binary assemblies. The outer pair then evolves in a broader, typically precessing orbit around the inner MCB, with additional modes (middle binary at $v=c_f$, outer binary at $v<c_f$) supplying energy storage and coupling to the Noether sea. This chapter focuses on the two-body MCB; tri-binary dynamics are treated separately.
 
 ---
 
+## Tri-Binary Inflationary Phase (Energy Shedding Inside Black Hole)
+
+## Tri-Binary Symmetry-Breaking Point (Event Horizon)
+
+## Tri-Binary Expansionary Phase
+
 ## The Stable State and Emergent Properties
 
-**Conditional note:** The statements in this section assume the maximum-curvature attractor conjecture; see the gap ledger in **Maximum-Curvature Limit and Attractor Analysis**. Under that assumption, the deflationary spiral does not continue indefinitely and self-repulsive feedback is expected to stabilize the system and prevent a singularity.
+**Conditional note:** The statements in this section assume the maximum-curvature attractor conjecture; see the gap ledger in **Maximum-Curvature Binary — Circular**. Under that assumption, the deflationary spiral does not continue indefinitely and self-repulsive feedback is expected to stabilize the system and prevent a singularity.
 
 ### **Curvature Limit and Stability**
 In the working hypothesis, the inward spiral does not end in a singularity. The limiting factor is expected to be the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop. Ruling out true collapse or runaway in the regularized dynamics is the content of gap item MCB-09 (global energy bound). Until that is addressed, singular end-states remain a formal possibility.
@@ -1015,7 +1029,7 @@ The stabilization of the orbiting binary gives rise to fundamental, emergent pro
 -   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
 -   **A Zero-Potential Axis (Idealized):** In the ideal symmetric, non-translating, exactly circular orbit, and under linear superposition, the contributions from the two charges cancel almost exactly along the rotation axis, producing a corridor of very low net potential. In that idealization, an architrino traveling perfectly along this axis would experience negligible acceleration from the binary. In practice, discrete-wake geometry, translation, or slight asymmetry will leave residual off-axis hits, so the corridor is approximate rather than exact.
 
-In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. In a dense Noether sea, the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
+
 
 ---
 
