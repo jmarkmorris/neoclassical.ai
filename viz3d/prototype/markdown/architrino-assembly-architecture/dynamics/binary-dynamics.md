@@ -455,7 +455,7 @@ State is infinite-dimensional (history segment), but for diagnostics we project 
 
 ---
 
-#### 1. Poincare Section and Return Map
+#### Poincare Section and Return Map
 
 ##### Definition 1 (Configuration variables for the reduced binary)
 
@@ -511,7 +511,7 @@ Here $\Sigma_{\text{red}}$ is the image of $\Sigma$ under the projection to $(R,
 
 ---
 
-#### 2. Fixed-Point Formulation of the MCB
+#### Fixed-Point Formulation of the MCB
 
 ##### Definition 4 (MCB orbit as a periodic solution)
 
@@ -558,7 +558,7 @@ Let $\Phi^t$ be the flow on the history space. Then:
 
 ---
 
-#### 3. Linear Stability and Floquet Multipliers
+#### Linear Stability and Floquet Multipliers
 
 We analyze linear stability of the fixed point $\phi^*$ (or $\mathbf{z}^*$) using the derivative (Jacobian) of the Poincare map.
 
@@ -608,7 +608,7 @@ Let $\phi^*$ be a fixed point of $P$ corresponding to a periodic MCB orbit. Then
 
 ---
 
-#### 3.2 MCB Attractor Conjectures (Existence and Spectral Stability)
+#### MCB Attractor Conjectures (Existence and Spectral Stability)
 
 We formalize the physical hypothesis of the MCB as conjectures about the Poincare map defined above.
 
@@ -626,7 +626,7 @@ $$
 
 ---
 
-#### 4. Basins of Attraction and Separatrices
+#### Basins of Attraction and Separatrices
 
 Assuming a stable fixed point (in reduced space), we next characterize its basin and the separatrices delineating its domain of attraction.
 
@@ -667,11 +667,11 @@ In the full phase space, stable and unstable manifolds of saddle-type periodic o
 
 ---
 
-#### 5. Failure Modes and Bifurcation Routes as Speed Crosses $c_f$
+#### Failure Modes and Bifurcation Routes as Speed Crosses $c_f$
 
 We now interpret how the qualitative dynamics of the binary change as speed crosses the field speed $c_f$. This follows the delay-geometry framework of this chapter.
 
-##### 5.1 Regime I: Sub-Field-Speed ($s < c_f$) - No Self-Hit
+##### Regime I: Sub-Field-Speed ($s < c_f$) - No Self-Hit
 
 - Only partner-delay forces contribute.
 - The delayed attraction produces:
@@ -686,7 +686,7 @@ In the strictly sub-field-speed regime, every circular configuration exhibits po
 
 **Consequence.** The Poincare map does not admit a true fixed point with constant $R,s$ in this regime. We instead see an inward spiral toward higher speeds.
 
-##### 5.2 Regime II: Near Threshold ($s\approx c_f$) - Onset of Self-Hit
+##### Regime II: Near Threshold ($s\approx c_f$) - Onset of Self-Hit
 
 When the spiral drives $s$ to $c_f$, self-hits become geometrically possible:
 
@@ -705,7 +705,7 @@ As an effective control parameter (e.g., energy or an external density) passes a
 
 This is formalized in the gap ledger below; current status: conjectural.
 
-##### 5.3 Regime III: Super-Field-Speed ($s> c_f$) - Multi-Hit and High Curvature
+##### Regime III: Super-Field-Speed ($s> c_f$) - Multi-Hit and High Curvature
 
 As speed increases:
 
@@ -731,7 +731,7 @@ Each of these failure modes would invalidate the attractor role of the MCB assum
 
 ---
 
-#### 6. Gap Ledger: Missing Proofs and Open Problems
+#### Gap Ledger: Missing Proofs and Open Problems
 
 We collect the specific nonlinear dynamics questions that remain open and must be resolved to solidify the MCB picture.
 
@@ -850,7 +850,7 @@ If the MCB exists as a stable attractor, it serves as the **inner binary** of tr
 
 ## State Space and Well-Posedness of the Delayed Two-Body System
 
-### 1. Introduction and Scope
+### Introduction and Scope
 
 The Master Equation of Motion for the architrino system constitutes a system of **State-Dependent Neutral Delay Differential Equations (SD-NDDEs)**. Unlike ordinary differential equations (ODEs) where the state is a point in $\mathbb{R}^{6N}$, the state of this system is a **function segment** representing the past history of the particles.
 
@@ -858,7 +858,7 @@ We denote the position of the $i$-th architrino as $\mathbf{x}_i(t) \in \mathbb{
 
 ---
 
-### 2. Functional Phase Space
+### Functional Phase Space
 
 To define the evolution at time $t$, we require knowledge of the trajectory over an interval $[t - \tau_{\max}, t]$, where $\tau_{\max}$ is the maximum causal lookback time relevant to the current dynamics.
 
@@ -877,7 +877,7 @@ The norm is the standard $C^1$ sup-norm: $\|\phi\|_\mathcal{H} = \sup_{\theta \i
 
 ---
 
-### 3. The Regularized Interaction Functional
+### The Regularized Interaction Functional
 
 We formalize the force term derived in the Master Equation.
 
@@ -903,7 +903,7 @@ $$
 
 ---
 
-### 4. Local Well-Posedness
+### Local Well-Posedness
 
 #### Theorem 1 (Local Existence and Uniqueness)
 **Assumptions:**
@@ -919,7 +919,7 @@ The problem is reduced to $\dot{\mathbf{x}}(t) = \mathbf{v}(t), \dot{\mathbf{v}}
 
 ---
 
-### 5. Global Existence vs. Blow-Up
+### Global Existence vs. Blow-Up
 
 Unlike Newtonian gravity, global existence is **not guaranteed** simply by avoiding collisions, because the delay equation can harbor "runaway" modes where self-acceleration diverges.
 
@@ -936,7 +936,7 @@ The solution ceases to exist at finite time $T^*$ if:
 
 ## Symmetry, Conservation, and Lyapunov Functionals
 
-### 1. Introduction
+### Introduction
 
 Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's Theorem to local Lagrangian densities. In this delayed setting, the force at time $t$ depends on the phase-space trajectory over the interval $[t - h, t]$.
 
@@ -946,7 +946,7 @@ This section derives these functionals, establishes the exact symmetry group of 
 
 ---
 
-### 2. The Global Symmetry Group
+### The Global Symmetry Group
 
 We consider the regularized two-body system in the Euclidean Void $\mathbb{R}^3$ with metric $\delta_{ij}$ and absolute time $t$.
 
@@ -973,7 +973,7 @@ The causal constraint $\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0)$ d
 
 ---
 
-### 3. Conservation of Generalized Momentum
+### Conservation of Generalized Momentum
 
 In a delay system, Newton's Third Law ($\mathbf{F}_{12}(t) = -\mathbf{F}_{21}(t)$) fails instantaneously because $\mathbf{F}_{12}(t)$ originates from particle 2 at $t-\tau_1$, while $\mathbf{F}_{21}(t)$ originates from particle 1 at $t-\tau_2$.
 
@@ -1003,7 +1003,7 @@ For an isolated binary, the center of mass $\mathbf{x}_{\text{cm}}$ does not mov
 
 ---
 
-### 4. Energy and The Lyapunov Functional
+### Energy and The Lyapunov Functional
 
 Energy conservation is the critical constraint preventing runaway solutions (MCB-09).
 
