@@ -2,10 +2,14 @@
 
 I think the priority should be on the math and the mapping. advancing the mapping.
 
+- a 3d visualizer for the oblating Noether core.  ellipsoid.md
 - look for rapid hits - ckm matrix?
 - math/geometry/dynamics are huge
 - sim2rewrite.md has ideas for importing this software (redeveloping)
 - mine material from wordpress for key areas
+- work on quantum numbers again (where is that). Leverage MIT Kaiser 22
+- why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
+- I need to define a visualization library, like manim in a sense. so I can easily describe the kind of scene elements, etc.  first list the operations.
 - finish topology (where is it)
 - PDG solver
   - provenance
@@ -18,7 +22,6 @@ I think the priority should be on the math and the mapping. advancing the mappin
 - what is the smallest assembly that can make a decision
 - ai assembly language
 - review all my entourage docs
-- go hard at math
 - read lorentz-aether and integrate it with ellipsoid
 - the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - continue the ellipsoid work, aiming to understand time

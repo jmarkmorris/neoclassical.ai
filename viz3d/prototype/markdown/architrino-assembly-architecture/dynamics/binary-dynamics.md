@@ -68,7 +68,7 @@ With perfectly symmetric initial conditions (e.g., starting at rest), the paths 
 
 The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), which geometrically means the self-hit emission point lies almost directly behind the current position. The radial factor scales like $1/\sin(\tilde{\delta}_s/2)$ and therefore becomes very large as $\tilde{\delta}_s\to 0^+$. This large outward term initially reduces curvature; the maximum-curvature regime does not occur near threshold but only after $\tilde{\delta}_s$ becomes appreciable (higher $s$ and larger-angle roots).
 
-> **Black Box: Surfing the moving wave (lanes under translation and perturbation)**
+> **Surfing the moving wave (lanes under translation and perturbation)**
 >
 > Picture the orbit as a surfer riding a **moving wave**, not a fixed landscape. The "wave" is the delay geometry: as the architrino moves, the causal roots reshape the force it feels. There is no static trough; there are **stable lanes**--recurring orbital patterns that can persist even while the whole assembly **translates through the Noether sea**.
 >
@@ -78,7 +78,7 @@ The binary system's evolution is organized around the **field-speed symmetry poi
 >
 > **Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2h$ rather than $h$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta J = h$ below $c_f$, $\Delta J = 2h$ above. This is a hypothesis, not a derived result.
 
-> **Black Box: Equation of motion near the hinge ($v \approx c_f$)**
+> **Equation of motion near the hinge ($v \approx c_f$)**
 >
 > For each architrino $i$ interacting with its partner $j$:
 > $$
@@ -399,6 +399,8 @@ $$
 
 ### What "Maximum Curvature" Demands
 
+**Mechanism summary (spiral + self-hit):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the **self-hit factor** also grows because the path curvature brings the particle closer to its own past wakes and because **new self-hit roots appear** at higher $s$. The inward spiral can therefore continue while the partner term dominates, but it must eventually halt when the **outward self-hit radial component balances the inward partner pull**. At that balance, the curvature has reached its **maximum** because the radius can go no lower without an overwhelming self-hit response.
+
 From the radial component formula:
 
 $$
@@ -409,14 +411,6 @@ $$
 
 1. **$\delta_p$ increases** -> $\cos(\delta_p / 2)$ decreases -> partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
 2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> self term $1/\sin(\delta_s / 2)$ **decreases** (weaker outward repulsion).
-
-**Critical observation**: Near the self-hit threshold ($s \to 1^+$, $\delta_s \to 0^+$):
-
-$$
-\frac{1}{\sin(\delta_s / 2)} \to \infty \quad \text{(strong outward repulsion)}.
-$$
-
-Therefore, **just-above-threshold self-hits do not maximize curvature**--they **strongly oppose** it by blowing up the outward radial component.
 
 **Maximum curvature** (smallest stable $R$) likely occurs at **higher speeds** ($s \gg 1$) where:
 - Multiple self-hits ($m \ge 1$) are active,
