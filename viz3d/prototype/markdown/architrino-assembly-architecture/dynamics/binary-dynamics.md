@@ -815,17 +815,37 @@ In the ideal symmetric, non-translating, exactly circular orbit, the two charges
 
 In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. In a dense Noether sea, the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
 
-### Tri-Binary Bridge
-
-If the MCB exists as a stable attractor, it serves as the **inner binary** of tri-binary assemblies. The outer pair then evolves in a broader, typically precessing orbit around the inner MCB, with additional modes (middle binary at $v=c_f$, outer binary at $v<c_f$) supplying energy storage and coupling to the Noether sea. This chapter focuses on the two-body MCB; tri-binary dynamics are treated separately.
-
 ---
 
-## Tri-Binary Inflationary Phase (Energy Shedding Inside Black Hole)
+## Tri-Binary Recycling/Formation in a Black Hole (Speculative)
 
-## Tri-Binary Symmetry-Breaking Point (Event Horizon)
+The speculative conjecture is that a tri-binary will be planar upon entrance to a black hole where it will be recycled. The inner binary is expected to be in the MCB state at the event horizon. The middle and outer binaries architrinos would have translational and rotational velocity equal to field speed. What happens inside the black hole is challenging as well. Do the middle and outer binaries stay flat or do they continue rotating their orbital plane? 
 
-## Tri-Binary Expansionary Phase
+Another speculative idea is that the frequencies of the three binaries have a relationship 1, 2, 4 from outer to inner.  Transact an h and the outer binary frequency changes by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not borne out by analysis or simulation at this point, but is a starting point for imagining maximum shielding by superposition.
+
+Note: The black hole is presumably a maelstrom. We are trying to imagine the statistical modality.
+
+## Tri-Binary Inflation/Deflation Mode in a Black Hole
+
+We speculate that approaching the core of the black hole, the density continues to increase, until, in some black holes, the density reaches a maximum. In an ideal toy black hole, non spinning, non translating - we imagine that MCBs or triple MCBs could theoretically become packed with no ability to move. A single microstate with zero entropy. 
+
+In any black hole the tri-binaries will reach their maximally deflated and highest energy state in the core or near the origin. Continuing the imagination, the tri-binaries begin inflating and having a radial velocity outward to the event horizon of the black hole - or possibly they can escape via jets. There are many issues to solve - but the theory requires that recycled tri-binaries come back out of the black hole.  Perhaps they emerge as dark photons with translational and rotational velocities greater than field speed and eventually those dark photons transition and can release what we would identify as a CMB photon. 
+
+Incoming photons deflate and gain energy and are re-energized.
+
+ads
+
+## Tri-Binary at the Event Horizon
+
+## Tri-Binary Expansion/Contraction Mode Outside of a Black Hole
+
+The key behaviours of the tri-binary include it's wide scalability and deformability.
+
+cft
+
+
+
+---
 
 ## State Space and Well-Posedness of the Delayed Two-Body System
 
