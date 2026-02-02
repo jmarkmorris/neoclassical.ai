@@ -2,8 +2,7 @@
 
 This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. Stability and attractor claims are conjectural unless explicitly established; see the MCB gap ledger for open tests.
 
-
-## Spiral Binary Contraction Phase
+## The Spiral Orbiting Binary and the Contraction Phase
 
 An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge--an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
 
@@ -23,7 +22,6 @@ $$
 \mathbf{a}_1(t) \propto -\hat{\mathbf{r}}_{21} = - \frac{\mathbf{s}_1(t) - \mathbf{s}_2(t_0)}{\|\mathbf{s}_1(t) - \mathbf{s}_2(t_0)\|}
 $$
 A symmetric set of equations governs the positrino's motion based on the electrino's emissions.
-
 
 In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward spiral that is naturally modeled as exponential in angle** (a logarithmic spiral), consistent with a per-cycle action increment $\Delta J = h$ in the partner-only regime. The radius shrinks geometrically per turn and speed increases until the self-interaction threshold ($|\mathbf{v}|>c_f$) is crossed.
 
@@ -50,8 +48,6 @@ During this phase, the system is purely contractile, with the particles accelera
 
 The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), which geometrically means the self-hit emission point lies almost directly behind the current position. The radial factor scales like $1/\sin(\tilde{\delta}_s/2)$ and therefore becomes very large as $\tilde{\delta}_s\to 0^+$. This large outward term initially reduces curvature; the maximum-curvature regime does not occur near threshold but only after $\tilde{\delta}_s$ becomes appreciable (higher $s$ and larger-angle roots).
 
-
-
 ## Self-Hit: Definition and Diagnostics
 
 Self-hit is the key non-Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
@@ -75,8 +71,6 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 
 For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Binary — Circular**.
 
-
-
 ## Spiral Binary Deflationary Phase
 
 Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive wakes. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the electrino:
@@ -84,8 +78,6 @@ $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
 At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly "deflates" the effective inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state while preventing singular collapse, but overshoot or destabilization remain possible. Whether this regime actually settles into a limit cycle, or instead overshoots and exhibits sustained oscillations or escape, is an open dynamical question addressed explicitly in the MCB gap ledger.
-
-
 
 ## Maximum-Curvature Binary — Circular
 
@@ -98,8 +90,6 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed, purely radial per-hit law.
 
 **Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-charge pair can trace when the only forces come from delayed, radial interactions with the partner (multiple-hits) and from one's own past emissions (self-hits, active only when speed exceeds field speed).
-
----
 
 ### Foundational Context (Ontological Clarification)
 
@@ -122,7 +112,6 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 - Construct a Poincare map (e.g., strobing at orbital phase) and locate the MCB as a fixed point.
 - Compute Floquet multipliers / Lyapunov exponents and map the basin of attraction under perturbations in radius, phase, and velocity.
 Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
-
 
 ### Setup and Notation (Symmetric Frame)
 
