@@ -95,10 +95,7 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 #### The maximum-curvature binary (MCB) as Fundamental Unit
 
-The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would define the **fundamental physical units**:
-
-- **Length standard**: The orbital radius $r_{\text{min}}$ of the MCB would be the **prototype rod**.
-- **Time standard**: The orbital period $T_{\text{MCB}} = 1/f_{\text{MCB}}$ would be the **prototype clock tick**.
+The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would supply the **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
 
 If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the balance of:
 1. Coulomb-like attraction between opposite charges ($\propto |e/6|^2 / r^2$),
