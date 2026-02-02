@@ -372,7 +372,7 @@ $$
 
 **Context**: Non-translating, uniform circular binary at fixed speed $s$. Receiver "now" at azimuth $\theta = 0$.
 
-The emission points on the circle that can produce hits "now" form a **finite, discrete set** of azimuths determined by the delay equations--**not arbitrary locations**.
+The emission points on the circle that can produce hits "now" form a **finite, discrete set** of azimuths determined by the delay equations--**not arbitrary locations**. Because roots are indexed by winding number $m$, multiple hits at the same "now" can occur for different windings, but the admissible azimuths remain a finite comb and never fill the circle.
 
 #### Partner Hits
 
@@ -411,20 +411,9 @@ The emission points on the circle that can produce hits "now" form a **finite, d
     $$
   - Within a branch, $\tilde{\delta}_s$ decreases with $s$ -> $\varphi_s$ drifts toward $-\pi$.
 
-#### Multiplicity and Pattern
-
-- At any fixed $s$, the admissible emission azimuths form a **finite, ordered "comb"** of discrete points.
-- These points accumulate toward the diametric opposite direction:
-  - $\varphi = \pi$ for partner,
-  - $\varphi = -\pi$ for self.
-- As $s$ increases, the set grows in **steps** at the thresholds above; more roots appear but they **never fill the circle**.
-- Multiple hits at the same "now" correspond to different winding indices $m$ (and occasionally multiple $\tilde{\delta}_s$ solutions within a branch); all are fixed by the delay equations and circle geometry.
-
-**Plain language**: For a given speed, hits come from a **short list of specific angles** set by causality and delay--not from arbitrary points all around the circle. Going faster unlocks more of these specific angles at predictable threshold speeds.
-
 ---
 
-### MCB Attractor Hypothesis and Test Plan
+### MCB Attractor Hypothesis
 
 **Working hypothesis**: An isolated electrino--positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it would be a natural attractor of the two-body delay dynamics.
 
