@@ -107,11 +107,7 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 
 **Expected scale (if realized)**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
 
-**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. This must be established explicitly:
-- Start from a reduced two-body model (opposite charges, self-hit enabled, explicit $\eta$).
-- Construct a Poincare map (e.g., strobing at orbital phase) and locate the MCB as a fixed point.
-- Compute Floquet multipliers / Lyapunov exponents and map the basin of attraction under perturbations in radius, phase, and velocity.
-Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. The explicit test protocol (Poincare map, multipliers, and basin mapping) appears in **Poincare Map, Stability, and Basins of Attraction for the MCB**. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
 ### Setup and Notation (Symmetric Frame)
 
@@ -471,9 +467,7 @@ Two geometric expectations follow. The MCB is not realized near the self-hit thr
 
 If the hypothesis holds, $r_{\text{min}}$ defines the prototype rod and $T_{\text{MCB}}$ the prototype clock tick, both emergent from the balance of partner attraction, self-hit repulsion, and centripetal requirement.
 
-#### Attractor test requirements (summary)
 
-Use the Poincare map and reduced variables defined in the next section to: (1) locate a candidate fixed point, (2) estimate nontrivial multipliers, and (3) map a basin of attraction under perturbations in radius, phase, and velocity. The detailed protocol and diagnostics appear in **Poincare Map, Stability, and Basins of Attraction for the MCB**.
 
 #### Finite-dimensional projection caveat
 
