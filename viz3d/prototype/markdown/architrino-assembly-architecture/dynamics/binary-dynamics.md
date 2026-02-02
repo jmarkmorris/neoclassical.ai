@@ -2,31 +2,6 @@
 
 This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. Stability and attractor claims are conjectural unless explicitly established; see the MCB gap ledger for open tests.
 
-## Self-Hit: Definition and Diagnostics
-
-Self-hit is the key non-Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
-
-**Geometric condition (absolute coordinates):** For a given architrino with trajectory $\mathbf{x}(t)$, a self-hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that
-$$
-|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
-$$
-and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
-
-**Dynamical role:**
-- At low velocities ($v < c_f$), self-hit is rare or absent; dynamics are approximately Markovian.
-- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
-- In generic trajectories, once a particle has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions; self-hit is a path-history effect, not tied solely to the instantaneous speed.
-- For binary and tri-binary assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
-
-**Simulation & diagnostics:**
-- Use virtual-observer provenance tables to record, for each self-hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
-- Check convergence of self-hit statistics under time-step refinement, history-resolution refinement, and integrator swap.
-- If self-hit signatures change qualitatively under refinement, treat any resulting "stable structures" as artifacts until proven otherwise.
-
-For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Limit and Attractor Analysis**.
-
-With self-hit defined, we turn to the simplest assembly where it drives the dynamics: the orbiting binary.
-
 ## Orbiting Binary Assembly
 
 An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge--an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
@@ -106,45 +81,35 @@ $$
 $$
 During this phase, the system is purely contractile, with the particles accelerating and spiraling towards each other. The positive tangential component (see Lemma in the prior section) guarantees continued speed-up, so the spiral tightens until the self-hit regime is reached.
 
+#### **Self-Hit: Definition and Diagnostics**
+
+Self-hit is the key non-Markovian feature of architrino dynamics. It occurs when an architrino interacts with potential it emitted earlier along its own worldline.
+
+**Geometric condition (absolute coordinates):** For a given architrino with trajectory $\mathbf{x}(t)$, a self-hit event is a pair of times $(t_\text{emit}, t_\text{hit})$ with $t_\text{hit} > t_\text{emit}$ such that
+$$
+|\mathbf{x}(t_\text{hit}) - \mathbf{x}(t_\text{emit})| = c_f (t_\text{hit} - t_\text{emit}),
+$$
+and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
+
+**Dynamical role:**
+- At low velocities ($v < c_f$), self-hit is rare or absent; dynamics are approximately Markovian.
+- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
+- In generic trajectories, once a particle has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions; self-hit is a path-history effect, not tied solely to the instantaneous speed.
+- For binary and tri-binary assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
+
+**Simulation & diagnostics:**
+- Use virtual-observer provenance tables to record, for each self-hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
+- Check convergence of self-hit statistics under time-step refinement, history-resolution refinement, and integrator swap.
+- If self-hit signatures change qualitatively under refinement, treat any resulting "stable structures" as artifacts until proven otherwise.
+
+For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Limit and Attractor Analysis**.
+
 #### **Deflationary Phase ($|\mathbf{v}| > c_f$)**
 Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry point and begin to interact with their own recently emitted, repulsive wakes. The total acceleration on each particle now becomes a superposition of attraction from its partner and self-repulsion. For the electrino:
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
 At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly "deflates" the effective inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state while preventing singular collapse, but overshoot or destabilization remain possible. Whether this regime actually settles into a limit cycle, or instead overshoots and exhibits sustained oscillations or escape, is an open dynamical question addressed explicitly in the MCB gap ledger.
-
-### 4. The Stable State and Emergent Properties
-
-**Conditional note:** The statements in this section assume the maximum-curvature attractor conjecture; see the gap ledger in **Maximum-Curvature Limit and Attractor Analysis**. Under that assumption, the deflationary spiral does not continue indefinitely and self-repulsive feedback is expected to stabilize the system and prevent a singularity.
-
-#### **Curvature Limit and Stability**
-In the working hypothesis, the inward spiral does not end in a singularity. The limiting factor is expected to be the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop. Ruling out true collapse or runaway in the regularized dynamics is the content of gap item MCB-09 (global energy bound). Until that is addressed, singular end-states remain a formal possibility.
-
-Here and below, "potential" or "pressure" is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
-
-In this picture, the trajectory stabilizes into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is channeled into circular motion while self-repulsion prevents further tightening of the path's curvature. Any minimum-radius circular state occurs only once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
-
-#### **Emergent Properties**
-The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
--   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$). At the assembly level this practical speed cap is what physical observers infer as a fundamental "speed of light"; it is an emergent consequence of binary/tri-binary structure, not a kinematic axiom of the void.
--   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
--   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
--   **A Zero-Potential Axis (Idealized):** In the ideal symmetric, non-translating, exactly circular orbit, and under linear superposition, the contributions from the two charges cancel almost exactly along the rotation axis, producing a corridor of very low net potential. In that idealization, an architrino traveling perfectly along this axis would experience negligible acceleration from the binary. In practice, discrete-wake geometry, translation, or slight asymmetry will leave residual off-axis hits, so the corridor is approximate rather than exact.
-
-In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. In a dense Noether sea, the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
-
----
-
-**Note on Complex Scenarios:** The analysis above describes a stationary binary system. More complex dynamics arise when the binary assembly is also translating through space, especially when the axis of orbit is not aligned with the direction of the group's velocity.
-
----
-
-**Falsification signals (two-body level):**
-- If high-resolution simulations of isolated opposite-charge pairs never show long-lived bounded orbits for any initial conditions, the stable-binary/MCB hypothesis fails.
-- If all inward spirals either (a) collapse to unphysical radii despite regularization, or (b) blow out to infinity without forming a limit cycle, the self-hit stabilization mechanism is wrong or incomplete.
-- If, after including all causal roots in the pure two-body kernel, the time-averaged tangential acceleration remains strictly positive for every bounded near-circular trajectory, then an MCB limit cycle cannot exist without additional physics; the current force law is insufficient.
-
----
 
 ## Maximum-Curvature Limit and Attractor Analysis
 
@@ -1029,6 +994,39 @@ If the attractor test succeeds, the MCB is the natural building block for tri-bi
 ### Tri-Binary Bridge
 
 If the MCB exists as a stable attractor, it serves as the **inner binary** of tri-binary assemblies. The outer pair then evolves in a broader, typically precessing orbit around the inner MCB, with additional modes (middle binary at $v=c_f$, outer binary at $v<c_f$) supplying energy storage and coupling to the Noether sea. This chapter focuses on the two-body MCB; tri-binary dynamics are treated separately.
+
+---
+
+### 4. The Stable State and Emergent Properties
+
+**Conditional note:** The statements in this section assume the maximum-curvature attractor conjecture; see the gap ledger in **Maximum-Curvature Limit and Attractor Analysis**. Under that assumption, the deflationary spiral does not continue indefinitely and self-repulsive feedback is expected to stabilize the system and prevent a singularity.
+
+#### **Curvature Limit and Stability**
+In the working hypothesis, the inward spiral does not end in a singularity. The limiting factor is expected to be the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop. Ruling out true collapse or runaway in the regularized dynamics is the content of gap item MCB-09 (global energy bound). Until that is addressed, singular end-states remain a formal possibility.
+
+Here and below, "potential" or "pressure" is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
+
+In this picture, the trajectory stabilizes into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is channeled into circular motion while self-repulsion prevents further tightening of the path's curvature. Any minimum-radius circular state occurs only once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
+
+#### **Emergent Properties**
+The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
+-   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$). At the assembly level this practical speed cap is what physical observers infer as a fundamental "speed of light"; it is an emergent consequence of binary/tri-binary structure, not a kinematic axiom of the void.
+-   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
+-   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
+-   **A Zero-Potential Axis (Idealized):** In the ideal symmetric, non-translating, exactly circular orbit, and under linear superposition, the contributions from the two charges cancel almost exactly along the rotation axis, producing a corridor of very low net potential. In that idealization, an architrino traveling perfectly along this axis would experience negligible acceleration from the binary. In practice, discrete-wake geometry, translation, or slight asymmetry will leave residual off-axis hits, so the corridor is approximate rather than exact.
+
+In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. In a dense Noether sea, the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
+
+---
+
+**Note on Complex Scenarios:** The analysis above describes a stationary binary system. More complex dynamics arise when the binary assembly is also translating through space, especially when the axis of orbit is not aligned with the direction of the group's velocity.
+
+---
+
+**Falsification signals (two-body level):**
+- If high-resolution simulations of isolated opposite-charge pairs never show long-lived bounded orbits for any initial conditions, the stable-binary/MCB hypothesis fails.
+- If all inward spirals either (a) collapse to unphysical radii despite regularization, or (b) blow out to infinity without forming a limit cycle, the self-hit stabilization mechanism is wrong or incomplete.
+- If, after including all causal roots in the pure two-body kernel, the time-averaged tangential acceleration remains strictly positive for every bounded near-circular trajectory, then an MCB limit cycle cannot exist without additional physics; the current force law is insufficient.
 
 ---
 
