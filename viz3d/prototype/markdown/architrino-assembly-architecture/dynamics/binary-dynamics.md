@@ -72,7 +72,7 @@ Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
-At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly "deflates" the effective inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state while preventing singular collapse, but overshoot or destabilization remain possible. Whether this regime actually settles into a limit cycle, or instead overshoots and exhibits sustained oscillations or escape, is an open dynamical question.
+At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly offsets the inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state; see **What "Maximum Curvature" Demands** for the balance mechanism.
 
 ## Maximum-Curvature Binary — Circular
 
@@ -432,7 +432,7 @@ The circular formulas below use reduced coordinates; stability in the full histo
 
 ## Tri-Binary Emergence and Hypothetical Properties
 
-An electrino-positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles. Each binary plays an important role in the assembly.
+An electrino-positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles, with each binary playing a distinct dynamical role.
 
 - **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
 - **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
@@ -462,19 +462,19 @@ The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ th
 
 ## Tri-Binary Recycling/Formation in a Black Hole (Speculative)
 
-The speculative conjecture is that a tri-binary will be planar upon entrance to a black hole where it will be recycled. The inner binary is expected to be in the MCB state at the event horizon. The middle and outer binaries architrinos would have translational and rotational velocity equal to field speed. What happens inside the black hole is challenging as well. Do the middle and outer binaries stay flat or do they continue rotating their orbital plane? 
+One conjecture is that a tri-binary enters a black hole in a near-planar configuration and is recycled. The inner binary is expected to be in the MCB state at the event horizon. The middle and outer binaries would have translational and rotational velocities equal to field speed. The evolution of their orbital planes inside the black hole remains an open question.
 
-Another speculative idea is that the frequencies of the three binaries have a relationship 1, 2, 4 from outer to inner. Transact an h and the outer binary frequency changes by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not borne out by analysis or simulation at this point, but is a starting point for imagining maximum shielding by superposition.
+Another speculative idea is that the three binary frequencies follow a 1:2:4 relationship from outer to inner. A change of one action quantum $h$ would then shift the outer frequency by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not supported by analysis or simulation, but it provides a compact hypothesis for maximal shielding by superposition.
 
-Note: The black hole is presumably a maelstrom. We are trying to imagine the statistical modality.
+Because the black-hole interior is highly turbulent, any such descriptions are intended as statistical rather than deterministic.
 
 ## Tri-Binary Inflation/Deflation Mode in a Black Hole
 
-We speculate that approaching the core of the black hole, the density continues to increase, until, in some black holes, the density reaches a maximum. In an ideal toy black hole, non spinning, non translating - we imagine that MCBs or triple MCBs could theoretically become packed with no ability to move. A single microstate with zero entropy. 
+We speculate that toward the core of a black hole the density increases and may reach a maximum. In an idealized, non-spinning, non-translating black hole, MCBs or triple MCBs could become densely packed with limited mobility, approaching a low-entropy microstate.
 
-In any black hole the tri-binaries will reach their maximally deflated and highest energy state in the core or near the origin. Continuing the imagination, the tri-binaries begin inflating and having a radial velocity outward to the event horizon of the black hole - or possibly they can escape via jets. There are many issues to solve - but the theory requires that recycled tri-binaries come back out of the black hole. Perhaps they emerge as dark photons with translational and rotational velocities greater than field speed and eventually those dark photons transition and can release what we would identify as a CMB photon. 
+In this picture tri-binaries reach a maximally deflated, high-energy state near the core, then re-expand and acquire radial velocity outward toward the event horizon, possibly escaping via jets. The theory requires that recycled tri-binaries re-emerge; one speculative channel is through dark-photon states with translational and rotational speeds above field speed, later transitioning into observable photons (e.g., CMB-scale emissions).
 
-Incoming photons deflate and gain energy and are re-energized.
+Incoming photons are envisioned to deflate and gain energy, then re-emerge as part of the recycling process.
 
 The theory posits that the self-hit region behaves as AdS space.
 
@@ -482,7 +482,7 @@ The theory posits that the self-hit region behaves as AdS space.
 
 ## Tri-Binary Expansion/Contraction Mode Outside of a Black Hole
 
-The key behaviours of the tri-binary include it's wide scalability and deformability.
+The key behaviors of the tri-binary include its wide scalability and deformability.
 
 The theory posits that the sub-field-speed region behaves as a CFT.
 
