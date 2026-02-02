@@ -997,18 +997,18 @@ If the MCB exists as a stable attractor, it serves as the **inner binary** of tr
 
 ---
 
-### 4. The Stable State and Emergent Properties
+## The Stable State and Emergent Properties
 
 **Conditional note:** The statements in this section assume the maximum-curvature attractor conjecture; see the gap ledger in **Maximum-Curvature Limit and Attractor Analysis**. Under that assumption, the deflationary spiral does not continue indefinitely and self-repulsive feedback is expected to stabilize the system and prevent a singularity.
 
-#### **Curvature Limit and Stability**
+### **Curvature Limit and Stability**
 In the working hypothesis, the inward spiral does not end in a singularity. The limiting factor is expected to be the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop. Ruling out true collapse or runaway in the regularized dynamics is the content of gap item MCB-09 (global energy bound). Until that is addressed, singular end-states remain a formal possibility.
 
 Here and below, "potential" or "pressure" is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
 
 In this picture, the trajectory stabilizes into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is channeled into circular motion while self-repulsion prevents further tightening of the path's curvature. Any minimum-radius circular state occurs only once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
 
-#### **Emergent Properties**
+### **Emergent Properties**
 The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
 -   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$). At the assembly level this practical speed cap is what physical observers infer as a fundamental "speed of light"; it is an emergent consequence of binary/tri-binary structure, not a kinematic axiom of the void.
 -   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
