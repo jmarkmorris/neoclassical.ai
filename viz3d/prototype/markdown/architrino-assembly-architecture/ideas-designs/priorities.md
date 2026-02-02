@@ -4,12 +4,13 @@ I think the priority should be on the math and the mapping. advancing the mappin
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
 - look for rapid hits - ckm matrix?
+- work on quantum numbers again (where is that). Leverage MIT Kaiser 22
 - math/geometry/dynamics are huge
+- I need to define a visualization library, like manim in a sense. so I can easily describe the kind of scene elements, etc.  first list the operations.
+
+- why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 - sim2rewrite.md has ideas for importing this software (redeveloping)
 - mine material from wordpress for key areas
-- work on quantum numbers again (where is that). Leverage MIT Kaiser 22
-- why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
-- I need to define a visualization library, like manim in a sense. so I can easily describe the kind of scene elements, etc.  first list the operations.
 - finish topology (where is it)
 - PDG solver
   - provenance
@@ -27,9 +28,6 @@ I think the priority should be on the math and the mapping. advancing the mappin
 - continue the ellipsoid work, aiming to understand time
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
 - make a web page that genrates a live toc, cross-referenres, and glossary?
-- gears idea
-- 2h vs h
-- mid orbit always at field speed = though r varies.
 - can we now pin down the radius of gen II - yes at the Planck scale?
 - once a single dipole reaches max curvature then it has a chance to link up with others and become a bubble that inflates?
 and now all three orbits are stable 'circular' in an abstract sense given precession and perturbation. 
@@ -74,12 +72,6 @@ there are stable orbits at each h-bar
 - **`phenomenology/effective-lagrangian.md` (0 bytes):** Important for theorists, but **not critical** until we have the mass spectrum and proper time working.
 - **`spacetime/emergent-metric.md` (8,133 bytes):** Partially done. Needs completion, but **Proper Time Derivation** is the more urgent prerequisite.
 
-
-## 2. **Maximum-Curvature Orbit Stability Proof**
-**Why critical:** The entire particle physics edifice rests on stable binaries at maximum curvature (self-hit equilibrium). If simulations show this is *not* a stable attractor—if orbits diverge or collapse—we have no foundation for tri-binaries, no particle spectrum, no theory.
-
-**Who:** Dyna + Sol (phase space mapping, long-time convergence tests)
-
 ---
 
 ## 3. **Charge Quantization from Tri-Binary Topology (Conceptual Clarity)**
@@ -108,8 +100,6 @@ codex
 
   ---
 
-  Phe
-
 
 ### 2. The Chirality Crisis: Deriving Parity Violation
 **Why:** The Standard Model is chiral; the Weak force only talks to left-handed fermions. Euclidean geometry is naturally parity-symmetric. This is our biggest phenomenological trap.
@@ -132,5 +122,3 @@ codex
 *   **The Hard Wall:** If our simulation of $e^+e^-$ scattering produces a pattern that deviates from the QED prediction (e.g., no interference fringes in the equivalent of a double-slit, or wrong angular distribution), we cannot claim to reproduce Quantum Mechanics.
 
 ---
-
-**Summary:** I need the dictionary (1), the handedness (2), the numbers (3), the relativity (4), and the probability (5). Give me those, and I can fight the Standard Model on its own turf.
