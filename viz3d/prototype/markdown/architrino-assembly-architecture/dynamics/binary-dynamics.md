@@ -1,6 +1,6 @@
 # Binary Dynamics
 
-This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. Stability and attractor claims are conjectural unless explicitly established; see the MCB gap ledger for open tests.
+This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. Stability and attractor claims are conjectural unless explicitly established.
 
 ## The Spiral Orbiting Binary and the Contraction Phase
 
@@ -64,11 +64,6 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - In generic trajectories, once a particle has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions; self-hit is a path-history effect, not tied solely to the instantaneous speed.
 - For binary and tri-binary assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
-**Simulation & diagnostics:**
-- Use virtual-observer provenance tables to record, for each self-hit: $(t_\text{emit}, \mathbf{x}(t_\text{emit}))$, $(t_\text{hit}, \mathbf{x}(t_\text{hit}))$, impact parameters, and force contributions.
-- Check convergence of self-hit statistics under time-step refinement, history-resolution refinement, and integrator swap.
-- If self-hit signatures change qualitatively under refinement, treat any resulting "stable structures" as artifacts until proven otherwise.
-
 For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Binary — Circular**.
 
 ## Spiral Binary Deflationary Phase
@@ -77,15 +72,13 @@ Once the particles' speeds exceed the field speed $c_f$, they cross the symmetry
 $$
 \mathbf{a}_{1, \text{total}}(t) = \mathbf{a}_{1,2}(t) + \mathbf{a}_{1,1}(t)
 $$
-At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly "deflates" the effective inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state while preventing singular collapse, but overshoot or destabilization remain possible. Whether this regime actually settles into a limit cycle, or instead overshoots and exhibits sustained oscillations or escape, is an open dynamical question addressed explicitly in the MCB gap ledger.
+At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; at higher speeds, additional branches turn on (see **Self-Hit Multiplicity vs. Speed**). The new self-repulsive term, $\mathbf{a}_{1,1}(t)$, grows rapidly as the path curvature increases; near threshold this outward term defocuses the spiral before tighter, multi-root dynamics can set in. We call this the **deflationary** phase because, while the spiral can continue to tighten, self-repulsion increasingly "deflates" the effective inward pull and can -- in principle -- halt further radial contraction. In the later part of this phase (once $\tilde{\delta}_s$ is large and multiple roots are active), self-interaction may enable approach to the conjectured limiting circular state while preventing singular collapse, but overshoot or destabilization remain possible. Whether this regime actually settles into a limit cycle, or instead overshoots and exhibits sustained oscillations or escape, is an open dynamical question.
 
 ## Maximum-Curvature Binary — Circular
 
-Once self-hit turns on, the natural question is whether the spiral-in converges to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, stability criteria, and computational diagnostics. It is the canonical reference for MCB attractor status.
+Once self-hit turns on, the natural question is whether the spiral-in converges to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
 
-All claims of MCB stability and unit-definition are conditional on the conjectures and tests summarized in the gap ledger below.
-
-MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to the MCB gap ledger (MCB-07). The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
+MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to future work. The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-charge architrinos and investigate where curvature $\kappa = 1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed, purely radial per-hit law.
 
@@ -333,6 +326,22 @@ $$
 
 ---
 
+### Emergent Properties and Measurement Standards
+
+If a stable MCB exists, it provides a concrete **rod** and **clock** defined entirely by the two-body delay dynamics. Let
+$$
+d_0 := R_{\text{MCB}}, \qquad T_0 := \frac{2\pi}{\omega_{\text{MCB}}}.
+$$
+Then $d_0$ is the fundamental length scale of the architecture, and $T_0$ is the fundamental time scale. The field speed becomes the ratio
+$$
+c_f = \frac{d_0}{T_0},
+$$
+so the universal speed bound is not an external postulate but an emergent relation among the MCB radius and period.
+
+In this view, any ruler or clock built from architrino assemblies ultimately reduces to multiples of $(d_0, T_0)$. Measurement standards are therefore **dynamical invariants** of the two-body attractor: they persist because the underlying limit cycle (if realized) is stable and reproducible across assemblies.
+
+If the MCB does not exist as a stable attractor, these emergent standards must be replaced by whatever stable limit structure the dynamics actually support.
+
 ### Self-Hit Multiplicity vs. Speed
 
 **Definition**: A self-hit is an emission time from the same architrino that satisfies the causal constraint $r = (t - t_0)$ and arrives "now." In uniform circular, non-translating geometry, admissible self-roots are indexed by winding number $m \ge 0$ and minimal angular separation $\tilde{\delta}_s \in (0, \pi]$:
@@ -419,7 +428,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 #### Finite-dimensional projection caveat
 
-All diagnostics use reduced coordinates; stability in the full history space remains a separate proof obligation.
+The circular formulas below use reduced coordinates; stability in the full history space remains a separate proof obligation.
 
 ## Tri-Binary Emergence and Hypothetical Properties
 
