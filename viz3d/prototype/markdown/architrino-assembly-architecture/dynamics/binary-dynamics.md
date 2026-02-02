@@ -76,7 +76,7 @@ At $|\mathbf{v}| > c_f$, a principal self-hit branch ($m=0$) becomes available; 
 
 ## Maximum-Curvature Binary — Circular
 
-Once self-hit turns on, the natural question is whether the spiral-in converges to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
+Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed and defer the $\eta \to 0$ limit to future work. The formal state-space framework appears in **State Space and Well-Posedness of the Delayed Two-Body System**.
 
@@ -252,7 +252,7 @@ $$
 
 #### Sub-Field-Speed Simplification ($s \le 1$; No Self-Hits)
 
-When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes:
+When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes, so the tangential drive remains strictly positive, consistent with the lemma above:
 
 $$
 T(s < 1) = T_p = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)}.
@@ -304,7 +304,7 @@ $$
 
 ### What "Maximum Curvature" Demands
 
-**Mechanism summary (spiral + self-hit):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the **self-hit factor** also grows because the path curvature brings the particle closer to its own past wakes and because **new self-hit roots appear** at higher $s$. The inward spiral can therefore continue while the partner term dominates, but it must eventually halt when the **outward self-hit radial component balances the inward partner pull**. At that balance, the curvature has reached its **maximum** because the radius can go no lower without an overwhelming self-hit response.
+**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the **self-hit factor** also grows because the path curvature brings the particle closer to its own past wakes and because **new self-hit roots appear** at higher $s$. Maximum curvature is reached when the **outward self-hit radial component balances the inward partner pull**; beyond that point the radius cannot decrease without an overwhelming self-hit response.
 
 From the radial component formula:
 
@@ -344,7 +344,7 @@ If the MCB does not exist as a stable attractor, these emergent standards must b
 
 ### Self-Hit Multiplicity vs. Speed
 
-**Definition**: A self-hit is an emission time from the same architrino that satisfies the causal constraint $r = (t - t_0)$ and arrives "now." In uniform circular, non-translating geometry, admissible self-roots are indexed by winding number $m \ge 0$ and minimal angular separation $\tilde{\delta}_s \in (0, \pi]$:
+In uniform circular, non-translating geometry, admissible self-roots are indexed by winding number $m \ge 0$ and minimal angular separation $\tilde{\delta}_s \in (0, \pi]$:
 
 $$
 \delta_s = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2).
