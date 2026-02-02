@@ -480,6 +480,8 @@ The theory posits that the self-hit region behaves as AdS space.
 
 ## Tri-Binary at the Event Horizon
 
+The theory posits that the tri-binary is planar at the event horizon. Inner binary would be at the MCB, and the middle and outer binaries are translating and orbiting at field speed. 
+
 ## Tri-Binary Expansion/Contraction Mode Outside of a Black Hole
 
 The key behaviors of the tri-binary include its wide scalability and deformability.
