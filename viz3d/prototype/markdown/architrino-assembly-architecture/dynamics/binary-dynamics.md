@@ -959,8 +959,7 @@ In this picture, the trajectory stabilizes into a **stable, circular orbit of a 
 #### **Emergent Properties**
 The stabilization of the orbiting binary gives rise to fundamental, emergent properties for the universe:
 -   No intrinsic speed cap at the architrino level; the assembly imposes an apparent speed bound (group constraints and $d_0$, $t_0$). At the assembly level this practical speed cap is what physical observers infer as a fundamental "speed of light"; it is an emergent consequence of binary/tri-binary structure, not a kinematic axiom of the void.
--   **An Emergent Unit of Distance:** The radius of this stable orbit is a constant, determined by the fundamental parameters of the model (field speed $c_f$, charge $\epsilon$). It serves as the smallest possible orbital radius and thus becomes a natural, emergent unit of distance.
--   **An Imposed Speed Limit:** While individual architrinos have no inherent speed limit, the particles within this stable assembly are constrained to a specific, constant orbital speed. This creates a practical speed limit for particles bound within such structures.
+-   **Emergent measurement standards:** The MCB radius and period define $d_0$ and $t_0$; see **Emergent Measurement of Time and Distance** below.
 -   **A Zero-Potential Axis (Idealized):** In the ideal symmetric, non-translating, exactly circular orbit, and under linear superposition, the contributions from the two charges cancel almost exactly along the rotation axis, producing a corridor of very low net potential. In that idealization, an architrino traveling perfectly along this axis would experience negligible acceleration from the binary. In practice, discrete-wake geometry, translation, or slight asymmetry will leave residual off-axis hits, so the corridor is approximate rather than exact.
 
 
@@ -977,6 +976,40 @@ The stabilization of the orbiting binary gives rise to fundamental, emergent pro
 - If, after including all causal roots in the pure two-body kernel, the time-averaged tangential acceleration remains strictly positive for every bounded near-circular trajectory, then an MCB limit cycle cannot exist without additional physics; the current force law is insufficient.
 
 ---
+
+### Emergent Measurement of Time and Distance
+
+While the model is founded on the concepts of absolute space and absolute time, these are featureless, continuous arenas. They provide the mathematical background for geometry and motion but contain no inherent "ruler" or "clock." There are no fundamental, pre-defined units of distance or time. Instead, these units must emerge from the dynamics of the system itself.
+
+#### The Stable Binary as a Universal Standard
+
+The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. If the MCB attractor conjecture holds (see the gap ledger: MCB-02, MCB-04, MCB-07), an isolated electrino-positrino pair is expected to avoid singular collapse. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it should settle into a stable, circular orbit characterized by:
+-   A **minimum possible radius**.
+-   A **maximum possible orbital frequency** (and thus a minimum period).
+
+Under this conjecture, the stable state is a universal attractor for a binary system, and its properties are determined solely by the fundamental constants of the model (such as field speed $c_f$ and charge $\epsilon$). It is this predictable, reproducible configuration that provides the foundation for all measurement.
+
+#### An Emergent Unit of Distance
+
+Under the MCB attractor conjecture, the radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
+
+-   **Definition (conditional):** $d_0$ is defined as the radius of a stable, circular electrino-positrino orbit if the MCB attractor conjecture holds.
+-   **Universality:** Any observer in the universe can, in principle, construct this standard by observing an isolated binary system.
+-   **Function:** All other spatial measurements, from the size of more complex assemblies to the distances between them, can be expressed in terms of $d_0$.
+
+#### An Emergent Unit of Time
+
+Under the MCB attractor conjecture, the motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
+
+-   **Definition (conditional):** The fundamental unit of time, $t_0$, is defined as the orbital period of a stable, circular electrino-positrino orbit if the MCB attractor conjecture holds.
+-   **Universality:** Like the unit of distance, this period is a constant derived from the system's fundamental dynamics.
+-   **Function:** All other temporal measurements, such as the duration of events or the lifetimes of unstable assemblies, can be measured in multiples of $t_0$.
+
+#### Establishing a Physical Coordinate System
+
+With the emergent units $d_0$ and $t_0$, we can move from the abstract, uncalibrated coordinates of absolute space and time to a concrete, physical coordinate system. Any measurement of a physical quantity can be rendered dimensionless by expressing it in these natural units. For example, the fundamental field speed $c_f$ can be written as a constant multiple of $d_0/t_0$.
+
+This framework establishes that while the *arena* of space and time is absolute, the *measurement* of space and time is necessarily relative to the properties of the emergent structures that populate it.
 
 ## Tri-Binary Coupling Hypothesis
 
@@ -1032,40 +1065,6 @@ If the MCB exists as a stable attractor, it serves as the **inner binary** of tr
 ## Tri-Binary Symmetry-Breaking Point (Event Horizon)
 
 ## Tri-Binary Expansionary Phase
-
-## Emergent Measurement of Time and Distance
-
-While the model is founded on the concepts of absolute space and absolute time, these are featureless, continuous arenas. They provide the mathematical background for geometry and motion but contain no inherent "ruler" or "clock." There are no fundamental, pre-defined units of distance or time. Instead, these units must emerge from the dynamics of the system itself.
-
-### The Stable Binary as a Universal Standard
-
-The necessary physical standard for measurement arises from the most fundamental assembly: the **stable orbiting binary**. If the MCB attractor conjecture holds (see the gap ledger: MCB-02, MCB-04, MCB-07), an isolated electrino-positrino pair is expected to avoid singular collapse. Instead, due to the interplay between delayed attraction and self-repulsive feedback, it should settle into a stable, circular orbit characterized by:
--   A **minimum possible radius**.
--   A **maximum possible orbital frequency** (and thus a minimum period).
-
-Under this conjecture, the stable state is a universal attractor for a binary system, and its properties are determined solely by the fundamental constants of the model (such as field speed $c_f$ and charge $\epsilon$). It is this predictable, reproducible configuration that provides the foundation for all measurement.
-
-### An Emergent Unit of Distance
-
-Under the MCB attractor conjecture, the radius of the stable binary orbit is the smallest possible radius for such a system. This invariant length serves as a natural, emergent unit of distance. We can denote this fundamental length as $d_0$.
-
--   **Definition (conditional):** $d_0$ is defined as the radius of a stable, circular electrino-positrino orbit if the MCB attractor conjecture holds.
--   **Universality:** Any observer in the universe can, in principle, construct this standard by observing an isolated binary system.
--   **Function:** All other spatial measurements, from the size of more complex assemblies to the distances between them, can be expressed in terms of $d_0$.
-
-### An Emergent Unit of Time
-
-Under the MCB attractor conjecture, the motion within this stable orbit also provides a fundamental unit of time. The time it takes for the binary to complete one full revolution is its orbital period. Since the orbit has a minimum radius and a corresponding fixed speed, this period is the shortest possible for any binary assembly.
-
--   **Definition (conditional):** The fundamental unit of time, $t_0$, is defined as the orbital period of a stable, circular electrino-positrino orbit if the MCB attractor conjecture holds.
--   **Universality:** Like the unit of distance, this period is a constant derived from the system's fundamental dynamics.
--   **Function:** All other temporal measurements, such as the duration of events or the lifetimes of unstable assemblies, can be measured in multiples of $t_0$.
-
-### Establishing a Physical Coordinate System
-
-With the emergent units $d_0$ and $t_0$, we can move from the abstract, uncalibrated coordinates of absolute space and time to a concrete, physical coordinate system. Any measurement of a physical quantity can be rendered dimensionless by expressing it in these natural units. For example, the fundamental field speed $c_f$ can be written as a constant multiple of $d_0/t_0$.
-
-This framework establishes that while the *arena* of space and time is absolute, the *measurement* of space and time is necessarily relative to the properties of the emergent structures that populate it.
 
 ## State Space and Well-Posedness of the Delayed Two-Body System
 
