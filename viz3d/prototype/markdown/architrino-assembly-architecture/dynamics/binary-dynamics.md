@@ -10,8 +10,8 @@ An orbiting binary is the simplest emergent assembly, consisting of two architri
 Consider the ideal case of a symmetric orbit in a universe with no other architrinos. In general, each architrino is subject to a superposition of external potential waves from all other sources; the analysis below isolates the binary by setting those external contributions to zero.
 
 Let the electrino be particle 1 and the positrino be particle 2.
--   **Positions:** $\mathbf{s}_1(t)$ and $\mathbf{s}_2(t)$
--   **Charges:** $q_1 = -\epsilon$ and $q_2 = +\epsilon$
+-  **Positions:** $\mathbf{s}_1(t)$ and $\mathbf{s}_2(t)$
+-  **Charges:** $q_1 = -\epsilon$ and $q_2 = +\epsilon$
 
 The motion of each particle is determined by the field emitted by the other at a delayed time. The acceleration of the electrino (particle 1) at time $t$ is caused by the positrino's (particle 2) field emitted at an emission time $t_0$. This is governed by the interaction condition:
 $$
@@ -31,8 +31,8 @@ T_p \propto \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)} > 0 \quad (0<\delta_p<\p
 $$
 where $\delta_p$ is the partner delay angle. The time-averaged tangential acceleration cannot vanish; a constant-speed circular orbit is impossible.
 
--   The tangential component of the delayed force sustains the orbital motion.
--   The radial component continuously pulls the particles closer together.
+-  The tangential component of the delayed force sustains the orbital motion.
+-  The radial component continuously pulls the particles closer together.
 
 With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the electrino and positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and per-wavefront amplitude remain constant; the evolution is driven entirely by delay geometry and, once active, self-interaction.
 
@@ -104,7 +104,7 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 
 **Expected scale (if realized)**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
 
-**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. The explicit test protocol (Poincare map, multipliers, and basin mapping) appears in **Poincare Map, Stability, and Basins of Attraction for the MCB**. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
 ### Setup and Notation (Symmetric Frame)
 
@@ -121,7 +121,7 @@ Let $\delta_s$ and $\delta_p$ denote the angular phase separations (measured alo
 - **Self** (same particle): Current position -> its own past emission position that hits "now."
   - Delay time: $\tau_s$; angular separation: $\delta_s = \omega \tau_s$.
   - Chord length: $r_s = 2R \sin(\delta_s / 2)$.
-  
+ 
 - **Partner** (other particle): Current position -> partner's past emission position that hits "now."
   - Delay time: $\tau_p$; angular separation: $\delta_p = \omega \tau_p$.
   - Chord length: $r_p = 2R \cos(\delta_p / 2)$.
@@ -136,14 +136,14 @@ $$
 This yields two delay equations:
 
 1. **Self-hit**:
-   $$
-   \delta_s = \omega \tau_s = \omega \cdot r_s = \omega \cdot 2R \sin(\delta_s / 2) = 2s \sin(\delta_s / 2).
-   $$
+  $$
+  \delta_s = \omega \tau_s = \omega \cdot r_s = \omega \cdot 2R \sin(\delta_s / 2) = 2s \sin(\delta_s / 2).
+  $$
 
 2. **Partner hit**:
-   $$
-   \delta_p = \omega \tau_p = \omega \cdot r_p = \omega \cdot 2R \cos(\delta_p / 2) = 2s \cos(\delta_p / 2).
-   $$
+  $$
+  \delta_p = \omega \tau_p = \omega \cdot r_p = \omega \cdot 2R \cos(\delta_p / 2) = 2s \cos(\delta_p / 2).
+  $$
 
 **These two transcendental equations determine** $(\delta_s, \delta_p)$ **as functions of speed** $s$.
 
@@ -162,14 +162,14 @@ Let $\tilde{\delta}_s \in (0, \pi]$ and $\tilde{\delta}_p \in (0, \pi]$ denote t
 The full families of causal delays are:
 
 - **Self**: 
-  $$
-  \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
-  $$
-  
+ $$
+ \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
+ $$
+ 
 - **Partner**: 
-  $$
-  \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
-  $$
+ $$
+ \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
+ $$
 
 **Geometric interpretation**:
 - The minimal separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ determine the **geometry** (chord lengths, force directions).
@@ -224,14 +224,14 @@ $$
 **Inward radial components**:
 
 - **Self** (repulsive -> outward -> negative):
-  $$
-  A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)}.
-  $$
+ $$
+ A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)}.
+ $$
 
 - **Partner** (attractive -> inward -> positive):
-  $$
-  A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)}.
-  $$
+ $$
+ A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)}.
+ $$
 
 **Net inward radial acceleration**:
 $$
@@ -241,14 +241,14 @@ $$
 **Tangential components** (both non-negative for $0 < \delta_s, \delta_p < \pi$):
 
 - **Self**:
-  $$
-  T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)}.
-  $$
+ $$
+ T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)}.
+ $$
 
 - **Partner**:
-  $$
-  T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)}.
-  $$
+ $$
+ T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)}.
+ $$
 
 **Net tangential acceleration**:
 $$
@@ -280,14 +280,14 @@ $$
 For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
 1. **Centripetal balance**:
-   $$
-   A_{\text{rad}} = \frac{s^2}{R}.
-   $$
+  $$
+  A_{\text{rad}} = \frac{s^2}{R}.
+  $$
 
 2. **Net-zero tangential power** (constant speed on average):
-   $$
-   \langle T \rangle = 0.
-   $$
+  $$
+  \langle T \rangle = 0.
+  $$
 
 ---
 
@@ -378,14 +378,14 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 - Minimal angular separation: $\tilde{\delta}_p \in (0, \pi]$.
 - Causal delays:
-  $$
-  \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
-  $$
+ $$
+ \delta_p(m) = \tilde{\delta}_p + 2\pi m = 2s \cos(\tilde{\delta}_p / 2), \quad m = 0, 1, 2, \dots
+ $$
 
 - **Emission azimuth** at reception:
-  $$
-  \varphi_p(m; s) = \pi - \tilde{\delta}_p(m; s).
-  $$
+ $$
+ \varphi_p(m; s) = \pi - \tilde{\delta}_p(m; s).
+ $$
 
 - **Existence thresholds**: For each $m \ge 0$, a solution exists only if $s > m\pi$.
 - As $m$ increases, $\tilde{\delta}_p$ decreases -> $\varphi_p$ drifts monotonically toward $\pi$ (diametrically opposite point).
@@ -394,22 +394,22 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 - Minimal angular separation: $\tilde{\delta}_s \in (0, \pi]$.
 - Causal delays:
-  $$
-  \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
-  $$
+ $$
+ \delta_s(m) = \tilde{\delta}_s + 2\pi m = 2s \sin(\tilde{\delta}_s / 2), \quad m = 0, 1, 2, \dots
+ $$
 
 - **Emission azimuth** at reception:
-  $$
-  \varphi_s(m; s) = -\tilde{\delta}_s(m; s).
-  $$
+ $$
+ \varphi_s(m; s) = -\tilde{\delta}_s(m; s).
+ $$
 
 - **Existence windows**:
-  - Principal branch ($m = 0$): exists only for $1 < s \le \pi/2$; terminates at $\tilde{\delta}_s = \pi$ when $s = \pi/2$.
-  - For $m \ge 1$: new branch appears when
-    $$
-    s \ge s_m^\star = \frac{(2m + 1) \pi}{2}.
-    $$
-  - Within a branch, $\tilde{\delta}_s$ decreases with $s$ -> $\varphi_s$ drifts toward $-\pi$.
+ - Principal branch ($m = 0$): exists only for $1 < s \le \pi/2$; terminates at $\tilde{\delta}_s = \pi$ when $s = \pi/2$.
+ - For $m \ge 1$: new branch appears when
+  $$
+  s \ge s_m^\star = \frac{(2m + 1) \pi}{2}.
+  $$
+ - Within a branch, $\tilde{\delta}_s$ decreases with $s$ -> $\varphi_s$ drifts toward $-\pi$.
 
 ---
 
@@ -420,357 +420,6 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 #### Finite-dimensional projection caveat
 
 All diagnostics use reduced coordinates; stability in the full history space remains a separate proof obligation.
-
-### Poincare Map, Stability, and Basins of Attraction for the MCB
-
-We work in the regularized two-body model defined in this chapter and in `dynamics/master-equation.md`:
-
-- Two opposite-charge architrinos (electrino-positrino), charges $q_1=-\epsilon$, $q_2=+\epsilon$.
-- Dynamics given by the delayed, purely radial Master Equation with regularization $\eta>0$.
-- Field speed $c_f$ (typically set to 1 in simulation units).
-- Focus on the maximum-curvature binary (MCB): the putative tight, self-hit-stabilized circular orbit.
-
-State is infinite-dimensional (history segment), but for diagnostics we project to a finite set of effective variables (radius, speed, delay phases) consistent with the MCB test plan.
-
----
-
-#### Poincare Section and Return Map
-
-##### Definition 1 (Configuration variables for the reduced binary)
-
-In the symmetric, non-translating binary frame, let
-
-- $R(t)$ - instantaneous orbital radius of particle 1 about the binary center,
-- $s(t)$ - instantaneous tangential speed ($s = R\dot\theta$),
-- $\delta_s(t)$ - principal self-delay angle (minimal self-hit separation; if none, set $\delta_s = 0$),
-- $\delta_p(t)$ - principal partner-delay angle.
-
-We group these into a reduced state vector
-$$
-\mathbf{z}(t) = \big(R(t),\,s(t),\,\delta_s(t),\,\delta_p(t)\big)\in\mathbb{R}^4.
-$$
-
-This is a projection of the full history state; it is not a complete description but suffices for local stability diagnostics near a circular orbit.
-
-##### Definition 2 (Poincare section for the binary)
-
-Fix an inertial Cartesian frame in the Euclidean void and define the section
-$$
-\Sigma = \Big\{ \mathbf{z}(t) \;\Big|\; \theta_1(t) = 0,\; \dot\theta_1(t) > 0 \Big\},
-$$
-where $\theta_1(t)$ is the polar angle of particle 1 about the binary center.
-
-Equivalently: $\Sigma$ is the set of up-crossings where particle 1 passes through the positive $x$-axis with counterclockwise motion.
-
-The full state at a section crossing is the history segment $\mathbf{x}_t \in \mathcal{H}$; $\mathbf{z}(t)$ is its reduced coordinate.
-
-##### Definition 3 (Poincare return map)
-
-Let $\Phi^t$ denote the semiflow generated by the regularized Master Equation on the history space $\mathcal{H}$, and let $T(\phi)>0$ be the first return time to the section:
-$$
-T(\phi) = \inf\{\,\tau>0 : \Phi^\tau(\phi)\in\Sigma\,\}.
-$$
-
-The Poincare map on the full phase space is
-$$
-P : \Sigma \to \Sigma,\qquad
-P(\phi) = \Phi^{T(\phi)}(\phi).
-$$
-
-On the reduced variables we define the reduced Poincare map
-$$
-P_{\text{red}} : \Sigma_{\text{red}} \to \Sigma_{\text{red}},\qquad
-P_{\text{red}}(\mathbf{z}_n) = \mathbf{z}_{n+1},
-$$
-where $\mathbf{z}_n = \mathbf{z}(t_n)$ and $t_{n+1}=t_n+T(\mathbf{x}_{t_n})$ is the time of the next $\Sigma$-crossing.
-
-Here $\Sigma_{\text{red}}$ is the image of $\Sigma$ under the projection to $(R,s,\delta_s,\delta_p)$.
-
-**Remark.** $P$ is the mathematically natural object; $P_{\text{red}}$ is the simulation-friendly shadow used to test attractor status of the MCB.
-
----
-
-#### Fixed-Point Formulation of the MCB
-
-##### Definition 4 (MCB orbit as a periodic solution)
-
-An MCB orbit is a $T$-periodic solution of the two-body delay system,
-$$
-\mathbf{x}_i(t+T) = \mathbf{x}_i(t),\qquad i=1,2,
-$$
-such that:
-
-1. The motion of each particle is (approximately) circular about the center with constant radius $R_{\text{MCB}}$ and speed $s_{\text{MCB}}>c_f$,
-2. The associated self-hit pattern is stationary in the co-rotating frame (principal self-delay angle and winding structure repeat each period),
-3. The orbit has maximum curvature among stable periodic orbits: $1/R_{\text{MCB}}$ is locally maximal among stable $T$-periodic solutions.
-
-##### Definition 5 (MCB as a fixed point of the Poincare map)
-
-Let $\phi^* \in \Sigma$ be the history segment corresponding to one snapshot of the periodic MCB solution at a section crossing. Then $\phi^*$ satisfies
-$$
-P(\phi^*) = \phi^*.
-$$
-
-On the reduced coordinates, the corresponding fixed point is
-$$
-\mathbf{z}^*=\big(R^*,s^*,\delta_s^*,\delta_p^*\big)\in\Sigma_{\text{red}}
-\quad\text{with}\quad
-P_{\text{red}}(\mathbf{z}^*) = \mathbf{z}^*.
-$$
-
-Here:
-
-- $R^* = R_{\text{MCB}}$ (candidate fundamental length),
-- $T_{\text{MCB}}$ is the return time at $\phi^*$ (candidate time standard),
-- $s^* = R^*\,2\pi/T_{\text{MCB}}$.
-
-##### Lemma 1 (Equivalence: periodic orbit vs fixed point)
-
-Let $\Phi^t$ be the flow on the history space. Then:
-
-1. If there exists a nontrivial periodic orbit $\Phi^t(\phi^*)$ with period $T>0$ that intersects the section $\Sigma$ transversely, then $\phi^*$ is a fixed point of $P$.
-2. Conversely, if $\phi^*$ is a fixed point of $P$ and the associated return time $T(\phi^*)$ is positive and finite, then the trajectory $\Phi^t(\phi^*)$ is periodic with period $T(\phi^*)$.
-
-*Proof sketch.* Standard Poincare theory: transversality of the section gives a unique crossing per period; periodicity in time implies the map brings $\phi^*$ back to itself; conversely, time invariance of the flow dynamics implies that if the state returns to the same section configuration after time $T$, the entire history segment repeats with period $T$.
-
-**Remark.** In the reduced coordinates, the same logic holds: a fixed point $\mathbf{z}^*$ of $P_{\text{red}}$ corresponds to a periodic two-body configuration if the reduced variables faithfully parametrize the underlying history (no hidden drift in unobserved degrees of freedom).
-
----
-
-#### Linear Stability and Floquet Multipliers
-
-We analyze linear stability of the fixed point $\phi^*$ (or $\mathbf{z}^*$) using the derivative (Jacobian) of the Poincare map.
-
-##### Definition 6 (Monodromy operator and multipliers - full space)
-
-Let $DP(\phi^*) : T_{\phi^*}\Sigma \to T_{\phi^*}\Sigma$ be the Frechet derivative of the Poincare map at $\phi^*$. Its spectrum
-$$
-\{\lambda_k\}_{k\in\mathcal{I}}
-$$
-are the Floquet multipliers of the periodic MCB orbit.
-
-- $\lambda=1$ always appears, associated with phase or temporal invariance (shift along the orbit).
-- All other multipliers control stability of perturbations transverse to the orbit in the full history space.
-
-##### Definition 7 (Floquet multipliers - reduced map)
-
-On the reduced Poincare map $P_{\text{red}}$, the Jacobian is the $4\times 4$ matrix
-$$
-J = DP_{\text{red}}(\mathbf{z}^*)
-=
-\begin{pmatrix}
-\partial R'/\partial R & \cdots \\
-\vdots & \ddots
-\end{pmatrix}_{\mathbf{z}=\mathbf{z}^*}
-$$
-with eigenvalues
-$$
-\{\lambda^{\text{(red)}}_1,\dots,\lambda^{\text{(red)}}_4\},
-$$
-where one eigenvalue should be close to $1$ (orbital phase), and the others describe transverse stability in $(R,s,\delta_s,\delta_p)$.
-
-##### Theorem 1 (Linear stability criterion via multipliers)
-
-Let $\phi^*$ be a fixed point of $P$ corresponding to a periodic MCB orbit. Then:
-
-1. If all multipliers satisfy
-   $$
-   |\lambda_k| < 1 \quad \text{for all nontrivial }k
-   $$
-   (excluding one $\lambda=1$), then the MCB orbit is linearly asymptotically stable: small perturbations decay geometrically on successive Poincare returns.
-
-2. If any multiplier satisfies $|\lambda_k| > 1$, the MCB is linearly unstable: there exist perturbations that grow geometrically.
-
-3. If some $|\lambda_k| = 1$ (other than the trivial $\lambda=1$), the MCB is neutrally stable in that direction (center manifold or marginal stability).
-
-*Proof sketch.* Standard Floquet-Poincare theory: the periodic orbit induces a linearized time-periodic variational equation. The monodromy operator over one period has eigenvalues $\lambda_k$. Crossings of the section sample this variational flow; the repeated application of $DP$ governs perturbation evolution at section hits. Spectral radius $<1$ implies exponential contraction under iteration; spectral radius $>1$ implies exponential growth.
-
----
-
-#### MCB Attractor Conjectures (Existence and Spectral Stability)
-
-We formalize the physical hypothesis of the MCB as conjectures about the Poincare map defined above.
-
-##### Conjecture A (Existence of the MCB Limit Cycle)
-There exists a fixed point $\phi^* \in \Sigma$ corresponding to a periodic solution $\mathbf{x}^*(t)$ with period $T_{MCB}$. This solution corresponds to the Maximum-Curvature Orbit.
-
-##### Conjecture B (Spectral Stability)
-Let $DP(\phi^*)$ be the linearized monodromy operator of the Poincare map.
-The spectrum $\sigma(DP(\phi^*))$ lies strictly within the unit disk in the complex plane, excluding the trivial eigenvalue $\lambda=1$ associated with time translation.
-$$
-\sup \{ |\lambda| : \lambda \in \sigma(DP(\phi^*)) \setminus \{1\} \} < 1.
-$$
-
-**Physical implication:** If Conjecture B holds, the MCB is an asymptotic attractor. If the spectrum contains elements with $|\lambda| > 1$, the MCB is unstable. If $|\lambda| = 1$, it is a center (non-generic in dissipative delay systems).
-
----
-
-#### Basins of Attraction and Separatrices
-
-Assuming a stable fixed point (in reduced space), we next characterize its basin and the separatrices delineating its domain of attraction.
-
-##### Definition 9 (Basin of attraction - reduced binary)
-
-Let $\mathbf{z}^*$ be a stable fixed point of $P_{\text{red}}$. The basin of attraction $\mathcal{B}(\mathbf{z}^*)$ is
-$$
-\mathcal{B}(\mathbf{z}^*) =
-\Big\{\mathbf{z}_0\in\Sigma_{\text{red}}
-\;\Big|\;
-\lim_{n\to\infty} P_{\text{red}}^{(n)}(\mathbf{z}_0) = \mathbf{z}^*
-\Big\}.
-$$
-
-If a stable MCB fixed point exists and the binary remains bound, perturbations that stay within $\mathcal{B}(\mathbf{z}^*)$ return to the MCB; perturbations outside the basin may escape, collapse, or transition to other attractors.
-
-In practice, we restrict to a 2D slice (e.g. $(R_0,s_0)$ with $\delta_s,\delta_p$ fixed at $\delta_s^*,\delta_p^*$) and study
-$$
-\mathcal{B}_{2D} = \mathcal{B}(\mathbf{z}^*)\cap\{(\delta_s,\delta_p)=(\delta_s^*,\delta_p^*)\}.
-$$
-
-##### Definition 10 (Separatrix - reduced slice)
-
-In a 2D slice (e.g., $(R,s)$ plane), a separatrix is a curve (possibly fractal) that separates initial conditions with different asymptotic fates, e.g.:
-
-- Convergence to MCB,
-- Escape to unbound states,
-- Collapse (if allowed by the dynamics),
-- Transition to other attractors or chaotic sets.
-
-Formally, in the slice $U\subset\mathbb{R}^2$, the separatrix set $\mathcal{S}\subset U$ is the boundary (in the topological sense) of $\mathcal{B}_{2D}$.
-
-##### Lemma 3 (Separatrix as projection of invariant manifolds)
-
-In the full phase space, stable and unstable manifolds of saddle-type periodic orbits and chaotic invariant sets project to boundaries in the $(R,s)$ slice. Under mild regularity assumptions, these projections form the separatrix structure $\mathcal{S}$.
-
-*Proof sketch.* Standard invariant manifold theory: boundaries of basins are often (though not always) formed by the stable manifolds of saddles and their heteroclinic or homoclinic tangles. Projection to a low-dimensional slice preserves these boundaries except where folds or overlaps occur.
-
----
-
-#### Failure Modes and Bifurcation Routes as Speed Crosses $c_f$
-
-We now interpret how the qualitative dynamics of the binary change as speed crosses the field speed $c_f$. This follows the delay-geometry framework of this chapter.
-
-##### Regime I: Sub-Field-Speed ($s < c_f$) - No Self-Hit
-
-- Only partner-delay forces contribute.
-- The delayed attraction produces:
-  - Inward radial component (spiral-in),
-  - Positive tangential component (continual speed-up).
-
-##### Lemma 4 (No stable circular orbit for $s<c_f$)
-
-In the strictly sub-field-speed regime, every circular configuration exhibits positive net tangential acceleration (see the simplified expressions in the canonical derivation). Therefore no exact constant-speed circular orbit is possible: the binary tends to accelerate and spiral inward.
-
-*Proof sketch.* From the partner-only analysis in the symmetric circular geometry, the tangential component $T_p$ is strictly positive for $0<\delta_p<\pi$. For a circular solution to persist, the time-averaged tangential acceleration must vanish. This cannot hold if $T_p>0$ at all hits.
-
-**Consequence.** The Poincare map does not admit a true fixed point with constant $R,s$ in this regime. We instead see an inward spiral toward higher speeds.
-
-##### Regime II: Near Threshold ($s\approx c_f$) - Onset of Self-Hit
-
-When the spiral drives $s$ to $c_f$, self-hits become geometrically possible:
-
-- New causal roots appear for self-hit at $s>c_f$,
-- Self-hit creates a repulsive contribution opposite to partner attraction.
-
-Possible dynamical routes here:
-
-1. Hopf-like bifurcation: The inward spiral (focus) could bifurcate to a limit cycle at the MCB radius as self-hit competes with partner delay. This would be a genuine birth of the MCB as a stable periodic orbit. We use "Hopf-like" here because the system is an SD-NDDE; rigorous Hopf theorems require smoothness and nondegeneracy conditions that have not yet been verified for this kernel.
-2. Subcritical behavior or blow-up: Self-hit may overcompensate or mis-time its repulsion, yielding overshoot to large $R$ or unstable oscillations in $R,s$ that do not settle.
-3. Fold (saddle-node) of cycles: A stable-unstable pair of periodic orbits might appear, with the MCB as the stable member and an outer unstable cycle defining the separatrix.
-
-##### Conjecture (Hopf-type onset of MCB)
-
-As an effective control parameter (e.g., energy or an external density) passes a critical value at which $s$ first crosses $c_f$, the two-body system undergoes a delay-induced Hopf-like bifurcation that creates the MCB as an attracting limit cycle.
-
-This is formalized in the gap ledger below; current status: conjectural.
-
-##### Regime III: Super-Field-Speed ($s> c_f$) - Multi-Hit and High Curvature
-
-As speed increases:
-
-- Self-hit multiplicity grows (more winding branches),
-- Partner-delay geometry changes,
-- The balance between inward partner attraction and outward self-repulsion changes non-trivially.
-
-Possible bifurcation routes as $s$ increases further:
-
-1. Period-doubling cascade ($|\lambda|$ crosses $-1$): The MCB orbit may lose stability via a multiplier hitting $-1$, leading to period-2, period-4, and eventually chaotic dynamics.
-2. Neimark-Sacker (torus) bifurcation ($\lambda$ crosses the unit circle off the real axis): quasi-periodic modulations of $R,s$ emerge, creating an invariant torus in the reduced space rather than a single limit cycle.
-3. Global homoclinic tangles: Stable and unstable manifolds of saddles intersect, giving rise to fractal basins and sensitive dependence on initial conditions (chaos).
-
-**Failure modes of the MCB across $c_f$:**
-
-- Non-existence: No fixed point of $P$ survives once self-hit is included (the spiral never closes into a cycle).
-- Existence but unstable: Fixed point exists but has $|\lambda|>1$; MCB is a repellor or saddle, not an attractor.
-- Artifact of regularization: Stability depends crucially on $\eta$; as $\eta\to 0$, multipliers migrate onto or outside the unit circle.
-
-Each of these failure modes would invalidate the attractor role of the MCB assumed by the architecture.
-
-**Self-hit instability note:** A high-risk failure mode is runaway acceleration when self-hit repulsion is not sufficiently strong or timely to counteract orbital collapse, or when it adds energy faster than the system can dissipate. This is tracked explicitly in the global energy bound gap (MCB-09).
-
----
-
-#### Gap Ledger: Missing Proofs and Open Problems
-
-We collect the specific nonlinear dynamics questions that remain open and must be resolved to solidify the MCB picture.
-
-| ID | Item | Statement / Needed Result | Status | Risk |
-|----|------|---------------------------|--------|------|
-| MCB-01 | Existence of Poincare map | Show that for the regularized two-body system with $v$ crossing $c_f$, the section $\Sigma$ is transverse and every trajectory near the candidate MCB crosses it again in finite time, defining $P$ (and $P_{\text{red}}$) locally. | Assumed; not rigorously proven for all regimes | Medium |
-| MCB-02 | Existence of MCB fixed point | Prove that $P$ (or at least $P_{\text{red}}$) admits a fixed point corresponding to a finite-radius, finite-speed limit cycle (MCB) for physically relevant parameters $(\kappa,\epsilon,c_f,\eta)$. | Conjectural; numerical search planned | Critical |
-| MCB-03 | Local uniqueness and smoothness of MCB | Show the fixed point is isolated and depends smoothly on parameters; rule out families of neutrally stable cycles (centers) in the physically relevant regime. | Open | High |
-| MCB-04 | Floquet spectrum of MCB | Establish that all nontrivial Floquet multipliers of $DP(\phi^*)$ lie strictly inside the unit circle (or, minimally, that the reduced multipliers of $DP_{\text{red}}$ do). | Only numerical estimates planned; no analytic bounds | Critical |
-| MCB-05 | Hopf-like bifurcation at $s=c_f$ | Use center-manifold or normal-form theory for state-dependent delay equations to show that as $s$ crosses $c_f$, a stable limit cycle (MCB) is born from the inward spiral. | Conjecture; no rigorous proof | High |
-| MCB-06 | Global basin structure | Characterize the topology of the MCB basin in $(R,s)$ (simply connected vs fractal), identify main separatrices and competing attractors (escape, secondary cycles, chaos). | Only exploratory numerics | Medium |
-| MCB-07 | Regularization limit $\eta \to 0$ for $P$ | Show that if an MCB fixed point $\mathbf{z}^*_\eta$ and its multipliers are stable for all sufficiently small $\eta$, then a meaningful limiting object exists as $\eta \to 0$; rule out that stability is purely a smoothing artifact. | Open | Critical |
-| MCB-08 | Correlation with full history dynamics | Prove that stability of the reduced fixed point $\mathbf{z}^*$ implies stability of the full periodic orbit in the infinite-dimensional history space (no hidden unstable modes). | Open | High |
-| MCB-09 | Global energy bound | Establish an a priori bound on $\|\mathbf{v}(t)\|$ for the regularized self-force to rule out runaway acceleration. | Missing | Critical |
-
-**Summary:**  
-- The definition of the Poincare map, MCB fixed point, Floquet multipliers, and basins is clear and consistent with the delay geometry.
-- The numerical protocols for estimating multipliers and mapping basins are explicit and implementable.
-- The critical gaps remain: existence of the MCB fixed point, spectral stability, and the $\eta \to 0$ limit for any stability claims.
-
-Until MCB-02, MCB-04, and MCB-07 are addressed (at least numerically with strong convergence evidence, ideally analytically), the MCB must be treated as a working hypothesis, not yet a proven dynamical attractor.
-
-**Note:** The system is locally well-posed for $\eta > 0$, but global stability is not guaranteed. Simulations should explicitly test MCB-09 (runaway acceleration) and MCB-05 (existence of the cycle). If the numerical eigenvalues of the Poincare map are outside the unit circle, the MCB attractor hypothesis is false for this force law.
-
-### Architectural implications
-
-If the attractor test succeeds, the MCB is the natural building block for tri-binaries and larger assemblies. If it fails (neutral or unstable), the interaction law or medium coupling must be revised before claiming a stable ladder of modes.
-
-### The Stable State and Emergent Properties
-
-**Conditional note:** The statements in this section assume the maximum-curvature attractor conjecture; see the gap ledger in **Maximum-Curvature Binary — Circular**. Under that assumption, the deflationary spiral does not continue indefinitely and self-repulsive feedback is expected to stabilize the system and prevent a singularity.
-
-#### **Curvature Limit and Stability**
-In the working hypothesis, the inward spiral does not end in a singularity. The limiting factor is expected to be the geometry of self-interaction. As the spiral tightens, the path's curvature increases, bringing each architrino closer to its own recent emission points. This proximity dramatically amplifies the self-repulsive force. The system reaches a critical state where any further decrease in orbital radius would cause an overwhelming increase in this self-repulsion, effectively creating a "pressure" that resists further collapse. The inward spiral is halted not by a simple balance of forces, but by this geometric feedback loop. Ruling out true collapse or runaway in the regularized dynamics is the content of gap item MCB-09 (global energy bound). Until that is addressed, singular end-states remain a formal possibility.
-
-Here and below, "potential" or "pressure" is shorthand for deferred work encoded in the path-history of wakes (the Master Equation energy functional), not an instantaneous $U(r)$.
-
-In this picture, the trajectory stabilizes into a **stable, circular orbit of a minimum radius**. This final state is a dynamic equilibrium where the inward pull from the partner is channeled into circular motion while self-repulsion prevents further tightening of the path's curvature. Any minimum-radius circular state occurs only once self-interaction is active ($|\mathbf{v}|>c_f$); in the strictly sub-field-speed regime ($|\mathbf{v}|\le c_f$) no stable circular orbit exists.
-
-#### **Emergent Properties and Measurement Standards**
-If the MCB attractor conjecture holds, the inward spiral ends in a stable circular orbit with a minimum radius and a corresponding maximum orbital frequency. That orbit supplies the model's physical standards of length and time; they are not imposed a priori but arise from the dynamics themselves. We therefore define the emergent units
-$$
-d_0 := R_{\text{MCB}}, \qquad t_0 := T_{\text{MCB}}.
-$$
-Any length or duration is then measured in multiples of $d_0$ and $t_0$, and the field speed can be written as a fixed ratio $c_f = d_0/t_0$ (or set to unity in normalized units). In this sense the *arena* of space and time remains absolute, while the *measurement* of space and time is anchored to the stable binary.
-
-Although individual architrinos have no intrinsic speed cap, assemblies built from binaries inherit a practical speed bound determined by their internal dynamics and by $d_0, t_0$. At the assembly level this bound is what observers infer as a universal "speed of light"; it is an emergent consequence of binary/tri-binary structure, not a kinematic axiom of the void.
-
-In the ideal symmetric, non-translating, exactly circular orbit, the two charges nearly cancel along the rotation axis, producing a corridor of very low net potential. In that idealization, an architrino traveling perfectly along the axis experiences negligible acceleration from the binary. In practice, discrete-wake geometry, translation, or slight asymmetry leaves residual off-axis hits, so the corridor is approximate rather than exact.
-
----
-
-**Note on Complex Scenarios:** The analysis above describes a stationary binary system. More complex dynamics arise when the binary assembly is also translating through space, especially when the axis of orbit is not aligned with the direction of the group's velocity.
-
----
-
-**Falsification signals (two-body level):**
-- If high-resolution simulations of isolated opposite-charge pairs never show long-lived bounded orbits for any initial conditions, the stable-binary/MCB hypothesis fails.
-- If all inward spirals either (a) collapse to unphysical radii despite regularization, or (b) blow out to infinity without forming a limit cycle, the self-hit stabilization mechanism is wrong or incomplete.
-- If, after including all causal roots in the pure two-body kernel, the time-averaged tangential acceleration remains strictly positive for every bounded near-circular trajectory, then an MCB limit cycle cannot exist without additional physics; the current force law is insufficient.
 
 ## Tri-Binary Emergence and Hypothetical Properties
 
@@ -814,7 +463,7 @@ An electrino-positrino binary is the most primitive assembly possible. Architrin
 
 The speculative conjecture is that a tri-binary will be planar upon entrance to a black hole where it will be recycled. The inner binary is expected to be in the MCB state at the event horizon. The middle and outer binaries architrinos would have translational and rotational velocity equal to field speed. What happens inside the black hole is challenging as well. Do the middle and outer binaries stay flat or do they continue rotating their orbital plane? 
 
-Another speculative idea is that the frequencies of the three binaries have a relationship 1, 2, 4 from outer to inner.  Transact an h and the outer binary frequency changes by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not borne out by analysis or simulation at this point, but is a starting point for imagining maximum shielding by superposition.
+Another speculative idea is that the frequencies of the three binaries have a relationship 1, 2, 4 from outer to inner. Transact an h and the outer binary frequency changes by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not borne out by analysis or simulation at this point, but is a starting point for imagining maximum shielding by superposition.
 
 Note: The black hole is presumably a maelstrom. We are trying to imagine the statistical modality.
 
@@ -822,7 +471,7 @@ Note: The black hole is presumably a maelstrom. We are trying to imagine the sta
 
 We speculate that approaching the core of the black hole, the density continues to increase, until, in some black holes, the density reaches a maximum. In an ideal toy black hole, non spinning, non translating - we imagine that MCBs or triple MCBs could theoretically become packed with no ability to move. A single microstate with zero entropy. 
 
-In any black hole the tri-binaries will reach their maximally deflated and highest energy state in the core or near the origin. Continuing the imagination, the tri-binaries begin inflating and having a radial velocity outward to the event horizon of the black hole - or possibly they can escape via jets. There are many issues to solve - but the theory requires that recycled tri-binaries come back out of the black hole.  Perhaps they emerge as dark photons with translational and rotational velocities greater than field speed and eventually those dark photons transition and can release what we would identify as a CMB photon. 
+In any black hole the tri-binaries will reach their maximally deflated and highest energy state in the core or near the origin. Continuing the imagination, the tri-binaries begin inflating and having a radial velocity outward to the event horizon of the black hole - or possibly they can escape via jets. There are many issues to solve - but the theory requires that recycled tri-binaries come back out of the black hole. Perhaps they emerge as dark photons with translational and rotational velocities greater than field speed and eventually those dark photons transition and can release what we would identify as a CMB photon. 
 
 Incoming photons deflate and gain energy and are re-energized.
 
@@ -955,8 +604,8 @@ where $E(3) = \mathbb{R}^3 \rtimes O(3)$ is the Euclidean group of spatial trans
 
 #### Theorem 1 (Invariance of the Equations of Motion)
 Let $\mathbf{x}(t)$ be a solution to the Master Equation.
-1.  **Time Translation:** For any $\tau \in \mathbb{R}$, $\mathbf{y}(t) = \mathbf{x}(t + \tau)$ is also a solution.
-2.  **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf{b} \in \mathbb{R}^3$, $\mathbf{y}(t) = R\mathbf{x}(t) + \mathbf{b}$ is also a solution.
+1. **Time Translation:** For any $\tau \in \mathbb{R}$, $\mathbf{y}(t) = \mathbf{x}(t + \tau)$ is also a solution.
+2. **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf{b} \in \mathbb{R}^3$, $\mathbf{y}(t) = R\mathbf{x}(t) + \mathbf{b}$ is also a solution.
 
 *Proof Sketch:*
 The causal constraint $\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\| = c_f(t - t_0)$ depends only on the Euclidean distance and time difference. Both are invariants of $G_{\text{fund}}$. The vector direction $\hat{\mathbf{r}}$ rotates covariantly with $R$. Thus, the dynamics are form-invariant.
@@ -1005,8 +654,8 @@ $$
 \mathcal{H}(\mathbf{x}_t) = K(\mathbf{v}(t)) + \mathcal{U}_{\text{history}}(\mathbf{x}_t).
 $$
 
-1.  **Kinetic Energy:** $K(t) = \sum \frac{1}{2} m_i \|\mathbf{v}_i(t)\|^2$.
-2.  **Potential Functional:** $\mathcal{U}_{\text{history}}$ accumulates the work done by the conservative forces. Unlike an instantaneous potential $V(r)$, this depends on the configuration of all active wake surfaces.
+1. **Kinetic Energy:** $K(t) = \sum \frac{1}{2} m_i \|\mathbf{v}_i(t)\|^2$.
+2. **Potential Functional:** $\mathcal{U}_{\text{history}}$ accumulates the work done by the conservative forces. Unlike an instantaneous potential $V(r)$, this depends on the configuration of all active wake surfaces.
 
 #### Theorem 3 (Energy Balance Equation)
 $$
@@ -1032,12 +681,12 @@ $$
 K(t) = \mathcal{E}_{\text{tot}} - \mathcal{W}(t).
 $$
 For $K(t)$ to diverge, $\mathcal{W}(t)$ must decrease without bound.
-1.  **Partner Attraction:** $q_1 q_2 < 0$. The potential is negative (attractive). As $r \to 0$, $V \to -\infty$. Collapse leads to infinite kinetic energy (standard Kepler singularity, resolved by self-hit).
-2.  **Self-Hit Repulsion:** $q_1 q_1 > 0$. The force is **repulsive**. The potential contribution is **positive**.
-    *   Work done by self-hit: If a particle is pushed "from behind" by its own wake, it gains $K$.
-    *   However, this energy must come from the $\mathcal{W}$ term.
-    *   Since self-hit potential is repulsive (positive energy hill), converting it to kinetic energy lowers the total potential.
-    *   **Crucial Bound:** The deferred work encoded in a self-wake is finite (determined by emission charge). A particle cannot extract infinite energy from its own past unless it puts infinite energy *into* the field first.
+1. **Partner Attraction:** $q_1 q_2 < 0$. The potential is negative (attractive). As $r \to 0$, $V \to -\infty$. Collapse leads to infinite kinetic energy (standard Kepler singularity, resolved by self-hit).
+2. **Self-Hit Repulsion:** $q_1 q_1 > 0$. The force is **repulsive**. The potential contribution is **positive**.
+  *  Work done by self-hit: If a particle is pushed "from behind" by its own wake, it gains $K$.
+  *  However, this energy must come from the $\mathcal{W}$ term.
+  *  Since self-hit potential is repulsive (positive energy hill), converting it to kinetic energy lowers the total potential.
+  *  **Crucial Bound:** The deferred work encoded in a self-wake is finite (determined by emission charge). A particle cannot extract infinite energy from its own past unless it puts infinite energy *into* the field first.
 
 **Conclusion:** The "free lunch" runaway, where a particle accelerates itself indefinitely using self-forces, is forbidden by the conservation of $\mathcal{H}$. The system can oscillate or settle, but it cannot explode to $v=\infty$ without singular collapse of the radius.
 
