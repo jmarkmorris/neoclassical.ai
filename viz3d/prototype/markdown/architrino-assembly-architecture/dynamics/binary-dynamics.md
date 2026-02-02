@@ -413,17 +413,7 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 ---
 
-### MCB Attractor Hypothesis
 
-**Working hypothesis**: An isolated electrino--positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it would be a natural attractor of the two-body delay dynamics.
-
-#### Mechanism and geometric expectations
-
-The hypothesis has three dynamical phases. In the spiral-in phase ($v < c_f$), partner attraction dominates, the net tangential drive is positive, and the radius decreases while speed rises. Once self-hits activate ($v > c_f$), non-Markovian feedback begins to oppose further collapse. In the MCB regime ($v \gg c_f$), radial self-repulsion is minimized while partner attraction accumulates across multiple causal roots; the orbit stabilizes at maximal curvature if the time-averaged tangential drive satisfies $\langle T \rangle \approx 0$.
-
-Two geometric expectations follow. The MCB is not realized near the self-hit threshold: $\delta_s \to 0^+$ makes the outward radial term large and blocks tight orbits. At high speed, $\delta_s \to \pi$ minimizes radial self-repulsion, while multiple partner hits increase inward pull; balance occurs at finite $r_{\text{min}}$.
-
-If the hypothesis holds, $r_{\text{min}}$ defines the prototype rod and $T_{\text{MCB}}$ the prototype clock tick, both emergent from the balance of partner attraction, self-hit repulsion, and centripetal requirement.
 
 
 
