@@ -475,7 +475,7 @@ In any black hole the tri-binaries will reach their maximally deflated and highe
 
 Incoming photons deflate and gain energy and are re-energized.
 
-ads
+The theory posits that the self-hit region behaves as AdS space.
 
 ## Tri-Binary at the Event Horizon
 
@@ -483,7 +483,7 @@ ads
 
 The key behaviours of the tri-binary include it's wide scalability and deformability.
 
-cft
+The theory posits that the sub-field-speed region behaves as a CFT.
 
 In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. Einstein's spacetime is implemented by a dense Noether sea, and the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
 
