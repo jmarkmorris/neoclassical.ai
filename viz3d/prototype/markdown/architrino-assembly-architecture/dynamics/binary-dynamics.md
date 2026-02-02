@@ -44,7 +44,7 @@ $$
 $$
 During this phase, the system is purely contractile, with the particles accelerating and spiraling towards each other. The positive tangential component (see Lemma in the prior section) guarantees continued speed-up, so the spiral tightens until the self-hit regime is reached.
 
-## Spiral Binary Symmetry-Breaking Point (v = c_f)
+## Spiral Binary Symmetry-Breaking Point ($v = c_f$)
 
 The binary system's evolution is organized around the **field-speed symmetry point** $v=c_f$. This is a **hinge** where the causal structure changes: below $c_f$ only partner-delay forces exist, while above $c_f$ self-hit roots appear. The hinge is not a hard barrier; it is a change in **root count**. The transition is smooth as long as the delay roots remain simple (no "causal shock"), which in the symmetric spiral/circular geometry is generically satisfied. At the hinge the principal self-hit branch appears with a small delay angle ($\tilde{\delta}_s\to 0^+$), which geometrically means the self-hit emission point lies almost directly behind the current position. The radial factor scales like $1/\sin(\tilde{\delta}_s/2)$ and therefore becomes very large as $\tilde{\delta}_s\to 0^+$. This large outward term initially reduces curvature; the maximum-curvature regime does not occur near threshold but only after $\tilde{\delta}_s$ becomes appreciable (higher $s$ and larger-angle roots).
 
@@ -424,34 +424,6 @@ The emission points on the circle that can produce hits "now" form a **finite, d
 
 ---
 
-### Practical Recipe (Computational)
-
-To explore the two-body circular dynamics numerically:
-
-1. **Pick a speed** $s > 1$ (to activate self-hits).
-
-2. **Solve the delay equations**:
-   $$
-   \delta_s = 2s \sin(\delta_s / 2), \quad \delta_p = 2s \cos(\delta_p / 2),
-   $$
-   for $(\delta_s, \delta_p) \in (0, \pi]$ (principal solutions).
-
-3. **Enumerate causal roots** by winding index $m \ge 0$:
-   - Use minimal angular separations $\tilde{\delta}_s$, $\tilde{\delta}_p$ to compute chord lengths and force components.
-   - Winding index $m$ affects emission timing/ordering but not the sign or direction of components (all derived from principal geometry).
-
-4. **Compute radial and tangential accelerations**:
-   $$
-   A_{\text{rad}}(s), \quad T(s).
-   $$
-   Verify that $T(s) > 0$ (no constant-speed equilibrium without external physics).
-
-5. **Identify speed regimes**:
-   - Near $s \to 1^+$: Strong outward self-repulsion ($1/\sin(\delta_s/2) \to \infty$) -> low curvature.
-   - Higher $s$ ($s \gg 1$): Multiple self-hits active; $\delta_s$ large -> outward repulsion minimized -> higher curvature possible (but still not stable due to $T > 0$).
-
----
-
 ### MCB Attractor Hypothesis and Test Plan
 
 **Working hypothesis**: An isolated electrino--positrino pair spirals inward until self-hit feedback halts the collapse and a steady circular orbit forms at $r_{\text{min}}$. This is the MCB, and it would be a natural attractor of the two-body delay dynamics.
@@ -636,78 +608,6 @@ Let $\phi^*$ be a fixed point of $P$ corresponding to a periodic MCB orbit. Then
 
 ---
 
-#### 3.1 Numerical Estimation of Floquet Multipliers
-
-##### Lemma 2 (Finite-difference Jacobian approximation)
-
-Assume we have an approximate fixed point $\mathbf{z}^*$ such that
-$$
-\|P_{\text{red}}(\mathbf{z}^*) - \mathbf{z}^*\| \ll 1.
-$$
-Let $e_k$ denote the $k$-th coordinate basis vector in $\mathbb{R}^4$ and $\delta \ll 1$ a small perturbation amplitude. Define the columns of $J_{\text{num}}$ by
-$$
-J_{\text{num}} e_k
-\;\approx\;
-\frac{
-P_{\text{red}}(\mathbf{z}^* + \delta e_k)
-- P_{\text{red}}(\mathbf{z}^*)
-}{\delta}.
-$$
-
-Then $J_{\text{num}}$ converges to $DP_{\text{red}}(\mathbf{z}^*)$ as $\delta \to 0$, provided $P_{\text{red}}$ is differentiable at $\mathbf{z}^*$ and the integrator error is controlled.
-
-*Proof sketch.* This is standard finite-difference approximation for differentiable maps. The subtlety here is that each evaluation of $P_{\text{red}}$ entails integrating a state-dependent delay system to the next section crossing; however, as long as the integration is consistent and smooth in initial data (for fixed $\eta$ and step size), the overall mapping remains differentiable.
-
-##### Definition 8 (Numerical Floquet multipliers)
-
-The numerical Floquet multipliers are the eigenvalues of $J_{\text{num}}$:
-$$
-\lambda^{\text{(num)}}_k = \lambda_k\big(J_{\text{num}}\big).
-$$
-
-We identify:
-
-- One multiplier close to $1$ (orbital phase symmetry),
-- Remaining multipliers; their moduli indicate transverse stability.
-
-##### Protocol 1 (Floquet multiplier estimation - MCB test)
-
-1. **Model and regularization.**
-   - Use two opposite charges with no translation and full delayed interaction including self-hits.
-   - Fix $\eta$ with $\eta \ll R_{\text{MCB}}$, and choose $\Delta t \ll \eta$ and $\Delta t \ll T_{\text{MCB}}$.
-
-2. **Locate candidate MCB fixed point.**
-   - Use long-time spiral-in simulations to approximate a steady circular orbit.
-   - Refine by periodic-orbit shooting: adjust initial $(R,s,\delta_s,\delta_p)$ so that after one return, the difference is minimized.
-
-3. **Build the reduced Poincare map.**
-   - Define section $\Sigma$ as particle 1 at angle $\theta=0$ with $\dot\theta>0$.
-   - Implement $P_{\text{red}}$ as integrate from one section crossing to the next and record $(R,s,\delta_s,\delta_p)$.
-
-4. **Finite-difference Jacobian.**
-   - Choose $\delta$ (e.g. $10^{-4}$-$10^{-3}$ in dimensionless units).
-   - For each coordinate direction $e_k$, compute $P_{\text{red}}(\mathbf{z}^* + \delta e_k)$.
-   - Assemble $J_{\text{num}}$ as in Lemma 2.
-
-5. **Eigenanalysis.**
-   - Compute eigenvalues of $J_{\text{num}}$.
-   - Identify $\lambda_{\text{phase}}\approx 1$ and check the remaining three multipliers for stability.
-
-6. **Convergence checks.**
-   - Reduce $\delta$ and check stability of eigenvalues.
-   - Refine integration step $\Delta t$ and regularization width $\eta$; verify that multipliers converge as $\Delta t,\eta\to 0$.
-
-**Criterion:** For the MCB attractor claim to hold in this reduced space, we require
-$$
-\max_{k\ne \text{phase}}
-|\lambda^{\text{(num)}}_k|\;<\;1
-\quad\text{(robust under refinement).}
-$$
-
-If any $|\lambda^{\text{(num)}}_k|>1$ persists under refinement, the MCB is not a stable attractor of the reduced dynamics.
-
----
-
 #### 3.2 MCB Attractor Conjectures (Existence and Spectral Stability)
 
 We formalize the physical hypothesis of the MCB as conjectures about the Poincare map defined above.
@@ -764,43 +664,6 @@ Formally, in the slice $U\subset\mathbb{R}^2$, the separatrix set $\mathcal{S}\s
 In the full phase space, stable and unstable manifolds of saddle-type periodic orbits and chaotic invariant sets project to boundaries in the $(R,s)$ slice. Under mild regularity assumptions, these projections form the separatrix structure $\mathcal{S}$.
 
 *Proof sketch.* Standard invariant manifold theory: boundaries of basins are often (though not always) formed by the stable manifolds of saddles and their heteroclinic or homoclinic tangles. Projection to a low-dimensional slice preserves these boundaries except where folds or overlaps occur.
-
----
-
-#### 4.1 Basin Mapping Protocol (Numerical)
-
-##### Protocol 2 (2D basin map for the MCB)
-
-1. **Fix $\delta_s$ and $\delta_p$** at their candidate MCB values $(\delta_s^*,\delta_p^*)$.
-
-2. **Choose a rectangular grid** in $(R_0,s_0)$:
-   $$
-   R_0 \in [R^*(1-\epsilon_R), R^*(1+\epsilon_R)],\quad
-   s_0 \in [s^*(1-\epsilon_s), s^*(1+\epsilon_s)],
-   $$
-   with $\epsilon_R,\epsilon_s\sim 0.1$ to begin.
-
-3. **For each grid point $(R_0,s_0)$**:
-   - Construct an initial binary configuration consistent with those values and with the chosen $(\delta_s^*,\delta_p^*)$.
-   - Integrate the full delay system for $N_{\text{ret}}$ section returns (e.g., $N_{\text{ret}}\sim 10^3$--$10^4$).
-   - At each return, compute the distance to $\mathbf{z}^*$:
-     $$
-     d_n = \big\|P_{\text{red}}^{(n)}(R_0,s_0,\delta_s^*,\delta_p^*) - \mathbf{z}^*\big\|.
-     $$
-   - Classification rule:
-     - If $d_n \to 0$ (below tolerance) as $n\to N_{\text{ret}}$, mark the point as MCB-attracted.
-     - If $R$ or $s$ drifts beyond preset bounds (escape, collapse, or wild oscillation), classify as non-MCB with sub-labels (e.g. unbound, chaotic candidate).
-     - If $d_n$ stalls at a nonzero value but remains bounded, suspect a secondary attractor or quasi-periodic motion.
-
-4. **Plot the basin map** in $(R_0,s_0)$ space using color codes:
-   - One color for points converging to MCB,
-   - Others for different outcomes.
-
-5. **Resolution and convergence checks**:
-   - Refine the grid near boundaries of the MCB region to resolve the separatrix.
-   - Repeat with smaller $\Delta t$ and $\eta$ to test for numerical artifacts.
-
-**Interpretation.** A robust attractor should have a visibly nontrivial basin: a 2D region of appreciable area converging to the MCB, with well-resolved separatrix curves or fractal boundaries.
 
 ---
 
@@ -892,45 +755,6 @@ We collect the specific nonlinear dynamics questions that remain open and must b
 Until MCB-02, MCB-04, and MCB-07 are addressed (at least numerically with strong convergence evidence, ideally analytically), the MCB must be treated as a working hypothesis, not yet a proven dynamical attractor.
 
 **Note:** The system is locally well-posed for $\eta > 0$, but global stability is not guaranteed. Simulations should explicitly test MCB-09 (runaway acceleration) and MCB-05 (existence of the cycle). If the numerical eigenvalues of the Poincare map are outside the unit circle, the MCB attractor hypothesis is false for this force law.
-
-### Additional diagnostics
-
-**Energy accounting (numerical)**:
-- **Calculated total energy:**  
-  $$
-  E_{\text{calc}}(t) = K(t) + \mathcal{W}(t)
-  $$
-  with
-  $$
-  \mathcal{W}(t_{n+1}) = \mathcal{W}(t_n) - \sum_i \mathbf{v}_i(t_n) \cdot \mathbf{a}_i(t_n) \Delta t.
-  $$
-- **Energy drift:** $\delta E(t) = |(E_{\text{calc}}(t) - E_{\text{calc}}(0)) / E_{\text{calc}}(0)|$.
-- **Expected drift rates:** Tier-1 pass $\delta E < 10^{-9}$ per orbit (symplectic/geometric); Tier-2 pass $\delta E < 10^{-6}$ per orbit (standard RK4).
-
-**Angular momentum / planarity**:
-- For planar initial data, the direction of $\mathbf{L}_{\text{mech}} = \sum \mathbf{x} \times \mathbf{p}$ should be conserved:
-  $$
-  \hat{\mathbf{n}} = \frac{\mathbf{L}_{\text{mech}}}{\|\mathbf{L}_{\text{mech}}\|},\quad \frac{d}{dt}\hat{\mathbf{n}} \approx 0.
-  $$
-- Planarity check: track $\mathbf{x}_i \cdot \hat{\mathbf{z}}$ if initialized in the $xy$ plane.
-
-**Symmetry drift metric**:
-$$
-\Delta_{\text{sym}}(t) = \|\mathbf{x}_1(t) + \mathbf{x}_2(t)\|.
-$$
-In the center-of-mass frame, this should remain near zero for symmetric binaries.
-
-**Self-work vs. partner-work**: Accumulate $\mathcal{W}_{\text{self}}$ and $\mathcal{W}_{\text{partner}}$ separately to diagnose which interaction drives instability.
-
-**Eta dependence**: Track $R_{\text{MCB}}(\eta)$, $s_{\text{MCB}}(\eta)$, and nontrivial multipliers versus $\eta$. If stability degrades as $\eta \to 0$, the MCB is likely a regularization artifact.
-
-**Tangential balance**: Measure $\langle T \rangle$ over an orbit and decompose it into self/partner contributions. Require $\langle T \rangle \to 0$ as $\Delta t,\eta \to 0$.
-
-**Near-orbit structure**: Compute a short Lyapunov exponent and a frequency spectrum of $R(t)$ or $\theta(t)$ to distinguish true limit cycles from nearby tori or chaos.
-
-**Failure conditions (falsification signals)**:
-- **Secular energy drift:** If $E_{\text{calc}}$ drifts monotonically (not oscillating), the regularized interaction kernel is non-conservative (numerical heating).
-- **Runaway:** If $K(t) \to \infty$ while $r(t) > r_{\min}$, the no-runaway criterion is violated, implying the discrete approximation has broken causality constraints.
 
 ### Architectural implications
 
