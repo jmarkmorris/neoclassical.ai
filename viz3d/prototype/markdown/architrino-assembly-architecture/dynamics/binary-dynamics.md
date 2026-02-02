@@ -1108,7 +1108,7 @@ $$
 #### Lemma 1 (Regularity of the Delay Map)
 *Assumption:* The velocities are sub-luminal relative to the separation, i.e., $|\mathbf{v}_j| < c_f$ (Single-Hit Regime) OR we isolate a specific branch of the multi-hit solution where the relative radial velocity is not $c_f$.
 
-*Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+}$ such that $\tau(\phi) = \tau^*$.
+*Statement:* If $\phi \in \mathcal{H}$ and $\tau^*$ is a simple root of $g_{ij}(\tau, \phi) = 0$ (i.e., $\partial_\tau g_{ij} \neq 0$), then there exists a neighborhood $U \subset \mathcal{H}$ of $\phi$ and a continuously differentiable functional $\tau: U \to \mathbb{R}^+$ such that $\tau(\phi) = \tau^*$.
 
 *Proof Sketch:* Apply the Implicit Function Theorem to $g_{ij}$. The condition $\partial_\tau g \neq 0$ corresponds to the source not moving exactly at the speed of light *towards* the receiver at the retarded time (no "causal shock" accumulation).
 
