@@ -118,6 +118,28 @@ body {
   height: 18px;
 }
 
+#meta-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(160, 170, 220, 0.25);
+  background: rgba(8, 10, 18, 0.75);
+  color: #f5f7ff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#meta-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+#meta-button.is-active {
+  border-color: rgba(213, 220, 255, 0.6);
+}
+
 #doc-button {
   position: relative;
   width: 32px;

@@ -76,6 +76,11 @@
       "path": "json/architrino_assembly_architecture.json"
     },
     {
+      "id": "meta",
+      "name": "Meta Ring",
+      "path": "json/meta/meta.json"
+    },
+    {
       "id": "foundations",
       "name": "Foundations",
       "path": "json/foundations/foundations.json"
