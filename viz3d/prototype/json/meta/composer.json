@@ -10,26 +10,26 @@
   },
   "objects": [
     {
-      "id": "composer_new_scene",
-      "label": "New Scene",
+      "id": "composer_tree",
+      "label": "Scene Tree",
       "radius": 1.1,
       "color": "#8fa7ff"
     },
     {
-      "id": "composer_scene_json",
-      "label": "Scene JSON",
+      "id": "composer_path",
+      "label": "Path Editor",
       "radius": 1.1,
       "color": "#f5c982"
     },
     {
-      "id": "composer_templates",
-      "label": "Templates",
+      "id": "composer_orbit",
+      "label": "Orbit Editor",
       "radius": 1.1,
       "color": "#7ee0d7"
     },
     {
-      "id": "composer_assets",
-      "label": "Assets",
+      "id": "composer_interactions",
+      "label": "Interactions",
       "radius": 1.1,
       "color": "#d7a6ff"
     },
@@ -40,8 +40,8 @@
       "color": "#9fe7a4"
     },
     {
-      "id": "composer_docs",
-      "label": "Docs",
+      "id": "composer_export",
+      "label": "Export / Validate",
       "radius": 1.1,
       "color": "#f29aa0"
     }

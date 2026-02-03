@@ -160,6 +160,137 @@
         <div id="markdown-body"></div>
       </div>
     </div>
+      <div id="composer-overlay" aria-hidden="true">
+        <div class="composer-header">
+          <div>
+            <div class="composer-title">Composer</div>
+            <div class="composer-subtitle">Scene animation designer (Arch API)</div>
+          </div>
+          <div class="composer-actions">
+            <button
+              id="composer-docs-button"
+              type="button"
+              aria-label="Open Arch API notes"
+            >
+              Arch API
+            </button>
+          </div>
+        </div>
+        <div class="composer-body">
+          <div class="composer-tabs" role="tablist" aria-label="Composer panels">
+            <button
+              class="composer-tab is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-panel="tree"
+            >
+              Scene Tree
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="path"
+            >
+              Path Editor
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="orbit"
+            >
+              Orbit Editor
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="interactions"
+            >
+              Interactions
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="preview"
+            >
+              Preview
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="export"
+            >
+              Export / Validate
+            </button>
+          </div>
+          <div class="composer-panels">
+            <section class="composer-panel is-active" data-panel="tree" role="tabpanel" aria-hidden="false">
+              <h3>Scene Tree</h3>
+              <p>Build nested scenes and assemblies with explicit frames and transforms.</p>
+              <ul>
+                <li>Add, reorder, and group child scenes.</li>
+                <li>Assign frame anchors and local transforms.</li>
+                <li>Reuse scene presets for assemblies.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="path" role="tabpanel" aria-hidden="true">
+              <h3>Path Editor</h3>
+              <p>Define simulated, function, or group paths with repeat and sampling controls.</p>
+              <ul>
+                <li>Choose function vs simulated vs group paths.</li>
+                <li>Set frame space, repeat mode, and sampling rate.</li>
+                <li>Preview trace styling and LOD.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="orbit" role="tabpanel" aria-hidden="true">
+              <h3>Orbit Editor</h3>
+              <p>Configure orbit parameters, ellipses, precession, and formatting.</p>
+              <ul>
+                <li>Set theta, phi, radius, and phase.</li>
+                <li>Edit ellipse planes and eccentricity.</li>
+                <li>Toggle traces, fade, and elliptical view.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="interactions" role="tabpanel" aria-hidden="true">
+              <h3>Interactions</h3>
+              <p>Couple assemblies with exchanges, resonance, and timed transfers.</p>
+              <ul>
+                <li>Define participants and trigger windows.</li>
+                <li>Attach handoff paths and blend durations.</li>
+                <li>Author reaction outcomes and probabilities.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="preview" role="tabpanel" aria-hidden="true">
+              <h3>Preview</h3>
+              <p>Inspect scenes with realtime toggles for traces, overlays, and sampling.</p>
+              <ul>
+                <li>Fit/contain viewport controls.</li>
+                <li>Quality and LOD presets for live edit.</li>
+                <li>Playback and time scaling.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="export" role="tabpanel" aria-hidden="true">
+              <h3>Export / Validate</h3>
+              <p>Emit canonical JSON with explicit units, defaults, and schema checks.</p>
+              <ul>
+                <li>Validate ids, anchors, and time ranges.</li>
+                <li>Export JSON or JS/TS modules.</li>
+                <li>Save presets and import fixtures.</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
       <div id="element-legend" aria-hidden="true">
         <button class="legend-pill" type="button" data-scene="json/nuclear/proton.json">
           <span class="legend-dot legend-dot-p"></span>

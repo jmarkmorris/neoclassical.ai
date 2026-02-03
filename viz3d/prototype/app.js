@@ -33,6 +33,14 @@ const mathJaxScript = document.getElementById("mathjax-script");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
+const composerOverlay = document.getElementById("composer-overlay");
+const composerDocsButton = document.getElementById("composer-docs-button");
+const composerTabs = composerOverlay
+  ? Array.from(composerOverlay.querySelectorAll(".composer-tab"))
+  : [];
+const composerPanels = composerOverlay
+  ? Array.from(composerOverlay.querySelectorAll(".composer-panel"))
+  : [];
 const hud = document.getElementById("hud");
 const infoDrawer = document.getElementById("info-drawer");
 const infoBody = document.getElementById("info-body");
@@ -179,17 +187,29 @@ let mathJaxReady = typeof window !== "undefined" && !!window.MathJax?.typesetPro
 let pendingMathTypeset = false;
 let activeMarkdownPath = null;
 let markdownTwoColumns = true;
+let composerActivePanel = "tree";
 let haloSeed = 0;
 let infoDrawerOpen = false;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "json/architrino_assembly_architecture.json";
 const metaScenePath = "json/meta/meta.json";
+const composerSceneId = "composer";
+const composerDocsPath =
+  "markdown/architrino-assembly-architecture/ideas-designs/arch-api.md";
 const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;
 const markdownReaderScenes = new Map();
 const searchBackStack = [];
 const metaBackStack = [];
+const composerPanelMap = new Map([
+  ["composer_tree", "tree"],
+  ["composer_path", "path"],
+  ["composer_orbit", "orbit"],
+  ["composer_interactions", "interactions"],
+  ["composer_preview", "preview"],
+  ["composer_export", "export"],
+]);
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
 
@@ -3665,6 +3685,53 @@ function updateMetaButton() {
   button.setAttribute("aria-pressed", String(isMeta));
 }
 
+function setComposerPanel(panelId) {
+  if (!composerOverlay) {
+    return;
+  }
+  const targetId = panelId || "tree";
+  const hasPanel = composerPanels.some(
+    (panel) => panel.dataset.panel === targetId
+  );
+  const nextPanel = hasPanel ? targetId : "tree";
+  composerActivePanel = nextPanel;
+  composerTabs.forEach((tab) => {
+    const isActive = tab.dataset.panel === nextPanel;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-selected", String(isActive));
+    tab.tabIndex = isActive ? 0 : -1;
+  });
+  composerPanels.forEach((panel) => {
+    const isActive = panel.dataset.panel === nextPanel;
+    panel.classList.toggle("is-active", isActive);
+    panel.setAttribute("aria-hidden", String(!isActive));
+  });
+}
+
+function updateComposerOverlay() {
+  if (!composerOverlay) {
+    return;
+  }
+  const isComposer = currentLevel?.sceneId === composerSceneId;
+  composerOverlay.classList.toggle("is-open", !!isComposer);
+  composerOverlay.setAttribute("aria-hidden", isComposer ? "false" : "true");
+  composerOverlay.inert = !isComposer;
+  if (isComposer) {
+    setComposerPanel(composerActivePanel);
+  }
+}
+
+function openComposerDocs() {
+  if (transitionState.active) {
+    return;
+  }
+  showMarkdownPanel({
+    name: "Arch API",
+    markdownPath: composerDocsPath,
+    markdownColumns: 2,
+  });
+}
+
 function updateMarkdownDocButton() {
   if (!markdownDocButton) {
     return;
@@ -3682,6 +3749,7 @@ function updateSceneLabel() {
   updateDocButton();
   updateMetaButton();
   updateMarkdownDocButton();
+  updateComposerOverlay();
   updatePeriodicOverlay();
   updateElementLegend();
   updateElementInfoPanel();
@@ -3843,6 +3911,16 @@ function focusOnPointer(clientX, clientY) {
   const targetNode = currentLevel.nodes.find((node) => node.mesh === hit);
   if (!targetNode) {
     return false;
+  }
+
+  if (currentLevel?.sceneId === composerSceneId) {
+    const panelId = composerPanelMap.get(targetNode.data.id ?? "");
+    if (panelId) {
+      closeDetailPanel();
+      hideHoverTooltip();
+      setComposerPanel(panelId);
+      return true;
+    }
   }
 
   if (targetNode.data.children || targetNode.data.childScene) {
@@ -4279,6 +4357,20 @@ if (markdownLayoutToggle) {
   markdownLayoutToggle.addEventListener("click", () => {
     markdownTwoColumns = !markdownTwoColumns;
     applyMarkdownLayout();
+  });
+}
+
+if (composerTabs.length) {
+  composerTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      setComposerPanel(tab.dataset.panel);
+    });
+  });
+}
+
+if (composerDocsButton) {
+  composerDocsButton.addEventListener("click", () => {
+    openComposerDocs();
   });
 }
 
