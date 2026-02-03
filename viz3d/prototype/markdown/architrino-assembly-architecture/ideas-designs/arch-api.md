@@ -15,7 +15,7 @@ Core idea
 - A path is a first-class object that can come from multiple sources.
 - Sub-scenes attach to paths and those paths can be visualized with traces.
 - Likewise the next level of subscenes or architrinos follow a path.
-- Zoom level becomes an important concept.
+- Viewport/zoom becomes an important concept.
 
 Absolute vs relative paths (repeating frames)
 - A path is defined in a frame. The frame can be absolute (world) or relative to a moving anchor.
@@ -24,8 +24,9 @@ Absolute vs relative paths (repeating frames)
 
 FrameSpec (draft)
 - `space`: "absolute" | "relative"
-- `relativeTo`: anchor or node id (required when space == "relative")
+- `relativeTo`: anchor or scene id (required when space == "relative")
 - `repeat`: optional RepeatSpec to loop the local path
+- Note: FrameSpec defines the reference frame only. Use TransformSpec for pos/rot/scale.
 
 TransformSpec (draft)
 - `position`: [x, y, z]
@@ -54,13 +55,13 @@ Path sources (generalized)
 - Assembly/group path
   - Represents the group motion of a sub-assembly centered on a parent reference.
   - Use when describing the center-of-momentum (COM) path of an assembly.
-  - Reference must be explicit: parent node, named anchor, or a computed COM.
+  - Reference must be explicit: parent scene, named anchor, or a computed COM.
 
 PathSpec (draft)
 - `kind`: "simulated" | "function" | "group"
 - `frame`: FrameSpec (absolute or relative, with optional repeat)
-- `sampler`: optional sampling hints (rate, duration, bounds)
-- `style`: visual and animation styles (trace, fade, opacity, width)
+- `sampler`: optional SamplerSpec
+- `style`: optional StyleSpec
 - `payload`: data specific to the path kind
 
 PathSpec payloads
@@ -73,7 +74,7 @@ PathSpec payloads
   - `params`: function parameters
   - `domain`: t range
 - Group
-  - `center`: node id or anchor id
+  - `center`: scene id or anchor id
   - `groupId`: assembly/group reference
   - `mode`: "com" | "centroid" | "anchor"
 
@@ -103,6 +104,7 @@ FrequencyInteractionSpec (optional)
 - `coupling`: "additive" | "multiplicative" | "envelope"
 
 SceneSpec (draft)
+- `schemaVersion`: required at root (e.g., "0.1.0")
 - `name`: unique id
 - `frame`: local frame reference (FrameSpec)
 - `transform`: local transform (TransformSpec)
@@ -110,7 +112,9 @@ SceneSpec (draft)
 - `units`: optional units override (UnitsSpec, typically root only)
 - `path`: PathSpec or OrbitSpec
 - `children`: nested scenes
-- `style`: render style
+- `interactions`: optional InteractionSpec[] (typically root)
+- `transfers`: optional TransferSpec[] (typically root)
+- `style`: render style (StyleSpec)
 - `charges`: personality charge specs
 - `frequencies`: optional FrequencyInteractionSpec
 - `annotations`: formulas, labels, debug
@@ -126,17 +130,32 @@ UnitsSpec (draft)
 - `length`: "scene" | "meters" | "arbitrary"
 - `angle`: "degrees" | "radians"
 - `time`: "seconds" | "normalized"
+- Defaults: length="scene", angle="degrees", time="seconds"
 
 OrbitSpec (draft)
-- `origin`: anchor or node id
+- `origin`: anchor or scene id
 - `theta`, `phi`, `r`, `phase`
 - `groupVelocity`
 - `repeat`: optional RepeatSpec (defaults to loop)
+- `ellipse`: optional EllipseSpec
 - `formatting`
   - `fadePath`
   - `ellipticalView`
   - `trace`
-  - `ellipse`: optional EllipseSpec
+
+InteractionSpec (draft)
+- `participants`: [sceneId, sceneId]
+- `mode`: "couple" | "exchange" | "resonance" | "handoff"
+- `trigger`: time window or condition
+- `effects`: changes to path, phase, charge distribution, or bindings
+
+TransferSpec (draft)
+- `child`: scene id
+- `from`: parent scene id
+- `to`: parent scene id
+- `at`: time or condition
+- `handoffPath`: optional PathSpec for smooth transfer
+- `blend`: duration for interpolation
 
 Operations (required)
 - path
@@ -160,33 +179,32 @@ Example sketch (JS/TS)
 import { scene, path, orbit, charge } from "archviz";
 
 const spec = scene({
+  schemaVersion: "0.1.0",
   name: "architrino-demo",
-  timeScale: 1.0,
-  root: scene({
-    name: "atom",
-    children: [
-      scene({
-        name: "nucleus",
-        children: [
-          scene({ name: "proton", children: [/* quark scenes */] }),
-          scene({ name: "neutron", children: [/* quark scenes */] }),
-        ],
+  units: { length: "scene", angle: "degrees", time: "seconds" },
+  time: { timeBase: "seconds", playbackRate: 1.0, loop: true },
+  children: [
+    scene({
+      name: "nucleus",
+      children: [
+        scene({ name: "proton", children: [/* quark scenes */] }),
+        scene({ name: "neutron", children: [/* quark scenes */] }),
+      ],
+    }),
+    scene({
+      name: "electron",
+      path: orbit({
+        origin: "nucleus",
+        theta: 0.0,
+        phi: 0.0,
+        r: 1.5,
+        phase: 0.25,
+        groupVelocity: 0.8,
+        formatting: { fadePath: true, ellipticalView: true },
       }),
-      scene({
-        name: "electron",
-        path: orbit({
-          origin: "nucleus",
-          theta: 0.0,
-          phi: 0.0,
-          r: 1.5,
-          phase: 0.25,
-          groupVelocity: 0.8,
-          formatting: { fadePath: true, ellipticalView: true },
-        }),
-        charges: [charge({ kind: "personality", orientation: "phase" })],
-      }),
-    ],
-  }),
+      charges: [charge({ kind: "personality", orientation: "phase" })],
+    }),
+  ],
 });
 ```
 
@@ -229,6 +247,12 @@ Viewport and live preview
 - Rendering a scene in a corner is just a viewport + scale transform on the same scene graph.
 - Live preview should degrade quality gracefully (sampling rate, trace density, particle counts) to stay realtime.
 
+ViewportSpec (draft)
+- `center`: [x, y, z]
+- `scale`: scalar
+- `camera`: { position, target, fov }
+- `fit`: "contain" | "cover"
+
 Nested assembly principle
 - Prefer deeper nesting that mirrors the actual assembly (inner -> middle -> outer).
 - Each level is a reusable scene with its own frame and path, composed into the parent.
@@ -243,6 +267,7 @@ Prototype path (designer -> JSON -> player)
 Canonical JSON contract
 - The scene designer outputs a canonical, fully-populated JSON spec.
 - Canonical means:
+  - `schemaVersion` is required at the root.
   - Required fields are present with defaults applied.
   - Units, scales, and time bases are explicit.
   - All references (scene ids, anchors, frames) are resolved or resolvable.
@@ -258,12 +283,12 @@ Validation rules (minimum)
 Open questions
 - How should `frame` references be resolved (id, path, or implicit parent)?
 - What is the default unit scale (1.0 == 1 meter or symbolic unit)?
-- Do we want a first-class `anchor` type for explicit COM references?
+- How should anchors be authored (manual vs computed COM) and exposed to the designer?
 - Should simulated paths be cached as arrays or streamed?
 
 Electron assembly (draft API spec)
 - Electron is a nested scene with a tri-binary Noether core and six electrinos.
-- Three high-energy elliptical binaries, squashed according to group velocity.
+- Three elliptical binaries (high/med/low), squashed according to group velocity.
 - Six electrinos bounce around axial vortexes (jiggle or tight-orbit motion).
 
 ElectronSpec (assembly)
@@ -282,7 +307,7 @@ NoetherCoreSpec (tri-binary)
 
 BinarySpec (elliptical pair)
 - `orbit`: OrbitSpec or PathSpec (elliptical)
-- `energy`: "high"
+- `energy`: "high" | "med" | "low"
 - `phase`: phase offset for the pair
 - `squash`: optional override for orbital squash
 
@@ -343,15 +368,13 @@ const electron = {
         phase: 0,
         orbit: orbit({
           r: 0.4,
-          formatting: {
-            ellipticalView: true,
-            ellipse: {
-              sceneRelativeRadius: 0.4,
-              eccentricity: 0.6,
-              plane: { tilt: 15, azimuth: 0 },
-              inPlaneRotation: 0,
-            },
+          ellipse: {
+            sceneRelativeRadius: 0.4,
+            eccentricity: 0.6,
+            plane: { tilt: 15, azimuth: 0 },
+            inPlaneRotation: 0,
           },
+          formatting: { ellipticalView: true },
         }),
       },
       {
@@ -359,15 +382,13 @@ const electron = {
         phase: 120,
         orbit: orbit({
           r: 0.4,
-          formatting: {
-            ellipticalView: true,
-            ellipse: {
-              sceneRelativeRadius: 0.4,
-              eccentricity: 0.6,
-              plane: { tilt: 15, azimuth: 120 },
-              inPlaneRotation: 120,
-            },
+          ellipse: {
+            sceneRelativeRadius: 0.4,
+            eccentricity: 0.6,
+            plane: { tilt: 15, azimuth: 120 },
+            inPlaneRotation: 120,
           },
+          formatting: { ellipticalView: true },
         }),
       },
       {
@@ -375,15 +396,13 @@ const electron = {
         phase: 240,
         orbit: orbit({
           r: 0.4,
-          formatting: {
-            ellipticalView: true,
-            ellipse: {
-              sceneRelativeRadius: 0.4,
-              eccentricity: 0.6,
-              plane: { tilt: 15, azimuth: 240 },
-              inPlaneRotation: 240,
-            },
+          ellipse: {
+            sceneRelativeRadius: 0.4,
+            eccentricity: 0.6,
+            plane: { tilt: 15, azimuth: 240 },
+            inPlaneRotation: 240,
           },
+          formatting: { ellipticalView: true },
         }),
       },
     ],
