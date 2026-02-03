@@ -63,9 +63,9 @@
         <button
           id="meta-button"
           type="button"
-          aria-label="Go to home"
+          aria-label="Open meta ring"
           aria-pressed="false"
-          onclick="document.getElementById('home-button')?.click()"
+          onclick="window.openMetaRing ? window.openMetaRing() : document.getElementById('home-button')?.click()"
           style="width:32px;height:32px;border-radius:8px;border:1px solid rgba(160,170,220,0.25);background:rgba(8,10,18,0.75);color:#f5f7ff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;"
         >
           <svg

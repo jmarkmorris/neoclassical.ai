@@ -183,11 +183,13 @@ let haloSeed = 0;
 let infoDrawerOpen = false;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "json/architrino_assembly_architecture.json";
+const metaScenePath = "json/meta/meta.json";
 const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;
 const markdownReaderScenes = new Map();
 const searchBackStack = [];
+const metaBackStack = [];
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
 
@@ -3653,6 +3655,16 @@ function updateDocButton() {
   docButton.disabled = transitionState.active || !hasDoc;
 }
 
+function updateMetaButton() {
+  const button = document.getElementById("meta-button");
+  if (!button) {
+    return;
+  }
+  const isMeta = currentLevel?.id === metaScenePath;
+  button.classList.toggle("is-active", isMeta);
+  button.setAttribute("aria-pressed", String(isMeta));
+}
+
 function updateMarkdownDocButton() {
   if (!markdownDocButton) {
     return;
@@ -3668,10 +3680,38 @@ function updateSceneLabel() {
   }
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
+  updateMetaButton();
   updateMarkdownDocButton();
   updatePeriodicOverlay();
   updateElementLegend();
   updateElementInfoPanel();
+}
+
+function openMetaRing() {
+  if (transitionState.active) {
+    return;
+  }
+  if (currentLevel?.id === metaScenePath) {
+    const backState = metaBackStack.pop();
+    if (backState?.levelId) {
+      jumpToScene(backState.levelId, {
+        restoreNavStack: backState.navigationStack,
+      });
+    } else {
+      resetToRootScene();
+    }
+    return;
+  }
+  if (currentLevel) {
+    metaBackStack.push({
+      levelId: currentLevel.id,
+      navigationStack: navigationStack.map((entry) => ({
+        levelId: entry.levelId,
+        focusNodeId: entry.focusNodeId,
+      })),
+    });
+  }
+  jumpToScene(metaScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
 }
 
 
@@ -4124,6 +4164,10 @@ async function init() {
   animate();
 }
 
+if (typeof window !== "undefined") {
+  window.openMetaRing = openMetaRing;
+}
+
 init();
 
 window.addEventListener("resize", onResize);
@@ -4147,6 +4191,15 @@ if (navUpButton) {
     }
     if (searchBackStack.length > 0) {
       const backState = searchBackStack.pop();
+      if (backState?.levelId) {
+        jumpToScene(backState.levelId, {
+          restoreNavStack: backState.navigationStack,
+        });
+      }
+      return;
+    }
+    if (metaBackStack.length > 0) {
+      const backState = metaBackStack.pop();
       if (backState?.levelId) {
         jumpToScene(backState.levelId, {
           restoreNavStack: backState.navigationStack,
