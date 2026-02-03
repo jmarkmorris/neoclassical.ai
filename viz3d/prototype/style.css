@@ -132,15 +132,16 @@ body {
   justify-content: center;
   cursor: pointer;
   padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-#meta-button svg {
-  width: 18px;
-  height: 18px;
+.meta-glyph {
+  display: inline-block;
+  line-height: 1;
   pointer-events: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
 }
 
 #meta-button.is-active {

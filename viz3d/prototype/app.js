@@ -17,7 +17,6 @@ const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
 const homeButton = document.getElementById("home-button");
 const docButton = document.getElementById("doc-button");
-const metaButton = document.getElementById("meta-button");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll("[data-scene]"))
@@ -184,7 +183,6 @@ let haloSeed = 0;
 let infoDrawerOpen = false;
 const infoMarkdownPath = "info.md";
 const rootScenePath = "json/architrino_assembly_architecture.json";
-const metaScenePath = "json/meta/meta.json";
 const cacheBustToken = Date.now().toString();
 let sceneIndex = [];
 let sceneIndexReady = false;
@@ -3655,15 +3653,6 @@ function updateDocButton() {
   docButton.disabled = transitionState.active || !hasDoc;
 }
 
-function updateMetaButton() {
-  if (!metaButton) {
-    return;
-  }
-  const isMeta = currentLevel?.id === metaScenePath;
-  metaButton.classList.toggle("is-active", isMeta);
-  metaButton.setAttribute("aria-pressed", String(isMeta));
-}
-
 function updateMarkdownDocButton() {
   if (!markdownDocButton) {
     return;
@@ -3679,40 +3668,12 @@ function updateSceneLabel() {
   }
   sceneLabel.textContent = currentLevel?.name ?? "";
   updateDocButton();
-  updateMetaButton();
   updateMarkdownDocButton();
   updatePeriodicOverlay();
   updateElementLegend();
   updateElementInfoPanel();
 }
 
-function handleMetaButtonClick() {
-  if (transitionState.active) {
-    return;
-  }
-  if (currentLevel?.id === metaScenePath) {
-    if (searchBackStack.length > 0) {
-      const backState = searchBackStack.pop();
-      if (backState?.levelId) {
-        jumpToScene(backState.levelId, {
-          restoreNavStack: backState.navigationStack,
-        });
-      }
-    }
-    return;
-  }
-  if (currentLevel) {
-    searchBackStack.push({
-      levelId: currentLevel.id,
-      navigationStack: navigationStack.map((entry) => ({
-        levelId: entry.levelId,
-        focusNodeId: entry.focusNodeId,
-      })),
-    });
-    updateNavButton();
-  }
-  jumpToScene(metaScenePath, { mode: "jump" });
-}
 
 async function ensureSceneIndex() {
   if (sceneIndexReady) {
@@ -4202,10 +4163,6 @@ if (homeButton) {
     }
     resetToRootScene();
   });
-}
-
-if (metaButton) {
-  metaButton.addEventListener("click", handleMetaButtonClick);
 }
 
 wireElementLegend();
