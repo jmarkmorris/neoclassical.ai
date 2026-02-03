@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "meta",
+    "name": "Meta Ring",
+    "units": "relative",
+    "autoSphereRing": true,
+    "wrapLabels": true,
+    "hideScaleLabels": true
+  },
+  "objects": [
+    {
+      "id": "meta_settings",
+      "label": "Settings",
+      "radius": 1.1,
+      "color": "#8fa7ff"
+    },
+    {
+      "id": "meta_tools",
+      "label": "Tools",
+      "radius": 1.1,
+      "color": "#7ee0d7"
+    },
+    {
+      "id": "meta_docs",
+      "label": "Docs",
+      "radius": 1.1,
+      "color": "#f5c982"
+    },
+    {
+      "id": "meta_search",
+      "label": "Search",
+      "radius": 1.1,
+      "color": "#d7a6ff"
+    },
+    {
+      "id": "meta_about",
+      "label": "About",
+      "radius": 1.1,
+      "color": "#9fe7a4"
+    },
+    {
+      "id": "meta_help",
+      "label": "Help",
+      "radius": 1.1,
+      "color": "#f29aa0"
+    }
+  ]
+}
