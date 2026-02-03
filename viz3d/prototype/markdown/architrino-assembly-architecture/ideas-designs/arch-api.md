@@ -84,11 +84,23 @@ StyleSpec (draft)
 - `glow`: optional intensity
 - `trace`: { length, density, fade }
 - `lod`: { preview, final }
+- `shading`: optional ShadingSpec
 
 SamplerSpec (draft)
 - `rate`: samples per second
 - `adaptive`: boolean
 - `maxPoints`: cap for traces
+
+ShadingSpec (optional)
+- `mode`: "flat" | "gradient" | "volume" | "density"
+- `source`: "charge" | "path" | "custom"
+- `intensity`: 0..1
+- `ramp`: color ramp id or list
+
+FrequencyInteractionSpec (optional)
+- `targets`: ["phase", "precession", "charge", "path"]
+- `waves`: [{ freq, amp, phase, waveform }]
+- `coupling`: "additive" | "multiplicative" | "envelope"
 
 SceneSpec (draft)
 - `name`: unique id
@@ -100,6 +112,7 @@ SceneSpec (draft)
 - `children`: nested scenes
 - `style`: render style
 - `charges`: personality charge specs
+- `frequencies`: optional FrequencyInteractionSpec
 - `annotations`: formulas, labels, debug
 
 TimeSpec (draft)
@@ -190,19 +203,26 @@ Scene illustrator program (prototype)
 - Outputs: browser preview or frame sequence.
 - Toggles: paths, axes, labels, debug overlays.
 
-Scene designer app (JSON authoring)
-- Purpose: a visual editor that produces the canonical scene JSON spec.
+Scene + reaction designer (JSON authoring)
+- Purpose: a single visual editor that produces the canonical scene JSON spec for one or many assemblies.
 - Must support:
   - Tree view of nested scenes (add/remove/reorder).
   - Path editor (function vs simulated vs group, with frame + repeat controls).
   - Orbit editor with ellipse settings (sceneRelativeRadius, plane angles).
   - Assembly presets (electron, proton, neutron) with editable parameters.
+  - Interactions between assemblies (coupling, exchange, handoff).
+  - Multi-outcome reaction design with branching outcomes and probabilities/confidence.
   - Preview panel driven by the existing viz stack.
   - JSON export/import with schema validation and versioning.
 - Workflow:
   - Choose a preset or start from a blank scene.
   - Edit parameters with immediate visual feedback.
   - Save to JSON and run through the renderer CLI or browser preview.
+
+PDG integration (optional)
+- Link reaction inputs/outputs to PDG ids and metadata where relevant.
+- Use PDG data to prefill masses, charges, and known decay modes.
+- Keep PDG references optional so speculative assemblies can still be expressed.
 
 Viewport and live preview
 - A scene should be fully translatable, rotatable, and scalable via its frame.
@@ -213,6 +233,12 @@ Nested assembly principle
 - Prefer deeper nesting that mirrors the actual assembly (inner -> middle -> outer).
 - Each level is a reusable scene with its own frame and path, composed into the parent.
 - This reduces special cases and increases code reuse in both the renderer and the designer app.
+
+Prototype path (designer -> JSON -> player)
+- Step 1: Define canonical JSON schema and a validator/normalizer.
+- Step 2: Build a minimal scene player that loads JSON and renders via viz3d/three.js.
+- Step 3: Prototype the designer as a JSON-first UI with live preview and export/import.
+- Step 4: Iterate on presets, interactions, and reaction outcomes.
 
 Canonical JSON contract
 - The scene designer outputs a canonical, fully-populated JSON spec.
