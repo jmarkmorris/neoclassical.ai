@@ -7,33 +7,7 @@ The priority is the dynamics/math/geometry and the mapping.
 - work on quantum numbers again (where is that). Leverage MIT Kaiser 22
 - math/geometry/dynamics are huge
 
-- Define a visualization library, 
-  - abstracted manim. 
-  - so I can easily and efficiently describe the kind of scene elements, etc. 
-- design a scene illustrator program that uses my primitives! 
-- list the operations.
-  - path 
-    - arc
-    - can be used for architrino or for a group center of momentum
-  - relative orbit (origin, theta, phi, r, phase, group velocity).
-    - architrino formatting
-    - animation settings
-    - orbit formatting
-      - fading path
-      - elliptical path (logical observer view)
-    - phase can encode charge orientation
-  - nested orbits
-  - personality charges
-  - ability to show precession via traced or shaded volumes
-  - ability to show formulas and calculations
-- example scene
-  - electron on an elliptical orbit around a proton and neutron
-    - animate electron as orbiting/jiggling personality charges and Noether core.
-  - animate the proton and neutron as their quark groups, each with their assembly.
-- so what we want is some sort of recursive circular scene language 
-- so you can display the animation of the circular objects which are scenes themselves.
-- it doesn't seem like we need a ton of complexity. 
-  - path, group velocity, group spin, etc.
+
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 - sim2rewrite.md has ideas for importing this software (redeveloping)
