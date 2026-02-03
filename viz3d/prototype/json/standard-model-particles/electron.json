@@ -27,7 +27,11 @@
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "subScenes": []
+      "subScenes": [],
+      "motion": {
+        "type": "translate",
+        "groupVelocity": 0
+      }
     },
     {
       "id": "electrino_1",

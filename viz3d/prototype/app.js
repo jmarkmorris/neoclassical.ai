@@ -41,6 +41,14 @@ const composerTabs = composerOverlay
 const composerPanels = composerOverlay
   ? Array.from(composerOverlay.querySelectorAll(".composer-panel"))
   : [];
+const composerSceneIdInput = document.getElementById("composer-scene-id");
+const composerSceneNameInput = document.getElementById("composer-scene-name");
+const composerNodeCountInput = document.getElementById("composer-node-count");
+const composerNodeLabelsInput = document.getElementById("composer-node-labels");
+const composerPreviewButton = document.getElementById("composer-preview-button");
+const composerExportButton = document.getElementById("composer-export-button");
+const composerStatus = document.getElementById("composer-status");
+const composerJsonPreview = document.getElementById("composer-json-preview");
 const hud = document.getElementById("hud");
 const infoDrawer = document.getElementById("info-drawer");
 const infoBody = document.getElementById("info-body");
@@ -132,6 +140,126 @@ const generationTransitions = {
   strange: { nextScene: "json/standard-model-particles/bottom.json", nextLabel: "Bottom" },
 };
 
+function normalizeVelocity(value) {
+  if (Array.isArray(value)) {
+    return [
+      Number(value[0] ?? 0),
+      Number(value[1] ?? 0),
+      Number(value[2] ?? 0),
+    ];
+  }
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return [value, 0, 0];
+  }
+  if (value && typeof value === "object") {
+    return [
+      Number(value.x ?? 0),
+      Number(value.y ?? 0),
+      Number(value.z ?? 0),
+    ];
+  }
+  return [0, 0, 0];
+}
+
+function sanitizeComposerId(raw) {
+  if (!raw) {
+    return "composer_scene";
+  }
+  const cleaned = String(raw)
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_-]/g, "");
+  return cleaned || "composer_scene";
+}
+
+function readComposerFormState() {
+  const rawId = composerSceneIdInput?.value ?? "composer_scene";
+  const id = sanitizeComposerId(rawId);
+  if (composerSceneIdInput && composerSceneIdInput.value !== id) {
+    composerSceneIdInput.value = id;
+  }
+  const rawName = composerSceneNameInput?.value ?? "";
+  const name = rawName.trim() || "Composer Scene";
+  const countRaw = Number(composerNodeCountInput?.value ?? 6);
+  const nodeCount = clamp(Math.round(countRaw || 6), 1, 18);
+  if (composerNodeCountInput) {
+    composerNodeCountInput.value = String(nodeCount);
+  }
+  const labelsRaw = composerNodeLabelsInput?.value ?? "";
+  const labelList = labelsRaw
+    .split(",")
+    .map((label) => label.trim())
+    .filter(Boolean);
+  const labels = Array.from({ length: nodeCount }, (_, index) => {
+    return labelList[index] || `Node ${index + 1}`;
+  });
+  return { id, name, nodeCount, labels };
+}
+
+function buildComposerSceneSpec(state) {
+  const objects = state.labels.map((label, index) => ({
+    id: `node_${index + 1}`,
+    label,
+    radius: 1.1,
+    color: composerPalette[index % composerPalette.length],
+  }));
+  return {
+    schemaVersion: "0.1",
+    scene: {
+      id: state.id,
+      name: state.name,
+      units: "relative",
+      autoSphereRing: true,
+      wrapLabels: true,
+      hideScaleLabels: true,
+    },
+    objects,
+  };
+}
+
+function buildComposerSceneConfig(state) {
+  const nodes = state.labels.map((label, index) => ({
+    id: `node_${index + 1}`,
+    name: label,
+    radius: 1.1,
+    color: composerPalette[index % composerPalette.length],
+    position: [0, 0, 0],
+    wrapLabel: true,
+  }));
+  return {
+    layout: "static",
+    nodes,
+    links: [],
+    sceneName: `${state.name} (Preview)`,
+    sceneId: composerPreviewSceneId,
+    markdownPath: null,
+    markdownSection: null,
+    markdownColumns: null,
+    markdownAutoOpen: false,
+    centerOn: null,
+    autoSphereRing: true,
+    wrapLabels: true,
+    hideScaleLabels: true,
+  };
+}
+
+function renderComposerJsonPreview() {
+  if (!composerJsonPreview) {
+    return;
+  }
+  const state = readComposerFormState();
+  const spec = buildComposerSceneSpec(state);
+  composerJsonPreview.textContent = JSON.stringify(spec, null, 2);
+}
+
+function setComposerStatus(message) {
+  if (!composerStatus) {
+    return;
+  }
+  composerStatus.textContent = message;
+}
+
 const motionHandlers = {
   orbit: (node, level, timeSeconds) => {
     const orbit = node.data.orbit;
@@ -155,6 +283,18 @@ const motionHandlers = {
     const x = centerPos.x + Math.cos(angle) * orbit.radius;
     const y = centerPos.y + Math.sin(angle) * orbit.radius * yScale;
     node.group.position.set(x, y, 0);
+  },
+  translate: (node, level, timeSeconds) => {
+    const translation = node.data.translation;
+    if (!translation) {
+      return;
+    }
+    const velocity = translation.velocity ?? [0, 0, 0];
+    const base = node.basePosition ?? node.group.position;
+    const x = base.x + (velocity[0] ?? 0) * timeSeconds;
+    const y = base.y + (velocity[1] ?? 0) * timeSeconds;
+    const z = base.z + (velocity[2] ?? 0) * timeSeconds;
+    node.group.position.set(x, y, z);
   },
   binaryOrbit: (node, level, timeSeconds) => {
     if (!node.binaryBandData || !node.binaryBandData.length) {
@@ -194,6 +334,8 @@ const infoMarkdownPath = "info.md";
 const rootScenePath = "json/architrino_assembly_architecture.json";
 const metaScenePath = "json/meta/meta.json";
 const composerSceneId = "composer";
+const composerPreviewSceneId = "composer_preview";
+const composerPreviewScenePath = "__composer_preview__";
 const composerDocsPath =
   "markdown/architrino-assembly-architecture/ideas-designs/arch-api.md";
 const cacheBustToken = Date.now().toString();
@@ -210,6 +352,14 @@ const composerPanelMap = new Map([
   ["composer_preview", "preview"],
   ["composer_export", "export"],
 ]);
+const composerPalette = [
+  "#8fa7ff",
+  "#7ee0d7",
+  "#f5c982",
+  "#d7a6ff",
+  "#9fe7a4",
+  "#f29aa0",
+];
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
 
@@ -1350,8 +1500,16 @@ async function loadSceneConfig(scenePath) {
           };
           node.motionType = "orbit";
         }
+        if (obj.motion && obj.motion.type === "translate") {
+          const translate = obj.motion.translate || obj.motion;
+          const velocity = normalizeVelocity(
+            translate.groupVelocity ?? translate.velocity ?? translate.v
+          );
+          node.translation = { velocity };
+          node.motionType = "translate";
+        }
         if (binaryBands && binaryBands.length > 0) {
-          node.motionType = "binaryOrbit";
+          node.motionType = node.motionType ?? "binaryOrbit";
         }
         return node;
       });
@@ -1875,6 +2033,7 @@ function layoutRootLevel(level) {
     const x = Math.cos(angle) * ringRadius;
     const y = Math.sin(angle) * ringRadius;
     node.group.position.set(x, y, node.group.position.z);
+    node.basePosition = node.group.position.clone();
   });
 }
 
@@ -2523,6 +2682,9 @@ function buildLevel(levelId) {
   if (level.id === rootScenePath) {
     layoutRootLevel(level);
   }
+  level.nodes.forEach((node) => {
+    node.basePosition = node.group.position.clone();
+  });
 
   levels.set(levelId, level);
   buildLevelLinks(level, config);
@@ -2532,8 +2694,12 @@ function buildLevel(levelId) {
 
 function updateLevelMotions(level, timeSeconds) {
   level.motionNodes.forEach((node) => {
+    const hasBinary = !!(node.binaryBandData && node.binaryBandData.length);
+    if (hasBinary) {
+      motionHandlers.binaryOrbit(node, level, timeSeconds);
+    }
     const handler = motionHandlers[node.data.motionType];
-    if (handler) {
+    if (handler && (!hasBinary || node.data.motionType !== "binaryOrbit")) {
       handler(node, level, timeSeconds);
     }
   });
@@ -3706,13 +3872,18 @@ function setComposerPanel(panelId) {
     panel.classList.toggle("is-active", isActive);
     panel.setAttribute("aria-hidden", String(!isActive));
   });
+  if (nextPanel === "export") {
+    renderComposerJsonPreview();
+  }
 }
 
 function updateComposerOverlay() {
   if (!composerOverlay) {
     return;
   }
-  const isComposer = currentLevel?.sceneId === composerSceneId;
+  const isComposer =
+    currentLevel?.sceneId === composerSceneId ||
+    currentLevel?.sceneId === composerPreviewSceneId;
   composerOverlay.classList.toggle("is-open", !!isComposer);
   composerOverlay.setAttribute("aria-hidden", isComposer ? "false" : "true");
   composerOverlay.inert = !isComposer;
@@ -3730,6 +3901,37 @@ function openComposerDocs() {
     markdownPath: composerDocsPath,
     markdownColumns: 2,
   });
+}
+
+function openComposerPreview() {
+  if (transitionState.active) {
+    return;
+  }
+  const state = readComposerFormState();
+  const config = buildComposerSceneConfig(state);
+  levelConfigs[composerPreviewScenePath] = config;
+  levels.delete(composerPreviewScenePath);
+  composerActivePanel = "preview";
+  setComposerPanel("preview");
+  setComposerStatus(`Previewing "${state.name}". Use Back to return.`);
+  jumpToScene(composerPreviewScenePath, { mode: "jump", startScale: 0.6, duration: 700 });
+}
+
+function exportComposerScene() {
+  const state = readComposerFormState();
+  const spec = buildComposerSceneSpec(state);
+  const json = JSON.stringify(spec, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${state.id || "composer_scene"}.json`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  setComposerStatus(`Exported ${state.id}.json`);
+  renderComposerJsonPreview();
 }
 
 function updateMarkdownDocButton() {
@@ -4371,6 +4573,34 @@ if (composerTabs.length) {
 if (composerDocsButton) {
   composerDocsButton.addEventListener("click", () => {
     openComposerDocs();
+  });
+}
+
+if (composerPreviewButton) {
+  composerPreviewButton.addEventListener("click", () => {
+    openComposerPreview();
+  });
+}
+
+if (composerExportButton) {
+  composerExportButton.addEventListener("click", () => {
+    exportComposerScene();
+  });
+}
+
+const composerInputs = [
+  composerSceneIdInput,
+  composerSceneNameInput,
+  composerNodeCountInput,
+  composerNodeLabelsInput,
+].filter(Boolean);
+if (composerInputs.length) {
+  composerInputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      if (composerActivePanel === "export") {
+        renderComposerJsonPreview();
+      }
+    });
   });
 }
 

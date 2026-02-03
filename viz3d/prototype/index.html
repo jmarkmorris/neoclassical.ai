@@ -236,6 +236,37 @@
           <div class="composer-panels">
             <section class="composer-panel is-active" data-panel="tree" role="tabpanel" aria-hidden="false">
               <h3>Scene Tree</h3>
+              <div class="composer-section">
+                <div class="composer-section-title">Quick Start</div>
+                <ol class="composer-steps">
+                  <li>Set a scene id + name.</li>
+                  <li>Pick how many nodes you want.</li>
+                  <li>Click Preview Scene to render.</li>
+                  <li>Click Export JSON to save.</li>
+                </ol>
+              </div>
+              <div class="composer-form">
+                <label class="composer-field">
+                  <span>Scene ID</span>
+                  <input id="composer-scene-id" type="text" value="composer_scene" />
+                </label>
+                <label class="composer-field">
+                  <span>Scene Name</span>
+                  <input id="composer-scene-name" type="text" value="Composer Scene" />
+                </label>
+                <label class="composer-field">
+                  <span>Node Count</span>
+                  <input id="composer-node-count" type="number" min="1" max="18" step="1" value="6" />
+                </label>
+                <label class="composer-field">
+                  <span>Node Labels (comma-separated)</span>
+                  <input
+                    id="composer-node-labels"
+                    type="text"
+                    placeholder="Node A, Node B, Node C"
+                  />
+                </label>
+              </div>
               <p>Build nested scenes and assemblies with explicit frames and transforms.</p>
               <ul>
                 <li>Add, reorder, and group child scenes.</li>
@@ -278,6 +309,7 @@
                 <li>Quality and LOD presets for live edit.</li>
                 <li>Playback and time scaling.</li>
               </ul>
+              <p class="composer-hint">Click Preview Scene to open a temporary scene. Use Back to return.</p>
             </section>
             <section class="composer-panel" data-panel="export" role="tabpanel" aria-hidden="true">
               <h3>Export / Validate</h3>
@@ -287,8 +319,17 @@
                 <li>Export JSON or JS/TS modules.</li>
                 <li>Save presets and import fixtures.</li>
               </ul>
+              <p class="composer-hint">Click Export JSON to download. Preview below updates from the form.</p>
+              <pre id="composer-json-preview" class="composer-json-preview"></pre>
             </section>
           </div>
+        </div>
+        <div class="composer-footer">
+          <div class="composer-footer-actions">
+            <button id="composer-preview-button" type="button">Preview Scene</button>
+            <button id="composer-export-button" type="button">Export JSON</button>
+          </div>
+          <div id="composer-status" class="composer-status" aria-live="polite"></div>
         </div>
       </div>
       <div id="element-legend" aria-hidden="true">
