@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "architrino_assembly_architecture",
+    "name": "Architrino Assembly Architecture",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ],
+    "wrapLabels": true
+  },
+  "objects": [
+    {
+      "id": "foundations",
+      "label": "Foundations",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        16.83,
+        -6.38,
+        0.0
+      ],
+      "subScenes": [
+        "json/foundations/foundations.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "dynamics",
+      "label": "Dynamics",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        11.94,
+        -13.47,
+        0.0
+      ],
+      "subScenes": [
+        "json/dynamics/dynamics.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "phenomenology",
+      "label": "Phenomenology",
+      "radius": 2.688,
+      "color": "#3a5f9f",
+      "position": [
+        4.31,
+        -17.48,
+        0.0
+      ],
+      "subScenes": [
+        "json/phenomenology/phenomenology.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "quantum",
+      "label": "Quantum",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        -4.31,
+        -17.48,
+        0.0
+      ],
+      "subScenes": [
+        "json/quantum/quantum.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "standard_model",
+      "label": "Standard Model Assemblies",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        8.37,
+        15.94,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/standard_model.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "scaleExponent": -18
+    },
+    {
+      "id": "fermion_generations",
+      "label": "Fermion Generation and Color",
+      "radius": 2.688,
+      "color": "PURPLE",
+      "position": [
+        17.87,
+        2.17,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-theory/fermion_generation_color.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "periodic_table",
+      "label": "Periodic Table",
+      "radius": 2.688,
+      "color": "#5a1f2e",
+      "position": [
+        14.81,
+        10.23,
+        0.0
+      ],
+      "subScenes": [
+        "json/chemistry/periodic_table_scene.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "nuclear_atomic",
+      "label": "Nuclear-Atomic",
+      "radius": 2.688,
+      "color": "#7a4a1f",
+      "position": [
+        -11.94,
+        -13.47,
+        0.0
+      ],
+      "subScenes": [
+        "json/nuclear/nuclear_atomic.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "spacetime",
+      "label": "Spacetime",
+      "radius": 2.688,
+      "color": "#1c2a4f",
+      "position": [
+        -16.83,
+        -6.38,
+        0.0
+      ],
+      "subScenes": [
+        "json/spacetime/spacetime.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmology",
+      "label": "Cosmology",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "position": [
+        -17.87,
+        2.17,
+        0.0
+      ],
+      "subScenes": [
+        "json/cosmology/cosmology.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "validation",
+      "label": "Validation",
+      "radius": 2.688,
+      "color": "#3f6a5a",
+      "position": [
+        -14.81,
+        10.23,
+        0.0
+      ],
+      "subScenes": [
+        "json/validation/validation.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "philosophy_history",
+      "label": "Philosophy-History",
+      "radius": 2.688,
+      "color": "#6a3c3c",
+      "position": [
+        -8.37,
+        15.94,
+        0.0
+      ],
+      "subScenes": [
+        "json/philosophy_history/philosophy_history.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "universe",
+      "label": "Universe",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "position": [
+        0.0,
+        18.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/cosmology/universe.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "scaleExponent": 26
+    }
+  ]
+}

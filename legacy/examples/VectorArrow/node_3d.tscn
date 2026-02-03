@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cng8mkjrpr0s6"]
+
+[ext_resource type="Script" uid="uid://dx1n7i5g23wrx" path="res://vector_arrow.gd" id="1_v0w0k"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_v0w0k")

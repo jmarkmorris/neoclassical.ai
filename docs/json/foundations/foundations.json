@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "foundations",
+    "name": "Foundations",
+    "units": "relative",
+    "wrapLabels": true,
+    "autoSphereRing": true,
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/foundations",
+        "subdirectories": false
+      },
+      "layout": {
+        "includeExisting": true,
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
+  },
+  "objects": []
+}

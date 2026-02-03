@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "fermion_generation_color",
+    "name": "Fermion Generation and Color",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ],
+    "markdownPath": "markdown/architrino-assembly-architecture/assemblies/fermions/color-charge-su3.md"
+  },
+  "objects": []
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "spacetime",
+    "name": "Spacetime",
+    "units": "relative",
+    "wrapLabels": true,
+    "autoSphereRing": true,
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/spacetime",
+        "subdirectories": false
+      },
+      "layout": {
+        "includeExisting": true,
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "black_hole_interior",
+      "label": "Black Hole Interior Structure",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "position": [
+        5.94,
+        9.24,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "early_universe_initial_conditions",
+      "label": "Big Bang & Early Universe",
+      "radius": 2.688,
+      "color": "#2c2c60",
+      "position": [
+        -3.16,
+        -10.54,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "cosmic_censorship",
+      "label": "Cosmic Censorship",
+      "radius": 2.688,
+      "color": "#2f4f7a",
+      "position": [
+        -8.32,
+        -7.19,
+        0.0
+      ],
+      "subScenes": [
+        "json/spacetime/cosmic_censorship.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

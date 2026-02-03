@@ -1,0 +1,230 @@
+{
+  "simulation": {
+    "particles": [
+      {
+        "id": 1,
+        "charge": 1,
+        "position": [2.0, 0.0, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 2,
+        "charge": -1,
+        "position": [-2.0, 0.0, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 3,
+        "charge": 1,
+        "position": [0.0, 2.0, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 4,
+        "charge": -1,
+        "position": [0.0, -2.0, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 5,
+        "charge": 1,
+        "position": [0.0, 0.0, 2.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 6,
+        "charge": -1,
+        "position": [0.0, 0.0, -2.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 7,
+        "charge": 1,
+        "position": [1.5, 1.5, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 8,
+        "charge": -1,
+        "position": [-1.5, -1.5, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 9,
+        "charge": 1,
+        "position": [1.0, 0.0, 1.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 10,
+        "charge": -1,
+        "position": [-1.0, 0.0, -1.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 11,
+        "charge": 1,
+        "position": [0.0, 1.0, 1.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 12,
+        "charge": -1,
+        "position": [0.0, -1.0, -1.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 13,
+        "charge": 1,
+        "position": [1.0, 1.0, 1.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 14,
+        "charge": -1,
+        "position": [-1.0, -1.0, -1.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 15,
+        "charge": 1,
+        "position": [2.5, 0.5, 0.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 16,
+        "charge": -1,
+        "position": [-2.5, -0.5, -0.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 17,
+        "charge": 1,
+        "position": [0.5, 2.5, 0.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 18,
+        "charge": -1,
+        "position": [-0.5, -2.5, -0.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 19,
+        "charge": 1,
+        "position": [0.5, 0.5, 2.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 20,
+        "charge": -1,
+        "position": [-0.5, -0.5, -2.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 21,
+        "charge": 1,
+        "position": [1.8, -1.8, 0.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 22,
+        "charge": -1,
+        "position": [-1.8, 1.8, -0.5],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 23,
+        "charge": 1,
+        "position": [-0.5, 1.8, 1.8],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 24,
+        "charge": -1,
+        "position": [0.5, -1.8, -1.8],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 25,
+        "charge": 1,
+        "position": [1.2, -1.2, 1.2],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 26,
+        "charge": -1,
+        "position": [-1.2, 1.2, -1.2],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 27,
+        "charge": 1,
+        "position": [2.2, 2.2, 2.2],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 28,
+        "charge": -1,
+        "position": [-2.2, -2.2, -2.2],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 29,
+        "charge": 1,
+        "position": [3.0, 3.0, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      },
+      {
+        "id": 30,
+        "charge": -1,
+        "position": [-3.0, -3.0, 0.0],
+        "velocity": [1.0, 0.0, 0.0]
+      }
+    ],
+    "duration": 20,
+    "dt": 0.01,
+    "max_history": 10000,
+    "action_function": "basic"
+  },
+  "physics": {
+    "coulomb_constant": 0.8,
+    "min_distance": 0.001,
+    "min_velocity": 0.001
+  },
+  "visualization": {
+    "colors": {
+      "background": "#4B0082",
+      "positive": "#FF0000",
+      "negative": "#0000FF",
+      "tracer": "#FFFFFF",
+      "tracer_positive": "#FC6255",
+      "tracer_negative": "#58C4DD"
+    },
+    "marker_size": 0.04,
+    "use_dot3d": true,
+    "tracer": {
+      "enabled": true,
+      "history_length": 100,
+      "stroke_width": 1,
+      "add_spheres": false,
+      "frames_between_trail_segments": 6,
+      "sphere_radius": 0.02,
+      "max_sphere_radius": 5.0,
+      "use_particle_color": true
+    },
+    "scaling": {
+      "enabled": false,
+      "initial_scale": 1.0,
+      "max_display_limit": 5.0,
+      "min_display_limit": 2.0,
+      "scale_stability_threshold": 0.2
+    },
+    "sim_to_manim_ratio": 20,
+    "manim_frame_rate": 60,
+    "camera": {
+      "phi": 75,
+      "theta": 30
+    }
+  }
+}

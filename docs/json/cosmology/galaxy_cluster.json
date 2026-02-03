@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "galaxy_cluster",
+    "name": "Galaxy Cluster",
+    "units": "relative",
+    "scaleBandLog10m": [22, 24]
+  },
+  "objects": [
+    {
+      "id": "galaxy",
+      "label": "galaxy",
+      "scaleExponent": 21,
+      "radius": 1.3,
+      "color": "#3f5f8a",
+      "position": [-2.5, 4.33, 0.0],
+      "subScenes": ["json/cosmology/galaxy.json"],
+      "motion": { "type": "fixed" }
+    },
+    {
+      "id": "intracluster_medium",
+      "label": "intracluster medium",
+      "scaleExponent": 23,
+      "radius": 1.2,
+      "color": "#2a3b5a",
+      "position": [-2.5, -4.33, 0.0],
+      "subScenes": ["json/cosmology/intracluster_medium.json"],
+      "motion": { "type": "fixed" }
+    }
+  ]
+}

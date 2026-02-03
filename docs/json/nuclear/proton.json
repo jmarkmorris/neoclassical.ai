@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "proton",
+    "name": "Proton",
+    "units": "relative",
+    "scaleBandLog10m": [
+      -15,
+      -14
+    ]
+  },
+  "objects": [
+    {
+      "id": "up_quark_1",
+      "label": "up quark",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "RED",
+      "position": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/up_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "up_quark_2",
+      "label": "up quark",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "RED",
+      "position": [
+        -1.0,
+        1.7,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/up_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    },
+    {
+      "id": "down_quark",
+      "label": "down quark",
+      "scaleExponent": -19,
+      "radius": 0.9,
+      "color": "BLUE",
+      "position": [
+        -1.0,
+        -1.7,
+        0.0
+      ],
+      "subScenes": [
+        "json/standard-model-particles/down_quark.json"
+      ],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

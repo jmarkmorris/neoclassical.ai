@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "positrino",
+    "name": "Positrino",
+    "units": "relative",
+    "scaleBandLog10m": [
+      -20,
+      -18
+    ]
+  },
+  "objects": [
+    {
+      "id": "positrino",
+      "label": "Positrino",
+      "scaleExponent": -20,
+      "hideScaleLabel": true,
+      "radius": 1.2,
+      "color": "RED",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "nuclear_atomic",
+    "name": "Nuclear-Atomic",
+    "units": "relative",
+    "wrapLabels": true,
+    "autoSphereRing": true,
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/nuclear-atomic",
+        "subdirectories": false
+      },
+      "layout": {
+        "includeExisting": true,
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "leptogenesis",
+      "label": "Leptogenesis CP Sources",
+      "radius": 2.688,
+      "color": "#2c567a",
+      "position": [
+        -4.5,
+        -4.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

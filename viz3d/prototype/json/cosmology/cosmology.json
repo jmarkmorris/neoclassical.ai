@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "cosmology",
+    "name": "Cosmology",
+    "units": "relative",
+    "wrapLabels": true,
+    "autoSphereRing": true,
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/cosmology",
+        "subdirectories": false
+      },
+      "layout": {
+        "includeExisting": true,
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
+  },
+  "objects": [
+    {
+      "id": "horizon_problem",
+      "label": "Horizon Problem",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "position": [
+        0.0,
+        -7.5,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2003 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "cu",
+    "name": "Copper (Cu)",
+    "units": "relative",
+    "scaleBandLog10m": [
+      0,
+      0
+    ]
+  },
+  "objects": [
+    {
+      "id": "p1",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -2.36,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p2",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.686,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p3",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.011,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p4",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -0.337,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p5",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        0.337,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p6",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        1.011,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p7",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        1.686,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p8",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        2.36,
+        -2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p9",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -2.36,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p10",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.686,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p11",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.011,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p12",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -0.337,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p13",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        0.337,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p14",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        1.011,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p15",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        1.686,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p16",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        2.36,
+        -1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p17",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -2.36,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p18",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.686,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p19",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.011,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p20",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -0.337,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p21",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        0.337,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p22",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        1.011,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p23",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        1.686,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p24",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        2.36,
+        -1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p25",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -2.36,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p26",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.686,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p27",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -1.011,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p28",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        -0.337,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "p29",
+      "label": "P",
+      "radius": 0.3065,
+      "color": "RED",
+      "position": [
+        0.337,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "proton",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "n1",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.011,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n2",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.686,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n3",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        2.36,
+        -0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n4",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -2.36,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n5",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.686,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n6",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.011,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n7",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -0.337,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n8",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        0.337,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n9",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.011,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n10",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.686,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n11",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        2.36,
+        0.337,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n12",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -2.36,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n13",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.686,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n14",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.011,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n15",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -0.337,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n16",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        0.337,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n17",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.011,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n18",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.686,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n19",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        2.36,
+        1.011,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n20",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -2.36,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n21",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.686,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n22",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.011,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n23",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -0.337,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n24",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        0.337,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n25",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.011,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n26",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.686,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n27",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        2.36,
+        1.686,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n28",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -2.36,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n29",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.686,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n30",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -1.011,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n31",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        -0.337,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n32",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        0.337,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n33",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.011,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n34",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        1.686,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "n35",
+      "label": "N",
+      "radius": 0.3065,
+      "color": "PURPLE",
+      "position": [
+        2.36,
+        2.36,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "neutron",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "e1_1",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        2.025,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 2.025,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 1,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e1_2",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -2.025,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 2.025,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 1,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_1",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        4.05,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_2",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        2.864,
+        2.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 0.785
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_3",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        0.0,
+        4.05,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 1.571
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_4",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -2.864,
+        2.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 2.356
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_5",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -4.05,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_6",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -2.864,
+        -2.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 3.927
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_7",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -0.0,
+        -4.05,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 4.712
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e2_8",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        2.864,
+        -2.864,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 4.05,
+        "speed": 0,
+        "phase": 5.498
+      },
+      "category": "electron",
+      "shell": 2,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_1",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        6.075,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_2",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        5.709,
+        2.078,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 0.349
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_3",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        4.654,
+        3.905,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 0.698
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_4",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        3.038,
+        5.261,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 1.047
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_5",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        1.055,
+        5.983,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 1.396
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_6",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -1.055,
+        5.983,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 1.745
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_7",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -3.037,
+        5.261,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 2.094
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_8",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -4.654,
+        3.905,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 2.443
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_9",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -5.709,
+        2.078,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 2.793
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_10",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -6.075,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 3.142
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_11",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -5.709,
+        -2.078,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 3.491
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_12",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -4.654,
+        -3.905,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 3.84
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_13",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -3.038,
+        -5.261,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 4.189
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_14",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        -1.055,
+        -5.983,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 4.538
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_15",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        1.055,
+        -5.983,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 4.887
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_16",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        3.037,
+        -5.261,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 5.236
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_17",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        4.654,
+        -3.905,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 5.585
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e3_18",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        5.709,
+        -2.078,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 6.075,
+        "speed": 0,
+        "phase": 5.934
+      },
+      "category": "electron",
+      "shell": 3,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "e4_1",
+      "label": "e",
+      "radius": 0.192,
+      "color": "BLUE",
+      "position": [
+        8.1,
+        0.0,
+        0.0
+      ],
+      "motion": {
+        "type": "orbit",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": 8.1,
+        "speed": 0,
+        "phase": 0.0
+      },
+      "category": "electron",
+      "shell": 4,
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    },
+    {
+      "id": "legend_p",
+      "label": "P",
+      "radius": 0.2758,
+      "color": "RED",
+      "position": [
+        -10.1,
+        10.1,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend",
+      "subScenes": [
+        "json/nuclear/proton.json"
+      ]
+    },
+    {
+      "id": "legend_n",
+      "label": "N",
+      "radius": 0.2758,
+      "color": "PURPLE",
+      "position": [
+        -10.1,
+        9.272,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend",
+      "subScenes": [
+        "json/nuclear/neutron.json"
+      ]
+    },
+    {
+      "id": "legend_e",
+      "label": "e",
+      "radius": 0.2758,
+      "color": "BLUE",
+      "position": [
+        -10.1,
+        8.445,
+        0.0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "category": "legend",
+      "subScenes": [
+        "json/standard-model-particles/electron.json"
+      ]
+    }
+  ]
+}

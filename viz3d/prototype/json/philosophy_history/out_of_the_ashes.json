@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "out_of_the_ashes",
+    "name": "Out of the Ashes",
+    "units": "relative",
+    "wrapLabels": true,
+    "autoSphereRing": true,
+    "markdown": {
+      "source": {
+        "type": "file",
+        "path": "markdown/architrino-assembly-architecture/philosophy-history/out-of-the-ashes.md"
+      },
+      "layout": {
+        "nodeRadius": 2.2,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
+  },
+  "objects": []
+}

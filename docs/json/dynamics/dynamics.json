@@ -1,0 +1,22 @@
+{
+  "scene": {
+    "id": "dynamics",
+    "name": "Dynamics",
+    "autoSphereRing": true,
+    "markdown": {
+      "source": {
+        "type": "directory",
+        "path": "markdown/architrino-assembly-architecture/dynamics",
+        "subdirectories": false
+      },
+      "layout": {
+        "nodeRadius": 2.688,
+        "ringRadius": 12
+      },
+      "render": {
+        "defaultMode": "doc"
+      }
+    }
+  },
+  "objects": []
+}

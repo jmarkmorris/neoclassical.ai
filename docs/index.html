@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>neoclassical.ai</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"], ["$", "$"]],
+          displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+          processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        },
+        startup: {
+          typeset: false
+        }
+      };
+    </script>
+    <script
+      id="mathjax-script"
+      defer
+      src="./vendor/mathjax/tex-chtml.js"
+    ></script>
+    <script src="./vendor/markdown-it/markdown-it.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="viz"></canvas>
+      <div id="scene-label"></div>
+      <button id="nav-up" type="button" aria-label="Go back">Back</button>
+      <div id="nav-controls">
+        <button id="doc-button" type="button" aria-label="Open scene notes" data-tooltip="Notes">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M7 4h7l4 4v12H7V4zm7 0v4h4"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+        </button>
+        <button id="home-button" type="button" aria-label="Go to home">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M3 11.5L12 4l9 7.5M6.5 10.5V20h11V10.5"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+        <button
+          id="meta-button"
+          type="button"
+          aria-label="Open meta ring"
+          aria-pressed="false"
+          onclick="window.openMetaRing ? window.openMetaRing() : document.getElementById('home-button')?.click()"
+          style="width:32px;height:32px;border-radius:8px;border:1px solid rgba(160,170,220,0.25);background:rgba(8,10,18,0.75);color:#f5f7ff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            width="18"
+            height="18"
+            style="pointer-events:none;stroke:currentColor;stroke-width:2;fill:none;"
+          >
+            <circle cx="12" cy="12" r="7.5"></circle>
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </button>
+        <div id="scene-search">
+          <button
+            id="scene-search-toggle"
+            type="button"
+            aria-label="Search scenes"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <line x1="15.5" y1="15.5" x2="21" y2="21"></line>
+            </svg>
+          </button>
+          <div id="scene-search-panel" aria-hidden="true">
+            <input
+              id="scene-search-input"
+              type="text"
+              placeholder="Search scenes"
+              autocomplete="off"
+            />
+            <div id="scene-search-results"></div>
+          </div>
+        </div>
+      </div>
+      <div id="detail-panel" aria-hidden="true">
+        <div class="detail-header">
+          <div id="detail-title"></div>
+          <button id="detail-close" type="button" aria-label="Close details">
+            Close
+          </button>
+        </div>
+        <div id="detail-body"></div>
+      </div>
+      <div id="hover-tooltip" aria-hidden="true"></div>
+      <div id="markdown-panel" aria-hidden="true" class="two-columns">
+        <div class="markdown-header">
+          <div id="markdown-title"></div>
+          <div class="markdown-actions">
+            <button
+              id="markdown-doc-button"
+              type="button"
+              aria-label="Open full document"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 4h7l4 4v12H7V4zm7 0v4h4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </button>
+            <button
+              id="markdown-layout-toggle"
+              type="button"
+              aria-label="Switch to single column"
+            >
+              <svg class="layout-icon-single" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="6" width="16" height="2" rx="1"></rect>
+                <rect x="4" y="11" width="16" height="2" rx="1"></rect>
+                <rect x="4" y="16" width="16" height="2" rx="1"></rect>
+              </svg>
+              <svg class="layout-icon-double" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="6" width="8" height="2" rx="1"></rect>
+                <rect x="3" y="11" width="8" height="2" rx="1"></rect>
+                <rect x="3" y="16" width="8" height="2" rx="1"></rect>
+                <rect x="13" y="6" width="8" height="2" rx="1"></rect>
+                <rect x="13" y="11" width="8" height="2" rx="1"></rect>
+                <rect x="13" y="16" width="8" height="2" rx="1"></rect>
+              </svg>
+            </button>
+            <button id="markdown-close" type="button" aria-label="Close notes">
+              Close
+            </button>
+          </div>
+        </div>
+      <div id="markdown-content">
+        <div id="markdown-body"></div>
+      </div>
+    </div>
+      <div id="composer-overlay" aria-hidden="true">
+        <div class="composer-header">
+          <div>
+            <div class="composer-title">Composer</div>
+            <div class="composer-subtitle">Scene animation designer (Arch API)</div>
+          </div>
+          <div class="composer-actions">
+            <button
+              id="composer-docs-button"
+              type="button"
+              aria-label="Open Arch API notes"
+            >
+              Arch API
+            </button>
+          </div>
+        </div>
+        <div class="composer-body">
+          <div class="composer-tabs" role="tablist" aria-label="Composer panels">
+            <button
+              class="composer-tab is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-panel="tree"
+            >
+              Scene Tree
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="path"
+            >
+              Path Editor
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="orbit"
+            >
+              Orbit Editor
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="interactions"
+            >
+              Interactions
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="preview"
+            >
+              Preview
+            </button>
+            <button
+              class="composer-tab"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-panel="export"
+            >
+              Export / Validate
+            </button>
+          </div>
+          <div class="composer-panels">
+            <section class="composer-panel is-active" data-panel="tree" role="tabpanel" aria-hidden="false">
+              <h3>Scene Tree</h3>
+              <div class="composer-section">
+                <div class="composer-section-title">Quick Start</div>
+                <ol class="composer-steps">
+                  <li>Set a scene id + name.</li>
+                  <li>Pick how many nodes you want.</li>
+                  <li>Click Preview Scene to render.</li>
+                  <li>Click Export JSON to save.</li>
+                </ol>
+              </div>
+              <div class="composer-form">
+                <label class="composer-field">
+                  <span>Scene ID</span>
+                  <input id="composer-scene-id" type="text" value="composer_scene" />
+                </label>
+                <label class="composer-field">
+                  <span>Scene Name</span>
+                  <input id="composer-scene-name" type="text" value="Composer Scene" />
+                </label>
+                <label class="composer-field">
+                  <span>Node Count</span>
+                  <input id="composer-node-count" type="number" min="1" max="18" step="1" value="6" />
+                </label>
+                <label class="composer-field">
+                  <span>Node Labels (comma-separated)</span>
+                  <input
+                    id="composer-node-labels"
+                    type="text"
+                    placeholder="Node A, Node B, Node C"
+                  />
+                </label>
+              </div>
+              <p>Build nested scenes and assemblies with explicit frames and transforms.</p>
+              <ul>
+                <li>Add, reorder, and group child scenes.</li>
+                <li>Assign frame anchors and local transforms.</li>
+                <li>Reuse scene presets for assemblies.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="path" role="tabpanel" aria-hidden="true">
+              <h3>Path Editor</h3>
+              <p>Define simulated, function, or group paths with repeat and sampling controls.</p>
+              <ul>
+                <li>Choose function vs simulated vs group paths.</li>
+                <li>Set frame space, repeat mode, and sampling rate.</li>
+                <li>Preview trace styling and LOD.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="orbit" role="tabpanel" aria-hidden="true">
+              <h3>Orbit Editor</h3>
+              <p>Configure orbit parameters, ellipses, precession, and formatting.</p>
+              <ul>
+                <li>Set theta, phi, radius, and phase.</li>
+                <li>Edit ellipse planes and eccentricity.</li>
+                <li>Toggle traces, fade, and elliptical view.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="interactions" role="tabpanel" aria-hidden="true">
+              <h3>Interactions</h3>
+              <p>Couple assemblies with exchanges, resonance, and timed transfers.</p>
+              <ul>
+                <li>Define participants and trigger windows.</li>
+                <li>Attach handoff paths and blend durations.</li>
+                <li>Author reaction outcomes and probabilities.</li>
+              </ul>
+            </section>
+            <section class="composer-panel" data-panel="preview" role="tabpanel" aria-hidden="true">
+              <h3>Preview</h3>
+              <p>Inspect scenes with realtime toggles for traces, overlays, and sampling.</p>
+              <ul>
+                <li>Fit/contain viewport controls.</li>
+                <li>Quality and LOD presets for live edit.</li>
+                <li>Playback and time scaling.</li>
+              </ul>
+              <p class="composer-hint">Click Preview Scene to open a temporary scene. Use Back to return.</p>
+            </section>
+            <section class="composer-panel" data-panel="export" role="tabpanel" aria-hidden="true">
+              <h3>Export / Validate</h3>
+              <p>Emit canonical JSON with explicit units, defaults, and schema checks.</p>
+              <ul>
+                <li>Validate ids, anchors, and time ranges.</li>
+                <li>Export JSON or JS/TS modules.</li>
+                <li>Save presets and import fixtures.</li>
+              </ul>
+              <p class="composer-hint">Click Export JSON to download. Preview below updates from the form.</p>
+              <pre id="composer-json-preview" class="composer-json-preview"></pre>
+            </section>
+          </div>
+        </div>
+        <div class="composer-footer">
+          <div class="composer-footer-actions">
+            <button id="composer-preview-button" type="button">Preview Scene</button>
+            <button id="composer-export-button" type="button">Export JSON</button>
+          </div>
+          <div id="composer-status" class="composer-status" aria-live="polite"></div>
+        </div>
+      </div>
+      <div id="element-legend" aria-hidden="true">
+        <button class="legend-pill" type="button" data-scene="json/nuclear/proton.json">
+          <span class="legend-dot legend-dot-p"></span>
+          <span class="legend-label">P (proton)</span>
+        </button>
+        <button class="legend-pill" type="button" data-scene="json/nuclear/neutron.json">
+          <span class="legend-dot legend-dot-n"></span>
+          <span class="legend-label">N (neutron)</span>
+        </button>
+        <button class="legend-pill" type="button" data-scene="json/standard-model-particles/electron.json">
+          <span class="legend-dot legend-dot-e"></span>
+          <span class="legend-label">e (electron)</span>
+        </button>
+      </div>
+      <div id="periodic-overlay" aria-hidden="true">
+        <div class="periodic-header">
+          <div class="periodic-title">Periodic Table</div>
+        </div>
+        <div id="periodic-grid"></div>
+        <div id="periodic-legend"></div>
+      </div>
+      <div id="hud" role="button" aria-expanded="false" aria-controls="info-drawer" tabindex="0">
+        <div class="hud-header">
+          <div class="hud-title">neoclassical.ai</div>
+          <div class="hud-info-icon" aria-hidden="true">i</div>
+        </div>
+        <div class="hud-line">Click/tap a glowing sphere to descend</div>
+      </div>
+      <div id="info-drawer" aria-hidden="true">
+        <div id="info-body"></div>
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

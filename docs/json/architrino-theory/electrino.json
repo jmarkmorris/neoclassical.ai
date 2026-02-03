@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "electrino",
+    "name": "Electrino",
+    "units": "relative",
+    "scaleBandLog10m": [
+      -20,
+      -18
+    ]
+  },
+  "objects": [
+    {
+      "id": "electrino",
+      "label": "Electrino",
+      "scaleExponent": -20,
+      "hideScaleLabel": true,
+      "radius": 1.2,
+      "color": "BLUE",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "subScenes": [],
+      "motion": {
+        "type": "fixed"
+      }
+    }
+  ]
+}
