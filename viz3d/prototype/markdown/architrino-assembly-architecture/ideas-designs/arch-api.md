@@ -9,6 +9,7 @@ Scope (v0)
 - Declarative scene spec (JS/TS + JSON/YAML compatible).
 - Minimal operations: path, orbit, spin, group velocity, charges, precession, formulas.
 - Recursive scene language: a scene can contain nested scenes, and scenes can be animated by paths.
+- Explicit time, units, and validation rules for canonical JSON output.
 
 Core idea
 - A path is a first-class object that can come from multiple sources.
@@ -25,6 +26,17 @@ FrameSpec (draft)
 - `space`: "absolute" | "relative"
 - `relativeTo`: anchor or node id (required when space == "relative")
 - `repeat`: optional RepeatSpec to loop the local path
+
+TransformSpec (draft)
+- `position`: [x, y, z]
+- `rotation`: [rx, ry, rz] (degrees)
+- `scale`: [sx, sy, sz] or scalar
+
+AnchorSpec (draft)
+- `id`: unique anchor id
+- `kind`: "point" | "axis" | "com"
+- `target`: scene id or group id
+- `offset`: optional local offset or axis vector
 
 RepeatSpec (draft)
 - `mode`: "loop" | "pingpong" | "clamp"
@@ -65,14 +77,42 @@ PathSpec payloads
   - `groupId`: assembly/group reference
   - `mode`: "com" | "centroid" | "anchor"
 
+StyleSpec (draft)
+- `color`: hex or named
+- `opacity`: 0..1
+- `lineWidth`: number
+- `glow`: optional intensity
+- `trace`: { length, density, fade }
+- `lod`: { preview, final }
+
+SamplerSpec (draft)
+- `rate`: samples per second
+- `adaptive`: boolean
+- `maxPoints`: cap for traces
+
 SceneSpec (draft)
 - `name`: unique id
-- `frame`: local transform (origin, orientation, scale)
+- `frame`: local frame reference (FrameSpec)
+- `transform`: local transform (TransformSpec)
+- `time`: optional local time override (TimeSpec)
+- `units`: optional units override (UnitsSpec, typically root only)
 - `path`: PathSpec or OrbitSpec
 - `children`: nested scenes
 - `style`: render style
 - `charges`: personality charge specs
 - `annotations`: formulas, labels, debug
+
+TimeSpec (draft)
+- `timeBase`: "seconds" | "normalized"
+- `playbackRate`: scalar
+- `start`: start time
+- `end`: end time
+- `loop`: boolean
+
+UnitsSpec (draft)
+- `length`: "scene" | "meters" | "arbitrary"
+- `angle`: "degrees" | "radians"
+- `time`: "seconds" | "normalized"
 
 OrbitSpec (draft)
 - `origin`: anchor or node id
@@ -182,6 +222,12 @@ Canonical JSON contract
   - All references (scene ids, anchors, frames) are resolved or resolvable.
   - Versioned schema for forward compatibility.
 - The renderer can derive computed values (sampling function paths, resolving COM), but should not guess missing inputs.
+
+Validation rules (minimum)
+- Unique ids for scenes and anchors.
+- References must resolve (anchors, frames, group ids).
+- Time ranges must be valid (start < end, positive period).
+- Sampling limits respected in preview mode.
 
 Open questions
 - How should `frame` references be resolved (id, path, or implicit parent)?
