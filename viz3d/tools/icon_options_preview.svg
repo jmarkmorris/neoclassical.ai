@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="400" viewBox="0 0 660 400">
+  <rect width="100%" height="100%" fill="#0b0e1a" />
+  <polygon points="146.48,94.80 146.48,85.20 138.80,85.20 138.80,94.80" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <polygon points="132.40,119.19 139.19,112.40 133.76,106.97 126.97,113.76" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <polygon points="105.20,126.48 114.80,126.48 114.80,118.80 105.20,118.80" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <polygon points="80.81,112.40 87.60,119.19 93.03,113.76 86.24,106.97" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <polygon points="73.52,85.20 73.52,94.80 81.20,94.80 81.20,85.20" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <polygon points="87.60,60.81 80.81,67.60 86.24,73.03 93.03,66.24" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <polygon points="114.80,53.52 105.20,53.52 105.20,61.20 114.80,61.20" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <polygon points="139.19,67.60 132.40,60.81 126.97,66.24 133.76,73.03" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <circle cx="110.00" cy="90.00" r="28.80" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="110.00" cy="90.00" r="13.44" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="110.00" y="130.32" fill="#f5f7ff" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">Gear</text>
+  <line x1="301.20" y1="74.64" x2="358.80" y2="74.64" stroke="#f5f7ff" stroke-width="2" stroke-linecap="round" />
+  <circle cx="318.48" cy="74.64" r="5.76" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <line x1="301.20" y1="90.00" x2="358.80" y2="90.00" stroke="#f5f7ff" stroke-width="2" stroke-linecap="round" />
+  <circle cx="347.28" cy="90.00" r="5.76" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <line x1="301.20" y1="105.36" x2="358.80" y2="105.36" stroke="#f5f7ff" stroke-width="2" stroke-linecap="round" />
+  <circle cx="328.08" cy="105.36" r="5.76" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="330.00" y="130.32" fill="#f5f7ff" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">Sliders</text>
+  <circle cx="550.00" cy="90.00" r="32.64" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="550.00" cy="122.64" r="5.76" stroke="#f5f7ff" stroke-width="0" fill="#f5f7ff" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="526.92" cy="66.92" r="5.76" stroke="#f5f7ff" stroke-width="0" fill="#f5f7ff" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="573.08" cy="66.92" r="5.76" stroke="#f5f7ff" stroke-width="0" fill="#f5f7ff" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="550.00" y="130.32" fill="#f5f7ff" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">Orbit ring</text>
+  <circle cx="110.00" cy="290.00" r="32.64" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="110.00" cy="290.00" r="17.28" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="110.00" cy="290.00" r="3.84" stroke="#f5f7ff" stroke-width="0" fill="#f5f7ff" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="110.00" y="330.32" fill="#f5f7ff" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">Concentric</text>
+  <rect x="314.64" y="274.64" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="326.16" y="274.64" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="337.68" y="274.64" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="314.64" y="286.16" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="326.16" y="286.16" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="337.68" y="286.16" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="314.64" y="297.68" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="326.16" y="297.68" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <rect x="337.68" y="297.68" width="7.68" height="7.68" stroke="#f5f7ff" stroke-width="2" fill="none" />
+  <text x="330.00" y="330.32" fill="#f5f7ff" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">Grid</text>
+  <circle cx="550.00" cy="290.00" r="32.64" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <polygon points="550.00,268.88 546.16,290.00 550.00,294.22 553.84,290.00" stroke="#f5f7ff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <text x="550.00" y="330.32" fill="#f5f7ff" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">Compass</text>
+</svg>

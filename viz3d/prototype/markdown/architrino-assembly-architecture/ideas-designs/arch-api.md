@@ -254,6 +254,22 @@ ViewportSpec (draft)
 - `camera`: { position, target, fov }
 - `fit`: "contain" | "cover"
 
+Designer UI approach comparison (priority order)
+
+| Priority | Criterion | Overlay editor (HTML/CSS over canvas) | In-scene 3D editor (gizmos in world) |
+|---|---|---|---|
+| 1 | Time to MVP | Fast (reuse web UI components) | Slow (custom 3D UI + interaction) |
+| 2 | Usability / clarity | High (familiar panels, forms) | Medium (cool but can be confusing) |
+| 3 | Precision editing | High (numeric inputs, sliders) | Medium (gizmo drift, depth ambiguity) |
+| 4 | Implementation risk | Low | High |
+| 5 | Maintenance cost | Low | High |
+| 6 | Performance impact | Low (UI separate from 3D) | Medium/High (more draw + hit tests) |
+| 7 | Immersion / “feel” | Medium | High |
+| 8 | Direct spatial manipulation | Medium (limited) | High (natural in 3D) |
+
+Decision
+- Use the overlay editor as the primary UI approach.
+
 Nested assembly principle
 - Prefer deeper nesting that mirrors the actual assembly (inner -> middle -> outer).
 - Each level is a reusable scene with its own frame and path, composed into the parent.
