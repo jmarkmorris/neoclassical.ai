@@ -119,6 +119,8 @@ body {
 }
 
 #meta-button {
+  -webkit-appearance: none;
+  appearance: none;
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -129,11 +131,13 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 0;
 }
 
 #meta-button svg {
   width: 18px;
   height: 18px;
+  pointer-events: none;
 }
 
 #meta-button.is-active {
