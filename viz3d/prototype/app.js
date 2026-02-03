@@ -3686,6 +3686,34 @@ function updateSceneLabel() {
   updateElementInfoPanel();
 }
 
+function handleMetaButtonClick() {
+  if (transitionState.active) {
+    return;
+  }
+  if (currentLevel?.id === metaScenePath) {
+    if (searchBackStack.length > 0) {
+      const backState = searchBackStack.pop();
+      if (backState?.levelId) {
+        jumpToScene(backState.levelId, {
+          restoreNavStack: backState.navigationStack,
+        });
+      }
+    }
+    return;
+  }
+  if (currentLevel) {
+    searchBackStack.push({
+      levelId: currentLevel.id,
+      navigationStack: navigationStack.map((entry) => ({
+        levelId: entry.levelId,
+        focusNodeId: entry.focusNodeId,
+      })),
+    });
+    updateNavButton();
+  }
+  jumpToScene(metaScenePath, { mode: "jump" });
+}
+
 async function ensureSceneIndex() {
   if (sceneIndexReady) {
     return;
@@ -4177,33 +4205,7 @@ if (homeButton) {
 }
 
 if (metaButton) {
-  metaButton.addEventListener("click", () => {
-    if (transitionState.active) {
-      return;
-    }
-    if (currentLevel?.id === metaScenePath) {
-      if (searchBackStack.length > 0) {
-        const backState = searchBackStack.pop();
-        if (backState?.levelId) {
-          jumpToScene(backState.levelId, {
-            restoreNavStack: backState.navigationStack,
-          });
-        }
-      }
-      return;
-    }
-    if (currentLevel) {
-      searchBackStack.push({
-        levelId: currentLevel.id,
-        navigationStack: navigationStack.map((entry) => ({
-          levelId: entry.levelId,
-          focusNodeId: entry.focusNodeId,
-        })),
-      });
-      updateNavButton();
-    }
-    jumpToScene(metaScenePath, { mode: "jump" });
-  });
+  metaButton.addEventListener("click", handleMetaButtonClick);
 }
 
 wireElementLegend();

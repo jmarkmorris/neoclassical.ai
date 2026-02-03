@@ -134,25 +134,13 @@ body {
   padding: 0;
 }
 
-.meta-icon {
-  width: 16px;
-  height: 16px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-}
-
-.meta-icon::after {
-  content: "";
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: currentColor;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#meta-button svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
 }
 
 #meta-button.is-active {
