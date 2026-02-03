@@ -81,6 +81,11 @@
       "path": "json/meta/meta.json"
     },
     {
+      "id": "composer",
+      "name": "Composer",
+      "path": "json/meta/composer.json"
+    },
+    {
       "id": "foundations",
       "name": "Foundations",
       "path": "json/foundations/foundations.json"
