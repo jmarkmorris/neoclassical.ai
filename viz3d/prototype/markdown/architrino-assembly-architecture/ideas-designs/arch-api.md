@@ -125,6 +125,7 @@ TimeSpec (draft)
 - `start`: start time
 - `end`: end time
 - `loop`: boolean
+- Note: default uses real seconds; add an opt-in live clock mode only if needed.
 
 UnitsSpec (draft)
 - `length`: "scene" | "meters" | "arbitrary"
