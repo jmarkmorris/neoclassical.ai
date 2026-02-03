@@ -174,6 +174,15 @@ Nested assembly principle
 - Each level is a reusable scene with its own frame and path, composed into the parent.
 - This reduces special cases and increases code reuse in both the renderer and the designer app.
 
+Canonical JSON contract
+- The scene designer outputs a canonical, fully-populated JSON spec.
+- Canonical means:
+  - Required fields are present with defaults applied.
+  - Units, scales, and time bases are explicit.
+  - All references (scene ids, anchors, frames) are resolved or resolvable.
+  - Versioned schema for forward compatibility.
+- The renderer can derive computed values (sampling function paths, resolving COM), but should not guess missing inputs.
+
 Open questions
 - How should `frame` references be resolved (id, path, or implicit parent)?
 - What is the default unit scale (1.0 == 1 meter or symbolic unit)?
