@@ -9,7 +9,6 @@
 - what is the smallest assembly that can make a decision
 - are there any rapid hits
   - ellipsoid to GR
-  - ckm matrix?
   - koide
   - planck
   - 1 2 4
@@ -74,16 +73,10 @@ there are stable orbits at each h
 ## 3. **Charge Quantization from Tri-Binary Topology (Conceptual Clarity)**
 **Why critical:** We *postulate* |e/6| but claim tri-binary geometry *explains* it. If we cannot show why only 0, ±e/3, ±2e/3, ±e are stable (and nothing else), this looks like fine-tuning dressed up as explanation.
 
-**Who:** Dyna + Phe + Alfa (decoration pattern → charge stability map)
-
 ---
 
 ## 4. **Ontological Coherence Audit**
 **Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, deterministic multistability + effective quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
-
-**Who:** Phil (me) + Red + entire team (quarterly review)
-
-
 
 ---
 
