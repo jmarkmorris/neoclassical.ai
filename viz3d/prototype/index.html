@@ -350,6 +350,27 @@
                   </div>
                   <button id="composer-camera-reset" type="button">Reset Camera</button>
                 </div>
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Camera Flight</div>
+                  <div class="composer-form composer-form-grid">
+                    <label class="composer-field">
+                      <span>POI Target</span>
+                      <select id="composer-camera-poi">
+                        <option value="origin">Local Origin</option>
+                        <option value="selected">Selected Point</option>
+                      </select>
+                    </label>
+                    <label class="composer-field">
+                      <span>Preview</span>
+                      <button id="composer-camera-flight-toggle" type="button">Play Flight</button>
+                    </label>
+                  </div>
+                  <div class="composer-button-row">
+                    <button id="composer-camera-waypoint-add" type="button">Add Waypoint</button>
+                    <button id="composer-camera-waypoint-clear" type="button">Clear</button>
+                  </div>
+                  <div id="composer-camera-waypoint-count" class="composer-hint">Waypoints: 0</div>
+                </div>
               </div>
             </section>
             <section class="composer-panel" data-panel="orbit" role="tabpanel" aria-hidden="true">

@@ -125,6 +125,7 @@ SceneSpec (draft)
 - `time`: optional local time override (TimeSpec)
 - `units`: optional units override (UnitsSpec, typically root only)
 - `path`: PathSpec or OrbitSpec
+- `cameraPath`: optional CameraPathSpec (typically root only)
 - `children`: nested scenes
 - `interactions`: optional InteractionSpec[] (typically root)
 - `transfers`: optional TransferSpec[] (typically root)
@@ -276,6 +277,8 @@ Composer app (scene design)
   - Free-fly mode for precise placement anywhere in space.
   - Speed scaling (orders of magnitude) for large scenes.
   - Focus on selection re-centers the view on the active path.
+- Camera flight authoring:
+  - Record local-POI waypoints and export as `cameraPath` for playback.
 - Modes:
   - Guided (preset-first): exposes safe parameters and hides raw fields.
   - Advanced (spec-first): full SceneSpec editor with validation + diff.
@@ -360,6 +363,34 @@ ViewportSpec (draft)
 - `scale`: scalar
 - `camera`: { position, target, fov }
 - `fit`: "contain" | "cover"
+
+CameraPathSpec (draft)
+- `frame`: FrameSpec (local space for waypoints)
+- `mode`: "waypoints"
+- `points`: [{ position, lookAt, dwell?, speed? }]
+  - `position`: [x, y, z] (local)
+  - `lookAt`: [x, y, z] (local POI target)
+  - `dwell`: optional hold time at waypoint
+  - `speed`: optional per-segment speed multiplier
+- `smooth`: "linear" | "spline"
+- `loop`: boolean (default false)
+
+Camera path example (local POI)
+
+```json
+{
+  "cameraPath": {
+    "mode": "waypoints",
+    "frame": { "space": "relative", "relativeTo": "parent" },
+    "smooth": "spline",
+    "loop": true,
+    "points": [
+      { "position": [0, 2.5, 8], "lookAt": [0, 0, 0] },
+      { "position": [4, 2, 4], "lookAt": [0, 0, 0], "dwell": 0.4 }
+    ]
+  }
+}
+```
 
 Designer UI approach comparison (priority order)
 

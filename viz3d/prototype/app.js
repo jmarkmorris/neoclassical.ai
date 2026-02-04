@@ -59,6 +59,11 @@ const composerFrameScaleLabel = document.getElementById("composer-frame-scale-la
 const composerCameraSpeedInput = document.getElementById("composer-camera-speed");
 const composerCameraSpeedLabel = document.getElementById("composer-camera-speed-label");
 const composerCameraResetButton = document.getElementById("composer-camera-reset");
+const composerCameraPoiSelect = document.getElementById("composer-camera-poi");
+const composerCameraWaypointAdd = document.getElementById("composer-camera-waypoint-add");
+const composerCameraWaypointClear = document.getElementById("composer-camera-waypoint-clear");
+const composerCameraWaypointCount = document.getElementById("composer-camera-waypoint-count");
+const composerCameraFlightToggle = document.getElementById("composer-camera-flight-toggle");
 const hud = document.getElementById("hud");
 const infoDrawer = document.getElementById("info-drawer");
 const infoBody = document.getElementById("info-body");
@@ -222,6 +227,56 @@ function setComposerCameraDefaults() {
   }
 }
 
+function updateComposerWaypointCount() {
+  if (composerCameraWaypointCount) {
+    composerCameraWaypointCount.textContent = `Waypoints: ${composerCameraFlightState.waypoints.length}`;
+  }
+  if (composerCameraFlightToggle) {
+    composerCameraFlightToggle.disabled =
+      composerCameraFlightState.waypoints.length < 2;
+  }
+}
+
+function getComposerPoiLocal() {
+  if (
+    composerCameraFlightState.poiMode === "selected" &&
+    composerSelectedPointIndex != null &&
+    composerPathState.points[composerSelectedPointIndex]
+  ) {
+    return composerPathState.points[composerSelectedPointIndex].clone();
+  }
+  return new THREE.Vector3(0, 0, 0);
+}
+
+function addComposerCameraWaypoint() {
+  if (!composerFrameGroup || !composerCamera) {
+    return;
+  }
+  const localPos = composerFrameGroup.worldToLocal(
+    composerCamera.position.clone()
+  );
+  const localLookAt = getComposerPoiLocal();
+  composerCameraFlightState.waypoints.push({
+    position: localPos,
+    lookAt: localLookAt,
+  });
+  updateComposerCameraFlightDisplay();
+  updateComposerWaypointCount();
+  if (composerActivePanel === "export") {
+    renderComposerJsonPreview();
+  }
+}
+
+function clearComposerCameraWaypoints() {
+  composerCameraFlightState.waypoints = [];
+  updateComposerCameraFlightDisplay();
+  updateComposerWaypointCount();
+  stopComposerCameraFlightPreview();
+  if (composerActivePanel === "export") {
+    renderComposerJsonPreview();
+  }
+}
+
 function resetComposerPathPoints() {
   composerPathState.points = [
     new THREE.Vector3(-1.6, 0, 0),
@@ -231,8 +286,17 @@ function resetComposerPathPoints() {
   ];
   composerPathState.interpolate = composerPathModeSelect?.value || "spline";
   composerPathState.closed = false;
+  composerSelectedPointIndex = null;
   rebuildComposerControlPoints();
   updateComposerPathGeometry();
+}
+
+function updateComposerPointMaterials(activeIndex = null) {
+  composerPointMeshes.forEach((mesh, index) => {
+    const isActive =
+      index === activeIndex || index === composerSelectedPointIndex;
+    mesh.material = isActive ? composerPointMaterialActive : composerPointMaterial;
+  });
 }
 
 function readComposerFormState() {
@@ -268,6 +332,18 @@ function buildComposerSceneSpec(state) {
     Number(point.y.toFixed(3)),
     Number(point.z.toFixed(3)),
   ]);
+  const cameraWaypoints = composerCameraFlightState.waypoints.map((waypoint) => ({
+    position: [
+      Number(waypoint.position.x.toFixed(3)),
+      Number(waypoint.position.y.toFixed(3)),
+      Number(waypoint.position.z.toFixed(3)),
+    ],
+    lookAt: [
+      Number(waypoint.lookAt.x.toFixed(3)),
+      Number(waypoint.lookAt.y.toFixed(3)),
+      Number(waypoint.lookAt.z.toFixed(3)),
+    ],
+  }));
   return {
     schemaVersion: "0.1.0",
     name: state.id,
@@ -282,6 +358,14 @@ function buildComposerSceneSpec(state) {
         closed: composerPathState.closed,
       },
     },
+    cameraPath: cameraWaypoints.length
+      ? {
+          mode: "waypoints",
+          frame: { space: "relative", relativeTo: "parent" },
+          smooth: "spline",
+          points: cameraWaypoints,
+        }
+      : undefined,
     annotations: { label: state.name },
     children: [],
   };
@@ -382,6 +466,9 @@ function initComposerCanvas() {
 
   setComposerFrameDefaults();
   setComposerCameraDefaults();
+  if (composerCameraPoiSelect) {
+    composerCameraPoiSelect.value = composerCameraFlightState.poiMode;
+  }
 
   if (!composerPathState.points.length) {
     resetComposerPathPoints();
@@ -389,6 +476,8 @@ function initComposerCanvas() {
     rebuildComposerControlPoints();
     updateComposerPathGeometry();
   }
+  updateComposerCameraFlightDisplay();
+  updateComposerWaypointCount();
 
   updateComposerFrame();
   updateComposerCamera();
@@ -471,6 +560,7 @@ function rebuildComposerControlPoints() {
     composerFrameGroup.add(mesh);
     return mesh;
   });
+  updateComposerPointMaterials();
 }
 
 function updateComposerPathGeometry() {
@@ -497,6 +587,118 @@ function updateComposerPathGeometry() {
   composerPathGeometry.computeBoundingSphere();
 }
 
+function updateComposerCameraFlightDisplay() {
+  if (!composerFrameGroup) {
+    return;
+  }
+  if (!composerCameraFlightGroup) {
+    composerCameraFlightGroup = new THREE.Group();
+    composerCameraFlightGeometry = new THREE.BufferGeometry();
+    composerCameraFlightLine = new THREE.Line(
+      composerCameraFlightGeometry,
+      new THREE.LineBasicMaterial({ color: 0xb1f1ff })
+    );
+    composerCameraFlightGroup.add(composerCameraFlightLine);
+    composerFrameGroup.add(composerCameraFlightGroup);
+    composerCameraWaypointGeometry = new THREE.SphereGeometry(0.07, 12, 12);
+    composerCameraWaypointMaterial = new THREE.MeshBasicMaterial({ color: 0x9af0c9 });
+  }
+
+  composerCameraWaypointMeshes.forEach((mesh) => {
+    composerCameraFlightGroup.remove(mesh);
+  });
+  composerCameraWaypointMeshes = [];
+
+  const points = composerCameraFlightState.waypoints.map((waypoint) => {
+    return waypoint.position.clone();
+  });
+  composerCameraFlightGeometry.setFromPoints(points.length ? points : []);
+
+  if (points.length && composerCameraWaypointGeometry && composerCameraWaypointMaterial) {
+    points.forEach((point) => {
+      const marker = new THREE.Mesh(
+        composerCameraWaypointGeometry,
+        composerCameraWaypointMaterial
+      );
+      marker.position.copy(point);
+      composerCameraFlightGroup.add(marker);
+      composerCameraWaypointMeshes.push(marker);
+    });
+  }
+}
+
+function startComposerCameraFlightPreview() {
+  if (composerCameraFlightState.preview) {
+    return;
+  }
+  if (composerCameraFlightState.waypoints.length < 2) {
+    return;
+  }
+  composerCameraFlightState.preview = true;
+  composerCameraFlightState.startTime = performance.now();
+  if (composerCamera) {
+    composerCameraFlightState.savedPosition.copy(composerCamera.position);
+    composerCameraFlightState.savedRotation.copy(composerCamera.rotation);
+  }
+  if (composerCameraFlightToggle) {
+    composerCameraFlightToggle.textContent = "Stop Flight";
+    composerCameraFlightToggle.classList.add("is-active");
+  }
+}
+
+function stopComposerCameraFlightPreview() {
+  if (!composerCameraFlightState.preview) {
+    return;
+  }
+  composerCameraFlightState.preview = false;
+  if (composerCamera) {
+    composerCamera.position.copy(composerCameraFlightState.savedPosition);
+    composerCamera.rotation.copy(composerCameraFlightState.savedRotation);
+  }
+  if (composerCameraFlightToggle) {
+    composerCameraFlightToggle.textContent = "Play Flight";
+    composerCameraFlightToggle.classList.remove("is-active");
+  }
+}
+
+function updateComposerCameraFlightPreview(now) {
+  if (!composerCameraFlightState.preview || !composerCamera) {
+    return;
+  }
+  const waypoints = composerCameraFlightState.waypoints;
+  if (waypoints.length < 2 || !composerFrameGroup) {
+    stopComposerCameraFlightPreview();
+    return;
+  }
+
+  const localPositions = waypoints.map((waypoint) => waypoint.position);
+  const localLookAts = waypoints.map((waypoint) => waypoint.lookAt);
+  const curve = new THREE.CatmullRomCurve3(
+    localPositions,
+    false,
+    "catmullrom",
+    0.5
+  );
+  const lookCurve = new THREE.CatmullRomCurve3(
+    localLookAts,
+    false,
+    "catmullrom",
+    0.5
+  );
+
+  const segmentDuration = 2400;
+  const totalDuration = segmentDuration * (localPositions.length - 1);
+  const elapsed = (now - composerCameraFlightState.startTime) * composerCameraState.speed;
+  const t = ((elapsed % totalDuration) / totalDuration) || 0;
+
+  const localPos = curve.getPointAt(t);
+  const localLookAt = lookCurve.getPointAt(t);
+  const worldPos = composerFrameGroup.localToWorld(localPos.clone());
+  const worldLookAt = composerFrameGroup.localToWorld(localLookAt.clone());
+  composerCamera.position.copy(worldPos);
+  composerCamera.lookAt(worldLookAt);
+}
+
 function renderComposerCanvas() {
   if (!composerRenderer || !composerScene || !composerCamera || !composerOverlay) {
     return;
@@ -507,6 +709,7 @@ function renderComposerCanvas() {
   if (composerNeedsResize) {
     resizeComposerCanvas();
   }
+  updateComposerCameraFlightPreview(performance.now());
   composerRenderer.render(composerScene, composerCamera);
 }
 
@@ -521,6 +724,9 @@ function onComposerPointerDown(event) {
   if (!composerCanvas || !composerCamera || !composerRaycaster) {
     return;
   }
+  if (composerCameraFlightState.preview) {
+    stopComposerCameraFlightPreview();
+  }
   composerCanvas.setPointerCapture(event.pointerId);
   const { x, y } = getComposerPointerNdc(event);
   composerRaycaster.setFromCamera({ x, y }, composerCamera);
@@ -529,6 +735,7 @@ function onComposerPointerDown(event) {
     const hit = hits[0];
     composerDragState.mode = "point";
     composerDragState.pointIndex = hit.object.userData.pointIndex;
+    composerSelectedPointIndex = composerDragState.pointIndex;
     composerDragState.startX = event.clientX;
     composerDragState.startY = event.clientY;
     composerDragState.startPoint.copy(composerPathState.points[composerDragState.pointIndex]);
@@ -538,7 +745,7 @@ function onComposerPointerDown(event) {
     );
     composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
     composerDragState.altMode = event.altKey;
-    hit.object.material = composerPointMaterialActive;
+    updateComposerPointMaterials(composerDragState.pointIndex);
     return;
   }
   const wantsPan = event.shiftKey || event.button === 2;
@@ -630,10 +837,7 @@ function onComposerPointerMove(event) {
 
 function onComposerPointerUp(event) {
   if (composerDragState.mode === "point" && composerDragState.pointIndex != null) {
-    const mesh = composerPointMeshes[composerDragState.pointIndex];
-    if (mesh) {
-      mesh.material = composerPointMaterial;
-    }
+    updateComposerPointMaterials();
   }
   composerDragState.mode = null;
   composerDragState.pointIndex = null;
@@ -769,6 +973,15 @@ const composerCameraState = {
   ),
   speed: 1,
 };
+const composerCameraFlightState = {
+  waypoints: [],
+  poiMode: "origin",
+  preview: false,
+  startTime: 0,
+  savedPosition: new THREE.Vector3(),
+  savedRotation: new THREE.Euler(0, 0, 0, "YXZ"),
+};
+let composerSelectedPointIndex = null;
 const composerDragState = {
   mode: null,
   button: 0,
@@ -794,6 +1007,12 @@ let composerPointMaterial = null;
 let composerPointMaterialActive = null;
 let composerRaycaster = null;
 let composerNeedsResize = false;
+let composerCameraFlightGroup = null;
+let composerCameraFlightLine = null;
+let composerCameraFlightGeometry = null;
+let composerCameraWaypointMeshes = [];
+let composerCameraWaypointGeometry = null;
+let composerCameraWaypointMaterial = null;
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
 
@@ -4328,6 +4547,8 @@ function updateComposerOverlay() {
     initComposerCanvas();
     composerNeedsResize = true;
     setComposerPanel(composerActivePanel);
+  } else {
+    stopComposerCameraFlightPreview();
   }
 }
 
@@ -5080,6 +5301,34 @@ if (composerFrameResetButton) {
   composerFrameResetButton.addEventListener("click", () => {
     setComposerFrameDefaults();
     updateComposerFrame();
+  });
+}
+
+if (composerCameraPoiSelect) {
+  composerCameraPoiSelect.addEventListener("change", () => {
+    composerCameraFlightState.poiMode = composerCameraPoiSelect.value;
+  });
+}
+
+if (composerCameraWaypointAdd) {
+  composerCameraWaypointAdd.addEventListener("click", () => {
+    addComposerCameraWaypoint();
+  });
+}
+
+if (composerCameraWaypointClear) {
+  composerCameraWaypointClear.addEventListener("click", () => {
+    clearComposerCameraWaypoints();
+  });
+}
+
+if (composerCameraFlightToggle) {
+  composerCameraFlightToggle.addEventListener("click", () => {
+    if (composerCameraFlightState.preview) {
+      stopComposerCameraFlightPreview();
+    } else {
+      startComposerCameraFlightPreview();
+    }
   });
 }
 
