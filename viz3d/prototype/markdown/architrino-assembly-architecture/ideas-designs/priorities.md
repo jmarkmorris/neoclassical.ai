@@ -1,14 +1,22 @@
 # ** The priority is the dynamics/math/geometry and the mapping**
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
-  - started by adding meta page in UI and working on a scene builder.
+  - work on scene builder.
   - a language for describing animations 
-- look for rapid hits - ckm matrix?
+  - every scene will be ported to this format
 - work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
+- finish topology (where is it) su(3)su(2)o(1)
+- what is the smallest assembly that can make a decision
+- are there any rapid hits
+  - ellipsoid to GR
+  - ckm matrix?
+  - koide
+  - planck
+  - 1 2 4
+  - need a breakthru
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 - sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
-- finish topology (where is it) su(3)su(2)o(1)
 - the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - PDG solver
   - provenance
@@ -18,13 +26,12 @@
   - look into madgraph for reactions as well
 - periodic table of the standard model
 - what about the charts I made showing the bootstrap of knowledge.
-- what is the smallest assembly that can make a decision
 - read lorentz-aether and integrate it with ellipsoid
 - continue the ellipsoid work, aiming to understand time
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
 - mine material from wordpress for key areas
-- make a web page that genrates a live toc, cross-referenres, and glossary?
-there are stable orbits at each h-
+- make a web page that generates a live toc, cross-referenres, and glossary?
+there are stable orbits at each h
 - is the lack of one of the neutrino chiralities due to converting a pro-Noether core?
 - look at what I wrote on the equivalence principal. does it make sense? 
 

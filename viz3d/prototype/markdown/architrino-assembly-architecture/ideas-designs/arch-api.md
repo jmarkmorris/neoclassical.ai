@@ -238,6 +238,32 @@ Scene + reaction designer (JSON authoring)
   - Edit parameters with immediate visual feedback.
   - Save to JSON and run through the renderer CLI or browser preview.
 
+Composer app (scene design)
+- Purpose: a focused authoring app for SceneSpec + assembly presets using the primitives in this doc.
+- Entry point: a small icon on the scene frame opens the composer with that scene selected.
+- Primary output: canonical JSON (schemaVersioned) that round-trips into the renderer.
+- Layout (MVP):
+  - Left: scene tree + search + reorder.
+  - Center: live preview (viz3d/three.js) with viewport controls.
+  - Right: inspector (properties, path/orbit editor, style, annotations).
+  - Bottom: time controls + quality toggles.
+- Modes:
+  - Guided (preset-first): exposes safe parameters and hides raw fields.
+  - Advanced (spec-first): full SceneSpec editor with validation + diff.
+- Data flow:
+  - Composer edits update a DraftSpec (normalized, but not auto-filled).
+  - Export produces canonical JSON with defaults applied.
+  - Renderer never guesses; composer is responsible for explicit values.
+
+Composer balance decisions (how to trade off ideas)
+- Simplicity vs expressiveness: default to presets + small parameter sets; unlock full spec only in Advanced.
+- Live feedback vs fidelity: preview uses adaptive sampling and reduced traces; final render uses full settings.
+- Overlay UI vs in-scene gizmos: overlay panels are primary; limited gizmos for transforms only.
+- Explicit data vs computed helpers: allow computed COM/anchors in the editor, but export explicit anchors.
+- Schema rigidity vs experimentation: strict validation on export; allow draft-only fields during editing.
+- Reuse vs one-offs: presets are first-class, but any scene can be promoted to a reusable preset.
+- Performance vs clarity: prefer fewer on-canvas overlays; show debug layers only when toggled.
+
 PDG integration (optional)
 - Link reaction inputs/outputs to PDG ids and metadata where relevant.
 - Use PDG data to prefill masses, charges, and known decay modes.
