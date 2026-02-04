@@ -52,13 +52,16 @@ Path sources (generalized)
 - Function path
   - Given by a parametric function f(t) -> (x, y, z).
   - Example: ellipses, spirals, Lissajous, etc.
+- Point list path
+  - Explicit samples or control points for an arbitrary 3D curve.
+  - Use for hand-authored paths, captures, or exported splines.
 - Assembly/group path
   - Represents the group motion of a sub-assembly centered on a parent reference.
   - Use when describing the center-of-momentum (COM) path of an assembly.
   - Reference must be explicit: parent scene, named anchor, or a computed COM.
 
 PathSpec (draft)
-- `kind`: "simulated" | "function" | "group"
+- `kind`: "simulated" | "function" | "points" | "group"
 - `frame`: FrameSpec (absolute or relative, with optional repeat)
 - `sampler`: optional SamplerSpec
 - `style`: optional StyleSpec
@@ -70,13 +73,24 @@ PathSpec payloads
   - `channel`: position key / attribute
   - `cache`: optional stored samples
 - Function
-  - `fn`: parametric function id
+  - `fn`: parametric function id (see Function registry)
   - `params`: function parameters
   - `domain`: t range
+- Points
+  - `points`: [[x, y, z], ...]
+  - `interpolate`: "polyline" | "spline"
+  - `closed`: boolean
 - Group
   - `center`: scene id or anchor id
   - `groupId`: assembly/group reference
   - `mode`: "com" | "centroid" | "anchor"
+
+Function registry (draft)
+- `spline`: smooth curve through control points (tension, closed)
+- `polyline`: straight segments through explicit points (closed)
+- `circle`: radius + normal (optionally center)
+- `ellipse`: radiusX/radiusY + normal (optionally center)
+- `helix`: radius + pitch + axis (optionally center)
 
 StyleSpec (draft)
 - `color`: hex or named
@@ -111,6 +125,7 @@ SceneSpec (draft)
 - `time`: optional local time override (TimeSpec)
 - `units`: optional units override (UnitsSpec, typically root only)
 - `path`: PathSpec or OrbitSpec
+- `cameraPath`: optional CameraPathSpec (typically root only)
 - `children`: nested scenes
 - `interactions`: optional InteractionSpec[] (typically root)
 - `transfers`: optional TransferSpec[] (typically root)
@@ -238,6 +253,101 @@ Scene + reaction designer (JSON authoring)
   - Edit parameters with immediate visual feedback.
   - Save to JSON and run through the renderer CLI or browser preview.
 
+Composer app (scene design)
+- Purpose: a focused authoring app for SceneSpec + assembly presets using the primitives in this doc.
+- Entry point: a small icon on the scene frame opens the composer with that scene selected.
+- Primary output: canonical JSON (schemaVersioned) that round-trips into the renderer.
+- Layout (MVP):
+  - Left: scene tree + search + reorder.
+  - Center: live preview (viz3d/three.js) with viewport controls.
+  - Right: inspector (properties, path/orbit editor, style, annotations).
+  - Bottom: time controls + quality toggles.
+- Canvas behavior (path-first, local-frame):
+  - Single 3D viewport with free camera (position + orientation) and arbitrary zoom.
+  - Grid aligns to the selected path’s local frame, not world space.
+  - Path is edited as an arbitrary 3D curve (spline or primitive), transformed in its frame.
+  - Larger motion and context come from nesting: parent frames move, children inherit.
+- Path editing (visual-first):
+  - Modes: spline (freeform), polyline (point list), circle, ellipse, helix/spiral.
+  - Control points and tangents are edited directly in 3D with axis constraints.
+  - Primitives expose exact parameters, then can be converted to spline for refinement.
+  - Time mapping options: uniform by arc length, or param-based, with repeat modes.
+- Camera controls (composer canvas):
+  - Orbit + pan + dolly for quick framing.
+  - Free-fly mode for precise placement anywhere in space.
+  - Speed scaling (orders of magnitude) for large scenes.
+  - Focus on selection re-centers the view on the active path.
+- Camera flight authoring:
+  - Record local-POI waypoints and export as `cameraPath` for playback.
+- Modes:
+  - Guided (preset-first): exposes safe parameters and hides raw fields.
+  - Advanced (spec-first): full SceneSpec editor with validation + diff.
+- Data flow:
+  - Composer edits update a DraftSpec (normalized, but not auto-filled).
+  - Export produces canonical JSON with defaults applied.
+  - Renderer never guesses; composer is responsible for explicit values.
+
+PathSpec examples (draft, 3D paths)
+- Spline path (function-backed):
+
+```json
+{
+  "kind": "function",
+  "frame": { "space": "relative", "relativeTo": "parent", "repeat": { "mode": "loop", "period": 6 } },
+  "payload": {
+    "fn": "spline",
+    "params": {
+      "points": [[0, 0, 0], [1, 0.2, 0.4], [1.8, 0.6, 0.1], [2.2, 1.0, 0.0]],
+      "tension": 0.4,
+      "closed": false
+    },
+    "domain": [0, 1]
+  }
+}
+```
+
+- Ellipse primitive (function-backed):
+
+```json
+{
+  "kind": "function",
+  "frame": { "space": "relative", "relativeTo": "parent" },
+  "payload": {
+    "fn": "ellipse",
+    "params": {
+      "center": [0, 0, 0],
+      "radiusX": 1.5,
+      "radiusY": 0.8,
+      "normal": [0, 1, 0]
+    },
+    "domain": [0, 1]
+  }
+}
+```
+
+- Points path (explicit samples):
+
+```json
+{
+  "kind": "points",
+  "frame": { "space": "relative", "relativeTo": "parent" },
+  "payload": {
+    "points": [[0, 0, 0], [0.4, 0.2, 0.0], [0.8, 0.5, 0.3], [1.2, 0.9, 0.1]],
+    "interpolate": "polyline",
+    "closed": false
+  }
+}
+```
+
+Composer balance decisions (how to trade off ideas)
+- Simplicity vs expressiveness: default to presets + small parameter sets; unlock full spec only in Advanced.
+- Live feedback vs fidelity: preview uses adaptive sampling and reduced traces; final render uses full settings.
+- Overlay UI vs in-scene gizmos: overlay panels are primary; limited gizmos for transforms only.
+- Explicit data vs computed helpers: allow computed COM/anchors in the editor, but export explicit anchors.
+- Schema rigidity vs experimentation: strict validation on export; allow draft-only fields during editing.
+- Reuse vs one-offs: presets are first-class, but any scene can be promoted to a reusable preset.
+- Performance vs clarity: prefer fewer on-canvas overlays; show debug layers only when toggled.
+
 PDG integration (optional)
 - Link reaction inputs/outputs to PDG ids and metadata where relevant.
 - Use PDG data to prefill masses, charges, and known decay modes.
@@ -253,6 +363,34 @@ ViewportSpec (draft)
 - `scale`: scalar
 - `camera`: { position, target, fov }
 - `fit`: "contain" | "cover"
+
+CameraPathSpec (draft)
+- `frame`: FrameSpec (local space for waypoints)
+- `mode`: "waypoints"
+- `points`: [{ position, lookAt, dwell?, speed? }]
+  - `position`: [x, y, z] (local)
+  - `lookAt`: [x, y, z] (local POI target)
+  - `dwell`: optional hold time at waypoint
+  - `speed`: optional per-segment speed multiplier
+- `smooth`: "linear" | "spline"
+- `loop`: boolean (default false)
+
+Camera path example (local POI)
+
+```json
+{
+  "cameraPath": {
+    "mode": "waypoints",
+    "frame": { "space": "relative", "relativeTo": "parent" },
+    "smooth": "spline",
+    "loop": true,
+    "points": [
+      { "position": [0, 2.5, 8], "lookAt": [0, 0, 0] },
+      { "position": [4, 2, 4], "lookAt": [0, 0, 0], "dwell": 0.4 }
+    ]
+  }
+}
+```
 
 Designer UI approach comparison (priority order)
 

@@ -301,7 +301,18 @@ $$
 | Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
 | Outer (non-self-hit) | 1 | $v < c_f$ | Outside observer region | Expansion/contraction | CFT (exterior QFT) |
 
-This correspondence provides a structured linkage among tri-binary regimes, black-hole regions, and the AdS/CFT roles. The middle and outer tri-binary regions are taken to align with the event-horizon interface, treated here as a Planck-scale transition surface in the model. AdS is used as the interior/self-hit description, while CFT represents the exterior/non-self-hit description.
+This correspondence provides a structured linkage among tri-binary regimes, black-hole regions, and the AdS/CFT roles, but the more precise picture is a **radial alignment state**: all three tri-binary components share the same axis. The inner self-hit loop runs at 4x Planck frequency with $v>c_f$, the middle loop at 2x Planck with $v=c_f$ (flattened), and the outer loop at 1x Planck, also driven to $v=c_f$ at the horizon. This is the same condition a photon satisfies along its lightlike path: all three loops locked, with middle and outer riding tangentially at field speed.
+
+So "inside vs horizon vs outside" is better seen as a **continuum parameterized by tri-binary deformation**. The event horizon (photon or black hole) is where that continuum hits its Planck-alignment plateau. Move outward and the outer loop drops below $c_f$, regains volume, and you return to the bulk spacetime medium; move inward and the inner loop dominates with $v>c_f$, pumping energy into self-hit dynamics and inflation/deflation effects.
+
+Given that, we can introduce **CFT+** for the interface sector: "surface degrees of freedom with Planck-aligned tri-binaries" without claiming a literal conventional CFT. CFT+ means:
+
+- Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
+- Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
+- Information flow constrained to the interface sheet,
+- Ready to bifurcate into volumetric Noether cores as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or spacetime medium).
+
+That gives clean shorthand: CFT+ for the Planck-aligned interface layer, "bulk" for $v<c_f$ volumetric cores, and "AdS-like" for the $v>c_f$ self-hit interior, all on the same continuum.
 
 ---
 

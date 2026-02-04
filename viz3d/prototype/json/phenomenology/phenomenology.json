@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "phenomenology",
-    "name": "Phenomenology",
+    "name": "Observables",
     "units": "relative",
     "wrapLabels": true,
     "autoSphereRing": true,

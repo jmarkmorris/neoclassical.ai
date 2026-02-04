@@ -1,19 +1,23 @@
-# ** new assessments of priorities at the moment go here.  prune later entries as I see fit.
-
-The priority is the dynamics/math/geometry and the mapping.
+# ** The priority is the dynamics/math/geometry and the mapping**
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
-  - started by adding meta page in UI and working on a scene builder.
-- look for rapid hits - ckm matrix?
+  - work on scene builder.
+  - a language for describing animations 
+  - every scene will be ported to this format
 - work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
-- math/geometry/dynamics are huge
-
-
+- finish topology (where is it) su(3)su(2)o(1)
+- what is the smallest assembly that can make a decision
+- are there any rapid hits
+  - ellipsoid to GR
+  - ckm matrix?
+  - koide
+  - planck
+  - 1 2 4
+  - need a breakthru
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
-- sim2rewrite.md has ideas for importing this software (redeveloping)
-- mine material from wordpress for key areas
-- finish topology (where is it)
+- sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
+- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - PDG solver
   - provenance
   - diagrams
@@ -22,23 +26,14 @@ The priority is the dynamics/math/geometry and the mapping.
   - look into madgraph for reactions as well
 - periodic table of the standard model
 - what about the charts I made showing the bootstrap of knowledge.
-- what is the smallest assembly that can make a decision
-- ai assembly language
-- review all my entourage docs
 - read lorentz-aether and integrate it with ellipsoid
-- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - continue the ellipsoid work, aiming to understand time
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
-- make a web page that genrates a live toc, cross-referenres, and glossary?
-- can we now pin down the radius of gen II - yes at the Planck scale?
-- once a single dipole reaches max curvature then it has a chance to link up with others and become a bubble that inflates?
-and now all three orbits are stable 'circular' in an abstract sense given precession and perturbation. 
-there are stable orbits at each h-bar
-- so the Noether core must self stabilize itself. Gen II = field speed. Does the inner binary float or stay at the minimum?  It is probably the main source and sync of energy.  So the symmetry breaking point. It operates like a gear.
-- It takes a full h or h-bar internally which is two h or h-bar. (check).
+- mine material from wordpress for key areas
+- make a web page that generates a live toc, cross-referenres, and glossary?
+there are stable orbits at each h
 - is the lack of one of the neutrino chiralities due to converting a pro-Noether core?
 - look at what I wrote on the equivalence principal. does it make sense? 
-- ask ai how we get indeterminism?  we have local multideterminism, .... how
 
 - double click pins vscode tab
 - link a markdown file [text](../prototype/markdown/file). Add note to system prompts.

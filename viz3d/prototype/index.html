@@ -276,12 +276,117 @@
             </section>
             <section class="composer-panel" data-panel="path" role="tabpanel" aria-hidden="true">
               <h3>Path Editor</h3>
-              <p>Define simulated, function, or group paths with repeat and sampling controls.</p>
-              <ul>
-                <li>Choose function vs simulated vs group paths.</li>
-                <li>Set frame space, repeat mode, and sampling rate.</li>
-                <li>Preview trace styling and LOD.</li>
-              </ul>
+              <div class="composer-canvas-wrap">
+                <canvas id="composer-canvas"></canvas>
+              <div class="composer-canvas-hud">
+                  <span>Drag: orbit (globe)</span>
+                  <span>Two-finger scroll: orbit</span>
+                  <span>Radius slider: zoom</span>
+                  <span>Edit Frame: drag to rotate frame</span>
+                  <span>Alt-drag point: move along normal</span>
+                </div>
+              </div>
+              <div class="composer-control-grid">
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Path</div>
+                  <div class="composer-form composer-form-grid">
+                    <label class="composer-field">
+                      <span>Interpolation</span>
+                      <select id="composer-path-mode">
+                        <option value="spline">Spline</option>
+                        <option value="polyline">Polyline</option>
+                      </select>
+                    </label>
+                    <label class="composer-field">
+                      <span>Reset</span>
+                      <button id="composer-path-reset" type="button">Reset Path</button>
+                    </label>
+                  </div>
+                </div>
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Frame</div>
+                  <div class="composer-form composer-form-grid">
+                    <label class="composer-field">
+                      <span>Frame Edit</span>
+                      <button id="composer-frame-edit-toggle" type="button">Edit Frame</button>
+                    </label>
+                    <label class="composer-field">
+                      <span>Reset</span>
+                      <button id="composer-frame-reset" type="button">Reset Frame</button>
+                    </label>
+                  </div>
+                  <div class="composer-field composer-range-field">
+                    <span>Scale (10^x)</span>
+                    <div class="composer-range-row">
+                      <input
+                        id="composer-frame-scale"
+                        class="composer-range"
+                        type="range"
+                        min="-2"
+                        max="3"
+                        step="0.1"
+                        value="0"
+                      />
+                      <span id="composer-frame-scale-label" class="composer-range-value">1x</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Camera</div>
+                  <div class="composer-field composer-range-field">
+                    <span>Orbit Speed (10^x)</span>
+                    <div class="composer-range-row">
+                      <input
+                        id="composer-camera-speed"
+                        class="composer-range"
+                        type="range"
+                        min="-2"
+                        max="2"
+                        step="0.1"
+                        value="0"
+                      />
+                      <span id="composer-camera-speed-label" class="composer-range-value">1x</span>
+                    </div>
+                  </div>
+                  <div class="composer-field composer-range-field">
+                    <span>Orbit Radius (10^x)</span>
+                    <div class="composer-range-row">
+                      <input
+                        id="composer-camera-radius"
+                        class="composer-range"
+                        type="range"
+                        min="-2"
+                        max="3"
+                        step="0.1"
+                        value="0"
+                      />
+                      <span id="composer-camera-radius-label" class="composer-range-value">1x</span>
+                    </div>
+                  </div>
+                  <button id="composer-camera-reset" type="button">Reset Camera</button>
+                </div>
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Camera Flight</div>
+                  <div class="composer-form composer-form-grid">
+                    <label class="composer-field">
+                      <span>POI Target</span>
+                      <select id="composer-camera-poi">
+                        <option value="origin">Local Origin</option>
+                        <option value="selected">Selected Point</option>
+                      </select>
+                    </label>
+                    <label class="composer-field">
+                      <span>Preview</span>
+                      <button id="composer-camera-flight-toggle" type="button">Play Flight</button>
+                    </label>
+                  </div>
+                  <div class="composer-button-row">
+                    <button id="composer-camera-waypoint-add" type="button">Add Waypoint</button>
+                    <button id="composer-camera-waypoint-clear" type="button">Clear</button>
+                  </div>
+                  <div id="composer-camera-waypoint-count" class="composer-hint">Waypoints: 0</div>
+                </div>
+              </div>
             </section>
             <section class="composer-panel" data-panel="orbit" role="tabpanel" aria-hidden="true">
               <h3>Orbit Editor</h3>
