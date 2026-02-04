@@ -35,6 +35,7 @@ const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
 const composerOverlay = document.getElementById("composer-overlay");
 const composerDocsButton = document.getElementById("composer-docs-button");
+const composerExitButton = document.getElementById("composer-exit-button");
 const composerTabs = composerOverlay
   ? Array.from(composerOverlay.querySelectorAll(".composer-tab"))
   : [];
@@ -303,9 +304,7 @@ function addComposerCameraWaypoint() {
   });
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
-  if (composerActivePanel === "export") {
-    renderComposerJsonPreview();
-  }
+  renderComposerJsonPreview();
 }
 
 function clearComposerCameraWaypoints() {
@@ -313,9 +312,7 @@ function clearComposerCameraWaypoints() {
   updateComposerCameraFlightDisplay();
   updateComposerWaypointCount();
   stopComposerCameraFlightPreview();
-  if (composerActivePanel === "export") {
-    renderComposerJsonPreview();
-  }
+  renderComposerJsonPreview();
 }
 
 function resetComposerPathPoints() {
@@ -853,9 +850,7 @@ function onComposerPointerMove(event) {
       composerPointMeshes[index].position.copy(composerPathState.points[index]);
     }
     updateComposerPathGeometry();
-    if (composerActivePanel === "export") {
-      renderComposerJsonPreview();
-    }
+    renderComposerJsonPreview();
     return;
   }
 
@@ -4593,10 +4588,14 @@ function updateComposerOverlay() {
   composerOverlay.classList.toggle("is-open", !!isComposer);
   composerOverlay.setAttribute("aria-hidden", isComposer ? "false" : "true");
   composerOverlay.inert = !isComposer;
+  if (app) {
+    app.classList.toggle("composer-mode", !!isComposer);
+  }
   if (isComposer) {
     initComposerCanvas();
     composerNeedsResize = true;
     setComposerPanel(composerActivePanel);
+    renderComposerJsonPreview();
   } else {
     stopComposerCameraFlightPreview();
   }
@@ -5290,6 +5289,12 @@ if (composerDocsButton) {
   });
 }
 
+if (composerExitButton) {
+  composerExitButton.addEventListener("click", () => {
+    navUpButton?.click();
+  });
+}
+
 if (composerPreviewButton) {
   composerPreviewButton.addEventListener("click", () => {
     openComposerPreview();
@@ -5311,9 +5316,7 @@ const composerInputs = [
 if (composerInputs.length) {
   composerInputs.forEach((input) => {
     input.addEventListener("input", () => {
-      if (composerActivePanel === "export") {
-        renderComposerJsonPreview();
-      }
+      renderComposerJsonPreview();
     });
   });
 }
@@ -5322,18 +5325,14 @@ if (composerPathModeSelect) {
   composerPathModeSelect.addEventListener("change", () => {
     composerPathState.interpolate = composerPathModeSelect.value;
     updateComposerPathGeometry();
-    if (composerActivePanel === "export") {
-      renderComposerJsonPreview();
-    }
+    renderComposerJsonPreview();
   });
 }
 
 if (composerPathResetButton) {
   composerPathResetButton.addEventListener("click", () => {
     resetComposerPathPoints();
-    if (composerActivePanel === "export") {
-      renderComposerJsonPreview();
-    }
+    renderComposerJsonPreview();
   });
 }
 
