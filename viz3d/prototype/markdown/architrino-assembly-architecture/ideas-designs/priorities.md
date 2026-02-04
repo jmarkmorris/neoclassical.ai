@@ -30,10 +30,7 @@ The priority is the dynamics/math/geometry and the mapping.
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
 - mine material from wordpress for key areas
 - make a web page that genrates a live toc, cross-referenres, and glossary?
-- once a single dipole reaches max curvature then it has a chance to link up with others and become a bubble that inflates?
-and now all three orbits are stable 'circular' in an abstract sense given precession and perturbation. 
-there are stable orbits at each h-bar
-- so the Noether core must self stabilize itself. Gen II = field speed. Does the inner binary float or stay at the minimum?  It is probably the main source and sync of energy.  So the symmetry breaking point. It operates like a gear.
+there are stable orbits at each h-
 - is the lack of one of the neutrino chiralities due to converting a pro-Noether core?
 - look at what I wrote on the equivalence principal. does it make sense? 
 
