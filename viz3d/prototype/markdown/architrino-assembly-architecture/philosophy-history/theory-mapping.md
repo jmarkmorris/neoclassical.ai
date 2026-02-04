@@ -301,7 +301,7 @@ $$
 | Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
 | Outer (non-self-hit) | 1 | $v < c_f$ | Outside observer region | Expansion/contraction | CFT (exterior QFT) |
 
-This correspondence provides a structured linkage among tri-binary regimes, black-hole regions, and the AdS/CFT roles. The middle and outer tri-binary regions are taken to align with the event-horizon interface, treated here as a Planck-scale transition surface in the model. AdS is used as the interior/self-hit description, while CFT represents the exterior/non-self-hit description.
+This correspondence provides a structured linkage among tri-binary regimes, black-hole regions, and the AdS/CFT roles. The middle binary always sits at the field-speed interface ($v=c_f$), but its radius is adjustable; it becomes a Planck-scale transition only when the outer binary also reaches field speed. In that case the Planck scale is defined by the **outer** binary’s radius at the moment it hits $v=c_f$. AdS is used as the interior/self-hit description, while CFT represents the exterior/non-self-hit description.
 
 ---
 
