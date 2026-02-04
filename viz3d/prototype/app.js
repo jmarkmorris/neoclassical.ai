@@ -973,6 +973,11 @@ const composerCameraState = {
   ),
   speed: 1,
 };
+const composerCameraOrbitState = {
+  target: new THREE.Vector3(),
+  minDistance: 0.3,
+  maxDistance: 2000,
+};
 const composerCameraFlightState = {
   waypoints: [],
   poiMode: "origin",
@@ -980,6 +985,7 @@ const composerCameraFlightState = {
   startTime: 0,
   savedPosition: new THREE.Vector3(),
   savedRotation: new THREE.Euler(0, 0, 0, "YXZ"),
+  savedTarget: new THREE.Vector3(),
 };
 let composerSelectedPointIndex = null;
 const composerDragState = {
