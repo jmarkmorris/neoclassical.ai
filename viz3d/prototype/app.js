@@ -52,17 +52,10 @@ const composerJsonPreview = document.getElementById("composer-json-preview");
 const composerCanvas = document.getElementById("composer-canvas");
 const composerPathModeSelect = document.getElementById("composer-path-mode");
 const composerPathResetButton = document.getElementById("composer-path-reset");
-const composerFrameRotXInput = document.getElementById("composer-frame-rot-x");
-const composerFrameRotYInput = document.getElementById("composer-frame-rot-y");
-const composerFrameRotZInput = document.getElementById("composer-frame-rot-z");
+const composerFrameEditToggle = document.getElementById("composer-frame-edit-toggle");
+const composerFrameResetButton = document.getElementById("composer-frame-reset");
 const composerFrameScaleInput = document.getElementById("composer-frame-scale");
 const composerFrameScaleLabel = document.getElementById("composer-frame-scale-label");
-const composerCameraPosXInput = document.getElementById("composer-camera-pos-x");
-const composerCameraPosYInput = document.getElementById("composer-camera-pos-y");
-const composerCameraPosZInput = document.getElementById("composer-camera-pos-z");
-const composerCameraRotXInput = document.getElementById("composer-camera-rot-x");
-const composerCameraRotYInput = document.getElementById("composer-camera-rot-y");
-const composerCameraRotZInput = document.getElementById("composer-camera-rot-z");
 const composerCameraSpeedInput = document.getElementById("composer-camera-speed");
 const composerCameraSpeedLabel = document.getElementById("composer-camera-speed-label");
 const composerCameraResetButton = document.getElementById("composer-camera-reset");
@@ -207,9 +200,6 @@ function formatScaleLabel(value) {
 }
 
 function setComposerFrameDefaults() {
-  if (composerFrameRotXInput) composerFrameRotXInput.value = "0";
-  if (composerFrameRotYInput) composerFrameRotYInput.value = "0";
-  if (composerFrameRotZInput) composerFrameRotZInput.value = "0";
   if (composerFrameScaleInput) composerFrameScaleInput.value = "0";
   composerFrameState.rotation.set(0, 0, 0);
   composerFrameState.scale = 1;
@@ -226,12 +216,6 @@ function setComposerCameraDefaults() {
     0
   );
   composerCameraState.speed = 1;
-  if (composerCameraPosXInput) composerCameraPosXInput.value = "0";
-  if (composerCameraPosYInput) composerCameraPosYInput.value = "2.6";
-  if (composerCameraPosZInput) composerCameraPosZInput.value = "6.5";
-  if (composerCameraRotXInput) composerCameraRotXInput.value = "-15";
-  if (composerCameraRotYInput) composerCameraRotYInput.value = "15";
-  if (composerCameraRotZInput) composerCameraRotZInput.value = "0";
   if (composerCameraSpeedInput) composerCameraSpeedInput.value = "0";
   if (composerCameraSpeedLabel) {
     composerCameraSpeedLabel.textContent = formatScaleLabel(1);
@@ -448,11 +432,7 @@ function updateComposerFrame() {
   composerFrameGroup.scale.setScalar(composerFrameState.scale);
 }
 
-function applyComposerFrameInputs() {
-  const rotX = THREE.MathUtils.degToRad(readNumberInput(composerFrameRotXInput, 0));
-  const rotY = THREE.MathUtils.degToRad(readNumberInput(composerFrameRotYInput, 0));
-  const rotZ = THREE.MathUtils.degToRad(readNumberInput(composerFrameRotZInput, 0));
-  composerFrameState.rotation.set(rotX, rotY, rotZ);
+function applyComposerFrameScaleInput() {
   const scaleExp = readNumberInput(composerFrameScaleInput, 0);
   composerFrameState.scale = Math.pow(10, scaleExp);
   if (composerFrameScaleLabel) {
@@ -469,53 +449,12 @@ function updateComposerCamera() {
   composerCamera.rotation.copy(composerCameraState.rotation);
 }
 
-function syncComposerCameraInputs() {
-  if (composerCameraPosXInput) {
-    composerCameraPosXInput.value = composerCameraState.position.x.toFixed(2);
-  }
-  if (composerCameraPosYInput) {
-    composerCameraPosYInput.value = composerCameraState.position.y.toFixed(2);
-  }
-  if (composerCameraPosZInput) {
-    composerCameraPosZInput.value = composerCameraState.position.z.toFixed(2);
-  }
-  if (composerCameraRotXInput) {
-    composerCameraRotXInput.value = THREE.MathUtils
-      .radToDeg(composerCameraState.rotation.x)
-      .toFixed(0);
-  }
-  if (composerCameraRotYInput) {
-    composerCameraRotYInput.value = THREE.MathUtils
-      .radToDeg(composerCameraState.rotation.y)
-      .toFixed(0);
-  }
-  if (composerCameraRotZInput) {
-    composerCameraRotZInput.value = THREE.MathUtils
-      .radToDeg(composerCameraState.rotation.z)
-      .toFixed(0);
-  }
-  if (composerCameraSpeedLabel) {
-    composerCameraSpeedLabel.textContent = formatScaleLabel(composerCameraState.speed);
-  }
-}
-
-function applyComposerCameraInputs() {
-  const posX = readNumberInput(composerCameraPosXInput, composerCameraState.position.x);
-  const posY = readNumberInput(composerCameraPosYInput, composerCameraState.position.y);
-  const posZ = readNumberInput(composerCameraPosZInput, composerCameraState.position.z);
-  composerCameraState.position.set(posX, posY, posZ);
-
-  const rotX = THREE.MathUtils.degToRad(readNumberInput(composerCameraRotXInput, 0));
-  const rotY = THREE.MathUtils.degToRad(readNumberInput(composerCameraRotYInput, 0));
-  const rotZ = THREE.MathUtils.degToRad(readNumberInput(composerCameraRotZInput, 0));
-  composerCameraState.rotation.set(rotX, rotY, rotZ);
-
+function applyComposerCameraSpeedInput() {
   const speedExp = readNumberInput(composerCameraSpeedInput, 0);
   composerCameraState.speed = Math.pow(10, speedExp);
   if (composerCameraSpeedLabel) {
     composerCameraSpeedLabel.textContent = formatScaleLabel(composerCameraState.speed);
   }
-  updateComposerCamera();
 }
 
 function rebuildComposerControlPoints() {
@@ -602,7 +541,13 @@ function onComposerPointerDown(event) {
     hit.object.material = composerPointMaterialActive;
     return;
   }
-  composerDragState.mode = "camera";
+  const wantsPan = event.shiftKey || event.button === 2;
+  if (composerFrameEditMode && event.button === 0 && !wantsPan) {
+    composerDragState.mode = "frame";
+    composerDragState.startFrameRot.copy(composerFrameState.rotation);
+  } else {
+    composerDragState.mode = "camera";
+  }
   composerDragState.button = event.button;
   composerDragState.startX = event.clientX;
   composerDragState.startY = event.clientY;
@@ -673,6 +618,14 @@ function onComposerPointerMove(event) {
     }
     updateComposerCamera();
   }
+
+  if (composerDragState.mode === "frame") {
+    composerFrameState.rotation.y =
+      composerDragState.startFrameRot.y - dx * 0.005;
+    composerFrameState.rotation.x =
+      composerDragState.startFrameRot.x - dy * 0.005;
+    updateComposerFrame();
+  }
 }
 
 function onComposerPointerUp(event) {
@@ -689,7 +642,6 @@ function onComposerPointerUp(event) {
   }
   composerDragState.altMode = false;
   composerDragState.button = 0;
-  syncComposerCameraInputs();
 }
 
 function onComposerWheel(event) {
@@ -702,7 +654,6 @@ function onComposerWheel(event) {
   const delta = event.deltaY * 0.01 * composerCameraState.speed;
   composerCameraState.position.addScaledVector(forward, delta);
   updateComposerCamera();
-  syncComposerCameraInputs();
 }
 
 const motionHandlers = {
@@ -807,6 +758,7 @@ const composerFrameState = {
   rotation: new THREE.Euler(0, 0, 0, "YXZ"),
   scale: 1,
 };
+let composerFrameEditMode = false;
 const composerCameraState = {
   position: new THREE.Vector3(0, 2.6, 6.5),
   rotation: new THREE.Euler(
@@ -826,6 +778,7 @@ const composerDragState = {
   startPoint: new THREE.Vector3(),
   startCameraPos: new THREE.Vector3(),
   startCameraRot: new THREE.Euler(0, 0, 0, "YXZ"),
+  startFrameRot: new THREE.Euler(0, 0, 0, "YXZ"),
   plane: new THREE.Plane(),
   altMode: false,
 };
@@ -5113,33 +5066,41 @@ if (composerPathResetButton) {
   });
 }
 
+if (composerFrameEditToggle) {
+  composerFrameEditToggle.addEventListener("click", () => {
+    composerFrameEditMode = !composerFrameEditMode;
+    composerFrameEditToggle.classList.toggle("is-active", composerFrameEditMode);
+    composerFrameEditToggle.textContent = composerFrameEditMode
+      ? "Editing Frame"
+      : "Edit Frame";
+  });
+}
+
+if (composerFrameResetButton) {
+  composerFrameResetButton.addEventListener("click", () => {
+    setComposerFrameDefaults();
+    updateComposerFrame();
+  });
+}
+
 const composerFrameInputs = [
-  composerFrameRotXInput,
-  composerFrameRotYInput,
-  composerFrameRotZInput,
   composerFrameScaleInput,
 ].filter(Boolean);
 if (composerFrameInputs.length) {
   composerFrameInputs.forEach((input) => {
     input.addEventListener("input", () => {
-      applyComposerFrameInputs();
+      applyComposerFrameScaleInput();
     });
   });
 }
 
 const composerCameraInputs = [
-  composerCameraPosXInput,
-  composerCameraPosYInput,
-  composerCameraPosZInput,
-  composerCameraRotXInput,
-  composerCameraRotYInput,
-  composerCameraRotZInput,
   composerCameraSpeedInput,
 ].filter(Boolean);
 if (composerCameraInputs.length) {
   composerCameraInputs.forEach((input) => {
     input.addEventListener("input", () => {
-      applyComposerCameraInputs();
+      applyComposerCameraSpeedInput();
     });
   });
 }
@@ -5147,7 +5108,7 @@ if (composerCameraInputs.length) {
 if (composerCameraResetButton) {
   composerCameraResetButton.addEventListener("click", () => {
     setComposerCameraDefaults();
-    applyComposerCameraInputs();
+    updateComposerCamera();
   });
 }
 

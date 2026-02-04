@@ -282,6 +282,7 @@
                   <span>Drag: rotate camera</span>
                   <span>Shift-drag: pan</span>
                   <span>Wheel: dolly</span>
+                  <span>Edit Frame: drag to rotate frame</span>
                   <span>Alt-drag point: move along normal</span>
                 </div>
               </div>
@@ -306,16 +307,12 @@
                   <div class="composer-section-title">Frame</div>
                   <div class="composer-form composer-form-grid">
                     <label class="composer-field">
-                      <span>Rotate X</span>
-                      <input id="composer-frame-rot-x" type="number" value="0" step="1" />
+                      <span>Frame Edit</span>
+                      <button id="composer-frame-edit-toggle" type="button">Edit Frame</button>
                     </label>
                     <label class="composer-field">
-                      <span>Rotate Y</span>
-                      <input id="composer-frame-rot-y" type="number" value="0" step="1" />
-                    </label>
-                    <label class="composer-field">
-                      <span>Rotate Z</span>
-                      <input id="composer-frame-rot-z" type="number" value="0" step="1" />
+                      <span>Reset</span>
+                      <button id="composer-frame-reset" type="button">Reset Frame</button>
                     </label>
                   </div>
                   <div class="composer-field composer-range-field">
@@ -336,32 +333,6 @@
                 </div>
                 <div class="composer-control-group">
                   <div class="composer-section-title">Camera</div>
-                  <div class="composer-form composer-form-grid">
-                    <label class="composer-field">
-                      <span>Pos X</span>
-                      <input id="composer-camera-pos-x" type="number" value="0" step="0.1" />
-                    </label>
-                    <label class="composer-field">
-                      <span>Pos Y</span>
-                      <input id="composer-camera-pos-y" type="number" value="2.6" step="0.1" />
-                    </label>
-                    <label class="composer-field">
-                      <span>Pos Z</span>
-                      <input id="composer-camera-pos-z" type="number" value="6.5" step="0.1" />
-                    </label>
-                    <label class="composer-field">
-                      <span>Rot X</span>
-                      <input id="composer-camera-rot-x" type="number" value="-15" step="1" />
-                    </label>
-                    <label class="composer-field">
-                      <span>Rot Y</span>
-                      <input id="composer-camera-rot-y" type="number" value="15" step="1" />
-                    </label>
-                    <label class="composer-field">
-                      <span>Rot Z</span>
-                      <input id="composer-camera-rot-z" type="number" value="0" step="1" />
-                    </label>
-                  </div>
                   <div class="composer-field composer-range-field">
                     <span>Speed (10^x)</span>
                     <div class="composer-range-row">
