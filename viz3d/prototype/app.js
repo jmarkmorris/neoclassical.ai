@@ -474,6 +474,11 @@ function initComposerCanvas() {
   const ringRadii = [0.6, 1, 1.6];
   const thetaAngles = [0, 30, 60, 90, 120, 150];
   const phiAngles = [0, 15, 30, 45, 60, 75];
+  const axisNormals = [
+    new THREE.Vector3(0, 0, 1),
+    new THREE.Vector3(0, 1, 0),
+    new THREE.Vector3(1, 0, 0),
+  ];
   const up = new THREE.Vector3(0, 1, 0);
 
   const makeOrbitRing = (radius, thetaDeg, phiDeg, color, opacity) => {
@@ -505,14 +510,40 @@ function initComposerCanvas() {
   };
 
   ringRadii.forEach((radius, radiusIndex) => {
+    const axisNormal = axisNormals[radiusIndex % axisNormals.length]
+      .clone()
+      .normalize();
+    const axisRotation = new THREE.Quaternion().setFromUnitVectors(
+      up,
+      axisNormal
+    );
+    const radiusGroup = new THREE.Group();
+    radiusGroup.quaternion.copy(axisRotation);
     const thetaOpacity = 0.5 - radiusIndex * 0.08;
     const phiOpacity = 0.32 - radiusIndex * 0.06;
+    const shellOpacity = 0.08 - radiusIndex * 0.02;
+    const shellColor =
+      radiusIndex === 0 ? 0x7aa7ff : radiusIndex === 1 ? 0x7fd1b9 : 0xffc26a;
+    const shell = new THREE.Mesh(
+      new THREE.SphereGeometry(radius, 32, 20),
+      new THREE.MeshBasicMaterial({
+        color: shellColor,
+        transparent: true,
+        opacity: shellOpacity,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+      })
+    );
+    radiusGroup.add(shell);
     thetaAngles.forEach((theta) => {
-      referenceGroup.add(makeOrbitRing(radius, theta, 90, 0x7aa7ff, thetaOpacity));
+      radiusGroup.add(
+        makeOrbitRing(radius, theta, 90, 0x7aa7ff, thetaOpacity)
+      );
     });
     phiAngles.forEach((phi) => {
-      referenceGroup.add(makeOrbitRing(radius, 0, phi, 0x5c6f9f, phiOpacity));
+      radiusGroup.add(makeOrbitRing(radius, 0, phi, 0x5c6f9f, phiOpacity));
     });
+    referenceGroup.add(radiusGroup);
   });
 
   composerFrameGroup.add(referenceGroup);
