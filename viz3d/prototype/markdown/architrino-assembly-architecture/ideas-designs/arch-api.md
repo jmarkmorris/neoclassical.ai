@@ -247,6 +247,16 @@ Composer app (scene design)
   - Center: live preview (viz3d/three.js) with viewport controls.
   - Right: inspector (properties, path/orbit editor, style, annotations).
   - Bottom: time controls + quality toggles.
+- Canvas behavior (path-first, local-frame):
+  - Single 3D viewport with free camera (position + orientation) and arbitrary zoom.
+  - Grid aligns to the selected path’s local frame, not world space.
+  - Path is edited as an arbitrary 3D curve (spline or primitive), transformed in its frame.
+  - Larger motion and context come from nesting: parent frames move, children inherit.
+- Path editing (visual-first):
+  - Modes: spline (freeform), line, circle, ellipse, helix/spiral.
+  - Control points and tangents are edited directly in 3D with axis constraints.
+  - Primitives expose exact parameters, then can be converted to spline for refinement.
+  - Time mapping options: uniform by arc length, or param-based, with repeat modes.
 - Modes:
   - Guided (preset-first): exposes safe parameters and hides raw fields.
   - Advanced (spec-first): full SceneSpec editor with validation + diff.
