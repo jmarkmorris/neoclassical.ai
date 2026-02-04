@@ -1,6 +1,4 @@
-# ** new assessments of priorities at the moment go here.  prune later entries as I see fit.
-
-The priority is the dynamics/math/geometry and the mapping.
+# ** The priority is the dynamics/math/geometry and the mapping**
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
   - started by adding meta page in UI and working on a scene builder.
