@@ -4,6 +4,7 @@ The priority is the dynamics/math/geometry and the mapping.
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
   - started by adding meta page in UI and working on a scene builder.
+  - a language for describing animations 
 - look for rapid hits - ckm matrix?
 - work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
 - math/geometry/dynamics are huge
@@ -11,9 +12,9 @@ The priority is the dynamics/math/geometry and the mapping.
 
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
-- sim2rewrite.md has ideas for importing this software (redeveloping)
-- mine material from wordpress for key areas
-- finish topology (where is it)
+- sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
+- finish topology (where is it) su(3)su(2)o(1)
+- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - PDG solver
   - provenance
   - diagrams
@@ -23,12 +24,11 @@ The priority is the dynamics/math/geometry and the mapping.
 - periodic table of the standard model
 - what about the charts I made showing the bootstrap of knowledge.
 - what is the smallest assembly that can make a decision
-- ai assembly language
 - review all my entourage docs
 - read lorentz-aether and integrate it with ellipsoid
-- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - continue the ellipsoid work, aiming to understand time
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
+- mine material from wordpress for key areas
 - make a web page that genrates a live toc, cross-referenres, and glossary?
 - can we now pin down the radius of gen II - yes at the Planck scale?
 - once a single dipole reaches max curvature then it has a chance to link up with others and become a bubble that inflates?
