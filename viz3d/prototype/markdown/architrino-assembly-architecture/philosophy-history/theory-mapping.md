@@ -298,7 +298,7 @@ $$
 | Tri-Binary Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
 | :--- | :--: | :---: | :--- | :--- | :--- |
 | Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
-| Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Horizon/interface |
+| Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
 | Outer (non-self-hit) | 1 | $v < c_f$ | Outside observer region | Expansion/contraction | CFT (exterior QFT) |
 
 This correspondence provides a structured linkage among tri-binary regimes, black-hole regions, and the AdS/CFT roles. The middle and outer tri-binary regions are taken to align with the event-horizon interface, treated here as a Planck-scale transition surface in the model. AdS is used as the interior/self-hit description, while CFT represents the exterior/non-self-hit description.
