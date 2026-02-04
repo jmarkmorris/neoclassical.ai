@@ -3,8 +3,9 @@
 The priority is the dynamics/math/geometry and the mapping.
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
+  - started by adding meta page in UI and working on a scene builder.
 - look for rapid hits - ckm matrix?
-- work on quantum numbers again (where is that). Leverage MIT Kaiser 22
+- work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
 - math/geometry/dynamics are huge
 
 
@@ -42,7 +43,7 @@ there are stable orbits at each h-bar
 - double click pins vscode tab
 - link a markdown file [text](../prototype/markdown/file). Add note to system prompts.
 - one H1 heading per md
-- set up 4 level branch in git
+- branches are now alpha beta gamma delta omega in git
 - og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a
 - attempt to understand open ai billing
 - get a mac mini when the m5 comes out
