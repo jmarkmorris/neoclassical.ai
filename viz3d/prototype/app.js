@@ -548,12 +548,35 @@ function initComposerCanvas() {
 
   composerFrameGroup.add(referenceGroup);
 
-  const axes = new THREE.AxesHelper(2.2);
-  if (axes.material) {
-    axes.material.transparent = true;
-    axes.material.opacity = 0.7;
-  }
-  composerFrameGroup.add(axes);
+  const axisLength = 2.4;
+  const axisColor = 0xd6dbe6;
+  const axisMaterial = new THREE.LineBasicMaterial({
+    color: axisColor,
+    transparent: true,
+    opacity: 0.75,
+  });
+  const makeAxisLine = (from, to) => {
+    const geometry = new THREE.BufferGeometry().setFromPoints([from, to]);
+    return new THREE.Line(geometry, axisMaterial);
+  };
+  composerFrameGroup.add(
+    makeAxisLine(
+      new THREE.Vector3(-axisLength, 0, 0),
+      new THREE.Vector3(axisLength, 0, 0)
+    )
+  );
+  composerFrameGroup.add(
+    makeAxisLine(
+      new THREE.Vector3(0, -axisLength, 0),
+      new THREE.Vector3(0, axisLength, 0)
+    )
+  );
+  composerFrameGroup.add(
+    makeAxisLine(
+      new THREE.Vector3(0, 0, -axisLength),
+      new THREE.Vector3(0, 0, axisLength)
+    )
+  );
 
   composerPathGeometry = new THREE.BufferGeometry();
   composerPathLine = new THREE.Line(
