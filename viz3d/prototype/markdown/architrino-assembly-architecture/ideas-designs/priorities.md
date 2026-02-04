@@ -19,7 +19,6 @@
 - periodic table of the standard model
 - what about the charts I made showing the bootstrap of knowledge.
 - what is the smallest assembly that can make a decision
-- review all my entourage docs
 - read lorentz-aether and integrate it with ellipsoid
 - continue the ellipsoid work, aiming to understand time
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
