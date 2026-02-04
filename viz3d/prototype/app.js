@@ -352,14 +352,7 @@ const composerPanelMap = new Map([
   ["composer_preview", "preview"],
   ["composer_export", "export"],
 ]);
-const composerPalette = [
-  "#8fa7ff",
-  "#7ee0d7",
-  "#f5c982",
-  "#d7a6ff",
-  "#9fe7a4",
-  "#f29aa0",
-];
+const composerPalette = defaultAutoMarkdownPalette;
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
 
