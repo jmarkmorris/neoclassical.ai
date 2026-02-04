@@ -471,47 +471,48 @@ function initComposerCanvas() {
   composerScene.add(composerFrameGroup);
 
   const referenceGroup = new THREE.Group();
-  const circleMaterial = new THREE.LineBasicMaterial({
-    color: 0x6f82b6,
-    transparent: true,
-    opacity: 0.6,
-  });
+  const ringRadii = [0.6, 1, 1.6];
+  const thetaAngles = [0, 30, 60, 90, 120, 150];
+  const phiAngles = [0, 15, 30, 45, 60, 75];
+  const up = new THREE.Vector3(0, 1, 0);
 
-  const makeCircle = (radius, plane) => {
+  const makeOrbitRing = (radius, thetaDeg, phiDeg, color, opacity) => {
     const points = [];
-    const segments = 96;
+    const segments = 120;
     for (let i = 0; i <= segments; i += 1) {
       const t = (i / segments) * Math.PI * 2;
-      const x = Math.cos(t) * radius;
-      const y = Math.sin(t) * radius;
-      if (plane === "xy") {
-        points.push(new THREE.Vector3(x, y, 0));
-      } else if (plane === "xz") {
-        points.push(new THREE.Vector3(x, 0, y));
-      } else {
-        points.push(new THREE.Vector3(0, x, y));
-      }
+      points.push(new THREE.Vector3(Math.cos(t) * radius, 0, Math.sin(t) * radius));
     }
-    return new THREE.Line(
-      new THREE.BufferGeometry().setFromPoints(points),
-      circleMaterial
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({
+      color,
+      transparent: true,
+      opacity,
+    });
+    const line = new THREE.Line(geometry, material);
+    const theta = THREE.MathUtils.degToRad(thetaDeg);
+    const phi = THREE.MathUtils.degToRad(phiDeg);
+    const normal = new THREE.Vector3(
+      Math.sin(phi) * Math.sin(theta),
+      Math.cos(phi),
+      Math.sin(phi) * Math.cos(theta)
     );
+    if (normal.lengthSq() > 0) {
+      normal.normalize();
+      line.quaternion.setFromUnitVectors(up, normal);
+    }
+    return line;
   };
 
-  referenceGroup.add(makeCircle(1, "xy"));
-  referenceGroup.add(makeCircle(1, "xz"));
-  referenceGroup.add(makeCircle(1, "yz"));
-
-  const latitudeAngles = [30, 60].map((deg) => THREE.MathUtils.degToRad(deg));
-  latitudeAngles.forEach((angle) => {
-    const radius = Math.cos(angle);
-    const y = Math.sin(angle);
-    const top = makeCircle(radius, "xz");
-    top.position.y = y;
-    referenceGroup.add(top);
-    const bottom = makeCircle(radius, "xz");
-    bottom.position.y = -y;
-    referenceGroup.add(bottom);
+  ringRadii.forEach((radius, radiusIndex) => {
+    const thetaOpacity = 0.5 - radiusIndex * 0.08;
+    const phiOpacity = 0.32 - radiusIndex * 0.06;
+    thetaAngles.forEach((theta) => {
+      referenceGroup.add(makeOrbitRing(radius, theta, 90, 0x7aa7ff, thetaOpacity));
+    });
+    phiAngles.forEach((phi) => {
+      referenceGroup.add(makeOrbitRing(radius, 0, phi, 0x5c6f9f, phiOpacity));
+    });
   });
 
   composerFrameGroup.add(referenceGroup);
