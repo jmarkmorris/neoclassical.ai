@@ -52,13 +52,16 @@ Path sources (generalized)
 - Function path
   - Given by a parametric function f(t) -> (x, y, z).
   - Example: ellipses, spirals, Lissajous, etc.
+- Point list path
+  - Explicit samples or control points for an arbitrary 3D curve.
+  - Use for hand-authored paths, captures, or exported splines.
 - Assembly/group path
   - Represents the group motion of a sub-assembly centered on a parent reference.
   - Use when describing the center-of-momentum (COM) path of an assembly.
   - Reference must be explicit: parent scene, named anchor, or a computed COM.
 
 PathSpec (draft)
-- `kind`: "simulated" | "function" | "group"
+- `kind`: "simulated" | "function" | "points" | "group"
 - `frame`: FrameSpec (absolute or relative, with optional repeat)
 - `sampler`: optional SamplerSpec
 - `style`: optional StyleSpec
@@ -73,6 +76,14 @@ PathSpec payloads
   - `fn`: parametric function id (see Function registry)
   - `params`: function parameters
   - `domain`: t range
+- Points
+  - `points`: [[x, y, z], ...]
+  - `interpolate`: "polyline" | "spline"
+  - `closed`: boolean
+- Group
+  - `center`: scene id or anchor id
+  - `groupId`: assembly/group reference
+  - `mode`: "com" | "centroid" | "anchor"
 
 Function registry (draft)
 - `spline`: smooth curve through control points (tension, closed)
@@ -80,10 +91,6 @@ Function registry (draft)
 - `circle`: radius + normal (optionally center)
 - `ellipse`: radiusX/radiusY + normal (optionally center)
 - `helix`: radius + pitch + axis (optionally center)
-- Group
-  - `center`: scene id or anchor id
-  - `groupId`: assembly/group reference
-  - `mode`: "com" | "centroid" | "anchor"
 
 StyleSpec (draft)
 - `color`: hex or named
@@ -315,19 +322,16 @@ PathSpec examples (draft, 3D paths)
 }
 ```
 
-- Polyline path (explicit points):
+- Points path (explicit samples):
 
 ```json
 {
-  "kind": "function",
+  "kind": "points",
   "frame": { "space": "relative", "relativeTo": "parent" },
   "payload": {
-    "fn": "polyline",
-    "params": {
-      "points": [[0, 0, 0], [0.4, 0.2, 0.0], [0.8, 0.5, 0.3], [1.2, 0.9, 0.1]],
-      "closed": false
-    },
-    "domain": [0, 1]
+    "points": [[0, 0, 0], [0.4, 0.2, 0.0], [0.8, 0.5, 0.3], [1.2, 0.9, 0.1]],
+    "interpolate": "polyline",
+    "closed": false
   }
 }
 ```

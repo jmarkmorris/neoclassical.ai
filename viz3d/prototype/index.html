@@ -276,12 +276,110 @@
             </section>
             <section class="composer-panel" data-panel="path" role="tabpanel" aria-hidden="true">
               <h3>Path Editor</h3>
-              <p>Define simulated, function, or group paths with repeat and sampling controls.</p>
-              <ul>
-                <li>Choose function vs simulated vs group paths.</li>
-                <li>Set frame space, repeat mode, and sampling rate.</li>
-                <li>Preview trace styling and LOD.</li>
-              </ul>
+              <div class="composer-canvas-wrap">
+                <canvas id="composer-canvas"></canvas>
+                <div class="composer-canvas-hud">
+                  <span>Drag: rotate camera</span>
+                  <span>Shift-drag: pan</span>
+                  <span>Wheel: dolly</span>
+                  <span>Alt-drag point: move along normal</span>
+                </div>
+              </div>
+              <div class="composer-control-grid">
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Path</div>
+                  <div class="composer-form composer-form-grid">
+                    <label class="composer-field">
+                      <span>Interpolation</span>
+                      <select id="composer-path-mode">
+                        <option value="spline">Spline</option>
+                        <option value="polyline">Polyline</option>
+                      </select>
+                    </label>
+                    <label class="composer-field">
+                      <span>Reset</span>
+                      <button id="composer-path-reset" type="button">Reset Path</button>
+                    </label>
+                  </div>
+                </div>
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Frame</div>
+                  <div class="composer-form composer-form-grid">
+                    <label class="composer-field">
+                      <span>Rotate X</span>
+                      <input id="composer-frame-rot-x" type="number" value="0" step="1" />
+                    </label>
+                    <label class="composer-field">
+                      <span>Rotate Y</span>
+                      <input id="composer-frame-rot-y" type="number" value="0" step="1" />
+                    </label>
+                    <label class="composer-field">
+                      <span>Rotate Z</span>
+                      <input id="composer-frame-rot-z" type="number" value="0" step="1" />
+                    </label>
+                  </div>
+                  <div class="composer-field composer-range-field">
+                    <span>Scale (10^x)</span>
+                    <div class="composer-range-row">
+                      <input
+                        id="composer-frame-scale"
+                        class="composer-range"
+                        type="range"
+                        min="-2"
+                        max="3"
+                        step="0.1"
+                        value="0"
+                      />
+                      <span id="composer-frame-scale-label" class="composer-range-value">1x</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="composer-control-group">
+                  <div class="composer-section-title">Camera</div>
+                  <div class="composer-form composer-form-grid">
+                    <label class="composer-field">
+                      <span>Pos X</span>
+                      <input id="composer-camera-pos-x" type="number" value="0" step="0.1" />
+                    </label>
+                    <label class="composer-field">
+                      <span>Pos Y</span>
+                      <input id="composer-camera-pos-y" type="number" value="2.6" step="0.1" />
+                    </label>
+                    <label class="composer-field">
+                      <span>Pos Z</span>
+                      <input id="composer-camera-pos-z" type="number" value="6.5" step="0.1" />
+                    </label>
+                    <label class="composer-field">
+                      <span>Rot X</span>
+                      <input id="composer-camera-rot-x" type="number" value="-15" step="1" />
+                    </label>
+                    <label class="composer-field">
+                      <span>Rot Y</span>
+                      <input id="composer-camera-rot-y" type="number" value="15" step="1" />
+                    </label>
+                    <label class="composer-field">
+                      <span>Rot Z</span>
+                      <input id="composer-camera-rot-z" type="number" value="0" step="1" />
+                    </label>
+                  </div>
+                  <div class="composer-field composer-range-field">
+                    <span>Speed (10^x)</span>
+                    <div class="composer-range-row">
+                      <input
+                        id="composer-camera-speed"
+                        class="composer-range"
+                        type="range"
+                        min="-2"
+                        max="2"
+                        step="0.1"
+                        value="0"
+                      />
+                      <span id="composer-camera-speed-label" class="composer-range-value">1x</span>
+                    </div>
+                  </div>
+                  <button id="composer-camera-reset" type="button">Reset Camera</button>
+                </div>
+              </div>
             </section>
             <section class="composer-panel" data-panel="orbit" role="tabpanel" aria-hidden="true">
               <h3>Orbit Editor</h3>

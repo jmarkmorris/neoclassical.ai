@@ -49,6 +49,23 @@ const composerPreviewButton = document.getElementById("composer-preview-button")
 const composerExportButton = document.getElementById("composer-export-button");
 const composerStatus = document.getElementById("composer-status");
 const composerJsonPreview = document.getElementById("composer-json-preview");
+const composerCanvas = document.getElementById("composer-canvas");
+const composerPathModeSelect = document.getElementById("composer-path-mode");
+const composerPathResetButton = document.getElementById("composer-path-reset");
+const composerFrameRotXInput = document.getElementById("composer-frame-rot-x");
+const composerFrameRotYInput = document.getElementById("composer-frame-rot-y");
+const composerFrameRotZInput = document.getElementById("composer-frame-rot-z");
+const composerFrameScaleInput = document.getElementById("composer-frame-scale");
+const composerFrameScaleLabel = document.getElementById("composer-frame-scale-label");
+const composerCameraPosXInput = document.getElementById("composer-camera-pos-x");
+const composerCameraPosYInput = document.getElementById("composer-camera-pos-y");
+const composerCameraPosZInput = document.getElementById("composer-camera-pos-z");
+const composerCameraRotXInput = document.getElementById("composer-camera-rot-x");
+const composerCameraRotYInput = document.getElementById("composer-camera-rot-y");
+const composerCameraRotZInput = document.getElementById("composer-camera-rot-z");
+const composerCameraSpeedInput = document.getElementById("composer-camera-speed");
+const composerCameraSpeedLabel = document.getElementById("composer-camera-speed-label");
+const composerCameraResetButton = document.getElementById("composer-camera-reset");
 const hud = document.getElementById("hud");
 const infoDrawer = document.getElementById("info-drawer");
 const infoBody = document.getElementById("info-body");
@@ -173,6 +190,67 @@ function sanitizeComposerId(raw) {
   return cleaned || "composer_scene";
 }
 
+function readNumberInput(input, fallback = 0) {
+  if (!input) {
+    return fallback;
+  }
+  const value = Number(input.value);
+  return Number.isFinite(value) ? value : fallback;
+}
+
+function formatScaleLabel(value) {
+  const normalized = Number.isFinite(value) ? value : 1;
+  if (normalized >= 1000 || normalized <= 0.001) {
+    return `${normalized.toExponential(1)}x`;
+  }
+  return `${normalized.toFixed(2)}x`;
+}
+
+function setComposerFrameDefaults() {
+  if (composerFrameRotXInput) composerFrameRotXInput.value = "0";
+  if (composerFrameRotYInput) composerFrameRotYInput.value = "0";
+  if (composerFrameRotZInput) composerFrameRotZInput.value = "0";
+  if (composerFrameScaleInput) composerFrameScaleInput.value = "0";
+  composerFrameState.rotation.set(0, 0, 0);
+  composerFrameState.scale = 1;
+  if (composerFrameScaleLabel) {
+    composerFrameScaleLabel.textContent = formatScaleLabel(1);
+  }
+}
+
+function setComposerCameraDefaults() {
+  composerCameraState.position.set(0, 2.6, 6.5);
+  composerCameraState.rotation.set(
+    THREE.MathUtils.degToRad(-15),
+    THREE.MathUtils.degToRad(15),
+    0
+  );
+  composerCameraState.speed = 1;
+  if (composerCameraPosXInput) composerCameraPosXInput.value = "0";
+  if (composerCameraPosYInput) composerCameraPosYInput.value = "2.6";
+  if (composerCameraPosZInput) composerCameraPosZInput.value = "6.5";
+  if (composerCameraRotXInput) composerCameraRotXInput.value = "-15";
+  if (composerCameraRotYInput) composerCameraRotYInput.value = "15";
+  if (composerCameraRotZInput) composerCameraRotZInput.value = "0";
+  if (composerCameraSpeedInput) composerCameraSpeedInput.value = "0";
+  if (composerCameraSpeedLabel) {
+    composerCameraSpeedLabel.textContent = formatScaleLabel(1);
+  }
+}
+
+function resetComposerPathPoints() {
+  composerPathState.points = [
+    new THREE.Vector3(-1.6, 0, 0),
+    new THREE.Vector3(-0.5, 0.8, 0.35),
+    new THREE.Vector3(0.9, 0.25, -0.5),
+    new THREE.Vector3(2.0, 1.05, 0.15),
+  ];
+  composerPathState.interpolate = composerPathModeSelect?.value || "spline";
+  composerPathState.closed = false;
+  rebuildComposerControlPoints();
+  updateComposerPathGeometry();
+}
+
 function readComposerFormState() {
   const rawId = composerSceneIdInput?.value ?? "composer_scene";
   const id = sanitizeComposerId(rawId);
@@ -198,23 +276,30 @@ function readComposerFormState() {
 }
 
 function buildComposerSceneSpec(state) {
-  const objects = state.labels.map((label, index) => ({
-    id: `node_${index + 1}`,
-    label,
-    radius: 1.1,
-    color: composerPalette[index % composerPalette.length],
-  }));
+  if (!composerPathState.points.length) {
+    resetComposerPathPoints();
+  }
+  const pathPoints = composerPathState.points.map((point) => [
+    Number(point.x.toFixed(3)),
+    Number(point.y.toFixed(3)),
+    Number(point.z.toFixed(3)),
+  ]);
   return {
-    schemaVersion: "0.1",
-    scene: {
-      id: state.id,
-      name: state.name,
-      units: "relative",
-      autoSphereRing: true,
-      wrapLabels: true,
-      hideScaleLabels: true,
+    schemaVersion: "0.1.0",
+    name: state.id,
+    units: { length: "scene", angle: "degrees", time: "seconds" },
+    frame: { space: "relative", relativeTo: "parent" },
+    path: {
+      kind: "points",
+      frame: { space: "relative", relativeTo: "parent" },
+      payload: {
+        points: pathPoints,
+        interpolate: composerPathState.interpolate,
+        closed: composerPathState.closed,
+      },
     },
-    objects,
+    annotations: { label: state.name },
+    children: [],
   };
 }
 
@@ -258,6 +343,366 @@ function setComposerStatus(message) {
     return;
   }
   composerStatus.textContent = message;
+}
+
+function initComposerCanvas() {
+  if (!composerCanvas || composerRenderer) {
+    return;
+  }
+  composerRenderer = new THREE.WebGLRenderer({
+    canvas: composerCanvas,
+    antialias: true,
+    alpha: true,
+  });
+  composerRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  composerRenderer.setClearColor(0x000000, 0);
+
+  composerScene = new THREE.Scene();
+  composerCamera = new THREE.PerspectiveCamera(45, 1, 0.01, 10000);
+  composerCamera.rotation.order = "YXZ";
+
+  composerFrameGroup = new THREE.Group();
+  composerScene.add(composerFrameGroup);
+
+  const grid = new THREE.GridHelper(10, 20, 0x4b5b8a, 0x2f374f);
+  if (Array.isArray(grid.material)) {
+    grid.material.forEach((material) => {
+      material.opacity = 0.55;
+      material.transparent = true;
+    });
+  } else {
+    grid.material.opacity = 0.55;
+    grid.material.transparent = true;
+  }
+  composerFrameGroup.add(grid);
+
+  const axes = new THREE.AxesHelper(2.2);
+  if (axes.material) {
+    axes.material.transparent = true;
+    axes.material.opacity = 0.7;
+  }
+  composerFrameGroup.add(axes);
+
+  composerPathGeometry = new THREE.BufferGeometry();
+  composerPathLine = new THREE.Line(
+    composerPathGeometry,
+    new THREE.LineBasicMaterial({ color: 0x7dd3fc })
+  );
+  composerFrameGroup.add(composerPathLine);
+
+  composerPointGeometry = new THREE.SphereGeometry(0.08, 16, 16);
+  composerPointMaterial = new THREE.MeshBasicMaterial({ color: 0xffc26a });
+  composerPointMaterialActive = new THREE.MeshBasicMaterial({ color: 0x7dd3fc });
+
+  composerRaycaster = new THREE.Raycaster();
+
+  setComposerFrameDefaults();
+  setComposerCameraDefaults();
+
+  if (!composerPathState.points.length) {
+    resetComposerPathPoints();
+  } else {
+    rebuildComposerControlPoints();
+    updateComposerPathGeometry();
+  }
+
+  updateComposerFrame();
+  updateComposerCamera();
+  resizeComposerCanvas();
+
+  composerCanvas.addEventListener("pointerdown", onComposerPointerDown);
+  composerCanvas.addEventListener("pointermove", onComposerPointerMove);
+  composerCanvas.addEventListener("pointerup", onComposerPointerUp);
+  composerCanvas.addEventListener("pointercancel", onComposerPointerUp);
+  composerCanvas.addEventListener("pointerleave", onComposerPointerUp);
+  composerCanvas.addEventListener(
+    "wheel",
+    (event) => {
+      onComposerWheel(event);
+    },
+    { passive: false }
+  );
+  composerCanvas.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+  });
+}
+
+function resizeComposerCanvas() {
+  if (!composerRenderer || !composerCanvas || !composerCamera) {
+    return;
+  }
+  const rect = composerCanvas.getBoundingClientRect();
+  const width = Math.max(1, Math.floor(rect.width));
+  const height = Math.max(1, Math.floor(rect.height));
+  composerRenderer.setSize(width, height, false);
+  composerCamera.aspect = width / height;
+  composerCamera.updateProjectionMatrix();
+  composerNeedsResize = false;
+}
+
+function updateComposerFrame() {
+  if (!composerFrameGroup) {
+    return;
+  }
+  composerFrameGroup.rotation.copy(composerFrameState.rotation);
+  composerFrameGroup.scale.setScalar(composerFrameState.scale);
+}
+
+function applyComposerFrameInputs() {
+  const rotX = THREE.MathUtils.degToRad(readNumberInput(composerFrameRotXInput, 0));
+  const rotY = THREE.MathUtils.degToRad(readNumberInput(composerFrameRotYInput, 0));
+  const rotZ = THREE.MathUtils.degToRad(readNumberInput(composerFrameRotZInput, 0));
+  composerFrameState.rotation.set(rotX, rotY, rotZ);
+  const scaleExp = readNumberInput(composerFrameScaleInput, 0);
+  composerFrameState.scale = Math.pow(10, scaleExp);
+  if (composerFrameScaleLabel) {
+    composerFrameScaleLabel.textContent = formatScaleLabel(composerFrameState.scale);
+  }
+  updateComposerFrame();
+}
+
+function updateComposerCamera() {
+  if (!composerCamera) {
+    return;
+  }
+  composerCamera.position.copy(composerCameraState.position);
+  composerCamera.rotation.copy(composerCameraState.rotation);
+}
+
+function syncComposerCameraInputs() {
+  if (composerCameraPosXInput) {
+    composerCameraPosXInput.value = composerCameraState.position.x.toFixed(2);
+  }
+  if (composerCameraPosYInput) {
+    composerCameraPosYInput.value = composerCameraState.position.y.toFixed(2);
+  }
+  if (composerCameraPosZInput) {
+    composerCameraPosZInput.value = composerCameraState.position.z.toFixed(2);
+  }
+  if (composerCameraRotXInput) {
+    composerCameraRotXInput.value = THREE.MathUtils
+      .radToDeg(composerCameraState.rotation.x)
+      .toFixed(0);
+  }
+  if (composerCameraRotYInput) {
+    composerCameraRotYInput.value = THREE.MathUtils
+      .radToDeg(composerCameraState.rotation.y)
+      .toFixed(0);
+  }
+  if (composerCameraRotZInput) {
+    composerCameraRotZInput.value = THREE.MathUtils
+      .radToDeg(composerCameraState.rotation.z)
+      .toFixed(0);
+  }
+  if (composerCameraSpeedLabel) {
+    composerCameraSpeedLabel.textContent = formatScaleLabel(composerCameraState.speed);
+  }
+}
+
+function applyComposerCameraInputs() {
+  const posX = readNumberInput(composerCameraPosXInput, composerCameraState.position.x);
+  const posY = readNumberInput(composerCameraPosYInput, composerCameraState.position.y);
+  const posZ = readNumberInput(composerCameraPosZInput, composerCameraState.position.z);
+  composerCameraState.position.set(posX, posY, posZ);
+
+  const rotX = THREE.MathUtils.degToRad(readNumberInput(composerCameraRotXInput, 0));
+  const rotY = THREE.MathUtils.degToRad(readNumberInput(composerCameraRotYInput, 0));
+  const rotZ = THREE.MathUtils.degToRad(readNumberInput(composerCameraRotZInput, 0));
+  composerCameraState.rotation.set(rotX, rotY, rotZ);
+
+  const speedExp = readNumberInput(composerCameraSpeedInput, 0);
+  composerCameraState.speed = Math.pow(10, speedExp);
+  if (composerCameraSpeedLabel) {
+    composerCameraSpeedLabel.textContent = formatScaleLabel(composerCameraState.speed);
+  }
+  updateComposerCamera();
+}
+
+function rebuildComposerControlPoints() {
+  if (!composerFrameGroup || !composerPointGeometry) {
+    return;
+  }
+  composerPointMeshes.forEach((mesh) => {
+    composerFrameGroup.remove(mesh);
+  });
+  composerPointMeshes = composerPathState.points.map((point, index) => {
+    const mesh = new THREE.Mesh(composerPointGeometry, composerPointMaterial);
+    mesh.position.copy(point);
+    mesh.userData.pointIndex = index;
+    composerFrameGroup.add(mesh);
+    return mesh;
+  });
+}
+
+function updateComposerPathGeometry() {
+  if (!composerPathGeometry) {
+    return;
+  }
+  if (!composerPathState.points.length) {
+    composerPathGeometry.setFromPoints([]);
+    return;
+  }
+  let samples = composerPathState.points;
+  if (composerPathState.interpolate === "spline" && composerPathState.points.length > 2) {
+    const curve = new THREE.CatmullRomCurve3(
+      composerPathState.points,
+      composerPathState.closed,
+      "catmullrom",
+      0.5
+    );
+    samples = curve.getPoints(160);
+  } else if (composerPathState.closed) {
+    samples = [...composerPathState.points, composerPathState.points[0]];
+  }
+  composerPathGeometry.setFromPoints(samples);
+  composerPathGeometry.computeBoundingSphere();
+}
+
+function renderComposerCanvas() {
+  if (!composerRenderer || !composerScene || !composerCamera || !composerOverlay) {
+    return;
+  }
+  if (!composerOverlay.classList.contains("is-open")) {
+    return;
+  }
+  if (composerNeedsResize) {
+    resizeComposerCanvas();
+  }
+  composerRenderer.render(composerScene, composerCamera);
+}
+
+function getComposerPointerNdc(event) {
+  const rect = composerCanvas.getBoundingClientRect();
+  const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+  return { x, y };
+}
+
+function onComposerPointerDown(event) {
+  if (!composerCanvas || !composerCamera || !composerRaycaster) {
+    return;
+  }
+  composerCanvas.setPointerCapture(event.pointerId);
+  const { x, y } = getComposerPointerNdc(event);
+  composerRaycaster.setFromCamera({ x, y }, composerCamera);
+  const hits = composerRaycaster.intersectObjects(composerPointMeshes, false);
+  if (hits.length) {
+    const hit = hits[0];
+    composerDragState.mode = "point";
+    composerDragState.pointIndex = hit.object.userData.pointIndex;
+    composerDragState.startX = event.clientX;
+    composerDragState.startY = event.clientY;
+    composerDragState.startPoint.copy(composerPathState.points[composerDragState.pointIndex]);
+    const worldPoint = hit.object.getWorldPosition(new THREE.Vector3());
+    const normal = new THREE.Vector3(0, 0, 1).applyQuaternion(
+      composerFrameGroup.quaternion
+    );
+    composerDragState.plane.setFromNormalAndCoplanarPoint(normal, worldPoint);
+    composerDragState.altMode = event.altKey;
+    hit.object.material = composerPointMaterialActive;
+    return;
+  }
+  composerDragState.mode = "camera";
+  composerDragState.button = event.button;
+  composerDragState.startX = event.clientX;
+  composerDragState.startY = event.clientY;
+  composerDragState.startCameraPos.copy(composerCameraState.position);
+  composerDragState.startCameraRot.copy(composerCameraState.rotation);
+}
+
+function onComposerPointerMove(event) {
+  if (!composerDragState.mode) {
+    return;
+  }
+  const dx = event.clientX - composerDragState.startX;
+  const dy = event.clientY - composerDragState.startY;
+  if (composerDragState.mode === "point") {
+    const index = composerDragState.pointIndex;
+    if (index == null) {
+      return;
+    }
+    if (composerDragState.altMode || event.altKey) {
+      const lift = -dy * 0.01 * composerFrameState.scale;
+      const localNormal = new THREE.Vector3(0, 0, 1);
+      composerPathState.points[index]
+        .copy(composerDragState.startPoint)
+        .addScaledVector(localNormal, lift);
+    } else {
+      const { x, y } = getComposerPointerNdc(event);
+      composerRaycaster.setFromCamera({ x, y }, composerCamera);
+      const intersection = new THREE.Vector3();
+      if (composerRaycaster.ray.intersectPlane(composerDragState.plane, intersection)) {
+        const localPoint = composerFrameGroup.worldToLocal(intersection.clone());
+        composerPathState.points[index].copy(localPoint);
+      }
+    }
+    if (composerPointMeshes[index]) {
+      composerPointMeshes[index].position.copy(composerPathState.points[index]);
+    }
+    updateComposerPathGeometry();
+    if (composerActivePanel === "export") {
+      renderComposerJsonPreview();
+    }
+    return;
+  }
+
+  if (composerDragState.mode === "camera") {
+    const isRotate = composerDragState.button === 0 && !event.shiftKey;
+    if (isRotate) {
+      composerCameraState.rotation.y =
+        composerDragState.startCameraRot.y - dx * 0.005;
+      composerCameraState.rotation.x =
+        composerDragState.startCameraRot.x - dy * 0.005;
+      composerCameraState.rotation.x = clamp(
+        composerCameraState.rotation.x,
+        THREE.MathUtils.degToRad(-89),
+        THREE.MathUtils.degToRad(89)
+      );
+    } else {
+      const right = new THREE.Vector3(1, 0, 0).applyEuler(
+        composerCameraState.rotation
+      );
+      const up = new THREE.Vector3(0, 1, 0).applyEuler(
+        composerCameraState.rotation
+      );
+      const panScale = composerCameraState.speed * 0.01;
+      const offset = new THREE.Vector3()
+        .addScaledVector(right, -dx * panScale)
+        .addScaledVector(up, dy * panScale);
+      composerCameraState.position.copy(composerDragState.startCameraPos).add(offset);
+    }
+    updateComposerCamera();
+  }
+}
+
+function onComposerPointerUp(event) {
+  if (composerDragState.mode === "point" && composerDragState.pointIndex != null) {
+    const mesh = composerPointMeshes[composerDragState.pointIndex];
+    if (mesh) {
+      mesh.material = composerPointMaterial;
+    }
+  }
+  composerDragState.mode = null;
+  composerDragState.pointIndex = null;
+  if (composerCanvas && composerCanvas.hasPointerCapture(event.pointerId)) {
+    composerCanvas.releasePointerCapture(event.pointerId);
+  }
+  composerDragState.altMode = false;
+  composerDragState.button = 0;
+  syncComposerCameraInputs();
+}
+
+function onComposerWheel(event) {
+  if (!composerCamera) {
+    return;
+  }
+  event.preventDefault();
+  const forward = new THREE.Vector3();
+  composerCamera.getWorldDirection(forward);
+  const delta = event.deltaY * 0.01 * composerCameraState.speed;
+  composerCameraState.position.addScaledVector(forward, delta);
+  updateComposerCamera();
+  syncComposerCameraInputs();
 }
 
 const motionHandlers = {
@@ -353,6 +798,49 @@ const composerPanelMap = new Map([
   ["composer_export", "export"],
 ]);
 const composerPalette = defaultAutoMarkdownPalette;
+const composerPathState = {
+  points: [],
+  interpolate: "spline",
+  closed: false,
+};
+const composerFrameState = {
+  rotation: new THREE.Euler(0, 0, 0, "YXZ"),
+  scale: 1,
+};
+const composerCameraState = {
+  position: new THREE.Vector3(0, 2.6, 6.5),
+  rotation: new THREE.Euler(
+    THREE.MathUtils.degToRad(-15),
+    THREE.MathUtils.degToRad(15),
+    0,
+    "YXZ"
+  ),
+  speed: 1,
+};
+const composerDragState = {
+  mode: null,
+  button: 0,
+  pointIndex: null,
+  startX: 0,
+  startY: 0,
+  startPoint: new THREE.Vector3(),
+  startCameraPos: new THREE.Vector3(),
+  startCameraRot: new THREE.Euler(0, 0, 0, "YXZ"),
+  plane: new THREE.Plane(),
+  altMode: false,
+};
+let composerRenderer = null;
+let composerScene = null;
+let composerCamera = null;
+let composerFrameGroup = null;
+let composerPathLine = null;
+let composerPathGeometry = null;
+let composerPointMeshes = [];
+let composerPointGeometry = null;
+let composerPointMaterial = null;
+let composerPointMaterialActive = null;
+let composerRaycaster = null;
+let composerNeedsResize = false;
 const periodicTableCache = { data: null, ready: false };
 let periodicGridBuilt = false;
 
@@ -3865,6 +4353,9 @@ function setComposerPanel(panelId) {
     panel.classList.toggle("is-active", isActive);
     panel.setAttribute("aria-hidden", String(!isActive));
   });
+  if (nextPanel === "path") {
+    composerNeedsResize = true;
+  }
   if (nextPanel === "export") {
     renderComposerJsonPreview();
   }
@@ -3881,6 +4372,8 @@ function updateComposerOverlay() {
   composerOverlay.setAttribute("aria-hidden", isComposer ? "false" : "true");
   composerOverlay.inert = !isComposer;
   if (isComposer) {
+    initComposerCanvas();
+    composerNeedsResize = true;
     setComposerPanel(composerActivePanel);
   }
 }
@@ -4409,12 +4902,16 @@ function animate(now = 0) {
 
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
+  renderComposerCanvas();
 }
 
 function onResize() {
   updateCamera();
   renderer.setSize(window.innerWidth, window.innerHeight, false);
   labelRenderer.setSize(window.innerWidth, window.innerHeight);
+  if (composerRenderer) {
+    composerNeedsResize = true;
+  }
   if (currentLevel?.id === rootScenePath) {
     layoutRootLevel(currentLevel);
     fitCameraToLevel(currentLevel);
@@ -4594,6 +5091,63 @@ if (composerInputs.length) {
         renderComposerJsonPreview();
       }
     });
+  });
+}
+
+if (composerPathModeSelect) {
+  composerPathModeSelect.addEventListener("change", () => {
+    composerPathState.interpolate = composerPathModeSelect.value;
+    updateComposerPathGeometry();
+    if (composerActivePanel === "export") {
+      renderComposerJsonPreview();
+    }
+  });
+}
+
+if (composerPathResetButton) {
+  composerPathResetButton.addEventListener("click", () => {
+    resetComposerPathPoints();
+    if (composerActivePanel === "export") {
+      renderComposerJsonPreview();
+    }
+  });
+}
+
+const composerFrameInputs = [
+  composerFrameRotXInput,
+  composerFrameRotYInput,
+  composerFrameRotZInput,
+  composerFrameScaleInput,
+].filter(Boolean);
+if (composerFrameInputs.length) {
+  composerFrameInputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      applyComposerFrameInputs();
+    });
+  });
+}
+
+const composerCameraInputs = [
+  composerCameraPosXInput,
+  composerCameraPosYInput,
+  composerCameraPosZInput,
+  composerCameraRotXInput,
+  composerCameraRotYInput,
+  composerCameraRotZInput,
+  composerCameraSpeedInput,
+].filter(Boolean);
+if (composerCameraInputs.length) {
+  composerCameraInputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      applyComposerCameraInputs();
+    });
+  });
+}
+
+if (composerCameraResetButton) {
+  composerCameraResetButton.addEventListener("click", () => {
+    setComposerCameraDefaults();
+    applyComposerCameraInputs();
   });
 }
 
