@@ -5,7 +5,7 @@ The priority is the dynamics/math/geometry and the mapping.
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
   - started by adding meta page in UI and working on a scene builder.
 - look for rapid hits - ckm matrix?
-- work on quantum numbers again (where is that). Leverage MIT Kaiser 22
+- work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
 - math/geometry/dynamics are huge
 
 
