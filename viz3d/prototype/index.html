@@ -279,9 +279,9 @@
               <div class="composer-canvas-wrap">
                 <canvas id="composer-canvas"></canvas>
               <div class="composer-canvas-hud">
-                  <span>Drag: pan (screen-space)</span>
-                  <span>Two-finger scroll: rotate view</span>
-                  <span>Pinch: dolly</span>
+                  <span>Drag: orbit (globe)</span>
+                  <span>Two-finger scroll: orbit</span>
+                  <span>Radius slider: zoom</span>
                   <span>Edit Frame: drag to rotate frame</span>
                   <span>Alt-drag point: move along normal</span>
                 </div>
@@ -334,7 +334,7 @@
                 <div class="composer-control-group">
                   <div class="composer-section-title">Camera</div>
                   <div class="composer-field composer-range-field">
-                    <span>Speed (10^x)</span>
+                    <span>Orbit Speed (10^x)</span>
                     <div class="composer-range-row">
                       <input
                         id="composer-camera-speed"
@@ -346,6 +346,21 @@
                         value="0"
                       />
                       <span id="composer-camera-speed-label" class="composer-range-value">1x</span>
+                    </div>
+                  </div>
+                  <div class="composer-field composer-range-field">
+                    <span>Orbit Radius (10^x)</span>
+                    <div class="composer-range-row">
+                      <input
+                        id="composer-camera-radius"
+                        class="composer-range"
+                        type="range"
+                        min="-2"
+                        max="3"
+                        step="0.1"
+                        value="0"
+                      />
+                      <span id="composer-camera-radius-label" class="composer-range-value">1x</span>
                     </div>
                   </div>
                   <button id="composer-camera-reset" type="button">Reset Camera</button>

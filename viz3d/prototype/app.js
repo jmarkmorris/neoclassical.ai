@@ -58,6 +58,8 @@ const composerFrameScaleInput = document.getElementById("composer-frame-scale");
 const composerFrameScaleLabel = document.getElementById("composer-frame-scale-label");
 const composerCameraSpeedInput = document.getElementById("composer-camera-speed");
 const composerCameraSpeedLabel = document.getElementById("composer-camera-speed-label");
+const composerCameraRadiusInput = document.getElementById("composer-camera-radius");
+const composerCameraRadiusLabel = document.getElementById("composer-camera-radius-label");
 const composerCameraResetButton = document.getElementById("composer-camera-reset");
 const composerCameraPoiSelect = document.getElementById("composer-camera-poi");
 const composerCameraWaypointAdd = document.getElementById("composer-camera-waypoint-add");
@@ -215,16 +217,13 @@ function setComposerFrameDefaults() {
 
 function setComposerCameraDefaults() {
   composerCameraState.position.set(0, 2.6, 6.5);
-  composerCameraState.rotation.set(
-    THREE.MathUtils.degToRad(-15),
-    THREE.MathUtils.degToRad(15),
-    0
-  );
   composerCameraState.speed = 1;
   if (composerCameraSpeedInput) composerCameraSpeedInput.value = "0";
   if (composerCameraSpeedLabel) {
     composerCameraSpeedLabel.textContent = formatScaleLabel(1);
   }
+  updateComposerOrbitFromPosition(composerCameraState.position);
+  syncComposerCameraRadiusInput();
 }
 
 function updateComposerWaypointCount() {
@@ -235,6 +234,48 @@ function updateComposerWaypointCount() {
     composerCameraFlightToggle.disabled =
       composerCameraFlightState.waypoints.length < 2;
   }
+}
+
+function getComposerOrbitTargetWorld() {
+  if (!composerFrameGroup) {
+    return new THREE.Vector3(0, 0, 0);
+  }
+  return composerFrameGroup.localToWorld(new THREE.Vector3(0, 0, 0));
+}
+
+function updateComposerOrbitFromPosition(position) {
+  const target = getComposerOrbitTargetWorld();
+  const offset = position.clone().sub(target);
+  const radius = Math.max(composerCameraOrbitState.minDistance, offset.length());
+  const theta = Math.atan2(offset.x, offset.z);
+  const phi = Math.acos(clamp(offset.y / radius, -1, 1));
+  composerCameraOrbitState.radius = radius;
+  composerCameraOrbitState.theta = theta;
+  composerCameraOrbitState.phi = phi;
+}
+
+function syncComposerCameraRadiusInput() {
+  if (!composerCameraRadiusInput) {
+    return;
+  }
+  const radius = Math.max(composerCameraOrbitState.minDistance, composerCameraOrbitState.radius);
+  const exp = Math.log10(radius);
+  composerCameraRadiusInput.value = exp.toFixed(2);
+  if (composerCameraRadiusLabel) {
+    composerCameraRadiusLabel.textContent = formatScaleLabel(radius);
+  }
+}
+
+function applyComposerCameraRadiusInput() {
+  if (!composerCameraRadiusInput) {
+    return;
+  }
+  const exp = readNumberInput(composerCameraRadiusInput, Math.log10(composerCameraOrbitState.radius || 1));
+  composerCameraOrbitState.radius = Math.pow(10, exp);
+  if (composerCameraRadiusLabel) {
+    composerCameraRadiusLabel.textContent = formatScaleLabel(composerCameraOrbitState.radius);
+  }
+  updateComposerCamera();
 }
 
 function getComposerPoiLocal() {
@@ -469,6 +510,7 @@ function initComposerCanvas() {
   if (composerCameraPoiSelect) {
     composerCameraPoiSelect.value = composerCameraFlightState.poiMode;
   }
+  syncComposerCameraRadiusInput();
 
   if (!composerPathState.points.length) {
     resetComposerPathPoints();
@@ -534,8 +576,26 @@ function updateComposerCamera() {
   if (!composerCamera) {
     return;
   }
-  composerCamera.position.copy(composerCameraState.position);
-  composerCamera.rotation.copy(composerCameraState.rotation);
+  if (composerCameraFlightState.preview) {
+    return;
+  }
+  const target = getComposerOrbitTargetWorld();
+  const radius = clamp(
+    composerCameraOrbitState.radius,
+    composerCameraOrbitState.minDistance,
+    composerCameraOrbitState.maxDistance
+  );
+  const phi = clamp(composerCameraOrbitState.phi, 0.05, Math.PI - 0.05);
+  const theta = composerCameraOrbitState.theta;
+  const sinPhi = Math.sin(phi);
+  const offset = new THREE.Vector3(
+    radius * sinPhi * Math.sin(theta),
+    radius * Math.cos(phi),
+    radius * sinPhi * Math.cos(theta)
+  );
+  composerCamera.position.copy(target).add(offset);
+  composerCamera.lookAt(target);
+  composerCameraState.position.copy(composerCamera.position);
 }
 
 function applyComposerCameraSpeedInput() {
@@ -638,7 +698,6 @@ function startComposerCameraFlightPreview() {
   composerCameraFlightState.startTime = performance.now();
   if (composerCamera) {
     composerCameraFlightState.savedPosition.copy(composerCamera.position);
-    composerCameraFlightState.savedRotation.copy(composerCamera.rotation);
   }
   if (composerCameraFlightToggle) {
     composerCameraFlightToggle.textContent = "Stop Flight";
@@ -653,7 +712,9 @@ function stopComposerCameraFlightPreview() {
   composerCameraFlightState.preview = false;
   if (composerCamera) {
     composerCamera.position.copy(composerCameraFlightState.savedPosition);
-    composerCamera.rotation.copy(composerCameraFlightState.savedRotation);
+    updateComposerOrbitFromPosition(composerCamera.position);
+    syncComposerCameraRadiusInput();
+    updateComposerCamera();
   }
   if (composerCameraFlightToggle) {
     composerCameraFlightToggle.textContent = "Play Flight";
@@ -758,8 +819,8 @@ function onComposerPointerDown(event) {
   composerDragState.button = event.button;
   composerDragState.startX = event.clientX;
   composerDragState.startY = event.clientY;
-  composerDragState.startCameraPos.copy(composerCameraState.position);
-  composerDragState.startCameraRot.copy(composerCameraState.rotation);
+  composerDragState.startOrbitTheta = composerCameraOrbitState.theta;
+  composerDragState.startOrbitPhi = composerCameraOrbitState.phi;
 }
 
 function onComposerPointerMove(event) {
@@ -799,30 +860,14 @@ function onComposerPointerMove(event) {
   }
 
   if (composerDragState.mode === "camera") {
-    const isRotate = composerDragState.button === 0 && !event.shiftKey;
-    if (isRotate) {
-      composerCameraState.rotation.y =
-        composerDragState.startCameraRot.y - dx * 0.005;
-      composerCameraState.rotation.x =
-        composerDragState.startCameraRot.x - dy * 0.005;
-      composerCameraState.rotation.x = clamp(
-        composerCameraState.rotation.x,
-        THREE.MathUtils.degToRad(-89),
-        THREE.MathUtils.degToRad(89)
-      );
-    } else {
-      const right = new THREE.Vector3(1, 0, 0).applyEuler(
-        composerCameraState.rotation
-      );
-      const up = new THREE.Vector3(0, 1, 0).applyEuler(
-        composerCameraState.rotation
-      );
-      const panScale = composerCameraState.speed * 0.01;
-      const offset = new THREE.Vector3()
-        .addScaledVector(right, -dx * panScale)
-        .addScaledVector(up, dy * panScale);
-      composerCameraState.position.copy(composerDragState.startCameraPos).add(offset);
-    }
+    const speed = composerCameraState.speed * 0.004;
+    composerCameraOrbitState.theta =
+      composerDragState.startOrbitTheta - dx * speed;
+    composerCameraOrbitState.phi = clamp(
+      composerDragState.startOrbitPhi - dy * speed,
+      0.05,
+      Math.PI - 0.05
+    );
     updateComposerCamera();
   }
 
@@ -853,10 +898,13 @@ function onComposerWheel(event) {
     return;
   }
   event.preventDefault();
-  const forward = new THREE.Vector3();
-  composerCamera.getWorldDirection(forward);
-  const delta = event.deltaY * 0.01 * composerCameraState.speed;
-  composerCameraState.position.addScaledVector(forward, delta);
+  const speed = composerCameraState.speed * 0.0015;
+  composerCameraOrbitState.theta -= event.deltaX * speed;
+  composerCameraOrbitState.phi = clamp(
+    composerCameraOrbitState.phi - event.deltaY * speed,
+    0.05,
+    Math.PI - 0.05
+  );
   updateComposerCamera();
 }
 
@@ -965,18 +1013,15 @@ const composerFrameState = {
 let composerFrameEditMode = false;
 const composerCameraState = {
   position: new THREE.Vector3(0, 2.6, 6.5),
-  rotation: new THREE.Euler(
-    THREE.MathUtils.degToRad(-15),
-    THREE.MathUtils.degToRad(15),
-    0,
-    "YXZ"
-  ),
   speed: 1,
 };
 const composerCameraOrbitState = {
   target: new THREE.Vector3(),
   minDistance: 0.3,
   maxDistance: 2000,
+  radius: 1,
+  theta: 0,
+  phi: Math.PI / 2,
 };
 const composerCameraFlightState = {
   waypoints: [],
@@ -984,7 +1029,6 @@ const composerCameraFlightState = {
   preview: false,
   startTime: 0,
   savedPosition: new THREE.Vector3(),
-  savedRotation: new THREE.Euler(0, 0, 0, "YXZ"),
   savedTarget: new THREE.Vector3(),
 };
 let composerSelectedPointIndex = null;
@@ -995,9 +1039,9 @@ const composerDragState = {
   startX: 0,
   startY: 0,
   startPoint: new THREE.Vector3(),
-  startCameraPos: new THREE.Vector3(),
-  startCameraRot: new THREE.Euler(0, 0, 0, "YXZ"),
   startFrameRot: new THREE.Euler(0, 0, 0, "YXZ"),
+  startOrbitTheta: 0,
+  startOrbitPhi: 0,
   plane: new THREE.Plane(),
   altMode: false,
 };
@@ -5351,11 +5395,17 @@ if (composerFrameInputs.length) {
 
 const composerCameraInputs = [
   composerCameraSpeedInput,
+  composerCameraRadiusInput,
 ].filter(Boolean);
 if (composerCameraInputs.length) {
   composerCameraInputs.forEach((input) => {
     input.addEventListener("input", () => {
-      applyComposerCameraSpeedInput();
+      if (input === composerCameraSpeedInput) {
+        applyComposerCameraSpeedInput();
+      }
+      if (input === composerCameraRadiusInput) {
+        applyComposerCameraRadiusInput();
+      }
     });
   });
 }
