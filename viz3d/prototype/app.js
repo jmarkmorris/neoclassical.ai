@@ -470,17 +470,51 @@ function initComposerCanvas() {
   composerFrameGroup = new THREE.Group();
   composerScene.add(composerFrameGroup);
 
-  const grid = new THREE.GridHelper(10, 20, 0x4b5b8a, 0x2f374f);
-  if (Array.isArray(grid.material)) {
-    grid.material.forEach((material) => {
-      material.opacity = 0.55;
-      material.transparent = true;
-    });
-  } else {
-    grid.material.opacity = 0.55;
-    grid.material.transparent = true;
-  }
-  composerFrameGroup.add(grid);
+  const referenceGroup = new THREE.Group();
+  const circleMaterial = new THREE.LineBasicMaterial({
+    color: 0x6f82b6,
+    transparent: true,
+    opacity: 0.6,
+  });
+
+  const makeCircle = (radius, plane) => {
+    const points = [];
+    const segments = 96;
+    for (let i = 0; i <= segments; i += 1) {
+      const t = (i / segments) * Math.PI * 2;
+      const x = Math.cos(t) * radius;
+      const y = Math.sin(t) * radius;
+      if (plane === "xy") {
+        points.push(new THREE.Vector3(x, y, 0));
+      } else if (plane === "xz") {
+        points.push(new THREE.Vector3(x, 0, y));
+      } else {
+        points.push(new THREE.Vector3(0, x, y));
+      }
+    }
+    return new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(points),
+      circleMaterial
+    );
+  };
+
+  referenceGroup.add(makeCircle(1, "xy"));
+  referenceGroup.add(makeCircle(1, "xz"));
+  referenceGroup.add(makeCircle(1, "yz"));
+
+  const latitudeAngles = [30, 60].map((deg) => THREE.MathUtils.degToRad(deg));
+  latitudeAngles.forEach((angle) => {
+    const radius = Math.cos(angle);
+    const y = Math.sin(angle);
+    const top = makeCircle(radius, "xz");
+    top.position.y = y;
+    referenceGroup.add(top);
+    const bottom = makeCircle(radius, "xz");
+    bottom.position.y = -y;
+    referenceGroup.add(bottom);
+  });
+
+  composerFrameGroup.add(referenceGroup);
 
   const axes = new THREE.AxesHelper(2.2);
   if (axes.material) {
