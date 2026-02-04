@@ -7,9 +7,6 @@ The priority is the dynamics/math/geometry and the mapping.
   - a language for describing animations 
 - look for rapid hits - ckm matrix?
 - work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
-- math/geometry/dynamics are huge
-
-
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 - sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
