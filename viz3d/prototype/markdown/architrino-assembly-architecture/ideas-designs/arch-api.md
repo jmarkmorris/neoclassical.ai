@@ -70,9 +70,16 @@ PathSpec payloads
   - `channel`: position key / attribute
   - `cache`: optional stored samples
 - Function
-  - `fn`: parametric function id
+  - `fn`: parametric function id (see Function registry)
   - `params`: function parameters
   - `domain`: t range
+
+Function registry (draft)
+- `spline`: smooth curve through control points (tension, closed)
+- `polyline`: straight segments through explicit points (closed)
+- `circle`: radius + normal (optionally center)
+- `ellipse`: radiusX/radiusY + normal (optionally center)
+- `helix`: radius + pitch + axis (optionally center)
 - Group
   - `center`: scene id or anchor id
   - `groupId`: assembly/group reference
@@ -253,7 +260,7 @@ Composer app (scene design)
   - Path is edited as an arbitrary 3D curve (spline or primitive), transformed in its frame.
   - Larger motion and context come from nesting: parent frames move, children inherit.
 - Path editing (visual-first):
-  - Modes: spline (freeform), line, circle, ellipse, helix/spiral.
+  - Modes: spline (freeform), polyline (point list), circle, ellipse, helix/spiral.
   - Control points and tangents are edited directly in 3D with axis constraints.
   - Primitives expose exact parameters, then can be converted to spline for refinement.
   - Time mapping options: uniform by arc length, or param-based, with repeat modes.
@@ -302,6 +309,23 @@ PathSpec examples (draft, 3D paths)
       "radiusX": 1.5,
       "radiusY": 0.8,
       "normal": [0, 1, 0]
+    },
+    "domain": [0, 1]
+  }
+}
+```
+
+- Polyline path (explicit points):
+
+```json
+{
+  "kind": "function",
+  "frame": { "space": "relative", "relativeTo": "parent" },
+  "payload": {
+    "fn": "polyline",
+    "params": {
+      "points": [[0, 0, 0], [0.4, 0.2, 0.0], [0.8, 0.5, 0.3], [1.2, 0.9, 0.1]],
+      "closed": false
     },
     "domain": [0, 1]
   }
