@@ -257,6 +257,11 @@ Composer app (scene design)
   - Control points and tangents are edited directly in 3D with axis constraints.
   - Primitives expose exact parameters, then can be converted to spline for refinement.
   - Time mapping options: uniform by arc length, or param-based, with repeat modes.
+- Camera controls (composer canvas):
+  - Orbit + pan + dolly for quick framing.
+  - Free-fly mode for precise placement anywhere in space.
+  - Speed scaling (orders of magnitude) for large scenes.
+  - Focus on selection re-centers the view on the active path.
 - Modes:
   - Guided (preset-first): exposes safe parameters and hides raw fields.
   - Advanced (spec-first): full SceneSpec editor with validation + diff.
@@ -264,6 +269,44 @@ Composer app (scene design)
   - Composer edits update a DraftSpec (normalized, but not auto-filled).
   - Export produces canonical JSON with defaults applied.
   - Renderer never guesses; composer is responsible for explicit values.
+
+PathSpec examples (draft, 3D paths)
+- Spline path (function-backed):
+
+```json
+{
+  "kind": "function",
+  "frame": { "space": "relative", "relativeTo": "parent", "repeat": { "mode": "loop", "period": 6 } },
+  "payload": {
+    "fn": "spline",
+    "params": {
+      "points": [[0, 0, 0], [1, 0.2, 0.4], [1.8, 0.6, 0.1], [2.2, 1.0, 0.0]],
+      "tension": 0.4,
+      "closed": false
+    },
+    "domain": [0, 1]
+  }
+}
+```
+
+- Ellipse primitive (function-backed):
+
+```json
+{
+  "kind": "function",
+  "frame": { "space": "relative", "relativeTo": "parent" },
+  "payload": {
+    "fn": "ellipse",
+    "params": {
+      "center": [0, 0, 0],
+      "radiusX": 1.5,
+      "radiusY": 0.8,
+      "normal": [0, 1, 0]
+    },
+    "domain": [0, 1]
+  }
+}
+```
 
 Composer balance decisions (how to trade off ideas)
 - Simplicity vs expressiveness: default to presets + small parameter sets; unlock full spec only in Advanced.
