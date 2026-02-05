@@ -237,9 +237,13 @@ Generations are defined by the **shedding of shielding binaries** from the Nucle
     *   Personality: 5P, 1E.
     *   Total Count: 8 Architrinos.
 
-### Core Depletion, Axial Vortices, and Lifetime
+### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-From the dynamical-systems perspective, the nested binaries in the Noether core are not just bookkeeping devices; each binary supports a pair of **axial vortices** that act as topological “rails” for the Personality charges. In a full tri-binary (Gen I) core, the three binaries generate a robust 3D vortex skeleton that tightly constrains the six decoration sites and distributes stresses into the surrounding Noether Sea. When a binary is removed (Gen II: loss of the outer binary), that corresponding axial vortex structure collapses: one layer of the vortex scaffold disappears, and the remaining binaries must now carry the same decoration pattern with reduced geometric support. This lowers the stability margin of the assembly in ordinary 3D spacetime; small perturbations in the Noether Sea are more effective at driving the core away from its attractor, so the lifetime shortens. With two binaries removed (Gen III: only the inner binary remains), the situation is extreme: a single high‑curvature binary must anchor all six decoration charges with only one axial vortex pair. In this depleted-core regime the configuration sits near the edge of dynamical stability—its basin of attraction is tiny, and any sizable hit from the medium can disrupt the vortex, allowing the Personality charges to reconfigure or escape. The observable short lifetimes of Gen II and Gen III fermions are thus interpreted as direct signatures of **core depletion**: fewer binaries → fewer axial vortices → weaker topological confinement of the decorations → faster decay of the overall assembly.
+- **What the binaries do:** Each binary carries a pair of axial vortices—think of them as rails that hold the six personality charges in place and share load into the Noether Sea.
+- **Gen I (tri-binary):** Three binaries = three vortex pairs → a stiff 3D scaffold that locks the decorations and spreads stress. Long-lived.
+- **Gen II (bi-binary):** One binary removed → one vortex pair gone. The remaining scaffold is weaker, so small perturbations kick the core off its attractor more easily. Lifetime drops.
+- **Gen III (uni-binary):** Only one binary → a single vortex pair must hold all six charges. Stability margin is tiny; modest hits can reconfigure or eject decorations. Very short-lived.
+- **Takeaway:** Fewer binaries → fewer vortex rails → weaker topological confinement → faster decay.
 
 ---
 
@@ -311,6 +315,3 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 
 ---
 
-## Action Items
-1.  **Alfa:** Analyze the binding energy of the Proton (36 architrinos).
-2.  **Phe:** Calculate the magnetic moment difference between Gen I, II, and III based on the "exposed core" radius.
