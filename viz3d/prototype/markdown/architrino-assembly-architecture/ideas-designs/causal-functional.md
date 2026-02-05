@@ -14,6 +14,11 @@ We introduce a functional to replace ad‑hoc stability searches with a single q
 
 This integrates over all pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The $1/r^2$ factor weights nearby self‑hits more strongly than distant ones.
 
+**Interpretation:**
+1. **Object:** The full worldline $\gamma$ is treated as a single geometric object.
+2. **Constraint:** The delta function enforces the light‑cone condition, selecting causally connected pairs.
+3. **Measure:** The $1/r^2$ weight emphasizes close self‑hits over distant ones.
+
 **Normalized (periodic) self‑action:**
 $$
 \bar{\mathcal{A}}_{\text{self}}[\gamma] =
@@ -40,6 +45,16 @@ $$
 \text{Action kernel: } \left[ \frac{1}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
 $$
 The force kernel retains direction via $\hat{\mathbf{r}}$, while the action kernel keeps only the scalar magnitude. This is the minimal change that turns a vector interaction into a scalar functional suitable for variational comparisons.
+
+As a scalar, $\mathcal{A}_{\text{self}}$ summarizes the total strength of causal self‑hits along a worldline. It is derived directly from the interaction structure, but with the directional information removed.
+
+For reference, the self‑interaction term in the master equation uses the same kernel:
+$$
+\mathbf{a}_{\text{self}}(t)
+=\kappa q^2\int dt' \,
+\frac{\hat{\mathbf{r}}(t,t')}{r^2(t,t')}
+\delta\!\big(r(t,t')-c_f(t-t')\big)
+$$
 
 ### 3) Geometric/Topological Framework
 **Causal locus on the torus:**
@@ -107,20 +122,6 @@ Use $\mathcal{I}$ to build an effective metric; ensure compatibility with conser
 
 ----- PRIOR CONTENT BELOW -----
 
-If we want to understand *why* the universe chooses specific discrete assemblies—electroms, protons, muons—out of the infinite continuum of possible trajectories in the Euclidean Void, we must look at the **global topology of the self-interaction**.
-
-Stability is treated as a **variational necessity**. Define a functional—a geometric invariant of the worldline $\gamma$—that measures the "intensity of causal self-intersection." This is the **Causal Self-Action Functional**:
-
-$$
-\mathcal{A}_{self}[\gamma] = \iint_{\gamma \times \gamma} \frac{\delta \Big( \|\mathbf{x}(t) - \mathbf{x}(t')\| - c_f (t - t') \Big)}{\|\mathbf{x}(t) - \mathbf{x}(t')\|^2} \, dt \, dt'
-$$
-
-### The Categorical Meaning
-
-1. **The Object**: We treat the entire history of the assembly $\gamma$ (a knot or link in $\mathbb{R} \times \mathbb{R}^3$) as a single geometric object in the category of **Causal Knots**.
-2. **The Constraint**: The Dirac delta $\delta(\dots)$ enforces the **Light Cone Condition**. It selects only those pairs of points $(t, t')$ on the worldline that are causally connected. This defines the "Causal Shadow" of the curve upon itself.
-3. **The Measure**: The $1/r^2$ term is the potential weight.
-
 ### Implications
 
 Until now, we have treated mass as an input or a dynamical result. **This equation defines Mass geometrically.**
@@ -141,61 +142,6 @@ Additional implications:
 - Particles are **resonant self-locking geometries** of path history; this equation maps to a periodic table of the Noether Sea.
 
 ---
-
----
-
-**1. What was proposed**
-
- wrote down a **Causal Self‑Action Functional** on a single worldline $\gamma$:
-\[
-\mathcal{A}_{\text{self}}[\gamma] \;=\; \iint_{\gamma\times\gamma}
-\frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f(t-t')\big)}
-{\|\mathbf{x}(t)-\mathbf{x}(t')\|^2}\,dt\,dt'.
-\]
-
-Interpretation:
-
-- Integrate over all pairs of times $(t,t')$ on the same worldline,
-- Keep only those pairs that satisfy the **causal‑wake condition**
- $\|\mathbf{x}(t)-\mathbf{x}(t')\| = c_f(t-t')$, i.e. self‑hits,
-- Weight each such pair by $1/r^2$,
-- Then claim: **stable assemblies** correspond to **local minima** of this functional within a topological class of worldlines; “mass” $\sim$ value of this minimum.
-
-So the suggestion is:
-
-- Replace “solve the delay ODEs and see where things stabilize” by
-- “find critical points of a purely geometric functional on curves in $\mathbb{R}\times\mathbb{R}^3$.”
-
----
-
-**2. Connection to our actual Master Equation**
-
-- The Master EOM acceleration term for self‑interaction is
- \[
- \mathbf{a}_{\text{self}}(t)
- \;=\;\kappa q^2
- \int dt' \;
- \frac{\hat{\mathbf{r}}(t,t')}{r^2(t,t')}
- \;\delta\!\big(r(t,t')-c_f(t-t')\big),
- \]
- with $r = \|\mathbf{x}(t)-\mathbf{x}(t')\|$ and $\hat{\mathbf{r}}$ the unit vector.
-
-Comparing:
-
-- Our **force** kernel is
- \[
- \left[ \frac{\hat{\mathbf{r}}(t,t')}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
- \]
-- the **action** kernel drops the direction and keeps
- \[
- \left[ \frac{1}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
- \]
-
-So as a *scalar*, $\mathcal{A}_{\text{self}}$ is roughly the **total “strength” of all self‑hits** accumulated along the worldline: every causal self‑intersection contributes $\sim 1/r^2$.
-
-That is **directly derived** from our interaction structure, just without the vector direction and without any sign.
-
-So as a *statistical/structural* object, this is legitimate: it is a scalar functional that counts (with $1/r^2$ weight) all self‑hit events.
 
 ---
 
