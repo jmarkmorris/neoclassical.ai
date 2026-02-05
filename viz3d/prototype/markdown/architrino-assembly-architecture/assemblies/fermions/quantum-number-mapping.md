@@ -95,6 +95,9 @@ Every fermion personality layer consists of 6 polar sites. We hypothesize that t
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These decorations *cannot* be swapped without destroying the particle.
 2.  **The Active Triad (3 sites):** Exposed to the Noether Sea. These are the "switchable bits."
 
+**Which three are active? (hypothesis)**
+- In translation, either the forward or rearward hemisphere could be more exposed. We currently favor the **forward three sites**: the leading side is not in its own wake, while the trailing side sits in that wake and slipstream, which likely damps docking by a $W$ corridor. This needs simulation to confirm the exposure asymmetry.
+
 **Weak Isospin ($T_3$)** is defined by the polarity of this **Active Triad**:
 *   **$T_3 = +1/2$ (Up-State):** The Active Triad contains maximal **Positrinos** (relative to the baseline).
 *   **$T_3 = -1/2$ (Down-State):** The Active Triad contains maximal **Electrinos**.
