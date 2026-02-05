@@ -24,7 +24,7 @@
 
 ### Expansion of the Universe: Scaling in a Fixed Euclidean Void
 
-#### 1. Absolute vs. Emergent Notions of Expansion
+#### Absolute vs. Emergent Notions of Expansion
 
 - **Absolute substrate**:
   - The Euclidean void (coordinates $(x,y,z)$) does **not expand**.
@@ -40,7 +40,7 @@ From the virtual observer’s perspective:
   - Typical outer-binary radii $R_{\text{outer}}(t)$,
   both functions of absolute time t.
 
-#### 2. Effective Scale Factor
+#### Effective Scale Factor
 
 We define an **effective scale factor** $a(t)$ as:
 
@@ -54,7 +54,7 @@ or, equivalently, using some other robust medium-scale measure (e.g. average sep
   - Comoving coordinates follow the motion of the medium relative to the void.
   - Comoving time ≈ proper time of a congruence of “cosmic rest” tri-binary clocks.
 
-#### 3. Redshift Mechanism
+#### Redshift Mechanism
 
 In this picture, cosmological redshift arises because:
 
@@ -72,7 +72,7 @@ A core task here is to:
   - An effective scale factor $a(t)$,
   - The standard redshift–distance relation.
 
-#### 4. H₀ Tension Perspective
+#### H₀ Tension Perspective
 
 Because the medium is not homogeneous at all scales:
 

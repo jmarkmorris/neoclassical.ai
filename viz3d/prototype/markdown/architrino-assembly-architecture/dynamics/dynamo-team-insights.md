@@ -6,7 +6,7 @@
 
 ---
 
-## I. Structural Overview
+## Structural Overview
 
 The ontology presents us with an unusually clean separation:
 
@@ -18,7 +18,7 @@ This separation enables a **hierarchy of dynamical atlases**: local charts of as
 
 ---
 
-## II. The Path-History Interaction as Infinite-Dimensional Phase Space
+## The Path-History Interaction as Infinite-Dimensional Phase Space
 
 ### Core Mathematical Challenge (Grothendieck, Tao)
 
@@ -48,7 +48,7 @@ This categorical structure can be organized as **fibered categories over absolut
 
 ---
 
-## III. Delay Dynamics and the Self-Hit Regime
+## Delay Dynamics and the Self-Hit Regime
 
 ### Qualitatively New Dynamical System (Poincaré, Cartan)
 
@@ -89,7 +89,7 @@ The "meta-stable branching" likely arises precisely where Lipschitz continuity b
 
 ---
 
-## IV. Topology, Geometry, and Assembly Classification
+## Topology, Geometry, and Assembly Classification
 
 ### Worldline Knots as Particle Types (Thurston, Grothendieck)
 
@@ -161,7 +161,7 @@ This is **refractive gravity**: geodesics are Fermat paths in an inhomogeneous m
 
 ---
 
-## V. Energy, Conservation Laws, and the Noether Sea
+## Energy, Conservation Laws, and the Noether Sea
 
 **Locality and dominance:** All architrinos are in causal relation and can exchange energy in principle (kinetic and wake/bookkeeping energy), but finite field speed and distance falloff make local interactions **dominant**. Distant couplings are delayed and weak, so they contribute corrections rather than setting the primary dynamics. This dominance of local exchange is what allows stable assemblies and meaningful energy bookkeeping in practice.
 
@@ -257,9 +257,9 @@ Only after this can we ask whether $P(A_k)$ varies smoothly with macroscopic con
 
 ---
 
-## VI. Immediate Research Priorities
+## Immediate Research Priorities
 
-### 1. Well-Posedness and Bifurcation Analysis (Poincaré, Tao)
+### Well-Posedness and Bifurcation Analysis (Poincaré, Tao)
 - Prove local existence/uniqueness for the state-dependent delay system with finite $\eta$ (treat $\eta > 0$ as fundamental)
 - Investigate $\eta \to 0$ limit via a weak/viscosity selection; if it fails, determine minimal physical $\eta$
 - Validate simulations: as $\Delta t \to 0$, numerical trajectories must converge to the $\eta > 0$ dynamics
@@ -267,38 +267,38 @@ Only after this can we ask whether $P(A_k)$ varies smoothly with macroscopic con
 - Classify attractor zoo for binaries and tri-binaries
 - **HIGH PRIORITY**: Establish whether maximum-curvature orbits are robust attractors
 
-### 2. Emergent Metric Derivation (Cartan)
+### Emergent Metric Derivation (Cartan)
 - Explicit functional form for $g_{\mu\nu}[\rho_{\text{core}}, u_{\text{core}}, \text{orientations}]$
 - Geodesic equation and connection to operational measurements
 - Define a minimal test set (redshift, light bending, orbital precession) and the regimes where GR should be reproduced (target effective theory)
 - **Note**: GR recovery is a design goal, not yet established
 
-### 3. Assembly Atlas Construction (Thurston, Grothendieck)
+### Assembly Atlas Construction (Thurston, Grothendieck)
 - Topological classification of tri-binary configurations
 - Moduli space structure and invariants
 - Stability analysis (basins of attraction, escape times, Lyapunov spectra)
 - Mapping from topology to physical properties (mass, charge, spin)
 - Test robustness of maximum-curvature configurations
 
-### 4. Energy Functional and Conservation (Noether)
+### Energy Functional and Conservation (Noether)
 - Rigorous definition of wake energy $E_{\text{wake}}$ as a worldline functional (e.g., from pairwise $W_{ij}$)
 - Attempt proof of conservation for isolated systems; if it fails, characterize deviations
 - Connection to mass, binding energy, and stability
 - Clarify ontological status: bookkeeping vs. substance
 
-### 5. Statistical Framework (Kolmogorov)
+### Statistical Framework (Kolmogorov)
 - Invariant measures on trajectory space
 - Large-N continuum limits (hydrodynamic equations, kinetic theory)
 - **Derivation of Born rule**: Test whether typicality yields $P \propto |\psi|^2$
 - Identify parameter regimes where statistical predictions are testable
 
-### 6. Continuum Field Limits (Tao, Cartan)
+### Continuum Field Limits (Tao, Cartan)
 - Rigorously derive Maxwell, Dirac, Yang-Mills as $N \to \infty$ with error bounds (target effective theories)
 - Specify approximation hierarchies and breakdown regimes
 - Connect to Cartan's effective metric structure
 - Mark all derivations with their formal vs. controlled status
 
-### 7. Lorentz Suppression Mechanism ⚠️ **[HIGH RISK]**
+### Lorentz Suppression Mechanism ⚠️ **[HIGH RISK]**
 The claim that assembly dynamics in the Noether Sea automatically produce Lorentz-like length contraction and time dilation (to $\lesssim 10^{-17}$ precision) is currently a **hypothesis**. If detailed assembly models fail to generate this suppression mechanically and exactly, the ontology with a detectable absolute frame will be falsified by existing experiments (Michelson-Morley, modern Lorentz-violation tests).
 
 **Priority**: Frame this as a **group mismatch** problem (Galilean substrate vs Poincaré effective symmetry) and derive the Lorentz factor from the delay geometry. The required theorem: after a Galilean boost, the assembly relaxes to a new equilibrium whose internal clocks/rulers are isomorphic to the rest state **iff** the transformation uses $\gamma = 1/\sqrt{1-v^2/c_f^2}$. This should be derived from Doppler shifts in the causal feedback loop and action minimization, not imposed by hand.
@@ -312,7 +312,7 @@ This gives a concrete simulation diagnostic: reconstruct $e^a{}_\mu$ from intern
 
 ---
 
-## VII. Methodological Principles
+## Methodological Principles
 
 ### Explicit Regime Labeling
 Every derivation must specify:
@@ -350,29 +350,29 @@ Every major claim requires:
 
 ---
 
-## VIII. High-Risk Assumptions Requiring Priority Attention
+## High-Risk Assumptions Requiring Priority Attention
 
 The following architectural pieces are **most fragile** and require focused analytic/simulation effort:
 
-### 1. **Lorentz Suppression Mechanism** ⚠️ **[CRITICAL]**
+### **Lorentz Suppression Mechanism** ⚠️ **[CRITICAL]**
 -- **Claim**: Assembly dynamics rearrange symmetry so that internal clocks/rulers transform with the Lorentz factor, yielding effective Poincaré invariance to $< 10^{-17}$ precision
 - **Status**: Hypothesis
 - **Failure mode**: If assemblies do not naturally contract/dilate, absolute frame becomes operationally detectable → immediate falsification by existing experiments
 - **Required**: Explicit derivation showing the boosted equilibrium is isomorphic to the rest state only under $\gamma$, from Doppler-shifted delay feedback and action minimization; equivalently, show the effective tetrad transforms as $\tilde e = \Lambda e$.
 
-### 2. **Maximum-Curvature Orbit Stability** ⚠️ **[CRITICAL]**
+### **Maximum-Curvature Orbit Stability** ⚠️ **[CRITICAL]**
 - **Claim**: Maximum-curvature configurations are robust attractors
 - **Status**: Conjecture
 - **Failure mode**: If typical perturbations cause secular drift rather than return to orbit, stable particle architecture collapses
 - **Required**: Basin-of-attraction analysis, Lyapunov stability proof, long-time simulations
 
-### 3. **Energy Conservation**
+### **Energy Conservation**
 - **Claim**: A conserved total energy $E_{\text{total}} = K + E_{\text{wake}}$ exists for isolated systems
 - **Status**: Open problem
 - **Failure mode**: If exact conservation fails, statistical framework (equilibrium, invariant measures) requires revision
 - **Required**: Rigorous proof or counterexample
 
-### 4. **Born Rule Emergence**
+### **Born Rule Emergence**
 - **Claim**: Typicality with respect to invariant measures yields $P \propto |\psi|^2$
 - **Status**: Conjectural target
 - **Failure mode**: Systematic deviations in well-tested QM regimes → microdynamics must be revised
@@ -380,7 +380,7 @@ The following architectural pieces are **most fragile** and require focused anal
 
 ---
 
-## IX. Unifying Perspective: Separation of Scales
+## Unifying Perspective: Separation of Scales
 
 The architecture operates at three coupled scales:
 

@@ -14,9 +14,9 @@ and generalizes to strong‑field / high‑velocity conditions.
 
 ---
 
-## 1. Conceptual Setup
+## Conceptual Setup
 
-### 1.1 Absolute Time vs Proper Time
+### Absolute Time vs Proper Time
 
 - **Absolute time $t$** 
  - Fundamental evolution parameter of the architrino universe. 
@@ -31,7 +31,7 @@ The fundamental claim is:
 
 > Time “dilation” is not a change in the rate of $t$; it is a change in how fast internal dynamics of assemblies proceed **relative to** $t$, due to motion and medium coupling.
 
-### 1.2 Clocks as Dynamical Systems
+### Clocks as Dynamical Systems
 
 A clock is any assembly with a **stable, countable internal cycle**:
 
@@ -50,11 +50,11 @@ The central problem is to compute $\omega(\mathbf{v},\rho_{\text{vac}},\Phi_{\te
 
 ---
 
-## 2. Mechanisms for Time Dilation
+## Mechanisms for Time Dilation
 
 Two coupled mechanisms change the internal frequency of a tri‑binary clock:
 
-### 2.1 Kinematic Effect (Velocity Dependence)
+### Kinematic Effect (Velocity Dependence)
 
 When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
 
@@ -78,7 +78,7 @@ $$
 $$
 in the regime where the clock’s motion does not significantly disturb the local Noether Sea. We take $c_f = c$ in SI units when comparing to experiments.
 
-### 2.2 Gravitational Effect (Medium Dependence)
+### Gravitational Effect (Medium Dependence)
 
 Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
 
@@ -101,7 +101,7 @@ $$
 $$
 with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields **slower** clocks ($d\tau/dt < 1$), consistent with GR.
 
-### 2.3 Combined Dilation
+### Combined Dilation
 
 In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether Sea, we conjecture:
 $$
@@ -113,24 +113,24 @@ in the weak‑field, low‑velocity limit, with higher‑order corrections ($v^4
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 
-### 2.4 Strong-Field / Horizon Alignment Note
+### Strong-Field / Horizon Alignment Note
 
 In this framework, **Planck-scale** references are tied to an **event-horizon alignment condition**. As a tri-binary approaches an event horizon, the **outer binary velocity approaches $v=c_f$** while the **middle binary remains at $v=c_f$** with shifting radius/frequency. At the horizon, the **middle and outer binaries become coplanar and co-linear with the inner binary**, and precession ceases. Any strong-field deviation in clock rates should be interpreted through that alignment condition.
 
 ---
 
-## 3. Clock Model and Equations of Motion
+## Clock Model and Equations of Motion
 
 To turn the above hypotheses into a derivation, we must specify a concrete **clock model** and derive its frequency from the master dynamics.
 
-### 3.1 Minimal Clock: Single Tri‑Binary Core
+### Minimal Clock: Single Tri‑Binary Core
 
 - Three nested binaries (inner, middle, outer) of opposite‑charge architrino pairs.
 - The **middle binary** is chosen as the clock’s “tick”:
  - Equilibrium radius $R_m$,
  - Equilibrium angular frequency $\omega_0$ at rest in homogeneous Noether Sea.
 
-### 3.2 Internal Dynamics in the Absolute Frame
+### Internal Dynamics in the Absolute Frame
 
 Using the Master Equation of Motion:
 
@@ -147,7 +147,7 @@ Using the Master Equation of Motion:
  $$
  so that $d\tau/dt = 1$ by construction in this special case.
 
-### 3.3 Boosted and Curved‑Medium Clocks
+### Boosted and Curved‑Medium Clocks
 
 Next, consider the **same internal configuration** but with:
 
@@ -163,11 +163,11 @@ $$
 
 ---
 
-## 4. Derivation Strategy and Simulation Plan
+## Derivation Strategy and Simulation Plan
 
 Because closed‑form analytic solutions are unlikely, we will combine **perturbative analysis** with **numerical simulation**.
 
-### 4.1 Perturbative Expansion (Weak‑field, Low‑velocity)
+### Perturbative Expansion (Weak‑field, Low‑velocity)
 
 1. **Linearize around rest solution:**
  - Write $\mathbf{x}_a(t) = \mathbf{x}_a^{(0)}(t) + \delta\mathbf{x}_a(t)$, where $\mathbf{x}_a^{(0)}$ is the periodic orbit at rest.
@@ -189,7 +189,7 @@ Because closed‑form analytic solutions are unlikely, we will combine **perturb
 4. **Match to GR:** 
  Identify conditions under which $\alpha=1$ and cross‑terms vanish to the accuracy of current experiments ($\lesssim 10^{-5}$ in PPN parameters).
 
-### 4.2 Direct Numerical Experiments
+### Direct Numerical Experiments
 
 Sol’s tasks (see `validation/simulations`):
 
@@ -215,7 +215,7 @@ Sol’s tasks (see `validation/simulations`):
 
 ---
 
-## 5. Observational Targets and Benchmarks
+## Observational Targets and Benchmarks
 
 To claim success, the derived $d\tau/dt$ must reproduce:
 
@@ -236,7 +236,7 @@ These are encoded in `validation/experiments/*` and.
 
 ---
 
-## 6. Failure Conditions and Red Flags
+## Failure Conditions and Red Flags
 
 This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
 
