@@ -7,6 +7,8 @@ It adopts the **Nucleus + Personality** model:
 1.  **The Nucleus (Noether Core):** A neutral, rotating tri-binary structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
 2.  **The Personality (Decoration):** A layer of 6 charged architrinos occupying polar sites on the Nucleus, defining the electric charge, weak isospin, and color charge.
 
+Note: **Mass is derived**, not a quantum number here; it comes from core shielding and drag in the Noether Sea.
+
 ---
 
 ## The Assembly Architecture
@@ -195,6 +197,8 @@ The full SM gauge group is captured geometrically as:
 - **Electromagnetism (U(1)
 _EM):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corridors moving Active-Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
 
+**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge, sometimes written $Y_W$). Relation: $Q = T_3 + Y/2$.
+
 ### Representation cheat sheet (Gen I fermions)
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
@@ -213,6 +217,7 @@ _EM):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corri
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed corridor aligned to leave Shielded + Active-Triad combination invariant ($Q$-coupling only).
 
+*Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields.
 ### Hypercharge bookkeeping (Shielded triad → $Y$)
 
 Hypercharge is set by the net charge on the **Shielded Triad** (three hidden decoration sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for the fermions below.
@@ -230,7 +235,7 @@ Notes: the shielded charge is common within a doublet; right-handed singlets set
 
 ### Charge quantization cross-check
 
-Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 table in phenomenology/gauge-structure-emergence.md Quantization from Stability).
+Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in `phenomenology/gauge-structure-emergence.md`, Quantization from Stability).
 
 ### Right-handed neutrino stance and mass eigenstates
 
