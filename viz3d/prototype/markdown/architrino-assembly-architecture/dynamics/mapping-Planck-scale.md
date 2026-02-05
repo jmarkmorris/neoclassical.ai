@@ -153,8 +153,6 @@ In this experienced-field framing:
 
 ### Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
-Based on Alfa’s phase-slip picture and standard delay-system behavior, we adopt:
-
 > **Working Hypothesis (Discrete Ladder).**  
 > The tri-binary supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
 
@@ -222,7 +220,7 @@ We adopt:
 
 Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to A-cf-match.
 
-#### 5.2 Minimal Action: $L_{\text{align}}$ and $h$
+#### Minimal Action: $L_{\text{align}}$ and $h$
 
 Let $L$ denote the total orbital angular momentum of a tri-binary assembly.
 
@@ -245,7 +243,7 @@ Let $L$ denote the total orbital angular momentum of a tri-binary assembly.
 
 If the dynamics admit multiple distinct aligned states with significantly different $L$, this identification fails.
 
-#### 5.3 Alignment Radius: $R_{\text{align}}$ and $\ell_P$
+#### Alignment Radius: $R_{\text{align}}$ and $\ell_P$
 
 Define
 
@@ -274,7 +272,7 @@ $$
 
 Our program is to compute $L_{\text{align}},R_{\text{align}}$ from first principles, then compare $G_{\text{eff}}$ to the measured $G$.
 
-#### 5.4 $G$ as Noether Sea Compliance
+#### $G$ as Noether Sea Compliance
 
 Qualitatively, gravitational coupling strength reflects the **elastic response of the spacetime medium**:
 
@@ -285,7 +283,7 @@ A full derivation of $G$ from medium compliance is still to be done; the formula
 
 ---
 
-### 6. Horizon Microstructure and “Condensate-Like” Phases (Conjecture)
+### Horizon Microstructure and “Condensate-Like” Phases (Conjecture)
 
 With Planck alignment as an endpoint rather than a point singularity:
 
@@ -307,7 +305,7 @@ Those steps remain open.
 
 ---
 
-### 7. Constraints, Assumptions, and Failure Modes
+### Constraints, Assumptions, and Failure Modes
 
 1. **Lorentz Invariance at Low Speeds.**  
    The translational lever (v-dependent alignment) must be strongly nonlinear:
