@@ -232,6 +232,13 @@ Notes: the shielded charge is common within a doublet; right-handed singlets set
 
 Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 table in phenomenology/gauge-structure-emergence.md Quantization from Stability).
 
+### Right-handed neutrino stance and mass eigenstates
+
+- **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
+- **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ core with shielded/active triads fully symmetric; it would couple only via mixing terms (Dirac/Majorana choice left open).
+- **Mass eigenstates:** The neutrino assembly is taken to be metastable; continual micro reconfiguration exposes its three nearby mass eigenstates, giving oscillations. Other fermions have much stiffer cores (full or partly shielded binaries) so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
+- **CKM view:** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and decoration pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (Active-Triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants → products, chemistry style).
+
 ## The Generation Mechanism (Mass Hierarchy)
 
 Generations are defined by the **shedding of shielding binaries** from the Nucleus. The Personality Layer (Charge) remains constant.
