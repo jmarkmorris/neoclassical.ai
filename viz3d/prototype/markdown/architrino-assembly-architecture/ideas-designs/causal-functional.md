@@ -1,4 +1,4 @@
-## Causal Self-Action Functional — Coherent Structure (Draft)
+## Causal Self-Action Functional — Coherent Structure
 
 ### 1) Problem Statement & Goal
 The objective is to explain why only certain assemblies are stable and discrete, and to interpret “mass” as a consequence of causal self‑interaction rather than an external input. The target is a geometric/variational functional derived from the causal‑wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
@@ -57,7 +57,7 @@ $$
 \delta\!\big(r(t,t')-c_f(t-t')\big)
 $$
 
-### 3) Why this functional is promising
+### 3) Rationale for the Functional
 - **Natural Lyapunov/action‑like candidate:** If certain motion classes monotonically reduce a single functional, that quantity can label attractors and discrete minima that look like “mass levels” or particle configurations.
 - **Bridge to geometric analysis / knot theory:** Showing that simple periodic motions (e.g., maximum‑curvature self‑hit orbits) locally minimize $\mathcal{A}_{\text{self}}$ within a topological class would give a clean geometric explanation for why some orbits are preferred over nearby perturbations.
 - **Simulation‑friendly statistic:** Given any numerically computed orbit, we can Monte‑Carlo sample $(t,t')$, test the causal condition, and estimate $\mathcal{A}_{\text{self}}[\gamma]$ to compare shapes. This makes the “stable = local minimum” heuristic empirically testable.
@@ -145,3 +145,10 @@ Mean‑field view: in a dilute limit with many architrinos, coarse‑graining th
 - **Minima ≠ stability without dynamics:** Stability depends on the full DDE flow; the functional must be windowed/normalized (e.g., one period) to avoid divergences and to compare orbits meaningfully.
 - **Topology needs precision:** Time is monotone; periodic motion yields a spatially closed path but a helical spacetime curve. Be explicit about which projection/linking notion defines the “topological class.”
 - **Cohomology language is aspirational:** A cochain complex over the moduli of periodic orbits is not yet constructed; treat “cohomology of causal interaction” as a research direction, not a result.
+
+### 10) Summary & status
+- We defined a causal self-action and total-action functional directly from the $1/r^2$ delayed kernel, plus its normalized form for periodic orbits.
+- Topology of the causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete labels (winding, writhe, link type) that naturally segment orbit families.
+- The circular-orbit benchmark gives an analytic threshold at $\beta=\pi/2$ and finite high-speed asymptotics, anchoring numerical calibrations.
+- An emergent-metric ansatz from coarse-grained hit density $\mathcal{I}$ is proposed but must satisfy weak-field and equivalence constraints; this remains conjectural.
+- Overall: this is a promising organizing framework, not a proved breakthrough. The key conjectures (rest-mass correlation with $\bar{\mathcal{A}}$, stability as critical points, effective metric validity) still require targeted analytic and numerical verification.
