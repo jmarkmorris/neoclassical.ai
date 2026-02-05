@@ -194,10 +194,9 @@ The full SM gauge group is captured geometrically as:
 - **SU(3) (Color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their SU(3) orientation; leptons are azimuthally symmetric (singlets). Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
 - **SU(2) (Weak isospin):** polarity of the **Active Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Active Triad hidden).
 - **U(1) (Hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
-- **Electromagnetism (U(1)
-_EM):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corridors moving Active-Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
+- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corridors moving Active-Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
 
-**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge, sometimes written $Y_W$). Relation: $Q = T_3 + Y/2$.
+**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge, synonymous with $Y_W$). Relation: $Q = T_3 + Y/2$ for all fields.
 
 ### Representation cheat sheet (Gen I fermions)
 
@@ -220,22 +219,22 @@ _EM):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corri
 *Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields.
 ### Hypercharge bookkeeping (Shielded triad → $Y$)
 
-Hypercharge is set by the net charge on the **Shielded Triad** (three hidden decoration sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for the fermions below.
+Hypercharge is set by the net charge on the **Shielded Triad** (three hidden decoration sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
 
 | Field | Shielded triad charge (e units) | $Y$ from shielded charge | SM $Y$ |
 | --- | --- | --- | --- |
 | $q_L = (u_L,d_L)$ | $+1/6$ (2P,1E) | $2 \times (+1/6) = +1/3$ | $+1/3$ |
-| $u_R$ | $+1/6$ | $2 \times (+1/6) = +1/3$, then $T_3=0 \Rightarrow Y=2Q=+4/3$ | $+4/3$ |
-| $d_R$ | $+1/6$ | $2 \times (+1/6) = +1/3$, then $T_3=0 \Rightarrow Y=2Q=-2/3$ | $-2/3$ |
+| $u_R$ | $+2/3$ (personality 5P1E, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=+4/3$ | $+4/3$ |
+| $d_R$ | $-1/3$ (personality 2P4E, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2/3$ | $-2/3$ |
 | $\ell_L = (\nu_L,e_L)$ | $-1/2$ (3E) | $2 \times (-1/2) = -1$ | $-1$ |
-| $e_R$ | $-1/2$ | $2 \times (-1/2) = -1$, then $T_3=0 \Rightarrow Y=2Q=-2$ | $-2$ |
+| $e_R$ | $-1$ (personality 6E, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2$ | $-2$ |
 | (optional) $\nu_R$ | $-1/2$ | $2 \times (-1/2) = -1$, but if $Q=0, T_3=0 \Rightarrow Y=0$ (requires model choice) | (not in SM) |
 
 Notes: the shielded charge is common within a doublet; right-handed singlets set $Y$ via $Q$ with $T_3=0$.
 
 ### Charge quantization cross-check
 
-Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in `phenomenology/gauge-structure-emergence.md`, Quantization from Stability).
+Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in `phenomenology/gauge-structure-emergence.md`, section “Quantization from Stability”).
 
 ### Right-handed neutrino stance and mass eigenstates
 
