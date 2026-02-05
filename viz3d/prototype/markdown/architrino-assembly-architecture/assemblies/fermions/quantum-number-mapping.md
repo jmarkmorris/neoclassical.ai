@@ -7,7 +7,7 @@ It adopts the **Nucleus + Personality** model:
 1.  **The Nucleus (Noether Core):** A neutral, rotating tri-binary structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
 2.  **The Personality (Decoration):** A layer of 6 charged architrinos occupying polar sites on the Nucleus, defining the electric charge, weak isospin, and color charge.
 
-Note: **Mass is derived**, not a quantum number here; it comes from core shielding and drag in the Noether Sea.
+Note: **Mass is derived**, not a quantum number here; it comes from core shielding and drag in the Noether Sea (see spacetime/emergent-metric.md for the drag/shielding mechanism).
 
 ---
 
@@ -120,19 +120,17 @@ Every fermion personality layer consists of 6 polar sites. We hypothesize that t
     *   Net: $2P, 4E$ (Charge -1/3).
     *   State: Active Triad is Negative $\to T_3 = -1/2$.
 
-### Gell-Mann–Nishijima Consistency Check
-Does this geometry satisfy $Q = T_3 + \frac{Y_W}{2}$?
+### Gell-Mann–Nishijima consistency check
+Using a single symbol $Y$ for hypercharge, $Q = T_3 + Y/2$:
 
-**Leptons (Hypercharge $Y_W = -1$):**
-*   $\nu_e$: $T_3 (+1/2) + Y_W/2 (-1/2) = 0$. (Matches Geometry: 3P3E = 0).
-*   $e^-$: $T_3 (-1/2) + Y_W/2 (-1/2) = -1$. (Matches Geometry: 6E = -1).
+**Leptons ($Y=-1$):**
+*   $\nu_e$: $T_3 (+1/2) + Y/2 (-1/2) = 0$. (Matches geometry: 3P3E = 0).
+*   $e^-$: $T_3 (-1/2) + Y/2 (-1/2) = -1$. (Matches geometry: 6E = -1).
 
-**Quarks (Hypercharge $Y_W = +1/3$):**
-*   $u$: $T_3 (+1/2) + Y_W/2 (+1/6)$. *Wait... Standard Model Y is +1/3. (+1/2 + 1/6 = 2/3).* Correct.
-*   $d$: $T_3 (-1/2) + Y_W/2 (+1/6) = -1/3$. Correct.
-*   *Geometric Insight:* **Hypercharge ($Y_W$)** corresponds to the charge of the **Shielded Triad** plus the Core offset!
-    *   Lepton Shielded Triad ($3E$) = $-1/2$ charge? No, charge is -1/2e.
-    *   *Correction:* This suggests Hypercharge is physically stored in the **Shielded Triad**.
+**Quarks ($Y=+1/3$):**
+*   $u$: $T_3 (+1/2) + Y/2 (+1/6) = +2/3$.
+*   $d$: $T_3 (-1/2) + Y/2 (+1/6) = -1/3$.
+*   Geometric insight: hypercharge lives on the **Shielded Triad** plus any core offset; the Active Triad sets $T_3$.
 
 ### Chirality (Why Right-Handed = 0?)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
@@ -196,7 +194,7 @@ The full SM gauge group is captured geometrically as:
 - **U(1) (Hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corridors moving Active-Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
 
-**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge, synonymous with $Y_W$). Relation: $Q = T_3 + Y/2$ for all fields.
+**Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). Relation: $Q = T_3 + Y/2$ for all fields.
 
 ### Representation cheat sheet (Gen I fermions)
 
@@ -216,7 +214,7 @@ The full SM gauge group is captured geometrically as:
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed corridor aligned to leave Shielded + Active-Triad combination invariant ($Q$-coupling only).
 
-*Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions.
+*Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
 ### Hypercharge bookkeeping (Shielded triad → $Y$)
 
 Hypercharge is set by the net charge on the **Shielded Triad** (three hidden decoration sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
@@ -236,12 +234,11 @@ Notes: the shielded charge is common within a doublet; right-handed singlets set
 
 Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in `phenomenology/gauge-structure-emergence.md`, section “Quantization from Stability”).
 
-### Right-handed neutrino stance and mass eigenstates
+### Right-handed neutrino stance and mass eigenstates (hypothesis)
 
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ core with shielded/active triads fully symmetric; it would couple only via mixing terms (Dirac/Majorana choice left open).
-- **Mass eigenstates:** The neutrino assembly is taken to be metastable; continual micro reconfiguration exposes its three nearby mass eigenstates, giving oscillations. Other fermions have much stiffer cores (full or partly shielded binaries) so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
-- **CKM view:** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and decoration pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (Active-Triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants → products, chemistry style).
+- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be metastable; continual micro reconfiguration exposes its three nearby mass eigenstates, giving oscillations. Other fermions have much stiffer cores (full or partly shielded binaries) so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.\n+- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and decoration pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (Active-Triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants → products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters is still a TODO.\n*** End Patch
 
 ## The Generation Mechanism (Mass Hierarchy)
 
@@ -319,7 +316,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | :--- | :---: | :--- | :--- |
 | **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | **Net Decoration Count.** Sum of Positrinos ($+e/6$) and Electrinos ($-e/6$) in the Personality Layer. $Q = \sum P - \sum E$. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the Active Triad.** The net charge state of the 3 "exposed" decoration sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
-| **Weak Hypercharge** | $Y_W$ | $Y_W = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 "hidden" decoration sites plus any core offset. |
+| **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 "hidden" decoration sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Azimuthal phase.** The angular orientation ($0^\circ, 120^\circ, 240^\circ$) of the decoration asymmetry relative to the nuclear spin axis. |
 | **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the Tri-binary nucleus. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Active Triad Exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the Active Triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the Active Triad into the particle's "wake" or shield (Interaction blocked). |
@@ -328,11 +325,11 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 
 For the **Elementary Fermions** (Quarks and Leptons), yes, this table is complete. It covers the "ID Card" required to distinguish every particle in the Standard Model Lagrangian.
 
-### Spin and the 4π rule (geometric reason)
+### Spin and the 4π rule (geometric reason; hypothesis)
 
 - The tri-binary core has three non-coplanar binary planes with ordered normals; keeping total $\mathbf{J}$ fixed, that ordered triad lives on $SO(3)$ but carries an **ordering/phase sign** from the vortex scaffold.
 - A 2π spatial rotation permutes the braid ordering once, flipping the sign of the internal phase (like rotating a framed triad or belt). Only after 4π does the ordered triad and its vortex phase return to the same configuration.
-- This ordered-triad + fixed-$\mathbf{J}$ constraint is the geometric origin of the SU(2) double cover → spin-1/2 behavior.
+- This ordered-triad + fixed-$\mathbf{J}$ constraint is proposed as the geometric origin of the SU(2) double cover → spin-1/2 behavior; a formal bundle map is still to be derived.
 
 However, there are two nuances we should be aware of, though we don't necessarily need a new row for them:
 
