@@ -178,6 +178,38 @@ The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 
 ---
 
+## Gauge Group Coverage: SU(3) × SU(2) × U(1)
+
+The full SM gauge group is captured geometrically as:
+
+- **SU(3) (Color):** azimuthal phase of the personality asymmetry (Red, Green, Blue). Quarks carry a rotating dipole/quadrupole that fixes their SU(3) orientation; leptons are azimuthally symmetric (singlets). Gluons are planar phase-correction ribbons that live on flux tubes and form the octet.
+- **SU(2) (Weak isospin):** polarity of the **Active Triad** (three exposed decoration sites). Left-handed fermions are doublets; right-handed fermions are singlets (Active Triad hidden).
+- **U(1) (Hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
+- **Electromagnetism (U(1)
+_EM):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corridors moving Active-Triad charge/phase (see assemblies/bosons/electroweak-bosons.md).
+
+### Representation cheat sheet (Gen I fermions)
+
+| Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
+| --- | --- | --- | --- | --- | --- |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | Active Triad P- or E-dominant on quark core; azimuthal phase sets color |
+| $u_R$ | 3 | 1 | +4/3 | +2/3 | Active Triad hidden; asymmetry 5P/1E fixes $Q$ |
+| $d_R$ | 3 | 1 | -2/3 | -1/3 | Active Triad hidden; asymmetry 2P/4E |
+| $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | Active Triad P vs E on lepton core; azimuthal symmetry (colorless) |
+| $e_R$ | 1 | 1 | -2 | -1 | Active Triad hidden; personality 6E |
+| (optional) $\nu_R$ | 1 | 1 | 0 | 0 | Not present in current architecture; would be symmetric/hidden Active Triad |
+
+### Gauge boson summary
+
+- **Gluons (8):** phase-transfer ribbons on flux tubes; adjoint of SU(3), no net decoration charge.
+- **$W^\pm$, $Z$:** transient recoupling corridors moving Active-Triad charge/phase between assemblies (spin-1, weak SU(2) triplet).
+- **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
+- **Photon:** mixed corridor aligned to leave Shielded + Active-Triad combination invariant ($Q$-coupling only).
+
+### Charge quantization cross-check
+
+Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 table in phenomenology/gauge-structure-emergence.md Quantization from Stability).
+
 ## The Generation Mechanism (Mass Hierarchy)
 
 Generations are defined by the **shedding of shielding binaries** from the Nucleus. The Personality Layer (Charge) remains constant.
