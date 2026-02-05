@@ -4,7 +4,7 @@
 
 ---
 
-## 1. Foundations and Causal Geometry
+## Foundations and Causal Geometry
 
 ### 1.1 Purpose and Scope
 
@@ -181,7 +181,7 @@ For each $t_0 \in \mathcal{C}_j(t)$, draw a line from $\mathbf{x}_j(t_0)$ to $\m
 
 ---
 
-## 2. Master Equation and DDE Formulation
+## Master Equation and DDE Formulation
 
 ### 2.1 The Master Equation (Canonical Form)
 
@@ -473,7 +473,7 @@ Then:
 2. Apply fixed-point theorems for DDEs with state-dependent delays (see Hale & Verduyn Lunel, *Functional Differential Equations*).
 3. Verify that self-hit terms (if present) satisfy the same Lipschitz bounds.
 
-## 3. Operational Principles, Self-Interaction, and Examples
+## Operational Principles, Self-Interaction, and Examples
 
 ### 3.1 Core Principles (Operational Summary)
 
@@ -696,7 +696,7 @@ This limited, unoriented, and source-ambiguous information at the hit level is a
 
 **Open question (High Priority):** Does the informational ambiguity in Section 3.4.2-3.4.4, when statistically averaged over many similar configurations, **reproduce the Born rule** ($P \propto |\psi|^2$)? This requires: (1) Ensemble simulations of identically prepared systems, (2) Statistical analysis of hit patterns, (3) Comparison to QM predictions. See Action: "Born Rule Derivation" (TBD).
 
-## 4. Parameters and Numerical Implementation
+## Parameters and Numerical Implementation
 
 ### 4.1 Parameter Definitions (From Ledger)
 
@@ -818,7 +818,7 @@ To ensure reproducibility across all simulation runs, the following **baseline p
 
 
 
-## 5. Analytic Regimes and Research Roadmap
+## Analytic Regimes and Research Roadmap
 
 ### 5.1 Upstream Dependencies (Required for Full Theory Validation)
 
@@ -1125,7 +1125,7 @@ All four are realistically doable analytically (modulo standard transcendental e
 
 ---
 
-## 6. Energy, Symmetry, and Conservation
+## Energy, Symmetry, and Conservation
 
 ### 6.1 Energy, Lagrangian, and Hamiltonian Structure of the Architrino Dynamics
 

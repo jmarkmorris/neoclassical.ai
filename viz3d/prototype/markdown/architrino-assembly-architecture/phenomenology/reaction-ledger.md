@@ -3,7 +3,7 @@
 **Method:** Conservation of Architrinos
 **Principle:** Spacetime (Noether Cores) acts as a reactant and product.
 
-## 1. The Provenance Protocol
+## The Provenance Protocol
 Standard Feynman diagrams track particle paths. Architrino Provenance diagrams track **constituent inventory**.
 
 ### Rules:
@@ -16,7 +16,7 @@ Standard Feynman diagrams track particle paths. Architrino Provenance diagrams t
 
 ---
 
-## 2. Case Study: Top Quark Decay ($t \to b + W^+$)
+## Case Study: Top Quark Decay ($t \to b + W^+$)
 *Observed Channel:* $t \to b + e^+ + \nu_e$ (via $W^+$ -> lepton decay).
 
 ### 2.1 Reactant Inventory
@@ -85,7 +85,7 @@ The decay of a high-energy Top quark disrupts the local spacetime fabric, recrui
 
 ---
 
-## 3. Case Study: Free Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
+## Case Study: Free Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
 
 *Observed Process:* A free neutron decays (lifetime ~15 mins) into a proton, electron, and electron-antineutrino.
 *Standard Model:* $d \to u + W^- (\to e^- + \bar{\nu}_e)$.

@@ -1,4 +1,4 @@
-# 00.2.3 — Delay-Only Formulations (Exact Statements)
+# Delay-Only Formulations (Exact Statements)
 
 Purpose:
 - State the delay differential equations (DDEs) that govern canonical interactions under the delayed, purely radial law.

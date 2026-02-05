@@ -42,19 +42,19 @@ The collective motion, or **group velocity**, of a Noether core assembly determi
 
 This document describes the emergent geometric form of the Noether Core. The core is not a static object but a dynamic system of six Architrinos in a triply-nested binary configuration. The complex, high-frequency paths of these constituent particles sweep out a volume of space, creating a dynamic exclusion zone that takes the form of an ellipsoidal.
 
-### 1. The Dynamic Exclusion Zone
+### The Dynamic Exclusion Zone
 
 The six Architrinos within a Noether Core are in constant, rapid orbital motion. The superposition of their intensely fluctuating potential fields creates a region that is effectively impenetrable to other Architrinos. Another Noether core approaching this region would be subjected to such extreme and rapidly changing accelerations that it would be repelled, unable to pass through the core's volume.
 
 This volume, defined by the collective paths of the core's constituents, acts as a dynamic **exclusion zone**. It is not a solid object with a hard surface, but a region of intense field activity that maintains a persistent, coherent shape in the relative frame.
 
-### 2. The Oblate Spheroidal Form
+### The Oblate Spheroidal Form
 
 The tri-binary structure of the Noether Core is inherently anisotropic. The three nested binaries orbit and precess, with their orbital planes tending towards mutual orthogonality for stability in low apparent energy timespace. This dynamic geometry is not perfectly spherical.
 
 The overall shape of the exclusion zone is primarily determined by the path of the **outermost binary**. This binary has the largest orbital radius and the slowest frequency, and its orbital plane defines the equatorial plane of the assembly. The faster, smaller, inner binaries contribute to the internal dynamics and the density of the exclusion zone, but the boundary is set by the sweep of the outermost pair. The rotational dynamics of this outer orbit, combined with the precession of the entire system, naturally produce a shape that is flattened at the poles and bulging at the equator: an **ellipsoidal**.
 
-### 3. Deformability of the Geometric Form
+### Deformability of the Geometric Form
 
 The ellipsoidal is not a rigid structure. Its shape is a direct consequence of the orbital paths of the constituent Architrinos. These paths are, in turn, determined by the superposition of internal and external potential fields.
 
@@ -62,7 +62,7 @@ If a Noether Core is subjected to a strong external field, the orbits of its bin
 
 Yes, Einstein’s field equations can be mapped to a scalable, deformable ellipsoidal—though doing so requires careful treatment of symmetry, curvature, and the stress-energy distribution. This approach is particularly relevant in modeling astrophysical bodies like rotating planets or stars, which often exhibit ellipsoidalal geometry due to centrifugal flattening.
 
-### 4. Mapping General Relativity to Oblate Spheroids
+### Mapping General Relativity to Oblate Spheroids
 
 Einstein’s field equations relate spacetime curvature to energy and momentum via:
 
@@ -125,6 +125,6 @@ This is especially useful in modeling:
 - Stellar rotation and frame dragging
 - Gravitational wave emission from deformed bodies
 
-### 5. Synthesis with General Relativity
+### Synthesis with General Relativity
 
 The emergent, deformable ellipsoidalal geometry of the Noether Core provides a physical structure that is a natural fit for the mathematical techniques developed to model gravitating bodies in General Relativity. The mathematical framework of GR, particularly its use of ellipsoidalal coordinates and dynamic stress-energy tensors, can thus be re-contextualized as an effective theory describing the behavior of these fundamental assemblies. The Noether core is therefore a geometrical fit with the mathematical techniques used in general relativity in an abstract model, providing a potential physical basis for the abstract geometric concepts of GR.

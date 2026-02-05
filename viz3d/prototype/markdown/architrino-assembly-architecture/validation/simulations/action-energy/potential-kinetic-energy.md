@@ -1,4 +1,4 @@
-# 5. Kinetic and Potential Energy
+# Kinetic and Potential Energy
 
 In this model, all energy is fundamentally tied to Architrinos and the potential fields they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone "field substance" or vacuum energy independent of Architrinos and their assemblies.
 

@@ -1,4 +1,4 @@
-# 00.2.3.0 — Opposite Charges From Rest at Large Separation
+# Opposite Charges From Rest at Large Separation
 
 Setup:
 - Two Architrinos with charges q1=−$\epsilon$ and q2=+$\epsilon$.

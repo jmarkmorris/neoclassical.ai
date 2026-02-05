@@ -6,7 +6,7 @@ high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical essenc
 
 ---
 
-## 1. Core Assembly Layer (Noether Core / Tri-Binary)
+## Core Assembly Layer (Noether Core / Tri-Binary)
 
 These are particle-physics level theories that map most directly to assemblies,
 decorations, and interaction rules. In the architrino view, they are effective
@@ -169,7 +169,7 @@ $$
 
 ---
 
-## 2. Emergent Spacetime / Gravity Layer (Effective Metric)
+## Emergent Spacetime / Gravity Layer (Effective Metric)
 
 These are theories about spacetime structure and gravitational dynamics. In the
 architrino view, they are emergent descriptions of how the Noether-core medium
@@ -315,7 +315,7 @@ That gives clean shorthand: CFT+ for the Planck-aligned interface layer, "bulk" 
 
 ---
 
-## 3. Cosmology / Large-Scale Assembly Evolution
+## Cosmology / Large-Scale Assembly Evolution
 
 These theories describe the universe at large scales: expansion history,
 structure formation, and cosmic origins. In the architrino view, they map to
@@ -561,7 +561,7 @@ fine-tuning reflects conditional selection rather than design.
 
 ---
 
-## 4. Epistemic / Effective Theories of Observation
+## Epistemic / Effective Theories of Observation
 
 These are theories and interpretations that describe how observers access and
 summarize dynamics: coarse-graining, probabilities, and measurement update.

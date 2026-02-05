@@ -1,4 +1,4 @@
-# 00.2.3.2 — Equal-Charge Symmetric Repulsion
+# Equal-Charge Symmetric Repulsion
 
 Setup:
 - Two identical charges (e.g., q1=q2=+$\epsilon$) placed at separation r0 with v1=v2=0 and symmetry about the midpoint.

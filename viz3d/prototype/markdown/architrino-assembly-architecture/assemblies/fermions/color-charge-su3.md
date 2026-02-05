@@ -2,7 +2,7 @@
 
 ---
 
-## 0. Ontology, Notation, and Generations
+## Ontology, Notation, and Generations
 
 ### 0.1 Tri‑binary scaffold (the “Noether core”)
 
@@ -86,7 +86,7 @@ This **braid chirality** will underpin our distinction between particles and ant
 
 
 
-## 1. Colorless Fermions: Axis Uniformity
+## Colorless Fermions: Axis Uniformity
 
 **Core rule:**  
 Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same personality pattern, there is no “which axis is special?” degree of freedom → **no color**.
@@ -128,7 +128,7 @@ We do **not** claim a PMNS‑level derivation yet; that is a targeted future cal
 
 
 
-## 2. Quarks: Axis Exceptionality and Admissible Patterns
+## Quarks: Axis Exceptionality and Admissible Patterns
 
 Quarks are color‑charged because **one axis is in a different personality class than the other two**.
 
@@ -254,7 +254,7 @@ We must not over‑predict.
 
 
 
-## 3. Color Hilbert Space and SU(3) Structure
+## Color Hilbert Space and SU(3) Structure
 
 For any quark flavor $q$, the color state is a vector in:
 
@@ -316,7 +316,7 @@ Together with other off‑diagonal generators (H↔L, M↔L) and diagonal genera
 
 
 
-## 4. Baryons, Color Singlets, and the 9‑Axis Braid
+## Baryons, Color Singlets, and the 9‑Axis Braid
 
 A Gen‑I baryon (e.g., proton or neutron) consists of:
 
@@ -348,7 +348,7 @@ At large distances, axis‑dependent multipoles from each regime cancel:
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
 
-## 7. Residual Strong Force and Nuclear Binding (Qualitative Hook)
+## Residual Strong Force and Nuclear Binding (Qualitative Hook)
 
 Even for color‑singlet nucleons:
 
@@ -370,7 +370,7 @@ to derive nucleon–nucleon potentials and binding energies in the nuclear secti
 
 
 
-## 8. Summary and Next Steps
+## Summary and Next Steps
 
 - A **Noether core / tri‑binary** is a three‑axis (H,M,L), six‑slot personality structure: the minimal unit that carries conserved charges via its internal symmetries.
 - **Colorless** fermions (leptons, neutrinos) have identical personality patterns on all three axes → no axis exceptionality → SU(3)$_c$ singlets.

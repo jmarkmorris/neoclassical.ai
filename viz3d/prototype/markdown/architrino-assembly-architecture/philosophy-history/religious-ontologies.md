@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Introduction: Religion and Cosmology
+## Introduction: Religion and Cosmology
 
 Religious cosmologies address three core questions:
 1. **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
@@ -19,7 +19,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 2. Abrahamic Traditions
+## Abrahamic Traditions
 
 ### 2.1 Judaism
 
@@ -111,7 +111,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 3. Dharmic Traditions
+## Dharmic Traditions
 
 ### 3.1 Hinduism
 
@@ -165,7 +165,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 4. East Asian Traditions
+## East Asian Traditions
 
 ### 4.1 Daoism (Taoism)
 
@@ -192,7 +192,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 5. Comparative Summary Table
+## Comparative Summary Table
 
 | Tradition | Fundamental Elements | Cosmogony (Origin) | Eschatology (End) | Time Structure | Creator? |
 |-----------|---------------------|-------------------|------------------|---------------|---------|
@@ -205,7 +205,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 6. Philosophical Observations
+## Philosophical Observations
 
 ### 6.1 Creator vs Non-Creator Cosmologies
 - **Abrahamic traditions:** Require a personal, transcendent God who *wills* creation into existence. The cosmos is contingent—it depends entirely on divine sustenance.
@@ -233,7 +233,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 7. Relevance to Architrino Cosmology
+## Relevance to Architrino Cosmology
 
 The Architrino framework makes specific ontological and cosmological claims that can be positioned relative to these religious traditions:
 
@@ -302,7 +302,7 @@ In an infinite universe with active spacetime medium, local entropy can increase
 
 ---
 
-## 8. Conclusion
+## Conclusion
 
 Religious cosmologies offer rich, diverse frameworks for understanding the origin, structure, and fate of the cosmos. While they are not empirically falsifiable in the scientific sense, they provide:
 - **Metaphysical hypotheses** (What is fundamental? What is contingent?),

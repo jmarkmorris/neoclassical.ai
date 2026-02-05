@@ -19,7 +19,7 @@ All subsequent dynamical laws, assembly mappings, and emergent phenomena are **b
 
 **This document is Law.** Changes require full-team review and explicit justification.
 
-## 1. The Substrate (What Exists Fundamentally)
+## The Substrate (What Exists Fundamentally)
 
 ### 1.1 Absolute Time
 
@@ -883,7 +883,7 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 ---
 
-## 2. The Fundamental Entity (Architrino)
+## The Fundamental Entity (Architrino)
 
 ### 2.1 Definition and Ontological Status
 
@@ -1201,7 +1201,7 @@ While absolute rest is ontologically well-defined, the theory must ensure that *
 
 **Experimental Strategy (Sig):** If the Lorentz suppression mechanism is a physical interaction with the Noether Sea, there **must exist** a breakdown regime (high energy, strong field gradients, or near Black hole event horizonss) where Lorentz invariance cracks. Identifying observable signatures of this breakdown is a primary experimental target.
 
-## 3. The Physical Medium (Noether Sea / Spacetime Aether)
+## The Physical Medium (Noether Sea / Spacetime Aether)
 
 ### 3.1 Void vs Vacuum Distinction
 
@@ -1357,7 +1357,7 @@ In the Architrino framework:
 
 **Cos:** "By eliminating the need for Dark Energy as a separate field—treating it as internal Sea pressure—we can potentially resolve the $H_0$ tension. The key words from Section 3.1: 'void doesn't expand; assemblies rescale' will be used verbatim in the expansion-mechanism chapter."
 
-## 4. The Observer Framework (Ontic vs Epistemic)
+## The Observer Framework (Ontic vs Epistemic)
 
 ### 4.1 The Absolute Observer (AO)
 
@@ -1543,7 +1543,7 @@ The Architrino framework is **not** in conflict with the empirical success of sp
 
 The absolute frame must be **undetectable** to POs at precision $<10^{-17}$ (see Lorentz suppression requirement). Any proposed experiment to "find the absolute frame" must fail due to automatic Lorentz contraction/dilation of the measuring apparatus.
 
-## 5. Terminology Discipline (Locked Definitions)
+## Terminology Discipline (Locked Definitions)
 
 To prevent semantic drift and maintain conceptual clarity, the following terminology is **mandatory** throughout all Architrino theory documents:
 
@@ -1604,7 +1604,7 @@ Always clarify which level you're working at.
 - **Fundamental**: Architrino charge magnitude $|e/6|$.
 - **Effective**: Particle charges $0, \pm e/3, \pm 2e/3, \pm e$ (see TOC Ch. 18).
 
-## 6. Parameter Ledger (Foundation Level)
+## Parameter Ledger (Foundation Level)
 
 The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted parameters. This section defines **foundational parameters only**; assembly-scale and cosmological parameters are defined in subsequent chapters.
 
@@ -1688,7 +1688,7 @@ Sol approximates the **path-history integral** described in Section 2.4.5 by sam
 
 ---
 
-## 7. Open Ontological Questions
+## Open Ontological Questions
 
 The following questions remain open and are active areas of investigation:
 
@@ -1746,7 +1746,7 @@ The following questions remain open and are active areas of investigation:
 
 ---
 
-## 8. Summary
+## Summary
 
 ### 8.1 What This Document Establishes
 
