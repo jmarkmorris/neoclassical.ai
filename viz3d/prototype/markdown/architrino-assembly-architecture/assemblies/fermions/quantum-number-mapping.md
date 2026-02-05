@@ -145,7 +145,7 @@ Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 
 ## Color Charge and Strong Confinement
 
-In the Standard Model, Quarks carry one of three "colors" (Red, Green, Blue). Leptons are "colorless" (White). We map Color to the **Azimuthal Phase Phase** of the Personality Layer.
+In the Standard Model, Quarks carry one of three "colors" (Red, Green, Blue). Leptons are "colorless" (White). We map Color to the **azimuthal phase** of the Personality Layer.
 
 ### The Definition of Color
 The Tri-binary nucleus rotates at extreme frequency ($v \approx c$). The 6 decoration sites are distributed around this rotating manifold.
@@ -216,7 +216,7 @@ The full SM gauge group is captured geometrically as:
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed corridor aligned to leave Shielded + Active-Triad combination invariant ($Q$-coupling only).
 
-*Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields.
+*Boson details:* see `assemblies/bosons/gluons.md` (color sector) and `assemblies/bosons/electroweak-bosons.md` (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions.
 ### Hypercharge bookkeeping (Shielded triad → $Y$)
 
 Hypercharge is set by the net charge on the **Shielded Triad** (three hidden decoration sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
@@ -320,7 +320,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | **Net Decoration Count.** Sum of Positrinos ($+e/6$) and Electrinos ($-e/6$) in the Personality Layer. $Q = \sum P - \sum E$. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the Active Triad.** The net charge state of the 3 "exposed" decoration sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
 | **Weak Hypercharge** | $Y_W$ | $Y_W = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 "hidden" decoration sites plus any core offset. |
-| **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Azimuthal Phase Phase.** The angular orientation ($0^\circ, 120^\circ, 240^\circ$) of the decoration asymmetry relative to the nuclear spin axis. |
+| **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Azimuthal phase.** The angular orientation ($0^\circ, 120^\circ, 240^\circ$) of the decoration asymmetry relative to the nuclear spin axis. |
 | **Spin** | $J$ | Intrinsic angular momentum ($1/2\hbar$). | **Core Topology.** The ellipsoidal rotation path of the Tri-binary nucleus. Fermions are spin-1/2 because the path requires 720 degrees to return to the initial state (spinor behavior). |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Active Triad Exposure.** <br>• **Left ($L$):** Spin/Momentum alignment exposes the Active Triad to the vacuum (Interaction allowed).<br>• **Right ($R$):** Spin/Momentum alignment rotates the Active Triad into the particle's "wake" or shield (Interaction blocked). |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
