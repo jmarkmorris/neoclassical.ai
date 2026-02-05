@@ -6,7 +6,9 @@
   - every scene will be ported to this format
 
 - work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
+
 - finish topology (where is it) su(3)su(2)o(1)
+
 - what is the smallest assembly that can make a decision
 - are there any rapid hits
   - ellipsoid to GR

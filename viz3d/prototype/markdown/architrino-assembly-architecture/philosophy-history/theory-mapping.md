@@ -2,8 +2,7 @@
 # Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)
 
 **Purpose:** A compact, cross-audience map of major theories. Each entry moves from accessible to technical: (1) a
-high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical
-essence (key idea or formula).
+high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical essence (key idea or formula) and is followed by (4) the architrino assembly architecture (AAA) perspective.
 
 ---
 
@@ -18,8 +17,7 @@ summaries of assembly microdynamics rather than fundamental entities.
 **Summary:** The unified framework describing all known particles and forces
 except gravity.
 
-**Conceptual View:** A gauge theory with group SU(3)$\times$SU(2)$\times$U(1) plus the
-Higgs sector, with matter in three families.
+**Conceptual View:** A gauge theory with group $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$ plus the Higgs sector, with matter in three families.
 
 **Key Equation:** Gauge group and field content:
 $$
@@ -27,7 +25,8 @@ G_{\mathrm{SM}} = \mathrm{SU(3)}_C \times \mathrm{SU(2)}_L \times \mathrm{U(1)}_
 $$
 **AAA View:** $G_{\mathrm{SM}}$ is an *effective symmetry* of tri-binary assemblies and their decoration patterns. Color, weak isospin, and hypercharge correspond to discrete topological/phase labels on architrino tri-binaries and to symmetries of their internal motion. The SM is the continuum, field-theoretic summary of discrete architrino assemblies and their interaction graph, not a fundamental layer.
 **Geometric proof targets:**
-- Classify tri-binary decoration permutations and show the resulting symmetry factors match SU(3) x SU(2) x U(1).
+- Classify tri-binary decoration permutations and show the resulting symmetry factors 
+match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 - Prove three stable assembly families arise from distinct phase-winding classes.
 
 ---
