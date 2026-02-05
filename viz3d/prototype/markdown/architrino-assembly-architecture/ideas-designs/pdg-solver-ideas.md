@@ -2,7 +2,7 @@ Here is a brainstorming architecture for the **Architrino Provenance Engine (APE
 
 ---
 
-### 1. The Core Data Structure: The "Stack"
+### The Core Data Structure: The "Stack"
 
 In the Standard Model, a particle is a set of quantum numbers ($Q, S, L, B, etc.$). In the APE, a particle is a hierarchical graph.
 
@@ -21,7 +21,7 @@ In the Standard Model, a particle is a set of quantum numbers ($Q, S, L, B, etc.
 
 ---
 
-### 2. The Solver Logic Flow
+### The Solver Logic Flow
 
 We don't just jump from Reactants to Products. We simulate the **Transitional Chaos**.
 
@@ -53,7 +53,7 @@ We don't just jump from Reactants to Products. We simulate the **Transitional Ch
 
 ---
 
-### 3. Case Study: Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
+### Case Study: Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
 
 Let's visualize how the APE would solve this.
 
@@ -82,7 +82,7 @@ Instead of a Feynman diagram (which is abstract), the APE generates a **"Flow Di
 
 ---
 
-### 4. The "Unused Pair" Speculation
+### The "Unused Pair" Speculation
 
 You asked: *"Do unused pairs spiral away to the max curvature?"*
 

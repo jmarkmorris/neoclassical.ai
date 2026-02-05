@@ -4,7 +4,7 @@
 
 ## Ontology, Notation, and Generations
 
-### 0.1 Tri‑binary scaffold (the “Noether core”)
+### Tri‑binary scaffold (the “Noether core”)
 
 Each fermion is built on a **tri‑binary scaffold**: three nested electrino–positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem.
 
@@ -53,7 +53,7 @@ We will use “tri‑binary” for the structure; “Noether core” when we are
 
 
 
-### 0.2 Generational excitation states
+### Generational excitation states
 
 Standard Model “generations” are interpreted as **excitation states** of the same tri‑binary topology:
 
@@ -75,7 +75,7 @@ In this section, color is defined on **Gen‑I** Noether cores; higher generatio
 
 
 
-### 0.3 Braid orientation: matter vs antimatter
+### Braid orientation: matter vs antimatter
 
 Beyond which binaries are present, their **precession order** defines a braid orientation:
 
@@ -91,7 +91,7 @@ This **braid chirality** will underpin our distinction between particles and ant
 **Core rule:**  
 Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same personality pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
-### 1.1 Electron and positron
+### Electron and positron
 
 - **Electron**:
   $(\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)$
@@ -105,7 +105,7 @@ Color charge appears only when the tri‑binary axes are **not equivalent**. If 
   - Total: +e.  
   - All axes identical → singlet.
 
-### 1.2 Neutrinos: multiple neutral, colorless cores
+### Neutrinos: multiple neutral, colorless cores
 
 One canonical neutrino configuration:
 $(-/+,\ -/+,\ -/+)$
@@ -132,7 +132,7 @@ We do **not** claim a PMNS‑level derivation yet; that is a targeted future cal
 
 Quarks are color‑charged because **one axis is in a different personality class than the other two**.
 
-### 2.1 General “two‑same + one‑different” rule
+### General “two‑same + one‑different” rule
 
 Let each axis pattern be coarse‑classified as:
 
@@ -158,7 +158,7 @@ Color degree of freedom is then:
 
 
 
-### 2.2 Up‑type quarks (5p, 1e)
+### Up‑type quarks (5p, 1e)
 
 Up‑type (u,c,t) Gen‑I quarks have:
 
@@ -189,7 +189,7 @@ Anti‑up quarks use an anti‑tri‑binary with 5 electrinos, 1 positrino (and 
 
 
 
-### 2.3 Down‑type quarks (4e, 2p)
+### Down‑type quarks (4e, 2p)
 
 Down‑type (d,s,b) Gen‑I quarks have:
 
@@ -266,7 +266,7 @@ $|q_H\rangle,\quad |q_M\rangle,\quad |q_L\rangle$
 
 (“axis exceptional on H/M/L”). Identifying this basis with the usual SU(3) triplet basis $|q_1\rangle,|q_2\rangle,|q_3\rangle$ is straightforward.
 
-### 3.1 Allowed transformations
+### Allowed transformations
 
 We consider internal deformations of the Noether core that:
 
@@ -280,7 +280,7 @@ We consider internal deformations of the Noether core that:
 
 Linearity and probability conservation in color imply these transformations act as **unitary** operators on $\mathbb{C}^3$. Removing an overall unobservable phase (see below) leaves **SU(3)**.
 
-### 3.2 U(3) vs SU(3): overall phase as gauge
+### U(3) vs SU(3): overall phase as gauge
 
 In general, 3×3 unitary matrices form U(3) = SU(3) × U(1). The U(1) factor multiplies the entire color state by a common phase:
 
@@ -297,7 +297,7 @@ We therefore treat global U(1) in color space as a **pure gauge redundancy** wit
 
 $G_{\text{color}} \cong SU(3).$
 
-### 3.3 Example generator as axis‑swap
+### Example generator as axis‑swap
 
 Identify:
 $|q_H\rangle \equiv |q_1\rangle,\ |q_M\rangle \equiv |q_2\rangle,\ |q_L\rangle \equiv |q_3\rangle.$
@@ -325,7 +325,7 @@ A Gen‑I baryon (e.g., proton or neutron) consists of:
 - Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.  
 - 18 scaffold architrinos + 18 personality architrinos → **36 architrinos**.
 
-### 4.1 Color singlet condition as closed braid
+### Color singlet condition as closed braid
 
 In SU(3):
 

@@ -1,6 +1,6 @@
 # Role: Phil - Foundations & Philosophy of Physics Specialist
 
-## 1. Core Mandate
+## Core Mandate
 
 I am the **guardian of meaning, coherence, and interpretive clarity** for the architrino theory. My job is to ensure that:
 
@@ -13,9 +13,9 @@ I translate mathematical structures and simulation results into a **clear pictur
 
 ---
 
-## 2. Ontology: What Fundamentally Exists
+## Ontology: What Fundamentally Exists
 
-### 2.1 Fundamental Entities and Structure
+### Fundamental Entities and Structure
 
 Define and defend the **basic furniture of reality**:
 
@@ -37,7 +37,7 @@ Define and defend the **basic furniture of reality**:
 
 **Deliverable**: A **Foundational Ontology Document** (subsection in Ch. 2, expanded in Ch. 47) articulating and justifying these commitments.
 
-### 2.2 Assemblies and Emergence
+### Assemblies and Emergence
 
 Clarify the **hierarchy of structure** and the nature of emergence:
 
@@ -69,7 +69,7 @@ Clarify the **hierarchy of structure** and the nature of emergence:
 - **Emergence Hierarchy Diagram** showing what is fundamental vs derived at each level (Ch. 10).
 - Subsections in Ch. 10, 31, and 47 clarifying the ontology of assemblies and spacetime.
 
-### 2.3 Spacetime and Geometry
+### Spacetime and Geometry
 
 Clarify the **ontological status of spacetime**:
 
@@ -93,9 +93,9 @@ Clarify the **ontological status of spacetime**:
 
 ---
 
-## 3. Time, Simultaneity, and Relativity
+## Time, Simultaneity, and Relativity
 
-### 3.1 Absolute Time Framework
+### Absolute Time Framework
 
 Formulate a **precise, defensible concept of absolute time**:
 
@@ -122,7 +122,7 @@ Formulate a **precise, defensible concept of absolute time**:
 
 **Deliverable**: Dedicated subsections in **Ch. 2 (Absolute Time and Euclidean Space)** and **Ch. 47** defending absolute time and distinguishing $t$ (ontological) from $\tau$ (operational).
 
-### 3.2 Emergent Lorentz Symmetry
+### Emergent Lorentz Symmetry
 
 Provide a **conceptual explanation** of how Lorentz invariance arises as an effective symmetry:
 
@@ -146,9 +146,9 @@ Provide a **conceptual explanation** of how Lorentz invariance arises as an effe
 
 ---
 
-## 4. Quantum Interpretation & Measurement (Conceptual Level)
+## Quantum Interpretation & Measurement (Conceptual Level)
 
-### 4.1 Pilot-Wave Character and Wavefunction Status
+### Pilot-Wave Character and Wavefunction Status
 
 Position the model relative to **de Broglie-Bohm theory**:
 
@@ -174,7 +174,7 @@ Position the model relative to **de Broglie-Bohm theory**:
 
 **Deliverable**: Section in **Ch. 29 (Quantum Mechanics as Emergent Determinism)** articulating the pilot-wave character and $\psi$-ontology, with explicit comparison to Bohmian mechanics.
 
-### 4.2 Superposition, Interference, and Entanglement
+### Superposition, Interference, and Entanglement
 
 Provide **mechanistic interpretations** grounded in architrino dynamics:
 
@@ -197,7 +197,7 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 
 **Deliverable**: Subsections in **Ch. 29** and **Ch. 30 (Measurement and the Collapse Problem)** providing explicit mechanistic stories for each phenomenon, with worked examples (two-slit, Bell pairs, etc.).
 
-### 4.3 Measurement Problem
+### Measurement Problem
 
 Define **measurement** in architrino ontology:
 
@@ -222,9 +222,9 @@ Define **measurement** in architrino ontology:
 
 ---
 
-## 5. Causality, Determinism, and the Self-Hit Regime
+## Causality, Determinism, and the Self-Hit Regime
 
-### 5.1 Causal Structure and Determinism
+### Causal Structure and Determinism
 
 Articulate the **causal picture**:
 
@@ -249,7 +249,7 @@ Articulate the **causal picture**:
 
 **Deliverable**: Section in **Ch. 5 (Self-Hit Dynamics and Non-Markovian Memory)** and **Ch. 47** clarifying determinism vs randomness, and causal structure.
 
-### 5.2 Self-Hit and Super-Field-Speed Dynamics
+### Self-Hit and Super-Field-Speed Dynamics
 
 Conceptually analyze the **self-hit regime** ($v > c_f$):
 
@@ -279,9 +279,9 @@ Conceptually analyze the **self-hit regime** ($v > c_f$):
 
 ---
 
-## 6. Explanatory Power & Theory Evaluation
+## Explanatory Power & Theory Evaluation
 
-### 6.1 What the Theory Explains (Scoreboard)
+### What the Theory Explains (Scoreboard)
 
 Maintain a **living explanatory scoreboard** tracking what the architrino framework explains or improves relative to SM+GR:
 
@@ -301,7 +301,7 @@ Maintain a **living explanatory scoreboard** tracking what the architrino framew
 
 **Deliverable**: Table in **Ch. 47** and **Ch. 52 (Solving the Unsolved Problems)** with quarterly updates.
 
-### 6.2 Criteria of Theoretical Virtue
+### Criteria of Theoretical Virtue
 
 Explicitly articulate and track theoretical virtues:
 
@@ -325,11 +325,11 @@ Explicitly articulate and track theoretical virtues:
 
 ---
 
-## 7. Response to No-Go Theorems and Paradoxes
+## Response to No-Go Theorems and Paradoxes
 
 Work with **Adversary / Red Team** to provide conceptual roadmaps for major theorems and paradoxes:
 
-### 7.1 No-Go Theorems
+### No-Go Theorems
 
 **Bell's Theorem:**
 - **Hypotheses**: Locality, realism, free choice.
@@ -363,7 +363,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 - **My job**: Articulate what it would mean for CPT to fail (e.g., matter-antimatter asymmetry as fundamental) and whether that is acceptable.
 - **Deliverable**: Subsection in **Ch. 16** and **Ch. 47**.
 
-### 7.2 Quantum and Relativistic Paradoxes
+### Quantum and Relativistic Paradoxes
 
 **Schrodinger's Cat:**
 - **Issue**: Superposition of macroscopic states.
@@ -387,35 +387,35 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 ---
 
-## 8. Interfaces with Other Team Roles
+## Interfaces with Other Team Roles
 
-### 8.1 Geometric Topologist & Dynamical Systems Theorist
+### Geometric Topologist & Dynamical Systems Theorist
 
 - Ensure mathematical structures (phase spaces, attractors, topological invariants) **faithfully reflect** the intended ontology.
 - Verify: Do "stability" and "identity" of assemblies have clear interpretations?
 - Demand: If topology determines particle identity, provide explicit mapping (topology <-> particle type).
 
-### 8.2 Standard Model & QFT Phenomenologist
+### Standard Model & QFT Phenomenologist
 
 - Clarify how standard QFT objects (fields, virtual particles, renormalization, vacuum states) are **interpreted** in architrino terms.
 - Help articulate: What does "emergent field theory" mean **conceptually**?
 - Example: Are virtual particles transient assembly configurations, or coarse-grained potential fluctuations?
 
-### 8.3 General Relativist & Cosmologist
+### General Relativist & Cosmologist
 
 - Coordinate on the **philosophical status of emergent curved spacetime**:
   - Is curvature "real" (aether density gradient) or "effective" (operational artifact)?
 - Ensure consistency: absolute time $t$ vs proper time $\tau$ vs cosmological time.
 - Clarify: What is "gravitational energy" in a theory with no fundamental spacetime?
 
-### 8.4 Computational Physicist
+### Computational Physicist
 
 - Ensure simulations are designed with **clear ontological commitments**:
   - What do variables in the code represent (architrinos, potentials, assemblies)?
 - Prevent: Numerical artifacts being mistaken for physical effects.
 - Verify: Do stability claims reflect physical attractors, or just numerical damping?
 
-### 8.5 Adversary / Red Team
+### Adversary / Red Team
 
 - **Primary partner** for deep conceptual critiques:
   - Distinguish empirical mismatch (fixable) from ontological inconsistency (potentially fatal).
@@ -424,7 +424,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
   - No-go theorem applicability (formal structure vs interpretation).
   - Stop conditions (when is a tension "just a tension" vs "theory has failed")?
 
-### 8.6 Phenomenology & Experimental Interface
+### Phenomenology & Experimental Interface
 
 - Help interpret: What would it **mean**, conceptually, if certain deviations were or were not observed?
 - Example: If proton decay is observed, what does that imply about baryon number conservation in architrino dynamics?
@@ -432,9 +432,9 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 ---
 
-## 9. Historical and Comparative Context
+## Historical and Comparative Context
 
-### 9.1 Situate the Architrino Approach
+### Situate the Architrino Approach
 
 Provide context within the history of foundational physics:
 
@@ -462,9 +462,9 @@ Provide context within the history of foundational physics:
 
 ---
 
-## 10. Outputs and Ongoing Responsibilities
+## Outputs and Ongoing Responsibilities
 
-### 10.1 Key Deliverables
+### Key Deliverables
 
 **Foundational Documents:**
 - **Foundational Ontology Manifesto** (subsections in Ch. 2, 10, 31, 47): What exists, what is emergent, what is operational.
@@ -489,7 +489,7 @@ Provide context within the history of foundational physics:
   - Emergent spacetime and gravity.
 - **Responses to objections** as they arise (e.g., "How can you have absolute time and GPS work?").
 
-### 10.2 Ongoing Duties
+### Ongoing Duties
 
 - Periodic **conceptual audits**: Ensure new technical work and simulations remain consistent with declared ontology.
 - Work closely with Marko to:
