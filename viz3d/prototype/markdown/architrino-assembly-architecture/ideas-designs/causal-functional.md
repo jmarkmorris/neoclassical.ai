@@ -57,7 +57,13 @@ $$
 \delta\!\big(r(t,t')-c_f(t-t')\big)
 $$
 
-### 3) Geometric/Topological Framework
+### 3) Why this functional is promising
+- **Natural Lyapunov/action‑like candidate:** If certain motion classes monotonically reduce a single functional, that quantity can label attractors and discrete minima that look like “mass levels” or particle configurations.
+- **Bridge to geometric analysis / knot theory:** Showing that simple periodic motions (e.g., maximum‑curvature self‑hit orbits) locally minimize $\mathcal{A}_{\text{self}}$ within a topological class would give a clean geometric explanation for why some orbits are preferred over nearby perturbations.
+- **Simulation‑friendly statistic:** Given any numerically computed orbit, we can Monte‑Carlo sample $(t,t')$, test the causal condition, and estimate $\mathcal{A}_{\text{self}}[\gamma]$ to compare shapes. This makes the “stable = local minimum” heuristic empirically testable.
+- **Kolmogorov‑style appeal:** The functional is built directly from the microscopic law, convertible to empirical statistics, and a candidate for invariant measures that could explain attractor selection.
+
+### 4) Geometric/Topological Framework
 **Causal locus on the torus:**
 $$
 \mathcal{L}_{\text{causal}} =
@@ -74,7 +80,7 @@ This provides a signed measure of handedness for the self‑interaction pattern.
 
 **Multi‑component topology:** For periodic multi‑component trajectories, classify the spatial link type (e.g., linked or Brunnian structures). When applicable, use hyperbolic volume of the link complement as a geometric complexity measure to compare assemblies.
 
-### 4) Analytic Benchmarks (Circular Orbit)
+### 5) Analytic Benchmarks (Circular Orbit)
 For a circular orbit of radius $R$ and speed $v=\beta c_f$:
 $$
 2R\left|\sin\left(\frac{\omega\Delta}{2}\right)\right| = c_f\Delta,
@@ -105,17 +111,17 @@ $$
 \quad (\beta\gg 1)
 $$
 
-### 5) Dynamical Interpretation
+### 6) Dynamical Interpretation
 Stable periodic orbits correspond to **critical points** of $\bar{\mathcal{A}}_{\text{total}}$ within constrained families; in conservative dynamics this does not imply global minimization. Topological barriers in $\mathcal{L}_{\text{causal}}$ explain discreteness and separation between families.
 
-### 6) Emergent Geometry Constraints
+### 7) Emergent Geometry Constraints
 Define a coarse‑grained hit density:
 $$
 \mathcal{I}(t,\mathbf{x})=\sum_j\int\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2}\,dt'
 $$
 Use $\mathcal{I}$ to build an effective metric; ensure compatibility with conservation constraints (e.g., Bianchi identities) and test for weak‑equivalence consistency.
 
-### 7) Implementation Notes (Appendix)
+### 8) Implementation Notes (Appendix)
 - Use the same $\delta_\eta$ and $\eta$ for force and action estimators.
 - For periodic orbits, normalize by $T^2$ and enforce periodic boundary conditions.
 - For circular‑orbit calibration, compute $\xi_n$ roots numerically and sum with the Jacobian factor.
