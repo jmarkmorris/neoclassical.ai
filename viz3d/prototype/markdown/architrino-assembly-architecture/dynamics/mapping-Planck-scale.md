@@ -1,12 +1,14 @@
-## Draft 20260124a - Mapping the Planck Scale to the Tri-Binary Geometry
+## Mapping the Planck Scale to the Tri-Binary Geometry
 
-### 1. Thesis
+### Thesis
 
 Our goal is to map the Planck scale with the tri-binary geometry and dynamics. We have many moving parts yet we also have vast knowledge and framing about the Planck scale. This exercise will help us refine both framing of the Planck scale and operational detail about the tri-binary.  It is important that we use all of our information at hand, including effective formulas from the fields of physics and its siblings. The end state is a complete understanding of the behaviour of the tri-binary in the energy neighborhood below and above the Planck scale.
 
 We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
 
-> **Working Thesis (Planck Alignment Horizon).**  
+> 
+> **Working Thesis (Planck Alignment Horizon).**
+> 
 > A tri-binary reaches the Planck state when, in the forward sector, both the translational speed and the tangential orbital speed approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving one-way causal updates (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
@@ -21,6 +23,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >      L_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; h, \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
 >    $$
+> 
 
 These identifications are **conjectured mappings**, not definitions. They must eventually be derived from the master equations and compared to empirical values.
 
@@ -28,7 +31,7 @@ In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minim
 
 ---
 
-### 1.1 What Planck Units Imply About the Outer Binary
+### What Planck Units Imply About the Outer Binary
 
 We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$ and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
 $$
@@ -72,9 +75,9 @@ We keep these as open threads while we test whether alignment alone can lock the
 
 ---
 
-### 2. Kinematic and Dynamical Alignment Conditions
+### Kinematic and Dynamical Alignment Conditions
 
-#### 2.1 Effective Forward Speed (Necessary Condition)
+#### Effective Forward Speed (Necessary Condition)
 
 For an architrino on the forward edge of the Outer binary, define
 
@@ -92,7 +95,7 @@ so the combined forward-sector effective speed approaches the field speed at the
 
 At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state. The sufficiency comes from the **round-trip response**: the one-way delay distorts phase closure until the final aligned mode becomes the only stable lock.
 
-#### 2.2 Delay-Feedback Closure (Sufficiency Condition)
+#### Delay-Feedback Closure (Sufficiency Condition)
 
 Actual Planck alignment requires closure of the **action-response loop**:
 
@@ -121,7 +124,7 @@ Demonstrating this terminal aligned mode is an **open dynamical problem** for th
 
 ---
 
-### 2.3 Experienced-Field Framing (Energy as Interaction History)
+### Experienced-Field Framing (Energy as Interaction History)
 
 This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the **experienced field** $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
 
@@ -141,14 +144,14 @@ In this experienced-field framing:
 - Stability or structure emerges only when this response loop becomes periodic (locks) within the field.
 - Momentum is the conserved motion state produced by past interactions; if the field vanishes, the architrino coasts unchanged.
 
-#### 2.3.1 Field-Speed Regimes in the Experienced-Field View
+#### Field-Speed Regimes in the Experienced-Field View
 
 - **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
 - **At $v > c_f$:** It outruns field propagation. The only gradients it can experience are from delayed emissions and the medium behind/sideways, which leads to self-hit dynamics. This creates a strong inward/centripetal feedback that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
 
 ---
 
-### 3. Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
+### Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
 
 Based on Alfa’s phase-slip picture and standard delay-system behavior, we adopt:
 
@@ -174,11 +177,11 @@ then the “single top rung” picture must be modified or abandoned.
 
 ---
 
-### 4. Spin Transition and Configuration-Space Topology (Hypothesis)
+### Spin Transition and Configuration-Space Topology (Hypothesis)
 
 We propose an effective spin/statistics mapping via a reduction in configuration-space structure.
 
-#### 4.1 Fermionic Regime: 3D Precessing Tri-Binary
+#### Fermionic Regime: 3D Precessing Tri-Binary
 
 In the low-energy / weak-alignment regime:
 
@@ -192,7 +195,7 @@ In the low-energy / weak-alignment regime:
 
 A rigorous mapping from the detailed tri-binary phase space to an SU(2) bundle is **not yet derived**; it is a target for future work.
 
-#### 4.2 Bosonic Regime: Fully Aligned Planar Disk
+#### Bosonic Regime: Fully Aligned Planar Disk
 
 In the Planck alignment state:
 
@@ -208,9 +211,9 @@ Again, this SU(2) -> U(1) reduction is a **geometric hypothesis**, not yet a ful
 
 ---
 
-### 5. Emergent Constants: $\hbar$, $\ell_P$, and $G$
+### Emergent Constants: $\hbar$, $\ell_P$, and $G$
 
-#### 5.1 Assumption on Speeds: $c \approx c_f$ in the Low-Energy Limit
+#### Assumption on Speeds: $c \approx c_f$ in the Low-Energy Limit
 
 We adopt:
 
