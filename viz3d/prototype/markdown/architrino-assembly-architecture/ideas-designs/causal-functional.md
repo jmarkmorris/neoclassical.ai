@@ -127,6 +127,12 @@ Use $\mathcal{I}$ to build an effective metric; ensure compatibility with conser
 - For circular‑orbit calibration, compute $\xi_n$ roots numerically and sum with the Jacobian factor.
 - Handle the $\beta=\pi/2$ caustic with care; the unregularized action diverges.
 
+### 9) Limitations & caveats
+- **Rest mass is not just self-action:** $\mathcal{A}_{\text{self}}$ needs careful units; true rest energy also depends on partner interactions, Noether Sea coupling, and external wakes.
+- **Minima ≠ stability without dynamics:** Stability depends on the full DDE flow; the functional must be windowed/normalized (e.g., one period) to avoid divergences and to compare orbits meaningfully.
+- **Topology needs precision:** Time is monotone; periodic motion yields a spatially closed path but a helical spacetime curve. Be explicit about which projection/linking notion defines the “topological class.”
+- **Cohomology language is aspirational:** A cochain complex over the moduli of periodic orbits is not yet constructed; treat “cohomology of causal interaction” as a research direction, not a result.
+
 ----- PRIOR CONTENT BELOW -----
 
 ### Implications
@@ -147,80 +153,6 @@ Additional implications:
 - Attractors correspond to critical points of $\mathcal{A}_{self}$.
 - Monte Carlo variations on closed loops can search for minimizers; those shapes are particle candidates.
 - Particles are **resonant self-locking geometries** of path history; this equation maps to a periodic table of the Noether Sea.
-
----
-
----
-
-**3. What is good / promising about this**
-1. **It is a natural candidate for a Lyapunov / action‑like quantity.**
- If certain classes of motions tend to **reduce** some monotone functional, that functional often underpins:
- - Attractors (stable shapes/orbits),
- - Discrete families of minima = candidate “mass levels” or “particle configurations.”
-
-2. **It opens a bridge to geometric analysis / knot theory.**
- If we can show, even in very constrained settings, that:
- - Simple periodic motions (e.g. maximum‑curvature self‑hit orbits) locally **minimize** $\mathcal{A}_{\text{self}}$ under perturbations within a topological class,
- - While other nearby shapes increase it,
- then we start to get a mathematically clean explanation of “why that orbit and not others.”
-
-3. **It is simulation‑friendly.**
- can:
- - Take a numerically computed orbit (e.g. tight binary with self‑hit),
- - Sample $(t,t')$, check approximate causal condition,
- - Estimate $\mathcal{A}_{\text{self}}[\gamma]$,
- - Compare its value across different orbits and perturbations.
-
- That lets us test whether the heuristic “stable = local minimum of $\mathcal{A}_{\text{self}}$” holds empirically.
-
-As Kolmogorov, I like functionals that:
-
-- Are built directly from the microscopic law,
-- Can be turned into **empirical statistics** (integrals over trajectories),
-- Might define **invariant measures** or explain **selection of attractors**.
-
-This ticks those boxes.
-
----
-
-**4. Where it overreaches / needs correction**
-
-There are several strong claims that are not yet justified:
-
-1. **“Mass” $\propto \min \mathcal{A}_{\text{self}}$**
- - Right now, $\mathcal{A}_{\text{self}}$ is dimensionless (or has odd dimensions) unless you restore units carefully.
- - More importantly, it ignores:
- - Partner interactions (binaries, tri‑binaries),
- - Noether Sea coupling,
- - External wakes.
- - Our actual rest energy/mass of an assembly is dominated by *internal kinetic plus internal interaction energy*, which includes self‑hit **and partner** contributions.
-
- So: at best “internal self‑hit contribution to the energy” might be some functional of this type, but equating rest mass solely to a self‑term is too simplistic.
-
-2. **“Local minima of $\mathcal{A}_{\text{self}}$ = stable particles”**
- - The real stability is dynamical: does the full DDE flow return you to that orbit after perturbations?
- - Minimizing only the self‑term ignores that the partner term can destabilize or stabilize different shapes.
- - Also: the functional as written will likely **diverge** for generic infinite‑time worldlines (the double integral over all $t,t'$ needs regularization and windowing).
-
- We’d need to:
- - Restrict to one period of a periodic orbit, or finite time window,
- - Possibly normalize by time or some other scale,
- - And then prove or check numerically that known stable orbits correspond to local minima of a *normalized* functional.
-
-3. **“Topological classes of worldlines” in the sense of knots**
- - In our ontology, time is monotone; worldlines do not actually close in 4D. They are infinite in $t$.
- - For periodic motion, the **spatial** path closes, but the full $(t,\mathbf{x})$ curve is a helix, not a closed loop.
- - If we talk about knot types, we phải be precise: are we embedding one period of the spatial projection? Are we considering the trajectory of multiple particles as a **link** in spacetime?
-
- There is likely a rich topological structure here, but it is not yet in a clean knot‑theory setting.
-
-4. **Cohomology / Betti number language**
- - This sounds like marketing at the moment. To actually use cohomology, we would need:
- - A well‑defined space of configurations (e.g. moduli space of periodic orbits modulo time shifts),
- - A cochain complex built from causal interaction data,
- - Cohomology classes whose representatives correspond to families of assemblies.
-
- None of that is constructed yet. So I’d treat the “cohomology of causal interaction” as a **good research direction**, not as something we already have.
 
 ---
 
