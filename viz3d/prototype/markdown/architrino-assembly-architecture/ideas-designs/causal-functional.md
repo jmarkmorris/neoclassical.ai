@@ -147,22 +147,18 @@ Additional implications:
 ---
 
 **3. What is good / promising about this**
-
-1. **It encodes the same nonlocal structure in a compact way.**
- The full DDE involves an awkward implicit search for self‑hit times. This functional packages “all self‑intersections of the worldline with its causal wakes” into a single scalar.
-
-2. **It is a natural candidate for a Lyapunov / action‑like quantity.**
+1. **It is a natural candidate for a Lyapunov / action‑like quantity.**
  If certain classes of motions tend to **reduce** some monotone functional, that functional often underpins:
  - Attractors (stable shapes/orbits),
  - Discrete families of minima = candidate “mass levels” or “particle configurations.”
 
-3. **It opens a bridge to geometric analysis / knot theory.**
+2. **It opens a bridge to geometric analysis / knot theory.**
  If we can show, even in very constrained settings, that:
  - Simple periodic motions (e.g. maximum‑curvature self‑hit orbits) locally **minimize** $\mathcal{A}_{\text{self}}$ under perturbations within a topological class,
  - While other nearby shapes increase it,
  then we start to get a mathematically clean explanation of “why that orbit and not others.”
 
-4. **It is simulation‑friendly.**
+3. **It is simulation‑friendly.**
  can:
  - Take a numerically computed orbit (e.g. tight binary with self‑hit),
  - Sample $(t,t')$, check approximate causal condition,
@@ -1400,49 +1396,49 @@ import numpy as np
 from scipy.optimize import brentq
 
 def find_causal_roots(beta, n_max=10):
- """Find roots of sin(xi) = xi/beta for beta > pi/2."""
- roots = []
+    """Find roots of sin(xi) = xi/beta for beta > pi/2."""
+    roots = []
 
- # First root is around pi/2 for beta near threshold
- # General roots lie in intervals [(2k-1)pi/2, (2k+1)pi/2]
- for k in range(1, n_max):
- xi_min = (2*k - 1) * np.pi / 2 + 1e-6
- xi_max = (2*k + 1) * np.pi / 2 - 1e-6
+    # First root is around pi/2 for beta near threshold
+    # General roots lie in intervals [(2k-1)pi/2, (2k+1)pi/2]
+    for k in range(1, n_max):
+        xi_min = (2*k - 1) * np.pi / 2 + 1e-6
+        xi_max = (2*k + 1) * np.pi / 2 - 1e-6
 
- # Check if root exists in this interval
- f_min = np.sin(xi_min) - xi_min / beta
- f_max = np.sin(xi_max) - xi_max / beta
+        # Check if root exists in this interval
+        f_min = np.sin(xi_min) - xi_min / beta
+        f_max = np.sin(xi_max) - xi_max / beta
 
- if f_min * f_max < 0: # Sign change -> root exists
- try:
- xi_n = brentq(lambda xi: np.sin(xi) - xi/beta,
- xi_min, xi_max)
- if xi_n < beta: # Validity check
- roots.append(xi_n)
- except ValueError:
- break
+        if f_min * f_max < 0:  # Sign change -> root exists
+            try:
+                xi_n = brentq(lambda xi: np.sin(xi) - xi/beta,
+                              xi_min, xi_max)
+                if xi_n < beta:  # Validity check
+                    roots.append(xi_n)
+            except ValueError:
+                break
 
- return np.array(roots)
+    return np.array(roots)
 
 def compute_analytic_action(beta, R, c_f=1.0):
- """Compute bar{A}_self analytically for circular orbit."""
- if beta < np.pi / 2:
- return 0.0 # Below threshold
+    """Compute bar{A}_self analytically for circular orbit."""
+    if beta < np.pi / 2:
+        return 0.0  # Below threshold
 
- roots = find_causal_roots(beta)
- if len(roots) == 0:
- return 0.0
+    roots = find_causal_roots(beta)
+    if len(roots) == 0:
+        return 0.0
 
- # Sum with Jacobian factor
- total = 0.0
- for xi_n in roots:
- denominator = xi_n**2 * np.sqrt(beta**2 - xi_n**2)
- total += 1.0 / denominator
+    # Sum with Jacobian factor
+    total = 0.0
+    for xi_n in roots:
+        denominator = xi_n**2 * np.sqrt(beta**2 - xi_n**2)
+        total += 1.0 / denominator
 
- return (beta**3 / (8 * np.pi * R**2)) * total
+    return (beta**3 / (8 * np.pi * R**2)) * total
 ```
 
-**:** This is your **ground truth** function. Your numerical integrator must match this to within your $\eta$-regularization error.
+**Ground truth:** This is the analytic baseline. A numerical integrator using the same kernel and regularization should match it to within the $\eta$ error.
 
 ---
 
@@ -1478,7 +1474,7 @@ $$
 
 ## 5. Connection to Maximum-Curvature Orbit (Action Plan)
 
-Once confirms numerical-analytic agreement on the circular orbit, the next step is:
+Once we confirm numerical–analytic agreement on the circular orbit, the next step is:
 
 **Run Beta (as outlined by the team):** For a **binary** (two opposite-charge architrinos), the maximum-curvature orbit is hypothesized to exist near $v \approx c_f$ with self-hit stabilization.
 
@@ -1486,13 +1482,13 @@ For this orbit:
 - Compute $\bar{\mathcal{A}}_{\text{total}} = \bar{\mathcal{A}}_{\text{self,1}} + \bar{\mathcal{A}}_{\text{self,2}} + \bar{\mathcal{A}}_{12} + \bar{\mathcal{A}}_{21}$ (self-hits plus partner cross-terms).
 - Perturb the radius $R$ by $\pm 1\%$ and recompute.
 
-**the prediction:** If the orbit is at a **critical point** of $\bar{\mathcal{A}}_{\text{total}}$ in the $(R,v)$ family, then:
+**Prediction:** If the orbit is at a **critical point** of $\bar{\mathcal{A}}_{\text{total}}$ in the $(R,v)$ family, then:
 
 $$
 \left.\frac{\partial \bar{\mathcal{A}}_{\text{total}}}{\partial R}\right|_{R_{\text{eq}}} \approx 0.
 $$
 
-**My prediction:** If the orbit is a **local minimum**, then:
+**If it is a local minimum:**
 
 $$
 \left.\frac{\partial^2 \bar{\mathcal{A}}_{\text{total}}}{\partial R^2}\right|_{R_{\text{eq}}} > 0.
@@ -1523,7 +1519,7 @@ Let's run the numbers and see if geometry dictates mass.
 
 ---
 
-(Cartan’s hat back on):
+Perspective: geometry/dynamics next steps
 
 Given everything that’s been laid out, here’s how I see the geometry/dynamics picture now, and what I think we should actually do next.
 
