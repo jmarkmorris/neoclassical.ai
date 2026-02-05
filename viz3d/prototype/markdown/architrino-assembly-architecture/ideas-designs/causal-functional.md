@@ -64,21 +64,21 @@ $$
 - **Kolmogorov‑style appeal:** The functional is built directly from the microscopic law, convertible to empirical statistics, and a candidate for invariant measures that could explain attractor selection.
 
 ### 4) Geometric/Topological Framework
-**Causal locus on the torus:**
+**Causal locus on the torus:** For a periodic orbit the domain $(t,t')\in[0,T]^2$ is a torus. The causal locus
 $$
-\mathcal{L}_{\text{causal}} =
-\Big\{(t,t') \in T^2 \,\Big|\, \|\mathbf{x}(t)-\mathbf{x}(t')\| = c_f|t-t'|\Big\}
+\mathcal{L}_{\text{causal}} = \{(t,t')\in T^2 \mid \|\mathbf{x}(t)-\mathbf{x}(t')\| = c_f|t-t'|\}
 $$
-For a periodic orbit, the parameter domain $(t,t')\in[0,T]\times[0,T]$ is a torus. The causal locus is the subset where a point on the worldline intersects its own causal wake. Its winding structure supplies discrete labels for families of periodic orbits, and reconnection events correspond to bifurcations.
+is the set of self‑hits. Its winding numbers $(p,q)$ on $T^2$ are **discrete labels** for orbit families. As $R$ or $v$ change, the locus undergoes reconnection events; these are the bifurcations where families appear or disappear, giving a natural quantization of admissible self‑hit patterns. Sub‑$c_f$ motion leaves $\mathcal{L}_{\text{causal}}$ empty; super‑$c_f$ creates branches whose closure determines the integer self‑hit count per period.
 
 **Causal writhe (chirality):**
 $$
-Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}}
-\text{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
+Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}} \text{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
 $$
-This provides a signed measure of handedness for the self‑interaction pattern. Nonzero writhe indicates chiral self‑interaction and provides a topological handle on spin‑like structure.
+is a signed measure of handedness for the self‑interaction pattern. Nonzero $Wr_c$ ties intrinsic chirality/spin to the geometry of the wake rather than an imposed quantum number; changing $Wr_c$ requires tearing the causal locus.
 
-**Multi‑component topology:** For periodic multi‑component trajectories, classify the spatial link type (e.g., linked or Brunnian structures). When applicable, use hyperbolic volume of the link complement as a geometric complexity measure to compare assemblies.
+**Topological vs Noether data:** Continuous symmetries (time shifts, rotations) give Noether charges (energy, angular momentum). The winding class of $\mathcal{L}_{\text{causal}}$ supplies **topological charges**. Stable “generations” live where a Noether‑stationary orbit is also topologically locked; decay would require changing the winding class, i.e., a reconnection of $\mathcal{L}_{\text{causal}}$.
+
+**Multi‑component topology:** For assemblies, project the spatial trajectories over one period, classify the resulting link, and when hyperbolic, use the volume of the link complement as a complexity measure. Brunnian or highly knotted complements signal strong causal interlocking and higher action density.
 
 ### 5) Analytic Benchmarks (Circular Orbit)
 For a circular orbit of radius $R$ and speed $v=\beta c_f$:
@@ -110,16 +110,23 @@ $$
 \bar{\mathcal{A}}_{\text{self}} \sim \frac{\pi}{48R^2}
 \quad (\beta\gg 1)
 $$
+The number of admissible roots $\xi_n$ (self‑hits per period) is the discrete count that matches the winding numbers of $\mathcal{L}_{\text{causal}}$; new roots appear only when the causal locus reconnects, so this analytic toy mirrors the bifurcation picture in Section 4.
 
 ### 6) Dynamical Interpretation
-Stable periodic orbits correspond to **critical points** of $\bar{\mathcal{A}}_{\text{total}}$ within constrained families; in conservative dynamics this does not imply global minimization. Topological barriers in $\mathcal{L}_{\text{causal}}$ explain discreteness and separation between families.
+- Stable periodic orbits are **critical points** of $\bar{\mathcal{A}}_{\text{total}}$ constrained within a winding class. The delay flow need not be a gradient flow of this functional, so extremality is a selection principle, not a proof of asymptotic stability.
+- **Existence vs. stability:** Topology of $\mathcal{L}_{\text{causal}}$ dictates which families can exist (via bifurcations when branches reconnect). Linear spectra of the delay equation decide which of those families attract. The causal locus is the combinatorial skeleton; Lyapunov exponents tell who survives.
+- **Discreteness:** Each winding class gives an integer self‑hit count; moving between classes requires a reconnection event, explaining mass gaps and “generations” without adding quantization by hand.
 
 ### 7) Emergent Geometry Constraints
-Define a coarse‑grained hit density:
+Define the coarse‑grained hit density
 $$
-\mathcal{I}(t,\mathbf{x})=\sum_j\int\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2}\,dt'
+\mathcal{I}(t,\mathbf{x})=\sum_j\int_{-\infty}^{t}\!\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2}\,dt',
 $$
-Use $\mathcal{I}$ to build an effective metric; ensure compatibility with conservation constraints (e.g., Bianchi identities) and test for weak‑equivalence consistency.
+and map it to an effective metric
+$$
+g_{\mu\nu}dx^\mu dx^\nu = -\alpha^2(\mathcal{I})\,c_f^2 dt^2 + \beta^2(\mathcal{I})\,\delta_{ij}dx^i dx^j,
+$$
+with small couplings $\alpha=1+\lambda_t\mathcal{I}$, $\beta=1+\lambda_s\mathcal{I}$ in the weak field. Bianchi identities and weak‑equivalence demands constrain the admissible $\lambda_{t,s}$; otherwise the emergent geometry reduces to a scalar‑tensor theory with potentially observable fifth forces. Matching the long‑range limit of test‑assembly motion to geodesics in $g_{\mu\nu}[\mathcal{I}]$ is the consistency check linking microscopic causal hits to macroscopic curvature.
 
 ### 8) Implementation Notes (Appendix)
 - Use the same $\delta_\eta$ and $\eta$ for force and action estimators.
@@ -153,65 +160,6 @@ Additional implications:
 - Attractors correspond to critical points of $\mathcal{A}_{self}$.
 - Monte Carlo variations on closed loops can search for minimizers; those shapes are particle candidates.
 - Particles are **resonant self-locking geometries** of path history; this equation maps to a periodic table of the Noether Sea.
-
----
-
-**5. How to turn this into a real testable tool**
-
-What I would propose (concrete steps):
-
-1. **Make the functional precise for periodic orbits.**
- For a periodic worldline with period $T$, use the *time‑normalized* self‑action defined above, with $\delta_\eta$ a narrow, normalized peak (our usual regularization). This avoids divergences and makes comparisons well‑posed.
-
-2. **Compute it for known orbits:**
- - Simple unstable circular binary (sub‑$c_f$, no self‑hit),
- - Tight maximum‑curvature binary (with self‑hit),
- - Slightly perturbed versions of each.
-
- Check:
-
- - Does the tight, numerically stable orbit give a *local extremum* of $\bar{\mathcal{A}}_{\text{self}}$ under small perturbations?
- - Is that extremum a minimum, maximum, or saddle?
-
-3. **Include partner contributions**
- For actual assemblies use the **total causal action** defined above, including self‑terms plus cross‑terms. Then check if stable assemblies extremize **this** functional.
-
-4. **Statistical interpretation (my domain)**
- Over long times for a noisy or chaotic system:
- - $\bar{\mathcal{A}}_{\text{self}}$ (or total) becomes a **time‑averaged observable**.
- - We can ask: do invariant measures of the dynamics concentrate on configurations where this observable is near a small set of discrete values?
- - That would link the functional to **emergent probabilities**: systems spend most of their time near those “self‑action basins.”
-
- Here, the functional becomes a candidate for:
- - A “Lyapunov‑like” quantity governing where the invariant measure has support,
- - A bridge to something like the Born rule: measures over assemblies proportional to some function of an action.
-
----
-
-**6. Bottom line**
-
-- The equation/functionals proposed are **not yet “the mass formula”** and not yet a rigorous classification of particles, but:
- - They *are* closely aligned with our **actual causal‑wake kernel**.
- - They give a **natural geometric scalar** counting self‑interaction events.
- - They’re promising as:
- - A way to classify worldlines/assemblies,
- - A candidate functional whose extrema correspond to stable orbits,
- - A statistic we can measure in simulation.
-
-- The cohomology / “Betti number of the proton” talk is aspirational. Before we go there, we need:
-
- 1. A precise, regularized functional on periodic worldlines or assembly trajectories.
- 2. Numerical evidence that dynamically stable assemblies are critical points/minima of that functional.
- 3. Then: exploration of how topology of trajectory bundles constrains these minima.
-
-> We have identified a **natural causal self‑interaction functional** derived from the same kernel as the Master Equation. Its role as a **selector of stable assemblies and mass scales** is an attractive conjecture, but needs to be tested first in the simplest periodic orbits (inner binaries) before being promoted to a general organizing principle.
-
-Next steps:
-
-- Write the exact discrete estimator of $\bar{\mathcal{A}}_{\text{self}}$ for direct code use.
-- Work through the analytic value of this functional for the idealized single‑particle circular self‑hit orbit (constant $R,\omega,v>c_f$) as a baseline.
-
----
 
 Treat the particle as a "knot in spacetime" only after projection: worldlines are infinite helices, so standard knot theory applies to the **spatial projection modulo the period**, not the raw $(t,\mathbf{x})$ curve.
 
