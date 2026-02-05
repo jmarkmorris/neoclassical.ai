@@ -71,12 +71,12 @@ there are stable orbits at each h
 
 ---
 
-## 3. **Charge Quantization from Tri-Binary Topology (Conceptual Clarity)**
+## **Charge Quantization from Tri-Binary Topology (Conceptual Clarity)**
 **Why critical:** We *postulate* |e/6| but claim tri-binary geometry *explains* it. If we cannot show why only 0, ±e/3, ±2e/3, ±e are stable (and nothing else), this looks like fine-tuning dressed up as explanation.
 
 ---
 
-## 4. **Ontological Coherence Audit**
+## **Ontological Coherence Audit**
 **Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, deterministic multistability + effective quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
 
 ---
@@ -92,22 +92,22 @@ codex
   ---
 
 
-### 2. The Chirality Crisis: Deriving Parity Violation
+### The Chirality Crisis: Deriving Parity Violation
 **Why:** The Standard Model is chiral; the Weak force only talks to left-handed fermions. Euclidean geometry is naturally parity-symmetric. This is our biggest phenomenological trap.
 *   **The Task:** I need Dyna to show me how the **handedness of the binary spirals** creates a geometric selection rule that mimics the $V-A$ (Vector minus Axial) coupling of the Weak interaction.
 *   **The Hard Wall:** If our model predicts that right-handed neutrinos interact via the $W$ boson with the same strength as left-handed ones, we are falsified by experiments from the 1950s.
 
-### 3. Deriving Alpha ($\alpha$) and the Coupling Constants
+### Deriving Alpha ($\alpha$) and the Coupling Constants
 **Why:** In the SM, couplings ($\alpha_{EM} \approx 1/137$, $\alpha_S$, $G_F$) are inputs. We claim to be fundamental; therefore, we must **derive** them, or at least show they emerge naturally from the geometry.
 *   **The Task:** Calculate the electromagnetic coupling strength from the architrino charge $\epsilon = e/6$, the field speed $c_f$, and the tri-binary radius/frequency.
 *   **The Hard Wall:** If our derived $\alpha$ is off by orders of magnitude (e.g., 0.1 instead of 0.007), or if we have to fine-tune $\kappa$ arbitrarily to make it fit, we lose "naturalness."
 
-### 4. Emergent Lorentz Invariance (Mechanical)
+### Emergent Lorentz Invariance (Mechanical)
 **Why:** I cannot calculate a particle lifetime, a scattering cross-section, or a decay rate without the Lorentz factor $\gamma$. Phil and Cos care about this for gravity; I care about it for **particle physics**.
 *   **The Task:** I need the derivation that shows a fast-moving tri-binary mechanically contracts and dilates.
 *   **The Hard Wall:** If I calculate the muon lifetime and it doesn't dilate exactly as $\tau = \tau_0 \gamma$, then High Energy Physics data kills us instantly. I am dependent on Dyna and Sol to prove this mechanism works so I can use it in my Lagrangian.
 
-### 5. From Determinism to Cross-Sections (The Born Rule)
+### From Determinism to Cross-Sections (The Born Rule)
 **Why:** Experimentalists measure scattering cross-sections (probabilities). Our theory is deterministic but **meta-stable** at thresholds (trajectories with multistable outcomes). I need the bridge.
 *   **The Task:** Show how the **informational ambiguity** of the receiver (as detailed in the Master Equation) leads to the probabilistic Born Rule ($P \propto |\psi|^2$).
 *   **The Hard Wall:** If our simulation of $e^+e^-$ scattering produces a pattern that deviates from the QED prediction (e.g., no interference fringes in the equivalent of a double-slit, or wrong angular distribution), we cannot claim to reproduce Quantum Mechanics.
