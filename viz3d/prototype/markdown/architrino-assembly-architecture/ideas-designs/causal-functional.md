@@ -10,6 +10,9 @@ $$
 \frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f(t-t')\big)}
 {\|\mathbf{x}(t)-\mathbf{x}(t')\|^2}\,dt\,dt'
 $$
+We introduce a functional to replace ad‑hoc stability searches with a single quantity that can be compared across trajectories. The goal is to identify which worldlines are dynamically preferred and to connect that preference to discrete, reproducible particle‑like states.
+
+This integrates over all pairs of points on a single worldline and counts only those pairs that are causally connected by a wake moving at speed $c_f$. The $1/r^2$ factor weights nearby self‑hits more strongly than distant ones.
 
 **Normalized (periodic) self‑action:**
 $$
@@ -18,6 +21,7 @@ $$
 \frac{\delta_\eta\!\big(r(t,t')-c_f|t-t'|\big)}{r(t,t')^2}\,dt\,dt'
 $$
 with $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$ and $\delta_\eta$ a mollified delta.
+This version is defined for periodic orbits. The $T^2$ normalization makes values comparable across different periods, while $\delta_\eta$ regularizes the causal constraint for numerical evaluation.
 
 **Total action (multi‑assembly):**
 $$
@@ -25,6 +29,7 @@ $$
 \sum_{i,j}\frac{1}{T^2}\int_0^T\!\int_0^T
 \frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2}\,dt\,dt'
 $$
+This aggregates self‑terms and cross‑terms between components, so stable multi‑component assemblies are assessed by the full interaction structure rather than self‑hits alone.
 
 **Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, and $\Delta t = t-t'$.
 
@@ -34,6 +39,7 @@ $$
 \qquad
 \text{Action kernel: } \left[ \frac{1}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
 $$
+The force kernel retains direction via $\hat{\mathbf{r}}$, while the action kernel keeps only the scalar magnitude. This is the minimal change that turns a vector interaction into a scalar functional suitable for variational comparisons.
 
 ### 3) Geometric/Topological Framework
 **Causal locus on the torus:**
@@ -41,15 +47,16 @@ $$
 \mathcal{L}_{\text{causal}} =
 \Big\{(t,t') \in T^2 \,\Big|\, \|\mathbf{x}(t)-\mathbf{x}(t')\| = c_f|t-t'|\Big\}
 $$
-The winding structure of $\mathcal{L}_{\text{causal}}$ provides discrete labels for families of periodic orbits; reconnection events correspond to bifurcations.
+For a periodic orbit, the parameter domain $(t,t')\in[0,T]\times[0,T]$ is a torus. The causal locus is the subset where a point on the worldline intersects its own causal wake. Its winding structure supplies discrete labels for families of periodic orbits, and reconnection events correspond to bifurcations.
 
 **Causal writhe (chirality):**
 $$
 Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}}
 \text{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
 $$
+This provides a signed measure of handedness for the self‑interaction pattern. Nonzero writhe indicates chiral self‑interaction and provides a topological handle on spin‑like structure.
 
-**Multi‑component topology:** For periodic multi‑component trajectories, classify the spatial link type and, when applicable, use hyperbolic volume of the link complement as a geometric complexity measure.
+**Multi‑component topology:** For periodic multi‑component trajectories, classify the spatial link type (e.g., linked or Brunnian structures). When applicable, use hyperbolic volume of the link complement as a geometric complexity measure to compare assemblies.
 
 ### 4) Analytic Benchmarks (Circular Orbit)
 For a circular orbit of radius $R$ and speed $v=\beta c_f$:
