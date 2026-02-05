@@ -80,11 +80,11 @@ Comparing:
 
 - Our **force** kernel is
   \[
-  \frac{\hat{\mathbf{r}}(t,t')}{r^2}\,\delta(r-c_f\Delta t),
+  \left[ \frac{\hat{\mathbf{r}}(t,t')}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
   \]
 - Alex’s **action** kernel drops the direction and keeps
   \[
-  \frac{1}{r^2}\,\delta(r-c_f\Delta t).
+  \left[ \frac{1}{r^2}, \delta\!\big(r-c_f\Delta t\big) \right]
   \]
 
 So as a *scalar*, $\mathcal{A}_{\text{self}}$ is roughly the **total “strength” of all self‑hits** accumulated along the worldline: every causal self‑intersection contributes $\sim 1/r^2$.
@@ -377,7 +377,7 @@ Bill's point about integer winding numbers is where quantization enters.
 
 For a circular orbit at speed $v > c_f$, the number of self-hit roots $N_{\text{roots}}$ satisfies (from the transcendental equation):
 $$
-N_{\text{roots}} \sim \frac{v}{c_f} - 1 \quad \text{(approximately, for } v \text{ close to } c_f)
+N_{\text{roots}} \sim \frac{v}{c_f} - 1 \quad \text{(approximately, for } v \text{ close to } c_f \text{)}
 $$
 
 But as Bill suggests, stable orbits likely "lock" to integer values where the causal locus closes smoothly.
@@ -1501,7 +1501,7 @@ $$
 Thus:
 
 $$
-\bar{\mathcal{A}}_{\text{self}} \sim \frac{\beta^3}{8\pi R^2} \cdot \frac{\pi^2}{6\beta^3} = \frac{\pi}{48 R^2} \quad \text{(constant at high $\beta$)}.
+\bar{\mathcal{A}}_{\text{self}} \sim \frac{\beta^3}{8\pi R^2} \cdot \frac{\pi^2}{6\beta^3} = \frac{\pi}{48 R^2} \quad \text{(constant at high } \beta \text{)}.
 $$
 
 **Prediction:** The action **saturates** at high speeds—adding more self-hits doesn't increase the total action indefinitely because each hit is weaker ($1/r^2$ with larger $r$).
