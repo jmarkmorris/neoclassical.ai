@@ -170,6 +170,13 @@ Gluons are the **phase-correction packets** exchanged between quarks to maintain
 *   If a Red Quark drifts to $10^\circ$, it emits a Gluon (carrying phase momentum) that is absorbed by a Green Quark, shifting it accordingly to maintain the center-of-mass neutrality.
 *   **Geometry:** Gluons are planar architrino structures (2D ribbons) that propagate along the flux tubes, transferring angular momentum (Color) between vertices.
 
+### Color phase alignment and decoherence suppression
+
+- **Restoring force:** The shared flux tube has a tension that is minimum when the three color phases sum to zero. Any phase slip stretches the tube and raises its energy, pulling phases back into alignment.
+- **Gluon exchange:** Phase errors are quantized corrections carried by gluons along the tube; emission/absorption nudges individual quark phases until the net vector closes.
+- **Timescale separation:** Phase-lock time along the tube is much shorter than environmental disturbance times, so small kicks are damped before they decohere the color state.
+- **Isolation:** Color flux remains confined inside the tube; external interactions see only the color singlet, preventing phase information from leaking and causing decoherence.
+
 ### Why is the Proton Stable?
 The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Coulomb Repulsion:** The two $u$ quarks repel electrically.
