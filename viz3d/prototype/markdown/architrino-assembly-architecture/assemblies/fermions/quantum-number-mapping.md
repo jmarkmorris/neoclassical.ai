@@ -206,6 +206,21 @@ _EM):** photon is the post-mixing corridor; $W^\pm$ and $Z$ are the chiral corri
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed corridor aligned to leave Shielded + Active-Triad combination invariant ($Q$-coupling only).
 
+### Hypercharge bookkeeping (Shielded triad → $Y$)
+
+Hypercharge is set by the net charge on the **Shielded Triad** (three hidden decoration sites) plus any core offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for the fermions below.
+
+| Field | Shielded triad charge (e units) | $Y$ from shielded charge | SM $Y$ |
+| --- | --- | --- | --- |
+| $q_L = (u_L,d_L)$ | $+1/6$ (2P,1E) | $2 \times (+1/6) = +1/3$ | $+1/3$ |
+| $u_R$ | $+1/6$ | $2 \times (+1/6) = +1/3$, then $T_3=0 \Rightarrow Y=2Q=+4/3$ | $+4/3$ |
+| $d_R$ | $+1/6$ | $2 \times (+1/6) = +1/3$, then $T_3=0 \Rightarrow Y=2Q=-2/3$ | $-2/3$ |
+| $\ell_L = (\nu_L,e_L)$ | $-1/2$ (3E) | $2 \times (-1/2) = -1$ | $-1$ |
+| $e_R$ | $-1/2$ | $2 \times (-1/2) = -1$, then $T_3=0 \Rightarrow Y=2Q=-2$ | $-2$ |
+| (optional) $\nu_R$ | $-1/2$ | $2 \times (-1/2) = -1$, but if $Q=0, T_3=0 \Rightarrow Y=0$ (requires model choice) | (not in SM) |
+
+Notes: the shielded charge is common within a doublet; right-handed singlets set $Y$ via $Q$ with $T_3=0$.
+
 ### Charge quantization cross-check
 
 Because every fermion personality fills six sites with $\pm e/6$, the only stable net charges from the Active+Shielded split are $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 table in phenomenology/gauge-structure-emergence.md Quantization from Stability).
@@ -295,6 +310,12 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 
 For the **Elementary Fermions** (Quarks and Leptons), yes, this table is complete. It covers the "ID Card" required to distinguish every particle in the Standard Model Lagrangian.
 
+### Spin and the 4π rule (geometric reason)
+
+- The tri-binary core has three non-coplanar binary planes with ordered normals; keeping total $\mathbf{J}$ fixed, that ordered triad lives on $SO(3)$ but carries an **ordering/phase sign** from the vortex scaffold.
+- A 2π spatial rotation permutes the braid ordering once, flipping the sign of the internal phase (like rotating a framed triad or belt). Only after 4π does the ordered triad and its vortex phase return to the same configuration.
+- This ordered-triad + fixed-$\mathbf{J}$ constraint is the geometric origin of the SU(2) double cover → spin-1/2 behavior.
+
 However, there are two nuances we should be aware of, though we don't necessarily need a new row for them:
 
 1.  **Flavor Quantum Numbers ($S, C, B, T$):**
@@ -314,4 +335,3 @@ However, there are two nuances we should be aware of, though we don't necessaril
 The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a decay rate (except for Mass, which is a derived energy scale, not a quantum number).
 
 ---
-
