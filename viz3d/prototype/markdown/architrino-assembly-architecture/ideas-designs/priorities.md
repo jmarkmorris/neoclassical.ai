@@ -4,6 +4,7 @@
   - work on scene builder.
   - a language for describing animations 
   - every scene will be ported to this format
+
 - work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
 - finish topology (where is it) su(3)su(2)o(1)
 - what is the smallest assembly that can make a decision
@@ -12,7 +13,6 @@
   - koide
   - planck
   - 1 2 4
-  - need a breakthru
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 - sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
@@ -25,7 +25,6 @@
   - look into madgraph for reactions as well
 - periodic table of the standard model
 - what about the charts I made showing the bootstrap of knowledge.
-- read lorentz-aether and integrate it with ellipsoid
 - continue the ellipsoid work, aiming to understand time
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
 - mine material from wordpress for key areas
