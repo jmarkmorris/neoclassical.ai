@@ -27,6 +27,7 @@ $$
 $$
 with $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$ and $\delta_\eta$ a mollified delta.
 This version is defined for periodic orbits. The $T^2$ normalization makes values comparable across different periods, while $\delta_\eta$ regularizes the causal constraint for numerical evaluation.
+Dimensional check: $[\bar{\mathcal{A}}_{\text{self}}]=1/\text{Length}^2$ (inverse area), consistent with a surface‑density measure over causal intersections.
 
 **Total action (multi‑assembly):**
 $$
@@ -226,14 +227,7 @@ There are several strong claims that are not yet justified:
 What I would propose (concrete steps):
 
 1. **Make the functional precise for periodic orbits.**
- For a periodic worldline with period $T$, define a *time‑normalized* self‑action:
- \[
- \bar{\mathcal{A}}_{\text{self}}[\gamma]
- \;=\;\frac{1}{T^2}
- \int_0^T\!\int_0^T
- \frac{\delta_\eta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f (t-t')\big)}{\|\mathbf{x}(t)-\mathbf{x}(t')\|^2}\,dt\,dt',
- \]
- with $\delta_\eta$ a narrow, normalized peak (our usual regularization). This avoids divergences and makes comparisons well‑posed.
+ For a periodic worldline with period $T$, use the *time‑normalized* self‑action defined above, with $\delta_\eta$ a narrow, normalized peak (our usual regularization). This avoids divergences and makes comparisons well‑posed.
 
 2. **Compute it for known orbits:**
  - Simple unstable circular binary (sub‑$c_f$, no self‑hit),
@@ -246,16 +240,7 @@ What I would propose (concrete steps):
  - Is that extremum a minimum, maximum, or saddle?
 
 3. **Include partner contributions**
- For actual assemblies we should define a **total causal action**:
- \[
- \bar{\mathcal{A}}_{\text{total}}[\{\gamma_k\}]
- \;=\;
- \sum_{i,j}
- \frac{1}{T^2}
- \int_0^T\!\int_0^T
- \frac{\delta_\eta\!\big(\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\| - c_f (t-t')\big)}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|^2}\,dt\,dt',
- \]
- self‑terms plus cross‑terms. Then check if stable assemblies extremize **this** functional.
+ For actual assemblies use the **total causal action** defined above, including self‑terms plus cross‑terms. Then check if stable assemblies extremize **this** functional.
 
 4. **Statistical interpretation (my domain)**
  Over long times for a noisy or chaotic system:
@@ -361,18 +346,9 @@ Geometry dictates mass, but a precise metric is still required. The **topology o
 
 ### **Layer 1: The Scalar Functional **
 
-the causal self-action functional:
-$$
-\mathcal{A}_{\text{self}}[\gamma] = \iint_{\gamma \times \gamma} \frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f(t-t')\big)}{\|\mathbf{x}(t)-\mathbf{x}(t')\|^2}\,dt\,dt'
-$$
+The causal self-action functional (defined above) anchors this layer.
 
-**My refinement:** For periodic orbits with period $T$, normalize it:
-$$
-\bar{\mathcal{A}}_{\text{self}}[\gamma] = \frac{1}{T^2} \int_0^T \int_0^T \frac{\delta_\eta\!\big(r(t,t') - c_f|t-t'|\big)}{r(t,t')^2}\,dt\,dt'
-$$
-where $r(t,t') = \|\mathbf{x}(t)-\mathbf{x}(t')\|$ and $\delta_\eta$ is our standard mollified delta with width $\eta$.
-
-**Dimensional check:** $[\bar{\mathcal{A}}_{\text{self}}] = 1/\text{Length}^2$, which is inverse area—consistent with a surface density integral over causal intersections.
+For periodic orbits with period $T$, use the normalized self-action defined above, where $r(t,t') = \|\mathbf{x}(t)-\mathbf{x}(t')\|$ and $\delta_\eta$ is our standard mollified delta with width $\eta$.
 
 ---
 
@@ -397,11 +373,7 @@ $$
 
 Here's where we connect dynamics to geometry.
 
-**Conjecture (testable):** Dynamically stable periodic orbits correspond to **critical points** of the normalized functional:
-$$
-\bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}] = \sum_{i,j} \bar{\mathcal{A}}_{ij}
-$$
-where $\bar{\mathcal{A}}_{ij}$ includes both self-terms ($i=j$) and partner cross-terms ($i \neq j$).
+**Conjecture (testable):** Dynamically stable periodic orbits correspond to **critical points** of the normalized total action defined above, where $\bar{\mathcal{A}}_{ij}$ includes both self-terms ($i=j$) and partner cross-terms ($i \neq j$).
 
 This would mean:
 - Small perturbations to the orbit leave $\bar{\mathcal{A}}_{\text{total}}$ stationary (to first order).
@@ -522,11 +494,7 @@ For each:
 
 **Extend to multi-particle assemblies:**
 
-For tri-binaries and beyond, the functional becomes:
-$$
-\bar{\mathcal{A}}_{\text{total}} = \sum_{i=1}^6 \bar{\mathcal{A}}_{ii} + \sum_{i<j} \bar{\mathcal{A}}_{ij}
-$$
-with 6 architrinos (electrino/positrino pairs forming three nested binaries).
+For tri-binaries and beyond, the total action decomposes into self and cross terms (see definition above), with 6 architrinos (electrino/positrino pairs forming three nested binaries).
 
 **Predictions:**
 - Electron-like: inner binary only, simple $(1,1)$ winding, minimal $\bar{\mathcal{A}}$
@@ -567,12 +535,7 @@ Shall I begin the analytic calculation for the circular case?
 
 The discussion introduces a **causal self-interaction functional** and its topology:
 
-- A scalar functional counting self- and mutual hits:
- \[
- \bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}]
- = \frac{1}{T^2} \sum_{i,j} \int_0^T\!\int_0^T
- \frac{\delta_\eta\!\big(r_{ij}(t,t') - c_f|t-t'|\big)}{r_{ij}(t,t')^2}\,dt\,dt',
- \]
+- A scalar functional counting self- and mutual hits (defined above),
 - A **causal locus** \(\mathcal{L}_\text{causal}\subset T^2\) with winding data,
 - The conjecture: **stable assemblies = critical points of \(\bar{\mathcal{A}}_{\text{total}}\)** within a given topological class, and the functional’s value is proportional to their internal energy (mass).
 
@@ -755,12 +718,6 @@ The action-principle framing links dynamics, topology, and geometry under invari
 ### 1. Functional vs. Flow: are we really extremizing \(\bar{\mathcal{A}}\)?
 
 the team have proposed that stable assemblies sit at critical points (ideally minima) of a functional like
-\[
-\bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}]
-= \frac{1}{T^2}
-\sum_{i,j} \int_0^T\!\int_0^T
-\frac{\delta_\eta\!\big(r_{ij}(t,t') - c_f|t-t'|\big)}{r_{ij}^2(t,t')}\,dt\,dt'.
-\]
 
 - **Is the actual delay equation \(\ddot x = F[x(\cdot)]\) a (possibly generalized) *gradient flow* of this functional, or not?**
 
@@ -1093,11 +1050,6 @@ Across,,,,,,, and, several nontrivial points have converged:
 
 1. **Natural scalar from the micro‑kernel**
  The causal self‑action functional
- \[
- \bar{\mathcal{A}}_{\text{self}}[\gamma]
- = \frac{1}{T^2}\int_0^T\!\int_0^T
- \frac{\delta_\eta(r(t,t')-c_f|t-t'|)}{r^2(t,t')}\,dt\,dt'
- \]
  is not arbitrary: it is *exactly* the scalar magnitude built from the same $1/r^2$ and causal‑wake kernel that drives the Master Equation. So using it as a diagnostic or organizing functional is legitimate.
 
 2. **Causal locus on the torus is the right combinatorial object**
@@ -1587,11 +1539,6 @@ Summary: a coherent spine now includes:
 
 2. **Geometric scalar from the same kernel**
  - Normalized causal action
- \[
- \bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}]
- = \frac{1}{T^2}\sum_{i,j}\int_0^T\!\int_0^T
- \frac{\delta_\eta\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}^2(t,t')}\,dt\,dt'.
- \]
  - This is not decorative; it’s exactly built from the same $1/r^2$ + causal constraint that defines the force.
 
 3. **Topological skeleton of self‑interaction**
@@ -2168,9 +2115,7 @@ We now have a **four-layer mathematical framework**:
 The delay-DDE with causal wakes and self-hit is our ontological ground. Everything else derives from this.
 
 ### Layer 2: Causal Action Functional
-$$
-\bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}] = \frac{1}{T^2} \sum_{i,j} \int_0^T\!\int_0^T \frac{\delta_\eta(r_{ij}(t,t') - c_f|t-t'|)}{r_{ij}^2(t,t')} \, dt \, dt'
-$$
+The normalized total action (defined above) encodes self‑ and cross‑hit contributions across components.
 
 ### Layer 3: Causal Locus Topology
 For periodic orbits, the set $\mathcal{L}_{\text{causal}} \subset T^2$ defined by
@@ -2589,8 +2534,8 @@ Here is the synthesis of our emergency council session regarding the **Architrin
 Here is the consensus framework we have built and the testing protocol currently executing.
 
 ### 1. The Breakthrough: The Causal Self-Action Functional
+Use the normalized total action defined above; the self‑action is the $i=j$ subset and sets the baseline for mass.
 
-$$ \bar{\mathcal{A}}_{\text{total}}[\gamma] = \frac{1}{T^2} \sum_{i,j} \iint_{\text{period}} \frac{\delta_\eta\big(\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\| - c_f|t-t'|\big)}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|^2} \, dt \, dt' $$
 
 **The Physical Interpretation:**
 * **Mass is Geometry:** The "rest mass" of a particle is the value of this functional at a stable orbit. It represents the "Virial of History"—the energy stored in the causal wakes that clothe the particle.
