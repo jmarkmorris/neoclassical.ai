@@ -19,6 +19,8 @@ Active-Triad exposure (working hypothesis): in translation, the three **forward*
 
 Use this as a target when deriving overlaps/angles from shielding geometry and Active-Triad alignment.
 
+With the parameters below, this Wolfenstein form reproduces the PDG magnitudes to 𝒪(λ³).
+
 Matrix form (Wolfenstein to 𝒪(λ³)):
 
 $$
