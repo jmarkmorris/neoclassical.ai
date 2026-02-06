@@ -1,16 +1,21 @@
 # Weak Mixing in the Architrino Assembly Architecture (CKM)
 
-## Purpose
-Sketch how CKM flavor mixing emerges from the AAA geometry: weak (Active-Triad) basis vs. mass (shielding) basis, and why off-diagonal elements shrink with core depletion.
+## What weak mixing is (SM → AAA)
 
-## Weak mixing in AAA terms
+### Standard Model recap
+- Where it appears: any charged-current weak process that changes quark flavor—beta decays ($d\to u$), kaon decays ($s\to u$), charm decays ($c\to s/d$), bottom decays ($b\to c/u$), and loop-induced rare modes (e.g., $b\to s$).
+- What mixes: left-handed quark weak eigenstates (doublets) are not mass eigenstates. The CKM matrix rotates between weak and mass bases.
+- Vertex form: $\bar u_i \gamma^\mu (1-\gamma^5) V_{ij} d_j W^+_\mu$ (and conjugate). $V_{ij}$ carries the mixing; four physical parameters (three angles + one phase, e.g., Wolfenstein $\lambda,A,\rho,\eta$).
+- Observables: rates/branchings $\propto |V_{ij}|^2$; CP violation from complex products like $V_{ij}V^*_{kl}$ in interfering amplitudes.
+
+### Weak mixing in AAA terms
 - The weak force is the only one that swaps quark types (down ↔ up, strange ↔ charm, etc.).
 - Each quark has two “bases”: a **weak basis** (set by the exposed Active Triad) and a **mass basis** (set by core shielding). These bases aren’t aligned.
 - When a W acts, it “sees” the weak basis; the chance to land in a particular mass state is set by the overlap between these bases → the CKM numbers.
 - Big overlaps (similar shielding) give big CKM entries; mismatched shielding gives tiny entries.
 
 • In this model, a $W^\pm$ isn’t a preexisting field quantum—it’s a transient “corridor” assembled during a weak interaction:
-  - It’s nucleated from the interacting assemblies’ Architrino wakes when the Active Triad is driven to swap polarity/phase.
+  - It’s nucleated from the interacting assemblies’ architrino wakes when the Active Triad is driven to swap polarity/phase, pulling on Noether Sea cores ahead of the translating particle (outside its own wake).
   - Geometrically it’s a short-lived, high-tension bundle (see `assemblies/bosons/electroweak-bosons.md`) that ferries charge/phase between source and sink.
   - It decays/disconnects quickly (lifetime set by corridor instability), matching the short-lived SM W.
   - So: it comes from reconfiguration of the participants’ wakes/decoration structure in the Noether Sea, not from a standing background field.
