@@ -114,3 +114,26 @@ _Status: speculative scaffold for a derivation. Fill in with explicit states, ov
   - Noether Sea: hypothesized as paired pro/anti Noether cores; a local interaction could draw 2 pro + 2 anti cores (4 units) to participate - dualistic to Heliums 2P2N.
 - **Architrino budget example:** reacting with a spacetime super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Next step:** draft a reaction table/ledger listing reactants, participating cores/architrinos, allowed products, and “forbidden” outcomes with reasons (e.g., shielding mismatch, insufficient flux-tube closure, unmet charge quantization).
+
+### First-cut reaction ledger (speculative, to fill)
+
+| Reactant set | Core shielding (IMO/HML) | Active Triad polarity | Sea cores tapped? | Candidate products | Corridor(s) | Allowed? | Reason/constraint |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
+| $s$ (IM–) → $u$ (IMO) + $W^-$ | bi → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $|V_{us}|$ |
+| $b$ (I– –) → $c$ (IM–) + $W^-$ | uni → bi | E→P swap | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $|V_{cb}|$ |
+| $t$ (I– –) → $b$ (I– –) + $W^+$ | uni → uni | P→E swap | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $|V_{tb}|\approx1$ |
+| $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | E→P swap | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
+| $q$ + Sea → $q$ (same) + $Z$ | any | none | 4 | $Z$ | $Z$ | speculative | Neutral corridor, no flavor change |
+| $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | E→P | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
+
+Notes:
+- “Sea cores tapped” = how many Noether Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
+- Populate further rows for $c\leftrightarrow s$, $b\to u$, rare loop-induced $b\to s$, and anti-quark channels (same CKM but right-handed anti-doublets).
+
+### Provenance
+
+- We ultimately want **provenance**, not just bookkeeping: track every architrino’s path through a reaction, so simulations can reproduce PDG observables from first principles.
+- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether cores may transfer intact, detach outer binaries, or be destroyed/reformed. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
+- Conservation: electrinos IN = electrinios out. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
+- Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
