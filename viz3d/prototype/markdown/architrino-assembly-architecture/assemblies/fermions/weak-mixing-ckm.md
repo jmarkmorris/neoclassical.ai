@@ -1,4 +1,4 @@
-# Weak Mixing in the Architrino Assembly Architecture (CKM-first draft)
+# Weak Mixing in the Architrino Assembly Architecture (CKM)
 
 ## Purpose
 Sketch how CKM flavor mixing emerges from the AAA geometry: weak (Active-Triad) basis vs. mass (shielding) basis, and why off-diagonal elements shrink with core depletion.
@@ -15,30 +15,9 @@ Active-Triad exposure (working hypothesis): in translation, the three **forward*
 - The **mass basis** is the set of stable shielding eigenstates (Gen I/II/III). The overlap between the weak-basis state and each mass eigenstate gives the CKM elements for that row/column.
 - **Suppression intuition:** Larger shielding mismatch → smaller geometric overlap. Thus $|V_{ud}|$ is large (same shielding tier), $|V_{us}|$ smaller (tri ↔ bi), $|V_{ub}|$ tiny (tri ↔ uni). Similar logic for the up-type rows.
 
-### PDG CKM (2024 central values, magnitude)
-
-|   | d | s | b |
-|---|---|---|---|
-| u | 0.974 | 0.225 | 0.0037 |
-| c | 0.225 | 0.973 | 0.041 |
-| t | 0.0087 | 0.040 | 0.999 |
-
 ### Wolfenstein parametrization (to 𝒪(λ³))
 
-Elements (magnitude/phase form):
-- $V_{ud} \approx 1 - \tfrac12 \lambda^2$
-- $V_{us} \approx \lambda$
-- $V_{ub} \approx A\,\lambda^3(\rho - i\eta)$
-- $V_{cd} \approx -\lambda$
-- $V_{cs} \approx 1 - \tfrac12 \lambda^2$
-- $V_{cb} \approx A\,\lambda^2$
-- $V_{td} \approx A\,\lambda^3(1-\rho - i\eta)$
-- $V_{ts} \approx -A\,\lambda^2$
-- $V_{tb} \approx 1$
-
-Parameters: $\lambda\approx0.225$, $A\approx0.83$, $\rho\approx0.14$, $\eta\approx0.35$.
-
-Use these as targets when deriving overlaps/angles from shielding geometry and Active-Triad alignment.
+Use this as a target when deriving overlaps/angles from shielding geometry and Active-Triad alignment.
 
 Matrix form (Wolfenstein to 𝒪(λ³)):
 
@@ -52,7 +31,26 @@ A\lambda^3(1-\rho - i\eta) & -A\lambda^2 & 1
 \lambda\approx0.225,\ A\approx0.83,\ \rho\approx0.14,\ \eta\approx0.35.
 $$
 
-## Working hypotheses (needs derivation/simulation)
+### PDG CKM (2024 central values, magnitude)
+
+<div align="center">
+
+|   | d | s | b |
+|---|---|---|---|
+| u | 0.974 | 0.225 | 0.0037 |
+| c | 0.225 | 0.973 | 0.041 |
+| t | 0.0087 | 0.040 | 0.999 |
+
+</div>
+
+### Using CKM in amplitudes (quick examples)
+
+- **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $|V_{ij}|^2$. Neutral currents (Z/γ) are flavor-diagonal (no CKM).
+- **Beta decay:** $d \to u\,e^- \bar\nu_e$ uses $V_{ud}\approx0.974$; $\mathcal{M}\propto G_F V_{ud}$, rate $\propto |V_{ud}|^2$ times nuclear form factors.
+- **Semileptonic $B$ decay:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto |V_{cb}|^2 G_F^2 m_b^5$ (times hadronic form factor).
+- **Loop/rare $b\to s$:** factors like $V_{tb} V^*_{ts}$ set the suppression and the CP phase in interference terms.
+
+## Working hypotheses
 1. **Basis misalignment source:** The Active Triad orientation couples weakly to shielding-induced drag axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
 2. **Matrix structure:** Off-diagonal CKM elements scale with overlap integrals of Active-Triad waveforms on different shielding geometries; expect hierarchical suppression matching observed pattern ($|V_{ub}| \ll |V_{us}| \ll |V_{ud}|$).
 3. **CP phase:** A relative geometric phase in the triad/braid ordering could supply the CKM phase; requires explicit braid/triad transport calculation.
