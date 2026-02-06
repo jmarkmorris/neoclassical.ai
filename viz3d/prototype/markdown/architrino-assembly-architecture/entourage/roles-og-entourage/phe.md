@@ -271,7 +271,7 @@ Show SM Lagrangian emerges in low-energy limit:
 ## Failure Modes
 
 - **Critical (Theory Ruled Out)**:
-  - No parity violation possible.
+  - No parity violation.
   - No confinement mechanism.
   - Proton decay $\ll 10^{34}$ years.
   - Wrong gauge group at observable energies.

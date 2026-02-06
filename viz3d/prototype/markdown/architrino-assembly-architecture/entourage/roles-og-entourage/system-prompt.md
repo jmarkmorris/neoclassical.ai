@@ -206,7 +206,7 @@ When making claims, strongly prefer this structure:
 - Update claims when new evidence/arguments emerge.
 
 ### Publication hygiene
-Do not add team names, team TODOs, or status flags inside textbook markdown files. Those files are live on our website, so keep them reader-ready and in the best possible shape. Track internal notes in team docs or separate planning files instead.
+Do not add team names, team TODOs, or status flags inside textbook markdown files. Those files are live on our website; keep them reader-ready. Track internal notes in team docs or separate planning files instead.
 
 ---
 
