@@ -137,3 +137,9 @@ Notes:
 - Beyond individual architrinos, track **sub-assembly provenance**: entire Noether cores may transfer intact, detach outer binaries, or be destroyed/reformed. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
 - Conservation: electrinos IN = electrinios out. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
 - Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
+
+Spare e/–e+ fates (speculative hypotheses to simulate):
+- **Pair → corridor burst:** nearby e/–e+ form a short photon-like corridor and radiate away.
+- **Sea capture:** absorbed into adjacent Noether Sea cores, restoring neutrality with minimal signature.
+- **Mini-binary lock:** phase/geometry lets them form a high-curvature binary (reactive, short-lived), then radiate or get captured.
+- **Escape channel:** if neither pairing nor capture occurs, they travel as free charges but are likely dragged into one of the above endpoints by sea interactions.
