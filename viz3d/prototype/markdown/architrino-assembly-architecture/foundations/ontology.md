@@ -1266,6 +1266,8 @@ Each Noether core is itself a **tri-binary assembly**: three nested, counter-rot
 - **Effective permittivity/permeability**: Emergent electromagnetic constants $\epsilon_0$, $\mu_0$ arise from Noether Sea response to charge/current distributions
 - **Refractive index**: Variations in $\rho_{vac}$ cause variations in effective light speed $c_{\text{eff}} = c_f / n(\rho_{vac})$
 
+**Status of the magnetic field (AAA viewpoint):** The fundamental interaction kernel is **purely radial and delayed**; it contains no intrinsic velocity-cross-product term. “Magnetic field” is therefore **not a primitive substance** but a **pseudovector summary** that appears only after coarse-graining the geometry of overlapping delayed radial hits into an instantaneous, low-velocity approximation. All magnetic-like observables (moments, flux tubes, v×B forces) arise from the circulation and phase structure of those delayed radial pushes in the Noether Sea. Keep the radial-with-delay law as the ontology; B is a bookkeeping device, not an independent field.
+
 **Edge-condition energy transfer (deterministic multistability):**  
 Even below the self-hit regime, energy transfer to/from a Noether core can pass through **threshold conditions** where multiple outcomes are dynamically accessible (transfer proceeds or stalls). Which outcome occurs is **deterministic but microstate-sensitive**: the local wake phase configuration from other architrinos can tip the system into one attractor or another. This is **meta-stable branching** without Many-Worlds or fundamental randomness.
 
