@@ -104,3 +104,13 @@ Legend: IMO = Inner+Middle+Outer; IM– = Inner+Middle; I– – = Inner only. Q
 - Gauge-boson couplings: `assemblies/bosons/electroweak-bosons.md` (W/Z corridors acting on Active Triad).
 
 _Status: speculative scaffold for a derivation. Fill in with explicit states, overlaps, and phase calculations._
+
+## Speculative bookkeeping sketch (particles and architrino counts)
+
+- **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, and architrino counts close. Mark allowed vs. unseen channels and why.
+- **Forward axial sites:** Active Triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
+- **Environmental partners:**
+  - Photon (speculative): Two planar Bose-Einstein state Noether cores, possibly pro/anti, or pro/pro with opposite spins (L/R).
+  - Noether Sea: hypothesized as paired pro/anti Noether cores; a local interaction could draw 2 pro + 2 anti cores (4 units) to participate - dualistic to Heliums 2P2N.
+- **Architrino budget example:** reacting with a spacetime super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
+- **Next step:** draft a reaction table/ledger listing reactants, participating cores/architrinos, allowed products, and “forbidden” outcomes with reasons (e.g., shielding mismatch, insufficient flux-tube closure, unmet charge quantization).
