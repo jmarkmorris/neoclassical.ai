@@ -8,7 +8,9 @@ Sketch how CKM flavor mixing emerges from the AAA geometry: weak (Active-Triad) 
 - **Weak basis = Active Triad:** SU(2) acts on the exposed three decoration sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ.
 - **Mass basis = shielding eigenstates:** Core shielding/drag sets the mass scale; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type).
 
-Active-Triad exposure (working hypothesis): in translation, the three **forward** personality sites are more exposed (outside the particle’s own wake), so they form the Active Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
+ Active-Triad exposure (working hypothesis): in translation, the three **forward** personality sites are more exposed (outside the particle’s own wake), so they form the Active Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
+
+ Vacuum sourcing note: in AAA there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.
 
 ## Geometric picture of CKM
 - A down-type quark state in the **weak basis** is an Active-Triad configuration living on a specific core (shielding level) but not yet diagonal in mass.
