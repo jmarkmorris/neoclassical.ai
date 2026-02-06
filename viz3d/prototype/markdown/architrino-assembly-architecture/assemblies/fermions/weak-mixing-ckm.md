@@ -26,10 +26,12 @@ _(This document is exploratory/speculative; use for derivation planning.)_
 - **Weak basis = Active Triad:** SU(2) acts on the exposed three decoration sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ.
 - **Mass basis = shielding eigenstates:** Core shielding/drag sets the mass scale; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type).
 
- Active-Triad exposure (working hypothesis): in translation, the three **forward** personality sites are more exposed (outside the particle’s own wake), so they form the Active Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
- Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
+Active-Triad exposure (working hypothesis): in translation, the three **forward** personality sites are more exposed (outside the particle’s own wake), so they form the Active Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
+Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
 
- Vacuum sourcing note: in AAA there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.
+Vacuum sourcing note: in AAA there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.
+
+Left/right coupling note: charged-current SU(2) acts only on left-handed quarks. Geometric criterion to test: for LH helicity the Active Triad faces forward (exposed), while for RH it is rotated into the wake/shield; simulate exposure vs. helicity to confirm/deny.
 
 ## Geometric picture of CKM
 - A down-type quark state in the **weak basis** is an Active-Triad configuration living on a specific core (shielding level) but not yet diagonal in mass.
@@ -93,6 +95,8 @@ Quantitative target (heuristic): “high” should land near 0.2–1, “medium�
 - **Semileptonic $B$ decay:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto |V_{cb}|^2 G_F^2 m_b^5$ (times hadronic form factor).
 - **Loop/rare $b\to s$:** factors like $V_{tb} V^*_{ts}$ set the suppression and the CP phase in interference terms.
 
+Overlap functional (to define): 𝒪(shield_i, shield_j) = ⟨mass_j | weak_i⟩, e.g., an integral over site exposure × shielding mode; $|𝒪|^2$ should map to CKM magnitudes once normalized.
+
 ## Working hypotheses
 1. **Basis misalignment source:** The Active Triad orientation couples weakly to shielding-induced drag axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
 2. **Matrix structure:** Off-diagonal CKM elements scale with overlap integrals of Active-Triad waveforms on different shielding geometries; expect hierarchical suppression matching observed pattern ($|V_{ub}| \ll |V_{us}| \ll |V_{ud}|$).
@@ -145,11 +149,13 @@ Notes:
 - Conservation: electrinos IN = electrinios out. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
 - Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
 
- Spare e/–e+ fates (speculative, to simulate):
- - **Pair → corridor burst:** nearby e/–e+ form a short photon-like corridor and radiate away.
- - **Sea capture:** absorbed into adjacent Noether Sea cores, restoring neutrality with minimal signature.
- - **Mini-binary lock:** phase/geometry lets them form a high-curvature binary (reactive, short-lived), then radiate or get captured.
- - **Escape channel:** if neither pairing nor capture occurs, they travel as free charges but are likely dragged into one of the above endpoints by sea interactions.
+Spare e/–e+ fates (speculative, to simulate):
+- **Pair → corridor burst:** nearby e/–e+ form a short photon-like corridor and radiate away.
+- **Sea capture:** absorbed into adjacent Noether Sea cores, restoring neutrality with minimal signature.
+- **Mini-binary lock:** phase/geometry lets them form a high-curvature binary (reactive, short-lived), then radiate or get captured.
+- **Escape channel:** if neither pairing nor capture occurs, they travel as free charges but are likely dragged into one of the above endpoints by sea interactions.
+
+Decision cues to log in sims: initial separation, relative phase, local Sea density; pick dominant channel based on these and record energy/charge routing.
 
 Provenance TODOs:
 - Define an overlap functional 𝒪(shield_i, shield_j) = ⟨mass_j | weak_i⟩; derive/simulate it instead of hand-waving “overlap.”
