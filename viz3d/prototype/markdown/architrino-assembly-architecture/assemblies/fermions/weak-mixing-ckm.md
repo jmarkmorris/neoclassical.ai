@@ -1,6 +1,7 @@
 # Weak Mixing in the Architrino Assembly Architecture (CKM)
 
 ## What weak mixing is (SM → AAA)
+_(This document is exploratory/speculative; use for derivation planning.)_
 
 ### Standard Model recap
 - Where it appears: any charged-current weak process that changes quark flavor—beta decays ($d\to u$), kaon decays ($s\to u$), charm decays ($c\to s/d$), bottom decays ($b\to c/u$), and loop-induced rare modes (e.g., $b\to s$).
@@ -103,6 +104,7 @@ Quantitative target (heuristic): “high” should land near 0.2–1, “medium�
 - Track possible geometric phases in braids/triads to see if a CP-violating phase emerges naturally.
 - Test sensitivity to core depletion: vary shielding strength and see how off-diagonals shrink.
 - Simulate wake exposure to confirm/deny forward-hemisphere Active Triad; falsify hypothesis if trailing sites couple more strongly.
+- Define a provisional overlap functional 𝒪(shield_i, shield_j) = ⟨mass_j | weak_i⟩ (e.g., site-exposure overlap weighted by shielding mode); use it to predict the shielding-tier table entries.
 
 ## Pointers
 - Active Triad & shielding definitions: `assemblies/fermions/quantum-number-mapping.md` (Sections on weak isospin, generation hierarchy).
@@ -143,11 +145,11 @@ Notes:
 - Conservation: electrinos IN = electrinios out. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
 - Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
 
-Spare e/–e+ fates (speculative hypotheses to simulate):
-- **Pair → corridor burst:** nearby e/–e+ form a short photon-like corridor and radiate away.
-- **Sea capture:** absorbed into adjacent Noether Sea cores, restoring neutrality with minimal signature.
-- **Mini-binary lock:** phase/geometry lets them form a high-curvature binary (reactive, short-lived), then radiate or get captured.
-- **Escape channel:** if neither pairing nor capture occurs, they travel as free charges but are likely dragged into one of the above endpoints by sea interactions.
+ Spare e/–e+ fates (speculative, to simulate):
+ - **Pair → corridor burst:** nearby e/–e+ form a short photon-like corridor and radiate away.
+ - **Sea capture:** absorbed into adjacent Noether Sea cores, restoring neutrality with minimal signature.
+ - **Mini-binary lock:** phase/geometry lets them form a high-curvature binary (reactive, short-lived), then radiate or get captured.
+ - **Escape channel:** if neither pairing nor capture occurs, they travel as free charges but are likely dragged into one of the above endpoints by sea interactions.
 
 Provenance TODOs:
 - Define an overlap functional 𝒪(shield_i, shield_j) = ⟨mass_j | weak_i⟩; derive/simulate it instead of hand-waving “overlap.”
