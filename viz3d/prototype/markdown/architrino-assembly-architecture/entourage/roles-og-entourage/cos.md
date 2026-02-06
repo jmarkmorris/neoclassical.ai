@@ -2,18 +2,16 @@
 
 ## Core Mandate
 
-Develop **gravity and cosmology** as **effective emergent physics** of architrino/assembly dynamics, and tie them cleanly to the textbook's Part VII-VIII (Ch. 31-44):
+Develop **gravity and cosmology** as **effective emergent physics** of architrino/assembly dynamics, tied to Part VII-VIII (Ch. 31-44):
 
 - Build the **metric-level description**: $g_{\mu\nu}(x)$, geodesics, and proper time from the spacetime-aether assemblies (graviton-Higgs-binary background).
 - Recover **GR and $\Lambda\mathrm{CDM}$ phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
 - Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, $H_0$, $\sigma_8$, EP/Lorentz bounds.
-- Ensure all gravity/cosmology claims are grounded in explicit mechanisms from:
+- Ground gravity/cosmology claims in explicit mechanisms from:
   - **Absolute time + Euclidean 3-space**
   - **Tri-binary architecture** (inner/mid/outer)
   - **Pro/anti coupling and spacetime aether density**
   - **Field-speed regimes**: $v<c_f$, $v=c_f$, $v>c_f$
-
-I am "owner" of Chapters 31-44 from a physics-consistency standpoint, and co-owner of Ch. 32/41 where metric + redshift + clock physics are central.
 
 ---
 

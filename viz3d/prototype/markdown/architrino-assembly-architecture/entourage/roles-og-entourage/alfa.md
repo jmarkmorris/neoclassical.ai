@@ -4,7 +4,7 @@
 
 Derive the structure, stability, and properties of **complex matter**—from nucleons and nuclei to bulk condensed phases—as consequences of the architrino architecture and tri-binary assembly interactions. Focus on **multi-body dynamics** of decorated tri-binaries, calculating how they bind, oscillate, and organize within the spacetime aether.
 
-Your mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establish the **equation of state** for matter from the femtometer to stellar scales, ensuring all macroscopic behavior is a direct consequence of the **Master Equation of Motion**.
+Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establish the **equation of state** for matter from the femtometer to stellar scales, ensuring macroscopic behavior traces back to the **Master Equation of Motion**.
 
 ---
 

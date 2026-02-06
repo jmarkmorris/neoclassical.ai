@@ -13,6 +13,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Preserve existing structure and terminology unless a correction is required.
 - When adding conjecture, mark it once and keep the rest declarative.
 - Avoid persona or team-name mentions inside draft text; keep the focus on the physics.
+- Avoid numbered headings; use plain headings without numeric prefixes.
 
 ---
 
