@@ -230,7 +230,7 @@ Articulate the **causal picture**:
 
 **Is Evolution Deterministic?**
 - **In principle**: Yes, with **deterministic multistability** at threshold regimes (given all architrino positions/velocities at $t_0$, the master equation plus microstate/wake phases selects among coexisting attractors).
-- **In practice**: Computational intractability + sensitivity to initial conditions (chaos) may make long-term prediction infeasible.
+- **In practice**: Computational intractability + sensitivity to initial conditions (chaos) can make long-term prediction infeasible.
 - **Note from Marko**: The analog architrinos operate in R4 which is continuous and real in all dimensions. Likewise, architrinos move continuously in response to received causal isochrons.  Yet assemblies form which exhibit quantum behaviours, or states. These states produce potential fields. Physicist require photons to observe behqviour.The absorbtion or emission of a photon changes the wave equation.
 
 **Is There Irreducible Randomness?**
@@ -273,7 +273,7 @@ Conceptually analyze the **self-hit regime** ($v > c_f$):
 - Self-hit opens **entirely undeveloped dynamical possibilities** beyond standard field theories:
   - Most physics assumes Markovian dynamics (future depends only on present state).
   - Self-hit introduces **memory** and **self-reference** into the fundamental dynamics.
-  - This may be the key to understanding inflation, quantum measurement, and other non-classical phenomena.
+  - This can be key to understanding inflation, quantum measurement, and other non-classical phenomena.
 
 **Deliverable**: Full conceptual analysis in **Ch. 5** and **Ch. 12 (Velocity Regimes and Symmetry Breaking)**, with diagrams showing potential light cones, self-hit geometry, and worked examples.
 

@@ -40,7 +40,7 @@ I am responsible for ensuring the architrino framework can meet (or very clearly
 - Linear growth and lensing: $\sigma_8/S_8$ in the observed ballpark.
 - Clear story on $H_0$ tension and $\sigma_8$/LSS tensions: resolved, worsened, or neutral.
 
-These are Tier-1/2 constraints: if we systematically can't approach them, we document and may trigger stop-conditions.
+These are Tier-1/2 constraints: if we systematically can't approach them, we document and can trigger stop-conditions.
 
 ---
 
@@ -72,11 +72,11 @@ There are three vastly different energy levels in a tri-binary.
 
 ### Proper Time and Clock Physics (Ch. 32, 41)
 
-**Claim:** Proper time for an assembly is related to the ellipsoidal deformation of its Noether core volume. These may be influenced by:
+**Claim:** Proper time for an assembly is related to the ellipsoidal deformation of its Noether core volume. These can be influenced by:
 
 - finite field-speed interactions ($v$ w.r.t. aether),
 - local aether density/curvature.
-- **Marko notes**: there may be a relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = v_f. Velocity equals the field speed of potential.
+- **Marko notes**: there is a possible relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = v_f. Velocity equals the field speed of potential.
 
 **Tasks/Deliverables:**
 
@@ -89,7 +89,7 @@ There are three vastly different energy levels in a tri-binary.
   - Muon lifetime dilation in accelerators/atmosphere.
 - Make this the backbone for redshift "expanding spacetime" misconception in Ch. 41:
   - Spacetime assemblies dissipate energy and expand as a consequence. - Standard matter fermions would seem to be largely destined for the reycling furnace, aka the SMBH.
-  - Photons and neutrinos may presumably escape the galaxy in significant numbers.
+  - Photons and neutrinos can escape the galaxy in significant numbers.
   - At some point we will be able to analyze architrino flows in all processes.
   - Redshift = clock-comparison in evolving aether, not mystical metric stretch with no mechanism.
 
