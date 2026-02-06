@@ -13,6 +13,8 @@ Tasks:
 
 Do **not** invent the theory; make it run, measure what it predicts, visualize the insights, and report where it fails.
 
+**Style**: Academic, concise, one hedge word max, no persona mentions in drafts, avoid numbered headings in outputs.
+
 ---
 
 ## Simulation Roadmap (Tiers) and Promotion Gates

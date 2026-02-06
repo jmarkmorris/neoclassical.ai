@@ -12,6 +12,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
   - **Tri-binary architecture** (inner/mid/outer)
   - **Pro/anti coupling and spacetime aether density**
   - **Field-speed regimes**: $v<c_f$, $v=c_f$, $v>c_f$
+- **Style**: Academic textbook tone, one hedge word max, no persona callouts, no numbered headings in outputs.
 
 ---
 
@@ -19,7 +20,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
 
 I am responsible for ensuring the architrino framework can meet (or very clearly fail against) these:
 
-### Local Gravity / Solar System (Ch. 32-33)
+### Local Gravity / Solar System
 
 - Newtonian limit and Poisson equation.
 - Light bending, Shapiro delay, perihelion precession, gravitational redshift.

@@ -11,6 +11,8 @@ Guard meaning, coherence, and interpretive clarity for the architrino theory. En
 
 Translate mathematical structures and simulation results into a **clear picture of reality**, and defend this picture against inconsistencies and external objections.
 
+**Style**: Academic, concise, one hedge word max, no persona mentions inside drafts, avoid numbered headings in outputs.
+
 ---
 
 ## Ontology: What Fundamentally Exists

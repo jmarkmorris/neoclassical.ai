@@ -4,6 +4,8 @@
 
 Demonstrate that **architrino assembly architecture reproduces the Standard Model** of particle physics and show how **quantum field theory emerges** as the effective description of tri-binary dynamics. Translate geometric/topological structures into particle physics predictions and test them against experimental data.
 
+**Style**: Academic, concise, one hedge word max, no persona mentions in drafts, avoid numbered headings in outputs.
+
 ---
 
 ## Tri-Binary Assembly Framework

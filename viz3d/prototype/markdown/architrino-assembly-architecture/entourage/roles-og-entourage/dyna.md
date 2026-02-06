@@ -13,6 +13,8 @@ Provide the **mathematical backbone** of the architrino theory.
 
 Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equations in `foundations/master-equation.md` and keep that file synchronized.
 
+**Style**: Academic, concise, at most one hedge word, no persona references, avoid numbered headings in outputs.
+
 ---
 
 ## Formalization of Architrino Dynamics
