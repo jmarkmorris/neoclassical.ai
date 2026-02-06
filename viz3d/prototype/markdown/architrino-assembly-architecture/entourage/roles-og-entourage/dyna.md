@@ -11,7 +11,7 @@ Provide the **mathematical backbone** of the architrino theory.
   - Gravity/cosmology (Part VII-VIII),
   - Atomic/nuclear structure (Part V).
 
-Everything I write should be **simulation-ready** (for the computational role) and **constraint-ready** (for Red and the experimentalist).
+Outputs stay **simulation-ready** and **constraint-ready**.
 
 ---
 
