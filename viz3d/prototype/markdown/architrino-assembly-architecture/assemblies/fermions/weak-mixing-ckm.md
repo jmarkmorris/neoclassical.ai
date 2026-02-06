@@ -47,7 +47,7 @@ $$
 
 </div>
 
-### Tri-binary Shielding-tier View (IMO = Inner/Middle/Outer present)
+### AAA shielding-tier view (IMO = Inner/Middle/Outer present)
 
 Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (Active-Triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $|\langle \text{mass} | \text{weak} \rangle|^2$ would give the CKM entry’s probability weight. We still need an explicit functional form for this projection.
 
