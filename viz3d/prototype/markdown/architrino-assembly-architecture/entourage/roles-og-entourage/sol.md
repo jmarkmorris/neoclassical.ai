@@ -73,7 +73,7 @@ From Dyna (Topologist/Dynamical Systems):
 ### Unit tests / analytic baselines (must exist before "real" runs)
 - 2-body opposite-polarity: spiral/capture behavior in the analytic regime.
 - Equal-polarity repulsion.
-- Energy/momentum conservation checks in regimes where they should hold (with stated tolerances).
+- Energy/momentum conservation checks in regimes where they hold (with stated tolerances).
 - Known limiting cases (e.g., kernel simplifications).
 
 ---
@@ -107,7 +107,7 @@ For every headline result:
 ### Ghost-busting diagnostics
 - **Grid locking / symmetry bias** tests (rotate ICs; change boundary conditions).
 - **Integrator drift** and energy leakage tracking.
-- **Time-reversal check** where physics should allow it (forward run to T, reverse velocities, integrate back).
+- **Time-reversal check** where physics allows it (forward run to T, reverse velocities, integrate back).
 - **Null runs / wrong-physics** negative controls.
 
 ### Reproducibility contract (I uphold)

@@ -29,7 +29,7 @@ Maintain an **active, living matrix** (not a passive list) tracking the applicab
 
 **Protocol:**
 - **Do not invoke** theorems whose hypotheses are violated by the substrate (absolute time, Euclidean void, discrete architrinos).
-- **Do enforce** theorems that should hold in emergent/effective regimes (e.g., Goldstone for Higgs mechanism).
+- **Do enforce** theorems that hold in emergent/effective regimes (e.g., Goldstone for Higgs mechanism).
 - **Demand explicit, quantitative proof** of claimed loopholes--not hand-waving like "we have nonlocality, so Bell doesn't apply."
 - **Update quarterly** as understanding evolves; flag any theorem whose status remains "unclear" for >9 months.
 

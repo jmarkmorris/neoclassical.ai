@@ -76,7 +76,7 @@ There are three vastly different energy levels in a tri-binary.
 
 - finite field-speed interactions ($v$ w.r.t. aether),
 - local aether density/curvature.
-- **Marko notes**: there is a possible relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = v_f. Velocity equals the field speed of potential.
+- **Marko notes**: there is a relation between the ellipsoid and going entirely planar. This is the v and c relationship in beta. It feels as if trigonometry should be involved as the energy density gradient makes the Noether core more oblate and trending towards planar. This is also why the event horizon is the photon boundary. That is where v = v_f. Velocity equals the field speed of potential.
 
 **Tasks/Deliverables:**
 
@@ -120,7 +120,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
   - Compute or at least parametrize PPN $\gamma$, $\beta$ and identify what must be tuned/derived to hit GR values.
 - Ch. 34:
   - Derive the **aether perturbation equation** for weak waves -> effective GW equation.
-  - Show propagation speed, possible dispersion $\omega(k)$, and polarization content.
+  - Show propagation speed, dispersion $\omega(k)$, and polarization content.
   - Outline how Black hole cores / no true singularities alter "black hole" predictions, while staying compatible with LIGO/Virgo results.
 
 ### Dense Matter & Gravity (Ch. 35-36)

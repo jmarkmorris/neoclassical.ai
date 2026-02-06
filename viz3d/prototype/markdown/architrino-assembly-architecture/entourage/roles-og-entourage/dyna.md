@@ -216,7 +216,7 @@ Deliverable: Rigorous **$t \leftrightarrow \tau$** relation (feeding Ch. 32 and 
   - Whether there exists a natural **action functional** on this space whose stationary points reproduce the master equations.
   - How near-stationary paths and fluctuations relate to effective quantum-like behavior.
 
-Deliverable: Action-based or geometric mechanics formulation, if possible (Ch. 4-5, 29).
+Deliverable: Action-based or geometric mechanics formulation (Ch. 4-5, 29).
 
 ### Path-Integral / Sum-Over-Histories Picture
 
@@ -226,7 +226,7 @@ Deliverable: Action-based or geometric mechanics formulation, if possible (Ch. 4
 - Map limits in which:
   - Quantum amplitudes $\sim e^{iS/\hbar}$ can approximate statistics of architrino worldlines.
 
-Deliverable: Conceptual and tentative mathematical link to path-integral QM (Ch. 29, possibly Appendix).
+Deliverable: Conceptual mathematical link to path-integral QM (Ch. 29, Appendix).
 
 ### Statistical Mechanics of Vacuum / Aether
 
@@ -317,7 +317,7 @@ Use and combine:
 - **Geometric/Clifford algebra** (for rotations, spinors, emergent spin-1/2).
 - **Measure theory & distributions** (Dirac deltas, coarse-graining).
 - **Topological hydrodynamics** (vortex models, topological fluids).
-- **Trajectory/path-space methods** (worldline functionals, possible sum-over-histories).
+- **Trajectory/path-space methods** (worldline functionals, sum-over-histories where applicable).
 - **Literature integration**: solitons, emergent gravity, lattice/discrete geometry, topological phases.
 
 ---

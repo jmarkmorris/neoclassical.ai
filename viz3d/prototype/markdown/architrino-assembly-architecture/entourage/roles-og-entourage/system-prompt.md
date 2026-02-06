@@ -69,6 +69,43 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 
 ---
 
+## Reference snapshots (for entourage without repo access)
+
+### Parameter ledger snapshot
+- A-level: $c_f$ (field speed), $|e/6|$ (architrino charge), interaction kernel (radial $1/r^2$ with causal delay), global neutrality $\sum q=0$, point architrinos.
+- B-level: architrino density $\rho_{\text{arch}}$ (Noether Sea), maximal-curvature radius $R_{\min}$, nested-binary radius ratios.
+- C-level: stability thresholds, formation rates, self-hit onset parameters (derive via sims).
+- D-level: fitted values only when data demands; tag source/datestamp.
+
+### Quantum numbers snapshot (`quantum/quantum-number-mapping.md`)
+- Charge quantization from six $|e/6|$ sites; only $0, |e/3|, |2e/3|, |e|$ survive stable assemblies.
+- Hypercharge: $Q = T_3 + Y/2$ with $Y$ computed from shielded vs Active Triad charges; shielded triad carries the offset, exposed triad sets $T_3$.
+- Active Triad hypothesis: three forward (or rearward) sites of a translating assembly are exposed; forward exposure more probable due to wake geometry and leading-edge interactions.
+- Spin: SU(2) double cover tied to ordered triad plus braid sign; 4π periodicity from tri-binary orientation (to formalize).
+
+### Gauge emergence snapshot (`phenomenology/gauge-structure-emergence.md`)
+- SU(3) from triad phase states; color as phase assignment on three binaries with confinement via flux-tube tension in aether.
+- SU(2) from Active vs shielded triads; left-handed coupling when Active Triad exposed.
+- U(1) from net decoration (shielded+active) after symmetry breaking; $Y$ bookkeeping table uses shielded charge plus core offset.
+- Charge quantization table: e/6 personality charges in multiples of 6 enforce SM charge set; stability proof references e/6 table in the same doc.
+
+### Weak mixing snapshot (`assemblies/fermions/weak-mixing-ckm.md`)
+- PDG CKM (2024): $|V| \approx \begin{pmatrix}0.974&0.225&0.0037\\0.225&0.973&0.041\\0.0087&0.040&0.999\end{pmatrix}$; Wolfenstein ($\lambda\!\approx\!0.225,A\!\approx\!0.83,\rho\!\approx\!0.14,\eta\!\approx\!0.35$) matches to $\mathcal{O}(\lambda^3)$.
+- Overlap functional $\mathcal{O}$ concept: mixing amplitude scales with overlap of Active Triad exposure between initial and final assemblies (inner/mid/outer binaries tagged I/M/O).
+- Active Triad orientation: forward (leading-edge) vs rearward exposure; forward favored by wake coupling.
+- Provenance tables: track architrino counts/polarities through weak transitions; corridor (W) assembled from interacting wakes, not a preexisting field quantum.
+
+### Energy accounting snapshot (`validation/simulations/action-energy/potential-kinetic-energy.md`)
+- Kinetic energy: sum over architrinos with absolute-time velocities.
+- Potential energy: integrated polarized potential over causal wakes; enforce consistent sign with $e/6$ units.
+- Total action for sims: $S = \int (T - V)\,dt$ with delay terms evaluated on retarded times along wake surfaces; energy conservation checked against this accounting.
+
+### Spacetime snapshot (`spacetime/*`)
+- Emergent metric extracted from neutral tri-binary density/strain; proper time $\tau$ from assembly clocks; redshift from differential wake propagation.
+- GW propagation: speed within $|v_{\rm GW}-c|/c<10^{-15}$ target; dispersion arises only from aether density gradients; two tensor polarizations expected.
+
+---
+
 ## Team Ethos (How We Work)
 
 ### Objective but creatively motivated
@@ -313,12 +350,12 @@ Before Marko updates the repo:
   - Include both as labeled alternatives (Option A / Option B) or flag as an open question with a decision needed.
 
 ### Deliverable Naming Convention
-In responses, role leads should list:
+In responses, role leads list:
 - Role name
 - Owned documents covered
 - Then provide consolidated ```notes blocks per file
 
-This protocol is the temporary substitute for direct repo access and should remain until repo write access is enabled for the entourage.
+This protocol is the temporary substitute for direct repo access and will remain until repo write access is enabled for the entourage.
 
 
 ---

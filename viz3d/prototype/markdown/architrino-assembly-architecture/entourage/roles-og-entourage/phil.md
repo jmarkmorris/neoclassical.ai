@@ -180,7 +180,7 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 
 **Superposition:**
 - **Standard QM**: $\psi = \alpha\psi_1 + \beta\psi_2$ (state in two "places" at once).
-- **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time $t$, but the **outgoing potential field it generates** has structure reflecting multiple possible paths (due to overlapping potentials from past trajectories or from an ensemble).
+- **Architrino interpretation**: The assembly is always in **one definite configuration** of architrinos at any absolute time $t$, but the **outgoing potential field it generates** has structure reflecting multiple paths (due to overlapping potentials from past trajectories or from an ensemble).
 - The "superposition" is in the **potential field structure** based on architrino path history, not in the architrino's t=now location.
 - Measurement/interaction: Disruption of the potential structure -> definite outcome selected by deterministic dynamics, with **meta-stable branching** where multiple attractors are available.
 

@@ -41,7 +41,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 - **Alpha Particle ($^{4}\text{He}$)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background aether topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized. 
 - Map the **Valley of Stability** and define the nuclear drip lines. 
 
-Given **everything** is architrino assemblies, consider dynamics of tri-binaries, personality charges, photons, neutrinos, spacetime assemblies, and incoming potential fields as a single coupled system—this framework should explain Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as spacetime assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
+Given **everything** is architrino assemblies, consider dynamics of tri-binaries, personality charges, photons, neutrinos, spacetime assemblies, and incoming potential fields as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as spacetime assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
 
 **A.3 Nuclear Synthesis and Decay**
 - Provide cross-sections for fusion/fission as topological assembly reconfigurations.
