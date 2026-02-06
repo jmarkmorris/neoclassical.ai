@@ -58,6 +58,14 @@ $$
 
 Note: CKM acts only on left-handed quarks (right-handed antiquarks); right-handed quarks are SU(2) singlets and don’t mix via CKM.
 
+### Charged $W$ corridor (architrino budget, descriptive)
+
+Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether cores (3P/3E each)** plus a **six-charge excess** that carries the net $ e$:
+- $W^+$ payload: 9 positrinos + 3 electrinos (net +6$ e/6$ = +1e) on the outer sites of the two cores.
+- $W^-$ payload: 3 positrinos + 9 electrinos (net –6$ e/6$ = –1e).
+
+The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral Sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
+
 ### PDG CKM (2024 central values, magnitude)
 
 <div align="center">
@@ -69,6 +77,7 @@ Note: CKM acts only on left-handed quarks (right-handed antiquarks); right-hande
 | t | 0.0087 | 0.040 | 0.999 |
 
 </div>
+_Refresh PDG values periodically; current numbers are PDG 2024 central values._
 
 ### AAA shielding-tier view (IMO = Inner/Middle/Outer present)
 
@@ -137,6 +146,9 @@ _Status: speculative scaffold for a derivation. Fill in with explicit states, ov
 | $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | E→P swap | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
 | $q$ + Sea → $q$ (same) + $Z$ | any | none | 4 | $Z$ | $Z$ | speculative | Neutral corridor, no flavor change |
 | $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | E→P | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
+| $t$ (I––; weak-active sites 1/5) → $b$ (I––; weak-active 4/2) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | P→E swap | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $|V_{tb}|\approx1$; forward Sea cores assemble $W^+$; lepton leg is weak singlet (0/6) |
+| Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | E→P on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (beta decay) | spectators intact; $d\to u$ flip; lepton leg weak-active (6/0), $\bar\nu_e$ weak singlet (0/3) |
+| $W$ corridor budget (generic) | — | — | 2 neutral cores + 6 excess decorations | returns neutral cores to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 cores + (9P,3E) → +e; $W^-$: 2 cores + (3P,9E) → –e; cores end neutral |
 
 Notes:
 - “Sea cores tapped” = how many Noether Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
