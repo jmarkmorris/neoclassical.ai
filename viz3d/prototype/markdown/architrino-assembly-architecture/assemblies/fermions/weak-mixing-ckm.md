@@ -47,6 +47,22 @@ $$
 
 </div>
 
+### Tri-binary Shielding-tier View (IMO = Inner/Middle/Outer present)
+
+Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (Active-Triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $|\langle \text{mass} | \text{weak} \rangle|^2$ would give the CKM entry’s probability weight. We still need an explicit functional form for this projection.
+
+<div align="center">
+
+|   | d (IMO) | s (IM–) | b (I– –) |
+|---|---------|---------|---------|
+| u (IMO) | high overlap | medium | tiny |
+| c (IM–) | medium | high | medium–low |
+| t (I– –) | tiny | medium–low | high |
+
+</div>
+
+Legend: IMO = Inner+Middle+Outer; IM– = Inner+Middle; I– – = Inner only. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals. 
+
 ### Using CKM in amplitudes (quick examples)
 
 - **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $|V_{ij}|^2$. Neutral currents (Z/γ) are flavor-diagonal (no CKM).
