@@ -1,7 +1,7 @@
 # Walkthrough Step 1 — Background and Simple Action
 
 Existing text excerpt:
-> The dynamics of an Architrino are governed by a simple action: an acceleration caused by the intersection of its path with a potential field.
+> The dynamics of an architrino are governed by a simple action: an acceleration caused by the intersection of its path with a potential field.
 >
 > Geodesics and dynamics: The background is fixed (absolute time × Euclidean space); free paths are straight. Accelerations come only from delayed, purely radial hits from emitted causal isochrons—never from background curvature.
 
@@ -12,7 +12,7 @@ Detailed explanation (dynamical geometry):
   - “Geodesics are straight” means: in the absence of any interaction, a worldline $\mathbf{s}(t)$ satisfies $\mathbf{a}(t)=d^2\mathbf{s}/dt^2=\mathbf{0}$; motion is uniform and rectilinear in each slice $\Sigma_t$. The background is fixed; there is no curvature to encode forces.
 
 -- Field geometry as a continuous causal flux:
-  - Each Architrino streams potential continuously. At any observation time $t$, the contribution emitted at past time $t_0$ sits on the **causal wake surface** (spherical isochron) $r=v(t-t_0)$ centered on $\mathbf{s}(t_0)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
+  - Each architrino streams potential continuously. At any observation time $t$, the contribution emitted at past time $t_0$ sits on the **causal wake surface** (spherical isochron) $r=v(t-t_0)$ centered on $\mathbf{s}(t_0)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
   - “Potential field” refers to the superposition of all such causal isochrons from past emissions. The flux never shuts off; the surfaces are bookkeeping devices isolating portions of the path history whose intersection with a receiver delivers acceleration.
 
 - Intersection as the driver of acceleration:

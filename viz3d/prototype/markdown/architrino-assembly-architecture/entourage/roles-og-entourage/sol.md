@@ -238,5 +238,5 @@ Addenda
 
 **Team Reference:** When verifying simulations consult:
 - `foundations/ontology.md` for absolute timespace + architrino ontology.
-- `foundations/master-equation.md` for the causal wake-based Master Equation and path-history interaction law.
+- `foundations/master-equation.md` for the causal wake-based master equation and path-history interaction law.
 - `foundations/parameter-ledger.md` for the canonical Category A/B parameters.

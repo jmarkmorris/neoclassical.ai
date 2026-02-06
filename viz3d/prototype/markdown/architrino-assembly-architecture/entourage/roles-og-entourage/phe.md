@@ -313,6 +313,6 @@ Maintain living "Challenges & Failures" document:
 - Gauge and mixing notes tied to `phenomenology/gauge-structure-emergence.md` and `assemblies/fermions/weak-mixing-ckm.md`, PDG date-stamped.
 - Benchmark observables list for Sig and Sol (masses, $g-2$, form factors, CKM/PMNS entries, rare decays) with target precision.
 # Foundational Reference
-- Architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge +/-$\epsilon$ set the base for assembly construction.
-- Reference the Master Equation (`foundations/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
+- architrino ontology (`foundations/ontology.md`) anchors particle mappings: absolute time, Euclidean space, unique architrino worldlines, and charge +/-$\epsilon$ set the base for assembly construction.
+- Reference the master equation (`foundations/master-equation.md`) whenever discussing emission/absorption: every interaction is a sum over causal wake surfaces (path history) with radial $1/r^2$ contributions; self-hits appear when worldlines outrun their own wakes.
 - Align all particle-phase claims with the `foundations/parameter-ledger.md`: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters dictate which assembly charges or scales are phenomenologically viable.

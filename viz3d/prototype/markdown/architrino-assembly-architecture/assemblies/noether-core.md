@@ -22,7 +22,7 @@ A particularly important and stable configuration is the **triply nested binary*
 
 -   **Internal Stabilization:** The system is self-stabilizing. The constant, high-frequency field emissions from the innermost binary create a complex, time-averaged potential well that helps to stabilize the orbits of the two outer binaries. This creates a robust, self-tuning feedback loop.
 
--   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and charge than the sum of its six constituent Architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
+-   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and charge than the sum of its six constituent architrinos. The rapid oscillation of the positive and negative point potentials within the nested structure causes their fields to largely cancel out through superposition. This "shielding" effect is a fundamental mechanism, explaining how highly energetic structures can form the basis for the relatively low-mass particles we observe.
 
 ### Tri-Binary Alignment and Planck-Scale Framing
 
@@ -40,11 +40,11 @@ The collective motion, or **group velocity**, of a Noether core assembly determi
 
 # The Noether Core is an Oblate Spheroid
 
-This document describes the emergent geometric form of the Noether Core. The core is not a static object but a dynamic system of six Architrinos in a triply-nested binary configuration. The complex, high-frequency paths of these constituent particles sweep out a volume of space, creating a dynamic exclusion zone that takes the form of an ellipsoidal.
+This document describes the emergent geometric form of the Noether Core. The core is not a static object but a dynamic system of six architrinos in a triply-nested binary configuration. The complex, high-frequency paths of these constituent particles sweep out a volume of space, creating a dynamic exclusion zone that takes the form of an ellipsoidal.
 
 ### The Dynamic Exclusion Zone
 
-The six Architrinos within a Noether Core are in constant, rapid orbital motion. The superposition of their intensely fluctuating potential fields creates a region that is effectively impenetrable to other Architrinos. Another Noether core approaching this region would be subjected to such extreme and rapidly changing accelerations that it would be repelled, unable to pass through the core's volume.
+The six architrinos within a Noether Core are in constant, rapid orbital motion. The superposition of their intensely fluctuating potential fields creates a region that is effectively impenetrable to other architrinos. Another Noether core approaching this region would be subjected to such extreme and rapidly changing accelerations that it would be repelled, unable to pass through the core's volume.
 
 This volume, defined by the collective paths of the core's constituents, acts as a dynamic **exclusion zone**. It is not a solid object with a hard surface, but a region of intense field activity that maintains a persistent, coherent shape in the relative frame.
 
@@ -56,7 +56,7 @@ The overall shape of the exclusion zone is primarily determined by the path of t
 
 ### Deformability of the Geometric Form
 
-The ellipsoidal is not a rigid structure. Its shape is a direct consequence of the orbital paths of the constituent Architrinos. These paths are, in turn, determined by the superposition of internal and external potential fields.
+The ellipsoidal is not a rigid structure. Its shape is a direct consequence of the orbital paths of the constituent architrinos. These paths are, in turn, determined by the superposition of internal and external potential fields.
 
 If a Noether Core is subjected to a strong external field, the orbits of its binaries can be perturbed. This is particularly true for the outermost, most loosely bound binary. A distortion of these orbits will lead to a corresponding deformation of the spheroidal exclusion zone. This deformability is a key feature of the assembly, allowing it to respond to and interact with its environment. As we will see, the presence of dense local assemblies is a cause of Noether core deformation, which is the source of gravity.
 

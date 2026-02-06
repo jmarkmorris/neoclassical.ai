@@ -95,7 +95,7 @@ Plain language: Each emission is a razor-thin causal wake surface; when needed, 
 
 ---
 
-## 5) Master Equation of Motion (EOM; purely radial)
+## 5) master equation of Motion (EOM; purely radial)
 
 Given a receiver o′ at time t and a source j at causal emission time t₀ ∈ 𝒞_j(t), let
 $$
@@ -192,7 +192,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 - Equation tags (optional): (CT) causal-time, (EOM) equation of motion, (REG) regularization, (ENER) energetics.
 - Emission cadence and per-wavefront amplitude are constant.
 - Notation for “now”: use $t_{\text{now}}$ for a fixed current evaluation time; use $t_{\text{obs}}$ for observation time. Avoid Tnow/`T_now`; keep $t$ as the running variable elsewhere.
-- Emitters/receivers are individual Architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent Architrinos.
+- Emitters/receivers are individual architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent architrinos.
 - Use “surrogate location” to denote a stationary, hypothetical emitter placed on the receiver’s current unoriented line of action that reproduces the same instantaneous hit; use “surrogate-location recast” when referring to this rewriting.
 - On first occurrence in a doc: “We work in units with field speed v=1 unless stated otherwise.”
 

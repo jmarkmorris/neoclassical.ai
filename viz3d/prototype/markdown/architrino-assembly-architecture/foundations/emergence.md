@@ -1,6 +1,6 @@
 # Emergence of Structure
 
-The universe can be understood as an unbounded collection of interacting point objects. To understand nature, we model the emergent behavior that arises from these interactions. The fundamental elements of this model—the Architrinos and their interaction rules—are simple. However, their collective behavior can give rise to complex, organized structures. This phenomenon, where intricate patterns and systems arise from the repeated application of simple rules, is known as emergence.
+The universe can be understood as an unbounded collection of interacting point objects. To understand nature, we model the emergent behavior that arises from these interactions. The fundamental elements of this model—the architrinos and their interaction rules—are simple. However, their collective behavior can give rise to complex, organized structures. This phenomenon, where intricate patterns and systems arise from the repeated application of simple rules, is known as emergence.
 
 ### Conway's Game of Life: A Discrete Archetype
 
@@ -15,11 +15,11 @@ The Game of Life demonstrates how complexity can arise from simplicity in a disc
 
 ### Emergence in the Architrino Universe: A Continuous Analogy
 
-The Architrino universe operates on a similar principle of emergence, but within a continuous framework rather than a discrete one.
+The architrino universe operates on a similar principle of emergence, but within a continuous framework rather than a discrete one.
 
--   **Continuous System:** Unlike the Game of Life's grid and time steps, Architrinos exist in continuous space and time. Their interactions are not clocked but occur whenever a particle intersects a causal isochron.
+-   **Continuous System:** Unlike the Game of Life's grid and time steps, architrinos exist in continuous space and time. Their interactions are not clocked but occur whenever a particle intersects a causal isochron.
 -   **Simple Rules:** The "rules" of this universe are the fundamental interaction dynamics: attraction and repulsion based on the charge of the interacting particles.
--   **Emergent Assemblies:** Through these continuous interactions, Architrinos can self-organize into complex, stable, or quasi-stable configurations called **assemblies**. These assemblies are the continuous-physics analog to the patterns in the Game of Life.
+-   **Emergent Assemblies:** Through these continuous interactions, architrinos can self-organize into complex, stable, or quasi-stable configurations called **assemblies**. These assemblies are the continuous-physics analog to the patterns in the Game of Life.
 
 - The stability of an assembly is not static but dynamic. It depends on a delicate, ongoing balance of forces from the superposition of all intersecting wakes. An assembly might persist for a very long time if it finds a stable equilibrium, or it might be a transient structure that quickly dissolves, all depending on its internal configuration and the external fields it encounters.
 
@@ -34,11 +34,11 @@ This recursive structure implies that all emergent forms, no matter how complex,
 
 ### The Dynamics of Structure and Asymmetry
 
-All structure in this universe is based on a **dynamical geometry**. Every Architrino is, at all times, interacting with the wakes of every other Architrino in the universe, and potentially with its own past isochrons. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
+All structure in this universe is based on a **dynamical geometry**. Every architrino is, at all times, interacting with the wakes of every other architrino in the universe, and potentially with its own past isochrons. This creates an N-body problem of infinite scale, meaning there is no closed-form analytical solution for the evolution of a structure in the general case.
 
 However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant particles is far weaker than that of local ones. This locality principle is what allows for the formation of **meta-stable assemblies** that can maintain their general form for long periods.
 
-A crucial factor in the evolution of these assemblies is the **velocity symmetry point** ($|\mathbf{v}_a| = v$). The behavior of an Architrino changes drastically depending on whether its speed is above or below the field speed.
+A crucial factor in the evolution of these assemblies is the **velocity symmetry point** ($|\mathbf{v}_a| = v$). The behavior of an architrino changes drastically depending on whether its speed is above or below the field speed.
 -   When $|\mathbf{v}_a| < v$, it is only influenced by external fields.
 -   When $|\mathbf{v}_a| > v$, it begins to interact with its own recently emitted field, which is always repulsive (an Electrino repels itself, a Positrino repels itself).
 
@@ -46,4 +46,4 @@ This introduces a profound asymmetry into the system. A small acceleration cause
 
 ### Provenance within Emergence
 
-A key feature of this model is that emergence does not erase identity. Since Architrinos cannot be created or destroyed and each follows a unique path, they retain their individual provenance even when participating in a complex assembly. An assembly is a collective behavior, not a new, singular entity. A virtual observer could, in principle, track the complete and distinct path of every Architrino as it interacts, forms structures, and evolves through time, ensuring that no particle is ever lost or conflated with another.
+A key feature of this model is that emergence does not erase identity. Since architrinos cannot be created or destroyed and each follows a unique path, they retain their individual provenance even when participating in a complex assembly. An assembly is a collective behavior, not a new, singular entity. A virtual observer could, in principle, track the complete and distinct path of every architrino as it interacts, forms structures, and evolves through time, ensuring that no particle is ever lost or conflated with another.

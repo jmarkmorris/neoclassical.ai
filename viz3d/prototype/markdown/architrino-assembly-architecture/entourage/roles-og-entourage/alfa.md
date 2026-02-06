@@ -4,7 +4,7 @@
 
 Derive the structure, stability, and properties of **complex matter**—from nucleons and nuclei to bulk condensed phases—as consequences of the architrino architecture and tri-binary assembly interactions. Focus on **multi-body dynamics** of decorated tri-binaries, calculating how they bind, oscillate, and organize within the spacetime aether.
 
-Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establish the **equation of state** for matter from the femtometer to stellar scales, ensuring macroscopic behavior traces back to the **Master Equation of Motion**.
+Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establish the **equation of state** for matter from the femtometer to stellar scales, ensuring macroscopic behavior traces back to the **master equation of Motion**.
 
 ---
 
@@ -109,7 +109,7 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 
 ## Key Challenges and "Stop Conditions"
 
-- **Parameter Bloat**: If matching nuclear binding requires more than 3-5 new "fitting" parameters beyond the Master Equation, the model is failing.
+- **Parameter Bloat**: If matching nuclear binding requires more than 3-5 new "fitting" parameters beyond the master equation, the model is failing.
 - **Instability**: If multi-assembly systems (like the deuteron ($^{2}\text{H}$)) cannot be shown to be dynamical attractors, the architecture is invalid.
 - **Lorentz Violation**: If interaction with the background aether (the 2-pro/2-anti tri-binary sea) produces "ether wind" effects above $10^{-17}$, the mapping to the vacuum is incorrect.
 
@@ -128,5 +128,5 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 
 # Foundational Reference
 - **Absolute timespace** (absolute time x Euclidean space) is the invariant substrate; see `foundations/ontology.md` Sec. 1 for constants and symmetry assumptions.
-- **Architrino ontology** (Sec. 2) treats each architrino as an eternal point transceiver of continuous potential wakes; the Master Equation (`foundations/master-equation.md`) sums the $1/r^2$ contributions from every causal emission (path history) intersecting a receiver.
+- **architrino ontology** (Sec. 2) treats each architrino as an eternal point transceiver of continuous potential wakes; the master equation (`foundations/master-equation.md`) sums the $1/r^2$ contributions from every causal emission (path history) intersecting a receiver.
 - **Parameter ledger** (`foundations/parameter-ledger.md`) codifies Category A/B inputs such as $c_f$, $\epsilon=e/6$, $\kappa$, and the emergent density/scale setters that must be respected in role reasoning.

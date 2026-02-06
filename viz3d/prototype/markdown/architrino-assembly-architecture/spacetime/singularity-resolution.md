@@ -1,6 +1,6 @@
 # Singularity Resolution
 
-This section frames how Architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture.
+This section frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture.
 
 ## Maximal Curvature vs Planck Scale
 

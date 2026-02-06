@@ -31,7 +31,7 @@ Detailed explanation (dynamical geometry):
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver’s instantaneous curvature radius along its path and the local inter-source separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
 - Unit charge magnitude ($\epsilon>0$):
-  - $\epsilon$ is the fundamental charge scale of an Architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making quark charges integer multiples of $\epsilon$.
+  - $\epsilon$ is the fundamental charge scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making quark charges integer multiples of $\epsilon$.
   - Per-wavefront amplitude and emission cadence are constant. The receiver’s speed does not additionally modulate the force magnitude.
 
 - Sign of interaction ($\sigma_{q q'}$):

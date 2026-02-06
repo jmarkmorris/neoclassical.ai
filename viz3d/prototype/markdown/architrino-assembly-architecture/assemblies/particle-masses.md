@@ -54,7 +54,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In the Architrino Framework:
+In the architrino framework:
 - The Higgs field is **replaced** by the Noether Sea (a dynamic lattice of assemblies, not a scalar field).
 - Mass is **not a coupling constant** ($y_f$ Yukawa couplings) but a **geometric property** (shielding factor $\zeta$ + drag coefficient).
 - The 125 GeV "Higgs Boson" is reinterpreted as a **radial breathing mode** of the sea lattice, not the source of mass itself (see).
@@ -96,7 +96,7 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 **Actions:**
 1. **Far-Field Potential Calculation**:
- - Use the Master Equation to compute the net potential field at large distances from a tri-binary assembly.
+ - Use the master equation to compute the net potential field at large distances from a tri-binary assembly.
  - For a perfectly neutral, pro/anti symmetric assembly, most of the field should cancel.
  - **Method:** Numerical integration of potential wakes over all architrino trajectories; compute $\Phi_{\text{far}}(r \to \infty)$.
 

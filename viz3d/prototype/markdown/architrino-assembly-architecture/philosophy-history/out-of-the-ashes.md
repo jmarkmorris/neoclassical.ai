@@ -30,7 +30,7 @@ To understand your place in this universe, you must understand the difference be
 
 In the old view, Black Holes were monsters—graves where matter went to die.
 
-In the Architrino view, Black Holes are the **lungs of the galaxy**.
+In the architrino view, Black Holes are the **lungs of the galaxy**.
 *   **The Problem:** Over billions of years, stars burn out. Matter becomes "ash"—it loses its energy and structure. If left alone, the galaxy would fill up with dead trash.
 *   **The Solution:** Supermassive Black Holes at the center of galaxies act as cosmic recyclers. They pull in this dead matter, grind it down to its most basic components (architrinos), and blast it back out as fresh, high-energy plasma.
 *   **The Result:** This fresh material cools to form **new stars**, new planets, and new life.

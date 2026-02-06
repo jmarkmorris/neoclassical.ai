@@ -20,7 +20,7 @@ We synthesize Steps 1–10 and the canonical Action to compare—side by side—
 * Each emitted wake surface carries a **strength** $Q$ (I’ll call that “wake surface amplitude” — the physical meaning depends on your application: charge, potential impulse, energy, etc.).
 * Continuous source (preferred): model the emitter as a moving point injection with time-density $q(t)$ (amplitude per unit time) at its instantaneous position, i.e., $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$. Each instant $t_0$ contributes a causal wake surface; we do not count “wake surfaces per second” (pulse trains are merely numerical surrogates).
 * We want to know the field $\phi(\mathbf{x},t)$ (I’ll call the scalar field “potential” or simply $\phi$) produced at any point $\mathbf{x}$ and time $t$.
-* Global neutrality (working hypothesis): on large scales the total Architrino charge inventory sums to zero (equal counts of $\pm\epsilon$); use this as the default boundary condition in PDE/Green’s-function comparisons.
+* Global neutrality (working hypothesis): on large scales the total architrino charge inventory sums to zero (equal counts of $\pm\epsilon$); use this as the default boundary condition in PDE/Green’s-function comparisons.
 
 We compare three frameworks: (1) a time-domain PDE/source, (2) an integral/Green’s-function (path history) solution, and (3) an event-driven radial-transport plus per-hit EOM. For each, we define symbols, show how the expanding causal wake surfaces appear, discuss how slowing or stopping the emitter is handled, and weigh trade-offs to inform a recommendation.
 
