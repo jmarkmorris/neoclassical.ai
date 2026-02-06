@@ -39,7 +39,7 @@
 
 Use this as a target when deriving overlaps/angles from shielding geometry and Active-Triad alignment.
 
-With the parameters below, this Wolfenstein form reproduces the PDG magnitudes to 𝒪(λ³).
+With the parameters below, this Wolfenstein form reproduces the PDG magnitudes above to 𝒪(λ³).
 
 Matrix form (Wolfenstein to 𝒪(λ³)):
 
@@ -52,6 +52,8 @@ A\lambda^3(1-\rho - i\eta) & -A\lambda^2 & 1
 \end{pmatrix},\quad
 \lambda\approx0.225,\ A\approx0.83,\ \rho\approx0.14,\ \eta\approx0.35.
 $$
+
+Note: CKM acts only on left-handed quarks (right-handed antiquarks); right-handed quarks are SU(2) singlets and don’t mix via CKM.
 
 ### PDG CKM (2024 central values, magnitude)
 
@@ -81,6 +83,8 @@ Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-ty
 
 Legend: IMO = Inner+Middle+Outer; IM– = Inner+Middle; I– – = Inner only. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals. 
 
+Quantitative target (heuristic): “high” should land near 0.2–1, “medium” ~10⁻²–10⁻¹, “tiny” ~10⁻³–10⁻² to match PDG magnitudes (e.g., $|V_{ud}|$, $|V_{us}|$, $|V_{ub}|$).
+
 ### Using CKM in amplitudes (quick examples)
 
 - **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $|V_{ij}|^2$. Neutral currents (Z/γ) are flavor-diagonal (no CKM).
@@ -98,6 +102,7 @@ Legend: IMO = Inner+Middle+Outer; IM– = Inner+Middle; I– – = Inner only. Q
 - Compute overlaps with mass eigenstates (shielding eigenmodes) to extract a CKM-like matrix; compare hierarchy to data.
 - Track possible geometric phases in braids/triads to see if a CP-violating phase emerges naturally.
 - Test sensitivity to core depletion: vary shielding strength and see how off-diagonals shrink.
+- Simulate wake exposure to confirm/deny forward-hemisphere Active Triad; falsify hypothesis if trailing sites couple more strongly.
 
 ## Pointers
 - Active Triad & shielding definitions: `assemblies/fermions/quantum-number-mapping.md` (Sections on weak isospin, generation hierarchy).
@@ -143,3 +148,8 @@ Spare e/–e+ fates (speculative hypotheses to simulate):
 - **Sea capture:** absorbed into adjacent Noether Sea cores, restoring neutrality with minimal signature.
 - **Mini-binary lock:** phase/geometry lets them form a high-curvature binary (reactive, short-lived), then radiate or get captured.
 - **Escape channel:** if neither pairing nor capture occurs, they travel as free charges but are likely dragged into one of the above endpoints by sea interactions.
+
+Provenance TODOs:
+- Define an overlap functional 𝒪(shield_i, shield_j) = ⟨mass_j | weak_i⟩; derive/simulate it instead of hand-waving “overlap.”
+- Build per-architrino tracking in simulations to recover CKM magnitudes and CP phase from first principles.
+- Add sub-assembly tracking: which Noether cores move intact vs. fragment in each channel; ensure charge/polarity balances close at both architrino and core levels.
