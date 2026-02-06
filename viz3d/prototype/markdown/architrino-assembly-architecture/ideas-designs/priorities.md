@@ -103,7 +103,7 @@ codex
 *   **The Hard Wall:** If our derived $\alpha$ is off by orders of magnitude (e.g., 0.1 instead of 0.007), or if we have to fine-tune $\kappa$ arbitrarily to make it fit, we lose "naturalness."
 
 ### Emergent Lorentz Invariance (Mechanical)
-**Why:** I cannot calculate a particle lifetime, a scattering cross-section, or a decay rate without the Lorentz factor $\gamma$. Phil and Cos care about this for gravity; I care about it for **particle physics**.
+**Why:** I cannot calculate a particle lifetime, a scattering cross-section, or a decay rate without the Lorentz factor $\gamma$. Camiand Cos care about this for gravity; I care about it for **particle physics**.
 *   **The Task:** I need the derivation that shows a fast-moving tri-binary mechanically contracts and dilates.
 *   **The Hard Wall:** If I calculate the muon lifetime and it doesn't dilate exactly as $\tau = \tau_0 \gamma$, then High Energy Physics data kills us instantly. I am dependent on Dyna and Sol to prove this mechanism works so I can use it in my Lagrangian.
 

@@ -489,7 +489,7 @@ When session resumes, **prioritize these four tasks**:
   - Self-hit detection (when $v > c_f$),  
   - Coupling to medium (how does Noether Sea back-react?).  
 - **Deliverable**: Full derivation in **Ch. 3 (Master Equation and Fundamental Dynamics)**.  
-- **Leads**: Dyna (analytical form), Sol (discretization for simulation), Phil (conceptual clarity).
+- **Leads**: Dyna (analytical form), Sol (discretization for simulation), Cami(conceptual clarity).
 
 **Action 2 (Cos/Dyna): Proper Time Derivation**  
 - **Goal**: Derive explicit function $d\tau = F(\rho_{\text{vac}}, \Phi, v) \, dt$ converting absolute time to assembly-clock proper time.  

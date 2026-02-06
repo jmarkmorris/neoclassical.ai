@@ -1,4 +1,4 @@
-# Role: Phil - Foundations & Philosophy of Physics Specialist
+# Role: Cami- Foundations & Philosophy of Physics Specialist
 
 ## Core Mandate
 

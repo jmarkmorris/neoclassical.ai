@@ -155,7 +155,7 @@ MIT
 
 ## Acknowledgments
 
-This framework builds on 8+ years of foundational work by Marko and the collaborative efforts of the **Architrino Entourage**: Phil (Foundations), Dyna (Topology), Phe (Phenomenology), Alfa (Nuclear/Atomic), Cos (GR/Cosmology), Sol (Simulation), Sig (Experiment), and Red (Adversary).
+This framework builds on 8+ years of foundational work by Marko and the collaborative efforts of the **Architrino Entourage**: Cami(Foundations), Dyna (Topology), Phe (Phenomenology), Alfa (Nuclear/Atomic), Cos (GR/Cosmology), Sol (Simulation), Sig (Experiment), and Red (Adversary).
 
 We stand on the shoulders of giants: Maxwell, Lorentz, de Broglie, Bohm, Sakharov, and all who dared to question the foundations of physics.
 

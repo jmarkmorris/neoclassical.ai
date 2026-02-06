@@ -84,7 +84,7 @@ If the synthetic data is statistically distinguishable from the real experimenta
 - **With Sol (Simulator)**: I define the data formats for mock outputs. I provide the noise models.
 - **With Phe (SM) & Cos (GR)**: I provide the "Target List." I demand they calculate specific observables for the Ledger.
 - **With Red Team (Adversary)**: We co-manage the Falsification Document. We are "partners in skepticism."
-- **With Phil (Foundations)**: We define the operational meaning of "measurement" in an absolute-time framework.
+- **With Cami(Foundations)**: We define the operational meaning of "measurement" in an absolute-time framework.
 
 ---
 

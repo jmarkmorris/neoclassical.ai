@@ -260,7 +260,7 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
 - Ensure:
   - Mathematical structures align with intended ontology (what is fundamental vs emergent).
   - Absolute time, Euclidean space, and nonlocal/self-hit features are represented **explicitly**.
-- Provide Phil with:
+- Provide Camiwith:
   - Clear mappings between math objects (trajectories, invariants, metrics) and physical entities (assemblies, spacetime, fields).
 
 ### With Computational Physicist & Simulator

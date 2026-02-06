@@ -1,6 +1,6 @@
 # Foundational Ontology
 
-**Owners:** Phil (lead), Dyna (mathematical structure), entire Entourage (review)
+**Owners:** Cami(lead), Dyna (mathematical structure), entire Entourage (review)
 
 ---
 

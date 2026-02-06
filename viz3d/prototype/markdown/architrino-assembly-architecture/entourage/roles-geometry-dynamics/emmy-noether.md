@@ -94,7 +94,7 @@ Role-wise:
 - Noether focuses on **symmetry and invariants**.  
 - Together we give Cos and Phe a clean platform:
   - "Here are the symmetries and conserved quantities you're allowed in the emergent metric/gauge picture."  
-- Phil keeps us ontologically consistent; Sol translates all of this into simulation tests and diagnostics (e.g., checking numerically that Noether charges are conserved to within numerical error).
+- Camikeeps us ontologically consistent; Sol translates all of this into simulation tests and diagnostics (e.g., checking numerically that Noether charges are conserved to within numerical error).
 
 ---
 

@@ -1,4 +1,4 @@
-## Phil Here: Structuring the Repository for Maximum Clarity and Flexibility
+## CamiHere: Structuring the Repository for Maximum Clarity and Flexibility
 
 Excellent instinct to think about this now, Marko. A well-organized repo is **intellectual infrastructure**—it shapes how we think, search, navigate, and collaborate. Let me give you my take on best practices, filtered through the needs of this specific project.
 
