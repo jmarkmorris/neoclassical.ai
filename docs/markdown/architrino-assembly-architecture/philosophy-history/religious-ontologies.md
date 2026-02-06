@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Introduction: Religion and Cosmology
+## Introduction: Religion and Cosmology
 
 Religious cosmologies address three core questions:
 1. **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
@@ -19,9 +19,9 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 2. Abrahamic Traditions
+## Abrahamic Traditions
 
-### 2.1 Judaism
+### Judaism
 
 **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Torah* (Genesis) and later *Talmudic* and *Kabbalistic* elaborations.
@@ -50,7 +50,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-### 2.2 Christianity
+### Christianity
 
 **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** Bible (*Old* and *New Testaments*), Church Fathers, Scholastic theology (Aquinas, Augustine).
@@ -82,7 +82,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-### 2.3 Islam
+### Islam
 
 **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Qur'an*, *Hadith*, Islamic philosophy (Al-Ghazali, Ibn Sina/Avicenna).
@@ -111,9 +111,9 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 3. Dharmic Traditions
+## Dharmic Traditions
 
-### 3.1 Hinduism
+### Hinduism
 
 **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Vedas*, *Upanishads*, *Bhagavad Gita*, *Puranas*.
@@ -141,7 +141,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-### 3.2 Buddhism
+### Buddhism
 
 **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Pali Canon* (Theravada), *Mahayana Sutras*, *Abhidhamma*.
@@ -165,9 +165,9 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 4. East Asian Traditions
+## East Asian Traditions
 
-### 4.1 Daoism (Taoism)
+### Daoism (Taoism)
 
 **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? — What is real?
 - **Source:** *Dao De Jing* (Laozi), *Zhuangzi*, later alchemical texts.
@@ -192,7 +192,7 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 5. Comparative Summary Table
+## Comparative Summary Table
 
 | Tradition | Fundamental Elements | Cosmogony (Origin) | Eschatology (End) | Time Structure | Creator? |
 |-----------|---------------------|-------------------|------------------|---------------|---------|
@@ -205,25 +205,25 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 6. Philosophical Observations
+## Philosophical Observations
 
-### 6.1 Creator vs Non-Creator Cosmologies
+### Creator vs Non-Creator Cosmologies
 - **Abrahamic traditions:** Require a personal, transcendent God who *wills* creation into existence. The cosmos is contingent—it depends entirely on divine sustenance.
 - **Dharmic and Daoist traditions:** No necessary personal creator. Reality is either:
   - Self-existent and beginningless (Buddhism),
   - Emanating from an impersonal absolute (Hinduism's Brahman, Daoism's Dao).
 
-### 6.2 Linear vs Cyclic Time
+### Linear vs Cyclic Time
 - **Linear (Abrahamic):** History has a definite beginning (creation), middle (covenantal/redemptive events), and end (judgment/new creation). Eschatology gives history *telos* (purpose).
 - **Cyclic (Dharmic/Daoist):** No ultimate beginning or end. Time is an eternal wheel. Liberation (if any) is *escape* from the cycle, not participation in a final historical event.
 
-### 6.3 Matter and Spirit
+### Matter and Spirit
 - **Abrahamic:** Sharp dualism between Creator (spirit, immaterial) and creation (material). Matter is "good" but finite and dependent.
 - **Hindu:** Matter (*Maya*, *Prakriti*) is real but ultimately less fundamental than Brahman (pure consciousness).
 - **Buddhist:** No substance dualism. All phenomena (material and mental) are equally impermanent and "empty" of inherent existence.
 - **Daoist:** Matter and spirit are not opposed; both are manifestations of Qi. Unity, not dualism.
 
-### 6.4 Eschatological Orientations: Transformation, Liberation, and Harmony
+### Eschatological Orientations: Transformation, Liberation, and Harmony
 
 - **Abrahamic (Transformation):** Resurrection, judgment, and cosmic renewal. The individual's ultimate state is determined by divine justice and tied to the cosmic telos. History is not cyclical but moves toward a definitive endpoint.
 
@@ -233,24 +233,24 @@ Unlike scientific theories, religious cosmologies typically embed metaphysical a
 
 ---
 
-## 7. Relevance to Architrino Cosmology
+## Relevance to Architrino Cosmology
 
 The Architrino framework makes specific ontological and cosmological claims that can be positioned relative to these religious traditions:
 
-### 7.1 Ontological Parallels
+### Ontological Parallels
 - **Fundamental Substance:** Architrinos as the "atoms" of reality echo both:
   - Ancient Greek *atomism* (Democritus),
   - Dharmic *dharmas* (though architrinos are persistent, not momentary),
   - Daoist *Qi* (a dynamic, flowing substrate).
 - **No Creator Required:** In its scientific formulation, the architrino model does not posit a transcendent creator. The substrate (void + architrinos) is self-existent and eternal.
 
-### 7.2 Cosmogonic Parallels
+### Cosmogonic Parallels
 - **Eternal vs Created Universe:**
   - Architrino cosmology allows for a cyclic or eternal cosmos (like Hinduism/Buddhism), with local "Big Bangs" as phase transitions.
   - No *ex nihilo* creation event (contrast with Abrahamic models).
 - **Emergence of Complexity:** The assembly architecture (binaries → tri-binaries → particles → stars → galaxies) parallels the "unfolding from unity to multiplicity" theme in Daoism and Hindu emanation.
 
-### 7.3 Architrino Contrast Summary
+### Architrino Contrast Summary
 
 | Tradition | Ontology (Architrino) | Origins (Architrino) | End-State (Architrino) |
 |-----------|-------------------------------|----------------------------------|------------------------------------|
@@ -261,7 +261,7 @@ The Architrino framework makes specific ontological and cosmological claims that
 | **Buddhism** | Persistent entities vs. momentary dharmas | Beginningless but physical, not metaphysical | No Nirvana as ultimate state; ongoing dynamics |
 | **Daoism** | No Dao/Qi metaphysics; explicit assembly network | Unfolding is physical, not mystical | No return-to-harmony telos; perpetual transformation |
 
-### 7.4 Eschatological Implications
+### Eschatological Implications
 
 **Lifecycle Without Terminal States:**
 
@@ -302,7 +302,7 @@ In an infinite universe with active spacetime medium, local entropy can increase
 
 ---
 
-## 8. Conclusion
+## Conclusion
 
 Religious cosmologies offer rich, diverse frameworks for understanding the origin, structure, and fate of the cosmos. While they are not empirically falsifiable in the scientific sense, they provide:
 - **Metaphysical hypotheses** (What is fundamental? What is contingent?),

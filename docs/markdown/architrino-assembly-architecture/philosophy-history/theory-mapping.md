@@ -2,12 +2,11 @@
 # Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)
 
 **Purpose:** A compact, cross-audience map of major theories. Each entry moves from accessible to technical: (1) a
-high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical
-essence (key idea or formula).
+high-level summary, (2) a STEM-friendly abstraction, (3) the mathematical essence (key idea or formula) and is followed by (4) the architrino assembly architecture (AAA) perspective.
 
 ---
 
-## 1. Core Assembly Layer (Noether Core / Tri-Binary)
+## Core Assembly Layer (Noether Core / Tri-Binary)
 
 These are particle-physics level theories that map most directly to assemblies,
 decorations, and interaction rules. In the architrino view, they are effective
@@ -18,8 +17,7 @@ summaries of assembly microdynamics rather than fundamental entities.
 **Summary:** The unified framework describing all known particles and forces
 except gravity.
 
-**Conceptual View:** A gauge theory with group SU(3)$\times$SU(2)$\times$U(1) plus the
-Higgs sector, with matter in three families.
+**Conceptual View:** A gauge theory with group $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$ plus the Higgs sector, with matter in three families.
 
 **Key Equation:** Gauge group and field content:
 $$
@@ -27,7 +25,8 @@ G_{\mathrm{SM}} = \mathrm{SU(3)}_C \times \mathrm{SU(2)}_L \times \mathrm{U(1)}_
 $$
 **AAA View:** $G_{\mathrm{SM}}$ is an *effective symmetry* of tri-binary assemblies and their decoration patterns. Color, weak isospin, and hypercharge correspond to discrete topological/phase labels on architrino tri-binaries and to symmetries of their internal motion. The SM is the continuum, field-theoretic summary of discrete architrino assemblies and their interaction graph, not a fundamental layer.
 **Geometric proof targets:**
-- Classify tri-binary decoration permutations and show the resulting symmetry factors match SU(3) x SU(2) x U(1).
+- Classify tri-binary decoration permutations and show the resulting symmetry factors 
+match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 - Prove three stable assembly families arise from distinct phase-winding classes.
 
 ---
@@ -170,7 +169,7 @@ $$
 
 ---
 
-## 2. Emergent Spacetime / Gravity Layer (Effective Metric)
+## Emergent Spacetime / Gravity Layer (Effective Metric)
 
 These are theories about spacetime structure and gravitational dynamics. In the
 architrino view, they are emergent descriptions of how the Noether-core medium
@@ -280,23 +279,43 @@ $$
 
 ---
 
-### Holographic Principle / AdS-CFT (Modern Framework)
+### Cosmic Censorship / Holographic Principle / AdS-CFT
 
-**Summary:** Some gravity theories are equivalent to non-gravitational quantum
-theories in fewer dimensions.
+**Summary:** The story unfolds as a gradual reveal. We start with **cosmic censorship**—the suspicion that nature hides its most extreme breakdowns, with singularities veiled from outside observers by event horizons to preserve predictability. That horizon is then reinterpreted as an information surface via **holography**, where the horizon acts as a dual interface to the singularity. Finally, **AdS/CFT** gives the horizon a precise two-sided language: a gravity theory for the inside matched to a QFT description without dynamical gravity for the outside.
 
-**Conceptual View:** Spacetime geometry and quantum entanglement are deeply linked;
-gravity can emerge from a boundary QFT.
+* **Weak cosmic censorship**: when things collapse into a black hole, any singularity stays hidden behind the horizon, so outsiders never see a “naked” singularity.
+* **Strong cosmic censorship**: for typical starting conditions, Einstein’s equations give a complete, unextendable evolution, so you don’t need extra rules at a singularity.
 
-**Key Equation:** Duality statement (schematic):
+Then **holography** reframes the event horizon as an information interface: physics in a volume can be encoded on a lower-dimensional surface, with the horizon serving as the dual interface to a singularity.
+
+Next, the two sides of the horizon were characterized as **AdS/CFT**: a gravity theory for the inside (AdS) is equivalent to a QFT description without dynamical gravity for the outside (CFT), linking spacetime geometry and quantum entanglement in a single correspondence. This is expressed as:
 $$
 Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0].
 $$
-**AAA View:** Holographic-like relations can be interpreted as statements about how information stored in bulk architrino assemblies is encoded on lower-dimensional “interfaces” (e.g., boundaries of dense tri-binary regions). Exact AdS/CFT duality is not fundamental in AAA, but boundary–bulk correspondences arise from how the Noether-core medium supports waves and correlations across interfaces.
+**AAA View:** With the architrino assembly architecture these concepts align and become consistent dualistic statements about nature.
+
+| Tri-Binary Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
+| :--- | :--: | :---: | :--- | :--- | :--- |
+| Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
+| Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
+| Outer (non-self-hit) | 1 | $v < c_f$ | Outside observer region | Expansion/contraction | CFT (exterior QFT) |
+
+This correspondence provides a structured linkage among tri-binary regimes, black-hole regions, and the AdS/CFT roles, but the more precise picture is a **radial alignment state**: all three tri-binary components share the same axis. The inner self-hit loop runs at 4x Planck frequency with $v>c_f$, the middle loop at 2x Planck with $v=c_f$ (flattened), and the outer loop at 1x Planck, also driven to $v=c_f$ at the horizon. This is the same condition a photon satisfies along its lightlike path: all three loops locked, with middle and outer riding tangentially at field speed.
+
+So "inside vs horizon vs outside" is better seen as a **continuum parameterized by tri-binary deformation**. The event horizon (photon or black hole) is where that continuum hits its Planck-alignment plateau. Move outward and the outer loop drops below $c_f$, regains volume, and you return to the bulk spacetime medium; move inward and the inner loop dominates with $v>c_f$, pumping energy into self-hit dynamics and inflation/deflation effects.
+
+Given that, we can introduce **CFT+** for the interface sector: "surface degrees of freedom with Planck-aligned tri-binaries" without claiming a literal conventional CFT. CFT+ means:
+
+- Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
+- Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
+- Information flow constrained to the interface sheet,
+- Ready to bifurcate into volumetric Noether cores as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or spacetime medium).
+
+That gives clean shorthand: CFT+ for the Planck-aligned interface layer, "bulk" for $v<c_f$ volumetric cores, and "AdS-like" for the $v>c_f$ self-hit interior, all on the same continuum.
 
 ---
 
-## 3. Cosmology / Large-Scale Assembly Evolution
+## Cosmology / Large-Scale Assembly Evolution
 
 These theories describe the universe at large scales: expansion history,
 structure formation, and cosmic origins. In the architrino view, they map to
@@ -542,7 +561,7 @@ fine-tuning reflects conditional selection rather than design.
 
 ---
 
-## 4. Epistemic / Effective Theories of Observation
+## Epistemic / Effective Theories of Observation
 
 These are theories and interpretations that describe how observers access and
 summarize dynamics: coarse-graining, probabilities, and measurement update.

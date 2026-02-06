@@ -3,7 +3,7 @@
 **Method:** Conservation of Architrinos
 **Principle:** Spacetime (Noether Cores) acts as a reactant and product.
 
-## 1. The Provenance Protocol
+## The Provenance Protocol
 Standard Feynman diagrams track particle paths. Architrino Provenance diagrams track **constituent inventory**.
 
 ### Rules:
@@ -16,10 +16,10 @@ Standard Feynman diagrams track particle paths. Architrino Provenance diagrams t
 
 ---
 
-## 2. Case Study: Top Quark Decay ($t \to b + W^+$)
+## Case Study: Top Quark Decay ($t \to b + W^+$)
 *Observed Channel:* $t \to b + e^+ + \nu_e$ (via $W^+$ -> lepton decay).
 
-### 2.1 Reactant Inventory
+### Reactant Inventory
 
 **1. Top Quark ($t$)**
 *   **Core (Gen III):** High energy, depleted shielding.
@@ -32,7 +32,7 @@ Standard Feynman diagrams track particle paths. Architrino Provenance diagrams t
 *   *Input:* 1 Full Anti-Noether Core (Antimatter seed for the positron).
     *   Composition: 3 Binaries ($3E, 3P$).
 
-### 2.2 Product Inventory
+### Product Inventory
 
 **1. Bottom Quark ($b$)**
 *   **Core (Gen III):** Uni-binary (1P, 1E).
@@ -49,7 +49,7 @@ Standard Feynman diagrams track particle paths. Architrino Provenance diagrams t
 *   **Personality:** 3 Electrinos, 3 Positrinos ($3E, 3P$).
 *   **Total $\nu_e$:** $6E, 6P$.
 
-### 2.3 The Ledger Balance (The "W" Event)
+### The Ledger Balance (The "W" Event)
 
 Let's look at the **Personality Swap** (The Weak Interaction).
 
@@ -85,18 +85,18 @@ The decay of a high-energy Top quark disrupts the local spacetime fabric, recrui
 
 ---
 
-## 3. Case Study: Free Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
+## Case Study: Free Neutron Decay ($n \to p + e^- + \bar{\nu}_e$)
 
 *Observed Process:* A free neutron decays (lifetime ~15 mins) into a proton, electron, and electron-antineutrino.
 *Standard Model:* $d \to u + W^- (\to e^- + \bar{\nu}_e)$.
 
-### 3.1 The Spectators
+### The Spectators
 The Neutron contains three quarks: $u, d, d$.
 The Proton contains three quarks: $u, u, d$.
 *   **Invariant:** One $u$ and one $d$ are spectators. They pass through the reaction structure unchanged.
 *   **Active Agent:** The second $d$ transforms into a $u$.
 
-### 3.2 Reactant Inventory (Inputs)
+### Reactant Inventory (Inputs)
 
 **1. Active Down Quark ($d$)**
 *   **Core:** Gen I Pro-Tri-binary ($3E, 3P$).
@@ -111,7 +111,7 @@ The Proton contains three quarks: $u, u, d$.
 
 **GRAND TOTAL INPUTS:** $13E, 11P$.
 
-### 3.3 Product Inventory (Outputs)
+### Product Inventory (Outputs)
 
 **1. Active Up Quark ($u$)**
 *   **Core:** Gen I Pro-Tri-binary ($3E, 3P$).
@@ -130,7 +130,7 @@ The Proton contains three quarks: $u, u, d$.
     *   *Correction from Diagram:* The Antineutrino ends up neutral. If it takes the Anti-Core ($3E, 3P$) and a neutral personality ($3E, 3P$), total is $6E, 6P$.
     *   *Let's check the flow arrows below to confirm.*
 
-### 3.4 The Transaction Flow (The "W-" Event)
+### The Transaction Flow (The "W-" Event)
 
 The diagram specifies the exact routing of architrinos:
 
@@ -159,7 +159,7 @@ The diagram specifies the exact routing of architrinos:
     *   *Source for Antineutrino:*
         *   Takes 3P from Vacuum !NC.
 
-### 3.5 Final Balance Check
+### Final Balance Check
 
 | Component | Electrinos ($E$) | Positrinos ($P$) | Source/Dest |
 | :--- | :--- | :--- | :--- |
@@ -213,5 +213,5 @@ Neutron decay is the **harvesting of a Vacuum Neutral Binary (3P, 3E)**.
 5.  This 6E cluster wraps around a Pro-Noether Core (harvested nearby) to form the Electron.
 6.  To balance angular momentum/energy, an Antineutrino (Anti-Core + neutral personality) is emitted.
 
-### 3.6 Significance
+### Significance
 This derivation shows that **charge conservation is locally maintained by vacuum harvesting**. The "creation" of charge in $n \to p + e^-$ is actually the **separation** of a neutral vacuum element into its positive component (added to the quark) and negative component (added to the lepton).

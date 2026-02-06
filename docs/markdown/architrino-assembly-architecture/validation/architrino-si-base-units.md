@@ -57,7 +57,7 @@ In our theory, the **truly fundamental** quantities are:
 
 ## Mapping SI Constants to Architrino Physics
 
-### 1. The Second (Time Unit) — $\Delta \nu_{\text{Cs}}$
+### The Second (Time Unit) — $\Delta \nu_{\text{Cs}}$
 
 **SI Definition:** The second is defined by the hyperfine transition frequency of Cesium-133:
 $$
@@ -89,7 +89,7 @@ $$
 
 ---
 
-### 2. The Meter (Length Unit) — $c$
+### The Meter (Length Unit) — $c$
 
 **SI Definition:**
 $$
@@ -123,7 +123,7 @@ $$
 
 ---
 
-### 3. The Kilogram (Mass Unit) — $h$
+### The Kilogram (Mass Unit) — $h$
 
 **SI Definition:**
 $$
@@ -157,7 +157,7 @@ $$
 
 ---
 
-### 4. The Ampere (Current Unit) — $e$
+### The Ampere (Current Unit) — $e$
 
 **SI Definition:**
 $$
@@ -179,7 +179,7 @@ $$
 
 ---
 
-### 5. The Kelvin (Temperature Unit) — $k_B$
+### The Kelvin (Temperature Unit) — $k_B$
 
 **SI Definition:**
 $$
@@ -218,7 +218,7 @@ $$
 
 ---
 
-### 6. The Mole — $N_A$
+### The Mole — $N_A$
 
 **SI Definition:**
 $$
@@ -240,7 +240,7 @@ $$
 
 ---
 
-### 7. The Candela (Luminous Intensity) — $K_{\text{cd}}$
+### The Candela (Luminous Intensity) — $K_{\text{cd}}$
 
 **SI Definition:**
 $$

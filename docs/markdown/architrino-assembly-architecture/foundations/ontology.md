@@ -1,6 +1,6 @@
 # Foundational Ontology
 
-**Owners:** Phil (lead), Dyna (mathematical structure), entire Entourage (review)
+**Owners:** Cami(lead), Dyna (mathematical structure), entire Entourage (review)
 
 ---
 
@@ -19,9 +19,9 @@ All subsequent dynamical laws, assembly mappings, and emergent phenomena are **b
 
 **This document is Law.** Changes require full-team review and explicit justification.
 
-## 1. The Substrate (What Exists Fundamentally)
+## The Substrate (What Exists Fundamentally)
 
-### 1.1 Absolute Time
+### Absolute Time
 
 **Core Concept:**
 
@@ -212,7 +212,7 @@ In this model, time itself has no internal structure or dynamics. It does not en
 > **Postulate 1 (Absolute Time):** 
 > Time is an **absolute, universal, one-dimensional continuum** $\mathbb{R}$, with a fixed orientation (future = increasing $t$) and a uniform rate of advancement. Duration between events is **frame-independent**. The time coordinate is **non-dynamical** and does not encode forces or curvature. All dynamics occur via finite-speed field propagation ($c_f$) in absolute time, with all interactions via path history; there is no instantaneous action-at-a-distance. Worldlines are parametrized directly by $t$ with no reparametrization freedom. Any physical "arrow of time" or observed time dilation is an emergent property of assemblies and their dynamics, not a feature of the background $t$ parameter itself.
 
-### 1.2 Absolute Space (Euclidean Void)
+### Absolute Space (Euclidean Void)
 
 **Core Concept:**
 
@@ -323,7 +323,7 @@ The complicated-looking metric components are entirely a feature of the coordina
 
 ---
 
-### 1.2.1 Index Notation and Tensor Operations
+### Index Notation and Tensor Operations
 
 We adopt Cartesian core indices $i,j,k \in \{1,2,3\}$ for spatial components. The Euclidean metric and its inverse are:
 
@@ -359,7 +359,7 @@ and surface elements inherit the usual Jacobian factors when parametrized (e.g.,
 
 ---
 
-### 1.2.2 Spatial Differential Operators
+### Spatial Differential Operators
 
 Vector calculus with the Euclidean metric specializes to:
 
@@ -390,7 +390,7 @@ All these operators remain coordinate-invariant when expressed via tensor indice
 
 ---
 
-### 1.2.3 Homogeneity and Isotropy: Physical Implications
+### Homogeneity and Isotropy: Physical Implications
 
 Because space is homogeneous and isotropic, we immediately obtain:
 
@@ -401,7 +401,7 @@ Because space is homogeneous and isotropic, we immediately obtain:
 
 ---
 
-### 1.2.4 Coordinates, Cartesian Frames, and Forbidden Transformations
+### Coordinates, Cartesian Frames, and Forbidden Transformations
 
 We fix a rigid Cartesian chart $(x,y,z)$ covering the Euclidean void. Cartesian frames are related by elements of the Euclidean group $E(3)$ (a rotation plus a translation), and all geometric statements are tensorial and coordinate-invariant.
 
@@ -516,10 +516,10 @@ Any observed "curvature," such as the bending of light or the precession of orbi
 > **Postulate 2 (Absolute Space):** 
 > Three-dimensional space is absolute, static, and **flat Euclidean** with metric $h_{ij} = \delta_{ij}$. It is **homogeneous** (no special location) and **isotropic** (no preferred direction), with symmetry group $E(3)$. Space is **non-dynamical**; it does not curve, expand, or contract. It does not respond to matter or energy. The curvature of trajectories arises entirely from forces and interactions within space, never from the geometry of space itself. All spatial displacements and distances are measured by the fixed Euclidean metric. Cosmological expansion must be understood as dynamics *of the tri-binary medium within space*, not as expansion *of space itself*.
 
-### 1.3 Absolute Timespace (The Product Structure)
+### Absolute Timespace (The Product Structure)
 
 
-#### 1.3.1 Core Concept
+#### Core Concept
 
 Absolute timespace is the combined, non-dynamical background arena for all physical phenomena. It is the direct product of absolute time and absolute space, forming a **foliated structure** where each "leaf" is a complete, instantaneous 3D snapshot of Euclidean space, indexed by the universal time parameter. We deliberately use the term "timespace" (time first) to distinguish this fixed arena from the dynamic, unified "spacetime" of General Relativity.
 
@@ -533,9 +533,9 @@ Notably, any metric expansion of the universe (à la FLRW) must be recovered as 
 
 ---
 
-#### 1.3.2 Mathematical Description
+#### Mathematical Description
 
-##### 1.3.2.1 Product Manifold Structure
+##### Product Manifold Structure
 
 The timespace arena is the Cartesian product of absolute time and absolute space:
 $$
@@ -563,7 +563,7 @@ where $I$ is an interval and $t(s)$ is **strictly increasing** (time orientation
 
 ---
 
-##### 1.3.2.2 Kinematic Structure: Newton–Cartan Data
+##### Kinematic Structure: Newton–Cartan Data
 
 The background geometry is encoded in a pair of differential structures:
 
@@ -602,7 +602,7 @@ We do **not** define a single non-degenerate 4D metric $g_{\mu\nu}$ on $\mathcal
 
 ---
 
-##### 1.3.2.3 Measurement and Geometry
+##### Measurement and Geometry
 
 **Spatial distance** (within a slice at fixed $t$):
 $$
@@ -632,9 +632,9 @@ We do **not** use this in the neoclassical model. Time and space are measured se
 
 ---
 
-#### 1.3.3 Velocity, Acceleration, and Momentum
+#### Velocity, Acceleration, and Momentum
 
-##### 1.3.3.1 Spatial Velocity and Speed
+##### Spatial Velocity and Speed
 
 **Spatial velocity** (3-vector):
 $$
@@ -648,7 +648,7 @@ $$
 \mathbf{a}(t) = \frac{d\mathbf{v}}{dt} = \frac{d^2\mathbf{x}}{dt^2}.
 $$
 
-##### 1.3.3.2 Momentum and Kinetic Energy
+##### Momentum and Kinetic Energy
 
 **Momentum** (3-vector):
 $$
@@ -670,9 +670,9 @@ $$
 
 ---
 
-#### 1.3.4 Kinematics: Galilean Transformations
+#### Kinematics: Galilean Transformations
 
-##### 1.3.4.1 The Galilean Group
+##### The Galilean Group
 
 The kinematic symmetry group is the **Galilean group** $\text{Gal}(3)$, which preserves the foliation by constant-$t$ slices and the spatial metric $h_{ij}$ on each slice:
 
@@ -706,7 +706,7 @@ $$
 $$
 combining time translations, spatial translations/rotations, and boosts in the standard structure.
 
-##### 1.3.4.2 Dynamical Symmetry Breaking and the Preferred Rest Frame
+##### Dynamical Symmetry Breaking and the Preferred Rest Frame
 
 **Important note:** While the **background kinematics** are invariant under all Galilean transformations, the **interaction law** (defining forces and accelerations) selects a **preferred frame**: the **absolute rest frame** in which the maximum signal speed $c_f$ (field speed) is isotropic. This breaks the boost symmetry at the dynamical level, recovering a preferred frame for non-relativistic dynamics.
 
@@ -714,13 +714,13 @@ This symmetry breaking is precisely what allows for a preferred "aether" frame f
 
 ---
 
-#### 1.3.5 Causality and Light Cone Structure
+#### Causality and Light Cone Structure
 
-##### 1.3.5.1 Absolute Causal Order
+##### Absolute Causal Order
 
 Event $A = (t_A, \mathbf{x}_A)$ **causally precedes** event $B = (t_B, \mathbf{x}_B)$ iff $t_A < t_B$ (regardless of spatial separation).
 
-##### 1.3.5.2 Causal Wake Surface Propagation (Finite Signal Speed)
+##### Causal Wake Surface Propagation (Finite Signal Speed)
 
 A source at $(t_0, \mathbf{x}_0)$ can influence a receiver at $(t, \mathbf{x})$ only if:
 $$
@@ -730,7 +730,7 @@ where $c_f$ is the field speed (maximum signal speed, defined in dynamics). An i
 
 **No closed causal loops:** Worldlines are strictly monotone in $t$; no backward-in-time propagation is allowed.
 
-##### 1.3.5.3 Comparison to Relativistic Light Cones
+##### Comparison to Relativistic Light Cones
 
 In special relativity, causality is encoded in a **light cone** set by the Lorentzian metric. Here, causality is encoded in:
 1. The **absolute time ordering** ($t_A < t_B$ implies A can influence B),
@@ -751,9 +751,9 @@ Additionally, the "effective light cones" seen by assemblies at $v \leq c_f$ can
 
 ---
 
-#### 1.3.6 Coordinates and Transformations
+#### Coordinates and Transformations
 
-##### 1.3.6.1 Cartesian Coordinates (Inertial Frames)
+##### Cartesian Coordinates (Inertial Frames)
 
 $(t, x, y, z)$ with:
 - $t$ global and universal,
@@ -761,11 +761,11 @@ $(t, x, y, z)$ with:
 
 Any two Cartesian systems are related by a Galilean transformation. Tensorial laws are preserved under such transformations.
 
-##### 1.3.6.2 Curvilinear Spatial Coordinates
+##### Curvilinear Spatial Coordinates
 
 At fixed $t$, one may use spherical $(r, \theta, \phi)$, cylindrical $(\rho, \phi, z)$, or other coordinates on $\Sigma_t$. The metric $h_{ij}$ transforms accordingly, but the underlying geometry remains flat. All differential equations and conservation laws are **coordinate-invariant**.
 
-##### 1.3.6.3 Forbidden Transformations
+##### Forbidden Transformations
 
 We do **not** allow:
 - **Lorentz boosts** (mixing $t$ and $\mathbf{x}$ non-linearly),
@@ -776,9 +776,9 @@ These are forbidden because they would destroy the absolute nature of time and s
 
 ---
 
-#### 1.3.7 Measures and Operators
+#### Measures and Operators
 
-##### 1.3.7.1 Time and Spatial Measures
+##### Time and Spatial Measures
 
 **Time measure:**
 $$
@@ -795,7 +795,7 @@ $$
 d\mathcal{V} = dt \, dx \, dy \, dz = dt \, dV \quad (\text{dimension: time} \cdot \text{length}^3).
 $$
 
-##### 1.3.7.2 Differential Operators
+##### Differential Operators
 
 **Laplacian** (spatial, on each slice):
 $$
@@ -814,7 +814,7 @@ $$
 
 ---
 
-#### 1.3.8 Regularity and Boundary Conditions
+#### Regularity and Boundary Conditions
 
 For well-posed dynamics:
 
@@ -828,7 +828,7 @@ For well-posed dynamics:
 
 ---
 
-#### 1.3.9 Relation to Relativistic Spacetime
+#### Relation to Relativistic Spacetime
 
 For comparison and clarity:
 
@@ -846,7 +846,7 @@ For comparison and clarity:
 
 ---
 
-#### 1.3.10 Role of Timespace in the Architrino Model
+#### Role of Timespace in the Architrino Model
 
 Absolute timespace is the fundamental arena in which all architrino dynamics unfold:
 
@@ -864,14 +864,14 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 ---
 
-#### 1.3.11 Summary of Postulate (Absolute Timespace)
+#### Summary of Postulate (Absolute Timespace)
 
 > **Postulate 3 (Absolute Timespace):** 
 > The background arena for all physics is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$, equipped with absolute time $\tau = dt$ and absolute space metric $h_{ij} = \delta_{ij}$. This defines a foliation into global, simultaneous 3D Euclidean slices indexed by universal time. The background is non-dynamical and non-curved ($R = 0$ everywhere). Causality is defined by absolute temporal ordering and finite propagation speed $c_f$. The background preserves Galilean kinematic symmetries, but the interaction law selects a preferred rest frame, breaking boost invariance dynamically. This preferred frame is essential for the propagation of potentials and the self-hit mechanisms that underpin the theory. All relativistic phenomena—including effective Lorentz invariance at certain scales—are emergent from the dynamics of assemblies. All gravitational phenomena, including lensing and cosmological expansion, are derived as emergent properties of a **dynamic medium of tri-binary assemblies** that populates this fixed timespace, not from the geometry of the background itself.
 
 ---
 
-#### 1.3.12 Key Connections and References
+#### Key Connections and References
 
 - **Section 00.0.1 (Absolute Time):** Defines the temporal component of the background; $\tau = dt$.
 - **Section 00.0.2 (Absolute Space):** Defines the spatial component of the background; $h_{ij} = \delta_{ij}$.
@@ -883,9 +883,9 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 
 ---
 
-## 2. The Fundamental Entity (Architrino)
+## The Fundamental Entity (Architrino)
 
-### 2.1 Definition and Ontological Status
+### Definition and Ontological Status
 
 An **Architrino** is the sole fundamental entity in this theory. It is:
 
@@ -912,7 +912,7 @@ All observable entities (particles, atoms, fields, spacetime curvature) are **em
 
 ---
 
-### 2.2 Core Emission Properties
+### Core Emission Properties
 
 An Architrino is a transceiver: it continuously emits potential flux and simultaneously receives the combined flux of all other Architrinos. The emission rule has the following key features:
 
@@ -962,7 +962,7 @@ whose delayed solution is $\rho(t,\mathbf{s})=\frac{q}{4\pi r^2}\delta(r-v_f\tau
 
 ---
 
-### 2.3 Charge Postulate
+### Charge Postulate
 
 **Postulate:**
 
@@ -995,25 +995,25 @@ This is a **high-priority explanatory target**. Current hypothesis: the tri-bina
 
 See TOC Ch. 18 ("Fermions: Leptons and Quarks") and Ch. 22 ("Charge Stability Map") for detailed assembly-to-particle mappings.
 
-### 2.4 Architrino Paths
+### Architrino Paths
 
 The Architrino path ontology describes how each fundamental point particle threads through absolute timespace, carrying energy, fields, and history.
 
-#### 2.4.1 Definition and Persistence
+#### Definition and Persistence
 
 Each Architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Eternality** is a foundational postulate: Architrinos are neither created nor destroyed, so every Architrino has a complete past and future history.
 
 The worldline is **unique** (no two distinct Architrinos share the same path) and at least absolutely continuous so that $\mathbf{v}_a(t)=d\mathbf{s}_a/dt$ exists almost everywhere and is piecewise continuous.
 
-#### 2.4.2 Energy Carriers
+#### Energy Carriers
 
 Architrinos are the **sole carriers of kinetic and potential energy**. There is no vacuum energy independent of Architrino motion; all conserved energy resides in their positions, velocities, and interactions.
 
-#### 2.4.3 Coincidence and Regularization
+#### Coincidence and Regularization
 
 Architrinos have no volume, so multiple particles may coincide in space at the same $t$. Regularization of the singular $1/r^2$ hits is handled by a causal-surface width parameter $\eta>0$: for separations $r<\eta$ the force transitions to a bounded profile, preventing divergences while preserving total charge and energy in the $\eta\to 0$ limit.
 
-#### 2.4.4 Causal Wake Stream: The Field Landscape
+#### Causal Wake Stream: The Field Landscape
 
 As an Architrino moves, it leaves behind a **causal wake stream**—the union of every expanding causal wake surface (isochron) it emitted prior to the observation time $t_{obs}$:
 
@@ -1023,7 +1023,7 @@ $$
 
 Each causal wake surface in the stream carries surface density $q/(4\pi r^2)$ so the union describes the complete locus of active potential at time $t_{obs}$; it is a geometric record of which wake surfaces currently intersect the receiver, not a train of discrete pulses.
 
-#### 2.4.5 Causal Intersection Times and the Master Equation
+#### Causal Intersection Times and the Master Equation
 
 For a receiver $a$ at time $t$ and source $j$, define the **causal set** of emission times whose current wake surfaces intersect the receiver:
 
@@ -1049,11 +1049,11 @@ Plain language: the acceleration at any instant is the vector sum of all $1/r^2$
 
 The causal set is typically a singleton when $|\mathbf{v}_j| < v_f$ but may contain multiple roots in the multi-hit regime whenever $|\mathbf{v}_j| > v_f$. Self-hits correspond to $j=a$ with $t_0 < t$ and encode the particle’s own path history.
 
-#### 2.4.6 Superposition of Sphere Streams
+#### Superposition of Sphere Streams
 
 Sphere streams from distinct Architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a purely radial push scaling as $1/r^2$, so nearby wake hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
 
-#### 2.4.7 Future Path and Deterministic Evolution
+#### Future Path and Deterministic Evolution
 
 The Architrino's future path is determined by its current state and the superposed hits from all sources. The acceleration at time $t$ is:
 
@@ -1065,11 +1065,11 @@ where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted b
 
 ---
 
-### 2.5 Velocity Regimes and Wake Dynamics
+### Velocity Regimes and Wake Dynamics
 
 There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. Each Architrino continuously pours potential into the void, and its past emissions expand spherically from their emission points—never corkscrewing—collectively forming a persistent **wake** (the union of all causal surfaces it has emitted). Every Architrino is always immersed in the superposed wakes of all other sources, but it only re-enters the high-intensity portion of its own wake after having once exceeded $v_f$. When $|\mathbf{v}_a| \le v_f$, it simply rides the smooth gradient of its most recent emissions and does not intersect the strong-field region behind it; when $|\mathbf{v}_a| > v_f$, it traverses the **shockwave** or **Cherenkov cone** formed by its earlier emission history. The relative motion through that region determines whether it brushes the gradient of other wakes, glances past the high-intensity locus, or plunges back through the dense wake it created earlier.
 
-#### 2.5.1 Wake Coherence and Relative Motion
+#### Wake Coherence and Relative Motion
 
 The local gradient of the wake defines three regimes:
 
@@ -1079,7 +1079,7 @@ The local gradient of the wake defines three regimes:
 
 The key point is that the Architrino is not “catching up to a discrete causal surface”; it is moving through a **continuous field gradient** whose intensity depends on how recently the particle passed nearby points in space. When $|\mathbf{v}_a|>v_f$, the gradient peaks ahead of the particle, and that peak is the high-intensity remnant of earlier emissions.
 
-#### 2.5.2 Traversing One's Own Wake (Self-Interaction)
+#### Traversing One's Own Wake (Self-Interaction)
 
 When the Architrino enters that cone left by its past motion, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
 
@@ -1093,7 +1093,7 @@ This occurs whenever the particle has exceeded $v_f$ in its history and subseque
 - **Memory:** Once the particle has generated a dense wake by briefly exceeding $v_f$, it continues to feel that wake even after it slows back below $v_f$, because the wake persists geometrically.
 - **Shockfront geometry:** The high-intensity locus resembles a sharp cone; traversing that cone is what produces the strong self-interaction effects that stabilize assemblies.
 
-#### 2.5.3 Maximum-Curvature Orbit (Wake-Stabilized Binaries)
+#### Maximum-Curvature Orbit (Wake-Stabilized Binaries)
 
 Opposite-charge binaries that remain in the sub-field-speed regime experience net positive tangential power from delayed partner interactions, which drives them into tighter spirals. As their speed climbs toward $c_f$, the wake crest straightens along their path, and the shock cone becomes sharply defined.
 
@@ -1109,7 +1109,7 @@ This wake-stabilized orbit:
 - Underpins stable particle assemblies (see TOC Ch. 11: "Noether Core")
 - Demonstrates the essential role of **continuous wake dynamics** (rather than discrete causal surface hits) in producing stable structures
 
-#### 2.5.4 Tri‑Binary Alignment and Planck‑Scale Framing
+#### Tri‑Binary Alignment and Planck‑Scale Framing
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), but its **radius and frequency vary**; it functions as the **energy-storage fulcrum** for transfers across the tri-binary.
 
@@ -1117,7 +1117,7 @@ As a tri-binary approaches an event horizon, the **outer binary frequency increa
 
 **Rule of thumb:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
 
-### 2.6 Reception Rule and Acceleration
+### Reception Rule and Acceleration
 
 Each Architrino possesses a **reception rule**: a law that converts incoming potential into acceleration. The rule is **universal** (all Architrinos follow the same law) but may admit **meta-stable branching** when multiple self-hit roots are available.
 
@@ -1156,7 +1156,7 @@ The total acceleration is summed over all sources and all causal emission times.
 
 ---
 
-### 2.7 Determinism and Causal Structure
+### Determinism and Causal Structure
 
 The architrino model is **deterministic in its laws**: given initial conditions (all Architrino positions and velocities at $t=t_0$), the future evolution is determined by the reception rule, with **meta-stable branching** where microstate-sensitive thresholds select among coexisting attractors.
 
@@ -1177,7 +1177,7 @@ When $|\mathbf{v}_a| > v_f$, individual Architrinos can outrun their own fields.
 2. Self-hit events, while non-local in configuration space, are still ordered in absolute time and cannot be used for backward signaling.
 3. The theory remains compatible with causality at the level of information and influence: no signal can propagate faster than $v_f$ between **distinct** architrinos.
 
-### 2.8 Absolute Rest and Stationary Frame
+### Absolute Rest and Stationary Frame
 
 A special and fundamental case arises when an Architrino is stationary with respect to absolute space, i.e., its velocity $\mathbf{v}_a = \mathbf{0}$.
 
@@ -1201,9 +1201,9 @@ While absolute rest is ontologically well-defined, the theory must ensure that *
 
 **Experimental Strategy (Sig):** If the Lorentz suppression mechanism is a physical interaction with the Noether Sea, there **must exist** a breakdown regime (high energy, strong field gradients, or near Black hole event horizonss) where Lorentz invariance cracks. Identifying observable signatures of this breakdown is a primary experimental target.
 
-## 3. The Physical Medium (Noether Sea / Spacetime Aether)
+## The Physical Medium (Noether Sea / Spacetime Aether)
 
-### 3.1 Void vs Vacuum Distinction
+### Void vs Vacuum Distinction
 
 **Critical Terminological Discipline:**
 
@@ -1242,7 +1242,7 @@ The Architrino framework distinguishes sharply between:
 ✅ **USE:** "Euclidean void" (substrate), "Noether Sea" / "Spacetime medium" / "Aether" (physical substance) 
 ❌ **AVOID:** "Vacuum" alone (ambiguous; connotes emptiness), "Curved space" (space itself is flat; only the medium's effective geometry curves)
 
-### 3.2 Ontological Status of the Noether Sea
+### Ontological Status of the Noether Sea
 
 **What is the Noether Sea?**
 
@@ -1266,6 +1266,8 @@ Each Noether core is itself a **tri-binary assembly**: three nested, counter-rot
 - **Effective permittivity/permeability**: Emergent electromagnetic constants $\epsilon_0$, $\mu_0$ arise from Noether Sea response to charge/current distributions
 - **Refractive index**: Variations in $\rho_{vac}$ cause variations in effective light speed $c_{\text{eff}} = c_f / n(\rho_{vac})$
 
+**Status of the magnetic field (AAA viewpoint):** The fundamental interaction kernel is **purely radial and delayed**; it contains no intrinsic velocity-cross-product term. “Magnetic field” is therefore **not a primitive substance** but a **pseudovector summary** that appears only after coarse-graining the geometry of overlapping delayed radial hits into an instantaneous, low-velocity approximation. The familiar $ \mathbf{v} \times \mathbf{B}$ term is the first-order side-effect of two geometric facts: (i) **aberration**—retarded line-of-action tilts by $O(v/c)$, producing a transverse component; (ii) **time-shear**—different parts of a moving/looped source are sampled at slightly different retarded times, so their radial pushes sum to a net circulation. Package those transverse pieces and you recover the Lorentz “magnetic” force. Binary coupling makes the effect coherent: two charges chasing each other keep a persistent retarded tilt, so the transverse components add up and look like magnetic binding, but nothing new is added to the fundamental law. All magnetic-like observables (moments, flux tubes, v×B forces) thus arise from the circulation and phase structure of delayed radial pushes in the Noether Sea. Keep the radial-with-delay law as the ontology; B is a bookkeeping device, not an independent field.
+
 **Edge-condition energy transfer (deterministic multistability):**  
 Even below the self-hit regime, energy transfer to/from a Noether core can pass through **threshold conditions** where multiple outcomes are dynamically accessible (transfer proceeds or stalls). Which outcome occurs is **deterministic but microstate-sensitive**: the local wake phase configuration from other architrinos can tip the system into one attractor or another. This is **meta-stable branching** without Many-Worlds or fundamental randomness.
 
@@ -1282,7 +1284,7 @@ Massive bodies (composed of architrino assemblies) increase the local density of
 
 All of these are **refractive effects** in the Noether Sea, not curvature of the void itself.
 
-### 3.3 Emergent Proper Time and Assembly Dynamics
+### Emergent Proper Time and Assembly Dynamics
 
 **Absolute Time vs Proper Time:**
 
@@ -1322,7 +1324,7 @@ recovering the familiar SR and weak-field GR time dilation formulas in appropria
 
 **Stability Concern (Alfa):** If atoms are assemblies in this Sea, the medium drag must **not** cause electron orbitals to decay. The stability condition must be robust: either (1) assemblies in equilibrium with the Sea experience zero net drag, or (2) internal binding forces exactly compensate Sea drag. This requires explicit demonstration.
 
-### 3.4 Cosmological Implications (Expansion, Dark Energy)
+### Cosmological Implications (Expansion, Dark Energy)
 
 **Hubble Expansion Reinterpreted:**
 
@@ -1357,9 +1359,9 @@ In the Architrino framework:
 
 **Cos:** "By eliminating the need for Dark Energy as a separate field—treating it as internal Sea pressure—we can potentially resolve the $H_0$ tension. The key words from Section 3.1: 'void doesn't expand; assemblies rescale' will be used verbatim in the expansion-mechanism chapter."
 
-## 4. The Observer Framework (Ontic vs Epistemic)
+## The Observer Framework (Ontic vs Epistemic)
 
-### 4.1 The Absolute Observer (AO)
+### The Absolute Observer (AO)
 
 **Definition:**
 
@@ -1408,7 +1410,7 @@ The existence of an absolute observer as a theoretical construct does **not** im
 
 If we accidentally use "absolute observer powers" in derivations of physical predictions (e.g., assuming instantaneous knowledge across space), we will predict Lorentz violations that falsify the model. All physically measurable quantities must be **local** and **causally accessible** to assembly-based observers.
 
-### 4.2 The Physical Observer (PO)
+### The Physical Observer (PO)
 
 **Definition:**
 
@@ -1476,7 +1478,7 @@ The key requirement is that **PO rulers and clocks must automatically Lorentz-co
 
 If this mechanism fails (e.g., if assemblies do not naturally contract), the theory predicts observable violations of Lorentz invariance, falsifying the model.
 
-### 4.3 Ontic vs Epistemic: The Two-Level Framework
+### Ontic vs Epistemic: The Two-Level Framework
 
 The Architrino theory operates on **two distinct levels**:
 
@@ -1509,7 +1511,7 @@ Many apparent "mysteries" of quantum mechanics and relativity dissolve when we r
 
 The gas molecules don't care about temperature; temperature is a coarse-graining. Similarly, architrinos don't care about "wavefunctions" or "spacetime curvature"—those are effective descriptions for Physical Observers.
 
-### 4.4 Simultaneity: Absolute (Ontic) vs Relative (Epistemic)
+### Simultaneity: Absolute (Ontic) vs Relative (Epistemic)
 
 **Absolute Simultaneity (Ontic):**
 
@@ -1543,11 +1545,11 @@ The Architrino framework is **not** in conflict with the empirical success of sp
 
 The absolute frame must be **undetectable** to POs at precision $<10^{-17}$ (see Lorentz suppression requirement). Any proposed experiment to "find the absolute frame" must fail due to automatic Lorentz contraction/dilation of the measuring apparatus.
 
-## 5. Terminology Discipline (Locked Definitions)
+## Terminology Discipline (Locked Definitions)
 
 To prevent semantic drift and maintain conceptual clarity, the following terminology is **mandatory** throughout all Architrino theory documents:
 
-### 5.1 Mandatory Terms (USE THESE)
+### Mandatory Terms (USE THESE)
 
 | **Term** | **Definition** |
 |:---------|:---------------|
@@ -1563,7 +1565,7 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 | **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly |
 | **Electrino / Positrino** | Negative / positive fundamental charge unit $\mp e/6$ |
 
-### 5.2 Deprecated Terms (AVOID THESE)
+### Deprecated Terms (AVOID THESE)
 
 | **Deprecated Term** | **Reason** | **Use Instead** |
 |:--------------------|:-----------|:----------------|
@@ -1574,7 +1576,7 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 | **Virtual Particle** | QFT jargon; unclear ontology | **Transient Assembly** / **Potential Fluctuation** (context-dependent) |
 | **Collapse** (wavefunction) | Implies discontinuous physical process | **Measurement Interaction** / **Decoherence** / **Effective Update** |
 
-### 5.3 Clarifications and Conventions
+### Clarifications and Conventions
 
 **"Emergence":**
 
@@ -1604,11 +1606,11 @@ Always clarify which level you're working at.
 - **Fundamental**: Architrino charge magnitude $|e/6|$.
 - **Effective**: Particle charges $0, \pm e/3, \pm 2e/3, \pm e$ (see TOC Ch. 18).
 
-## 6. Parameter Ledger (Foundation Level)
+## Parameter Ledger (Foundation Level)
 
 The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted parameters. This section defines **foundational parameters only**; assembly-scale and cosmological parameters are defined in subsequent chapters.
 
-### 6.1 Category A: Fundamental Postulates (Input Parameters)
+### Category A: Fundamental Postulates (Input Parameters)
 
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
@@ -1625,7 +1627,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 - $c_f$: **Postulated** (unit-setting; likely related to speed of light $c$)
 - $t$, $\delta_{ij}$: **Postulated** (kinematic background)
 
-### 6.2 Category B: Interaction Parameters (Scale Setters)
+### Category B: Interaction Parameters (Scale Setters)
 
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
@@ -1637,7 +1639,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 
 **Explanatory target:** Can $\kappa$ be derived from $\epsilon$, $c_f$, and Planck units, or must it be independently postulated?
 
-### 6.3 Category C: Assembly/Medium Parameters (Derived or Fitted)
+### Category C: Assembly/Medium Parameters (Derived or Fitted)
 
 | **Parameter** | **Symbol** | **Value / Status** | **Dimensional** | **Comment** |
 |:--------------|:-----------|:-------------------|:----------------|:------------|
@@ -1652,7 +1654,7 @@ The Parameter Ledger tracks all numerical inputs, derived quantities, and fitted
 - $R_{\text{inner}}$: **To be derived** from maximum-curvature analysis
 - $R_{\text{middle}}$, $R_{\text{outer}}$: **To be derived** from stability conditions
 
-### 6.4 Naturalness Assessment
+### Naturalness Assessment
 
 **Fine-Tuning Quotient (FTQ):**
 
@@ -1674,7 +1676,7 @@ where:
 - $\kappa$: **To be assessed** (depends on whether it can be derived)
 - $\rho_{vac}$: **Potentially fine-tuned** (zero-point energy; requires energy shielding mechanism; see TOC Ch. 31)
 
-### 6.5 Simulation Parameters (Computational Necessities)
+### Simulation Parameters (Computational Necessities)
 
 These parameters arise from the discretization and regularization that Sol applies when approximating the continuous path-history potential integral. They are **implementation choices**, not fundamental postulates of the ontology.
 
@@ -1688,11 +1690,11 @@ Sol approximates the **path-history integral** described in Section 2.4.5 by sam
 
 ---
 
-## 7. Open Ontological Questions
+## Open Ontological Questions
 
 The following questions remain open and are active areas of investigation:
 
-### 7.1 Fundamental Dynamics
+### Fundamental Dynamics
 
 1. **How are multiple self-hit roots resolved deterministically?**
  - When multiple self-hit roots exist, what is the deterministic selection rule (e.g., weighted sum over roots, phase-sensitive thresholding, or basin selection by microstate/wake phases)?
@@ -1706,7 +1708,7 @@ The following questions remain open and are active areas of investigation:
  - Is it related to Planck units? To $e$, $c_f$, $\hbar$?
  - Or is it an independent postulate?
 
-### 7.2 Quantum Interpretation
+### Quantum Interpretation
 
 4. **What is the ontological status of the wavefunction $\psi$?**
  - **Realistic**: $\psi$ is the coarse-grained potential field (physical).
@@ -1718,7 +1720,7 @@ The following questions remain open and are active areas of investigation:
  - Mechanism: Entanglement with Noether Sea degrees of freedom?
  - Is decoherence fundamental (irreversible in principle) or practical (reversible in principle but infeasible)?
 
-### 7.3 Symmetries and Conservation
+### Symmetries and Conservation
 
 6. **Does CPT hold?**
  - Standard proof requires local relativistic QFT; does the architrino framework preserve or violate CPT?
@@ -1728,7 +1730,7 @@ The following questions remain open and are active areas of investigation:
  - Or can protons decay via architrino reassembly at ultra-high energies?
  - Current bound: $\tau_p > 10^{34}$ years (Tier-1 constraint).
 
-### 7.4 Cosmology and Initial Conditions
+### Cosmology and Initial Conditions
 
 8. **Did the universe "begin," or is it eternal?**
  - Is there a $t = -\infty$ past, or a finite-age "Big Bang" event?
@@ -1738,7 +1740,7 @@ The following questions remain open and are active areas of investigation:
  - If the universe had a beginning, what determined the initial architrino distribution?
  - If eternal, how do we explain large-scale homogeneity and isotropy?
 
-### 7.5 Unification and Emergence
+### Unification and Emergence
 
 10. **Can all forces be unified geometrically?**
  - EM, weak, strong, gravity—all from tri-binary geometry and Noether Sea dynamics?
@@ -1746,9 +1748,9 @@ The following questions remain open and are active areas of investigation:
 
 ---
 
-## 8. Summary
+## Summary
 
-### 8.1 What This Document Establishes
+### What This Document Establishes
 
 This Foundational Ontology defines:
 

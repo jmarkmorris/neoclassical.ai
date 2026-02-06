@@ -1,4 +1,4 @@
-# 00.2.3.1 — Radial Fall to Fixed Center (Test Particle)
+# Radial Fall to Fixed Center (Test Particle)
 
 Setup:
 - A test Architrino with charge q′ falls radially toward a fixed center with charge q.

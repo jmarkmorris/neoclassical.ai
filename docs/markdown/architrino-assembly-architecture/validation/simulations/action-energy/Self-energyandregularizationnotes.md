@@ -1,12 +1,12 @@
-# 00.2.A — Self-energy and regularization notes
+# Self-energy and regularization notes
 
 Purpose: explain why classical “point-charge self-energy” divergences do not arise in this framework, and summarize the role of measure-valued causal surfaces, the H(0)=0 convention, and $\eta$-mollification.
 
-## 1) Classical self-energy pathology (contrast)
+## Classical self-energy pathology (contrast)
 
 In classical electrostatics, a static 1/r potential yields an electric field E ∝ 1/r² with energy density ∝ |E|² ∝ 1/r⁴. Integrating 1/r⁴ over a ball produces a divergent ∫(1/r²)dr near r→0, the textbook “infinite self-energy of a point charge.” This is an artifact of modeling the source as an enduring, everywhere-filled near field.
 
-## 2) Why the divergence is absent here
+## Why the divergence is absent here
 
 This project does not posit a static near field. Instead:
 
@@ -26,7 +26,7 @@ This project does not posit a static near field. Instead:
 
 Net effect: the canonical ontology (moving surface measures, H(0)=0, mollification for analysis) avoids the classical point-charge self-energy divergence by construction.
 
-## 3) Practical guidance (numerics and analysis)
+## Practical guidance (numerics and analysis)
 
 - Choose $\eta$ small relative to local geometry (path curvature radius, inter-source spacing) for smooth ODE integration; verify $\Delta$E_k = −$\Delta$U on resolved windows.
 - Calibrate $\kappa$ using stationary/slow benchmarks (Method 2) and use the event-driven law (Method 3) for many-body dynamics; no per-hit emitter-speed amplitude weighting is introduced.

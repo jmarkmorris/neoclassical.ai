@@ -14,16 +14,16 @@
 
 ### PPN Parameters and the Euclidean Anchor
 
-#### 1. Parameter $\gamma$ (Space Curvature / Refraction)
+#### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
 * **Architrino Interpretation:** Measures the "Refractive Index" of the Sea of Noether Cores. A massive body increases local assembly density, slowing the effective speed of light $c$ relative to the field speed $c_f$.
 * **Observable:** Shapiro delay (Cassini probe data) requires $\gamma = 1 \pm 2.3 \times 10^{-5}$. Our simulation must show that the potential gradient $\nabla\Phi$ in the Noether Sea produces exactly this refractive slowing.
 
-#### 2. Parameter $\beta$ (Non-linearity of Gravity)
+#### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
 * **Architrino Interpretation:** Relates to the "Self-Hit" contribution of mass-assemblies and the non-linear density response of the Noether Core sea.
 * **Observable:** Perihelion precession of Mercury. 
 
-#### 3. Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
+#### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial Test:** These must be identically zero in our framework’s effective limit to satisfy LLR (Lunar Laser Ranging) and pulsar timing data.
 * **Strategy:** Use the Absolute Observer to quantify any "leakage" of the Euclidean rest frame into the PPN formalism.

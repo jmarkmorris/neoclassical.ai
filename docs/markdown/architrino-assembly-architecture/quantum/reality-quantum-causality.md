@@ -10,14 +10,14 @@
 
 **Blanket hypothesis:** All claims in this chapter are asserted within the architrino framework and reflect our current best understanding unless explicitly labeled otherwise.
 
-## 1. Reality: Absolute vs Operational
+## Reality: Absolute vs Operational
 
 Let’s keep a clean separation between:
 
 - **Absolute level**: Euclidean void + absolute time; architrinos with definite trajectories and wakes at speed $c_f$.
 - **Emergent/operational level**: What assemblies (atoms, detectors, instruments) “see” in terms of quantum statistics, effective light cones, etc.
 
-### 1.1 Absolute Picture
+### Absolute Picture
 
 At the absolute level, any local neighborhood is crowded:
 
@@ -36,7 +36,7 @@ At the absolute level, any local neighborhood is crowded:
 
 “Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
-### 1.2 Operational Picture
+### Operational Picture
 
 At the emergent level:
 
@@ -56,9 +56,9 @@ Two clarifications matter here:
 
 ---
 
-## 2. Causality: Absolute vs Emergent
+## Causality: Absolute vs Emergent
 
-### 2.1 Absolute Causality
+### Absolute Causality
 
 At the fundamental level:
 
@@ -73,7 +73,7 @@ At the fundamental level:
 
 There is **no backward-in-$t$ influence**. The absolute-time ordering is strictly causal.
 
-### 2.2 Emergent Acausality and Stealth Effects
+### Emergent Acausality and Stealth Effects
 
 From the viewpoint of an embedded assembly:
 
@@ -100,9 +100,9 @@ So causality is **unbroken** at the substrate, but **opaque** and sometimes misl
 
 ---
 
-## 3. Determinism, Multistability, and Chaos
+## Determinism, Multistability, and Chaos
 
-### 3.1 Metastability and Threshold Crossings
+### Metastability and Threshold Crossings
 
 At the assembly level (tri-binaries, atoms, etc.):
 
@@ -119,7 +119,7 @@ At the assembly level (tri-binaries, atoms, etc.):
   - Slightly above $c_f$: another regime (e.g., a response on the order of a $2h$-scale action increment per cycle, phenomenological; self-hit-amplified).
   - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
 
-#### 3.1.1 Threshold Structure Guide (Plain-Language Labels)
+#### Threshold Structure Guide (Plain-Language Labels)
 
 We use "threshold" and "separatrix" in several regimes. A separatrix is a boundary between basins of attraction in phase space. The table below gives a plain-language boundary description and the typical dynamical-systems term used in models (in parentheses). It is a classification guide, not a proof of global topology.
 
@@ -132,7 +132,7 @@ We use "threshold" and "separatrix" in several regimes. A separatrix is a bounda
 
 Where the exact topology is not proven, we use "-like" and treat the label as a structural analogy.
 
-#### 3.1.2 Schematic Self‑Hit Threshold Dynamics (Toy Model)
+#### Schematic Self‑Hit Threshold Dynamics (Toy Model)
 
 Status: This is a toy delay‑oscillator model chosen to illustrate how a control parameter ($v/c_f$) can change stability; the mapping to exact $h$‑scale increments is heuristic, not derived.
 
@@ -161,7 +161,7 @@ As $g(\beta)$ crosses a critical value $g_c$, an eigenvalue crosses $\Re(\lambda
 
 This schematic shows how **$v \approx c_f$ defines a bifurcation surface** in a reduced phase space: the self‑hit feedback term activates and changes the stability of the local orbit. A full derivation and numerical phase‑portrait mapping would require the full delay‑kernel of the master equation and is handled in the dynamics notes.
 
-### 3.2 Chaos and Effective Unpredictability
+### Chaos and Effective Unpredictability
 
 Because:
 
@@ -185,11 +185,11 @@ Operationally, we still use probabilities (Born rule, half-lives) because that i
 
 ---
 
-## 4. Agency and Decision
+## Agency and Decision
 
 Here I’ll sharpen this in terms of **minimal structural/dynamical conditions** for an assembly (or super‑assembly) to *decide* its response—either leveraging incoming **large‑deviation wake peaks** (≥ 3σ constructive interference above the local noise floor) or effectively ignoring them.
 
-### 4.1 Definition of Decision
+### Definition of Decision
 
 **Canonical Working Definition (Agency/Decision):** An assembly “decides” between outcomes when (i) multiple attractors are dynamically accessible, and (ii) its internal slow variables deterministically modulate the basins of attraction so that, for a given class of inputs, different internal states lead to different realized attractors.
 
@@ -200,7 +200,7 @@ We keep everything strictly dynamical:
 
 So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
 
-### 4.2 Justification for the Canonical Definition
+### Justification for the Canonical Definition
 
 This chapter's stance on determinism and agency follows directly from the core dynamics. (This matches the canonical determinism/branching/agency definitions in `foundations/ontology.md`, §4.x.)
 
@@ -211,7 +211,7 @@ This chapter's stance on determinism and agency follows directly from the core d
 
 These points motivate the canonical definition of determinism, branching, and agency in `foundations/ontology.md` (see canonical definition).
 
-### 4.3 Position Summary
+### Position Summary
 
 **No assembly has "free will" in the libertarian sense** (the ability to violate physical law or act without prior cause).
 
@@ -219,7 +219,7 @@ These points motivate the canonical definition of determinism, branching, and ag
 
 The confusion arises because "free will" is a philosophically loaded term with multiple incompatible definitions. Let me clarify what the architrino framework actually allows.
 
-### 4.4 Determinism in This Framework
+### Determinism in This Framework
 
 In the architrino framework:
 - Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
@@ -228,7 +228,7 @@ In the architrino framework:
 
 **So in the strict metaphysical sense:** The universe is a lawful machine. Rewind the tape (with identical microstate and wake phases), replay it, get exactly the same outcome—even though outcomes can be **multistable** at thresholds.
 
-### 4.5 Interpretation of Decision
+### Interpretation of Decision
 
 The **Decider** (a bias‑setting complex) is **not** a claim of magical free will. It is a **dynamical capacity** that certain architectures can possess.
 
@@ -246,7 +246,7 @@ The **Decider** (a bias‑setting complex) is **not** a claim of magical free wi
 
 **This is deterministic navigation**, not libertarian free will.
 
-### 4.6 Requirements (Expanded)
+### Requirements (Expanded)
 
 I see at least **five** necessary ingredients.
 
@@ -350,7 +350,7 @@ This is what makes the assembly a **selector of its own future sensitivity**, no
 
 ---
 
-### 4.7 Leveraging vs Ignoring (Worked Interpretation)
+### Leveraging vs Ignoring (Worked Interpretation)
 
 With these five pieces:
 
@@ -369,13 +369,13 @@ From the outside, that difference looks like a **change of policy**: “now resp
 
 That is the minimal sense in which an assembly **decides its response** in this deterministic architrino framework.
 
-### 4.8 Philosophical Implications (Appendix C)
+### Philosophical Implications (Appendix C)
 
 The extended discussion of internal/external causation, functional agency, and compatibilist framing has been moved to **Appendix C** to keep the main narrative focused on dynamical mechanisms.
 
 ---
 
-### 4.15 Core Reinterpretations of Quantum Language
+### Core Reinterpretations of Quantum Language
 
 These are the four points where architrino theory **explains** standard quantum interpretations in terms of explicit dynamical mechanisms. They are foundational to the framework, not commentary.
 
@@ -425,7 +425,7 @@ These are the four points where architrino theory **explains** standard quantum 
 
 ---
 
-### 4.15.5 Operational Mapping (Phenomenological)
+### Operational Mapping (Phenomenological)
 
 Below is an explicit **operational dictionary** linking the QM formal step to architrino micro‑dynamics. This is not a full derivation; it is a **phenomenological mapping** that clarifies what is meant by each claim and where it could, in principle, diverge in experiment.
 
@@ -455,7 +455,7 @@ Below is an explicit **operational dictionary** linking the QM formal step to ar
 
 ---
 
-### 4.16 Historical Note (1875–present): From Operational Success to Ontological Drift
+### Historical Note (1875–present): From Operational Success to Ontological Drift
 
 If architrino theory is correct, the last 150 years look like this:
 
@@ -467,11 +467,11 @@ If architrino theory is correct, the last 150 years look like this:
 
 ---
 
-## 5. Decider: Minimal Bias-Setting Complex
+## Decider: Minimal Bias-Setting Complex
 
 To build an assembly that can **decide**-meaning it can dynamically alter its own probability of transition in response to external inputs-we need to move beyond a single atom and construct a **Decider** (a minimal bias‑setting complex). This is the smallest assembly complex that can **make a decision and set a bias**.
 
-### 5.0 Minimality Lens (Fewest-Architrino Candidates)
+### Minimality Lens (Fewest-Architrino Candidates)
 
 One way to classify the evolution of mechanism is by **fewest architrinos** required to implement a function. This is only **one** classifier; others include assembly depth (single element vs network), threshold type, and energy budget. Under the minimality lens we currently have two candidate mechanisms:
 
@@ -480,7 +480,7 @@ One way to classify the evolution of mechanism is by **fewest architrinos** requ
 
 Here is the engineering architecture for that candidate minimal **Decider** based on the Tri‑Binary physics we have established.
 
-### 5.1 Architecture
+### Architecture
 
 To achieve the ability to leverage or ignore **large‑deviation wake peaks** (≥ 3σ constructive interference above the local noise floor), the system needs three distinct functional components:
 
@@ -490,7 +490,7 @@ To achieve the ability to leverage or ignore **large‑deviation wake peaks** (�
 
 ---
 
-### 5.2 Mechanism 1: Bias Control (Amplitude Tuning)
+### Mechanism 1: Bias Control (Amplitude Tuning)
 
 This is the most direct method to toggle between **leveraging** and **ignoring** (see 4.7 for the full conceptual framing). A bias unit adjacent to the target assembly shifts the target’s middle‑binary threshold:
 
@@ -501,7 +501,7 @@ The **decision** is the bias configuration held by the assembly at that moment.
 
 ---
 
-### 5.3 Mechanism 2: Frequency Matching (Resonance Tuning)
+### Mechanism 2: Frequency Matching (Resonance Tuning)
 
 Instead of changing the threshold amplitude, the assembly changes *what* it listens to.
 
@@ -520,7 +520,7 @@ The Outer Binary is an oscillator. It absorbs energy most efficiently when the i
 
 ---
 
-### 5.4 Mechanism 3: Geometric Gating (Spatial Tuning)
+### Mechanism 3: Geometric Gating (Spatial Tuning)
 
 Architrino wakes are vector fields—they have directionality.
 
@@ -535,7 +535,7 @@ A Middle Binary is planar (or toroidal). It is most sensitive to potential impac
 
 ---
 
-### 5.5 Cost of Decision (Thermodynamics)
+### Cost of Decision (Thermodynamics)
 
 **Red** insists we mention the cost:
 None of this is free. To move the Bias Unit, shift the frequency, or precess the axis requires **work**.
@@ -543,7 +543,7 @@ None of this is free. To move the Bias Unit, shift the frequency, or precess the
 *   **Agency = Energy dissipation.** You pay energy to change your sensitivity distribution.
 *   You "invest" energy in the Bias Unit to lower the threshold, hoping that the peak you catch will yield a payout (information or energy) greater than the cost of tuning.
 
-### 5.6 Summary
+### Summary
 
 To build a system that decides:
 1.  **Construct a Decider** containing a **Switch core** (metastable tri‑binary).
@@ -556,7 +556,7 @@ This transforms the assembly from a passive rock being battered by waves into a 
 
 ---
 
-## 6. Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)
+## Switch: Minimum Viable Atomic Hardware (He‑Rb‑He)
 
 ### 6A General Architecture for Threshold Control
 
@@ -575,7 +575,7 @@ Here is the specific bill of materials and the rationale based on the architectu
 
 ---
 
-### 6.1 Hardware: Rydberg He‑Rb‑He Assembly
+### Hardware: Rydberg He‑Rb‑He Assembly
 
 To build the minimal **Switch**, I recommend:
 
@@ -595,7 +595,7 @@ To build the minimal **Switch**, I recommend:
 
 ---
 
-### 6.2 Switch Mechanism
+### Switch Mechanism
 
 We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$.
 
@@ -613,7 +613,7 @@ We form a **linear or triangular molecule**: $\text{He} - \text{Rb} - \text{He}$
 
 ---
 
-### 6.3 Why Three Atoms?
+### Why Three Atoms?
 
 Geometric heuristic: you need 3 because **2 points form a line, but 3 points form a geometry.**
 *   With 2 atoms, you only have distance (1 degree of freedom).
@@ -621,7 +621,7 @@ Geometric heuristic: you need 3 because **2 points form a line, but 3 points for
 *   **Symmetry Breaking:** A linear molecule ($\text{He-Rb-He}$) has high symmetry. If you bend it ($\angle < 180^\circ$), you break that symmetry. This geometric symmetry breaking maps directly to the **Middle Binary's velocity threshold**.
 *   **Minimum Complexity:** A single atom has fixed energy levels. A diatomic molecule has fixed bonds. A **triatomic cluster** is the simplest system that supports **mode crossings** in its potential energy surface (analogous to conical intersections in molecular physics)—regions where the distinction between states vanishes and "decision" (bifurcation) becomes physically possible (see 3.1.1).
 
-### 6.4 Summary
+### Summary
 
 This Switch executes a bias into a physical state change. It is not a full **Decider**; it is the minimal **bias‑to‑state** mechanism. The Decider that sets the bias sits upstream (Section 5).
 
@@ -631,7 +631,7 @@ Change the squeeze, and you change whether you are listening to the noise or ign
 
 ---
 
-### 6.5 Architrino Count (Current Estimate)
+### Architrino Count (Current Estimate)
 
 Using the working counts (12 architrinos per electron, 36 per nucleon):
 
@@ -643,7 +643,7 @@ If the Rb is ionized, subtract **12** per missing electron.
 
 **Caveat:** This is the smallest self‑contained **Switch** we can explicitly calculate at present. There may be architectures with fewer architrinos that still implement a threshold decision, but we have not derived them yet.
 
-## 7. Suggested Refinements
+## Suggested Refinements
 
 1. **Natural Selection of States**
    - We should formalize the "filtering" mechanism where highly reactive linear stealth states are eliminated, leaving only the stable orbital/corkscrew states (middle binaries). This provides a physical reason for the stability of observed matter.

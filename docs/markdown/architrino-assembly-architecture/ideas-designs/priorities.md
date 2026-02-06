@@ -1,18 +1,24 @@
-# ** new assessments of priorities at the moment go here.  prune later entries as I see fit.
-
-The priority is the dynamics/math/geometry and the mapping.
+# ** The priority is the dynamics/math/geometry and the mapping**
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
-- look for rapid hits - ckm matrix?
-- work on quantum numbers again (where is that). Leverage MIT Kaiser 22
-- math/geometry/dynamics are huge
+  - work on scene builder.
+  - a language for describing animations 
+  - every scene will be ported to this format
 
+- work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
 
+- finish topology (where is it) su(3)su(2)o(1)
+
+- what is the smallest assembly that can make a decision
+- are there any rapid hits
+  - ellipsoid to GR
+  - koide
+  - planck
+  - 1 2 4
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
-- sim2rewrite.md has ideas for importing this software (redeveloping)
-- mine material from wordpress for key areas
-- finish topology (where is it)
+- sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
+- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - PDG solver
   - provenance
   - diagrams
@@ -21,28 +27,18 @@ The priority is the dynamics/math/geometry and the mapping.
   - look into madgraph for reactions as well
 - periodic table of the standard model
 - what about the charts I made showing the bootstrap of knowledge.
-- what is the smallest assembly that can make a decision
-- ai assembly language
-- review all my entourage docs
-- read lorentz-aether and integrate it with ellipsoid
-- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - continue the ellipsoid work, aiming to understand time
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
-- make a web page that genrates a live toc, cross-referenres, and glossary?
-- can we now pin down the radius of gen II - yes at the Planck scale?
-- once a single dipole reaches max curvature then it has a chance to link up with others and become a bubble that inflates?
-and now all three orbits are stable 'circular' in an abstract sense given precession and perturbation. 
-there are stable orbits at each h-bar
-- so the Noether core must self stabilize itself. Gen II = field speed. Does the inner binary float or stay at the minimum?  It is probably the main source and sync of energy.  So the symmetry breaking point. It operates like a gear.
-- It takes a full h or h-bar internally which is two h or h-bar. (check).
+- mine material from wordpress for key areas
+- make a web page that generates a live toc, cross-referenres, and glossary?
+there are stable orbits at each h
 - is the lack of one of the neutrino chiralities due to converting a pro-Noether core?
 - look at what I wrote on the equivalence principal. does it make sense? 
-- ask ai how we get indeterminism?  we have local multideterminism, .... how
 
 - double click pins vscode tab
 - link a markdown file [text](../prototype/markdown/file). Add note to system prompts.
 - one H1 heading per md
-- set up 4 level branch in git
+- branches are now alpha beta gamma delta omega in git
 - og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a
 - attempt to understand open ai billing
 - get a mac mini when the m5 comes out
@@ -75,19 +71,13 @@ there are stable orbits at each h-bar
 
 ---
 
-## 3. **Charge Quantization from Tri-Binary Topology (Conceptual Clarity)**
+## **Charge Quantization from Tri-Binary Topology (Conceptual Clarity)**
 **Why critical:** We *postulate* |e/6| but claim tri-binary geometry *explains* it. If we cannot show why only 0, ±e/3, ±2e/3, ±e are stable (and nothing else), this looks like fine-tuning dressed up as explanation.
-
-**Who:** Dyna + Phe + Alfa (decoration pattern → charge stability map)
 
 ---
 
-## 4. **Ontological Coherence Audit**
+## **Ontological Coherence Audit**
 **Why critical:** We're mixing frameworks (absolute time + emergent Lorentz, discrete architrinos + continuous fields, deterministic multistability + effective quantum randomness). We need a **single coherent story** that doesn't collapse under scrutiny. Are we substantivalist or emergentist? Is the wavefunction real or epistemic? These aren't optional—they determine what predictions mean.
-
-**Who:** Phil (me) + Red + entire team (quarterly review)
-
-
 
 ---
 
@@ -102,22 +92,22 @@ codex
   ---
 
 
-### 2. The Chirality Crisis: Deriving Parity Violation
+### The Chirality Crisis: Deriving Parity Violation
 **Why:** The Standard Model is chiral; the Weak force only talks to left-handed fermions. Euclidean geometry is naturally parity-symmetric. This is our biggest phenomenological trap.
 *   **The Task:** I need Dyna to show me how the **handedness of the binary spirals** creates a geometric selection rule that mimics the $V-A$ (Vector minus Axial) coupling of the Weak interaction.
 *   **The Hard Wall:** If our model predicts that right-handed neutrinos interact via the $W$ boson with the same strength as left-handed ones, we are falsified by experiments from the 1950s.
 
-### 3. Deriving Alpha ($\alpha$) and the Coupling Constants
+### Deriving Alpha ($\alpha$) and the Coupling Constants
 **Why:** In the SM, couplings ($\alpha_{EM} \approx 1/137$, $\alpha_S$, $G_F$) are inputs. We claim to be fundamental; therefore, we must **derive** them, or at least show they emerge naturally from the geometry.
 *   **The Task:** Calculate the electromagnetic coupling strength from the architrino charge $\epsilon = e/6$, the field speed $c_f$, and the tri-binary radius/frequency.
 *   **The Hard Wall:** If our derived $\alpha$ is off by orders of magnitude (e.g., 0.1 instead of 0.007), or if we have to fine-tune $\kappa$ arbitrarily to make it fit, we lose "naturalness."
 
-### 4. Emergent Lorentz Invariance (Mechanical)
-**Why:** I cannot calculate a particle lifetime, a scattering cross-section, or a decay rate without the Lorentz factor $\gamma$. Phil and Cos care about this for gravity; I care about it for **particle physics**.
+### Emergent Lorentz Invariance (Mechanical)
+**Why:** I cannot calculate a particle lifetime, a scattering cross-section, or a decay rate without the Lorentz factor $\gamma$. Camiand Cos care about this for gravity; I care about it for **particle physics**.
 *   **The Task:** I need the derivation that shows a fast-moving tri-binary mechanically contracts and dilates.
 *   **The Hard Wall:** If I calculate the muon lifetime and it doesn't dilate exactly as $\tau = \tau_0 \gamma$, then High Energy Physics data kills us instantly. I am dependent on Dyna and Sol to prove this mechanism works so I can use it in my Lagrangian.
 
-### 5. From Determinism to Cross-Sections (The Born Rule)
+### From Determinism to Cross-Sections (The Born Rule)
 **Why:** Experimentalists measure scattering cross-sections (probabilities). Our theory is deterministic but **meta-stable** at thresholds (trajectories with multistable outcomes). I need the bridge.
 *   **The Task:** Show how the **informational ambiguity** of the receiver (as detailed in the Master Equation) leads to the probabilistic Born Rule ($P \propto |\psi|^2$).
 *   **The Hard Wall:** If our simulation of $e^+e^-$ scattering produces a pattern that deviates from the QED prediction (e.g., no interference fringes in the equivalent of a double-slit, or wrong angular distribution), we cannot claim to reproduce Quantum Mechanics.

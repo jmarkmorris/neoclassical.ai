@@ -12,9 +12,9 @@ The key insight: **Files are nodes, directories are conceptual clusters, and exp
 
 ---
 
-## 1. Core Design Principles
+## Core Design Principles
 
-### 1.1 Files as Network Nodes
+### Files as Network Nodes
 - Each markdown file is a **semantic unit** (concept, mechanism, test, or claim)
 - Files contain metadata for network navigation
   - **Concept level** (foundational / architectural / phenomenological / applied)
@@ -22,12 +22,12 @@ The key insight: **Files are nodes, directories are conceptual clusters, and exp
   - **Related concepts** (lateral connections)
   - **Empirical anchors** (which experiments/observations constrain this)
 
-### 1.2 Directories as Conceptual Neighborhoods
+### Directories as Conceptual Neighborhoods
 - Directories group **thematically related nodes**
 - Not strict hierarchy—files can link across directories freely
 - Directory structure optimizes **discovery** ("I'm interested in cosmology—where do I start?")
 
-### 1.3 Multiple Navigation Paths
+### Multiple Navigation Paths
 - **Linear path** (textbook TOC): Defined in `TOC.md` as ordered list
 - **Hierarchical path** (concept tree): Defined by frontmatter `level` and `parent` fields
 - **Network path** (graph): Defined by frontmatter `related` and `dependencies` fields
@@ -35,7 +35,7 @@ The key insight: **Files are nodes, directories are conceptual clusters, and exp
 
 ---
 
-## 3.  Directory Structure (Network-Optimized)
+## Directory Structure (Network-Optimized)
 
 ```
 architrino-assembly-architecture/

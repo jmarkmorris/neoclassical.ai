@@ -4,14 +4,14 @@
 
 ---
 
-## 1. The Mass Hypothesis: Inertia as Medium Interaction
+## The Mass Hypothesis: Inertia as Medium Interaction
 
-### 1.1 Core Thesis
+### Core Thesis
 In the architrino framework, **mass is not a fundamental property** of individual architrinos. There is no intrinsic "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass—**inertial resistance to acceleration**—emerges from the interaction between assemblies and the surrounding **Noether Sea** (the spacetime medium composed of neutral tri-binary assemblies).
 
 **Mass is coupling to spacetime assemblies.**
 
-### 1.2 The Two-Component Mechanism
+### The Two-Component Mechanism
 
 Apparent inertial mass arises from two intertwined effects:
 
@@ -33,14 +33,14 @@ Apparent inertial mass arises from two intertwined effects:
   $$
 - **Environment Dependence:** Local variations in Noether Sea density $\rho_{\text{vac}}(\mathbf{x})$ modulate the drag. In regions of higher vacuum density (e.g., near massive objects), the effective inertia increases.
 
-### 1.3 Stability Constraint
+### Stability Constraint
 A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbits) must experience **zero net drag**. Otherwise, electron orbitals would decay, radiating energy and collapsing into the nucleus (classical electron catastrophe).
 
 **Resolution Hypothesis:**
 - Stable configurations (e.g., bound states at specific radii and frequencies) are those where the assembly's internal dynamics are **phase-locked** with the surrounding sea oscillations, creating a resonance that cancels net drag.
 - This is analogous to superconductivity or superfluidity: below a critical energy threshold, the medium presents zero resistance.
 
-### 1.4 Ontological Distinctions
+### Ontological Distinctions
 It is crucial to clarify what is **fundamental** versus what is **emergent**:
 
 | Concept | Status in Architrino Framework |
@@ -51,7 +51,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | **Inertial Mass ($m$)** | **Emergent** (shielding + drag) |
 | **Gravitational Mass** | **Emergent** (Noether Sea gradient response) |
 
-### 1.5 Comparison to Standard Model
+### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
 In the Architrino Framework:
@@ -61,7 +61,7 @@ In the Architrino Framework:
 
 ---
 
-## 2. Research Plan: From Hypothesis to Calculation
+## Research Plan: From Hypothesis to Calculation
 
 To advance from qualitative hypothesis to quantitative mass predictions, we must complete the following stages.
 
@@ -177,14 +177,14 @@ To advance from qualitative hypothesis to quantitative mass predictions, we must
 
 ---
 
-## 3. Open Questions & Failure Modes
+## Open Questions & Failure Modes
 
-### 3.1 Critical Unknowns
+### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
 2. **Is $\rho_{\text{vac}}$ uniform?** Or does it vary with cosmological epoch, gravitational field strength, or local matter density?
 3. **Why do neutrinos have mass at all?** If shielding is nearly perfect ($\zeta \sim 10^{-12}$), what breaks the exact cancellation?
 
-### 3.2 Potential Falsifications
+### Potential Falsifications
 - **If $\zeta E_{\text{internal}} \neq m c^2$:** The shielding hypothesis is wrong.
 - **If drag causes orbital decay in atoms:** The stability condition fails; the model is incompatible with chemistry.
 - **If generational masses don't scale with shielding:** The "missing binary" explanation for the hierarchy is wrong.

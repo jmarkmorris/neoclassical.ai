@@ -13,37 +13,37 @@
       "id": "composer_tree",
       "label": "Scene Tree",
       "radius": 1.1,
-      "color": "#8fa7ff"
+      "color": "#243d8f"
     },
     {
       "id": "composer_path",
       "label": "Path Editor",
       "radius": 1.1,
-      "color": "#f5c982"
+      "color": "#2f6b6f"
     },
     {
       "id": "composer_orbit",
       "label": "Orbit Editor",
       "radius": 1.1,
-      "color": "#7ee0d7"
+      "color": "#5a1f2e"
     },
     {
       "id": "composer_interactions",
       "label": "Interactions",
       "radius": 1.1,
-      "color": "#d7a6ff"
+      "color": "#4b0082"
     },
     {
       "id": "composer_preview",
       "label": "Preview",
       "radius": 1.1,
-      "color": "#9fe7a4"
+      "color": "#3a5f9f"
     },
     {
       "id": "composer_export",
       "label": "Export / Validate",
       "radius": 1.1,
-      "color": "#f29aa0"
+      "color": "#2f4f7a"
     }
   ]
 }

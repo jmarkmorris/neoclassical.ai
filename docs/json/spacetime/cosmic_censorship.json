@@ -9,7 +9,7 @@
   "objects": [
     {
       "id": "holography",
-      "label": "Holography",
+      "label": "Cosmic Censorship and Holography",
       "radius": 1.6,
       "color": "#3a5f9f",
       "position": [
@@ -17,6 +17,9 @@
         0.0,
         0.0
       ],
+      "markdownPath": "markdown/architrino-assembly-architecture/philosophy-history/theory-mapping.md",
+      "markdownSection": "Cosmic Censorship / Holographic Principle / AdS-CFT",
+      "markdownColumns": 1,
       "subScenes": [],
       "motion": {
         "type": "fixed"

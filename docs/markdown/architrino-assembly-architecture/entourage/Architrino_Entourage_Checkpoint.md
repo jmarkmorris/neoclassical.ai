@@ -53,7 +53,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 *These axioms are **settled law** for this research program. The new instance must accept them as foundational. Do not re-litigate unless Marko explicitly requests reconsideration.*
 
-### 1. The Substrate (Fundamental Arena)
+### The Substrate (Fundamental Arena)
 
 **Space:**  
 - **Euclidean 3D void** ($\mathbb{R}^3$): Fixed, continuous, unmoving container.  
@@ -79,7 +79,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 ---
 
-### 2. The Physical Medium (Spacetime Implementation)
+### The Physical Medium (Spacetime Implementation)
 
 **Structure:**  
 - Space is **not** empty. It is filled with a **"Sea of Noether Cores"**: coupled pro/anti tri-binary assemblies forming a dense, dynamic lattice.  
@@ -108,7 +108,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 ---
 
-### 3. Fundamental Entity (Architrino)
+### Fundamental Entity (Architrino)
 
 **Definition:**  
 - Point transmitter/receiver of **polarized potential**.  
@@ -138,7 +138,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 ---
 
-### 4. Assembly Architecture (Tri-Binary Hypothesis)
+### Assembly Architecture (Tri-Binary Hypothesis)
 
 **Primitive Stable Unit:**  
 - **Binary**: Electrino + positrino in mutual orbit. Isolated, they spiral toward each other but avoid singularity via self-hit at $v > c_f$.  
@@ -164,7 +164,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 ---
 
-### 5. Terminology Discipline (Locked Vocabulary)
+### Terminology Discipline (Locked Vocabulary)
 
 **To prevent semantic drift and preserve conceptual clarity:**
 
@@ -194,7 +194,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 ## II. THE OPERATING SYSTEM (Workflow & Governance)
 
-### 1. Consolidated Stub Notes (CSN) Protocol
+### Consolidated Stub Notes (CSN) Protocol
 
 **Problem:**  
 - Entourage cannot directly edit repo files.  
@@ -228,7 +228,7 @@ This protocol is active **until Entourage gains direct repo write access**.
 
 ---
 
-### 2. Parameter Ledger (Always Maintained)
+### Parameter Ledger (Always Maintained)
 
 **Categories:**
 
@@ -262,7 +262,7 @@ This protocol is active **until Entourage gains direct repo write access**.
 
 ---
 
-### 3. Governance & Decision Rules
+### Governance & Decision Rules
 
 **Tier-1 Constraint Violations (Immediate Red Team Review):**  
 If any of these fail, **freeze upstream claims** and initiate full-team deliberation:  
@@ -298,7 +298,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 *If any of these checks fail, the theory is falsified or requires major revision. Red Team monitors these continuously.*
 
-### 1. **Lorentz Suppression (Preferred-Frame Invisibility)**
+### **Lorentz Suppression (Preferred-Frame Invisibility)**
 
 **Requirement:**  
 - The absolute frame (Euclidean void + absolute time $t$) must be **empirically invisible** at accessible energies and weak gradients.  
@@ -322,7 +322,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 ---
 
-### 2. **Shapiro Delay (Gravitational Time Delay)**
+### **Shapiro Delay (Gravitational Time Delay)**
 
 **Requirement:**  
 - Signal propagation slowing in presence of massive bodies must match GR prediction to PPN accuracy.
@@ -345,7 +345,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 ---
 
-### 3. **Gravitational Wave Speed**
+### **Gravitational Wave Speed**
 
 **Requirement:**  
 - Ripples in Noether Sea (gravitational waves) must propagate at effective light speed $c$.
@@ -370,7 +370,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 ---
 
-### 4. **Charge Quantization**
+### **Charge Quantization**
 
 **Requirement:**  
 - Only specific charges ($0, \pm e/3, \pm 2e/3, \pm e$) are stable.  
@@ -396,7 +396,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 ---
 
-### 5. **Equivalence Principle (EP)**
+### **Equivalence Principle (EP)**
 
 **Requirement:**  
 - Inertial mass = gravitational mass to precision $|\Delta m/m| < 10^{-13}$ (MICROSCOPE satellite).
@@ -418,7 +418,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 ---
 
-### 6. **Proton Stability**
+### **Proton Stability**
 
 **Requirement:**  
 - Lifetime $\tau_p > 10^{34}$ years (Super-Kamiokande bound).
@@ -442,7 +442,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 ## IV. CURRENT PROJECT STATE
 
-### 1. Accomplishments (What We've Established)
+### Accomplishments (What We've Established)
 
 **Foundational Ontology:**  
 - **Absolute Observer (AO) codified**: Clear distinction between simulation ground truth (AO) and operational measurements (Physical Observers).  
@@ -472,7 +472,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 ---
 
-### 2. Immediate Next Actions (Resume Here)
+### Immediate Next Actions (Resume Here)
 
 When session resumes, **prioritize these four tasks**:
 
@@ -489,7 +489,7 @@ When session resumes, **prioritize these four tasks**:
   - Self-hit detection (when $v > c_f$),  
   - Coupling to medium (how does Noether Sea back-react?).  
 - **Deliverable**: Full derivation in **Ch. 3 (Master Equation and Fundamental Dynamics)**.  
-- **Leads**: Dyna (analytical form), Sol (discretization for simulation), Phil (conceptual clarity).
+- **Leads**: Dyna (analytical form), Sol (discretization for simulation), Cami(conceptual clarity).
 
 **Action 2 (Cos/Dyna): Proper Time Derivation**  
 - **Goal**: Derive explicit function $d\tau = F(\rho_{\text{vac}}, \Phi, v) \, dt$ converting absolute time to assembly-clock proper time.  
@@ -523,7 +523,7 @@ When session resumes, **prioritize these four tasks**:
 
 ---
 
-### 3. Open Questions & Research Frontiers
+### Open Questions & Research Frontiers
 
 **High Priority:**  
 - **Three generations**: Why three families of fermions? Vibrational modes of tri-binary? Topological defects?  

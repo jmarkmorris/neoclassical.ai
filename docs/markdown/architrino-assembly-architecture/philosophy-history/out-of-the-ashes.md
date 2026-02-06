@@ -2,7 +2,7 @@
 
 # The Way of the Assembly: A Guide to Existence in a Renewable Universe
 
-## 1. The Big Shift: From Dying Machine to Living Organism
+## The Big Shift: From Dying Machine to Living Organism
 
 Most of us were taught that the universe is a machine running out of battery. We were told it began with a Big Bang and will end in "Heat Death"—a cold, dark void where nothing happens forever. That story makes us feel like accidents waiting to be erased.
 
@@ -14,7 +14,7 @@ An intelligent civilization living with this knowledge builds its philosophy not
 
 ---
 
-## 2. Identity: The Knot and the Rope
+## Identity: The Knot and the Rope
 
 To understand your place in this universe, you must understand the difference between *what you are made of* and *who you are*.
 
@@ -26,7 +26,7 @@ To understand your place in this universe, you must understand the difference be
 
 ---
 
-## 3. The Galactic Heart: Black Holes as Recyclers
+## The Galactic Heart: Black Holes as Recyclers
 
 In the old view, Black Holes were monsters—graves where matter went to die.
 
@@ -39,7 +39,7 @@ We do not fear the black hole; we respect it as the **Engine of Renewal**. It gu
 
 ---
 
-## 4. Ethics: The Gardeners of the Void
+## Ethics: The Gardeners of the Void
 
 If the universe recycles everything anyway, does it matter what we do?
 
@@ -54,7 +54,7 @@ Because the universe is constantly churning and recycling, **order is hard to ma
 
 ---
 
-## 5. How to Live: Active Harmony
+## How to Live: Active Harmony
 
 How does this change your Tuesday morning? It offers a stance we call **Joyful Transience**.
 
@@ -66,7 +66,7 @@ We adopt a **Stoic Optimism**: We accept what we cannot change (the laws of phys
 
 ---
 
-## 6. Death: The Great Redistribution
+## Death: The Great Redistribution
 
 What happens when you die?
 
@@ -79,7 +79,7 @@ You are not a stranger in this universe. You *are* the universe. For a brief mom
 
 ---
 
-## 7. The Short Version (The Credo)
+## The Short Version (The Credo)
 
 > "We are the waking dream of the universe.
 > We rise from the deep, holding our shape for a moment to love and to build.

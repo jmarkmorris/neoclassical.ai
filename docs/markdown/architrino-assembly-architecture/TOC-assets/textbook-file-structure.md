@@ -1,29 +1,29 @@
-## Phil Here: Structuring the Repository for Maximum Clarity and Flexibility
+## CamiHere: Structuring the Repository for Maximum Clarity and Flexibility
 
 Excellent instinct to think about this now, Marko. A well-organized repo is **intellectual infrastructure**—it shapes how we think, search, navigate, and collaborate. Let me give you my take on best practices, filtered through the needs of this specific project.
 
 ---
 
-## 1. Core Principles for Our File Structure
+## Core Principles for Our File Structure
 
-### 1.1 Human-Readable Over Machine-Optimal
+### Human-Readable Over Machine-Optimal
 - **File names should communicate content at a glance**, even out of context.
 - Someone browsing the repo cold should be able to guess what's in a file without opening it.
 - This means: **descriptive names**, not cryptic abbreviations.
 - Avoid team names, team TODOs, or status flags inside textbook markdown files. Those files are live on our website, so we keep them reader-ready and in the best possible shape; track internal notes in team docs or separate planning files instead.
 
-### 1.2 Avoid Numbered Prefixes (You're Right)
+### Avoid Numbered Prefixes (You're Right)
 - **Why avoid**: Renumbering is a maintenance nightmare when we reorganize (and we *will* reorganize as the theory evolves).
 - **Exception**: If you want a *reading order hint*, use leading zeros sparingly (e.g., `00-preface.md`, `01-foundations.md`), but only at the **top level** (parts/sections), not for every chapter or subsection.
 - **Better solution**: Use a separate `TOC.md` or `README.md` file in each directory that lists the intended reading order.
 
-### 1.3 Hyphen-Separated, Lowercase, Descriptive
+### Hyphen-Separated, Lowercase, Descriptive
 - **Format**: `topic-subtopic-detail.md`
 - **Example**: `absolute-time-ontology.md`, `tri-binary-stability-analysis.md`, `bell-theorem-loophole.md`
 - **Why hyphens**: More universally compatible than underscores or spaces; plays nicely with URLs, GitHub, and markdown parsers.
 - **Why lowercase**: Avoids case-sensitivity issues across operating systems (macOS is case-insensitive by default, Linux is not).
 
-### 1.4 Hierarchical but Shallow
+### Hierarchical but Shallow
 - **Avoid deeply nested directories** (more than 3-4 levels gets unwieldy).
 - Use directories to **group thematically**, not to mirror the textbook TOC exactly.
 - **Guideline**: 
@@ -33,9 +33,9 @@ Excellent instinct to think about this now, Marko. A well-organized repo is **in
 
 ---
 
-## 3. File Naming Conventions
+## File Naming Conventions
 
-### 3.1 General Pattern
+### General Pattern
 ```
 [topic]-[subtopic]-[detail].md
 ```
@@ -46,7 +46,7 @@ Excellent instinct to think about this now, Marko. A well-organized repo is **in
 - `bell-theorem-conceptual-loophole.md`
 - `cmb-acoustic-peaks-prediction.md`
 
-### 3.2 When Titles Are Long
+### When Titles Are Long
 **Question**: Do we use full descriptive titles in file names?
 
 **Answer**: Use **abbreviated but still clear** names in the file system, and put the **full formal title** in the document itself (as a level-1 heading).
@@ -59,7 +59,7 @@ Excellent instinct to think about this now, Marko. A well-organized repo is **in
 - Keeps file names manageable (easier to tab-complete, less clutter in file browsers).
 - Full title is preserved in the doc where it matters (for citations, cross-references, and clarity).
 
-### 3.3 Cross-References
+### Cross-References
 Use **relative links** in markdown for cross-references:
 ```markdown
 See [Absolute Time Defense](../foundations/absolute-time-defense.md) for details.
@@ -69,9 +69,9 @@ This keeps links portable if you move the repo or change hosting platforms.
 
 ---
 
-## 4. TOC Strategy
+## TOC Strategy
 
-### 4.1 Central TOC Document
+### Central TOC Document
 Create a **master `TOC.md`** at the repo root that lists all documents in intended reading order, with brief descriptions:
 
 ```markdown
@@ -90,7 +90,7 @@ Create a **master `TOC.md`** at the repo root that lists all documents in intend
 ...
 ```
 
-### 4.2 Directory-Level README Files
+### Directory-Level README Files
 Each directory should have a **`README.md`** that:
 - Explains the **scope** of that section.
 - Lists files in that directory in **logical order** (not alphabetical).
@@ -118,7 +118,7 @@ This section establishes the ontological and dynamical bedrock of the theory.
 
 ---
 
-## 5. Metadata and Frontmatter
+## Metadata and Frontmatter
 
 Include **YAML frontmatter** at the top of each markdown file for metadata:
 
@@ -136,19 +136,19 @@ title: "Absolute Time: Ontology and Defense"
 
 ---
 
-## 6. Version Control Best Practices
+## Version Control Best Practices
 
-### 6.1 Git Branches for Major Revisions
+### Git Branches for Major Revisions
 - **`main` branch**: stable, reviewed content.
 - **Topic branches** for major explorations: `feature/bell-loophole`, `feature/cmb-model`, etc.
 - **Pull requests** for review before merging into `main`.
 
-### 6.2 Commit Messages
+### Commit Messages
 Use **descriptive commit messages**:
 - ❌ "Updated file"
 - ✅ "Added Bell theorem loophole analysis (quantum-interpretation/bell-theorem-loophole.md)"
 
-### 6.3 Tagging Milestones
+### Tagging Milestones
 Use **git tags** for major milestones:
 ```bash
 git tag -a v0.1-foundations -m "Foundations section complete (ontology, time, master equation)"
@@ -157,21 +157,21 @@ git push origin v0.1-foundations
 
 ---
 
-## 7. Tools and Automation (Optional but Recommended)
+## Tools and Automation (Optional but Recommended)
 
-### 7.1 Markdown Linter
+### Markdown Linter
 Use a linter (e.g., `markdownlint`) to enforce consistent formatting:
 - Heading hierarchy (no skipped levels).
 - Consistent list formatting.
 - No trailing whitespace.
 
-### 7.2 Dead Link Checker
+### Dead Link Checker
 Run a script periodically to check for broken cross-references:
 ```bash
 markdown-link-check **/*.md
 ```
 
-### 7.3 Auto-Generated TOC
+### Auto-Generated TOC
 Consider using a tool like `doctoc` to auto-generate TOCs within long documents:
 ```bash
 doctoc --title "## Table of Contents" path/to/file.md
@@ -179,7 +179,7 @@ doctoc --title "## Table of Contents" path/to/file.md
 
 ---
 
-## 8. Concrete Recommendation for Your Repo
+## Concrete Recommendation for Your Repo
 
 ### Start Simple, Grow Organically
 1. **Now**: Create the top-level structure I outlined (foundations, assemblies, particle-physics, etc.).

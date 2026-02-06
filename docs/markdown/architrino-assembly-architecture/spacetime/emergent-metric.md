@@ -61,24 +61,24 @@ The effective metric is thus a *derived, observer‑dependent construct* summari
 
 ### The Effective Metric as a Density Map
 
-#### 1. Curvature as Refraction (Consolidated Dyna/Cos/Sig)
+#### Curvature as Refraction (Consolidated Dyna/Cos/Sig)
 * **Absolute View:** The Absolute Observer sees a rigid Euclidean metric $\delta_{ij}$ and a non-uniform density of Noether cores $\rho_{nc}(x,y,z,t)$.
 * **Physical View:** Physical observers (assemblies) perceive a curved metric $g_{\mu\nu}$ because their signals and clocks are modulated by $\rho_{nc}$.
 * **The Mapping:**
     - $g_{00}$ maps to the potential-induced clock slowing (refraction of time).
     - $g_{ij}$ maps to the assembly-induced ruler contraction (refraction of space).
 
-#### 2. Geodesics in the Sea
+#### Geodesics in the Sea
 * A "straight line" (null geodesic) in GR is reinterpreted as the **Path of Least Time** through the variable-density Noether Core sea.
 * We must demonstrate that "Least Time" in the absolute frame $t$ (accounting for refractive slowing) matches the "Straight Line" in the emergent metric $g_{\mu\nu}$.
 
-#### 3. Singularity Resolution
+#### Singularity Resolution
 * The metric is an effective description of a medium. Where GR predicts a singularity ($r=0$), our model predicts a **core alignment regime** where the tri-binary lattice approaches maximum packing/saturation under event-horizon alignment conditions.
 
 
 ### Emergent Metric: Absolute Frame vs. Effective Geometry
 
-#### 1. Ontological Picture
+#### Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. Coordinates $(x,y,z)$ never move or curve.
 - **Medium**: A pervasive sea of coupled pro/anti Noether cores (tri-binary assemblies) that we call the *spacetime medium* or *Noether-core sea*.
@@ -91,7 +91,7 @@ From this vantage point, there is only:
 - Flat Euclidean geometry $\delta_{ij}$,
 - A dynamic medium (Noether cores) moving and rearranging in that geometry.
 
-#### 2. What “Metric” Means Here
+#### What “Metric” Means Here
 
 - **Effective metric $g^{\text{eff}}_{\mu\nu}(x)$** is *not* a fundamental property of the void. It is a derived description of:
   - How assembly-based clocks tick,
@@ -106,7 +106,7 @@ The virtual observer then maps:
 
 $(\delta_{ij}, \rho_{\text{core}}(x,t), \Phi(x,t), \nabla\Phi(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
 
-#### 3. Refraction vs. Curvature
+#### Refraction vs. Curvature
 
 - From the **virtual observer**:
   - Light and gravity-like perturbations travel on straight lines in $(x,y,z)$,
@@ -125,7 +125,7 @@ The core task of this document will be to:
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
    $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c^2}\right), \quad g^{\text{eff}}_{ij} \approx \delta_{ij}\left(1 - \frac{2\Phi_N}{c^2}\right).$
 
-#### 4. Virtual vs. Physical Observers
+#### Virtual vs. Physical Observers
 
 - **Virtual observer**:
   - Uses absolute time $t$ and Euclidean geometry $\delta_{ij}$,
