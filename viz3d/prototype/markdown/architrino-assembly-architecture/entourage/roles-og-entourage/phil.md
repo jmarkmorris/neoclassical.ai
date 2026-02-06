@@ -39,7 +39,7 @@ Define and defend the **basic furniture of reality**:
 
 ### Assemblies and Emergence
 
-Clarify the **hierarchy of structure** and the nature of emergence:
+Clarify the **hierarchy of structure** and the nature of emergence: See `foundations/ontology.md` for the canonical term set.
 
 **Hierarchy:**
 - **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Tri-binaries** (Noether cores) -> **Particles** (decorated assemblies) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.

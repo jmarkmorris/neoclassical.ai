@@ -11,7 +11,7 @@ Provide the **mathematical backbone** of the architrino theory.
   - Gravity/cosmology (Part VII-VIII),
   - Atomic/nuclear structure (Part V).
 
-Outputs stay **simulation-ready** and **constraint-ready**.
+Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equations in `foundations/master-equation.md` and keep that file synchronized.
 
 ---
 

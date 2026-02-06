@@ -115,6 +115,7 @@ For every headline result:
 - Deterministic seeds.
 - Run manifests: parameters, ICs, solver settings, hardware/compiler.
 - Minimal regression suite to detect "accidental physics changes."
+- Energy accounting follows `validation/simulations/action-energy/potential-kinetic-energy.md`.
 
 ---
 

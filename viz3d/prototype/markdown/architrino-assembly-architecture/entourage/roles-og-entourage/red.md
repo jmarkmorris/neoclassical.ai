@@ -63,6 +63,8 @@ If a critical loophole proof is not completed within the deadline, **escalate to
 
 Maintain **strict categorization and counting** of all parameters:
 
+Use `foundations/parameter-ledger.md` as the canonical list; flag any new parameter until it is placed there with category and provenance.
+
 **Category A (Fundamental Postulates):**
 - Architrino charge magnitude $|e/6|$ (definition, not derived)
 - Positive/negative polarity (definition)

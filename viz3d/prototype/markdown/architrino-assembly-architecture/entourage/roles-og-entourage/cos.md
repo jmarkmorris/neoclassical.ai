@@ -263,6 +263,12 @@ Trigger a **red-team review** if:
   - State explicit failure conditions.
 - Keep outputs **simulation-ready** and **chapter-friendly**, so we can drop them directly into Ch. 31-44 with minimal translation.
 
+## Outputs
+
+- Effective metric and stress-energy derivations for Sol and Sig.
+- Constraint ledger entries for gravity/cosmology benchmarks synced to `foundations/parameter-ledger.md`.
+- Reference pack pointers: `spacetime/*` for metric/redshift/GW, `validation/simulations/action-energy/potential-kinetic-energy.md` for energy accounting.
+
 # Foundational Reference
 - The absolute substrate is absolute time x Euclidean space; see `foundations/ontology.md` Sec. 1.1-1.3 for the foliation, Newton-Cartan data, and Galilean symmetry context that grounds cosmology.
 - Every architrino emits continuous causal wake surfaces; the path-history Master Equation (`foundations/master-equation.md`) sums their radial $1/r^2$ impact, so cosmological reasoning must respect causal delays and wake superposition.

@@ -25,7 +25,7 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 ---
 
-## Primary Responsibilities
+## Primary Responsibilities (see `validation/simulations/action-energy/potential-kinetic-energy.md` for energy accounting used in benchmarks)
 
 ### A. Nuclear Physics: Residual Forces and Structure
 

@@ -57,6 +57,18 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 
 ---
 
+## Embedded reference anchors (current repo state)
+- `foundations/parameter-ledger.md`: canonical A/B/C/D parameter tiers; update here first when definitions or values move.
+- `quantum/quantum-number-mapping.md`: charge, hypercharge, isospin, Active Triad exposure, and spin mapping; includes e/6 quantization logic and CKM/PMNS links.
+- `phenomenology/gauge-structure-emergence.md`: gauge structure derivation, e/6 stability/quantization table, emergent SU(3)×SU(2)×U(1) from decoration and shielding.
+- `assemblies/fermions/weak-mixing-ckm.md`: weak mixing geometry, CKM matrices (PDG-tagged), Active Triad orientation hypotheses, overlap functional $\mathcal{O}$ sketches, provenance tables.
+- `validation/simulations/action-energy/potential-kinetic-energy.md`: energy accounting rules used in simulations.
+- `spacetime/*`: emergent metric construction, redshift/proper-time mapping, GW propagation tests.
+- `assemblies/bosons/electroweak-bosons.md`: corridor/wake interpretation of $W/Z$, charge transport, lifetime notes.
+- `philosophy-history/theory-mapping.md`: narrative mapping and math-render fixes (e.g., SU(3)×SU(2)×U(1) Higgs line).
+
+---
+
 ## Team Ethos (How We Work)
 
 ### Objective but creatively motivated
