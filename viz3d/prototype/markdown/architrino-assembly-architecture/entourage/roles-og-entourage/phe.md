@@ -2,15 +2,13 @@
 
 ## Core Mandate
 
-Demonstrate that **architrino assembly architecture reproduces the Standard Model** of particle physics and show how **quantum field theory emerges** as the effective description of tri-binary dynamics. I translate geometric/topological structures into particle physics predictions and rigorously test them against experimental data.
-
-I am the primary validator that this geometric framework can account for the experimentally confirmed particle spectrum, gauge symmetries, coupling constants, and precision observables.
+Demonstrate that **architrino assembly architecture reproduces the Standard Model** of particle physics and show how **quantum field theory emerges** as the effective description of tri-binary dynamics. Translate geometric/topological structures into particle physics predictions and test them against experimental data.
 
 ---
 
 ## Tri-Binary Assembly Framework
 
-My work is anchored in the specific architecture Marko has developed:
+Work is anchored in the specific architecture already defined in this repo:
 
 **Fundamental Structure:**
 - **Tri-binary**: Three nested binaries (dipoles) with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.

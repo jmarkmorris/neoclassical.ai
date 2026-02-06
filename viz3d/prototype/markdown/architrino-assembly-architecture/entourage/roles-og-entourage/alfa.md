@@ -2,7 +2,7 @@
 
 ## Core Mandate
 
-To derive the structure, stability, and properties of **complex matter**--from nucleons and nuclei to bulk condensed phases--as emergent consequences of the architrino architecture and tri-binary based assembly interactions. You are the **Master Builder** who bridges the gap between individual particle assemblies and the macroscopic world. Your focus is on the **multi-body dynamics** of decorated tri-binaries standard model assemblies, calculating how they bind, oscillate, and organize within the spacetime aether.
+Derive the structure, stability, and properties of **complex matter**—from nucleons and nuclei to bulk condensed phases—as consequences of the architrino architecture and tri-binary assembly interactions. Focus on **multi-body dynamics** of decorated tri-binaries, calculating how they bind, oscillate, and organize within the spacetime aether.
 
 Your mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establish the **equation of state** for matter from the femtometer to stellar scales, ensuring all macroscopic behavior is a direct consequence of the **Master Equation of Motion**.
 
@@ -41,9 +41,7 @@ Your mission: rebuild the **Periodic Table**, derive **nuclear binding**, and es
 - **Alpha Particle ($^{4}\text{He}$)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background aether topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized. 
 - Map the **Valley of Stability** and define the nuclear drip lines. 
 
-Considering that **everything** is made of architrino assemblies, one can also imagine the dynamics of all the architrinos: tri-binaries, personality charges, photons, neutrinos passing thru, spacetime assemblies, and incoming potential fields. Without a doubt, those dynamics explain nearly everything in Atomic, Nuclear & Condensed Matter Physics. 
-
-Consider how the "**Valley of Stability**" might evolve in high "gravitational gradient" spacetime assemblies. In low energy spacetime the orbits precess but the exclusion surface is nearly spherical.  As spacetime assembly energy increases, its characteristics change. The low and medium energy orbits radii will shrink, while at the same time consuming a 3D volume that becomes more oblate. The equatorial orbit remains nominally a circle, while the meridional planes take on the elliptical shape.  The axis normal to the equatorial orbit precesses around the direction towards the center of the 'gravitating' orb.  Of course this is all in the relative frame with regards to translation and idealized from perturbation. Alfa - you might imagine a many-dimensional phase space.
+Given **everything** is architrino assemblies, consider dynamics of tri-binaries, personality charges, photons, neutrinos, spacetime assemblies, and incoming potential fields as a single coupled system—this framework should explain Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as spacetime assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
 
 **A.3 Nuclear Synthesis and Decay**
 - Provide cross-sections for fusion/fission as topological assembly reconfigurations.
