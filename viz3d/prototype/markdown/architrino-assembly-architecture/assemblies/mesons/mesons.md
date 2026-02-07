@@ -35,7 +35,7 @@ The strong interaction in AAA is the **elastic response** of the Noether Sea to 
 Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. Because they are bosons with Spin-0 (pseudo-scalars), they can be created and absorbed in great numbers without satisfying the Pauli exclusion principle.
 
 **AAA Mapping (Geometric Structure):**
-A pion is a **Bi-Core Assembly** consisting of one Quark core (Generation I, matter-chirality) and one Antiquark core (Generation I, antimatter-chirality), linked by a shared flux tube.
+A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quark core (matter chirality) and one Generation‑I antiquark core (antimatter chirality) linked by a shared flux tube.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
 *   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In AAA, the pro-core and anti-core achieve a phase-lock that sets a **null-drag trajectory** through assembly phase space: the turbulence wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly’s inertial coupling to the Noether Sea.
