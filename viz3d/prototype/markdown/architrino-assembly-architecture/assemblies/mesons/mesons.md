@@ -40,6 +40,7 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) couple more strongly to Noether Sea drag and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
 *   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is the energy stored in shared pion flux loops; the coupled, pion-sharing lattice sits at lower energy than isolated nucleons.
+*   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared personality layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 
 ---
 
