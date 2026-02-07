@@ -34,7 +34,7 @@ A pion is a **Bi-Core Assembly** consisting of one Quark core (Generation I, mat
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea (a dense tri-binary lattice) between them.
-*   **Mechanism:** A proton interacts with the Noether Sea, polarizing a local tri-binary into a transient $u\bar{d}$ complex (a $\pi^+$). The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the pion propagates to the neighbor. The lattice relaxes once the loop is reabsorbed.
+*   **Mechanism:** A proton interacts with the Noether Sea, polarizing a local tri-binary into a transient $u\bar{d}$ complex (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the pion propagates to the neighbor. The lattice relaxes once the loop is reabsorbed.
 *   **Topology:** The pion serves as a **detached flux loop** transporting decoration charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 ---
@@ -51,7 +51,7 @@ A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **
 *   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). Because the Gen II ($s$) core lacks the outer binary ring of the Gen I ($d$) core, the tube cannot dock symmetrically; it must **corkscrew** to bridge the radius difference. This corkscrew has a handedness that naturally gives rise to CP asymmetry. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations. That twist prevents the tube from ever relaxing into the straight, cancellation-friendly lock of a pion; the residual torque leaves the assembly in a slow wobble that can flip core/anti-core identity.
 
 **Dynamical Role:**
-Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether Sea lattice.
+Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether Sea lattice. The corkscrew twist keeps the quark and antiquark **Active Triads** from locking into a neutralizing plane; that persistent misalignment is the AAA analogue of the CKM weak phase for $s\!\to\! d$ transitions.
 
 ### CP/phase hook (Kaons)
 - The Gen-I (tri-binary) ↔ Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\text{AAA}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a tri-binary slot.
