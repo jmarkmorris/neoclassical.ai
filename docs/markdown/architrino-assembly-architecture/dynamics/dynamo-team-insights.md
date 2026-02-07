@@ -2,7 +2,7 @@
 
 **Compiled by Dyna, Lead Coordinator**  
 **Date**: Initial Session (Revised incorporating Andrey Kolmogorov feedback)  
-**Purpose**: Establish shared mathematical foundation and identify promising research directions for the Architrino Assembly Architecture
+**Purpose**: Establish shared mathematical foundation and identify promising research directions for the architrino assembly architecture
 
 ---
 
@@ -22,7 +22,7 @@ This separation enables a **hierarchy of dynamical atlases**: local charts of as
 
 ### Core Mathematical Challenge (Grothendieck, Tao)
 
-The Master Equation defines acceleration via intersections with past causal wake surfaces:
+The master equation defines acceleration via intersections with past causal wake surfaces:
 $$
 \frac{d^2 \mathbf{x}_i}{dt^2} = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,\hat{\mathbf{r}}_{ij}(t;t_0)
 $$
@@ -220,7 +220,7 @@ which is the history (path) integral of causal-wake energy in flight. Prefactors
 **Self-hit interpretation**: When a particle intersects its own wake, energy transfers between the history bookkeeping and instantaneous kinetic energy. The "mass" of stable assemblies may be the **trapped energy of self-intersecting history loops**.
 
 **Open problems**:
-- Write the non-local action $S$ that yields the Master Equation and derive the exact conserved energy via time-translation symmetry.
+- Write the non-local action $S$ that yields the master equation and derive the exact conserved energy via time-translation symmetry.
 - Express $E_{\text{wake}}$ explicitly (e.g., in pairwise $W_{ij}$ form) and verify conservation in the regularized $\eta > 0$ system.
 - If conservation fails in practice, identify which assumptions break (regularization artifacts, missing terms, or explicit time dependence).
 - Relate $E_{\text{wake}}$ to assembly binding energy and mass.

@@ -9,7 +9,7 @@ This document captures the integration strategy for porting the sim2 physics gen
 4. Port the generator UI into the Viz3D codebase so authors can produce new scenarios directly in the browser; generator outputs adopt the new Viz3D native scene format.
 
 ## Phase 0 – Discovery & prep
-* **Audit Viz3D scene assets** (`viz3d/prototype/json/`, existing orbit/orbit nodes) to identify necessary data (positions, trails, metadata) that the new simulator must supply. Confirm desired scene format (node graph + animation metadata) and define how Architrino states map to nodes/items in the scene.
+* **Audit Viz3D scene assets** (`viz3d/prototype/json/`, existing orbit/orbit nodes) to identify necessary data (positions, trails, metadata) that the new simulator must supply. Confirm desired scene format (node graph + animation metadata) and define how architrino states map to nodes/items in the scene.
 * **Gather sim2 requirements** from `sim2/motion.py`/`sim2/orbits.py`/`sim2/json/*.json` so the new JS module implements the same physics (causal hits, 1/r², walker integration, phases, emit history). Note directives we no longer need.
 * **Outline worker/compute architecture**: choose between Web Worker (JS) vs WebGL2 compute shader depending on future numerical need. For now assume a Worker exposes a shared `Float32Array` for positions+velocities and handles the `emissions` queue.
 * **Define generator spec**: revisit `sim2/gen.md`/`generator-ui/README.md` and rewrite the spec to output Viz3D-friendly scenes (positions, velocities, optional metadata) rather than sim2 directives.
@@ -17,7 +17,7 @@ This document captures the integration strategy for porting the sim2 physics gen
 ## Phase 1 – JS physics port
 1. **Encapsulate sim2 logic in a module** inside `viz3d/prototype/` (e.g., `sim2/physics.js` or `sim2/worker/physicsWorker.js`). The module should expose:
    * scene loader that reads the new scene JSON and configures watcher/emissions data,
-   * `step(dt)` that advances velocity/position per Architrino via the 1/r² sum,
+   * `step(dt)` that advances velocity/position per architrino via the 1/r² sum,
    * emission bookkeeping to publish hits to the renderer (positions, velocities, charge sign) and optionally the current causal set for debugging.
 2. **Worker integration**:
    * Create a Web Worker that loads the physics module, receives serialized scenario data from the main thread, and runs a fixed-timestep loop (e.g., 1 kHz).

@@ -28,7 +28,7 @@ We don't just jump from Reactants to Products. We simulate the **Transitional Ch
 **Phase 1: The Disruption (Input)**
 *   Load Reactant A and Reactant B.
 *   Check Interaction Energy.
-    *   *Low Energy:* Only Personality Architrinos are stripped/exchanged (Chemistry/Electricity).
+    *   *Low Energy:* Only personality architrinos are stripped/exchanged (Chemistry/Electricity).
     *   *Medium Energy:* Outer/Middle binaries disrupted (Standard Decay/Low-energy nuclear).
     *   *High Energy (Collider):* Core disruption. Inner binaries exposed.
 
@@ -112,7 +112,7 @@ It could start as a prediction mechanism and as more training data is applied, i
 
 # ARL ideas v1 (essence)
 
-This note summarizes the final state of the brainstorming about the Architrino Reaction Language (ARL). It reduces the concept to its core: a GPU-friendly instruction set for deterministic particle reactions with full provenance, plus a physical picture of the vacuum as a real medium.
+This note summarizes the final state of the brainstorming about the architrino Reaction Language (ARL). It reduces the concept to its core: a GPU-friendly instruction set for deterministic particle reactions with full provenance, plus a physical picture of the vacuum as a real medium.
 
 ## Core purpose
 ARL is a programming language and execution model for reactions. It replaces Feynman-diagram probabilities with explicit, deterministic transactions on identified constituents (“architrinos”). The goal is to make reactions computable, traceable, and efficient on GPUs.

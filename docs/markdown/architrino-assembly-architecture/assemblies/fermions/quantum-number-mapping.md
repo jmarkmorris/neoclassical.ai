@@ -34,7 +34,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 *   **Function:** This layer interacts with external fields (EM, Weak).
 
 ### Total Constituent Count (Gen I)
-*   **Nucleus (6) + Personality (6) = 12 Architrinos.**
+*   **Nucleus (6) + personality (6) = 12 architrinos.**
 
 ---
 
@@ -48,7 +48,7 @@ All Generation I particles utilize the full **Tri-Binary Nucleus** (3 Binaries).
 *   **Nucleus:** Pro-Tri-Binary (3P, 3E, Neutral, Matter-chirality).
 *   **Personality:** 6 Electrinos ($6E$).
 *   **Net Charge:** $0 (\text{core}) - 6\epsilon (\text{dec}) = -6\epsilon = -1e$.
-*   **Total Count:** 12 Architrinos.
+*   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
 *   **Nucleus:** Anti-Tri-Binary (3P, 3E, Neutral, Antimatter-chirality).
@@ -256,7 +256,7 @@ Generations are defined by the **shedding of shielding binaries** from the Nucle
 *   **Example: The Muon ($\mu^-$)**
     *   Nucleus: Pro-Bi-Binary (4 architrinos).
     *   Personality: 6E.
-    *   Total Count: 10 Architrinos.
+    *   Total Count: 10 architrinos.
 
 ### Generation III (Tau, Top, Bottom)
 *   **Architecture:** Missing **Outer and Middle Binaries**.
@@ -268,7 +268,7 @@ Generations are defined by the **shedding of shielding binaries** from the Nucle
 *   **Example: The Top Quark ($t$)**
     *   Nucleus: Pro-Uni-Binary (2 architrinos).
     *   Personality: 5P, 1E.
-    *   Total Count: 8 Architrinos.
+    *   Total Count: 8 architrinos.
 
 ### Core Depletion, Axial Vortices, and Lifetime (plain view)
 

@@ -9,16 +9,21 @@
 
 - finish topology (where is it) su(3)su(2)o(1)
 
+- the 1 2 4 idea on frequencies?  1h below 2h above.  see 421.md
+
+- change github pages on which branch it serves from now that I have alpha, beta....
+
+- i randomly went off and wrote mesons.md.  I need to review it again in detail, but it seems like th LLMs are increasingly getting the hang of it.  Also they are introducing terminology like generation which I don't think I have emphasized in the repo.  Did they get that from scraping? LOL
+
 - what is the smallest assembly that can make a decision
+
 - are there any rapid hits
   - ellipsoid to GR
   - koide
   - planck
-  - 1 2 4
 
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 - sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
-- the 1 2 4 idea on frequencies?  1h below 2h above.  did i do some research on this?
 - PDG solver
   - provenance
   - diagrams
@@ -109,7 +114,7 @@ codex
 
 ### From Determinism to Cross-Sections (The Born Rule)
 **Why:** Experimentalists measure scattering cross-sections (probabilities). Our theory is deterministic but **meta-stable** at thresholds (trajectories with multistable outcomes). I need the bridge.
-*   **The Task:** Show how the **informational ambiguity** of the receiver (as detailed in the Master Equation) leads to the probabilistic Born Rule ($P \propto |\psi|^2$).
+*   **The Task:** Show how the **informational ambiguity** of the receiver (as detailed in the master equation) leads to the probabilistic Born Rule ($P \propto |\psi|^2$).
 *   **The Hard Wall:** If our simulation of $e^+e^-$ scattering produces a pattern that deviates from the QED prediction (e.g., no interference fringes in the equivalent of a double-slit, or wrong angular distribution), we cannot claim to reproduce Quantum Mechanics.
 
 ---

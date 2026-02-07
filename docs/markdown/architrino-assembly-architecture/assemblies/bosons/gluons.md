@@ -5,7 +5,7 @@
 
 ## The Geometric Origin of Color Charge
 
-In the Standard Model, "Color" is an abstract SU(3) label. In the Architrino Assembly framework, Color is the **specific permutation of personality charges** across the three binaries of the Noether Core.
+In the Standard Model, "Color" is an abstract SU(3) label. In the architrino Assembly framework, Color is the **specific permutation of personality charges** across the three binaries of the Noether Core.
 
 ### The Tri-Binary Substrate
 Timespace itself is populated by high‑energy, small‑scale tri‑binaries (often in tightly bound pro/anti groups). These form a background lattice/sea of Noether cores in color‑singlet configurations.
@@ -70,7 +70,7 @@ Why are there 8 gluons?
 
 ### Gluon Spin (Vector Nature)
 
-Standard Model gluons are Spin-1 bosons. In the Architrino framework, this emerges from the **Axial Geometry** of the connection.
+Standard Model gluons are Spin-1 bosons. In the architrino framework, this emerges from the **Axial Geometry** of the connection.
 
 * **Vector Geometry:** A flux tube or vortex filament is inherently a **Vector** object—it defines a direction in space (the axis of the vortex). It is not a point (Scalar, $J=0$) nor a shear-stress field (Tensor, $J=2$).
 * **Helicity:** The vortex bundle can twist in a left-handed or right-handed manner. This corresponds to the two transverse polarization states of the massless gluon.

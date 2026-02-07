@@ -43,7 +43,7 @@ We avoid using “vacuum” alone without qualification; we prefer:
 
 ### The Canonical Coordinate Chart
 
-Unlike General Relativity, where coordinates are gauge labels (diffeomorphism invariance), the Architrino framework postulates a **Canonical Cartesian Chart** $\mathcal{C} = \{x, y, z\}$ grounded in the Euclidean Void.
+Unlike General Relativity, where coordinates are gauge labels (diffeomorphism invariance), the architrino framework postulates a **Canonical Cartesian Chart** $\mathcal{C} = \{x, y, z\}$ grounded in the Euclidean Void.
 
 * **Metric Rigidity**: The fundamental metric is $\delta_{ij}$ (Kronecker delta). It does not evolve.
 * **Event Identity**: The point $(x_0,y_0,z_0)$ at time $t_1$ and at time $t_2$ refers to the **same spatial location** in the void, even if the local assembly configuration (spacetime fabric) has changed.
@@ -55,4 +55,4 @@ Unlike General Relativity, where coordinates are gauge labels (diffeomorphism in
 * **Canonical Chart:** A rigid Cartesian system $\mathcal{C} = \{x, y, z\}$ grounded in the Euclidean Void.
 * **Metric:** Fixed $\delta_{ij}$ (Kronecker delta). $\nabla^2$ is standard and static.
 * **Event Identity:** The point $(x_0, y_0, z_0)$ is the *same* spatial location at all times $t$, regardless of the matter or vacuum density occupying it. This resolves the ambiguity of "returning to the same point" in GR.
-* **Occupancy:** Differentiate between the continuous manifold (Void) and the discrete/sparse population of Architrinos (Vacuum/Matter).
+* **Occupancy:** Differentiate between the continuous manifold (Void) and the discrete/sparse population of architrinos (Vacuum/Matter).

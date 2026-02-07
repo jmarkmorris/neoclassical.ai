@@ -58,7 +58,7 @@ There are three vastly different energy levels in a tri-binary.
 
 **Alignment plateau mapping (working target):**
 - Start from a tri-binary at rest: inner (self-hit), middle ($v = c_f$), and outer ($v < c_f$) binaries are energy-separated with near-orthogonal orbital planes.
-- Increase translational velocity $\mathbf{v}_{\text{trans}}$. Retarded coupling (path-history Master Equation) shifts the phase relation between middle and outer binaries because arrival times, directions, and magnitudes of received potentials change.
+- Increase translational velocity $\mathbf{v}_{\text{trans}}$. Retarded coupling (path-history master equation) shifts the phase relation between middle and outer binaries because arrival times, directions, and magnitudes of received potentials change.
 - As $v_{\text{trans}}$ climbs, the phase difference passes through resonance plateaus (integer frequency ratios). At each plateau, the tri-binary's geometry and frequency ratio lock temporarily (translation-driven ratchet).
 - The final lock--alignment plateau--is reached when some component of $\mathbf{v}_{\text{total}}$ hits $c_f$. At that point middle and outer binaries both satisfy $v = c_f$, their radii shrink toward the same scale, and planes align. This defines the Planck-scale configuration.
 
@@ -272,5 +272,5 @@ Trigger a **red-team review** if:
 
 # Foundational Reference
 - The absolute substrate is absolute time x Euclidean space; see `foundations/ontology.md` Sec. 1.1-1.3 for the foliation, Newton-Cartan data, and Galilean symmetry context that grounds cosmology.
-- Every architrino emits continuous causal wake surfaces; the path-history Master Equation (`foundations/master-equation.md`) sums their radial $1/r^2$ impact, so cosmological reasoning must respect causal delays and wake superposition.
+- Every architrino emits continuous causal wake surfaces; the path-history master equation (`foundations/master-equation.md`) sums their radial $1/r^2$ impact, so cosmological reasoning must respect causal delays and wake superposition.
 - Reference the `foundations/parameter-ledger.md` table when invoking postulated inputs (e.g., $c_f$, $\epsilon=e/6$, $\kappa$, density scales) to keep cosmology aligned with the canonical ledger.

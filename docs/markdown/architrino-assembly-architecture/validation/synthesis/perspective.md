@@ -1,6 +1,6 @@
 # Perspective: Why This Model Maps So Well
 
-This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ Architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed, radial-only action and a self-interaction threshold conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
+This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed, radial-only action and a self-interaction threshold conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
 
 Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed radial-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
@@ -65,7 +65,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
   - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed field geometry), which couple between assemblies.
 
 - Why it matters:
-  - Color-like structure arises naturally from three internal binaries: distributing “personality” Architrinos across three axes creates three distinguishable, yet symmetric, configurations.
+  - Color-like structure arises naturally from three internal binaries: distributing “personality” architrinos across three axes creates three distinguishable, yet symmetric, configurations.
   - Flux-tube-like coupling is not a particle exchange but a persistent geometric linkage between polar vortices—consistent with confinement-like phenomenology without invoking a separate gauge field.
 
 ---
@@ -73,7 +73,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 ## 6) Charge quantization at $\epsilon$=|e/6|
 
 - What we assume:
-  - The Architrino charge magnitude is $\epsilon$, so quark charges are integers of $\epsilon$.
+  - The architrino charge magnitude is $\epsilon$, so quark charges are integers of $\epsilon$.
 
 - Why it matters:
   - Observed quark fractions (±1/3, ±2/3 of e) become ±2$\epsilon$ and ±4$\epsilon$ integers in the natural unit. This removes “fractionality” at the fundamental level and simplifies assembly rules and conservation statements.
@@ -97,7 +97,7 @@ We work throughout in units with field speed $v=1$; per-hit accelerations are pu
 
 - No Lorentzian spacetime metric at the fundamental level (background is absolute time + Euclidean space; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf{v}\times\mathbf{B}$ forces; every per-hit action is along $\hat{\mathbf{r}}$.
-- No gauge field inventory beyond the Architrino fields; interaction carriers are the geometry of delayed isochrons and their couplings.
+- No gauge field inventory beyond the architrino fields; interaction carriers are the geometry of delayed isochrons and their couplings.
 
 ---
 
@@ -150,7 +150,7 @@ Premise: single-hit information is sparse. At an instant, a receiver learns only
 
 
 - Coarse-grained PDE observables (Method 1):
-  - Number density $n(\mathbf{x}, t)$: count-per-volume of Architrinos.
+  - Number density $n(\mathbf{x}, t)$: count-per-volume of architrinos.
   - Charge density $\rho(\mathbf{x}, t)$: net $+\epsilon-\epsilon$ per unit volume; natural source term in continuum PDE variants.
   - Energy density $\mathcal{E}(\mathbf{x}, t)$: local kinetic + potential energy density for validation and conservation checks.
   - Use: these fields are the natural inputs/targets for grid-based PDE runs and for validating event-driven simulations in aggregate.
@@ -184,7 +184,7 @@ Consequence: even the absolute observer must reason statistically over ledger cl
 
 Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_j(t)$ on that same source. When $\lVert \mathbf{v}_j \rVert > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all Architrinos in the universe whose causal isochrons intersect the receiver “now.” While $1/r^2$ weighting makes nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver “now.” While $1/r^2$ weighting makes nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 
