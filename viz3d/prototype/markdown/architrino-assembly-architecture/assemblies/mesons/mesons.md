@@ -15,8 +15,7 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-
-While the standard chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles you reference—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the Architrino Assembly Architecture (AAA), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of Noether cores connected by color flux tubes.
+While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the Architrino Assembly Architecture (AAA), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of Noether cores connected by color flux tubes.
 
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 
@@ -34,8 +33,8 @@ A pion is a **Bi-Core Assembly** consisting of one Quark core (Generation I, mat
 *   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In AAA, this suggests the pro-core and anti-core orientations achieve a specific "locking" alignment where the interaction energy (flux tension) nearly cancels the intrinsic inertial mass of the cores.
 
 **Dynamical Role:**
-In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions.
-*   **Mechanism:** A proton effectively "sheds" a $u\bar{d}$ complex (a $\pi^+$) and becomes a neutron. The neutron captures it to become a proton.
+In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions drawn virtually from the Noether Sea and returned to it.
+*   **Mechanism:** A proton temporarily shears a $u\bar{d}$ complex (a $\pi^+$) from the Sea and becomes a neutron; the neutron absorbs it and becomes a proton, with net reactants/products balanced back into the Sea.
 *   **Topology:** The pion serves as a **detached flux loop** transporting decoration charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 ---
@@ -52,7 +51,7 @@ A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **
 *   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). This geometric asymmetry is the likely origin of the mixing phenomena and CP violation. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations.
 
 **Dynamical Role:**
-Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality through interaction with the Noether Sea background.
+Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via virtual exchange with the Noether Sea.
 
 ---
 
@@ -107,15 +106,6 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * Color comes from which binary is the exception, not from a fixed physical orientation.
 * Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
 
-<colgroup>
-  <col style="width:10%">
-  <col style="width:10%">
-  <col style="width:10%">
-  <col style="width:12%">
-  <col style="width:43%">
-  <col style="width:15%">
-</colgroup>
-
 | Particle | PDG symbol | SM class | SM quark content | AAA axis string per constituent (I/M/O) | AAA highlight |
 | --- | --- | --- | --- | --- | --- |
 | Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral tri-core, ground state. |
@@ -132,5 +122,3 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 | Delta + | $\Delta^{+}$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 with one d core. |
 | Delta 0 | $\Delta^{0}$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 neutron partner. |
 | Delta - | $\Delta^{-}$ | baryon | $ddd$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 ddd, fast strong decay. |
-
-
