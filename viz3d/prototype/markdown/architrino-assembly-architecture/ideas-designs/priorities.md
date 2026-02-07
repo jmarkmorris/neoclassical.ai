@@ -13,6 +13,8 @@
 
 - change github pages on which branch it serves from now that I have alpha, beta....
 
+- i randomly went off and wrote mesons.md.  I need to review it again in detail, but it seems like th LLMs are increasingly getting the hang of it.  Also they are introducing terminology like generation which I don't think I have emphasized in the repo.  Did they get that from scraping? LOL
+
 - what is the smallest assembly that can make a decision
 
 - are there any rapid hits
