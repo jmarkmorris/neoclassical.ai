@@ -154,6 +154,10 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * Color comes from which binary is the exception, not from a fixed physical orientation.
 * Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
 
+**Axis matrix as braid tag (visual cue)**
+- Each column is a braid-like axis; + / – are opposite winding directions of the binary pair (e.g., + counter-winding, – co-winding), 0 is alternating/mixed.
+- Example: $\left[\begin{smallmatrix}+\\-\\0\end{smallmatrix}\right]$ means top axis winds +, middle winds –, bottom alternates.
+
 **Color/flux neutrality schematics**
 
 *Baryon tri-core (proton-like permutations)*  
