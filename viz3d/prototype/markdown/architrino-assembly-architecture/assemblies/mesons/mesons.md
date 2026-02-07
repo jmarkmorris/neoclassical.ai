@@ -48,7 +48,7 @@ Kaons are the lightest mesons containing a **strange quark** (Generation II). Th
 A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **Generation II core** (Bi-binary, $s$).
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
-*   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). This geometric asymmetry is the likely origin of the mixing phenomena and CP violation. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations. That twist prevents the tube from ever relaxing into the straight, cancellation-friendly lock of a pion; the residual torque leaves the assembly in a slow wobble that can flip core/anti-core identity.
+*   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). Because the Gen II ($s$) core lacks the outer binary ring of the Gen I ($d$) core, the tube cannot dock symmetrically; it must **corkscrew** to bridge the radius difference. This corkscrew has a handedness that naturally gives rise to CP asymmetry. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations. That twist prevents the tube from ever relaxing into the straight, cancellation-friendly lock of a pion; the residual torque leaves the assembly in a slow wobble that can flip core/anti-core identity.
 
 **Dynamical Role:**
 Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether Sea lattice.
@@ -84,7 +84,7 @@ These are excited states of the nucleon. The $\Delta^{++}$ ($uuu$) is particular
 **AAA Mapping (Geometric Structure):**
 A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores rotating in a **parallel spin alignment** (Spin-3/2) rather than the Proton's mixed alignment (Spin-1/2).
 
-*   **Decorations:** The $\Delta^{++}$ has three Up-type cores ($uuu$), resulting in a net charge of $+2e$.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To prevent geometric collapse (Pauli exclusion), their internal binary phases must be maximally separated ($0^\circ,120^\circ,240^\circ$). This is the geometric definition of the RGB color singlet state.
 *   **Decay:** The Delta decays rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; the assembly sheds energy (a pion) to fall back to the ground state (proton/neutron).
 
 ---
@@ -140,6 +140,8 @@ $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\b
 
 *Meson quark–antiquark pairing*  
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
+
+**Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-core.
 
 | Particle | PDG symbol | SM class | SM quark content | AAA axis string per constituent | AAA highlight |
 | --- | --- | --- | --- | --- | --- |
