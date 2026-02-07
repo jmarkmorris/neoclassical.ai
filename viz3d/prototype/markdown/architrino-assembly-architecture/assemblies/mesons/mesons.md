@@ -23,9 +23,9 @@ Their role is to mediate forces, conserve quantum numbers during high-energy tra
 The strong interaction in AAA is the **elastic response** of the Noether Sea to topological defects (quark cores). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a decay in the medium.
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. “Decay” means the trajectory reaches a region where that action loses its minimum—gradient flow carries the system toward another basin (new particles).
 
-**Nonlinear elasticity view of color confinement**
-* **Confinement as lattice shear:** A lone color charge is a monopole defect that induces unbounded strain; the linear potential $V(r)\!\sim\!\sigma r$ is the Noether Sea resisting shear/extension. Mesons (dipoles) and baryons (tripoles) close the strain loop, keeping energy finite.
-* **Gluons as strain waves:** Color exchange is the redistribution of shear along the flux tubes; gluons are the propagated stress waves in this elastic medium rather than separate point particles. The analogy keeps the usual SU(3) bookkeeping; it reframes, not replaces, the gauge description.
+**Confinement as topological shear (nonlinear elasticity lens)**
+* **Topological definition:** A lone color charge is a monopole defect in the Noether lattice, inducing a shear field that diverges if unscreened. Mesons (dipoles) and baryons (tripoles) are closed configurations where the shear of each core is canceled by the geometry of the others. The “flux tube” is the locus of maximal lattice shear connecting these cores—a line defect, not a separate object.
+* **Color exchange as shear waves:** Gluons are the propagated redistributions of this shear along the defect; the lens preserves SU(3) bookkeeping while framing it as lattice response.
 
 ---
 
