@@ -107,6 +107,14 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * Color comes from which binary is the exception, not from a fixed physical orientation.
 * Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
 
+**Color/flux neutrality schematics**
+
+*Baryon tri-core (proton-like permutations)*  
+$u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d:\left[\begin{smallmatrix}0\\+\\+\end{smallmatrix}\right]\;\;\Rightarrow\;$ axes permuted across cores $\Rightarrow$ net color 0.
+
+*Meson quark–antiquark pairing*  
+$u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
+
 | Particle | PDG symbol | SM class | SM quark content | AAA axis string per constituent | AAA highlight |
 | --- | --- | --- | --- | --- | --- |
 | Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral tri-core, ground state. |
