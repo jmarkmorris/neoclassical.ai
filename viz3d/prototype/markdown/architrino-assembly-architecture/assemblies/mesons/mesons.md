@@ -48,14 +48,14 @@ Kaons are the lightest mesons containing a **strange quark** (Generation II). Th
 A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **Generation II core** (Bi-binary, $s$).
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
-*   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). This geometric asymmetry is the likely origin of the mixing phenomena and CP violation. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations.
+*   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). This geometric asymmetry is the likely origin of the mixing phenomena and CP violation. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations. That twist prevents the tube from ever relaxing into the straight, cancellation-friendly lock of a pion; the residual torque leaves the assembly in a slow wobble that can flip core/anti-core identity.
 
 **Dynamical Role:**
 Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether Sea lattice.
 
 ### CP/phase hook (Kaons)
 - The Gen-I (tri-binary) ↔ Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\text{AAA}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a tri-binary slot.
-- $\phi^{sd}_{\text{AAA}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). AAA predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\text{AAA}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\text{AAA}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II bi-binary ring onto a tri-binary docking site.
+- $\phi^{sd}_{\text{AAA}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). AAA predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\text{AAA}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\text{AAA}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II bi-binary ring onto a tri-binary docking site—and the residual unaligned portion is the torque that drives the oscillatory flip.
 
 ### Virtual exchange cookbook (AAA strings)
 - **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ with the flux tube handed from the proton’s $u$ core to the meson’s $\bar u$, leaving a $d$ core behind; the reverse absorption hands the flux back from the meson’s $d$ core to the nucleon’s $u$. All reactants/products are temporary polarizations of the Noether Sea that relax once the exchange completes.
