@@ -106,7 +106,7 @@ A Delta baryon is a standard Tri-Core assembly (like a proton) but with the thre
 
 **Deltas in Dense Matter (EoS)**
 *   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Tri-binary assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
-*   **Macroscopic effect:** Populating Deltas softens the Equation of State by increasing the exclusion volume per core, lowering the maximum stable neutron-star mass. External pressure deforms the energy landscape so the Delta saddle can become locally stable if its coherent phase-locking packs tighter than the spin-mixed nucleon; the transition is a packing-fraction–driven shift of Morse index that minimizes the **enthalpy** (energy + pressure × volume) of dense matter.
+*   **Packing topology phase transition:** Overlapping exclusion volumes of spin-mixed nucleons create jamming. Parallel-spin Deltas, though higher in internal energy, admit a crystalline packing symmetry inaccessible to nucleons. The $N\!\to\!\Delta$ conversion at high density is a first-order topological packing transition: gravitational work is diverted into internal rotational energy instead of degeneracy pressure, effectively softening the EoS and lowering the maximum neutron-star mass by enthalpy minimization (energy + pressure × volume).
 
 ---
 
