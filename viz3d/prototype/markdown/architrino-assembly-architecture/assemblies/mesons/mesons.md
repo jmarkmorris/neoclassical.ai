@@ -138,6 +138,30 @@ They are "ephemeral" because they are not topological attractors in the vacuum l
 - **Delta baryons:** Parallel spins on all three cores raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim10^{-24}$ s) to fall back to the mixed-spin nucleon.
 - **Rho mesons:** Spin-1 alignment/tight flux stores energy; rapid strong decay to two pions releases that flux tension.
 
+**Reading SM quantum numbers inside AAA**
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-core flips signs. Meson pairs cancel most axes; tri-core permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-core. Mesons sum to 0; baryons sum to 1.
+- **Strangeness $S$ (and heavier flavors):** Tag from shielding generation: a Gen‑II core gives $S=-1$; an anti‑Gen‑II core $S=+1$ (analogous tags for charm, etc.).
+- **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
+- **Spin/parity $J^P$:** Core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state tri-cores).
+- **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or over‑twist (ρ, Δ, kaon torsion) decay fast; non-inverse pairs that require a weak corridor (π±, $K$) live longer.
+
+### SM quantum numbers (cheat sheet for particles discussed)
+| Particle | Quark content | $Q$ | $B$ | $S$ | $I_3$ | $J^P$ | Lifetime / Width (typical) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| $\pi^+$ | $u\bar d$ | +1 | 0 | 0 | +1 | $0^-$ | $2.60\times10^{-8}$ s |
+| $\pi^0$ | $(u\bar u-d\bar d)/\sqrt{2}$ | 0 | 0 | 0 | 0 | $0^-$ | $8.4\times10^{-17}$ s |
+| $\pi^-$ | $d\bar u$ | −1 | 0 | 0 | −1 | $0^-$ | $2.60\times10^{-8}$ s |
+| $K^+$ | $u\bar s$ | +1 | 0 | +1 | +1/2 | $0^-$ | $1.24\times10^{-8}$ s |
+| $K^0$ | $d\bar s$ | 0 | 0 | +1 | −1/2 | $0^-$ | $8.95\times10^{-11}$ s (short), $5.12\times10^{-8}$ s (long) |
+| $K^-$ | $\bar u s$ | −1 | 0 | −1 | −1/2 | $0^-$ | $1.24\times10^{-8}$ s |
+| $\bar K^0$ | $\bar d s$ | 0 | 0 | −1 | +1/2 | $0^-$ | $8.95\times10^{-11}$ s / $5.12\times10^{-8}$ s |
+| $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | +1,0,−1 | 0 | 0 | +1,0,−1 | $1^-$ | $\Gamma \approx 150$ MeV ($\sim10^{-24}$ s) |
+| $\Delta^{++}$ | $uuu$ | +2 | 1 | 0 | +3/2 | $3/2^+$ | $\Gamma \approx 120$ MeV ($\sim10^{-23}$ s) |
+| $\Delta^{+}$ | $uud$ | +1 | 1 | 0 | +1/2 | $3/2^+$ | same as above |
+| $\Delta^{0}$ | $udd$ | 0 | 1 | 0 | −1/2 | $3/2^+$ | same as above |
+| $\Delta^{-}$ | $ddd$ | −1 | 1 | 0 | −3/2 | $3/2^+$ | same as above |
+
 ---
 
 ## Hadron Table — Mapping SM → AAA
