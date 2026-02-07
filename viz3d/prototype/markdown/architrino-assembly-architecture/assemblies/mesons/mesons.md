@@ -33,8 +33,8 @@ A pion is a **Bi-Core Assembly** consisting of one Quark core (Generation I, mat
 *   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In AAA, this suggests the pro-core and anti-core orientations achieve a specific "locking" alignment where the interaction energy (flux tension) nearly cancels the intrinsic inertial mass of the cores.
 
 **Dynamical Role:**
-In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions drawn virtually from the Noether Sea and returned to it.
-*   **Mechanism:** A proton temporarily shears a $u\bar{d}$ complex (a $\pi^+$) from the Sea and becomes a neutron; the neutron absorbs it and becomes a proton, with net reactants/products balanced back into the Sea.
+In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea (a dense tri-binary lattice) between them.
+*   **Mechanism:** Overlapping flux shears a $u\bar{d}$ complex (a $\pi^+$) out of the lattice, detaching it as a loop; the emitting proton steps to a neutron while the absorber steps to a proton, and the lattice relaxes once the loop is reabsorbed.
 *   **Topology:** The pion serves as a **detached flux loop** transporting decoration charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 ---
@@ -51,14 +51,14 @@ A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **
 *   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). This geometric asymmetry is the likely origin of the mixing phenomena and CP violation. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations.
 
 **Dynamical Role:**
-Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via virtual exchange with the Noether Sea.
+Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether Sea lattice.
 
 ### CP/phase hook (Kaons)
 - The Gen-I (tri-binary) ↔ Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\text{AAA}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a tri-binary slot.
 - $\phi^{sd}_{\text{AAA}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). AAA predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\text{AAA}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\text{AAA}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II bi-binary ring onto a tri-binary docking site.
 
 ### Virtual exchange cookbook (AAA strings)
-- **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ with the flux tube handed from the proton’s $u$ core to the meson’s $\bar u$, leaving a $d$ core behind; the reverse absorption hands the flux back from the meson’s $d$ core to the nucleon’s $u$. All reactants/products are drawn from and returned to the Noether Sea virtually.
+- **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ with the flux tube handed from the proton’s $u$ core to the meson’s $\bar u$, leaving a $d$ core behind; the reverse absorption hands the flux back from the meson’s $d$ core to the nucleon’s $u$. All reactants/products are temporary polarizations of the Noether Sea that relax once the exchange completes.
 - **Kaon oscillation:** $K^0(d\otimes\bar s)\ \leftrightarrow\ \bar K^0(\bar d\otimes s)$ corresponds to flipping the core/anti-core while keeping the same flux line; the twist phase $\phi^{sd}_{\text{AAA}}$ controls the rate/asymmetry of this flip.
 
 ---
