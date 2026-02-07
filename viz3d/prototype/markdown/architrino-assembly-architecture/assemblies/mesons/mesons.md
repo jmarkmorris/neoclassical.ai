@@ -34,7 +34,7 @@ A pion is a **Bi-Core Assembly** consisting of one Quark core (Generation I, mat
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea (a dense tri-binary lattice) between them.
-*   **Mechanism:** Overlapping flux shears a $u\bar{d}$ complex (a $\pi^+$) out of the lattice, detaching it as a loop; the emitting proton steps to a neutron while the absorber steps to a proton, and the lattice relaxes once the loop is reabsorbed.
+*   **Mechanism:** A proton interacts with the Noether Sea, polarizing a local tri-binary into a transient $u\bar{d}$ complex (a $\pi^+$). The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the pion propagates to the neighbor. The lattice relaxes once the loop is reabsorbed.
 *   **Topology:** The pion serves as a **detached flux loop** transporting decoration charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 ---
