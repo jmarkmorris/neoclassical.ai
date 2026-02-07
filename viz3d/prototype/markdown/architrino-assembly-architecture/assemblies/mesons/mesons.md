@@ -103,6 +103,14 @@ They are "ephemeral" because they are not topological attractors in the vacuum l
 
 ---
 
+### Lifetime vs. geometry (AAA intuition)
+- **Pions:** Anti-aligned spins and relaxed flux make the $\rho\to\pi\pi$ drop steep; ground-state pions are light and comparatively long-lived (for strong-scale particles) because flux tension is minimal.
+- **Kaons:** Gen-I/Gen-II shielding mismatch introduces a flux twist/phase that couples weakly to flavor; the partial mismatch aligns with their longer weak-scale lifetime and CP-violating oscillations.
+- **Delta baryons:** Parallel spins on all three cores raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim10^{-24}$ s) to fall back to the mixed-spin nucleon.
+- **Rho mesons:** Spin-1 alignment/tight flux stores energy; rapid strong decay to two pions releases that flux tension.
+
+---
+
 ## Compact Hadron Table (SM → AAA)
 
 The table packs both the Standard Model quark makeup and the Architrino Assembly Architecture (AAA) personality patterns.
