@@ -1,6 +1,6 @@
 # Transient Hadronic Assemblies: Mesons and Resonances
 
-A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Because quarks carry “color” charge, they cannot exist freely; they bind into hadrons in combinations that are **color neutral**.
+A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Quarks have a characteristic called **color charge** that makes them unstable unless they bind into hadrons that are overall **color neutral**.
 
 There are two main classes:
 
