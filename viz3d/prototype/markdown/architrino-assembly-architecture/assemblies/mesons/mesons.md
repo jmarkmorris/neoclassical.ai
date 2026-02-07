@@ -101,26 +101,35 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 **Notation**
 
 * Axis order is **I / M / O** (Inner, Middle, Outer tri-binaries; corresponds to H / M / L in the fermion docs).
-* Axis symbols inside each matrix: `+` = P+ (positrino pair), `-` = P− (electrino pair), `0` = Pm (mixed, dipolar). An overbar on the quark symbol denotes an anti-core (personality signs inverted).
-* Axis strings are shown as **3×1 column small matrices** (axes top→bottom = I, M, O): $\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right]$. When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$.
+* Axis symbols inside each matrix: `+` = positrino pair, `-` = electrino pair, `0` = positrino/electrino. An overbar on the quark symbol denotes an anti-core (personality signs inverted).
+* Axis strings are shown as **3×1 column small matrices** (axes top→bottom = I, M, O): $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$. When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
 * Mesons list constituents separated by `+`; baryons list the three cores separated by `;`.
+
+<colgroup>
+  <col style="width:10%">
+  <col style="width:10%">
+  <col style="width:10%">
+  <col style="width:12%">
+  <col style="width:43%">
+  <col style="width:15%">
+</colgroup>
 
 | Particle | PDG symbol | SM class | SM quark content | AAA axis string per constituent (I/M/O) | AAA highlight |
 | --- | --- | --- | --- | --- | --- |
-| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$ | Tri-core; color neutrality by cycling which axis is mixed/exceptional for each core; stable ground state. |
-| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$ | Same tri-core scaffold as proton with net charge 0; stability from balanced personality sums. |
-| Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes \bar d\!\left[ \begin{smallmatrix}+ & 0 \\ + & 0 \\ - & +\end{smallmatrix} \right]$ | Ground-state flux tube; anti-down supplies opposite personality balance. |
-| Pion 0 | $\pi^{0}$ | meson | $u\bar u / d\bar d$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes \bar u\!\left[ \begin{smallmatrix}- \\ - \\ 0\end{smallmatrix} \right]$ (or $d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right] \otimes \bar d\!\left[ \begin{smallmatrix}+ & 0 \\ + & 0 \\ - & +\end{smallmatrix} \right]$) | Neutral superposition; axis choices cancel net charge and color. |
-| Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right] \otimes \bar u\!\left[ \begin{smallmatrix}- \\ - \\ 0\end{smallmatrix} \right]$ | Charge -1 pion; mirrors the axis alignment pattern of $\pi^+$ with signs flipped. |
-| Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes \bar s\!\left[ \begin{smallmatrix}+ & 0 \\ + & 0 \\ - & +\end{smallmatrix} \right]$ (Gen II anti-core) | Bridges Gen I core to Gen II anti-core; shielding mismatch drives CP/oscillation behavior. |
-| Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right] \otimes \bar s\!\left[ \begin{smallmatrix}+ & 0 \\ + & 0 \\ - & +\end{smallmatrix} \right]$ (Gen II anti-core) | Neutral kaon; color axis choice + Gen II shielding enable $K^0 \leftrightarrow \bar K^0$ oscillations. |
-| Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[ \begin{smallmatrix}- \\ - \\ 0\end{smallmatrix} \right] \otimes s\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$ (Gen II core) | Matter/anti roles swapped vs $K^+$; same shielding asymmetry. |
-| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[ \begin{smallmatrix}+ & 0 \\ + & 0 \\ - & +\end{smallmatrix} \right] \otimes s\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$ (Gen II core) | Antineutral kaon; flips core/anti-core relative to $K^0$. |
-| Rho + | $\rho^{+}$ | meson | $u\bar d$ | Same as $\pi^+$ ($u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes \bar d\!\left[ \begin{smallmatrix}+ & 0 \\ + & 0 \\ - & +\end{smallmatrix} \right]$) | Spin-1 excited mode of the pion; heavier flux vibration. |
-| Delta ++ | $\Delta^{++}$ | baryon | $uuu$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right]$ | Spin-3/2 parallel alignment of three up cores; color axes all distinct to satisfy Pauli. |
-| Delta + | $\Delta^{+}$ | baryon | $uud$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$ | Excited nucleon (spin-3/2) with one down core. |
-| Delta 0 | $\Delta^{0}$ | baryon | $udd$ | $u\!\left[ \begin{smallmatrix}+ \\ + \\ 0\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$ | Spin-3/2 partner of neutron; decays to $n\pi^0$ or $p\pi^-$. |
-| Delta - | $\Delta^{-}$ | baryon | $ddd$ | $d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right] \otimes d\!\left[ \begin{smallmatrix}- & 0 \\ - & 0 \\ + & -\end{smallmatrix} \right]$ | Triple down cores in parallel spin; rapid strong decay. |
+| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral tri-core, ground state. |
+| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Tri-core with net charge 0, stable. |
+| Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Light $q\bar q$ flux tube. |
+| Pion 0 | $\pi^{0}$ | meson | $u\bar u / d\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Neutral superposition, color-cancelled. |
+| Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Charge −1 pion (mirror of $\pi^+$). |
+| Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ (Gen II anti-core) | Gen-I to Gen-II bridge; CP/oscillation source. |
+| Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ (Gen II anti-core) | Neutral kaon oscillations. |
+| Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ (Gen II core) | Charge −1 kaon; roles swapped vs $K^+$. |
+| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ (Gen II core) | Anti-neutral kaon; flips core/anti-core. |
+| Rho + | $\rho^{+}$ | meson | $u\bar d$ | Same as $\pi^+$ ($u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-1 excited pion mode. |
+| Delta ++ | $\Delta^{++}$ | baryon | $uuu$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ | Spin-3/2 uuu, distinct color axes. |
+| Delta + | $\Delta^{+}$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 with one d core. |
+| Delta 0 | $\Delta^{0}$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 neutron partner. |
+| Delta - | $\Delta^{-}$ | baryon | $ddd$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Spin-3/2 ddd, fast strong decay. |
 
 **How to read and extend**
 
