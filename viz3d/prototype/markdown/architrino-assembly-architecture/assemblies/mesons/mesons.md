@@ -89,7 +89,7 @@ The $\rho$ meson has the same quark content as the pion ($u\bar{d}$, etc.) but i
 If the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or geometry relaxed), the Rho is the **first excited geometric state**.
 
 *   **Configuration:** The two cores in the Rho assembly are aligned (Spin-1) rather than anti-aligned (Spin-0), or the flux tube possesses a higher vibrational mode.
-*   **Instability (Morse lens):** In the energy functional, the Spin-1 alignment raises rotational kinetic energy above the binding well, making the Rho a **saddle (index ≥ 1)** rather than a minimum. The near-instant decay is simply gradient flow down the unstable manifold into the two-pion basin (stability criterion in action).
+*   **Instability (Morse lens):** In the energy landscape the Rho is a saddle of Morse index 1 (or higher): forces balance, but there is at least one unstable direction (flux-unwinding mode). Decay is the deterministic slide down that unstable manifold into the stable pion basin (stability criterion in action).
 
 ---
 
