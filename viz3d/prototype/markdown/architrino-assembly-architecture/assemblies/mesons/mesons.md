@@ -21,6 +21,7 @@ Their role is to mediate forces, conserve quantum numbers during high-energy tra
 
 ### Geometric variational lens
 The strong interaction in AAA is the **elastic response** of the Noether Sea to topological defects (quark cores). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a decay in the medium.
+* **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. “Decay” means the trajectory reaches a region where that action loses its minimum—gradient flow carries the system toward another basin (new particles).
 
 **Nonlinear elasticity view of color confinement**
 * **Confinement as lattice shear:** A lone color charge is a monopole defect that induces unbounded strain; the linear potential $V(r)\!\sim\!\sigma r$ is the Noether Sea resisting shear/extension. Mesons (dipoles) and baryons (tripoles) close the strain loop, keeping energy finite.
@@ -64,6 +65,7 @@ A Kaon connects a **Generation I core** (Tri-binary, e.g., $u$ or $d$) with a **
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
 *   **Shielding Mismatch:** The flux tube connects a fully shielded core (Gen I) to a partially exposed core (Gen II). Because the Gen II ($s$) core lacks the outer binary ring of the Gen I ($d$) core, the tube cannot dock symmetrically; it must **corkscrew** to bridge the radius difference. This corkscrew has a handedness that naturally gives rise to CP asymmetry. The "handshake" between a 3-ring core and a 2-ring core introduces a phase twist in the flux tube that differs for matter vs. antimatter configurations. That twist prevents the tube from ever relaxing into the straight, cancellation-friendly lock of a pion; the residual torque leaves the assembly in a slow wobble that can flip core/anti-core identity.
 *   **Torsion energy:** The 3-ring ↔ 2-ring boundary mismatch forces a twisted mapping of the flux tube cross-section. The integrated torsion along the tube is the phase $\phi^{sd}_{\text{AAA}}$, storing potential energy that is *not* symmetric under $\phi\to-\phi$ when the geometry is chiral. The $K^0\!\leftrightarrow\!\bar K^0$ wobble is the system oscillating between two local minima of this torsion energy landscape, with the unaligned Active Triads setting the barrier height.
+*   **Boundary-value framing:** The Gen I/Gen II interface is a boundary condition mismatch on the flux tube cross-section. A smooth solution requires non-zero torsion; $\phi^{sd}_{\text{AAA}}$ is that required torsion tensor integrated along the tube, making CP violation a geometric consequence rather than a hand-waved phase.
 
 **Dynamical Role:**
 Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether Sea lattice. The corkscrew twist keeps the quark and antiquark **Active Triads** from locking into a neutralizing plane; that persistent misalignment is the AAA analogue of the CKM weak phase for $s\!\to\! d$ transitions.
@@ -104,7 +106,7 @@ A Delta baryon is a standard Tri-Core assembly (like a proton) but with the thre
 
 **Deltas in Dense Matter (EoS)**
 *   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Tri-binary assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
-*   **Macroscopic effect:** Populating Deltas softens the Equation of State by increasing the exclusion volume per core, lowering the maximum stable neutron-star mass. External pressure deforms the energy landscape so the Delta saddle can become locally stable if its coherent phase-locking packs tighter than the spin-mixed nucleon; the transition is a packing-fraction–driven shift of Morse index.
+*   **Macroscopic effect:** Populating Deltas softens the Equation of State by increasing the exclusion volume per core, lowering the maximum stable neutron-star mass. External pressure deforms the energy landscape so the Delta saddle can become locally stable if its coherent phase-locking packs tighter than the spin-mixed nucleon; the transition is a packing-fraction–driven shift of Morse index that minimizes the **enthalpy** (energy + pressure × volume) of dense matter.
 
 ---
 
