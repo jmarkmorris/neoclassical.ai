@@ -81,6 +81,16 @@ A Delta baryon is a standard Tri-Core assembly (like a proton) but with the thre
 
 ---
 
+### Excitation ladder (ground → first excited)
+This is a quick AAA geometry recap of the lowest excitations discussed above, connecting the geometric change to the observed SM mass gap.
+
+| SM family | Ground AAA geometry | First excited AAA geometry | Geometric change vs. SM mass gap |
+| --- | --- | --- | --- |
+| $\pi \rightarrow \rho$ | $q\bar q$ with anti-aligned spins / relaxed flux | $q\bar q$ with aligned spins / twisted or tighter flux | Spin alignment + higher flux mode → $m_\rho \sim 770$ MeV |
+| $N(p,n) \rightarrow \Delta$ | Tri-core with mixed spins; axis permutations for color | Tri-core with parallel spins; same axis permutations | All spins parallel raises rotational energy → $m_\Delta \sim 1232$ MeV |
+
+---
+
 ## Summary of Role
 
 In the Architrino framework, these ephemeral particles are **intermediate assembly states**:
