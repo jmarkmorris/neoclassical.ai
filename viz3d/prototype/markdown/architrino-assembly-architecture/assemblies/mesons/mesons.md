@@ -91,3 +91,38 @@ In the Architrino framework, these ephemeral particles are **intermediate assemb
 3.  **Resonances ($\rho, \Delta$)** are **excited rotational/vibrational modes** of the fundamental stable assemblies.
 
 They are "ephemeral" because they are not topological attractors in the vacuum like the proton or electron; they are high-energy transients that must decay to reach the minimum-energy geometric lock.
+
+---
+
+## Compact Hadron Table (SM → AAA)
+
+The table packs both the Standard Model quark makeup and the Architrino Assembly Architecture (AAA) personality patterns.
+
+**Notation**
+
+* Axis order is **I / M / O** (Inner, Middle, Outer tri-binaries; corresponds to H / M / L in the fermion docs).
+* Axis symbols: `+` = P+ (positrino pair), `-` = P− (electrino pair), `m` = Pm (mixed, dipolar). Anti-cores are written with an overbar (e.g., $\bar d$) and swap `+ ↔ -` while inverting braid.
+* Strings like `++m` mean two P+ axes and one mixed axis (axis choice = color degree of freedom). Options in parentheses show allowed down-family patterns.
+* Mesons list constituents separated by `+`; baryons list the three cores separated by `;`.
+
+| Particle | SM class | SM quark content | AAA axis string per constituent (I/M/O) | AAA highlight |
+| --- | --- | --- | --- | --- |
+| Proton (p) | baryon | $uud$ | $u(+): ++m;\ u(+): ++m;\ d(+): (--+ \mid mm-)$ | Tri-core; color neutrality by cycling which axis is mixed/exceptional for each core; stable ground state. |
+| Neutron (n) | baryon | $udd$ | $u(+): ++m;\ d(+): (--+ \mid mm-);\ d(+): (--+ \mid mm-)$ | Same tri-core scaffold as proton with net charge 0; stability from balanced personality sums. |
+| Pion + | meson | $u\bar d$ | $u(+): ++m + \bar d(-): (++- \mid mm+)$ | Ground-state flux tube; anti-down supplies opposite personality balance. |
+| Pion 0 | meson | $u\bar u / d\bar d$ | $u(+): ++m + \bar u(-): --m$ (or $d(+): (--+ \mid mm-) + \bar d(-): (++- \mid mm+)$) | Neutral superposition; axis choices cancel net charge and color. |
+| Pion - | meson | $d\bar u$ | $d(+): (--+ \mid mm-) + \bar u(-): --m$ | Charge -1 pion; mirrors the axis alignment pattern of $\pi^+$ with signs flipped. |
+| Kaon + | meson | $u\bar s$ | $u(+): ++m + \bar s(-): (++- \mid mm+)$ (Gen II anti-core) | Bridges Gen I core to Gen II anti-core; shielding mismatch drives CP/oscillation behavior. |
+| Kaon 0 | meson | $d\bar s$ | $d(+): (--+ \mid mm-) + \bar s(-): (++- \mid mm+)$ (Gen II anti-core) | Neutral kaon; color axis choice + Gen II shielding enable $K^0 \leftrightarrow \bar K^0$ oscillations. |
+| Kaon - | meson | $\bar u s$ | $\bar u(-): --m + s(+): (--+ \mid mm-)$ (Gen II core) | Matter/anti roles swapped vs $K^+$; same shielding asymmetry. |
+| $\bar{K}^0$ | meson | $\bar d s$ | $\bar d(-): (++- \mid mm+) + s(+): (--+ \mid mm-)$ (Gen II core) | Antineutral kaon; flips core/anti-core relative to $K^0$. |
+| Rho + | meson | $u\bar d$ | Same as $\pi^+$ ($u(+): ++m + \bar d(-): (++- \mid mm+)$) | Spin-1 excited mode of the pion; heavier flux vibration. |
+| Delta ++ | baryon | $uuu$ | $u(+): ++m;\ u(+): ++m;\ u(+): ++m$ | Spin-3/2 parallel alignment of three up cores; color axes all distinct to satisfy Pauli. |
+| Delta + | baryon | $uud$ | $u(+): ++m;\ u(+): ++m;\ d(+): (--+ \mid mm-)$ | Excited nucleon (spin-3/2) with one down core. |
+| Delta 0 | baryon | $udd$ | $u(+): ++m;\ d(+): (--+ \mid mm-);\ d(+): (--+ \mid mm-)$ | Spin-3/2 partner of neutron; decays to $n\pi^0$ or $p\pi^-$. |
+| Delta - | baryon | $ddd$ | $d(+): (--+ \mid mm-);\ d(+): (--+ \mid mm-);\ d(+): (--+ \mid mm-)$ | Triple down cores in parallel spin; rapid strong decay. |
+
+**How to read and extend**
+
+* To map any additional hadron, write the SM quark content, pick the per-quark axis string from `{++m, --m, --+, mm-, ++-, mm+}` using the “two-same + one-different” rule, swap signs for anti-cores, then assign distinct exceptional axes to achieve overall color neutrality (baryons) or color-anticolor pairing (mesons).
+* Generation II/III cores use the same personality strings but have reduced shielding (bi-binary or mono-binary) — note this in the highlight column because it changes flux tension and decay channels.
