@@ -1,4 +1,4 @@
-# Transient Hadronic Assemblies: Mesons and Resonances
+# Transient Hadrons: Mesons and Δ Resonances
 
 A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Quarks have a characteristic called **color charge** that makes them unstable unless they bind into hadrons that are overall **color neutral**.
 
@@ -140,7 +140,7 @@ They are "ephemeral" because they are not topological attractors in the vacuum l
 
 ---
 
-## Compact Hadron Table (SM → AAA)
+## Hadron Table — Mapping SM → AAA
 
 The table packs both the Standard Model quark makeup and the Architrino Assembly Architecture (AAA) personality patterns.
 
