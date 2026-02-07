@@ -55,10 +55,10 @@ Kaons are the primary laboratory for observing how Generation I stability breaks
 
 ### CP/phase hook (Kaons)
 - The Gen-I (tri-binary) ↔ Gen-II (bi-binary) shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\text{AAA}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a tri-binary slot.
-- $\phi^{sd}_{\text{AAA}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). AAA predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\text{AAA}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing.
+- $\phi^{sd}_{\text{AAA}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). AAA predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\text{AAA}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\text{AAA}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II bi-binary ring onto a tri-binary docking site.
 
 ### Virtual exchange cookbook (AAA strings)
-- **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ with the flux tube handed from the proton’s $u$ core to the meson’s $\bar u$, leaving a $d$ core behind; absorption reverses the handoff. All reactants/products are drawn from and returned to the Noether Sea virtually.
+- **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ with the flux tube handed from the proton’s $u$ core to the meson’s $\bar u$, leaving a $d$ core behind; the reverse absorption hands the flux back from the meson’s $d$ core to the nucleon’s $u$. All reactants/products are drawn from and returned to the Noether Sea virtually.
 - **Kaon oscillation:** $K^0(d\otimes\bar s)\ \leftrightarrow\ \bar K^0(\bar d\otimes s)$ corresponds to flipping the core/anti-core while keeping the same flux line; the twist phase $\phi^{sd}_{\text{AAA}}$ controls the rate/asymmetry of this flip.
 
 ---
