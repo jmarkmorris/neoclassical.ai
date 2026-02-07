@@ -101,9 +101,11 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 **Notation**
 
 * Each matrix lists the three tri-binary axes (order arbitrary but consistent within the entry; color comes from which slot is the exception, not from a fixed physical orientation).
-* Axis symbols: `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino. An overbar on the quark symbol denotes an anti-core.
-* Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$. When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
-* Mesons list constituents separated by `+`; baryons use `⊗` between cores. Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
+* Axis symbols: `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino.
+* An overbar on the quark symbol denotes an anti-core.
+* Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$. 
+* When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
+* Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
 
 <colgroup>
   <col style="width:10%">
