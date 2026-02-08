@@ -33,7 +33,7 @@ The main goals in this directory:
 
 Throughout, we maintain the principle:
 
-> Cosmological observables (H(z), BAO, CMB peaks, lensing) must be reproducible from the absolute-frame dynamics of the architrino + Noether-core system, with GR/$\Lambda$CDM appearing as an effective large-scale description.
+> Cosmological observables (H(z), BAO, CMB peaks, lensing) must be reproducible from the absolute-frame dynamics of the architrino + Noether-core system, with GR/$\Lambda\mathrm{CDM}$ appearing as an effective large-scale description.
 
 
 ### Two Time Notions

@@ -341,7 +341,7 @@ Commenter I : Poor MIT
 Physicist, Heal Thyself
 Fraud and Funding in Physics and Cosmology
 Is Chemistry the Best Description of Nature?
-It’s Time to Cancel GR, QM, & $\Lambda$CDM
+It’s Time to Cancel GR, QM, & $\Lambda\mathrm{CDM}$
 Physicists, Take the L
 A Wish for Senior Physicists
 The Quandary in Physics and Cosmology

@@ -1328,7 +1328,7 @@ recovering the familiar SR and weak-field GR time dilation formulas in appropria
 
 **Hubble Expansion Reinterpreted:**
 
-In standard $\Lambda$CDM, cosmological expansion is described as the **expansion of space itself** (scaling of the metric $a(t)$).
+In standard $\Lambda\mathrm{CDM}$, cosmological expansion is described as the **expansion of space itself** (scaling of the metric $a(t)$).
 
 In the Architrino framework:
 
