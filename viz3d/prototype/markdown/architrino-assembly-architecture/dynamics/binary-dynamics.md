@@ -90,6 +90,8 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would supply the **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
 
+**Universal cap (explicit):** The MCB is treated as a single, universal limit state (one defining radius/speed). Binaries may sit below this limit, but no binary can exceed the MCB curvature or pass beyond its defining radius/speed.
+
 If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the balance of:
 1. Coulomb-like attraction between opposite charges ($\propto |e/6|^2 / r^2$),
 2. Self-hit repulsion (non-Markovian feedback when $v > c_f$),
