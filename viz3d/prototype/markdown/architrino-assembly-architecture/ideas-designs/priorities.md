@@ -1,3 +1,6 @@
+
+- branch cleanup.  It looks like I merged beta into alpha, dammit.  Now I need to compare branches and see if I messed up any files.  I thought my rules prevented this?
+
 # ** The priority is the dynamics/math/geometry and the mapping**
 
 - a 3d visualizer for the oblating Noether core.  ellipsoid.md
@@ -12,6 +15,8 @@
 - the 1 2 4 idea on frequencies?  1h below 2h above.  see 421.md
 
 - change github pages on which branch it serves from now that I have alpha, beta....
+
+- make application pages that shows Gell-mann's 8 fold way and 10-fold diagram but at each vertex put the particle from my scene creator.  Then possiblyn show correlations to T3 and Y and see what I can learn from the mass patterns.  See Kaiser's MIT lecture 22
 
 - i randomly went off and wrote mesons.md.  I need to review it again in detail, but it seems like th LLMs are increasingly getting the hang of it.  Also they are introducing terminology like generation which I don't think I have emphasized in the repo.  Did they get that from scraping? LOL
 
