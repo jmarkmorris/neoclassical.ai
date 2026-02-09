@@ -262,19 +262,11 @@ Because a lower bound exists, the natural reference is **not** "infinite separat
 
 ### 2) The Bookkeeping Convention
 
-Define the potential energy to vanish at the inner turning point:
+We adopt a **singular-boundary gauge**: since the self-hit dynamics impose a geometric lower bound $r_{\min}$ (the maximum curvature attractor), we fix the potential gauge at this wall.
 
-$$U(r_{\min}) = 0.$$
+$$U(r_{\min}) \equiv 0.$$
 
-Then for larger radii,
-
-$$U(r) > 0 \quad \text{for } r > r_{\min}.$$
-
-Interpretation:
-
-> $U(r)$ is the **work required to pull the system outward** from its tightest state.
-
-This eliminates negative potentials and makes binding explicit.
+In this gauge, $U(r)$ represents the **accumulated work** performed to separate the binary from its ground state to radius $r$. Total energy is thus partitioned into *kinetic* (motion) and *deformation* (separation) components, with "free" particles carrying maximal deformation energy $B_{\max}$.
 
 ### 3) Binding Energy and Total Energy
 
