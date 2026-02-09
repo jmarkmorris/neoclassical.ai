@@ -260,13 +260,13 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 AAA uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of a bound pair (the self-hit / max-curvature radius). This choice is both physical and operational: the system has a **hard inner cutoff** (no further compression), so the deepest accessible state is unique and history-independent.
 
-### 1) Physical Setup and Why a New Zero is Needed
+### Physical Setup and Why a New Zero is Needed
 
 For an attractive two-body system (opposite charges), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where self-hit dynamics and curvature limits prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this system **does** have a lower bound on radius (and hence on accessible energy states).
 
 Because a lower bound exists, the natural reference is **not** "infinite separation" but the **ground configuration** at $r_{\min}$.
 
-### 2) The Bookkeeping Convention
+### The Bookkeeping Convention
 
 We adopt a **singular-boundary gauge**: since the self-hit dynamics impose a geometric lower bound $r_{\min}$ (the maximum curvature attractor), we fix the potential gauge at this wall.
 
@@ -274,7 +274,7 @@ $$U(r_{\min}) \equiv 0.$$
 
 In this gauge, $U(r)$ represents the **accumulated work** performed to separate the binary from its ground state to radius $r$. Total energy is thus partitioned into *kinetic* (motion) and *deformation* (separation) components, with "free" particles carrying maximal deformation energy $B_{\max}$.
 
-### 3) Binding Energy and Total Energy
+### Binding Energy and Total Energy
 
 Let $B(r)$ denote the **binding energy** at radius $r$, with
 
@@ -294,7 +294,7 @@ $$E_{\text{total}} = K_{\max}, \quad U(r_{\min}) = 0.$$
 
 All available mechanical energy is kinetic at the inner turning point. Moving outward converts kinetic energy into potential energy (the rebound / climb-out phase).
 
-### 4) Effective Potential Language
+### Effective Potential Language
 
 If an effective potential is used, the centrifugal term and the self-hit barrier both contribute:
 
@@ -308,7 +308,7 @@ $$V_{\text{eff}}(r_{\min}) = 0.$$
 
 This does **not** change dynamics; it sets a physically meaningful reference.
 
-### 4.1) Self-Hit Echo and Discrete Steps (Working Note)
+### Self-Hit Echo and Discrete Steps (Working Note)
 
 In the current picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
 
@@ -324,13 +324,13 @@ Working bookkeeping hypothesis:
 
 This can read as an "amplified" response, but only because the inner binary is **releasing or reconfiguring stored energy** when the self-hit echo is engaged. It is **not** net energy creation; it is a redistribution between internal stores under a smooth $U(r)$.
 
-### 4.2) Tri-Binary as Routing/Locking Circuit (Analogy)
+### Tri-Binary as Routing/Locking Circuit (Analogy)
 
 It is useful (as a **bookkeeping analogy**) to think of the tri-binary as a **routing/locking circuit** rather than a simple reservoir. An incoming single-step transaction ($h$-like) couples most strongly to the **outer binary**, the **middle binary** acts as a buffer/fulcrum that maintains overall consistency, and the **inner binary** can respond with a two-step reconfiguration when the self-hit echo is engaged. This makes the response feel like a **gear or ratchet**, but the mechanism is still deterministic energy routing, not creation.
 
 In this language, a discrete input can **lock in** a new tri-binary configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in AAA it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
 
-### 4.3) Bookkeeping Table: One $h$ of Angular Momentum (Outer $v < v_f$)
+### Bookkeeping Table: One $h$ of Angular Momentum (Outer $v < v_f$)
 
 Assumptions for this bookkeeping pass:
 
@@ -373,7 +373,7 @@ Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
 
 This table is intentionally explicit: every $h$ transaction is split into a kinetic part ($k$) and a potential part ($u$), and the only remaining freedom is **how** each binary partitions its step (the $\chi$ fractions).
 
-### 5) Comparison to Coulomb and Standard Conventions
+### Comparison to Coulomb and Standard Conventions
 
 In pure Coulomb,
 
@@ -383,7 +383,7 @@ so there is no inner bound and no natural finite zero. Classical mechanics there
 
 In AAA, the hard inner cutoff **creates** a natural zero at $r_{\min}$, which is the lowest accessible state. The bookkeeping therefore switches from "energy relative to infinity" to "energy relative to the ground state."
 
-### 6) Summary Table (Operational Meaning)
+### Summary Table (Operational Meaning)
 
 | Region | $K$ | $U$ | Meaning |
 | --- | --- | --- | --- |
@@ -391,6 +391,6 @@ In AAA, the hard inner cutoff **creates** a natural zero at $r_{\min}$, which is
 | $r > r_{\min}$ | $\downarrow$ | $\uparrow$ | Climbing out / rebound |
 | escape limit | 0 | $B_{\max}$ | Free (unbound) |
 
-### 7) One-Line Rule
+### One-Line Rule
 
 If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
