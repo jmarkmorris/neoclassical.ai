@@ -37,14 +37,23 @@
   - core disposition
   - there is an api now
   - look into madgraph for reactions as well
+
 - periodic table of the standard model
+
 - what about the charts I made showing the bootstrap of knowledge.
+
 - continue the ellipsoid work, aiming to understand time
+
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
+
 - mine material from wordpress for key areas
+
 - make a web page that generates a live toc, cross-referenres, and glossary?
+
 there are stable orbits at each h
+
 - is the lack of one of the neutrino chiralities due to converting a pro-Noether core?
+
 - look at what I wrote on the equivalence principal. does it make sense? 
 
 - double click pins vscode tab
