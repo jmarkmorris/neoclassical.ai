@@ -58,6 +58,8 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 - The **instantaneous work rate** from this hit is
   
   $$\frac{dE_k}{dt}\bigg|_{\text{hit}} = \mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'} = \frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2}\,v_r.$$
+  
+  Only $v_r$ contributes to instantaneous power.
 
 - A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf{v}_\perp$ is unchanged instantaneously.
 
@@ -88,6 +90,7 @@ When we work with the mollified field $\Phi_\eta$, we can also write:
 $$\mathbf{F}_{o'}(t) = -\nabla_{\mathbf{s}_{o'}}U_{o'}(t) = -q_{o'} \nabla_{\mathbf{s}_{o'}} \Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big),$$
 
 and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit.
+The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
 
 ---
 
@@ -101,12 +104,14 @@ $$\Delta E_k = \int \mathbf{F}\cdot d\mathbf{s} = -\Delta U$$
 
 (when we restrict attention to its interactions with a fixed set of sources). For an **isolated system** of Architrinos and their fields, the total energy is:
 
-$$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{field}},$$
+$$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{wake}},$$
 
 and is constant in time (in the limit of perfect regularization and no open boundaries).
 
 - $U_{\text{int}}$ collects all pairwise interaction energies.
-- $E_{\text{field}}$ accounts for energy carried in the wake structures of the tri-binary sea and any "radiation" from assemblies.
+- $E_{\text{wake}}$ accounts for energy carried in the wake structures of the tri-binary sea and any "radiation" from assemblies.
+
+Ledger rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ (pairwise) term is retained for bookkeeping inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
 In practice, for finite systems or simulation domains, we verify conservation by monitoring $E_{\text{total}}(t)$ and checking convergence as $\eta$ and $\Delta t$ are reduced.
 
@@ -157,13 +162,14 @@ This internal energy can be **very large**: tri-binaries and more complex assemb
 The surrounding tri-binary sea, and the arrangement of pro/anti Architrinos inside an assembly, can **shield** internal energy from the external world through:
 
 - **Charge cancellation**: positive and negative Architrinos within the assembly (and in surrounding tri-binaries) emit fields that interfere destructively at larger distances.
-- **Sphere-stream structuring**: the geometry of internal orbits and tri-binary polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size.
+- **Sphere-stream structuring**: the geometry of internal orbits and tri-binary polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size (multipole cancellation in the far field).
 
 Define a **shielding (leakage) factor** $\zeta(A)\in[0,1]$ for an assembly $A$ as:
 
 $$\zeta(A) \equiv \frac{\text{measured external field amplitude (or effective coupling)}}{\text{naive sum of constituent contributions}},$$
 
 evaluated in a regime where the assembly appears as an effective point source. For a strongly shielded, neutral tri-binary in the tri-binary sea, we expect $\zeta\ll 1$.
+Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum.
 
 The **apparent energy** that influences other assemblies at large distances is then roughly:
 
@@ -189,7 +195,9 @@ $$m_{\text{inertial}}(A) \equiv \frac{|\mathbf{F}_{\text{ext}}|}{|\mathbf{a}_{\t
 
 Because the external field couples mainly to the **apparent energy**, not the full internal storm, we expect:
 
-$$m_{\text{inertial}}(A) \propto E_{\text{apparent}}(A) \sim \zeta(A)\,E_{\text{internal}}(A).$$
+$$m_{\text{inertial}}(A) \approx \alpha\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2},$$
+
+with $\alpha$ fixed to $1$ by a reference assembly (e.g., electron) in the regime where effective Lorentz kinematics hold.
 
 ---
 
@@ -388,5 +396,3 @@ In AAA, the hard inner cutoff **creates** a natural zero at $r_{\min}$, which is
 ### 7) One-Line Rule
 
 If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
-
-In other words, the same shielding that makes the external field small also makes the assembly respond sluggishly (high inertia) compared to the naive sum of constituent kinetic energies.
