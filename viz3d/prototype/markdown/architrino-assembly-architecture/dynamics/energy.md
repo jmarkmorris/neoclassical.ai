@@ -314,7 +314,7 @@ Working bookkeeping hypothesis:
 
 - Outer binary registers a single-step transaction ($h$-like unit).
 - Middle binary adjusts to conserve total energy.
-- Inner binary executes a two-step shift ($2h$-like unit), i.e., two discrete updates rather than one.
+- Inner binary executes a two-step shift ($2h$-like unit), i.e., two discrete updates rather than one. The "step" corresponds to the system crossing a separatrix between basins of attraction in the nonlinear delay dynamics. While the underlying trajectory is continuous, the energy redistribution stabilizes only at discrete resonances (winding numbers), making the effective energy transfer appear quantized.
 
 This can read as an "amplified" response, but only because the inner binary is **releasing or reconfiguring stored energy** when the self-hit echo is engaged. It is **not** net energy creation; it is a redistribution between internal stores under a smooth $U(r)$.
 
