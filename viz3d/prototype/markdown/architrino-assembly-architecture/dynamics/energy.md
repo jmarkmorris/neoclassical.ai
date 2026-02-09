@@ -250,7 +250,9 @@ All available mechanical energy is kinetic at the inner turning point. Moving ou
 
 If an effective potential is used, the centrifugal term and the self-hit barrier both contribute:
 
-$$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 q r^2} + V_{\text{self-hit}}(r).$$
+$$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 q_{\text{inertia}} r^2} + V_{\text{self-hit}}(r).$$
+
+Here $q_{\text{inertia}}$ is an **effective inertial scale** (a bookkeeping proxy for mass in the coarse-grained description), not the Architrino charge $q$ used in $U=q\Phi$ above.
 
 The convention above fixes:
 
@@ -305,7 +307,7 @@ Per-step increments (explicit, no deltas):
   $$k_i \equiv \chi_i\,\varepsilon_i,\quad u_i \equiv (1-\chi_i)\,\varepsilon_i,$$
   so $k_i + u_i = \varepsilon_i$. Because the inner binary takes **two steps**, it adds $2k_i$ and $2u_i$.
 - Middle adjustment energy: $\varepsilon_m$ is whatever is needed to close the ledger (including any wake/field exchange $\varepsilon_w$):
-  $$\varepsilon_m \equiv \varepsilon_w - \big(\varepsilon_o + 2\varepsilon_i\big),$$
+  $$\varepsilon_m \equiv \varepsilon_w - 2\varepsilon_i,$$
   and we split it as
   $$k_m \equiv \chi_m\,\varepsilon_m,\quad u_m \equiv (1-\chi_m)\,\varepsilon_m.$$
 
@@ -313,12 +315,12 @@ Per-step increments (explicit, no deltas):
 | --- | --- | --- | --- | --- |
 | $f-1$ | $K_o^{f-1}$, $U_o^{f-1}$ | $K_m^{f-1}$, $U_m^{f-1}$ | $K_i^{f-1}$, $U_i^{f-1}$ | Baseline. No pending transaction. |
 | $f_{\psi}$ | $K_o^{f_{\psi}} = K_o^{f-1} + k_o$<br>$U_o^{f_{\psi}} = U_o^{f-1} + u_o$ | $K_m^{f_{\psi}} = K_m^{f-1}$<br>$U_m^{f_{\psi}} = U_m^{f-1}$ | $K_i^{f_{\psi}} = K_i^{f-1}$<br>$U_i^{f_{\psi}} = U_i^{f-1}$ | Immediate post-hit. <br>Outer receives $\Delta L_o = +h$ <br>Outer records a $(k_o,u_o)$ increment. |
-| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1} + k_m$<br>$U_m^{f} = U_m^{f-1} + u_m$ | $K_i^{f} = K_i^{f-1} + 2k_i$<br>$U_i^{f} = U_i^{f-1} + 2u_i$ | Post-redistribution. <br>Inner performs a two-step update;<br>middle adjusts to close the energy ledger. |
+| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1} + k_m$<br>$U_m^{f} = U_m^{f-1} + u_m$ | $K_i^{f} = K_i^{f-1} + 2k_i$<br>$U_i^{f} = U_i^{f-1} + 2u_i$ | Post-redistribution. <br>Outer update is complete at $f_{\psi}$; only middle/inner continue to settle. |
 
 Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
 
 - **Angular momentum**: $\Delta L_{\text{out}} + \Delta L_{\text{mid}} + \Delta L_{\text{in}} + \Delta L_{\text{wake}} = +h$. A minimal closure consistent with the working hypothesis is $\Delta L_{\text{out}} = +h$, $\Delta L_{\text{in}} = +2h$, $\Delta L_{\text{mid}} = -2h$ (and $\Delta L_{\text{wake}} \approx 0$), but any redistribution that satisfies the sum is acceptable.
-- **Energy**: $(k_o+u_o) + (k_m+u_m) + 2(k_i+u_i) + \varepsilon_w = \varepsilon_o$. This is the explicit version of conservation using the per-step increments defined above.
+- **Energy**: $(k_o+u_o) + (k_m+u_m) + 2(k_i+u_i) = \varepsilon_o + \varepsilon_w$. This is the explicit version of conservation using the per-step increments defined above.
 - **Smooth slope**: $dU/dr$ remains continuous across the graft; the discrete behavior comes from **state updates**, not a kink in $U(r)$.
 
 This table is intentionally explicit: every $h$ transaction is split into a kinetic part ($k$) and a potential part ($u$), and the only remaining freedom is **how** each binary partitions its step (the $\chi$ fractions).
