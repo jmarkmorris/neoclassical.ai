@@ -198,6 +198,88 @@ Because the external field couples mainly to the **apparent energy**, not the fu
 
 $$m_{\text{inertial}}(A) \propto E_{\text{apparent}}(A) \sim \zeta(A)\,E_{\text{internal}}(A).$$
 
+---
+
+## Energy Bookkeeping and Reference Zero (AAA Convention)
+
+AAA uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of a bound pair (the self-hit / max-curvature radius). This choice is both physical and operational: the system has a **hard inner cutoff** (no further compression), so the deepest accessible state is unique and history-independent.
+
+### 1) Physical Setup and Why a New Zero is Needed
+
+For an attractive two-body system (opposite charges), the inward motion accelerates until it reaches a **minimum radius** $r_{\min}$ where self-hit dynamics and curvature limits prevent further collapse. The motion then rebounds or orbits. Unlike a pure Coulomb potential, this system **does** have a lower bound on radius (and hence on accessible energy states).
+
+Because a lower bound exists, the natural reference is **not** "infinite separation" but the **ground configuration** at $r_{\min}$.
+
+### 2) The Bookkeeping Convention
+
+Define the potential energy to vanish at the inner turning point:
+
+$$U(r_{\min}) = 0.$$
+
+Then for larger radii,
+
+$$U(r) > 0 \quad \text{for } r > r_{\min}.$$
+
+Interpretation:
+
+> $U(r)$ is the **work required to pull the system outward** from its tightest state.
+
+This eliminates negative potentials and makes binding explicit.
+
+### 3) Binding Energy and Total Energy
+
+Let $B(r)$ denote the **binding energy** at radius $r$, with
+
+$$B(r_{\min}) = B_{\max}.$$
+
+Define
+
+$$U(r) = B_{\max} - B(r).$$
+
+Then total energy bookkeeping is:
+
+$$E_{\text{total}} = K(r) + U(r), \qquad U(r) \ge 0.$$
+
+At the minimum radius:
+
+$$E_{\text{total}} = K_{\max}, \quad U(r_{\min}) = 0.$$
+
+All available mechanical energy is kinetic at the inner turning point. Moving outward converts kinetic energy into potential energy (the rebound / climb-out phase).
+
+### 4) Effective Potential Language
+
+If an effective potential is used, the centrifugal term and the self-hit barrier both contribute:
+
+$$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 q r^2} + V_{\text{self-hit}}(r).$$
+
+The convention above fixes:
+
+$$V_{\text{eff}}(r_{\min}) = 0.$$
+
+This does **not** change dynamics; it sets a physically meaningful reference.
+
+### 5) Comparison to Coulomb and Standard Conventions
+
+In pure Coulomb,
+
+$$V(r) = -\frac{k q^2}{r},$$
+
+so there is no inner bound and no natural finite zero. Classical mechanics therefore chooses $V(\infty)=0$.
+
+In AAA, the hard inner cutoff **creates** a natural zero at $r_{\min}$, which is the lowest accessible state. The bookkeeping therefore switches from "energy relative to infinity" to "energy relative to the ground state."
+
+### 6) Summary Table (Operational Meaning)
+
+| Region | $K$ | $U$ | Meaning |
+| --- | --- | --- | --- |
+| $r = r_{\min}$ | max | 0 | Fully bound (ground) |
+| $r > r_{\min}$ | $\downarrow$ | $\uparrow$ | Climbing out / rebound |
+| escape limit | 0 | $B_{\max}$ | Free (unbound) |
+
+### 7) One-Line Rule
+
+If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
+
 In other words, the same shielding that makes the external field small also makes the assembly respond sluggishly (high inertia) compared to the naive sum of constituent kinetic energies.
 
 ### Spacetime Sea and Effective Relativistic Behavior
