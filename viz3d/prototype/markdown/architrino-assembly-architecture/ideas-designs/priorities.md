@@ -12,7 +12,7 @@
 
 - finish topology (where is it) su(3)su(2)o(1)
 
-- check this idea out - if the tri-binary opens up inside the bh, then we get our quadropole resonance when a given core pops early or late. Or said another way, the event horizon isn't actually a sphere, it is some very rough surface that may have a large radial depth. We are talking about particles doing their thing in their local environment.  So they have this brief neck to planar and then they get spherical again even though they are shrinking.  How cool.  So how do we resolve the volume problem - going to zero at the event horizon
+- check this idea out - if the tri-binary opens up inside the bh, then we get our quadropole resonance when a given core pops early or late. Or said another way, the event horizon isn't actually a sphere, it is some very rough surface that may have a large radial depth. We are talking about particles doing their thing in their local environment.  So they have this brief neck to planar and then they get spherical again even though they are shrinking.  How cool.  So how do we resolve the volume problem - going to zero at the event horizon.  is there a solution at the event horizon?  all 3 binaries are at c_f arghh = still not sure I have the model right.
 
 - change github pages on which branch it serves from now that I have alpha, beta....
 
