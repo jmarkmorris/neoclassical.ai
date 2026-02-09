@@ -284,7 +284,7 @@ In this language, a discrete input can **lock in** a new tri-binary configuratio
 
 Assumptions for this bookkeeping pass:
 
-- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **action/transition** ($f_\psi$), and **post-redistribution** ($f$). There is **one** step in frequency. The $f_\psi$ label is a transient bookkeeping state, not a new frequency index or literal wavefunction.
+- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **action/transition** ($f_{\psi}$), and **post-redistribution** ($f$). There is **one** step in frequency. The $f_{\psi}$ label is a transient bookkeeping state, not a new frequency index or literal wavefunction.
 - The transaction is a single angular-momentum unit, $\Delta L_{\text{out}} = +h$, delivered to the **outer** binary while $v_{\text{out}} < v_f$.
 - Energy bookkeeping uses action-angle language: for a small discrete step, $\Delta E \approx \omega\,\Delta L$. This is a **notation choice**, not a claim about the exact micro-law.
 - The **inner binary** responds with a two-step reconfiguration ($2h$-like). The **middle binary** adjusts to satisfy conservation of total energy and angular momentum (including any wake/field exchange).
@@ -294,7 +294,7 @@ Notation in the table:
 - $K_o, U_o$ = outer-binary kinetic and potential energies.
 - $K_m, U_m$ = middle-binary kinetic and potential energies.
 - $K_i, U_i$ = inner-binary kinetic and potential energies.
-- Superscripts $(f-1)$, $(f_\psi)$, and $(f)$ denote the state index (one-step update).
+- Superscripts $(f-1)$, $(f_{\psi})$, and $(f)$ denote the state index (one-step update).
 
 Per-step increments (explicit, no deltas):
 
@@ -312,7 +312,7 @@ Per-step increments (explicit, no deltas):
 | State | Outer (o) | Middle (m) | Inner (i) | Notes |
 | --- | --- | --- | --- | --- |
 | $f-1$ | $K_o^{f-1}$, $U_o^{f-1}$ | $K_m^{f-1}$, $U_m^{f-1}$ | $K_i^{f-1}$, $U_i^{f-1}$ | Baseline. No pending transaction. |
-| $f_\psi$ | $K_o^{f_\psi} = K_o^{f-1} + k_o$<br>$U_o^{f_\psi} = U_o^{f-1} + u_o$ | $K_m^{f_\psi} = K_m^{f-1}$<br>$U_m^{f_\psi} = U_m^{f-1}$ | $K_i^{f_\psi} = K_i^{f-1}$<br>$U_i^{f_\psi} = U_i^{f-1}$ | Immediate post-hit. <br>Outer receives $\Delta L_o = +h$ <br>Outer records a $(k_o,u_o)$ increment. |
+| $f_{\psi}$ | $K_o^{f_{\psi}} = K_o^{f-1} + k_o$<br>$U_o^{f_{\psi}} = U_o^{f-1} + u_o$ | $K_m^{f_{\psi}} = K_m^{f-1}$<br>$U_m^{f_{\psi}} = U_m^{f-1}$ | $K_i^{f_{\psi}} = K_i^{f-1}$<br>$U_i^{f_{\psi}} = U_i^{f-1}$ | Immediate post-hit. <br>Outer receives $\Delta L_o = +h$ <br>Outer records a $(k_o,u_o)$ increment. |
 | $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1} + k_m$<br>$U_m^{f} = U_m^{f-1} + u_m$ | $K_i^{f} = K_i^{f-1} + 2k_i$<br>$U_i^{f} = U_i^{f-1} + 2u_i$ | Post-redistribution. <br>Inner performs a two-step update;<br>middle adjusts to close the energy ledger. |
 
 Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
