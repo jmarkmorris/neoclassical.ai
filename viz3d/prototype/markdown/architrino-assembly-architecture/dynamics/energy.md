@@ -10,7 +10,7 @@ Crucially, what we call "spacetime" at the effective level is not the bare Eucli
 
 ## Kinetic Energy and Momentum of a Single Architrino
 
-An Architrino in motion possesses kinetic energy and momentum.
+An architrino in motion possesses kinetic energy and momentum.
 
 - **Kinetic Energy $E_k$**
   

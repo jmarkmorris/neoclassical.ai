@@ -15,7 +15,7 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the Architrino Assembly Architecture (AAA), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of Noether cores connected by color flux tubes.
+While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture (AAA), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of Noether cores connected by color flux tubes.
 
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 
