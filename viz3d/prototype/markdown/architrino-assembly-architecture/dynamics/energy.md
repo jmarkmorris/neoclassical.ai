@@ -18,7 +18,7 @@ An Architrino in motion possesses kinetic energy and momentum.
   
   $$E_{k,a}(t) = K\big(|\mathbf{v}_a(t)|\big),$$
   
-  where $K$ is a monotonically increasing function with $K(0)=0$. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
+  where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
   
