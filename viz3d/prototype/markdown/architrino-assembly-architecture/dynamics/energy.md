@@ -61,8 +61,6 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 
 - A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf{v}_\perp$ is unchanged instantaneously.
 
-Plain language: split your velocity into "along the line of action" and "sideways." A hit only pushes along the line; sideways motion is unaffected in that instant. If you are moving inward, the next pushes tend to be stronger because of the $1/r^2$ factor; if you're moving outward, they weaken.
-
 ---
 
 ## Potential Energy and Net Potential
@@ -176,8 +174,6 @@ $$E_{\text{apparent}}(A) \sim \zeta(A)\,E_{\text{internal}}(A),$$
 
 up to proportionality constants fixed by matching to effective low-energy theory (e.g. mapping to $mc^2$).
 
-Plain language: inside, there's a huge storm of energy. Outside, you only see a faint ripple whose amplitude is set by how imperfect the internal cancellations and sea shielding are.
-
 ---
 
 ## Emergent Inertia (Mass) from Shielded Energy
@@ -227,6 +223,14 @@ Globally, energy is conserved: self-hit just routes energy along more complex pa
 
 ---
 
+## Intuition (Plain Language)
+
+A causal hit only changes the along-the-line component of velocity; sideways motion is unaffected in that instant. If you are moving inward, the next pushes tend to be stronger because of the $1/r^2$ factor; if you're moving outward, they weaken.
+
+Inside an assembly there is a huge storm of energy. Outside, you only see a faint ripple whose amplitude is set by how imperfect the internal cancellations and sea shielding are.
+
+Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull—they live in how the hull is built and how it pulls on the water. Most of the ocean's energy never shows up in long-range fields, because the waves from different directions cancel almost exactly. The tiny leftover ripples are what we call gravity and particle masses.
+
 ## Summary and Role in the Larger Theory
 
 - **At the Architrino level:**
@@ -246,10 +250,6 @@ Globally, energy is conserved: self-hit just routes energy along more complex pa
   - The effective Newton constant $G$,
   - The cosmological vacuum energy density,
   - How strongly spacetime curvature responds to different kinds of energy.
-
-**Plain language:**
-
-Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull—they live in how the hull is built and how it pulls on the water. Most of the ocean's energy never shows up in long-range fields, because the waves from different directions cancel almost exactly. The tiny leftover ripples are what we call gravity and particle masses.
 
 ---
 
