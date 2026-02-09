@@ -8,6 +8,8 @@
   - a language for describing animations 
   - every scene will be ported to this format
 
+- i like this term 'wake'. It is better than field. Wake/field: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level
+
 - work on quantum numbers again (which doc?). Leverage MIT Kaiser 22
 
 - finish topology (where is it) su(3)su(2)o(1)

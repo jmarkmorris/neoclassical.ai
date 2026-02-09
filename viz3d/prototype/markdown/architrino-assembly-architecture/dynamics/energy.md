@@ -1,6 +1,6 @@
 # Kinetic and Potential Energy
 
-In this model, all energy is fundamentally tied to Architrinos and the potential fields they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone "field substance" or vacuum energy independent of Architrinos and their assemblies.
+In this model, all energy is fundamentally tied to Architrinos and the potential fields they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone "field substance" or vacuum energy independent of Architrinos and their assemblies. A **wake (field)** is the causal-isochron residue left by Architrino motion; "wake" is the Architrino-native description of what appears as a field at the effective level.
 
 All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed, purely radial hits from causal isochrons** on this fixed background. We work in units with field speed $v_f=1$.
 
@@ -83,7 +83,7 @@ For a particle $o'$ with charge $q_{o'}$ at position $\mathbf{s}_{o'}(t)$, the p
 
 $$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big).$$
 
-Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal cone of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed.
+Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal cone of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth field.
 
 When we work with the mollified field $\Phi_\eta$, we can also write:
 
@@ -102,7 +102,7 @@ For a single Architrino:
 
 $$\Delta E_k = \int \mathbf{F}\cdot d\mathbf{s} = -\Delta U$$
 
-(when we restrict attention to its interactions with a fixed set of sources). For an **isolated system** of Architrinos and their fields, the total energy is:
+(when we restrict attention to its interactions with a fixed set of sources). For an **isolated system** of Architrinos and their wakes, the total energy is:
 
 $$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{wake}},$$
 
@@ -229,8 +229,6 @@ Globally, energy is conserved: self-hit just routes energy along more complex pa
 ---
 
 ## Intuition (Plain Language)
-
-A causal hit only changes the along-the-line component of velocity; sideways motion is unaffected in that instant. If you are moving inward, the next pushes tend to be stronger because of the $1/r^2$ factor; if you're moving outward, they weaken.
 
 Inside an assembly there is a huge storm of energy. Outside, you only see a faint ripple whose amplitude is set by how imperfect the internal cancellations and sea shielding are.
 
