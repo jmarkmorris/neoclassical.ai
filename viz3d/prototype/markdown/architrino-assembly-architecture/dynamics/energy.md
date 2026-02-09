@@ -280,6 +280,36 @@ It is useful (as a **bookkeeping analogy**) to think of the tri-binary as a **ro
 
 In this language, a discrete input can **lock in** a new tri-binary configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in AAA it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
 
+### 4.3) Pedantic Bookkeeping Table: One $h$ of Angular Momentum (Outer $v < v_f$)
+
+Assumptions for this bookkeeping pass:
+
+- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **immediate post-hit** ($f$), and **post-redistribution** ($f+1$).
+- The transaction is a single angular-momentum unit, $\Delta L_{\text{out}} = +h$, delivered to the **outer** binary while $v_{\text{out}} < v_f$.
+- Energy bookkeeping uses action-angle language: for a small discrete step, $\Delta E \approx \omega\,\Delta L$. This is a **notation choice**, not a claim about the exact micro-law.
+- The **inner binary** responds with a two-step reconfiguration ($2h$-like). The **middle binary** adjusts to satisfy conservation of total energy and angular momentum (including any wake/field exchange).
+
+Notation in the table:
+
+- $K_o, U_o$ = outer-binary kinetic and potential energies.
+- $K_m, U_m$ = middle-binary kinetic and potential energies.
+- $K_i, U_i$ = inner-binary kinetic and potential energies.
+- Superscripts $(f-1)$, $(f)$, $(f+1)$ denote the state index.
+
+| State | Outer (o) | Middle (m) | Inner (i) | Notes |
+| --- | --- | --- | --- | --- |
+| $f-1$ | $K_o^{f-1}$, $U_o^{f-1}$ | $K_m^{f-1}$, $U_m^{f-1}$ | $K_i^{f-1}$, $U_i^{f-1}$ | Baseline. No pending transaction. |
+| $\Delta K_o^{\text{hit}}$ <br> $\Delta U_o^{\text{hit}}$ | $K_o^{f} = K_o^{f-1} $<br>$U_o^{f} = U_o^{f-1}$ | $K_m^{f} = K_m^{f-1}$<br>$U_m^{f} = U_m^{f-1}$ | $K_i^{f} = K_i^{f-1}$<br>$U_i^{f} = U_i^{f-1}$ | Immediate post-hit (impulsive). Outer receives $\Delta L_o = +h$. <br>Radius begins to reconfigure. |
+| $f$ | $K_o^{f} = K_o^{f-1} + \Delta K_o^{\text{res}}$<br>$U_o^{f} = U_o^{f-1} + \Delta U_o^{\text{res}}$ | $K_m^{f} = K_m^{f-1} + \Delta K_m$<br>$U_m^{f} = U_m^{f-1} + \Delta U_m$ | $K_i^{f} = K_i^{f-1} + \Delta K_i$<br>$U_i^{f} = U_i^{f-1} + \Delta U_i$ | Post-redistribution. Outer settles into a new orbit (radius/frequency shift). <br>Middle adjusts to conserve total $E$ and $L$. <br>Inner performs a $2h$-like reconfiguration (two discrete steps). |
+
+Constraints to apply across the $f \to f+1$ transition (bookkeeping level):
+
+- **Angular momentum**: $\Delta L_{\text{out}} + \Delta L_{\text{mid}} + \Delta L_{\text{in}} + \Delta L_{\text{wake}} = +h$. A minimal closure consistent with the working hypothesis is $\Delta L_{\text{out}} = +h$, $\Delta L_{\text{in}} = +2h$, $\Delta L_{\text{mid}} = -2h$ (and $\Delta L_{\text{wake}} \approx 0$), but any redistribution that satisfies the sum is acceptable.
+- **Energy**: $\Delta E_{\text{out}} + \Delta E_{\text{mid}} + \Delta E_{\text{in}} + \Delta E_{\text{wake}} = \omega_o h$ (outer-step energy), with $\Delta E_{\alpha} = \Delta K_{\alpha} + \Delta U_{\alpha}$ for $\alpha \in \{o,m,i\}$.
+- **Smooth slope**: $dU/dr$ remains continuous across the graft; the discrete behavior comes from **state updates**, not a kink in $U(r)$.
+
+This table is intentionally symbolic: it cleanly separates **impulsive receipt** ($f$) from **relaxed redistribution** ($f+1$), which is the bookkeeping distinction you want when you later pin down the actual micro-law.
+
 ### 5) Comparison to Coulomb and Standard Conventions
 
 In pure Coulomb,
