@@ -65,32 +65,17 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 
 **AAA interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-core assemblies stabilize, binding quark-like structures into hadron analogs. The Noether sea now supports composite assemblies with persistent internal phase structure, setting the stage for nuclear binding.
 
-## Neutrino Decoupling ($\sim 1$ s)
-- Time window: $\sim 1$ s.
-- Regime: weak interaction rate falls below expansion/relaxation rate.
-- Outcome: neutrinos decouple and free-stream.
-
-**$\Lambda\mathrm{CDM}$ interpretation:** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
-
-**AAA interpretation (Neutrino Decoupling: Noether Cores with Neutral Personalities):** Nearly neutral tri-binary assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes.
-
-## Lepton Epoch ($\sim 1$ to $\sim 10$ s)
+## Lepton Epoch (incl. neutrino decoupling) ($\sim 1$ to $\sim 10$ s)
 - Time window: $\sim 1$ to $\sim 10$ s.
 - Regime: leptons and anti-leptons are abundant.
 - Outcome: pair annihilation reduces lepton density and heats radiation.
+- Sub-phase (neutrino decoupling, $\sim 1$ s): weak interaction rate falls below expansion/relaxation; neutrinos free-stream.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath.
+**$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
 **AAA interpretation (Lepton Epoch: Noether Cores with 6*|e/6| Personalities Form):** Stable lepton analogs form from Noether cores decorated with balanced personality charges (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the medium and mediate charge-neutralization channels.
-
-## Big Bang Nucleosynthesis ($\sim 3$ to $\sim 20$ minutes)
-- Time window: $\sim 3$ to $\sim 20$ minutes.
-- Regime: light nuclei form as temperatures fall.
-- Outcome: primordial abundances of D, He, and trace Li are set.
-
-**$\Lambda\mathrm{CDM}$ interpretation:** Protons and neutrons bind into deuterium, helium, and trace lithium; abundances are set by expansion rate and reaction networks.
-
-**AAA interpretation (BBN: Protons (15:21) and Neutrons (18:18) Bind):** Specific multi-core assemblies corresponding to proton (15:21) and neutron (18:18) configurations bind into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea.
+**AAA interpretation (Neutrino Decoupling: Noether Cores with Neutral Personalities):** Nearly neutral tri-binary assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes.
 
 ## Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
 - Time window: $\sim 10$ s to $\sim 3.8\times10^5$ years.
@@ -100,6 +85,15 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 **$\Lambda\mathrm{CDM}$ interpretation:** The photon-baryon fluid is optically thick; acoustic oscillations develop and imprint the future CMB power spectrum.
 
 **AAA interpretation (Photon Epoch: Nuclear Assembly Plasma):** A dense plasma of nuclear assemblies and planar photon-like tri-binaries fills the Noether sea. Repeated scattering and wake interactions thermalize the radiation field. Acoustic-like standing modes arise from coupled oscillations of assemblies and photon-like planar excitations, seeding the eventual CMB peak structure.
+
+## Big Bang Nucleosynthesis ($\sim 3$ to $\sim 20$ minutes)
+- Time window: $\sim 3$ to $\sim 20$ minutes.
+- Regime: light nuclei form as temperatures fall.
+- Outcome: primordial abundances of D, He, and trace Li are set.
+
+**$\Lambda\mathrm{CDM}$ interpretation:** Protons and neutrons bind into deuterium, helium, and trace lithium; abundances are set by expansion rate and reaction networks.
+
+**AAA interpretation (BBN: Protons (15:21) and Neutrons (18:18) Bind):** Specific multi-core assemblies corresponding to proton (15:21) and neutron (18:18) configurations bind into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea.
 
 ## Acoustic Peak Seeding (late Photon Epoch, pre-recombination)
 - Time window: late photon epoch prior to recombination.
