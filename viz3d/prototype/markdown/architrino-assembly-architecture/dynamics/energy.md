@@ -280,11 +280,11 @@ It is useful (as a **bookkeeping analogy**) to think of the tri-binary as a **ro
 
 In this language, a discrete input can **lock in** a new tri-binary configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in AAA it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
 
-### 4.3) Pedantic Bookkeeping Table: One $h$ of Angular Momentum (Outer $v < v_f$)
+### 4.3) Bookkeeping Table: One $h$ of Angular Momentum (Outer $v < v_f$)
 
 Assumptions for this bookkeeping pass:
 
-- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **immediate post-hit** ($f$), and **post-redistribution** ($f+1$).
+- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **action/transition** ($hit$), and **post-redistribution** ($f$).
 - The transaction is a single angular-momentum unit, $\Delta L_{\text{out}} = +h$, delivered to the **outer** binary while $v_{\text{out}} < v_f$.
 - Energy bookkeeping uses action-angle language: for a small discrete step, $\Delta E \approx \omega\,\Delta L$. This is a **notation choice**, not a claim about the exact micro-law.
 - The **inner binary** responds with a two-step reconfiguration ($2h$-like). The **middle binary** adjusts to satisfy conservation of total energy and angular momentum (including any wake/field exchange).
@@ -296,19 +296,32 @@ Notation in the table:
 - $K_i, U_i$ = inner-binary kinetic and potential energies.
 - Superscripts $(f-1)$, $(f)$, $(f+1)$ denote the state index.
 
+Per-step increments (explicit, no deltas):
+
+- Outer step energy: $\varepsilon_o \equiv \omega_o h$ with
+  $$k_o \equiv \chi_o\,\varepsilon_o,\quad u_o \equiv (1-\chi_o)\,\varepsilon_o,$$
+  so $k_o + u_o = \varepsilon_o$.
+- Inner step energy: $\varepsilon_i \equiv \omega_i h$ with
+  $$k_i \equiv \chi_i\,\varepsilon_i,\quad u_i \equiv (1-\chi_i)\,\varepsilon_i,$$
+  so $k_i + u_i = \varepsilon_i$. Because the inner binary takes **two steps**, it adds $2k_i$ and $2u_i$.
+- Middle adjustment energy: $\varepsilon_m$ is whatever is needed to close the ledger (including any wake/field exchange $\varepsilon_w$):
+  $$\varepsilon_m \equiv \varepsilon_w - \big(\varepsilon_o + 2\varepsilon_i\big),$$
+  and we split it as
+  $$k_m \equiv \chi_m\,\varepsilon_m,\quad u_m \equiv (1-\chi_m)\,\varepsilon_m.$$
+
 | State | Outer (o) | Middle (m) | Inner (i) | Notes |
 | --- | --- | --- | --- | --- |
 | $f-1$ | $K_o^{f-1}$, $U_o^{f-1}$ | $K_m^{f-1}$, $U_m^{f-1}$ | $K_i^{f-1}$, $U_i^{f-1}$ | Baseline. No pending transaction. |
-| $\Delta K_o^{\text{hit}}$ <br> $\Delta U_o^{\text{hit}}$ | $K_o^{f} = K_o^{f-1} $<br>$U_o^{f} = U_o^{f-1}$ | $K_m^{f} = K_m^{f-1}$<br>$U_m^{f} = U_m^{f-1}$ | $K_i^{f} = K_i^{f-1}$<br>$U_i^{f} = U_i^{f-1}$ | Immediate post-hit (impulsive). Outer receives $\Delta L_o = +h$. <br>Radius begins to reconfigure. |
-| $f$ | $K_o^{f} = K_o^{f-1} + \Delta K_o^{\text{res}}$<br>$U_o^{f} = U_o^{f-1} + \Delta U_o^{\text{res}}$ | $K_m^{f} = K_m^{f-1} + \Delta K_m$<br>$U_m^{f} = U_m^{f-1} + \Delta U_m$ | $K_i^{f} = K_i^{f-1} + \Delta K_i$<br>$U_i^{f} = U_i^{f-1} + \Delta U_i$ | Post-redistribution. Outer settles into a new orbit (radius/frequency shift). <br>Middle adjusts to conserve total $E$ and $L$. <br>Inner performs a $2h$-like reconfiguration (two discrete steps). |
+| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1}$<br>$U_m^{f} = U_m^{f-1}$ | $K_i^{f} = K_i^{f-1}$<br>$U_i^{f} = U_i^{f-1}$ | Immediate post-hit. Outer receives $\Delta L_o = +h$ and records one full $(k_o,u_o)$ increment. |
+| $f+1$ | $K_o^{f+1} = K_o^{f-1} + k_o$<br>$U_o^{f+1} = U_o^{f-1} + u_o$ | $K_m^{f+1} = K_m^{f-1} + k_m$<br>$U_m^{f+1} = U_m^{f-1} + u_m$ | $K_i^{f+1} = K_i^{f-1} + 2k_i$<br>$U_i^{f+1} = U_i^{f-1} + 2u_i$ | Post-redistribution. Inner performs a two-step update; middle adjusts to close the energy ledger. |
 
 Constraints to apply across the $f \to f+1$ transition (bookkeeping level):
 
 - **Angular momentum**: $\Delta L_{\text{out}} + \Delta L_{\text{mid}} + \Delta L_{\text{in}} + \Delta L_{\text{wake}} = +h$. A minimal closure consistent with the working hypothesis is $\Delta L_{\text{out}} = +h$, $\Delta L_{\text{in}} = +2h$, $\Delta L_{\text{mid}} = -2h$ (and $\Delta L_{\text{wake}} \approx 0$), but any redistribution that satisfies the sum is acceptable.
-- **Energy**: $\Delta E_{\text{out}} + \Delta E_{\text{mid}} + \Delta E_{\text{in}} + \Delta E_{\text{wake}} = \omega_o h$ (outer-step energy), with $\Delta E_{\alpha} = \Delta K_{\alpha} + \Delta U_{\alpha}$ for $\alpha \in \{o,m,i\}$.
+- **Energy**: $(k_o+u_o) + (k_m+u_m) + 2(k_i+u_i) + \varepsilon_w = \varepsilon_o$. This is the explicit version of conservation using the per-step increments defined above.
 - **Smooth slope**: $dU/dr$ remains continuous across the graft; the discrete behavior comes from **state updates**, not a kink in $U(r)$.
 
-This table is intentionally symbolic: it cleanly separates **impulsive receipt** ($f$) from **relaxed redistribution** ($f+1$), which is the bookkeeping distinction you want when you later pin down the actual micro-law.
+This table is intentionally explicit: every $h$ transaction is split into a kinetic part ($k$) and a potential part ($u$), and the only remaining freedom is **how** each binary partitions its step (the $\chi$ fractions).
 
 ### 5) Comparison to Coulomb and Standard Conventions
 
