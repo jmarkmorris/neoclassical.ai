@@ -118,7 +118,7 @@ At the fundamental level, space is an empty Euclidean container. **Effective spa
 
 - These tri-binaries are extremely small compared to ordinary particles (electrons, protons, etc.).
 - Each tri-binary is itself a tightly bound Architrino assembly with very high internal kinetic and potential energy.
-- As a sea, they form a kind of **energetic lattice / fluid** that fills all of space, providing a medium for:
+- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This medium is characterized by a non-zero vacuum expectation value of assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, inertial drag) that deform the primitive Architrino dynamics into effective relativistic kinematics, providing a medium for:
   - Emergent inertia and mass,
   - Emergent light cones and Lorentz-like behavior,
   - Effective gravitational coupling (emergent geometry at large scales).
