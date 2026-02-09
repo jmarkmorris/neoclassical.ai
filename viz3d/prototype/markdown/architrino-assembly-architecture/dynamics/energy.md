@@ -258,6 +258,28 @@ $$V_{\text{eff}}(r_{\min}) = 0.$$
 
 This does **not** change dynamics; it sets a physically meaningful reference.
 
+### 4.1) Self-Hit Echo and Discrete Steps (Working Note)
+
+In the current picture, the self-hit region is **not** assumed to change the local force law. The radial slope remains smooth:
+
+$$\frac{dU}{dr} \text{ is continuous, and both spirals start with slope } 1.$$
+
+So the transition between the $v=c_f$ regime and the self-hit regime is a **gentle grafting**, not a kink in the potential. The distinction shows up in **how energy is discretized and routed** between binaries, not in a new macroscopic slope.
+
+Working bookkeeping hypothesis:
+
+- Outer binary registers a single-step transaction ($h$-like unit).
+- Middle binary adjusts to conserve total energy.
+- Inner binary executes a two-step shift ($2h$-like unit), i.e., two discrete updates rather than one.
+
+This can read as an "amplified" response, but only because the inner binary is **releasing or reconfiguring stored energy** when the self-hit echo is engaged. It is **not** net energy creation; it is a redistribution between internal stores under a smooth $U(r)$.
+
+### 4.2) Tri-Binary as Routing/Locking Circuit (Analogy)
+
+It is useful (as a **bookkeeping analogy**) to think of the tri-binary as a **routing/locking circuit** rather than a simple reservoir. An incoming single-step transaction ($h$-like) couples most strongly to the **outer binary**, the **middle binary** acts as a buffer/fulcrum that maintains overall consistency, and the **inner binary** can respond with a two-step reconfiguration when the self-hit echo is engaged. This makes the response feel like a **gear or ratchet**, but the mechanism is still deterministic energy routing, not creation.
+
+In this language, a discrete input can **lock in** a new tri-binary configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in AAA it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
+
 ### 5) Comparison to Coulomb and Standard Conventions
 
 In pure Coulomb,
