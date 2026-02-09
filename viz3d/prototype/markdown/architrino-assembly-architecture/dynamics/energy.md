@@ -284,7 +284,7 @@ In this language, a discrete input can **lock in** a new tri-binary configuratio
 
 Assumptions for this bookkeeping pass:
 
-- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **action/transition** ($hit$), and **post-redistribution** ($f$).
+- $f$ labels a discrete outer-binary orbital state (frequency index). The three rows are **pre-hit** ($f-1$), **action/transition** ($hit$), and **post-redistribution** ($f$). There is **one** step in frequency.
 - The transaction is a single angular-momentum unit, $\Delta L_{\text{out}} = +h$, delivered to the **outer** binary while $v_{\text{out}} < v_f$.
 - Energy bookkeeping uses action-angle language: for a small discrete step, $\Delta E \approx \omega\,\Delta L$. This is a **notation choice**, not a claim about the exact micro-law.
 - The **inner binary** responds with a two-step reconfiguration ($2h$-like). The **middle binary** adjusts to satisfy conservation of total energy and angular momentum (including any wake/field exchange).
@@ -294,7 +294,7 @@ Notation in the table:
 - $K_o, U_o$ = outer-binary kinetic and potential energies.
 - $K_m, U_m$ = middle-binary kinetic and potential energies.
 - $K_i, U_i$ = inner-binary kinetic and potential energies.
-- Superscripts $(f-1)$, $(f)$, $(f+1)$ denote the state index.
+- Superscripts $(f-1)$ and $(f)$ denote the state index (one-step update).
 
 Per-step increments (explicit, no deltas):
 
@@ -312,10 +312,10 @@ Per-step increments (explicit, no deltas):
 | State | Outer (o) | Middle (m) | Inner (i) | Notes |
 | --- | --- | --- | --- | --- |
 | $f-1$ | $K_o^{f-1}$, $U_o^{f-1}$ | $K_m^{f-1}$, $U_m^{f-1}$ | $K_i^{f-1}$, $U_i^{f-1}$ | Baseline. No pending transaction. |
-| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1}$<br>$U_m^{f} = U_m^{f-1}$ | $K_i^{f} = K_i^{f-1}$<br>$U_i^{f} = U_i^{f-1}$ | Immediate post-hit. Outer receives $\Delta L_o = +h$ and records one full $(k_o,u_o)$ increment. |
-| $f+1$ | $K_o^{f+1} = K_o^{f-1} + k_o$<br>$U_o^{f+1} = U_o^{f-1} + u_o$ | $K_m^{f+1} = K_m^{f-1} + k_m$<br>$U_m^{f+1} = U_m^{f-1} + u_m$ | $K_i^{f+1} = K_i^{f-1} + 2k_i$<br>$U_i^{f+1} = U_i^{f-1} + 2u_i$ | Post-redistribution. Inner performs a two-step update; middle adjusts to close the energy ledger. |
+| $hit$ | $K_o^{hit} = K_o^{f-1} + k_o$<br>$U_o^{hit} = U_o^{f-1} + u_o$ | $K_m^{hit} = K_m^{f-1}$<br>$U_m^{hit} = U_m^{f-1}$ | $K_i^{hit} = K_i^{f-1}$<br>$U_i^{hit} = U_i^{f-1}$ | Immediate post-hit. Outer receives $\Delta L_o = +h$ and records one full $(k_o,u_o)$ increment. |
+| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1} + k_m$<br>$U_m^{f} = U_m^{f-1} + u_m$ | $K_i^{f} = K_i^{f-1} + 2k_i$<br>$U_i^{f} = U_i^{f-1} + 2u_i$ | Post-redistribution. Inner performs a two-step update; middle adjusts to close the energy ledger. |
 
-Constraints to apply across the $f \to f+1$ transition (bookkeeping level):
+Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
 
 - **Angular momentum**: $\Delta L_{\text{out}} + \Delta L_{\text{mid}} + \Delta L_{\text{in}} + \Delta L_{\text{wake}} = +h$. A minimal closure consistent with the working hypothesis is $\Delta L_{\text{out}} = +h$, $\Delta L_{\text{in}} = +2h$, $\Delta L_{\text{mid}} = -2h$ (and $\Delta L_{\text{wake}} \approx 0$), but any redistribution that satisfies the sum is acceptable.
 - **Energy**: $(k_o+u_o) + (k_m+u_m) + 2(k_i+u_i) + \varepsilon_w = \varepsilon_o$. This is the explicit version of conservation using the per-step increments defined above.
