@@ -312,8 +312,8 @@ Per-step increments (explicit, no deltas):
 | State | Outer (o) | Middle (m) | Inner (i) | Notes |
 | --- | --- | --- | --- | --- |
 | $f-1$ | $K_o^{f-1}$, $U_o^{f-1}$ | $K_m^{f-1}$, $U_m^{f-1}$ | $K_i^{f-1}$, $U_i^{f-1}$ | Baseline. No pending transaction. |
-| $hit$ | $K_o^{hit} = K_o^{f-1} + k_o$<br>$U_o^{hit} = U_o^{f-1} + u_o$ | $K_m^{hit} = K_m^{f-1}$<br>$U_m^{hit} = U_m^{f-1}$ | $K_i^{hit} = K_i^{f-1}$<br>$U_i^{hit} = U_i^{f-1}$ | Immediate post-hit. Outer receives $\Delta L_o = +h$ and records one full $(k_o,u_o)$ increment. |
-| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1} + k_m$<br>$U_m^{f} = U_m^{f-1} + u_m$ | $K_i^{f} = K_i^{f-1} + 2k_i$<br>$U_i^{f} = U_i^{f-1} + 2u_i$ | Post-redistribution. Inner performs a two-step update; middle adjusts to close the energy ledger. |
+| $hit$ | $K_o^{hit} = K_o^{f-1} + k_o$<br>$U_o^{hit} = U_o^{f-1} + u_o$ | $K_m^{hit} = K_m^{f-1}$<br>$U_m^{hit} = U_m^{f-1}$ | $K_i^{hit} = K_i^{f-1}$<br>$U_i^{hit} = U_i^{f-1}$ | Immediate post-hit. <br>Outer receives $\Delta L_o = +h$ <br>Outer records a $(k_o,u_o)$ increment. |
+| $f$ | $K_o^{f} = K_o^{f-1} + k_o$<br>$U_o^{f} = U_o^{f-1} + u_o$ | $K_m^{f} = K_m^{f-1} + k_m$<br>$U_m^{f} = U_m^{f-1} + u_m$ | $K_i^{f} = K_i^{f-1} + 2k_i$<br>$U_i^{f} = U_i^{f-1} + 2u_i$ | Post-redistribution. <br>Inner performs a two-step update;<br>middle adjusts to close the energy ledger. |
 
 Constraints to apply across the $f-1 \to f$ transition (bookkeeping level):
 

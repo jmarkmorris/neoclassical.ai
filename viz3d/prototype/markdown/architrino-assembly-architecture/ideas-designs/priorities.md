@@ -12,17 +12,11 @@
 
 - finish topology (where is it) su(3)su(2)o(1)
 
-- the 1 2 4 idea on frequencies?  1h below 2h above.  see 421.md
-
-- I should look at the behaviour where the inner binaary moves in the opposite direction towards Planck scale while the outer moves in.  That is really interesting. What would that even mean.  You give an h and the inner core releases 2h. wut? and they all converge and that is when time stops. That symmetry breaking point is the flat universe. That is where ads and cft meet.  Hmmm this seems really interesting.
-
-- PE is zero at the MCB relative to the partner. It is all in KE for the binary.  2KE + PE = 0 for us outside here in the CFT world.  But we measure PE informally. I suppose if you counted the real PE it would be falling into a black hole and reaching c_f. Again that is informal PE and uninformed KE. Then you would have max KE and no more possible PE.  but the event horizon is not the end.  So in our world 2KE + PE = 0.  What happens in the AdS world? You find out your real PE balance is not spent! It is not that your PE gets reset, its that you didn't know you had it.  Okay so it is no big deal really, you were on one PE slope and now the slope is doubled. So does that mean it is KE + PE = 0? or does it mean 4KE + PE = 0.
+- check this idea out - if the tri-binary opens up inside the bh, then we get our quadropole resonance when a given core pops early or late. Or said another way, the event horizon isn't actually a sphere, it is some very rough surface that may have a large radial depth. We are talking about particles doing their thing in their local environment.  So they have this brief neck to planar and then they get spherical again even though they are shrinking.  How cool.  So how do we resolve the volume problem - going to zero at the event horizon
 
 - change github pages on which branch it serves from now that I have alpha, beta....
 
 - make application pages that shows Gell-mann's 8 fold way and 10-fold diagram but at each vertex put the particle from my scene creator.  Then possiblyn show correlations to T3 and Y and see what I can learn from the mass patterns.  See Kaiser's MIT lecture 22
-
-- i randomly went off and wrote mesons.md.  I need to review it again in detail, but it seems like th LLMs are increasingly getting the hang of it.  Also they are introducing terminology like generation which I don't think I have emphasized in the repo.  Did they get that from scraping? LOL
 
 - what is the smallest assembly that can make a decision
 
