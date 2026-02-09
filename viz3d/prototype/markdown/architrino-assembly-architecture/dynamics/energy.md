@@ -200,7 +200,60 @@ $$m_{\text{inertial}}(A) \propto E_{\text{apparent}}(A) \sim \zeta(A)\,E_{\text{
 
 ---
 
-## Energy Bookkeeping and Reference Zero (AAA Convention)
+### Spacetime Sea and Effective Relativistic Behavior
+
+The tri-binary spacetime sea adds an additional layer:
+
+- Moving assemblies must drag along or re-arrange their local tri-binary environment.
+- The effective resistance to high center-of-mass speed (near the internal tri-binary field speed) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.
+
+Thus:
+
+- At low speeds $v\ll c_{\text{eff}}$, we recover $E_k \approx \frac{1}{2}m_{\text{inertial}} v^2$ for assemblies.
+- At high speeds approaching $c_{\text{eff}}$, internal coupling to the tri-binary sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}(\gamma-1)$, with $\gamma = 1/\sqrt{1-v^2/c_{\text{eff}}^2}$, as an **effective law**.
+
+The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by simulation and matching to known particle kinematics.
+
+---
+
+## Energy and Self-Hit in the Tri-Binary Sea
+
+In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times), Architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the tri-binary sea:
+
+- Self-hit repulsion acts as an internal **stiffening mechanism** for tri-binaries and more complex assemblies, contributing to their stability.
+- Energy that an Architrino (or assembly) emitted into its local medium (tri-binary sea) can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and "field/medium energy" associated with the local tri-binary configuration.
+
+Globally, energy is conserved: self-hit just routes energy along more complex paths (Architrino → causal isochron → tri-binary medium → back to Architrino/assembly).
+
+---
+
+## Summary and Role in the Larger Theory
+
+- **At the Architrino level:**
+  
+  Kinetic energy and potential energy are defined via the Master EOM and are conserved globally. There is no fundamental mass; speeds are unbounded in principle.
+
+- **At the assembly level:**
+  
+  Large internal energies, plus coupling to the tri-binary sea, generate:
+  - Effective inertia (mass),
+  - Shielded external fields (tiny apparent energy compared to internal),
+  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior.
+
+- **For spacetime and gravity:**
+  
+  The sea of small, high-energy tri-binaries forms the effective medium whose coarse-grained energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both vacuum tri-binaries and "matter" assemblies will determine:
+  - The effective Newton constant $G$,
+  - The cosmological vacuum energy density,
+  - How strongly spacetime curvature responds to different kinds of energy.
+
+**Plain language:**
+
+Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull—they live in how the hull is built and how it pulls on the water. Most of the ocean's energy never shows up in long-range fields, because the waves from different directions cancel almost exactly. The tiny leftover ripples are what we call gravity and particle masses.
+
+---
+
+## Appendix A: Energy Bookkeeping and Reference Zero (AAA Convention)
 
 AAA uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of a bound pair (the self-hit / max-curvature radius). This choice is both physical and operational: the system has a **hard inner cutoff** (no further compression), so the deepest accessible state is unique and history-independent.
 
@@ -306,7 +359,7 @@ Per-step increments (explicit, no deltas):
 - Inner step energy: $\varepsilon_i \equiv \omega_i h$ with
   $$k_i \equiv \chi_i\,\varepsilon_i,\quad u_i \equiv (1-\chi_i)\,\varepsilon_i,$$
   so $k_i + u_i = \varepsilon_i$. Because the inner binary takes **two steps**, it adds $2k_i$ and $2u_i$.
-- Middle adjustment energy: $\varepsilon_m$ is whatever is needed to close the ledger (including any wake/field exchange $\varepsilon_w$):
+- Middle adjustment energy: $\varepsilon_m$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **wake/field exchange energy** during the step:
   $$\varepsilon_m \equiv \varepsilon_w - 2\varepsilon_i,$$
   and we split it as
   $$k_m \equiv \chi_m\,\varepsilon_m,\quad u_m \equiv (1-\chi_m)\,\varepsilon_m.$$
@@ -348,54 +401,3 @@ In AAA, the hard inner cutoff **creates** a natural zero at $r_{\min}$, which is
 If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
 
 In other words, the same shielding that makes the external field small also makes the assembly respond sluggishly (high inertia) compared to the naive sum of constituent kinetic energies.
-
-### Spacetime Sea and Effective Relativistic Behavior
-
-The tri-binary spacetime sea adds an additional layer:
-
-- Moving assemblies must drag along or re-arrange their local tri-binary environment.
-- The effective resistance to high center-of-mass speed (near the internal tri-binary field speed) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.
-
-Thus:
-
-- At low speeds $v\ll c_{\text{eff}}$, we recover $E_k \approx \frac{1}{2}m_{\text{inertial}} v^2$ for assemblies.
-- At high speeds approaching $c_{\text{eff}}$, internal coupling to the tri-binary sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}(\gamma-1)$, with $\gamma = 1/\sqrt{1-v^2/c_{\text{eff}}^2}$, as an **effective law**.
-
-The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by simulation and matching to known particle kinematics.
-
----
-
-## Energy and Self-Hit in the Tri-Binary Sea
-
-In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times), Architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the tri-binary sea:
-
-- Self-hit repulsion acts as an internal **stiffening mechanism** for tri-binaries and more complex assemblies, contributing to their stability.
-- Energy that an Architrino (or assembly) emitted into its local medium (tri-binary sea) can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and "field/medium energy" associated with the local tri-binary configuration.
-
-Globally, energy is conserved: self-hit just routes energy along more complex paths (Architrino → causal isochron → tri-binary medium → back to Architrino/assembly).
-
----
-
-## Summary and Role in the Larger Theory
-
-- **At the Architrino level:**
-  
-  Kinetic energy and potential energy are defined via the Master EOM and are conserved globally. There is no fundamental mass; speeds are unbounded in principle.
-
-- **At the assembly level:**
-  
-  Large internal energies, plus coupling to the tri-binary sea, generate:
-  - Effective inertia (mass),
-  - Shielded external fields (tiny apparent energy compared to internal),
-  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior.
-
-- **For spacetime and gravity:**
-  
-  The sea of small, high-energy tri-binaries forms the effective medium whose coarse-grained energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both vacuum tri-binaries and "matter" assemblies will determine:
-  - The effective Newton constant $G$,
-  - The cosmological vacuum energy density,
-  - How strongly spacetime curvature responds to different kinds of energy.
-
-**Plain language:**
-
-Architrinos and their assemblies are where all the energy lives. The tri-binary sea is a dense, high-energy ocean in which a few special assemblies (electrons, quarks, nucleons) are like boats. The boats' mass and inertia are not just in the hull—they live in how the hull is built and how it pulls on the water. Most of the ocean's energy never shows up in long-range fields, because the waves from different directions cancel almost exactly. The tiny leftover ripples are what we call gravity and particle masses.
