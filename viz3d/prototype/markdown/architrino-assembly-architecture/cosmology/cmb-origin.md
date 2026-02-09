@@ -36,7 +36,7 @@ This document presents a chronological, linear account of the Cosmic Microwave B
 
 **$\Lambda\mathrm{CDM}$ interpretation:** A scalar field drives exponential expansion, smoothing curvature and seeding primordial perturbations.
 
-**AAA interpretation (Inflationary Epoch: Noether Cores Form):** The self-hit regime of inner assemblies drives a rapid effective expansion of the tri-binary medium. Noether cores (tri-binary spacetime assemblies) form in bulk, establishing a dense, coherent background that later supports emergent metric behavior. The rapid relaxation of this high-curvature phase creates large-scale uniformity without invoking a fundamental spacetime expansion.
+**AAA interpretation (Inflationary Epoch: Noether Cores Form):** AAA predicts that inflation happens on the interior of the black hole. The self-hit regime of inner assemblies drives a rapid effective expansion of the tri-binary medium. Noether cores (tri-binary spacetime assemblies) form in bulk, establishing a dense, coherent background that later supports emergent metric behavior. The rapid relaxation of this high-curvature phase creates large-scale uniformity without invoking a fundamental spacetime expansion.
 
 ## Electroweak Epoch ($\sim 10^{-12}$ s)
 - Time window: $\sim 10^{-12}$ s.
