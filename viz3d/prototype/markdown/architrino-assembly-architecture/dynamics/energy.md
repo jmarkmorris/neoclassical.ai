@@ -77,18 +77,15 @@ Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$
 
 ### Potential Energy
 
-For a particle $o'$ with charge $q_{o'}$ at position $\mathbf{s}_{o'}(t)$,
+For a particle $o'$ with charge $q_{o'}$ at position $\mathbf{s}_{o'}(t)$, the potential energy $U_{o'}(t)$ is defined as the work required to assemble the current configuration against the causal path-history field:
 
-$$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}(\mathbf{s}_{o'}(t),t).$$
+$$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big).$$
 
-This mirrors $U = q\Phi$ in classical electrostatics, but with two key differences:
-
-- $\Phi_{\text{net}}$ is fully **time-dependent and history-dependent** (history interaction).
-- In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth field.
+Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal cone of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed.
 
 When we work with the mollified field $\Phi_\eta$, we can also write:
 
-$$\mathbf{F}_{o'}(t) = -\nabla_{\mathbf{s}_{o'}}U_{o'}(t) = -q_{o'} \nabla_{\mathbf{s}_{o'}} \Phi_{\text{net}}(\mathbf{s}_{o'}(t),t),$$
+$$\mathbf{F}_{o'}(t) = -\nabla_{\mathbf{s}_{o'}}U_{o'}(t) = -q_{o'} \nabla_{\mathbf{s}_{o'}} \Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big),$$
 
 and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit.
 
