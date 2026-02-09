@@ -890,19 +890,19 @@ Absolute timespace is the fundamental arena in which all architrino dynamics unf
 An **Architrino** is the sole fundamental entity in this theory. It is:
 
 - A **point-like transmitter/receiver** located at a position $\mathbf{s}_a(t)$ in the flat Euclidean 3D space.
-- **Always active**: it continuously emits a flux of causal wake surfaces and continuously receives potential from all other Architrinos.
+- **Always active**: it continuously emits a flux of causal wake surfaces and continuously receives potential from all other architrinos.
 - **Deterministic**: its motion is governed by a universal reception rule that converts incoming potential into acceleration; given initial conditions, its future path is determined, with **deterministic multistability** at threshold regimes.
 - **Charged**: each Architrino carries a fundamental charge magnitude $|e/6|$ (see Section 2.3).
 
-The Architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, spacetime itself—emerges from coordinated configurations and interactions of many Architrinos.
+The Architrino has **no internal structure**, no spin in the classical sense, and no other intrinsic properties beyond position, velocity, and charge polarity. All structure—particles, fields, spacetime itself—emerges from coordinated configurations and interactions of many architrinos.
 
 **Ontological Clarity on Potential:**
 
-The potential emitted by an Architrino is not a substance but a **formal channel of interaction**. It is a measure-valued distribution in spacetime that encodes how one Architrino influences others. Potentials from distinct sources superpose linearly; the total potential at any location is the sum of all individual contributions. Potential is neither a "thing" nor a "field" in the classical electromagnetic sense, but rather a **lawful coupling** between the states of separated Architrinos.
+The potential emitted by an Architrino is not a substance but a **formal channel of interaction**. It is a measure-valued distribution in spacetime that encodes how one Architrino influences others. Potentials from distinct sources superpose linearly; the total potential at any location is the sum of all individual contributions. Potential is neither a "thing" nor a "field" in the classical electromagnetic sense, but rather a **lawful coupling** between the states of separated architrinos.
 
 **Ontological Status:**
 
-We take Architrinos to be **primitive substances**: they exist fundamentally and are not composed of anything more basic. They are:
+We take architrinos to be **primitive substances**: they exist fundamentally and are not composed of anything more basic. They are:
 
 - **Discrete**: there is a definite (though potentially infinite) number of them.
 - **Identifiable**: each has a unique worldline through $(t, \mathbf{x})$-space.
@@ -914,7 +914,7 @@ All observable entities (particles, atoms, fields, spacetime curvature) are **em
 
 ### Core Emission Properties
 
-An Architrino is a transceiver: it continuously emits potential flux and simultaneously receives the combined flux of all other Architrinos. The emission rule has the following key features:
+An architrino is a transceiver: it continuously emits potential flux and simultaneously receives the combined flux of all other architrinos. The emission rule has the following key features:
 
 - **Continuous flux:** At every instant the Architrino streams potential into the void. The **causal wake surface** (the isochron of causality) connects all spatial points currently receiving the contribution emitted at a specific past time. Because the emission never turns off, that surface is merely a computational tool that isolates a portion of the path history; the underlying reality is a smooth, steady flux rather than a series of discrete pulses.
 - **Local origin:** The flux originates at the Architrino’s instantaneous position. We encode the start of each emission as a spatial Dirac delta carrying total charge $q$ to fix the boundary condition, but nothing in the physics requires the emission to switch on and off—it is constantly present and extends infinitely into the future.
@@ -932,7 +932,7 @@ At $t=t_0$ the field is a spatial Dirac delta of charge $q$ located at $\mathbf{
 This contribution has two notable features:
 
 - **Indefinite expansion:** The causal surface expands without bound as $t\to\infty$. Its radius diverges and the surface density vanishes, yet the total flux remains constant.
-- **Linear superposition:** Contributions from distinct Architrinos propagate through one another without interaction; the total field at any location is the linear sum of all individual causal surfaces.
+- **Linear superposition:** Contributions from distinct architrinos propagate through one another without interaction; the total field at any location is the linear sum of all individual causal surfaces.
 
 **Analytic form:** Let $\tau=t-t_0$ and $r=\|\mathbf{s}-\mathbf{s}_0\|$. The measure-valued density (per unit volume) lives precisely on the causal wake surface defined by $r=v_f\tau$:
 
@@ -1003,7 +1003,7 @@ The Architrino path ontology describes how each fundamental point particle threa
 
 Each Architrino traces a continuous worldline $\mathbf{s}_a(t)$ in $\mathcal{M}$, defined for all $t\in(-\infty,+\infty)$. **Eternality** is a foundational postulate: Architrinos are neither created nor destroyed, so every Architrino has a complete past and future history.
 
-The worldline is **unique** (no two distinct Architrinos share the same path) and at least absolutely continuous so that $\mathbf{v}_a(t)=d\mathbf{s}_a/dt$ exists almost everywhere and is piecewise continuous.
+The worldline is **unique** (no two distinct architrinos share the same path) and at least absolutely continuous so that $\mathbf{v}_a(t)=d\mathbf{s}_a/dt$ exists almost everywhere and is piecewise continuous.
 
 #### Energy Carriers
 
@@ -1051,7 +1051,7 @@ The causal set is typically a singleton when $|\mathbf{v}_j| < v_f$ but may cont
 
 #### Superposition of Sphere Streams
 
-Sphere streams from distinct Architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a purely radial push scaling as $1/r^2$, so nearby wake hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
+Sphere streams from distinct architrinos pass through one another without interaction, enabling linear superposition of forces. Each causal intersection contributes a purely radial push scaling as $1/r^2$, so nearby wake hits dominate while distant contributions decay. The total field felt by any Architrino is the sum of these individual hits.
 
 #### Future Path and Deterministic Evolution
 
@@ -1067,7 +1067,7 @@ where each term $\mathbf{a}_{a,j}(t; t_0)$ is the radial acceleration imparted b
 
 ### Velocity Regimes and Wake Dynamics
 
-There is no kinematic cap on $|\mathbf{v}_a|$ for individual Architrinos; however, emergent assemblies impose operational limits. Each Architrino continuously pours potential into the void, and its past emissions expand spherically from their emission points—never corkscrewing—collectively forming a persistent **wake** (the union of all causal surfaces it has emitted). Every Architrino is always immersed in the superposed wakes of all other sources, but it only re-enters the high-intensity portion of its own wake after having once exceeded $v_f$. When $|\mathbf{v}_a| \le v_f$, it simply rides the smooth gradient of its most recent emissions and does not intersect the strong-field region behind it; when $|\mathbf{v}_a| > v_f$, it traverses the **shockwave** or **Cherenkov cone** formed by its earlier emission history. The relative motion through that region determines whether it brushes the gradient of other wakes, glances past the high-intensity locus, or plunges back through the dense wake it created earlier.
+There is no kinematic cap on $|\mathbf{v}_a|$ for individual architrinos; however, emergent assemblies impose operational limits. Each Architrino continuously pours potential into the void, and its past emissions expand spherically from their emission points—never corkscrewing—collectively forming a persistent **wake** (the union of all causal surfaces it has emitted). Every Architrino is always immersed in the superposed wakes of all other sources, but it only re-enters the high-intensity portion of its own wake after having once exceeded $v_f$. When $|\mathbf{v}_a| \le v_f$, it simply rides the smooth gradient of its most recent emissions and does not intersect the strong-field region behind it; when $|\mathbf{v}_a| > v_f$, it traverses the **shockwave** or **Cherenkov cone** formed by its earlier emission history. The relative motion through that region determines whether it brushes the gradient of other wakes, glances past the high-intensity locus, or plunges back through the dense wake it created earlier.
 
 #### Wake Coherence and Relative Motion
 
@@ -1119,7 +1119,7 @@ As a tri-binary approaches an event horizon, the **outer binary frequency increa
 
 ### Reception Rule and Acceleration
 
-Each Architrino possesses a **reception rule**: a law that converts incoming potential into acceleration. The rule is **universal** (all Architrinos follow the same law) but may admit **meta-stable branching** when multiple self-hit roots are available.
+Each Architrino possesses a **reception rule**: a law that converts incoming potential into acceleration. The rule is **universal** (all architrinos follow the same law) but may admit **meta-stable branching** when multiple self-hit roots are available.
 
 When potential from another Architrino (or from one's own past emissions, in the self-hit regime) reaches the location of an Architrino, it imparts an **instantaneous acceleration** along the radial direction connecting the current position to the emission location.
 
@@ -1130,7 +1130,7 @@ When potential from another Architrino (or from one's own past emissions, in the
 - **$1/r^2$ magnitude scaling**: The strength of each individual hit scales as the inverse square of the distance from emission to receiver.
 - **Superposition**: The total acceleration is the vector sum of all individual hits from all sources (including self-hits, if present).
 
-This rule is **universal**, making the evolution of any system of Architrinos determined by initial conditions, with **meta-stable branch points** where multiple attractors are dynamically accessible and outcomes are microstate-sensitive.
+This rule is **universal**, making the evolution of any system of architrinos determined by initial conditions, with **meta-stable branch points** where multiple attractors are dynamically accessible and outcomes are microstate-sensitive.
 
 **Formal Statement (Schematic):**
 
@@ -1171,7 +1171,7 @@ Accelerations are propagated at the field speed $v_f$. An Architrino at $\mathbf
 
 **Superluminal aspects without causality violation:**
 
-When $|\mathbf{v}_a| > v_f$, individual Architrinos can outrun their own fields. This does *not* permit causality violation because:
+When $|\mathbf{v}_a| > v_f$, individual architrinos can outrun their own fields. This does *not* permit causality violation because:
 
 1. The Architrino cannot choose to exceed $v_f$ without lawful changes to field structure; there is no volitional control.
 2. Self-hit events, while non-local in configuration space, are still ordered in absolute time and cannot be used for backward signaling.
