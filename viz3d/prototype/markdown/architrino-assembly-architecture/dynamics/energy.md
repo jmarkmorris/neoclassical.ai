@@ -212,6 +212,7 @@ Thus:
 
 - At low speeds $v\ll c_{\text{eff}}$, we recover $E_k \approx \frac{1}{2}m_{\text{inertial}} v^2$ for assemblies.
 - At high speeds approaching $c_{\text{eff}}$, internal coupling to the tri-binary sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}(\gamma-1)$, with $\gamma = 1/\sqrt{1-v^2/c_{\text{eff}}^2}$, as an **effective law**.
+- Near $c_{\text{eff}}$, personality charges would likely be stripped off, and the assembly may undergo other changes as it oblates.
 
 The details of this emergent relativistic law arise from the combined dynamics of the assembly and the tri-binary sea; they are not postulated but must be confirmed by simulation and matching to known particle kinematics.
 
@@ -249,9 +250,9 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 - **For spacetime and gravity:**
   
-  The sea of small, high-energy tri-binaries forms the effective medium whose coarse-grained energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both vacuum tri-binaries and "matter" assemblies will determine:
+  The sea of small, high-energy tri-binaries forms the effective medium whose coarse-grained energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both spacetime tri-binaries and "matter" assemblies will determine:
   - The effective Newton constant $G$,
-  - The cosmological vacuum energy density,
+  - The cosmological spacetime energy density,
   - How strongly spacetime curvature responds to different kinds of energy.
 
 ---
