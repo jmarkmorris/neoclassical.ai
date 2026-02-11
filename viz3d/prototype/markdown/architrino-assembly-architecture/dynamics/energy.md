@@ -254,6 +254,8 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
   - The effective Newton constant $G$,
   - The cosmological spacetime energy density,
   - How strongly spacetime curvature responds to different kinds of energy.
+  
+  Density-driven oblation: as the tri-binary sea encounters denser matter, local tri-binaries scale down and oblate, creating a compliance gradient that contributes directly to the effective gravitational coupling $G$.
 
 ---
 
