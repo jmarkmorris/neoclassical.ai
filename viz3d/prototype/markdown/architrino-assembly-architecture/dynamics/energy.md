@@ -4,7 +4,7 @@ In this model, all energy is fundamentally tied to architrinos and the potential
 
 All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed, purely radial hits from causal isochrons** on this fixed background. We work in units with field speed $v_f=1$.
 
-Crucially, what we call "spacetime" at the effective level is not the bare Euclidean background, but a **dense sea of high-energy tri-binary assemblies**. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the medium in which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea controls how energy, inertia, and effective geometry appear at larger scales.
+Crucially, what we call "spacetime" at the effective level is not the bare Euclidean background, but a **dense sea of scalable high-energy tri-binary assemblies**. These tri-binaries are extremely small compared to ordinary Standard Model particles and constitute the medium in which all other assemblies move and interact. The energetic state and configuration of this tri-binary sea controls how energy, inertia, and effective geometry appear at larger scales.
 
 ---
 
@@ -18,7 +18,7 @@ An architrino in motion possesses kinetic energy and momentum.
   
   $$E_{k,a}(t) = K\big(|\mathbf{v}_a(t)|\big),$$
   
-  where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
+  where $K$ is a strictly convex, monotonically increasing function with $K(0)=0$ and $K'(v)\to\infty$ as effective saturation is reached (if applicable), or growing unboundedly in the primitive limit. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the spacetime tri-binaries. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free Architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $|\mathbf{v}_a|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
   
@@ -187,7 +187,7 @@ up to proportionality constants fixed by matching to effective low-energy theory
 
 For an assembly $A$, define its inertial mass $m_{\text{inertial}}(A)$ operationally via:
 
-- Apply a small external field (from a distant test source) that exerts a known net force $\mathbf{F}_{\text{ext}}$ on $A$,
+- Apply a small external potential field (from a distant test source) that exerts a known net force $\mathbf{F}_{\text{ext}}$ on $A$,
 - Measure the resulting acceleration of its center of mass $\mathbf{a}_{\text{cm}}$ in the tri-binary sea,
 - Define:
 
