@@ -1,6 +1,6 @@
 # Kinetic and Potential Energy
 
-In this model, all energy is fundamentally tied to architrinos and the potential fields they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone "field substance" or vacuum energy independent of architrinos and their assemblies. A **wake (field)** is the causal-isochron residue left by architrino motion; "wake" is the architrino-native description of what appears as a field at the effective level.
+In this model, all energy is fundamentally tied to architrinos and the potential fields they generate. Architrinos are the sole primitive carriers of kinetic energy through their motion and the sole primitive sources of potential energy through their interactions. There is no standalone "field substance" or vacuum energy independent of architrinos and their assemblies. A **wake (field)** is the causal-isochron imprint of an architrino's emissions; motion affects the geometry, not the existence, of the wake. "Wake" is the architrino-native description of what appears as a field at the effective level.
 
 All such dynamics unfold on a flat, non-dynamical background (absolute time × Euclidean space). Forces and motion arise from **delayed, purely radial hits from causal isochrons** on this fixed background. We work in units with field speed $v_f=1$.
 

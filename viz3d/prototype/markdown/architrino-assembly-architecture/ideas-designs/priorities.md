@@ -1,5 +1,4 @@
 
-- branch cleanup.  It looks like I merged beta into alpha, dammit.  Now I need to compare branches and see if I messed up any files.  I thought my rules prevented this?
 
 # ** The priority is the dynamics/math/geometry and the mapping**
 

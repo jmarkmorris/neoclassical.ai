@@ -1015,7 +1015,7 @@ Architrinos have no volume, so multiple particles may coincide in space at the s
 
 #### Causal Wake Stream: The Field Landscape
 
-As an Architrino moves, it leaves behind a **causal wake stream**—the union of every expanding causal wake surface (isochron) it emitted prior to the observation time $t_{obs}$:
+An Architrino always has a **causal wake stream**—the union of every expanding causal wake surface (isochron) it has emitted prior to the observation time $t_{obs}$:
 
 $$
 \mathcal{SS}_a(t_{obs}) = \bigcup_{t_0 \le t_{obs}} \left\{ \mathbf{s} \in \mathbb{R}^3 \;\middle|\; \|\mathbf{s} - \mathbf{s}_a(t_0)\| = v_f (t_{obs} - t_0) \right\}.
@@ -1081,9 +1081,9 @@ The key point is that the Architrino is not “catching up to a discrete causal 
 
 #### Traversing One's Own Wake (Self-Interaction)
 
-When the Architrino enters that cone left by its past motion, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
+When the Architrino enters that cone defined by its past emissions, it is effectively **traversing its own wake**. The locus of interaction is the region in space where its earlier emissions remain dense and intense enough to exert a measurable push.
 
-When $|\mathbf{v}_a| \le v_f$, the Architrino never penetrates the Cherenkov cone it leaves behind, so it only feels the smoother gradient of its most recent wake and does not self-interact strongly. Only after having exceeded $v_f$ and then curving back can it re-enter the dense region it created, triggering the non-Markovian self-hit regime.
+When $|\mathbf{v}_a| \le v_f$, the Architrino never penetrates the Cherenkov cone defined by its earlier emissions, so it only feels the smoother gradient of its most recent wake and does not self-interact strongly. Only after having exceeded $v_f$ and then curving back can it re-enter the dense region set by those emissions, triggering the non-Markovian self-hit regime.
 
 This occurs whenever the particle has exceeded $v_f$ in its history and subsequently curvatures or slows such that it re-enters the high-intensity region. Traversing the wake is therefore a **non-Markovian** event: the acceleration depends on where the wake is situated relative to the current position, which in turn depends on **the full past trajectory**.
 

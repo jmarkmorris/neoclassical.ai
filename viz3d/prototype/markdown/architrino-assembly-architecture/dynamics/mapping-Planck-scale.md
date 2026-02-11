@@ -12,7 +12,7 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 > A tri-binary reaches the Planck state when, in the forward sector, both the translational speed and the tangential orbital speed approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. In this state:
 > 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving one-way causal updates (local horizon behavior).
 > 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
-> 3. In the planar limit, the combined in-plane motion outruns $c_f$ and produces a Mach-wedge causal wake with half-angle
+> 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
 >    $$
 >    \sin\theta = \frac{c_f}{v_{\text{eff}}} \quad (\;v_{\text{eff}} > c_f\;),
 >    $$
