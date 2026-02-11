@@ -14,7 +14,7 @@ An architrino in motion possesses kinetic energy and momentum.
 
 - **Kinetic Energy $E_k$**
   
-  A scalar quantity representing the energy of motion. For a single Architrino $a$ with velocity $\mathbf{v}_a(t)$, we write
+  A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf{v}_a(t)$, we write
   
   $$E_{k,a}(t) = K\big(|\mathbf{v}_a(t)|\big),$$
   
@@ -26,7 +26,7 @@ An architrino in motion possesses kinetic energy and momentum.
   
   $$\mathbf{p}_a(t) = P\big(|\mathbf{v}_a(t)|\big)\,\hat{\mathbf{v}}_a(t), \quad \hat{\mathbf{v}}_a = \frac{\mathbf{v}_a}{|\mathbf{v}_a|},$$
   
-  where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the Architrino level; it emerges from matching to assembly behavior.
+  where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the architrino level; it emerges from matching to assembly behavior.
 
 **No fundamental mass:**
 
@@ -75,7 +75,7 @@ At a point $\mathbf{s}$ and time $t$, the net potential is the **superposition**
 
 $$\Phi_{\text{net}}(\mathbf{s},t) = \sum_o \Phi_o(\mathbf{s},t).$$
 
-Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the Architrino section. In the mollified representation with causal-surface width $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes measure-valued ("paint on isochrons").
+Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the architrino section. In the mollified representation with causal-surface width $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes measure-valued ("paint on isochrons").
 
 ### Potential Energy
 
@@ -98,7 +98,7 @@ The force-as-gradient identity is valid only when taking the gradient at fixed c
 
 The model enforces energy conservation via the continuous exchange of energy between kinetic and potential forms, plus energy stored in propagating wakes.
 
-For a single Architrino:
+For a single architrino:
 
 $$\Delta E_k = \int \mathbf{F}\cdot d\mathbf{s} = -\Delta U$$
 
@@ -122,8 +122,8 @@ In practice, for finite systems or simulation domains, we verify conservation by
 At the fundamental level, space is an empty Euclidean container. **Effective spacetime**, the medium in which Standard Model particles live and propagate, is a **sea of high-energy tri-binary assemblies**:
 
 - These tri-binaries are extremely small compared to ordinary particles (electrons, protons, etc.).
-- Each tri-binary is itself a tightly bound Architrino assembly with very high internal kinetic and potential energy.
-- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This medium is characterized by a non-zero vacuum expectation value of assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, inertial drag) that deform the primitive Architrino dynamics into effective relativistic kinematics, providing a medium for:
+- Each tri-binary is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
+- As a sea, they form a **dense manifold of coupled assemblies** that fills the Euclidean void. This medium is characterized by a non-zero vacuum expectation value of assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, inertial drag) that deform the primitive architrino dynamics into effective relativistic kinematics, providing a medium for:
   - Emergent inertia and mass,
   - Emergent light cones and Lorentz-like behavior,
   - Effective gravitational coupling (emergent geometry at large scales).
@@ -151,7 +151,7 @@ $$E_{\text{internal}}(A) = \sum_{i\in A} E_{k,i} + \frac{1}{2} \sum_{\substack{i
 
 where:
 
-- $E_{k,i}$ is the kinetic energy of Architrino $i$,
+- $E_{k,i}$ is the kinetic energy of architrino $i$,
 - $U_{ij}$ is mutual potential energy of pair $(i,j)$,
 - $E_{\text{coupling to sea}}$ accounts for how the assembly deforms and polarizes the surrounding tri-binary sea (local "spacetime medium").
 
@@ -223,9 +223,9 @@ The details of this emergent relativistic law arise from the combined dynamics o
 In the **super-field-speed** regime ($|\mathbf{v}_a|>1$ at some emission times), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the tri-binary sea:
 
 - Self-hit repulsion acts as an internal **stiffening mechanism** for tri-binaries and more complex assemblies, contributing to their stability.
-- Energy that an Architrino (or assembly) emitted into its local medium (tri-binary sea) can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and "field/medium energy" associated with the local tri-binary configuration.
+- Energy that an architrino (or assembly) emitted into its local medium (tri-binary sea) can be partially re-absorbed through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and "field/medium energy" associated with the local tri-binary configuration.
 
-Globally, energy is conserved: self-hit just routes energy along more complex paths (Architrino → causal isochron → tri-binary medium → back to Architrino/assembly).
+Globally, energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → tri-binary medium → back to architrino/assembly).
 
 ---
 
@@ -237,7 +237,7 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 ## Summary and Role in the Larger Theory
 
-- **At the Architrino level:**
+- **At the architrino level:**
   
   Kinetic energy and potential energy are defined via the Master EOM and are conserved globally. There is no fundamental mass; speeds are unbounded in principle.
 
@@ -275,7 +275,7 @@ We adopt a **singular-boundary gauge**: since the self-hit dynamics impose a geo
 
 $$U(r_{\min}) \equiv 0.$$
 
-In this gauge, $U(r)$ represents the **accumulated work** performed to separate the binary from its ground state to radius $r$. Total energy is thus partitioned into *kinetic* (motion) and *deformation* (separation) components, with "free" particles carrying maximal deformation energy $B_{\max}$.
+In this gauge, $U(r)$ represents the **accumulated work** performed to separate the binary from its ground state to radius $r$. Total energy is thus partitioned into *kinetic* (motion) and *deformation* (separation) components, with fully separated (unbound) pairs carrying maximal deformation energy $U_{\max} \equiv B_{\max}$.
 
 ### Binding Energy and Total Energy
 
@@ -303,7 +303,7 @@ If an effective potential is used, the centrifugal term and the self-hit barrier
 
 $$V_{\text{eff}}(r) = V(r) + \frac{L^2}{2 q_{\text{inertia}} r^2} + V_{\text{self-hit}}(r).$$
 
-Here $q_{\text{inertia}}$ is an **effective inertial scale** (a bookkeeping proxy for mass in the coarse-grained description), not the Architrino charge $q$ used in $U=q\Phi$ above.
+Here $q_{\text{inertia}}$ is an **effective inertial scale** (a bookkeeping proxy for mass in the coarse-grained description), not the architrino charge $q$ used in $U=q\Phi$ above.
 
 The convention above fixes:
 
