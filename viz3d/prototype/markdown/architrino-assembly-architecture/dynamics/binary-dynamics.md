@@ -104,8 +104,6 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 2. Self-hit repulsion (non-Markovian feedback when $v > c_f$),
 3. Centripetal requirement for stable circular orbit.
 
-**Expected scale (if realized)**: $r_{\text{min}} \sim 10^{-15}$ to $10^{-12}$ m (classical electron radius to Compton wavelength).
-
 **Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
 ### Setup and Notation (Symmetric Frame)
@@ -471,7 +469,7 @@ The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ th
 
 ## Tri-Binary Recycling/Formation in a Black Hole (Speculative)
 
-One conjecture is that a tri-binary enters a black hole in a near-planar configuration and is recycled. The inner binary is expected to be in the MCB state at the event horizon. The middle and outer binaries would have translational and rotational velocities equal to field speed. The evolution of their orbital planes inside the black hole remains an open question.
+One conjecture is that a tri-binary enters a black hole in a near-planar configuration and is recycled.  At the event horizon, the inner, middle, and outer binaries would have translational and rotational velocities equal to field speed. The evolution of their orbital planes inside the black hole remains an open question.
 
 Another speculative idea is that the three binary frequencies follow a 1:2:4 relationship from outer to inner. A change of one action quantum $h$ would then shift the outer frequency by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not supported by analysis or simulation, but it provides a compact hypothesis for maximal shielding by superposition.
 
@@ -489,7 +487,7 @@ The theory posits that the self-hit region behaves as AdS space.
 
 ## Tri-Binary at the Event Horizon
 
-The theory posits that the tri-binary is planar at the event horizon. Inner binary would be at the MCB, and the middle and outer binaries are translating and orbiting at field speed. 
+The theory posits that the tri-binary is planar at the event horizon. All binaries are translating and orbiting at field speed. 
 
 ## Tri-Binary Expansion/Contraction Mode Outside of a Black Hole
 
