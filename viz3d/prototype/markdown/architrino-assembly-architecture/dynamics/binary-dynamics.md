@@ -1,6 +1,6 @@
 # Binary Dynamics
 
-This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. Stability and attractor claims are conjectural unless explicitly established.
+This chapter develops two-body architrino dynamics from the appearance of self-hit to stable binaries and their role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations that make the dynamics well-posed. **Status:** (1) self-hit makes the dynamics non-Markovian (path-history dependent), and (2) stability/attractor claims are conjectural unless explicitly established.
 
 ## The Spiral Orbiting Binary and the Contraction Phase
 
@@ -66,9 +66,9 @@ $$
 and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
 
 **Dynamical role:**
-- At low velocities ($v < c_f$), self-hit is absent, unless previously in the self-hit region ($v > c_f$); dynamics are approximately Markovian.
+- At low velocities ($v < c_f$), self-hit is absent, unless previously in the self-hit region ($v > c_f$).
 - As velocities exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
-- In generic trajectories, once a particle has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions; self-hit is a path-history effect, not tied solely to the instantaneous speed.
+- In generic trajectories, once a particle has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions (see **Status** at top for the non-Markovian/path-history caveat).
 - For binary and tri-binary assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
 For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Binary — Circular**.
@@ -329,7 +329,7 @@ $$
 - $\delta_s$ is large (approaching $\pi$),
 - Outward self-repulsion is minimized while inward partner attraction is maximized.
 
-**However**: Due to the per-hit $T > 0$ result, this "maximum curvature" state is a **hypothesis** for the isolated two-body system. Its stability must be verified by the full, multi-root time-averaged dynamics.
+**However**: Due to the per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, multi-root time-averaged dynamics.
 
 ---
 
