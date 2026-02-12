@@ -69,8 +69,8 @@ $$
 and the architrino is the source of the causal wake surface emitted at $t_\text{emit}$.
 
 **Dynamical role:**
-- At low velocities ($v < c_f$), self-hit is rare or absent; dynamics are approximately Markovian.
-- As velocities approach and exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
+- At low velocities ($v < c_f$), self-hit is absent, unless previously in the self-hit region ($v > c_f$); dynamics are approximately Markovian.
+- As velocities exceed $c_f$, emission isochrons catch up with the emitter's future positions, generating nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
 - In generic trajectories, once a particle has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions; self-hit is a path-history effect, not tied solely to the instantaneous speed.
 - For binary and tri-binary assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
