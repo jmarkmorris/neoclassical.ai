@@ -6,7 +6,6 @@ This chapter develops two-body architrino dynamics from the appearance of self-h
 
 An orbiting binary is the simplest emergent assembly, consisting of two architrinos of opposite charge—an electrino and a positrino. With charges $-\epsilon$ and $+\epsilon$, the assembly is electrically neutral overall. This system demonstrates the fundamental principles of interaction, including the consequences of delayed potential and the role of the field-speed symmetry point.
 
-
 Consider the ideal case of a symmetric orbit in a universe with no other architrinos. In general, each architrino is subject to a superposition of external potential waves from all other sources; the analysis below isolates the binary by setting those external contributions to zero.
 
 Let the electrino be particle 1 and the positrino be particle 2.
@@ -35,8 +34,6 @@ where $\delta_p$ is the partner delay angle. The time-averaged tangential accele
 -  The radial component continuously pulls the particles closer together.
 
 With perfectly symmetric initial conditions (e.g., starting at rest), the paths of the electrino and positrino are distinct but perfect mirror images of each other. As they spiral inward, their speeds continuously increase. Emission cadence and per-wavefront amplitude remain constant; the evolution is driven entirely by delay geometry and, once active, self-interaction.
-
-
 
 Initially, and as long as the speeds of both particles are less than or equal to the field speed $c_f$, they are only influenced by their partner's attractive field. The total acceleration is simply the attractive force:
 $$
@@ -96,9 +93,9 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 ### Foundational Context (Ontological Clarification)
 
-#### The maximum-curvature binary (MCB) as Fundamental Unit
+#### The Maximum-Curvature Binary (MCB) as Fundamental Unit
 
-The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would supply the **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
+The architecture hypothesizes that the **maximum-curvature binary (MCB)** would be reachable first by the **inner binary** of a tri-binary assembly, stabilized by self-hit dynamics when $v > c_f$. Contingent on Conjectures A/B, it would supply the **fundamental physical units** (length and time); see **Emergent Properties and Measurement Standards** below for the explicit definitions.
 
 **Universal cap (explicit):** The MCB is treated as a single, universal limit state (one defining radius/speed). Binaries may sit below this limit, but no binary can exceed the MCB curvature or pass beyond its defining radius/speed.
 
