@@ -22,7 +22,7 @@ $$
 $$
 A symmetric set of equations governs the positrino's motion based on the electrino's emissions.
 
-In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward spiral that is naturally modeled as exponential in angle** (a logarithmic spiral), consistent with a per-cycle action increment $\Delta J = h$ in the partner-only regime. The radius shrinks geometrically per turn and speed increases until the self-interaction threshold ($|\mathbf{v}|>c_f$) is crossed.
+In the strictly sub-field-speed regime (no self-interaction, $|\mathbf{v}|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each particle points to the *past* position of its partner, it is not a true central force. This delay yields an **inward spiral that is naturally modeled as exponential in angle** (a logarithmic spiral), consistent with a per-cycle angular-momentum increment $\Delta L_c$ in the partner-only regime. The radius shrinks geometrically per turn and speed increases until the self-interaction threshold ($|\mathbf{v}|>c_f$) is crossed.
 
 **Lemma (No stable circular orbit for $v < c_f$).** In circular motion, $v=s=R\omega$. In the partner-only regime, the per-hit tangential component satisfies
 $$
@@ -47,7 +47,7 @@ We want a single story that links the spiral path, the per-hit force law, and th
 
 **Speculative continuity assumption:** as $v \to c_f$, the per-cycle gain transitions smoothly from $\Delta L_\text{cycle} = \Delta L_c$ (sub-field-speed) to $\Delta L_\text{cycle} = 2\Delta L_c$ (self-hit active). 
 
-This section does **not** claim an explicit spiral law (e.g., exponential $r(\theta)$). It simply sets the bookkeeping target: a path-history force sum that yields a smooth, finite increase in $\Delta L_\text{cycle}$ at the hinge. The detailed link between the summed per-hit forces and any particular spiral shape remains to be derived.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It simply sets the bookkeeping target: a path-history force sum that yields a smooth, finite increase in $\Delta L_\text{cycle}$ at the hinge. The detailed link between the summed per-hit forces and the spiral shape remains to be derived.
 
 ## Spiral Binary Symmetry-Breaking Point ($v = c_f$)
 
@@ -444,7 +444,7 @@ An electrino-positrino binary is the most primitive assembly possible. Architrin
 - **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
 - **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
 - **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
-**Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2h$ rather than $h$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta J = h$ below $c_f$, $\Delta J = 2h$ above. This is a hypothesis, not a derived result.
+**Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2\Delta L_c$ rather than $\Delta L_c$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta L_\text{cycle} = \Delta L_c$ below $c_f$, $\Delta L_\text{cycle} = 2\Delta L_c$ above. This is a hypothesis, not a derived result.
 
 **Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
 $$
@@ -471,7 +471,7 @@ The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ th
 
 One conjecture is that a tri-binary enters a black hole in a near-planar configuration and is recycled.  At the event horizon, the inner, middle, and outer binaries would have translational and rotational velocities equal to field speed. The evolution of their orbital planes inside the black hole remains an open question.
 
-Another speculative idea is that the three binary frequencies follow a 1:2:4 relationship from outer to inner. A change of one action quantum $h$ would then shift the outer frequency by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not supported by analysis or simulation, but it provides a compact hypothesis for maximal shielding by superposition.
+Another speculative idea is that the three binary frequencies follow a 1:2:4 relationship from outer to inner. A change of one angular-momentum quantum $\Delta L_c$ would then shift the outer frequency by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not supported by analysis or simulation, but it provides a compact hypothesis for maximal shielding by superposition.
 
 Because the black-hole interior is highly turbulent, any such descriptions are intended as statistical rather than deterministic.
 
