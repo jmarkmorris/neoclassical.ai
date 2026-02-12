@@ -62,68 +62,9 @@ $$
 
 ---
 
-## Tri-Binary Emergence and Hypothetical Properties
-
-An electrino-positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles, with each binary playing a distinct dynamical role.
-
-- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
-- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
-- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
-**Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2\Delta L_c$ rather than $\Delta L_c$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta L_\text{cycle} = \Delta L_c$ below $c_f$, $\Delta L_\text{cycle} = 2\Delta L_c$ above. This is a hypothesis, not a derived result.
-
-**Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
-$$
-\ddot{\mathbf{x}}_i(t)=\mathbf{a}_{i,j}(t;\{t_{p,k}\})+H(s-1)\,\mathbf{a}_{i,i}(t;\{t_{s,m}\})+\mathbf{a}_{\text{ext}}(t),
-$$
-with delay constraints (causal roots):
-$$
-\|\mathbf{x}_j(t_{p,k})-\mathbf{x}_i(t)\|=c_f\,(t-t_{p,k}), \quad
-\|\mathbf{x}_i(t_{s,m})-\mathbf{x}_i(t)\|=c_f\,(t-t_{s,m}),
-$$
-and $s=|\mathbf{v}|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
-$$
-\delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2),
-$$
-with no self-hit solution for $s\le 1$ and a small-root branch $\tilde{\delta}_s\to 0^+$ for $s>1$. The radial/tangential split then reads
-$$
-\ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s).
-$$
-The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
-
----
-
-## Tri-Binary Recycling/Formation in a Black Hole (Speculative)
-
-One conjecture is that a tri-binary enters a black hole in a near-planar configuration and is recycled.  At the event horizon, the inner, middle, and outer binaries would have translational and rotational velocities equal to field speed. The evolution of their orbital planes inside the black hole remains an open question.
-
-Another speculative idea is that the three binary frequencies follow a 1:2:4 relationship from outer to inner. A change of one angular-momentum quantum $\Delta L_c$ would then shift the outer frequency by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not supported by analysis or simulation, but it provides a compact hypothesis for maximal shielding by superposition.
-
-Because the black-hole interior is highly turbulent, any such descriptions are intended as statistical rather than deterministic.
-
-## Tri-Binary Inflation/Deflation Mode in a Black Hole
-
-We speculate that toward the core of a black hole the density increases and may reach a maximum. In an idealized, non-spinning, non-translating black hole, MCBs or triple MCBs could become densely packed with limited mobility, approaching a low-entropy microstate.
-
-In this picture tri-binaries reach a maximally deflated, high-energy state near the core, then re-expand and acquire radial velocity outward toward the event horizon, possibly escaping via jets. The theory requires that recycled tri-binaries re-emerge; one speculative channel is through dark-photon states with translational and rotational speeds above field speed, later transitioning into observable photons (e.g., CMB-scale emissions).
-
-Incoming photons are envisioned to deflate and gain energy, then re-emerge as part of the recycling process.
-
-The theory posits that the self-hit region behaves as AdS space.
-
-## Tri-Binary at the Event Horizon
-
-The theory posits that the tri-binary is planar at the event horizon. All binaries are translating and orbiting at field speed. 
-
-## Tri-Binary Expansion/Contraction Mode Outside of a Black Hole
-
-The key behaviors of the tri-binary include its wide scalability and deformability.
-
-The theory posits that the sub-field-speed region behaves as a CFT.
-
-In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. Einstein's spacetime is implemented by a dense Noether sea, and the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
-**Coupling caveat:** Whether $v_{\text{trans}}$ is independent of the radial infall speed $v_r$ is unresolved. Use the independent form by default, or adopt a coupling $v_{\text{trans}} = f(R_\perp)$ and substitute to test specific scenarios.
-
 ### B) High Gravitational Gradient Geometry
+
+**Coupling caveat:** Whether $v_{\text{trans}}$ is independent of the radial infall speed $v_r$ is unresolved. Use the independent form by default, or adopt a coupling $v_{\text{trans}} = f(R_\perp)$ and substitute to test specific scenarios.
 
 **Assumption (testable):** A strong external gradient (tidal field or effective curvature) perturbs the delay loop, altering phase closure and stability of rungs.
 
@@ -266,3 +207,65 @@ As alignment increases and planes coincide, the remaining degree of freedom is a
 **Testable consequence:** If equivalence holds, the same delay-closure diagnostics (phase residuals, anisotropy ratios, stability thresholds) should match between (i) a gradient-driven case and (ii) an acceleration-driven case with matched effective $\alpha(\theta)$.
 
 **Momentum after acceleration:** During acceleration, the object and its pilot-wave environment rephase into a moving, oblate configuration. When the external acceleration ceases, the established delay-closure state persists (no gradient remains to unwind it), so translation continues. Momentum is the conserved motion state of this locked geometry; it relaxes only if interactions or gradients rephase the delays.
+
+---
+
+## Speculative Extensions
+
+### Tri-Binary Emergence and Hypothetical Properties
+
+An electrino-positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles, with each binary playing a distinct dynamical role.
+
+- **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
+- **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.
+- **Outer binary**: $v < c_f$; expansion/contraction modes; **couples to Noether sea** for gravitational/cosmological effects.
+**Working guess (speculative):** in the self-hit regime the effective "quantum jump" scale may be $2\Delta L_c$ rather than $\Delta L_c$, because two accelerating contributions (partner delay and self-hit) act together. If the inward track is well-approximated by a logarithmic spiral (exponential in angle), this would appear as a **kink** in the log-spiral slope at the hinge: $\Delta L_\text{cycle} = \Delta L_c$ below $c_f$, $\Delta L_\text{cycle} = 2\Delta L_c$ above. This is a hypothesis, not a derived result.
+
+**Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
+$$
+\ddot{\mathbf{x}}_i(t)=\mathbf{a}_{i,j}(t;\{t_{p,k}\})+H(s-1)\,\mathbf{a}_{i,i}(t;\{t_{s,m}\})+\mathbf{a}_{\text{ext}}(t),
+$$
+with delay constraints (causal roots):
+$$
+\|\mathbf{x}_j(t_{p,k})-\mathbf{x}_i(t)\|=c_f\,(t-t_{p,k}), \quad
+\|\mathbf{x}_i(t_{s,m})-\mathbf{x}_i(t)\|=c_f\,(t-t_{s,m}),
+$$
+and $s=|\mathbf{v}|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
+$$
+\delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2),
+$$
+with no self-hit solution for $s\le 1$ and a small-root branch $\tilde{\delta}_s\to 0^+$ for $s>1$. The radial/tangential split then reads
+$$
+\ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s).
+$$
+The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
+
+### Tri-Binary Recycling/Formation in a Black Hole (Speculative)
+
+One conjecture is that a tri-binary enters a black hole in a near-planar configuration and is recycled. At the event horizon, the inner, middle, and outer binaries would have translational and rotational velocities equal to field speed. The evolution of their orbital planes inside the black hole remains an open question.
+
+Another speculative idea is that the three binary frequencies follow a 1:2:4 relationship from outer to inner. A change of one angular-momentum quantum $\Delta L_c$ would then shift the outer frequency by 1 Hz, the middle by 2 Hz, and the inner by 4 Hz. This is not supported by analysis or simulation, but it provides a compact hypothesis for maximal shielding by superposition.
+
+Because the black-hole interior is highly turbulent, any such descriptions are intended as statistical rather than deterministic.
+
+### Tri-Binary Inflation/Deflation Mode in a Black Hole
+
+We speculate that toward the core of a black hole the density increases and may reach a maximum. In an idealized, non-spinning, non-translating black hole, MCBs or triple MCBs could become densely packed with limited mobility, approaching a low-entropy microstate.
+
+In this picture tri-binaries reach a maximally deflated, high-energy state near the core, then re-expand and acquire radial velocity outward toward the event horizon, possibly escaping via jets. The theory requires that recycled tri-binaries re-emerge; one speculative channel is through dark-photon states with translational and rotational speeds above field speed, later transitioning into observable photons (e.g., CMB-scale emissions).
+
+Incoming photons are envisioned to deflate and gain energy, then re-emerge as part of the recycling process.
+
+The theory posits that the self-hit region behaves as AdS space.
+
+### Tri-Binary at the Event Horizon
+
+The theory posits that the tri-binary is planar at the event horizon. All binaries are translating and orbiting at field speed.
+
+### Tri-Binary Expansion/Contraction Mode Outside of a Black Hole
+
+The key behaviors of the tri-binary include its wide scalability and deformability.
+
+The theory posits that the sub-field-speed region behaves as a CFT.
+
+In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. Einstein's spacetime is implemented by a dense Noether sea, and the collective response of these cores defines a preferred propagation speed and local direction field for disturbances; coarse-graining yields an effective refractive index and a local orthonormal frame (tetrad), from which an emergent metric and connection are read. Observers built from the same tri-binary units couple to this medium in the same way, so their rulers and clocks are medium-shaped, leading them to infer a Lorentz-like spacetime with a universal "speed of light" even though the underlying void remains Euclidean with absolute time.
