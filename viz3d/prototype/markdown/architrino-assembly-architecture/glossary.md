@@ -1,6 +1,8 @@
 
 ### Definitions
 
+AAA = Architrino Assembly Architecture.
+
 | Term | $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ | AAA |
 | --- | --- | --- |
 | Absolute Observer (AO) | No privileged observer; all observers are physical systems and frames are coordinate choices. | Conceptual (non-physical) observer with complete microstate knowledge at $x,y,z,t$; simulation ground truth. |
@@ -17,7 +19,7 @@
 | Effective Metric | Metric $g_{\mu\nu}$ is fundamental in $\mathrm{GR}$, not an emergent medium property. | Emergent refractive geometry from Noether Sea density/stress that reproduces GR-like behavior. |
 | Electrino | No fundamental $-e/6$ charge; electron is elementary with charge $-e$. | Negative-polarity architrino with charge $q=-\epsilon$ where $\epsilon=\lvert e\rvert/6$. |
 | Euclidean Void | No fixed Euclidean background; $\mathrm{GR}$ uses dynamical spacetime geometry, $\mathrm{QM}/\mathrm{QFT}$ assumes a background only in specific approximations. | Continuous, unmoving $\mathbb{R}^3$ container. |
-| Field Speed ($c_f$) | Speed of light $c$ in vacuum; invariant signal speed in $\mathrm{SR}/\mathrm{GR}$. | Propagation speed of architrino potential wakes relative to the void; reference speed for self-hit threshold. |
+| Field Speed ($c_f$, AAA reference speed) | Speed of light $c$ in vacuum; invariant signal speed in $\mathrm{SR}/\mathrm{GR}$. | Propagation speed of architrino potential wakes relative to the void; reference speed for self-hit threshold. |
 | Inner Binary | See Binary, Inner. | Synonym of Binary, Inner. |
 | Noether Core | No such assembly; vacuum is not composed of cores. | Neutral assembly (coupled pro/anti tri-binaries) forming a spacetime medium node. |
 | Noether Sea | No physical sea; vacuum is the ground state of fields, not a substance. | Lattice/network of Noether cores filling space; the spacetime medium. |
@@ -27,7 +29,7 @@
 | Planck Scale (AAA usage) | Scale set by $G,\hbar,c$ (Planck length/time/energy) where quantum gravity is expected. | Event-horizon alignment condition where the middle and outer binaries reach $v=c_f$ and become coplanar/co-linear with the inner binary. |
 | Outer Binary | See Binary, Outer. | Synonym of Binary, Outer. |
 | Positrino | No fundamental $+e/6$ charge; positron is the electron antiparticle with charge $+e$. | Positive-polarity architrino with charge $q=+\epsilon$ where $\epsilon=\lvert e\rvert/6$. |
-| Proper Time | Invariant time along a worldline, $d\tau^2=-g_{\mu\nu}dx^\mu dx^\nu$; clock time in $\mathrm{GR}$. | Time measured by physical clocks (tri-binary assemblies) interacting with the Noether Sea; emergent from dynamics. |
+| Proper Time | Invariant time along a worldline; for signature $(-,+,+,+)$, $d\tau^2=-g_{\mu\nu}dx^\mu dx^\nu$; clock time in $\mathrm{GR}$. | Time measured by physical clocks (tri-binary assemblies) interacting with the Noether Sea; emergent from dynamics. |
 | Self-Hit | No self-intercepting field-wake dynamics in standard $\mathrm{GR}/\mathrm{QM}$. | When $v>c_f$, an architrino intercepts its own wake, creating non-Markovian feedback. |
 | Spiral | Orbital spirals arise from radiation reaction, dissipation, or non-conservative forces; not a fundamental mechanism. | Typical binary path in sub-$c_f$ regime: logarithmic-like inward spiral driven by delayed partner hits and positive tangential power. |
 | Spacetime Medium (Noether Core Sea) | No physical medium; spacetime is the metric field and vacuum is not a substance. | Pervasive assembly network giving rise to effective metric/inertia. |
