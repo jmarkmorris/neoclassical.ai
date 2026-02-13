@@ -21,7 +21,7 @@
 | Inner Binary | See Binary, Inner. | Synonym of Binary, Inner. |
 | Noether Core | No such assembly; vacuum is not composed of cores. | Neutral assembly (coupled pro/anti tri-binaries) forming a spacetime medium node. |
 | Noether Sea | No physical sea; vacuum is the ground state of fields, not a substance. | Lattice/network of Noether cores filling space; the spacetime medium. |
-| Noether Sea Density ($\rho_{vac}$) | Vacuum energy density or cosmological-constant density $\rho_\Lambda$; typically treated as constant in $\Lambda$CDM. | Local Noether core number density $\rho_{vac}(\mathbf{x},t)$; sets refractive index and clock rates. |
+| Noether Sea Density ($\rho_{vac}$) | Vacuum energy density or cosmological-constant density $\rho_\Lambda$; typically treated as constant in $\Lambda\mathrm{CDM}$. | Local Noether core number density $\rho_{vac}(\mathbf{x},t)$; sets refractive index and clock rates. |
 | Maximal Curvature Binary (MCB) | See Binary, Maximal Curvature (MCB). | Synonym of Binary, Maximal Curvature (MCB). |
 | Middle Binary | See Binary, Middle. | Synonym of Binary, Middle. |
 | Planck Scale (AAA usage) | Scale set by $G,\hbar,c$ (Planck length/time/energy) where quantum gravity is expected. | Event-horizon alignment condition where the middle and outer binaries reach $v=c_f$ and become coplanar/co-linear with the inner binary. |
