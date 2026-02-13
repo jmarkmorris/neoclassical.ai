@@ -13,6 +13,8 @@
 
 ---
 
+- keep working on glossary - review, and add more terms. need to decide how to handle the virtual or absolute obserbver. So many options. None good.
+
 - review docs, put docs on webapp, and look at the directory for more 
   - my sphere labels should match my file labels
   - unless it is a compound doc that is spread out to many spheres
