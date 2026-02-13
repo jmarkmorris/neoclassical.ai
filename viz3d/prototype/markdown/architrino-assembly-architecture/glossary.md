@@ -5,9 +5,9 @@
 | --- | --- | --- |
 | Absolute Observer (AO) | No privileged observer; all observers are physical systems and frames are coordinate choices. | Conceptual (non-physical) observer with complete microstate knowledge at $x,y,z,t$; simulation ground truth. |
 | Absolute Time | No universal time; $\mathrm{GR}$ uses coordinate time and proper time along worldlines. | Global, linear time parameter $t$ used by the virtual observer; universal synchronization. |
-| Architrino | Not part of standard $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$; no such fundamental entity. | Point transmitter/receiver of polarized potential (electrino/positrino) with fixed charge magnitude. |
-| Binary | Bound two-body system; modeled by forces/fields (e.g., EM or gravity), with no intrinsic delay-isochron mechanics. | Opposite-charge pair (electrino–positrino) forming the base assembly; spirals inward and can stabilize via self-hit. |
-| Binary, Maximal Curvature (MCB) | No analogue in standard models. | Electrino-positrino pair stabilized at minimum radius via self-hit in $v>c_f$ regime; defines prototype length/time. |
+| Architrino | Not part of standard $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$; no such fundamental entity. | Point transmitter/receiver of polarized potential (electrino:positrino) with fixed charge magnitude. |
+| Binary | Bound two-body system; modeled by forces/fields (e.g., EM or gravity), with no intrinsic delay-isochron mechanics. | Opposite-charge pair (electrino:positrino) forming the base assembly; spirals inward and can stabilize via self-hit. |
+| Binary, Maximal Curvature (MCB) | No analogue in standard models. | Electrino:positrino pair stabilized at minimum radius via self-hit in $v>c_f$ regime; defines prototype length/time. |
 | Binary, Inner | No specific inner-binary layer; bound systems are not organized into nested binary tiers. | Self-hit (maximal-curvature) binary in the tri-binary core; highest curvature and smallest radius. |
 | Binary, Middle | No middle-binary tier in standard models. | Field-speed binary at $v=c_f$ acting as energy-storage fulcrum; radius/frequency variable. |
 | Binary, Outer | No outer-binary tier in standard models. | Slowest, largest binary; mediates external coupling and approaches $v=c_f$ near alignment. |
