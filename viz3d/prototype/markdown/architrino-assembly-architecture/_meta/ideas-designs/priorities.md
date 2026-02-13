@@ -115,7 +115,7 @@
 - look at what I wrote on the equivalence principal. does it make sense? 
 
 - double click pins vscode tab
-- link a markdown file [text](../prototype/markdown/file). Add note to system prompts.
+- link a markdown file [text](../../prototype/markdown/file). Add note to system prompts.
 - one H1 heading per md
 - branches are now alpha beta gamma delta omega in git
 - og entourage ids I should see in lmcouncil Jan 13ab/15ab/17a/24a
