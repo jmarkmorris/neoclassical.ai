@@ -1,14 +1,8 @@
-### Tri-Binary Research Plan: Geometry Under High Group Velocity and High Gravitational Gradient
+# Tri-Binary Dynamics
 
----
+This chapter develops a working draft of tri-binary dynamics by extending the two-body delay system to a coupled three-binary core. The focus is the geometric response at high group velocity and under strong gravitational gradients, along with the diagnostic quantities used to assess stability and alignment.
 
-**Purpose:** Determine whether delay-coupled tri-binary dynamics admit discrete modes and a terminal aligned state, and characterize the geometry as group velocity approaches $c_f$ and as gravitational gradient increases.
-
-**Scope:** Minimal, testable models with explicit delay and geometry. No full GR. Emphasis on observable invariants and phase-closure diagnostics.
-
----
-
-## Core Hypotheses (Testable)
+## Working Hypotheses
 
 1. The formed Noether core has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
 2. The outer-binary delay loop yields discrete plateaus and a terminal aligned mode under increasing stress.
@@ -122,23 +116,17 @@ Geometrically, $\beta$ is the axis-squash control: as $\beta \to 1$, the causal 
 
 ---
 
-## Minimal Models and Experiments
+## Minimal Models
 
 ### 1) Noether Core Baseline (Inner + Middle Fixed)
 
-**Goal:** Treat inner + middle as a formed Noether core and establish its internal timescales, radii, and phase relations before stressing the outer binary.
-
-**Concrete tasks:**
-1. Hold the Noether core fixed (or slowly varying) with center of mass at rest.
-2. Run long enough to stabilize internal phase relationships (use convergence checks in $\Delta t$, $\eta$).
-3. Measure $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets.
-4. Verify repeatability across nearby initial conditions and whether any core element rides $v = c_f$ continuously.
+**Focus:** Treat inner + middle as a formed Noether core with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any core element rides $v = c_f$ continuously.
 
 ### 2) Outer-Binary Delay Loop Model with Formed Core
 
-**Goal:** Test the discrete ladder / top-rung hypothesis in a minimal delay system and quantify geometry at high $v_{\text{trans}}$ and high $G_{\text{grad}}$.
+**Focus:** Characterize the discrete ladder / top-rung behavior in a minimal delay system and quantify geometry at high $v_{\text{trans}}$ and high $G_{\text{grad}}$.
 
-**Model:**
+**Model ingredients:**
 - Inner + middle modeled as a rigid core with fixed timescales.
 - Outer binary orbits the core with non-coplanar planes initially.
 - Translational speed $\mathbf{v}_{\text{trans}}$ and gradient $G_{\text{grad}}$ are control parameters.
@@ -152,8 +140,6 @@ and track when $\partial \Phi_n/\partial r$ changes sign.
 Quantization here is emergent: only delay-locked, stable closures persist as discrete rungs, not imposed eigenmodes.
 
 ### 3) Alignment Invariants and Configuration Diagnostics
-
-**Goal:** Define computable invariants that separate 3D precessing regimes from planar aligned regimes and test the SU(2) to U(1) collapse narrative.
 
 **Diagnostics (operational):**
 - **Inter-plane angles:** $\theta_{ij} = \arccos(\hat{n}_i \cdot \hat{n}_j)$ for $(i,j)\in\{\text{inner, mid, outer}\}$. Track $\max(\theta_{ij})$ over an outer period.
@@ -176,21 +162,12 @@ As alignment increases and planes coincide, the remaining degree of freedom is a
 
 ---
 
-## Decision Gates
+## Revision Triggers (Failure Modes)
 
-1. **Core stability:** If invariants are unstable or non-repeatable, pause outer-binary claims.
-2. **Discrete rungs:** If plateaus do not exist or terminate, revise the top-rung thesis.
-3. **High-velocity geometry:** If oblate geometry does not improve phase closure, revise the envelope model.
-4. **High-gradient behavior:** If strong gradients erase alignment, document the failure mode and boundary conditions.
-
----
-
-## Execution Order
-
-1. Noether core baseline and invariants.
-2. Outer-binary delay loop without gradient; validate oblate geometry at high $v_{\text{trans}}$.
-3. Add $G_{\text{grad}}$ and scan stability vs gradient.
-4. Run alignment invariants across low-stress and high-stress regimes.
+1. **Core stability:** Unstable or non-repeatable invariants undermine outer-binary claims.
+2. **Discrete rungs:** If plateaus do not exist or terminate, the top-rung thesis must be revised.
+3. **High-velocity geometry:** If oblate geometry does not improve phase closure, the envelope model fails.
+4. **High-gradient behavior:** If strong gradients erase alignment, record the boundary conditions and revise the alignment narrative.
 
 ---
 
