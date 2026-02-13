@@ -11,6 +11,55 @@
 
 - finish topology (where is it) su(3)su(2)o(1)
 
+---
+
+- review docs, put docs on webapp, and look at the directory for more 
+  - my sphere labels should match my file labels
+  - unless it is a compound doc that is spread out to many spheres
+  - binary-dynamics.md (reviewed)
+  - energy.md (reviewed 2/12)
+  - weak-mixing-ckm.md
+  - unknowns-paradoxes.md
+  - quantum-number-mapping.md
+  - 421.md
+  - su(2), su... which doc is this?
+  - dynamo-team-insights.md
+  - master-equation.md
+  - reality-quantum-causality.md
+  - pdg-api.md
+  - tri-binary-dynamics.md
+  - assembly-atlas.md
+  - noether-core.md
+  - emergent-metric.md
+  - particle-masses.md
+  - electroweak-bosons.md
+  - gluons.md
+  - color-charge-su3.md
+  - cmb-origin.md
+  - mapping-Planck-scale.md
+  - ontology.md
+  - bootstrapping-the-absolute-frame.md
+  - absolute-time-defense.md
+  - emergence.md
+  - euclidean-void.md
+  - arch-api.md
+  - causal-functional.md
+  - design.md
+  - displacement-of-spacetime.md
+  - atomic-structure.md
+  - gauge-structure-emergence.md
+  - reaction-ledger.md
+  - out-of-the-ashes.md
+  - theory-mapping.md
+  - proper-time-and-time-dilation.md
+  - architrino-si-base-units.md
+  - AnalyticBaselines.md
+  - perspective.md
+  - what are all the docs in ./architrino-assembly-architecture/validation/simulations/action-energy
+
+---
+
+
 - check this idea out - if the tri-binary opens up inside the bh, then we get our quadropole resonance when a given core pops early or late. Or said another way, the event horizon isn't actually a sphere, it is some very rough surface that may have a large radial depth. We are talking about particles doing their thing in their local environment.  So they have this brief neck to planar and then they get 3d again even though they are shrinking.  How cool.  So how do we resolve the volume problem - going to zero at the event horizon.  is there a solution at the event horizon?  all 3 binaries are at c_f arghh = still not sure I have the model right.
 
 - maybe the 'throat' of he event horizon is the planar circle x c_f in translation. Like a cylinder. Hmm that is interesting. 
@@ -119,7 +168,7 @@ codex
   3. Derive the effective metric and PPN numbers: from spacetime/emergent-metric.md and spacetime/ppn-parameters.md, specify g_eff(ρ_core,Φ) and compute γ, β, α_i to Cassini/LLR precision; show Shapiro delay/light bending equivalence to GR to 1e-5 while respecting adversarial/failure-criteria.md.
 
   4. Nail self-hit/regularization numerics: implement tier-0/1 simulations per simulations/run-protocols.md and synthesis/action-energy/* to lock the maximum-curvature orbit, history resolution, and stability of binaries/tri-binaries; publish convergence plots and VO provenance logs.
-  
+
   5. Complete the parameter ledger and couplings: populate foundations/parameter-ledger.md with κ, ε0/μ0 equivalents, density scales, and regularization widths; tie to foundations/action.md and foundations/architrino-si-base-units.md, then cross-check against adversarial/constraint-ledger.md for viability bounds.
 
   ---
