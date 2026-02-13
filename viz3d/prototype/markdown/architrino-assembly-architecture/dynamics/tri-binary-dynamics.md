@@ -191,7 +191,7 @@ As alignment increases and planes coincide, the remaining degree of freedom is a
 
 ### Tri-Binary Emergence and Hypothetical Properties
 
-An electrino-positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles, with each binary playing a distinct dynamical role.
+An electrino:positrino binary is the most primitive assembly possible. Architrino assembly architecture posits that three binaries can become coupled into a "Noether core" tri-binary. This tri-binary is then the basis for all standard model particles, with each binary playing a distinct dynamical role.
 
 - **Inner binary** (MCB): $v > c_f$; self-hit stabilized; **would define fundamental units**.
 - **Middle binary**: **always** at $v = c_f$ with **variable radius/frequency**; symmetry-breaking threshold and **energy-storage fulcrum**; defines effective light speed $c_{\text{eff}}$.

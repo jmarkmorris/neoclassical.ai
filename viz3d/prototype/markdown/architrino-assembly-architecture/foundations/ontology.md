@@ -1251,7 +1251,7 @@ The Noether Sea is an **emergent assembly lattice** composed of:
 - Coupled **neutral tri-binary assemblies** (pro/anti pairs)
 - Arranged in a quasi-crystalline or superfluid-like structure
 
-All tri-binaries are **neutral** (composed of three electrino-positrino pairs). The **pro/anti distinction** refers to geometric handedness (precession order):
+All tri-binaries are **neutral** (composed of three electrino:positrino pairs). The **pro/anti distinction** refers to geometric handedness (precession order):
 - **Pro**: H/M/L (High/Medium/Low frequency ordering)
 - **Anti**: H/L/M (alternate ordering)
 
@@ -1563,7 +1563,7 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 | **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces |
 | **Field Speed** | Fundamental propagation speed $c_f$ (set to 1 in natural units) |
 | **Tri-Binary** / **Noether Core** | Three nested binary pairs; fundamental stable assembly |
-| **Electrino / Positrino** | Negative / positive fundamental charge unit $\mp e/6$ |
+| **Electrino:Positrino** | Negative / positive fundamental charge unit $\mp e/6$ |
 
 ### Deprecated Terms (AVOID THESE)
 

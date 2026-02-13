@@ -485,7 +485,7 @@ ElectrinoSpec (axial vortex motion)
   - `frequency`: local oscillation rate
   - `phase`: phase offset
 
-Personality charge distribution (electrino/positrino)
+Personality charge distribution (electrino:positrino)
 - Allow explicit distribution patterns (e.g., 5/1, 4/2) and per-binary assignment.
 - Charges can be bound to a specific binary and given a phase offset.
 
