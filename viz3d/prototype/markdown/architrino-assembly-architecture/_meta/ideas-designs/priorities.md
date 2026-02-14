@@ -7,6 +7,8 @@
   - a language for describing animations 
   - every scene will be ported to this format
 
+---
+
 - i like this term 'wake'. It is better than field. Wake/field: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level
 
 ---
@@ -69,20 +71,34 @@
 
 - so max KE, min PE = MCB. (Until freeze-out).  So if it is 1:2:4 and if inner is always in the self-hit region, then outer is always f > f_mcb/4? so that inner is at least f_mcb/2 > f_p?  Okay I guess. why not. Then  every h just shifts.   Unless we are counting down from the MCB.  If we have 4:2:1 from that perspective what does that mean? It seems nature wants to set v=c_f and the Planck scale juncture to be the canonical definition of zero.  On the other hand maybe we should look at the MCB as definition of zero PE and max KE.
 
+---
+
 - change github pages on which branch it serves from now that I have alpha, beta....
+
+---
 
 - make application pages that shows Gell-mann's 8 fold way and 10-fold diagram but at each vertex put the particle from my scene creator.  Then possibly show correlations to T3 and Y and see what I can learn from the mass patterns.  See Kaiser's MIT lecture 22
 
+---
+
 - what is the smallest assembly that can make a decision
+
+---
 
 - are there any rapid hits
   - ellipsoid to GR
   - koide
   - planck
 
+---
+
 - why do we need h, cf, and G? three constants. One spiral. see planck units for insights.  seems like G is more of an emergent factor?
 
+---
+
 - sim2rewrite.md has ideas for porting to viz3d. wait until we have the scene builder working
+
+---
 
 - PDG solver
   - provenance
@@ -92,25 +108,39 @@
   - look into madgraph for reactions as well
   - use scene builder in api mode
 
+---
+
 - periodic table of the standard model ( have a basic one)
+
+---
 
 - what about the charts I made showing the bootstrap of knowledge.
 
+---
+
 - continue the ellipsoid work, aiming to understand time
+
+---
 
 - I need to think more about multi-determinism and how that maps to quantum and many worlds and free will.
 
+---
+
 - mine material from wordpress for key areas (slog)
+
+---
 
 - clean up powerpoints - or better yet, migrate them to the web site.
 
-- make a web page that generates a live toc, cross-referenres, and glossary?
-
-- there are stable orbits at each h
+---
 
 - is the lack of one of the neutrino chiralities due to converting a pro-Noether core?
 
+---
+
 - look at what I wrote on the equivalence principal. does it make sense? 
+
+---
 
 - double click pins vscode tab
 - link a markdown file [text](../../prototype/markdown/file). Add note to system prompts.
