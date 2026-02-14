@@ -38,7 +38,7 @@ The Architrino Assembly Architecture is **deterministic in its laws** despite it
 
 **Architrino impact**:
 - ❌ **Con**: Change is **derivative**, not fundamental. Architrinos are eternal; configurations change, but entities do not.
-- ⚠️ **Partial**: Heraclitus's emphasis on **opposition** aligns with the electrino/positrino binary and the role of competing wake interactions.
+- ⚠️ **Partial**: Heraclitus's emphasis on **opposition** aligns with the electrino:positrino binary and the role of competing wake interactions.
 
 **Legacy shift**: Becoming is **reinterpreted** as pattern evolution within an unchanging substrate.
 

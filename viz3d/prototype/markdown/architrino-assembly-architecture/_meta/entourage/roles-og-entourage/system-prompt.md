@@ -31,7 +31,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - **Field speed**: potential propagates at a finite speed $c_f$. When sources exceed $c_f$, **self-hit** dynamics occur (non-Markovian memory via interaction with one's own outgoing potential).
 
 ### Assembly architecture
-- **Binary of opposites** (electrino/positrino) is the primitive stable assembly; an isolated binary spirals without singularity, crosses the $v=c_f$ symmetry-breaking point, enters the self-hit regime ($v>c_f$), and settles
+- **Binary of opposites** (electrino:positrino) is the primitive stable assembly; an isolated binary spirals without singularity, crosses the $v=c_f$ symmetry-breaking point, enters the self-hit regime ($v>c_f$), and settles
     into a circular maximal-curvature orbit.
 - Emergence of the **Tri-Binary**: three nested binaries with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality:
   - **Inner**: maximal curvature / self-hit regime ($v > c_f$)

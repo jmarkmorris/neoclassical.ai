@@ -68,4 +68,4 @@ Why are charges quantized in units of e/3?
 | personality count notation (−:+) | 6:0 | 5:1 | 4:2 | 3:3 | 2:4 | 1:5 | 0:6 |
 | net fermion charge (e) | −1 | −2/3 | −1/3 | 0 | +1/3 | +2/3 | +1 |
 
-The tri-binary’s six polar regions demand six personality architrinos per fermion assembly; sweeping all electrino/positrino splits across those poles yields exactly the SM charge set with no extras.
+The tri-binary’s six polar regions demand six personality architrinos per fermion assembly; sweeping all electrino:positrino splits across those poles yields exactly the SM charge set with no extras.
