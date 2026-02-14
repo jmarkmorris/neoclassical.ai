@@ -259,9 +259,9 @@ Architrinos and their assemblies are where all the energy lives. The tri-binary 
 
 ---
 
-## Appendix A: Energy Bookkeeping and Reference Zero (AAA Convention)
+## Appendix A: Energy Bookkeeping and Reference Zero ($\mathbb{A}\mathbb{A}\mathbb{A}$ Convention)
 
-AAA uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of a bound pair (the self-hit / max-curvature radius). This choice is both physical and operational: the system has a **hard inner cutoff** (no further compression), so the deepest accessible state is unique and history-independent.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of a bound pair (the self-hit / max-curvature radius). This choice is both physical and operational: the system has a **hard inner cutoff** (no further compression), so the deepest accessible state is unique and history-independent.
 
 ### Physical Setup and Why a New Zero is Needed
 
@@ -331,7 +331,7 @@ This can read as an "amplified" response, but only because the inner binary is *
 
 It is useful (as a **bookkeeping analogy**) to think of the tri-binary as a **routing/locking circuit** rather than a simple reservoir. An incoming single-step transaction ($h$-like) couples most strongly to the **outer binary**, the **middle binary** acts as a buffer/fulcrum that maintains overall consistency, and the **inner binary** can respond with a two-step reconfiguration when the self-hit echo is engaged. This makes the response feel like a **gear or ratchet**, but the mechanism is still deterministic energy routing, not creation.
 
-In this language, a discrete input can **lock in** a new tri-binary configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in AAA it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
+In this language, a discrete input can **lock in** a new tri-binary configuration: a threshold-triggered, history-dependent update that selects one stable branch over another. This is a **collapse-like** event in the phenomenological sense (a sudden, discrete state update), but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it is treated as a **deterministic, microstate-sensitive bifurcation**, not an intrinsically stochastic collapse.
 
 ### Bookkeeping Table: One $h$ of Angular Momentum (Outer $v < v_f$)
 
@@ -384,7 +384,7 @@ $$V(r) = -\frac{k q^2}{r},$$
 
 so there is no inner bound and no natural finite zero. Classical mechanics therefore chooses $V(\infty)=0$.
 
-In AAA, the hard inner cutoff **creates** a natural zero at $r_{\min}$, which is the lowest accessible state. The bookkeeping therefore switches from "energy relative to infinity" to "energy relative to the ground state."
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the hard inner cutoff **creates** a natural zero at $r_{\min}$, which is the lowest accessible state. The bookkeeping therefore switches from "energy relative to infinity" to "energy relative to the ground state."
 
 ### Summary Table (Operational Meaning)
 

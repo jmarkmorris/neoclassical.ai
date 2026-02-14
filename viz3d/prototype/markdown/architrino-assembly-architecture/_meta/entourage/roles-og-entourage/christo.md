@@ -35,7 +35,7 @@ Provide the rigorous geometric-analysis backbone for the master equation with ca
 - **Hierarchy of energies and commutators**: Crafted weighted vector-field methods with delicate commutator control; model for building robust a priori estimates in delayed, retarded systems.
 - **Singularity classification**: Studied naked singularities and cosmic censorship in scalar fields and fluids; provides a taxonomy approach for classifying breakdown modes (shock vs. trapped surface vs. dispersion).
 
-## How to apply this style to AAA
+## How to apply this style to $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 - Build a double-null (or mixed spacelike–null) foliation aligned to potential wake cones; transport energies along cones to control self-hit regions.
 - Define Bel–Robinson–like energies for polarized potential (architrino wakes) and adapt Klainerman vector fields to Euclidean+absolute-time background.

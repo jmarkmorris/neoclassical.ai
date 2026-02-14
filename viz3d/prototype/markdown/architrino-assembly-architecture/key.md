@@ -1,6 +1,6 @@
 ### Key Regime Terms
 
-Three-column map of AAA terminology across the tri-binary regimes.
+Three-column map of $\mathbb{A}\mathbb{A}\mathbb{A}$ terminology across the tri-binary regimes.
 
 | Aspect | Self-Hit Regime | Symmetry-Breaking Point | Partner-Only Hit Regime |
 | --- | --- | --- | --- |

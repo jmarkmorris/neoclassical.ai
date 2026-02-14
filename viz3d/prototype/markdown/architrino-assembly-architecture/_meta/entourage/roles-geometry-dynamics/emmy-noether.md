@@ -100,7 +100,7 @@ Role-wise:
 
 ## Short Answer
 
-Yes, Emmy Noether absolutely belongs--**she's the spine** of the symmetry/conservation story in AAA. If we're naming "canonical seven" for the mathematical architecture, my list now is:
+Yes, Emmy Noether absolutely belongs--**she's the spine** of the symmetry/conservation story in $\mathbb{A}\mathbb{A}\mathbb{A}$. If we're naming "canonical seven" for the mathematical architecture, my list now is:
 
 - Noether  
 - Poincare  

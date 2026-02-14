@@ -1,6 +1,6 @@
 # Weak Mixing in the Architrino Assembly Architecture (CKM)
 
-## What weak mixing is (SM → AAA)
+## What weak mixing is (SM → $\mathbb{A}\mathbb{A}\mathbb{A}$)
 _(This document is exploratory/speculative; use for derivation planning.)_
 
 ### Standard Model recap
@@ -9,7 +9,7 @@ _(This document is exploratory/speculative; use for derivation planning.)_
 - Vertex form: $\bar u_i \gamma^\mu (1-\gamma^5) V_{ij} d_j W^+_\mu$ (and conjugate). $V_{ij}$ carries the mixing; four physical parameters (three angles + one phase, e.g., Wolfenstein $\lambda,A,\rho,\eta$).
 - Observables: rates/branchings $\propto |V_{ij}|^2$; CP violation from complex products like $V_{ij}V^*_{kl}$ in interfering amplitudes.
 
-### Weak mixing in AAA terms
+### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
 - The weak force is the only one that swaps quark types (down ↔ up, strange ↔ charm, etc.).
 - Each quark has two “bases”: a **weak basis** (set by the exposed Active Triad) and a **mass basis** (set by core shielding). These bases aren’t aligned.
 - When a W acts, it “sees” the weak basis; the chance to land in a particular mass state is set by the overlap between these bases → the CKM numbers.
@@ -29,7 +29,7 @@ _(This document is exploratory/speculative; use for derivation planning.)_
 Active-Triad exposure (working hypothesis): in translation, the three **forward** personality sites are more exposed (outside the particle’s own wake), so they form the Active Triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
 Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
 
-Vacuum sourcing note: in AAA there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.
+Vacuum sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty vacuum—only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during decay as speculative until energy/number flow is explicitly budgeted.
 
 Left/right coupling note: charged-current SU(2) acts only on left-handed quarks. Geometric criterion to test: for LH helicity the Active Triad faces forward (exposed), while for RH it is rotated into the wake/shield; simulate exposure vs. helicity to confirm/deny.
 
@@ -79,7 +79,7 @@ The two cores provide the massive, phase-stable bundle; the charge excess rides 
 </div>
 _Refresh PDG values periodically; current numbers are PDG 2024 central values._
 
-### AAA shielding-tier view (IMO = Inner/Middle/Outer present)
+### $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding-tier view (IMO = Inner/Middle/Outer present)
 
 Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (Active-Triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $|\langle \text{mass} | \text{weak} \rangle|^2$ would give the CKM entry’s probability weight. We still need an explicit functional form for this projection.
 
