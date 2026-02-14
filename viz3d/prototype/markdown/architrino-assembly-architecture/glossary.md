@@ -1,9 +1,7 @@
 
 ### Definitions
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ = Architrino Assembly Architecture.
-
-| Term | $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ | $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+| Term | $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ | $\mathbb{A}\mathbb{A}\mathbb{A}$ = Architrino Assembly Architecture |
 | --- | --- | --- |
 | Absolute Frame / Preferred Frame | No preferred inertial frame; all inertial frames are equivalent in $\mathrm{SR}/\mathrm{GR}$. | The Euclidean-void rest frame defined by isotropy of $c_f$ and absolute time; physically real but operationally hidden. |
 | Absolute Time | No universal time; $\mathrm{GR}$ uses coordinate time and proper time along worldlines. | Global, linear time parameter $t$ indexing each $\mathbb{U}_{\text{now}}$ slice; universal synchronization. |
@@ -51,3 +49,4 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ = Architrino Assembly Architecture.
 | Tri-Binary | No tri-binary assembly; bound states described by quantum fields and forces. | Synonym of Binary, Tri. |
 | Tri-Binary Alignment Plateau | No analogue in standard models. | Locked alignment state reached as total velocity approaches $c_f$; planes align and frequencies lock at integer ratios. |
 | $\mathbb{U}_{\text{now}} \equiv S(t)$ | No direct equivalent as a fundamental ontic slice in $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$; practical descriptions are observer/model-dependent. | Complete ontic universe state on simultaneity slice $\Sigma_t$ at global time $t$: $S(t)=\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i,\ldots)\}$, together with path-history/provenance bookkeeping (emitter identity, emission time) and self-hit history needed for deterministic evolution. Here $\mathbb{U}$ denotes Universe. This is simulation ground truth. Not an observer. |
+| Wave Function Transition | In standard QM language, state changes are described via unitary evolution plus measurement update/collapse formalisms, e.g., "collapse of the wave function". | AAA term for effective state-description transition during measurement interaction and decoherence-driven record formation; the underlying architrino dynamics remain continuous and ontic (no fundamental collapse postulate). |
