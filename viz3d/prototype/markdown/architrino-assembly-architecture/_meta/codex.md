@@ -25,9 +25,6 @@ If a key is present, Codex uses the API. Period.
 
 If no key is present, Codex falls back to your ChatGPT Plus/Pro login.
 
-That’s the rule.
-
-No UI. No status command. No toggle.
 
 ---
 
@@ -51,45 +48,19 @@ Disable it (current session):
 unset OPENAI_API_KEY
 ```
 
-Now remove it permanently.
-
-Edit your shell config:
-
-```bash
-nano ~/.zshrc
-```
-
-Find and delete any line like:
-
-```bash
-export OPENAI_API_KEY=sk-...
-```
-
-Save, then reload:
-
-```bash
-source ~/.zshrc
-```
-
-Verify:
-
-```bash
-echo $OPENAI_API_KEY
-```
-
-Should print nothing.
-
 ---
 
-### Step 2 — Clear old Codex credentials (optional but recommended)
+### Step 2 — Save chat history and then Clear old Codex credentials
+
+```bash
+cp -r ~/.codex/sessions ~/codex_backup_sessions
+```
 
 This avoids stale auth confusion.
 
 ```bash
-rm -f ~/.codex/auth.json
+rm -f ~/.codex
 ```
-
-(or `auth.toml` if that exists)
 
 ---
 
@@ -107,20 +78,6 @@ This binds Codex to your Plus/Pro account.
 
 ---
 
-### Step 4 — Test
-
-Run something simple:
-
-```bash
-codex "print hello world in python"
-```
-
-Then check your OpenAI API dashboard.
-
-If no usage appears → you’re on Plus/Pro.
-
----
-
 ### Result
 
 Now:
@@ -131,141 +88,3 @@ Now:
 
 ---
 
-# II. Switch FROM Plus/Pro → TO API Key
-
-Goal: Force Codex to bill your API account.
-
-### Step 1 — Set API key in shell
-
-Temporary (session only):
-
-```bash
-export OPENAI_API_KEY="sk-xxxxxxxx"
-```
-
-Permanent:
-
-```bash
-nano ~/.zshrc
-```
-
-Add:
-
-```bash
-export OPENAI_API_KEY="sk-xxxxxxxx"
-```
-
-Reload:
-
-```bash
-source ~/.zshrc
-```
-
-Verify:
-
-```bash
-echo $OPENAI_API_KEY
-```
-
-Should show your key.
-
----
-
-### Step 2 — (Optional) Remove browser login
-
-Not strictly required, but cleaner.
-
-```bash
-rm -f ~/.codex/auth.json
-```
-
-Codex will ignore OAuth once key exists anyway.
-
----
-
-### Step 3 — Test
-
-Run:
-
-```bash
-codex "print hello world in python"
-```
-
-Check API dashboard → you’ll see usage.
-
----
-
-### Result
-
-Now:
-
-* API key present
-* Subscription ignored
-* Usage billed per token
-
----
-
-# III. The Only Rule You Need to Remember
-
-> If `OPENAI_API_KEY` exists → API mode
-> If it does NOT exist → Plus/Pro mode
-
-That’s it.
-
-Everything else is noise.
-
----
-
-# IV. Recommended Workflow (Power User)
-
-Since you actively use both, do this:
-
-### Create two helper scripts
-
-#### `use_api.sh`
-
-```bash
-export OPENAI_API_KEY="sk-xxxxxxxx"
-echo "Codex now using API"
-```
-
-#### `use_plus.sh`
-
-```bash
-unset OPENAI_API_KEY
-echo "Codex now using Plus/Pro"
-```
-
-Make executable:
-
-```bash
-chmod +x use_api.sh use_plus.sh
-```
-
-Then switch instantly:
-
-```bash
-./use_api.sh
-./use_plus.sh
-```
-
-No editing files. No confusion.
-
----
-
-# Bottom Line
-
-There is no “setting.”
-
-There is no “mode.”
-
-There is only:
-
-* Environment variable → API
-* No variable → Plan
-
-Once you internalize that, this stops being mysterious.
-
----
-
-If you want, I can next help you set this up so different terminals automatically default to different modes.

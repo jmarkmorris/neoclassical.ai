@@ -25,17 +25,13 @@ AAA = Architrino Assembly Architecture.
 | Euclidean Void | No fixed Euclidean background; $\mathrm{GR}$ uses dynamical spacetime geometry, $\mathrm{QM}/\mathrm{QFT}$ assumes a background only in specific approximations. | Continuous, unmoving $\mathbb{R}^3$ container. |
 | Field Speed ($c_f$, AAA reference speed) | Speed of light $c$ in vacuum; invariant signal speed in $\mathrm{SR}/\mathrm{GR}$. | Propagation speed of architrino potential wakes relative to the void; reference speed for self-hit threshold. |
 | Field-Speed Threshold | No special threshold at $v=c$ beyond kinematic invariance. | Symmetry-breaking boundary at $v=c_f$ separating partner-only and self-hit regimes. |
-| Inner Binary | See Binary, Inner. | Synonym of Binary, Inner. |
 | Noether Core | No such assembly; vacuum is not composed of cores. | Neutral assembly (coupled pro/anti tri-binaries) forming a spacetime medium node. |
 | Noether Sea | No physical sea; vacuum is the ground state of fields, not a substance. | Lattice/network of Noether cores filling space; the spacetime medium. |
 | Noether Sea Density ($\rho_{vac}$) | Vacuum energy density or cosmological-constant density $\rho_\Lambda$; typically treated as constant in $\Lambda\mathrm{CDM}$. | Local Noether core number density $\rho_{vac}(\mathbf{x},t)$; sets refractive index and clock rates. |
-| Maximal Curvature Binary (MCB) | See Binary, Maximal Curvature (MCB). | Synonym of Binary, Maximal Curvature (MCB). |
-| Middle Binary | See Binary, Middle. | Synonym of Binary, Middle. |
 | Partner-Only Hit | No analogue in standard models. | Interaction regime with $v<c_f$ where an architrino only intercepts partner wakes (no self-hit). |
 | Planck Scale (AAA usage) | Scale set by $G,\hbar,c$ (Planck length/time/energy) where quantum gravity is expected. | Event-horizon alignment condition where the middle and outer binaries reach $v=c_f$ and become coplanar/co-linear with the inner binary. |
 | Event-Horizon Alignment Condition | Event horizon is a null surface in GR. | Planck-scale alignment: middle and outer binaries reach $v=c_f$ and become coplanar/co-linear with the inner binary; precession ceases. |
 | Tri-Binary Alignment Plateau | No analogue in standard models. | Locked alignment state reached as total velocity approaches $c_f$; planes align and frequencies lock at integer ratios. |
-| Outer Binary | See Binary, Outer. | Synonym of Binary, Outer. |
 | Positrino | No fundamental $+e/6$ charge; positron is the electron antiparticle with charge $+e$. | Positive-polarity architrino with charge $q=+\epsilon$ where $\epsilon=\lvert e\rvert/6$. |
 | Proper Time | Invariant time along a worldline; for signature $(-,+,+,+)$, $d\tau^2=-g_{\mu\nu}dx^\mu dx^\nu$; clock time in $\mathrm{GR}$. | Time measured by physical clocks (tri-binary assemblies) interacting with the Noether Sea; emergent from dynamics. |
 | Self-Hit | No self-intercepting field-wake dynamics in standard $\mathrm{GR}/\mathrm{QM}$. | When $v>c_f$, an architrino intercepts its own wake, creating non-Markovian feedback. |
