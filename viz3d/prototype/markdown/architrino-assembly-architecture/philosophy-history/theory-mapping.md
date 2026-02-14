@@ -304,14 +304,14 @@ This correspondence provides a structured linkage among tri-binary regimes, blac
 
 So "inside vs horizon vs outside" is better seen as a **continuum parameterized by tri-binary deformation**. The event horizon (photon or black hole) is where that continuum hits its Planck-alignment plateau. Move outward and the outer loop drops below $c_f$, regains volume, and you return to the bulk spacetime medium; move inward and the inner loop dominates with $v>c_f$, pumping energy into self-hit dynamics and inflation/deflation effects.
 
-Given that, we can introduce **CFT+** for the interface sector: "surface degrees of freedom with Planck-aligned tri-binaries" without claiming a literal conventional CFT. CFT+ means:
+Given that, we can introduce **Horizon interface** for the interface sector: "surface degrees of freedom with Planck-aligned tri-binaries" without claiming a literal conventional CFT. Horizon interface means:
 
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
 - Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
 - Information flow constrained to the interface sheet,
 - Ready to bifurcate into volumetric Noether cores as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or spacetime medium).
 
-That gives clean shorthand: CFT+ for the Planck-aligned interface layer, "bulk" for $v<c_f$ volumetric cores, and "AdS-like" for the $v>c_f$ self-hit interior, all on the same continuum.
+That gives clean shorthand: Horizon interface for the Planck-aligned interface layer, "bulk" for $v<c_f$ volumetric cores, and "AdS-like" for the $v>c_f$ self-hit interior, all on the same continuum.
 
 ---
 
