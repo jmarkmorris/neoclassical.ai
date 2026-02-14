@@ -1,7 +1,7 @@
 
 ### Cosmology in the Absolute Frame
 
-1. **Two Times**: We analyze dynamics using **Absolute time $t$** (for the Virtual Observer/Simulation) and **Cosmic time $\tau_c$** (effective FRW time for physical observers).
+1. **Two Times**: We analyze dynamics using **Absolute time $t$** (for $\mathbb{U}_{\text{now}}$ universe-state simulation bookkeeping) and **Cosmic time $\tau_c$** (effective FRW time for physical observers).
 2. **Expansion Ontology**: The universe is a fixed box containing a medium (Noether cores) that is evolving/relaxing. It is not a box that is getting bigger.
 
 
@@ -38,6 +38,6 @@ Throughout, we maintain the principle:
 
 ### Two Time Notions
 
-* **Absolute Time ($t$):** Used by the Virtual Observer. Linear, global.
+* **Absolute Time ($t$):** Used to index $\mathbb{U}_{\text{now}}$ (the universe-now state). Linear, global.
 * **Cosmic Time ($\tau_c$):** Reconstructed from comoving clocks (FRW time).
 * **Dynamics:** Expansion is the evolution of the network in $t$.

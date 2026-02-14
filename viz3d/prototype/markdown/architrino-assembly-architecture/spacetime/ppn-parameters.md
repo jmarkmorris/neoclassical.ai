@@ -7,10 +7,10 @@
 
 ### Testing the Euclidean Anchor (Shapiro Delay)
 
-1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the Absolute Observer grid.
+1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the $\mathbb{U}_{\text{now}}$ universe-state grid.
 2. **Architrino Model**: Signal follows a straight Euclidean line. Delay is caused by **increased density of the Noether core sea** near the Sun (Refractive Index change).
 3. **Validation**: $\Delta t_{architrino}$ must match $\Delta t_{GR}$ to within $10^{-5}$.
-4. **AO Role**: The Absolute Observer provides the "straight line" benchmark against which the "curved path" of GR is compared.
+4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
 ### PPN Parameters and the Euclidean Anchor
 
@@ -26,4 +26,4 @@
 
 #### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial Test:** These must be identically zero in our framework’s effective limit to satisfy LLR (Lunar Laser Ranging) and pulsar timing data.
-* **Strategy:** Use the Absolute Observer to quantify any "leakage" of the Euclidean rest frame into the PPN formalism.
+* **Strategy:** Use $\mathbb{U}_{\text{now}}$ (the universe-now state) to quantify any "leakage" of the Euclidean rest frame into the PPN formalism.
