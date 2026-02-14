@@ -9,15 +9,12 @@
 
 - i like this term 'wake'. It is better than field. Wake/field: the causal‑isochron residue left by architrino motion; a wake is the architrino‑native description of what appears as a field at the effective level
 
-- finish topology (where is it) su(3)su(2)o(1)
-
 ---
-
-- keep working on glossary - review, and add more terms. need to decide how to handle the virtual or absolute obserbver. So many options. None good.
 
 - review docs, put docs on webapp, and look at the directory for more 
   - my sphere labels should match my file labels
   - unless it is a compound doc that is spread out to many spheres
+  - finish topology (where is it) su(3)su(2)o(1)
   - binary-dynamics.md (reviewed)
   - energy.md (reviewed 2/12)
   - weak-mixing-ckm.md
@@ -61,7 +58,6 @@
 
 ---
 
-
 - check this idea out - if the tri-binary opens up inside the bh, then we get our quadropole resonance when a given core pops early or late. Or said another way, the event horizon isn't actually a sphere, it is some very rough surface that may have a large radial depth. We are talking about particles doing their thing in their local environment.  So they have this brief neck to planar and then they get 3d again even though they are shrinking.  How cool.  So how do we resolve the volume problem - going to zero at the event horizon.  is there a solution at the event horizon?  all 3 binaries are at c_f arghh = still not sure I have the model right.
 
 - maybe the 'throat' of he event horizon is the planar circle x c_f in translation. Like a cylinder. Hmm that is interesting. 
@@ -69,7 +65,7 @@
 
 - i still like my 4 2 1 model, but maybe the 0 on the scale is wrong. If you set the max as the freq of mcb, then a decrease of 2 hz there corresponds to 1 hz on the outer binary. So the idea is we still hve the 4 2 1, but the baseline is at f_mcb. even if they all start at mcb, as they yield energy it comes in quanta externally. This is an interesting flip on the head, and relates to the new zero in potential energy at the MCB.  So fmax, fmax/2, fmax/4. then you subtract 1 2 4 from there for each click.
 
-- i still have quite a bit of confusion how the tri-binary rides the rail.  i suppose the interal radius can go into self hit first 
+- i still have quite a bit of confusion how the tri-binary rides the rail.  i suppose the internal radius can go into self hit first 
 
 - so max KE, min PE = MCB. (Until freeze-out).  So if it is 1:2:4 and if inner is always in the self-hit region, then outer is always f > f_mcb/4? so that inner is at least f_mcb/2 > f_p?  Okay I guess. why not. Then  every h just shifts.   Unless we are counting down from the MCB.  If we have 4:2:1 from that perspective what does that mean? It seems nature wants to set v=c_f and the Planck scale juncture to be the canonical definition of zero.  On the other hand maybe we should look at the MCB as definition of zero PE and max KE.
 
@@ -125,7 +121,6 @@
 - get a mac mini when the m5 comes out
 - use open???? credits
 
-
 ---
 
 ### **Top Priority #3: `assemblies/fermions/quarks.md`**
@@ -174,7 +169,6 @@ codex
   5. Complete the parameter ledger and couplings: populate foundations/parameter-ledger.md with κ, ε0/μ0 equivalents, density scales, and regularization widths; tie to foundations/action.md and foundations/architrino-si-base-units.md, then cross-check against adversarial/constraint-ledger.md for viability bounds.
 
   ---
-
 
 ### The Chirality Crisis: Deriving Parity Violation
 **Why:** The Standard Model is chiral; the Weak force only talks to left-handed fermions. Euclidean geometry is naturally parity-symmetric. This is our biggest phenomenological trap.
