@@ -29,7 +29,7 @@
   - Tensions: H₀, σ₈; N_eff from neutrino/sea coupling
 
 - **Simulations & Validation**
-  - Absolute-frame DDE integrators; VO logging; convergence/history resolution
+  - Absolute-frame DDE integrators; $\mathbb{U}_{\text{now}}$ logging; convergence/history resolution
   - Synthetic observables: scattering, form factors, GW/EM signals, cosmology mocks
 
 - **Constraints & Adversarial**

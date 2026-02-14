@@ -1361,21 +1361,21 @@ In the Architrino framework:
 
 ## The Observer Framework (Ontic vs Epistemic)
 
-### The Absolute Observer (AO)
+### The $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)
 
 **Definition:**
 
-The **Absolute Observer** is a conceptual (non-physical) probe that represents complete knowledge of the architrino microstate at any coordinate $(x,y,z,t)$ in the Euclidean void + absolute time substrate.
+The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is a conceptual (non-physical) probe that represents complete knowledge of the architrino microstate at any coordinate $(x,y,z,t)$ in the Euclidean void + absolute time substrate.
 
-**What the Absolute Observer knows:**
+**What the $\mathbb{U}_{\text{now}}$ universe-state perspective knows:**
 
 - **Position and velocity** of every architrino: $\{(\mathbf{x}_i(t), \mathbf{v}_i(t))\}_{i=1}^N$
 - **Charge state** (electrino, positrino, magnitude $|e/6|$): $\{q_i, \sigma_i\}$
-- **Path history**: For any causal wake surface passing a point, the AO knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
+- **Path history**: For any causal wake surface passing a point, the $\mathbb{U}_{\text{now}}$ knows the emission event $(\mathbf{x}_{\text{emit}}, t_{\text{emit}})$ and emitter identity
 - **Full potential field configuration**: From which it can derive all outgoing causal wake surfaces from all sources at all past times
 - **Self-hit histories**: Which causal wake surfaces have returned to intersect their sources
 
-**What the Absolute Observer is NOT:**
+**What the $\mathbb{U}_{\text{now}}$ universe-state perspective is NOT:**
 
 - **Not a physical device** (which would itself be an assembly subject to dynamics)
 - **Not operationally realizable** by finite observers (computational limits, epistemic constraints)
@@ -1384,18 +1384,18 @@ The **Absolute Observer** is a conceptual (non-physical) probe that represents c
 
 **Role and Purpose:**
 
-The Absolute Observer serves multiple functions:
+The $\mathbb{U}_{\text{now}}$ universe-state perspective serves multiple functions:
 
 1. **Logical clarity**: Defines "the state of the universe" independently of any physical measurement process.
 2. **Mathematical anchoring**: Provides the reference frame for writing master equations and proving determinism (Laplace's Demon).
-3. **Simulation ground truth**: Numerical codes effectively implement the AO's coordinate system and time parameter.
+3. **Simulation ground truth**: Numerical codes effectively implement the $\mathbb{U}_{\text{now}}$'s coordinate system and time parameter.
 4. **Pedagogical separation**: Cleanly distinguishes micro-ontology (what *is*) from effective phenomenology (what emergent assemblies *measure*).
 
-**Sol (Validation):** "Section 4.1 validates my simulation architecture. The code *is* the Absolute Observer. This gives me a clean separation between 'truth state' (what the simulator knows—the Virtual Observer stream) and 'instrument state' (what synthetic detectors output—PO-filtered datasets)."
+**Sol (Validation):** "Section 4.1 validates my simulation architecture. The code *is* the $\mathbb{U}_{\text{now}}$ universe-state perspective. This gives me a clean separation between 'truth state' (what the simulator knows—the $\mathbb{U}_{\text{now}}$ universe-state perspective stream) and 'instrument state' (what synthetic detectors output—PO-filtered datasets)."
 
 **Ontological vs. Epistemological:**
 
-- **Ontology (what exists):** Architrinos at definite $(x,y,z)$ with definite velocities at absolute time $t$. This is what the AO witnesses.
+- **Ontology (what exists):** Architrinos at definite $(x,y,z)$ with definite velocities at absolute time $t$. This is what the $\mathbb{U}_{\text{now}}$ witnesses.
 - **Epistemology (what we can measure):** Physical observers (tri-binary assemblies) have limited, perspectival access constrained by:
  - Finite signal speed $c_f$
  - Emergent proper time $\tau \neq t$
@@ -1404,11 +1404,11 @@ The Absolute Observer serves multiple functions:
 
 **Critical Constraint (Lorentz Suppression):**
 
-The existence of an absolute observer as a theoretical construct does **not** imply that the preferred frame is experimentally detectable. Physical observers built from assemblies must still exhibit emergent Lorentz invariance to $<10^{-17}$ precision in tested regimes (see Tier-1 constraint ledger).
+The existence of an $\mathbb{U}_{\text{now}}$ universe-state perspective as a theoretical construct does **not** imply that the preferred frame is experimentally detectable. Physical observers built from assemblies must still exhibit emergent Lorentz invariance to $<10^{-17}$ precision in tested regimes (see Tier-1 constraint ledger).
 
 **Failure mode:**
 
-If we accidentally use "absolute observer powers" in derivations of physical predictions (e.g., assuming instantaneous knowledge across space), we will predict Lorentz violations that falsify the model. All physically measurable quantities must be **local** and **causally accessible** to assembly-based observers.
+If we accidentally use "$\mathbb{U}_{\text{now}}$ universe-state perspective powers" in derivations of physical predictions (e.g., assuming instantaneous knowledge across space), we will predict Lorentz violations that falsify the model. All physically measurable quantities must be **local** and **causally accessible** to assembly-based observers.
 
 ### The Physical Observer (PO)
 
@@ -1430,7 +1430,7 @@ Physical Observers are **subject to the dynamics of the medium**:
 3. **Signal propagation constraints**: POs can only access information via signals propagating at finite speed $c_f$ (or slower, if refracted by the Noether Sea).
 4. **Emergent Lorentz invariance**: At low energies and weak Noether Sea gradients, POs experience effective Lorentz symmetry (see TOC Ch. 32).
 
-**Sig (Protection):** "Section 4.2 saves the theory from immediate falsification. Acknowledging that Physical Observers (me, my instruments) are subject to mechanical Lorentz contraction aligns with every experiment I've ever run. The distinction between 'Ontic' (AO) and 'Epistemic' (PO) allows me to keep my relativity-based data analysis pipelines while accepting the absolute background."
+**Sig (Protection):** "Section 4.2 saves the theory from immediate falsification. Acknowledging that Physical Observers (me, my instruments) are subject to mechanical Lorentz contraction aligns with every experiment I've ever run. The distinction between 'Ontic' ($\mathbb{U}_{\text{now}}$) and 'Epistemic' (PO) allows me to keep my relativity-based data analysis pipelines while accepting the absolute background."
 
 **Proper Time vs Absolute Time:**
 
@@ -1459,7 +1459,7 @@ Because POs use assembly-based clocks and rulers, and because signal exchanges p
 
 - Two POs in relative motion will **disagree on simultaneity** (which events are "at the same time").
 - This is an **epistemic, operational effect**, not an ontological one.
-- The Absolute Observer witnesses a unique global "Now" ($t = \text{constant}$ surfaces), but POs cannot operationally reconstruct it without superluminal communication.
+- The $\mathbb{U}_{\text{now}}$ universe-state perspective witnesses a unique global "Now" ($t = \text{constant}$ surfaces), but POs cannot operationally reconstruct it without superluminal communication.
 
 **Lorentz Suppression Mechanism (Critical - Red's Kill Criterion):**
 
@@ -1482,7 +1482,7 @@ If this mechanism fails (e.g., if assemblies do not naturally contract), the the
 
 The Architrino theory operates on **two distinct levels**:
 
-**Ontic Level (Absolute Observer):**
+**Ontic Level ($\mathbb{U}_{\text{now}}$ universe-state perspective):**
 
 - **What fundamentally exists**: Architrinos in Euclidean void, evolving in absolute time.
 - **Complete microstate**: $S(t) = \{(\mathbf{x}_i(t), \mathbf{v}_i(t), q_i)\}$
@@ -1521,7 +1521,7 @@ $$
 t_1 = t_2.
 $$
 
-This is a **frame-independent fact**, witnessed by the Absolute Observer. The global foliation of timespace into $\Sigma_t$ surfaces is unique and absolute.
+This is a **frame-independent fact**, witnessed by the $\mathbb{U}_{\text{now}}$ universe-state perspective. The global foliation of timespace into $\Sigma_t$ surfaces is unique and absolute.
 
 **Relative Simultaneity (Epistemic):**
 
@@ -1529,17 +1529,17 @@ However, **Physical Observers cannot operationally determine absolute simultanei
 
 **Example (Einstein train thought experiment):**
 
-- AO perspective: Lightning strikes at both ends of the train occur at the same absolute time $t_0$.
+- $\mathbb{U}_{\text{now}}$ perspective: Lightning strikes at both ends of the train occur at the same absolute time $t_0$.
 - PO on the platform: Uses light signals to synchronize clocks; concludes strikes were simultaneous.
 - PO on the moving train: Also uses light signals; concludes strikes were **not** simultaneous (the one toward which the train is moving happened first).
 
 **Resolution:**
 
-Both POs are correct **operationally** (given their synchronization conventions and signal delays). But the AO knows the **objective truth**: the strikes were simultaneous in absolute time. The disagreement is **epistemic** (limited by finite $c_f$ and motion-induced clock offsets), not **ontological**.
+Both POs are correct **operationally** (given their synchronization conventions and signal delays). But the $\mathbb{U}_{\text{now}}$ knows the **objective truth**: the strikes were simultaneous in absolute time. The disagreement is **epistemic** (limited by finite $c_f$ and motion-induced clock offsets), not **ontological**.
 
 **Implication:**
 
-The Architrino framework is **not** in conflict with the empirical success of special relativity. SR's operational procedures (Einstein synchronization, Lorentz transformations) are **correct for Physical Observers**. The theory simply adds a deeper layer: the absolute simultaneity accessible to the AO (but not to POs).
+The Architrino framework is **not** in conflict with the empirical success of special relativity. SR's operational procedures (Einstein synchronization, Lorentz transformations) are **correct for Physical Observers**. The theory simply adds a deeper layer: the absolute simultaneity accessible to the $\mathbb{U}_{\text{now}}$ (but not to POs).
 
 **Observational Constraint:**
 
@@ -1557,7 +1557,7 @@ To prevent semantic drift and maintain conceptual clarity, the following termino
 | **Noether Sea** / **Spacetime Medium** / **Aether** | Physical lattice of coupled pro/anti Noether cores |
 | **Euclidean Void** | Fundamental 3D container $\mathbb{R}^3$ with rigid metric $\delta_{ij}$ |
 | **Absolute Time** | Universal parameter $t \in \mathbb{R}$, advancing uniformly |
-| **Absolute Virtual Observer (AVO)** / **Absolute Observer (AO)** | Conceptual probe with complete microstate knowledge |
+| **Absolute $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)** / **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)** | Conceptual probe with complete microstate knowledge |
 | **Physical Observer (PO)** | Assembly-based detector/observer subject to medium dynamics |
 | **Emission Time** | Time $t_0$ when a causal wake surface was emitted (we label this simply an emission time) |
 | **Self-Hit** | Intersection of an architrino with its own past causal wake surfaces |
@@ -1757,7 +1757,7 @@ This Foundational Ontology defines:
 1. **The Substrate**: Absolute time ($t \in \mathbb{R}$) + Euclidean space ($\mathbb{R}^3$, $\delta_{ij}$) = fixed, non-dynamical background.
 2. **The Fundamental Entity**: Architrino (point transmitter/receiver, charge $|e/6|$, universal reception rule with possible meta-stable branching at self-hit thresholds).
 3. **The Physical Medium**: Noether Sea (assembly lattice; mediates gravity, inertia, effective spacetime).
-4. **The Observer Framework**: Absolute Observer (ontic, complete knowledge) vs Physical Observer (epistemic, limited access).
+4. **The Observer Framework**: $\mathbb{U}_{\text{now}}$ universe-state perspective (ontic, complete knowledge) vs Physical Observer (epistemic, limited access).
 5. **Terminology Discipline**: Locked definitions to prevent semantic drift.
 6. **Parameter Ledger**: Foundational postulates and scale setters.
 

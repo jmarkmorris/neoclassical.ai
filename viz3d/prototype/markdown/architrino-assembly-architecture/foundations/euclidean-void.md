@@ -2,11 +2,11 @@
 
 ## The Aether Sea: Noether Core Occupancy
 
-The Absolute Observer reveals that what we perceive as "Empty Space" is actually a dense lattice of neutral assemblies.
+The $\mathbb{U}_{\text{now}}$ universe-state perspective reveals that what we perceive as "Empty Space" is actually a dense lattice of neutral assemblies.
 
 1. **Occupancy Density**: Define $\rho_{nc}$ as the number of Noether cores per unit volume of Euclidean void.
 2. **Aether Composition**: The "Vacuum" consists of Helium-like couplings (2 pro tri-binaries + 2 anti tri-binaries).
-3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of this aether. An AO sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the density of the aether sea. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box.
+3. **Refractive Index of Spacetime**: The "curvature" of GR is remapped as a **variable density gradient** of this aether. An $\mathbb{U}_{\text{now}}$ sees a photon moving in a straight line through the void, but at a varying speed $c_{eff} < c_f$ due to the density of the aether sea. This removes the need for "curved" coordinates; we use "refractive" coordinates in a flat box.
 
 
 ### Void vs. Vacuum / Medium
@@ -16,7 +16,7 @@ We must keep three notions distinct:
 1. **Euclidean Void**  
    - The continuous 3D geometric substrate $\mathbb{R}^3$ equipped with the fixed Euclidean metric $\delta_{ij}$.  
    - Coordinate points $(x,y,z)$ are permanent labels; they do not move or curve.  
-   - From the virtual observer’s standpoint, the void is an unmoving “stage” on which all architrinos and assemblies play out their dynamics.
+   - From the $\mathbb{U}_{\text{now}}$ universe-state perspective’s standpoint, the void is an unmoving “stage” on which all architrinos and assemblies play out their dynamics.
 
 2. **Spacetime Medium (“Vacuum”)**  
    - A physical network of coupled pro/anti Noether cores (tri‑binary assemblies) occupying some subset of the void.  

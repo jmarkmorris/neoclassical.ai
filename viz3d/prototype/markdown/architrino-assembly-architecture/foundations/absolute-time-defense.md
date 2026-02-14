@@ -1,7 +1,7 @@
 ### The Case for Absolute Time ($t$)
 
 1. **Fundamental Parameter**: Absolute time $t$ is the unique, universal evolution parameter of the architrino master equation. It provides a unique global foliation of the universe.
-2. **Virtual Observer Knowledge**: The Virtual (Absolute) Observer indexes the state of all architrinos against $t$. The microdynamics can admit **meta-stable branching** at self-hit thresholds (multiple coexisting attractors), so $t$ still defines a single realized history while allowing branching *possibilities* in the evolution rule.
+2. **$\mathbb{U}_{\text{now}}$ universe-state perspective Knowledge**: The $\mathbb{U}_{\text{now}}$ universe-state perspective indexes the state of all architrinos against $t$. The microdynamics can admit **meta-stable branching** at self-hit thresholds (multiple coexisting attractors), so $t$ still defines a single realized history while allowing branching *possibilities* in the evolution rule.
 3. **Derived Proper Time ($\tau$)**: Proper time is not fundamental; it is a derived functional of the tri-binary clock's motion and its interaction with the local Noether core sea density.
 4. **Simultaneity Reclaimed**: In the absolute frame, simultaneity is objective. The "Relativity of Simultaneity" is reinterpreted as a synchronization convention used by assemblies that rely on $c_f$-limited signaling within a moving medium.
 
@@ -12,7 +12,7 @@
 - A single, global, monotonically increasing parameter.
 - Defines a unique foliation of the universe into constant‑time hypersurfaces:
   $\Sigma_t = \{(x,y,z,t) \mid (x,y,z) \in \mathbb{R}^3\}.$
-- The virtual observer indexes the microstate $S(t)$ on each $\Sigma_t$.
+- The $\mathbb{U}_{\text{now}}$ universe-state perspective indexes the microstate $S(t)$ on each $\Sigma_t$.
 
 This contrasts with:
 
@@ -43,7 +43,7 @@ We will require that in the appropriate regimes:
   $d\tau/dt \approx \sqrt{1 + 2\Phi_\text{eff}/c^2 - v^2/c^2}$ (GR‑like redshift).
 
 **Key point:**  
-Physical observers experience relativity of simultaneity and time dilation as **emergent properties** of assembly dynamics in the medium. The virtual observer always uses absolute time $t$; proper time $\tau$ is derived.
+Physical observers experience relativity of simultaneity and time dilation as **emergent properties** of assembly dynamics in the medium. The $\mathbb{U}_{\text{now}}$ universe-state perspective always uses absolute time $t$; proper time $\tau$ is derived.
 
 Any observable signal of absolute time (e.g. orientation‑dependent tick rates absent medium gradients) would falsify the model.
 
@@ -53,16 +53,16 @@ See the canonical definition of determinism, multistability, and "decision" in `
 
 ### Absolute Time and Unique Global Foliation
 
-Absolute time $t$ provides a **unique foliation** of the universe into “instants.” The Absolute Observer has access to the full microstate on each slice.
+Absolute time $t$ provides a **unique foliation** of the universe into “instants.” The $\mathbb{U}_{\text{now}}$ universe-state perspective has access to the full microstate on each slice.
 
-* **AO vs. PO Time**: Absolute time $t$ is the evolution parameter. Proper time $\tau$ (measured by assembly clocks) is a derived functional: $d\tau = F(\text{local medium}, v) dt$.
-* **Causal Realism**: The AO sees causation as explicit lawlike evolution from one architrino configuration at time $t$ to the distribution of allowed configurations at time $t+\Delta t$, including meta-stable branches.
+* **$\mathbb{U}_{\text{now}}$ vs. PO Time**: Absolute time $t$ is the evolution parameter. Proper time $\tau$ (measured by assembly clocks) is a derived functional: $d\tau = F(\text{local medium}, v) dt$.
+* **Causal Realism**: The $\mathbb{U}_{\text{now}}$ sees causation as explicit lawlike evolution from one architrino configuration at time $t$ to the distribution of allowed configurations at time $t+\Delta t$, including meta-stable branches.
 * **Refutation of Timelessness**: We reject the "Block Universe" where time is a dimension. Time is a process parameter.
 
 
 ### Absolute Time and Unique Global Foliation
 
-* **AO Perspective:** The Absolute Observer at any $(x,y,z)$ sees the exact same absolute time $t$. This creates a unique foliation $\Sigma_t$.
+* **$\mathbb{U}_{\text{now}}$ Perspective:** The $\mathbb{U}_{\text{now}}$ universe-state perspective at any $(x,y,z)$ sees the exact same absolute time $t$. This creates a unique foliation $\Sigma_t$.
 * **Proper Time Distinction:** Absolute time $t$ is the evolution parameter. Proper time $\tau$ is a derived functional measured by assembly clocks: $d\tau = F(\text{medium}, v) dt$.
-* **Refuting Kant:** Space/Time are not mental forms; they are the rigid stage of the AO.
+* **Refuting Kant:** Space/Time are not mental forms; they are the rigid stage of the $\mathbb{U}_{\text{now}}$.
 * **Refuting Relationalism (Leibniz):** Space is a container (void), not just relations between objects.

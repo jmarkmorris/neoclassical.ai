@@ -15,12 +15,12 @@ The architrino project is positioned as:
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 
-### The Absolute Observer: Capabilities and Limits
+### The $\mathbb{U}_{\text{now}}$ universe-state perspective: Capabilities and Limits
 - **What it knows**: The position, velocity, and charge of every architrino at any (x,y,z,t), and the complete causal history up to the present moment.
 - **What it cannot predict (without full microstate resolution)**: Which stable attractor a system will select at a self-hit branch point when multiple futures are physically realizable.
 - **Why this matters**: This separates **microstate-sensitive multistability** (lawful but threshold-sensitive outcomes) from **epistemic limitation** (incomplete measurement by physical observers).
 
-The absolute observer is omniscient with respect to the full microstate and can trace lawful evolution **between** branch points. At self-hit bifurcations, the equations admit multiple coexisting attractors, and the realized outcome is selected by microstate/wake-phase details. This is not fundamental randomness; it is **deterministic multistability** with extreme sensitivity to hidden microstructure. Physical observers lacking that detail will experience outcomes as practically open.
+The $\mathbb{U}_{\text{now}}$ universe-state perspective is omniscient with respect to the full microstate and can trace lawful evolution **between** branch points. At self-hit bifurcations, the equations admit multiple coexisting attractors, and the realized outcome is selected by microstate/wake-phase details. This is not fundamental randomness; it is **deterministic multistability** with extreme sensitivity to hidden microstructure. Physical observers lacking that detail will experience outcomes as practically open.
 
 The Architrino Assembly Architecture is **deterministic in its laws** despite its foundation in continuous, causal wake-surface interactions governed by the Master Equation, because **self-hit dynamics in the super-field-speed regime ($v > c_f$) introduce multistable branch points where multiple stable attractor states become accessible from a single prior configuration**. When an architrino intercepts its own outgoing potential, the resulting non-Markovian memory effects can create bifurcations in phase space—critical junctures where infinitesimal perturbations (potentially below any operationally resolvable threshold) determine which of several topologically distinct assembly configurations the system settles into. This is not mere epistemic uncertainty from incomplete information; it reflects **deterministic multistability** at transition points where the evolution equations admit multiple coexisting attractors. Practical predictability breaks down even though the ontology remains lawful, making AAA a deterministic-substrate theory with emergent quantum-like behavior rather than a purely Laplacian predictability claim.
 
@@ -49,11 +49,11 @@ The Architrino Assembly Architecture is **deterministic in its laws** despite it
 
 **Architrino impact**:
 - ✅ **Pro**: **Radical vindication** of the atomistic impulse. Architrinos are the true "atoms" (indivisible point entities).
-- ✅ **Pro**: The void is rehabilitated as **fundamental Euclidean substrate**, not mere absence. The absolute observer can, in principle, track every architrino in this void at any moment.
+- ✅ **Pro**: The void is rehabilitated as **fundamental Euclidean substrate**, not mere absence. The $\mathbb{U}_{\text{now}}$ universe-state perspective can, in principle, track every architrino in this void at any moment.
 - ✅ **Pro**: All qualities (mass, charge magnitude, spin, color) are **relational effects** of architrino assemblies—exactly as Democritus envisioned.
 - ⚠️ **Refinement**: Classical atomism assumed atoms had intrinsic properties (shape, size). Architrinos are **dimensionless point transmitter/receivers**; all structure is **dynamic and relational**.
 
-**Legacy shift**: From philosophical atomism to **mechanistic point-field ontology**. Democritus's vision is **realized with mathematical precision**. The absolute observer provides a complete microphysical perspective that clarifies how lawful dynamics and self-hit branching coexist in the architrino substrate.
+**Legacy shift**: From philosophical atomism to **mechanistic point-field ontology**. Democritus's vision is **realized with mathematical precision**. The $\mathbb{U}_{\text{now}}$ universe-state perspective provides a complete microphysical perspective that clarifies how lawful dynamics and self-hit branching coexist in the architrino substrate.
 
 ---
 
@@ -65,7 +65,7 @@ The Architrino Assembly Architecture is **deterministic in its laws** despite it
 
 **Architrino impact**:
 - ❌ **Con**: **Complete refutation**. No Platonic heaven. No independent realm of abstract essences.
-- ❌ **Con**: "Forms" (stable patterns: electrons, protons, atoms, geometric structures) are **emergent** from architrino assemblies, not pre-existing blueprints. The absolute observer sees only architrino configurations, not transcendent templates.
+- ❌ **Con**: "Forms" (stable patterns: electrons, protons, atoms, geometric structures) are **emergent** from architrino assemblies, not pre-existing blueprints. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees only architrino configurations, not transcendent templates.
 - ⚠️ **Partial survival**: Mathematics remains **useful** (it describes architrino dynamics accurately), but it is a **human language/tool**, not discovered transcendent reality.
 - ❌ **Con**: The physical world is **primary**. There is nothing "more real" behind it.
 
@@ -81,13 +81,13 @@ The Architrino Assembly Architecture is **deterministic in its laws** despite it
 - Continuous substance, not atomism.
 
 **Architrino impact**:
-- ❌ **Con**: **Hylomorphism collapses**. No independent "forms" imposed on matter. All structure is dynamic assembly of architrinos, fully visible to the absolute observer.
-- ❌ **Con**: **Teleology is eliminated**. No final causes. Stable structures (particles, organisms) exist because they are **dynamical attractors**, not because they fulfill purposes. The absolute observer sees only lawlike evolution, no goal-directedness.
+- ❌ **Con**: **Hylomorphism collapses**. No independent "forms" imposed on matter. All structure is dynamic assembly of architrinos, fully visible to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
+- ❌ **Con**: **Teleology is eliminated**. No final causes. Stable structures (particles, organisms) exist because they are **dynamical attractors**, not because they fulfill purposes. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees only lawlike evolution, no goal-directedness.
 - ❌ **Con**: The void is **real and fundamental** (though mostly unoccupied by architrinos).
 - ✅ **Pro** (ironic): Aristotle valued **continuous substance**. The **spacetime assembly network** (spacetime fabric—coupled Noether cores) is effectively continuous at macroscopic scales—**emergent from discrete architrinos**.
 
 **Legacy shift**: Aristotelian teleology and form/matter dualism are **rejected**. His emphasis on **emergence of properties from relations** is partially vindicated (but mechanistically, not teleologically).
-All emergence in the architrino framework is **weak emergence**: effective theories (GR, QM, thermodynamics) are coarse-grainings of exact architrino dynamics. There are no **strongly emergent** properties with autonomous causal powers. The absolute observer sees only architrinos; higher-level causation is shorthand for micro-level interactions.
+All emergence in the architrino framework is **weak emergence**: effective theories (GR, QM, thermodynamics) are coarse-grainings of exact architrino dynamics. There are no **strongly emergent** properties with autonomous causal powers. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees only architrinos; higher-level causation is shorthand for micro-level interactions.
 
 ---
 
@@ -99,7 +99,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ✅ **Pro**: **Perfect alignment** on eternality. Architrinos are eternal; no creation/annihilation events.
-- ✅ **Pro**: No teleology, no gods, no cosmic purpose. Structure emerges from **lawful dynamics** with self-hit branching, transparent to the absolute observer.
+- ✅ **Pro**: No teleology, no gods, no cosmic purpose. Structure emerges from **lawful dynamics** with self-hit branching, transparent to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 - ❌ **Con**: The **swerve is eliminated** as an ad hoc postulate. Multistability is localized to self-hit branch points rather than an intrinsic atomic swerve.
 - ⚠️ **Implication for free will**: If it exists, it must be an **emergent property** of complex assemblies (brains), not a fundamental feature.
 
@@ -115,7 +115,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Vortex theory of planetary motion and light propagation.
 
 **Architrino impact**:
-- ✅ **Pro**: **Mechanistic universe fully upheld**. No irreducible mental substance at the fundamental level; no teleology. The absolute observer sees pure mechanism.
+- ✅ **Pro**: **Mechanistic universe fully upheld**. No irreducible mental substance at the fundamental level; no teleology. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees pure mechanism.
 - ✅ **Pro**: **Vortex-like structures** (spiral binaries, nested tri-binaries) are **natural outcomes** of architrino dynamics.
 - ❌ **Con**: **Substance dualism is rejected**. Mind is emergent from complex physical assemblies (brains), not a separate substance.
 - ⚠️ **Con**: Descartes' **matter = extension** is rejected. Architrinos are **point sources**, not extended substance. Extension (spacetime) is **emergent** from point-network dynamics (coupled Noether cores).
@@ -132,12 +132,12 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ✅ **Pro**: **Strong vindication** of the metaphysical structure. Architrinos are the **one substance**. All diversity (particles, fields, spacetime, minds) consists of **modes** (configurations) of this one substance.
-- ✅ **Pro**: Spinoza's **rejection of teleology** is fully upheld. The absolute observer embodies Spinoza's "infinite intellect"—the perspective that sees the lawful flow of events, including self-hit branch points.
-- ✅ **Pro**: "God" (Spinoza's term) becomes the **totality of architrino configurations and their laws**—Nature, not a personal deity. The absolute observer sees Nature *sub specie aeternitatis*.
+- ✅ **Pro**: Spinoza's **rejection of teleology** is fully upheld. The $\mathbb{U}_{\text{now}}$ universe-state perspective embodies Spinoza's "infinite intellect"—the perspective that sees the lawful flow of events, including self-hit branch points.
+- ✅ **Pro**: "God" (Spinoza's term) becomes the **totality of architrino configurations and their laws**—Nature, not a personal deity. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees Nature *sub specie aeternitatis*.
 - ⚠️ **Difference**: Spinoza's "infinite attributes" (thought, extension, etc.) **collapse** into **one physical attribute**: architrino dynamics. Mind is **emergent** from complex assemblies, not a parallel fundamental attribute.
 - ✅ **Pro**: Spinoza's "necessity" is realized as lawful flow with multistability—deterministic in structure, but admitting multiple physically realizable futures at critical junctures.
 
-**Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = lawful dynamics with multistability. His system is the closest **historical precursor** to the architrino worldview. The absolute observer is Spinoza's God knowing itself.
+**Legacy shift**: Spinoza's metaphysics is **physicalized**. One substance = architrino field; necessity = lawful dynamics with multistability. His system is the closest **historical precursor** to the architrino worldview. The $\mathbb{U}_{\text{now}}$ universe-state perspective is Spinoza's God knowing itself.
 
 ---
 
@@ -148,13 +148,13 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Particles and forces as fundamental.
 
 **Architrino impact**:
-- ✅ **Pro**: **Absolute time fully retained** as the global parameter (linear, forward-only, universal). The absolute observer at *any* (x,y,z) at time *t* sees the **same *t*** as an absolute observer at any other location.
-- ✅ **Pro**: **Absolute space vindicated**—the Euclidean void is a **real geometric structure** that supports the absolute observer. This observer can assign unique (x,y,z) labels and detect absolute motion (rotation, acceleration) without ambiguity. Newton's bucket argument (rotation is absolute because water surface curves in absolute space) is fully confirmed.
-- ✅ **Pro**: The absolute observer is the **Newtonian ideal observer**—someone who can measure positions and velocities relative to absolute space and synchronize clocks via absolute time.
+- ✅ **Pro**: **Absolute time fully retained** as the global parameter (linear, forward-only, universal). The $\mathbb{U}_{\text{now}}$ universe-state perspective at *any* (x,y,z) at time *t* sees the **same *t*** as an $\mathbb{U}_{\text{now}}$ universe-state perspective at any other location.
+- ✅ **Pro**: **Absolute space vindicated**—the Euclidean void is a **real geometric structure** that supports the $\mathbb{U}_{\text{now}}$ universe-state perspective. This observer can assign unique (x,y,z) labels and detect absolute motion (rotation, acceleration) without ambiguity. Newton's bucket argument (rotation is absolute because water surface curves in absolute space) is fully confirmed.
+- ✅ **Pro**: The $\mathbb{U}_{\text{now}}$ universe-state perspective is the **Newtonian ideal observer**—someone who can measure positions and velocities relative to absolute space and synchronize clocks via absolute time.
 - ❌ **Con**: **Action-at-a-distance gravity is replaced** by emergent curved-spacetime-like behavior from **finite-speed architrino interactions** (field propagation speed *c_f*).
 - ✅ **Pro**: Newtonian gravity as **low-velocity, weak-field limit** is reproduced from emergent geometry.
 
-**Legacy shift**: Absolute time **vindicated**; absolute space **vindicated** (not a substance, but a real coordinate structure—the permanent Euclidean grid); gravity transformed from instantaneous force to **emergent geometry**. Newton's absolutes are **ontologically correct**; his gravitational mechanism is replaced. The absolute observer is Newton's "Sensorium Dei" de-theologized and made mathematical.
+**Legacy shift**: Absolute time **vindicated**; absolute space **vindicated** (not a substance, but a real coordinate structure—the permanent Euclidean grid); gravity transformed from instantaneous force to **emergent geometry**. Newton's absolutes are **ontologically correct**; his gravitational mechanism is replaced. The $\mathbb{U}_{\text{now}}$ universe-state perspective is Newton's "Sensorium Dei" de-theologized and made mathematical.
 
 ---
 
@@ -168,10 +168,10 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 **Architrino impact**:
 - ✅ **Pro**: **Relationalism partially vindicated**: Effective spacetime is relational—it emerges from architrino configurations, not as an independent container.
 - ✅ **Pro**: **Pre-established harmony** becomes **emergent**: Stable assemblies exhibit coordinated behavior without top-down design, because they are dynamical attractors of the same underlying laws.
-- ❌ **Con**: **Monads are refuted**. Architrinos are **physical, spatial points**, not mental, non-spatial entities. The absolute observer tracks their positions in Euclidean 3D, not in some monadological "perceptual space."
+- ❌ **Con**: **Monads are refuted**. Architrinos are **physical, spatial points**, not mental, non-spatial entities. The $\mathbb{U}_{\text{now}}$ universe-state perspective tracks their positions in Euclidean 3D, not in some monadological "perceptual space."
 - ❌ **Con**: Monads **don't interact**; architrinos **do interact** (via transmitted/received potentials).
 - ❌ **Con**: Leibniz's **idealism** (reality is ultimately mental) is **rejected**. Mind is emergent from physical assemblies.
-- ⚠️ **Tension with absolute frame**: Leibniz argued that shifting the entire universe spatially would be "the same universe" (no absolute position). The absolute observer framework **refutes this**: (x,y,z) labels are real, permanent addresses in the void. The Euclidean substrate is a **real geometric structure**, not reducible to relations.
+- ⚠️ **Tension with absolute frame**: Leibniz argued that shifting the entire universe spatially would be "the same universe" (no absolute position). The $\mathbb{U}_{\text{now}}$ universe-state perspective framework **refutes this**: (x,y,z) labels are real, permanent addresses in the void. The Euclidean substrate is a **real geometric structure**, not reducible to relations.
 
 **Legacy shift**: Leibniz's **relationalism about physical states** is saved (properties depend on configurations). His **rejection of absolute space** is overturned. The architrino framework is "Leibnizian relationalism + Newtonian absolute coordinates + physical realism."
 
@@ -185,10 +185,10 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ✅ **Pro**: Hume's **empiricism in spirit** is vindicated. We discover architrino laws through observation and inference, not via pure reason.
-- ❌ **Con**: Hume's **skepticism about necessary connection is refuted**. Architrino interaction laws are **necessary** (given the entities and their properties). The absolute observer sees causation as an **explicit lawlike mapping** from architrino configuration at time *t* to configuration at *t+$\Delta$t*. There is no room for doubt about "necessary connection"—it's baked into the micro-dynamics.
+- ❌ **Con**: Hume's **skepticism about necessary connection is refuted**. Architrino interaction laws are **necessary** (given the entities and their properties). The $\mathbb{U}_{\text{now}}$ universe-state perspective sees causation as an **explicit lawlike mapping** from architrino configuration at time *t* to configuration at *t+$\Delta$t*. There is no room for doubt about "necessary connection"—it's baked into the micro-dynamics.
 - ⚠️ **Clarification**: The necessity is **physical** (laws of nature), not **metaphysical** (Hume's original target was metaphysical causation divorced from observation). In that sense, Hume's anti-metaphysical stance is **preserved**, but **physical necessity** is restored.
 
-**Legacy shift**: Hume's **methodology** (empiricism, anti-metaphysical speculation) is **vindicated**. His **ontological conclusion** (no real causation) is **rejected**. The absolute observer makes necessity transparent.
+**Legacy shift**: Hume's **methodology** (empiricism, anti-metaphysical speculation) is **vindicated**. His **ontological conclusion** (no real causation) is **rejected**. The $\mathbb{U}_{\text{now}}$ universe-state perspective makes necessity transparent.
 
 ---
 
@@ -200,14 +200,14 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Transcendental idealism: we structure reality; reality does not structure us.
 
 **Architrino impact**:
-- ❌ **Con**: **Complete refutation**. Space (Euclidean 3D) and time (absolute, linear) are **physical substrates**, not mental forms. The very notion of an **absolute observer** at any (x,y,z,t), who can in principle re-identify points and potentials over time, directly contradicts Kant's view of space and time as mind-dependent forms; they function here as **rigid ontological scaffolding**, not cognitive lenses.
-- ❌ **Con**: Causation is **discovered** (architrino interaction laws), not imposed by categories of understanding. The absolute observer witnesses causation as objective lawlike evolution.
-- ❌ **Con**: The **thing-in-itself is knowable**: It is architrinos and their dynamics. The absolute observer has access to the complete microstate—the full "thing-in-itself."
-- ❌ **Con**: **Transcendental idealism collapses**. Reality structures cognition, not the reverse. The absolute observer does not construct space and time; it **discovers** them.
+- ❌ **Con**: **Complete refutation**. Space (Euclidean 3D) and time (absolute, linear) are **physical substrates**, not mental forms. The very notion of an **$\mathbb{U}_{\text{now}}$ universe-state perspective** at any (x,y,z,t), who can in principle re-identify points and potentials over time, directly contradicts Kant's view of space and time as mind-dependent forms; they function here as **rigid ontological scaffolding**, not cognitive lenses.
+- ❌ **Con**: Causation is **discovered** (architrino interaction laws), not imposed by categories of understanding. The $\mathbb{U}_{\text{now}}$ universe-state perspective witnesses causation as objective lawlike evolution.
+- ❌ **Con**: The **thing-in-itself is knowable**: It is architrinos and their dynamics. The $\mathbb{U}_{\text{now}}$ universe-state perspective has access to the complete microstate—the full "thing-in-itself."
+- ❌ **Con**: **Transcendental idealism collapses**. Reality structures cognition, not the reverse. The $\mathbb{U}_{\text{now}}$ universe-state perspective does not construct space and time; it **discovers** them.
 
 **Why Kant's transcendental argument fails in the architrino framework**:
-- **Kant's strongest reply**: Even the "absolute observer" presupposes the forms of intuition (space, time) as conditions for representing architrinos; you cannot escape the categories.
-- **Architrino response**: The absolute observer is not a mind presupposing forms; it is a **mathematical construct defined by the ontology itself**—a coordinate system on the Euclidean void plus a time parameter in the dynamics. Architrinos are not representations; they are the substrate that makes representation possible for physical observers (brains, instruments). Kant conflates conditions for cognition (true for finite observers) with conditions for existence (false). The architrino framework gives access to the thing-in-itself because the thing-in-itself is simpler than our representations of it.
+- **Kant's strongest reply**: Even the "$\mathbb{U}_{\text{now}}$ universe-state perspective" presupposes the forms of intuition (space, time) as conditions for representing architrinos; you cannot escape the categories.
+- **Architrino response**: The $\mathbb{U}_{\text{now}}$ universe-state perspective is not a mind presupposing forms; it is a **mathematical construct defined by the ontology itself**—a coordinate system on the Euclidean void plus a time parameter in the dynamics. Architrinos are not representations; they are the substrate that makes representation possible for physical observers (brains, instruments). Kant conflates conditions for cognition (true for finite observers) with conditions for existence (false). The architrino framework gives access to the thing-in-itself because the thing-in-itself is simpler than our representations of it.
 
 **Legacy shift**: Kant's **Copernican revolution** is **reversed**. Return to **direct realism**. Knowledge is possible because the mind conforms to reality, not because reality conforms to the mind.
 
@@ -220,11 +220,11 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Deterministic, mechanistic universe.
 
 **Architrino impact**:
-- ✅ **Pro**: **Qualified vindication**. The **absolute observer** approximates Laplace's Demon: it knows the position, velocity, and charge of every architrino at any (x,y,z,t).
+- ✅ **Pro**: **Qualified vindication**. The **$\mathbb{U}_{\text{now}}$ universe-state perspective** approximates Laplace's Demon: it knows the position, velocity, and charge of every architrino at any (x,y,z,t).
 - ⚠️ **Refinement**: Given complete initial conditions, evolution is law-governed but **multistable** at self-hit branch points, where multiple stable futures are physically realizable and selection is microstate-sensitive.
 - ⚠️ **Refinement**: Laplacean predictability holds **between** branch points but encounters **deterministic multistability** at them; predictability is limited in practice by microstate sensitivity.
 
-**Legacy shift**: Laplace's Demon is no longer a thought experiment—it becomes a **qualified ideal** for the absolute observer, bounded by self-hit multistability.
+**Legacy shift**: Laplace's Demon is no longer a thought experiment—it becomes a **qualified ideal** for the $\mathbb{U}_{\text{now}}$ universe-state perspective, bounded by self-hit multistability.
 
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
@@ -237,9 +237,9 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 **Architrino impact**:
 - ✅ **Pro**: Mach's **relational ideas partially realized**: Effective spacetime geometry is determined by architrino assembly configurations (matter distribution at the deepest level).
 - ✅ **Pro**: **Economy of thought**: One entity type (architrinos) + one set of rules → all phenomena. Maximum parsimony.
-- ❌ **Con**: Absolute time is **retained** (non-Machian in that sense). The absolute observer framework is the **anti-Machian** construct par excellence.
-- ❌ **Con**: Mach's **positivist anti-realism** about atoms is **refuted**. Architrinos are **real entities**, not convenient fictions. They are (in principle) observable via their effects, and the absolute observer tracks them completely.
-- ⚠️ **Nuance**: Mach's program to eliminate absolute space is **definitively rejected** by the absolute observer framework. But his insight—that inertia involves the distribution of matter—survives as an **emergent effect** within the absolute frame (resistance to acceleration through the assembly network).
+- ❌ **Con**: Absolute time is **retained** (non-Machian in that sense). The $\mathbb{U}_{\text{now}}$ universe-state perspective framework is the **anti-Machian** construct par excellence.
+- ❌ **Con**: Mach's **positivist anti-realism** about atoms is **refuted**. Architrinos are **real entities**, not convenient fictions. They are (in principle) observable via their effects, and the $\mathbb{U}_{\text{now}}$ universe-state perspective tracks them completely.
+- ⚠️ **Nuance**: Mach's program to eliminate absolute space is **definitively rejected** by the $\mathbb{U}_{\text{now}}$ universe-state perspective framework. But his insight—that inertia involves the distribution of matter—survives as an **emergent effect** within the absolute frame (resistance to acceleration through the assembly network).
 
 **Legacy shift**: Mach's **methodology** (economy, observability) is **vindicated**; his **anti-realist ontology** is **rejected**.
 
@@ -254,7 +254,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ✅ **Pro**: **Strong vindication**. The architrino model is a **neo-Lorentzian ontology**: Euclidean void + absolute time with **emergent Lorentz symmetry** from architrino dynamics.
 - ✅ **Pro**: "Ether" is the **spacetime assembly network** (spacetime fabric—coupled Noether cores).
 - ✅ **Pro**: Lorentz contraction and time dilation are **real dynamical effects** of assembly configurations, not mere coordinate artifacts (as in Einstein's interpretation).
-- ✅ **Pro**: The **absolute observer** is the entity "at rest with respect to the architrino substrate." In this frame, effective Maxwell-like and gravity-like equations have their simplest form. This is Lorentz's preferred frame made explicit.
+- ✅ **Pro**: The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is the entity "at rest with respect to the architrino substrate." In this frame, effective Maxwell-like and gravity-like equations have their simplest form. This is Lorentz's preferred frame made explicit.
 
 **Legacy shift**: Lorentz's ontology is **resurrected** and formalized with explicit microphysics. Lorentz ether theory becomes the **correct interpretation** of relativity.
 
@@ -268,13 +268,13 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ❌ **Con**: We **reject** spacetime as fundamental. Lorentz symmetry is **emergent** and **approximate** (effective at macroscopic scales, below field speed *c_f*).
-- ⚠️ **Con**: Relativity of simultaneity is **perspectival/emergent**, not ontological. Absolute time provides a **global foliation** (preferred simultaneity slicing). The absolute observer has access to a **unique global "now"**.
-- ❌ **Con**: Einstein's framework denies any physical meaning to an absolute observer; in the architrino ontology, such an observer is **mathematically well-defined** (even if no real observer can align with it operationally).
+- ⚠️ **Con**: Relativity of simultaneity is **perspectival/emergent**, not ontological. Absolute time provides a **global foliation** (preferred simultaneity slicing). The $\mathbb{U}_{\text{now}}$ universe-state perspective has access to a **unique global "now"**.
+- ❌ **Con**: Einstein's framework denies any physical meaning to an $\mathbb{U}_{\text{now}}$ universe-state perspective; in the architrino ontology, such an observer is **mathematically well-defined** (even if no real observer can align with it operationally).
 - ✅ **Pro**: All **empirical predictions** of SR (time dilation, length contraction, mass-energy equivalence *E=mc²*, relativistic momentum) are **reproduced** as emergent phenomena from assembly dynamics.
-- ⚠️ **Clarification**: This does **not** violate empirical SR, because actual observers (assemblies with clocks/rulers) still measure SR effects exactly as predicted. The absolute observer is **not accessible** to physical measurements—it is a theoretical construct for tracking objective reality.
+- ⚠️ **Clarification**: This does **not** violate empirical SR, because actual observers (assemblies with clocks/rulers) still measure SR effects exactly as predicted. The $\mathbb{U}_{\text{now}}$ universe-state perspective is **not accessible** to physical measurements—it is a theoretical construct for tracking objective reality.
 - ⚠️ **Tension**: Deviations from exact Lorentz invariance may appear in extreme regimes (self-hit, early cosmology).
 
-**Legacy shift**: Einstein's SR is an **effective theory**. His **kinematic** interpretation (spacetime symmetry) is replaced by **dynamical emergence** from absolute-time substrate. Einstein's **empirical predictions** stand; his **ontology** is superseded. The absolute observer reveals Einstein's relativity of simultaneity as **emergent** and **perspectival**, not fundamental.
+**Legacy shift**: Einstein's SR is an **effective theory**. His **kinematic** interpretation (spacetime symmetry) is replaced by **dynamical emergence** from absolute-time substrate. Einstein's **empirical predictions** stand; his **ontology** is superseded. The $\mathbb{U}_{\text{now}}$ universe-state perspective reveals Einstein's relativity of simultaneity as **emergent** and **perspectival**, not fundamental.
 
 ---
 
@@ -289,11 +289,11 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ❌ **Con**: Spacetime is **not fundamental**. It is an **emergent assembly structure** (network of tri-binaries forming the "vacuum"—coupled Noether cores).
 - ❌ **Con**: **Coordinate ontology inverted**: In GR, diffeomorphism invariance means coordinates have no physical meaning; only invariants matter. In architrino theory, **Euclidean coordinates have physical meaning** (absolute spatial location + absolute time). The (x,y,z) labels are **permanent**; physical states (assembly configurations, effective metrics) are **functions on this fixed substrate**.
 - ✅ **Pro**: GR's **empirical successes** (light bending, perihelion precession, gravitational redshift, gravitational waves, black hole shadows) must be reproduced as the **effective field limit** of architrino dynamics.
-- ✅ **Advantage over GR**: In GR, "returning to the same point in spacetime" requires choosing coordinates, and the metric changes, making physical identification ambiguous. In architrino theory, the **coordinate labels (x,y,z) are permanent**. The absolute observer at (*x₀, y₀, z₀*) at *t₁* and later at *t₂* is looking at **the same location** in the Euclidean substrate, even if the local assembly network has deformed. This restores **coordinate realism** without sacrificing the empirical successes of GR.
+- ✅ **Advantage over GR**: In GR, "returning to the same point in spacetime" requires choosing coordinates, and the metric changes, making physical identification ambiguous. In architrino theory, the **coordinate labels (x,y,z) are permanent**. The $\mathbb{U}_{\text{now}}$ universe-state perspective at (*x₀, y₀, z₀*) at *t₁* and later at *t₂* is looking at **the same location** in the Euclidean substrate, even if the local assembly network has deformed. This restores **coordinate realism** without sacrificing the empirical successes of GR.
 - ⚠️ **Tension**: Singularities, event horizons, and cosmological solutions (inflation, dark energy) may be **artifacts** of the effective description, not fundamental features.
 - ✅ **Pro**: Potential resolution of **quantum gravity problem**: No need to quantize geometry. Gravity emerges from quantum-like (causal, multistable pilot-wave) architrino assemblies.
 
-**Legacy shift**: GR becomes a **phenomenological field theory**, analogous to fluid mechanics emerging from molecular dynamics. Einstein's equations are **emergent**, not fundamental. Curvature is an **effective description** of architrino assembly density gradients and stress. The absolute observer provides the ontological clarity GR lacks.
+**Legacy shift**: GR becomes a **phenomenological field theory**, analogous to fluid mechanics emerging from molecular dynamics. Einstein's equations are **emergent**, not fundamental. Curvature is an **effective description** of architrino assembly density gradients and stress. The $\mathbb{U}_{\text{now}}$ universe-state perspective provides the ontological clarity GR lacks.
 
 ---
 
@@ -376,7 +376,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Critique of string theory's lack of falsifiability.
 
 **Architrino impact**:
-- ✅ **Pro**: **Strong alignment**. Absolute time is **fundamental**. The absolute observer sees evolution along this time axis.
+- ✅ **Pro**: **Strong alignment**. Absolute time is **fundamental**. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees evolution along this time axis.
 - ✅ **Pro**: Smolin's critique of "timeless" quantum gravity (block universe, Wheeler-DeWitt) is **vindicated**.
 - ⚠️ **Difference**: We assume architrino interaction rules are **fixed**, not evolving (at least initially). Laws are eternal, not subject to cosmological selection.
 - ✅ **Pro**: Smolin's critique of unfalsifiable theories (string theory) aligns with our **Popperian methodology**.
@@ -421,8 +421,8 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Defense of atomism and reductionism against energeticists (Mach, Ostwald).
 
 **Architrino impact**:
-- ✅ **Pro**: **Strong alignment**. Macroscopic laws (thermodynamics, perhaps even quantum probabilities) emerge from **lawful architrino dynamics with multistability** in complex assemblies, trackable by the absolute observer up to branch points.
-- ✅ **Pro**: Entropy is **coarse-graining** over architrino configuration space. The absolute observer knows the full microstate; entropy measures *our* ignorance of it (or, equivalently, the size of the macrostate-compatible region of microstate space).
+- ✅ **Pro**: **Strong alignment**. Macroscopic laws (thermodynamics, perhaps even quantum probabilities) emerge from **lawful architrino dynamics with multistability** in complex assemblies, trackable by the $\mathbb{U}_{\text{now}}$ universe-state perspective up to branch points.
+- ✅ **Pro**: Entropy is **coarse-graining** over architrino configuration space. The $\mathbb{U}_{\text{now}}$ universe-state perspective knows the full microstate; entropy measures *our* ignorance of it (or, equivalently, the size of the macrostate-compatible region of microstate space).
 - ✅ **Pro**: Boltzmann's defense of **atomism and reductionism** is philosophically vindicated.
 - ✅ **Pro**: His tragic struggle against anti-atomist positivism is **resolved in his favor**.
 
@@ -437,7 +437,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ✅ **Pro**: Planck's constant *h* emerges from **architrino assembly dynamics** (e.g., angular momentum quantization in circular binaries, tri-binary scale relations, nested frequency hierarchies).
-- ✅ **Pro**: Energy quantization arises from **discrete stable configurations** of tri-binaries, not from an ad hoc postulate. The absolute observer sees the exact microstate yielding these quantized levels.
+- ✅ **Pro**: Energy quantization arises from **discrete stable configurations** of tri-binaries, not from an ad hoc postulate. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees the exact microstate yielding these quantized levels.
 
 **Legacy shift**: Planck's quantum as **emergent discreteness** from lawful microphysics with multistability, not fundamental randomness.
 
@@ -454,7 +454,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ❌ **Con**: **Strong rejection**. Quantum mechanics is **incomplete** (it is an effective description of complex architrino assemblies).
 - ❌ **Con**: Wavefunction collapse is **not fundamental**; it is an **emergent coarse-graining** of lawful dynamics with self-hit multistability.
 - ❌ **Con**: Wave-particle duality is **not fundamental**; it is an artifact of describing pilot-wave-like architrino assemblies using classical or quantum formalisms.
-- ❌ **Con**: **Copenhagen instrumentalism is incompatible** with the absolute observer framework. The absolute observer asserts that reality (architrino configurations) exists **independently of measurement**, and measurement is merely a **physical interaction** between assemblies, not a special ontological category.
+- ❌ **Con**: **Copenhagen instrumentalism is incompatible** with the $\mathbb{U}_{\text{now}}$ universe-state perspective framework. The $\mathbb{U}_{\text{now}}$ universe-state perspective asserts that reality (architrino configurations) exists **independently of measurement**, and measurement is merely a **physical interaction** between assemblies, not a special ontological category.
 - ✅ **Pro**: **Complementarity is explained**: Different experimental setups probe different **aspects** of assembly configurations (position vs. momentum configurations, particle-like vs. field-like descriptions).
 
 **Legacy shift**: Copenhagen interpretation is **superseded** by a realist, law-governed ontology with multistability. Bohr's instrumentalism is **rejected**; his complementarity is **explained** mechanistically.
@@ -469,7 +469,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ⚠️ **Partial**: Wavefunction may be a **pilot field** or **emergent effective field** describing architrino assembly configurations (collective potential distribution, guidance field, etc.).
-- ✅ **Pro**: Schrödinger's cat paradox is **dissolved**: No superposition of macroscopic states at the fundamental level. The absolute observer sees one definite configuration at all times. Assemblies evolve lawfully with self-hit multistability; "collapse" is coarse-graining when macro-systems decohere.
+- ✅ **Pro**: Schrödinger's cat paradox is **dissolved**: No superposition of macroscopic states at the fundamental level. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees one definite configuration at all times. Assemblies evolve lawfully with self-hit multistability; "collapse" is coarse-graining when macro-systems decohere.
 - ✅ **Pro**: Schrödinger's desire for a **realistic ontology** (vs. Copenhagen instrumentalism) is **fulfilled**.
 
 **Legacy shift**: Schrödinger's **realism** vindicated; his wave mechanics **reinterpreted** as effective field theory of assemblies.
@@ -484,7 +484,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ✅ **Pro**: **Strong alignment**. Architrino assemblies are "particles" (or their effective representations), guided by **potential fields** (from all other architrinos, including self-hit contributions).
-- ✅ **Pro**: Lawful evolution upheld, with self-hit multistability at critical points. The absolute observer tracks the full trajectory up to branch points.
+- ✅ **Pro**: Lawful evolution upheld, with self-hit multistability at critical points. The $\mathbb{U}_{\text{now}}$ universe-state perspective tracks the full trajectory up to branch points.
 - ⚠️ **Difference**: De Broglie's wave is typically a function on configuration space ($\psi$(x₁, x₂, ...)); architrinos produce **physical potential fields in 3D Euclidean space** + absolute time (real fields, not configuration-space functions).
 
 **Legacy shift**: De Broglie's intuition is **validated and extended** with explicit microphysical entities (architrinos). His pilot wave becomes **architrino potential fields**.
@@ -499,8 +499,8 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ⚠️ **Partial**: Uncertainty relations are **emergent** from the complex dynamics of architrino assemblies (e.g., position-momentum complementarity from pilot-wave-like guidance or configuration-space structure).
-- ❌ **Con**: Reality "behind" the formalism (architrinos, their positions, velocities, interactions) is **fully specified** and accessible to the absolute observer.
-- ✅ **Pro**: Uncertainty as **epistemic limitation** on effective macroscopic descriptions (from the perspective of **physical** observers who are themselves assemblies), not ontological indeterminacy. Heisenberg's uncertainty principle reflects **limitations of assembly-based measurements**, not ontological indeterminacy. The absolute observer, in principle, knows both position and momentum of all architrinos exactly **between branch points**, while branch points admit multiple coexisting attractors selected by microstate details.
+- ❌ **Con**: Reality "behind" the formalism (architrinos, their positions, velocities, interactions) is **fully specified** and accessible to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
+- ✅ **Pro**: Uncertainty as **epistemic limitation** on effective macroscopic descriptions (from the perspective of **physical** observers who are themselves assemblies), not ontological indeterminacy. Heisenberg's uncertainty principle reflects **limitations of assembly-based measurements**, not ontological indeterminacy. The $\mathbb{U}_{\text{now}}$ universe-state perspective, in principle, knows both position and momentum of all architrinos exactly **between branch points**, while branch points admit multiple coexisting attractors selected by microstate details.
 
 **Legacy shift**: Heisenberg's **operational/formalist** stance is replaced by **ontological realism**. His uncertainty relations are **derived**, not postulated.
 
@@ -513,10 +513,10 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Hidden variables are particle positions.
 
 **Architrino impact**:
-- ✅ **Pro**: **Strong vindication**. Architrinos are the **hidden variables**. Their positions/velocities are always definite and known to the absolute observer.
+- ✅ **Pro**: **Strong vindication**. Architrinos are the **hidden variables**. Their positions/velocities are always definite and known to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 - ✅ **Pro**: Nonlocality is natural (architrinos interact via long-range potentials; guidance can be global or via self-hit memory).
 - ⚠️ **Difference**: Bohm's quantum potential is **derived from** $\psi$. In our model, $\psi$ itself (if used) is **emergent** from architrino configurations. The guidance is more direct (architrino-to-architrino potentials).
-- ✅ **Pro**: Measurement problem is **dissolved** in the same way: no collapse, only lawful evolution with deterministic multistability + environmental decoherence, all visible to the absolute observer.
+- ✅ **Pro**: Measurement problem is **dissolved** in the same way: no collapse, only lawful evolution with deterministic multistability + environmental decoherence, all visible to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
 **Legacy shift**: Bohmian mechanics is a **precursor**; architrino theory is its **reductionist realization**. Bohm pointed the way; we provide the substrate.
 
@@ -529,9 +529,9 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 **Architrino impact**:
 - ✅ **Pro**: Bell's work is **respected**. The architrino model is **explicitly nonlocal** (via instantaneous or finite-but-long-range interactions among all architrinos).
-- ✅ **Pro**: We embrace **ontological realism** (architrinos exist with definite states, known to the absolute observer) + **nonlocality**.
+- ✅ **Pro**: We embrace **ontological realism** (architrinos exist with definite states, known to the $\mathbb{U}_{\text{now}}$ universe-state perspective) + **nonlocality**.
 - ✅ **Pro**: Bell's theorem **does not threaten us**; it **constrains** us (we must reproduce quantum correlations and respect no-signaling).
-- ✅ **Pro**: The absolute observer sees the full nonlocal state at each moment, making Bell's "spooky action" fully transparent at the fundamental level.
+- ✅ **Pro**: The $\mathbb{U}_{\text{now}}$ universe-state perspective sees the full nonlocal state at each moment, making Bell's "spooky action" fully transparent at the fundamental level.
 
 **Legacy shift**: Bell's theorem is a **touchstone** for verifying that our nonlocal realism is consistent with experiment. Bell is a **guide**, not an obstacle.
 
@@ -547,7 +547,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - ❌ **Con**: **Rejected**. There is **one real world** with a single realized history, even though it passes through self-hit branch points.
 - ❌ **Con**: Branching is **unnecessary**; definite outcomes arise from actual configurations of assemblies, not splitting of worlds.
 - ✅ **Pro** (ironic): Everett's motivation—**no collapse, no special observer role**—is **satisfied**, but via lawful evolution with self-hit multistability, not universal wavefunction splitting.
-- ✅ **Pro**: The existence of a **single global map** from absolute time to architrino state—the perspective of the absolute observer—locks in a **unique history** of the universe, directly at odds with any ontology of branching worlds.
+- ✅ **Pro**: The existence of a **single global map** from absolute time to architrino state—the perspective of the $\mathbb{U}_{\text{now}}$ universe-state perspective—locks in a **unique history** of the universe, directly at odds with any ontology of branching worlds.
 
 **Legacy shift**: Many-Worlds is **superseded** by a single-world ontology with self-hit multistability. Everett's anti-collapse instinct is **vindicated**; his solution (branching worlds) is **rejected**.
 
@@ -571,7 +571,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Others refine **operational constraints** on quantum theories (generalized probability theories, no-signaling, etc.).
 
 **Architrino impact**:
-- ⚠️ **Partial alignment**: $\psi$ is **epistemic** in the sense that it describes **coarse-grained knowledge** of complex architrino assemblies, not the full microstate (which only the absolute observer knows).
+- ⚠️ **Partial alignment**: $\psi$ is **epistemic** in the sense that it describes **coarse-grained knowledge** of complex architrino assemblies, not the full microstate (which only the $\mathbb{U}_{\text{now}}$ universe-state perspective knows).
 - ✅ **Pro**: **PBR theorem** and similar results are respected: the epistemic $\psi$ **reflects real underlying states** (architrino configurations). Different $\psi$ correspond to different ontic states.
 - ✅ **Pro**: Operational constraints (no-signaling, monogamy of entanglement, etc.) are **emergent** from architrino interaction rules + statistical structure of assemblies.
 
@@ -590,7 +590,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 **Architrino impact**:
 - ✅ **Pro**: Dirac's antimatter prediction is **naturally explained**: **opposite architrinos** form binaries; "particles and antiparticles" are **ellipsoidal tri-binaries** with opposite orientations/charges.
 - ✅ **Pro**: Dirac equation as **effective description** of fermionic tri-binary assemblies (ellipsoidal/3D configurations obeying Fermi-Dirac statistics).
-- ⚠️ **Tension**: QFT formalism (fields, creation/annihilation operators, virtual particles, "vacuum" fluctuations) is **emergent**, not fundamental. These are **bookkeeping devices** for complex assembly interactions, visible in full detail only to the absolute observer.
+- ⚠️ **Tension**: QFT formalism (fields, creation/annihilation operators, virtual particles, "vacuum" fluctuations) is **emergent**, not fundamental. These are **bookkeeping devices** for complex assembly interactions, visible in full detail only to the $\mathbb{U}_{\text{now}}$ universe-state perspective.
 
 **Legacy shift**: Dirac's **results** are **rederived** from assembly dynamics; QFT becomes an effective language, not fundamental ontology.
 
@@ -605,7 +605,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 **Architrino impact**:
 - ⚠️ **Reinterpretation**: Path integrals and virtual particles are **effective calculational tools**, not ontologically fundamental.
 - ✅ **Pro**: Feynman diagrams describe **coarse-grained interactions** among tri-binary assemblies.
-- ⚠️ **Con**: "Sum over histories" is **not fundamental**; there is **one actual history** (lawful architrino evolution with self-hit multistability), fully known to the absolute observer up to branch points. The path integral is a **statistical ensemble** approximation.
+- ⚠️ **Con**: "Sum over histories" is **not fundamental**; there is **one actual history** (lawful architrino evolution with self-hit multistability), fully known to the $\mathbb{U}_{\text{now}}$ universe-state perspective up to branch points. The path integral is a **statistical ensemble** approximation.
 
 **Legacy shift**: Feynman's **methods** remain powerful for calculations, but are **reinterpreted as emergent statistical mechanics** on assembly space. Virtual particles are bookkeeping, not real entities.
 
@@ -659,7 +659,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Substance ontology is an abstraction; process is primary.
 
 **Architrino impact**:
-- ❌ **Con**: **Reversal** of Whitehead's priority. **Being precedes becoming**: Architrinos are **eternal, unchanging entities** (no creation/destruction). Processes (assembly formation, evolution, dissociation) are **secondary**. The absolute observer sees eternal entities reconfiguring, not flux alone.
+- ❌ **Con**: **Reversal** of Whitehead's priority. **Being precedes becoming**: Architrinos are **eternal, unchanging entities** (no creation/destruction). Processes (assembly formation, evolution, dissociation) are **secondary**. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees eternal entities reconfiguring, not flux alone.
 - ❌ **Con**: "Occasions of experience" are rejected. No panpsychism; no intrinsic mentality in fundamental entities. Consciousness is **emergent** from complex assemblies (brains).
 - ⚠️ **Partial**: Whitehead's emphasis on **relations** is preserved (architrinos are defined by their interactions, not intrinsic isolated properties). Relationalism upheld; process priority rejected.
 
@@ -690,7 +690,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 **Architrino impact**:
 - ⚠️ **Partial**: Information (architrino states, configurations) is **encoded** in physical entities, but **architrinos are ontologically prior** to information.
 - ❌ **Con**: We reject **information primacy**. Architrinos are **physical**, not abstract bits. Information is a **description** of physical states, not their ground.
-- ✅ **Pro**: Wheeler's participatory universe (observer-involvement) is **rejected**; architrinos evolve independently of observation (though the absolute observer can track them).
+- ✅ **Pro**: Wheeler's participatory universe (observer-involvement) is **rejected**; architrinos evolve independently of observation (though the $\mathbb{U}_{\text{now}}$ universe-state perspective can track them).
 
 **Legacy shift**: **"It from bit" is reversed**: **"Bit from it"** (information emerges from physical architrino configurations). Wheeler's information-theoretic insights are **useful**, but not fundamental.
 
@@ -718,7 +718,7 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 - Progressive = new predictions, new phenomena; degenerating = only post-hoc adjustments.
 
 **Architrino impact**:
-- ✅ **Pro**: Our **hard core**: Euclidean 3D + absolute time + architrinos (point transmitter/receivers) + tri-binary hypothesis + absolute observer framework.
+- ✅ **Pro**: Our **hard core**: Euclidean 3D + absolute time + architrinos (point transmitter/receivers) + tri-binary hypothesis + $\mathbb{U}_{\text{now}}$ universe-state perspective framework.
 - ✅ **Pro**: **Protective belt**: specific interaction kernels, assembly rules, phenomenological mappings (can be adjusted within constraints).
 - ✅ **Pro**: We must demonstrate **progressive** problem-solving (new predictions, not just post-hoc fitting).
 
@@ -820,11 +820,11 @@ All emergence in the architrino framework is **weak emergence**: effective theor
 
 ### Conclusion: The Architrino Weltanschauung
 
-If the architrino/tri-binary framework succeeds empirically, it will not merely refine physics—it will **force a philosophical reckoning**, centering on the distinction between the **Absolute Observer** (the ontological view) and the **Physical Observer** (the assembly-based view).
+If the architrino/tri-binary framework succeeds empirically, it will not merely refine physics—it will **force a philosophical reckoning**, centering on the distinction between the **$\mathbb{U}_{\text{now}}$ universe-state perspective** (the ontological view) and the **Physical Observer** (the assembly-based view).
 
 #### **What Dies**
 
-1.  **Teleology is dead**: No purposes, no final causes, no cosmic goals. The Absolute Observer sees only initial conditions + necessary laws → outcomes. Aristotle, Aquinas, Hegel—all refuted.
+1.  **Teleology is dead**: No purposes, no final causes, no cosmic goals. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees only initial conditions + necessary laws → outcomes. Aristotle, Aquinas, Hegel—all refuted.
     **Replaced by**: Emergent functional structure—stable attractors (particles, organisms) exist because they are dynamically robust, not because they fulfill purposes. "Purpose" returns as a useful shorthand in biology and engineering, not as ontological causation.
 2.  **Idealism is dead**: Reality is not mind-dependent. No Platonic Forms, no Kantian categories structuring experience, no Hegelian Spirit. Architrinos exist at precise (x,y,z,t) coordinates whether or not anyone thinks about them.
     **Replaced by**: Epistemic humility and model pluralism—mental models track real structures but do not constitute them. Mind is an emergent assembly phenomenon with causal power inside the physical network.
@@ -832,25 +832,25 @@ If the architrino/tri-binary framework succeeds empirically, it will not merely 
     **Replaced by**: Immanent realism—explanation stays inside the architrino substrate; "beyond" becomes deeper structure in the same physical ontology.
 4.  **Multistability is localized**: Quantum randomness is not fundamental; it is tied to self-hit branch points in architrino dynamics via microstate-sensitive attractor selection. The Copenhagen interpretation and Heisenberg's ontological uncertainty are rejected as global claims.
     **Replaced by**: Deterministic multistability at branch points with lawful evolution between them—quantum statistics emerge from branching structure and coarse-graining, not from global indeterminacy.
-5.  **Diffeomorphism Invariance as Ontology is dead**: While coordinate invariance is a powerful mathematical tool for effective theories (GR), the Absolute Observer reveals that **fixed Euclidean coordinates** are the deeper reality. "Returning to the same point" is unambiguous in the void.
+5.  **Diffeomorphism Invariance as Ontology is dead**: While coordinate invariance is a powerful mathematical tool for effective theories (GR), the $\mathbb{U}_{\text{now}}$ universe-state perspective reveals that **fixed Euclidean coordinates** are the deeper reality. "Returning to the same point" is unambiguous in the void.
     **Replaced by**: Coordinate-invariant effective physics over a fixed Euclidean substrate—gauge freedom as a calculational symmetry, not a claim about ontology.
 
 #### **What Is Resurrected**
 
 1.  **Severe Materialism**: Stripped of 19th-century baggage (solid spheres, clockwork without field memory). It is:
     *   **Relational** (properties emerge from interactions).
-    *   **Law-governed** (trackable by the Absolute Observer up to self-hit branch points).
+    *   **Law-governed** (trackable by the $\mathbb{U}_{\text{now}}$ universe-state perspective up to self-hit branch points).
     *   **Reductionist** (all complexity reduces to architrinos + void + time).
 2.  **Atomism**: Not Democritus's spheres, but **point transmitter/receivers**.
 3.  **Absolute Time & Space**: Newton and Lorentz are vindicated against Einstein's spacetime ontology. The "void" is a rigid stage; the "vacuum" is the **spacetime assembly network** (coupled Noether cores) filling that stage.
 4.  **Causal Realism**: Hume is refuted. Necessary connections are real (architrino laws). Causation is an objective mapping of state $S(t)$ to $S(t+\Delta t)$.
-5.  **Laplace’s Demon**: Reborn as the **Absolute Observer**—a qualified ideal that maps the full microstate but does not restore Laplacian predictability at self-hit multistability points.
+5.  **Laplace’s Demon**: Reborn as the **$\mathbb{U}_{\text{now}}$ universe-state perspective**—a qualified ideal that maps the full microstate but does not restore Laplacian predictability at self-hit multistability points.
 
 #### **Philosophy's New Role: Boundary Analysis**
 
 Philosophy does not disappear. It matures into **Conceptual Hygiene**:
 
-1.  **Separating Ontology from Epistemology**: The philosopher's job is to police the line between what the **Absolute Observer** knows (the Truth: architrino microstates) and what the **Physical Observer** measures (the Fiction: curved spacetime, probability waves).
+1.  **Separating Ontology from Epistemology**: The philosopher's job is to police the line between what the **$\mathbb{U}_{\text{now}}$ universe-state perspective** knows (the Truth: architrino microstates) and what the **Physical Observer** measures (the Fiction: curved spacetime, probability waves).
 2.  **Clarifying Emergence**: Tracking how rigid micro-laws give rise to plastic macro-phenomena (e.g., how absolute time gives rise to proper time $\tau$ in a tri-binary clock).
 3.  **The Limits of Explanation**: Distinguishing between what is fundamentally inexplicable (the axioms: why architrinos? why $c_f$?) and what is derived (everything else).
 4.  **Emergence Audits**: Mapping where effective theories work and where they fail—where GR breaks, where Born-rule QM fails, where thermodynamic approximations lose accuracy.

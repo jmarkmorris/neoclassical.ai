@@ -169,7 +169,7 @@ codex
 
   3. Derive the effective metric and PPN numbers: from spacetime/emergent-metric.md and spacetime/ppn-parameters.md, specify g_eff(ρ_core,Φ) and compute γ, β, α_i to Cassini/LLR precision; show Shapiro delay/light bending equivalence to GR to 1e-5 while respecting adversarial/failure-criteria.md.
 
-  4. Nail self-hit/regularization numerics: implement tier-0/1 simulations per simulations/run-protocols.md and synthesis/action-energy/* to lock the maximum-curvature orbit, history resolution, and stability of binaries/tri-binaries; publish convergence plots and VO provenance logs.
+  4. Nail self-hit/regularization numerics: implement tier-0/1 simulations per simulations/run-protocols.md and synthesis/action-energy/* to lock the maximum-curvature orbit, history resolution, and stability of binaries/tri-binaries; publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs.
 
   5. Complete the parameter ledger and couplings: populate foundations/parameter-ledger.md with κ, ε0/μ0 equivalents, density scales, and regularization widths; tie to foundations/action.md and foundations/architrino-si-base-units.md, then cross-check against adversarial/constraint-ledger.md for viability bounds.
 

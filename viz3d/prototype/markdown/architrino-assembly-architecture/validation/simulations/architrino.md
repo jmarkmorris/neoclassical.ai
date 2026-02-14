@@ -1,7 +1,7 @@
 ## Tier-1 Mandatory Unit Tests (Before Self-Hit Claims)
 
 ### Provenance-resolved propagation test
-Implement 1-architrino and 2-architrino setups with VO sensors arranged on causal rings:
+Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ sensors arranged on causal rings:
 - Verify causal isochron propagation at c\_f
 - Verify correct arrival ordering and phase behavior (per kernel)
 - Verify numerical stability of t\_emit inversion as $\Delta$t → $\Delta$t/2
@@ -15,7 +15,7 @@ Implement 1-architrino and 2-architrino setups with VO sensors arranged on causa
 ### Grid-Based History Strategy
 
 1. **Problem**: Infinite memory cost for particle-based history in self-hit regimes.
-2. **Solution**: Use the VO Grid as the history buffer. Store potential magnitude/gradient at grid nodes.
+2. **Solution**: Use the $\mathbb{U}_{\text{now}}$ Grid as the history buffer. Store potential magnitude/gradient at grid nodes.
 3. **Algorithm**: When an architrino requires its self-potential from $t-\Delta t$, query the **grid node** closest to where the particle *was*, rather than indexing the particle list.
 4. **Deliverable**: Prove convergence of this grid-based history against analytic causal isochrons.
 

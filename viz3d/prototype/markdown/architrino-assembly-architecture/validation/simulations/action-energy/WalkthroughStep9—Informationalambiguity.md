@@ -15,7 +15,7 @@ Detailed explanation (degeneracies and inference limits):
   - Attraction from a positive charge on one side is indistinguishable, at an instant, from repulsion by a negative charge located at the diametrically opposite point along the same line.
 
 - Consequence for reconstruction:
-  - Instantaneous local data at the receiver are insufficient to invert for sources; this remains true even for an absolute observer who knows the universal clock $t$ and the Euclidean rest frame. The absolute observer can eliminate coordinate uncertainty (perfect synchronization and alignment) but not the physical ambiguities below.
+  - Instantaneous local data at the receiver are insufficient to invert for sources; this remains true even for an $\mathbb{U}_{\text{now}}$ universe-state perspective who knows the universal clock $t$ and the Euclidean rest frame. The $\mathbb{U}_{\text{now}}$ universe-state perspective can eliminate coordinate uncertainty (perfect synchronization and alignment) but not the physical ambiguities below.
   - Irreducible ambiguities at an instant:
     - Sign/side ambiguity: attraction from a positive source on one side is indistinguishable from repulsion by a negative source on the diametrically opposite side along the same line.
     - Superposition along a line: multiple sources aligned on the same unoriented line of action can sum to the same net magnitude and direction at one instant.

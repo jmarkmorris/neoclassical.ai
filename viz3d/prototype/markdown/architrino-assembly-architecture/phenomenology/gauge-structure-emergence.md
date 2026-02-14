@@ -15,8 +15,8 @@ The "vacuum" is not empty space. It is a Euclidean void filled with a dense, per
 
 Standard Model fields are often treated as fundamental entities. Here, we posit that fields are **emergent bookkeeping tools** describing the state of the Noether Sea.
 
-**The Absolute Observer (AO) vs. The Physical Observer (PO)**
-*   **AO View:** Sees only point-like architrinos ($\pm |e/6|$) and their discrete potential emissions $\Phi$. There are no continuous "gauge fields," only the summation of causal potential wakes.
+**The $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) vs. The Physical Observer (PO)**
+*   **$\mathbb{U}_{\text{now}}$ View:** Sees only point-like architrinos ($\pm |e/6|$) and their discrete potential emissions $\Phi$. There are no continuous "gauge fields," only the summation of causal potential wakes.
 *   **PO View (Emergent):** Lacking the resolution to see individual architrinos, the Physical Observer measures the **collective potential gradient** $\nabla \Phi$ at a point.
     *   **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of the potential flux density and vorticity in the Noether Sea.
     *   **Gauge Potentials ($A_\mu$):** These correspond to local **twists, strains, or density gradients** in the lattice of the Noether Sea.
@@ -48,7 +48,7 @@ The oft lamented"God Particle" narrative is replaced by a hydrodynamic analog.
 General Relativity predicts that an accelerating observer sees a thermal bath of particles (Unruh radiation), while an inertial observer sees a vacuum. This creates an ontological paradox: do the particles exist or not?
 
 **The Architrino Resolution:**
-*   **Objective Existence:** To the Absolute Observer, particles (assemblies) either exist or they don't. Their existence is not frame-dependent.
+*   **Objective Existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, particles (assemblies) either exist or they don't. Their existence is not frame-dependent.
 *   **Frictional Heating:** The "warm bath" detected by the accelerating Physical Observer is the result of **frictional interaction** with the Noether Sea.
 *   **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) increases the rate of collision/interaction with background binaries (Noether cores). This increased interaction cross-section manifests as thermal energy ("radiation") in the detector. The "particles" seen are excitations of the detector caused by friction against the Sea.
 
@@ -56,7 +56,7 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 
 Why are charges quantized in units of e/3?
 *   The Standard Model asserts this; AAA derives it.
-*   **Stability Selection:** The Absolute Observer sees that arbitrary clusters of $|e/6|$ charges are likely unstable. They either collapse (self-hit singularity) or fly apart.
+*   **Stability Selection:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees that arbitrary clusters of $|e/6|$ charges are likely unstable. They either collapse (self-hit singularity) or fly apart.
 *   **The Survivors:** Only specific geometric configurations (the 6-pole decoration patterns) establish a stable resonance where attractive and repulsive forces balance via the tri-binary structure. These stable islands correspond exactly to the SM particle spectrum.
 
 **SM Charge Quantization (AAA: Six e/6 Personality Charges)**

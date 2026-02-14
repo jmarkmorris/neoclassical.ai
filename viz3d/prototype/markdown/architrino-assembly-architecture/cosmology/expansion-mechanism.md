@@ -1,6 +1,6 @@
 ### Cosmological Expansion in the Euclidean Void
 
-1. **The Scale Factor ($a(t)$)**: Expansion is **not** the stretching of space. The Absolute Observer sees the $(x,y,z)$ coordinates remain fixed.
+1. **The Scale Factor ($a(t)$)**: Expansion is **not** the stretching of space. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees the $(x,y,z)$ coordinates remain fixed.
 2. **Expansion Mechanism**: Expansion is the statistical increase in the separation of Noether cores or the "scaling up" of the Tri-Binary radius over absolute time.
 3. **Redshift**: Photons (assemblies) lose internal frequency as they travel because they are coupling to a background Noether Sea that is itself scaling or changing density over time.
 4. **$H_0$ Tension**: Variations in the local density of the Noether Sea (voids vs. filaments) lead to different effective scaling rates, naturally explaining $H_0$ discrepancies.
@@ -10,7 +10,7 @@
 
 1. **Fixed Background**: The Euclidean Void does **not** expand.
 2. **Assembly Scaling**: "Cosmic Expansion" is the statistical growth of the radius of the **Outer Binary** of vacuum assemblies over absolute time $t$.
-3. **Redshift**: Photons (tri-binaries) traveling through a scaling medium undergo frequency decay. The Absolute Observer sees the photon "growing" and "slowing."
+3. **Redshift**: Photons (tri-binaries) traveling through a scaling medium undergo frequency decay. The $\mathbb{U}_{\text{now}}$ universe-state perspective sees the photon "growing" and "slowing."
 4. **Cosmic Time**: FRW "Cosmic Time" is an approximation of absolute time $t$, reconstructed from the behavior of comoving assembly clocks.
 
 
@@ -33,7 +33,7 @@
   - The configuration of the **Noether-core sea** (spacetime medium),
   - Characteristic scales of tri-binary assemblies and their separations.
 
-From the virtual observer’s perspective:
+From the $\mathbb{U}_{\text{now}}$ universe-state perspective:
 
 - There is an evolving spatial pattern of assemblies:
   - Typical inter-core spacing $L_{\text{core}}(t)$,
@@ -61,7 +61,7 @@ In this picture, cosmological redshift arises because:
 - Photons are tri-binary (planar) assemblies propagating through an evolving medium.
 - As they traverse the Noether-core sea:
   - Their internal frequencies and effective wavelengths change in response to the scaling of outer-binary lengths and medium density.
-- From the virtual observer:
+- From the $\mathbb{U}_{\text{now}}$ universe-state perspective:
   - Photon paths are straight lines in $(x,y,z)$ with time-varying internal frequency $\nu(t)$ and effective propagation characteristics due to the time-dependent medium.
 - From physical observers:
   - Redshift $1+z = a_{\text{obs}}/a_{\text{emit}}$ emerges as in FRW cosmology.

@@ -51,7 +51,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
      - **Effective metric geometry** reproducing GR tests,
      - **Effective probabilistic laws** compatible with quantum phenomenology.
    - Emergent geometry is **refractive**, not fundamentally curved: effective metrics come from medium density/orientation fields in the void.
-   - Operational observers built from assemblies see **emergent Lorentz symmetry**; the virtual observer tracks absolute time and full microdynamics.
+   - Operational observers built from assemblies see **emergent Lorentz symmetry**; the $\mathbb{U}_{\text{now}}$ universe-state perspective tracks absolute time and full microdynamics.
 
 ### Group Composition & Responsibilities
 

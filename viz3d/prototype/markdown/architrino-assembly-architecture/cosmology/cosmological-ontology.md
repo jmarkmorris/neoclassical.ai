@@ -9,7 +9,7 @@
 
 In this project, **cosmology** is formulated with two tightly linked but distinct time/space descriptions:
 
-1. **Absolute description (virtual observer)**:
+1. **Absolute description ($\mathbb{U}_{\text{now}}$ universe-state perspective)**:
    - Uses the fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$.
    - Tracks the full microstate: all architrinos, all tri-binary assemblies, the Noether-core sea configuration.
    - Sees:

@@ -20,7 +20,7 @@ and generalizes to strong‑field / high‑velocity conditions.
 
 - **Absolute time $t$** 
  - Fundamental evolution parameter of the architrino universe. 
- - Global, universal, non‑dynamical; used by the Absolute Observer (simulation clock). 
+ - Global, universal, non‑dynamical; used by the $\mathbb{U}_{\text{now}}$ universe-state perspective (simulation clock). 
  - All worldlines are parametrized directly by $t$.
 
 - **Proper time $\tau$** 

@@ -1,6 +1,6 @@
 ### Effective Metric Emergence
 
-1. **The Mapping**: The Absolute Observer sees a flat Euclidean metric ($\delta_{ij}$). Physical Observers perceive a curved metric ($g_{\mu\nu}$).
+1. **The Mapping**: The $\mathbb{U}_{\text{now}}$ universe-state perspective sees a flat Euclidean metric ($\delta_{ij}$). Physical Observers perceive a curved metric ($g_{\mu\nu}$).
 2. **Mechanism**: The "curvature" of General Relativity is an effective description of the variable density ($\rho_{vac}$) and stress state of the Noether Core sea. 
 3. **Refraction vs. Curvature**: 
    - Light (photon assembly) travels in a straight line in the Void.
@@ -55,14 +55,14 @@ The effective metric is thus a *derived, observer‑dependent construct* summari
 ### Effective Metric as Seen by Assembly Observers
 
 1. **Metric as Density Map**: The metric tensor $g_{\mu\nu}$ is an effective description of the **local density and orientation** of the "Sea of Cores" relative to the Absolute Euclidean grid.
-2. **Geodesics**: A "straight line" in the Void (Absolute Observer view) appears as a curved path to a matter assembly because the "Sea" has a refractive index gradient caused by mass.
-3. **Operational Mapping**: GR’s curved spacetime is an effective description of how assembly clocks behave when embedded in the Noether-core medium, encoded as static geometry in the virtual observer’s Euclidean coordinates.
+2. **Geodesics**: A "straight line" in the Void ($\mathbb{U}_{\text{now}}$ universe-state perspective view) appears as a curved path to a matter assembly because the "Sea" has a refractive index gradient caused by mass.
+3. **Operational Mapping**: GR’s curved spacetime is an effective description of how assembly clocks behave when embedded in the Noether-core medium, encoded as static geometry in the $\mathbb{U}_{\text{now}}$ universe-state perspective’s Euclidean coordinates.
 
 
 ### The Effective Metric as a Density Map
 
 #### Curvature as Refraction (Consolidated Dyna/Cos/Sig)
-* **Absolute View:** The Absolute Observer sees a rigid Euclidean metric $\delta_{ij}$ and a non-uniform density of Noether cores $\rho_{nc}(x,y,z,t)$.
+* **Absolute View:** The $\mathbb{U}_{\text{now}}$ universe-state perspective sees a rigid Euclidean metric $\delta_{ij}$ and a non-uniform density of Noether cores $\rho_{nc}(x,y,z,t)$.
 * **Physical View:** Physical observers (assemblies) perceive a curved metric $g_{\mu\nu}$ because their signals and clocks are modulated by $\rho_{nc}$.
 * **The Mapping:**
     - $g_{00}$ maps to the potential-induced clock slowing (refraction of time).
@@ -82,7 +82,7 @@ The effective metric is thus a *derived, observer‑dependent construct* summari
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. Coordinates $(x,y,z)$ never move or curve.
 - **Medium**: A pervasive sea of coupled pro/anti Noether cores (tri-binary assemblies) that we call the *spacetime medium* or *Noether-core sea*.
-- **Virtual Observer**: A conceptual observer in the absolute frame who knows:
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual observer in the absolute frame who knows:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether-core sea (density $\rho_{\text{core}}(x,t)$, alignment, stress),
   - The potential field $\Phi(x,t)$ and its gradients.
@@ -102,13 +102,13 @@ We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
 > At each point $x$, choose an idealized physical observer (tri-binary clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
 
-The virtual observer then maps:
+The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps:
 
 $(\delta_{ij}, \rho_{\text{core}}(x,t), \Phi(x,t), \nabla\Phi(x,t), \text{medium alignment}) \;\Rightarrow\; g^{\text{eff}}_{\mu\nu}(x)$
 
 #### Refraction vs. Curvature
 
-- From the **virtual observer**:
+- From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Light and gravity-like perturbations travel on straight lines in $(x,y,z)$,
   - But with an *effective speed* $c_{\text{eff}}(x)$ that depends on the local Noether-core configuration:
     $c_{\text{eff}}(x) < c_f \quad \text{in dense regions (near mass)}$

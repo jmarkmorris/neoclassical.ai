@@ -2,11 +2,11 @@
 
 ### Required refinements (beyond standard $\Delta$t)
 1) Temporal refinement:
-- Run with $\Delta$t and $\Delta$t/2; compare VO observables ($\Phi$, ∇$\Phi$, self-hit event rates)
+- Run with $\Delta$t and $\Delta$t/2; compare $\mathbb{U}_{\text{now}}$ observables ($\Phi$, ∇$\Phi$, self-hit event rates)
 
 2) History-resolution refinement:
 - Halve history sampling interval OR increase interpolation order for emission-time inversion (t_emit)
-- Require VO observables and provenance distributions to stabilize
+- Require $\mathbb{U}_{\text{now}}$ observables and provenance distributions to stabilize
 
 3) Spatial refinement:
 - Increase spatial resolution (particle resolution or field grid) and confirm stability of:
@@ -15,7 +15,7 @@
   - binary/tri-binary stability windows
 
 4) Cross-integrator validation:
-- For key claims, run two integrators (e.g., symplectic vs RK) and compare VO outputs
+- For key claims, run two integrators (e.g., symplectic vs RK) and compare $\mathbb{U}_{\text{now}}$ outputs
 
 ### Provenance stability metric (mandatory)
 For a fixed receiver point and time window, compare distributions of solved t_emit:
@@ -30,6 +30,6 @@ Intentionally use a wrong history kernel / wrong c_f / wrong emission-time solve
 
 ### Non-Markovian Convergence
 
-* **History Refinement:** Refine history sampling interval; verify Virtual Observer observables converge.
+* **History Refinement:** Refine history sampling interval; verify $\mathbb{U}_{\text{now}}$ universe-state perspective observables converge.
 * **Provenance Stability:** Distribution of $t_{emit}$ solutions must be stable.
 * **Null Test:** Use wrong kernel to ensure stability breaks as expected.

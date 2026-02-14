@@ -1,8 +1,8 @@
 
 ### Validation Protocols: Proving the Absolute Frame
 
-#### Absolute Observer Proxies
-* **The CMB Rest Frame:** While the Absolute Observer is virtual, the CMB dipole-free frame serves as the closest physical approximation to the "Rest Frame of the Noether Sea."
+#### $\mathbb{U}_{\text{now}}$ universe-state perspective Proxies
+* **The CMB Rest Frame:** While the $\mathbb{U}_{\text{now}}$ universe-state perspective is virtual, the CMB dipole-free frame serves as the closest physical approximation to the "Rest Frame of the Noether Sea."
 * **Protocol:** Any simulation result must be transformed into the CMB rest frame to check for consistency with large-scale cosmological observations.
 
 #### Null Tests for "Ether Drift"

@@ -142,7 +142,7 @@ Plain language summary: Keep the hits radial, delay them in time, keep per-wavef
 
 ## Effective observables and states (quantum-like layer)
 
-Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. Even an absolute observer (perfect global clock and Euclidean frame) does not see the hidden emission ledger of all sources.
+Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. Even an $\mathbb{U}_{\text{now}}$ universe-state perspective (perfect global clock and Euclidean frame) does not see the hidden emission ledger of all sources.
 
 - Emission ledger (microstate): the set of tuples {(t₀, s_j(t₀), v_j(t₀), q_j)} over all sources j that causally affect the receiver.
 - Observational map: ledgers → histories of hits {A(t_k), L(t_k)} across one or more receivers and over time.
@@ -176,7 +176,7 @@ Absolute time and Euclidean frames remove coordinate ambiguity (synchronization 
 - Self-hit aliasing: self-intersections can mimic external sources along L.
 - Surrogate location recast: any instantaneous hit may be recast to a stationary surrogate source placed somewhere along L with an adjusted emission time; useful for inference and visualization, but it does not resolve the sign/side ambiguity or fix distance without temporal data.
 
-Consequence: even the absolute observer must reason statistically over ledger classes; “quantum-like” observability is not a contradiction but a necessity.
+Consequence: even the $\mathbb{U}_{\text{now}}$ universe-state perspective must reason statistically over ledger classes; “quantum-like” observability is not a contradiction but a necessity.
 
 ---
 

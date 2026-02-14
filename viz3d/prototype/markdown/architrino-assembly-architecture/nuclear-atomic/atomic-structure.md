@@ -10,10 +10,10 @@
 
 1. **Vacuum Interaction**: Nucleons are not isolated; they are excitations/defects within the dense medium of coupled pro/anti Noether cores.
 2. **Binding Energy**: Calculation of binding energy must account for the pressure/tension exerted by the surrounding "Sea."
-3. **Aether Density**: We define the local vacuum density $\rho_{nc}$ as a scalar field on the Absolute Observer's grid.
+3. **Aether Density**: We define the local vacuum density $\rho_{nc}$ as a scalar field on the $\mathbb{U}_{\text{now}}$ universe-state grid.
 
 
 ### Nuclear Physics in the Sea of Cores
 
 * **Binding Energy:** Nucleons are defects/excitations in the dense Noether core medium. Binding energy involves pressure from the surrounding sea.
-* **Aether Density:** Use the Absolute Observer to map local vacuum density; this affects binding constants.
+* **Aether Density:** Use the $\mathbb{U}_{\text{now}}$ universe-state perspective to map local vacuum density; this affects binding constants.

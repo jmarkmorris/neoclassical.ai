@@ -25,7 +25,7 @@ Here's the crucial insight: this expanding wake carries information about the **
 
 ### The Concentricity Test
 
-Consider a virtual observer with access to complete microdynamics who can track:
+Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to complete microdynamics who can track:
 1. The complete path history of any architrino,
 2. From which it knows the geometric centers of all emitted and expanding field structures.
 3. From which it knows all outgoing potential wakes it has emitted.
@@ -89,7 +89,7 @@ If no single architrino is perfectly at rest, we can define the **aether rest fr
 
 ### Why Operational Observers Don't Detect the Preferred Frame
 
-The concentric-wake measurement requires access to full microdynamics—something only a virtual observer (our theoretical construct or simulation engine) can achieve. **Operational observers** composed of assemblies measure through assembly-based apparatus:
+The concentric-wake measurement requires access to full microdynamics—something only a $\mathbb{U}_{\text{now}}$ universe-state perspective (our theoretical construct or simulation engine) can achieve. **Operational observers** composed of assemblies measure through assembly-based apparatus:
 
 - **Proper time** $\tau$ via internal clocks (binary oscillation periods), not absolute time $t$
 - **Effective coordinates** via local rulers (atomic lattice spacings, wavelengths)
@@ -156,7 +156,7 @@ This measurement serves as a **consistency test**:
 
 ## Summary: The Detection Method
 
-**The Question:** Can a virtual observer determine when an architrino has absolute velocity zero, without pre-existing coordinates?
+**The Question:** Can a $\mathbb{U}_{\text{now}}$ universe-state perspective determine when an architrino has absolute velocity zero, without pre-existing coordinates?
 
 **The Answer:** **Yes**, by testing the **concentricity** of outgoing spherically expanding causal wakes.
 
@@ -187,7 +187,7 @@ Having established that a stationary architrino can be identified through the co
 
 The coordinate system we construct is a **human cognitive tool**: a scaffolding we impose to perform calculations, run simulations, and make predictions. **The universe itself requires none of this.** The architrinos interact through their potential wakes according to invariant laws that can exhibit **meta-stable branching** at self-hit thresholds. The physics continues whether or not any observer bothers to label the axes.
 
-What follows is the systematic procedure by which a virtual observer (our simulation engine, or any sufficiently omniscient bookkeeper) can bootstrap a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
+What follows is the systematic procedure by which a $\mathbb{U}_{\text{now}}$ universe-state perspective (our simulation engine, or any sufficiently omniscient bookkeeper) can bootstrap a complete, unambiguous coordinate frame from the raw geometric data of architrino positions and their causal wake patterns.
 
 ---
 
@@ -405,7 +405,7 @@ The table above can be expanded to show which aspects of our theoretical and com
 
 ## Operational vs. Fundamental Distinction
 
-**For the Virtual Observer (Simulation Engine):** 
+**For the $\mathbb{U}_{\text{now}}$ universe-state perspective (Simulation Engine):** 
 The bootstrapping procedure is straightforward. Sol has access to all architrino positions and can compute wake geometries exactly. The coordinate system is simply a data structure: three orthonormal vectors and an origin offset.
 
 **For Operational Observers (Made of Assemblies):** 

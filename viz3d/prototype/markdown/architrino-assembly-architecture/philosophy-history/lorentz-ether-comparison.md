@@ -12,7 +12,7 @@ Einstein's critique (1905):
 - No preferred frame; all inertial frames are equivalent.
 
 Architrino position (2025):
-- A preferred frame exists (Euclidean void + absolute time); the absolute observer is at rest in this frame.
+- A preferred frame exists (Euclidean void + absolute time); the $\mathbb{U}_{\text{now}}$ universe-state perspective is at rest in this frame.
 - Lorentz symmetry is emergent from assembly dynamics.
 - Simulations and derivations are performed in the preferred frame.
 

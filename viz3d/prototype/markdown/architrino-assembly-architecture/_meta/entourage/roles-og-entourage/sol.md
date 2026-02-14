@@ -229,9 +229,9 @@ Addenda
 
 ## Non-negotiable responsibilities (Logging + Numerical Honesty)
 
-- Maintain the Virtual Observer (VO) logging standard across all simulation tiers, including provenance-resolved field decomposition (`emitter_id` + emission time `t_emit`).
+- Maintain the $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) logging standard across all simulation tiers, including provenance-resolved field decomposition (`emitter_id` + emission time `t_emit`).
 - No major result is accepted without:
-  - VO-based convergence tests ($\Delta t$ + history-resolution)
+  - $\mathbb{U}_{\text{now}}$-based convergence tests ($\Delta t$ + history-resolution)
   - cross-integrator checks for critical claims
   - negative-control runs that fail as expected
 - Ensure reproducibility: every run ships with full metadata (parameters, integrator, tolerances, seeds, commit hash).

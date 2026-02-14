@@ -68,7 +68,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - Observables (clocks) measure **proper time** ($\tau$), which depends on assembly state and medium coupling.  
 - Status: **Ontologically fundamental**; proper time is emergent/operational.
 
-**The Absolute Observer (AO):**  
+**The $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$):**  
 - A **conceptual** (non-physical) vantage point with access to the full microstate $S(t)$ at every spacetime coordinate $(x,y,z,t)$.  
 - Used for:  
   - Simulation ground truth (what "actually happened" in absolute time),  
@@ -174,7 +174,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 - **"Effective metric" / "refractive index field"** (for emergent curved geometry).  
 - **"Field speed" ($c_f$)** for fundamental potential propagation speed.  
 - **"Effective light speed" ($c_{\text{eff}}$ or $c$)** for operational speed of light (medium sound speed).  
-- **"Absolute Observer (AO)"** for simulation ground truth.  
+- **"$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)"** for simulation ground truth.  
 - **"Physical Observer (PO)"** for assembly-based measurements (epistemic).
 
 **AVOID (Prohibited without explicit justification):**  
@@ -445,7 +445,7 @@ Assess five dimensions (Green/Yellow/Red):
 ### Accomplishments (What We've Established)
 
 **Foundational Ontology:**  
-- **Absolute Observer (AO) codified**: Clear distinction between simulation ground truth (AO) and operational measurements (Physical Observers).  
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) codified**: Clear distinction between simulation ground truth ($\mathbb{U}_{\text{now}}$) and operational measurements (Physical Observers).  
 - **Noether Sea ontology**: Spacetime is not empty void; it is a dense lattice of coupled tri-binary assemblies (superfluid-like medium).  
 - **Terminology locked**: "Path history" , "Sea/Medium" (not vacuum), "Void" (Euclidean container).
 
@@ -468,7 +468,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 **Simulation Framework:**  
 - Defined **Absolute Frame** for simulations (Euclidean grid, global time $t$, grid-based potential buffering).  
-- **Virtual Observer nodes**: Log $\Phi$ and $\nabla\Phi$ to verify emergent fields match predictions.
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective nodes**: Log $\Phi$ and $\nabla\Phi$ to verify emergent fields match predictions.
 
 ---
 

@@ -684,7 +684,7 @@ Any single hit can be **equivalently described** with a **stationary emitter** (
 
 The ambiguity is compounded by **superposition**: The net potential at any instant is the sum of all intersecting expanding causal wake surfaces. A measured potential along a single radial can be the consequence of a **complex confluence of fields** from many different emitters located along that line of action, arriving from both directions.
 
-**Consequence:** The receiver experiences a **deterministic acceleration** (given full microstate knowledge, as known to the Absolute Observer), but has **incomplete local information** about the source configuration.
+**Consequence:** The receiver experiences a **deterministic acceleration** (given full microstate knowledge, as known to the $\mathbb{U}_{\text{now}}$ universe-state perspective), but has **incomplete local information** about the source configuration.
 
 #### Connection to Quantum Measurement Uncertainty
 
@@ -1504,7 +1504,7 @@ Consider an architrino that has, at some earlier times $t_0$, emitted causal wak
 
 At those intersection events, its kinetic energy can change sharply.
 
-From the Absolute Observer’s standpoint:
+From the $\mathbb{U}_{\text{now}}$ universe-state perspective’s standpoint:
 
 - When self‑hit first becomes possible near $v \approx c_f$, the kinetic energy of that particular architrino can begin to grow much faster (a strong amplifier of the local rate of kinetic-energy growth).
 - At that exact moment, no other architrino directly feels anything; their kinetic energies do not change until the consequences of this altered motion propagate outward via their own emitted wakes and later intersect them.
