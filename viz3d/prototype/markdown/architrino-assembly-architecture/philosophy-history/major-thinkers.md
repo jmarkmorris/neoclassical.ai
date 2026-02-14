@@ -10,7 +10,7 @@ The architrino project is positioned as:
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry and GR emergent.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
-- **Absolute observer**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and charge of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This observer knows where and when each causal wake surface was emitted as it passes any point.
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and charge of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
 - **Spacetime assembly network**: What GR calls the "vacuum" is not empty void but a **spacetime assembly network** of coupled pro/anti Noether cores (tri-binary assemblies forming the spacetime fabric). 
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.

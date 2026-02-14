@@ -12,7 +12,7 @@
 
 ### Effective Metric: Virtual vs Physical Observers
 
-**Virtual observer view (substrate level):**
+**$\mathbb{U}_{\text{now}}$ universe-state perspective (substrate level):**
 
 - Underlying geometry is fixed Euclidean:
   - Spatial metric: $\delta_{ij}$,
@@ -127,7 +127,7 @@ The core task of this document will be to:
 
 #### Virtual vs. Physical Observers
 
-- **Virtual observer**:
+- **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Uses absolute time $t$ and Euclidean geometry $\delta_{ij}$,
   - Sees only medium inhomogeneities and propagation speeds.
 - **Physical observer**:

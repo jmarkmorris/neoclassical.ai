@@ -167,7 +167,7 @@ Plain language: you never see the full book of who emitted what; you only see a 
 
 ---
 
-## Absolute observer note: what perfect clocks and frames do (and don’t)
+## $\mathbb{U}_{\text{now}}$ note: what perfect clocks and frames do (and don’t)
 
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
 - Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
