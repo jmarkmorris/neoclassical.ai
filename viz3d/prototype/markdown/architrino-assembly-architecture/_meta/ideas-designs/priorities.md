@@ -65,11 +65,27 @@
 - maybe the 'throat' of he event horizon is the planar circle x c_f in translation. Like a cylinder. Hmm that is interesting. 
 - that is a different way of looking at fermi-dirac vs. pauli exclusion.
 
-- i still like my 4 2 1 model, but maybe the 0 on the scale is wrong. If you set the max as the freq of mcb, then a decrease of 2 hz there corresponds to 1 hz on the outer binary. So the idea is we still hve the 4 2 1, but the baseline is at f_mcb. even if they all start at mcb, as they yield energy it comes in quanta externally. This is an interesting flip on the head, and relates to the new zero in potential energy at the MCB.  So fmax, fmax/2, fmax/4. then you subtract 1 2 4 from there for each click.
+- i still like my 4 2 1 model, but maybe the 0 on the scale is wrong. 
+  - If you set the max as the freq of mcb, then a decrease of 2 hz there corresponds to 1 hz on the outer binary. 
+  - So the idea is we still hve the 4 2 1, but the baseline is at f_mcb. 
+  - even if they all start at mcb, as they yield energy it comes in quanta externally. 
+  - This is an interesting flip on the head, and relates to the new zero in potential energy at the MCB.  
+  - So fmax, fmax/2, fmax/4. then you subtract 1 2 4 from there for each click.
+  - what about stacy's gravity MOND - could that possibly be the inner binary crossing over c_f?  doubt it, but...
 
 - i still have quite a bit of confusion how the tri-binary rides the rail.  i suppose the internal radius can go into self hit first 
 
-- so max KE, min PE = MCB. (Until freeze-out).  So if it is 1:2:4 and if inner is always in the self-hit region, then outer is always f > f_mcb/4? so that inner is at least f_mcb/2 > f_p?  Okay I guess. why not. Then  every h just shifts.   Unless we are counting down from the MCB.  If we have 4:2:1 from that perspective what does that mean? It seems nature wants to set v=c_f and the Planck scale juncture to be the canonical definition of zero.  On the other hand maybe we should look at the MCB as definition of zero PE and max KE.
+- so max KE, min PE = MCB. (Until freeze-out).  
+  - So if it is 1:2:4 and if inner is always in the self-hit region, then outer is always f > f_mcb/4? 
+  - so that inner is at least f_mcb/2 > f_p?  
+  - Okay I guess. why not. 
+  - Then  every h just shifts.   
+  - Unless we are counting down from the MCB.  
+  - If we have 4:2:1 from that perspective what does that mean? 
+  - It seems nature wants to set v=c_f and the Planck scale juncture to be the canonical definition of zero.  
+  - On the other hand maybe we should look at the MCB as definition of zero PE and max KE.
+
+- maybe I should make a python model that computes the escaping potential with different frequencies on sliders so I can see what happens?  
 
 ---
 
