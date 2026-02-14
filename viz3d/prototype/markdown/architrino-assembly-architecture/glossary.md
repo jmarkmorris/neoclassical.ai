@@ -5,8 +5,8 @@ AAA = Architrino Assembly Architecture.
 
 | Term | $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$ | AAA |
 | --- | --- | --- |
-| Absolute Observer (AO) | No privileged observer; all observers are physical systems and frames are coordinate choices. | Conceptual (non-physical) observer with complete microstate knowledge at $x,y,z,t$; simulation ground truth. |
-| Absolute Time | No universal time; $\mathrm{GR}$ uses coordinate time and proper time along worldlines. | Global, linear time parameter $t$ used by the virtual observer; universal synchronization. |
+| tbd | No direct equivalent as a fundamental ontic slice in $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$; practical descriptions are observer/model-dependent. | Complete ontic universe state on simultaneity slice $\Sigma_t$ at global time $t$: $S(t)=\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i,\ldots)\}$, together with path-history/provenance bookkeeping (emitter identity, emission time) and self-hit history needed for deterministic evolution. This is simulation ground truth. Not an observer. |
+| Absolute Time | No universal time; $\mathrm{GR}$ uses coordinate time and proper time along worldlines. | Global, linear time parameter $t$ indexing each $tbd$ slice; universal synchronization. |
 | Absolute Frame / Preferred Frame | No preferred inertial frame; all inertial frames are equivalent in $\mathrm{SR}/\mathrm{GR}$. | The Euclidean-void rest frame defined by isotropy of $c_f$ and absolute time; physically real but operationally hidden. |
 | Architrino | Not part of standard $\mathrm{GR}/\mathrm{QM}/\Lambda\mathrm{CDM}$; no such fundamental entity. | Point transmitter/receiver of polarized potential (electrino:positrino) with fixed charge magnitude. |
 | Binary | Bound two-body system; modeled by forces/fields (e.g., EM or gravity), with no intrinsic delay-isochron mechanics. | Opposite-charge pair (electrino:positrino) forming the base assembly; spirals inward and can stabilize via self-hit. |
@@ -44,4 +44,3 @@ AAA = Architrino Assembly Architecture.
 | Spacetime Medium (Noether Core Sea) | No physical medium; spacetime is the metric field and vacuum is not a substance. | Pervasive assembly network giving rise to effective metric/inertia. |
 | Tri-Binary | No tri-binary assembly; bound states described by quantum fields and forces. | Synonym of Binary, Tri. |
 | AdS Interior / AdS-Like Region | Anti-de Sitter space is a specific constant-curvature spacetime in GR/string theory. | Self-hit regime ($v>c_f$) with confining/steep potential behavior; interior/“bulk” dynamics. |
-| Virtual Observer (VO) | Observers are physical systems; no privileged bookkeeping observer in $\mathrm{GR}/\mathrm{QM}$. | Non-physical bookkeeping operator with access to full microstate and history at $x,y,z,t$. |
